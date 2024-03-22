@@ -47,6 +47,7 @@ class Policy6Args:
                  firewall_session_dirty: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['Policy6FssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['Policy6GroupArgs']]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -141,6 +142,7 @@ class Policy6Args:
         :param pulumi.Input[str] firewall_session_dirty: How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
         :param pulumi.Input[str] fixedport: Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Policy6FssoGroupArgs']]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Label for the policy that appears when the GUI is in Global View mode.
         :param pulumi.Input[Sequence[pulumi.Input['Policy6GroupArgs']]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -260,6 +262,8 @@ class Policy6Args:
             pulumi.set(__self__, "fixedport", fixedport)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if global_label is not None:
             pulumi.set(__self__, "global_label", global_label)
         if groups is not None:
@@ -754,6 +758,18 @@ class Policy6Args:
     @fsso_groups.setter
     def fsso_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Policy6FssoGroupArgs']]]]):
         pulumi.set(self, "fsso_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="globalLabel")
@@ -1519,6 +1535,7 @@ class _Policy6State:
                  firewall_session_dirty: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['Policy6FssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['Policy6GroupArgs']]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -1613,6 +1630,7 @@ class _Policy6State:
         :param pulumi.Input[str] firewall_session_dirty: How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
         :param pulumi.Input[str] fixedport: Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Policy6FssoGroupArgs']]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Label for the policy that appears when the GUI is in Global View mode.
         :param pulumi.Input[Sequence[pulumi.Input['Policy6GroupArgs']]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -1734,6 +1752,8 @@ class _Policy6State:
             pulumi.set(__self__, "fixedport", fixedport)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if global_label is not None:
             pulumi.set(__self__, "global_label", global_label)
         if groups is not None:
@@ -2198,6 +2218,18 @@ class _Policy6State:
     @fsso_groups.setter
     def fsso_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Policy6FssoGroupArgs']]]]):
         pulumi.set(self, "fsso_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="globalLabel")
@@ -3001,6 +3033,7 @@ class Policy6(pulumi.CustomResource):
                  firewall_session_dirty: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6FssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6GroupArgs']]]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -3178,6 +3211,7 @@ class Policy6(pulumi.CustomResource):
         :param pulumi.Input[str] firewall_session_dirty: How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
         :param pulumi.Input[str] fixedport: Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6FssoGroupArgs']]]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Label for the policy that appears when the GUI is in Global View mode.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6GroupArgs']]]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -3374,6 +3408,7 @@ class Policy6(pulumi.CustomResource):
                  firewall_session_dirty: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6FssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6GroupArgs']]]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -3479,6 +3514,7 @@ class Policy6(pulumi.CustomResource):
             __props__.__dict__["firewall_session_dirty"] = firewall_session_dirty
             __props__.__dict__["fixedport"] = fixedport
             __props__.__dict__["fsso_groups"] = fsso_groups
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["global_label"] = global_label
             __props__.__dict__["groups"] = groups
             __props__.__dict__["http_policy_redirect"] = http_policy_redirect
@@ -3587,6 +3623,7 @@ class Policy6(pulumi.CustomResource):
             firewall_session_dirty: Optional[pulumi.Input[str]] = None,
             fixedport: Optional[pulumi.Input[str]] = None,
             fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6FssoGroupArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             global_label: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6GroupArgs']]]]] = None,
             http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -3686,6 +3723,7 @@ class Policy6(pulumi.CustomResource):
         :param pulumi.Input[str] firewall_session_dirty: How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
         :param pulumi.Input[str] fixedport: Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6FssoGroupArgs']]]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Label for the policy that appears when the GUI is in Global View mode.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6GroupArgs']]]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -3783,6 +3821,7 @@ class Policy6(pulumi.CustomResource):
         __props__.__dict__["firewall_session_dirty"] = firewall_session_dirty
         __props__.__dict__["fixedport"] = fixedport
         __props__.__dict__["fsso_groups"] = fsso_groups
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["global_label"] = global_label
         __props__.__dict__["groups"] = groups
         __props__.__dict__["http_policy_redirect"] = http_policy_redirect
@@ -4072,6 +4111,14 @@ class Policy6(pulumi.CustomResource):
         Names of FSSO groups. The structure of `fsso_groups` block is documented below.
         """
         return pulumi.get(self, "fsso_groups")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="globalLabel")

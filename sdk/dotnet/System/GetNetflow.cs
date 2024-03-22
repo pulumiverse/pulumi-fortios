@@ -71,6 +71,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly int CollectorPort;
         /// <summary>
+        /// Netflow collectors. The structure of `collectors` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetNetflowCollectorResult> Collectors;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -108,6 +112,8 @@ namespace Pulumiverse.Fortios.System
 
             int collectorPort,
 
+            ImmutableArray<Outputs.GetNetflowCollectorResult> collectors,
+
             string id,
 
             int inactiveFlowTimeout,
@@ -127,6 +133,7 @@ namespace Pulumiverse.Fortios.System
             ActiveFlowTimeout = activeFlowTimeout;
             CollectorIp = collectorIp;
             CollectorPort = collectorPort;
+            Collectors = collectors;
             Id = id;
             InactiveFlowTimeout = inactiveFlowTimeout;
             Interface = @interface;

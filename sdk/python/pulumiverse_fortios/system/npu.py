@@ -20,6 +20,7 @@ class NpuArgs:
                  dedicated_management_affinity: Optional[pulumi.Input[str]] = None,
                  dedicated_management_cpu: Optional[pulumi.Input[str]] = None,
                  fastpath: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ipsec_dec_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_enc_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_inbound_cache: Optional[pulumi.Input[str]] = None,
@@ -42,6 +43,7 @@ class NpuArgs:
         :param pulumi.Input[str] dedicated_management_affinity: Affinity setting for management deamons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] dedicated_management_cpu: Enable to dedicate one CPU for GUI and CLI connections when NPs are busy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fastpath: Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ipsec_dec_subengine_mask: IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
         :param pulumi.Input[str] ipsec_enc_subengine_mask: IPsec encryption subengine mask (0x1 - 0xff, default 0xff).
         :param pulumi.Input[str] ipsec_inbound_cache: Enable/disable IPsec inbound cache for anti-replay. Valid values: `enable`, `disable`.
@@ -67,6 +69,8 @@ class NpuArgs:
             pulumi.set(__self__, "dedicated_management_cpu", dedicated_management_cpu)
         if fastpath is not None:
             pulumi.set(__self__, "fastpath", fastpath)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ipsec_dec_subengine_mask is not None:
             pulumi.set(__self__, "ipsec_dec_subengine_mask", ipsec_dec_subengine_mask)
         if ipsec_enc_subengine_mask is not None:
@@ -147,6 +151,18 @@ class NpuArgs:
     @fastpath.setter
     def fastpath(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fastpath", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipsecDecSubengineMask")
@@ -348,6 +364,7 @@ class _NpuState:
                  dedicated_management_affinity: Optional[pulumi.Input[str]] = None,
                  dedicated_management_cpu: Optional[pulumi.Input[str]] = None,
                  fastpath: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ipsec_dec_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_enc_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_inbound_cache: Optional[pulumi.Input[str]] = None,
@@ -370,6 +387,7 @@ class _NpuState:
         :param pulumi.Input[str] dedicated_management_affinity: Affinity setting for management deamons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] dedicated_management_cpu: Enable to dedicate one CPU for GUI and CLI connections when NPs are busy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fastpath: Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ipsec_dec_subengine_mask: IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
         :param pulumi.Input[str] ipsec_enc_subengine_mask: IPsec encryption subengine mask (0x1 - 0xff, default 0xff).
         :param pulumi.Input[str] ipsec_inbound_cache: Enable/disable IPsec inbound cache for anti-replay. Valid values: `enable`, `disable`.
@@ -395,6 +413,8 @@ class _NpuState:
             pulumi.set(__self__, "dedicated_management_cpu", dedicated_management_cpu)
         if fastpath is not None:
             pulumi.set(__self__, "fastpath", fastpath)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ipsec_dec_subengine_mask is not None:
             pulumi.set(__self__, "ipsec_dec_subengine_mask", ipsec_dec_subengine_mask)
         if ipsec_enc_subengine_mask is not None:
@@ -475,6 +495,18 @@ class _NpuState:
     @fastpath.setter
     def fastpath(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fastpath", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipsecDecSubengineMask")
@@ -678,6 +710,7 @@ class Npu(pulumi.CustomResource):
                  dedicated_management_affinity: Optional[pulumi.Input[str]] = None,
                  dedicated_management_cpu: Optional[pulumi.Input[str]] = None,
                  fastpath: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ipsec_dec_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_enc_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_inbound_cache: Optional[pulumi.Input[str]] = None,
@@ -722,6 +755,7 @@ class Npu(pulumi.CustomResource):
         :param pulumi.Input[str] dedicated_management_affinity: Affinity setting for management deamons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] dedicated_management_cpu: Enable to dedicate one CPU for GUI and CLI connections when NPs are busy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fastpath: Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ipsec_dec_subengine_mask: IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
         :param pulumi.Input[str] ipsec_enc_subengine_mask: IPsec encryption subengine mask (0x1 - 0xff, default 0xff).
         :param pulumi.Input[str] ipsec_inbound_cache: Enable/disable IPsec inbound cache for anti-replay. Valid values: `enable`, `disable`.
@@ -785,6 +819,7 @@ class Npu(pulumi.CustomResource):
                  dedicated_management_affinity: Optional[pulumi.Input[str]] = None,
                  dedicated_management_cpu: Optional[pulumi.Input[str]] = None,
                  fastpath: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ipsec_dec_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_enc_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_inbound_cache: Optional[pulumi.Input[str]] = None,
@@ -814,6 +849,7 @@ class Npu(pulumi.CustomResource):
             __props__.__dict__["dedicated_management_affinity"] = dedicated_management_affinity
             __props__.__dict__["dedicated_management_cpu"] = dedicated_management_cpu
             __props__.__dict__["fastpath"] = fastpath
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ipsec_dec_subengine_mask"] = ipsec_dec_subengine_mask
             __props__.__dict__["ipsec_enc_subengine_mask"] = ipsec_enc_subengine_mask
             __props__.__dict__["ipsec_inbound_cache"] = ipsec_inbound_cache
@@ -844,6 +880,7 @@ class Npu(pulumi.CustomResource):
             dedicated_management_affinity: Optional[pulumi.Input[str]] = None,
             dedicated_management_cpu: Optional[pulumi.Input[str]] = None,
             fastpath: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ipsec_dec_subengine_mask: Optional[pulumi.Input[str]] = None,
             ipsec_enc_subengine_mask: Optional[pulumi.Input[str]] = None,
             ipsec_inbound_cache: Optional[pulumi.Input[str]] = None,
@@ -871,6 +908,7 @@ class Npu(pulumi.CustomResource):
         :param pulumi.Input[str] dedicated_management_affinity: Affinity setting for management deamons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] dedicated_management_cpu: Enable to dedicate one CPU for GUI and CLI connections when NPs are busy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fastpath: Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ipsec_dec_subengine_mask: IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
         :param pulumi.Input[str] ipsec_enc_subengine_mask: IPsec encryption subengine mask (0x1 - 0xff, default 0xff).
         :param pulumi.Input[str] ipsec_inbound_cache: Enable/disable IPsec inbound cache for anti-replay. Valid values: `enable`, `disable`.
@@ -896,6 +934,7 @@ class Npu(pulumi.CustomResource):
         __props__.__dict__["dedicated_management_affinity"] = dedicated_management_affinity
         __props__.__dict__["dedicated_management_cpu"] = dedicated_management_cpu
         __props__.__dict__["fastpath"] = fastpath
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ipsec_dec_subengine_mask"] = ipsec_dec_subengine_mask
         __props__.__dict__["ipsec_enc_subengine_mask"] = ipsec_enc_subengine_mask
         __props__.__dict__["ipsec_inbound_cache"] = ipsec_inbound_cache
@@ -945,6 +984,14 @@ class Npu(pulumi.CustomResource):
         Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "fastpath")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ipsecDecSubengineMask")

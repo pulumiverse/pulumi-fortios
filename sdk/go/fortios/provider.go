@@ -38,9 +38,13 @@ type Provider struct {
 	Hostname pulumi.StringPtrOutput `pulumi:"hostname"`
 	// HTTP proxy address
 	HttpProxy pulumi.StringPtrOutput `pulumi:"httpProxy"`
+	// The password of the user.
+	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// Enable/disable peer authentication, can be 'enable' or 'disable'
 	Peerauth pulumi.StringPtrOutput `pulumi:"peerauth"`
 	Token    pulumi.StringPtrOutput `pulumi:"token"`
+	// The username of the user.
+	Username pulumi.StringPtrOutput `pulumi:"username"`
 	Vdom     pulumi.StringPtrOutput `pulumi:"vdom"`
 }
 
@@ -178,9 +182,13 @@ type providerArgs struct {
 	// HTTP proxy address
 	HttpProxy *string `pulumi:"httpProxy"`
 	Insecure  *bool   `pulumi:"insecure"`
+	// The password of the user.
+	Password *string `pulumi:"password"`
 	// Enable/disable peer authentication, can be 'enable' or 'disable'
 	Peerauth *string `pulumi:"peerauth"`
 	Token    *string `pulumi:"token"`
+	// The username of the user.
+	Username *string `pulumi:"username"`
 	Vdom     *string `pulumi:"vdom"`
 }
 
@@ -208,9 +216,13 @@ type ProviderArgs struct {
 	// HTTP proxy address
 	HttpProxy pulumi.StringPtrInput
 	Insecure  pulumi.BoolPtrInput
+	// The password of the user.
+	Password pulumi.StringPtrInput
 	// Enable/disable peer authentication, can be 'enable' or 'disable'
 	Peerauth pulumi.StringPtrInput
 	Token    pulumi.StringPtrInput
+	// The username of the user.
+	Username pulumi.StringPtrInput
 	Vdom     pulumi.StringPtrInput
 }
 
@@ -304,6 +316,11 @@ func (o ProviderOutput) HttpProxy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.HttpProxy }).(pulumi.StringPtrOutput)
 }
 
+// The password of the user.
+func (o ProviderOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable peer authentication, can be 'enable' or 'disable'
 func (o ProviderOutput) Peerauth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Peerauth }).(pulumi.StringPtrOutput)
@@ -311,6 +328,11 @@ func (o ProviderOutput) Peerauth() pulumi.StringPtrOutput {
 
 func (o ProviderOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// The username of the user.
+func (o ProviderOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Username }).(pulumi.StringPtrOutput)
 }
 
 func (o ProviderOutput) Vdom() pulumi.StringPtrOutput {

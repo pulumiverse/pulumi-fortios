@@ -139,6 +139,17 @@ Object.defineProperty(exports, "insecure", {
 });
 
 /**
+ * The password of the user.
+ */
+export declare const password: string | undefined;
+Object.defineProperty(exports, "password", {
+    get() {
+        return __config.get("password");
+    },
+    enumerable: true,
+});
+
+/**
  * Enable/disable peer authentication, can be 'enable' or 'disable'
  */
 export declare const peerauth: string | undefined;
@@ -153,6 +164,17 @@ export declare const token: string | undefined;
 Object.defineProperty(exports, "token", {
     get() {
         return __config.get("token") ?? utilities.getEnv("FORTIOS_ACCESS_TOKEN");
+    },
+    enumerable: true,
+});
+
+/**
+ * The username of the user.
+ */
+export declare const username: string | undefined;
+Object.defineProperty(exports, "username", {
+    get() {
+        return __config.get("username");
     },
     enumerable: true,
 });

@@ -108,13 +108,25 @@ namespace Pulumiverse.Fortios.Router
         public Output<int> EndPort { get; private set; } = null!;
 
         /// <summary>
+        /// End source port number (1 - 65535).
+        /// </summary>
+        [Output("endSourcePort")]
+        public Output<int> EndSourcePort { get; private set; } = null!;
+
+        /// <summary>
         /// IPv6 address of the gateway.
         /// </summary>
         [Output("gateway")]
         public Output<string> Gateway { get; private set; } = null!;
 
         /// <summary>
-        /// Incoming interface name. Configuration examples: for FortiOS Version &lt;= "6.2.4": `input_device  = "port2"`, for FortiOS Version &gt;= "6.2.4": `input_device  = "\"fortilink\" \"port1\""`.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
+        /// Incoming interface name.
         /// </summary>
         [Output("inputDevice")]
         public Output<string> InputDevice { get; private set; } = null!;
@@ -178,6 +190,12 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         [Output("startPort")]
         public Output<int> StartPort { get; private set; } = null!;
+
+        /// <summary>
+        /// Start source port number (1 - 65535).
+        /// </summary>
+        [Output("startSourcePort")]
+        public Output<int> StartSourcePort { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable this policy route. Valid values: `enable`, `disable`.
@@ -299,13 +317,25 @@ namespace Pulumiverse.Fortios.Router
         public Input<int>? EndPort { get; set; }
 
         /// <summary>
+        /// End source port number (1 - 65535).
+        /// </summary>
+        [Input("endSourcePort")]
+        public Input<int>? EndSourcePort { get; set; }
+
+        /// <summary>
         /// IPv6 address of the gateway.
         /// </summary>
         [Input("gateway")]
         public Input<string>? Gateway { get; set; }
 
         /// <summary>
-        /// Incoming interface name. Configuration examples: for FortiOS Version &lt;= "6.2.4": `input_device  = "port2"`, for FortiOS Version &gt;= "6.2.4": `input_device  = "\"fortilink\" \"port1\""`.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Incoming interface name.
         /// </summary>
         [Input("inputDevice", required: true)]
         public Input<string> InputDevice { get; set; } = null!;
@@ -389,6 +419,12 @@ namespace Pulumiverse.Fortios.Router
         public Input<int>? StartPort { get; set; }
 
         /// <summary>
+        /// Start source port number (1 - 65535).
+        /// </summary>
+        [Input("startSourcePort")]
+        public Input<int>? StartSourcePort { get; set; }
+
+        /// <summary>
         /// Enable/disable this policy route. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("status")]
@@ -469,13 +505,25 @@ namespace Pulumiverse.Fortios.Router
         public Input<int>? EndPort { get; set; }
 
         /// <summary>
+        /// End source port number (1 - 65535).
+        /// </summary>
+        [Input("endSourcePort")]
+        public Input<int>? EndSourcePort { get; set; }
+
+        /// <summary>
         /// IPv6 address of the gateway.
         /// </summary>
         [Input("gateway")]
         public Input<string>? Gateway { get; set; }
 
         /// <summary>
-        /// Incoming interface name. Configuration examples: for FortiOS Version &lt;= "6.2.4": `input_device  = "port2"`, for FortiOS Version &gt;= "6.2.4": `input_device  = "\"fortilink\" \"port1\""`.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Incoming interface name.
         /// </summary>
         [Input("inputDevice")]
         public Input<string>? InputDevice { get; set; }
@@ -557,6 +605,12 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         [Input("startPort")]
         public Input<int>? StartPort { get; set; }
+
+        /// <summary>
+        /// Start source port number (1 - 65535).
+        /// </summary>
+        [Input("startSourcePort")]
+        public Input<int>? StartSourcePort { get; set; }
 
         /// <summary>
         /// Enable/disable this policy route. Valid values: `enable`, `disable`.

@@ -97,6 +97,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string Forwarder;
         /// <summary>
+        /// Forwarder IPv6 address.
+        /// </summary>
+        public readonly string Forwarder6;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -124,6 +128,10 @@ namespace Pulumiverse.Fortios.System
         /// Source IP for forwarding to DNS server.
         /// </summary>
         public readonly string SourceIp;
+        /// <summary>
+        /// IPv6 source IP address for forwarding to DNS server.
+        /// </summary>
+        public readonly string SourceIp6;
         /// <summary>
         /// Enable/disable resource record status.
         /// </summary>
@@ -156,6 +164,8 @@ namespace Pulumiverse.Fortios.System
 
             string forwarder,
 
+            string forwarder6,
+
             string id,
 
             string ipMaster,
@@ -169,6 +179,8 @@ namespace Pulumiverse.Fortios.System
             int rrMax,
 
             string sourceIp,
+
+            string sourceIp6,
 
             string status,
 
@@ -186,6 +198,7 @@ namespace Pulumiverse.Fortios.System
             DnsEntries = dnsEntries;
             Domain = domain;
             Forwarder = forwarder;
+            Forwarder6 = forwarder6;
             Id = id;
             IpMaster = ipMaster;
             IpPrimary = ipPrimary;
@@ -193,6 +206,7 @@ namespace Pulumiverse.Fortios.System
             PrimaryName = primaryName;
             RrMax = rrMax;
             SourceIp = sourceIp;
+            SourceIp6 = sourceIp6;
             Status = status;
             Ttl = ttl;
             Type = type;

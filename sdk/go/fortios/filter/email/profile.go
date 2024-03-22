@@ -41,6 +41,8 @@ type Profile struct {
 	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter ProfileFileFilterOutput `pulumi:"fileFilter"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail ProfileGmailOutput `pulumi:"gmail"`
 	// IMAP. The structure of `imap` block is documented below.
@@ -125,6 +127,8 @@ type profileState struct {
 	FeatureSet *string `pulumi:"featureSet"`
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter *ProfileFileFilter `pulumi:"fileFilter"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail *ProfileGmail `pulumi:"gmail"`
 	// IMAP. The structure of `imap` block is documented below.
@@ -180,6 +184,8 @@ type ProfileState struct {
 	FeatureSet pulumi.StringPtrInput
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter ProfileFileFilterPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail ProfileGmailPtrInput
 	// IMAP. The structure of `imap` block is documented below.
@@ -239,6 +245,8 @@ type profileArgs struct {
 	FeatureSet *string `pulumi:"featureSet"`
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter *ProfileFileFilter `pulumi:"fileFilter"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail *ProfileGmail `pulumi:"gmail"`
 	// IMAP. The structure of `imap` block is documented below.
@@ -295,6 +303,8 @@ type ProfileArgs struct {
 	FeatureSet pulumi.StringPtrInput
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter ProfileFileFilterPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail ProfileGmailPtrInput
 	// IMAP. The structure of `imap` block is documented below.
@@ -446,6 +456,11 @@ func (o ProfileOutput) FeatureSet() pulumi.StringOutput {
 // File filter. The structure of `fileFilter` block is documented below.
 func (o ProfileOutput) FileFilter() ProfileFileFilterOutput {
 	return o.ApplyT(func(v *Profile) ProfileFileFilterOutput { return v.FileFilter }).(ProfileFileFilterOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Gmail. The structure of `gmail` block is documented below.

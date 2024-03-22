@@ -109,6 +109,12 @@ namespace Pulumiverse.Fortios.Log
         public Output<string> ExpolicyImplicitLog { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("extendedLog")]
+        public Output<string> ExtendedLog { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("fazOverride")]
@@ -125,6 +131,12 @@ namespace Pulumiverse.Fortios.Log
         /// </summary>
         [Output("fwpolicyImplicitLog")]
         public Output<string> FwpolicyImplicitLog { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
@@ -179,6 +191,12 @@ namespace Pulumiverse.Fortios.Log
         /// </summary>
         [Output("logUserInUpper")]
         public Output<string> LogUserInUpper { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("longLiveSessionStat")]
+        public Output<string> LongLiveSessionStat { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
@@ -318,6 +336,12 @@ namespace Pulumiverse.Fortios.Log
         public Input<string>? ExpolicyImplicitLog { get; set; }
 
         /// <summary>
+        /// Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("extendedLog")]
+        public Input<string>? ExtendedLog { get; set; }
+
+        /// <summary>
         /// Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("fazOverride")]
@@ -334,6 +358,12 @@ namespace Pulumiverse.Fortios.Log
         /// </summary>
         [Input("fwpolicyImplicitLog")]
         public Input<string>? FwpolicyImplicitLog { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
@@ -388,6 +418,12 @@ namespace Pulumiverse.Fortios.Log
         /// </summary>
         [Input("logUserInUpper")]
         public Input<string>? LogUserInUpper { get; set; }
+
+        /// <summary>
+        /// Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("longLiveSessionStat")]
+        public Input<string>? LongLiveSessionStat { get; set; }
 
         /// <summary>
         /// Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
@@ -488,6 +524,12 @@ namespace Pulumiverse.Fortios.Log
         public Input<string>? ExpolicyImplicitLog { get; set; }
 
         /// <summary>
+        /// Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("extendedLog")]
+        public Input<string>? ExtendedLog { get; set; }
+
+        /// <summary>
         /// Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("fazOverride")]
@@ -504,6 +546,12 @@ namespace Pulumiverse.Fortios.Log
         /// </summary>
         [Input("fwpolicyImplicitLog")]
         public Input<string>? FwpolicyImplicitLog { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
@@ -558,6 +606,12 @@ namespace Pulumiverse.Fortios.Log
         /// </summary>
         [Input("logUserInUpper")]
         public Input<string>? LogUserInUpper { get; set; }
+
+        /// <summary>
+        /// Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("longLiveSessionStat")]
+        public Input<string>? LongLiveSessionStat { get; set; }
 
         /// <summary>
         /// Enable/disable neighbor event logging. Valid values: `enable`, `disable`.

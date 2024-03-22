@@ -60,7 +60,7 @@ namespace Pulumiverse.Fortios.Firewall
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Trafficclass(string name, TrafficclassArgs? args = null, CustomResourceOptions? options = null)
+        public Trafficclass(string name, TrafficclassArgs args, CustomResourceOptions? options = null)
             : base("fortios:firewall/trafficclass:Trafficclass", name, args ?? new TrafficclassArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -102,8 +102,8 @@ namespace Pulumiverse.Fortios.Firewall
         /// <summary>
         /// Class ID to be named.
         /// </summary>
-        [Input("classId")]
-        public Input<int>? ClassId { get; set; }
+        [Input("classId", required: true)]
+        public Input<int> ClassId { get; set; } = null!;
 
         /// <summary>
         /// Define the name for this class-id.

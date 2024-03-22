@@ -5,6 +5,7 @@
 from ... import _utilities
 import typing
 # Export this package's modules as members:
+from .keyword import *
 from .profile import *
 from .youtubechannelfilter import *
 from .youtubekey import *

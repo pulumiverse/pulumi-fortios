@@ -47,10 +47,28 @@ namespace Pulumiverse.Fortios.System
         public Output<string> FailureDevice { get; private set; } = null!;
 
         /// <summary>
-        /// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        /// Reason for upgrade failure.
         /// </summary>
         [Output("failureReason")]
         public Output<string> FailureReason { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
+        /// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+        /// </summary>
+        [Output("haRebootController")]
+        public Output<string> HaRebootController { get; private set; } = null!;
+
+        /// <summary>
+        /// Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `known_ha_members` block is documented below.
+        /// </summary>
+        [Output("knownHaMembers")]
+        public Output<ImmutableArray<Outputs.FederatedupgradeKnownHaMember>> KnownHaMembers { get; private set; } = null!;
 
         /// <summary>
         /// The index of the next image to upgrade to.
@@ -142,10 +160,34 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? FailureDevice { get; set; }
 
         /// <summary>
-        /// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        /// Reason for upgrade failure.
         /// </summary>
         [Input("failureReason")]
         public Input<string>? FailureReason { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+        /// </summary>
+        [Input("haRebootController")]
+        public Input<string>? HaRebootController { get; set; }
+
+        [Input("knownHaMembers")]
+        private InputList<Inputs.FederatedupgradeKnownHaMemberArgs>? _knownHaMembers;
+
+        /// <summary>
+        /// Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `known_ha_members` block is documented below.
+        /// </summary>
+        public InputList<Inputs.FederatedupgradeKnownHaMemberArgs> KnownHaMembers
+        {
+            get => _knownHaMembers ?? (_knownHaMembers = new InputList<Inputs.FederatedupgradeKnownHaMemberArgs>());
+            set => _knownHaMembers = value;
+        }
 
         /// <summary>
         /// The index of the next image to upgrade to.
@@ -204,10 +246,34 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? FailureDevice { get; set; }
 
         /// <summary>
-        /// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        /// Reason for upgrade failure.
         /// </summary>
         [Input("failureReason")]
         public Input<string>? FailureReason { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
+        /// </summary>
+        [Input("haRebootController")]
+        public Input<string>? HaRebootController { get; set; }
+
+        [Input("knownHaMembers")]
+        private InputList<Inputs.FederatedupgradeKnownHaMemberGetArgs>? _knownHaMembers;
+
+        /// <summary>
+        /// Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. The structure of `known_ha_members` block is documented below.
+        /// </summary>
+        public InputList<Inputs.FederatedupgradeKnownHaMemberGetArgs> KnownHaMembers
+        {
+            get => _knownHaMembers ?? (_knownHaMembers = new InputList<Inputs.FederatedupgradeKnownHaMemberGetArgs>());
+            set => _knownHaMembers = value;
+        }
 
         /// <summary>
         /// The index of the next image to upgrade to.

@@ -13,9 +13,15 @@ namespace Pulumiverse.Fortios.System.Inputs
 
     public sealed class HaUnicastPeerGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Table ID.
+        /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }
 
+        /// <summary>
+        /// Unicast peer IP.
+        /// </summary>
         [Input("peerIp")]
         public Input<string>? PeerIp { get; set; }
 

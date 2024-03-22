@@ -50,7 +50,7 @@ namespace Pulumiverse.Fortios.Router.Inputs
         public Input<int>? QueryMaxResponseTime { get; set; }
 
         /// <summary>
-        /// Timeout between queries before becoming querier for network (60 - 900, default = 255).
+        /// Timeout between queries before becoming querying unit for network (60 - 900, default = 255).
         /// </summary>
         [Input("queryTimeout")]
         public Input<int>? QueryTimeout { get; set; }

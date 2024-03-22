@@ -72,6 +72,10 @@ export class Fssopolling extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * LDAP server name used in LDAP connection strings.
      */
     public readonly ldapServer!: pulumi.Output<string>;
@@ -133,6 +137,7 @@ export class Fssopolling extends pulumi.CustomResource {
             resourceInputs["defaultDomain"] = state ? state.defaultDomain : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ldapServer"] = state ? state.ldapServer : undefined;
             resourceInputs["logonHistory"] = state ? state.logonHistory : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
@@ -159,6 +164,7 @@ export class Fssopolling extends pulumi.CustomResource {
             resourceInputs["defaultDomain"] = args ? args.defaultDomain : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ldapServer"] = args ? args.ldapServer : undefined;
             resourceInputs["logonHistory"] = args ? args.logonHistory : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
@@ -198,6 +204,10 @@ export interface FssopollingState {
      * Active Directory server ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * LDAP server name used in LDAP connection strings.
      */
@@ -264,6 +274,10 @@ export interface FssopollingArgs {
      * Active Directory server ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * LDAP server name used in LDAP connection strings.
      */

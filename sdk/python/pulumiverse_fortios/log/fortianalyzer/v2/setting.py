@@ -18,12 +18,15 @@ class SettingArgs:
     def __init__(__self__, *,
                  __change_ip: Optional[pulumi.Input[int]] = None,
                  access_config: Optional[pulumi.Input[str]] = None,
+                 alt_server: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  certificate_verification: Optional[pulumi.Input[str]] = None,
                  conn_timeout: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
+                 fallback_to_primary: Optional[pulumi.Input[str]] = None,
                  faz_type: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -37,6 +40,7 @@ class SettingArgs:
                  reliable: Optional[pulumi.Input[str]] = None,
                  serials: Optional[pulumi.Input[Sequence[pulumi.Input['SettingSerialArgs']]]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_cert_ca: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -49,13 +53,16 @@ class SettingArgs:
         The set of arguments for constructing a Setting resource.
         :param pulumi.Input[int] __change_ip: Hidden attribute.
         :param pulumi.Input[str] access_config: Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] alt_server: Alternate FortiAnalyzer.
         :param pulumi.Input[str] certificate: Certificate used to communicate with FortiAnalyzer.
         :param pulumi.Input[str] certificate_verification: Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] conn_timeout: FortiAnalyzer connection time-out in seconds (for status and log buffer).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] enc_algorithm: Enable/disable sending FortiAnalyzer log data with SSL encryption. Valid values: `high-medium`, `high`, `low`.
+        :param pulumi.Input[str] fallback_to_primary: Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] faz_type: Hidden setting index of FortiAnalyzer.
-        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ips_archive: Enable/disable IPS packet archive logging. Valid values: `enable`, `disable`.
@@ -68,6 +75,7 @@ class SettingArgs:
         :param pulumi.Input[str] reliable: Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SettingSerialArgs']]] serials: Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
         :param pulumi.Input[str] server: The remote FortiAnalyzer.
+        :param pulumi.Input[str] server_cert_ca: Mandatory CA on FortiGate in certificate chain of server.
         :param pulumi.Input[str] source_ip: Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -81,6 +89,8 @@ class SettingArgs:
             pulumi.set(__self__, "__change_ip", __change_ip)
         if access_config is not None:
             pulumi.set(__self__, "access_config", access_config)
+        if alt_server is not None:
+            pulumi.set(__self__, "alt_server", alt_server)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
         if certificate_verification is not None:
@@ -91,8 +101,12 @@ class SettingArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if enc_algorithm is not None:
             pulumi.set(__self__, "enc_algorithm", enc_algorithm)
+        if fallback_to_primary is not None:
+            pulumi.set(__self__, "fallback_to_primary", fallback_to_primary)
         if faz_type is not None:
             pulumi.set(__self__, "faz_type", faz_type)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hmac_algorithm is not None:
             pulumi.set(__self__, "hmac_algorithm", hmac_algorithm)
         if interface is not None:
@@ -119,6 +133,8 @@ class SettingArgs:
             pulumi.set(__self__, "serials", serials)
         if server is not None:
             pulumi.set(__self__, "server", server)
+        if server_cert_ca is not None:
+            pulumi.set(__self__, "server_cert_ca", server_cert_ca)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if ssl_min_proto_version is not None:
@@ -159,6 +175,18 @@ class SettingArgs:
     @access_config.setter
     def access_config(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "access_config", value)
+
+    @property
+    @pulumi.getter(name="altServer")
+    def alt_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alternate FortiAnalyzer.
+        """
+        return pulumi.get(self, "alt_server")
+
+    @alt_server.setter
+    def alt_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_server", value)
 
     @property
     @pulumi.getter
@@ -221,6 +249,18 @@ class SettingArgs:
         pulumi.set(self, "enc_algorithm", value)
 
     @property
+    @pulumi.getter(name="fallbackToPrimary")
+    def fallback_to_primary(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fallback_to_primary")
+
+    @fallback_to_primary.setter
+    def fallback_to_primary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fallback_to_primary", value)
+
+    @property
     @pulumi.getter(name="fazType")
     def faz_type(self) -> Optional[pulumi.Input[int]]:
         """
@@ -233,10 +273,22 @@ class SettingArgs:
         pulumi.set(self, "faz_type", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="hmacAlgorithm")
     def hmac_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        FortiAnalyzer IPsec tunnel HMAC algorithm.
         """
         return pulumi.get(self, "hmac_algorithm")
 
@@ -387,6 +439,18 @@ class SettingArgs:
     @server.setter
     def server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server", value)
+
+    @property
+    @pulumi.getter(name="serverCertCa")
+    def server_cert_ca(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mandatory CA on FortiGate in certificate chain of server.
+        """
+        return pulumi.get(self, "server_cert_ca")
+
+    @server_cert_ca.setter
+    def server_cert_ca(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_cert_ca", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -490,12 +554,15 @@ class _SettingState:
     def __init__(__self__, *,
                  __change_ip: Optional[pulumi.Input[int]] = None,
                  access_config: Optional[pulumi.Input[str]] = None,
+                 alt_server: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  certificate_verification: Optional[pulumi.Input[str]] = None,
                  conn_timeout: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
+                 fallback_to_primary: Optional[pulumi.Input[str]] = None,
                  faz_type: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -509,6 +576,7 @@ class _SettingState:
                  reliable: Optional[pulumi.Input[str]] = None,
                  serials: Optional[pulumi.Input[Sequence[pulumi.Input['SettingSerialArgs']]]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_cert_ca: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -521,13 +589,16 @@ class _SettingState:
         Input properties used for looking up and filtering Setting resources.
         :param pulumi.Input[int] __change_ip: Hidden attribute.
         :param pulumi.Input[str] access_config: Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] alt_server: Alternate FortiAnalyzer.
         :param pulumi.Input[str] certificate: Certificate used to communicate with FortiAnalyzer.
         :param pulumi.Input[str] certificate_verification: Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] conn_timeout: FortiAnalyzer connection time-out in seconds (for status and log buffer).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] enc_algorithm: Enable/disable sending FortiAnalyzer log data with SSL encryption. Valid values: `high-medium`, `high`, `low`.
+        :param pulumi.Input[str] fallback_to_primary: Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] faz_type: Hidden setting index of FortiAnalyzer.
-        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ips_archive: Enable/disable IPS packet archive logging. Valid values: `enable`, `disable`.
@@ -540,6 +611,7 @@ class _SettingState:
         :param pulumi.Input[str] reliable: Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SettingSerialArgs']]] serials: Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
         :param pulumi.Input[str] server: The remote FortiAnalyzer.
+        :param pulumi.Input[str] server_cert_ca: Mandatory CA on FortiGate in certificate chain of server.
         :param pulumi.Input[str] source_ip: Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -553,6 +625,8 @@ class _SettingState:
             pulumi.set(__self__, "__change_ip", __change_ip)
         if access_config is not None:
             pulumi.set(__self__, "access_config", access_config)
+        if alt_server is not None:
+            pulumi.set(__self__, "alt_server", alt_server)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
         if certificate_verification is not None:
@@ -563,8 +637,12 @@ class _SettingState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if enc_algorithm is not None:
             pulumi.set(__self__, "enc_algorithm", enc_algorithm)
+        if fallback_to_primary is not None:
+            pulumi.set(__self__, "fallback_to_primary", fallback_to_primary)
         if faz_type is not None:
             pulumi.set(__self__, "faz_type", faz_type)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hmac_algorithm is not None:
             pulumi.set(__self__, "hmac_algorithm", hmac_algorithm)
         if interface is not None:
@@ -591,6 +669,8 @@ class _SettingState:
             pulumi.set(__self__, "serials", serials)
         if server is not None:
             pulumi.set(__self__, "server", server)
+        if server_cert_ca is not None:
+            pulumi.set(__self__, "server_cert_ca", server_cert_ca)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if ssl_min_proto_version is not None:
@@ -631,6 +711,18 @@ class _SettingState:
     @access_config.setter
     def access_config(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "access_config", value)
+
+    @property
+    @pulumi.getter(name="altServer")
+    def alt_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alternate FortiAnalyzer.
+        """
+        return pulumi.get(self, "alt_server")
+
+    @alt_server.setter
+    def alt_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_server", value)
 
     @property
     @pulumi.getter
@@ -693,6 +785,18 @@ class _SettingState:
         pulumi.set(self, "enc_algorithm", value)
 
     @property
+    @pulumi.getter(name="fallbackToPrimary")
+    def fallback_to_primary(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fallback_to_primary")
+
+    @fallback_to_primary.setter
+    def fallback_to_primary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fallback_to_primary", value)
+
+    @property
     @pulumi.getter(name="fazType")
     def faz_type(self) -> Optional[pulumi.Input[int]]:
         """
@@ -705,10 +809,22 @@ class _SettingState:
         pulumi.set(self, "faz_type", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="hmacAlgorithm")
     def hmac_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        FortiAnalyzer IPsec tunnel HMAC algorithm.
         """
         return pulumi.get(self, "hmac_algorithm")
 
@@ -859,6 +975,18 @@ class _SettingState:
     @server.setter
     def server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server", value)
+
+    @property
+    @pulumi.getter(name="serverCertCa")
+    def server_cert_ca(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mandatory CA on FortiGate in certificate chain of server.
+        """
+        return pulumi.get(self, "server_cert_ca")
+
+    @server_cert_ca.setter
+    def server_cert_ca(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_cert_ca", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -964,12 +1092,15 @@ class Setting(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  __change_ip: Optional[pulumi.Input[int]] = None,
                  access_config: Optional[pulumi.Input[str]] = None,
+                 alt_server: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  certificate_verification: Optional[pulumi.Input[str]] = None,
                  conn_timeout: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
+                 fallback_to_primary: Optional[pulumi.Input[str]] = None,
                  faz_type: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -983,6 +1114,7 @@ class Setting(pulumi.CustomResource):
                  reliable: Optional[pulumi.Input[str]] = None,
                  serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingSerialArgs']]]]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_cert_ca: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -1043,13 +1175,16 @@ class Setting(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] __change_ip: Hidden attribute.
         :param pulumi.Input[str] access_config: Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] alt_server: Alternate FortiAnalyzer.
         :param pulumi.Input[str] certificate: Certificate used to communicate with FortiAnalyzer.
         :param pulumi.Input[str] certificate_verification: Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] conn_timeout: FortiAnalyzer connection time-out in seconds (for status and log buffer).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] enc_algorithm: Enable/disable sending FortiAnalyzer log data with SSL encryption. Valid values: `high-medium`, `high`, `low`.
+        :param pulumi.Input[str] fallback_to_primary: Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] faz_type: Hidden setting index of FortiAnalyzer.
-        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ips_archive: Enable/disable IPS packet archive logging. Valid values: `enable`, `disable`.
@@ -1062,6 +1197,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] reliable: Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingSerialArgs']]]] serials: Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
         :param pulumi.Input[str] server: The remote FortiAnalyzer.
+        :param pulumi.Input[str] server_cert_ca: Mandatory CA on FortiGate in certificate chain of server.
         :param pulumi.Input[str] source_ip: Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -1141,12 +1277,15 @@ class Setting(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  __change_ip: Optional[pulumi.Input[int]] = None,
                  access_config: Optional[pulumi.Input[str]] = None,
+                 alt_server: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  certificate_verification: Optional[pulumi.Input[str]] = None,
                  conn_timeout: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
+                 fallback_to_primary: Optional[pulumi.Input[str]] = None,
                  faz_type: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -1160,6 +1299,7 @@ class Setting(pulumi.CustomResource):
                  reliable: Optional[pulumi.Input[str]] = None,
                  serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingSerialArgs']]]]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_cert_ca: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -1179,12 +1319,15 @@ class Setting(pulumi.CustomResource):
 
             __props__.__dict__["__change_ip"] = __change_ip
             __props__.__dict__["access_config"] = access_config
+            __props__.__dict__["alt_server"] = alt_server
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["certificate_verification"] = certificate_verification
             __props__.__dict__["conn_timeout"] = conn_timeout
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["enc_algorithm"] = enc_algorithm
+            __props__.__dict__["fallback_to_primary"] = fallback_to_primary
             __props__.__dict__["faz_type"] = faz_type
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hmac_algorithm"] = hmac_algorithm
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
@@ -1198,6 +1341,7 @@ class Setting(pulumi.CustomResource):
             __props__.__dict__["reliable"] = reliable
             __props__.__dict__["serials"] = serials
             __props__.__dict__["server"] = server
+            __props__.__dict__["server_cert_ca"] = server_cert_ca
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
             __props__.__dict__["status"] = status
@@ -1218,12 +1362,15 @@ class Setting(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             __change_ip: Optional[pulumi.Input[int]] = None,
             access_config: Optional[pulumi.Input[str]] = None,
+            alt_server: Optional[pulumi.Input[str]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
             certificate_verification: Optional[pulumi.Input[str]] = None,
             conn_timeout: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             enc_algorithm: Optional[pulumi.Input[str]] = None,
+            fallback_to_primary: Optional[pulumi.Input[str]] = None,
             faz_type: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hmac_algorithm: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -1237,6 +1384,7 @@ class Setting(pulumi.CustomResource):
             reliable: Optional[pulumi.Input[str]] = None,
             serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingSerialArgs']]]]] = None,
             server: Optional[pulumi.Input[str]] = None,
+            server_cert_ca: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -1254,13 +1402,16 @@ class Setting(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] __change_ip: Hidden attribute.
         :param pulumi.Input[str] access_config: Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] alt_server: Alternate FortiAnalyzer.
         :param pulumi.Input[str] certificate: Certificate used to communicate with FortiAnalyzer.
         :param pulumi.Input[str] certificate_verification: Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] conn_timeout: FortiAnalyzer connection time-out in seconds (for status and log buffer).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] enc_algorithm: Enable/disable sending FortiAnalyzer log data with SSL encryption. Valid values: `high-medium`, `high`, `low`.
+        :param pulumi.Input[str] fallback_to_primary: Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] faz_type: Hidden setting index of FortiAnalyzer.
-        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ips_archive: Enable/disable IPS packet archive logging. Valid values: `enable`, `disable`.
@@ -1273,6 +1424,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] reliable: Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingSerialArgs']]]] serials: Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
         :param pulumi.Input[str] server: The remote FortiAnalyzer.
+        :param pulumi.Input[str] server_cert_ca: Mandatory CA on FortiGate in certificate chain of server.
         :param pulumi.Input[str] source_ip: Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] status: Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -1288,12 +1440,15 @@ class Setting(pulumi.CustomResource):
 
         __props__.__dict__["__change_ip"] = __change_ip
         __props__.__dict__["access_config"] = access_config
+        __props__.__dict__["alt_server"] = alt_server
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["certificate_verification"] = certificate_verification
         __props__.__dict__["conn_timeout"] = conn_timeout
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["enc_algorithm"] = enc_algorithm
+        __props__.__dict__["fallback_to_primary"] = fallback_to_primary
         __props__.__dict__["faz_type"] = faz_type
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hmac_algorithm"] = hmac_algorithm
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
@@ -1307,6 +1462,7 @@ class Setting(pulumi.CustomResource):
         __props__.__dict__["reliable"] = reliable
         __props__.__dict__["serials"] = serials
         __props__.__dict__["server"] = server
+        __props__.__dict__["server_cert_ca"] = server_cert_ca
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
         __props__.__dict__["status"] = status
@@ -1332,6 +1488,14 @@ class Setting(pulumi.CustomResource):
         Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "access_config")
+
+    @property
+    @pulumi.getter(name="altServer")
+    def alt_server(self) -> pulumi.Output[str]:
+        """
+        Alternate FortiAnalyzer.
+        """
+        return pulumi.get(self, "alt_server")
 
     @property
     @pulumi.getter
@@ -1374,6 +1538,14 @@ class Setting(pulumi.CustomResource):
         return pulumi.get(self, "enc_algorithm")
 
     @property
+    @pulumi.getter(name="fallbackToPrimary")
+    def fallback_to_primary(self) -> pulumi.Output[str]:
+        """
+        Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fallback_to_primary")
+
+    @property
     @pulumi.getter(name="fazType")
     def faz_type(self) -> pulumi.Output[int]:
         """
@@ -1382,10 +1554,18 @@ class Setting(pulumi.CustomResource):
         return pulumi.get(self, "faz_type")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="hmacAlgorithm")
     def hmac_algorithm(self) -> pulumi.Output[str]:
         """
-        FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        FortiAnalyzer IPsec tunnel HMAC algorithm.
         """
         return pulumi.get(self, "hmac_algorithm")
 
@@ -1484,6 +1664,14 @@ class Setting(pulumi.CustomResource):
         The remote FortiAnalyzer.
         """
         return pulumi.get(self, "server")
+
+    @property
+    @pulumi.getter(name="serverCertCa")
+    def server_cert_ca(self) -> pulumi.Output[str]:
+        """
+        Mandatory CA on FortiGate in certificate chain of server.
+        """
+        return pulumi.get(self, "server_cert_ca")
 
     @property
     @pulumi.getter(name="sourceIp")

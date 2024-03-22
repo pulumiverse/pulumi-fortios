@@ -17,10 +17,12 @@ import * as antivirus from "./antivirus";
 import * as application from "./application";
 import * as authentication from "./authentication";
 import * as automation from "./automation";
+import * as casb from "./casb";
 import * as certificate from "./certificate";
 import * as cifs from "./cifs";
 import * as config from "./config";
 import * as credentialstore from "./credentialstore";
+import * as diameterfilter from "./diameterfilter";
 import * as dlp from "./dlp";
 import * as dpdk from "./dpdk";
 import * as endpointcontrol from "./endpointcontrol";
@@ -39,10 +41,13 @@ import * as networking from "./networking";
 import * as nsxt from "./nsxt";
 import * as report from "./report";
 import * as router from "./router";
+import * as rule from "./rule";
 import * as switchcontroller from "./switchcontroller";
+import * as switchcontrolleracl from "./switchcontrolleracl";
 import * as system from "./system";
 import * as types from "./types";
 import * as user from "./user";
+import * as virtualpatch from "./virtualpatch";
 import * as voip from "./voip";
 import * as vpn from "./vpn";
 import * as waf from "./waf";
@@ -56,10 +61,12 @@ export {
     application,
     authentication,
     automation,
+    casb,
     certificate,
     cifs,
     config,
     credentialstore,
+    diameterfilter,
     dlp,
     dpdk,
     endpointcontrol,
@@ -78,10 +85,13 @@ export {
     nsxt,
     report,
     router,
+    rule,
     switchcontroller,
+    switchcontrolleracl,
     system,
     types,
     user,
+    virtualpatch,
     voip,
     vpn,
     waf,

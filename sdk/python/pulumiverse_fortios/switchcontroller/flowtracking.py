@@ -22,6 +22,7 @@ class FlowtrackingArgs:
                  collectors: Optional[pulumi.Input[Sequence[pulumi.Input['FlowtrackingCollectorArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  level: Optional[pulumi.Input[str]] = None,
                  max_export_pkt_size: Optional[pulumi.Input[int]] = None,
                  sample_mode: Optional[pulumi.Input[str]] = None,
@@ -44,6 +45,7 @@ class FlowtrackingArgs:
         :param pulumi.Input[Sequence[pulumi.Input['FlowtrackingCollectorArgs']]] collectors: Configure collectors for the flow. The structure of `collectors` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] format: Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] level: Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
         :param pulumi.Input[int] max_export_pkt_size: Configure flow max export packet size (512-9216, default=512 bytes).
         :param pulumi.Input[str] sample_mode: Configure sample mode for the flow tracking. Valid values: `local`, `perimeter`, `device-ingress`.
@@ -71,6 +73,8 @@ class FlowtrackingArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if level is not None:
             pulumi.set(__self__, "level", level)
         if max_export_pkt_size is not None:
@@ -171,6 +175,18 @@ class FlowtrackingArgs:
     @format.setter
     def format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -350,6 +366,7 @@ class _FlowtrackingState:
                  collectors: Optional[pulumi.Input[Sequence[pulumi.Input['FlowtrackingCollectorArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  level: Optional[pulumi.Input[str]] = None,
                  max_export_pkt_size: Optional[pulumi.Input[int]] = None,
                  sample_mode: Optional[pulumi.Input[str]] = None,
@@ -372,6 +389,7 @@ class _FlowtrackingState:
         :param pulumi.Input[Sequence[pulumi.Input['FlowtrackingCollectorArgs']]] collectors: Configure collectors for the flow. The structure of `collectors` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] format: Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] level: Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
         :param pulumi.Input[int] max_export_pkt_size: Configure flow max export packet size (512-9216, default=512 bytes).
         :param pulumi.Input[str] sample_mode: Configure sample mode for the flow tracking. Valid values: `local`, `perimeter`, `device-ingress`.
@@ -399,6 +417,8 @@ class _FlowtrackingState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if level is not None:
             pulumi.set(__self__, "level", level)
         if max_export_pkt_size is not None:
@@ -499,6 +519,18 @@ class _FlowtrackingState:
     @format.setter
     def format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -680,6 +712,7 @@ class Flowtracking(pulumi.CustomResource):
                  collectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FlowtrackingCollectorArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  level: Optional[pulumi.Input[str]] = None,
                  max_export_pkt_size: Optional[pulumi.Input[int]] = None,
                  sample_mode: Optional[pulumi.Input[str]] = None,
@@ -724,6 +757,7 @@ class Flowtracking(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FlowtrackingCollectorArgs']]]] collectors: Configure collectors for the flow. The structure of `collectors` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] format: Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] level: Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
         :param pulumi.Input[int] max_export_pkt_size: Configure flow max export packet size (512-9216, default=512 bytes).
         :param pulumi.Input[str] sample_mode: Configure sample mode for the flow tracking. Valid values: `local`, `perimeter`, `device-ingress`.
@@ -787,6 +821,7 @@ class Flowtracking(pulumi.CustomResource):
                  collectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FlowtrackingCollectorArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  level: Optional[pulumi.Input[str]] = None,
                  max_export_pkt_size: Optional[pulumi.Input[int]] = None,
                  sample_mode: Optional[pulumi.Input[str]] = None,
@@ -816,6 +851,7 @@ class Flowtracking(pulumi.CustomResource):
             __props__.__dict__["collectors"] = collectors
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["format"] = format
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["level"] = level
             __props__.__dict__["max_export_pkt_size"] = max_export_pkt_size
             __props__.__dict__["sample_mode"] = sample_mode
@@ -846,6 +882,7 @@ class Flowtracking(pulumi.CustomResource):
             collectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FlowtrackingCollectorArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             format: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             level: Optional[pulumi.Input[str]] = None,
             max_export_pkt_size: Optional[pulumi.Input[int]] = None,
             sample_mode: Optional[pulumi.Input[str]] = None,
@@ -873,6 +910,7 @@ class Flowtracking(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FlowtrackingCollectorArgs']]]] collectors: Configure collectors for the flow. The structure of `collectors` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] format: Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] level: Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
         :param pulumi.Input[int] max_export_pkt_size: Configure flow max export packet size (512-9216, default=512 bytes).
         :param pulumi.Input[str] sample_mode: Configure sample mode for the flow tracking. Valid values: `local`, `perimeter`, `device-ingress`.
@@ -898,6 +936,7 @@ class Flowtracking(pulumi.CustomResource):
         __props__.__dict__["collectors"] = collectors
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["format"] = format
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["level"] = level
         __props__.__dict__["max_export_pkt_size"] = max_export_pkt_size
         __props__.__dict__["sample_mode"] = sample_mode
@@ -961,6 +1000,14 @@ class Flowtracking(pulumi.CustomResource):
         Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
         """
         return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

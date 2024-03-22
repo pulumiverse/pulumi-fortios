@@ -99,6 +99,18 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly int FabricWorkers;
         /// <summary>
+        /// Enable/disable Security Fabric daemon file management.
+        /// </summary>
+        public readonly string FileMgmt;
+        /// <summary>
+        /// Maximum amount of memory that can be used by the daemon files (in bytes).
+        /// </summary>
+        public readonly int FileQuota;
+        /// <summary>
+        /// Warn when the set percentage of quota has been used.
+        /// </summary>
+        public readonly int FileQuotaWarning;
+        /// <summary>
         /// Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
         /// </summary>
         public readonly string FixedKey;
@@ -143,6 +155,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCsfTrustedListResult> TrustedLists;
         /// <summary>
+        /// Unique ID of the current CSF node
+        /// </summary>
+        public readonly string Uid;
+        /// <summary>
         /// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
         /// </summary>
         public readonly string Upstream;
@@ -178,6 +194,12 @@ namespace Pulumiverse.Fortios.System
 
             int fabricWorkers,
 
+            string fileMgmt,
+
+            int fileQuota,
+
+            int fileQuotaWarning,
+
             string fixedKey,
 
             string forticloudAccountEnforcement,
@@ -200,6 +222,8 @@ namespace Pulumiverse.Fortios.System
 
             ImmutableArray<Outputs.GetCsfTrustedListResult> trustedLists,
 
+            string uid,
+
             string upstream,
 
             string upstreamIp,
@@ -218,6 +242,9 @@ namespace Pulumiverse.Fortios.System
             FabricDevices = fabricDevices;
             FabricObjectUnification = fabricObjectUnification;
             FabricWorkers = fabricWorkers;
+            FileMgmt = fileMgmt;
+            FileQuota = fileQuota;
+            FileQuotaWarning = fileQuotaWarning;
             FixedKey = fixedKey;
             ForticloudAccountEnforcement = forticloudAccountEnforcement;
             GroupName = groupName;
@@ -229,6 +256,7 @@ namespace Pulumiverse.Fortios.System
             SamlConfigurationSync = samlConfigurationSync;
             Status = status;
             TrustedLists = trustedLists;
+            Uid = uid;
             Upstream = upstream;
             UpstreamIp = upstreamIp;
             UpstreamPort = upstreamPort;

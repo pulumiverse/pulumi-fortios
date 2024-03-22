@@ -149,7 +149,7 @@ export interface GetServerResult {
      */
     readonly ipsecLeaseHold: number;
     /**
-     * Lease time in seconds, 0 means unlimited.
+     * Lease time in seconds, 0 means default lease time.
      */
     readonly leaseTime: number;
     /**
@@ -185,6 +185,10 @@ export interface GetServerResult {
      */
     readonly options: outputs.system.dhcp.GetServerOption[];
     /**
+     * Relay agent IP.
+     */
+    readonly relayAgent: string;
+    /**
      * Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reservedAddress` block is documented below.
      */
     readonly reservedAddresses: outputs.system.dhcp.GetServerReservedAddress[];
@@ -192,6 +196,10 @@ export interface GetServerResult {
      * DHCP server can be a normal DHCP server or an IPsec DHCP server.
      */
     readonly serverType: string;
+    /**
+     * Enable/disable shared subnet.
+     */
+    readonly sharedSubnet: string;
     /**
      * Enable/disable this DHCP configuration.
      */

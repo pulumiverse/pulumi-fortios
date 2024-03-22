@@ -32,6 +32,8 @@ type LookupFtmpushArgs struct {
 type LookupFtmpushResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// Enable/disable communication to the proxy server in FortiGuard configuration.
+	Proxy string `pulumi:"proxy"`
 	// IPv4 address or domain name of FortiToken Mobile push services server.
 	Server string `pulumi:"server"`
 	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
@@ -86,6 +88,11 @@ func (o LookupFtmpushResultOutput) ToLookupFtmpushResultOutputWithContext(ctx co
 // The provider-assigned unique ID for this managed resource.
 func (o LookupFtmpushResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFtmpushResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Enable/disable communication to the proxy server in FortiGuard configuration.
+func (o LookupFtmpushResultOutput) Proxy() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFtmpushResult) string { return v.Proxy }).(pulumi.StringOutput)
 }
 
 // IPv4 address or domain name of FortiToken Mobile push services server.

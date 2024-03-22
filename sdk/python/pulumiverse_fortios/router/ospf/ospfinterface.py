@@ -24,6 +24,7 @@ class OspfinterfaceArgs:
                  database_filter_out: Optional[pulumi.Input[str]] = None,
                  dead_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hello_interval: Optional[pulumi.Input[int]] = None,
                  hello_multiplier: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -53,6 +54,7 @@ class OspfinterfaceArgs:
         :param pulumi.Input[str] database_filter_out: Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dead_interval: Dead interval.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] hello_interval: Hello interval.
         :param pulumi.Input[int] hello_multiplier: Number of hello packets within dead interval.
         :param pulumi.Input[str] interface: Configuration interface name.
@@ -91,6 +93,8 @@ class OspfinterfaceArgs:
             pulumi.set(__self__, "dead_interval", dead_interval)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hello_interval is not None:
             pulumi.set(__self__, "hello_interval", hello_interval)
         if hello_multiplier is not None:
@@ -225,6 +229,18 @@ class OspfinterfaceArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="helloInterval")
@@ -468,6 +484,7 @@ class _OspfinterfaceState:
                  database_filter_out: Optional[pulumi.Input[str]] = None,
                  dead_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hello_interval: Optional[pulumi.Input[int]] = None,
                  hello_multiplier: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -497,6 +514,7 @@ class _OspfinterfaceState:
         :param pulumi.Input[str] database_filter_out: Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dead_interval: Dead interval.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] hello_interval: Hello interval.
         :param pulumi.Input[int] hello_multiplier: Number of hello packets within dead interval.
         :param pulumi.Input[str] interface: Configuration interface name.
@@ -535,6 +553,8 @@ class _OspfinterfaceState:
             pulumi.set(__self__, "dead_interval", dead_interval)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hello_interval is not None:
             pulumi.set(__self__, "hello_interval", hello_interval)
         if hello_multiplier is not None:
@@ -669,6 +689,18 @@ class _OspfinterfaceState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="helloInterval")
@@ -914,6 +946,7 @@ class Ospfinterface(pulumi.CustomResource):
                  database_filter_out: Optional[pulumi.Input[str]] = None,
                  dead_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hello_interval: Optional[pulumi.Input[int]] = None,
                  hello_multiplier: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -967,6 +1000,7 @@ class Ospfinterface(pulumi.CustomResource):
         :param pulumi.Input[str] database_filter_out: Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dead_interval: Dead interval.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] hello_interval: Hello interval.
         :param pulumi.Input[int] hello_multiplier: Number of hello packets within dead interval.
         :param pulumi.Input[str] interface: Configuration interface name.
@@ -1041,6 +1075,7 @@ class Ospfinterface(pulumi.CustomResource):
                  database_filter_out: Optional[pulumi.Input[str]] = None,
                  dead_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hello_interval: Optional[pulumi.Input[int]] = None,
                  hello_multiplier: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -1077,6 +1112,7 @@ class Ospfinterface(pulumi.CustomResource):
             __props__.__dict__["database_filter_out"] = database_filter_out
             __props__.__dict__["dead_interval"] = dead_interval
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hello_interval"] = hello_interval
             __props__.__dict__["hello_multiplier"] = hello_multiplier
             __props__.__dict__["interface"] = interface
@@ -1114,6 +1150,7 @@ class Ospfinterface(pulumi.CustomResource):
             database_filter_out: Optional[pulumi.Input[str]] = None,
             dead_interval: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hello_interval: Optional[pulumi.Input[int]] = None,
             hello_multiplier: Optional[pulumi.Input[int]] = None,
             interface: Optional[pulumi.Input[str]] = None,
@@ -1148,6 +1185,7 @@ class Ospfinterface(pulumi.CustomResource):
         :param pulumi.Input[str] database_filter_out: Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dead_interval: Dead interval.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] hello_interval: Hello interval.
         :param pulumi.Input[int] hello_multiplier: Number of hello packets within dead interval.
         :param pulumi.Input[str] interface: Configuration interface name.
@@ -1182,6 +1220,7 @@ class Ospfinterface(pulumi.CustomResource):
         __props__.__dict__["database_filter_out"] = database_filter_out
         __props__.__dict__["dead_interval"] = dead_interval
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hello_interval"] = hello_interval
         __props__.__dict__["hello_multiplier"] = hello_multiplier
         __props__.__dict__["interface"] = interface
@@ -1266,6 +1305,14 @@ class Ospfinterface(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="helloInterval")

@@ -22,7 +22,7 @@ class GetPolicyResult:
     """
     A collection of values returned by getPolicy.
     """
-    def __init__(__self__, action=None, anti_replay=None, app_categories=None, app_groups=None, application_list=None, applications=None, auth_cert=None, auth_path=None, auth_redirect_addr=None, auto_asic_offload=None, av_profile=None, block_notification=None, captive_portal_exempt=None, capture_packet=None, cifs_profile=None, comments=None, custom_log_fields=None, decrypted_traffic_mirror=None, delay_tcp_npu_session=None, devices=None, diffserv_copy=None, diffserv_forward=None, diffserv_reverse=None, diffservcode_forward=None, diffservcode_rev=None, disclaimer=None, dlp_profile=None, dlp_sensor=None, dnsfilter_profile=None, dsri=None, dstaddr6_negate=None, dstaddr6s=None, dstaddr_negate=None, dstaddrs=None, dstintfs=None, dynamic_shaping=None, email_collect=None, emailfilter_profile=None, fec=None, file_filter_profile=None, firewall_session_dirty=None, fixedport=None, fsso=None, fsso_agent_for_ntlm=None, fsso_groups=None, geoip_anycast=None, geoip_match=None, global_label=None, groups=None, http_policy_redirect=None, icap_profile=None, id=None, identity_based_route=None, inbound=None, inspection_mode=None, internet_service=None, internet_service6=None, internet_service6_custom_groups=None, internet_service6_customs=None, internet_service6_groups=None, internet_service6_names=None, internet_service6_negate=None, internet_service6_src=None, internet_service6_src_custom_groups=None, internet_service6_src_customs=None, internet_service6_src_groups=None, internet_service6_src_names=None, internet_service6_src_negate=None, internet_service_custom_groups=None, internet_service_customs=None, internet_service_groups=None, internet_service_ids=None, internet_service_names=None, internet_service_negate=None, internet_service_src=None, internet_service_src_custom_groups=None, internet_service_src_customs=None, internet_service_src_groups=None, internet_service_src_ids=None, internet_service_src_names=None, internet_service_src_negate=None, ippool=None, ips_sensor=None, label=None, learning_mode=None, logtraffic=None, logtraffic_start=None, match_vip=None, match_vip_only=None, name=None, nat=None, nat46=None, nat64=None, natinbound=None, natip=None, natoutbound=None, network_service_dynamics=None, network_service_src_dynamics=None, np_acceleration=None, ntlm=None, ntlm_enabled_browsers=None, ntlm_guest=None, outbound=None, passive_wan_health_measurement=None, per_ip_shaper=None, permit_any_host=None, permit_stun_host=None, policy_expiry=None, policy_expiry_date=None, policyid=None, poolname6s=None, poolnames=None, profile_group=None, profile_protocol_options=None, profile_type=None, radius_mac_auth_bypass=None, redirect_url=None, replacemsg_override_group=None, reputation_direction=None, reputation_direction6=None, reputation_minimum=None, reputation_minimum6=None, rsso=None, rtp_addrs=None, rtp_nat=None, scan_botnet_connections=None, schedule=None, schedule_timeout=None, sctp_filter_profile=None, send_deny_packet=None, service_negate=None, services=None, session_ttl=None, sgt_check=None, sgts=None, spamfilter_profile=None, src_vendor_macs=None, srcaddr6_negate=None, srcaddr6s=None, srcaddr_negate=None, srcaddrs=None, srcintfs=None, ssh_filter_profile=None, ssh_policy_redirect=None, ssl_mirror=None, ssl_mirror_intfs=None, ssl_ssh_profile=None, status=None, tcp_mss_receiver=None, tcp_mss_sender=None, tcp_session_without_syn=None, timeout_send_rst=None, tos=None, tos_mask=None, tos_negate=None, traffic_shaper=None, traffic_shaper_reverse=None, url_categories=None, users=None, utm_status=None, uuid=None, vdomparam=None, videofilter_profile=None, vlan_cos_fwd=None, vlan_cos_rev=None, vlan_filter=None, voip_profile=None, vpntunnel=None, waf_profile=None, wanopt=None, wanopt_detection=None, wanopt_passive_opt=None, wanopt_peer=None, wanopt_profile=None, wccp=None, webcache=None, webcache_https=None, webfilter_profile=None, webproxy_forward_server=None, webproxy_profile=None, wsso=None, ztna_ems_tags=None, ztna_geo_tags=None, ztna_status=None):
+    def __init__(__self__, action=None, anti_replay=None, app_categories=None, app_groups=None, application_list=None, applications=None, auth_cert=None, auth_path=None, auth_redirect_addr=None, auto_asic_offload=None, av_profile=None, block_notification=None, captive_portal_exempt=None, capture_packet=None, casb_profile=None, cifs_profile=None, comments=None, custom_log_fields=None, decrypted_traffic_mirror=None, delay_tcp_npu_session=None, devices=None, diameter_filter_profile=None, diffserv_copy=None, diffserv_forward=None, diffserv_reverse=None, diffservcode_forward=None, diffservcode_rev=None, disclaimer=None, dlp_profile=None, dlp_sensor=None, dnsfilter_profile=None, dsri=None, dstaddr6_negate=None, dstaddr6s=None, dstaddr_negate=None, dstaddrs=None, dstintfs=None, dynamic_shaping=None, email_collect=None, emailfilter_profile=None, fec=None, file_filter_profile=None, firewall_session_dirty=None, fixedport=None, fsso=None, fsso_agent_for_ntlm=None, fsso_groups=None, geoip_anycast=None, geoip_match=None, global_label=None, groups=None, http_policy_redirect=None, icap_profile=None, id=None, identity_based_route=None, inbound=None, inspection_mode=None, internet_service=None, internet_service6=None, internet_service6_custom_groups=None, internet_service6_customs=None, internet_service6_groups=None, internet_service6_names=None, internet_service6_negate=None, internet_service6_src=None, internet_service6_src_custom_groups=None, internet_service6_src_customs=None, internet_service6_src_groups=None, internet_service6_src_names=None, internet_service6_src_negate=None, internet_service_custom_groups=None, internet_service_customs=None, internet_service_groups=None, internet_service_ids=None, internet_service_names=None, internet_service_negate=None, internet_service_src=None, internet_service_src_custom_groups=None, internet_service_src_customs=None, internet_service_src_groups=None, internet_service_src_ids=None, internet_service_src_names=None, internet_service_src_negate=None, ippool=None, ips_sensor=None, ips_voip_filter=None, label=None, learning_mode=None, logtraffic=None, logtraffic_start=None, match_vip=None, match_vip_only=None, name=None, nat=None, nat46=None, nat64=None, natinbound=None, natip=None, natoutbound=None, network_service_dynamics=None, network_service_src_dynamics=None, np_acceleration=None, ntlm=None, ntlm_enabled_browsers=None, ntlm_guest=None, outbound=None, passive_wan_health_measurement=None, pcp_inbound=None, pcp_outbound=None, pcp_poolnames=None, per_ip_shaper=None, permit_any_host=None, permit_stun_host=None, policy_expiry=None, policy_expiry_date=None, policy_expiry_date_utc=None, policyid=None, poolname6s=None, poolnames=None, profile_group=None, profile_protocol_options=None, profile_type=None, radius_mac_auth_bypass=None, redirect_url=None, replacemsg_override_group=None, reputation_direction=None, reputation_direction6=None, reputation_minimum=None, reputation_minimum6=None, rsso=None, rtp_addrs=None, rtp_nat=None, scan_botnet_connections=None, schedule=None, schedule_timeout=None, sctp_filter_profile=None, send_deny_packet=None, service_negate=None, services=None, session_ttl=None, sgt_check=None, sgts=None, spamfilter_profile=None, src_vendor_macs=None, srcaddr6_negate=None, srcaddr6s=None, srcaddr_negate=None, srcaddrs=None, srcintfs=None, ssh_filter_profile=None, ssh_policy_redirect=None, ssl_mirror=None, ssl_mirror_intfs=None, ssl_ssh_profile=None, status=None, tcp_mss_receiver=None, tcp_mss_sender=None, tcp_session_without_syn=None, timeout_send_rst=None, tos=None, tos_mask=None, tos_negate=None, traffic_shaper=None, traffic_shaper_reverse=None, url_categories=None, users=None, utm_status=None, uuid=None, vdomparam=None, videofilter_profile=None, virtual_patch_profile=None, vlan_cos_fwd=None, vlan_cos_rev=None, vlan_filter=None, voip_profile=None, vpntunnel=None, waf_profile=None, wanopt=None, wanopt_detection=None, wanopt_passive_opt=None, wanopt_peer=None, wanopt_profile=None, wccp=None, webcache=None, webcache_https=None, webfilter_profile=None, webproxy_forward_server=None, webproxy_profile=None, wsso=None, ztna_device_ownership=None, ztna_ems_tag_secondaries=None, ztna_ems_tags=None, ztna_geo_tags=None, ztna_policy_redirect=None, ztna_status=None, ztna_tags_match_logic=None):
         if action and not isinstance(action, str):
             raise TypeError("Expected argument 'action' to be a str")
         pulumi.set(__self__, "action", action)
@@ -65,6 +65,9 @@ class GetPolicyResult:
         if capture_packet and not isinstance(capture_packet, str):
             raise TypeError("Expected argument 'capture_packet' to be a str")
         pulumi.set(__self__, "capture_packet", capture_packet)
+        if casb_profile and not isinstance(casb_profile, str):
+            raise TypeError("Expected argument 'casb_profile' to be a str")
+        pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile and not isinstance(cifs_profile, str):
             raise TypeError("Expected argument 'cifs_profile' to be a str")
         pulumi.set(__self__, "cifs_profile", cifs_profile)
@@ -83,6 +86,9 @@ class GetPolicyResult:
         if devices and not isinstance(devices, list):
             raise TypeError("Expected argument 'devices' to be a list")
         pulumi.set(__self__, "devices", devices)
+        if diameter_filter_profile and not isinstance(diameter_filter_profile, str):
+            raise TypeError("Expected argument 'diameter_filter_profile' to be a str")
+        pulumi.set(__self__, "diameter_filter_profile", diameter_filter_profile)
         if diffserv_copy and not isinstance(diffserv_copy, str):
             raise TypeError("Expected argument 'diffserv_copy' to be a str")
         pulumi.set(__self__, "diffserv_copy", diffserv_copy)
@@ -272,6 +278,9 @@ class GetPolicyResult:
         if ips_sensor and not isinstance(ips_sensor, str):
             raise TypeError("Expected argument 'ips_sensor' to be a str")
         pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter and not isinstance(ips_voip_filter, str):
+            raise TypeError("Expected argument 'ips_voip_filter' to be a str")
+        pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if label and not isinstance(label, str):
             raise TypeError("Expected argument 'label' to be a str")
         pulumi.set(__self__, "label", label)
@@ -335,6 +344,15 @@ class GetPolicyResult:
         if passive_wan_health_measurement and not isinstance(passive_wan_health_measurement, str):
             raise TypeError("Expected argument 'passive_wan_health_measurement' to be a str")
         pulumi.set(__self__, "passive_wan_health_measurement", passive_wan_health_measurement)
+        if pcp_inbound and not isinstance(pcp_inbound, str):
+            raise TypeError("Expected argument 'pcp_inbound' to be a str")
+        pulumi.set(__self__, "pcp_inbound", pcp_inbound)
+        if pcp_outbound and not isinstance(pcp_outbound, str):
+            raise TypeError("Expected argument 'pcp_outbound' to be a str")
+        pulumi.set(__self__, "pcp_outbound", pcp_outbound)
+        if pcp_poolnames and not isinstance(pcp_poolnames, list):
+            raise TypeError("Expected argument 'pcp_poolnames' to be a list")
+        pulumi.set(__self__, "pcp_poolnames", pcp_poolnames)
         if per_ip_shaper and not isinstance(per_ip_shaper, str):
             raise TypeError("Expected argument 'per_ip_shaper' to be a str")
         pulumi.set(__self__, "per_ip_shaper", per_ip_shaper)
@@ -350,6 +368,9 @@ class GetPolicyResult:
         if policy_expiry_date and not isinstance(policy_expiry_date, str):
             raise TypeError("Expected argument 'policy_expiry_date' to be a str")
         pulumi.set(__self__, "policy_expiry_date", policy_expiry_date)
+        if policy_expiry_date_utc and not isinstance(policy_expiry_date_utc, str):
+            raise TypeError("Expected argument 'policy_expiry_date_utc' to be a str")
+        pulumi.set(__self__, "policy_expiry_date_utc", policy_expiry_date_utc)
         if policyid and not isinstance(policyid, int):
             raise TypeError("Expected argument 'policyid' to be a int")
         pulumi.set(__self__, "policyid", policyid)
@@ -512,6 +533,9 @@ class GetPolicyResult:
         if videofilter_profile and not isinstance(videofilter_profile, str):
             raise TypeError("Expected argument 'videofilter_profile' to be a str")
         pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile and not isinstance(virtual_patch_profile, str):
+            raise TypeError("Expected argument 'virtual_patch_profile' to be a str")
+        pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if vlan_cos_fwd and not isinstance(vlan_cos_fwd, int):
             raise TypeError("Expected argument 'vlan_cos_fwd' to be a int")
         pulumi.set(__self__, "vlan_cos_fwd", vlan_cos_fwd)
@@ -566,15 +590,27 @@ class GetPolicyResult:
         if wsso and not isinstance(wsso, str):
             raise TypeError("Expected argument 'wsso' to be a str")
         pulumi.set(__self__, "wsso", wsso)
+        if ztna_device_ownership and not isinstance(ztna_device_ownership, str):
+            raise TypeError("Expected argument 'ztna_device_ownership' to be a str")
+        pulumi.set(__self__, "ztna_device_ownership", ztna_device_ownership)
+        if ztna_ems_tag_secondaries and not isinstance(ztna_ems_tag_secondaries, list):
+            raise TypeError("Expected argument 'ztna_ems_tag_secondaries' to be a list")
+        pulumi.set(__self__, "ztna_ems_tag_secondaries", ztna_ems_tag_secondaries)
         if ztna_ems_tags and not isinstance(ztna_ems_tags, list):
             raise TypeError("Expected argument 'ztna_ems_tags' to be a list")
         pulumi.set(__self__, "ztna_ems_tags", ztna_ems_tags)
         if ztna_geo_tags and not isinstance(ztna_geo_tags, list):
             raise TypeError("Expected argument 'ztna_geo_tags' to be a list")
         pulumi.set(__self__, "ztna_geo_tags", ztna_geo_tags)
+        if ztna_policy_redirect and not isinstance(ztna_policy_redirect, str):
+            raise TypeError("Expected argument 'ztna_policy_redirect' to be a str")
+        pulumi.set(__self__, "ztna_policy_redirect", ztna_policy_redirect)
         if ztna_status and not isinstance(ztna_status, str):
             raise TypeError("Expected argument 'ztna_status' to be a str")
         pulumi.set(__self__, "ztna_status", ztna_status)
+        if ztna_tags_match_logic and not isinstance(ztna_tags_match_logic, str):
+            raise TypeError("Expected argument 'ztna_tags_match_logic' to be a str")
+        pulumi.set(__self__, "ztna_tags_match_logic", ztna_tags_match_logic)
 
     @property
     @pulumi.getter
@@ -689,6 +725,14 @@ class GetPolicyResult:
         return pulumi.get(self, "capture_packet")
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> str:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> str:
         """
@@ -735,6 +779,14 @@ class GetPolicyResult:
         Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
         """
         return pulumi.get(self, "devices")
+
+    @property
+    @pulumi.getter(name="diameterFilterProfile")
+    def diameter_filter_profile(self) -> str:
+        """
+        Name of an existing Diameter filter profile.
+        """
+        return pulumi.get(self, "diameter_filter_profile")
 
     @property
     @pulumi.getter(name="diffservCopy")
@@ -1241,6 +1293,14 @@ class GetPolicyResult:
         return pulumi.get(self, "ips_sensor")
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> str:
+        """
+        Name of an existing VoIP (ips) profile.
+        """
+        return pulumi.get(self, "ips_voip_filter")
+
+    @property
     @pulumi.getter
     def label(self) -> str:
         """
@@ -1409,6 +1469,30 @@ class GetPolicyResult:
         return pulumi.get(self, "passive_wan_health_measurement")
 
     @property
+    @pulumi.getter(name="pcpInbound")
+    def pcp_inbound(self) -> str:
+        """
+        Enable/disable PCP inbound DNAT.
+        """
+        return pulumi.get(self, "pcp_inbound")
+
+    @property
+    @pulumi.getter(name="pcpOutbound")
+    def pcp_outbound(self) -> str:
+        """
+        Enable/disable PCP outbound SNAT.
+        """
+        return pulumi.get(self, "pcp_outbound")
+
+    @property
+    @pulumi.getter(name="pcpPoolnames")
+    def pcp_poolnames(self) -> Sequence['outputs.GetPolicyPcpPoolnameResult']:
+        """
+        PCP pool names. The structure of `pcp_poolname` block is documented below.
+        """
+        return pulumi.get(self, "pcp_poolnames")
+
+    @property
     @pulumi.getter(name="perIpShaper")
     def per_ip_shaper(self) -> str:
         """
@@ -1447,6 +1531,14 @@ class GetPolicyResult:
         Policy expiry date (YYYY-MM-DD HH:MM:SS).
         """
         return pulumi.get(self, "policy_expiry_date")
+
+    @property
+    @pulumi.getter(name="policyExpiryDateUtc")
+    def policy_expiry_date_utc(self) -> str:
+        """
+        Policy expiry date and time, in epoch format.
+        """
+        return pulumi.get(self, "policy_expiry_date_utc")
 
     @property
     @pulumi.getter
@@ -1878,6 +1970,14 @@ class GetPolicyResult:
         return pulumi.get(self, "videofilter_profile")
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> str:
+        """
+        Name of an existing virtual-patch profile.
+        """
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @property
     @pulumi.getter(name="vlanCosFwd")
     def vlan_cos_fwd(self) -> int:
         """
@@ -2022,6 +2122,22 @@ class GetPolicyResult:
         return pulumi.get(self, "wsso")
 
     @property
+    @pulumi.getter(name="ztnaDeviceOwnership")
+    def ztna_device_ownership(self) -> str:
+        """
+        Enable/disable zero trust device ownership.
+        """
+        return pulumi.get(self, "ztna_device_ownership")
+
+    @property
+    @pulumi.getter(name="ztnaEmsTagSecondaries")
+    def ztna_ems_tag_secondaries(self) -> Sequence['outputs.GetPolicyZtnaEmsTagSecondaryResult']:
+        """
+        Source ztna-ems-tag-secondary names. The structure of `ztna_ems_tag_secondary` block is documented below.
+        """
+        return pulumi.get(self, "ztna_ems_tag_secondaries")
+
+    @property
     @pulumi.getter(name="ztnaEmsTags")
     def ztna_ems_tags(self) -> Sequence['outputs.GetPolicyZtnaEmsTagResult']:
         """
@@ -2038,12 +2154,28 @@ class GetPolicyResult:
         return pulumi.get(self, "ztna_geo_tags")
 
     @property
+    @pulumi.getter(name="ztnaPolicyRedirect")
+    def ztna_policy_redirect(self) -> str:
+        """
+        Redirect ZTNA traffic to matching Access-Proxy proxy-policy.
+        """
+        return pulumi.get(self, "ztna_policy_redirect")
+
+    @property
     @pulumi.getter(name="ztnaStatus")
     def ztna_status(self) -> str:
         """
         Enable/disable zero trust access.
         """
         return pulumi.get(self, "ztna_status")
+
+    @property
+    @pulumi.getter(name="ztnaTagsMatchLogic")
+    def ztna_tags_match_logic(self) -> str:
+        """
+        ZTNA tag matching logic.
+        """
+        return pulumi.get(self, "ztna_tags_match_logic")
 
 
 class AwaitableGetPolicyResult(GetPolicyResult):
@@ -2066,12 +2198,14 @@ class AwaitableGetPolicyResult(GetPolicyResult):
             block_notification=self.block_notification,
             captive_portal_exempt=self.captive_portal_exempt,
             capture_packet=self.capture_packet,
+            casb_profile=self.casb_profile,
             cifs_profile=self.cifs_profile,
             comments=self.comments,
             custom_log_fields=self.custom_log_fields,
             decrypted_traffic_mirror=self.decrypted_traffic_mirror,
             delay_tcp_npu_session=self.delay_tcp_npu_session,
             devices=self.devices,
+            diameter_filter_profile=self.diameter_filter_profile,
             diffserv_copy=self.diffserv_copy,
             diffserv_forward=self.diffserv_forward,
             diffserv_reverse=self.diffserv_reverse,
@@ -2135,6 +2269,7 @@ class AwaitableGetPolicyResult(GetPolicyResult):
             internet_service_src_negate=self.internet_service_src_negate,
             ippool=self.ippool,
             ips_sensor=self.ips_sensor,
+            ips_voip_filter=self.ips_voip_filter,
             label=self.label,
             learning_mode=self.learning_mode,
             logtraffic=self.logtraffic,
@@ -2156,11 +2291,15 @@ class AwaitableGetPolicyResult(GetPolicyResult):
             ntlm_guest=self.ntlm_guest,
             outbound=self.outbound,
             passive_wan_health_measurement=self.passive_wan_health_measurement,
+            pcp_inbound=self.pcp_inbound,
+            pcp_outbound=self.pcp_outbound,
+            pcp_poolnames=self.pcp_poolnames,
             per_ip_shaper=self.per_ip_shaper,
             permit_any_host=self.permit_any_host,
             permit_stun_host=self.permit_stun_host,
             policy_expiry=self.policy_expiry,
             policy_expiry_date=self.policy_expiry_date,
+            policy_expiry_date_utc=self.policy_expiry_date_utc,
             policyid=self.policyid,
             poolname6s=self.poolname6s,
             poolnames=self.poolnames,
@@ -2215,6 +2354,7 @@ class AwaitableGetPolicyResult(GetPolicyResult):
             uuid=self.uuid,
             vdomparam=self.vdomparam,
             videofilter_profile=self.videofilter_profile,
+            virtual_patch_profile=self.virtual_patch_profile,
             vlan_cos_fwd=self.vlan_cos_fwd,
             vlan_cos_rev=self.vlan_cos_rev,
             vlan_filter=self.vlan_filter,
@@ -2233,9 +2373,13 @@ class AwaitableGetPolicyResult(GetPolicyResult):
             webproxy_forward_server=self.webproxy_forward_server,
             webproxy_profile=self.webproxy_profile,
             wsso=self.wsso,
+            ztna_device_ownership=self.ztna_device_ownership,
+            ztna_ems_tag_secondaries=self.ztna_ems_tag_secondaries,
             ztna_ems_tags=self.ztna_ems_tags,
             ztna_geo_tags=self.ztna_geo_tags,
-            ztna_status=self.ztna_status)
+            ztna_policy_redirect=self.ztna_policy_redirect,
+            ztna_status=self.ztna_status,
+            ztna_tags_match_logic=self.ztna_tags_match_logic)
 
 
 def get_policy(policyid: Optional[int] = None,
@@ -2269,12 +2413,14 @@ def get_policy(policyid: Optional[int] = None,
         block_notification=pulumi.get(__ret__, 'block_notification'),
         captive_portal_exempt=pulumi.get(__ret__, 'captive_portal_exempt'),
         capture_packet=pulumi.get(__ret__, 'capture_packet'),
+        casb_profile=pulumi.get(__ret__, 'casb_profile'),
         cifs_profile=pulumi.get(__ret__, 'cifs_profile'),
         comments=pulumi.get(__ret__, 'comments'),
         custom_log_fields=pulumi.get(__ret__, 'custom_log_fields'),
         decrypted_traffic_mirror=pulumi.get(__ret__, 'decrypted_traffic_mirror'),
         delay_tcp_npu_session=pulumi.get(__ret__, 'delay_tcp_npu_session'),
         devices=pulumi.get(__ret__, 'devices'),
+        diameter_filter_profile=pulumi.get(__ret__, 'diameter_filter_profile'),
         diffserv_copy=pulumi.get(__ret__, 'diffserv_copy'),
         diffserv_forward=pulumi.get(__ret__, 'diffserv_forward'),
         diffserv_reverse=pulumi.get(__ret__, 'diffserv_reverse'),
@@ -2338,6 +2484,7 @@ def get_policy(policyid: Optional[int] = None,
         internet_service_src_negate=pulumi.get(__ret__, 'internet_service_src_negate'),
         ippool=pulumi.get(__ret__, 'ippool'),
         ips_sensor=pulumi.get(__ret__, 'ips_sensor'),
+        ips_voip_filter=pulumi.get(__ret__, 'ips_voip_filter'),
         label=pulumi.get(__ret__, 'label'),
         learning_mode=pulumi.get(__ret__, 'learning_mode'),
         logtraffic=pulumi.get(__ret__, 'logtraffic'),
@@ -2359,11 +2506,15 @@ def get_policy(policyid: Optional[int] = None,
         ntlm_guest=pulumi.get(__ret__, 'ntlm_guest'),
         outbound=pulumi.get(__ret__, 'outbound'),
         passive_wan_health_measurement=pulumi.get(__ret__, 'passive_wan_health_measurement'),
+        pcp_inbound=pulumi.get(__ret__, 'pcp_inbound'),
+        pcp_outbound=pulumi.get(__ret__, 'pcp_outbound'),
+        pcp_poolnames=pulumi.get(__ret__, 'pcp_poolnames'),
         per_ip_shaper=pulumi.get(__ret__, 'per_ip_shaper'),
         permit_any_host=pulumi.get(__ret__, 'permit_any_host'),
         permit_stun_host=pulumi.get(__ret__, 'permit_stun_host'),
         policy_expiry=pulumi.get(__ret__, 'policy_expiry'),
         policy_expiry_date=pulumi.get(__ret__, 'policy_expiry_date'),
+        policy_expiry_date_utc=pulumi.get(__ret__, 'policy_expiry_date_utc'),
         policyid=pulumi.get(__ret__, 'policyid'),
         poolname6s=pulumi.get(__ret__, 'poolname6s'),
         poolnames=pulumi.get(__ret__, 'poolnames'),
@@ -2418,6 +2569,7 @@ def get_policy(policyid: Optional[int] = None,
         uuid=pulumi.get(__ret__, 'uuid'),
         vdomparam=pulumi.get(__ret__, 'vdomparam'),
         videofilter_profile=pulumi.get(__ret__, 'videofilter_profile'),
+        virtual_patch_profile=pulumi.get(__ret__, 'virtual_patch_profile'),
         vlan_cos_fwd=pulumi.get(__ret__, 'vlan_cos_fwd'),
         vlan_cos_rev=pulumi.get(__ret__, 'vlan_cos_rev'),
         vlan_filter=pulumi.get(__ret__, 'vlan_filter'),
@@ -2436,9 +2588,13 @@ def get_policy(policyid: Optional[int] = None,
         webproxy_forward_server=pulumi.get(__ret__, 'webproxy_forward_server'),
         webproxy_profile=pulumi.get(__ret__, 'webproxy_profile'),
         wsso=pulumi.get(__ret__, 'wsso'),
+        ztna_device_ownership=pulumi.get(__ret__, 'ztna_device_ownership'),
+        ztna_ems_tag_secondaries=pulumi.get(__ret__, 'ztna_ems_tag_secondaries'),
         ztna_ems_tags=pulumi.get(__ret__, 'ztna_ems_tags'),
         ztna_geo_tags=pulumi.get(__ret__, 'ztna_geo_tags'),
-        ztna_status=pulumi.get(__ret__, 'ztna_status'))
+        ztna_policy_redirect=pulumi.get(__ret__, 'ztna_policy_redirect'),
+        ztna_status=pulumi.get(__ret__, 'ztna_status'),
+        ztna_tags_match_logic=pulumi.get(__ret__, 'ztna_tags_match_logic'))
 
 
 @_utilities.lift_output_func(get_policy)

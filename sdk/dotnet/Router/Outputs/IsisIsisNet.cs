@@ -19,7 +19,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly int? Id;
         /// <summary>
-        /// IS-IS net xx.xxxx. ... .xxxx.xx.
+        /// IS-IS networks (format = xx.xxxx.  .xxxx.xx.).
         /// </summary>
         public readonly string? Net;
 

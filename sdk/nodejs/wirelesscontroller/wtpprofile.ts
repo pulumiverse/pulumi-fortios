@@ -76,6 +76,10 @@ export class Wtpprofile extends pulumi.CustomResource {
      */
     public readonly bleProfile!: pulumi.Output<string>;
     /**
+     * Bonjour profile name.
+     */
+    public readonly bonjourProfile!: pulumi.Output<string>;
+    /**
      * Comment.
      */
     public readonly comment!: pulumi.Output<string | undefined>;
@@ -96,7 +100,7 @@ export class Wtpprofile extends pulumi.CustomResource {
      */
     public readonly dtlsInKernel!: pulumi.Output<string>;
     /**
-     * WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+     * WTP data channel DTLS policy (default = clear-text).
      */
     public readonly dtlsPolicy!: pulumi.Output<string>;
     /**
@@ -119,6 +123,10 @@ export class Wtpprofile extends pulumi.CustomResource {
      * Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
      */
     public readonly frequencyHandoff!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
      */
@@ -224,6 +232,10 @@ export class Wtpprofile extends pulumi.CustomResource {
      */
     public readonly tunMtuUplink!: pulumi.Output<number>;
     /**
+     * Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly unii45ghzBand!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -231,6 +243,10 @@ export class Wtpprofile extends pulumi.CustomResource {
      * Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
      */
     public readonly wanPortAuth!: pulumi.Output<string>;
+    /**
+     * Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly wanPortAuthMacsec!: pulumi.Output<string>;
     /**
      * WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
      */
@@ -266,6 +282,7 @@ export class Wtpprofile extends pulumi.CustomResource {
             resourceInputs["apHandoff"] = state ? state.apHandoff : undefined;
             resourceInputs["apcfgProfile"] = state ? state.apcfgProfile : undefined;
             resourceInputs["bleProfile"] = state ? state.bleProfile : undefined;
+            resourceInputs["bonjourProfile"] = state ? state.bonjourProfile : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["consoleLogin"] = state ? state.consoleLogin : undefined;
             resourceInputs["controlMessageOffload"] = state ? state.controlMessageOffload : undefined;
@@ -277,6 +294,7 @@ export class Wtpprofile extends pulumi.CustomResource {
             resourceInputs["eslSesDongle"] = state ? state.eslSesDongle : undefined;
             resourceInputs["extInfoEnable"] = state ? state.extInfoEnable : undefined;
             resourceInputs["frequencyHandoff"] = state ? state.frequencyHandoff : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["handoffRoaming"] = state ? state.handoffRoaming : undefined;
             resourceInputs["handoffRssi"] = state ? state.handoffRssi : undefined;
             resourceInputs["handoffStaThresh"] = state ? state.handoffStaThresh : undefined;
@@ -303,8 +321,10 @@ export class Wtpprofile extends pulumi.CustomResource {
             resourceInputs["syslogProfile"] = state ? state.syslogProfile : undefined;
             resourceInputs["tunMtuDownlink"] = state ? state.tunMtuDownlink : undefined;
             resourceInputs["tunMtuUplink"] = state ? state.tunMtuUplink : undefined;
+            resourceInputs["unii45ghzBand"] = state ? state.unii45ghzBand : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["wanPortAuth"] = state ? state.wanPortAuth : undefined;
+            resourceInputs["wanPortAuthMacsec"] = state ? state.wanPortAuthMacsec : undefined;
             resourceInputs["wanPortAuthMethods"] = state ? state.wanPortAuthMethods : undefined;
             resourceInputs["wanPortAuthPassword"] = state ? state.wanPortAuthPassword : undefined;
             resourceInputs["wanPortAuthUsrname"] = state ? state.wanPortAuthUsrname : undefined;
@@ -316,6 +336,7 @@ export class Wtpprofile extends pulumi.CustomResource {
             resourceInputs["apHandoff"] = args ? args.apHandoff : undefined;
             resourceInputs["apcfgProfile"] = args ? args.apcfgProfile : undefined;
             resourceInputs["bleProfile"] = args ? args.bleProfile : undefined;
+            resourceInputs["bonjourProfile"] = args ? args.bonjourProfile : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["consoleLogin"] = args ? args.consoleLogin : undefined;
             resourceInputs["controlMessageOffload"] = args ? args.controlMessageOffload : undefined;
@@ -327,6 +348,7 @@ export class Wtpprofile extends pulumi.CustomResource {
             resourceInputs["eslSesDongle"] = args ? args.eslSesDongle : undefined;
             resourceInputs["extInfoEnable"] = args ? args.extInfoEnable : undefined;
             resourceInputs["frequencyHandoff"] = args ? args.frequencyHandoff : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["handoffRoaming"] = args ? args.handoffRoaming : undefined;
             resourceInputs["handoffRssi"] = args ? args.handoffRssi : undefined;
             resourceInputs["handoffStaThresh"] = args ? args.handoffStaThresh : undefined;
@@ -353,8 +375,10 @@ export class Wtpprofile extends pulumi.CustomResource {
             resourceInputs["syslogProfile"] = args ? args.syslogProfile : undefined;
             resourceInputs["tunMtuDownlink"] = args ? args.tunMtuDownlink : undefined;
             resourceInputs["tunMtuUplink"] = args ? args.tunMtuUplink : undefined;
+            resourceInputs["unii45ghzBand"] = args ? args.unii45ghzBand : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["wanPortAuth"] = args ? args.wanPortAuth : undefined;
+            resourceInputs["wanPortAuthMacsec"] = args ? args.wanPortAuthMacsec : undefined;
             resourceInputs["wanPortAuthMethods"] = args ? args.wanPortAuthMethods : undefined;
             resourceInputs["wanPortAuthPassword"] = args ? args.wanPortAuthPassword : undefined;
             resourceInputs["wanPortAuthUsrname"] = args ? args.wanPortAuthUsrname : undefined;
@@ -392,6 +416,10 @@ export interface WtpprofileState {
      */
     bleProfile?: pulumi.Input<string>;
     /**
+     * Bonjour profile name.
+     */
+    bonjourProfile?: pulumi.Input<string>;
+    /**
      * Comment.
      */
     comment?: pulumi.Input<string>;
@@ -412,7 +440,7 @@ export interface WtpprofileState {
      */
     dtlsInKernel?: pulumi.Input<string>;
     /**
-     * WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+     * WTP data channel DTLS policy (default = clear-text).
      */
     dtlsPolicy?: pulumi.Input<string>;
     /**
@@ -435,6 +463,10 @@ export interface WtpprofileState {
      * Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
      */
     frequencyHandoff?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
      */
@@ -540,6 +572,10 @@ export interface WtpprofileState {
      */
     tunMtuUplink?: pulumi.Input<number>;
     /**
+     * Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+     */
+    unii45ghzBand?: pulumi.Input<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
@@ -547,6 +583,10 @@ export interface WtpprofileState {
      * Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
      */
     wanPortAuth?: pulumi.Input<string>;
+    /**
+     * Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+     */
+    wanPortAuthMacsec?: pulumi.Input<string>;
     /**
      * WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
      */
@@ -590,6 +630,10 @@ export interface WtpprofileArgs {
      */
     bleProfile?: pulumi.Input<string>;
     /**
+     * Bonjour profile name.
+     */
+    bonjourProfile?: pulumi.Input<string>;
+    /**
      * Comment.
      */
     comment?: pulumi.Input<string>;
@@ -610,7 +654,7 @@ export interface WtpprofileArgs {
      */
     dtlsInKernel?: pulumi.Input<string>;
     /**
-     * WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+     * WTP data channel DTLS policy (default = clear-text).
      */
     dtlsPolicy?: pulumi.Input<string>;
     /**
@@ -633,6 +677,10 @@ export interface WtpprofileArgs {
      * Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
      */
     frequencyHandoff?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
      */
@@ -738,6 +786,10 @@ export interface WtpprofileArgs {
      */
     tunMtuUplink?: pulumi.Input<number>;
     /**
+     * Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+     */
+    unii45ghzBand?: pulumi.Input<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
@@ -745,6 +797,10 @@ export interface WtpprofileArgs {
      * Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
      */
     wanPortAuth?: pulumi.Input<string>;
+    /**
+     * Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+     */
+    wanPortAuthMacsec?: pulumi.Input<string>;
     /**
      * WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
      */

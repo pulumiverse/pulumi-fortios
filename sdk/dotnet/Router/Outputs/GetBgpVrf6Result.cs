@@ -15,9 +15,29 @@ namespace Pulumiverse.Fortios.Router.Outputs
     public sealed class GetBgpVrf6Result
     {
         /// <summary>
+        /// List of export route target. The structure of `export_rt` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetBgpVrf6ExportRtResult> ExportRts;
+        /// <summary>
+        /// Import route map.
+        /// </summary>
+        public readonly string ImportRouteMap;
+        /// <summary>
+        /// List of import route target. The structure of `import_rt` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetBgpVrf6ImportRtResult> ImportRts;
+        /// <summary>
         /// Target VRF table. The structure of `leak_target` block is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetBgpVrf6LeakTargetResult> LeakTargets;
+        /// <summary>
+        /// Route Distinguisher: AA:NN|A.B.C.D:NN.
+        /// </summary>
+        public readonly string Rd;
+        /// <summary>
+        /// VRF role.
+        /// </summary>
+        public readonly string Role;
         /// <summary>
         /// Target VRF ID &lt;0 - 31&gt;.
         /// </summary>
@@ -25,11 +45,26 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
         [OutputConstructor]
         private GetBgpVrf6Result(
+            ImmutableArray<Outputs.GetBgpVrf6ExportRtResult> exportRts,
+
+            string importRouteMap,
+
+            ImmutableArray<Outputs.GetBgpVrf6ImportRtResult> importRts,
+
             ImmutableArray<Outputs.GetBgpVrf6LeakTargetResult> leakTargets,
+
+            string rd,
+
+            string role,
 
             string vrf)
         {
+            ExportRts = exportRts;
+            ImportRouteMap = importRouteMap;
+            ImportRts = importRts;
             LeakTargets = leakTargets;
+            Rd = rd;
+            Role = role;
             Vrf = vrf;
         }
     }

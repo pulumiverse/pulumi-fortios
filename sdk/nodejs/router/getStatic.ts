@@ -103,6 +103,10 @@ export interface GetStaticResult {
      */
     readonly linkMonitorExempt: string;
     /**
+     * Preferred source IP for this route.
+     */
+    readonly preferredSource: string;
+    /**
      * Administrative priority (0 - 4294967295).
      */
     readonly priority: number;
@@ -126,6 +130,10 @@ export interface GetStaticResult {
      * Enable/disable this static route.
      */
     readonly status: string;
+    /**
+     * Route tag.
+     */
+    readonly tag: number;
     readonly vdomparam?: string;
     /**
      * Enable/disable egress through the virtual-wan-link.

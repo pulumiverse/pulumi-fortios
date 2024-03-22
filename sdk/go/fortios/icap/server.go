@@ -79,7 +79,7 @@ type Server struct {
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// IP version. Valid values: `4`, `6`.
 	IpVersion pulumi.StringOutput `pulumi:"ipVersion"`
-	// Maximum number of concurrent connections to ICAP server.
+	// Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
 	MaxConnections pulumi.IntOutput `pulumi:"maxConnections"`
 	// Server name.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -137,7 +137,7 @@ type serverState struct {
 	IpAddress *string `pulumi:"ipAddress"`
 	// IP version. Valid values: `4`, `6`.
 	IpVersion *string `pulumi:"ipVersion"`
-	// Maximum number of concurrent connections to ICAP server.
+	// Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
 	MaxConnections *int `pulumi:"maxConnections"`
 	// Server name.
 	Name *string `pulumi:"name"`
@@ -166,7 +166,7 @@ type ServerState struct {
 	IpAddress pulumi.StringPtrInput
 	// IP version. Valid values: `4`, `6`.
 	IpVersion pulumi.StringPtrInput
-	// Maximum number of concurrent connections to ICAP server.
+	// Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
 	MaxConnections pulumi.IntPtrInput
 	// Server name.
 	Name pulumi.StringPtrInput
@@ -199,7 +199,7 @@ type serverArgs struct {
 	IpAddress *string `pulumi:"ipAddress"`
 	// IP version. Valid values: `4`, `6`.
 	IpVersion *string `pulumi:"ipVersion"`
-	// Maximum number of concurrent connections to ICAP server.
+	// Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
 	MaxConnections *int `pulumi:"maxConnections"`
 	// Server name.
 	Name *string `pulumi:"name"`
@@ -229,7 +229,7 @@ type ServerArgs struct {
 	IpAddress pulumi.StringPtrInput
 	// IP version. Valid values: `4`, `6`.
 	IpVersion pulumi.StringPtrInput
-	// Maximum number of concurrent connections to ICAP server.
+	// Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
 	MaxConnections pulumi.IntPtrInput
 	// Server name.
 	Name pulumi.StringPtrInput
@@ -365,7 +365,7 @@ func (o ServerOutput) IpVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.IpVersion }).(pulumi.StringOutput)
 }
 
-// Maximum number of concurrent connections to ICAP server.
+// Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
 func (o ServerOutput) MaxConnections() pulumi.IntOutput {
 	return o.ApplyT(func(v *Server) pulumi.IntOutput { return v.MaxConnections }).(pulumi.IntOutput)
 }

@@ -13,6 +13,9 @@ namespace Pulumiverse.Fortios.System.Inputs
 
     public sealed class HaVclusterVdomGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Virtual domain name.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

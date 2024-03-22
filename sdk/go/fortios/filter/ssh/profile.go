@@ -71,6 +71,8 @@ type Profile struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter ProfileFileFilterOutput `pulumi:"fileFilter"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// SSH logging options.
 	Log pulumi.StringOutput `pulumi:"log"`
 	// SSH filter profile name.
@@ -119,6 +121,8 @@ type profileState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter *ProfileFileFilter `pulumi:"fileFilter"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// SSH logging options.
 	Log *string `pulumi:"log"`
 	// SSH filter profile name.
@@ -138,6 +142,8 @@ type ProfileState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter ProfileFileFilterPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// SSH logging options.
 	Log pulumi.StringPtrInput
 	// SSH filter profile name.
@@ -161,6 +167,8 @@ type profileArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter *ProfileFileFilter `pulumi:"fileFilter"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// SSH logging options.
 	Log *string `pulumi:"log"`
 	// SSH filter profile name.
@@ -181,6 +189,8 @@ type ProfileArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter ProfileFileFilterPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// SSH logging options.
 	Log pulumi.StringPtrInput
 	// SSH filter profile name.
@@ -296,6 +306,11 @@ func (o ProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // File filter. The structure of `fileFilter` block is documented below.
 func (o ProfileOutput) FileFilter() ProfileFileFilterOutput {
 	return o.ApplyT(func(v *Profile) ProfileFileFilterOutput { return v.FileFilter }).(ProfileFileFilterOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // SSH logging options.

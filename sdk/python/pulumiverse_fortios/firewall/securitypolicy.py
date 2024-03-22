@@ -22,12 +22,15 @@ class SecuritypolicyArgs:
                  application_list: Optional[pulumi.Input[str]] = None,
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyApplicationArgs']]]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  dstaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddr4Args']]]] = None,
+                 dstaddr6_negate: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddr6Args']]]] = None,
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddrArgs']]]] = None,
@@ -37,6 +40,7 @@ class SecuritypolicyArgs:
                  enforce_default_app_port: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyFssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyGroupArgs']]]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
@@ -66,6 +70,7 @@ class SecuritypolicyArgs:
                  internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyInternetServiceSrcNameArgs']]]] = None,
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -82,6 +87,7 @@ class SecuritypolicyArgs:
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyServiceArgs']]]] = None,
                  srcaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddr4Args']]]] = None,
+                 srcaddr6_negate: Optional[pulumi.Input[str]] = None,
                  srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddr6Args']]]] = None,
                  srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddrArgs']]]] = None,
@@ -90,10 +96,12 @@ class SecuritypolicyArgs:
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUrlCategoryArgs']]]] = None,
+                 url_category_unitary: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUserArgs']]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None):
         """
@@ -104,12 +112,15 @@ class SecuritypolicyArgs:
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyApplicationArgs']]] applications: Application ID list. The structure of `application` block is documented below.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Comment.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
         :param pulumi.Input[str] dnsfilter_profile: Name of an existing DNS filter profile.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddr4Args']]] dstaddr4s: Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
+        :param pulumi.Input[str] dstaddr6_negate: When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddr6Args']]] dstaddr6s: Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddrArgs']]] dstaddrs: Destination IPv4 address name and address group names. The structure of `dstaddr` block is documented below.
@@ -119,6 +130,7 @@ class SecuritypolicyArgs:
         :param pulumi.Input[str] enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyFssoGroupArgs']]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyGroupArgs']]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
@@ -148,6 +160,7 @@ class SecuritypolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyInternetServiceSrcNameArgs']]] internet_service_src_names: Internet Service source name. The structure of `internet_service_src_name` block is documented below.
         :param pulumi.Input[str] internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Record logs when a session starts. Valid values: `enable`, `disable`.
@@ -164,6 +177,7 @@ class SecuritypolicyArgs:
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyServiceArgs']]] services: Service and service group names. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddr4Args']]] srcaddr4s: Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
+        :param pulumi.Input[str] srcaddr6_negate: When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddr6Args']]] srcaddr6s: Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
         :param pulumi.Input[str] srcaddr_negate: When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddrArgs']]] srcaddrs: Source IPv4 address name and address group names. The structure of `srcaddr` block is documented below.
@@ -172,11 +186,13 @@ class SecuritypolicyArgs:
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] status: Enable or disable this policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUrlCategoryArgs']]] url_categories: URL category ID list. The structure of `url_category` block is documented below.
+        :param pulumi.Input[str] url_category_unitary: URL categories or groups.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUserArgs']]] users: Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
-        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP (voipd) profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         """
         if action is not None:
@@ -191,10 +207,14 @@ class SecuritypolicyArgs:
             pulumi.set(__self__, "applications", applications)
         if av_profile is not None:
             pulumi.set(__self__, "av_profile", av_profile)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
+        if diameter_filter_profile is not None:
+            pulumi.set(__self__, "diameter_filter_profile", diameter_filter_profile)
         if dlp_profile is not None:
             pulumi.set(__self__, "dlp_profile", dlp_profile)
         if dlp_sensor is not None:
@@ -203,6 +223,8 @@ class SecuritypolicyArgs:
             pulumi.set(__self__, "dnsfilter_profile", dnsfilter_profile)
         if dstaddr4s is not None:
             pulumi.set(__self__, "dstaddr4s", dstaddr4s)
+        if dstaddr6_negate is not None:
+            pulumi.set(__self__, "dstaddr6_negate", dstaddr6_negate)
         if dstaddr6s is not None:
             pulumi.set(__self__, "dstaddr6s", dstaddr6s)
         if dstaddr_negate is not None:
@@ -221,6 +243,8 @@ class SecuritypolicyArgs:
             pulumi.set(__self__, "file_filter_profile", file_filter_profile)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if icap_profile is not None:
@@ -279,6 +303,8 @@ class SecuritypolicyArgs:
             pulumi.set(__self__, "internet_service_src_negate", internet_service_src_negate)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if learning_mode is not None:
             pulumi.set(__self__, "learning_mode", learning_mode)
         if logtraffic is not None:
@@ -311,6 +337,8 @@ class SecuritypolicyArgs:
             pulumi.set(__self__, "services", services)
         if srcaddr4s is not None:
             pulumi.set(__self__, "srcaddr4s", srcaddr4s)
+        if srcaddr6_negate is not None:
+            pulumi.set(__self__, "srcaddr6_negate", srcaddr6_negate)
         if srcaddr6s is not None:
             pulumi.set(__self__, "srcaddr6s", srcaddr6s)
         if srcaddr_negate is not None:
@@ -327,6 +355,8 @@ class SecuritypolicyArgs:
             pulumi.set(__self__, "status", status)
         if url_categories is not None:
             pulumi.set(__self__, "url_categories", url_categories)
+        if url_category_unitary is not None:
+            pulumi.set(__self__, "url_category_unitary", url_category_unitary)
         if users is not None:
             pulumi.set(__self__, "users", users)
         if uuid is not None:
@@ -335,6 +365,8 @@ class SecuritypolicyArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if webfilter_profile is not None:
@@ -413,6 +445,18 @@ class SecuritypolicyArgs:
         pulumi.set(self, "av_profile", value)
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -435,6 +479,18 @@ class SecuritypolicyArgs:
     @comments.setter
     def comments(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comments", value)
+
+    @property
+    @pulumi.getter(name="diameterFilterProfile")
+    def diameter_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing Diameter filter profile.
+        """
+        return pulumi.get(self, "diameter_filter_profile")
+
+    @diameter_filter_profile.setter
+    def diameter_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "diameter_filter_profile", value)
 
     @property
     @pulumi.getter(name="dlpProfile")
@@ -483,6 +539,18 @@ class SecuritypolicyArgs:
     @dstaddr4s.setter
     def dstaddr4s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddr4Args']]]]):
         pulumi.set(self, "dstaddr4s", value)
+
+    @property
+    @pulumi.getter(name="dstaddr6Negate")
+    def dstaddr6_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dstaddr6_negate")
+
+    @dstaddr6_negate.setter
+    def dstaddr6_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dstaddr6_negate", value)
 
     @property
     @pulumi.getter
@@ -591,6 +659,18 @@ class SecuritypolicyArgs:
     @fsso_groups.setter
     def fsso_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyFssoGroupArgs']]]]):
         pulumi.set(self, "fsso_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -941,6 +1021,18 @@ class SecuritypolicyArgs:
         pulumi.set(self, "ips_sensor", value)
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VoIP (ips) profile.
+        """
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
+
+    @property
     @pulumi.getter(name="learningMode")
     def learning_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1133,6 +1225,18 @@ class SecuritypolicyArgs:
         pulumi.set(self, "srcaddr4s", value)
 
     @property
+    @pulumi.getter(name="srcaddr6Negate")
+    def srcaddr6_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "srcaddr6_negate")
+
+    @srcaddr6_negate.setter
+    def srcaddr6_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "srcaddr6_negate", value)
+
+    @property
     @pulumi.getter
     def srcaddr6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddr6Args']]]]:
         """
@@ -1229,6 +1333,18 @@ class SecuritypolicyArgs:
         pulumi.set(self, "url_categories", value)
 
     @property
+    @pulumi.getter(name="urlCategoryUnitary")
+    def url_category_unitary(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL categories or groups.
+        """
+        return pulumi.get(self, "url_category_unitary")
+
+    @url_category_unitary.setter
+    def url_category_unitary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url_category_unitary", value)
+
+    @property
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUserArgs']]]]:
         """
@@ -1277,10 +1393,22 @@ class SecuritypolicyArgs:
         pulumi.set(self, "videofilter_profile", value)
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing virtual-patch profile.
+        """
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
+
+    @property
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of an existing VoIP profile.
+        Name of an existing VoIP (voipd) profile.
         """
         return pulumi.get(self, "voip_profile")
 
@@ -1310,12 +1438,15 @@ class _SecuritypolicyState:
                  application_list: Optional[pulumi.Input[str]] = None,
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyApplicationArgs']]]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  dstaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddr4Args']]]] = None,
+                 dstaddr6_negate: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddr6Args']]]] = None,
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddrArgs']]]] = None,
@@ -1325,6 +1456,7 @@ class _SecuritypolicyState:
                  enforce_default_app_port: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyFssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyGroupArgs']]]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
@@ -1354,6 +1486,7 @@ class _SecuritypolicyState:
                  internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyInternetServiceSrcNameArgs']]]] = None,
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -1370,6 +1503,7 @@ class _SecuritypolicyState:
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyServiceArgs']]]] = None,
                  srcaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddr4Args']]]] = None,
+                 srcaddr6_negate: Optional[pulumi.Input[str]] = None,
                  srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddr6Args']]]] = None,
                  srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddrArgs']]]] = None,
@@ -1378,10 +1512,12 @@ class _SecuritypolicyState:
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUrlCategoryArgs']]]] = None,
+                 url_category_unitary: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUserArgs']]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None):
         """
@@ -1392,12 +1528,15 @@ class _SecuritypolicyState:
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyApplicationArgs']]] applications: Application ID list. The structure of `application` block is documented below.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Comment.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
         :param pulumi.Input[str] dnsfilter_profile: Name of an existing DNS filter profile.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddr4Args']]] dstaddr4s: Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
+        :param pulumi.Input[str] dstaddr6_negate: When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddr6Args']]] dstaddr6s: Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddrArgs']]] dstaddrs: Destination IPv4 address name and address group names. The structure of `dstaddr` block is documented below.
@@ -1407,6 +1546,7 @@ class _SecuritypolicyState:
         :param pulumi.Input[str] enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyFssoGroupArgs']]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyGroupArgs']]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
@@ -1436,6 +1576,7 @@ class _SecuritypolicyState:
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyInternetServiceSrcNameArgs']]] internet_service_src_names: Internet Service source name. The structure of `internet_service_src_name` block is documented below.
         :param pulumi.Input[str] internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Record logs when a session starts. Valid values: `enable`, `disable`.
@@ -1452,6 +1593,7 @@ class _SecuritypolicyState:
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyServiceArgs']]] services: Service and service group names. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddr4Args']]] srcaddr4s: Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
+        :param pulumi.Input[str] srcaddr6_negate: When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddr6Args']]] srcaddr6s: Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
         :param pulumi.Input[str] srcaddr_negate: When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddrArgs']]] srcaddrs: Source IPv4 address name and address group names. The structure of `srcaddr` block is documented below.
@@ -1460,11 +1602,13 @@ class _SecuritypolicyState:
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] status: Enable or disable this policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUrlCategoryArgs']]] url_categories: URL category ID list. The structure of `url_category` block is documented below.
+        :param pulumi.Input[str] url_category_unitary: URL categories or groups.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUserArgs']]] users: Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
-        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP (voipd) profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         """
         if action is not None:
@@ -1479,10 +1623,14 @@ class _SecuritypolicyState:
             pulumi.set(__self__, "applications", applications)
         if av_profile is not None:
             pulumi.set(__self__, "av_profile", av_profile)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
+        if diameter_filter_profile is not None:
+            pulumi.set(__self__, "diameter_filter_profile", diameter_filter_profile)
         if dlp_profile is not None:
             pulumi.set(__self__, "dlp_profile", dlp_profile)
         if dlp_sensor is not None:
@@ -1491,6 +1639,8 @@ class _SecuritypolicyState:
             pulumi.set(__self__, "dnsfilter_profile", dnsfilter_profile)
         if dstaddr4s is not None:
             pulumi.set(__self__, "dstaddr4s", dstaddr4s)
+        if dstaddr6_negate is not None:
+            pulumi.set(__self__, "dstaddr6_negate", dstaddr6_negate)
         if dstaddr6s is not None:
             pulumi.set(__self__, "dstaddr6s", dstaddr6s)
         if dstaddr_negate is not None:
@@ -1509,6 +1659,8 @@ class _SecuritypolicyState:
             pulumi.set(__self__, "file_filter_profile", file_filter_profile)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if icap_profile is not None:
@@ -1567,6 +1719,8 @@ class _SecuritypolicyState:
             pulumi.set(__self__, "internet_service_src_negate", internet_service_src_negate)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if learning_mode is not None:
             pulumi.set(__self__, "learning_mode", learning_mode)
         if logtraffic is not None:
@@ -1599,6 +1753,8 @@ class _SecuritypolicyState:
             pulumi.set(__self__, "services", services)
         if srcaddr4s is not None:
             pulumi.set(__self__, "srcaddr4s", srcaddr4s)
+        if srcaddr6_negate is not None:
+            pulumi.set(__self__, "srcaddr6_negate", srcaddr6_negate)
         if srcaddr6s is not None:
             pulumi.set(__self__, "srcaddr6s", srcaddr6s)
         if srcaddr_negate is not None:
@@ -1615,6 +1771,8 @@ class _SecuritypolicyState:
             pulumi.set(__self__, "status", status)
         if url_categories is not None:
             pulumi.set(__self__, "url_categories", url_categories)
+        if url_category_unitary is not None:
+            pulumi.set(__self__, "url_category_unitary", url_category_unitary)
         if users is not None:
             pulumi.set(__self__, "users", users)
         if uuid is not None:
@@ -1623,6 +1781,8 @@ class _SecuritypolicyState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if webfilter_profile is not None:
@@ -1701,6 +1861,18 @@ class _SecuritypolicyState:
         pulumi.set(self, "av_profile", value)
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1723,6 +1895,18 @@ class _SecuritypolicyState:
     @comments.setter
     def comments(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comments", value)
+
+    @property
+    @pulumi.getter(name="diameterFilterProfile")
+    def diameter_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing Diameter filter profile.
+        """
+        return pulumi.get(self, "diameter_filter_profile")
+
+    @diameter_filter_profile.setter
+    def diameter_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "diameter_filter_profile", value)
 
     @property
     @pulumi.getter(name="dlpProfile")
@@ -1771,6 +1955,18 @@ class _SecuritypolicyState:
     @dstaddr4s.setter
     def dstaddr4s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyDstaddr4Args']]]]):
         pulumi.set(self, "dstaddr4s", value)
+
+    @property
+    @pulumi.getter(name="dstaddr6Negate")
+    def dstaddr6_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dstaddr6_negate")
+
+    @dstaddr6_negate.setter
+    def dstaddr6_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dstaddr6_negate", value)
 
     @property
     @pulumi.getter
@@ -1879,6 +2075,18 @@ class _SecuritypolicyState:
     @fsso_groups.setter
     def fsso_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyFssoGroupArgs']]]]):
         pulumi.set(self, "fsso_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -2229,6 +2437,18 @@ class _SecuritypolicyState:
         pulumi.set(self, "ips_sensor", value)
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VoIP (ips) profile.
+        """
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
+
+    @property
     @pulumi.getter(name="learningMode")
     def learning_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2421,6 +2641,18 @@ class _SecuritypolicyState:
         pulumi.set(self, "srcaddr4s", value)
 
     @property
+    @pulumi.getter(name="srcaddr6Negate")
+    def srcaddr6_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "srcaddr6_negate")
+
+    @srcaddr6_negate.setter
+    def srcaddr6_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "srcaddr6_negate", value)
+
+    @property
     @pulumi.getter
     def srcaddr6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicySrcaddr6Args']]]]:
         """
@@ -2517,6 +2749,18 @@ class _SecuritypolicyState:
         pulumi.set(self, "url_categories", value)
 
     @property
+    @pulumi.getter(name="urlCategoryUnitary")
+    def url_category_unitary(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL categories or groups.
+        """
+        return pulumi.get(self, "url_category_unitary")
+
+    @url_category_unitary.setter
+    def url_category_unitary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url_category_unitary", value)
+
+    @property
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUserArgs']]]]:
         """
@@ -2565,10 +2809,22 @@ class _SecuritypolicyState:
         pulumi.set(self, "videofilter_profile", value)
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing virtual-patch profile.
+        """
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
+
+    @property
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of an existing VoIP profile.
+        Name of an existing VoIP (voipd) profile.
         """
         return pulumi.get(self, "voip_profile")
 
@@ -2600,12 +2856,15 @@ class Securitypolicy(pulumi.CustomResource):
                  application_list: Optional[pulumi.Input[str]] = None,
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyApplicationArgs']]]]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  dstaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddr4Args']]]]] = None,
+                 dstaddr6_negate: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddr6Args']]]]] = None,
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddrArgs']]]]] = None,
@@ -2615,6 +2874,7 @@ class Securitypolicy(pulumi.CustomResource):
                  enforce_default_app_port: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyFssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyGroupArgs']]]]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
@@ -2644,6 +2904,7 @@ class Securitypolicy(pulumi.CustomResource):
                  internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyInternetServiceSrcNameArgs']]]]] = None,
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -2660,6 +2921,7 @@ class Securitypolicy(pulumi.CustomResource):
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyServiceArgs']]]]] = None,
                  srcaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddr4Args']]]]] = None,
+                 srcaddr6_negate: Optional[pulumi.Input[str]] = None,
                  srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddr6Args']]]]] = None,
                  srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddrArgs']]]]] = None,
@@ -2668,10 +2930,12 @@ class Securitypolicy(pulumi.CustomResource):
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUrlCategoryArgs']]]]] = None,
+                 url_category_unitary: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUserArgs']]]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -2734,12 +2998,15 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyApplicationArgs']]]] applications: Application ID list. The structure of `application` block is documented below.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Comment.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
         :param pulumi.Input[str] dnsfilter_profile: Name of an existing DNS filter profile.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddr4Args']]]] dstaddr4s: Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
+        :param pulumi.Input[str] dstaddr6_negate: When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddr6Args']]]] dstaddr6s: Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddrArgs']]]] dstaddrs: Destination IPv4 address name and address group names. The structure of `dstaddr` block is documented below.
@@ -2749,6 +3016,7 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyFssoGroupArgs']]]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyGroupArgs']]]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
@@ -2778,6 +3046,7 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyInternetServiceSrcNameArgs']]]] internet_service_src_names: Internet Service source name. The structure of `internet_service_src_name` block is documented below.
         :param pulumi.Input[str] internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Record logs when a session starts. Valid values: `enable`, `disable`.
@@ -2794,6 +3063,7 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyServiceArgs']]]] services: Service and service group names. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddr4Args']]]] srcaddr4s: Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
+        :param pulumi.Input[str] srcaddr6_negate: When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddr6Args']]]] srcaddr6s: Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
         :param pulumi.Input[str] srcaddr_negate: When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddrArgs']]]] srcaddrs: Source IPv4 address name and address group names. The structure of `srcaddr` block is documented below.
@@ -2802,11 +3072,13 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] status: Enable or disable this policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUrlCategoryArgs']]]] url_categories: URL category ID list. The structure of `url_category` block is documented below.
+        :param pulumi.Input[str] url_category_unitary: URL categories or groups.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUserArgs']]]] users: Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
-        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP (voipd) profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         """
         ...
@@ -2887,12 +3159,15 @@ class Securitypolicy(pulumi.CustomResource):
                  application_list: Optional[pulumi.Input[str]] = None,
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyApplicationArgs']]]]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  dstaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddr4Args']]]]] = None,
+                 dstaddr6_negate: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddr6Args']]]]] = None,
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddrArgs']]]]] = None,
@@ -2902,6 +3177,7 @@ class Securitypolicy(pulumi.CustomResource):
                  enforce_default_app_port: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyFssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyGroupArgs']]]]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
@@ -2931,6 +3207,7 @@ class Securitypolicy(pulumi.CustomResource):
                  internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyInternetServiceSrcNameArgs']]]]] = None,
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -2947,6 +3224,7 @@ class Securitypolicy(pulumi.CustomResource):
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyServiceArgs']]]]] = None,
                  srcaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddr4Args']]]]] = None,
+                 srcaddr6_negate: Optional[pulumi.Input[str]] = None,
                  srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddr6Args']]]]] = None,
                  srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddrArgs']]]]] = None,
@@ -2955,10 +3233,12 @@ class Securitypolicy(pulumi.CustomResource):
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUrlCategoryArgs']]]]] = None,
+                 url_category_unitary: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUserArgs']]]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -2976,12 +3256,15 @@ class Securitypolicy(pulumi.CustomResource):
             __props__.__dict__["application_list"] = application_list
             __props__.__dict__["applications"] = applications
             __props__.__dict__["av_profile"] = av_profile
+            __props__.__dict__["casb_profile"] = casb_profile
             __props__.__dict__["cifs_profile"] = cifs_profile
             __props__.__dict__["comments"] = comments
+            __props__.__dict__["diameter_filter_profile"] = diameter_filter_profile
             __props__.__dict__["dlp_profile"] = dlp_profile
             __props__.__dict__["dlp_sensor"] = dlp_sensor
             __props__.__dict__["dnsfilter_profile"] = dnsfilter_profile
             __props__.__dict__["dstaddr4s"] = dstaddr4s
+            __props__.__dict__["dstaddr6_negate"] = dstaddr6_negate
             __props__.__dict__["dstaddr6s"] = dstaddr6s
             __props__.__dict__["dstaddr_negate"] = dstaddr_negate
             __props__.__dict__["dstaddrs"] = dstaddrs
@@ -2991,6 +3274,7 @@ class Securitypolicy(pulumi.CustomResource):
             __props__.__dict__["enforce_default_app_port"] = enforce_default_app_port
             __props__.__dict__["file_filter_profile"] = file_filter_profile
             __props__.__dict__["fsso_groups"] = fsso_groups
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["groups"] = groups
             __props__.__dict__["icap_profile"] = icap_profile
             __props__.__dict__["internet_service"] = internet_service
@@ -3020,6 +3304,7 @@ class Securitypolicy(pulumi.CustomResource):
             __props__.__dict__["internet_service_src_names"] = internet_service_src_names
             __props__.__dict__["internet_service_src_negate"] = internet_service_src_negate
             __props__.__dict__["ips_sensor"] = ips_sensor
+            __props__.__dict__["ips_voip_filter"] = ips_voip_filter
             __props__.__dict__["learning_mode"] = learning_mode
             __props__.__dict__["logtraffic"] = logtraffic
             __props__.__dict__["logtraffic_start"] = logtraffic_start
@@ -3036,6 +3321,7 @@ class Securitypolicy(pulumi.CustomResource):
             __props__.__dict__["service_negate"] = service_negate
             __props__.__dict__["services"] = services
             __props__.__dict__["srcaddr4s"] = srcaddr4s
+            __props__.__dict__["srcaddr6_negate"] = srcaddr6_negate
             __props__.__dict__["srcaddr6s"] = srcaddr6s
             __props__.__dict__["srcaddr_negate"] = srcaddr_negate
             __props__.__dict__["srcaddrs"] = srcaddrs
@@ -3044,10 +3330,12 @@ class Securitypolicy(pulumi.CustomResource):
             __props__.__dict__["ssl_ssh_profile"] = ssl_ssh_profile
             __props__.__dict__["status"] = status
             __props__.__dict__["url_categories"] = url_categories
+            __props__.__dict__["url_category_unitary"] = url_category_unitary
             __props__.__dict__["users"] = users
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["videofilter_profile"] = videofilter_profile
+            __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
             __props__.__dict__["voip_profile"] = voip_profile
             __props__.__dict__["webfilter_profile"] = webfilter_profile
         super(Securitypolicy, __self__).__init__(
@@ -3066,12 +3354,15 @@ class Securitypolicy(pulumi.CustomResource):
             application_list: Optional[pulumi.Input[str]] = None,
             applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyApplicationArgs']]]]] = None,
             av_profile: Optional[pulumi.Input[str]] = None,
+            casb_profile: Optional[pulumi.Input[str]] = None,
             cifs_profile: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
+            diameter_filter_profile: Optional[pulumi.Input[str]] = None,
             dlp_profile: Optional[pulumi.Input[str]] = None,
             dlp_sensor: Optional[pulumi.Input[str]] = None,
             dnsfilter_profile: Optional[pulumi.Input[str]] = None,
             dstaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddr4Args']]]]] = None,
+            dstaddr6_negate: Optional[pulumi.Input[str]] = None,
             dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddr6Args']]]]] = None,
             dstaddr_negate: Optional[pulumi.Input[str]] = None,
             dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddrArgs']]]]] = None,
@@ -3081,6 +3372,7 @@ class Securitypolicy(pulumi.CustomResource):
             enforce_default_app_port: Optional[pulumi.Input[str]] = None,
             file_filter_profile: Optional[pulumi.Input[str]] = None,
             fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyFssoGroupArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyGroupArgs']]]]] = None,
             icap_profile: Optional[pulumi.Input[str]] = None,
             internet_service: Optional[pulumi.Input[str]] = None,
@@ -3110,6 +3402,7 @@ class Securitypolicy(pulumi.CustomResource):
             internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyInternetServiceSrcNameArgs']]]]] = None,
             internet_service_src_negate: Optional[pulumi.Input[str]] = None,
             ips_sensor: Optional[pulumi.Input[str]] = None,
+            ips_voip_filter: Optional[pulumi.Input[str]] = None,
             learning_mode: Optional[pulumi.Input[str]] = None,
             logtraffic: Optional[pulumi.Input[str]] = None,
             logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -3126,6 +3419,7 @@ class Securitypolicy(pulumi.CustomResource):
             service_negate: Optional[pulumi.Input[str]] = None,
             services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyServiceArgs']]]]] = None,
             srcaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddr4Args']]]]] = None,
+            srcaddr6_negate: Optional[pulumi.Input[str]] = None,
             srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddr6Args']]]]] = None,
             srcaddr_negate: Optional[pulumi.Input[str]] = None,
             srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddrArgs']]]]] = None,
@@ -3134,10 +3428,12 @@ class Securitypolicy(pulumi.CustomResource):
             ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             url_categories: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUrlCategoryArgs']]]]] = None,
+            url_category_unitary: Optional[pulumi.Input[str]] = None,
             users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUserArgs']]]]] = None,
             uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             videofilter_profile: Optional[pulumi.Input[str]] = None,
+            virtual_patch_profile: Optional[pulumi.Input[str]] = None,
             voip_profile: Optional[pulumi.Input[str]] = None,
             webfilter_profile: Optional[pulumi.Input[str]] = None) -> 'Securitypolicy':
         """
@@ -3153,12 +3449,15 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyApplicationArgs']]]] applications: Application ID list. The structure of `application` block is documented below.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Comment.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
         :param pulumi.Input[str] dnsfilter_profile: Name of an existing DNS filter profile.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddr4Args']]]] dstaddr4s: Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
+        :param pulumi.Input[str] dstaddr6_negate: When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddr6Args']]]] dstaddr6s: Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyDstaddrArgs']]]] dstaddrs: Destination IPv4 address name and address group names. The structure of `dstaddr` block is documented below.
@@ -3168,6 +3467,7 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyFssoGroupArgs']]]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyGroupArgs']]]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
@@ -3197,6 +3497,7 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyInternetServiceSrcNameArgs']]]] internet_service_src_names: Internet Service source name. The structure of `internet_service_src_name` block is documented below.
         :param pulumi.Input[str] internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Record logs when a session starts. Valid values: `enable`, `disable`.
@@ -3213,6 +3514,7 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyServiceArgs']]]] services: Service and service group names. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddr4Args']]]] srcaddr4s: Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
+        :param pulumi.Input[str] srcaddr6_negate: When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddr6Args']]]] srcaddr6s: Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
         :param pulumi.Input[str] srcaddr_negate: When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicySrcaddrArgs']]]] srcaddrs: Source IPv4 address name and address group names. The structure of `srcaddr` block is documented below.
@@ -3221,11 +3523,13 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] status: Enable or disable this policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUrlCategoryArgs']]]] url_categories: URL category ID list. The structure of `url_category` block is documented below.
+        :param pulumi.Input[str] url_category_unitary: URL categories or groups.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUserArgs']]]] users: Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
-        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP (voipd) profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -3238,12 +3542,15 @@ class Securitypolicy(pulumi.CustomResource):
         __props__.__dict__["application_list"] = application_list
         __props__.__dict__["applications"] = applications
         __props__.__dict__["av_profile"] = av_profile
+        __props__.__dict__["casb_profile"] = casb_profile
         __props__.__dict__["cifs_profile"] = cifs_profile
         __props__.__dict__["comments"] = comments
+        __props__.__dict__["diameter_filter_profile"] = diameter_filter_profile
         __props__.__dict__["dlp_profile"] = dlp_profile
         __props__.__dict__["dlp_sensor"] = dlp_sensor
         __props__.__dict__["dnsfilter_profile"] = dnsfilter_profile
         __props__.__dict__["dstaddr4s"] = dstaddr4s
+        __props__.__dict__["dstaddr6_negate"] = dstaddr6_negate
         __props__.__dict__["dstaddr6s"] = dstaddr6s
         __props__.__dict__["dstaddr_negate"] = dstaddr_negate
         __props__.__dict__["dstaddrs"] = dstaddrs
@@ -3253,6 +3560,7 @@ class Securitypolicy(pulumi.CustomResource):
         __props__.__dict__["enforce_default_app_port"] = enforce_default_app_port
         __props__.__dict__["file_filter_profile"] = file_filter_profile
         __props__.__dict__["fsso_groups"] = fsso_groups
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["groups"] = groups
         __props__.__dict__["icap_profile"] = icap_profile
         __props__.__dict__["internet_service"] = internet_service
@@ -3282,6 +3590,7 @@ class Securitypolicy(pulumi.CustomResource):
         __props__.__dict__["internet_service_src_names"] = internet_service_src_names
         __props__.__dict__["internet_service_src_negate"] = internet_service_src_negate
         __props__.__dict__["ips_sensor"] = ips_sensor
+        __props__.__dict__["ips_voip_filter"] = ips_voip_filter
         __props__.__dict__["learning_mode"] = learning_mode
         __props__.__dict__["logtraffic"] = logtraffic
         __props__.__dict__["logtraffic_start"] = logtraffic_start
@@ -3298,6 +3607,7 @@ class Securitypolicy(pulumi.CustomResource):
         __props__.__dict__["service_negate"] = service_negate
         __props__.__dict__["services"] = services
         __props__.__dict__["srcaddr4s"] = srcaddr4s
+        __props__.__dict__["srcaddr6_negate"] = srcaddr6_negate
         __props__.__dict__["srcaddr6s"] = srcaddr6s
         __props__.__dict__["srcaddr_negate"] = srcaddr_negate
         __props__.__dict__["srcaddrs"] = srcaddrs
@@ -3306,10 +3616,12 @@ class Securitypolicy(pulumi.CustomResource):
         __props__.__dict__["ssl_ssh_profile"] = ssl_ssh_profile
         __props__.__dict__["status"] = status
         __props__.__dict__["url_categories"] = url_categories
+        __props__.__dict__["url_category_unitary"] = url_category_unitary
         __props__.__dict__["users"] = users
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["videofilter_profile"] = videofilter_profile
+        __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
         __props__.__dict__["voip_profile"] = voip_profile
         __props__.__dict__["webfilter_profile"] = webfilter_profile
         return Securitypolicy(resource_name, opts=opts, __props__=__props__)
@@ -3363,6 +3675,14 @@ class Securitypolicy(pulumi.CustomResource):
         return pulumi.get(self, "av_profile")
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> pulumi.Output[str]:
         """
@@ -3377,6 +3697,14 @@ class Securitypolicy(pulumi.CustomResource):
         Comment.
         """
         return pulumi.get(self, "comments")
+
+    @property
+    @pulumi.getter(name="diameterFilterProfile")
+    def diameter_filter_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing Diameter filter profile.
+        """
+        return pulumi.get(self, "diameter_filter_profile")
 
     @property
     @pulumi.getter(name="dlpProfile")
@@ -3409,6 +3737,14 @@ class Securitypolicy(pulumi.CustomResource):
         Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
         """
         return pulumi.get(self, "dstaddr4s")
+
+    @property
+    @pulumi.getter(name="dstaddr6Negate")
+    def dstaddr6_negate(self) -> pulumi.Output[str]:
+        """
+        When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dstaddr6_negate")
 
     @property
     @pulumi.getter
@@ -3481,6 +3817,14 @@ class Securitypolicy(pulumi.CustomResource):
         Names of FSSO groups. The structure of `fsso_groups` block is documented below.
         """
         return pulumi.get(self, "fsso_groups")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -3715,6 +4059,14 @@ class Securitypolicy(pulumi.CustomResource):
         return pulumi.get(self, "ips_sensor")
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> pulumi.Output[str]:
+        """
+        Name of an existing VoIP (ips) profile.
+        """
+        return pulumi.get(self, "ips_voip_filter")
+
+    @property
     @pulumi.getter(name="learningMode")
     def learning_mode(self) -> pulumi.Output[str]:
         """
@@ -3843,6 +4195,14 @@ class Securitypolicy(pulumi.CustomResource):
         return pulumi.get(self, "srcaddr4s")
 
     @property
+    @pulumi.getter(name="srcaddr6Negate")
+    def srcaddr6_negate(self) -> pulumi.Output[str]:
+        """
+        When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "srcaddr6_negate")
+
+    @property
     @pulumi.getter
     def srcaddr6s(self) -> pulumi.Output[Optional[Sequence['outputs.SecuritypolicySrcaddr6']]]:
         """
@@ -3907,6 +4267,14 @@ class Securitypolicy(pulumi.CustomResource):
         return pulumi.get(self, "url_categories")
 
     @property
+    @pulumi.getter(name="urlCategoryUnitary")
+    def url_category_unitary(self) -> pulumi.Output[str]:
+        """
+        URL categories or groups.
+        """
+        return pulumi.get(self, "url_category_unitary")
+
+    @property
     @pulumi.getter
     def users(self) -> pulumi.Output[Optional[Sequence['outputs.SecuritypolicyUser']]]:
         """
@@ -3939,10 +4307,18 @@ class Securitypolicy(pulumi.CustomResource):
         return pulumi.get(self, "videofilter_profile")
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing virtual-patch profile.
+        """
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @property
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> pulumi.Output[str]:
         """
-        Name of an existing VoIP profile.
+        Name of an existing VoIP (voipd) profile.
         """
         return pulumi.get(self, "voip_profile")
 

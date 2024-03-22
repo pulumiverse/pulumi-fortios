@@ -22,10 +22,13 @@ class GetSdnconnectorResult:
     """
     A collection of values returned by getSdnconnector.
     """
-    def __init__(__self__, access_key=None, api_key=None, azure_region=None, client_id=None, client_secret=None, compartment_id=None, compute_generation=None, domain=None, external_account_lists=None, external_ips=None, forwarding_rules=None, gcp_project=None, gcp_project_lists=None, group_name=None, ha_status=None, ibm_region=None, ibm_region_gen1=None, ibm_region_gen2=None, id=None, key_passwd=None, login_endpoint=None, name=None, nics=None, oci_cert=None, oci_fingerprint=None, oci_region=None, oci_region_type=None, password=None, private_key=None, region=None, resource_group=None, resource_url=None, route_tables=None, routes=None, secret_key=None, secret_token=None, server=None, server_lists=None, server_port=None, service_account=None, status=None, subscription_id=None, tenant_id=None, type=None, update_interval=None, use_metadata_iam=None, user_id=None, username=None, vcenter_password=None, vcenter_server=None, vcenter_username=None, vdomparam=None, verify_certificate=None, vpc_id=None):
+    def __init__(__self__, access_key=None, alt_resource_ip=None, api_key=None, azure_region=None, client_id=None, client_secret=None, compartment_id=None, compartment_lists=None, compute_generation=None, domain=None, external_account_lists=None, external_ips=None, forwarding_rules=None, gcp_project=None, gcp_project_lists=None, group_name=None, ha_status=None, ibm_region=None, ibm_region_gen1=None, ibm_region_gen2=None, id=None, key_passwd=None, login_endpoint=None, name=None, nics=None, oci_cert=None, oci_fingerprint=None, oci_region=None, oci_region_lists=None, oci_region_type=None, password=None, private_key=None, proxy=None, region=None, resource_group=None, resource_url=None, route_tables=None, routes=None, secret_key=None, secret_token=None, server=None, server_ca_cert=None, server_cert=None, server_lists=None, server_port=None, service_account=None, status=None, subscription_id=None, tenant_id=None, type=None, update_interval=None, use_metadata_iam=None, user_id=None, username=None, vcenter_password=None, vcenter_server=None, vcenter_username=None, vdomparam=None, verify_certificate=None, vpc_id=None):
         if access_key and not isinstance(access_key, str):
             raise TypeError("Expected argument 'access_key' to be a str")
         pulumi.set(__self__, "access_key", access_key)
+        if alt_resource_ip and not isinstance(alt_resource_ip, str):
+            raise TypeError("Expected argument 'alt_resource_ip' to be a str")
+        pulumi.set(__self__, "alt_resource_ip", alt_resource_ip)
         if api_key and not isinstance(api_key, str):
             raise TypeError("Expected argument 'api_key' to be a str")
         pulumi.set(__self__, "api_key", api_key)
@@ -41,6 +44,9 @@ class GetSdnconnectorResult:
         if compartment_id and not isinstance(compartment_id, str):
             raise TypeError("Expected argument 'compartment_id' to be a str")
         pulumi.set(__self__, "compartment_id", compartment_id)
+        if compartment_lists and not isinstance(compartment_lists, list):
+            raise TypeError("Expected argument 'compartment_lists' to be a list")
+        pulumi.set(__self__, "compartment_lists", compartment_lists)
         if compute_generation and not isinstance(compute_generation, int):
             raise TypeError("Expected argument 'compute_generation' to be a int")
         pulumi.set(__self__, "compute_generation", compute_generation)
@@ -101,6 +107,9 @@ class GetSdnconnectorResult:
         if oci_region and not isinstance(oci_region, str):
             raise TypeError("Expected argument 'oci_region' to be a str")
         pulumi.set(__self__, "oci_region", oci_region)
+        if oci_region_lists and not isinstance(oci_region_lists, list):
+            raise TypeError("Expected argument 'oci_region_lists' to be a list")
+        pulumi.set(__self__, "oci_region_lists", oci_region_lists)
         if oci_region_type and not isinstance(oci_region_type, str):
             raise TypeError("Expected argument 'oci_region_type' to be a str")
         pulumi.set(__self__, "oci_region_type", oci_region_type)
@@ -110,6 +119,9 @@ class GetSdnconnectorResult:
         if private_key and not isinstance(private_key, str):
             raise TypeError("Expected argument 'private_key' to be a str")
         pulumi.set(__self__, "private_key", private_key)
+        if proxy and not isinstance(proxy, str):
+            raise TypeError("Expected argument 'proxy' to be a str")
+        pulumi.set(__self__, "proxy", proxy)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -134,6 +146,12 @@ class GetSdnconnectorResult:
         if server and not isinstance(server, str):
             raise TypeError("Expected argument 'server' to be a str")
         pulumi.set(__self__, "server", server)
+        if server_ca_cert and not isinstance(server_ca_cert, str):
+            raise TypeError("Expected argument 'server_ca_cert' to be a str")
+        pulumi.set(__self__, "server_ca_cert", server_ca_cert)
+        if server_cert and not isinstance(server_cert, str):
+            raise TypeError("Expected argument 'server_cert' to be a str")
+        pulumi.set(__self__, "server_cert", server_cert)
         if server_lists and not isinstance(server_lists, list):
             raise TypeError("Expected argument 'server_lists' to be a list")
         pulumi.set(__self__, "server_lists", server_lists)
@@ -195,6 +213,14 @@ class GetSdnconnectorResult:
         return pulumi.get(self, "access_key")
 
     @property
+    @pulumi.getter(name="altResourceIp")
+    def alt_resource_ip(self) -> str:
+        """
+        Enable/disable AWS alternative resource IP.
+        """
+        return pulumi.get(self, "alt_resource_ip")
+
+    @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> str:
         """
@@ -230,9 +256,17 @@ class GetSdnconnectorResult:
     @pulumi.getter(name="compartmentId")
     def compartment_id(self) -> str:
         """
-        Compartment ID.
+        OCI compartment ID.
         """
         return pulumi.get(self, "compartment_id")
+
+    @property
+    @pulumi.getter(name="compartmentLists")
+    def compartment_lists(self) -> Sequence['outputs.GetSdnconnectorCompartmentListResult']:
+        """
+        Configure OCI compartment list. The structure of `compartment_list` block is documented below.
+        """
+        return pulumi.get(self, "compartment_lists")
 
     @property
     @pulumi.getter(name="computeGeneration")
@@ -395,6 +429,14 @@ class GetSdnconnectorResult:
         return pulumi.get(self, "oci_region")
 
     @property
+    @pulumi.getter(name="ociRegionLists")
+    def oci_region_lists(self) -> Sequence['outputs.GetSdnconnectorOciRegionListResult']:
+        """
+        Configure OCI region list. The structure of `oci_region_list` block is documented below.
+        """
+        return pulumi.get(self, "oci_region_lists")
+
+    @property
     @pulumi.getter(name="ociRegionType")
     def oci_region_type(self) -> str:
         """
@@ -420,9 +462,17 @@ class GetSdnconnectorResult:
 
     @property
     @pulumi.getter
+    def proxy(self) -> str:
+        """
+        SDN proxy.
+        """
+        return pulumi.get(self, "proxy")
+
+    @property
+    @pulumi.getter
     def region(self) -> str:
         """
-        AWS region name.
+        OCI region.
         """
         return pulumi.get(self, "region")
 
@@ -481,6 +531,22 @@ class GetSdnconnectorResult:
         Server address of the remote SDN connector.
         """
         return pulumi.get(self, "server")
+
+    @property
+    @pulumi.getter(name="serverCaCert")
+    def server_ca_cert(self) -> str:
+        """
+        Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+        """
+        return pulumi.get(self, "server_ca_cert")
+
+    @property
+    @pulumi.getter(name="serverCert")
+    def server_cert(self) -> str:
+        """
+        Trust servers that contain this certificate only.
+        """
+        return pulumi.get(self, "server_cert")
 
     @property
     @pulumi.getter(name="serverLists")
@@ -623,11 +689,13 @@ class AwaitableGetSdnconnectorResult(GetSdnconnectorResult):
             yield self
         return GetSdnconnectorResult(
             access_key=self.access_key,
+            alt_resource_ip=self.alt_resource_ip,
             api_key=self.api_key,
             azure_region=self.azure_region,
             client_id=self.client_id,
             client_secret=self.client_secret,
             compartment_id=self.compartment_id,
+            compartment_lists=self.compartment_lists,
             compute_generation=self.compute_generation,
             domain=self.domain,
             external_account_lists=self.external_account_lists,
@@ -648,9 +716,11 @@ class AwaitableGetSdnconnectorResult(GetSdnconnectorResult):
             oci_cert=self.oci_cert,
             oci_fingerprint=self.oci_fingerprint,
             oci_region=self.oci_region,
+            oci_region_lists=self.oci_region_lists,
             oci_region_type=self.oci_region_type,
             password=self.password,
             private_key=self.private_key,
+            proxy=self.proxy,
             region=self.region,
             resource_group=self.resource_group,
             resource_url=self.resource_url,
@@ -659,6 +729,8 @@ class AwaitableGetSdnconnectorResult(GetSdnconnectorResult):
             secret_key=self.secret_key,
             secret_token=self.secret_token,
             server=self.server,
+            server_ca_cert=self.server_ca_cert,
+            server_cert=self.server_cert,
             server_lists=self.server_lists,
             server_port=self.server_port,
             service_account=self.service_account,
@@ -696,11 +768,13 @@ def get_sdnconnector(name: Optional[str] = None,
 
     return AwaitableGetSdnconnectorResult(
         access_key=pulumi.get(__ret__, 'access_key'),
+        alt_resource_ip=pulumi.get(__ret__, 'alt_resource_ip'),
         api_key=pulumi.get(__ret__, 'api_key'),
         azure_region=pulumi.get(__ret__, 'azure_region'),
         client_id=pulumi.get(__ret__, 'client_id'),
         client_secret=pulumi.get(__ret__, 'client_secret'),
         compartment_id=pulumi.get(__ret__, 'compartment_id'),
+        compartment_lists=pulumi.get(__ret__, 'compartment_lists'),
         compute_generation=pulumi.get(__ret__, 'compute_generation'),
         domain=pulumi.get(__ret__, 'domain'),
         external_account_lists=pulumi.get(__ret__, 'external_account_lists'),
@@ -721,9 +795,11 @@ def get_sdnconnector(name: Optional[str] = None,
         oci_cert=pulumi.get(__ret__, 'oci_cert'),
         oci_fingerprint=pulumi.get(__ret__, 'oci_fingerprint'),
         oci_region=pulumi.get(__ret__, 'oci_region'),
+        oci_region_lists=pulumi.get(__ret__, 'oci_region_lists'),
         oci_region_type=pulumi.get(__ret__, 'oci_region_type'),
         password=pulumi.get(__ret__, 'password'),
         private_key=pulumi.get(__ret__, 'private_key'),
+        proxy=pulumi.get(__ret__, 'proxy'),
         region=pulumi.get(__ret__, 'region'),
         resource_group=pulumi.get(__ret__, 'resource_group'),
         resource_url=pulumi.get(__ret__, 'resource_url'),
@@ -732,6 +808,8 @@ def get_sdnconnector(name: Optional[str] = None,
         secret_key=pulumi.get(__ret__, 'secret_key'),
         secret_token=pulumi.get(__ret__, 'secret_token'),
         server=pulumi.get(__ret__, 'server'),
+        server_ca_cert=pulumi.get(__ret__, 'server_ca_cert'),
+        server_cert=pulumi.get(__ret__, 'server_cert'),
         server_lists=pulumi.get(__ret__, 'server_lists'),
         server_port=pulumi.get(__ret__, 'server_port'),
         service_account=pulumi.get(__ret__, 'service_account'),

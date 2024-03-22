@@ -20,11 +20,18 @@ class GlobalArgs:
                  bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalCustomCommandArgs']]]] = None,
                  default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_circuit_id: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_format: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_remote_id: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_client_db_exp: Optional[pulumi.Input[int]] = None,
+                 dhcp_snoop_client_req: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_db_per_port_learn_limit: Optional[pulumi.Input[int]] = None,
                  disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalDisableDiscoveryArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fips_enforce: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_image_push: Optional[pulumi.Input[str]] = None,
                  log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
                  mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -36,6 +43,7 @@ class GlobalArgs:
                  update_user_device: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_all_mode: Optional[pulumi.Input[str]] = None,
+                 vlan_identity: Optional[pulumi.Input[str]] = None,
                  vlan_optimization: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Global resource.
@@ -43,11 +51,18 @@ class GlobalArgs:
         :param pulumi.Input[str] bounce_quarantined_link: Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalCustomCommandArgs']]] custom_commands: List of custom commands to be pushed to all FortiSwitches in the VDOM. The structure of `custom_command` block is documented below.
         :param pulumi.Input[str] default_virtual_switch_vlan: Default VLAN for ports when added to the virtual-switch.
+        :param pulumi.Input[str] dhcp_option82_circuit_id: List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+        :param pulumi.Input[str] dhcp_option82_format: DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+        :param pulumi.Input[str] dhcp_option82_remote_id: List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
         :param pulumi.Input[str] dhcp_server_access_list: Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] dhcp_snoop_client_db_exp: Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+        :param pulumi.Input[str] dhcp_snoop_client_req: Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+        :param pulumi.Input[int] dhcp_snoop_db_per_port_learn_limit: Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
         :param pulumi.Input[Sequence[pulumi.Input['GlobalDisableDiscoveryArgs']]] disable_discoveries: Prevent this FortiSwitch from discovering. The structure of `disable_discovery` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fips_enforce: Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] https_image_push: Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_mac_limit_violations: Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] mac_aging_interval: Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
@@ -59,6 +74,7 @@ class GlobalArgs:
         :param pulumi.Input[str] update_user_device: Control which sources update the device user list. Valid values: `mac-cache`, `lldp`, `dhcp-snooping`, `l2-db`, `l3-db`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vlan_all_mode: VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
+        :param pulumi.Input[str] vlan_identity: Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
         :param pulumi.Input[str] vlan_optimization: FortiLink VLAN optimization. Valid values: `enable`, `disable`.
         """
         if allow_multiple_interfaces is not None:
@@ -69,8 +85,20 @@ class GlobalArgs:
             pulumi.set(__self__, "custom_commands", custom_commands)
         if default_virtual_switch_vlan is not None:
             pulumi.set(__self__, "default_virtual_switch_vlan", default_virtual_switch_vlan)
+        if dhcp_option82_circuit_id is not None:
+            pulumi.set(__self__, "dhcp_option82_circuit_id", dhcp_option82_circuit_id)
+        if dhcp_option82_format is not None:
+            pulumi.set(__self__, "dhcp_option82_format", dhcp_option82_format)
+        if dhcp_option82_remote_id is not None:
+            pulumi.set(__self__, "dhcp_option82_remote_id", dhcp_option82_remote_id)
         if dhcp_server_access_list is not None:
             pulumi.set(__self__, "dhcp_server_access_list", dhcp_server_access_list)
+        if dhcp_snoop_client_db_exp is not None:
+            pulumi.set(__self__, "dhcp_snoop_client_db_exp", dhcp_snoop_client_db_exp)
+        if dhcp_snoop_client_req is not None:
+            pulumi.set(__self__, "dhcp_snoop_client_req", dhcp_snoop_client_req)
+        if dhcp_snoop_db_per_port_learn_limit is not None:
+            pulumi.set(__self__, "dhcp_snoop_db_per_port_learn_limit", dhcp_snoop_db_per_port_learn_limit)
         if disable_discoveries is not None:
             pulumi.set(__self__, "disable_discoveries", disable_discoveries)
         if dynamic_sort_subtable is not None:
@@ -79,6 +107,8 @@ class GlobalArgs:
             pulumi.set(__self__, "fips_enforce", fips_enforce)
         if firmware_provision_on_authorization is not None:
             pulumi.set(__self__, "firmware_provision_on_authorization", firmware_provision_on_authorization)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https_image_push is not None:
             pulumi.set(__self__, "https_image_push", https_image_push)
         if log_mac_limit_violations is not None:
@@ -101,6 +131,8 @@ class GlobalArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vlan_all_mode is not None:
             pulumi.set(__self__, "vlan_all_mode", vlan_all_mode)
+        if vlan_identity is not None:
+            pulumi.set(__self__, "vlan_identity", vlan_identity)
         if vlan_optimization is not None:
             pulumi.set(__self__, "vlan_optimization", vlan_optimization)
 
@@ -153,6 +185,42 @@ class GlobalArgs:
         pulumi.set(self, "default_virtual_switch_vlan", value)
 
     @property
+    @pulumi.getter(name="dhcpOption82CircuitId")
+    def dhcp_option82_circuit_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+        """
+        return pulumi.get(self, "dhcp_option82_circuit_id")
+
+    @dhcp_option82_circuit_id.setter
+    def dhcp_option82_circuit_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_option82_circuit_id", value)
+
+    @property
+    @pulumi.getter(name="dhcpOption82Format")
+    def dhcp_option82_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+        """
+        return pulumi.get(self, "dhcp_option82_format")
+
+    @dhcp_option82_format.setter
+    def dhcp_option82_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_option82_format", value)
+
+    @property
+    @pulumi.getter(name="dhcpOption82RemoteId")
+    def dhcp_option82_remote_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+        """
+        return pulumi.get(self, "dhcp_option82_remote_id")
+
+    @dhcp_option82_remote_id.setter
+    def dhcp_option82_remote_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_option82_remote_id", value)
+
+    @property
     @pulumi.getter(name="dhcpServerAccessList")
     def dhcp_server_access_list(self) -> Optional[pulumi.Input[str]]:
         """
@@ -163,6 +231,42 @@ class GlobalArgs:
     @dhcp_server_access_list.setter
     def dhcp_server_access_list(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_server_access_list", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopClientDbExp")
+    def dhcp_snoop_client_db_exp(self) -> Optional[pulumi.Input[int]]:
+        """
+        Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+        """
+        return pulumi.get(self, "dhcp_snoop_client_db_exp")
+
+    @dhcp_snoop_client_db_exp.setter
+    def dhcp_snoop_client_db_exp(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dhcp_snoop_client_db_exp", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopClientReq")
+    def dhcp_snoop_client_req(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+        """
+        return pulumi.get(self, "dhcp_snoop_client_req")
+
+    @dhcp_snoop_client_req.setter
+    def dhcp_snoop_client_req(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_snoop_client_req", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopDbPerPortLearnLimit")
+    def dhcp_snoop_db_per_port_learn_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+        """
+        return pulumi.get(self, "dhcp_snoop_db_per_port_learn_limit")
+
+    @dhcp_snoop_db_per_port_learn_limit.setter
+    def dhcp_snoop_db_per_port_learn_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dhcp_snoop_db_per_port_learn_limit", value)
 
     @property
     @pulumi.getter(name="disableDiscoveries")
@@ -211,6 +315,18 @@ class GlobalArgs:
     @firmware_provision_on_authorization.setter
     def firmware_provision_on_authorization(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision_on_authorization", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="httpsImagePush")
@@ -343,6 +459,18 @@ class GlobalArgs:
     @vlan_all_mode.setter
     def vlan_all_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vlan_all_mode", value)
+
+    @property
+    @pulumi.getter(name="vlanIdentity")
+    def vlan_identity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+        """
+        return pulumi.get(self, "vlan_identity")
+
+    @vlan_identity.setter
+    def vlan_identity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_identity", value)
 
     @property
     @pulumi.getter(name="vlanOptimization")
@@ -364,11 +492,18 @@ class _GlobalState:
                  bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalCustomCommandArgs']]]] = None,
                  default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_circuit_id: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_format: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_remote_id: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_client_db_exp: Optional[pulumi.Input[int]] = None,
+                 dhcp_snoop_client_req: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_db_per_port_learn_limit: Optional[pulumi.Input[int]] = None,
                  disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalDisableDiscoveryArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fips_enforce: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_image_push: Optional[pulumi.Input[str]] = None,
                  log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
                  mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -380,6 +515,7 @@ class _GlobalState:
                  update_user_device: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_all_mode: Optional[pulumi.Input[str]] = None,
+                 vlan_identity: Optional[pulumi.Input[str]] = None,
                  vlan_optimization: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Global resources.
@@ -387,11 +523,18 @@ class _GlobalState:
         :param pulumi.Input[str] bounce_quarantined_link: Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalCustomCommandArgs']]] custom_commands: List of custom commands to be pushed to all FortiSwitches in the VDOM. The structure of `custom_command` block is documented below.
         :param pulumi.Input[str] default_virtual_switch_vlan: Default VLAN for ports when added to the virtual-switch.
+        :param pulumi.Input[str] dhcp_option82_circuit_id: List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+        :param pulumi.Input[str] dhcp_option82_format: DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+        :param pulumi.Input[str] dhcp_option82_remote_id: List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
         :param pulumi.Input[str] dhcp_server_access_list: Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] dhcp_snoop_client_db_exp: Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+        :param pulumi.Input[str] dhcp_snoop_client_req: Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+        :param pulumi.Input[int] dhcp_snoop_db_per_port_learn_limit: Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
         :param pulumi.Input[Sequence[pulumi.Input['GlobalDisableDiscoveryArgs']]] disable_discoveries: Prevent this FortiSwitch from discovering. The structure of `disable_discovery` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fips_enforce: Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] https_image_push: Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_mac_limit_violations: Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] mac_aging_interval: Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
@@ -403,6 +546,7 @@ class _GlobalState:
         :param pulumi.Input[str] update_user_device: Control which sources update the device user list. Valid values: `mac-cache`, `lldp`, `dhcp-snooping`, `l2-db`, `l3-db`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vlan_all_mode: VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
+        :param pulumi.Input[str] vlan_identity: Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
         :param pulumi.Input[str] vlan_optimization: FortiLink VLAN optimization. Valid values: `enable`, `disable`.
         """
         if allow_multiple_interfaces is not None:
@@ -413,8 +557,20 @@ class _GlobalState:
             pulumi.set(__self__, "custom_commands", custom_commands)
         if default_virtual_switch_vlan is not None:
             pulumi.set(__self__, "default_virtual_switch_vlan", default_virtual_switch_vlan)
+        if dhcp_option82_circuit_id is not None:
+            pulumi.set(__self__, "dhcp_option82_circuit_id", dhcp_option82_circuit_id)
+        if dhcp_option82_format is not None:
+            pulumi.set(__self__, "dhcp_option82_format", dhcp_option82_format)
+        if dhcp_option82_remote_id is not None:
+            pulumi.set(__self__, "dhcp_option82_remote_id", dhcp_option82_remote_id)
         if dhcp_server_access_list is not None:
             pulumi.set(__self__, "dhcp_server_access_list", dhcp_server_access_list)
+        if dhcp_snoop_client_db_exp is not None:
+            pulumi.set(__self__, "dhcp_snoop_client_db_exp", dhcp_snoop_client_db_exp)
+        if dhcp_snoop_client_req is not None:
+            pulumi.set(__self__, "dhcp_snoop_client_req", dhcp_snoop_client_req)
+        if dhcp_snoop_db_per_port_learn_limit is not None:
+            pulumi.set(__self__, "dhcp_snoop_db_per_port_learn_limit", dhcp_snoop_db_per_port_learn_limit)
         if disable_discoveries is not None:
             pulumi.set(__self__, "disable_discoveries", disable_discoveries)
         if dynamic_sort_subtable is not None:
@@ -423,6 +579,8 @@ class _GlobalState:
             pulumi.set(__self__, "fips_enforce", fips_enforce)
         if firmware_provision_on_authorization is not None:
             pulumi.set(__self__, "firmware_provision_on_authorization", firmware_provision_on_authorization)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https_image_push is not None:
             pulumi.set(__self__, "https_image_push", https_image_push)
         if log_mac_limit_violations is not None:
@@ -445,6 +603,8 @@ class _GlobalState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vlan_all_mode is not None:
             pulumi.set(__self__, "vlan_all_mode", vlan_all_mode)
+        if vlan_identity is not None:
+            pulumi.set(__self__, "vlan_identity", vlan_identity)
         if vlan_optimization is not None:
             pulumi.set(__self__, "vlan_optimization", vlan_optimization)
 
@@ -497,6 +657,42 @@ class _GlobalState:
         pulumi.set(self, "default_virtual_switch_vlan", value)
 
     @property
+    @pulumi.getter(name="dhcpOption82CircuitId")
+    def dhcp_option82_circuit_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+        """
+        return pulumi.get(self, "dhcp_option82_circuit_id")
+
+    @dhcp_option82_circuit_id.setter
+    def dhcp_option82_circuit_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_option82_circuit_id", value)
+
+    @property
+    @pulumi.getter(name="dhcpOption82Format")
+    def dhcp_option82_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+        """
+        return pulumi.get(self, "dhcp_option82_format")
+
+    @dhcp_option82_format.setter
+    def dhcp_option82_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_option82_format", value)
+
+    @property
+    @pulumi.getter(name="dhcpOption82RemoteId")
+    def dhcp_option82_remote_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+        """
+        return pulumi.get(self, "dhcp_option82_remote_id")
+
+    @dhcp_option82_remote_id.setter
+    def dhcp_option82_remote_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_option82_remote_id", value)
+
+    @property
     @pulumi.getter(name="dhcpServerAccessList")
     def dhcp_server_access_list(self) -> Optional[pulumi.Input[str]]:
         """
@@ -507,6 +703,42 @@ class _GlobalState:
     @dhcp_server_access_list.setter
     def dhcp_server_access_list(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_server_access_list", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopClientDbExp")
+    def dhcp_snoop_client_db_exp(self) -> Optional[pulumi.Input[int]]:
+        """
+        Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+        """
+        return pulumi.get(self, "dhcp_snoop_client_db_exp")
+
+    @dhcp_snoop_client_db_exp.setter
+    def dhcp_snoop_client_db_exp(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dhcp_snoop_client_db_exp", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopClientReq")
+    def dhcp_snoop_client_req(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+        """
+        return pulumi.get(self, "dhcp_snoop_client_req")
+
+    @dhcp_snoop_client_req.setter
+    def dhcp_snoop_client_req(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_snoop_client_req", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopDbPerPortLearnLimit")
+    def dhcp_snoop_db_per_port_learn_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+        """
+        return pulumi.get(self, "dhcp_snoop_db_per_port_learn_limit")
+
+    @dhcp_snoop_db_per_port_learn_limit.setter
+    def dhcp_snoop_db_per_port_learn_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dhcp_snoop_db_per_port_learn_limit", value)
 
     @property
     @pulumi.getter(name="disableDiscoveries")
@@ -555,6 +787,18 @@ class _GlobalState:
     @firmware_provision_on_authorization.setter
     def firmware_provision_on_authorization(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision_on_authorization", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="httpsImagePush")
@@ -687,6 +931,18 @@ class _GlobalState:
     @vlan_all_mode.setter
     def vlan_all_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vlan_all_mode", value)
+
+    @property
+    @pulumi.getter(name="vlanIdentity")
+    def vlan_identity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+        """
+        return pulumi.get(self, "vlan_identity")
+
+    @vlan_identity.setter
+    def vlan_identity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_identity", value)
 
     @property
     @pulumi.getter(name="vlanOptimization")
@@ -710,11 +966,18 @@ class Global(pulumi.CustomResource):
                  bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalCustomCommandArgs']]]]] = None,
                  default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_circuit_id: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_format: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_remote_id: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_client_db_exp: Optional[pulumi.Input[int]] = None,
+                 dhcp_snoop_client_req: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_db_per_port_learn_limit: Optional[pulumi.Input[int]] = None,
                  disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalDisableDiscoveryArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fips_enforce: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_image_push: Optional[pulumi.Input[str]] = None,
                  log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
                  mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -726,6 +989,7 @@ class Global(pulumi.CustomResource):
                  update_user_device: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_all_mode: Optional[pulumi.Input[str]] = None,
+                 vlan_identity: Optional[pulumi.Input[str]] = None,
                  vlan_optimization: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -772,11 +1036,18 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] bounce_quarantined_link: Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalCustomCommandArgs']]]] custom_commands: List of custom commands to be pushed to all FortiSwitches in the VDOM. The structure of `custom_command` block is documented below.
         :param pulumi.Input[str] default_virtual_switch_vlan: Default VLAN for ports when added to the virtual-switch.
+        :param pulumi.Input[str] dhcp_option82_circuit_id: List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+        :param pulumi.Input[str] dhcp_option82_format: DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+        :param pulumi.Input[str] dhcp_option82_remote_id: List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
         :param pulumi.Input[str] dhcp_server_access_list: Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] dhcp_snoop_client_db_exp: Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+        :param pulumi.Input[str] dhcp_snoop_client_req: Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+        :param pulumi.Input[int] dhcp_snoop_db_per_port_learn_limit: Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalDisableDiscoveryArgs']]]] disable_discoveries: Prevent this FortiSwitch from discovering. The structure of `disable_discovery` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fips_enforce: Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] https_image_push: Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_mac_limit_violations: Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] mac_aging_interval: Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
@@ -788,6 +1059,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] update_user_device: Control which sources update the device user list. Valid values: `mac-cache`, `lldp`, `dhcp-snooping`, `l2-db`, `l3-db`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vlan_all_mode: VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
+        :param pulumi.Input[str] vlan_identity: Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
         :param pulumi.Input[str] vlan_optimization: FortiLink VLAN optimization. Valid values: `enable`, `disable`.
         """
         ...
@@ -853,11 +1125,18 @@ class Global(pulumi.CustomResource):
                  bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalCustomCommandArgs']]]]] = None,
                  default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_circuit_id: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_format: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_remote_id: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_client_db_exp: Optional[pulumi.Input[int]] = None,
+                 dhcp_snoop_client_req: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_db_per_port_learn_limit: Optional[pulumi.Input[int]] = None,
                  disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalDisableDiscoveryArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fips_enforce: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_image_push: Optional[pulumi.Input[str]] = None,
                  log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
                  mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -869,6 +1148,7 @@ class Global(pulumi.CustomResource):
                  update_user_device: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_all_mode: Optional[pulumi.Input[str]] = None,
+                 vlan_identity: Optional[pulumi.Input[str]] = None,
                  vlan_optimization: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -883,11 +1163,18 @@ class Global(pulumi.CustomResource):
             __props__.__dict__["bounce_quarantined_link"] = bounce_quarantined_link
             __props__.__dict__["custom_commands"] = custom_commands
             __props__.__dict__["default_virtual_switch_vlan"] = default_virtual_switch_vlan
+            __props__.__dict__["dhcp_option82_circuit_id"] = dhcp_option82_circuit_id
+            __props__.__dict__["dhcp_option82_format"] = dhcp_option82_format
+            __props__.__dict__["dhcp_option82_remote_id"] = dhcp_option82_remote_id
             __props__.__dict__["dhcp_server_access_list"] = dhcp_server_access_list
+            __props__.__dict__["dhcp_snoop_client_db_exp"] = dhcp_snoop_client_db_exp
+            __props__.__dict__["dhcp_snoop_client_req"] = dhcp_snoop_client_req
+            __props__.__dict__["dhcp_snoop_db_per_port_learn_limit"] = dhcp_snoop_db_per_port_learn_limit
             __props__.__dict__["disable_discoveries"] = disable_discoveries
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fips_enforce"] = fips_enforce
             __props__.__dict__["firmware_provision_on_authorization"] = firmware_provision_on_authorization
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["https_image_push"] = https_image_push
             __props__.__dict__["log_mac_limit_violations"] = log_mac_limit_violations
             __props__.__dict__["mac_aging_interval"] = mac_aging_interval
@@ -899,6 +1186,7 @@ class Global(pulumi.CustomResource):
             __props__.__dict__["update_user_device"] = update_user_device
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["vlan_all_mode"] = vlan_all_mode
+            __props__.__dict__["vlan_identity"] = vlan_identity
             __props__.__dict__["vlan_optimization"] = vlan_optimization
         super(Global, __self__).__init__(
             'fortios:switchcontroller/global:Global',
@@ -914,11 +1202,18 @@ class Global(pulumi.CustomResource):
             bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
             custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalCustomCommandArgs']]]]] = None,
             default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+            dhcp_option82_circuit_id: Optional[pulumi.Input[str]] = None,
+            dhcp_option82_format: Optional[pulumi.Input[str]] = None,
+            dhcp_option82_remote_id: Optional[pulumi.Input[str]] = None,
             dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+            dhcp_snoop_client_db_exp: Optional[pulumi.Input[int]] = None,
+            dhcp_snoop_client_req: Optional[pulumi.Input[str]] = None,
+            dhcp_snoop_db_per_port_learn_limit: Optional[pulumi.Input[int]] = None,
             disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalDisableDiscoveryArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fips_enforce: Optional[pulumi.Input[str]] = None,
             firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             https_image_push: Optional[pulumi.Input[str]] = None,
             log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
             mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -930,6 +1225,7 @@ class Global(pulumi.CustomResource):
             update_user_device: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             vlan_all_mode: Optional[pulumi.Input[str]] = None,
+            vlan_identity: Optional[pulumi.Input[str]] = None,
             vlan_optimization: Optional[pulumi.Input[str]] = None) -> 'Global':
         """
         Get an existing Global resource's state with the given name, id, and optional extra
@@ -942,11 +1238,18 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] bounce_quarantined_link: Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalCustomCommandArgs']]]] custom_commands: List of custom commands to be pushed to all FortiSwitches in the VDOM. The structure of `custom_command` block is documented below.
         :param pulumi.Input[str] default_virtual_switch_vlan: Default VLAN for ports when added to the virtual-switch.
+        :param pulumi.Input[str] dhcp_option82_circuit_id: List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+        :param pulumi.Input[str] dhcp_option82_format: DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+        :param pulumi.Input[str] dhcp_option82_remote_id: List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
         :param pulumi.Input[str] dhcp_server_access_list: Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] dhcp_snoop_client_db_exp: Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+        :param pulumi.Input[str] dhcp_snoop_client_req: Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+        :param pulumi.Input[int] dhcp_snoop_db_per_port_learn_limit: Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalDisableDiscoveryArgs']]]] disable_discoveries: Prevent this FortiSwitch from discovering. The structure of `disable_discovery` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fips_enforce: Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] https_image_push: Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_mac_limit_violations: Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] mac_aging_interval: Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
@@ -958,6 +1261,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] update_user_device: Control which sources update the device user list. Valid values: `mac-cache`, `lldp`, `dhcp-snooping`, `l2-db`, `l3-db`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vlan_all_mode: VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
+        :param pulumi.Input[str] vlan_identity: Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
         :param pulumi.Input[str] vlan_optimization: FortiLink VLAN optimization. Valid values: `enable`, `disable`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -968,11 +1272,18 @@ class Global(pulumi.CustomResource):
         __props__.__dict__["bounce_quarantined_link"] = bounce_quarantined_link
         __props__.__dict__["custom_commands"] = custom_commands
         __props__.__dict__["default_virtual_switch_vlan"] = default_virtual_switch_vlan
+        __props__.__dict__["dhcp_option82_circuit_id"] = dhcp_option82_circuit_id
+        __props__.__dict__["dhcp_option82_format"] = dhcp_option82_format
+        __props__.__dict__["dhcp_option82_remote_id"] = dhcp_option82_remote_id
         __props__.__dict__["dhcp_server_access_list"] = dhcp_server_access_list
+        __props__.__dict__["dhcp_snoop_client_db_exp"] = dhcp_snoop_client_db_exp
+        __props__.__dict__["dhcp_snoop_client_req"] = dhcp_snoop_client_req
+        __props__.__dict__["dhcp_snoop_db_per_port_learn_limit"] = dhcp_snoop_db_per_port_learn_limit
         __props__.__dict__["disable_discoveries"] = disable_discoveries
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fips_enforce"] = fips_enforce
         __props__.__dict__["firmware_provision_on_authorization"] = firmware_provision_on_authorization
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["https_image_push"] = https_image_push
         __props__.__dict__["log_mac_limit_violations"] = log_mac_limit_violations
         __props__.__dict__["mac_aging_interval"] = mac_aging_interval
@@ -984,6 +1295,7 @@ class Global(pulumi.CustomResource):
         __props__.__dict__["update_user_device"] = update_user_device
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["vlan_all_mode"] = vlan_all_mode
+        __props__.__dict__["vlan_identity"] = vlan_identity
         __props__.__dict__["vlan_optimization"] = vlan_optimization
         return Global(resource_name, opts=opts, __props__=__props__)
 
@@ -1020,12 +1332,60 @@ class Global(pulumi.CustomResource):
         return pulumi.get(self, "default_virtual_switch_vlan")
 
     @property
+    @pulumi.getter(name="dhcpOption82CircuitId")
+    def dhcp_option82_circuit_id(self) -> pulumi.Output[str]:
+        """
+        List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+        """
+        return pulumi.get(self, "dhcp_option82_circuit_id")
+
+    @property
+    @pulumi.getter(name="dhcpOption82Format")
+    def dhcp_option82_format(self) -> pulumi.Output[str]:
+        """
+        DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+        """
+        return pulumi.get(self, "dhcp_option82_format")
+
+    @property
+    @pulumi.getter(name="dhcpOption82RemoteId")
+    def dhcp_option82_remote_id(self) -> pulumi.Output[str]:
+        """
+        List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+        """
+        return pulumi.get(self, "dhcp_option82_remote_id")
+
+    @property
     @pulumi.getter(name="dhcpServerAccessList")
     def dhcp_server_access_list(self) -> pulumi.Output[str]:
         """
         Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "dhcp_server_access_list")
+
+    @property
+    @pulumi.getter(name="dhcpSnoopClientDbExp")
+    def dhcp_snoop_client_db_exp(self) -> pulumi.Output[int]:
+        """
+        Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+        """
+        return pulumi.get(self, "dhcp_snoop_client_db_exp")
+
+    @property
+    @pulumi.getter(name="dhcpSnoopClientReq")
+    def dhcp_snoop_client_req(self) -> pulumi.Output[str]:
+        """
+        Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+        """
+        return pulumi.get(self, "dhcp_snoop_client_req")
+
+    @property
+    @pulumi.getter(name="dhcpSnoopDbPerPortLearnLimit")
+    def dhcp_snoop_db_per_port_learn_limit(self) -> pulumi.Output[int]:
+        """
+        Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+        """
+        return pulumi.get(self, "dhcp_snoop_db_per_port_learn_limit")
 
     @property
     @pulumi.getter(name="disableDiscoveries")
@@ -1058,6 +1418,14 @@ class Global(pulumi.CustomResource):
         Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "firmware_provision_on_authorization")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="httpsImagePush")
@@ -1146,6 +1514,14 @@ class Global(pulumi.CustomResource):
         VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
         """
         return pulumi.get(self, "vlan_all_mode")
+
+    @property
+    @pulumi.getter(name="vlanIdentity")
+    def vlan_identity(self) -> pulumi.Output[str]:
+        """
+        Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+        """
+        return pulumi.get(self, "vlan_identity")
 
     @property
     @pulumi.getter(name="vlanOptimization")

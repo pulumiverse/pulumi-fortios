@@ -14,10 +14,12 @@ __all__ = [
     'FecMappingArgs',
     'Phase1BackupGatewayArgs',
     'Phase1CertificateArgs',
+    'Phase1InternalDomainListArgs',
     'Phase1Ipv4ExcludeRangeArgs',
     'Phase1Ipv6ExcludeRangeArgs',
     'Phase1interfaceBackupGatewayArgs',
     'Phase1interfaceCertificateArgs',
+    'Phase1interfaceInternalDomainListArgs',
     'Phase1interfaceIpv4ExcludeRangeArgs',
     'Phase1interfaceIpv6ExcludeRangeArgs',
 ]
@@ -209,8 +211,6 @@ class Phase1CertificateArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Certificate name.
-               
-               The `ipv4_exclude_range` block supports:
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -220,14 +220,39 @@ class Phase1CertificateArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Certificate name.
-
-        The `ipv4_exclude_range` block supports:
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class Phase1InternalDomainListArgs:
+    def __init__(__self__, *,
+                 domain_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] domain_name: Domain name.
+               
+               The `ipv4_exclude_range` block supports:
+        """
+        if domain_name is not None:
+            pulumi.set(__self__, "domain_name", domain_name)
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Domain name.
+
+        The `ipv4_exclude_range` block supports:
+        """
+        return pulumi.get(self, "domain_name")
+
+    @domain_name.setter
+    def domain_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "domain_name", value)
 
 
 @pulumi.input_type
@@ -369,8 +394,6 @@ class Phase1interfaceCertificateArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Certificate name.
-               
-               The `ipv4_exclude_range` block supports:
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -380,14 +403,39 @@ class Phase1interfaceCertificateArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Certificate name.
-
-        The `ipv4_exclude_range` block supports:
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class Phase1interfaceInternalDomainListArgs:
+    def __init__(__self__, *,
+                 domain_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] domain_name: Domain name.
+               
+               The `ipv4_exclude_range` block supports:
+        """
+        if domain_name is not None:
+            pulumi.set(__self__, "domain_name", domain_name)
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Domain name.
+
+        The `ipv4_exclude_range` block supports:
+        """
+        return pulumi.get(self, "domain_name")
+
+    @domain_name.setter
+    def domain_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "domain_name", value)
 
 
 @pulumi.input_type

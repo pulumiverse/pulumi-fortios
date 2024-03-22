@@ -22,7 +22,7 @@ class GetHaResult:
     """
     A collection of values returned by getHa.
     """
-    def __init__(__self__, arps=None, arps_interval=None, authentication=None, cpu_threshold=None, encryption=None, failover_hold_time=None, ftp_proxy_threshold=None, gratuitous_arps=None, group_id=None, group_name=None, ha_direct=None, ha_eth_type=None, ha_mgmt_interfaces=None, ha_mgmt_status=None, ha_uptime_diff_margin=None, hb_interval=None, hb_interval_in_milliseconds=None, hb_lost_threshold=None, hbdev=None, hc_eth_type=None, hello_holddown=None, http_proxy_threshold=None, id=None, imap_proxy_threshold=None, inter_cluster_session_sync=None, key=None, l2ep_eth_type=None, link_failed_signal=None, load_balance_all=None, logical_sn=None, memory_based_failover=None, memory_compatible_mode=None, memory_failover_flip_timeout=None, memory_failover_monitor_period=None, memory_failover_sample_rate=None, memory_failover_threshold=None, memory_threshold=None, mode=None, monitor=None, multicast_ttl=None, nntp_proxy_threshold=None, override=None, override_wait_time=None, password=None, pingserver_failover_threshold=None, pingserver_flip_timeout=None, pingserver_monitor_interface=None, pingserver_secondary_force_reset=None, pingserver_slave_force_reset=None, pop3_proxy_threshold=None, priority=None, route_hold=None, route_ttl=None, route_wait=None, schedule=None, secondary_vclusters=None, session_pickup=None, session_pickup_connectionless=None, session_pickup_delay=None, session_pickup_expectation=None, session_pickup_nat=None, session_sync_dev=None, smtp_proxy_threshold=None, ssd_failover=None, standalone_config_sync=None, standalone_mgmt_vdom=None, sync_config=None, sync_packet_balance=None, unicast_gateway=None, unicast_hb=None, unicast_hb_netmask=None, unicast_hb_peerip=None, unicast_peers=None, unicast_status=None, uninterruptible_primary_wait=None, uninterruptible_upgrade=None, vcluster2=None, vcluster_id=None, vcluster_status=None, vclusters=None, vdom=None, vdomparam=None, weight=None):
+    def __init__(__self__, arps=None, arps_interval=None, authentication=None, cpu_threshold=None, encryption=None, evpn_ttl=None, failover_hold_time=None, ftp_proxy_threshold=None, gratuitous_arps=None, group_id=None, group_name=None, ha_direct=None, ha_eth_type=None, ha_mgmt_interfaces=None, ha_mgmt_status=None, ha_uptime_diff_margin=None, hb_interval=None, hb_interval_in_milliseconds=None, hb_lost_threshold=None, hbdev=None, hc_eth_type=None, hello_holddown=None, http_proxy_threshold=None, id=None, imap_proxy_threshold=None, inter_cluster_session_sync=None, ipsec_phase2_proposal=None, key=None, l2ep_eth_type=None, link_failed_signal=None, load_balance_all=None, logical_sn=None, memory_based_failover=None, memory_compatible_mode=None, memory_failover_flip_timeout=None, memory_failover_monitor_period=None, memory_failover_sample_rate=None, memory_failover_threshold=None, memory_threshold=None, mode=None, monitor=None, multicast_ttl=None, nntp_proxy_threshold=None, override=None, override_wait_time=None, password=None, pingserver_failover_threshold=None, pingserver_flip_timeout=None, pingserver_monitor_interface=None, pingserver_secondary_force_reset=None, pingserver_slave_force_reset=None, pop3_proxy_threshold=None, priority=None, route_hold=None, route_ttl=None, route_wait=None, schedule=None, secondary_vclusters=None, session_pickup=None, session_pickup_connectionless=None, session_pickup_delay=None, session_pickup_expectation=None, session_pickup_nat=None, session_sync_dev=None, smtp_proxy_threshold=None, ssd_failover=None, standalone_config_sync=None, standalone_mgmt_vdom=None, sync_config=None, sync_packet_balance=None, unicast_gateway=None, unicast_hb=None, unicast_hb_netmask=None, unicast_hb_peerip=None, unicast_peers=None, unicast_status=None, uninterruptible_primary_wait=None, uninterruptible_upgrade=None, upgrade_mode=None, vcluster2=None, vcluster_id=None, vcluster_status=None, vclusters=None, vdom=None, vdomparam=None, weight=None):
         if arps and not isinstance(arps, int):
             raise TypeError("Expected argument 'arps' to be a int")
         pulumi.set(__self__, "arps", arps)
@@ -38,6 +38,9 @@ class GetHaResult:
         if encryption and not isinstance(encryption, str):
             raise TypeError("Expected argument 'encryption' to be a str")
         pulumi.set(__self__, "encryption", encryption)
+        if evpn_ttl and not isinstance(evpn_ttl, int):
+            raise TypeError("Expected argument 'evpn_ttl' to be a int")
+        pulumi.set(__self__, "evpn_ttl", evpn_ttl)
         if failover_hold_time and not isinstance(failover_hold_time, int):
             raise TypeError("Expected argument 'failover_hold_time' to be a int")
         pulumi.set(__self__, "failover_hold_time", failover_hold_time)
@@ -98,6 +101,9 @@ class GetHaResult:
         if inter_cluster_session_sync and not isinstance(inter_cluster_session_sync, str):
             raise TypeError("Expected argument 'inter_cluster_session_sync' to be a str")
         pulumi.set(__self__, "inter_cluster_session_sync", inter_cluster_session_sync)
+        if ipsec_phase2_proposal and not isinstance(ipsec_phase2_proposal, str):
+            raise TypeError("Expected argument 'ipsec_phase2_proposal' to be a str")
+        pulumi.set(__self__, "ipsec_phase2_proposal", ipsec_phase2_proposal)
         if key and not isinstance(key, str):
             raise TypeError("Expected argument 'key' to be a str")
         pulumi.set(__self__, "key", key)
@@ -251,6 +257,9 @@ class GetHaResult:
         if uninterruptible_upgrade and not isinstance(uninterruptible_upgrade, str):
             raise TypeError("Expected argument 'uninterruptible_upgrade' to be a str")
         pulumi.set(__self__, "uninterruptible_upgrade", uninterruptible_upgrade)
+        if upgrade_mode and not isinstance(upgrade_mode, str):
+            raise TypeError("Expected argument 'upgrade_mode' to be a str")
+        pulumi.set(__self__, "upgrade_mode", upgrade_mode)
         if vcluster2 and not isinstance(vcluster2, str):
             raise TypeError("Expected argument 'vcluster2' to be a str")
         pulumi.set(__self__, "vcluster2", vcluster2)
@@ -312,6 +321,14 @@ class GetHaResult:
         Enable/disable heartbeat message encryption.
         """
         return pulumi.get(self, "encryption")
+
+    @property
+    @pulumi.getter(name="evpnTtl")
+    def evpn_ttl(self) -> int:
+        """
+        HA EVPN FDB TTL on primary box (5 - 3600 sec).
+        """
+        return pulumi.get(self, "evpn_ttl")
 
     @property
     @pulumi.getter(name="failoverHoldTime")
@@ -472,6 +489,14 @@ class GetHaResult:
         Enable/disable synchronization of sessions among HA clusters.
         """
         return pulumi.get(self, "inter_cluster_session_sync")
+
+    @property
+    @pulumi.getter(name="ipsecPhase2Proposal")
+    def ipsec_phase2_proposal(self) -> str:
+        """
+        IPsec phase2 proposal.
+        """
+        return pulumi.get(self, "ipsec_phase2_proposal")
 
     @property
     @pulumi.getter
@@ -882,6 +907,14 @@ class GetHaResult:
         return pulumi.get(self, "uninterruptible_upgrade")
 
     @property
+    @pulumi.getter(name="upgradeMode")
+    def upgrade_mode(self) -> str:
+        """
+        The mode to upgrade a cluster.
+        """
+        return pulumi.get(self, "upgrade_mode")
+
+    @property
     @pulumi.getter
     def vcluster2(self) -> str:
         """
@@ -946,6 +979,7 @@ class AwaitableGetHaResult(GetHaResult):
             authentication=self.authentication,
             cpu_threshold=self.cpu_threshold,
             encryption=self.encryption,
+            evpn_ttl=self.evpn_ttl,
             failover_hold_time=self.failover_hold_time,
             ftp_proxy_threshold=self.ftp_proxy_threshold,
             gratuitous_arps=self.gratuitous_arps,
@@ -966,6 +1000,7 @@ class AwaitableGetHaResult(GetHaResult):
             id=self.id,
             imap_proxy_threshold=self.imap_proxy_threshold,
             inter_cluster_session_sync=self.inter_cluster_session_sync,
+            ipsec_phase2_proposal=self.ipsec_phase2_proposal,
             key=self.key,
             l2ep_eth_type=self.l2ep_eth_type,
             link_failed_signal=self.link_failed_signal,
@@ -1017,6 +1052,7 @@ class AwaitableGetHaResult(GetHaResult):
             unicast_status=self.unicast_status,
             uninterruptible_primary_wait=self.uninterruptible_primary_wait,
             uninterruptible_upgrade=self.uninterruptible_upgrade,
+            upgrade_mode=self.upgrade_mode,
             vcluster2=self.vcluster2,
             vcluster_id=self.vcluster_id,
             vcluster_status=self.vcluster_status,
@@ -1045,6 +1081,7 @@ def get_ha(vdomparam: Optional[str] = None,
         authentication=pulumi.get(__ret__, 'authentication'),
         cpu_threshold=pulumi.get(__ret__, 'cpu_threshold'),
         encryption=pulumi.get(__ret__, 'encryption'),
+        evpn_ttl=pulumi.get(__ret__, 'evpn_ttl'),
         failover_hold_time=pulumi.get(__ret__, 'failover_hold_time'),
         ftp_proxy_threshold=pulumi.get(__ret__, 'ftp_proxy_threshold'),
         gratuitous_arps=pulumi.get(__ret__, 'gratuitous_arps'),
@@ -1065,6 +1102,7 @@ def get_ha(vdomparam: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         imap_proxy_threshold=pulumi.get(__ret__, 'imap_proxy_threshold'),
         inter_cluster_session_sync=pulumi.get(__ret__, 'inter_cluster_session_sync'),
+        ipsec_phase2_proposal=pulumi.get(__ret__, 'ipsec_phase2_proposal'),
         key=pulumi.get(__ret__, 'key'),
         l2ep_eth_type=pulumi.get(__ret__, 'l2ep_eth_type'),
         link_failed_signal=pulumi.get(__ret__, 'link_failed_signal'),
@@ -1116,6 +1154,7 @@ def get_ha(vdomparam: Optional[str] = None,
         unicast_status=pulumi.get(__ret__, 'unicast_status'),
         uninterruptible_primary_wait=pulumi.get(__ret__, 'uninterruptible_primary_wait'),
         uninterruptible_upgrade=pulumi.get(__ret__, 'uninterruptible_upgrade'),
+        upgrade_mode=pulumi.get(__ret__, 'upgrade_mode'),
         vcluster2=pulumi.get(__ret__, 'vcluster2'),
         vcluster_id=pulumi.get(__ret__, 'vcluster_id'),
         vcluster_status=pulumi.get(__ret__, 'vcluster_status'),

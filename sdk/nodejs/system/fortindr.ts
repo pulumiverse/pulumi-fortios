@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Configure FortiNDR. Applies to FortiOS Version `>= 7.2.0`.
+ * Configure FortiNDR. Applies to FortiOS Version `>= 7.0.8`.
  *
  * ## Import
  *

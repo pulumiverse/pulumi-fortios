@@ -20,6 +20,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<string>? AddrMode { get; set; }
 
         /// <summary>
+        /// Traffic class ID.
+        /// </summary>
+        [Input("classId")]
+        public Input<int>? ClassId { get; set; }
+
+        /// <summary>
         /// The mode determining how to detect the server.
         /// </summary>
         [Input("detectMode")]
@@ -232,6 +238,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         /// </summary>
         [Input("source")]
         public Input<string>? Source { get; set; }
+
+        /// <summary>
+        /// Source IPv6 addressused in the health-check packet to server.
+        /// </summary>
+        [Input("source6")]
+        public Input<string>? Source6 { get; set; }
 
         /// <summary>
         /// Enable/disable system DNS as the probe server. Valid values: `disable`, `enable`.

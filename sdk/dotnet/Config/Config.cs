@@ -150,6 +150,16 @@ namespace Pulumiverse.Fortios
             set => _insecure.Set(value);
         }
 
+        private static readonly __Value<string?> _password = new __Value<string?>(() => __config.Get("password"));
+        /// <summary>
+        /// The password of the user.
+        /// </summary>
+        public static string? Password
+        {
+            get => _password.Get();
+            set => _password.Set(value);
+        }
+
         private static readonly __Value<string?> _peerauth = new __Value<string?>(() => __config.Get("peerauth") ?? Utilities.GetEnv("FORTIOS_CA_PEERAUTH"));
         /// <summary>
         /// Enable/disable peer authentication, can be 'enable' or 'disable'
@@ -165,6 +175,16 @@ namespace Pulumiverse.Fortios
         {
             get => _token.Get();
             set => _token.Set(value);
+        }
+
+        private static readonly __Value<string?> _username = new __Value<string?>(() => __config.Get("username"));
+        /// <summary>
+        /// The username of the user.
+        /// </summary>
+        public static string? Username
+        {
+            get => _username.Get();
+            set => _username.Set(value);
         }
 
         private static readonly __Value<string?> _vdom = new __Value<string?>(() => __config.Get("vdom") ?? Utilities.GetEnv("FORTIOS_VDOM"));

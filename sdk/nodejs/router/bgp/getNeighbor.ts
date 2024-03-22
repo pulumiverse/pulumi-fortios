@@ -59,9 +59,17 @@ export interface GetNeighborResult {
      */
     readonly activate6: string;
     /**
+     * Enable/disable address family L2VPN EVPN for this neighbor.
+     */
+    readonly activateEvpn: string;
+    /**
      * Enable/disable address family VPNv4 for this neighbor.
      */
     readonly activateVpnv4: string;
+    /**
+     * Enable/disable address family VPNv6 for this neighbor.
+     */
+    readonly activateVpnv6: string;
     /**
      * Enable/disable IPv4 additional-path capability.
      */
@@ -75,6 +83,10 @@ export interface GetNeighborResult {
      */
     readonly additionalPathVpnv4: string;
     /**
+     * Enable/disable VPNv6 additional-path capability.
+     */
+    readonly additionalPathVpnv6: string;
+    /**
      * Number of IPv4 additional paths that can be advertised to this neighbor.
      */
     readonly advAdditionalPath: number;
@@ -86,6 +98,10 @@ export interface GetNeighborResult {
      * Number of VPNv4 additional paths that can be advertised to this neighbor.
      */
     readonly advAdditionalPathVpnv4: number;
+    /**
+     * Number of VPNv6 additional paths that can be advertised to this neighbor.
+     */
+    readonly advAdditionalPathVpnv6: number;
     /**
      * Minimum interval (sec) between sending updates.
      */
@@ -107,9 +123,29 @@ export interface GetNeighborResult {
      */
     readonly allowasInEnable6: string;
     /**
+     * Enable/disable to allow my AS in AS path for L2VPN EVPN route.
+     */
+    readonly allowasInEnableEvpn: string;
+    /**
+     * Enable/disable to allow my AS in AS path for VPNv4 route.
+     */
+    readonly allowasInEnableVpnv4: string;
+    /**
+     * Enable/disable use of my AS in AS path for VPNv6 route.
+     */
+    readonly allowasInEnableVpnv6: string;
+    /**
+     * The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+     */
+    readonly allowasInEvpn: number;
+    /**
      * The maximum number of occurrence of my AS number allowed for VPNv4 route.
      */
     readonly allowasInVpnv4: number;
+    /**
+     * The maximum number of occurrence of my AS number allowed for VPNv6 route.
+     */
+    readonly allowasInVpnv6: number;
     /**
      * Enable/disable replace peer AS with own AS for IPv4.
      */
@@ -130,6 +166,14 @@ export interface GetNeighborResult {
      * List of attributes that should be unchanged for VPNv4 route.
      */
     readonly attributeUnchangedVpnv4: string;
+    /**
+     * List of attributes that should not be changed for VPNv6 route.
+     */
+    readonly attributeUnchangedVpnv6: string;
+    /**
+     * Key-chain name for TCP authentication options.
+     */
+    readonly authOptions: string;
     /**
      * Enable/disable BFD for this neighbor.
      */
@@ -155,9 +199,17 @@ export interface GetNeighborResult {
      */
     readonly capabilityGracefulRestart6: string;
     /**
+     * Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor.
+     */
+    readonly capabilityGracefulRestartEvpn: string;
+    /**
      * Enable/disable advertise VPNv4 graceful restart capability to this neighbor.
      */
     readonly capabilityGracefulRestartVpnv4: string;
+    /**
+     * Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor.
+     */
+    readonly capabilityGracefulRestartVpnv6: string;
     /**
      * Accept/Send IPv4 ORF lists to/from this neighbor.
      */
@@ -207,6 +259,10 @@ export interface GetNeighborResult {
      */
     readonly distributeListInVpnv4: string;
     /**
+     * Filter for VPNv6 updates from this neighbor.
+     */
+    readonly distributeListInVpnv6: string;
+    /**
      * Filter for IPv4 updates to this neighbor.
      */
     readonly distributeListOut: string;
@@ -218,6 +274,10 @@ export interface GetNeighborResult {
      * Filter for VPNv4 updates to this neighbor.
      */
     readonly distributeListOutVpnv4: string;
+    /**
+     * Filter for VPNv6 updates to this neighbor.
+     */
+    readonly distributeListOutVpnv6: string;
     /**
      * Don't negotiate capabilities with this neighbor
      */
@@ -239,6 +299,14 @@ export interface GetNeighborResult {
      */
     readonly filterListIn6: string;
     /**
+     * BGP filter for VPNv4 inbound routes.
+     */
+    readonly filterListInVpnv4: string;
+    /**
+     * BGP filter for VPNv6 inbound routes.
+     */
+    readonly filterListInVpnv6: string;
+    /**
      * BGP filter for IPv4 outbound routes.
      */
     readonly filterListOut: string;
@@ -246,6 +314,14 @@ export interface GetNeighborResult {
      * BGP filter for IPv6 outbound routes.
      */
     readonly filterListOut6: string;
+    /**
+     * BGP filter for VPNv4 outbound routes.
+     */
+    readonly filterListOutVpnv4: string;
+    /**
+     * BGP filter for VPNv6 outbound routes.
+     */
+    readonly filterListOutVpnv6: string;
     /**
      * Interval (sec) before peer considered dead.
      */
@@ -291,6 +367,10 @@ export interface GetNeighborResult {
      */
     readonly maximumPrefix6: number;
     /**
+     * Maximum number of L2VPN EVPN prefixes to accept from this peer.
+     */
+    readonly maximumPrefixEvpn: number;
+    /**
      * Maximum IPv4 prefix threshold value (1 - 100 percent).
      */
     readonly maximumPrefixThreshold: number;
@@ -299,13 +379,25 @@ export interface GetNeighborResult {
      */
     readonly maximumPrefixThreshold6: number;
     /**
+     * Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+     */
+    readonly maximumPrefixThresholdEvpn: number;
+    /**
      * Maximum VPNv4 prefix threshold value (1 - 100 percent).
      */
     readonly maximumPrefixThresholdVpnv4: number;
     /**
+     * Maximum VPNv6 prefix threshold value (1 - 100 percent).
+     */
+    readonly maximumPrefixThresholdVpnv6: number;
+    /**
      * Maximum number of VPNv4 prefixes to accept from this peer.
      */
     readonly maximumPrefixVpnv4: number;
+    /**
+     * Maximum number of VPNv6 prefixes to accept from this peer.
+     */
+    readonly maximumPrefixVpnv6: number;
     /**
      * Enable/disable IPv4 Only give warning message when limit is exceeded.
      */
@@ -315,9 +407,17 @@ export interface GetNeighborResult {
      */
     readonly maximumPrefixWarningOnly6: string;
     /**
+     * Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes.
+     */
+    readonly maximumPrefixWarningOnlyEvpn: string;
+    /**
      * Enable/disable only giving warning message when limit is exceeded for VPNv4 routes.
      */
     readonly maximumPrefixWarningOnlyVpnv4: string;
+    /**
+     * Enable/disable warning message when limit is exceeded for VPNv6 routes.
+     */
+    readonly maximumPrefixWarningOnlyVpnv6: string;
     /**
      * Enable/disable IPv4 next-hop calculation for this neighbor.
      */
@@ -338,6 +438,10 @@ export interface GetNeighborResult {
      * Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor.
      */
     readonly nextHopSelfVpnv4: string;
+    /**
+     * Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor.
+     */
+    readonly nextHopSelfVpnv6: string;
     /**
      * Enable/disable override result of capability negotiation.
      */
@@ -363,6 +467,10 @@ export interface GetNeighborResult {
      */
     readonly prefixListInVpnv4: string;
     /**
+     * Inbound filter for VPNv6 updates from this neighbor.
+     */
+    readonly prefixListInVpnv6: string;
+    /**
      * IPv4 Outbound filter for updates to this neighbor.
      */
     readonly prefixListOut: string;
@@ -374,6 +482,10 @@ export interface GetNeighborResult {
      * Outbound filter for VPNv4 updates to this neighbor.
      */
     readonly prefixListOutVpnv4: string;
+    /**
+     * Outbound filter for VPNv6 updates to this neighbor.
+     */
+    readonly prefixListOutVpnv6: string;
     /**
      * AS number of neighbor.
      */
@@ -387,9 +499,17 @@ export interface GetNeighborResult {
      */
     readonly removePrivateAs6: string;
     /**
+     * Enable/disable removing private AS number from L2VPN EVPN outbound updates.
+     */
+    readonly removePrivateAsEvpn: string;
+    /**
      * Enable/disable remove private AS number from VPNv4 outbound updates.
      */
     readonly removePrivateAsVpnv4: string;
+    /**
+     * Enable/disable to remove private AS number from VPNv6 outbound updates.
+     */
+    readonly removePrivateAsVpnv6: string;
     /**
      * Graceful restart delay time (sec, 0 = global default).
      */
@@ -407,9 +527,17 @@ export interface GetNeighborResult {
      */
     readonly routeMapIn6: string;
     /**
+     * L2VPN EVPN inbound route map filter.
+     */
+    readonly routeMapInEvpn: string;
+    /**
      * VPNv4 inbound route map filter.
      */
     readonly routeMapInVpnv4: string;
+    /**
+     * VPNv6 inbound route map filter.
+     */
+    readonly routeMapInVpnv6: string;
     /**
      * IPv4 Outbound route map filter.
      */
@@ -423,6 +551,10 @@ export interface GetNeighborResult {
      */
     readonly routeMapOut6Preferable: string;
     /**
+     * L2VPN EVPN outbound route map filter.
+     */
+    readonly routeMapOutEvpn: string;
+    /**
      * IPv4 outbound route map filter if the peer is preferred.
      */
     readonly routeMapOutPreferable: string;
@@ -435,6 +567,14 @@ export interface GetNeighborResult {
      */
     readonly routeMapOutVpnv4Preferable: string;
     /**
+     * VPNv6 outbound route map filter.
+     */
+    readonly routeMapOutVpnv6: string;
+    /**
+     * VPNv6 outbound route map filter if this neighbor is preferred.
+     */
+    readonly routeMapOutVpnv6Preferable: string;
+    /**
      * Enable/disable IPv4 AS route reflector client.
      */
     readonly routeReflectorClient: string;
@@ -443,9 +583,17 @@ export interface GetNeighborResult {
      */
     readonly routeReflectorClient6: string;
     /**
+     * Enable/disable L2VPN EVPN AS route reflector client for this neighbor.
+     */
+    readonly routeReflectorClientEvpn: string;
+    /**
      * Enable/disable VPNv4 AS route reflector client for this neighbor.
      */
     readonly routeReflectorClientVpnv4: string;
+    /**
+     * Enable/disable VPNv6 AS route reflector client for this neighbor.
+     */
+    readonly routeReflectorClientVpnv6: string;
     /**
      * Enable/disable IPv4 AS route server client.
      */
@@ -455,9 +603,17 @@ export interface GetNeighborResult {
      */
     readonly routeServerClient6: string;
     /**
+     * Enable/disable L2VPN EVPN AS route server client for this neighbor.
+     */
+    readonly routeServerClientEvpn: string;
+    /**
      * Enable/disable VPNv4 AS route server client for this neighbor.
      */
     readonly routeServerClientVpnv4: string;
+    /**
+     * Enable/disable VPNv6 AS route server client for this neighbor.
+     */
+    readonly routeServerClientVpnv6: string;
     /**
      * IPv4 Send community attribute to neighbor.
      */
@@ -467,9 +623,17 @@ export interface GetNeighborResult {
      */
     readonly sendCommunity6: string;
     /**
+     * Enable/disable sending community attribute to neighbor for L2VPN EVPN address family.
+     */
+    readonly sendCommunityEvpn: string;
+    /**
      * Send community attribute to neighbor for VPNv4 address family.
      */
     readonly sendCommunityVpnv4: string;
+    /**
+     * Enable/disable sending community attribute to this neighbor for VPNv6 address family.
+     */
+    readonly sendCommunityVpnv6: string;
     /**
      * Enable/disable shutdown this neighbor.
      */
@@ -483,9 +647,17 @@ export interface GetNeighborResult {
      */
     readonly softReconfiguration6: string;
     /**
+     * Enable/disable L2VPN EVPN inbound soft reconfiguration.
+     */
+    readonly softReconfigurationEvpn: string;
+    /**
      * Enable/disable allow VPNv4 inbound soft reconfiguration.
      */
     readonly softReconfigurationVpnv4: string;
+    /**
+     * Enable/disable VPNv6 inbound soft reconfiguration.
+     */
+    readonly softReconfigurationVpnv6: string;
     /**
      * Enable/disable stale route after neighbor down.
      */

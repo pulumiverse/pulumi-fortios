@@ -34,6 +34,8 @@ type LookupSdnconnectorArgs struct {
 type LookupSdnconnectorResult struct {
 	// AWS access key ID.
 	AccessKey string `pulumi:"accessKey"`
+	// Enable/disable AWS alternative resource IP.
+	AltResourceIp string `pulumi:"altResourceIp"`
 	// IBM cloud API key or service ID API key.
 	ApiKey string `pulumi:"apiKey"`
 	// Azure server region.
@@ -42,8 +44,10 @@ type LookupSdnconnectorResult struct {
 	ClientId string `pulumi:"clientId"`
 	// Azure client secret (application key).
 	ClientSecret string `pulumi:"clientSecret"`
-	// Compartment ID.
+	// OCI compartment ID.
 	CompartmentId string `pulumi:"compartmentId"`
+	// Configure OCI compartment list. The structure of `compartmentList` block is documented below.
+	CompartmentLists []GetSdnconnectorCompartmentList `pulumi:"compartmentLists"`
 	// Compute generation for IBM cloud infrastructure.
 	ComputeGeneration int `pulumi:"computeGeneration"`
 	// Domain name.
@@ -84,13 +88,17 @@ type LookupSdnconnectorResult struct {
 	OciFingerprint string `pulumi:"ociFingerprint"`
 	// OCI server region.
 	OciRegion string `pulumi:"ociRegion"`
+	// Configure OCI region list. The structure of `ociRegionList` block is documented below.
+	OciRegionLists []GetSdnconnectorOciRegionList `pulumi:"ociRegionLists"`
 	// OCI region type.
 	OciRegionType string `pulumi:"ociRegionType"`
 	// Password of the remote SDN connector as login credentials.
 	Password string `pulumi:"password"`
 	// Private key of GCP service account.
 	PrivateKey string `pulumi:"privateKey"`
-	// AWS region name.
+	// SDN proxy.
+	Proxy string `pulumi:"proxy"`
+	// OCI region.
 	Region string `pulumi:"region"`
 	// Resource group of Azure route table.
 	ResourceGroup string `pulumi:"resourceGroup"`
@@ -106,6 +114,10 @@ type LookupSdnconnectorResult struct {
 	SecretToken string `pulumi:"secretToken"`
 	// Server address of the remote SDN connector.
 	Server string `pulumi:"server"`
+	// Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+	ServerCaCert string `pulumi:"serverCaCert"`
+	// Trust servers that contain this certificate only.
+	ServerCert string `pulumi:"serverCert"`
 	// Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
 	ServerLists []GetSdnconnectorServerList `pulumi:"serverLists"`
 	// Port number of the remote SDN connector.
@@ -186,6 +198,11 @@ func (o LookupSdnconnectorResultOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSdnconnectorResult) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
+// Enable/disable AWS alternative resource IP.
+func (o LookupSdnconnectorResultOutput) AltResourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSdnconnectorResult) string { return v.AltResourceIp }).(pulumi.StringOutput)
+}
+
 // IBM cloud API key or service ID API key.
 func (o LookupSdnconnectorResultOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSdnconnectorResult) string { return v.ApiKey }).(pulumi.StringOutput)
@@ -206,9 +223,14 @@ func (o LookupSdnconnectorResultOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSdnconnectorResult) string { return v.ClientSecret }).(pulumi.StringOutput)
 }
 
-// Compartment ID.
+// OCI compartment ID.
 func (o LookupSdnconnectorResultOutput) CompartmentId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSdnconnectorResult) string { return v.CompartmentId }).(pulumi.StringOutput)
+}
+
+// Configure OCI compartment list. The structure of `compartmentList` block is documented below.
+func (o LookupSdnconnectorResultOutput) CompartmentLists() GetSdnconnectorCompartmentListArrayOutput {
+	return o.ApplyT(func(v LookupSdnconnectorResult) []GetSdnconnectorCompartmentList { return v.CompartmentLists }).(GetSdnconnectorCompartmentListArrayOutput)
 }
 
 // Compute generation for IBM cloud infrastructure.
@@ -311,6 +333,11 @@ func (o LookupSdnconnectorResultOutput) OciRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSdnconnectorResult) string { return v.OciRegion }).(pulumi.StringOutput)
 }
 
+// Configure OCI region list. The structure of `ociRegionList` block is documented below.
+func (o LookupSdnconnectorResultOutput) OciRegionLists() GetSdnconnectorOciRegionListArrayOutput {
+	return o.ApplyT(func(v LookupSdnconnectorResult) []GetSdnconnectorOciRegionList { return v.OciRegionLists }).(GetSdnconnectorOciRegionListArrayOutput)
+}
+
 // OCI region type.
 func (o LookupSdnconnectorResultOutput) OciRegionType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSdnconnectorResult) string { return v.OciRegionType }).(pulumi.StringOutput)
@@ -326,7 +353,12 @@ func (o LookupSdnconnectorResultOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSdnconnectorResult) string { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
-// AWS region name.
+// SDN proxy.
+func (o LookupSdnconnectorResultOutput) Proxy() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSdnconnectorResult) string { return v.Proxy }).(pulumi.StringOutput)
+}
+
+// OCI region.
 func (o LookupSdnconnectorResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSdnconnectorResult) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -364,6 +396,16 @@ func (o LookupSdnconnectorResultOutput) SecretToken() pulumi.StringOutput {
 // Server address of the remote SDN connector.
 func (o LookupSdnconnectorResultOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSdnconnectorResult) string { return v.Server }).(pulumi.StringOutput)
+}
+
+// Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+func (o LookupSdnconnectorResultOutput) ServerCaCert() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSdnconnectorResult) string { return v.ServerCaCert }).(pulumi.StringOutput)
+}
+
+// Trust servers that contain this certificate only.
+func (o LookupSdnconnectorResultOutput) ServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSdnconnectorResult) string { return v.ServerCert }).(pulumi.StringOutput)
 }
 
 // Server address list of the remote SDN connector. The structure of `serverList` block is documented below.

@@ -128,6 +128,10 @@ export class Proxypolicy extends pulumi.CustomResource {
      */
     public readonly blockNotification!: pulumi.Output<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    public readonly casbProfile!: pulumi.Output<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     public readonly cifsProfile!: pulumi.Output<string>;
@@ -140,9 +144,17 @@ export class Proxypolicy extends pulumi.CustomResource {
      */
     public readonly decryptedTrafficMirror!: pulumi.Output<string>;
     /**
+     * Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+     */
+    public readonly detectHttpsInHttpRequest!: pulumi.Output<string>;
+    /**
      * When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
      */
     public readonly deviceOwnership!: pulumi.Output<string>;
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    public readonly diameterFilterProfile!: pulumi.Output<string>;
     /**
      * Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
      */
@@ -184,6 +196,10 @@ export class Proxypolicy extends pulumi.CustomResource {
      */
     public readonly fileFilterProfile!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Global web-based manager visible label.
      */
     public readonly globalLabel!: pulumi.Output<string>;
@@ -203,6 +219,30 @@ export class Proxypolicy extends pulumi.CustomResource {
      * Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
      */
     public readonly internetService!: pulumi.Output<string>;
+    /**
+     * Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+     */
+    public readonly internetService6!: pulumi.Output<string>;
+    /**
+     * Custom Internet Service IPv6 group name. The structure of `internetService6CustomGroup` block is documented below.
+     */
+    public readonly internetService6CustomGroups!: pulumi.Output<outputs.firewall.ProxypolicyInternetService6CustomGroup[] | undefined>;
+    /**
+     * Custom Internet Service IPv6 name. The structure of `internetService6Custom` block is documented below.
+     */
+    public readonly internetService6Customs!: pulumi.Output<outputs.firewall.ProxypolicyInternetService6Custom[] | undefined>;
+    /**
+     * Internet Service IPv6 group name. The structure of `internetService6Group` block is documented below.
+     */
+    public readonly internetService6Groups!: pulumi.Output<outputs.firewall.ProxypolicyInternetService6Group[] | undefined>;
+    /**
+     * Internet Service IPv6 name. The structure of `internetService6Name` block is documented below.
+     */
+    public readonly internetService6Names!: pulumi.Output<outputs.firewall.ProxypolicyInternetService6Name[] | undefined>;
+    /**
+     * When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+     */
+    public readonly internetService6Negate!: pulumi.Output<string>;
     /**
      * Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
      */
@@ -231,6 +271,10 @@ export class Proxypolicy extends pulumi.CustomResource {
      * Name of an existing IPS sensor.
      */
     public readonly ipsSensor!: pulumi.Output<string>;
+    /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    public readonly ipsVoipFilter!: pulumi.Output<string>;
     /**
      * VDOM-specific GUI visible label.
      */
@@ -364,6 +408,10 @@ export class Proxypolicy extends pulumi.CustomResource {
      */
     public readonly videofilterProfile!: pulumi.Output<string>;
     /**
+     * Name of an existing virtual-patch profile.
+     */
+    public readonly virtualPatchProfile!: pulumi.Output<string>;
+    /**
      * Name of an existing VoIP profile.
      */
     public readonly voipProfile!: pulumi.Output<string>;
@@ -419,10 +467,13 @@ export class Proxypolicy extends pulumi.CustomResource {
             resourceInputs["applicationList"] = state ? state.applicationList : undefined;
             resourceInputs["avProfile"] = state ? state.avProfile : undefined;
             resourceInputs["blockNotification"] = state ? state.blockNotification : undefined;
+            resourceInputs["casbProfile"] = state ? state.casbProfile : undefined;
             resourceInputs["cifsProfile"] = state ? state.cifsProfile : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["decryptedTrafficMirror"] = state ? state.decryptedTrafficMirror : undefined;
+            resourceInputs["detectHttpsInHttpRequest"] = state ? state.detectHttpsInHttpRequest : undefined;
             resourceInputs["deviceOwnership"] = state ? state.deviceOwnership : undefined;
+            resourceInputs["diameterFilterProfile"] = state ? state.diameterFilterProfile : undefined;
             resourceInputs["disclaimer"] = state ? state.disclaimer : undefined;
             resourceInputs["dlpProfile"] = state ? state.dlpProfile : undefined;
             resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
@@ -433,11 +484,18 @@ export class Proxypolicy extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
             resourceInputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["globalLabel"] = state ? state.globalLabel : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["httpTunnelAuth"] = state ? state.httpTunnelAuth : undefined;
             resourceInputs["icapProfile"] = state ? state.icapProfile : undefined;
             resourceInputs["internetService"] = state ? state.internetService : undefined;
+            resourceInputs["internetService6"] = state ? state.internetService6 : undefined;
+            resourceInputs["internetService6CustomGroups"] = state ? state.internetService6CustomGroups : undefined;
+            resourceInputs["internetService6Customs"] = state ? state.internetService6Customs : undefined;
+            resourceInputs["internetService6Groups"] = state ? state.internetService6Groups : undefined;
+            resourceInputs["internetService6Names"] = state ? state.internetService6Names : undefined;
+            resourceInputs["internetService6Negate"] = state ? state.internetService6Negate : undefined;
             resourceInputs["internetServiceCustomGroups"] = state ? state.internetServiceCustomGroups : undefined;
             resourceInputs["internetServiceCustoms"] = state ? state.internetServiceCustoms : undefined;
             resourceInputs["internetServiceGroups"] = state ? state.internetServiceGroups : undefined;
@@ -445,6 +503,7 @@ export class Proxypolicy extends pulumi.CustomResource {
             resourceInputs["internetServiceNames"] = state ? state.internetServiceNames : undefined;
             resourceInputs["internetServiceNegate"] = state ? state.internetServiceNegate : undefined;
             resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = state ? state.ipsVoipFilter : undefined;
             resourceInputs["label"] = state ? state.label : undefined;
             resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
             resourceInputs["logtrafficStart"] = state ? state.logtrafficStart : undefined;
@@ -478,6 +537,7 @@ export class Proxypolicy extends pulumi.CustomResource {
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = state ? state.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = state ? state.virtualPatchProfile : undefined;
             resourceInputs["voipProfile"] = state ? state.voipProfile : undefined;
             resourceInputs["wafProfile"] = state ? state.wafProfile : undefined;
             resourceInputs["webcache"] = state ? state.webcache : undefined;
@@ -504,10 +564,13 @@ export class Proxypolicy extends pulumi.CustomResource {
             resourceInputs["applicationList"] = args ? args.applicationList : undefined;
             resourceInputs["avProfile"] = args ? args.avProfile : undefined;
             resourceInputs["blockNotification"] = args ? args.blockNotification : undefined;
+            resourceInputs["casbProfile"] = args ? args.casbProfile : undefined;
             resourceInputs["cifsProfile"] = args ? args.cifsProfile : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["decryptedTrafficMirror"] = args ? args.decryptedTrafficMirror : undefined;
+            resourceInputs["detectHttpsInHttpRequest"] = args ? args.detectHttpsInHttpRequest : undefined;
             resourceInputs["deviceOwnership"] = args ? args.deviceOwnership : undefined;
+            resourceInputs["diameterFilterProfile"] = args ? args.diameterFilterProfile : undefined;
             resourceInputs["disclaimer"] = args ? args.disclaimer : undefined;
             resourceInputs["dlpProfile"] = args ? args.dlpProfile : undefined;
             resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
@@ -518,11 +581,18 @@ export class Proxypolicy extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
             resourceInputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["globalLabel"] = args ? args.globalLabel : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["httpTunnelAuth"] = args ? args.httpTunnelAuth : undefined;
             resourceInputs["icapProfile"] = args ? args.icapProfile : undefined;
             resourceInputs["internetService"] = args ? args.internetService : undefined;
+            resourceInputs["internetService6"] = args ? args.internetService6 : undefined;
+            resourceInputs["internetService6CustomGroups"] = args ? args.internetService6CustomGroups : undefined;
+            resourceInputs["internetService6Customs"] = args ? args.internetService6Customs : undefined;
+            resourceInputs["internetService6Groups"] = args ? args.internetService6Groups : undefined;
+            resourceInputs["internetService6Names"] = args ? args.internetService6Names : undefined;
+            resourceInputs["internetService6Negate"] = args ? args.internetService6Negate : undefined;
             resourceInputs["internetServiceCustomGroups"] = args ? args.internetServiceCustomGroups : undefined;
             resourceInputs["internetServiceCustoms"] = args ? args.internetServiceCustoms : undefined;
             resourceInputs["internetServiceGroups"] = args ? args.internetServiceGroups : undefined;
@@ -530,6 +600,7 @@ export class Proxypolicy extends pulumi.CustomResource {
             resourceInputs["internetServiceNames"] = args ? args.internetServiceNames : undefined;
             resourceInputs["internetServiceNegate"] = args ? args.internetServiceNegate : undefined;
             resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = args ? args.ipsVoipFilter : undefined;
             resourceInputs["label"] = args ? args.label : undefined;
             resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
             resourceInputs["logtrafficStart"] = args ? args.logtrafficStart : undefined;
@@ -563,6 +634,7 @@ export class Proxypolicy extends pulumi.CustomResource {
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = args ? args.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = args ? args.virtualPatchProfile : undefined;
             resourceInputs["voipProfile"] = args ? args.voipProfile : undefined;
             resourceInputs["wafProfile"] = args ? args.wafProfile : undefined;
             resourceInputs["webcache"] = args ? args.webcache : undefined;
@@ -607,6 +679,10 @@ export interface ProxypolicyState {
      */
     blockNotification?: pulumi.Input<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    casbProfile?: pulumi.Input<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     cifsProfile?: pulumi.Input<string>;
@@ -619,9 +695,17 @@ export interface ProxypolicyState {
      */
     decryptedTrafficMirror?: pulumi.Input<string>;
     /**
+     * Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+     */
+    detectHttpsInHttpRequest?: pulumi.Input<string>;
+    /**
      * When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
      */
     deviceOwnership?: pulumi.Input<string>;
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    diameterFilterProfile?: pulumi.Input<string>;
     /**
      * Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
      */
@@ -663,6 +747,10 @@ export interface ProxypolicyState {
      */
     fileFilterProfile?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Global web-based manager visible label.
      */
     globalLabel?: pulumi.Input<string>;
@@ -682,6 +770,30 @@ export interface ProxypolicyState {
      * Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
      */
     internetService?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+     */
+    internetService6?: pulumi.Input<string>;
+    /**
+     * Custom Internet Service IPv6 group name. The structure of `internetService6CustomGroup` block is documented below.
+     */
+    internetService6CustomGroups?: pulumi.Input<pulumi.Input<inputs.firewall.ProxypolicyInternetService6CustomGroup>[]>;
+    /**
+     * Custom Internet Service IPv6 name. The structure of `internetService6Custom` block is documented below.
+     */
+    internetService6Customs?: pulumi.Input<pulumi.Input<inputs.firewall.ProxypolicyInternetService6Custom>[]>;
+    /**
+     * Internet Service IPv6 group name. The structure of `internetService6Group` block is documented below.
+     */
+    internetService6Groups?: pulumi.Input<pulumi.Input<inputs.firewall.ProxypolicyInternetService6Group>[]>;
+    /**
+     * Internet Service IPv6 name. The structure of `internetService6Name` block is documented below.
+     */
+    internetService6Names?: pulumi.Input<pulumi.Input<inputs.firewall.ProxypolicyInternetService6Name>[]>;
+    /**
+     * When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+     */
+    internetService6Negate?: pulumi.Input<string>;
     /**
      * Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
      */
@@ -710,6 +822,10 @@ export interface ProxypolicyState {
      * Name of an existing IPS sensor.
      */
     ipsSensor?: pulumi.Input<string>;
+    /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    ipsVoipFilter?: pulumi.Input<string>;
     /**
      * VDOM-specific GUI visible label.
      */
@@ -843,6 +959,10 @@ export interface ProxypolicyState {
      */
     videofilterProfile?: pulumi.Input<string>;
     /**
+     * Name of an existing virtual-patch profile.
+     */
+    virtualPatchProfile?: pulumi.Input<string>;
+    /**
      * Name of an existing VoIP profile.
      */
     voipProfile?: pulumi.Input<string>;
@@ -909,6 +1029,10 @@ export interface ProxypolicyArgs {
      */
     blockNotification?: pulumi.Input<string>;
     /**
+     * Name of an existing CASB profile.
+     */
+    casbProfile?: pulumi.Input<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     cifsProfile?: pulumi.Input<string>;
@@ -921,9 +1045,17 @@ export interface ProxypolicyArgs {
      */
     decryptedTrafficMirror?: pulumi.Input<string>;
     /**
+     * Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+     */
+    detectHttpsInHttpRequest?: pulumi.Input<string>;
+    /**
      * When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
      */
     deviceOwnership?: pulumi.Input<string>;
+    /**
+     * Name of an existing Diameter filter profile.
+     */
+    diameterFilterProfile?: pulumi.Input<string>;
     /**
      * Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
      */
@@ -965,6 +1097,10 @@ export interface ProxypolicyArgs {
      */
     fileFilterProfile?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Global web-based manager visible label.
      */
     globalLabel?: pulumi.Input<string>;
@@ -984,6 +1120,30 @@ export interface ProxypolicyArgs {
      * Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
      */
     internetService?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+     */
+    internetService6?: pulumi.Input<string>;
+    /**
+     * Custom Internet Service IPv6 group name. The structure of `internetService6CustomGroup` block is documented below.
+     */
+    internetService6CustomGroups?: pulumi.Input<pulumi.Input<inputs.firewall.ProxypolicyInternetService6CustomGroup>[]>;
+    /**
+     * Custom Internet Service IPv6 name. The structure of `internetService6Custom` block is documented below.
+     */
+    internetService6Customs?: pulumi.Input<pulumi.Input<inputs.firewall.ProxypolicyInternetService6Custom>[]>;
+    /**
+     * Internet Service IPv6 group name. The structure of `internetService6Group` block is documented below.
+     */
+    internetService6Groups?: pulumi.Input<pulumi.Input<inputs.firewall.ProxypolicyInternetService6Group>[]>;
+    /**
+     * Internet Service IPv6 name. The structure of `internetService6Name` block is documented below.
+     */
+    internetService6Names?: pulumi.Input<pulumi.Input<inputs.firewall.ProxypolicyInternetService6Name>[]>;
+    /**
+     * When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+     */
+    internetService6Negate?: pulumi.Input<string>;
     /**
      * Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
      */
@@ -1012,6 +1172,10 @@ export interface ProxypolicyArgs {
      * Name of an existing IPS sensor.
      */
     ipsSensor?: pulumi.Input<string>;
+    /**
+     * Name of an existing VoIP (ips) profile.
+     */
+    ipsVoipFilter?: pulumi.Input<string>;
     /**
      * VDOM-specific GUI visible label.
      */
@@ -1144,6 +1308,10 @@ export interface ProxypolicyArgs {
      * Name of an existing VideoFilter profile.
      */
     videofilterProfile?: pulumi.Input<string>;
+    /**
+     * Name of an existing virtual-patch profile.
+     */
+    virtualPatchProfile?: pulumi.Input<string>;
     /**
      * Name of an existing VoIP profile.
      */

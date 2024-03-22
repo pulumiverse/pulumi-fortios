@@ -72,6 +72,10 @@ export class Npu extends pulumi.CustomResource {
      */
     public readonly fastpath!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
      */
     public readonly ipsecDecSubengineMask!: pulumi.Output<string>;
@@ -153,6 +157,7 @@ export class Npu extends pulumi.CustomResource {
             resourceInputs["dedicatedManagementAffinity"] = state ? state.dedicatedManagementAffinity : undefined;
             resourceInputs["dedicatedManagementCpu"] = state ? state.dedicatedManagementCpu : undefined;
             resourceInputs["fastpath"] = state ? state.fastpath : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ipsecDecSubengineMask"] = state ? state.ipsecDecSubengineMask : undefined;
             resourceInputs["ipsecEncSubengineMask"] = state ? state.ipsecEncSubengineMask : undefined;
             resourceInputs["ipsecInboundCache"] = state ? state.ipsecInboundCache : undefined;
@@ -175,6 +180,7 @@ export class Npu extends pulumi.CustomResource {
             resourceInputs["dedicatedManagementAffinity"] = args ? args.dedicatedManagementAffinity : undefined;
             resourceInputs["dedicatedManagementCpu"] = args ? args.dedicatedManagementCpu : undefined;
             resourceInputs["fastpath"] = args ? args.fastpath : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ipsecDecSubengineMask"] = args ? args.ipsecDecSubengineMask : undefined;
             resourceInputs["ipsecEncSubengineMask"] = args ? args.ipsecEncSubengineMask : undefined;
             resourceInputs["ipsecInboundCache"] = args ? args.ipsecInboundCache : undefined;
@@ -217,6 +223,10 @@ export interface NpuState {
      * Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
      */
     fastpath?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
      */
@@ -303,6 +313,10 @@ export interface NpuArgs {
      * Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
      */
     fastpath?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
      */

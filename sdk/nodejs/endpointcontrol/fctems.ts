@@ -62,7 +62,7 @@ export class Fctems extends pulumi.CustomResource {
      */
     public readonly adminUsername!: pulumi.Output<string>;
     /**
-     * FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+     * FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
      */
     public readonly callTimeout!: pulumi.Output<number>;
     /**
@@ -82,7 +82,7 @@ export class Fctems extends pulumi.CustomResource {
      */
     public readonly dirtyReason!: pulumi.Output<string>;
     /**
-     * EMS ID in order (1 - 5)
+     * EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
      */
     public readonly emsId!: pulumi.Output<number>;
     /**
@@ -134,6 +134,10 @@ export class Fctems extends pulumi.CustomResource {
      */
     public readonly pullVulnerabilities!: pulumi.Output<string>;
     /**
+     * Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+     */
+    public readonly sendTagsToAllVdoms!: pulumi.Output<string>;
+    /**
      * FortiClient EMS Serial Number.
      */
     public readonly serialNumber!: pulumi.Output<string>;
@@ -158,9 +162,17 @@ export class Fctems extends pulumi.CustomResource {
      */
     public readonly tenantId!: pulumi.Output<string>;
     /**
+     * Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+     */
+    public readonly trustCaCn!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    /**
+     * Lowest CA cert on Fortigate in verified EMS cert chain.
+     */
+    public readonly verifyingCa!: pulumi.Output<string>;
     /**
      * Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
      */
@@ -199,13 +211,16 @@ export class Fctems extends pulumi.CustomResource {
             resourceInputs["pullSysinfo"] = state ? state.pullSysinfo : undefined;
             resourceInputs["pullTags"] = state ? state.pullTags : undefined;
             resourceInputs["pullVulnerabilities"] = state ? state.pullVulnerabilities : undefined;
+            resourceInputs["sendTagsToAllVdoms"] = state ? state.sendTagsToAllVdoms : undefined;
             resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
             resourceInputs["server"] = state ? state.server : undefined;
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["statusCheckInterval"] = state ? state.statusCheckInterval : undefined;
             resourceInputs["tenantId"] = state ? state.tenantId : undefined;
+            resourceInputs["trustCaCn"] = state ? state.trustCaCn : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["verifyingCa"] = state ? state.verifyingCa : undefined;
             resourceInputs["websocketOverride"] = state ? state.websocketOverride : undefined;
         } else {
             const args = argsOrState as FctemsArgs | undefined;
@@ -229,13 +244,16 @@ export class Fctems extends pulumi.CustomResource {
             resourceInputs["pullSysinfo"] = args ? args.pullSysinfo : undefined;
             resourceInputs["pullTags"] = args ? args.pullTags : undefined;
             resourceInputs["pullVulnerabilities"] = args ? args.pullVulnerabilities : undefined;
+            resourceInputs["sendTagsToAllVdoms"] = args ? args.sendTagsToAllVdoms : undefined;
             resourceInputs["serialNumber"] = args ? args.serialNumber : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["statusCheckInterval"] = args ? args.statusCheckInterval : undefined;
             resourceInputs["tenantId"] = args ? args.tenantId : undefined;
+            resourceInputs["trustCaCn"] = args ? args.trustCaCn : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["verifyingCa"] = args ? args.verifyingCa : undefined;
             resourceInputs["websocketOverride"] = args ? args.websocketOverride : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -258,7 +276,7 @@ export interface FctemsState {
      */
     adminUsername?: pulumi.Input<string>;
     /**
-     * FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+     * FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
      */
     callTimeout?: pulumi.Input<number>;
     /**
@@ -278,7 +296,7 @@ export interface FctemsState {
      */
     dirtyReason?: pulumi.Input<string>;
     /**
-     * EMS ID in order (1 - 5)
+     * EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
      */
     emsId?: pulumi.Input<number>;
     /**
@@ -330,6 +348,10 @@ export interface FctemsState {
      */
     pullVulnerabilities?: pulumi.Input<string>;
     /**
+     * Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+     */
+    sendTagsToAllVdoms?: pulumi.Input<string>;
+    /**
      * FortiClient EMS Serial Number.
      */
     serialNumber?: pulumi.Input<string>;
@@ -354,9 +376,17 @@ export interface FctemsState {
      */
     tenantId?: pulumi.Input<string>;
     /**
+     * Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+     */
+    trustCaCn?: pulumi.Input<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Lowest CA cert on Fortigate in verified EMS cert chain.
+     */
+    verifyingCa?: pulumi.Input<string>;
     /**
      * Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
      */
@@ -376,7 +406,7 @@ export interface FctemsArgs {
      */
     adminUsername?: pulumi.Input<string>;
     /**
-     * FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+     * FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
      */
     callTimeout?: pulumi.Input<number>;
     /**
@@ -396,7 +426,7 @@ export interface FctemsArgs {
      */
     dirtyReason?: pulumi.Input<string>;
     /**
-     * EMS ID in order (1 - 5)
+     * EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
      */
     emsId?: pulumi.Input<number>;
     /**
@@ -448,6 +478,10 @@ export interface FctemsArgs {
      */
     pullVulnerabilities?: pulumi.Input<string>;
     /**
+     * Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+     */
+    sendTagsToAllVdoms?: pulumi.Input<string>;
+    /**
      * FortiClient EMS Serial Number.
      */
     serialNumber?: pulumi.Input<string>;
@@ -472,9 +506,17 @@ export interface FctemsArgs {
      */
     tenantId?: pulumi.Input<string>;
     /**
+     * Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+     */
+    trustCaCn?: pulumi.Input<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Lowest CA cert on Fortigate in verified EMS cert chain.
+     */
+    verifyingCa?: pulumi.Input<string>;
     /**
      * Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
      */

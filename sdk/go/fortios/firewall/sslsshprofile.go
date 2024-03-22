@@ -105,6 +105,8 @@ type Sslsshprofile struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Configure FTPS options. The structure of `ftps` block is documented below.
 	Ftps SslsshprofileFtpsOutput `pulumi:"ftps"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure HTTPS options. The structure of `https` block is documented below.
 	Https SslsshprofileHttpsOutput `pulumi:"https"`
 	// Configure IMAPS options. The structure of `imaps` block is documented below.
@@ -205,6 +207,8 @@ type sslsshprofileState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure FTPS options. The structure of `ftps` block is documented below.
 	Ftps *SslsshprofileFtps `pulumi:"ftps"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure HTTPS options. The structure of `https` block is documented below.
 	Https *SslsshprofileHttps `pulumi:"https"`
 	// Configure IMAPS options. The structure of `imaps` block is documented below.
@@ -276,6 +280,8 @@ type SslsshprofileState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure FTPS options. The structure of `ftps` block is documented below.
 	Ftps SslsshprofileFtpsPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure HTTPS options. The structure of `https` block is documented below.
 	Https SslsshprofileHttpsPtrInput
 	// Configure IMAPS options. The structure of `imaps` block is documented below.
@@ -351,6 +357,8 @@ type sslsshprofileArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure FTPS options. The structure of `ftps` block is documented below.
 	Ftps *SslsshprofileFtps `pulumi:"ftps"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure HTTPS options. The structure of `https` block is documented below.
 	Https *SslsshprofileHttps `pulumi:"https"`
 	// Configure IMAPS options. The structure of `imaps` block is documented below.
@@ -423,6 +431,8 @@ type SslsshprofileArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure FTPS options. The structure of `ftps` block is documented below.
 	Ftps SslsshprofileFtpsPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure HTTPS options. The structure of `https` block is documented below.
 	Https SslsshprofileHttpsPtrInput
 	// Configure IMAPS options. The structure of `imaps` block is documented below.
@@ -602,6 +612,11 @@ func (o SslsshprofileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Configure FTPS options. The structure of `ftps` block is documented below.
 func (o SslsshprofileOutput) Ftps() SslsshprofileFtpsOutput {
 	return o.ApplyT(func(v *Sslsshprofile) SslsshprofileFtpsOutput { return v.Ftps }).(SslsshprofileFtpsOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SslsshprofileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Sslsshprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Configure HTTPS options. The structure of `https` block is documented below.

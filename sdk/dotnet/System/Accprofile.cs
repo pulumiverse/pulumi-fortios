@@ -126,6 +126,36 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Authgrp { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("cliConfig")]
+        public Output<string> CliConfig { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("cliDiagnose")]
+        public Output<string> CliDiagnose { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("cliExec")]
+        public Output<string> CliExec { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("cliGet")]
+        public Output<string> CliGet { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("cliShow")]
+        public Output<string> CliShow { get; private set; } = null!;
+
+        /// <summary>
         /// Comment.
         /// </summary>
         [Output("comments")]
@@ -148,6 +178,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("fwgrpPermission")]
         public Output<Outputs.AccprofileFwgrpPermission> FwgrpPermission { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
@@ -323,6 +359,36 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Authgrp { get; set; }
 
         /// <summary>
+        /// Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("cliConfig")]
+        public Input<string>? CliConfig { get; set; }
+
+        /// <summary>
+        /// Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("cliDiagnose")]
+        public Input<string>? CliDiagnose { get; set; }
+
+        /// <summary>
+        /// Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("cliExec")]
+        public Input<string>? CliExec { get; set; }
+
+        /// <summary>
+        /// Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("cliGet")]
+        public Input<string>? CliGet { get; set; }
+
+        /// <summary>
+        /// Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("cliShow")]
+        public Input<string>? CliShow { get; set; }
+
+        /// <summary>
         /// Comment.
         /// </summary>
         [Input("comments")]
@@ -345,6 +411,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("fwgrpPermission")]
         public Input<Inputs.AccprofileFwgrpPermissionArgs>? FwgrpPermission { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
@@ -481,6 +553,36 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Authgrp { get; set; }
 
         /// <summary>
+        /// Enable/disable permission to run config commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("cliConfig")]
+        public Input<string>? CliConfig { get; set; }
+
+        /// <summary>
+        /// Enable/disable permission to run diagnostic commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("cliDiagnose")]
+        public Input<string>? CliDiagnose { get; set; }
+
+        /// <summary>
+        /// Enable/disable permission to run execute commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("cliExec")]
+        public Input<string>? CliExec { get; set; }
+
+        /// <summary>
+        /// Enable/disable permission to run get commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("cliGet")]
+        public Input<string>? CliGet { get; set; }
+
+        /// <summary>
+        /// Enable/disable permission to run show commands. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("cliShow")]
+        public Input<string>? CliShow { get; set; }
+
+        /// <summary>
         /// Comment.
         /// </summary>
         [Input("comments")]
@@ -503,6 +605,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("fwgrpPermission")]
         public Input<Inputs.AccprofileFwgrpPermissionGetArgs>? FwgrpPermission { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.

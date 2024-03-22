@@ -16,6 +16,10 @@ var _ = internal.GetEnvOrDefault
 type Accessproxy6ApiGateway6 struct {
 	// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
 	Applications []Accessproxy6ApiGateway6Application `pulumi:"applications"`
+	// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+	H2Support *string `pulumi:"h2Support"`
+	// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+	H3Support *string `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 	HttpCookieAge *int `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -36,6 +40,8 @@ type Accessproxy6ApiGateway6 struct {
 	LdbMethod *string `pulumi:"ldbMethod"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
 	Persistence *string `pulumi:"persistence"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic *Accessproxy6ApiGateway6Quic `pulumi:"quic"`
 	// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers []Accessproxy6ApiGateway6Realserver `pulumi:"realservers"`
 	// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
@@ -54,6 +60,8 @@ type Accessproxy6ApiGateway6 struct {
 	SslMaxVersion *string `pulumi:"sslMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 	SslMinVersion *string `pulumi:"sslMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslRenegotiation *string `pulumi:"sslRenegotiation"`
 	// SSL-VPN web portal.
 	SslVpnWebPortal *string `pulumi:"sslVpnWebPortal"`
 	// URL pattern to match.
@@ -78,6 +86,10 @@ type Accessproxy6ApiGateway6Input interface {
 type Accessproxy6ApiGateway6Args struct {
 	// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
 	Applications Accessproxy6ApiGateway6ApplicationArrayInput `pulumi:"applications"`
+	// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+	H2Support pulumi.StringPtrInput `pulumi:"h2Support"`
+	// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+	H3Support pulumi.StringPtrInput `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 	HttpCookieAge pulumi.IntPtrInput `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -98,6 +110,8 @@ type Accessproxy6ApiGateway6Args struct {
 	LdbMethod pulumi.StringPtrInput `pulumi:"ldbMethod"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
 	Persistence pulumi.StringPtrInput `pulumi:"persistence"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic Accessproxy6ApiGateway6QuicPtrInput `pulumi:"quic"`
 	// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers Accessproxy6ApiGateway6RealserverArrayInput `pulumi:"realservers"`
 	// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
@@ -116,6 +130,8 @@ type Accessproxy6ApiGateway6Args struct {
 	SslMaxVersion pulumi.StringPtrInput `pulumi:"sslMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 	SslMinVersion pulumi.StringPtrInput `pulumi:"sslMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslRenegotiation pulumi.StringPtrInput `pulumi:"sslRenegotiation"`
 	// SSL-VPN web portal.
 	SslVpnWebPortal pulumi.StringPtrInput `pulumi:"sslVpnWebPortal"`
 	// URL pattern to match.
@@ -182,6 +198,16 @@ func (o Accessproxy6ApiGateway6Output) Applications() Accessproxy6ApiGateway6App
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) []Accessproxy6ApiGateway6Application { return v.Applications }).(Accessproxy6ApiGateway6ApplicationArrayOutput)
 }
 
+// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGateway6Output) H2Support() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.H2Support }).(pulumi.StringPtrOutput)
+}
+
+// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGateway6Output) H3Support() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.H3Support }).(pulumi.StringPtrOutput)
+}
+
 // Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 func (o Accessproxy6ApiGateway6Output) HttpCookieAge() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *int { return v.HttpCookieAge }).(pulumi.IntPtrOutput)
@@ -232,6 +258,11 @@ func (o Accessproxy6ApiGateway6Output) Persistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.Persistence }).(pulumi.StringPtrOutput)
 }
 
+// QUIC setting. The structure of `quic` block is documented below.
+func (o Accessproxy6ApiGateway6Output) Quic() Accessproxy6ApiGateway6QuicPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6) *Accessproxy6ApiGateway6Quic { return v.Quic }).(Accessproxy6ApiGateway6QuicPtrOutput)
+}
+
 // Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 func (o Accessproxy6ApiGateway6Output) Realservers() Accessproxy6ApiGateway6RealserverArrayOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) []Accessproxy6ApiGateway6Realserver { return v.Realservers }).(Accessproxy6ApiGateway6RealserverArrayOutput)
@@ -275,6 +306,11 @@ func (o Accessproxy6ApiGateway6Output) SslMaxVersion() pulumi.StringPtrOutput {
 // Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 func (o Accessproxy6ApiGateway6Output) SslMinVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.SslMinVersion }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGateway6Output) SslRenegotiation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.SslRenegotiation }).(pulumi.StringPtrOutput)
 }
 
 // SSL-VPN web portal.
@@ -414,6 +450,276 @@ func (o Accessproxy6ApiGateway6ApplicationArrayOutput) Index(i pulumi.IntInput) 
 	}).(Accessproxy6ApiGateway6ApplicationOutput)
 }
 
+type Accessproxy6ApiGateway6Quic struct {
+	// ACK delay exponent (1 - 20, default = 3).
+	AckDelayExponent *int `pulumi:"ackDelayExponent"`
+	// Active connection ID limit (1 - 8, default = 2).
+	ActiveConnectionIdLimit *int `pulumi:"activeConnectionIdLimit"`
+	// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+	ActiveMigration *string `pulumi:"activeMigration"`
+	// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+	GreaseQuicBit *string `pulumi:"greaseQuicBit"`
+	// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+	MaxAckDelay *int `pulumi:"maxAckDelay"`
+	// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+	MaxDatagramFrameSize *int `pulumi:"maxDatagramFrameSize"`
+	// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+	MaxIdleTimeout *int `pulumi:"maxIdleTimeout"`
+	// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+	MaxUdpPayloadSize *int `pulumi:"maxUdpPayloadSize"`
+}
+
+// Accessproxy6ApiGateway6QuicInput is an input type that accepts Accessproxy6ApiGateway6QuicArgs and Accessproxy6ApiGateway6QuicOutput values.
+// You can construct a concrete instance of `Accessproxy6ApiGateway6QuicInput` via:
+//
+//	Accessproxy6ApiGateway6QuicArgs{...}
+type Accessproxy6ApiGateway6QuicInput interface {
+	pulumi.Input
+
+	ToAccessproxy6ApiGateway6QuicOutput() Accessproxy6ApiGateway6QuicOutput
+	ToAccessproxy6ApiGateway6QuicOutputWithContext(context.Context) Accessproxy6ApiGateway6QuicOutput
+}
+
+type Accessproxy6ApiGateway6QuicArgs struct {
+	// ACK delay exponent (1 - 20, default = 3).
+	AckDelayExponent pulumi.IntPtrInput `pulumi:"ackDelayExponent"`
+	// Active connection ID limit (1 - 8, default = 2).
+	ActiveConnectionIdLimit pulumi.IntPtrInput `pulumi:"activeConnectionIdLimit"`
+	// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+	ActiveMigration pulumi.StringPtrInput `pulumi:"activeMigration"`
+	// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+	GreaseQuicBit pulumi.StringPtrInput `pulumi:"greaseQuicBit"`
+	// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+	MaxAckDelay pulumi.IntPtrInput `pulumi:"maxAckDelay"`
+	// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+	MaxDatagramFrameSize pulumi.IntPtrInput `pulumi:"maxDatagramFrameSize"`
+	// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+	MaxIdleTimeout pulumi.IntPtrInput `pulumi:"maxIdleTimeout"`
+	// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+	MaxUdpPayloadSize pulumi.IntPtrInput `pulumi:"maxUdpPayloadSize"`
+}
+
+func (Accessproxy6ApiGateway6QuicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Accessproxy6ApiGateway6Quic)(nil)).Elem()
+}
+
+func (i Accessproxy6ApiGateway6QuicArgs) ToAccessproxy6ApiGateway6QuicOutput() Accessproxy6ApiGateway6QuicOutput {
+	return i.ToAccessproxy6ApiGateway6QuicOutputWithContext(context.Background())
+}
+
+func (i Accessproxy6ApiGateway6QuicArgs) ToAccessproxy6ApiGateway6QuicOutputWithContext(ctx context.Context) Accessproxy6ApiGateway6QuicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Accessproxy6ApiGateway6QuicOutput)
+}
+
+func (i Accessproxy6ApiGateway6QuicArgs) ToAccessproxy6ApiGateway6QuicPtrOutput() Accessproxy6ApiGateway6QuicPtrOutput {
+	return i.ToAccessproxy6ApiGateway6QuicPtrOutputWithContext(context.Background())
+}
+
+func (i Accessproxy6ApiGateway6QuicArgs) ToAccessproxy6ApiGateway6QuicPtrOutputWithContext(ctx context.Context) Accessproxy6ApiGateway6QuicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Accessproxy6ApiGateway6QuicOutput).ToAccessproxy6ApiGateway6QuicPtrOutputWithContext(ctx)
+}
+
+// Accessproxy6ApiGateway6QuicPtrInput is an input type that accepts Accessproxy6ApiGateway6QuicArgs, Accessproxy6ApiGateway6QuicPtr and Accessproxy6ApiGateway6QuicPtrOutput values.
+// You can construct a concrete instance of `Accessproxy6ApiGateway6QuicPtrInput` via:
+//
+//	        Accessproxy6ApiGateway6QuicArgs{...}
+//
+//	or:
+//
+//	        nil
+type Accessproxy6ApiGateway6QuicPtrInput interface {
+	pulumi.Input
+
+	ToAccessproxy6ApiGateway6QuicPtrOutput() Accessproxy6ApiGateway6QuicPtrOutput
+	ToAccessproxy6ApiGateway6QuicPtrOutputWithContext(context.Context) Accessproxy6ApiGateway6QuicPtrOutput
+}
+
+type accessproxy6ApiGateway6QuicPtrType Accessproxy6ApiGateway6QuicArgs
+
+func Accessproxy6ApiGateway6QuicPtr(v *Accessproxy6ApiGateway6QuicArgs) Accessproxy6ApiGateway6QuicPtrInput {
+	return (*accessproxy6ApiGateway6QuicPtrType)(v)
+}
+
+func (*accessproxy6ApiGateway6QuicPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Accessproxy6ApiGateway6Quic)(nil)).Elem()
+}
+
+func (i *accessproxy6ApiGateway6QuicPtrType) ToAccessproxy6ApiGateway6QuicPtrOutput() Accessproxy6ApiGateway6QuicPtrOutput {
+	return i.ToAccessproxy6ApiGateway6QuicPtrOutputWithContext(context.Background())
+}
+
+func (i *accessproxy6ApiGateway6QuicPtrType) ToAccessproxy6ApiGateway6QuicPtrOutputWithContext(ctx context.Context) Accessproxy6ApiGateway6QuicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Accessproxy6ApiGateway6QuicPtrOutput)
+}
+
+type Accessproxy6ApiGateway6QuicOutput struct{ *pulumi.OutputState }
+
+func (Accessproxy6ApiGateway6QuicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Accessproxy6ApiGateway6Quic)(nil)).Elem()
+}
+
+func (o Accessproxy6ApiGateway6QuicOutput) ToAccessproxy6ApiGateway6QuicOutput() Accessproxy6ApiGateway6QuicOutput {
+	return o
+}
+
+func (o Accessproxy6ApiGateway6QuicOutput) ToAccessproxy6ApiGateway6QuicOutputWithContext(ctx context.Context) Accessproxy6ApiGateway6QuicOutput {
+	return o
+}
+
+func (o Accessproxy6ApiGateway6QuicOutput) ToAccessproxy6ApiGateway6QuicPtrOutput() Accessproxy6ApiGateway6QuicPtrOutput {
+	return o.ToAccessproxy6ApiGateway6QuicPtrOutputWithContext(context.Background())
+}
+
+func (o Accessproxy6ApiGateway6QuicOutput) ToAccessproxy6ApiGateway6QuicPtrOutputWithContext(ctx context.Context) Accessproxy6ApiGateway6QuicPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Accessproxy6ApiGateway6Quic) *Accessproxy6ApiGateway6Quic {
+		return &v
+	}).(Accessproxy6ApiGateway6QuicPtrOutput)
+}
+
+// ACK delay exponent (1 - 20, default = 3).
+func (o Accessproxy6ApiGateway6QuicOutput) AckDelayExponent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6Quic) *int { return v.AckDelayExponent }).(pulumi.IntPtrOutput)
+}
+
+// Active connection ID limit (1 - 8, default = 2).
+func (o Accessproxy6ApiGateway6QuicOutput) ActiveConnectionIdLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6Quic) *int { return v.ActiveConnectionIdLimit }).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGateway6QuicOutput) ActiveMigration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6Quic) *string { return v.ActiveMigration }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGateway6QuicOutput) GreaseQuicBit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6Quic) *string { return v.GreaseQuicBit }).(pulumi.StringPtrOutput)
+}
+
+// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+func (o Accessproxy6ApiGateway6QuicOutput) MaxAckDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6Quic) *int { return v.MaxAckDelay }).(pulumi.IntPtrOutput)
+}
+
+// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+func (o Accessproxy6ApiGateway6QuicOutput) MaxDatagramFrameSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6Quic) *int { return v.MaxDatagramFrameSize }).(pulumi.IntPtrOutput)
+}
+
+// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+func (o Accessproxy6ApiGateway6QuicOutput) MaxIdleTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6Quic) *int { return v.MaxIdleTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+func (o Accessproxy6ApiGateway6QuicOutput) MaxUdpPayloadSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6Quic) *int { return v.MaxUdpPayloadSize }).(pulumi.IntPtrOutput)
+}
+
+type Accessproxy6ApiGateway6QuicPtrOutput struct{ *pulumi.OutputState }
+
+func (Accessproxy6ApiGateway6QuicPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Accessproxy6ApiGateway6Quic)(nil)).Elem()
+}
+
+func (o Accessproxy6ApiGateway6QuicPtrOutput) ToAccessproxy6ApiGateway6QuicPtrOutput() Accessproxy6ApiGateway6QuicPtrOutput {
+	return o
+}
+
+func (o Accessproxy6ApiGateway6QuicPtrOutput) ToAccessproxy6ApiGateway6QuicPtrOutputWithContext(ctx context.Context) Accessproxy6ApiGateway6QuicPtrOutput {
+	return o
+}
+
+func (o Accessproxy6ApiGateway6QuicPtrOutput) Elem() Accessproxy6ApiGateway6QuicOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGateway6Quic) Accessproxy6ApiGateway6Quic {
+		if v != nil {
+			return *v
+		}
+		var ret Accessproxy6ApiGateway6Quic
+		return ret
+	}).(Accessproxy6ApiGateway6QuicOutput)
+}
+
+// ACK delay exponent (1 - 20, default = 3).
+func (o Accessproxy6ApiGateway6QuicPtrOutput) AckDelayExponent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGateway6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.AckDelayExponent
+	}).(pulumi.IntPtrOutput)
+}
+
+// Active connection ID limit (1 - 8, default = 2).
+func (o Accessproxy6ApiGateway6QuicPtrOutput) ActiveConnectionIdLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGateway6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveConnectionIdLimit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGateway6QuicPtrOutput) ActiveMigration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGateway6Quic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveMigration
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGateway6QuicPtrOutput) GreaseQuicBit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGateway6Quic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GreaseQuicBit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+func (o Accessproxy6ApiGateway6QuicPtrOutput) MaxAckDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGateway6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxAckDelay
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+func (o Accessproxy6ApiGateway6QuicPtrOutput) MaxDatagramFrameSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGateway6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxDatagramFrameSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+func (o Accessproxy6ApiGateway6QuicPtrOutput) MaxIdleTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGateway6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxIdleTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+func (o Accessproxy6ApiGateway6QuicPtrOutput) MaxUdpPayloadSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGateway6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxUdpPayloadSize
+	}).(pulumi.IntPtrOutput)
+}
+
 type Accessproxy6ApiGateway6Realserver struct {
 	// Type of address. Valid values: `ip`, `fqdn`.
 	AddrType *string `pulumi:"addrType"`
@@ -421,6 +727,8 @@ type Accessproxy6ApiGateway6Realserver struct {
 	Address *string `pulumi:"address"`
 	// Wildcard domain name of the real server.
 	Domain *string `pulumi:"domain"`
+	// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+	ExternalAuth *string `pulumi:"externalAuth"`
 	// Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 	HealthCheck *string `pulumi:"healthCheck"`
 	// Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
@@ -445,6 +753,10 @@ type Accessproxy6ApiGateway6Realserver struct {
 	SshHostKeys []Accessproxy6ApiGateway6RealserverSshHostKey `pulumi:"sshHostKeys"`
 	// Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 	Status *string `pulumi:"status"`
+	// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+	TranslateHost *string `pulumi:"translateHost"`
+	// Tunnel encryption. Valid values: `enable`, `disable`.
+	TunnelEncryption *string `pulumi:"tunnelEncryption"`
 	// TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
 	Type *string `pulumi:"type"`
 	// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
@@ -469,6 +781,8 @@ type Accessproxy6ApiGateway6RealserverArgs struct {
 	Address pulumi.StringPtrInput `pulumi:"address"`
 	// Wildcard domain name of the real server.
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+	ExternalAuth pulumi.StringPtrInput `pulumi:"externalAuth"`
 	// Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 	HealthCheck pulumi.StringPtrInput `pulumi:"healthCheck"`
 	// Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
@@ -493,6 +807,10 @@ type Accessproxy6ApiGateway6RealserverArgs struct {
 	SshHostKeys Accessproxy6ApiGateway6RealserverSshHostKeyArrayInput `pulumi:"sshHostKeys"`
 	// Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+	TranslateHost pulumi.StringPtrInput `pulumi:"translateHost"`
+	// Tunnel encryption. Valid values: `enable`, `disable`.
+	TunnelEncryption pulumi.StringPtrInput `pulumi:"tunnelEncryption"`
 	// TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
@@ -565,6 +883,11 @@ func (o Accessproxy6ApiGateway6RealserverOutput) Domain() pulumi.StringPtrOutput
 	return o.ApplyT(func(v Accessproxy6ApiGateway6Realserver) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
+// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGateway6RealserverOutput) ExternalAuth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6Realserver) *string { return v.ExternalAuth }).(pulumi.StringPtrOutput)
+}
+
 // Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 func (o Accessproxy6ApiGateway6RealserverOutput) HealthCheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6Realserver) *string { return v.HealthCheck }).(pulumi.StringPtrOutput)
@@ -625,6 +948,16 @@ func (o Accessproxy6ApiGateway6RealserverOutput) SshHostKeys() Accessproxy6ApiGa
 // Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 func (o Accessproxy6ApiGateway6RealserverOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6Realserver) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGateway6RealserverOutput) TranslateHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6Realserver) *string { return v.TranslateHost }).(pulumi.StringPtrOutput)
+}
+
+// Tunnel encryption. Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGateway6RealserverOutput) TunnelEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway6Realserver) *string { return v.TunnelEncryption }).(pulumi.StringPtrOutput)
 }
 
 // TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
@@ -872,6 +1205,10 @@ func (o Accessproxy6ApiGateway6SslCipherSuiteArrayOutput) Index(i pulumi.IntInpu
 type Accessproxy6ApiGateway struct {
 	// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
 	Applications []Accessproxy6ApiGatewayApplication `pulumi:"applications"`
+	// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+	H2Support *string `pulumi:"h2Support"`
+	// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+	H3Support *string `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 	HttpCookieAge *int `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -892,6 +1229,8 @@ type Accessproxy6ApiGateway struct {
 	LdbMethod *string `pulumi:"ldbMethod"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
 	Persistence *string `pulumi:"persistence"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic *Accessproxy6ApiGatewayQuic `pulumi:"quic"`
 	// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers []Accessproxy6ApiGatewayRealserver `pulumi:"realservers"`
 	// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
@@ -910,6 +1249,8 @@ type Accessproxy6ApiGateway struct {
 	SslMaxVersion *string `pulumi:"sslMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 	SslMinVersion *string `pulumi:"sslMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslRenegotiation *string `pulumi:"sslRenegotiation"`
 	// SSL-VPN web portal.
 	SslVpnWebPortal *string `pulumi:"sslVpnWebPortal"`
 	// URL pattern to match.
@@ -934,6 +1275,10 @@ type Accessproxy6ApiGatewayInput interface {
 type Accessproxy6ApiGatewayArgs struct {
 	// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
 	Applications Accessproxy6ApiGatewayApplicationArrayInput `pulumi:"applications"`
+	// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+	H2Support pulumi.StringPtrInput `pulumi:"h2Support"`
+	// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+	H3Support pulumi.StringPtrInput `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 	HttpCookieAge pulumi.IntPtrInput `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -954,6 +1299,8 @@ type Accessproxy6ApiGatewayArgs struct {
 	LdbMethod pulumi.StringPtrInput `pulumi:"ldbMethod"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
 	Persistence pulumi.StringPtrInput `pulumi:"persistence"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic Accessproxy6ApiGatewayQuicPtrInput `pulumi:"quic"`
 	// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers Accessproxy6ApiGatewayRealserverArrayInput `pulumi:"realservers"`
 	// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
@@ -972,6 +1319,8 @@ type Accessproxy6ApiGatewayArgs struct {
 	SslMaxVersion pulumi.StringPtrInput `pulumi:"sslMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 	SslMinVersion pulumi.StringPtrInput `pulumi:"sslMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslRenegotiation pulumi.StringPtrInput `pulumi:"sslRenegotiation"`
 	// SSL-VPN web portal.
 	SslVpnWebPortal pulumi.StringPtrInput `pulumi:"sslVpnWebPortal"`
 	// URL pattern to match.
@@ -1038,6 +1387,16 @@ func (o Accessproxy6ApiGatewayOutput) Applications() Accessproxy6ApiGatewayAppli
 	return o.ApplyT(func(v Accessproxy6ApiGateway) []Accessproxy6ApiGatewayApplication { return v.Applications }).(Accessproxy6ApiGatewayApplicationArrayOutput)
 }
 
+// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGatewayOutput) H2Support() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway) *string { return v.H2Support }).(pulumi.StringPtrOutput)
+}
+
+// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGatewayOutput) H3Support() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway) *string { return v.H3Support }).(pulumi.StringPtrOutput)
+}
+
 // Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 func (o Accessproxy6ApiGatewayOutput) HttpCookieAge() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway) *int { return v.HttpCookieAge }).(pulumi.IntPtrOutput)
@@ -1088,6 +1447,11 @@ func (o Accessproxy6ApiGatewayOutput) Persistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway) *string { return v.Persistence }).(pulumi.StringPtrOutput)
 }
 
+// QUIC setting. The structure of `quic` block is documented below.
+func (o Accessproxy6ApiGatewayOutput) Quic() Accessproxy6ApiGatewayQuicPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway) *Accessproxy6ApiGatewayQuic { return v.Quic }).(Accessproxy6ApiGatewayQuicPtrOutput)
+}
+
 // Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 func (o Accessproxy6ApiGatewayOutput) Realservers() Accessproxy6ApiGatewayRealserverArrayOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway) []Accessproxy6ApiGatewayRealserver { return v.Realservers }).(Accessproxy6ApiGatewayRealserverArrayOutput)
@@ -1131,6 +1495,11 @@ func (o Accessproxy6ApiGatewayOutput) SslMaxVersion() pulumi.StringPtrOutput {
 // Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 func (o Accessproxy6ApiGatewayOutput) SslMinVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway) *string { return v.SslMinVersion }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGatewayOutput) SslRenegotiation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGateway) *string { return v.SslRenegotiation }).(pulumi.StringPtrOutput)
 }
 
 // SSL-VPN web portal.
@@ -1270,6 +1639,276 @@ func (o Accessproxy6ApiGatewayApplicationArrayOutput) Index(i pulumi.IntInput) A
 	}).(Accessproxy6ApiGatewayApplicationOutput)
 }
 
+type Accessproxy6ApiGatewayQuic struct {
+	// ACK delay exponent (1 - 20, default = 3).
+	AckDelayExponent *int `pulumi:"ackDelayExponent"`
+	// Active connection ID limit (1 - 8, default = 2).
+	ActiveConnectionIdLimit *int `pulumi:"activeConnectionIdLimit"`
+	// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+	ActiveMigration *string `pulumi:"activeMigration"`
+	// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+	GreaseQuicBit *string `pulumi:"greaseQuicBit"`
+	// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+	MaxAckDelay *int `pulumi:"maxAckDelay"`
+	// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+	MaxDatagramFrameSize *int `pulumi:"maxDatagramFrameSize"`
+	// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+	MaxIdleTimeout *int `pulumi:"maxIdleTimeout"`
+	// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+	MaxUdpPayloadSize *int `pulumi:"maxUdpPayloadSize"`
+}
+
+// Accessproxy6ApiGatewayQuicInput is an input type that accepts Accessproxy6ApiGatewayQuicArgs and Accessproxy6ApiGatewayQuicOutput values.
+// You can construct a concrete instance of `Accessproxy6ApiGatewayQuicInput` via:
+//
+//	Accessproxy6ApiGatewayQuicArgs{...}
+type Accessproxy6ApiGatewayQuicInput interface {
+	pulumi.Input
+
+	ToAccessproxy6ApiGatewayQuicOutput() Accessproxy6ApiGatewayQuicOutput
+	ToAccessproxy6ApiGatewayQuicOutputWithContext(context.Context) Accessproxy6ApiGatewayQuicOutput
+}
+
+type Accessproxy6ApiGatewayQuicArgs struct {
+	// ACK delay exponent (1 - 20, default = 3).
+	AckDelayExponent pulumi.IntPtrInput `pulumi:"ackDelayExponent"`
+	// Active connection ID limit (1 - 8, default = 2).
+	ActiveConnectionIdLimit pulumi.IntPtrInput `pulumi:"activeConnectionIdLimit"`
+	// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+	ActiveMigration pulumi.StringPtrInput `pulumi:"activeMigration"`
+	// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+	GreaseQuicBit pulumi.StringPtrInput `pulumi:"greaseQuicBit"`
+	// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+	MaxAckDelay pulumi.IntPtrInput `pulumi:"maxAckDelay"`
+	// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+	MaxDatagramFrameSize pulumi.IntPtrInput `pulumi:"maxDatagramFrameSize"`
+	// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+	MaxIdleTimeout pulumi.IntPtrInput `pulumi:"maxIdleTimeout"`
+	// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+	MaxUdpPayloadSize pulumi.IntPtrInput `pulumi:"maxUdpPayloadSize"`
+}
+
+func (Accessproxy6ApiGatewayQuicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Accessproxy6ApiGatewayQuic)(nil)).Elem()
+}
+
+func (i Accessproxy6ApiGatewayQuicArgs) ToAccessproxy6ApiGatewayQuicOutput() Accessproxy6ApiGatewayQuicOutput {
+	return i.ToAccessproxy6ApiGatewayQuicOutputWithContext(context.Background())
+}
+
+func (i Accessproxy6ApiGatewayQuicArgs) ToAccessproxy6ApiGatewayQuicOutputWithContext(ctx context.Context) Accessproxy6ApiGatewayQuicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Accessproxy6ApiGatewayQuicOutput)
+}
+
+func (i Accessproxy6ApiGatewayQuicArgs) ToAccessproxy6ApiGatewayQuicPtrOutput() Accessproxy6ApiGatewayQuicPtrOutput {
+	return i.ToAccessproxy6ApiGatewayQuicPtrOutputWithContext(context.Background())
+}
+
+func (i Accessproxy6ApiGatewayQuicArgs) ToAccessproxy6ApiGatewayQuicPtrOutputWithContext(ctx context.Context) Accessproxy6ApiGatewayQuicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Accessproxy6ApiGatewayQuicOutput).ToAccessproxy6ApiGatewayQuicPtrOutputWithContext(ctx)
+}
+
+// Accessproxy6ApiGatewayQuicPtrInput is an input type that accepts Accessproxy6ApiGatewayQuicArgs, Accessproxy6ApiGatewayQuicPtr and Accessproxy6ApiGatewayQuicPtrOutput values.
+// You can construct a concrete instance of `Accessproxy6ApiGatewayQuicPtrInput` via:
+//
+//	        Accessproxy6ApiGatewayQuicArgs{...}
+//
+//	or:
+//
+//	        nil
+type Accessproxy6ApiGatewayQuicPtrInput interface {
+	pulumi.Input
+
+	ToAccessproxy6ApiGatewayQuicPtrOutput() Accessproxy6ApiGatewayQuicPtrOutput
+	ToAccessproxy6ApiGatewayQuicPtrOutputWithContext(context.Context) Accessproxy6ApiGatewayQuicPtrOutput
+}
+
+type accessproxy6ApiGatewayQuicPtrType Accessproxy6ApiGatewayQuicArgs
+
+func Accessproxy6ApiGatewayQuicPtr(v *Accessproxy6ApiGatewayQuicArgs) Accessproxy6ApiGatewayQuicPtrInput {
+	return (*accessproxy6ApiGatewayQuicPtrType)(v)
+}
+
+func (*accessproxy6ApiGatewayQuicPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Accessproxy6ApiGatewayQuic)(nil)).Elem()
+}
+
+func (i *accessproxy6ApiGatewayQuicPtrType) ToAccessproxy6ApiGatewayQuicPtrOutput() Accessproxy6ApiGatewayQuicPtrOutput {
+	return i.ToAccessproxy6ApiGatewayQuicPtrOutputWithContext(context.Background())
+}
+
+func (i *accessproxy6ApiGatewayQuicPtrType) ToAccessproxy6ApiGatewayQuicPtrOutputWithContext(ctx context.Context) Accessproxy6ApiGatewayQuicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Accessproxy6ApiGatewayQuicPtrOutput)
+}
+
+type Accessproxy6ApiGatewayQuicOutput struct{ *pulumi.OutputState }
+
+func (Accessproxy6ApiGatewayQuicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Accessproxy6ApiGatewayQuic)(nil)).Elem()
+}
+
+func (o Accessproxy6ApiGatewayQuicOutput) ToAccessproxy6ApiGatewayQuicOutput() Accessproxy6ApiGatewayQuicOutput {
+	return o
+}
+
+func (o Accessproxy6ApiGatewayQuicOutput) ToAccessproxy6ApiGatewayQuicOutputWithContext(ctx context.Context) Accessproxy6ApiGatewayQuicOutput {
+	return o
+}
+
+func (o Accessproxy6ApiGatewayQuicOutput) ToAccessproxy6ApiGatewayQuicPtrOutput() Accessproxy6ApiGatewayQuicPtrOutput {
+	return o.ToAccessproxy6ApiGatewayQuicPtrOutputWithContext(context.Background())
+}
+
+func (o Accessproxy6ApiGatewayQuicOutput) ToAccessproxy6ApiGatewayQuicPtrOutputWithContext(ctx context.Context) Accessproxy6ApiGatewayQuicPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Accessproxy6ApiGatewayQuic) *Accessproxy6ApiGatewayQuic {
+		return &v
+	}).(Accessproxy6ApiGatewayQuicPtrOutput)
+}
+
+// ACK delay exponent (1 - 20, default = 3).
+func (o Accessproxy6ApiGatewayQuicOutput) AckDelayExponent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGatewayQuic) *int { return v.AckDelayExponent }).(pulumi.IntPtrOutput)
+}
+
+// Active connection ID limit (1 - 8, default = 2).
+func (o Accessproxy6ApiGatewayQuicOutput) ActiveConnectionIdLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGatewayQuic) *int { return v.ActiveConnectionIdLimit }).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGatewayQuicOutput) ActiveMigration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGatewayQuic) *string { return v.ActiveMigration }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGatewayQuicOutput) GreaseQuicBit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGatewayQuic) *string { return v.GreaseQuicBit }).(pulumi.StringPtrOutput)
+}
+
+// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+func (o Accessproxy6ApiGatewayQuicOutput) MaxAckDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGatewayQuic) *int { return v.MaxAckDelay }).(pulumi.IntPtrOutput)
+}
+
+// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+func (o Accessproxy6ApiGatewayQuicOutput) MaxDatagramFrameSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGatewayQuic) *int { return v.MaxDatagramFrameSize }).(pulumi.IntPtrOutput)
+}
+
+// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+func (o Accessproxy6ApiGatewayQuicOutput) MaxIdleTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGatewayQuic) *int { return v.MaxIdleTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+func (o Accessproxy6ApiGatewayQuicOutput) MaxUdpPayloadSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGatewayQuic) *int { return v.MaxUdpPayloadSize }).(pulumi.IntPtrOutput)
+}
+
+type Accessproxy6ApiGatewayQuicPtrOutput struct{ *pulumi.OutputState }
+
+func (Accessproxy6ApiGatewayQuicPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Accessproxy6ApiGatewayQuic)(nil)).Elem()
+}
+
+func (o Accessproxy6ApiGatewayQuicPtrOutput) ToAccessproxy6ApiGatewayQuicPtrOutput() Accessproxy6ApiGatewayQuicPtrOutput {
+	return o
+}
+
+func (o Accessproxy6ApiGatewayQuicPtrOutput) ToAccessproxy6ApiGatewayQuicPtrOutputWithContext(ctx context.Context) Accessproxy6ApiGatewayQuicPtrOutput {
+	return o
+}
+
+func (o Accessproxy6ApiGatewayQuicPtrOutput) Elem() Accessproxy6ApiGatewayQuicOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGatewayQuic) Accessproxy6ApiGatewayQuic {
+		if v != nil {
+			return *v
+		}
+		var ret Accessproxy6ApiGatewayQuic
+		return ret
+	}).(Accessproxy6ApiGatewayQuicOutput)
+}
+
+// ACK delay exponent (1 - 20, default = 3).
+func (o Accessproxy6ApiGatewayQuicPtrOutput) AckDelayExponent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGatewayQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.AckDelayExponent
+	}).(pulumi.IntPtrOutput)
+}
+
+// Active connection ID limit (1 - 8, default = 2).
+func (o Accessproxy6ApiGatewayQuicPtrOutput) ActiveConnectionIdLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGatewayQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveConnectionIdLimit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGatewayQuicPtrOutput) ActiveMigration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGatewayQuic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveMigration
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGatewayQuicPtrOutput) GreaseQuicBit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGatewayQuic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GreaseQuicBit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+func (o Accessproxy6ApiGatewayQuicPtrOutput) MaxAckDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGatewayQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxAckDelay
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+func (o Accessproxy6ApiGatewayQuicPtrOutput) MaxDatagramFrameSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGatewayQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxDatagramFrameSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+func (o Accessproxy6ApiGatewayQuicPtrOutput) MaxIdleTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGatewayQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxIdleTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+func (o Accessproxy6ApiGatewayQuicPtrOutput) MaxUdpPayloadSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Accessproxy6ApiGatewayQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxUdpPayloadSize
+	}).(pulumi.IntPtrOutput)
+}
+
 type Accessproxy6ApiGatewayRealserver struct {
 	// Type of address. Valid values: `ip`, `fqdn`.
 	AddrType *string `pulumi:"addrType"`
@@ -1277,6 +1916,8 @@ type Accessproxy6ApiGatewayRealserver struct {
 	Address *string `pulumi:"address"`
 	// Wildcard domain name of the real server.
 	Domain *string `pulumi:"domain"`
+	// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+	ExternalAuth *string `pulumi:"externalAuth"`
 	// Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 	HealthCheck *string `pulumi:"healthCheck"`
 	// Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
@@ -1301,6 +1942,10 @@ type Accessproxy6ApiGatewayRealserver struct {
 	SshHostKeys []Accessproxy6ApiGatewayRealserverSshHostKey `pulumi:"sshHostKeys"`
 	// Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 	Status *string `pulumi:"status"`
+	// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+	TranslateHost *string `pulumi:"translateHost"`
+	// Tunnel encryption. Valid values: `enable`, `disable`.
+	TunnelEncryption *string `pulumi:"tunnelEncryption"`
 	// TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
 	Type *string `pulumi:"type"`
 	// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
@@ -1325,6 +1970,8 @@ type Accessproxy6ApiGatewayRealserverArgs struct {
 	Address pulumi.StringPtrInput `pulumi:"address"`
 	// Wildcard domain name of the real server.
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+	ExternalAuth pulumi.StringPtrInput `pulumi:"externalAuth"`
 	// Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 	HealthCheck pulumi.StringPtrInput `pulumi:"healthCheck"`
 	// Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
@@ -1349,6 +1996,10 @@ type Accessproxy6ApiGatewayRealserverArgs struct {
 	SshHostKeys Accessproxy6ApiGatewayRealserverSshHostKeyArrayInput `pulumi:"sshHostKeys"`
 	// Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+	TranslateHost pulumi.StringPtrInput `pulumi:"translateHost"`
+	// Tunnel encryption. Valid values: `enable`, `disable`.
+	TunnelEncryption pulumi.StringPtrInput `pulumi:"tunnelEncryption"`
 	// TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
@@ -1421,6 +2072,11 @@ func (o Accessproxy6ApiGatewayRealserverOutput) Domain() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v Accessproxy6ApiGatewayRealserver) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
+// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGatewayRealserverOutput) ExternalAuth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGatewayRealserver) *string { return v.ExternalAuth }).(pulumi.StringPtrOutput)
+}
+
 // Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 func (o Accessproxy6ApiGatewayRealserverOutput) HealthCheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGatewayRealserver) *string { return v.HealthCheck }).(pulumi.StringPtrOutput)
@@ -1481,6 +2137,16 @@ func (o Accessproxy6ApiGatewayRealserverOutput) SshHostKeys() Accessproxy6ApiGat
 // Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 func (o Accessproxy6ApiGatewayRealserverOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGatewayRealserver) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGatewayRealserverOutput) TranslateHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGatewayRealserver) *string { return v.TranslateHost }).(pulumi.StringPtrOutput)
+}
+
+// Tunnel encryption. Valid values: `enable`, `disable`.
+func (o Accessproxy6ApiGatewayRealserverOutput) TunnelEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Accessproxy6ApiGatewayRealserver) *string { return v.TunnelEncryption }).(pulumi.StringPtrOutput)
 }
 
 // TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
@@ -1728,6 +2394,10 @@ func (o Accessproxy6ApiGatewaySslCipherSuiteArrayOutput) Index(i pulumi.IntInput
 type AccessproxyApiGateway6 struct {
 	// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
 	Applications []AccessproxyApiGateway6Application `pulumi:"applications"`
+	// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+	H2Support *string `pulumi:"h2Support"`
+	// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+	H3Support *string `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 	HttpCookieAge *int `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -1748,6 +2418,8 @@ type AccessproxyApiGateway6 struct {
 	LdbMethod *string `pulumi:"ldbMethod"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
 	Persistence *string `pulumi:"persistence"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic *AccessproxyApiGateway6Quic `pulumi:"quic"`
 	// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers []AccessproxyApiGateway6Realserver `pulumi:"realservers"`
 	// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
@@ -1766,6 +2438,8 @@ type AccessproxyApiGateway6 struct {
 	SslMaxVersion *string `pulumi:"sslMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 	SslMinVersion *string `pulumi:"sslMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslRenegotiation *string `pulumi:"sslRenegotiation"`
 	// SSL-VPN web portal.
 	SslVpnWebPortal *string `pulumi:"sslVpnWebPortal"`
 	// URL pattern to match.
@@ -1790,6 +2464,10 @@ type AccessproxyApiGateway6Input interface {
 type AccessproxyApiGateway6Args struct {
 	// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
 	Applications AccessproxyApiGateway6ApplicationArrayInput `pulumi:"applications"`
+	// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+	H2Support pulumi.StringPtrInput `pulumi:"h2Support"`
+	// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+	H3Support pulumi.StringPtrInput `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 	HttpCookieAge pulumi.IntPtrInput `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -1810,6 +2488,8 @@ type AccessproxyApiGateway6Args struct {
 	LdbMethod pulumi.StringPtrInput `pulumi:"ldbMethod"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
 	Persistence pulumi.StringPtrInput `pulumi:"persistence"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic AccessproxyApiGateway6QuicPtrInput `pulumi:"quic"`
 	// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers AccessproxyApiGateway6RealserverArrayInput `pulumi:"realservers"`
 	// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
@@ -1828,6 +2508,8 @@ type AccessproxyApiGateway6Args struct {
 	SslMaxVersion pulumi.StringPtrInput `pulumi:"sslMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 	SslMinVersion pulumi.StringPtrInput `pulumi:"sslMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslRenegotiation pulumi.StringPtrInput `pulumi:"sslRenegotiation"`
 	// SSL-VPN web portal.
 	SslVpnWebPortal pulumi.StringPtrInput `pulumi:"sslVpnWebPortal"`
 	// URL pattern to match.
@@ -1894,6 +2576,16 @@ func (o AccessproxyApiGateway6Output) Applications() AccessproxyApiGateway6Appli
 	return o.ApplyT(func(v AccessproxyApiGateway6) []AccessproxyApiGateway6Application { return v.Applications }).(AccessproxyApiGateway6ApplicationArrayOutput)
 }
 
+// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+func (o AccessproxyApiGateway6Output) H2Support() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.H2Support }).(pulumi.StringPtrOutput)
+}
+
+// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+func (o AccessproxyApiGateway6Output) H3Support() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.H3Support }).(pulumi.StringPtrOutput)
+}
+
 // Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 func (o AccessproxyApiGateway6Output) HttpCookieAge() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *int { return v.HttpCookieAge }).(pulumi.IntPtrOutput)
@@ -1944,6 +2636,11 @@ func (o AccessproxyApiGateway6Output) Persistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.Persistence }).(pulumi.StringPtrOutput)
 }
 
+// QUIC setting. The structure of `quic` block is documented below.
+func (o AccessproxyApiGateway6Output) Quic() AccessproxyApiGateway6QuicPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6) *AccessproxyApiGateway6Quic { return v.Quic }).(AccessproxyApiGateway6QuicPtrOutput)
+}
+
 // Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 func (o AccessproxyApiGateway6Output) Realservers() AccessproxyApiGateway6RealserverArrayOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) []AccessproxyApiGateway6Realserver { return v.Realservers }).(AccessproxyApiGateway6RealserverArrayOutput)
@@ -1987,6 +2684,11 @@ func (o AccessproxyApiGateway6Output) SslMaxVersion() pulumi.StringPtrOutput {
 // Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 func (o AccessproxyApiGateway6Output) SslMinVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.SslMinVersion }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+func (o AccessproxyApiGateway6Output) SslRenegotiation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.SslRenegotiation }).(pulumi.StringPtrOutput)
 }
 
 // SSL-VPN web portal.
@@ -2126,6 +2828,276 @@ func (o AccessproxyApiGateway6ApplicationArrayOutput) Index(i pulumi.IntInput) A
 	}).(AccessproxyApiGateway6ApplicationOutput)
 }
 
+type AccessproxyApiGateway6Quic struct {
+	// ACK delay exponent (1 - 20, default = 3).
+	AckDelayExponent *int `pulumi:"ackDelayExponent"`
+	// Active connection ID limit (1 - 8, default = 2).
+	ActiveConnectionIdLimit *int `pulumi:"activeConnectionIdLimit"`
+	// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+	ActiveMigration *string `pulumi:"activeMigration"`
+	// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+	GreaseQuicBit *string `pulumi:"greaseQuicBit"`
+	// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+	MaxAckDelay *int `pulumi:"maxAckDelay"`
+	// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+	MaxDatagramFrameSize *int `pulumi:"maxDatagramFrameSize"`
+	// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+	MaxIdleTimeout *int `pulumi:"maxIdleTimeout"`
+	// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+	MaxUdpPayloadSize *int `pulumi:"maxUdpPayloadSize"`
+}
+
+// AccessproxyApiGateway6QuicInput is an input type that accepts AccessproxyApiGateway6QuicArgs and AccessproxyApiGateway6QuicOutput values.
+// You can construct a concrete instance of `AccessproxyApiGateway6QuicInput` via:
+//
+//	AccessproxyApiGateway6QuicArgs{...}
+type AccessproxyApiGateway6QuicInput interface {
+	pulumi.Input
+
+	ToAccessproxyApiGateway6QuicOutput() AccessproxyApiGateway6QuicOutput
+	ToAccessproxyApiGateway6QuicOutputWithContext(context.Context) AccessproxyApiGateway6QuicOutput
+}
+
+type AccessproxyApiGateway6QuicArgs struct {
+	// ACK delay exponent (1 - 20, default = 3).
+	AckDelayExponent pulumi.IntPtrInput `pulumi:"ackDelayExponent"`
+	// Active connection ID limit (1 - 8, default = 2).
+	ActiveConnectionIdLimit pulumi.IntPtrInput `pulumi:"activeConnectionIdLimit"`
+	// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+	ActiveMigration pulumi.StringPtrInput `pulumi:"activeMigration"`
+	// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+	GreaseQuicBit pulumi.StringPtrInput `pulumi:"greaseQuicBit"`
+	// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+	MaxAckDelay pulumi.IntPtrInput `pulumi:"maxAckDelay"`
+	// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+	MaxDatagramFrameSize pulumi.IntPtrInput `pulumi:"maxDatagramFrameSize"`
+	// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+	MaxIdleTimeout pulumi.IntPtrInput `pulumi:"maxIdleTimeout"`
+	// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+	MaxUdpPayloadSize pulumi.IntPtrInput `pulumi:"maxUdpPayloadSize"`
+}
+
+func (AccessproxyApiGateway6QuicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessproxyApiGateway6Quic)(nil)).Elem()
+}
+
+func (i AccessproxyApiGateway6QuicArgs) ToAccessproxyApiGateway6QuicOutput() AccessproxyApiGateway6QuicOutput {
+	return i.ToAccessproxyApiGateway6QuicOutputWithContext(context.Background())
+}
+
+func (i AccessproxyApiGateway6QuicArgs) ToAccessproxyApiGateway6QuicOutputWithContext(ctx context.Context) AccessproxyApiGateway6QuicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessproxyApiGateway6QuicOutput)
+}
+
+func (i AccessproxyApiGateway6QuicArgs) ToAccessproxyApiGateway6QuicPtrOutput() AccessproxyApiGateway6QuicPtrOutput {
+	return i.ToAccessproxyApiGateway6QuicPtrOutputWithContext(context.Background())
+}
+
+func (i AccessproxyApiGateway6QuicArgs) ToAccessproxyApiGateway6QuicPtrOutputWithContext(ctx context.Context) AccessproxyApiGateway6QuicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessproxyApiGateway6QuicOutput).ToAccessproxyApiGateway6QuicPtrOutputWithContext(ctx)
+}
+
+// AccessproxyApiGateway6QuicPtrInput is an input type that accepts AccessproxyApiGateway6QuicArgs, AccessproxyApiGateway6QuicPtr and AccessproxyApiGateway6QuicPtrOutput values.
+// You can construct a concrete instance of `AccessproxyApiGateway6QuicPtrInput` via:
+//
+//	        AccessproxyApiGateway6QuicArgs{...}
+//
+//	or:
+//
+//	        nil
+type AccessproxyApiGateway6QuicPtrInput interface {
+	pulumi.Input
+
+	ToAccessproxyApiGateway6QuicPtrOutput() AccessproxyApiGateway6QuicPtrOutput
+	ToAccessproxyApiGateway6QuicPtrOutputWithContext(context.Context) AccessproxyApiGateway6QuicPtrOutput
+}
+
+type accessproxyApiGateway6QuicPtrType AccessproxyApiGateway6QuicArgs
+
+func AccessproxyApiGateway6QuicPtr(v *AccessproxyApiGateway6QuicArgs) AccessproxyApiGateway6QuicPtrInput {
+	return (*accessproxyApiGateway6QuicPtrType)(v)
+}
+
+func (*accessproxyApiGateway6QuicPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AccessproxyApiGateway6Quic)(nil)).Elem()
+}
+
+func (i *accessproxyApiGateway6QuicPtrType) ToAccessproxyApiGateway6QuicPtrOutput() AccessproxyApiGateway6QuicPtrOutput {
+	return i.ToAccessproxyApiGateway6QuicPtrOutputWithContext(context.Background())
+}
+
+func (i *accessproxyApiGateway6QuicPtrType) ToAccessproxyApiGateway6QuicPtrOutputWithContext(ctx context.Context) AccessproxyApiGateway6QuicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessproxyApiGateway6QuicPtrOutput)
+}
+
+type AccessproxyApiGateway6QuicOutput struct{ *pulumi.OutputState }
+
+func (AccessproxyApiGateway6QuicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessproxyApiGateway6Quic)(nil)).Elem()
+}
+
+func (o AccessproxyApiGateway6QuicOutput) ToAccessproxyApiGateway6QuicOutput() AccessproxyApiGateway6QuicOutput {
+	return o
+}
+
+func (o AccessproxyApiGateway6QuicOutput) ToAccessproxyApiGateway6QuicOutputWithContext(ctx context.Context) AccessproxyApiGateway6QuicOutput {
+	return o
+}
+
+func (o AccessproxyApiGateway6QuicOutput) ToAccessproxyApiGateway6QuicPtrOutput() AccessproxyApiGateway6QuicPtrOutput {
+	return o.ToAccessproxyApiGateway6QuicPtrOutputWithContext(context.Background())
+}
+
+func (o AccessproxyApiGateway6QuicOutput) ToAccessproxyApiGateway6QuicPtrOutputWithContext(ctx context.Context) AccessproxyApiGateway6QuicPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AccessproxyApiGateway6Quic) *AccessproxyApiGateway6Quic {
+		return &v
+	}).(AccessproxyApiGateway6QuicPtrOutput)
+}
+
+// ACK delay exponent (1 - 20, default = 3).
+func (o AccessproxyApiGateway6QuicOutput) AckDelayExponent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6Quic) *int { return v.AckDelayExponent }).(pulumi.IntPtrOutput)
+}
+
+// Active connection ID limit (1 - 8, default = 2).
+func (o AccessproxyApiGateway6QuicOutput) ActiveConnectionIdLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6Quic) *int { return v.ActiveConnectionIdLimit }).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+func (o AccessproxyApiGateway6QuicOutput) ActiveMigration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6Quic) *string { return v.ActiveMigration }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+func (o AccessproxyApiGateway6QuicOutput) GreaseQuicBit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6Quic) *string { return v.GreaseQuicBit }).(pulumi.StringPtrOutput)
+}
+
+// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+func (o AccessproxyApiGateway6QuicOutput) MaxAckDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6Quic) *int { return v.MaxAckDelay }).(pulumi.IntPtrOutput)
+}
+
+// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+func (o AccessproxyApiGateway6QuicOutput) MaxDatagramFrameSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6Quic) *int { return v.MaxDatagramFrameSize }).(pulumi.IntPtrOutput)
+}
+
+// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+func (o AccessproxyApiGateway6QuicOutput) MaxIdleTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6Quic) *int { return v.MaxIdleTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+func (o AccessproxyApiGateway6QuicOutput) MaxUdpPayloadSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6Quic) *int { return v.MaxUdpPayloadSize }).(pulumi.IntPtrOutput)
+}
+
+type AccessproxyApiGateway6QuicPtrOutput struct{ *pulumi.OutputState }
+
+func (AccessproxyApiGateway6QuicPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AccessproxyApiGateway6Quic)(nil)).Elem()
+}
+
+func (o AccessproxyApiGateway6QuicPtrOutput) ToAccessproxyApiGateway6QuicPtrOutput() AccessproxyApiGateway6QuicPtrOutput {
+	return o
+}
+
+func (o AccessproxyApiGateway6QuicPtrOutput) ToAccessproxyApiGateway6QuicPtrOutputWithContext(ctx context.Context) AccessproxyApiGateway6QuicPtrOutput {
+	return o
+}
+
+func (o AccessproxyApiGateway6QuicPtrOutput) Elem() AccessproxyApiGateway6QuicOutput {
+	return o.ApplyT(func(v *AccessproxyApiGateway6Quic) AccessproxyApiGateway6Quic {
+		if v != nil {
+			return *v
+		}
+		var ret AccessproxyApiGateway6Quic
+		return ret
+	}).(AccessproxyApiGateway6QuicOutput)
+}
+
+// ACK delay exponent (1 - 20, default = 3).
+func (o AccessproxyApiGateway6QuicPtrOutput) AckDelayExponent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGateway6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.AckDelayExponent
+	}).(pulumi.IntPtrOutput)
+}
+
+// Active connection ID limit (1 - 8, default = 2).
+func (o AccessproxyApiGateway6QuicPtrOutput) ActiveConnectionIdLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGateway6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveConnectionIdLimit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+func (o AccessproxyApiGateway6QuicPtrOutput) ActiveMigration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGateway6Quic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveMigration
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+func (o AccessproxyApiGateway6QuicPtrOutput) GreaseQuicBit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGateway6Quic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GreaseQuicBit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+func (o AccessproxyApiGateway6QuicPtrOutput) MaxAckDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGateway6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxAckDelay
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+func (o AccessproxyApiGateway6QuicPtrOutput) MaxDatagramFrameSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGateway6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxDatagramFrameSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+func (o AccessproxyApiGateway6QuicPtrOutput) MaxIdleTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGateway6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxIdleTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+func (o AccessproxyApiGateway6QuicPtrOutput) MaxUdpPayloadSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGateway6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxUdpPayloadSize
+	}).(pulumi.IntPtrOutput)
+}
+
 type AccessproxyApiGateway6Realserver struct {
 	// Type of address. Valid values: `ip`, `fqdn`.
 	AddrType *string `pulumi:"addrType"`
@@ -2133,6 +3105,8 @@ type AccessproxyApiGateway6Realserver struct {
 	Address *string `pulumi:"address"`
 	// Wildcard domain name of the real server.
 	Domain *string `pulumi:"domain"`
+	// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+	ExternalAuth *string `pulumi:"externalAuth"`
 	// Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 	HealthCheck *string `pulumi:"healthCheck"`
 	// Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
@@ -2157,6 +3131,10 @@ type AccessproxyApiGateway6Realserver struct {
 	SshHostKeys []AccessproxyApiGateway6RealserverSshHostKey `pulumi:"sshHostKeys"`
 	// Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 	Status *string `pulumi:"status"`
+	// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+	TranslateHost *string `pulumi:"translateHost"`
+	// Tunnel encryption. Valid values: `enable`, `disable`.
+	TunnelEncryption *string `pulumi:"tunnelEncryption"`
 	// TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
 	Type *string `pulumi:"type"`
 	// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
@@ -2181,6 +3159,8 @@ type AccessproxyApiGateway6RealserverArgs struct {
 	Address pulumi.StringPtrInput `pulumi:"address"`
 	// Wildcard domain name of the real server.
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+	ExternalAuth pulumi.StringPtrInput `pulumi:"externalAuth"`
 	// Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 	HealthCheck pulumi.StringPtrInput `pulumi:"healthCheck"`
 	// Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
@@ -2205,6 +3185,10 @@ type AccessproxyApiGateway6RealserverArgs struct {
 	SshHostKeys AccessproxyApiGateway6RealserverSshHostKeyArrayInput `pulumi:"sshHostKeys"`
 	// Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+	TranslateHost pulumi.StringPtrInput `pulumi:"translateHost"`
+	// Tunnel encryption. Valid values: `enable`, `disable`.
+	TunnelEncryption pulumi.StringPtrInput `pulumi:"tunnelEncryption"`
 	// TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
@@ -2277,6 +3261,11 @@ func (o AccessproxyApiGateway6RealserverOutput) Domain() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v AccessproxyApiGateway6Realserver) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
+// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+func (o AccessproxyApiGateway6RealserverOutput) ExternalAuth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6Realserver) *string { return v.ExternalAuth }).(pulumi.StringPtrOutput)
+}
+
 // Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 func (o AccessproxyApiGateway6RealserverOutput) HealthCheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6Realserver) *string { return v.HealthCheck }).(pulumi.StringPtrOutput)
@@ -2337,6 +3326,16 @@ func (o AccessproxyApiGateway6RealserverOutput) SshHostKeys() AccessproxyApiGate
 // Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 func (o AccessproxyApiGateway6RealserverOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6Realserver) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+func (o AccessproxyApiGateway6RealserverOutput) TranslateHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6Realserver) *string { return v.TranslateHost }).(pulumi.StringPtrOutput)
+}
+
+// Tunnel encryption. Valid values: `enable`, `disable`.
+func (o AccessproxyApiGateway6RealserverOutput) TunnelEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway6Realserver) *string { return v.TunnelEncryption }).(pulumi.StringPtrOutput)
 }
 
 // TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
@@ -2584,6 +3583,10 @@ func (o AccessproxyApiGateway6SslCipherSuiteArrayOutput) Index(i pulumi.IntInput
 type AccessproxyApiGateway struct {
 	// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
 	Applications []AccessproxyApiGatewayApplication `pulumi:"applications"`
+	// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+	H2Support *string `pulumi:"h2Support"`
+	// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+	H3Support *string `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 	HttpCookieAge *int `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -2604,6 +3607,8 @@ type AccessproxyApiGateway struct {
 	LdbMethod *string `pulumi:"ldbMethod"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
 	Persistence *string `pulumi:"persistence"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic *AccessproxyApiGatewayQuic `pulumi:"quic"`
 	// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers []AccessproxyApiGatewayRealserver `pulumi:"realservers"`
 	// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
@@ -2622,6 +3627,8 @@ type AccessproxyApiGateway struct {
 	SslMaxVersion *string `pulumi:"sslMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 	SslMinVersion *string `pulumi:"sslMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslRenegotiation *string `pulumi:"sslRenegotiation"`
 	// SSL-VPN web portal.
 	SslVpnWebPortal *string `pulumi:"sslVpnWebPortal"`
 	// URL pattern to match.
@@ -2646,6 +3653,10 @@ type AccessproxyApiGatewayInput interface {
 type AccessproxyApiGatewayArgs struct {
 	// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
 	Applications AccessproxyApiGatewayApplicationArrayInput `pulumi:"applications"`
+	// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+	H2Support pulumi.StringPtrInput `pulumi:"h2Support"`
+	// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+	H3Support pulumi.StringPtrInput `pulumi:"h3Support"`
 	// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 	HttpCookieAge pulumi.IntPtrInput `pulumi:"httpCookieAge"`
 	// Domain that HTTP cookie persistence should apply to.
@@ -2666,6 +3677,8 @@ type AccessproxyApiGatewayArgs struct {
 	LdbMethod pulumi.StringPtrInput `pulumi:"ldbMethod"`
 	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
 	Persistence pulumi.StringPtrInput `pulumi:"persistence"`
+	// QUIC setting. The structure of `quic` block is documented below.
+	Quic AccessproxyApiGatewayQuicPtrInput `pulumi:"quic"`
 	// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 	Realservers AccessproxyApiGatewayRealserverArrayInput `pulumi:"realservers"`
 	// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
@@ -2684,6 +3697,8 @@ type AccessproxyApiGatewayArgs struct {
 	SslMaxVersion pulumi.StringPtrInput `pulumi:"sslMaxVersion"`
 	// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 	SslMinVersion pulumi.StringPtrInput `pulumi:"sslMinVersion"`
+	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+	SslRenegotiation pulumi.StringPtrInput `pulumi:"sslRenegotiation"`
 	// SSL-VPN web portal.
 	SslVpnWebPortal pulumi.StringPtrInput `pulumi:"sslVpnWebPortal"`
 	// URL pattern to match.
@@ -2750,6 +3765,16 @@ func (o AccessproxyApiGatewayOutput) Applications() AccessproxyApiGatewayApplica
 	return o.ApplyT(func(v AccessproxyApiGateway) []AccessproxyApiGatewayApplication { return v.Applications }).(AccessproxyApiGatewayApplicationArrayOutput)
 }
 
+// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+func (o AccessproxyApiGatewayOutput) H2Support() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway) *string { return v.H2Support }).(pulumi.StringPtrOutput)
+}
+
+// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+func (o AccessproxyApiGatewayOutput) H3Support() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway) *string { return v.H3Support }).(pulumi.StringPtrOutput)
+}
+
 // Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 func (o AccessproxyApiGatewayOutput) HttpCookieAge() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway) *int { return v.HttpCookieAge }).(pulumi.IntPtrOutput)
@@ -2800,6 +3825,11 @@ func (o AccessproxyApiGatewayOutput) Persistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway) *string { return v.Persistence }).(pulumi.StringPtrOutput)
 }
 
+// QUIC setting. The structure of `quic` block is documented below.
+func (o AccessproxyApiGatewayOutput) Quic() AccessproxyApiGatewayQuicPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway) *AccessproxyApiGatewayQuic { return v.Quic }).(AccessproxyApiGatewayQuicPtrOutput)
+}
+
 // Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 func (o AccessproxyApiGatewayOutput) Realservers() AccessproxyApiGatewayRealserverArrayOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway) []AccessproxyApiGatewayRealserver { return v.Realservers }).(AccessproxyApiGatewayRealserverArrayOutput)
@@ -2843,6 +3873,11 @@ func (o AccessproxyApiGatewayOutput) SslMaxVersion() pulumi.StringPtrOutput {
 // Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 func (o AccessproxyApiGatewayOutput) SslMinVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway) *string { return v.SslMinVersion }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+func (o AccessproxyApiGatewayOutput) SslRenegotiation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGateway) *string { return v.SslRenegotiation }).(pulumi.StringPtrOutput)
 }
 
 // SSL-VPN web portal.
@@ -2982,6 +4017,276 @@ func (o AccessproxyApiGatewayApplicationArrayOutput) Index(i pulumi.IntInput) Ac
 	}).(AccessproxyApiGatewayApplicationOutput)
 }
 
+type AccessproxyApiGatewayQuic struct {
+	// ACK delay exponent (1 - 20, default = 3).
+	AckDelayExponent *int `pulumi:"ackDelayExponent"`
+	// Active connection ID limit (1 - 8, default = 2).
+	ActiveConnectionIdLimit *int `pulumi:"activeConnectionIdLimit"`
+	// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+	ActiveMigration *string `pulumi:"activeMigration"`
+	// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+	GreaseQuicBit *string `pulumi:"greaseQuicBit"`
+	// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+	MaxAckDelay *int `pulumi:"maxAckDelay"`
+	// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+	MaxDatagramFrameSize *int `pulumi:"maxDatagramFrameSize"`
+	// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+	MaxIdleTimeout *int `pulumi:"maxIdleTimeout"`
+	// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+	MaxUdpPayloadSize *int `pulumi:"maxUdpPayloadSize"`
+}
+
+// AccessproxyApiGatewayQuicInput is an input type that accepts AccessproxyApiGatewayQuicArgs and AccessproxyApiGatewayQuicOutput values.
+// You can construct a concrete instance of `AccessproxyApiGatewayQuicInput` via:
+//
+//	AccessproxyApiGatewayQuicArgs{...}
+type AccessproxyApiGatewayQuicInput interface {
+	pulumi.Input
+
+	ToAccessproxyApiGatewayQuicOutput() AccessproxyApiGatewayQuicOutput
+	ToAccessproxyApiGatewayQuicOutputWithContext(context.Context) AccessproxyApiGatewayQuicOutput
+}
+
+type AccessproxyApiGatewayQuicArgs struct {
+	// ACK delay exponent (1 - 20, default = 3).
+	AckDelayExponent pulumi.IntPtrInput `pulumi:"ackDelayExponent"`
+	// Active connection ID limit (1 - 8, default = 2).
+	ActiveConnectionIdLimit pulumi.IntPtrInput `pulumi:"activeConnectionIdLimit"`
+	// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+	ActiveMigration pulumi.StringPtrInput `pulumi:"activeMigration"`
+	// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+	GreaseQuicBit pulumi.StringPtrInput `pulumi:"greaseQuicBit"`
+	// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+	MaxAckDelay pulumi.IntPtrInput `pulumi:"maxAckDelay"`
+	// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+	MaxDatagramFrameSize pulumi.IntPtrInput `pulumi:"maxDatagramFrameSize"`
+	// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+	MaxIdleTimeout pulumi.IntPtrInput `pulumi:"maxIdleTimeout"`
+	// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+	MaxUdpPayloadSize pulumi.IntPtrInput `pulumi:"maxUdpPayloadSize"`
+}
+
+func (AccessproxyApiGatewayQuicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessproxyApiGatewayQuic)(nil)).Elem()
+}
+
+func (i AccessproxyApiGatewayQuicArgs) ToAccessproxyApiGatewayQuicOutput() AccessproxyApiGatewayQuicOutput {
+	return i.ToAccessproxyApiGatewayQuicOutputWithContext(context.Background())
+}
+
+func (i AccessproxyApiGatewayQuicArgs) ToAccessproxyApiGatewayQuicOutputWithContext(ctx context.Context) AccessproxyApiGatewayQuicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessproxyApiGatewayQuicOutput)
+}
+
+func (i AccessproxyApiGatewayQuicArgs) ToAccessproxyApiGatewayQuicPtrOutput() AccessproxyApiGatewayQuicPtrOutput {
+	return i.ToAccessproxyApiGatewayQuicPtrOutputWithContext(context.Background())
+}
+
+func (i AccessproxyApiGatewayQuicArgs) ToAccessproxyApiGatewayQuicPtrOutputWithContext(ctx context.Context) AccessproxyApiGatewayQuicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessproxyApiGatewayQuicOutput).ToAccessproxyApiGatewayQuicPtrOutputWithContext(ctx)
+}
+
+// AccessproxyApiGatewayQuicPtrInput is an input type that accepts AccessproxyApiGatewayQuicArgs, AccessproxyApiGatewayQuicPtr and AccessproxyApiGatewayQuicPtrOutput values.
+// You can construct a concrete instance of `AccessproxyApiGatewayQuicPtrInput` via:
+//
+//	        AccessproxyApiGatewayQuicArgs{...}
+//
+//	or:
+//
+//	        nil
+type AccessproxyApiGatewayQuicPtrInput interface {
+	pulumi.Input
+
+	ToAccessproxyApiGatewayQuicPtrOutput() AccessproxyApiGatewayQuicPtrOutput
+	ToAccessproxyApiGatewayQuicPtrOutputWithContext(context.Context) AccessproxyApiGatewayQuicPtrOutput
+}
+
+type accessproxyApiGatewayQuicPtrType AccessproxyApiGatewayQuicArgs
+
+func AccessproxyApiGatewayQuicPtr(v *AccessproxyApiGatewayQuicArgs) AccessproxyApiGatewayQuicPtrInput {
+	return (*accessproxyApiGatewayQuicPtrType)(v)
+}
+
+func (*accessproxyApiGatewayQuicPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AccessproxyApiGatewayQuic)(nil)).Elem()
+}
+
+func (i *accessproxyApiGatewayQuicPtrType) ToAccessproxyApiGatewayQuicPtrOutput() AccessproxyApiGatewayQuicPtrOutput {
+	return i.ToAccessproxyApiGatewayQuicPtrOutputWithContext(context.Background())
+}
+
+func (i *accessproxyApiGatewayQuicPtrType) ToAccessproxyApiGatewayQuicPtrOutputWithContext(ctx context.Context) AccessproxyApiGatewayQuicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessproxyApiGatewayQuicPtrOutput)
+}
+
+type AccessproxyApiGatewayQuicOutput struct{ *pulumi.OutputState }
+
+func (AccessproxyApiGatewayQuicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessproxyApiGatewayQuic)(nil)).Elem()
+}
+
+func (o AccessproxyApiGatewayQuicOutput) ToAccessproxyApiGatewayQuicOutput() AccessproxyApiGatewayQuicOutput {
+	return o
+}
+
+func (o AccessproxyApiGatewayQuicOutput) ToAccessproxyApiGatewayQuicOutputWithContext(ctx context.Context) AccessproxyApiGatewayQuicOutput {
+	return o
+}
+
+func (o AccessproxyApiGatewayQuicOutput) ToAccessproxyApiGatewayQuicPtrOutput() AccessproxyApiGatewayQuicPtrOutput {
+	return o.ToAccessproxyApiGatewayQuicPtrOutputWithContext(context.Background())
+}
+
+func (o AccessproxyApiGatewayQuicOutput) ToAccessproxyApiGatewayQuicPtrOutputWithContext(ctx context.Context) AccessproxyApiGatewayQuicPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AccessproxyApiGatewayQuic) *AccessproxyApiGatewayQuic {
+		return &v
+	}).(AccessproxyApiGatewayQuicPtrOutput)
+}
+
+// ACK delay exponent (1 - 20, default = 3).
+func (o AccessproxyApiGatewayQuicOutput) AckDelayExponent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGatewayQuic) *int { return v.AckDelayExponent }).(pulumi.IntPtrOutput)
+}
+
+// Active connection ID limit (1 - 8, default = 2).
+func (o AccessproxyApiGatewayQuicOutput) ActiveConnectionIdLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGatewayQuic) *int { return v.ActiveConnectionIdLimit }).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+func (o AccessproxyApiGatewayQuicOutput) ActiveMigration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGatewayQuic) *string { return v.ActiveMigration }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+func (o AccessproxyApiGatewayQuicOutput) GreaseQuicBit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGatewayQuic) *string { return v.GreaseQuicBit }).(pulumi.StringPtrOutput)
+}
+
+// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+func (o AccessproxyApiGatewayQuicOutput) MaxAckDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGatewayQuic) *int { return v.MaxAckDelay }).(pulumi.IntPtrOutput)
+}
+
+// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+func (o AccessproxyApiGatewayQuicOutput) MaxDatagramFrameSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGatewayQuic) *int { return v.MaxDatagramFrameSize }).(pulumi.IntPtrOutput)
+}
+
+// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+func (o AccessproxyApiGatewayQuicOutput) MaxIdleTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGatewayQuic) *int { return v.MaxIdleTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+func (o AccessproxyApiGatewayQuicOutput) MaxUdpPayloadSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGatewayQuic) *int { return v.MaxUdpPayloadSize }).(pulumi.IntPtrOutput)
+}
+
+type AccessproxyApiGatewayQuicPtrOutput struct{ *pulumi.OutputState }
+
+func (AccessproxyApiGatewayQuicPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AccessproxyApiGatewayQuic)(nil)).Elem()
+}
+
+func (o AccessproxyApiGatewayQuicPtrOutput) ToAccessproxyApiGatewayQuicPtrOutput() AccessproxyApiGatewayQuicPtrOutput {
+	return o
+}
+
+func (o AccessproxyApiGatewayQuicPtrOutput) ToAccessproxyApiGatewayQuicPtrOutputWithContext(ctx context.Context) AccessproxyApiGatewayQuicPtrOutput {
+	return o
+}
+
+func (o AccessproxyApiGatewayQuicPtrOutput) Elem() AccessproxyApiGatewayQuicOutput {
+	return o.ApplyT(func(v *AccessproxyApiGatewayQuic) AccessproxyApiGatewayQuic {
+		if v != nil {
+			return *v
+		}
+		var ret AccessproxyApiGatewayQuic
+		return ret
+	}).(AccessproxyApiGatewayQuicOutput)
+}
+
+// ACK delay exponent (1 - 20, default = 3).
+func (o AccessproxyApiGatewayQuicPtrOutput) AckDelayExponent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGatewayQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.AckDelayExponent
+	}).(pulumi.IntPtrOutput)
+}
+
+// Active connection ID limit (1 - 8, default = 2).
+func (o AccessproxyApiGatewayQuicPtrOutput) ActiveConnectionIdLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGatewayQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveConnectionIdLimit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+func (o AccessproxyApiGatewayQuicPtrOutput) ActiveMigration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGatewayQuic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveMigration
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+func (o AccessproxyApiGatewayQuicPtrOutput) GreaseQuicBit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGatewayQuic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GreaseQuicBit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+func (o AccessproxyApiGatewayQuicPtrOutput) MaxAckDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGatewayQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxAckDelay
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+func (o AccessproxyApiGatewayQuicPtrOutput) MaxDatagramFrameSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGatewayQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxDatagramFrameSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+func (o AccessproxyApiGatewayQuicPtrOutput) MaxIdleTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGatewayQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxIdleTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+func (o AccessproxyApiGatewayQuicPtrOutput) MaxUdpPayloadSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AccessproxyApiGatewayQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxUdpPayloadSize
+	}).(pulumi.IntPtrOutput)
+}
+
 type AccessproxyApiGatewayRealserver struct {
 	// Type of address. Valid values: `ip`, `fqdn`.
 	AddrType *string `pulumi:"addrType"`
@@ -2989,6 +4294,8 @@ type AccessproxyApiGatewayRealserver struct {
 	Address *string `pulumi:"address"`
 	// Wildcard domain name of the real server.
 	Domain *string `pulumi:"domain"`
+	// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+	ExternalAuth *string `pulumi:"externalAuth"`
 	// Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 	HealthCheck *string `pulumi:"healthCheck"`
 	// Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
@@ -3013,6 +4320,10 @@ type AccessproxyApiGatewayRealserver struct {
 	SshHostKeys []AccessproxyApiGatewayRealserverSshHostKey `pulumi:"sshHostKeys"`
 	// Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 	Status *string `pulumi:"status"`
+	// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+	TranslateHost *string `pulumi:"translateHost"`
+	// Tunnel encryption. Valid values: `enable`, `disable`.
+	TunnelEncryption *string `pulumi:"tunnelEncryption"`
 	// TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
 	Type *string `pulumi:"type"`
 	// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
@@ -3037,6 +4348,8 @@ type AccessproxyApiGatewayRealserverArgs struct {
 	Address pulumi.StringPtrInput `pulumi:"address"`
 	// Wildcard domain name of the real server.
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+	ExternalAuth pulumi.StringPtrInput `pulumi:"externalAuth"`
 	// Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 	HealthCheck pulumi.StringPtrInput `pulumi:"healthCheck"`
 	// Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
@@ -3061,6 +4374,10 @@ type AccessproxyApiGatewayRealserverArgs struct {
 	SshHostKeys AccessproxyApiGatewayRealserverSshHostKeyArrayInput `pulumi:"sshHostKeys"`
 	// Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+	TranslateHost pulumi.StringPtrInput `pulumi:"translateHost"`
+	// Tunnel encryption. Valid values: `enable`, `disable`.
+	TunnelEncryption pulumi.StringPtrInput `pulumi:"tunnelEncryption"`
 	// TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
@@ -3133,6 +4450,11 @@ func (o AccessproxyApiGatewayRealserverOutput) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGatewayRealserver) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
+// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+func (o AccessproxyApiGatewayRealserverOutput) ExternalAuth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGatewayRealserver) *string { return v.ExternalAuth }).(pulumi.StringPtrOutput)
+}
+
 // Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 func (o AccessproxyApiGatewayRealserverOutput) HealthCheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGatewayRealserver) *string { return v.HealthCheck }).(pulumi.StringPtrOutput)
@@ -3193,6 +4515,16 @@ func (o AccessproxyApiGatewayRealserverOutput) SshHostKeys() AccessproxyApiGatew
 // Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 func (o AccessproxyApiGatewayRealserverOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGatewayRealserver) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+func (o AccessproxyApiGatewayRealserverOutput) TranslateHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGatewayRealserver) *string { return v.TranslateHost }).(pulumi.StringPtrOutput)
+}
+
+// Tunnel encryption. Valid values: `enable`, `disable`.
+func (o AccessproxyApiGatewayRealserverOutput) TunnelEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessproxyApiGatewayRealserver) *string { return v.TunnelEncryption }).(pulumi.StringPtrOutput)
 }
 
 // TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
@@ -4824,6 +6156,103 @@ func (o AddressTaggingTagArrayOutput) Index(i pulumi.IntInput) AddressTaggingTag
 	}).(AddressTaggingTagOutput)
 }
 
+type Addrgrp6ExcludeMember struct {
+	// Address6 name.
+	Name *string `pulumi:"name"`
+}
+
+// Addrgrp6ExcludeMemberInput is an input type that accepts Addrgrp6ExcludeMemberArgs and Addrgrp6ExcludeMemberOutput values.
+// You can construct a concrete instance of `Addrgrp6ExcludeMemberInput` via:
+//
+//	Addrgrp6ExcludeMemberArgs{...}
+type Addrgrp6ExcludeMemberInput interface {
+	pulumi.Input
+
+	ToAddrgrp6ExcludeMemberOutput() Addrgrp6ExcludeMemberOutput
+	ToAddrgrp6ExcludeMemberOutputWithContext(context.Context) Addrgrp6ExcludeMemberOutput
+}
+
+type Addrgrp6ExcludeMemberArgs struct {
+	// Address6 name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (Addrgrp6ExcludeMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Addrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (i Addrgrp6ExcludeMemberArgs) ToAddrgrp6ExcludeMemberOutput() Addrgrp6ExcludeMemberOutput {
+	return i.ToAddrgrp6ExcludeMemberOutputWithContext(context.Background())
+}
+
+func (i Addrgrp6ExcludeMemberArgs) ToAddrgrp6ExcludeMemberOutputWithContext(ctx context.Context) Addrgrp6ExcludeMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Addrgrp6ExcludeMemberOutput)
+}
+
+// Addrgrp6ExcludeMemberArrayInput is an input type that accepts Addrgrp6ExcludeMemberArray and Addrgrp6ExcludeMemberArrayOutput values.
+// You can construct a concrete instance of `Addrgrp6ExcludeMemberArrayInput` via:
+//
+//	Addrgrp6ExcludeMemberArray{ Addrgrp6ExcludeMemberArgs{...} }
+type Addrgrp6ExcludeMemberArrayInput interface {
+	pulumi.Input
+
+	ToAddrgrp6ExcludeMemberArrayOutput() Addrgrp6ExcludeMemberArrayOutput
+	ToAddrgrp6ExcludeMemberArrayOutputWithContext(context.Context) Addrgrp6ExcludeMemberArrayOutput
+}
+
+type Addrgrp6ExcludeMemberArray []Addrgrp6ExcludeMemberInput
+
+func (Addrgrp6ExcludeMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Addrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (i Addrgrp6ExcludeMemberArray) ToAddrgrp6ExcludeMemberArrayOutput() Addrgrp6ExcludeMemberArrayOutput {
+	return i.ToAddrgrp6ExcludeMemberArrayOutputWithContext(context.Background())
+}
+
+func (i Addrgrp6ExcludeMemberArray) ToAddrgrp6ExcludeMemberArrayOutputWithContext(ctx context.Context) Addrgrp6ExcludeMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Addrgrp6ExcludeMemberArrayOutput)
+}
+
+type Addrgrp6ExcludeMemberOutput struct{ *pulumi.OutputState }
+
+func (Addrgrp6ExcludeMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Addrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (o Addrgrp6ExcludeMemberOutput) ToAddrgrp6ExcludeMemberOutput() Addrgrp6ExcludeMemberOutput {
+	return o
+}
+
+func (o Addrgrp6ExcludeMemberOutput) ToAddrgrp6ExcludeMemberOutputWithContext(ctx context.Context) Addrgrp6ExcludeMemberOutput {
+	return o
+}
+
+// Address6 name.
+func (o Addrgrp6ExcludeMemberOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Addrgrp6ExcludeMember) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type Addrgrp6ExcludeMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (Addrgrp6ExcludeMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Addrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (o Addrgrp6ExcludeMemberArrayOutput) ToAddrgrp6ExcludeMemberArrayOutput() Addrgrp6ExcludeMemberArrayOutput {
+	return o
+}
+
+func (o Addrgrp6ExcludeMemberArrayOutput) ToAddrgrp6ExcludeMemberArrayOutputWithContext(ctx context.Context) Addrgrp6ExcludeMemberArrayOutput {
+	return o
+}
+
+func (o Addrgrp6ExcludeMemberArrayOutput) Index(i pulumi.IntInput) Addrgrp6ExcludeMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Addrgrp6ExcludeMember {
+		return vs[0].([]Addrgrp6ExcludeMember)[vs[1].(int)]
+	}).(Addrgrp6ExcludeMemberOutput)
+}
+
 type Addrgrp6Member struct {
 	// Address6/addrgrp6 name.
 	Name *string `pulumi:"name"`
@@ -6315,6 +7744,100 @@ func (o CentralsnatmapOrigAddrArrayOutput) Index(i pulumi.IntInput) Centralsnatm
 	}).(CentralsnatmapOrigAddrOutput)
 }
 
+type CentralsnatmapSortStatePolicyList struct {
+	Policyid *string `pulumi:"policyid"`
+}
+
+// CentralsnatmapSortStatePolicyListInput is an input type that accepts CentralsnatmapSortStatePolicyListArgs and CentralsnatmapSortStatePolicyListOutput values.
+// You can construct a concrete instance of `CentralsnatmapSortStatePolicyListInput` via:
+//
+//	CentralsnatmapSortStatePolicyListArgs{...}
+type CentralsnatmapSortStatePolicyListInput interface {
+	pulumi.Input
+
+	ToCentralsnatmapSortStatePolicyListOutput() CentralsnatmapSortStatePolicyListOutput
+	ToCentralsnatmapSortStatePolicyListOutputWithContext(context.Context) CentralsnatmapSortStatePolicyListOutput
+}
+
+type CentralsnatmapSortStatePolicyListArgs struct {
+	Policyid pulumi.StringPtrInput `pulumi:"policyid"`
+}
+
+func (CentralsnatmapSortStatePolicyListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CentralsnatmapSortStatePolicyList)(nil)).Elem()
+}
+
+func (i CentralsnatmapSortStatePolicyListArgs) ToCentralsnatmapSortStatePolicyListOutput() CentralsnatmapSortStatePolicyListOutput {
+	return i.ToCentralsnatmapSortStatePolicyListOutputWithContext(context.Background())
+}
+
+func (i CentralsnatmapSortStatePolicyListArgs) ToCentralsnatmapSortStatePolicyListOutputWithContext(ctx context.Context) CentralsnatmapSortStatePolicyListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CentralsnatmapSortStatePolicyListOutput)
+}
+
+// CentralsnatmapSortStatePolicyListArrayInput is an input type that accepts CentralsnatmapSortStatePolicyListArray and CentralsnatmapSortStatePolicyListArrayOutput values.
+// You can construct a concrete instance of `CentralsnatmapSortStatePolicyListArrayInput` via:
+//
+//	CentralsnatmapSortStatePolicyListArray{ CentralsnatmapSortStatePolicyListArgs{...} }
+type CentralsnatmapSortStatePolicyListArrayInput interface {
+	pulumi.Input
+
+	ToCentralsnatmapSortStatePolicyListArrayOutput() CentralsnatmapSortStatePolicyListArrayOutput
+	ToCentralsnatmapSortStatePolicyListArrayOutputWithContext(context.Context) CentralsnatmapSortStatePolicyListArrayOutput
+}
+
+type CentralsnatmapSortStatePolicyListArray []CentralsnatmapSortStatePolicyListInput
+
+func (CentralsnatmapSortStatePolicyListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CentralsnatmapSortStatePolicyList)(nil)).Elem()
+}
+
+func (i CentralsnatmapSortStatePolicyListArray) ToCentralsnatmapSortStatePolicyListArrayOutput() CentralsnatmapSortStatePolicyListArrayOutput {
+	return i.ToCentralsnatmapSortStatePolicyListArrayOutputWithContext(context.Background())
+}
+
+func (i CentralsnatmapSortStatePolicyListArray) ToCentralsnatmapSortStatePolicyListArrayOutputWithContext(ctx context.Context) CentralsnatmapSortStatePolicyListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CentralsnatmapSortStatePolicyListArrayOutput)
+}
+
+type CentralsnatmapSortStatePolicyListOutput struct{ *pulumi.OutputState }
+
+func (CentralsnatmapSortStatePolicyListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CentralsnatmapSortStatePolicyList)(nil)).Elem()
+}
+
+func (o CentralsnatmapSortStatePolicyListOutput) ToCentralsnatmapSortStatePolicyListOutput() CentralsnatmapSortStatePolicyListOutput {
+	return o
+}
+
+func (o CentralsnatmapSortStatePolicyListOutput) ToCentralsnatmapSortStatePolicyListOutputWithContext(ctx context.Context) CentralsnatmapSortStatePolicyListOutput {
+	return o
+}
+
+func (o CentralsnatmapSortStatePolicyListOutput) Policyid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CentralsnatmapSortStatePolicyList) *string { return v.Policyid }).(pulumi.StringPtrOutput)
+}
+
+type CentralsnatmapSortStatePolicyListArrayOutput struct{ *pulumi.OutputState }
+
+func (CentralsnatmapSortStatePolicyListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CentralsnatmapSortStatePolicyList)(nil)).Elem()
+}
+
+func (o CentralsnatmapSortStatePolicyListArrayOutput) ToCentralsnatmapSortStatePolicyListArrayOutput() CentralsnatmapSortStatePolicyListArrayOutput {
+	return o
+}
+
+func (o CentralsnatmapSortStatePolicyListArrayOutput) ToCentralsnatmapSortStatePolicyListArrayOutputWithContext(ctx context.Context) CentralsnatmapSortStatePolicyListArrayOutput {
+	return o
+}
+
+func (o CentralsnatmapSortStatePolicyListArrayOutput) Index(i pulumi.IntInput) CentralsnatmapSortStatePolicyListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CentralsnatmapSortStatePolicyList {
+		return vs[0].([]CentralsnatmapSortStatePolicyList)[vs[1].(int)]
+	}).(CentralsnatmapSortStatePolicyListOutput)
+}
+
 type CentralsnatmapSrcintf struct {
 	// Interface name.
 	Name *string `pulumi:"name"`
@@ -6621,9 +8144,9 @@ type DoSpolicy6Anomaly struct {
 	QuarantineLog *string `pulumi:"quarantineLog"`
 	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
 	Status *string `pulumi:"status"`
-	// Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 	Threshold *int `pulumi:"threshold"`
-	// Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+	// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 	Thresholddefault *int `pulumi:"thresholddefault"`
 }
 
@@ -6653,9 +8176,9 @@ type DoSpolicy6AnomalyArgs struct {
 	QuarantineLog pulumi.StringPtrInput `pulumi:"quarantineLog"`
 	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
-	// Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+	// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 	Thresholddefault pulumi.IntPtrInput `pulumi:"thresholddefault"`
 }
 
@@ -6745,12 +8268,12 @@ func (o DoSpolicy6AnomalyOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DoSpolicy6Anomaly) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 func (o DoSpolicy6AnomalyOutput) Threshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DoSpolicy6Anomaly) *int { return v.Threshold }).(pulumi.IntPtrOutput)
 }
 
-// Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 func (o DoSpolicy6AnomalyOutput) Thresholddefault() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DoSpolicy6Anomaly) *int { return v.Thresholddefault }).(pulumi.IntPtrOutput)
 }
@@ -7081,9 +8604,9 @@ type DoSpolicyAnomaly struct {
 	QuarantineLog *string `pulumi:"quarantineLog"`
 	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
 	Status *string `pulumi:"status"`
-	// Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 	Threshold *int `pulumi:"threshold"`
-	// Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+	// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 	Thresholddefault *int `pulumi:"thresholddefault"`
 }
 
@@ -7113,9 +8636,9 @@ type DoSpolicyAnomalyArgs struct {
 	QuarantineLog pulumi.StringPtrInput `pulumi:"quarantineLog"`
 	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
-	// Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+	// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 	Thresholddefault pulumi.IntPtrInput `pulumi:"thresholddefault"`
 }
 
@@ -7205,12 +8728,12 @@ func (o DoSpolicyAnomalyOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DoSpolicyAnomaly) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 func (o DoSpolicyAnomalyOutput) Threshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DoSpolicyAnomaly) *int { return v.Threshold }).(pulumi.IntPtrOutput)
 }
 
-// Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 func (o DoSpolicyAnomalyOutput) Thresholddefault() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DoSpolicyAnomaly) *int { return v.Thresholddefault }).(pulumi.IntPtrOutput)
 }
@@ -10436,6 +11959,103 @@ func (o InternetservicegroupMemberArrayOutput) Index(i pulumi.IntInput) Internet
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InternetservicegroupMember {
 		return vs[0].([]InternetservicegroupMember)[vs[1].(int)]
 	}).(InternetservicegroupMemberOutput)
+}
+
+type InternetservicesubappSubApp struct {
+	// Subapp ID.
+	Id *int `pulumi:"id"`
+}
+
+// InternetservicesubappSubAppInput is an input type that accepts InternetservicesubappSubAppArgs and InternetservicesubappSubAppOutput values.
+// You can construct a concrete instance of `InternetservicesubappSubAppInput` via:
+//
+//	InternetservicesubappSubAppArgs{...}
+type InternetservicesubappSubAppInput interface {
+	pulumi.Input
+
+	ToInternetservicesubappSubAppOutput() InternetservicesubappSubAppOutput
+	ToInternetservicesubappSubAppOutputWithContext(context.Context) InternetservicesubappSubAppOutput
+}
+
+type InternetservicesubappSubAppArgs struct {
+	// Subapp ID.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+}
+
+func (InternetservicesubappSubAppArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InternetservicesubappSubApp)(nil)).Elem()
+}
+
+func (i InternetservicesubappSubAppArgs) ToInternetservicesubappSubAppOutput() InternetservicesubappSubAppOutput {
+	return i.ToInternetservicesubappSubAppOutputWithContext(context.Background())
+}
+
+func (i InternetservicesubappSubAppArgs) ToInternetservicesubappSubAppOutputWithContext(ctx context.Context) InternetservicesubappSubAppOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InternetservicesubappSubAppOutput)
+}
+
+// InternetservicesubappSubAppArrayInput is an input type that accepts InternetservicesubappSubAppArray and InternetservicesubappSubAppArrayOutput values.
+// You can construct a concrete instance of `InternetservicesubappSubAppArrayInput` via:
+//
+//	InternetservicesubappSubAppArray{ InternetservicesubappSubAppArgs{...} }
+type InternetservicesubappSubAppArrayInput interface {
+	pulumi.Input
+
+	ToInternetservicesubappSubAppArrayOutput() InternetservicesubappSubAppArrayOutput
+	ToInternetservicesubappSubAppArrayOutputWithContext(context.Context) InternetservicesubappSubAppArrayOutput
+}
+
+type InternetservicesubappSubAppArray []InternetservicesubappSubAppInput
+
+func (InternetservicesubappSubAppArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InternetservicesubappSubApp)(nil)).Elem()
+}
+
+func (i InternetservicesubappSubAppArray) ToInternetservicesubappSubAppArrayOutput() InternetservicesubappSubAppArrayOutput {
+	return i.ToInternetservicesubappSubAppArrayOutputWithContext(context.Background())
+}
+
+func (i InternetservicesubappSubAppArray) ToInternetservicesubappSubAppArrayOutputWithContext(ctx context.Context) InternetservicesubappSubAppArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InternetservicesubappSubAppArrayOutput)
+}
+
+type InternetservicesubappSubAppOutput struct{ *pulumi.OutputState }
+
+func (InternetservicesubappSubAppOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InternetservicesubappSubApp)(nil)).Elem()
+}
+
+func (o InternetservicesubappSubAppOutput) ToInternetservicesubappSubAppOutput() InternetservicesubappSubAppOutput {
+	return o
+}
+
+func (o InternetservicesubappSubAppOutput) ToInternetservicesubappSubAppOutputWithContext(ctx context.Context) InternetservicesubappSubAppOutput {
+	return o
+}
+
+// Subapp ID.
+func (o InternetservicesubappSubAppOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v InternetservicesubappSubApp) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+type InternetservicesubappSubAppArrayOutput struct{ *pulumi.OutputState }
+
+func (InternetservicesubappSubAppArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InternetservicesubappSubApp)(nil)).Elem()
+}
+
+func (o InternetservicesubappSubAppArrayOutput) ToInternetservicesubappSubAppArrayOutput() InternetservicesubappSubAppArrayOutput {
+	return o
+}
+
+func (o InternetservicesubappSubAppArrayOutput) ToInternetservicesubappSubAppArrayOutputWithContext(ctx context.Context) InternetservicesubappSubAppArrayOutput {
+	return o
+}
+
+func (o InternetservicesubappSubAppArrayOutput) Index(i pulumi.IntInput) InternetservicesubappSubAppOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InternetservicesubappSubApp {
+		return vs[0].([]InternetservicesubappSubApp)[vs[1].(int)]
+	}).(InternetservicesubappSubAppOutput)
 }
 
 type Localinpolicy6Dstaddr struct {
@@ -17167,6 +18787,103 @@ func (o PolicyNtlmEnabledBrowserArrayOutput) Index(i pulumi.IntInput) PolicyNtlm
 	}).(PolicyNtlmEnabledBrowserOutput)
 }
 
+type PolicyPcpPoolname struct {
+	// PCP pool name.
+	Name *string `pulumi:"name"`
+}
+
+// PolicyPcpPoolnameInput is an input type that accepts PolicyPcpPoolnameArgs and PolicyPcpPoolnameOutput values.
+// You can construct a concrete instance of `PolicyPcpPoolnameInput` via:
+//
+//	PolicyPcpPoolnameArgs{...}
+type PolicyPcpPoolnameInput interface {
+	pulumi.Input
+
+	ToPolicyPcpPoolnameOutput() PolicyPcpPoolnameOutput
+	ToPolicyPcpPoolnameOutputWithContext(context.Context) PolicyPcpPoolnameOutput
+}
+
+type PolicyPcpPoolnameArgs struct {
+	// PCP pool name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (PolicyPcpPoolnameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyPcpPoolname)(nil)).Elem()
+}
+
+func (i PolicyPcpPoolnameArgs) ToPolicyPcpPoolnameOutput() PolicyPcpPoolnameOutput {
+	return i.ToPolicyPcpPoolnameOutputWithContext(context.Background())
+}
+
+func (i PolicyPcpPoolnameArgs) ToPolicyPcpPoolnameOutputWithContext(ctx context.Context) PolicyPcpPoolnameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyPcpPoolnameOutput)
+}
+
+// PolicyPcpPoolnameArrayInput is an input type that accepts PolicyPcpPoolnameArray and PolicyPcpPoolnameArrayOutput values.
+// You can construct a concrete instance of `PolicyPcpPoolnameArrayInput` via:
+//
+//	PolicyPcpPoolnameArray{ PolicyPcpPoolnameArgs{...} }
+type PolicyPcpPoolnameArrayInput interface {
+	pulumi.Input
+
+	ToPolicyPcpPoolnameArrayOutput() PolicyPcpPoolnameArrayOutput
+	ToPolicyPcpPoolnameArrayOutputWithContext(context.Context) PolicyPcpPoolnameArrayOutput
+}
+
+type PolicyPcpPoolnameArray []PolicyPcpPoolnameInput
+
+func (PolicyPcpPoolnameArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PolicyPcpPoolname)(nil)).Elem()
+}
+
+func (i PolicyPcpPoolnameArray) ToPolicyPcpPoolnameArrayOutput() PolicyPcpPoolnameArrayOutput {
+	return i.ToPolicyPcpPoolnameArrayOutputWithContext(context.Background())
+}
+
+func (i PolicyPcpPoolnameArray) ToPolicyPcpPoolnameArrayOutputWithContext(ctx context.Context) PolicyPcpPoolnameArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyPcpPoolnameArrayOutput)
+}
+
+type PolicyPcpPoolnameOutput struct{ *pulumi.OutputState }
+
+func (PolicyPcpPoolnameOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyPcpPoolname)(nil)).Elem()
+}
+
+func (o PolicyPcpPoolnameOutput) ToPolicyPcpPoolnameOutput() PolicyPcpPoolnameOutput {
+	return o
+}
+
+func (o PolicyPcpPoolnameOutput) ToPolicyPcpPoolnameOutputWithContext(ctx context.Context) PolicyPcpPoolnameOutput {
+	return o
+}
+
+// PCP pool name.
+func (o PolicyPcpPoolnameOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PolicyPcpPoolname) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type PolicyPcpPoolnameArrayOutput struct{ *pulumi.OutputState }
+
+func (PolicyPcpPoolnameArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PolicyPcpPoolname)(nil)).Elem()
+}
+
+func (o PolicyPcpPoolnameArrayOutput) ToPolicyPcpPoolnameArrayOutput() PolicyPcpPoolnameArrayOutput {
+	return o
+}
+
+func (o PolicyPcpPoolnameArrayOutput) ToPolicyPcpPoolnameArrayOutputWithContext(ctx context.Context) PolicyPcpPoolnameArrayOutput {
+	return o
+}
+
+func (o PolicyPcpPoolnameArrayOutput) Index(i pulumi.IntInput) PolicyPcpPoolnameOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PolicyPcpPoolname {
+		return vs[0].([]PolicyPcpPoolname)[vs[1].(int)]
+	}).(PolicyPcpPoolnameOutput)
+}
+
 type PolicyPoolname6 struct {
 	// Policy name.
 	Name *string `pulumi:"name"`
@@ -17650,6 +19367,112 @@ func (o PolicySgtArrayOutput) Index(i pulumi.IntInput) PolicySgtOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PolicySgt {
 		return vs[0].([]PolicySgt)[vs[1].(int)]
 	}).(PolicySgtOutput)
+}
+
+type PolicySortStatePolicyList struct {
+	Action   *string `pulumi:"action"`
+	Name     *string `pulumi:"name"`
+	Policyid *string `pulumi:"policyid"`
+}
+
+// PolicySortStatePolicyListInput is an input type that accepts PolicySortStatePolicyListArgs and PolicySortStatePolicyListOutput values.
+// You can construct a concrete instance of `PolicySortStatePolicyListInput` via:
+//
+//	PolicySortStatePolicyListArgs{...}
+type PolicySortStatePolicyListInput interface {
+	pulumi.Input
+
+	ToPolicySortStatePolicyListOutput() PolicySortStatePolicyListOutput
+	ToPolicySortStatePolicyListOutputWithContext(context.Context) PolicySortStatePolicyListOutput
+}
+
+type PolicySortStatePolicyListArgs struct {
+	Action   pulumi.StringPtrInput `pulumi:"action"`
+	Name     pulumi.StringPtrInput `pulumi:"name"`
+	Policyid pulumi.StringPtrInput `pulumi:"policyid"`
+}
+
+func (PolicySortStatePolicyListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicySortStatePolicyList)(nil)).Elem()
+}
+
+func (i PolicySortStatePolicyListArgs) ToPolicySortStatePolicyListOutput() PolicySortStatePolicyListOutput {
+	return i.ToPolicySortStatePolicyListOutputWithContext(context.Background())
+}
+
+func (i PolicySortStatePolicyListArgs) ToPolicySortStatePolicyListOutputWithContext(ctx context.Context) PolicySortStatePolicyListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicySortStatePolicyListOutput)
+}
+
+// PolicySortStatePolicyListArrayInput is an input type that accepts PolicySortStatePolicyListArray and PolicySortStatePolicyListArrayOutput values.
+// You can construct a concrete instance of `PolicySortStatePolicyListArrayInput` via:
+//
+//	PolicySortStatePolicyListArray{ PolicySortStatePolicyListArgs{...} }
+type PolicySortStatePolicyListArrayInput interface {
+	pulumi.Input
+
+	ToPolicySortStatePolicyListArrayOutput() PolicySortStatePolicyListArrayOutput
+	ToPolicySortStatePolicyListArrayOutputWithContext(context.Context) PolicySortStatePolicyListArrayOutput
+}
+
+type PolicySortStatePolicyListArray []PolicySortStatePolicyListInput
+
+func (PolicySortStatePolicyListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PolicySortStatePolicyList)(nil)).Elem()
+}
+
+func (i PolicySortStatePolicyListArray) ToPolicySortStatePolicyListArrayOutput() PolicySortStatePolicyListArrayOutput {
+	return i.ToPolicySortStatePolicyListArrayOutputWithContext(context.Background())
+}
+
+func (i PolicySortStatePolicyListArray) ToPolicySortStatePolicyListArrayOutputWithContext(ctx context.Context) PolicySortStatePolicyListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicySortStatePolicyListArrayOutput)
+}
+
+type PolicySortStatePolicyListOutput struct{ *pulumi.OutputState }
+
+func (PolicySortStatePolicyListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicySortStatePolicyList)(nil)).Elem()
+}
+
+func (o PolicySortStatePolicyListOutput) ToPolicySortStatePolicyListOutput() PolicySortStatePolicyListOutput {
+	return o
+}
+
+func (o PolicySortStatePolicyListOutput) ToPolicySortStatePolicyListOutputWithContext(ctx context.Context) PolicySortStatePolicyListOutput {
+	return o
+}
+
+func (o PolicySortStatePolicyListOutput) Action() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PolicySortStatePolicyList) *string { return v.Action }).(pulumi.StringPtrOutput)
+}
+
+func (o PolicySortStatePolicyListOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PolicySortStatePolicyList) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o PolicySortStatePolicyListOutput) Policyid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PolicySortStatePolicyList) *string { return v.Policyid }).(pulumi.StringPtrOutput)
+}
+
+type PolicySortStatePolicyListArrayOutput struct{ *pulumi.OutputState }
+
+func (PolicySortStatePolicyListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PolicySortStatePolicyList)(nil)).Elem()
+}
+
+func (o PolicySortStatePolicyListArrayOutput) ToPolicySortStatePolicyListArrayOutput() PolicySortStatePolicyListArrayOutput {
+	return o
+}
+
+func (o PolicySortStatePolicyListArrayOutput) ToPolicySortStatePolicyListArrayOutputWithContext(ctx context.Context) PolicySortStatePolicyListArrayOutput {
+	return o
+}
+
+func (o PolicySortStatePolicyListArrayOutput) Index(i pulumi.IntInput) PolicySortStatePolicyListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PolicySortStatePolicyList {
+		return vs[0].([]PolicySortStatePolicyList)[vs[1].(int)]
+	}).(PolicySortStatePolicyListOutput)
 }
 
 type PolicySrcVendorMac struct {
@@ -18434,6 +20257,103 @@ func (o PolicyZtnaEmsTagArrayOutput) Index(i pulumi.IntInput) PolicyZtnaEmsTagOu
 	}).(PolicyZtnaEmsTagOutput)
 }
 
+type PolicyZtnaEmsTagSecondary struct {
+	// Address name.
+	Name *string `pulumi:"name"`
+}
+
+// PolicyZtnaEmsTagSecondaryInput is an input type that accepts PolicyZtnaEmsTagSecondaryArgs and PolicyZtnaEmsTagSecondaryOutput values.
+// You can construct a concrete instance of `PolicyZtnaEmsTagSecondaryInput` via:
+//
+//	PolicyZtnaEmsTagSecondaryArgs{...}
+type PolicyZtnaEmsTagSecondaryInput interface {
+	pulumi.Input
+
+	ToPolicyZtnaEmsTagSecondaryOutput() PolicyZtnaEmsTagSecondaryOutput
+	ToPolicyZtnaEmsTagSecondaryOutputWithContext(context.Context) PolicyZtnaEmsTagSecondaryOutput
+}
+
+type PolicyZtnaEmsTagSecondaryArgs struct {
+	// Address name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (PolicyZtnaEmsTagSecondaryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyZtnaEmsTagSecondary)(nil)).Elem()
+}
+
+func (i PolicyZtnaEmsTagSecondaryArgs) ToPolicyZtnaEmsTagSecondaryOutput() PolicyZtnaEmsTagSecondaryOutput {
+	return i.ToPolicyZtnaEmsTagSecondaryOutputWithContext(context.Background())
+}
+
+func (i PolicyZtnaEmsTagSecondaryArgs) ToPolicyZtnaEmsTagSecondaryOutputWithContext(ctx context.Context) PolicyZtnaEmsTagSecondaryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyZtnaEmsTagSecondaryOutput)
+}
+
+// PolicyZtnaEmsTagSecondaryArrayInput is an input type that accepts PolicyZtnaEmsTagSecondaryArray and PolicyZtnaEmsTagSecondaryArrayOutput values.
+// You can construct a concrete instance of `PolicyZtnaEmsTagSecondaryArrayInput` via:
+//
+//	PolicyZtnaEmsTagSecondaryArray{ PolicyZtnaEmsTagSecondaryArgs{...} }
+type PolicyZtnaEmsTagSecondaryArrayInput interface {
+	pulumi.Input
+
+	ToPolicyZtnaEmsTagSecondaryArrayOutput() PolicyZtnaEmsTagSecondaryArrayOutput
+	ToPolicyZtnaEmsTagSecondaryArrayOutputWithContext(context.Context) PolicyZtnaEmsTagSecondaryArrayOutput
+}
+
+type PolicyZtnaEmsTagSecondaryArray []PolicyZtnaEmsTagSecondaryInput
+
+func (PolicyZtnaEmsTagSecondaryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PolicyZtnaEmsTagSecondary)(nil)).Elem()
+}
+
+func (i PolicyZtnaEmsTagSecondaryArray) ToPolicyZtnaEmsTagSecondaryArrayOutput() PolicyZtnaEmsTagSecondaryArrayOutput {
+	return i.ToPolicyZtnaEmsTagSecondaryArrayOutputWithContext(context.Background())
+}
+
+func (i PolicyZtnaEmsTagSecondaryArray) ToPolicyZtnaEmsTagSecondaryArrayOutputWithContext(ctx context.Context) PolicyZtnaEmsTagSecondaryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PolicyZtnaEmsTagSecondaryArrayOutput)
+}
+
+type PolicyZtnaEmsTagSecondaryOutput struct{ *pulumi.OutputState }
+
+func (PolicyZtnaEmsTagSecondaryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PolicyZtnaEmsTagSecondary)(nil)).Elem()
+}
+
+func (o PolicyZtnaEmsTagSecondaryOutput) ToPolicyZtnaEmsTagSecondaryOutput() PolicyZtnaEmsTagSecondaryOutput {
+	return o
+}
+
+func (o PolicyZtnaEmsTagSecondaryOutput) ToPolicyZtnaEmsTagSecondaryOutputWithContext(ctx context.Context) PolicyZtnaEmsTagSecondaryOutput {
+	return o
+}
+
+// Address name.
+func (o PolicyZtnaEmsTagSecondaryOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PolicyZtnaEmsTagSecondary) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type PolicyZtnaEmsTagSecondaryArrayOutput struct{ *pulumi.OutputState }
+
+func (PolicyZtnaEmsTagSecondaryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PolicyZtnaEmsTagSecondary)(nil)).Elem()
+}
+
+func (o PolicyZtnaEmsTagSecondaryArrayOutput) ToPolicyZtnaEmsTagSecondaryArrayOutput() PolicyZtnaEmsTagSecondaryArrayOutput {
+	return o
+}
+
+func (o PolicyZtnaEmsTagSecondaryArrayOutput) ToPolicyZtnaEmsTagSecondaryArrayOutputWithContext(ctx context.Context) PolicyZtnaEmsTagSecondaryArrayOutput {
+	return o
+}
+
+func (o PolicyZtnaEmsTagSecondaryArrayOutput) Index(i pulumi.IntInput) PolicyZtnaEmsTagSecondaryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PolicyZtnaEmsTagSecondary {
+		return vs[0].([]PolicyZtnaEmsTagSecondary)[vs[1].(int)]
+	}).(PolicyZtnaEmsTagSecondaryOutput)
+}
+
 type PolicyZtnaGeoTag struct {
 	// Address name.
 	Name *string `pulumi:"name"`
@@ -18536,7 +20456,7 @@ type ProfileprotocoloptionsCifs struct {
 	DomainController *string `pulumi:"domainController"`
 	// One or more options that can be applied to the session. Valid values: `oversize`.
 	Options *string `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit *int `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 445).
 	Ports *int `pulumi:"ports"`
@@ -18548,17 +20468,17 @@ type ProfileprotocoloptionsCifs struct {
 	ServerKeytabs []ProfileprotocoloptionsCifsServerKeytab `pulumi:"serverKeytabs"`
 	// Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
-	// Maximum dynamic TCP window size (default = 8MB).
+	// Maximum dynamic TCP window size.
 	TcpWindowMaximum *int `pulumi:"tcpWindowMaximum"`
-	// Minimum dynamic TCP window size (default = 128KB).
+	// Minimum dynamic TCP window size.
 	TcpWindowMinimum *int `pulumi:"tcpWindowMinimum"`
-	// Set TCP static window size (default = 256KB).
+	// Set TCP static window size.
 	TcpWindowSize *int `pulumi:"tcpWindowSize"`
 	// Specify type of TCP window to use for this protocol.
 	TcpWindowType *string `pulumi:"tcpWindowType"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit *int `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit *int `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -18578,7 +20498,7 @@ type ProfileprotocoloptionsCifsArgs struct {
 	DomainController pulumi.StringPtrInput `pulumi:"domainController"`
 	// One or more options that can be applied to the session. Valid values: `oversize`.
 	Options pulumi.StringPtrInput `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit pulumi.IntPtrInput `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 445).
 	Ports pulumi.IntPtrInput `pulumi:"ports"`
@@ -18590,17 +20510,17 @@ type ProfileprotocoloptionsCifsArgs struct {
 	ServerKeytabs ProfileprotocoloptionsCifsServerKeytabArrayInput `pulumi:"serverKeytabs"`
 	// Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Maximum dynamic TCP window size (default = 8MB).
+	// Maximum dynamic TCP window size.
 	TcpWindowMaximum pulumi.IntPtrInput `pulumi:"tcpWindowMaximum"`
-	// Minimum dynamic TCP window size (default = 128KB).
+	// Minimum dynamic TCP window size.
 	TcpWindowMinimum pulumi.IntPtrInput `pulumi:"tcpWindowMinimum"`
-	// Set TCP static window size (default = 256KB).
+	// Set TCP static window size.
 	TcpWindowSize pulumi.IntPtrInput `pulumi:"tcpWindowSize"`
 	// Specify type of TCP window to use for this protocol.
 	TcpWindowType pulumi.StringPtrInput `pulumi:"tcpWindowType"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit pulumi.IntPtrInput `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit pulumi.IntPtrInput `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -18691,7 +20611,7 @@ func (o ProfileprotocoloptionsCifsOutput) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsCifs) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsCifsOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsCifs) *int { return v.OversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -18721,17 +20641,17 @@ func (o ProfileprotocoloptionsCifsOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsCifs) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Maximum dynamic TCP window size (default = 8MB).
+// Maximum dynamic TCP window size.
 func (o ProfileprotocoloptionsCifsOutput) TcpWindowMaximum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsCifs) *int { return v.TcpWindowMaximum }).(pulumi.IntPtrOutput)
 }
 
-// Minimum dynamic TCP window size (default = 128KB).
+// Minimum dynamic TCP window size.
 func (o ProfileprotocoloptionsCifsOutput) TcpWindowMinimum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsCifs) *int { return v.TcpWindowMinimum }).(pulumi.IntPtrOutput)
 }
 
-// Set TCP static window size (default = 256KB).
+// Set TCP static window size.
 func (o ProfileprotocoloptionsCifsOutput) TcpWindowSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsCifs) *int { return v.TcpWindowSize }).(pulumi.IntPtrOutput)
 }
@@ -18746,7 +20666,7 @@ func (o ProfileprotocoloptionsCifsOutput) UncompressedNestLimit() pulumi.IntPtrO
 	return o.ApplyT(func(v ProfileprotocoloptionsCifs) *int { return v.UncompressedNestLimit }).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsCifsOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsCifs) *int { return v.UncompressedOversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -18795,7 +20715,7 @@ func (o ProfileprotocoloptionsCifsPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsCifsPtrOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsCifs) *int {
 		if v == nil {
@@ -18855,7 +20775,7 @@ func (o ProfileprotocoloptionsCifsPtrOutput) Status() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum dynamic TCP window size (default = 8MB).
+// Maximum dynamic TCP window size.
 func (o ProfileprotocoloptionsCifsPtrOutput) TcpWindowMaximum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsCifs) *int {
 		if v == nil {
@@ -18865,7 +20785,7 @@ func (o ProfileprotocoloptionsCifsPtrOutput) TcpWindowMaximum() pulumi.IntPtrOut
 	}).(pulumi.IntPtrOutput)
 }
 
-// Minimum dynamic TCP window size (default = 128KB).
+// Minimum dynamic TCP window size.
 func (o ProfileprotocoloptionsCifsPtrOutput) TcpWindowMinimum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsCifs) *int {
 		if v == nil {
@@ -18875,7 +20795,7 @@ func (o ProfileprotocoloptionsCifsPtrOutput) TcpWindowMinimum() pulumi.IntPtrOut
 	}).(pulumi.IntPtrOutput)
 }
 
-// Set TCP static window size (default = 256KB).
+// Set TCP static window size.
 func (o ProfileprotocoloptionsCifsPtrOutput) TcpWindowSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsCifs) *int {
 		if v == nil {
@@ -18905,7 +20825,7 @@ func (o ProfileprotocoloptionsCifsPtrOutput) UncompressedNestLimit() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsCifsPtrOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsCifs) *int {
 		if v == nil {
@@ -19178,9 +21098,9 @@ func (o ProfileprotocoloptionsDnsPtrOutput) Status() pulumi.StringPtrOutput {
 }
 
 type ProfileprotocoloptionsFtp struct {
-	// Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+	// Number of bytes to send in each transmission for client comforting (bytes). On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
 	ComfortAmount *int `pulumi:"comfortAmount"`
-	// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+	// Interval between successive transmissions of data for client comforting (seconds).
 	ComfortInterval *int `pulumi:"comfortInterval"`
 	// Enable/disable FTP redirection for explicit FTPS. Valid values: `enable`, `disable`.
 	ExplicitFtpTls *string `pulumi:"explicitFtpTls"`
@@ -19188,7 +21108,7 @@ type ProfileprotocoloptionsFtp struct {
 	InspectAll *string `pulumi:"inspectAll"`
 	// One or more options that can be applied to the session. Valid values: `clientcomfort`, `oversize`, `splice`, `bypass-rest-command`, `bypass-mode-command`.
 	Options *string `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit *int `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 21).
 	Ports *int `pulumi:"ports"`
@@ -19198,7 +21118,7 @@ type ProfileprotocoloptionsFtp struct {
 	SslOffloaded *string `pulumi:"sslOffloaded"`
 	// Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
-	// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+	// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
 	StreamBasedUncompressedLimit *int `pulumi:"streamBasedUncompressedLimit"`
 	// Maximum dynamic TCP window size.
 	TcpWindowMaximum *int `pulumi:"tcpWindowMaximum"`
@@ -19210,7 +21130,7 @@ type ProfileprotocoloptionsFtp struct {
 	TcpWindowType *string `pulumi:"tcpWindowType"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit *int `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit *int `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -19226,9 +21146,9 @@ type ProfileprotocoloptionsFtpInput interface {
 }
 
 type ProfileprotocoloptionsFtpArgs struct {
-	// Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+	// Number of bytes to send in each transmission for client comforting (bytes). On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
 	ComfortAmount pulumi.IntPtrInput `pulumi:"comfortAmount"`
-	// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+	// Interval between successive transmissions of data for client comforting (seconds).
 	ComfortInterval pulumi.IntPtrInput `pulumi:"comfortInterval"`
 	// Enable/disable FTP redirection for explicit FTPS. Valid values: `enable`, `disable`.
 	ExplicitFtpTls pulumi.StringPtrInput `pulumi:"explicitFtpTls"`
@@ -19236,7 +21156,7 @@ type ProfileprotocoloptionsFtpArgs struct {
 	InspectAll pulumi.StringPtrInput `pulumi:"inspectAll"`
 	// One or more options that can be applied to the session. Valid values: `clientcomfort`, `oversize`, `splice`, `bypass-rest-command`, `bypass-mode-command`.
 	Options pulumi.StringPtrInput `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit pulumi.IntPtrInput `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 21).
 	Ports pulumi.IntPtrInput `pulumi:"ports"`
@@ -19246,7 +21166,7 @@ type ProfileprotocoloptionsFtpArgs struct {
 	SslOffloaded pulumi.StringPtrInput `pulumi:"sslOffloaded"`
 	// Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+	// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
 	StreamBasedUncompressedLimit pulumi.IntPtrInput `pulumi:"streamBasedUncompressedLimit"`
 	// Maximum dynamic TCP window size.
 	TcpWindowMaximum pulumi.IntPtrInput `pulumi:"tcpWindowMaximum"`
@@ -19258,7 +21178,7 @@ type ProfileprotocoloptionsFtpArgs struct {
 	TcpWindowType pulumi.StringPtrInput `pulumi:"tcpWindowType"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit pulumi.IntPtrInput `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit pulumi.IntPtrInput `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -19339,12 +21259,12 @@ func (o ProfileprotocoloptionsFtpOutput) ToProfileprotocoloptionsFtpPtrOutputWit
 	}).(ProfileprotocoloptionsFtpPtrOutput)
 }
 
-// Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+// Number of bytes to send in each transmission for client comforting (bytes). On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
 func (o ProfileprotocoloptionsFtpOutput) ComfortAmount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsFtp) *int { return v.ComfortAmount }).(pulumi.IntPtrOutput)
 }
 
-// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+// Interval between successive transmissions of data for client comforting (seconds).
 func (o ProfileprotocoloptionsFtpOutput) ComfortInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsFtp) *int { return v.ComfortInterval }).(pulumi.IntPtrOutput)
 }
@@ -19364,7 +21284,7 @@ func (o ProfileprotocoloptionsFtpOutput) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsFtp) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsFtpOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsFtp) *int { return v.OversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -19389,7 +21309,7 @@ func (o ProfileprotocoloptionsFtpOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsFtp) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
 func (o ProfileprotocoloptionsFtpOutput) StreamBasedUncompressedLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsFtp) *int { return v.StreamBasedUncompressedLimit }).(pulumi.IntPtrOutput)
 }
@@ -19419,7 +21339,7 @@ func (o ProfileprotocoloptionsFtpOutput) UncompressedNestLimit() pulumi.IntPtrOu
 	return o.ApplyT(func(v ProfileprotocoloptionsFtp) *int { return v.UncompressedNestLimit }).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsFtpOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsFtp) *int { return v.UncompressedOversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -19448,7 +21368,7 @@ func (o ProfileprotocoloptionsFtpPtrOutput) Elem() ProfileprotocoloptionsFtpOutp
 	}).(ProfileprotocoloptionsFtpOutput)
 }
 
-// Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+// Number of bytes to send in each transmission for client comforting (bytes). On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
 func (o ProfileprotocoloptionsFtpPtrOutput) ComfortAmount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsFtp) *int {
 		if v == nil {
@@ -19458,7 +21378,7 @@ func (o ProfileprotocoloptionsFtpPtrOutput) ComfortAmount() pulumi.IntPtrOutput 
 	}).(pulumi.IntPtrOutput)
 }
 
-// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+// Interval between successive transmissions of data for client comforting (seconds).
 func (o ProfileprotocoloptionsFtpPtrOutput) ComfortInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsFtp) *int {
 		if v == nil {
@@ -19498,7 +21418,7 @@ func (o ProfileprotocoloptionsFtpPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsFtpPtrOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsFtp) *int {
 		if v == nil {
@@ -19548,7 +21468,7 @@ func (o ProfileprotocoloptionsFtpPtrOutput) Status() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
 func (o ProfileprotocoloptionsFtpPtrOutput) StreamBasedUncompressedLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsFtp) *int {
 		if v == nil {
@@ -19608,7 +21528,7 @@ func (o ProfileprotocoloptionsFtpPtrOutput) UncompressedNestLimit() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsFtpPtrOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsFtp) *int {
 		if v == nil {
@@ -19623,9 +21543,9 @@ type ProfileprotocoloptionsHttp struct {
 	AddressIpRating *string `pulumi:"addressIpRating"`
 	// Code number returned for blocked HTTP pages (non-FortiGuard only) (100 - 599, default = 403).
 	BlockPageStatusCode *int `pulumi:"blockPageStatusCode"`
-	// Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+	// Amount of data to send in a transmission for client comforting. On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
 	ComfortAmount *int `pulumi:"comfortAmount"`
-	// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+	// Interval between successive transmissions of data for client comforting (seconds).
 	ComfortInterval *int `pulumi:"comfortInterval"`
 	// Enable/disable Fortinet bar on HTML content. Valid values: `enable`, `disable`.
 	FortinetBar *string `pulumi:"fortinetBar"`
@@ -19639,7 +21559,7 @@ type ProfileprotocoloptionsHttp struct {
 	InspectAll *string `pulumi:"inspectAll"`
 	// One or more options that can be applied to the session. Valid values: `clientcomfort`, `servercomfort`, `oversize`, `chunkedbypass`.
 	Options *string `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB). On FortiOS versions 6.2.0-7.2.3: 1 - 383 MB, default = 10.
 	OversizeLimit *int `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 80).
 	Ports *int `pulumi:"ports"`
@@ -19657,7 +21577,7 @@ type ProfileprotocoloptionsHttp struct {
 	SslOffloaded *string `pulumi:"sslOffloaded"`
 	// Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
-	// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+	// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
 	StreamBasedUncompressedLimit *int `pulumi:"streamBasedUncompressedLimit"`
 	// Enable/disable bypassing of streaming content from buffering. Valid values: `enable`, `disable`.
 	StreamingContentBypass *string `pulumi:"streamingContentBypass"`
@@ -19665,11 +21585,11 @@ type ProfileprotocoloptionsHttp struct {
 	StripXForwardedFor *string `pulumi:"stripXForwardedFor"`
 	// Bypass from scanning, or block a connection that attempts to switch protocol. Valid values: `bypass`, `block`.
 	SwitchingProtocols *string `pulumi:"switchingProtocols"`
-	// Maximum dynamic TCP window size (default = 8MB).
+	// Maximum dynamic TCP window size.
 	TcpWindowMaximum *int `pulumi:"tcpWindowMaximum"`
-	// Minimum dynamic TCP window size (default = 128KB).
+	// Minimum dynamic TCP window size.
 	TcpWindowMinimum *int `pulumi:"tcpWindowMinimum"`
-	// Set TCP static window size (default = 256KB).
+	// Set TCP static window size.
 	TcpWindowSize *int `pulumi:"tcpWindowSize"`
 	// Specify type of TCP window to use for this protocol.
 	TcpWindowType *string `pulumi:"tcpWindowType"`
@@ -19677,8 +21597,10 @@ type ProfileprotocoloptionsHttp struct {
 	TunnelNonHttp *string `pulumi:"tunnelNonHttp"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit *int `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit *int `pulumi:"uncompressedOversizeLimit"`
+	// Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
+	UnknownContentEncoding *string `pulumi:"unknownContentEncoding"`
 	// How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: `reject`, `tunnel`, `best-effort`.
 	UnknownHttpVersion *string `pulumi:"unknownHttpVersion"`
 	// Enable/disable verification of DNS for policy matching. Valid values: `enable`, `disable`.
@@ -19701,9 +21623,9 @@ type ProfileprotocoloptionsHttpArgs struct {
 	AddressIpRating pulumi.StringPtrInput `pulumi:"addressIpRating"`
 	// Code number returned for blocked HTTP pages (non-FortiGuard only) (100 - 599, default = 403).
 	BlockPageStatusCode pulumi.IntPtrInput `pulumi:"blockPageStatusCode"`
-	// Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+	// Amount of data to send in a transmission for client comforting. On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
 	ComfortAmount pulumi.IntPtrInput `pulumi:"comfortAmount"`
-	// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+	// Interval between successive transmissions of data for client comforting (seconds).
 	ComfortInterval pulumi.IntPtrInput `pulumi:"comfortInterval"`
 	// Enable/disable Fortinet bar on HTML content. Valid values: `enable`, `disable`.
 	FortinetBar pulumi.StringPtrInput `pulumi:"fortinetBar"`
@@ -19717,7 +21639,7 @@ type ProfileprotocoloptionsHttpArgs struct {
 	InspectAll pulumi.StringPtrInput `pulumi:"inspectAll"`
 	// One or more options that can be applied to the session. Valid values: `clientcomfort`, `servercomfort`, `oversize`, `chunkedbypass`.
 	Options pulumi.StringPtrInput `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB). On FortiOS versions 6.2.0-7.2.3: 1 - 383 MB, default = 10.
 	OversizeLimit pulumi.IntPtrInput `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 80).
 	Ports pulumi.IntPtrInput `pulumi:"ports"`
@@ -19735,7 +21657,7 @@ type ProfileprotocoloptionsHttpArgs struct {
 	SslOffloaded pulumi.StringPtrInput `pulumi:"sslOffloaded"`
 	// Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+	// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
 	StreamBasedUncompressedLimit pulumi.IntPtrInput `pulumi:"streamBasedUncompressedLimit"`
 	// Enable/disable bypassing of streaming content from buffering. Valid values: `enable`, `disable`.
 	StreamingContentBypass pulumi.StringPtrInput `pulumi:"streamingContentBypass"`
@@ -19743,11 +21665,11 @@ type ProfileprotocoloptionsHttpArgs struct {
 	StripXForwardedFor pulumi.StringPtrInput `pulumi:"stripXForwardedFor"`
 	// Bypass from scanning, or block a connection that attempts to switch protocol. Valid values: `bypass`, `block`.
 	SwitchingProtocols pulumi.StringPtrInput `pulumi:"switchingProtocols"`
-	// Maximum dynamic TCP window size (default = 8MB).
+	// Maximum dynamic TCP window size.
 	TcpWindowMaximum pulumi.IntPtrInput `pulumi:"tcpWindowMaximum"`
-	// Minimum dynamic TCP window size (default = 128KB).
+	// Minimum dynamic TCP window size.
 	TcpWindowMinimum pulumi.IntPtrInput `pulumi:"tcpWindowMinimum"`
-	// Set TCP static window size (default = 256KB).
+	// Set TCP static window size.
 	TcpWindowSize pulumi.IntPtrInput `pulumi:"tcpWindowSize"`
 	// Specify type of TCP window to use for this protocol.
 	TcpWindowType pulumi.StringPtrInput `pulumi:"tcpWindowType"`
@@ -19755,8 +21677,10 @@ type ProfileprotocoloptionsHttpArgs struct {
 	TunnelNonHttp pulumi.StringPtrInput `pulumi:"tunnelNonHttp"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit pulumi.IntPtrInput `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit pulumi.IntPtrInput `pulumi:"uncompressedOversizeLimit"`
+	// Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
+	UnknownContentEncoding pulumi.StringPtrInput `pulumi:"unknownContentEncoding"`
 	// How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: `reject`, `tunnel`, `best-effort`.
 	UnknownHttpVersion pulumi.StringPtrInput `pulumi:"unknownHttpVersion"`
 	// Enable/disable verification of DNS for policy matching. Valid values: `enable`, `disable`.
@@ -19850,12 +21774,12 @@ func (o ProfileprotocoloptionsHttpOutput) BlockPageStatusCode() pulumi.IntPtrOut
 	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *int { return v.BlockPageStatusCode }).(pulumi.IntPtrOutput)
 }
 
-// Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+// Amount of data to send in a transmission for client comforting. On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
 func (o ProfileprotocoloptionsHttpOutput) ComfortAmount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *int { return v.ComfortAmount }).(pulumi.IntPtrOutput)
 }
 
-// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+// Interval between successive transmissions of data for client comforting (seconds).
 func (o ProfileprotocoloptionsHttpOutput) ComfortInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *int { return v.ComfortInterval }).(pulumi.IntPtrOutput)
 }
@@ -19890,7 +21814,7 @@ func (o ProfileprotocoloptionsHttpOutput) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB). On FortiOS versions 6.2.0-7.2.3: 1 - 383 MB, default = 10.
 func (o ProfileprotocoloptionsHttpOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *int { return v.OversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -19935,7 +21859,7 @@ func (o ProfileprotocoloptionsHttpOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
 func (o ProfileprotocoloptionsHttpOutput) StreamBasedUncompressedLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *int { return v.StreamBasedUncompressedLimit }).(pulumi.IntPtrOutput)
 }
@@ -19955,17 +21879,17 @@ func (o ProfileprotocoloptionsHttpOutput) SwitchingProtocols() pulumi.StringPtrO
 	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *string { return v.SwitchingProtocols }).(pulumi.StringPtrOutput)
 }
 
-// Maximum dynamic TCP window size (default = 8MB).
+// Maximum dynamic TCP window size.
 func (o ProfileprotocoloptionsHttpOutput) TcpWindowMaximum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *int { return v.TcpWindowMaximum }).(pulumi.IntPtrOutput)
 }
 
-// Minimum dynamic TCP window size (default = 128KB).
+// Minimum dynamic TCP window size.
 func (o ProfileprotocoloptionsHttpOutput) TcpWindowMinimum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *int { return v.TcpWindowMinimum }).(pulumi.IntPtrOutput)
 }
 
-// Set TCP static window size (default = 256KB).
+// Set TCP static window size.
 func (o ProfileprotocoloptionsHttpOutput) TcpWindowSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *int { return v.TcpWindowSize }).(pulumi.IntPtrOutput)
 }
@@ -19985,9 +21909,14 @@ func (o ProfileprotocoloptionsHttpOutput) UncompressedNestLimit() pulumi.IntPtrO
 	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *int { return v.UncompressedNestLimit }).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsHttpOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *int { return v.UncompressedOversizeLimit }).(pulumi.IntPtrOutput)
+}
+
+// Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
+func (o ProfileprotocoloptionsHttpOutput) UnknownContentEncoding() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileprotocoloptionsHttp) *string { return v.UnknownContentEncoding }).(pulumi.StringPtrOutput)
 }
 
 // How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: `reject`, `tunnel`, `best-effort`.
@@ -20044,7 +21973,7 @@ func (o ProfileprotocoloptionsHttpPtrOutput) BlockPageStatusCode() pulumi.IntPtr
 	}).(pulumi.IntPtrOutput)
 }
 
-// Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+// Amount of data to send in a transmission for client comforting. On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
 func (o ProfileprotocoloptionsHttpPtrOutput) ComfortAmount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsHttp) *int {
 		if v == nil {
@@ -20054,7 +21983,7 @@ func (o ProfileprotocoloptionsHttpPtrOutput) ComfortAmount() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+// Interval between successive transmissions of data for client comforting (seconds).
 func (o ProfileprotocoloptionsHttpPtrOutput) ComfortInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsHttp) *int {
 		if v == nil {
@@ -20124,7 +22053,7 @@ func (o ProfileprotocoloptionsHttpPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB). On FortiOS versions 6.2.0-7.2.3: 1 - 383 MB, default = 10.
 func (o ProfileprotocoloptionsHttpPtrOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsHttp) *int {
 		if v == nil {
@@ -20214,7 +22143,7 @@ func (o ProfileprotocoloptionsHttpPtrOutput) Status() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
 func (o ProfileprotocoloptionsHttpPtrOutput) StreamBasedUncompressedLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsHttp) *int {
 		if v == nil {
@@ -20254,7 +22183,7 @@ func (o ProfileprotocoloptionsHttpPtrOutput) SwitchingProtocols() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum dynamic TCP window size (default = 8MB).
+// Maximum dynamic TCP window size.
 func (o ProfileprotocoloptionsHttpPtrOutput) TcpWindowMaximum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsHttp) *int {
 		if v == nil {
@@ -20264,7 +22193,7 @@ func (o ProfileprotocoloptionsHttpPtrOutput) TcpWindowMaximum() pulumi.IntPtrOut
 	}).(pulumi.IntPtrOutput)
 }
 
-// Minimum dynamic TCP window size (default = 128KB).
+// Minimum dynamic TCP window size.
 func (o ProfileprotocoloptionsHttpPtrOutput) TcpWindowMinimum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsHttp) *int {
 		if v == nil {
@@ -20274,7 +22203,7 @@ func (o ProfileprotocoloptionsHttpPtrOutput) TcpWindowMinimum() pulumi.IntPtrOut
 	}).(pulumi.IntPtrOutput)
 }
 
-// Set TCP static window size (default = 256KB).
+// Set TCP static window size.
 func (o ProfileprotocoloptionsHttpPtrOutput) TcpWindowSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsHttp) *int {
 		if v == nil {
@@ -20314,7 +22243,7 @@ func (o ProfileprotocoloptionsHttpPtrOutput) UncompressedNestLimit() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsHttpPtrOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsHttp) *int {
 		if v == nil {
@@ -20322,6 +22251,16 @@ func (o ProfileprotocoloptionsHttpPtrOutput) UncompressedOversizeLimit() pulumi.
 		}
 		return v.UncompressedOversizeLimit
 	}).(pulumi.IntPtrOutput)
+}
+
+// Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
+func (o ProfileprotocoloptionsHttpPtrOutput) UnknownContentEncoding() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileprotocoloptionsHttp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UnknownContentEncoding
+	}).(pulumi.StringPtrOutput)
 }
 
 // How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: `reject`, `tunnel`, `best-effort`.
@@ -20349,7 +22288,7 @@ type ProfileprotocoloptionsImap struct {
 	InspectAll *string `pulumi:"inspectAll"`
 	// One or more options that can be applied to the session. Valid values: `fragmail`, `oversize`.
 	Options *string `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit *int `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 143).
 	Ports *int `pulumi:"ports"`
@@ -20363,7 +22302,7 @@ type ProfileprotocoloptionsImap struct {
 	Status *string `pulumi:"status"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit *int `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit *int `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -20383,7 +22322,7 @@ type ProfileprotocoloptionsImapArgs struct {
 	InspectAll pulumi.StringPtrInput `pulumi:"inspectAll"`
 	// One or more options that can be applied to the session. Valid values: `fragmail`, `oversize`.
 	Options pulumi.StringPtrInput `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit pulumi.IntPtrInput `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 143).
 	Ports pulumi.IntPtrInput `pulumi:"ports"`
@@ -20397,7 +22336,7 @@ type ProfileprotocoloptionsImapArgs struct {
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit pulumi.IntPtrInput `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit pulumi.IntPtrInput `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -20488,7 +22427,7 @@ func (o ProfileprotocoloptionsImapOutput) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsImap) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsImapOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsImap) *int { return v.OversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -20523,7 +22462,7 @@ func (o ProfileprotocoloptionsImapOutput) UncompressedNestLimit() pulumi.IntPtrO
 	return o.ApplyT(func(v ProfileprotocoloptionsImap) *int { return v.UncompressedNestLimit }).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsImapOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsImap) *int { return v.UncompressedOversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -20572,7 +22511,7 @@ func (o ProfileprotocoloptionsImapPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsImapPtrOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsImap) *int {
 		if v == nil {
@@ -20642,7 +22581,7 @@ func (o ProfileprotocoloptionsImapPtrOutput) UncompressedNestLimit() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsImapPtrOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsImap) *int {
 		if v == nil {
@@ -20811,7 +22750,7 @@ func (o ProfileprotocoloptionsMailSignaturePtrOutput) Status() pulumi.StringPtrO
 type ProfileprotocoloptionsMapi struct {
 	// One or more options that can be applied to the session. Valid values: `fragmail`, `oversize`.
 	Options *string `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit *int `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 110).
 	Ports *int `pulumi:"ports"`
@@ -20821,7 +22760,7 @@ type ProfileprotocoloptionsMapi struct {
 	Status *string `pulumi:"status"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit *int `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit *int `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -20839,7 +22778,7 @@ type ProfileprotocoloptionsMapiInput interface {
 type ProfileprotocoloptionsMapiArgs struct {
 	// One or more options that can be applied to the session. Valid values: `fragmail`, `oversize`.
 	Options pulumi.StringPtrInput `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit pulumi.IntPtrInput `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 110).
 	Ports pulumi.IntPtrInput `pulumi:"ports"`
@@ -20849,7 +22788,7 @@ type ProfileprotocoloptionsMapiArgs struct {
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit pulumi.IntPtrInput `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit pulumi.IntPtrInput `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -20935,7 +22874,7 @@ func (o ProfileprotocoloptionsMapiOutput) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsMapi) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsMapiOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsMapi) *int { return v.OversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -20960,7 +22899,7 @@ func (o ProfileprotocoloptionsMapiOutput) UncompressedNestLimit() pulumi.IntPtrO
 	return o.ApplyT(func(v ProfileprotocoloptionsMapi) *int { return v.UncompressedNestLimit }).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsMapiOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsMapi) *int { return v.UncompressedOversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -20999,7 +22938,7 @@ func (o ProfileprotocoloptionsMapiPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsMapiPtrOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsMapi) *int {
 		if v == nil {
@@ -21049,7 +22988,7 @@ func (o ProfileprotocoloptionsMapiPtrOutput) UncompressedNestLimit() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsMapiPtrOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsMapi) *int {
 		if v == nil {
@@ -21064,7 +23003,7 @@ type ProfileprotocoloptionsNntp struct {
 	InspectAll *string `pulumi:"inspectAll"`
 	// One or more options that can be applied to the session. Valid values: `oversize`, `splice`.
 	Options *string `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit *int `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 119).
 	Ports *int `pulumi:"ports"`
@@ -21076,7 +23015,7 @@ type ProfileprotocoloptionsNntp struct {
 	Status *string `pulumi:"status"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit *int `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit *int `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -21096,7 +23035,7 @@ type ProfileprotocoloptionsNntpArgs struct {
 	InspectAll pulumi.StringPtrInput `pulumi:"inspectAll"`
 	// One or more options that can be applied to the session. Valid values: `oversize`, `splice`.
 	Options pulumi.StringPtrInput `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit pulumi.IntPtrInput `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 119).
 	Ports pulumi.IntPtrInput `pulumi:"ports"`
@@ -21108,7 +23047,7 @@ type ProfileprotocoloptionsNntpArgs struct {
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit pulumi.IntPtrInput `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit pulumi.IntPtrInput `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -21199,7 +23138,7 @@ func (o ProfileprotocoloptionsNntpOutput) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsNntp) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsNntpOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsNntp) *int { return v.OversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -21229,7 +23168,7 @@ func (o ProfileprotocoloptionsNntpOutput) UncompressedNestLimit() pulumi.IntPtrO
 	return o.ApplyT(func(v ProfileprotocoloptionsNntp) *int { return v.UncompressedNestLimit }).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsNntpOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsNntp) *int { return v.UncompressedOversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -21278,7 +23217,7 @@ func (o ProfileprotocoloptionsNntpPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsNntpPtrOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsNntp) *int {
 		if v == nil {
@@ -21338,7 +23277,7 @@ func (o ProfileprotocoloptionsNntpPtrOutput) UncompressedNestLimit() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsNntpPtrOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsNntp) *int {
 		if v == nil {
@@ -21353,7 +23292,7 @@ type ProfileprotocoloptionsPop3 struct {
 	InspectAll *string `pulumi:"inspectAll"`
 	// One or more options that can be applied to the session. Valid values: `oversize`.
 	Options *string `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit *int `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 445).
 	Ports *int `pulumi:"ports"`
@@ -21367,7 +23306,7 @@ type ProfileprotocoloptionsPop3 struct {
 	Status *string `pulumi:"status"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit *int `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit *int `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -21387,7 +23326,7 @@ type ProfileprotocoloptionsPop3Args struct {
 	InspectAll pulumi.StringPtrInput `pulumi:"inspectAll"`
 	// One or more options that can be applied to the session. Valid values: `oversize`.
 	Options pulumi.StringPtrInput `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit pulumi.IntPtrInput `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 445).
 	Ports pulumi.IntPtrInput `pulumi:"ports"`
@@ -21401,7 +23340,7 @@ type ProfileprotocoloptionsPop3Args struct {
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit pulumi.IntPtrInput `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit pulumi.IntPtrInput `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -21492,7 +23431,7 @@ func (o ProfileprotocoloptionsPop3Output) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsPop3Output) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *int { return v.OversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -21527,7 +23466,7 @@ func (o ProfileprotocoloptionsPop3Output) UncompressedNestLimit() pulumi.IntPtrO
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *int { return v.UncompressedNestLimit }).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsPop3Output) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *int { return v.UncompressedOversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -21576,7 +23515,7 @@ func (o ProfileprotocoloptionsPop3PtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsPop3PtrOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *int {
 		if v == nil {
@@ -21646,7 +23585,7 @@ func (o ProfileprotocoloptionsPop3PtrOutput) UncompressedNestLimit() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsPop3PtrOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *int {
 		if v == nil {
@@ -21661,7 +23600,7 @@ type ProfileprotocoloptionsSmtp struct {
 	InspectAll *string `pulumi:"inspectAll"`
 	// One or more options that can be applied to the session. Valid values: `fragmail`, `oversize`, `splice`.
 	Options *string `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit *int `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 25).
 	Ports *int `pulumi:"ports"`
@@ -21677,7 +23616,7 @@ type ProfileprotocoloptionsSmtp struct {
 	Status *string `pulumi:"status"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit *int `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit *int `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -21697,7 +23636,7 @@ type ProfileprotocoloptionsSmtpArgs struct {
 	InspectAll pulumi.StringPtrInput `pulumi:"inspectAll"`
 	// One or more options that can be applied to the session. Valid values: `fragmail`, `oversize`, `splice`.
 	Options pulumi.StringPtrInput `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit pulumi.IntPtrInput `pulumi:"oversizeLimit"`
 	// Ports to scan for content (1 - 65535, default = 25).
 	Ports pulumi.IntPtrInput `pulumi:"ports"`
@@ -21713,7 +23652,7 @@ type ProfileprotocoloptionsSmtpArgs struct {
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit pulumi.IntPtrInput `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit pulumi.IntPtrInput `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -21804,7 +23743,7 @@ func (o ProfileprotocoloptionsSmtpOutput) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsSmtp) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsSmtpOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsSmtp) *int { return v.OversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -21844,7 +23783,7 @@ func (o ProfileprotocoloptionsSmtpOutput) UncompressedNestLimit() pulumi.IntPtrO
 	return o.ApplyT(func(v ProfileprotocoloptionsSmtp) *int { return v.UncompressedNestLimit }).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsSmtpOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsSmtp) *int { return v.UncompressedOversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -21893,7 +23832,7 @@ func (o ProfileprotocoloptionsSmtpPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsSmtpPtrOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsSmtp) *int {
 		if v == nil {
@@ -21973,7 +23912,7 @@ func (o ProfileprotocoloptionsSmtpPtrOutput) UncompressedNestLimit() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsSmtpPtrOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsSmtp) *int {
 		if v == nil {
@@ -21984,19 +23923,19 @@ func (o ProfileprotocoloptionsSmtpPtrOutput) UncompressedOversizeLimit() pulumi.
 }
 
 type ProfileprotocoloptionsSsh struct {
-	// Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
+	// Number of bytes to send in each transmission for client comforting (bytes).
 	ComfortAmount *int `pulumi:"comfortAmount"`
-	// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+	// Interval between successive transmissions of data for client comforting (seconds).
 	ComfortInterval *int `pulumi:"comfortInterval"`
 	// One or more options that can be applied to the session. Valid values: `oversize`, `clientcomfort`, `servercomfort`.
 	Options *string `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit *int `pulumi:"oversizeLimit"`
 	// Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
 	ScanBzip2 *string `pulumi:"scanBzip2"`
 	// SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
 	SslOffloaded *string `pulumi:"sslOffloaded"`
-	// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+	// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
 	StreamBasedUncompressedLimit *int `pulumi:"streamBasedUncompressedLimit"`
 	// Maximum dynamic TCP window size.
 	TcpWindowMaximum *int `pulumi:"tcpWindowMaximum"`
@@ -22008,7 +23947,7 @@ type ProfileprotocoloptionsSsh struct {
 	TcpWindowType *string `pulumi:"tcpWindowType"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit *int `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit *int `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -22024,19 +23963,19 @@ type ProfileprotocoloptionsSshInput interface {
 }
 
 type ProfileprotocoloptionsSshArgs struct {
-	// Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
+	// Number of bytes to send in each transmission for client comforting (bytes).
 	ComfortAmount pulumi.IntPtrInput `pulumi:"comfortAmount"`
-	// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+	// Interval between successive transmissions of data for client comforting (seconds).
 	ComfortInterval pulumi.IntPtrInput `pulumi:"comfortInterval"`
 	// One or more options that can be applied to the session. Valid values: `oversize`, `clientcomfort`, `servercomfort`.
 	Options pulumi.StringPtrInput `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+	// Maximum in-memory file size that can be scanned (MB).
 	OversizeLimit pulumi.IntPtrInput `pulumi:"oversizeLimit"`
 	// Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
 	ScanBzip2 pulumi.StringPtrInput `pulumi:"scanBzip2"`
 	// SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
 	SslOffloaded pulumi.StringPtrInput `pulumi:"sslOffloaded"`
-	// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+	// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
 	StreamBasedUncompressedLimit pulumi.IntPtrInput `pulumi:"streamBasedUncompressedLimit"`
 	// Maximum dynamic TCP window size.
 	TcpWindowMaximum pulumi.IntPtrInput `pulumi:"tcpWindowMaximum"`
@@ -22048,7 +23987,7 @@ type ProfileprotocoloptionsSshArgs struct {
 	TcpWindowType pulumi.StringPtrInput `pulumi:"tcpWindowType"`
 	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 	UncompressedNestLimit pulumi.IntPtrInput `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+	// Maximum in-memory uncompressed file size that can be scanned (MB).
 	UncompressedOversizeLimit pulumi.IntPtrInput `pulumi:"uncompressedOversizeLimit"`
 }
 
@@ -22129,12 +24068,12 @@ func (o ProfileprotocoloptionsSshOutput) ToProfileprotocoloptionsSshPtrOutputWit
 	}).(ProfileprotocoloptionsSshPtrOutput)
 }
 
-// Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
+// Number of bytes to send in each transmission for client comforting (bytes).
 func (o ProfileprotocoloptionsSshOutput) ComfortAmount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsSsh) *int { return v.ComfortAmount }).(pulumi.IntPtrOutput)
 }
 
-// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+// Interval between successive transmissions of data for client comforting (seconds).
 func (o ProfileprotocoloptionsSshOutput) ComfortInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsSsh) *int { return v.ComfortInterval }).(pulumi.IntPtrOutput)
 }
@@ -22144,7 +24083,7 @@ func (o ProfileprotocoloptionsSshOutput) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsSsh) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsSshOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsSsh) *int { return v.OversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -22159,7 +24098,7 @@ func (o ProfileprotocoloptionsSshOutput) SslOffloaded() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsSsh) *string { return v.SslOffloaded }).(pulumi.StringPtrOutput)
 }
 
-// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
 func (o ProfileprotocoloptionsSshOutput) StreamBasedUncompressedLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsSsh) *int { return v.StreamBasedUncompressedLimit }).(pulumi.IntPtrOutput)
 }
@@ -22189,7 +24128,7 @@ func (o ProfileprotocoloptionsSshOutput) UncompressedNestLimit() pulumi.IntPtrOu
 	return o.ApplyT(func(v ProfileprotocoloptionsSsh) *int { return v.UncompressedNestLimit }).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsSshOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsSsh) *int { return v.UncompressedOversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -22218,7 +24157,7 @@ func (o ProfileprotocoloptionsSshPtrOutput) Elem() ProfileprotocoloptionsSshOutp
 	}).(ProfileprotocoloptionsSshOutput)
 }
 
-// Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
+// Number of bytes to send in each transmission for client comforting (bytes).
 func (o ProfileprotocoloptionsSshPtrOutput) ComfortAmount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsSsh) *int {
 		if v == nil {
@@ -22228,7 +24167,7 @@ func (o ProfileprotocoloptionsSshPtrOutput) ComfortAmount() pulumi.IntPtrOutput 
 	}).(pulumi.IntPtrOutput)
 }
 
-// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+// Interval between successive transmissions of data for client comforting (seconds).
 func (o ProfileprotocoloptionsSshPtrOutput) ComfortInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsSsh) *int {
 		if v == nil {
@@ -22248,7 +24187,7 @@ func (o ProfileprotocoloptionsSshPtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsSshPtrOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsSsh) *int {
 		if v == nil {
@@ -22278,7 +24217,7 @@ func (o ProfileprotocoloptionsSshPtrOutput) SslOffloaded() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
 func (o ProfileprotocoloptionsSshPtrOutput) StreamBasedUncompressedLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsSsh) *int {
 		if v == nil {
@@ -22338,7 +24277,7 @@ func (o ProfileprotocoloptionsSshPtrOutput) UncompressedNestLimit() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsSshPtrOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsSsh) *int {
 		if v == nil {
@@ -23769,6 +25708,394 @@ func (o ProxypolicyGroupArrayOutput) Index(i pulumi.IntInput) ProxypolicyGroupOu
 	}).(ProxypolicyGroupOutput)
 }
 
+type ProxypolicyInternetService6Custom struct {
+	// Policy name.
+	Name *string `pulumi:"name"`
+}
+
+// ProxypolicyInternetService6CustomInput is an input type that accepts ProxypolicyInternetService6CustomArgs and ProxypolicyInternetService6CustomOutput values.
+// You can construct a concrete instance of `ProxypolicyInternetService6CustomInput` via:
+//
+//	ProxypolicyInternetService6CustomArgs{...}
+type ProxypolicyInternetService6CustomInput interface {
+	pulumi.Input
+
+	ToProxypolicyInternetService6CustomOutput() ProxypolicyInternetService6CustomOutput
+	ToProxypolicyInternetService6CustomOutputWithContext(context.Context) ProxypolicyInternetService6CustomOutput
+}
+
+type ProxypolicyInternetService6CustomArgs struct {
+	// Policy name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (ProxypolicyInternetService6CustomArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProxypolicyInternetService6Custom)(nil)).Elem()
+}
+
+func (i ProxypolicyInternetService6CustomArgs) ToProxypolicyInternetService6CustomOutput() ProxypolicyInternetService6CustomOutput {
+	return i.ToProxypolicyInternetService6CustomOutputWithContext(context.Background())
+}
+
+func (i ProxypolicyInternetService6CustomArgs) ToProxypolicyInternetService6CustomOutputWithContext(ctx context.Context) ProxypolicyInternetService6CustomOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProxypolicyInternetService6CustomOutput)
+}
+
+// ProxypolicyInternetService6CustomArrayInput is an input type that accepts ProxypolicyInternetService6CustomArray and ProxypolicyInternetService6CustomArrayOutput values.
+// You can construct a concrete instance of `ProxypolicyInternetService6CustomArrayInput` via:
+//
+//	ProxypolicyInternetService6CustomArray{ ProxypolicyInternetService6CustomArgs{...} }
+type ProxypolicyInternetService6CustomArrayInput interface {
+	pulumi.Input
+
+	ToProxypolicyInternetService6CustomArrayOutput() ProxypolicyInternetService6CustomArrayOutput
+	ToProxypolicyInternetService6CustomArrayOutputWithContext(context.Context) ProxypolicyInternetService6CustomArrayOutput
+}
+
+type ProxypolicyInternetService6CustomArray []ProxypolicyInternetService6CustomInput
+
+func (ProxypolicyInternetService6CustomArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProxypolicyInternetService6Custom)(nil)).Elem()
+}
+
+func (i ProxypolicyInternetService6CustomArray) ToProxypolicyInternetService6CustomArrayOutput() ProxypolicyInternetService6CustomArrayOutput {
+	return i.ToProxypolicyInternetService6CustomArrayOutputWithContext(context.Background())
+}
+
+func (i ProxypolicyInternetService6CustomArray) ToProxypolicyInternetService6CustomArrayOutputWithContext(ctx context.Context) ProxypolicyInternetService6CustomArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProxypolicyInternetService6CustomArrayOutput)
+}
+
+type ProxypolicyInternetService6CustomOutput struct{ *pulumi.OutputState }
+
+func (ProxypolicyInternetService6CustomOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProxypolicyInternetService6Custom)(nil)).Elem()
+}
+
+func (o ProxypolicyInternetService6CustomOutput) ToProxypolicyInternetService6CustomOutput() ProxypolicyInternetService6CustomOutput {
+	return o
+}
+
+func (o ProxypolicyInternetService6CustomOutput) ToProxypolicyInternetService6CustomOutputWithContext(ctx context.Context) ProxypolicyInternetService6CustomOutput {
+	return o
+}
+
+// Policy name.
+func (o ProxypolicyInternetService6CustomOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProxypolicyInternetService6Custom) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ProxypolicyInternetService6CustomArrayOutput struct{ *pulumi.OutputState }
+
+func (ProxypolicyInternetService6CustomArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProxypolicyInternetService6Custom)(nil)).Elem()
+}
+
+func (o ProxypolicyInternetService6CustomArrayOutput) ToProxypolicyInternetService6CustomArrayOutput() ProxypolicyInternetService6CustomArrayOutput {
+	return o
+}
+
+func (o ProxypolicyInternetService6CustomArrayOutput) ToProxypolicyInternetService6CustomArrayOutputWithContext(ctx context.Context) ProxypolicyInternetService6CustomArrayOutput {
+	return o
+}
+
+func (o ProxypolicyInternetService6CustomArrayOutput) Index(i pulumi.IntInput) ProxypolicyInternetService6CustomOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProxypolicyInternetService6Custom {
+		return vs[0].([]ProxypolicyInternetService6Custom)[vs[1].(int)]
+	}).(ProxypolicyInternetService6CustomOutput)
+}
+
+type ProxypolicyInternetService6CustomGroup struct {
+	// Policy name.
+	Name *string `pulumi:"name"`
+}
+
+// ProxypolicyInternetService6CustomGroupInput is an input type that accepts ProxypolicyInternetService6CustomGroupArgs and ProxypolicyInternetService6CustomGroupOutput values.
+// You can construct a concrete instance of `ProxypolicyInternetService6CustomGroupInput` via:
+//
+//	ProxypolicyInternetService6CustomGroupArgs{...}
+type ProxypolicyInternetService6CustomGroupInput interface {
+	pulumi.Input
+
+	ToProxypolicyInternetService6CustomGroupOutput() ProxypolicyInternetService6CustomGroupOutput
+	ToProxypolicyInternetService6CustomGroupOutputWithContext(context.Context) ProxypolicyInternetService6CustomGroupOutput
+}
+
+type ProxypolicyInternetService6CustomGroupArgs struct {
+	// Policy name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (ProxypolicyInternetService6CustomGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProxypolicyInternetService6CustomGroup)(nil)).Elem()
+}
+
+func (i ProxypolicyInternetService6CustomGroupArgs) ToProxypolicyInternetService6CustomGroupOutput() ProxypolicyInternetService6CustomGroupOutput {
+	return i.ToProxypolicyInternetService6CustomGroupOutputWithContext(context.Background())
+}
+
+func (i ProxypolicyInternetService6CustomGroupArgs) ToProxypolicyInternetService6CustomGroupOutputWithContext(ctx context.Context) ProxypolicyInternetService6CustomGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProxypolicyInternetService6CustomGroupOutput)
+}
+
+// ProxypolicyInternetService6CustomGroupArrayInput is an input type that accepts ProxypolicyInternetService6CustomGroupArray and ProxypolicyInternetService6CustomGroupArrayOutput values.
+// You can construct a concrete instance of `ProxypolicyInternetService6CustomGroupArrayInput` via:
+//
+//	ProxypolicyInternetService6CustomGroupArray{ ProxypolicyInternetService6CustomGroupArgs{...} }
+type ProxypolicyInternetService6CustomGroupArrayInput interface {
+	pulumi.Input
+
+	ToProxypolicyInternetService6CustomGroupArrayOutput() ProxypolicyInternetService6CustomGroupArrayOutput
+	ToProxypolicyInternetService6CustomGroupArrayOutputWithContext(context.Context) ProxypolicyInternetService6CustomGroupArrayOutput
+}
+
+type ProxypolicyInternetService6CustomGroupArray []ProxypolicyInternetService6CustomGroupInput
+
+func (ProxypolicyInternetService6CustomGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProxypolicyInternetService6CustomGroup)(nil)).Elem()
+}
+
+func (i ProxypolicyInternetService6CustomGroupArray) ToProxypolicyInternetService6CustomGroupArrayOutput() ProxypolicyInternetService6CustomGroupArrayOutput {
+	return i.ToProxypolicyInternetService6CustomGroupArrayOutputWithContext(context.Background())
+}
+
+func (i ProxypolicyInternetService6CustomGroupArray) ToProxypolicyInternetService6CustomGroupArrayOutputWithContext(ctx context.Context) ProxypolicyInternetService6CustomGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProxypolicyInternetService6CustomGroupArrayOutput)
+}
+
+type ProxypolicyInternetService6CustomGroupOutput struct{ *pulumi.OutputState }
+
+func (ProxypolicyInternetService6CustomGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProxypolicyInternetService6CustomGroup)(nil)).Elem()
+}
+
+func (o ProxypolicyInternetService6CustomGroupOutput) ToProxypolicyInternetService6CustomGroupOutput() ProxypolicyInternetService6CustomGroupOutput {
+	return o
+}
+
+func (o ProxypolicyInternetService6CustomGroupOutput) ToProxypolicyInternetService6CustomGroupOutputWithContext(ctx context.Context) ProxypolicyInternetService6CustomGroupOutput {
+	return o
+}
+
+// Policy name.
+func (o ProxypolicyInternetService6CustomGroupOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProxypolicyInternetService6CustomGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ProxypolicyInternetService6CustomGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (ProxypolicyInternetService6CustomGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProxypolicyInternetService6CustomGroup)(nil)).Elem()
+}
+
+func (o ProxypolicyInternetService6CustomGroupArrayOutput) ToProxypolicyInternetService6CustomGroupArrayOutput() ProxypolicyInternetService6CustomGroupArrayOutput {
+	return o
+}
+
+func (o ProxypolicyInternetService6CustomGroupArrayOutput) ToProxypolicyInternetService6CustomGroupArrayOutputWithContext(ctx context.Context) ProxypolicyInternetService6CustomGroupArrayOutput {
+	return o
+}
+
+func (o ProxypolicyInternetService6CustomGroupArrayOutput) Index(i pulumi.IntInput) ProxypolicyInternetService6CustomGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProxypolicyInternetService6CustomGroup {
+		return vs[0].([]ProxypolicyInternetService6CustomGroup)[vs[1].(int)]
+	}).(ProxypolicyInternetService6CustomGroupOutput)
+}
+
+type ProxypolicyInternetService6Group struct {
+	// Policy name.
+	Name *string `pulumi:"name"`
+}
+
+// ProxypolicyInternetService6GroupInput is an input type that accepts ProxypolicyInternetService6GroupArgs and ProxypolicyInternetService6GroupOutput values.
+// You can construct a concrete instance of `ProxypolicyInternetService6GroupInput` via:
+//
+//	ProxypolicyInternetService6GroupArgs{...}
+type ProxypolicyInternetService6GroupInput interface {
+	pulumi.Input
+
+	ToProxypolicyInternetService6GroupOutput() ProxypolicyInternetService6GroupOutput
+	ToProxypolicyInternetService6GroupOutputWithContext(context.Context) ProxypolicyInternetService6GroupOutput
+}
+
+type ProxypolicyInternetService6GroupArgs struct {
+	// Policy name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (ProxypolicyInternetService6GroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProxypolicyInternetService6Group)(nil)).Elem()
+}
+
+func (i ProxypolicyInternetService6GroupArgs) ToProxypolicyInternetService6GroupOutput() ProxypolicyInternetService6GroupOutput {
+	return i.ToProxypolicyInternetService6GroupOutputWithContext(context.Background())
+}
+
+func (i ProxypolicyInternetService6GroupArgs) ToProxypolicyInternetService6GroupOutputWithContext(ctx context.Context) ProxypolicyInternetService6GroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProxypolicyInternetService6GroupOutput)
+}
+
+// ProxypolicyInternetService6GroupArrayInput is an input type that accepts ProxypolicyInternetService6GroupArray and ProxypolicyInternetService6GroupArrayOutput values.
+// You can construct a concrete instance of `ProxypolicyInternetService6GroupArrayInput` via:
+//
+//	ProxypolicyInternetService6GroupArray{ ProxypolicyInternetService6GroupArgs{...} }
+type ProxypolicyInternetService6GroupArrayInput interface {
+	pulumi.Input
+
+	ToProxypolicyInternetService6GroupArrayOutput() ProxypolicyInternetService6GroupArrayOutput
+	ToProxypolicyInternetService6GroupArrayOutputWithContext(context.Context) ProxypolicyInternetService6GroupArrayOutput
+}
+
+type ProxypolicyInternetService6GroupArray []ProxypolicyInternetService6GroupInput
+
+func (ProxypolicyInternetService6GroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProxypolicyInternetService6Group)(nil)).Elem()
+}
+
+func (i ProxypolicyInternetService6GroupArray) ToProxypolicyInternetService6GroupArrayOutput() ProxypolicyInternetService6GroupArrayOutput {
+	return i.ToProxypolicyInternetService6GroupArrayOutputWithContext(context.Background())
+}
+
+func (i ProxypolicyInternetService6GroupArray) ToProxypolicyInternetService6GroupArrayOutputWithContext(ctx context.Context) ProxypolicyInternetService6GroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProxypolicyInternetService6GroupArrayOutput)
+}
+
+type ProxypolicyInternetService6GroupOutput struct{ *pulumi.OutputState }
+
+func (ProxypolicyInternetService6GroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProxypolicyInternetService6Group)(nil)).Elem()
+}
+
+func (o ProxypolicyInternetService6GroupOutput) ToProxypolicyInternetService6GroupOutput() ProxypolicyInternetService6GroupOutput {
+	return o
+}
+
+func (o ProxypolicyInternetService6GroupOutput) ToProxypolicyInternetService6GroupOutputWithContext(ctx context.Context) ProxypolicyInternetService6GroupOutput {
+	return o
+}
+
+// Policy name.
+func (o ProxypolicyInternetService6GroupOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProxypolicyInternetService6Group) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ProxypolicyInternetService6GroupArrayOutput struct{ *pulumi.OutputState }
+
+func (ProxypolicyInternetService6GroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProxypolicyInternetService6Group)(nil)).Elem()
+}
+
+func (o ProxypolicyInternetService6GroupArrayOutput) ToProxypolicyInternetService6GroupArrayOutput() ProxypolicyInternetService6GroupArrayOutput {
+	return o
+}
+
+func (o ProxypolicyInternetService6GroupArrayOutput) ToProxypolicyInternetService6GroupArrayOutputWithContext(ctx context.Context) ProxypolicyInternetService6GroupArrayOutput {
+	return o
+}
+
+func (o ProxypolicyInternetService6GroupArrayOutput) Index(i pulumi.IntInput) ProxypolicyInternetService6GroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProxypolicyInternetService6Group {
+		return vs[0].([]ProxypolicyInternetService6Group)[vs[1].(int)]
+	}).(ProxypolicyInternetService6GroupOutput)
+}
+
+type ProxypolicyInternetService6Name struct {
+	// Policy name.
+	Name *string `pulumi:"name"`
+}
+
+// ProxypolicyInternetService6NameInput is an input type that accepts ProxypolicyInternetService6NameArgs and ProxypolicyInternetService6NameOutput values.
+// You can construct a concrete instance of `ProxypolicyInternetService6NameInput` via:
+//
+//	ProxypolicyInternetService6NameArgs{...}
+type ProxypolicyInternetService6NameInput interface {
+	pulumi.Input
+
+	ToProxypolicyInternetService6NameOutput() ProxypolicyInternetService6NameOutput
+	ToProxypolicyInternetService6NameOutputWithContext(context.Context) ProxypolicyInternetService6NameOutput
+}
+
+type ProxypolicyInternetService6NameArgs struct {
+	// Policy name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (ProxypolicyInternetService6NameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProxypolicyInternetService6Name)(nil)).Elem()
+}
+
+func (i ProxypolicyInternetService6NameArgs) ToProxypolicyInternetService6NameOutput() ProxypolicyInternetService6NameOutput {
+	return i.ToProxypolicyInternetService6NameOutputWithContext(context.Background())
+}
+
+func (i ProxypolicyInternetService6NameArgs) ToProxypolicyInternetService6NameOutputWithContext(ctx context.Context) ProxypolicyInternetService6NameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProxypolicyInternetService6NameOutput)
+}
+
+// ProxypolicyInternetService6NameArrayInput is an input type that accepts ProxypolicyInternetService6NameArray and ProxypolicyInternetService6NameArrayOutput values.
+// You can construct a concrete instance of `ProxypolicyInternetService6NameArrayInput` via:
+//
+//	ProxypolicyInternetService6NameArray{ ProxypolicyInternetService6NameArgs{...} }
+type ProxypolicyInternetService6NameArrayInput interface {
+	pulumi.Input
+
+	ToProxypolicyInternetService6NameArrayOutput() ProxypolicyInternetService6NameArrayOutput
+	ToProxypolicyInternetService6NameArrayOutputWithContext(context.Context) ProxypolicyInternetService6NameArrayOutput
+}
+
+type ProxypolicyInternetService6NameArray []ProxypolicyInternetService6NameInput
+
+func (ProxypolicyInternetService6NameArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProxypolicyInternetService6Name)(nil)).Elem()
+}
+
+func (i ProxypolicyInternetService6NameArray) ToProxypolicyInternetService6NameArrayOutput() ProxypolicyInternetService6NameArrayOutput {
+	return i.ToProxypolicyInternetService6NameArrayOutputWithContext(context.Background())
+}
+
+func (i ProxypolicyInternetService6NameArray) ToProxypolicyInternetService6NameArrayOutputWithContext(ctx context.Context) ProxypolicyInternetService6NameArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProxypolicyInternetService6NameArrayOutput)
+}
+
+type ProxypolicyInternetService6NameOutput struct{ *pulumi.OutputState }
+
+func (ProxypolicyInternetService6NameOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProxypolicyInternetService6Name)(nil)).Elem()
+}
+
+func (o ProxypolicyInternetService6NameOutput) ToProxypolicyInternetService6NameOutput() ProxypolicyInternetService6NameOutput {
+	return o
+}
+
+func (o ProxypolicyInternetService6NameOutput) ToProxypolicyInternetService6NameOutputWithContext(ctx context.Context) ProxypolicyInternetService6NameOutput {
+	return o
+}
+
+// Policy name.
+func (o ProxypolicyInternetService6NameOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProxypolicyInternetService6Name) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ProxypolicyInternetService6NameArrayOutput struct{ *pulumi.OutputState }
+
+func (ProxypolicyInternetService6NameArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProxypolicyInternetService6Name)(nil)).Elem()
+}
+
+func (o ProxypolicyInternetService6NameArrayOutput) ToProxypolicyInternetService6NameArrayOutput() ProxypolicyInternetService6NameArrayOutput {
+	return o
+}
+
+func (o ProxypolicyInternetService6NameArrayOutput) ToProxypolicyInternetService6NameArrayOutputWithContext(ctx context.Context) ProxypolicyInternetService6NameArrayOutput {
+	return o
+}
+
+func (o ProxypolicyInternetService6NameArrayOutput) Index(i pulumi.IntInput) ProxypolicyInternetService6NameOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProxypolicyInternetService6Name {
+		return vs[0].([]ProxypolicyInternetService6Name)[vs[1].(int)]
+	}).(ProxypolicyInternetService6NameOutput)
+}
+
 type ProxypolicyInternetServiceCustom struct {
 	// Custom name.
 	Name *string `pulumi:"name"`
@@ -23867,7 +26194,7 @@ func (o ProxypolicyInternetServiceCustomArrayOutput) Index(i pulumi.IntInput) Pr
 }
 
 type ProxypolicyInternetServiceCustomGroup struct {
-	// Custom Internet Service group name.
+	// Custom Internet Service IPv6 group name.
 	Name *string `pulumi:"name"`
 }
 
@@ -23883,7 +26210,7 @@ type ProxypolicyInternetServiceCustomGroupInput interface {
 }
 
 type ProxypolicyInternetServiceCustomGroupArgs struct {
-	// Custom Internet Service group name.
+	// Custom Internet Service IPv6 group name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -23938,7 +26265,7 @@ func (o ProxypolicyInternetServiceCustomGroupOutput) ToProxypolicyInternetServic
 	return o
 }
 
-// Custom Internet Service group name.
+// Custom Internet Service IPv6 group name.
 func (o ProxypolicyInternetServiceCustomGroupOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProxypolicyInternetServiceCustomGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -24446,6 +26773,112 @@ func (o ProxypolicyServiceArrayOutput) Index(i pulumi.IntInput) ProxypolicyServi
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProxypolicyService {
 		return vs[0].([]ProxypolicyService)[vs[1].(int)]
 	}).(ProxypolicyServiceOutput)
+}
+
+type ProxypolicySortStatePolicyList struct {
+	Action   *string `pulumi:"action"`
+	Name     *string `pulumi:"name"`
+	Policyid *string `pulumi:"policyid"`
+}
+
+// ProxypolicySortStatePolicyListInput is an input type that accepts ProxypolicySortStatePolicyListArgs and ProxypolicySortStatePolicyListOutput values.
+// You can construct a concrete instance of `ProxypolicySortStatePolicyListInput` via:
+//
+//	ProxypolicySortStatePolicyListArgs{...}
+type ProxypolicySortStatePolicyListInput interface {
+	pulumi.Input
+
+	ToProxypolicySortStatePolicyListOutput() ProxypolicySortStatePolicyListOutput
+	ToProxypolicySortStatePolicyListOutputWithContext(context.Context) ProxypolicySortStatePolicyListOutput
+}
+
+type ProxypolicySortStatePolicyListArgs struct {
+	Action   pulumi.StringPtrInput `pulumi:"action"`
+	Name     pulumi.StringPtrInput `pulumi:"name"`
+	Policyid pulumi.StringPtrInput `pulumi:"policyid"`
+}
+
+func (ProxypolicySortStatePolicyListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProxypolicySortStatePolicyList)(nil)).Elem()
+}
+
+func (i ProxypolicySortStatePolicyListArgs) ToProxypolicySortStatePolicyListOutput() ProxypolicySortStatePolicyListOutput {
+	return i.ToProxypolicySortStatePolicyListOutputWithContext(context.Background())
+}
+
+func (i ProxypolicySortStatePolicyListArgs) ToProxypolicySortStatePolicyListOutputWithContext(ctx context.Context) ProxypolicySortStatePolicyListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProxypolicySortStatePolicyListOutput)
+}
+
+// ProxypolicySortStatePolicyListArrayInput is an input type that accepts ProxypolicySortStatePolicyListArray and ProxypolicySortStatePolicyListArrayOutput values.
+// You can construct a concrete instance of `ProxypolicySortStatePolicyListArrayInput` via:
+//
+//	ProxypolicySortStatePolicyListArray{ ProxypolicySortStatePolicyListArgs{...} }
+type ProxypolicySortStatePolicyListArrayInput interface {
+	pulumi.Input
+
+	ToProxypolicySortStatePolicyListArrayOutput() ProxypolicySortStatePolicyListArrayOutput
+	ToProxypolicySortStatePolicyListArrayOutputWithContext(context.Context) ProxypolicySortStatePolicyListArrayOutput
+}
+
+type ProxypolicySortStatePolicyListArray []ProxypolicySortStatePolicyListInput
+
+func (ProxypolicySortStatePolicyListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProxypolicySortStatePolicyList)(nil)).Elem()
+}
+
+func (i ProxypolicySortStatePolicyListArray) ToProxypolicySortStatePolicyListArrayOutput() ProxypolicySortStatePolicyListArrayOutput {
+	return i.ToProxypolicySortStatePolicyListArrayOutputWithContext(context.Background())
+}
+
+func (i ProxypolicySortStatePolicyListArray) ToProxypolicySortStatePolicyListArrayOutputWithContext(ctx context.Context) ProxypolicySortStatePolicyListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProxypolicySortStatePolicyListArrayOutput)
+}
+
+type ProxypolicySortStatePolicyListOutput struct{ *pulumi.OutputState }
+
+func (ProxypolicySortStatePolicyListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProxypolicySortStatePolicyList)(nil)).Elem()
+}
+
+func (o ProxypolicySortStatePolicyListOutput) ToProxypolicySortStatePolicyListOutput() ProxypolicySortStatePolicyListOutput {
+	return o
+}
+
+func (o ProxypolicySortStatePolicyListOutput) ToProxypolicySortStatePolicyListOutputWithContext(ctx context.Context) ProxypolicySortStatePolicyListOutput {
+	return o
+}
+
+func (o ProxypolicySortStatePolicyListOutput) Action() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProxypolicySortStatePolicyList) *string { return v.Action }).(pulumi.StringPtrOutput)
+}
+
+func (o ProxypolicySortStatePolicyListOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProxypolicySortStatePolicyList) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o ProxypolicySortStatePolicyListOutput) Policyid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProxypolicySortStatePolicyList) *string { return v.Policyid }).(pulumi.StringPtrOutput)
+}
+
+type ProxypolicySortStatePolicyListArrayOutput struct{ *pulumi.OutputState }
+
+func (ProxypolicySortStatePolicyListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProxypolicySortStatePolicyList)(nil)).Elem()
+}
+
+func (o ProxypolicySortStatePolicyListArrayOutput) ToProxypolicySortStatePolicyListArrayOutput() ProxypolicySortStatePolicyListArrayOutput {
+	return o
+}
+
+func (o ProxypolicySortStatePolicyListArrayOutput) ToProxypolicySortStatePolicyListArrayOutputWithContext(ctx context.Context) ProxypolicySortStatePolicyListArrayOutput {
+	return o
+}
+
+func (o ProxypolicySortStatePolicyListArrayOutput) Index(i pulumi.IntInput) ProxypolicySortStatePolicyListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProxypolicySortStatePolicyList {
+		return vs[0].([]ProxypolicySortStatePolicyList)[vs[1].(int)]
+	}).(ProxypolicySortStatePolicyListOutput)
 }
 
 type ProxypolicySrcaddr6 struct {
@@ -25134,112 +27567,6 @@ func (o SecurityPolicyseqStatePolicyListArrayOutput) Index(i pulumi.IntInput) Se
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecurityPolicyseqStatePolicyList {
 		return vs[0].([]SecurityPolicyseqStatePolicyList)[vs[1].(int)]
 	}).(SecurityPolicyseqStatePolicyListOutput)
-}
-
-type SecurityPolicysortStatePolicyList struct {
-	Action   *string `pulumi:"action"`
-	Name     *string `pulumi:"name"`
-	Policyid *string `pulumi:"policyid"`
-}
-
-// SecurityPolicysortStatePolicyListInput is an input type that accepts SecurityPolicysortStatePolicyListArgs and SecurityPolicysortStatePolicyListOutput values.
-// You can construct a concrete instance of `SecurityPolicysortStatePolicyListInput` via:
-//
-//	SecurityPolicysortStatePolicyListArgs{...}
-type SecurityPolicysortStatePolicyListInput interface {
-	pulumi.Input
-
-	ToSecurityPolicysortStatePolicyListOutput() SecurityPolicysortStatePolicyListOutput
-	ToSecurityPolicysortStatePolicyListOutputWithContext(context.Context) SecurityPolicysortStatePolicyListOutput
-}
-
-type SecurityPolicysortStatePolicyListArgs struct {
-	Action   pulumi.StringPtrInput `pulumi:"action"`
-	Name     pulumi.StringPtrInput `pulumi:"name"`
-	Policyid pulumi.StringPtrInput `pulumi:"policyid"`
-}
-
-func (SecurityPolicysortStatePolicyListArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecurityPolicysortStatePolicyList)(nil)).Elem()
-}
-
-func (i SecurityPolicysortStatePolicyListArgs) ToSecurityPolicysortStatePolicyListOutput() SecurityPolicysortStatePolicyListOutput {
-	return i.ToSecurityPolicysortStatePolicyListOutputWithContext(context.Background())
-}
-
-func (i SecurityPolicysortStatePolicyListArgs) ToSecurityPolicysortStatePolicyListOutputWithContext(ctx context.Context) SecurityPolicysortStatePolicyListOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicysortStatePolicyListOutput)
-}
-
-// SecurityPolicysortStatePolicyListArrayInput is an input type that accepts SecurityPolicysortStatePolicyListArray and SecurityPolicysortStatePolicyListArrayOutput values.
-// You can construct a concrete instance of `SecurityPolicysortStatePolicyListArrayInput` via:
-//
-//	SecurityPolicysortStatePolicyListArray{ SecurityPolicysortStatePolicyListArgs{...} }
-type SecurityPolicysortStatePolicyListArrayInput interface {
-	pulumi.Input
-
-	ToSecurityPolicysortStatePolicyListArrayOutput() SecurityPolicysortStatePolicyListArrayOutput
-	ToSecurityPolicysortStatePolicyListArrayOutputWithContext(context.Context) SecurityPolicysortStatePolicyListArrayOutput
-}
-
-type SecurityPolicysortStatePolicyListArray []SecurityPolicysortStatePolicyListInput
-
-func (SecurityPolicysortStatePolicyListArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecurityPolicysortStatePolicyList)(nil)).Elem()
-}
-
-func (i SecurityPolicysortStatePolicyListArray) ToSecurityPolicysortStatePolicyListArrayOutput() SecurityPolicysortStatePolicyListArrayOutput {
-	return i.ToSecurityPolicysortStatePolicyListArrayOutputWithContext(context.Background())
-}
-
-func (i SecurityPolicysortStatePolicyListArray) ToSecurityPolicysortStatePolicyListArrayOutputWithContext(ctx context.Context) SecurityPolicysortStatePolicyListArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecurityPolicysortStatePolicyListArrayOutput)
-}
-
-type SecurityPolicysortStatePolicyListOutput struct{ *pulumi.OutputState }
-
-func (SecurityPolicysortStatePolicyListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecurityPolicysortStatePolicyList)(nil)).Elem()
-}
-
-func (o SecurityPolicysortStatePolicyListOutput) ToSecurityPolicysortStatePolicyListOutput() SecurityPolicysortStatePolicyListOutput {
-	return o
-}
-
-func (o SecurityPolicysortStatePolicyListOutput) ToSecurityPolicysortStatePolicyListOutputWithContext(ctx context.Context) SecurityPolicysortStatePolicyListOutput {
-	return o
-}
-
-func (o SecurityPolicysortStatePolicyListOutput) Action() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SecurityPolicysortStatePolicyList) *string { return v.Action }).(pulumi.StringPtrOutput)
-}
-
-func (o SecurityPolicysortStatePolicyListOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SecurityPolicysortStatePolicyList) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-func (o SecurityPolicysortStatePolicyListOutput) Policyid() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SecurityPolicysortStatePolicyList) *string { return v.Policyid }).(pulumi.StringPtrOutput)
-}
-
-type SecurityPolicysortStatePolicyListArrayOutput struct{ *pulumi.OutputState }
-
-func (SecurityPolicysortStatePolicyListArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecurityPolicysortStatePolicyList)(nil)).Elem()
-}
-
-func (o SecurityPolicysortStatePolicyListArrayOutput) ToSecurityPolicysortStatePolicyListArrayOutput() SecurityPolicysortStatePolicyListArrayOutput {
-	return o
-}
-
-func (o SecurityPolicysortStatePolicyListArrayOutput) ToSecurityPolicysortStatePolicyListArrayOutputWithContext(ctx context.Context) SecurityPolicysortStatePolicyListArrayOutput {
-	return o
-}
-
-func (o SecurityPolicysortStatePolicyListArrayOutput) Index(i pulumi.IntInput) SecurityPolicysortStatePolicyListOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecurityPolicysortStatePolicyList {
-		return vs[0].([]SecurityPolicysortStatePolicyList)[vs[1].(int)]
-	}).(SecurityPolicysortStatePolicyListOutput)
 }
 
 type SecuritypolicyAppCategory struct {
@@ -27956,6 +30283,112 @@ func (o SecuritypolicyServiceArrayOutput) Index(i pulumi.IntInput) Securitypolic
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecuritypolicyService {
 		return vs[0].([]SecuritypolicyService)[vs[1].(int)]
 	}).(SecuritypolicyServiceOutput)
+}
+
+type SecuritypolicySortStatePolicyList struct {
+	Action   *string `pulumi:"action"`
+	Name     *string `pulumi:"name"`
+	Policyid *string `pulumi:"policyid"`
+}
+
+// SecuritypolicySortStatePolicyListInput is an input type that accepts SecuritypolicySortStatePolicyListArgs and SecuritypolicySortStatePolicyListOutput values.
+// You can construct a concrete instance of `SecuritypolicySortStatePolicyListInput` via:
+//
+//	SecuritypolicySortStatePolicyListArgs{...}
+type SecuritypolicySortStatePolicyListInput interface {
+	pulumi.Input
+
+	ToSecuritypolicySortStatePolicyListOutput() SecuritypolicySortStatePolicyListOutput
+	ToSecuritypolicySortStatePolicyListOutputWithContext(context.Context) SecuritypolicySortStatePolicyListOutput
+}
+
+type SecuritypolicySortStatePolicyListArgs struct {
+	Action   pulumi.StringPtrInput `pulumi:"action"`
+	Name     pulumi.StringPtrInput `pulumi:"name"`
+	Policyid pulumi.StringPtrInput `pulumi:"policyid"`
+}
+
+func (SecuritypolicySortStatePolicyListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecuritypolicySortStatePolicyList)(nil)).Elem()
+}
+
+func (i SecuritypolicySortStatePolicyListArgs) ToSecuritypolicySortStatePolicyListOutput() SecuritypolicySortStatePolicyListOutput {
+	return i.ToSecuritypolicySortStatePolicyListOutputWithContext(context.Background())
+}
+
+func (i SecuritypolicySortStatePolicyListArgs) ToSecuritypolicySortStatePolicyListOutputWithContext(ctx context.Context) SecuritypolicySortStatePolicyListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecuritypolicySortStatePolicyListOutput)
+}
+
+// SecuritypolicySortStatePolicyListArrayInput is an input type that accepts SecuritypolicySortStatePolicyListArray and SecuritypolicySortStatePolicyListArrayOutput values.
+// You can construct a concrete instance of `SecuritypolicySortStatePolicyListArrayInput` via:
+//
+//	SecuritypolicySortStatePolicyListArray{ SecuritypolicySortStatePolicyListArgs{...} }
+type SecuritypolicySortStatePolicyListArrayInput interface {
+	pulumi.Input
+
+	ToSecuritypolicySortStatePolicyListArrayOutput() SecuritypolicySortStatePolicyListArrayOutput
+	ToSecuritypolicySortStatePolicyListArrayOutputWithContext(context.Context) SecuritypolicySortStatePolicyListArrayOutput
+}
+
+type SecuritypolicySortStatePolicyListArray []SecuritypolicySortStatePolicyListInput
+
+func (SecuritypolicySortStatePolicyListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecuritypolicySortStatePolicyList)(nil)).Elem()
+}
+
+func (i SecuritypolicySortStatePolicyListArray) ToSecuritypolicySortStatePolicyListArrayOutput() SecuritypolicySortStatePolicyListArrayOutput {
+	return i.ToSecuritypolicySortStatePolicyListArrayOutputWithContext(context.Background())
+}
+
+func (i SecuritypolicySortStatePolicyListArray) ToSecuritypolicySortStatePolicyListArrayOutputWithContext(ctx context.Context) SecuritypolicySortStatePolicyListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecuritypolicySortStatePolicyListArrayOutput)
+}
+
+type SecuritypolicySortStatePolicyListOutput struct{ *pulumi.OutputState }
+
+func (SecuritypolicySortStatePolicyListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecuritypolicySortStatePolicyList)(nil)).Elem()
+}
+
+func (o SecuritypolicySortStatePolicyListOutput) ToSecuritypolicySortStatePolicyListOutput() SecuritypolicySortStatePolicyListOutput {
+	return o
+}
+
+func (o SecuritypolicySortStatePolicyListOutput) ToSecuritypolicySortStatePolicyListOutputWithContext(ctx context.Context) SecuritypolicySortStatePolicyListOutput {
+	return o
+}
+
+func (o SecuritypolicySortStatePolicyListOutput) Action() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecuritypolicySortStatePolicyList) *string { return v.Action }).(pulumi.StringPtrOutput)
+}
+
+func (o SecuritypolicySortStatePolicyListOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecuritypolicySortStatePolicyList) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o SecuritypolicySortStatePolicyListOutput) Policyid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecuritypolicySortStatePolicyList) *string { return v.Policyid }).(pulumi.StringPtrOutput)
+}
+
+type SecuritypolicySortStatePolicyListArrayOutput struct{ *pulumi.OutputState }
+
+func (SecuritypolicySortStatePolicyListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecuritypolicySortStatePolicyList)(nil)).Elem()
+}
+
+func (o SecuritypolicySortStatePolicyListArrayOutput) ToSecuritypolicySortStatePolicyListArrayOutput() SecuritypolicySortStatePolicyListArrayOutput {
+	return o
+}
+
+func (o SecuritypolicySortStatePolicyListArrayOutput) ToSecuritypolicySortStatePolicyListArrayOutputWithContext(ctx context.Context) SecuritypolicySortStatePolicyListArrayOutput {
+	return o
+}
+
+func (o SecuritypolicySortStatePolicyListArrayOutput) Index(i pulumi.IntInput) SecuritypolicySortStatePolicyListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecuritypolicySortStatePolicyList {
+		return vs[0].([]SecuritypolicySortStatePolicyList)[vs[1].(int)]
+	}).(SecuritypolicySortStatePolicyListOutput)
 }
 
 type SecuritypolicySrcaddr4 struct {
@@ -30973,9 +33406,9 @@ type SnifferAnomaly struct {
 	QuarantineLog *string `pulumi:"quarantineLog"`
 	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
 	Status *string `pulumi:"status"`
-	// Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 	Threshold *int `pulumi:"threshold"`
-	// Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+	// Number of detected instances (packets per second or concurrent session number) which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
 	Thresholddefault *int `pulumi:"thresholddefault"`
 }
 
@@ -31005,9 +33438,9 @@ type SnifferAnomalyArgs struct {
 	QuarantineLog pulumi.StringPtrInput `pulumi:"quarantineLog"`
 	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
-	// Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+	// Number of detected instances (packets per second or concurrent session number) which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
 	Thresholddefault pulumi.IntPtrInput `pulumi:"thresholddefault"`
 }
 
@@ -31097,12 +33530,12 @@ func (o SnifferAnomalyOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SnifferAnomaly) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
 func (o SnifferAnomalyOutput) Threshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SnifferAnomaly) *int { return v.Threshold }).(pulumi.IntPtrOutput)
 }
 
-// Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+// Number of detected instances (packets per second or concurrent session number) which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
 func (o SnifferAnomalyOutput) Thresholddefault() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SnifferAnomaly) *int { return v.Thresholddefault }).(pulumi.IntPtrOutput)
 }
@@ -31235,6 +33668,8 @@ type SslsshprofileDot struct {
 	ExpiredServerCert *string `pulumi:"expiredServerCert"`
 	// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
 	ProxyAfterTcpHandshake *string `pulumi:"proxyAfterTcpHandshake"`
+	// QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+	Quic *string `pulumi:"quic"`
 	// Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
 	RevokedServerCert *string `pulumi:"revokedServerCert"`
 	// Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
@@ -31273,6 +33708,8 @@ type SslsshprofileDotArgs struct {
 	ExpiredServerCert pulumi.StringPtrInput `pulumi:"expiredServerCert"`
 	// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
 	ProxyAfterTcpHandshake pulumi.StringPtrInput `pulumi:"proxyAfterTcpHandshake"`
+	// QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+	Quic pulumi.StringPtrInput `pulumi:"quic"`
 	// Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
 	RevokedServerCert pulumi.StringPtrInput `pulumi:"revokedServerCert"`
 	// Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
@@ -31391,6 +33828,11 @@ func (o SslsshprofileDotOutput) ProxyAfterTcpHandshake() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v SslsshprofileDot) *string { return v.ProxyAfterTcpHandshake }).(pulumi.StringPtrOutput)
 }
 
+// QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+func (o SslsshprofileDotOutput) Quic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SslsshprofileDot) *string { return v.Quic }).(pulumi.StringPtrOutput)
+}
+
 // Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
 func (o SslsshprofileDotOutput) RevokedServerCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofileDot) *string { return v.RevokedServerCert }).(pulumi.StringPtrOutput)
@@ -31497,6 +33939,16 @@ func (o SslsshprofileDotPtrOutput) ProxyAfterTcpHandshake() pulumi.StringPtrOutp
 			return nil
 		}
 		return v.ProxyAfterTcpHandshake
+	}).(pulumi.StringPtrOutput)
+}
+
+// QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+func (o SslsshprofileDotPtrOutput) Quic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SslsshprofileDot) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Quic
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -32013,6 +34465,8 @@ type SslsshprofileHttps struct {
 	Ports *string `pulumi:"ports"`
 	// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
 	ProxyAfterTcpHandshake *string `pulumi:"proxyAfterTcpHandshake"`
+	// QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+	Quic *string `pulumi:"quic"`
 	// Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
 	RevokedServerCert *string `pulumi:"revokedServerCert"`
 	// Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
@@ -32063,6 +34517,8 @@ type SslsshprofileHttpsArgs struct {
 	Ports pulumi.StringPtrInput `pulumi:"ports"`
 	// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
 	ProxyAfterTcpHandshake pulumi.StringPtrInput `pulumi:"proxyAfterTcpHandshake"`
+	// QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+	Quic pulumi.StringPtrInput `pulumi:"quic"`
 	// Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
 	RevokedServerCert pulumi.StringPtrInput `pulumi:"revokedServerCert"`
 	// Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
@@ -32206,6 +34662,11 @@ func (o SslsshprofileHttpsOutput) Ports() pulumi.StringPtrOutput {
 // Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
 func (o SslsshprofileHttpsOutput) ProxyAfterTcpHandshake() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofileHttps) *string { return v.ProxyAfterTcpHandshake }).(pulumi.StringPtrOutput)
+}
+
+// QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+func (o SslsshprofileHttpsOutput) Quic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SslsshprofileHttps) *string { return v.Quic }).(pulumi.StringPtrOutput)
 }
 
 // Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
@@ -32369,6 +34830,16 @@ func (o SslsshprofileHttpsPtrOutput) ProxyAfterTcpHandshake() pulumi.StringPtrOu
 			return nil
 		}
 		return v.ProxyAfterTcpHandshake
+	}).(pulumi.StringPtrOutput)
+}
+
+// QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+func (o SslsshprofileHttpsPtrOutput) Quic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SslsshprofileHttps) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Quic
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -35907,6 +38378,276 @@ func (o Vip6MonitorArrayOutput) Index(i pulumi.IntInput) Vip6MonitorOutput {
 	}).(Vip6MonitorOutput)
 }
 
+type Vip6Quic struct {
+	// ACK delay exponent (1 - 20, default = 3).
+	AckDelayExponent *int `pulumi:"ackDelayExponent"`
+	// Active connection ID limit (1 - 8, default = 2).
+	ActiveConnectionIdLimit *int `pulumi:"activeConnectionIdLimit"`
+	// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+	ActiveMigration *string `pulumi:"activeMigration"`
+	// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+	GreaseQuicBit *string `pulumi:"greaseQuicBit"`
+	// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+	MaxAckDelay *int `pulumi:"maxAckDelay"`
+	// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+	MaxDatagramFrameSize *int `pulumi:"maxDatagramFrameSize"`
+	// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+	MaxIdleTimeout *int `pulumi:"maxIdleTimeout"`
+	// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+	MaxUdpPayloadSize *int `pulumi:"maxUdpPayloadSize"`
+}
+
+// Vip6QuicInput is an input type that accepts Vip6QuicArgs and Vip6QuicOutput values.
+// You can construct a concrete instance of `Vip6QuicInput` via:
+//
+//	Vip6QuicArgs{...}
+type Vip6QuicInput interface {
+	pulumi.Input
+
+	ToVip6QuicOutput() Vip6QuicOutput
+	ToVip6QuicOutputWithContext(context.Context) Vip6QuicOutput
+}
+
+type Vip6QuicArgs struct {
+	// ACK delay exponent (1 - 20, default = 3).
+	AckDelayExponent pulumi.IntPtrInput `pulumi:"ackDelayExponent"`
+	// Active connection ID limit (1 - 8, default = 2).
+	ActiveConnectionIdLimit pulumi.IntPtrInput `pulumi:"activeConnectionIdLimit"`
+	// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+	ActiveMigration pulumi.StringPtrInput `pulumi:"activeMigration"`
+	// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+	GreaseQuicBit pulumi.StringPtrInput `pulumi:"greaseQuicBit"`
+	// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+	MaxAckDelay pulumi.IntPtrInput `pulumi:"maxAckDelay"`
+	// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+	MaxDatagramFrameSize pulumi.IntPtrInput `pulumi:"maxDatagramFrameSize"`
+	// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+	MaxIdleTimeout pulumi.IntPtrInput `pulumi:"maxIdleTimeout"`
+	// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+	MaxUdpPayloadSize pulumi.IntPtrInput `pulumi:"maxUdpPayloadSize"`
+}
+
+func (Vip6QuicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Vip6Quic)(nil)).Elem()
+}
+
+func (i Vip6QuicArgs) ToVip6QuicOutput() Vip6QuicOutput {
+	return i.ToVip6QuicOutputWithContext(context.Background())
+}
+
+func (i Vip6QuicArgs) ToVip6QuicOutputWithContext(ctx context.Context) Vip6QuicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Vip6QuicOutput)
+}
+
+func (i Vip6QuicArgs) ToVip6QuicPtrOutput() Vip6QuicPtrOutput {
+	return i.ToVip6QuicPtrOutputWithContext(context.Background())
+}
+
+func (i Vip6QuicArgs) ToVip6QuicPtrOutputWithContext(ctx context.Context) Vip6QuicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Vip6QuicOutput).ToVip6QuicPtrOutputWithContext(ctx)
+}
+
+// Vip6QuicPtrInput is an input type that accepts Vip6QuicArgs, Vip6QuicPtr and Vip6QuicPtrOutput values.
+// You can construct a concrete instance of `Vip6QuicPtrInput` via:
+//
+//	        Vip6QuicArgs{...}
+//
+//	or:
+//
+//	        nil
+type Vip6QuicPtrInput interface {
+	pulumi.Input
+
+	ToVip6QuicPtrOutput() Vip6QuicPtrOutput
+	ToVip6QuicPtrOutputWithContext(context.Context) Vip6QuicPtrOutput
+}
+
+type vip6QuicPtrType Vip6QuicArgs
+
+func Vip6QuicPtr(v *Vip6QuicArgs) Vip6QuicPtrInput {
+	return (*vip6QuicPtrType)(v)
+}
+
+func (*vip6QuicPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Vip6Quic)(nil)).Elem()
+}
+
+func (i *vip6QuicPtrType) ToVip6QuicPtrOutput() Vip6QuicPtrOutput {
+	return i.ToVip6QuicPtrOutputWithContext(context.Background())
+}
+
+func (i *vip6QuicPtrType) ToVip6QuicPtrOutputWithContext(ctx context.Context) Vip6QuicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Vip6QuicPtrOutput)
+}
+
+type Vip6QuicOutput struct{ *pulumi.OutputState }
+
+func (Vip6QuicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Vip6Quic)(nil)).Elem()
+}
+
+func (o Vip6QuicOutput) ToVip6QuicOutput() Vip6QuicOutput {
+	return o
+}
+
+func (o Vip6QuicOutput) ToVip6QuicOutputWithContext(ctx context.Context) Vip6QuicOutput {
+	return o
+}
+
+func (o Vip6QuicOutput) ToVip6QuicPtrOutput() Vip6QuicPtrOutput {
+	return o.ToVip6QuicPtrOutputWithContext(context.Background())
+}
+
+func (o Vip6QuicOutput) ToVip6QuicPtrOutputWithContext(ctx context.Context) Vip6QuicPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Vip6Quic) *Vip6Quic {
+		return &v
+	}).(Vip6QuicPtrOutput)
+}
+
+// ACK delay exponent (1 - 20, default = 3).
+func (o Vip6QuicOutput) AckDelayExponent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Vip6Quic) *int { return v.AckDelayExponent }).(pulumi.IntPtrOutput)
+}
+
+// Active connection ID limit (1 - 8, default = 2).
+func (o Vip6QuicOutput) ActiveConnectionIdLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Vip6Quic) *int { return v.ActiveConnectionIdLimit }).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+func (o Vip6QuicOutput) ActiveMigration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Vip6Quic) *string { return v.ActiveMigration }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+func (o Vip6QuicOutput) GreaseQuicBit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Vip6Quic) *string { return v.GreaseQuicBit }).(pulumi.StringPtrOutput)
+}
+
+// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+func (o Vip6QuicOutput) MaxAckDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Vip6Quic) *int { return v.MaxAckDelay }).(pulumi.IntPtrOutput)
+}
+
+// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+func (o Vip6QuicOutput) MaxDatagramFrameSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Vip6Quic) *int { return v.MaxDatagramFrameSize }).(pulumi.IntPtrOutput)
+}
+
+// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+func (o Vip6QuicOutput) MaxIdleTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Vip6Quic) *int { return v.MaxIdleTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+func (o Vip6QuicOutput) MaxUdpPayloadSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v Vip6Quic) *int { return v.MaxUdpPayloadSize }).(pulumi.IntPtrOutput)
+}
+
+type Vip6QuicPtrOutput struct{ *pulumi.OutputState }
+
+func (Vip6QuicPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Vip6Quic)(nil)).Elem()
+}
+
+func (o Vip6QuicPtrOutput) ToVip6QuicPtrOutput() Vip6QuicPtrOutput {
+	return o
+}
+
+func (o Vip6QuicPtrOutput) ToVip6QuicPtrOutputWithContext(ctx context.Context) Vip6QuicPtrOutput {
+	return o
+}
+
+func (o Vip6QuicPtrOutput) Elem() Vip6QuicOutput {
+	return o.ApplyT(func(v *Vip6Quic) Vip6Quic {
+		if v != nil {
+			return *v
+		}
+		var ret Vip6Quic
+		return ret
+	}).(Vip6QuicOutput)
+}
+
+// ACK delay exponent (1 - 20, default = 3).
+func (o Vip6QuicPtrOutput) AckDelayExponent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Vip6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.AckDelayExponent
+	}).(pulumi.IntPtrOutput)
+}
+
+// Active connection ID limit (1 - 8, default = 2).
+func (o Vip6QuicPtrOutput) ActiveConnectionIdLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Vip6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveConnectionIdLimit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+func (o Vip6QuicPtrOutput) ActiveMigration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Vip6Quic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveMigration
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+func (o Vip6QuicPtrOutput) GreaseQuicBit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Vip6Quic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GreaseQuicBit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+func (o Vip6QuicPtrOutput) MaxAckDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Vip6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxAckDelay
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+func (o Vip6QuicPtrOutput) MaxDatagramFrameSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Vip6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxDatagramFrameSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+func (o Vip6QuicPtrOutput) MaxIdleTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Vip6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxIdleTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+func (o Vip6QuicPtrOutput) MaxUdpPayloadSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Vip6Quic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxUdpPayloadSize
+	}).(pulumi.IntPtrOutput)
+}
+
 type Vip6Realserver struct {
 	// Only clients in this IP range can connect to this real server.
 	ClientIp *string `pulumi:"clientIp"`
@@ -35928,6 +38669,8 @@ type Vip6Realserver struct {
 	Port *int `pulumi:"port"`
 	// Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 	Status *string `pulumi:"status"`
+	// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+	TranslateHost *string `pulumi:"translateHost"`
 	// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
 	Weight *int `pulumi:"weight"`
 }
@@ -35964,6 +38707,8 @@ type Vip6RealserverArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+	TranslateHost pulumi.StringPtrInput `pulumi:"translateHost"`
 	// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
 	Weight pulumi.IntPtrInput `pulumi:"weight"`
 }
@@ -36067,6 +38812,11 @@ func (o Vip6RealserverOutput) Port() pulumi.IntPtrOutput {
 // Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 func (o Vip6RealserverOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Vip6Realserver) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+func (o Vip6RealserverOutput) TranslateHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Vip6Realserver) *string { return v.TranslateHost }).(pulumi.StringPtrOutput)
 }
 
 // Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
@@ -36518,6 +39268,112 @@ func (o VipExtaddrArrayOutput) Index(i pulumi.IntInput) VipExtaddrOutput {
 	}).(VipExtaddrOutput)
 }
 
+type VipGslbPublicIp struct {
+	// Index of this public IP setting.
+	Index *int `pulumi:"index"`
+	// The publicly accessible IP address.
+	Ip *string `pulumi:"ip"`
+}
+
+// VipGslbPublicIpInput is an input type that accepts VipGslbPublicIpArgs and VipGslbPublicIpOutput values.
+// You can construct a concrete instance of `VipGslbPublicIpInput` via:
+//
+//	VipGslbPublicIpArgs{...}
+type VipGslbPublicIpInput interface {
+	pulumi.Input
+
+	ToVipGslbPublicIpOutput() VipGslbPublicIpOutput
+	ToVipGslbPublicIpOutputWithContext(context.Context) VipGslbPublicIpOutput
+}
+
+type VipGslbPublicIpArgs struct {
+	// Index of this public IP setting.
+	Index pulumi.IntPtrInput `pulumi:"index"`
+	// The publicly accessible IP address.
+	Ip pulumi.StringPtrInput `pulumi:"ip"`
+}
+
+func (VipGslbPublicIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VipGslbPublicIp)(nil)).Elem()
+}
+
+func (i VipGslbPublicIpArgs) ToVipGslbPublicIpOutput() VipGslbPublicIpOutput {
+	return i.ToVipGslbPublicIpOutputWithContext(context.Background())
+}
+
+func (i VipGslbPublicIpArgs) ToVipGslbPublicIpOutputWithContext(ctx context.Context) VipGslbPublicIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VipGslbPublicIpOutput)
+}
+
+// VipGslbPublicIpArrayInput is an input type that accepts VipGslbPublicIpArray and VipGslbPublicIpArrayOutput values.
+// You can construct a concrete instance of `VipGslbPublicIpArrayInput` via:
+//
+//	VipGslbPublicIpArray{ VipGslbPublicIpArgs{...} }
+type VipGslbPublicIpArrayInput interface {
+	pulumi.Input
+
+	ToVipGslbPublicIpArrayOutput() VipGslbPublicIpArrayOutput
+	ToVipGslbPublicIpArrayOutputWithContext(context.Context) VipGslbPublicIpArrayOutput
+}
+
+type VipGslbPublicIpArray []VipGslbPublicIpInput
+
+func (VipGslbPublicIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VipGslbPublicIp)(nil)).Elem()
+}
+
+func (i VipGslbPublicIpArray) ToVipGslbPublicIpArrayOutput() VipGslbPublicIpArrayOutput {
+	return i.ToVipGslbPublicIpArrayOutputWithContext(context.Background())
+}
+
+func (i VipGslbPublicIpArray) ToVipGslbPublicIpArrayOutputWithContext(ctx context.Context) VipGslbPublicIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VipGslbPublicIpArrayOutput)
+}
+
+type VipGslbPublicIpOutput struct{ *pulumi.OutputState }
+
+func (VipGslbPublicIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VipGslbPublicIp)(nil)).Elem()
+}
+
+func (o VipGslbPublicIpOutput) ToVipGslbPublicIpOutput() VipGslbPublicIpOutput {
+	return o
+}
+
+func (o VipGslbPublicIpOutput) ToVipGslbPublicIpOutputWithContext(ctx context.Context) VipGslbPublicIpOutput {
+	return o
+}
+
+// Index of this public IP setting.
+func (o VipGslbPublicIpOutput) Index() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VipGslbPublicIp) *int { return v.Index }).(pulumi.IntPtrOutput)
+}
+
+// The publicly accessible IP address.
+func (o VipGslbPublicIpOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VipGslbPublicIp) *string { return v.Ip }).(pulumi.StringPtrOutput)
+}
+
+type VipGslbPublicIpArrayOutput struct{ *pulumi.OutputState }
+
+func (VipGslbPublicIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VipGslbPublicIp)(nil)).Elem()
+}
+
+func (o VipGslbPublicIpArrayOutput) ToVipGslbPublicIpArrayOutput() VipGslbPublicIpArrayOutput {
+	return o
+}
+
+func (o VipGslbPublicIpArrayOutput) ToVipGslbPublicIpArrayOutputWithContext(ctx context.Context) VipGslbPublicIpArrayOutput {
+	return o
+}
+
+func (o VipGslbPublicIpArrayOutput) Index(i pulumi.IntInput) VipGslbPublicIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VipGslbPublicIp {
+		return vs[0].([]VipGslbPublicIp)[vs[1].(int)]
+	}).(VipGslbPublicIpOutput)
+}
+
 type VipMappedip struct {
 	// Mapped IP range.
 	Range *string `pulumi:"range"`
@@ -36712,6 +39568,276 @@ func (o VipMonitorArrayOutput) Index(i pulumi.IntInput) VipMonitorOutput {
 	}).(VipMonitorOutput)
 }
 
+type VipQuic struct {
+	// ACK delay exponent (1 - 20, default = 3).
+	AckDelayExponent *int `pulumi:"ackDelayExponent"`
+	// Active connection ID limit (1 - 8, default = 2).
+	ActiveConnectionIdLimit *int `pulumi:"activeConnectionIdLimit"`
+	// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+	ActiveMigration *string `pulumi:"activeMigration"`
+	// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+	GreaseQuicBit *string `pulumi:"greaseQuicBit"`
+	// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+	MaxAckDelay *int `pulumi:"maxAckDelay"`
+	// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+	MaxDatagramFrameSize *int `pulumi:"maxDatagramFrameSize"`
+	// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+	MaxIdleTimeout *int `pulumi:"maxIdleTimeout"`
+	// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+	MaxUdpPayloadSize *int `pulumi:"maxUdpPayloadSize"`
+}
+
+// VipQuicInput is an input type that accepts VipQuicArgs and VipQuicOutput values.
+// You can construct a concrete instance of `VipQuicInput` via:
+//
+//	VipQuicArgs{...}
+type VipQuicInput interface {
+	pulumi.Input
+
+	ToVipQuicOutput() VipQuicOutput
+	ToVipQuicOutputWithContext(context.Context) VipQuicOutput
+}
+
+type VipQuicArgs struct {
+	// ACK delay exponent (1 - 20, default = 3).
+	AckDelayExponent pulumi.IntPtrInput `pulumi:"ackDelayExponent"`
+	// Active connection ID limit (1 - 8, default = 2).
+	ActiveConnectionIdLimit pulumi.IntPtrInput `pulumi:"activeConnectionIdLimit"`
+	// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+	ActiveMigration pulumi.StringPtrInput `pulumi:"activeMigration"`
+	// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+	GreaseQuicBit pulumi.StringPtrInput `pulumi:"greaseQuicBit"`
+	// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+	MaxAckDelay pulumi.IntPtrInput `pulumi:"maxAckDelay"`
+	// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+	MaxDatagramFrameSize pulumi.IntPtrInput `pulumi:"maxDatagramFrameSize"`
+	// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+	MaxIdleTimeout pulumi.IntPtrInput `pulumi:"maxIdleTimeout"`
+	// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+	MaxUdpPayloadSize pulumi.IntPtrInput `pulumi:"maxUdpPayloadSize"`
+}
+
+func (VipQuicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VipQuic)(nil)).Elem()
+}
+
+func (i VipQuicArgs) ToVipQuicOutput() VipQuicOutput {
+	return i.ToVipQuicOutputWithContext(context.Background())
+}
+
+func (i VipQuicArgs) ToVipQuicOutputWithContext(ctx context.Context) VipQuicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VipQuicOutput)
+}
+
+func (i VipQuicArgs) ToVipQuicPtrOutput() VipQuicPtrOutput {
+	return i.ToVipQuicPtrOutputWithContext(context.Background())
+}
+
+func (i VipQuicArgs) ToVipQuicPtrOutputWithContext(ctx context.Context) VipQuicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VipQuicOutput).ToVipQuicPtrOutputWithContext(ctx)
+}
+
+// VipQuicPtrInput is an input type that accepts VipQuicArgs, VipQuicPtr and VipQuicPtrOutput values.
+// You can construct a concrete instance of `VipQuicPtrInput` via:
+//
+//	        VipQuicArgs{...}
+//
+//	or:
+//
+//	        nil
+type VipQuicPtrInput interface {
+	pulumi.Input
+
+	ToVipQuicPtrOutput() VipQuicPtrOutput
+	ToVipQuicPtrOutputWithContext(context.Context) VipQuicPtrOutput
+}
+
+type vipQuicPtrType VipQuicArgs
+
+func VipQuicPtr(v *VipQuicArgs) VipQuicPtrInput {
+	return (*vipQuicPtrType)(v)
+}
+
+func (*vipQuicPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VipQuic)(nil)).Elem()
+}
+
+func (i *vipQuicPtrType) ToVipQuicPtrOutput() VipQuicPtrOutput {
+	return i.ToVipQuicPtrOutputWithContext(context.Background())
+}
+
+func (i *vipQuicPtrType) ToVipQuicPtrOutputWithContext(ctx context.Context) VipQuicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VipQuicPtrOutput)
+}
+
+type VipQuicOutput struct{ *pulumi.OutputState }
+
+func (VipQuicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VipQuic)(nil)).Elem()
+}
+
+func (o VipQuicOutput) ToVipQuicOutput() VipQuicOutput {
+	return o
+}
+
+func (o VipQuicOutput) ToVipQuicOutputWithContext(ctx context.Context) VipQuicOutput {
+	return o
+}
+
+func (o VipQuicOutput) ToVipQuicPtrOutput() VipQuicPtrOutput {
+	return o.ToVipQuicPtrOutputWithContext(context.Background())
+}
+
+func (o VipQuicOutput) ToVipQuicPtrOutputWithContext(ctx context.Context) VipQuicPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VipQuic) *VipQuic {
+		return &v
+	}).(VipQuicPtrOutput)
+}
+
+// ACK delay exponent (1 - 20, default = 3).
+func (o VipQuicOutput) AckDelayExponent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VipQuic) *int { return v.AckDelayExponent }).(pulumi.IntPtrOutput)
+}
+
+// Active connection ID limit (1 - 8, default = 2).
+func (o VipQuicOutput) ActiveConnectionIdLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VipQuic) *int { return v.ActiveConnectionIdLimit }).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+func (o VipQuicOutput) ActiveMigration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VipQuic) *string { return v.ActiveMigration }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+func (o VipQuicOutput) GreaseQuicBit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VipQuic) *string { return v.GreaseQuicBit }).(pulumi.StringPtrOutput)
+}
+
+// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+func (o VipQuicOutput) MaxAckDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VipQuic) *int { return v.MaxAckDelay }).(pulumi.IntPtrOutput)
+}
+
+// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+func (o VipQuicOutput) MaxDatagramFrameSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VipQuic) *int { return v.MaxDatagramFrameSize }).(pulumi.IntPtrOutput)
+}
+
+// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+func (o VipQuicOutput) MaxIdleTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VipQuic) *int { return v.MaxIdleTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+func (o VipQuicOutput) MaxUdpPayloadSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VipQuic) *int { return v.MaxUdpPayloadSize }).(pulumi.IntPtrOutput)
+}
+
+type VipQuicPtrOutput struct{ *pulumi.OutputState }
+
+func (VipQuicPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VipQuic)(nil)).Elem()
+}
+
+func (o VipQuicPtrOutput) ToVipQuicPtrOutput() VipQuicPtrOutput {
+	return o
+}
+
+func (o VipQuicPtrOutput) ToVipQuicPtrOutputWithContext(ctx context.Context) VipQuicPtrOutput {
+	return o
+}
+
+func (o VipQuicPtrOutput) Elem() VipQuicOutput {
+	return o.ApplyT(func(v *VipQuic) VipQuic {
+		if v != nil {
+			return *v
+		}
+		var ret VipQuic
+		return ret
+	}).(VipQuicOutput)
+}
+
+// ACK delay exponent (1 - 20, default = 3).
+func (o VipQuicPtrOutput) AckDelayExponent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VipQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.AckDelayExponent
+	}).(pulumi.IntPtrOutput)
+}
+
+// Active connection ID limit (1 - 8, default = 2).
+func (o VipQuicPtrOutput) ActiveConnectionIdLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VipQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveConnectionIdLimit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+func (o VipQuicPtrOutput) ActiveMigration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VipQuic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ActiveMigration
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+func (o VipQuicPtrOutput) GreaseQuicBit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VipQuic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GreaseQuicBit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+func (o VipQuicPtrOutput) MaxAckDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VipQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxAckDelay
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+func (o VipQuicPtrOutput) MaxDatagramFrameSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VipQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxDatagramFrameSize
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+func (o VipQuicPtrOutput) MaxIdleTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VipQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxIdleTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+func (o VipQuicPtrOutput) MaxUdpPayloadSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VipQuic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxUdpPayloadSize
+	}).(pulumi.IntPtrOutput)
+}
+
 type VipRealserver struct {
 	// Dynamic address of the real server.
 	Address *string `pulumi:"address"`
@@ -36735,6 +39861,8 @@ type VipRealserver struct {
 	Port *int `pulumi:"port"`
 	// Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 	Status *string `pulumi:"status"`
+	// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+	TranslateHost *string `pulumi:"translateHost"`
 	// Type of address. Valid values: `ip`, `address`.
 	Type *string `pulumi:"type"`
 	// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
@@ -36775,6 +39903,8 @@ type VipRealserverArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+	TranslateHost pulumi.StringPtrInput `pulumi:"translateHost"`
 	// Type of address. Valid values: `ip`, `address`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
@@ -36885,6 +40015,11 @@ func (o VipRealserverOutput) Port() pulumi.IntPtrOutput {
 // Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 func (o VipRealserverOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VipRealserver) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+func (o VipRealserverOutput) TranslateHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VipRealserver) *string { return v.TranslateHost }).(pulumi.StringPtrOutput)
 }
 
 // Type of address. Valid values: `ip`, `address`.
@@ -39087,6 +42222,103 @@ func (o GetAddressTaggingTagArrayOutput) Index(i pulumi.IntInput) GetAddressTagg
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAddressTaggingTag {
 		return vs[0].([]GetAddressTaggingTag)[vs[1].(int)]
 	}).(GetAddressTaggingTagOutput)
+}
+
+type GetAddrgrp6ExcludeMember struct {
+	// Specify the name of the desired firewall addrgrp6.
+	Name string `pulumi:"name"`
+}
+
+// GetAddrgrp6ExcludeMemberInput is an input type that accepts GetAddrgrp6ExcludeMemberArgs and GetAddrgrp6ExcludeMemberOutput values.
+// You can construct a concrete instance of `GetAddrgrp6ExcludeMemberInput` via:
+//
+//	GetAddrgrp6ExcludeMemberArgs{...}
+type GetAddrgrp6ExcludeMemberInput interface {
+	pulumi.Input
+
+	ToGetAddrgrp6ExcludeMemberOutput() GetAddrgrp6ExcludeMemberOutput
+	ToGetAddrgrp6ExcludeMemberOutputWithContext(context.Context) GetAddrgrp6ExcludeMemberOutput
+}
+
+type GetAddrgrp6ExcludeMemberArgs struct {
+	// Specify the name of the desired firewall addrgrp6.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetAddrgrp6ExcludeMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (i GetAddrgrp6ExcludeMemberArgs) ToGetAddrgrp6ExcludeMemberOutput() GetAddrgrp6ExcludeMemberOutput {
+	return i.ToGetAddrgrp6ExcludeMemberOutputWithContext(context.Background())
+}
+
+func (i GetAddrgrp6ExcludeMemberArgs) ToGetAddrgrp6ExcludeMemberOutputWithContext(ctx context.Context) GetAddrgrp6ExcludeMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddrgrp6ExcludeMemberOutput)
+}
+
+// GetAddrgrp6ExcludeMemberArrayInput is an input type that accepts GetAddrgrp6ExcludeMemberArray and GetAddrgrp6ExcludeMemberArrayOutput values.
+// You can construct a concrete instance of `GetAddrgrp6ExcludeMemberArrayInput` via:
+//
+//	GetAddrgrp6ExcludeMemberArray{ GetAddrgrp6ExcludeMemberArgs{...} }
+type GetAddrgrp6ExcludeMemberArrayInput interface {
+	pulumi.Input
+
+	ToGetAddrgrp6ExcludeMemberArrayOutput() GetAddrgrp6ExcludeMemberArrayOutput
+	ToGetAddrgrp6ExcludeMemberArrayOutputWithContext(context.Context) GetAddrgrp6ExcludeMemberArrayOutput
+}
+
+type GetAddrgrp6ExcludeMemberArray []GetAddrgrp6ExcludeMemberInput
+
+func (GetAddrgrp6ExcludeMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (i GetAddrgrp6ExcludeMemberArray) ToGetAddrgrp6ExcludeMemberArrayOutput() GetAddrgrp6ExcludeMemberArrayOutput {
+	return i.ToGetAddrgrp6ExcludeMemberArrayOutputWithContext(context.Background())
+}
+
+func (i GetAddrgrp6ExcludeMemberArray) ToGetAddrgrp6ExcludeMemberArrayOutputWithContext(ctx context.Context) GetAddrgrp6ExcludeMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAddrgrp6ExcludeMemberArrayOutput)
+}
+
+type GetAddrgrp6ExcludeMemberOutput struct{ *pulumi.OutputState }
+
+func (GetAddrgrp6ExcludeMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAddrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (o GetAddrgrp6ExcludeMemberOutput) ToGetAddrgrp6ExcludeMemberOutput() GetAddrgrp6ExcludeMemberOutput {
+	return o
+}
+
+func (o GetAddrgrp6ExcludeMemberOutput) ToGetAddrgrp6ExcludeMemberOutputWithContext(ctx context.Context) GetAddrgrp6ExcludeMemberOutput {
+	return o
+}
+
+// Specify the name of the desired firewall addrgrp6.
+func (o GetAddrgrp6ExcludeMemberOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAddrgrp6ExcludeMember) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetAddrgrp6ExcludeMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAddrgrp6ExcludeMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAddrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (o GetAddrgrp6ExcludeMemberArrayOutput) ToGetAddrgrp6ExcludeMemberArrayOutput() GetAddrgrp6ExcludeMemberArrayOutput {
+	return o
+}
+
+func (o GetAddrgrp6ExcludeMemberArrayOutput) ToGetAddrgrp6ExcludeMemberArrayOutputWithContext(ctx context.Context) GetAddrgrp6ExcludeMemberArrayOutput {
+	return o
+}
+
+func (o GetAddrgrp6ExcludeMemberArrayOutput) Index(i pulumi.IntInput) GetAddrgrp6ExcludeMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAddrgrp6ExcludeMember {
+		return vs[0].([]GetAddrgrp6ExcludeMember)[vs[1].(int)]
+	}).(GetAddrgrp6ExcludeMemberOutput)
 }
 
 type GetAddrgrp6Member struct {
@@ -49127,6 +52359,103 @@ func (o GetPolicyNtlmEnabledBrowserArrayOutput) Index(i pulumi.IntInput) GetPoli
 	}).(GetPolicyNtlmEnabledBrowserOutput)
 }
 
+type GetPolicyPcpPoolname struct {
+	// Mirror Interface name.
+	Name string `pulumi:"name"`
+}
+
+// GetPolicyPcpPoolnameInput is an input type that accepts GetPolicyPcpPoolnameArgs and GetPolicyPcpPoolnameOutput values.
+// You can construct a concrete instance of `GetPolicyPcpPoolnameInput` via:
+//
+//	GetPolicyPcpPoolnameArgs{...}
+type GetPolicyPcpPoolnameInput interface {
+	pulumi.Input
+
+	ToGetPolicyPcpPoolnameOutput() GetPolicyPcpPoolnameOutput
+	ToGetPolicyPcpPoolnameOutputWithContext(context.Context) GetPolicyPcpPoolnameOutput
+}
+
+type GetPolicyPcpPoolnameArgs struct {
+	// Mirror Interface name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetPolicyPcpPoolnameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPolicyPcpPoolname)(nil)).Elem()
+}
+
+func (i GetPolicyPcpPoolnameArgs) ToGetPolicyPcpPoolnameOutput() GetPolicyPcpPoolnameOutput {
+	return i.ToGetPolicyPcpPoolnameOutputWithContext(context.Background())
+}
+
+func (i GetPolicyPcpPoolnameArgs) ToGetPolicyPcpPoolnameOutputWithContext(ctx context.Context) GetPolicyPcpPoolnameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyPcpPoolnameOutput)
+}
+
+// GetPolicyPcpPoolnameArrayInput is an input type that accepts GetPolicyPcpPoolnameArray and GetPolicyPcpPoolnameArrayOutput values.
+// You can construct a concrete instance of `GetPolicyPcpPoolnameArrayInput` via:
+//
+//	GetPolicyPcpPoolnameArray{ GetPolicyPcpPoolnameArgs{...} }
+type GetPolicyPcpPoolnameArrayInput interface {
+	pulumi.Input
+
+	ToGetPolicyPcpPoolnameArrayOutput() GetPolicyPcpPoolnameArrayOutput
+	ToGetPolicyPcpPoolnameArrayOutputWithContext(context.Context) GetPolicyPcpPoolnameArrayOutput
+}
+
+type GetPolicyPcpPoolnameArray []GetPolicyPcpPoolnameInput
+
+func (GetPolicyPcpPoolnameArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPolicyPcpPoolname)(nil)).Elem()
+}
+
+func (i GetPolicyPcpPoolnameArray) ToGetPolicyPcpPoolnameArrayOutput() GetPolicyPcpPoolnameArrayOutput {
+	return i.ToGetPolicyPcpPoolnameArrayOutputWithContext(context.Background())
+}
+
+func (i GetPolicyPcpPoolnameArray) ToGetPolicyPcpPoolnameArrayOutputWithContext(ctx context.Context) GetPolicyPcpPoolnameArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyPcpPoolnameArrayOutput)
+}
+
+type GetPolicyPcpPoolnameOutput struct{ *pulumi.OutputState }
+
+func (GetPolicyPcpPoolnameOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPolicyPcpPoolname)(nil)).Elem()
+}
+
+func (o GetPolicyPcpPoolnameOutput) ToGetPolicyPcpPoolnameOutput() GetPolicyPcpPoolnameOutput {
+	return o
+}
+
+func (o GetPolicyPcpPoolnameOutput) ToGetPolicyPcpPoolnameOutputWithContext(ctx context.Context) GetPolicyPcpPoolnameOutput {
+	return o
+}
+
+// Mirror Interface name.
+func (o GetPolicyPcpPoolnameOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPolicyPcpPoolname) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetPolicyPcpPoolnameArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPolicyPcpPoolnameArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPolicyPcpPoolname)(nil)).Elem()
+}
+
+func (o GetPolicyPcpPoolnameArrayOutput) ToGetPolicyPcpPoolnameArrayOutput() GetPolicyPcpPoolnameArrayOutput {
+	return o
+}
+
+func (o GetPolicyPcpPoolnameArrayOutput) ToGetPolicyPcpPoolnameArrayOutputWithContext(ctx context.Context) GetPolicyPcpPoolnameArrayOutput {
+	return o
+}
+
+func (o GetPolicyPcpPoolnameArrayOutput) Index(i pulumi.IntInput) GetPolicyPcpPoolnameOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPolicyPcpPoolname {
+		return vs[0].([]GetPolicyPcpPoolname)[vs[1].(int)]
+	}).(GetPolicyPcpPoolnameOutput)
+}
+
 type GetPolicyPoolname6 struct {
 	// Mirror Interface name.
 	Name string `pulumi:"name"`
@@ -50388,6 +53717,103 @@ func (o GetPolicyZtnaEmsTagArrayOutput) Index(i pulumi.IntInput) GetPolicyZtnaEm
 	}).(GetPolicyZtnaEmsTagOutput)
 }
 
+type GetPolicyZtnaEmsTagSecondary struct {
+	// Mirror Interface name.
+	Name string `pulumi:"name"`
+}
+
+// GetPolicyZtnaEmsTagSecondaryInput is an input type that accepts GetPolicyZtnaEmsTagSecondaryArgs and GetPolicyZtnaEmsTagSecondaryOutput values.
+// You can construct a concrete instance of `GetPolicyZtnaEmsTagSecondaryInput` via:
+//
+//	GetPolicyZtnaEmsTagSecondaryArgs{...}
+type GetPolicyZtnaEmsTagSecondaryInput interface {
+	pulumi.Input
+
+	ToGetPolicyZtnaEmsTagSecondaryOutput() GetPolicyZtnaEmsTagSecondaryOutput
+	ToGetPolicyZtnaEmsTagSecondaryOutputWithContext(context.Context) GetPolicyZtnaEmsTagSecondaryOutput
+}
+
+type GetPolicyZtnaEmsTagSecondaryArgs struct {
+	// Mirror Interface name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetPolicyZtnaEmsTagSecondaryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPolicyZtnaEmsTagSecondary)(nil)).Elem()
+}
+
+func (i GetPolicyZtnaEmsTagSecondaryArgs) ToGetPolicyZtnaEmsTagSecondaryOutput() GetPolicyZtnaEmsTagSecondaryOutput {
+	return i.ToGetPolicyZtnaEmsTagSecondaryOutputWithContext(context.Background())
+}
+
+func (i GetPolicyZtnaEmsTagSecondaryArgs) ToGetPolicyZtnaEmsTagSecondaryOutputWithContext(ctx context.Context) GetPolicyZtnaEmsTagSecondaryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyZtnaEmsTagSecondaryOutput)
+}
+
+// GetPolicyZtnaEmsTagSecondaryArrayInput is an input type that accepts GetPolicyZtnaEmsTagSecondaryArray and GetPolicyZtnaEmsTagSecondaryArrayOutput values.
+// You can construct a concrete instance of `GetPolicyZtnaEmsTagSecondaryArrayInput` via:
+//
+//	GetPolicyZtnaEmsTagSecondaryArray{ GetPolicyZtnaEmsTagSecondaryArgs{...} }
+type GetPolicyZtnaEmsTagSecondaryArrayInput interface {
+	pulumi.Input
+
+	ToGetPolicyZtnaEmsTagSecondaryArrayOutput() GetPolicyZtnaEmsTagSecondaryArrayOutput
+	ToGetPolicyZtnaEmsTagSecondaryArrayOutputWithContext(context.Context) GetPolicyZtnaEmsTagSecondaryArrayOutput
+}
+
+type GetPolicyZtnaEmsTagSecondaryArray []GetPolicyZtnaEmsTagSecondaryInput
+
+func (GetPolicyZtnaEmsTagSecondaryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPolicyZtnaEmsTagSecondary)(nil)).Elem()
+}
+
+func (i GetPolicyZtnaEmsTagSecondaryArray) ToGetPolicyZtnaEmsTagSecondaryArrayOutput() GetPolicyZtnaEmsTagSecondaryArrayOutput {
+	return i.ToGetPolicyZtnaEmsTagSecondaryArrayOutputWithContext(context.Background())
+}
+
+func (i GetPolicyZtnaEmsTagSecondaryArray) ToGetPolicyZtnaEmsTagSecondaryArrayOutputWithContext(ctx context.Context) GetPolicyZtnaEmsTagSecondaryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyZtnaEmsTagSecondaryArrayOutput)
+}
+
+type GetPolicyZtnaEmsTagSecondaryOutput struct{ *pulumi.OutputState }
+
+func (GetPolicyZtnaEmsTagSecondaryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPolicyZtnaEmsTagSecondary)(nil)).Elem()
+}
+
+func (o GetPolicyZtnaEmsTagSecondaryOutput) ToGetPolicyZtnaEmsTagSecondaryOutput() GetPolicyZtnaEmsTagSecondaryOutput {
+	return o
+}
+
+func (o GetPolicyZtnaEmsTagSecondaryOutput) ToGetPolicyZtnaEmsTagSecondaryOutputWithContext(ctx context.Context) GetPolicyZtnaEmsTagSecondaryOutput {
+	return o
+}
+
+// Mirror Interface name.
+func (o GetPolicyZtnaEmsTagSecondaryOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPolicyZtnaEmsTagSecondary) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetPolicyZtnaEmsTagSecondaryArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPolicyZtnaEmsTagSecondaryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPolicyZtnaEmsTagSecondary)(nil)).Elem()
+}
+
+func (o GetPolicyZtnaEmsTagSecondaryArrayOutput) ToGetPolicyZtnaEmsTagSecondaryArrayOutput() GetPolicyZtnaEmsTagSecondaryArrayOutput {
+	return o
+}
+
+func (o GetPolicyZtnaEmsTagSecondaryArrayOutput) ToGetPolicyZtnaEmsTagSecondaryArrayOutputWithContext(ctx context.Context) GetPolicyZtnaEmsTagSecondaryArrayOutput {
+	return o
+}
+
+func (o GetPolicyZtnaEmsTagSecondaryArrayOutput) Index(i pulumi.IntInput) GetPolicyZtnaEmsTagSecondaryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPolicyZtnaEmsTagSecondary {
+		return vs[0].([]GetPolicyZtnaEmsTagSecondary)[vs[1].(int)]
+	}).(GetPolicyZtnaEmsTagSecondaryOutput)
+}
+
 type GetPolicyZtnaGeoTag struct {
 	// Mirror Interface name.
 	Name string `pulumi:"name"`
@@ -51215,6 +54641,8 @@ type GetProfileprotocoloptionsHttp struct {
 	UncompressedNestLimit int `pulumi:"uncompressedNestLimit"`
 	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 	UncompressedOversizeLimit int `pulumi:"uncompressedOversizeLimit"`
+	// Configure the action the FortiGate unit will take on unknown content-encoding.
+	UnknownContentEncoding string `pulumi:"unknownContentEncoding"`
 	// How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1.
 	UnknownHttpVersion string `pulumi:"unknownHttpVersion"`
 	// Enable/disable verification of DNS for policy matching.
@@ -51293,6 +54721,8 @@ type GetProfileprotocoloptionsHttpArgs struct {
 	UncompressedNestLimit pulumi.IntInput `pulumi:"uncompressedNestLimit"`
 	// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 	UncompressedOversizeLimit pulumi.IntInput `pulumi:"uncompressedOversizeLimit"`
+	// Configure the action the FortiGate unit will take on unknown content-encoding.
+	UnknownContentEncoding pulumi.StringInput `pulumi:"unknownContentEncoding"`
 	// How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1.
 	UnknownHttpVersion pulumi.StringInput `pulumi:"unknownHttpVersion"`
 	// Enable/disable verification of DNS for policy matching.
@@ -51498,6 +54928,11 @@ func (o GetProfileprotocoloptionsHttpOutput) UncompressedNestLimit() pulumi.IntO
 // Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 func (o GetProfileprotocoloptionsHttpOutput) UncompressedOversizeLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v GetProfileprotocoloptionsHttp) int { return v.UncompressedOversizeLimit }).(pulumi.IntOutput)
+}
+
+// Configure the action the FortiGate unit will take on unknown content-encoding.
+func (o GetProfileprotocoloptionsHttpOutput) UnknownContentEncoding() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProfileprotocoloptionsHttp) string { return v.UnknownContentEncoding }).(pulumi.StringOutput)
 }
 
 // How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1.
@@ -54125,6 +57560,394 @@ func (o GetProxypolicyGroupArrayOutput) Index(i pulumi.IntInput) GetProxypolicyG
 	}).(GetProxypolicyGroupOutput)
 }
 
+type GetProxypolicyInternetService6Custom struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetProxypolicyInternetService6CustomInput is an input type that accepts GetProxypolicyInternetService6CustomArgs and GetProxypolicyInternetService6CustomOutput values.
+// You can construct a concrete instance of `GetProxypolicyInternetService6CustomInput` via:
+//
+//	GetProxypolicyInternetService6CustomArgs{...}
+type GetProxypolicyInternetService6CustomInput interface {
+	pulumi.Input
+
+	ToGetProxypolicyInternetService6CustomOutput() GetProxypolicyInternetService6CustomOutput
+	ToGetProxypolicyInternetService6CustomOutputWithContext(context.Context) GetProxypolicyInternetService6CustomOutput
+}
+
+type GetProxypolicyInternetService6CustomArgs struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetProxypolicyInternetService6CustomArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProxypolicyInternetService6Custom)(nil)).Elem()
+}
+
+func (i GetProxypolicyInternetService6CustomArgs) ToGetProxypolicyInternetService6CustomOutput() GetProxypolicyInternetService6CustomOutput {
+	return i.ToGetProxypolicyInternetService6CustomOutputWithContext(context.Background())
+}
+
+func (i GetProxypolicyInternetService6CustomArgs) ToGetProxypolicyInternetService6CustomOutputWithContext(ctx context.Context) GetProxypolicyInternetService6CustomOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyInternetService6CustomOutput)
+}
+
+// GetProxypolicyInternetService6CustomArrayInput is an input type that accepts GetProxypolicyInternetService6CustomArray and GetProxypolicyInternetService6CustomArrayOutput values.
+// You can construct a concrete instance of `GetProxypolicyInternetService6CustomArrayInput` via:
+//
+//	GetProxypolicyInternetService6CustomArray{ GetProxypolicyInternetService6CustomArgs{...} }
+type GetProxypolicyInternetService6CustomArrayInput interface {
+	pulumi.Input
+
+	ToGetProxypolicyInternetService6CustomArrayOutput() GetProxypolicyInternetService6CustomArrayOutput
+	ToGetProxypolicyInternetService6CustomArrayOutputWithContext(context.Context) GetProxypolicyInternetService6CustomArrayOutput
+}
+
+type GetProxypolicyInternetService6CustomArray []GetProxypolicyInternetService6CustomInput
+
+func (GetProxypolicyInternetService6CustomArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProxypolicyInternetService6Custom)(nil)).Elem()
+}
+
+func (i GetProxypolicyInternetService6CustomArray) ToGetProxypolicyInternetService6CustomArrayOutput() GetProxypolicyInternetService6CustomArrayOutput {
+	return i.ToGetProxypolicyInternetService6CustomArrayOutputWithContext(context.Background())
+}
+
+func (i GetProxypolicyInternetService6CustomArray) ToGetProxypolicyInternetService6CustomArrayOutputWithContext(ctx context.Context) GetProxypolicyInternetService6CustomArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyInternetService6CustomArrayOutput)
+}
+
+type GetProxypolicyInternetService6CustomOutput struct{ *pulumi.OutputState }
+
+func (GetProxypolicyInternetService6CustomOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProxypolicyInternetService6Custom)(nil)).Elem()
+}
+
+func (o GetProxypolicyInternetService6CustomOutput) ToGetProxypolicyInternetService6CustomOutput() GetProxypolicyInternetService6CustomOutput {
+	return o
+}
+
+func (o GetProxypolicyInternetService6CustomOutput) ToGetProxypolicyInternetService6CustomOutputWithContext(ctx context.Context) GetProxypolicyInternetService6CustomOutput {
+	return o
+}
+
+// Group name.
+func (o GetProxypolicyInternetService6CustomOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProxypolicyInternetService6Custom) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetProxypolicyInternetService6CustomArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProxypolicyInternetService6CustomArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProxypolicyInternetService6Custom)(nil)).Elem()
+}
+
+func (o GetProxypolicyInternetService6CustomArrayOutput) ToGetProxypolicyInternetService6CustomArrayOutput() GetProxypolicyInternetService6CustomArrayOutput {
+	return o
+}
+
+func (o GetProxypolicyInternetService6CustomArrayOutput) ToGetProxypolicyInternetService6CustomArrayOutputWithContext(ctx context.Context) GetProxypolicyInternetService6CustomArrayOutput {
+	return o
+}
+
+func (o GetProxypolicyInternetService6CustomArrayOutput) Index(i pulumi.IntInput) GetProxypolicyInternetService6CustomOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProxypolicyInternetService6Custom {
+		return vs[0].([]GetProxypolicyInternetService6Custom)[vs[1].(int)]
+	}).(GetProxypolicyInternetService6CustomOutput)
+}
+
+type GetProxypolicyInternetService6CustomGroup struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetProxypolicyInternetService6CustomGroupInput is an input type that accepts GetProxypolicyInternetService6CustomGroupArgs and GetProxypolicyInternetService6CustomGroupOutput values.
+// You can construct a concrete instance of `GetProxypolicyInternetService6CustomGroupInput` via:
+//
+//	GetProxypolicyInternetService6CustomGroupArgs{...}
+type GetProxypolicyInternetService6CustomGroupInput interface {
+	pulumi.Input
+
+	ToGetProxypolicyInternetService6CustomGroupOutput() GetProxypolicyInternetService6CustomGroupOutput
+	ToGetProxypolicyInternetService6CustomGroupOutputWithContext(context.Context) GetProxypolicyInternetService6CustomGroupOutput
+}
+
+type GetProxypolicyInternetService6CustomGroupArgs struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetProxypolicyInternetService6CustomGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProxypolicyInternetService6CustomGroup)(nil)).Elem()
+}
+
+func (i GetProxypolicyInternetService6CustomGroupArgs) ToGetProxypolicyInternetService6CustomGroupOutput() GetProxypolicyInternetService6CustomGroupOutput {
+	return i.ToGetProxypolicyInternetService6CustomGroupOutputWithContext(context.Background())
+}
+
+func (i GetProxypolicyInternetService6CustomGroupArgs) ToGetProxypolicyInternetService6CustomGroupOutputWithContext(ctx context.Context) GetProxypolicyInternetService6CustomGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyInternetService6CustomGroupOutput)
+}
+
+// GetProxypolicyInternetService6CustomGroupArrayInput is an input type that accepts GetProxypolicyInternetService6CustomGroupArray and GetProxypolicyInternetService6CustomGroupArrayOutput values.
+// You can construct a concrete instance of `GetProxypolicyInternetService6CustomGroupArrayInput` via:
+//
+//	GetProxypolicyInternetService6CustomGroupArray{ GetProxypolicyInternetService6CustomGroupArgs{...} }
+type GetProxypolicyInternetService6CustomGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetProxypolicyInternetService6CustomGroupArrayOutput() GetProxypolicyInternetService6CustomGroupArrayOutput
+	ToGetProxypolicyInternetService6CustomGroupArrayOutputWithContext(context.Context) GetProxypolicyInternetService6CustomGroupArrayOutput
+}
+
+type GetProxypolicyInternetService6CustomGroupArray []GetProxypolicyInternetService6CustomGroupInput
+
+func (GetProxypolicyInternetService6CustomGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProxypolicyInternetService6CustomGroup)(nil)).Elem()
+}
+
+func (i GetProxypolicyInternetService6CustomGroupArray) ToGetProxypolicyInternetService6CustomGroupArrayOutput() GetProxypolicyInternetService6CustomGroupArrayOutput {
+	return i.ToGetProxypolicyInternetService6CustomGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetProxypolicyInternetService6CustomGroupArray) ToGetProxypolicyInternetService6CustomGroupArrayOutputWithContext(ctx context.Context) GetProxypolicyInternetService6CustomGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyInternetService6CustomGroupArrayOutput)
+}
+
+type GetProxypolicyInternetService6CustomGroupOutput struct{ *pulumi.OutputState }
+
+func (GetProxypolicyInternetService6CustomGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProxypolicyInternetService6CustomGroup)(nil)).Elem()
+}
+
+func (o GetProxypolicyInternetService6CustomGroupOutput) ToGetProxypolicyInternetService6CustomGroupOutput() GetProxypolicyInternetService6CustomGroupOutput {
+	return o
+}
+
+func (o GetProxypolicyInternetService6CustomGroupOutput) ToGetProxypolicyInternetService6CustomGroupOutputWithContext(ctx context.Context) GetProxypolicyInternetService6CustomGroupOutput {
+	return o
+}
+
+// Group name.
+func (o GetProxypolicyInternetService6CustomGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProxypolicyInternetService6CustomGroup) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetProxypolicyInternetService6CustomGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProxypolicyInternetService6CustomGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProxypolicyInternetService6CustomGroup)(nil)).Elem()
+}
+
+func (o GetProxypolicyInternetService6CustomGroupArrayOutput) ToGetProxypolicyInternetService6CustomGroupArrayOutput() GetProxypolicyInternetService6CustomGroupArrayOutput {
+	return o
+}
+
+func (o GetProxypolicyInternetService6CustomGroupArrayOutput) ToGetProxypolicyInternetService6CustomGroupArrayOutputWithContext(ctx context.Context) GetProxypolicyInternetService6CustomGroupArrayOutput {
+	return o
+}
+
+func (o GetProxypolicyInternetService6CustomGroupArrayOutput) Index(i pulumi.IntInput) GetProxypolicyInternetService6CustomGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProxypolicyInternetService6CustomGroup {
+		return vs[0].([]GetProxypolicyInternetService6CustomGroup)[vs[1].(int)]
+	}).(GetProxypolicyInternetService6CustomGroupOutput)
+}
+
+type GetProxypolicyInternetService6Group struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetProxypolicyInternetService6GroupInput is an input type that accepts GetProxypolicyInternetService6GroupArgs and GetProxypolicyInternetService6GroupOutput values.
+// You can construct a concrete instance of `GetProxypolicyInternetService6GroupInput` via:
+//
+//	GetProxypolicyInternetService6GroupArgs{...}
+type GetProxypolicyInternetService6GroupInput interface {
+	pulumi.Input
+
+	ToGetProxypolicyInternetService6GroupOutput() GetProxypolicyInternetService6GroupOutput
+	ToGetProxypolicyInternetService6GroupOutputWithContext(context.Context) GetProxypolicyInternetService6GroupOutput
+}
+
+type GetProxypolicyInternetService6GroupArgs struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetProxypolicyInternetService6GroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProxypolicyInternetService6Group)(nil)).Elem()
+}
+
+func (i GetProxypolicyInternetService6GroupArgs) ToGetProxypolicyInternetService6GroupOutput() GetProxypolicyInternetService6GroupOutput {
+	return i.ToGetProxypolicyInternetService6GroupOutputWithContext(context.Background())
+}
+
+func (i GetProxypolicyInternetService6GroupArgs) ToGetProxypolicyInternetService6GroupOutputWithContext(ctx context.Context) GetProxypolicyInternetService6GroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyInternetService6GroupOutput)
+}
+
+// GetProxypolicyInternetService6GroupArrayInput is an input type that accepts GetProxypolicyInternetService6GroupArray and GetProxypolicyInternetService6GroupArrayOutput values.
+// You can construct a concrete instance of `GetProxypolicyInternetService6GroupArrayInput` via:
+//
+//	GetProxypolicyInternetService6GroupArray{ GetProxypolicyInternetService6GroupArgs{...} }
+type GetProxypolicyInternetService6GroupArrayInput interface {
+	pulumi.Input
+
+	ToGetProxypolicyInternetService6GroupArrayOutput() GetProxypolicyInternetService6GroupArrayOutput
+	ToGetProxypolicyInternetService6GroupArrayOutputWithContext(context.Context) GetProxypolicyInternetService6GroupArrayOutput
+}
+
+type GetProxypolicyInternetService6GroupArray []GetProxypolicyInternetService6GroupInput
+
+func (GetProxypolicyInternetService6GroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProxypolicyInternetService6Group)(nil)).Elem()
+}
+
+func (i GetProxypolicyInternetService6GroupArray) ToGetProxypolicyInternetService6GroupArrayOutput() GetProxypolicyInternetService6GroupArrayOutput {
+	return i.ToGetProxypolicyInternetService6GroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetProxypolicyInternetService6GroupArray) ToGetProxypolicyInternetService6GroupArrayOutputWithContext(ctx context.Context) GetProxypolicyInternetService6GroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyInternetService6GroupArrayOutput)
+}
+
+type GetProxypolicyInternetService6GroupOutput struct{ *pulumi.OutputState }
+
+func (GetProxypolicyInternetService6GroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProxypolicyInternetService6Group)(nil)).Elem()
+}
+
+func (o GetProxypolicyInternetService6GroupOutput) ToGetProxypolicyInternetService6GroupOutput() GetProxypolicyInternetService6GroupOutput {
+	return o
+}
+
+func (o GetProxypolicyInternetService6GroupOutput) ToGetProxypolicyInternetService6GroupOutputWithContext(ctx context.Context) GetProxypolicyInternetService6GroupOutput {
+	return o
+}
+
+// Group name.
+func (o GetProxypolicyInternetService6GroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProxypolicyInternetService6Group) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetProxypolicyInternetService6GroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProxypolicyInternetService6GroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProxypolicyInternetService6Group)(nil)).Elem()
+}
+
+func (o GetProxypolicyInternetService6GroupArrayOutput) ToGetProxypolicyInternetService6GroupArrayOutput() GetProxypolicyInternetService6GroupArrayOutput {
+	return o
+}
+
+func (o GetProxypolicyInternetService6GroupArrayOutput) ToGetProxypolicyInternetService6GroupArrayOutputWithContext(ctx context.Context) GetProxypolicyInternetService6GroupArrayOutput {
+	return o
+}
+
+func (o GetProxypolicyInternetService6GroupArrayOutput) Index(i pulumi.IntInput) GetProxypolicyInternetService6GroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProxypolicyInternetService6Group {
+		return vs[0].([]GetProxypolicyInternetService6Group)[vs[1].(int)]
+	}).(GetProxypolicyInternetService6GroupOutput)
+}
+
+type GetProxypolicyInternetService6Name struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetProxypolicyInternetService6NameInput is an input type that accepts GetProxypolicyInternetService6NameArgs and GetProxypolicyInternetService6NameOutput values.
+// You can construct a concrete instance of `GetProxypolicyInternetService6NameInput` via:
+//
+//	GetProxypolicyInternetService6NameArgs{...}
+type GetProxypolicyInternetService6NameInput interface {
+	pulumi.Input
+
+	ToGetProxypolicyInternetService6NameOutput() GetProxypolicyInternetService6NameOutput
+	ToGetProxypolicyInternetService6NameOutputWithContext(context.Context) GetProxypolicyInternetService6NameOutput
+}
+
+type GetProxypolicyInternetService6NameArgs struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetProxypolicyInternetService6NameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProxypolicyInternetService6Name)(nil)).Elem()
+}
+
+func (i GetProxypolicyInternetService6NameArgs) ToGetProxypolicyInternetService6NameOutput() GetProxypolicyInternetService6NameOutput {
+	return i.ToGetProxypolicyInternetService6NameOutputWithContext(context.Background())
+}
+
+func (i GetProxypolicyInternetService6NameArgs) ToGetProxypolicyInternetService6NameOutputWithContext(ctx context.Context) GetProxypolicyInternetService6NameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyInternetService6NameOutput)
+}
+
+// GetProxypolicyInternetService6NameArrayInput is an input type that accepts GetProxypolicyInternetService6NameArray and GetProxypolicyInternetService6NameArrayOutput values.
+// You can construct a concrete instance of `GetProxypolicyInternetService6NameArrayInput` via:
+//
+//	GetProxypolicyInternetService6NameArray{ GetProxypolicyInternetService6NameArgs{...} }
+type GetProxypolicyInternetService6NameArrayInput interface {
+	pulumi.Input
+
+	ToGetProxypolicyInternetService6NameArrayOutput() GetProxypolicyInternetService6NameArrayOutput
+	ToGetProxypolicyInternetService6NameArrayOutputWithContext(context.Context) GetProxypolicyInternetService6NameArrayOutput
+}
+
+type GetProxypolicyInternetService6NameArray []GetProxypolicyInternetService6NameInput
+
+func (GetProxypolicyInternetService6NameArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProxypolicyInternetService6Name)(nil)).Elem()
+}
+
+func (i GetProxypolicyInternetService6NameArray) ToGetProxypolicyInternetService6NameArrayOutput() GetProxypolicyInternetService6NameArrayOutput {
+	return i.ToGetProxypolicyInternetService6NameArrayOutputWithContext(context.Background())
+}
+
+func (i GetProxypolicyInternetService6NameArray) ToGetProxypolicyInternetService6NameArrayOutputWithContext(ctx context.Context) GetProxypolicyInternetService6NameArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyInternetService6NameArrayOutput)
+}
+
+type GetProxypolicyInternetService6NameOutput struct{ *pulumi.OutputState }
+
+func (GetProxypolicyInternetService6NameOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProxypolicyInternetService6Name)(nil)).Elem()
+}
+
+func (o GetProxypolicyInternetService6NameOutput) ToGetProxypolicyInternetService6NameOutput() GetProxypolicyInternetService6NameOutput {
+	return o
+}
+
+func (o GetProxypolicyInternetService6NameOutput) ToGetProxypolicyInternetService6NameOutputWithContext(ctx context.Context) GetProxypolicyInternetService6NameOutput {
+	return o
+}
+
+// Group name.
+func (o GetProxypolicyInternetService6NameOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProxypolicyInternetService6Name) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetProxypolicyInternetService6NameArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProxypolicyInternetService6NameArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProxypolicyInternetService6Name)(nil)).Elem()
+}
+
+func (o GetProxypolicyInternetService6NameArrayOutput) ToGetProxypolicyInternetService6NameArrayOutput() GetProxypolicyInternetService6NameArrayOutput {
+	return o
+}
+
+func (o GetProxypolicyInternetService6NameArrayOutput) ToGetProxypolicyInternetService6NameArrayOutputWithContext(ctx context.Context) GetProxypolicyInternetService6NameArrayOutput {
+	return o
+}
+
+func (o GetProxypolicyInternetService6NameArrayOutput) Index(i pulumi.IntInput) GetProxypolicyInternetService6NameOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProxypolicyInternetService6Name {
+		return vs[0].([]GetProxypolicyInternetService6Name)[vs[1].(int)]
+	}).(GetProxypolicyInternetService6NameOutput)
+}
+
 type GetProxypolicyInternetServiceCustom struct {
 	// Group name.
 	Name string `pulumi:"name"`
@@ -55294,6 +59117,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGateway6ArrayInput)(nil)).Elem(), Accessproxy6ApiGateway6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGateway6ApplicationInput)(nil)).Elem(), Accessproxy6ApiGateway6ApplicationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGateway6ApplicationArrayInput)(nil)).Elem(), Accessproxy6ApiGateway6ApplicationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGateway6QuicInput)(nil)).Elem(), Accessproxy6ApiGateway6QuicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGateway6QuicPtrInput)(nil)).Elem(), Accessproxy6ApiGateway6QuicArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGateway6RealserverInput)(nil)).Elem(), Accessproxy6ApiGateway6RealserverArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGateway6RealserverArrayInput)(nil)).Elem(), Accessproxy6ApiGateway6RealserverArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGateway6RealserverSshHostKeyInput)(nil)).Elem(), Accessproxy6ApiGateway6RealserverSshHostKeyArgs{})
@@ -55304,6 +59129,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGatewayArrayInput)(nil)).Elem(), Accessproxy6ApiGatewayArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGatewayApplicationInput)(nil)).Elem(), Accessproxy6ApiGatewayApplicationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGatewayApplicationArrayInput)(nil)).Elem(), Accessproxy6ApiGatewayApplicationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGatewayQuicInput)(nil)).Elem(), Accessproxy6ApiGatewayQuicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGatewayQuicPtrInput)(nil)).Elem(), Accessproxy6ApiGatewayQuicArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGatewayRealserverInput)(nil)).Elem(), Accessproxy6ApiGatewayRealserverArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGatewayRealserverArrayInput)(nil)).Elem(), Accessproxy6ApiGatewayRealserverArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGatewayRealserverSshHostKeyInput)(nil)).Elem(), Accessproxy6ApiGatewayRealserverSshHostKeyArgs{})
@@ -55314,6 +59141,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGateway6ArrayInput)(nil)).Elem(), AccessproxyApiGateway6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGateway6ApplicationInput)(nil)).Elem(), AccessproxyApiGateway6ApplicationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGateway6ApplicationArrayInput)(nil)).Elem(), AccessproxyApiGateway6ApplicationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGateway6QuicInput)(nil)).Elem(), AccessproxyApiGateway6QuicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGateway6QuicPtrInput)(nil)).Elem(), AccessproxyApiGateway6QuicArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGateway6RealserverInput)(nil)).Elem(), AccessproxyApiGateway6RealserverArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGateway6RealserverArrayInput)(nil)).Elem(), AccessproxyApiGateway6RealserverArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGateway6RealserverSshHostKeyInput)(nil)).Elem(), AccessproxyApiGateway6RealserverSshHostKeyArgs{})
@@ -55324,6 +59153,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGatewayArrayInput)(nil)).Elem(), AccessproxyApiGatewayArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGatewayApplicationInput)(nil)).Elem(), AccessproxyApiGatewayApplicationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGatewayApplicationArrayInput)(nil)).Elem(), AccessproxyApiGatewayApplicationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGatewayQuicInput)(nil)).Elem(), AccessproxyApiGatewayQuicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGatewayQuicPtrInput)(nil)).Elem(), AccessproxyApiGatewayQuicArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGatewayRealserverInput)(nil)).Elem(), AccessproxyApiGatewayRealserverArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGatewayRealserverArrayInput)(nil)).Elem(), AccessproxyApiGatewayRealserverArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccessproxyApiGatewayRealserverSshHostKeyInput)(nil)).Elem(), AccessproxyApiGatewayRealserverSshHostKeyArgs{})
@@ -55356,6 +59187,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AddressTaggingArrayInput)(nil)).Elem(), AddressTaggingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AddressTaggingTagInput)(nil)).Elem(), AddressTaggingTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AddressTaggingTagArrayInput)(nil)).Elem(), AddressTaggingTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Addrgrp6ExcludeMemberInput)(nil)).Elem(), Addrgrp6ExcludeMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Addrgrp6ExcludeMemberArrayInput)(nil)).Elem(), Addrgrp6ExcludeMemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Addrgrp6MemberInput)(nil)).Elem(), Addrgrp6MemberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Addrgrp6MemberArrayInput)(nil)).Elem(), Addrgrp6MemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Addrgrp6TaggingInput)(nil)).Elem(), Addrgrp6TaggingArgs{})
@@ -55386,6 +59219,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CentralsnatmapOrigAddr6ArrayInput)(nil)).Elem(), CentralsnatmapOrigAddr6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CentralsnatmapOrigAddrInput)(nil)).Elem(), CentralsnatmapOrigAddrArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CentralsnatmapOrigAddrArrayInput)(nil)).Elem(), CentralsnatmapOrigAddrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CentralsnatmapSortStatePolicyListInput)(nil)).Elem(), CentralsnatmapSortStatePolicyListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CentralsnatmapSortStatePolicyListArrayInput)(nil)).Elem(), CentralsnatmapSortStatePolicyListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CentralsnatmapSrcintfInput)(nil)).Elem(), CentralsnatmapSrcintfArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CentralsnatmapSrcintfArrayInput)(nil)).Elem(), CentralsnatmapSrcintfArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CountryRegionInput)(nil)).Elem(), CountryRegionArgs{})
@@ -55460,6 +59295,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InternetserviceextensionEntryPortRangeArrayInput)(nil)).Elem(), InternetserviceextensionEntryPortRangeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InternetservicegroupMemberInput)(nil)).Elem(), InternetservicegroupMemberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InternetservicegroupMemberArrayInput)(nil)).Elem(), InternetservicegroupMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InternetservicesubappSubAppInput)(nil)).Elem(), InternetservicesubappSubAppArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InternetservicesubappSubAppArrayInput)(nil)).Elem(), InternetservicesubappSubAppArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6DstaddrInput)(nil)).Elem(), Localinpolicy6DstaddrArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6DstaddrArrayInput)(nil)).Elem(), Localinpolicy6DstaddrArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6ServiceInput)(nil)).Elem(), Localinpolicy6ServiceArgs{})
@@ -55598,6 +59435,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyNetworkServiceSrcDynamicArrayInput)(nil)).Elem(), PolicyNetworkServiceSrcDynamicArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyNtlmEnabledBrowserInput)(nil)).Elem(), PolicyNtlmEnabledBrowserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyNtlmEnabledBrowserArrayInput)(nil)).Elem(), PolicyNtlmEnabledBrowserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PolicyPcpPoolnameInput)(nil)).Elem(), PolicyPcpPoolnameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PolicyPcpPoolnameArrayInput)(nil)).Elem(), PolicyPcpPoolnameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyPoolname6Input)(nil)).Elem(), PolicyPoolname6Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyPoolname6ArrayInput)(nil)).Elem(), PolicyPoolname6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyPoolnameInput)(nil)).Elem(), PolicyPoolnameArgs{})
@@ -55608,6 +59447,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyServiceArrayInput)(nil)).Elem(), PolicyServiceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicySgtInput)(nil)).Elem(), PolicySgtArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicySgtArrayInput)(nil)).Elem(), PolicySgtArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PolicySortStatePolicyListInput)(nil)).Elem(), PolicySortStatePolicyListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PolicySortStatePolicyListArrayInput)(nil)).Elem(), PolicySortStatePolicyListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicySrcVendorMacInput)(nil)).Elem(), PolicySrcVendorMacArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicySrcVendorMacArrayInput)(nil)).Elem(), PolicySrcVendorMacArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicySrcaddr6Input)(nil)).Elem(), PolicySrcaddr6Args{})
@@ -55624,6 +59465,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyUserArrayInput)(nil)).Elem(), PolicyUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyZtnaEmsTagInput)(nil)).Elem(), PolicyZtnaEmsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyZtnaEmsTagArrayInput)(nil)).Elem(), PolicyZtnaEmsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PolicyZtnaEmsTagSecondaryInput)(nil)).Elem(), PolicyZtnaEmsTagSecondaryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PolicyZtnaEmsTagSecondaryArrayInput)(nil)).Elem(), PolicyZtnaEmsTagSecondaryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyZtnaGeoTagInput)(nil)).Elem(), PolicyZtnaGeoTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyZtnaGeoTagArrayInput)(nil)).Elem(), PolicyZtnaGeoTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProfileprotocoloptionsCifsInput)(nil)).Elem(), ProfileprotocoloptionsCifsArgs{})
@@ -55678,6 +59521,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyDstintfArrayInput)(nil)).Elem(), ProxypolicyDstintfArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyGroupInput)(nil)).Elem(), ProxypolicyGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyGroupArrayInput)(nil)).Elem(), ProxypolicyGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyInternetService6CustomInput)(nil)).Elem(), ProxypolicyInternetService6CustomArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyInternetService6CustomArrayInput)(nil)).Elem(), ProxypolicyInternetService6CustomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyInternetService6CustomGroupInput)(nil)).Elem(), ProxypolicyInternetService6CustomGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyInternetService6CustomGroupArrayInput)(nil)).Elem(), ProxypolicyInternetService6CustomGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyInternetService6GroupInput)(nil)).Elem(), ProxypolicyInternetService6GroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyInternetService6GroupArrayInput)(nil)).Elem(), ProxypolicyInternetService6GroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyInternetService6NameInput)(nil)).Elem(), ProxypolicyInternetService6NameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyInternetService6NameArrayInput)(nil)).Elem(), ProxypolicyInternetService6NameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyInternetServiceCustomInput)(nil)).Elem(), ProxypolicyInternetServiceCustomArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyInternetServiceCustomArrayInput)(nil)).Elem(), ProxypolicyInternetServiceCustomArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyInternetServiceCustomGroupInput)(nil)).Elem(), ProxypolicyInternetServiceCustomGroupArgs{})
@@ -55692,6 +59543,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyPoolnameArrayInput)(nil)).Elem(), ProxypolicyPoolnameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyServiceInput)(nil)).Elem(), ProxypolicyServiceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicyServiceArrayInput)(nil)).Elem(), ProxypolicyServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicySortStatePolicyListInput)(nil)).Elem(), ProxypolicySortStatePolicyListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicySortStatePolicyListArrayInput)(nil)).Elem(), ProxypolicySortStatePolicyListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicySrcaddr6Input)(nil)).Elem(), ProxypolicySrcaddr6Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicySrcaddr6ArrayInput)(nil)).Elem(), ProxypolicySrcaddr6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProxypolicySrcaddrInput)(nil)).Elem(), ProxypolicySrcaddrArgs{})
@@ -55706,8 +59559,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RegionCityArrayInput)(nil)).Elem(), RegionCityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityPolicyseqStatePolicyListInput)(nil)).Elem(), SecurityPolicyseqStatePolicyListArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityPolicyseqStatePolicyListArrayInput)(nil)).Elem(), SecurityPolicyseqStatePolicyListArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecurityPolicysortStatePolicyListInput)(nil)).Elem(), SecurityPolicysortStatePolicyListArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecurityPolicysortStatePolicyListArrayInput)(nil)).Elem(), SecurityPolicysortStatePolicyListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecuritypolicyAppCategoryInput)(nil)).Elem(), SecuritypolicyAppCategoryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecuritypolicyAppCategoryArrayInput)(nil)).Elem(), SecuritypolicyAppCategoryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecuritypolicyAppGroupInput)(nil)).Elem(), SecuritypolicyAppGroupArgs{})
@@ -55764,6 +59615,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecuritypolicyInternetServiceSrcNameArrayInput)(nil)).Elem(), SecuritypolicyInternetServiceSrcNameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecuritypolicyServiceInput)(nil)).Elem(), SecuritypolicyServiceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecuritypolicyServiceArrayInput)(nil)).Elem(), SecuritypolicyServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecuritypolicySortStatePolicyListInput)(nil)).Elem(), SecuritypolicySortStatePolicyListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecuritypolicySortStatePolicyListArrayInput)(nil)).Elem(), SecuritypolicySortStatePolicyListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecuritypolicySrcaddr4Input)(nil)).Elem(), SecuritypolicySrcaddr4Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecuritypolicySrcaddr4ArrayInput)(nil)).Elem(), SecuritypolicySrcaddr4Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecuritypolicySrcaddr6Input)(nil)).Elem(), SecuritypolicySrcaddr6Args{})
@@ -55868,6 +59721,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*Vip64SrcFilterArrayInput)(nil)).Elem(), Vip64SrcFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Vip6MonitorInput)(nil)).Elem(), Vip6MonitorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Vip6MonitorArrayInput)(nil)).Elem(), Vip6MonitorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Vip6QuicInput)(nil)).Elem(), Vip6QuicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Vip6QuicPtrInput)(nil)).Elem(), Vip6QuicArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Vip6RealserverInput)(nil)).Elem(), Vip6RealserverArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Vip6RealserverArrayInput)(nil)).Elem(), Vip6RealserverArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Vip6SrcFilterInput)(nil)).Elem(), Vip6SrcFilterArgs{})
@@ -55878,10 +59733,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*Vip6SslServerCipherSuiteArrayInput)(nil)).Elem(), Vip6SslServerCipherSuiteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VipExtaddrInput)(nil)).Elem(), VipExtaddrArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VipExtaddrArrayInput)(nil)).Elem(), VipExtaddrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VipGslbPublicIpInput)(nil)).Elem(), VipGslbPublicIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VipGslbPublicIpArrayInput)(nil)).Elem(), VipGslbPublicIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VipMappedipInput)(nil)).Elem(), VipMappedipArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VipMappedipArrayInput)(nil)).Elem(), VipMappedipArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VipMonitorInput)(nil)).Elem(), VipMonitorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VipMonitorArrayInput)(nil)).Elem(), VipMonitorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VipQuicInput)(nil)).Elem(), VipQuicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VipQuicPtrInput)(nil)).Elem(), VipQuicArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VipRealserverInput)(nil)).Elem(), VipRealserverArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VipRealserverArrayInput)(nil)).Elem(), VipRealserverArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VipServiceInput)(nil)).Elem(), VipServiceArgs{})
@@ -55926,6 +59785,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAddressTaggingArrayInput)(nil)).Elem(), GetAddressTaggingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAddressTaggingTagInput)(nil)).Elem(), GetAddressTaggingTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAddressTaggingTagArrayInput)(nil)).Elem(), GetAddressTaggingTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddrgrp6ExcludeMemberInput)(nil)).Elem(), GetAddrgrp6ExcludeMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAddrgrp6ExcludeMemberArrayInput)(nil)).Elem(), GetAddrgrp6ExcludeMemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAddrgrp6MemberInput)(nil)).Elem(), GetAddrgrp6MemberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAddrgrp6MemberArrayInput)(nil)).Elem(), GetAddrgrp6MemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAddrgrp6TaggingInput)(nil)).Elem(), GetAddrgrp6TaggingArgs{})
@@ -56122,6 +59983,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyNetworkServiceSrcDynamicArrayInput)(nil)).Elem(), GetPolicyNetworkServiceSrcDynamicArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyNtlmEnabledBrowserInput)(nil)).Elem(), GetPolicyNtlmEnabledBrowserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyNtlmEnabledBrowserArrayInput)(nil)).Elem(), GetPolicyNtlmEnabledBrowserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyPcpPoolnameInput)(nil)).Elem(), GetPolicyPcpPoolnameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyPcpPoolnameArrayInput)(nil)).Elem(), GetPolicyPcpPoolnameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyPoolname6Input)(nil)).Elem(), GetPolicyPoolname6Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyPoolname6ArrayInput)(nil)).Elem(), GetPolicyPoolname6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyPoolnameInput)(nil)).Elem(), GetPolicyPoolnameArgs{})
@@ -56148,6 +60011,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyUserArrayInput)(nil)).Elem(), GetPolicyUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyZtnaEmsTagInput)(nil)).Elem(), GetPolicyZtnaEmsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyZtnaEmsTagArrayInput)(nil)).Elem(), GetPolicyZtnaEmsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyZtnaEmsTagSecondaryInput)(nil)).Elem(), GetPolicyZtnaEmsTagSecondaryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyZtnaEmsTagSecondaryArrayInput)(nil)).Elem(), GetPolicyZtnaEmsTagSecondaryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyZtnaGeoTagInput)(nil)).Elem(), GetPolicyZtnaGeoTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyZtnaGeoTagArrayInput)(nil)).Elem(), GetPolicyZtnaGeoTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProfileprotocoloptionsCifInput)(nil)).Elem(), GetProfileprotocoloptionsCifArgs{})
@@ -56202,6 +60067,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyDstintfArrayInput)(nil)).Elem(), GetProxypolicyDstintfArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyGroupInput)(nil)).Elem(), GetProxypolicyGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyGroupArrayInput)(nil)).Elem(), GetProxypolicyGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetService6CustomInput)(nil)).Elem(), GetProxypolicyInternetService6CustomArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetService6CustomArrayInput)(nil)).Elem(), GetProxypolicyInternetService6CustomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetService6CustomGroupInput)(nil)).Elem(), GetProxypolicyInternetService6CustomGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetService6CustomGroupArrayInput)(nil)).Elem(), GetProxypolicyInternetService6CustomGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetService6GroupInput)(nil)).Elem(), GetProxypolicyInternetService6GroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetService6GroupArrayInput)(nil)).Elem(), GetProxypolicyInternetService6GroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetService6NameInput)(nil)).Elem(), GetProxypolicyInternetService6NameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetService6NameArrayInput)(nil)).Elem(), GetProxypolicyInternetService6NameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetServiceCustomInput)(nil)).Elem(), GetProxypolicyInternetServiceCustomArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetServiceCustomArrayInput)(nil)).Elem(), GetProxypolicyInternetServiceCustomArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetServiceCustomGroupInput)(nil)).Elem(), GetProxypolicyInternetServiceCustomGroupArgs{})
@@ -56230,6 +60103,8 @@ func init() {
 	pulumi.RegisterOutputType(Accessproxy6ApiGateway6ArrayOutput{})
 	pulumi.RegisterOutputType(Accessproxy6ApiGateway6ApplicationOutput{})
 	pulumi.RegisterOutputType(Accessproxy6ApiGateway6ApplicationArrayOutput{})
+	pulumi.RegisterOutputType(Accessproxy6ApiGateway6QuicOutput{})
+	pulumi.RegisterOutputType(Accessproxy6ApiGateway6QuicPtrOutput{})
 	pulumi.RegisterOutputType(Accessproxy6ApiGateway6RealserverOutput{})
 	pulumi.RegisterOutputType(Accessproxy6ApiGateway6RealserverArrayOutput{})
 	pulumi.RegisterOutputType(Accessproxy6ApiGateway6RealserverSshHostKeyOutput{})
@@ -56240,6 +60115,8 @@ func init() {
 	pulumi.RegisterOutputType(Accessproxy6ApiGatewayArrayOutput{})
 	pulumi.RegisterOutputType(Accessproxy6ApiGatewayApplicationOutput{})
 	pulumi.RegisterOutputType(Accessproxy6ApiGatewayApplicationArrayOutput{})
+	pulumi.RegisterOutputType(Accessproxy6ApiGatewayQuicOutput{})
+	pulumi.RegisterOutputType(Accessproxy6ApiGatewayQuicPtrOutput{})
 	pulumi.RegisterOutputType(Accessproxy6ApiGatewayRealserverOutput{})
 	pulumi.RegisterOutputType(Accessproxy6ApiGatewayRealserverArrayOutput{})
 	pulumi.RegisterOutputType(Accessproxy6ApiGatewayRealserverSshHostKeyOutput{})
@@ -56250,6 +60127,8 @@ func init() {
 	pulumi.RegisterOutputType(AccessproxyApiGateway6ArrayOutput{})
 	pulumi.RegisterOutputType(AccessproxyApiGateway6ApplicationOutput{})
 	pulumi.RegisterOutputType(AccessproxyApiGateway6ApplicationArrayOutput{})
+	pulumi.RegisterOutputType(AccessproxyApiGateway6QuicOutput{})
+	pulumi.RegisterOutputType(AccessproxyApiGateway6QuicPtrOutput{})
 	pulumi.RegisterOutputType(AccessproxyApiGateway6RealserverOutput{})
 	pulumi.RegisterOutputType(AccessproxyApiGateway6RealserverArrayOutput{})
 	pulumi.RegisterOutputType(AccessproxyApiGateway6RealserverSshHostKeyOutput{})
@@ -56260,6 +60139,8 @@ func init() {
 	pulumi.RegisterOutputType(AccessproxyApiGatewayArrayOutput{})
 	pulumi.RegisterOutputType(AccessproxyApiGatewayApplicationOutput{})
 	pulumi.RegisterOutputType(AccessproxyApiGatewayApplicationArrayOutput{})
+	pulumi.RegisterOutputType(AccessproxyApiGatewayQuicOutput{})
+	pulumi.RegisterOutputType(AccessproxyApiGatewayQuicPtrOutput{})
 	pulumi.RegisterOutputType(AccessproxyApiGatewayRealserverOutput{})
 	pulumi.RegisterOutputType(AccessproxyApiGatewayRealserverArrayOutput{})
 	pulumi.RegisterOutputType(AccessproxyApiGatewayRealserverSshHostKeyOutput{})
@@ -56292,6 +60173,8 @@ func init() {
 	pulumi.RegisterOutputType(AddressTaggingArrayOutput{})
 	pulumi.RegisterOutputType(AddressTaggingTagOutput{})
 	pulumi.RegisterOutputType(AddressTaggingTagArrayOutput{})
+	pulumi.RegisterOutputType(Addrgrp6ExcludeMemberOutput{})
+	pulumi.RegisterOutputType(Addrgrp6ExcludeMemberArrayOutput{})
 	pulumi.RegisterOutputType(Addrgrp6MemberOutput{})
 	pulumi.RegisterOutputType(Addrgrp6MemberArrayOutput{})
 	pulumi.RegisterOutputType(Addrgrp6TaggingOutput{})
@@ -56322,6 +60205,8 @@ func init() {
 	pulumi.RegisterOutputType(CentralsnatmapOrigAddr6ArrayOutput{})
 	pulumi.RegisterOutputType(CentralsnatmapOrigAddrOutput{})
 	pulumi.RegisterOutputType(CentralsnatmapOrigAddrArrayOutput{})
+	pulumi.RegisterOutputType(CentralsnatmapSortStatePolicyListOutput{})
+	pulumi.RegisterOutputType(CentralsnatmapSortStatePolicyListArrayOutput{})
 	pulumi.RegisterOutputType(CentralsnatmapSrcintfOutput{})
 	pulumi.RegisterOutputType(CentralsnatmapSrcintfArrayOutput{})
 	pulumi.RegisterOutputType(CountryRegionOutput{})
@@ -56396,6 +60281,8 @@ func init() {
 	pulumi.RegisterOutputType(InternetserviceextensionEntryPortRangeArrayOutput{})
 	pulumi.RegisterOutputType(InternetservicegroupMemberOutput{})
 	pulumi.RegisterOutputType(InternetservicegroupMemberArrayOutput{})
+	pulumi.RegisterOutputType(InternetservicesubappSubAppOutput{})
+	pulumi.RegisterOutputType(InternetservicesubappSubAppArrayOutput{})
 	pulumi.RegisterOutputType(Localinpolicy6DstaddrOutput{})
 	pulumi.RegisterOutputType(Localinpolicy6DstaddrArrayOutput{})
 	pulumi.RegisterOutputType(Localinpolicy6ServiceOutput{})
@@ -56534,6 +60421,8 @@ func init() {
 	pulumi.RegisterOutputType(PolicyNetworkServiceSrcDynamicArrayOutput{})
 	pulumi.RegisterOutputType(PolicyNtlmEnabledBrowserOutput{})
 	pulumi.RegisterOutputType(PolicyNtlmEnabledBrowserArrayOutput{})
+	pulumi.RegisterOutputType(PolicyPcpPoolnameOutput{})
+	pulumi.RegisterOutputType(PolicyPcpPoolnameArrayOutput{})
 	pulumi.RegisterOutputType(PolicyPoolname6Output{})
 	pulumi.RegisterOutputType(PolicyPoolname6ArrayOutput{})
 	pulumi.RegisterOutputType(PolicyPoolnameOutput{})
@@ -56544,6 +60433,8 @@ func init() {
 	pulumi.RegisterOutputType(PolicyServiceArrayOutput{})
 	pulumi.RegisterOutputType(PolicySgtOutput{})
 	pulumi.RegisterOutputType(PolicySgtArrayOutput{})
+	pulumi.RegisterOutputType(PolicySortStatePolicyListOutput{})
+	pulumi.RegisterOutputType(PolicySortStatePolicyListArrayOutput{})
 	pulumi.RegisterOutputType(PolicySrcVendorMacOutput{})
 	pulumi.RegisterOutputType(PolicySrcVendorMacArrayOutput{})
 	pulumi.RegisterOutputType(PolicySrcaddr6Output{})
@@ -56560,6 +60451,8 @@ func init() {
 	pulumi.RegisterOutputType(PolicyUserArrayOutput{})
 	pulumi.RegisterOutputType(PolicyZtnaEmsTagOutput{})
 	pulumi.RegisterOutputType(PolicyZtnaEmsTagArrayOutput{})
+	pulumi.RegisterOutputType(PolicyZtnaEmsTagSecondaryOutput{})
+	pulumi.RegisterOutputType(PolicyZtnaEmsTagSecondaryArrayOutput{})
 	pulumi.RegisterOutputType(PolicyZtnaGeoTagOutput{})
 	pulumi.RegisterOutputType(PolicyZtnaGeoTagArrayOutput{})
 	pulumi.RegisterOutputType(ProfileprotocoloptionsCifsOutput{})
@@ -56614,6 +60507,14 @@ func init() {
 	pulumi.RegisterOutputType(ProxypolicyDstintfArrayOutput{})
 	pulumi.RegisterOutputType(ProxypolicyGroupOutput{})
 	pulumi.RegisterOutputType(ProxypolicyGroupArrayOutput{})
+	pulumi.RegisterOutputType(ProxypolicyInternetService6CustomOutput{})
+	pulumi.RegisterOutputType(ProxypolicyInternetService6CustomArrayOutput{})
+	pulumi.RegisterOutputType(ProxypolicyInternetService6CustomGroupOutput{})
+	pulumi.RegisterOutputType(ProxypolicyInternetService6CustomGroupArrayOutput{})
+	pulumi.RegisterOutputType(ProxypolicyInternetService6GroupOutput{})
+	pulumi.RegisterOutputType(ProxypolicyInternetService6GroupArrayOutput{})
+	pulumi.RegisterOutputType(ProxypolicyInternetService6NameOutput{})
+	pulumi.RegisterOutputType(ProxypolicyInternetService6NameArrayOutput{})
 	pulumi.RegisterOutputType(ProxypolicyInternetServiceCustomOutput{})
 	pulumi.RegisterOutputType(ProxypolicyInternetServiceCustomArrayOutput{})
 	pulumi.RegisterOutputType(ProxypolicyInternetServiceCustomGroupOutput{})
@@ -56628,6 +60529,8 @@ func init() {
 	pulumi.RegisterOutputType(ProxypolicyPoolnameArrayOutput{})
 	pulumi.RegisterOutputType(ProxypolicyServiceOutput{})
 	pulumi.RegisterOutputType(ProxypolicyServiceArrayOutput{})
+	pulumi.RegisterOutputType(ProxypolicySortStatePolicyListOutput{})
+	pulumi.RegisterOutputType(ProxypolicySortStatePolicyListArrayOutput{})
 	pulumi.RegisterOutputType(ProxypolicySrcaddr6Output{})
 	pulumi.RegisterOutputType(ProxypolicySrcaddr6ArrayOutput{})
 	pulumi.RegisterOutputType(ProxypolicySrcaddrOutput{})
@@ -56642,8 +60545,6 @@ func init() {
 	pulumi.RegisterOutputType(RegionCityArrayOutput{})
 	pulumi.RegisterOutputType(SecurityPolicyseqStatePolicyListOutput{})
 	pulumi.RegisterOutputType(SecurityPolicyseqStatePolicyListArrayOutput{})
-	pulumi.RegisterOutputType(SecurityPolicysortStatePolicyListOutput{})
-	pulumi.RegisterOutputType(SecurityPolicysortStatePolicyListArrayOutput{})
 	pulumi.RegisterOutputType(SecuritypolicyAppCategoryOutput{})
 	pulumi.RegisterOutputType(SecuritypolicyAppCategoryArrayOutput{})
 	pulumi.RegisterOutputType(SecuritypolicyAppGroupOutput{})
@@ -56700,6 +60601,8 @@ func init() {
 	pulumi.RegisterOutputType(SecuritypolicyInternetServiceSrcNameArrayOutput{})
 	pulumi.RegisterOutputType(SecuritypolicyServiceOutput{})
 	pulumi.RegisterOutputType(SecuritypolicyServiceArrayOutput{})
+	pulumi.RegisterOutputType(SecuritypolicySortStatePolicyListOutput{})
+	pulumi.RegisterOutputType(SecuritypolicySortStatePolicyListArrayOutput{})
 	pulumi.RegisterOutputType(SecuritypolicySrcaddr4Output{})
 	pulumi.RegisterOutputType(SecuritypolicySrcaddr4ArrayOutput{})
 	pulumi.RegisterOutputType(SecuritypolicySrcaddr6Output{})
@@ -56804,6 +60707,8 @@ func init() {
 	pulumi.RegisterOutputType(Vip64SrcFilterArrayOutput{})
 	pulumi.RegisterOutputType(Vip6MonitorOutput{})
 	pulumi.RegisterOutputType(Vip6MonitorArrayOutput{})
+	pulumi.RegisterOutputType(Vip6QuicOutput{})
+	pulumi.RegisterOutputType(Vip6QuicPtrOutput{})
 	pulumi.RegisterOutputType(Vip6RealserverOutput{})
 	pulumi.RegisterOutputType(Vip6RealserverArrayOutput{})
 	pulumi.RegisterOutputType(Vip6SrcFilterOutput{})
@@ -56814,10 +60719,14 @@ func init() {
 	pulumi.RegisterOutputType(Vip6SslServerCipherSuiteArrayOutput{})
 	pulumi.RegisterOutputType(VipExtaddrOutput{})
 	pulumi.RegisterOutputType(VipExtaddrArrayOutput{})
+	pulumi.RegisterOutputType(VipGslbPublicIpOutput{})
+	pulumi.RegisterOutputType(VipGslbPublicIpArrayOutput{})
 	pulumi.RegisterOutputType(VipMappedipOutput{})
 	pulumi.RegisterOutputType(VipMappedipArrayOutput{})
 	pulumi.RegisterOutputType(VipMonitorOutput{})
 	pulumi.RegisterOutputType(VipMonitorArrayOutput{})
+	pulumi.RegisterOutputType(VipQuicOutput{})
+	pulumi.RegisterOutputType(VipQuicPtrOutput{})
 	pulumi.RegisterOutputType(VipRealserverOutput{})
 	pulumi.RegisterOutputType(VipRealserverArrayOutput{})
 	pulumi.RegisterOutputType(VipServiceOutput{})
@@ -56862,6 +60771,8 @@ func init() {
 	pulumi.RegisterOutputType(GetAddressTaggingArrayOutput{})
 	pulumi.RegisterOutputType(GetAddressTaggingTagOutput{})
 	pulumi.RegisterOutputType(GetAddressTaggingTagArrayOutput{})
+	pulumi.RegisterOutputType(GetAddrgrp6ExcludeMemberOutput{})
+	pulumi.RegisterOutputType(GetAddrgrp6ExcludeMemberArrayOutput{})
 	pulumi.RegisterOutputType(GetAddrgrp6MemberOutput{})
 	pulumi.RegisterOutputType(GetAddrgrp6MemberArrayOutput{})
 	pulumi.RegisterOutputType(GetAddrgrp6TaggingOutput{})
@@ -57058,6 +60969,8 @@ func init() {
 	pulumi.RegisterOutputType(GetPolicyNetworkServiceSrcDynamicArrayOutput{})
 	pulumi.RegisterOutputType(GetPolicyNtlmEnabledBrowserOutput{})
 	pulumi.RegisterOutputType(GetPolicyNtlmEnabledBrowserArrayOutput{})
+	pulumi.RegisterOutputType(GetPolicyPcpPoolnameOutput{})
+	pulumi.RegisterOutputType(GetPolicyPcpPoolnameArrayOutput{})
 	pulumi.RegisterOutputType(GetPolicyPoolname6Output{})
 	pulumi.RegisterOutputType(GetPolicyPoolname6ArrayOutput{})
 	pulumi.RegisterOutputType(GetPolicyPoolnameOutput{})
@@ -57084,6 +60997,8 @@ func init() {
 	pulumi.RegisterOutputType(GetPolicyUserArrayOutput{})
 	pulumi.RegisterOutputType(GetPolicyZtnaEmsTagOutput{})
 	pulumi.RegisterOutputType(GetPolicyZtnaEmsTagArrayOutput{})
+	pulumi.RegisterOutputType(GetPolicyZtnaEmsTagSecondaryOutput{})
+	pulumi.RegisterOutputType(GetPolicyZtnaEmsTagSecondaryArrayOutput{})
 	pulumi.RegisterOutputType(GetPolicyZtnaGeoTagOutput{})
 	pulumi.RegisterOutputType(GetPolicyZtnaGeoTagArrayOutput{})
 	pulumi.RegisterOutputType(GetProfileprotocoloptionsCifOutput{})
@@ -57138,6 +61053,14 @@ func init() {
 	pulumi.RegisterOutputType(GetProxypolicyDstintfArrayOutput{})
 	pulumi.RegisterOutputType(GetProxypolicyGroupOutput{})
 	pulumi.RegisterOutputType(GetProxypolicyGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetProxypolicyInternetService6CustomOutput{})
+	pulumi.RegisterOutputType(GetProxypolicyInternetService6CustomArrayOutput{})
+	pulumi.RegisterOutputType(GetProxypolicyInternetService6CustomGroupOutput{})
+	pulumi.RegisterOutputType(GetProxypolicyInternetService6CustomGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetProxypolicyInternetService6GroupOutput{})
+	pulumi.RegisterOutputType(GetProxypolicyInternetService6GroupArrayOutput{})
+	pulumi.RegisterOutputType(GetProxypolicyInternetService6NameOutput{})
+	pulumi.RegisterOutputType(GetProxypolicyInternetService6NameArrayOutput{})
 	pulumi.RegisterOutputType(GetProxypolicyInternetServiceCustomOutput{})
 	pulumi.RegisterOutputType(GetProxypolicyInternetServiceCustomArrayOutput{})
 	pulumi.RegisterOutputType(GetProxypolicyInternetServiceCustomGroupOutput{})

@@ -37,6 +37,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Bgp{}
 	case "fortios:router/communitylist:Communitylist":
 		r = &Communitylist{}
+	case "fortios:router/extcommunitylist:Extcommunitylist":
+		r = &Extcommunitylist{}
 	case "fortios:router/isis:Isis":
 		r = &Isis{}
 	case "fortios:router/keychain:Keychain":
@@ -122,6 +124,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"router/communitylist",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"router/extcommunitylist",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

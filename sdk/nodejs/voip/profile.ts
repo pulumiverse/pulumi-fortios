@@ -129,9 +129,13 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     /**
-     * Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+     * Flow or proxy inspection feature set.
      */
     public readonly featureSet!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * MSRP. The structure of `msrp` block is documented below.
      */
@@ -168,6 +172,7 @@ export class Profile extends pulumi.CustomResource {
             const state = argsOrState as ProfileState | undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["msrp"] = state ? state.msrp : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["sccp"] = state ? state.sccp : undefined;
@@ -177,6 +182,7 @@ export class Profile extends pulumi.CustomResource {
             const args = argsOrState as ProfileArgs | undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["msrp"] = args ? args.msrp : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["sccp"] = args ? args.sccp : undefined;
@@ -197,9 +203,13 @@ export interface ProfileState {
      */
     comment?: pulumi.Input<string>;
     /**
-     * Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+     * Flow or proxy inspection feature set.
      */
     featureSet?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * MSRP. The structure of `msrp` block is documented below.
      */
@@ -231,9 +241,13 @@ export interface ProfileArgs {
      */
     comment?: pulumi.Input<string>;
     /**
-     * Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+     * Flow or proxy inspection feature set.
      */
     featureSet?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * MSRP. The structure of `msrp` block is documented below.
      */

@@ -54,6 +54,10 @@ export class Setting extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+     */
+    public readonly fabricSync!: pulumi.Output<string>;
+    /**
      * Maximum number of automation stitches that are allowed to run concurrently.
      */
     public readonly maxConcurrentStitches!: pulumi.Output<number>;
@@ -75,10 +79,12 @@ export class Setting extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SettingState | undefined;
+            resourceInputs["fabricSync"] = state ? state.fabricSync : undefined;
             resourceInputs["maxConcurrentStitches"] = state ? state.maxConcurrentStitches : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SettingArgs | undefined;
+            resourceInputs["fabricSync"] = args ? args.fabricSync : undefined;
             resourceInputs["maxConcurrentStitches"] = args ? args.maxConcurrentStitches : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -91,6 +97,10 @@ export class Setting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Setting resources.
  */
 export interface SettingState {
+    /**
+     * Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+     */
+    fabricSync?: pulumi.Input<string>;
     /**
      * Maximum number of automation stitches that are allowed to run concurrently.
      */
@@ -105,6 +115,10 @@ export interface SettingState {
  * The set of arguments for constructing a Setting resource.
  */
 export interface SettingArgs {
+    /**
+     * Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+     */
+    fabricSync?: pulumi.Input<string>;
     /**
      * Maximum number of automation stitches that are allowed to run concurrently.
      */

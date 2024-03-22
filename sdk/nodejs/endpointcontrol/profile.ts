@@ -141,6 +141,10 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly forticlientWinmacSettings!: pulumi.Output<outputs.endpointcontrol.ProfileForticlientWinmacSettings>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
      */
     public readonly onNetAddrs!: pulumi.Output<outputs.endpointcontrol.ProfileOnNetAddr[] | undefined>;
@@ -188,6 +192,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["forticlientAndroidSettings"] = state ? state.forticlientAndroidSettings : undefined;
             resourceInputs["forticlientIosSettings"] = state ? state.forticlientIosSettings : undefined;
             resourceInputs["forticlientWinmacSettings"] = state ? state.forticlientWinmacSettings : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["onNetAddrs"] = state ? state.onNetAddrs : undefined;
             resourceInputs["profileName"] = state ? state.profileName : undefined;
             resourceInputs["replacemsgOverrideGroup"] = state ? state.replacemsgOverrideGroup : undefined;
@@ -203,6 +208,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["forticlientAndroidSettings"] = args ? args.forticlientAndroidSettings : undefined;
             resourceInputs["forticlientIosSettings"] = args ? args.forticlientIosSettings : undefined;
             resourceInputs["forticlientWinmacSettings"] = args ? args.forticlientWinmacSettings : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["onNetAddrs"] = args ? args.onNetAddrs : undefined;
             resourceInputs["profileName"] = args ? args.profileName : undefined;
             resourceInputs["replacemsgOverrideGroup"] = args ? args.replacemsgOverrideGroup : undefined;
@@ -244,6 +250,10 @@ export interface ProfileState {
      * FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
      */
     forticlientWinmacSettings?: pulumi.Input<inputs.endpointcontrol.ProfileForticlientWinmacSettings>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
      */
@@ -302,6 +312,10 @@ export interface ProfileArgs {
      * FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
      */
     forticlientWinmacSettings?: pulumi.Input<inputs.endpointcontrol.ProfileForticlientWinmacSettings>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
      */

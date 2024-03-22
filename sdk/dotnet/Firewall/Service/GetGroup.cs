@@ -98,6 +98,10 @@ namespace Pulumiverse.Fortios.Firewall.Service
         /// Enable/disable web proxy service group.
         /// </summary>
         public readonly string Proxy;
+        /// <summary>
+        /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        /// </summary>
+        public readonly string Uuid;
         public readonly string? Vdomparam;
 
         [OutputConstructor]
@@ -116,6 +120,8 @@ namespace Pulumiverse.Fortios.Firewall.Service
 
             string proxy,
 
+            string uuid,
+
             string? vdomparam)
         {
             Color = color;
@@ -125,6 +131,7 @@ namespace Pulumiverse.Fortios.Firewall.Service
             Members = members;
             Name = name;
             Proxy = proxy;
+            Uuid = uuid;
             Vdomparam = vdomparam;
         }
     }

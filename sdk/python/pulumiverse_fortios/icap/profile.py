@@ -17,12 +17,14 @@ __all__ = ['ProfileArgs', 'Profile']
 class ProfileArgs:
     def __init__(__self__, *,
                  chunk_encap: Optional[pulumi.Input[str]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extension_feature: Optional[pulumi.Input[str]] = None,
                  file_transfer: Optional[pulumi.Input[str]] = None,
                  file_transfer_failure: Optional[pulumi.Input[str]] = None,
                  file_transfer_path: Optional[pulumi.Input[str]] = None,
                  file_transfer_server: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  icap_block_log: Optional[pulumi.Input[str]] = None,
                  icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input['ProfileIcapHeaderArgs']]]] = None,
                  methods: Optional[pulumi.Input[str]] = None,
@@ -50,12 +52,14 @@ class ProfileArgs:
         """
         The set of arguments for constructing a Profile resource.
         :param pulumi.Input[str] chunk_encap: Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] extension_feature: Enable/disable ICAP extension features. Valid values: `scan-progress`.
         :param pulumi.Input[str] file_transfer: Configure the file transfer protocols to pass transferred files to an ICAP server as REQMOD. Valid values: `ssh`, `ftp`.
         :param pulumi.Input[str] file_transfer_failure: Action to take if the ICAP server cannot be contacted when processing a file transfer. Valid values: `error`, `bypass`.
         :param pulumi.Input[str] file_transfer_path: Path component of the ICAP URI that identifies the file transfer processing service.
         :param pulumi.Input[str] file_transfer_server: ICAP server to use for a file transfer.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] icap_block_log: Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['ProfileIcapHeaderArgs']]] icap_headers: Configure ICAP forwarded request headers. The structure of `icap_headers` block is documented below.
         :param pulumi.Input[str] methods: The allowed HTTP methods that will be sent to ICAP server for further processing.
@@ -83,6 +87,8 @@ class ProfileArgs:
         """
         if chunk_encap is not None:
             pulumi.set(__self__, "chunk_encap", chunk_encap)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if extension_feature is not None:
@@ -95,6 +101,8 @@ class ProfileArgs:
             pulumi.set(__self__, "file_transfer_path", file_transfer_path)
         if file_transfer_server is not None:
             pulumi.set(__self__, "file_transfer_server", file_transfer_server)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if icap_block_log is not None:
             pulumi.set(__self__, "icap_block_log", icap_block_log)
         if icap_headers is not None:
@@ -155,6 +163,18 @@ class ProfileArgs:
     @chunk_encap.setter
     def chunk_encap(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "chunk_encap", value)
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comment")
+
+    @comment.setter
+    def comment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "comment", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -227,6 +247,18 @@ class ProfileArgs:
     @file_transfer_server.setter
     def file_transfer_server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "file_transfer_server", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="icapBlockLog")
@@ -521,12 +553,14 @@ class ProfileArgs:
 class _ProfileState:
     def __init__(__self__, *,
                  chunk_encap: Optional[pulumi.Input[str]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extension_feature: Optional[pulumi.Input[str]] = None,
                  file_transfer: Optional[pulumi.Input[str]] = None,
                  file_transfer_failure: Optional[pulumi.Input[str]] = None,
                  file_transfer_path: Optional[pulumi.Input[str]] = None,
                  file_transfer_server: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  icap_block_log: Optional[pulumi.Input[str]] = None,
                  icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input['ProfileIcapHeaderArgs']]]] = None,
                  methods: Optional[pulumi.Input[str]] = None,
@@ -554,12 +588,14 @@ class _ProfileState:
         """
         Input properties used for looking up and filtering Profile resources.
         :param pulumi.Input[str] chunk_encap: Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] extension_feature: Enable/disable ICAP extension features. Valid values: `scan-progress`.
         :param pulumi.Input[str] file_transfer: Configure the file transfer protocols to pass transferred files to an ICAP server as REQMOD. Valid values: `ssh`, `ftp`.
         :param pulumi.Input[str] file_transfer_failure: Action to take if the ICAP server cannot be contacted when processing a file transfer. Valid values: `error`, `bypass`.
         :param pulumi.Input[str] file_transfer_path: Path component of the ICAP URI that identifies the file transfer processing service.
         :param pulumi.Input[str] file_transfer_server: ICAP server to use for a file transfer.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] icap_block_log: Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['ProfileIcapHeaderArgs']]] icap_headers: Configure ICAP forwarded request headers. The structure of `icap_headers` block is documented below.
         :param pulumi.Input[str] methods: The allowed HTTP methods that will be sent to ICAP server for further processing.
@@ -587,6 +623,8 @@ class _ProfileState:
         """
         if chunk_encap is not None:
             pulumi.set(__self__, "chunk_encap", chunk_encap)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if extension_feature is not None:
@@ -599,6 +637,8 @@ class _ProfileState:
             pulumi.set(__self__, "file_transfer_path", file_transfer_path)
         if file_transfer_server is not None:
             pulumi.set(__self__, "file_transfer_server", file_transfer_server)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if icap_block_log is not None:
             pulumi.set(__self__, "icap_block_log", icap_block_log)
         if icap_headers is not None:
@@ -659,6 +699,18 @@ class _ProfileState:
     @chunk_encap.setter
     def chunk_encap(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "chunk_encap", value)
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comment")
+
+    @comment.setter
+    def comment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "comment", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -731,6 +783,18 @@ class _ProfileState:
     @file_transfer_server.setter
     def file_transfer_server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "file_transfer_server", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="icapBlockLog")
@@ -1027,12 +1091,14 @@ class Profile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  chunk_encap: Optional[pulumi.Input[str]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extension_feature: Optional[pulumi.Input[str]] = None,
                  file_transfer: Optional[pulumi.Input[str]] = None,
                  file_transfer_failure: Optional[pulumi.Input[str]] = None,
                  file_transfer_path: Optional[pulumi.Input[str]] = None,
                  file_transfer_server: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  icap_block_log: Optional[pulumi.Input[str]] = None,
                  icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileIcapHeaderArgs']]]]] = None,
                  methods: Optional[pulumi.Input[str]] = None,
@@ -1105,12 +1171,14 @@ class Profile(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] chunk_encap: Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] extension_feature: Enable/disable ICAP extension features. Valid values: `scan-progress`.
         :param pulumi.Input[str] file_transfer: Configure the file transfer protocols to pass transferred files to an ICAP server as REQMOD. Valid values: `ssh`, `ftp`.
         :param pulumi.Input[str] file_transfer_failure: Action to take if the ICAP server cannot be contacted when processing a file transfer. Valid values: `error`, `bypass`.
         :param pulumi.Input[str] file_transfer_path: Path component of the ICAP URI that identifies the file transfer processing service.
         :param pulumi.Input[str] file_transfer_server: ICAP server to use for a file transfer.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] icap_block_log: Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileIcapHeaderArgs']]]] icap_headers: Configure ICAP forwarded request headers. The structure of `icap_headers` block is documented below.
         :param pulumi.Input[str] methods: The allowed HTTP methods that will be sent to ICAP server for further processing.
@@ -1202,12 +1270,14 @@ class Profile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  chunk_encap: Optional[pulumi.Input[str]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extension_feature: Optional[pulumi.Input[str]] = None,
                  file_transfer: Optional[pulumi.Input[str]] = None,
                  file_transfer_failure: Optional[pulumi.Input[str]] = None,
                  file_transfer_path: Optional[pulumi.Input[str]] = None,
                  file_transfer_server: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  icap_block_log: Optional[pulumi.Input[str]] = None,
                  icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileIcapHeaderArgs']]]]] = None,
                  methods: Optional[pulumi.Input[str]] = None,
@@ -1242,12 +1312,14 @@ class Profile(pulumi.CustomResource):
             __props__ = ProfileArgs.__new__(ProfileArgs)
 
             __props__.__dict__["chunk_encap"] = chunk_encap
+            __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["extension_feature"] = extension_feature
             __props__.__dict__["file_transfer"] = file_transfer
             __props__.__dict__["file_transfer_failure"] = file_transfer_failure
             __props__.__dict__["file_transfer_path"] = file_transfer_path
             __props__.__dict__["file_transfer_server"] = file_transfer_server
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["icap_block_log"] = icap_block_log
             __props__.__dict__["icap_headers"] = icap_headers
             __props__.__dict__["methods"] = methods
@@ -1283,12 +1355,14 @@ class Profile(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             chunk_encap: Optional[pulumi.Input[str]] = None,
+            comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             extension_feature: Optional[pulumi.Input[str]] = None,
             file_transfer: Optional[pulumi.Input[str]] = None,
             file_transfer_failure: Optional[pulumi.Input[str]] = None,
             file_transfer_path: Optional[pulumi.Input[str]] = None,
             file_transfer_server: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             icap_block_log: Optional[pulumi.Input[str]] = None,
             icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileIcapHeaderArgs']]]]] = None,
             methods: Optional[pulumi.Input[str]] = None,
@@ -1321,12 +1395,14 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] chunk_encap: Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] extension_feature: Enable/disable ICAP extension features. Valid values: `scan-progress`.
         :param pulumi.Input[str] file_transfer: Configure the file transfer protocols to pass transferred files to an ICAP server as REQMOD. Valid values: `ssh`, `ftp`.
         :param pulumi.Input[str] file_transfer_failure: Action to take if the ICAP server cannot be contacted when processing a file transfer. Valid values: `error`, `bypass`.
         :param pulumi.Input[str] file_transfer_path: Path component of the ICAP URI that identifies the file transfer processing service.
         :param pulumi.Input[str] file_transfer_server: ICAP server to use for a file transfer.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] icap_block_log: Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileIcapHeaderArgs']]]] icap_headers: Configure ICAP forwarded request headers. The structure of `icap_headers` block is documented below.
         :param pulumi.Input[str] methods: The allowed HTTP methods that will be sent to ICAP server for further processing.
@@ -1357,12 +1433,14 @@ class Profile(pulumi.CustomResource):
         __props__ = _ProfileState.__new__(_ProfileState)
 
         __props__.__dict__["chunk_encap"] = chunk_encap
+        __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["extension_feature"] = extension_feature
         __props__.__dict__["file_transfer"] = file_transfer
         __props__.__dict__["file_transfer_failure"] = file_transfer_failure
         __props__.__dict__["file_transfer_path"] = file_transfer_path
         __props__.__dict__["file_transfer_server"] = file_transfer_server
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["icap_block_log"] = icap_block_log
         __props__.__dict__["icap_headers"] = icap_headers
         __props__.__dict__["methods"] = methods
@@ -1396,6 +1474,14 @@ class Profile(pulumi.CustomResource):
         Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "chunk_encap")
+
+    @property
+    @pulumi.getter
+    def comment(self) -> pulumi.Output[Optional[str]]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comment")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -1444,6 +1530,14 @@ class Profile(pulumi.CustomResource):
         ICAP server to use for a file transfer.
         """
         return pulumi.get(self, "file_transfer_server")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="icapBlockLog")

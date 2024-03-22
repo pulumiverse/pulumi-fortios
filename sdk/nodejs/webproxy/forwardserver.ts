@@ -72,7 +72,7 @@ export class Forwardserver extends pulumi.CustomResource {
     }
 
     /**
-     * Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+     * Address type of the forwarding proxy server: IP or FQDN.
      */
     public readonly addrType!: pulumi.Output<string>;
     /**
@@ -91,6 +91,14 @@ export class Forwardserver extends pulumi.CustomResource {
      * Forward proxy server IP address.
      */
     public readonly ip!: pulumi.Output<string>;
+    /**
+     * Forward proxy server IPv6 address.
+     */
+    public readonly ipv6!: pulumi.Output<string>;
+    /**
+     * Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+     */
+    public readonly masquerade!: pulumi.Output<string>;
     /**
      * URL for forward server health check monitoring (default = http://www.google.com).
      */
@@ -138,6 +146,8 @@ export class Forwardserver extends pulumi.CustomResource {
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
             resourceInputs["healthcheck"] = state ? state.healthcheck : undefined;
             resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["ipv6"] = state ? state.ipv6 : undefined;
+            resourceInputs["masquerade"] = state ? state.masquerade : undefined;
             resourceInputs["monitor"] = state ? state.monitor : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
@@ -152,6 +162,8 @@ export class Forwardserver extends pulumi.CustomResource {
             resourceInputs["fqdn"] = args ? args.fqdn : undefined;
             resourceInputs["healthcheck"] = args ? args.healthcheck : undefined;
             resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["ipv6"] = args ? args.ipv6 : undefined;
+            resourceInputs["masquerade"] = args ? args.masquerade : undefined;
             resourceInputs["monitor"] = args ? args.monitor : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
@@ -172,7 +184,7 @@ export class Forwardserver extends pulumi.CustomResource {
  */
 export interface ForwardserverState {
     /**
-     * Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+     * Address type of the forwarding proxy server: IP or FQDN.
      */
     addrType?: pulumi.Input<string>;
     /**
@@ -191,6 +203,14 @@ export interface ForwardserverState {
      * Forward proxy server IP address.
      */
     ip?: pulumi.Input<string>;
+    /**
+     * Forward proxy server IPv6 address.
+     */
+    ipv6?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+     */
+    masquerade?: pulumi.Input<string>;
     /**
      * URL for forward server health check monitoring (default = http://www.google.com).
      */
@@ -226,7 +246,7 @@ export interface ForwardserverState {
  */
 export interface ForwardserverArgs {
     /**
-     * Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+     * Address type of the forwarding proxy server: IP or FQDN.
      */
     addrType?: pulumi.Input<string>;
     /**
@@ -245,6 +265,14 @@ export interface ForwardserverArgs {
      * Forward proxy server IP address.
      */
     ip?: pulumi.Input<string>;
+    /**
+     * Forward proxy server IPv6 address.
+     */
+    ipv6?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+     */
+    masquerade?: pulumi.Input<string>;
     /**
      * URL for forward server health check monitoring (default = http://www.google.com).
      */

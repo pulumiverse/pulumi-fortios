@@ -16,14 +16,20 @@ __all__ = ['RadiusArgs', 'Radius']
 @pulumi.input_type
 class RadiusArgs:
     def __init__(__self__, *,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
+                 account_key_processing: Optional[pulumi.Input[str]] = None,
                  accounting_servers: Optional[pulumi.Input[Sequence[pulumi.Input['RadiusAccountingServerArgs']]]] = None,
                  acct_all_servers: Optional[pulumi.Input[str]] = None,
                  acct_interim_interval: Optional[pulumi.Input[int]] = None,
                  all_usergroup: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
+                 call_station_id_type: Optional[pulumi.Input[str]] = None,
                  classes: Optional[pulumi.Input[Sequence[pulumi.Input['RadiusClassArgs']]]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_override_attr_type: Optional[pulumi.Input[str]] = None,
                  h3c_compatibility: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -32,6 +38,8 @@ class RadiusArgs:
                  mac_password_delimiter: Optional[pulumi.Input[str]] = None,
                  mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nas_id: Optional[pulumi.Input[str]] = None,
+                 nas_id_type: Optional[pulumi.Input[str]] = None,
                  nas_ip: Optional[pulumi.Input[str]] = None,
                  password_encoding: Optional[pulumi.Input[str]] = None,
                  password_renewal: Optional[pulumi.Input[str]] = None,
@@ -53,28 +61,39 @@ class RadiusArgs:
                  secondary_server: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  sso_attribute: Optional[pulumi.Input[str]] = None,
                  sso_attribute_key: Optional[pulumi.Input[str]] = None,
                  sso_attribute_value_override: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  switch_controller_acct_fast_framedip_detect: Optional[pulumi.Input[int]] = None,
+                 switch_controller_nas_ip_dynamic: Optional[pulumi.Input[str]] = None,
                  switch_controller_service_type: Optional[pulumi.Input[str]] = None,
                  tertiary_secret: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
+                 tls_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 transport_protocol: Optional[pulumi.Input[str]] = None,
                  use_management_vdom: Optional[pulumi.Input[str]] = None,
                  username_case_sensitive: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Radius resource.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        :param pulumi.Input[str] account_key_processing: Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
         :param pulumi.Input[Sequence[pulumi.Input['RadiusAccountingServerArgs']]] accounting_servers: Additional accounting servers. The structure of `accounting_server` block is documented below.
         :param pulumi.Input[str] acct_all_servers: Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] acct_interim_interval: Time in seconds between each accounting interim update message.
         :param pulumi.Input[str] all_usergroup: Enable/disable automatically including this RADIUS server in all user groups. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] auth_type: Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `ms_chap_v2`, `ms_chap`, `chap`, `pap`.
+        :param pulumi.Input[str] ca_cert: CA of server to trust under TLS.
+        :param pulumi.Input[str] call_station_id_type: Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
         :param pulumi.Input[Sequence[pulumi.Input['RadiusClassArgs']]] classes: Class attribute name(s). The structure of `class` block is documented below.
+        :param pulumi.Input[str] client_cert: Client certificate to use under TLS.
         :param pulumi.Input[str] delimiter: Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_override_attr_type: RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
         :param pulumi.Input[str] h3c_compatibility: Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -83,6 +102,8 @@ class RadiusArgs:
         :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
         :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
         :param pulumi.Input[str] name: RADIUS server entry name.
+        :param pulumi.Input[str] nas_id: Custom NAS identifier.
+        :param pulumi.Input[str] nas_id_type: NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
         :param pulumi.Input[str] nas_ip: IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
         :param pulumi.Input[str] password_encoding: Password encoding. Valid values: `auto`, `ISO-8859-1`.
         :param pulumi.Input[str] password_renewal: Enable/disable password renewal. Valid values: `enable`, `disable`.
@@ -104,19 +125,28 @@ class RadiusArgs:
         :param pulumi.Input[str] secondary_server: {<name_str|ip_str>} secondary RADIUS CN domain name or IP.
         :param pulumi.Input[str] secret: Pre-shared secret key used to access the primary RADIUS server.
         :param pulumi.Input[str] server: Primary RADIUS server CN domain name or IP address.
+        :param pulumi.Input[str] server_identity_check: Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP address for communications to the RADIUS server.
         :param pulumi.Input[str] sso_attribute: RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
         :param pulumi.Input[str] sso_attribute_key: Key prefix for SSO group value in the SSO attribute.
         :param pulumi.Input[str] sso_attribute_value_override: Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
         :param pulumi.Input[int] switch_controller_acct_fast_framedip_detect: Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
+        :param pulumi.Input[str] switch_controller_nas_ip_dynamic: Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller_service_type: RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
         :param pulumi.Input[str] tertiary_secret: Secret key to access the tertiary server.
         :param pulumi.Input[str] tertiary_server: {<name_str|ip_str>} tertiary RADIUS CN domain name or IP.
         :param pulumi.Input[int] timeout: Time in seconds between re-sending authentication requests.
+        :param pulumi.Input[str] tls_min_proto_version: Minimum supported protocol version for TLS connections (default is to follow system global setting).
+        :param pulumi.Input[str] transport_protocol: Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
         :param pulumi.Input[str] use_management_vdom: Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] username_case_sensitive: Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if account_key_cert_field is not None:
+            pulumi.set(__self__, "account_key_cert_field", account_key_cert_field)
+        if account_key_processing is not None:
+            pulumi.set(__self__, "account_key_processing", account_key_processing)
         if accounting_servers is not None:
             pulumi.set(__self__, "accounting_servers", accounting_servers)
         if acct_all_servers is not None:
@@ -127,12 +157,20 @@ class RadiusArgs:
             pulumi.set(__self__, "all_usergroup", all_usergroup)
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
+        if ca_cert is not None:
+            pulumi.set(__self__, "ca_cert", ca_cert)
+        if call_station_id_type is not None:
+            pulumi.set(__self__, "call_station_id_type", call_station_id_type)
         if classes is not None:
             pulumi.set(__self__, "classes", classes)
+        if client_cert is not None:
+            pulumi.set(__self__, "client_cert", client_cert)
         if delimiter is not None:
             pulumi.set(__self__, "delimiter", delimiter)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_override_attr_type is not None:
             pulumi.set(__self__, "group_override_attr_type", group_override_attr_type)
         if h3c_compatibility is not None:
@@ -149,6 +187,10 @@ class RadiusArgs:
             pulumi.set(__self__, "mac_username_delimiter", mac_username_delimiter)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nas_id is not None:
+            pulumi.set(__self__, "nas_id", nas_id)
+        if nas_id_type is not None:
+            pulumi.set(__self__, "nas_id_type", nas_id_type)
         if nas_ip is not None:
             pulumi.set(__self__, "nas_ip", nas_ip)
         if password_encoding is not None:
@@ -191,6 +233,8 @@ class RadiusArgs:
             pulumi.set(__self__, "secret", secret)
         if server is not None:
             pulumi.set(__self__, "server", server)
+        if server_identity_check is not None:
+            pulumi.set(__self__, "server_identity_check", server_identity_check)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if sso_attribute is not None:
@@ -199,8 +243,12 @@ class RadiusArgs:
             pulumi.set(__self__, "sso_attribute_key", sso_attribute_key)
         if sso_attribute_value_override is not None:
             pulumi.set(__self__, "sso_attribute_value_override", sso_attribute_value_override)
+        if status_ttl is not None:
+            pulumi.set(__self__, "status_ttl", status_ttl)
         if switch_controller_acct_fast_framedip_detect is not None:
             pulumi.set(__self__, "switch_controller_acct_fast_framedip_detect", switch_controller_acct_fast_framedip_detect)
+        if switch_controller_nas_ip_dynamic is not None:
+            pulumi.set(__self__, "switch_controller_nas_ip_dynamic", switch_controller_nas_ip_dynamic)
         if switch_controller_service_type is not None:
             pulumi.set(__self__, "switch_controller_service_type", switch_controller_service_type)
         if tertiary_secret is not None:
@@ -209,12 +257,40 @@ class RadiusArgs:
             pulumi.set(__self__, "tertiary_server", tertiary_server)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
+        if tls_min_proto_version is not None:
+            pulumi.set(__self__, "tls_min_proto_version", tls_min_proto_version)
+        if transport_protocol is not None:
+            pulumi.set(__self__, "transport_protocol", transport_protocol)
         if use_management_vdom is not None:
             pulumi.set(__self__, "use_management_vdom", use_management_vdom)
         if username_case_sensitive is not None:
             pulumi.set(__self__, "username_case_sensitive", username_case_sensitive)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="accountKeyCertField")
+    def account_key_cert_field(self) -> Optional[pulumi.Input[str]]:
+        """
+        Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        """
+        return pulumi.get(self, "account_key_cert_field")
+
+    @account_key_cert_field.setter
+    def account_key_cert_field(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_cert_field", value)
+
+    @property
+    @pulumi.getter(name="accountKeyProcessing")
+    def account_key_processing(self) -> Optional[pulumi.Input[str]]:
+        """
+        Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+        """
+        return pulumi.get(self, "account_key_processing")
+
+    @account_key_processing.setter
+    def account_key_processing(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_processing", value)
 
     @property
     @pulumi.getter(name="accountingServers")
@@ -277,6 +353,30 @@ class RadiusArgs:
         pulumi.set(self, "auth_type", value)
 
     @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA of server to trust under TLS.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @ca_cert.setter
+    def ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_cert", value)
+
+    @property
+    @pulumi.getter(name="callStationIdType")
+    def call_station_id_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+        """
+        return pulumi.get(self, "call_station_id_type")
+
+    @call_station_id_type.setter
+    def call_station_id_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "call_station_id_type", value)
+
+    @property
     @pulumi.getter
     def classes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RadiusClassArgs']]]]:
         """
@@ -287,6 +387,18 @@ class RadiusArgs:
     @classes.setter
     def classes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RadiusClassArgs']]]]):
         pulumi.set(self, "classes", value)
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate to use under TLS.
+        """
+        return pulumi.get(self, "client_cert")
+
+    @client_cert.setter
+    def client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_cert", value)
 
     @property
     @pulumi.getter
@@ -311,6 +423,18 @@ class RadiusArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupOverrideAttrType")
@@ -407,6 +531,30 @@ class RadiusArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="nasId")
+    def nas_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Custom NAS identifier.
+        """
+        return pulumi.get(self, "nas_id")
+
+    @nas_id.setter
+    def nas_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nas_id", value)
+
+    @property
+    @pulumi.getter(name="nasIdType")
+    def nas_id_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+        """
+        return pulumi.get(self, "nas_id_type")
+
+    @nas_id_type.setter
+    def nas_id_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nas_id_type", value)
 
     @property
     @pulumi.getter(name="nasIp")
@@ -661,6 +809,18 @@ class RadiusArgs:
         pulumi.set(self, "server", value)
 
     @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "server_identity_check")
+
+    @server_identity_check.setter
+    def server_identity_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_identity_check", value)
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> Optional[pulumi.Input[str]]:
         """
@@ -709,6 +869,18 @@ class RadiusArgs:
         pulumi.set(self, "sso_attribute_value_override", value)
 
     @property
+    @pulumi.getter(name="statusTtl")
+    def status_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        """
+        return pulumi.get(self, "status_ttl")
+
+    @status_ttl.setter
+    def status_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "status_ttl", value)
+
+    @property
     @pulumi.getter(name="switchControllerAcctFastFramedipDetect")
     def switch_controller_acct_fast_framedip_detect(self) -> Optional[pulumi.Input[int]]:
         """
@@ -719,6 +891,18 @@ class RadiusArgs:
     @switch_controller_acct_fast_framedip_detect.setter
     def switch_controller_acct_fast_framedip_detect(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "switch_controller_acct_fast_framedip_detect", value)
+
+    @property
+    @pulumi.getter(name="switchControllerNasIpDynamic")
+    def switch_controller_nas_ip_dynamic(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "switch_controller_nas_ip_dynamic")
+
+    @switch_controller_nas_ip_dynamic.setter
+    def switch_controller_nas_ip_dynamic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_nas_ip_dynamic", value)
 
     @property
     @pulumi.getter(name="switchControllerServiceType")
@@ -767,6 +951,30 @@ class RadiusArgs:
     @timeout.setter
     def timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout", value)
+
+    @property
+    @pulumi.getter(name="tlsMinProtoVersion")
+    def tls_min_proto_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum supported protocol version for TLS connections (default is to follow system global setting).
+        """
+        return pulumi.get(self, "tls_min_proto_version")
+
+    @tls_min_proto_version.setter
+    def tls_min_proto_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_min_proto_version", value)
+
+    @property
+    @pulumi.getter(name="transportProtocol")
+    def transport_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+        """
+        return pulumi.get(self, "transport_protocol")
+
+    @transport_protocol.setter
+    def transport_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "transport_protocol", value)
 
     @property
     @pulumi.getter(name="useManagementVdom")
@@ -808,14 +1016,20 @@ class RadiusArgs:
 @pulumi.input_type
 class _RadiusState:
     def __init__(__self__, *,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
+                 account_key_processing: Optional[pulumi.Input[str]] = None,
                  accounting_servers: Optional[pulumi.Input[Sequence[pulumi.Input['RadiusAccountingServerArgs']]]] = None,
                  acct_all_servers: Optional[pulumi.Input[str]] = None,
                  acct_interim_interval: Optional[pulumi.Input[int]] = None,
                  all_usergroup: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
+                 call_station_id_type: Optional[pulumi.Input[str]] = None,
                  classes: Optional[pulumi.Input[Sequence[pulumi.Input['RadiusClassArgs']]]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_override_attr_type: Optional[pulumi.Input[str]] = None,
                  h3c_compatibility: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -824,6 +1038,8 @@ class _RadiusState:
                  mac_password_delimiter: Optional[pulumi.Input[str]] = None,
                  mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nas_id: Optional[pulumi.Input[str]] = None,
+                 nas_id_type: Optional[pulumi.Input[str]] = None,
                  nas_ip: Optional[pulumi.Input[str]] = None,
                  password_encoding: Optional[pulumi.Input[str]] = None,
                  password_renewal: Optional[pulumi.Input[str]] = None,
@@ -845,28 +1061,39 @@ class _RadiusState:
                  secondary_server: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  sso_attribute: Optional[pulumi.Input[str]] = None,
                  sso_attribute_key: Optional[pulumi.Input[str]] = None,
                  sso_attribute_value_override: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  switch_controller_acct_fast_framedip_detect: Optional[pulumi.Input[int]] = None,
+                 switch_controller_nas_ip_dynamic: Optional[pulumi.Input[str]] = None,
                  switch_controller_service_type: Optional[pulumi.Input[str]] = None,
                  tertiary_secret: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
+                 tls_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 transport_protocol: Optional[pulumi.Input[str]] = None,
                  use_management_vdom: Optional[pulumi.Input[str]] = None,
                  username_case_sensitive: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Radius resources.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        :param pulumi.Input[str] account_key_processing: Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
         :param pulumi.Input[Sequence[pulumi.Input['RadiusAccountingServerArgs']]] accounting_servers: Additional accounting servers. The structure of `accounting_server` block is documented below.
         :param pulumi.Input[str] acct_all_servers: Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] acct_interim_interval: Time in seconds between each accounting interim update message.
         :param pulumi.Input[str] all_usergroup: Enable/disable automatically including this RADIUS server in all user groups. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] auth_type: Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `ms_chap_v2`, `ms_chap`, `chap`, `pap`.
+        :param pulumi.Input[str] ca_cert: CA of server to trust under TLS.
+        :param pulumi.Input[str] call_station_id_type: Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
         :param pulumi.Input[Sequence[pulumi.Input['RadiusClassArgs']]] classes: Class attribute name(s). The structure of `class` block is documented below.
+        :param pulumi.Input[str] client_cert: Client certificate to use under TLS.
         :param pulumi.Input[str] delimiter: Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_override_attr_type: RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
         :param pulumi.Input[str] h3c_compatibility: Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -875,6 +1102,8 @@ class _RadiusState:
         :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
         :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
         :param pulumi.Input[str] name: RADIUS server entry name.
+        :param pulumi.Input[str] nas_id: Custom NAS identifier.
+        :param pulumi.Input[str] nas_id_type: NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
         :param pulumi.Input[str] nas_ip: IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
         :param pulumi.Input[str] password_encoding: Password encoding. Valid values: `auto`, `ISO-8859-1`.
         :param pulumi.Input[str] password_renewal: Enable/disable password renewal. Valid values: `enable`, `disable`.
@@ -896,19 +1125,28 @@ class _RadiusState:
         :param pulumi.Input[str] secondary_server: {<name_str|ip_str>} secondary RADIUS CN domain name or IP.
         :param pulumi.Input[str] secret: Pre-shared secret key used to access the primary RADIUS server.
         :param pulumi.Input[str] server: Primary RADIUS server CN domain name or IP address.
+        :param pulumi.Input[str] server_identity_check: Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP address for communications to the RADIUS server.
         :param pulumi.Input[str] sso_attribute: RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
         :param pulumi.Input[str] sso_attribute_key: Key prefix for SSO group value in the SSO attribute.
         :param pulumi.Input[str] sso_attribute_value_override: Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
         :param pulumi.Input[int] switch_controller_acct_fast_framedip_detect: Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
+        :param pulumi.Input[str] switch_controller_nas_ip_dynamic: Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller_service_type: RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
         :param pulumi.Input[str] tertiary_secret: Secret key to access the tertiary server.
         :param pulumi.Input[str] tertiary_server: {<name_str|ip_str>} tertiary RADIUS CN domain name or IP.
         :param pulumi.Input[int] timeout: Time in seconds between re-sending authentication requests.
+        :param pulumi.Input[str] tls_min_proto_version: Minimum supported protocol version for TLS connections (default is to follow system global setting).
+        :param pulumi.Input[str] transport_protocol: Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
         :param pulumi.Input[str] use_management_vdom: Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] username_case_sensitive: Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if account_key_cert_field is not None:
+            pulumi.set(__self__, "account_key_cert_field", account_key_cert_field)
+        if account_key_processing is not None:
+            pulumi.set(__self__, "account_key_processing", account_key_processing)
         if accounting_servers is not None:
             pulumi.set(__self__, "accounting_servers", accounting_servers)
         if acct_all_servers is not None:
@@ -919,12 +1157,20 @@ class _RadiusState:
             pulumi.set(__self__, "all_usergroup", all_usergroup)
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
+        if ca_cert is not None:
+            pulumi.set(__self__, "ca_cert", ca_cert)
+        if call_station_id_type is not None:
+            pulumi.set(__self__, "call_station_id_type", call_station_id_type)
         if classes is not None:
             pulumi.set(__self__, "classes", classes)
+        if client_cert is not None:
+            pulumi.set(__self__, "client_cert", client_cert)
         if delimiter is not None:
             pulumi.set(__self__, "delimiter", delimiter)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_override_attr_type is not None:
             pulumi.set(__self__, "group_override_attr_type", group_override_attr_type)
         if h3c_compatibility is not None:
@@ -941,6 +1187,10 @@ class _RadiusState:
             pulumi.set(__self__, "mac_username_delimiter", mac_username_delimiter)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nas_id is not None:
+            pulumi.set(__self__, "nas_id", nas_id)
+        if nas_id_type is not None:
+            pulumi.set(__self__, "nas_id_type", nas_id_type)
         if nas_ip is not None:
             pulumi.set(__self__, "nas_ip", nas_ip)
         if password_encoding is not None:
@@ -983,6 +1233,8 @@ class _RadiusState:
             pulumi.set(__self__, "secret", secret)
         if server is not None:
             pulumi.set(__self__, "server", server)
+        if server_identity_check is not None:
+            pulumi.set(__self__, "server_identity_check", server_identity_check)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if sso_attribute is not None:
@@ -991,8 +1243,12 @@ class _RadiusState:
             pulumi.set(__self__, "sso_attribute_key", sso_attribute_key)
         if sso_attribute_value_override is not None:
             pulumi.set(__self__, "sso_attribute_value_override", sso_attribute_value_override)
+        if status_ttl is not None:
+            pulumi.set(__self__, "status_ttl", status_ttl)
         if switch_controller_acct_fast_framedip_detect is not None:
             pulumi.set(__self__, "switch_controller_acct_fast_framedip_detect", switch_controller_acct_fast_framedip_detect)
+        if switch_controller_nas_ip_dynamic is not None:
+            pulumi.set(__self__, "switch_controller_nas_ip_dynamic", switch_controller_nas_ip_dynamic)
         if switch_controller_service_type is not None:
             pulumi.set(__self__, "switch_controller_service_type", switch_controller_service_type)
         if tertiary_secret is not None:
@@ -1001,12 +1257,40 @@ class _RadiusState:
             pulumi.set(__self__, "tertiary_server", tertiary_server)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
+        if tls_min_proto_version is not None:
+            pulumi.set(__self__, "tls_min_proto_version", tls_min_proto_version)
+        if transport_protocol is not None:
+            pulumi.set(__self__, "transport_protocol", transport_protocol)
         if use_management_vdom is not None:
             pulumi.set(__self__, "use_management_vdom", use_management_vdom)
         if username_case_sensitive is not None:
             pulumi.set(__self__, "username_case_sensitive", username_case_sensitive)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="accountKeyCertField")
+    def account_key_cert_field(self) -> Optional[pulumi.Input[str]]:
+        """
+        Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        """
+        return pulumi.get(self, "account_key_cert_field")
+
+    @account_key_cert_field.setter
+    def account_key_cert_field(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_cert_field", value)
+
+    @property
+    @pulumi.getter(name="accountKeyProcessing")
+    def account_key_processing(self) -> Optional[pulumi.Input[str]]:
+        """
+        Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+        """
+        return pulumi.get(self, "account_key_processing")
+
+    @account_key_processing.setter
+    def account_key_processing(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_processing", value)
 
     @property
     @pulumi.getter(name="accountingServers")
@@ -1069,6 +1353,30 @@ class _RadiusState:
         pulumi.set(self, "auth_type", value)
 
     @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA of server to trust under TLS.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @ca_cert.setter
+    def ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_cert", value)
+
+    @property
+    @pulumi.getter(name="callStationIdType")
+    def call_station_id_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+        """
+        return pulumi.get(self, "call_station_id_type")
+
+    @call_station_id_type.setter
+    def call_station_id_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "call_station_id_type", value)
+
+    @property
     @pulumi.getter
     def classes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RadiusClassArgs']]]]:
         """
@@ -1079,6 +1387,18 @@ class _RadiusState:
     @classes.setter
     def classes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RadiusClassArgs']]]]):
         pulumi.set(self, "classes", value)
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate to use under TLS.
+        """
+        return pulumi.get(self, "client_cert")
+
+    @client_cert.setter
+    def client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_cert", value)
 
     @property
     @pulumi.getter
@@ -1103,6 +1423,18 @@ class _RadiusState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupOverrideAttrType")
@@ -1199,6 +1531,30 @@ class _RadiusState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="nasId")
+    def nas_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Custom NAS identifier.
+        """
+        return pulumi.get(self, "nas_id")
+
+    @nas_id.setter
+    def nas_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nas_id", value)
+
+    @property
+    @pulumi.getter(name="nasIdType")
+    def nas_id_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+        """
+        return pulumi.get(self, "nas_id_type")
+
+    @nas_id_type.setter
+    def nas_id_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nas_id_type", value)
 
     @property
     @pulumi.getter(name="nasIp")
@@ -1453,6 +1809,18 @@ class _RadiusState:
         pulumi.set(self, "server", value)
 
     @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "server_identity_check")
+
+    @server_identity_check.setter
+    def server_identity_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_identity_check", value)
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1501,6 +1869,18 @@ class _RadiusState:
         pulumi.set(self, "sso_attribute_value_override", value)
 
     @property
+    @pulumi.getter(name="statusTtl")
+    def status_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        """
+        return pulumi.get(self, "status_ttl")
+
+    @status_ttl.setter
+    def status_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "status_ttl", value)
+
+    @property
     @pulumi.getter(name="switchControllerAcctFastFramedipDetect")
     def switch_controller_acct_fast_framedip_detect(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1511,6 +1891,18 @@ class _RadiusState:
     @switch_controller_acct_fast_framedip_detect.setter
     def switch_controller_acct_fast_framedip_detect(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "switch_controller_acct_fast_framedip_detect", value)
+
+    @property
+    @pulumi.getter(name="switchControllerNasIpDynamic")
+    def switch_controller_nas_ip_dynamic(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "switch_controller_nas_ip_dynamic")
+
+    @switch_controller_nas_ip_dynamic.setter
+    def switch_controller_nas_ip_dynamic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_nas_ip_dynamic", value)
 
     @property
     @pulumi.getter(name="switchControllerServiceType")
@@ -1559,6 +1951,30 @@ class _RadiusState:
     @timeout.setter
     def timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout", value)
+
+    @property
+    @pulumi.getter(name="tlsMinProtoVersion")
+    def tls_min_proto_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum supported protocol version for TLS connections (default is to follow system global setting).
+        """
+        return pulumi.get(self, "tls_min_proto_version")
+
+    @tls_min_proto_version.setter
+    def tls_min_proto_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_min_proto_version", value)
+
+    @property
+    @pulumi.getter(name="transportProtocol")
+    def transport_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+        """
+        return pulumi.get(self, "transport_protocol")
+
+    @transport_protocol.setter
+    def transport_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "transport_protocol", value)
 
     @property
     @pulumi.getter(name="useManagementVdom")
@@ -1602,14 +2018,20 @@ class Radius(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
+                 account_key_processing: Optional[pulumi.Input[str]] = None,
                  accounting_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RadiusAccountingServerArgs']]]]] = None,
                  acct_all_servers: Optional[pulumi.Input[str]] = None,
                  acct_interim_interval: Optional[pulumi.Input[int]] = None,
                  all_usergroup: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
+                 call_station_id_type: Optional[pulumi.Input[str]] = None,
                  classes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RadiusClassArgs']]]]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_override_attr_type: Optional[pulumi.Input[str]] = None,
                  h3c_compatibility: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -1618,6 +2040,8 @@ class Radius(pulumi.CustomResource):
                  mac_password_delimiter: Optional[pulumi.Input[str]] = None,
                  mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nas_id: Optional[pulumi.Input[str]] = None,
+                 nas_id_type: Optional[pulumi.Input[str]] = None,
                  nas_ip: Optional[pulumi.Input[str]] = None,
                  password_encoding: Optional[pulumi.Input[str]] = None,
                  password_renewal: Optional[pulumi.Input[str]] = None,
@@ -1639,15 +2063,20 @@ class Radius(pulumi.CustomResource):
                  secondary_server: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  sso_attribute: Optional[pulumi.Input[str]] = None,
                  sso_attribute_key: Optional[pulumi.Input[str]] = None,
                  sso_attribute_value_override: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  switch_controller_acct_fast_framedip_detect: Optional[pulumi.Input[int]] = None,
+                 switch_controller_nas_ip_dynamic: Optional[pulumi.Input[str]] = None,
                  switch_controller_service_type: Optional[pulumi.Input[str]] = None,
                  tertiary_secret: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
+                 tls_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 transport_protocol: Optional[pulumi.Input[str]] = None,
                  use_management_vdom: Optional[pulumi.Input[str]] = None,
                  username_case_sensitive: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -1712,14 +2141,20 @@ class Radius(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        :param pulumi.Input[str] account_key_processing: Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RadiusAccountingServerArgs']]]] accounting_servers: Additional accounting servers. The structure of `accounting_server` block is documented below.
         :param pulumi.Input[str] acct_all_servers: Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] acct_interim_interval: Time in seconds between each accounting interim update message.
         :param pulumi.Input[str] all_usergroup: Enable/disable automatically including this RADIUS server in all user groups. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] auth_type: Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `ms_chap_v2`, `ms_chap`, `chap`, `pap`.
+        :param pulumi.Input[str] ca_cert: CA of server to trust under TLS.
+        :param pulumi.Input[str] call_station_id_type: Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RadiusClassArgs']]]] classes: Class attribute name(s). The structure of `class` block is documented below.
+        :param pulumi.Input[str] client_cert: Client certificate to use under TLS.
         :param pulumi.Input[str] delimiter: Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_override_attr_type: RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
         :param pulumi.Input[str] h3c_compatibility: Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -1728,6 +2163,8 @@ class Radius(pulumi.CustomResource):
         :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
         :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
         :param pulumi.Input[str] name: RADIUS server entry name.
+        :param pulumi.Input[str] nas_id: Custom NAS identifier.
+        :param pulumi.Input[str] nas_id_type: NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
         :param pulumi.Input[str] nas_ip: IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
         :param pulumi.Input[str] password_encoding: Password encoding. Valid values: `auto`, `ISO-8859-1`.
         :param pulumi.Input[str] password_renewal: Enable/disable password renewal. Valid values: `enable`, `disable`.
@@ -1749,15 +2186,20 @@ class Radius(pulumi.CustomResource):
         :param pulumi.Input[str] secondary_server: {<name_str|ip_str>} secondary RADIUS CN domain name or IP.
         :param pulumi.Input[str] secret: Pre-shared secret key used to access the primary RADIUS server.
         :param pulumi.Input[str] server: Primary RADIUS server CN domain name or IP address.
+        :param pulumi.Input[str] server_identity_check: Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP address for communications to the RADIUS server.
         :param pulumi.Input[str] sso_attribute: RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
         :param pulumi.Input[str] sso_attribute_key: Key prefix for SSO group value in the SSO attribute.
         :param pulumi.Input[str] sso_attribute_value_override: Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
         :param pulumi.Input[int] switch_controller_acct_fast_framedip_detect: Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
+        :param pulumi.Input[str] switch_controller_nas_ip_dynamic: Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller_service_type: RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
         :param pulumi.Input[str] tertiary_secret: Secret key to access the tertiary server.
         :param pulumi.Input[str] tertiary_server: {<name_str|ip_str>} tertiary RADIUS CN domain name or IP.
         :param pulumi.Input[int] timeout: Time in seconds between re-sending authentication requests.
+        :param pulumi.Input[str] tls_min_proto_version: Minimum supported protocol version for TLS connections (default is to follow system global setting).
+        :param pulumi.Input[str] transport_protocol: Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
         :param pulumi.Input[str] use_management_vdom: Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] username_case_sensitive: Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -1841,14 +2283,20 @@ class Radius(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
+                 account_key_processing: Optional[pulumi.Input[str]] = None,
                  accounting_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RadiusAccountingServerArgs']]]]] = None,
                  acct_all_servers: Optional[pulumi.Input[str]] = None,
                  acct_interim_interval: Optional[pulumi.Input[int]] = None,
                  all_usergroup: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
+                 call_station_id_type: Optional[pulumi.Input[str]] = None,
                  classes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RadiusClassArgs']]]]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_override_attr_type: Optional[pulumi.Input[str]] = None,
                  h3c_compatibility: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -1857,6 +2305,8 @@ class Radius(pulumi.CustomResource):
                  mac_password_delimiter: Optional[pulumi.Input[str]] = None,
                  mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nas_id: Optional[pulumi.Input[str]] = None,
+                 nas_id_type: Optional[pulumi.Input[str]] = None,
                  nas_ip: Optional[pulumi.Input[str]] = None,
                  password_encoding: Optional[pulumi.Input[str]] = None,
                  password_renewal: Optional[pulumi.Input[str]] = None,
@@ -1878,15 +2328,20 @@ class Radius(pulumi.CustomResource):
                  secondary_server: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  sso_attribute: Optional[pulumi.Input[str]] = None,
                  sso_attribute_key: Optional[pulumi.Input[str]] = None,
                  sso_attribute_value_override: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  switch_controller_acct_fast_framedip_detect: Optional[pulumi.Input[int]] = None,
+                 switch_controller_nas_ip_dynamic: Optional[pulumi.Input[str]] = None,
                  switch_controller_service_type: Optional[pulumi.Input[str]] = None,
                  tertiary_secret: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
+                 tls_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 transport_protocol: Optional[pulumi.Input[str]] = None,
                  use_management_vdom: Optional[pulumi.Input[str]] = None,
                  username_case_sensitive: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -1899,14 +2354,20 @@ class Radius(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RadiusArgs.__new__(RadiusArgs)
 
+            __props__.__dict__["account_key_cert_field"] = account_key_cert_field
+            __props__.__dict__["account_key_processing"] = account_key_processing
             __props__.__dict__["accounting_servers"] = accounting_servers
             __props__.__dict__["acct_all_servers"] = acct_all_servers
             __props__.__dict__["acct_interim_interval"] = acct_interim_interval
             __props__.__dict__["all_usergroup"] = all_usergroup
             __props__.__dict__["auth_type"] = auth_type
+            __props__.__dict__["ca_cert"] = ca_cert
+            __props__.__dict__["call_station_id_type"] = call_station_id_type
             __props__.__dict__["classes"] = classes
+            __props__.__dict__["client_cert"] = client_cert
             __props__.__dict__["delimiter"] = delimiter
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_override_attr_type"] = group_override_attr_type
             __props__.__dict__["h3c_compatibility"] = h3c_compatibility
             __props__.__dict__["interface"] = interface
@@ -1915,6 +2376,8 @@ class Radius(pulumi.CustomResource):
             __props__.__dict__["mac_password_delimiter"] = mac_password_delimiter
             __props__.__dict__["mac_username_delimiter"] = mac_username_delimiter
             __props__.__dict__["name"] = name
+            __props__.__dict__["nas_id"] = nas_id
+            __props__.__dict__["nas_id_type"] = nas_id_type
             __props__.__dict__["nas_ip"] = nas_ip
             __props__.__dict__["password_encoding"] = password_encoding
             __props__.__dict__["password_renewal"] = password_renewal
@@ -1936,15 +2399,20 @@ class Radius(pulumi.CustomResource):
             __props__.__dict__["secondary_server"] = secondary_server
             __props__.__dict__["secret"] = None if secret is None else pulumi.Output.secret(secret)
             __props__.__dict__["server"] = server
+            __props__.__dict__["server_identity_check"] = server_identity_check
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["sso_attribute"] = sso_attribute
             __props__.__dict__["sso_attribute_key"] = None if sso_attribute_key is None else pulumi.Output.secret(sso_attribute_key)
             __props__.__dict__["sso_attribute_value_override"] = sso_attribute_value_override
+            __props__.__dict__["status_ttl"] = status_ttl
             __props__.__dict__["switch_controller_acct_fast_framedip_detect"] = switch_controller_acct_fast_framedip_detect
+            __props__.__dict__["switch_controller_nas_ip_dynamic"] = switch_controller_nas_ip_dynamic
             __props__.__dict__["switch_controller_service_type"] = switch_controller_service_type
             __props__.__dict__["tertiary_secret"] = None if tertiary_secret is None else pulumi.Output.secret(tertiary_secret)
             __props__.__dict__["tertiary_server"] = tertiary_server
             __props__.__dict__["timeout"] = timeout
+            __props__.__dict__["tls_min_proto_version"] = tls_min_proto_version
+            __props__.__dict__["transport_protocol"] = transport_protocol
             __props__.__dict__["use_management_vdom"] = use_management_vdom
             __props__.__dict__["username_case_sensitive"] = username_case_sensitive
             __props__.__dict__["vdomparam"] = vdomparam
@@ -1960,14 +2428,20 @@ class Radius(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            account_key_cert_field: Optional[pulumi.Input[str]] = None,
+            account_key_processing: Optional[pulumi.Input[str]] = None,
             accounting_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RadiusAccountingServerArgs']]]]] = None,
             acct_all_servers: Optional[pulumi.Input[str]] = None,
             acct_interim_interval: Optional[pulumi.Input[int]] = None,
             all_usergroup: Optional[pulumi.Input[str]] = None,
             auth_type: Optional[pulumi.Input[str]] = None,
+            ca_cert: Optional[pulumi.Input[str]] = None,
+            call_station_id_type: Optional[pulumi.Input[str]] = None,
             classes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RadiusClassArgs']]]]] = None,
+            client_cert: Optional[pulumi.Input[str]] = None,
             delimiter: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_override_attr_type: Optional[pulumi.Input[str]] = None,
             h3c_compatibility: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
@@ -1976,6 +2450,8 @@ class Radius(pulumi.CustomResource):
             mac_password_delimiter: Optional[pulumi.Input[str]] = None,
             mac_username_delimiter: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            nas_id: Optional[pulumi.Input[str]] = None,
+            nas_id_type: Optional[pulumi.Input[str]] = None,
             nas_ip: Optional[pulumi.Input[str]] = None,
             password_encoding: Optional[pulumi.Input[str]] = None,
             password_renewal: Optional[pulumi.Input[str]] = None,
@@ -1997,15 +2473,20 @@ class Radius(pulumi.CustomResource):
             secondary_server: Optional[pulumi.Input[str]] = None,
             secret: Optional[pulumi.Input[str]] = None,
             server: Optional[pulumi.Input[str]] = None,
+            server_identity_check: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             sso_attribute: Optional[pulumi.Input[str]] = None,
             sso_attribute_key: Optional[pulumi.Input[str]] = None,
             sso_attribute_value_override: Optional[pulumi.Input[str]] = None,
+            status_ttl: Optional[pulumi.Input[int]] = None,
             switch_controller_acct_fast_framedip_detect: Optional[pulumi.Input[int]] = None,
+            switch_controller_nas_ip_dynamic: Optional[pulumi.Input[str]] = None,
             switch_controller_service_type: Optional[pulumi.Input[str]] = None,
             tertiary_secret: Optional[pulumi.Input[str]] = None,
             tertiary_server: Optional[pulumi.Input[str]] = None,
             timeout: Optional[pulumi.Input[int]] = None,
+            tls_min_proto_version: Optional[pulumi.Input[str]] = None,
+            transport_protocol: Optional[pulumi.Input[str]] = None,
             use_management_vdom: Optional[pulumi.Input[str]] = None,
             username_case_sensitive: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Radius':
@@ -2016,14 +2497,20 @@ class Radius(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        :param pulumi.Input[str] account_key_processing: Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RadiusAccountingServerArgs']]]] accounting_servers: Additional accounting servers. The structure of `accounting_server` block is documented below.
         :param pulumi.Input[str] acct_all_servers: Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] acct_interim_interval: Time in seconds between each accounting interim update message.
         :param pulumi.Input[str] all_usergroup: Enable/disable automatically including this RADIUS server in all user groups. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] auth_type: Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `ms_chap_v2`, `ms_chap`, `chap`, `pap`.
+        :param pulumi.Input[str] ca_cert: CA of server to trust under TLS.
+        :param pulumi.Input[str] call_station_id_type: Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RadiusClassArgs']]]] classes: Class attribute name(s). The structure of `class` block is documented below.
+        :param pulumi.Input[str] client_cert: Client certificate to use under TLS.
         :param pulumi.Input[str] delimiter: Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_override_attr_type: RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
         :param pulumi.Input[str] h3c_compatibility: Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -2032,6 +2519,8 @@ class Radius(pulumi.CustomResource):
         :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
         :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
         :param pulumi.Input[str] name: RADIUS server entry name.
+        :param pulumi.Input[str] nas_id: Custom NAS identifier.
+        :param pulumi.Input[str] nas_id_type: NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
         :param pulumi.Input[str] nas_ip: IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
         :param pulumi.Input[str] password_encoding: Password encoding. Valid values: `auto`, `ISO-8859-1`.
         :param pulumi.Input[str] password_renewal: Enable/disable password renewal. Valid values: `enable`, `disable`.
@@ -2053,15 +2542,20 @@ class Radius(pulumi.CustomResource):
         :param pulumi.Input[str] secondary_server: {<name_str|ip_str>} secondary RADIUS CN domain name or IP.
         :param pulumi.Input[str] secret: Pre-shared secret key used to access the primary RADIUS server.
         :param pulumi.Input[str] server: Primary RADIUS server CN domain name or IP address.
+        :param pulumi.Input[str] server_identity_check: Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP address for communications to the RADIUS server.
         :param pulumi.Input[str] sso_attribute: RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
         :param pulumi.Input[str] sso_attribute_key: Key prefix for SSO group value in the SSO attribute.
         :param pulumi.Input[str] sso_attribute_value_override: Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
         :param pulumi.Input[int] switch_controller_acct_fast_framedip_detect: Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
+        :param pulumi.Input[str] switch_controller_nas_ip_dynamic: Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller_service_type: RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
         :param pulumi.Input[str] tertiary_secret: Secret key to access the tertiary server.
         :param pulumi.Input[str] tertiary_server: {<name_str|ip_str>} tertiary RADIUS CN domain name or IP.
         :param pulumi.Input[int] timeout: Time in seconds between re-sending authentication requests.
+        :param pulumi.Input[str] tls_min_proto_version: Minimum supported protocol version for TLS connections (default is to follow system global setting).
+        :param pulumi.Input[str] transport_protocol: Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
         :param pulumi.Input[str] use_management_vdom: Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] username_case_sensitive: Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -2070,14 +2564,20 @@ class Radius(pulumi.CustomResource):
 
         __props__ = _RadiusState.__new__(_RadiusState)
 
+        __props__.__dict__["account_key_cert_field"] = account_key_cert_field
+        __props__.__dict__["account_key_processing"] = account_key_processing
         __props__.__dict__["accounting_servers"] = accounting_servers
         __props__.__dict__["acct_all_servers"] = acct_all_servers
         __props__.__dict__["acct_interim_interval"] = acct_interim_interval
         __props__.__dict__["all_usergroup"] = all_usergroup
         __props__.__dict__["auth_type"] = auth_type
+        __props__.__dict__["ca_cert"] = ca_cert
+        __props__.__dict__["call_station_id_type"] = call_station_id_type
         __props__.__dict__["classes"] = classes
+        __props__.__dict__["client_cert"] = client_cert
         __props__.__dict__["delimiter"] = delimiter
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_override_attr_type"] = group_override_attr_type
         __props__.__dict__["h3c_compatibility"] = h3c_compatibility
         __props__.__dict__["interface"] = interface
@@ -2086,6 +2586,8 @@ class Radius(pulumi.CustomResource):
         __props__.__dict__["mac_password_delimiter"] = mac_password_delimiter
         __props__.__dict__["mac_username_delimiter"] = mac_username_delimiter
         __props__.__dict__["name"] = name
+        __props__.__dict__["nas_id"] = nas_id
+        __props__.__dict__["nas_id_type"] = nas_id_type
         __props__.__dict__["nas_ip"] = nas_ip
         __props__.__dict__["password_encoding"] = password_encoding
         __props__.__dict__["password_renewal"] = password_renewal
@@ -2107,19 +2609,40 @@ class Radius(pulumi.CustomResource):
         __props__.__dict__["secondary_server"] = secondary_server
         __props__.__dict__["secret"] = secret
         __props__.__dict__["server"] = server
+        __props__.__dict__["server_identity_check"] = server_identity_check
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["sso_attribute"] = sso_attribute
         __props__.__dict__["sso_attribute_key"] = sso_attribute_key
         __props__.__dict__["sso_attribute_value_override"] = sso_attribute_value_override
+        __props__.__dict__["status_ttl"] = status_ttl
         __props__.__dict__["switch_controller_acct_fast_framedip_detect"] = switch_controller_acct_fast_framedip_detect
+        __props__.__dict__["switch_controller_nas_ip_dynamic"] = switch_controller_nas_ip_dynamic
         __props__.__dict__["switch_controller_service_type"] = switch_controller_service_type
         __props__.__dict__["tertiary_secret"] = tertiary_secret
         __props__.__dict__["tertiary_server"] = tertiary_server
         __props__.__dict__["timeout"] = timeout
+        __props__.__dict__["tls_min_proto_version"] = tls_min_proto_version
+        __props__.__dict__["transport_protocol"] = transport_protocol
         __props__.__dict__["use_management_vdom"] = use_management_vdom
         __props__.__dict__["username_case_sensitive"] = username_case_sensitive
         __props__.__dict__["vdomparam"] = vdomparam
         return Radius(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accountKeyCertField")
+    def account_key_cert_field(self) -> pulumi.Output[str]:
+        """
+        Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        """
+        return pulumi.get(self, "account_key_cert_field")
+
+    @property
+    @pulumi.getter(name="accountKeyProcessing")
+    def account_key_processing(self) -> pulumi.Output[str]:
+        """
+        Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+        """
+        return pulumi.get(self, "account_key_processing")
 
     @property
     @pulumi.getter(name="accountingServers")
@@ -2162,12 +2685,36 @@ class Radius(pulumi.CustomResource):
         return pulumi.get(self, "auth_type")
 
     @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> pulumi.Output[str]:
+        """
+        CA of server to trust under TLS.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @property
+    @pulumi.getter(name="callStationIdType")
+    def call_station_id_type(self) -> pulumi.Output[str]:
+        """
+        Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+        """
+        return pulumi.get(self, "call_station_id_type")
+
+    @property
     @pulumi.getter
     def classes(self) -> pulumi.Output[Optional[Sequence['outputs.RadiusClass']]]:
         """
         Class attribute name(s). The structure of `class` block is documented below.
         """
         return pulumi.get(self, "classes")
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> pulumi.Output[str]:
+        """
+        Client certificate to use under TLS.
+        """
+        return pulumi.get(self, "client_cert")
 
     @property
     @pulumi.getter
@@ -2184,6 +2731,14 @@ class Radius(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupOverrideAttrType")
@@ -2248,6 +2803,22 @@ class Radius(pulumi.CustomResource):
         RADIUS server entry name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nasId")
+    def nas_id(self) -> pulumi.Output[str]:
+        """
+        Custom NAS identifier.
+        """
+        return pulumi.get(self, "nas_id")
+
+    @property
+    @pulumi.getter(name="nasIdType")
+    def nas_id_type(self) -> pulumi.Output[str]:
+        """
+        NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+        """
+        return pulumi.get(self, "nas_id_type")
 
     @property
     @pulumi.getter(name="nasIp")
@@ -2418,6 +2989,14 @@ class Radius(pulumi.CustomResource):
         return pulumi.get(self, "server")
 
     @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> pulumi.Output[str]:
+        """
+        Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "server_identity_check")
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> pulumi.Output[str]:
         """
@@ -2450,12 +3029,28 @@ class Radius(pulumi.CustomResource):
         return pulumi.get(self, "sso_attribute_value_override")
 
     @property
+    @pulumi.getter(name="statusTtl")
+    def status_ttl(self) -> pulumi.Output[int]:
+        """
+        Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        """
+        return pulumi.get(self, "status_ttl")
+
+    @property
     @pulumi.getter(name="switchControllerAcctFastFramedipDetect")
     def switch_controller_acct_fast_framedip_detect(self) -> pulumi.Output[int]:
         """
         Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
         """
         return pulumi.get(self, "switch_controller_acct_fast_framedip_detect")
+
+    @property
+    @pulumi.getter(name="switchControllerNasIpDynamic")
+    def switch_controller_nas_ip_dynamic(self) -> pulumi.Output[str]:
+        """
+        Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "switch_controller_nas_ip_dynamic")
 
     @property
     @pulumi.getter(name="switchControllerServiceType")
@@ -2488,6 +3083,22 @@ class Radius(pulumi.CustomResource):
         Time in seconds between re-sending authentication requests.
         """
         return pulumi.get(self, "timeout")
+
+    @property
+    @pulumi.getter(name="tlsMinProtoVersion")
+    def tls_min_proto_version(self) -> pulumi.Output[str]:
+        """
+        Minimum supported protocol version for TLS connections (default is to follow system global setting).
+        """
+        return pulumi.get(self, "tls_min_proto_version")
+
+    @property
+    @pulumi.getter(name="transportProtocol")
+    def transport_protocol(self) -> pulumi.Output[str]:
+        """
+        Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+        """
+        return pulumi.get(self, "transport_protocol")
 
     @property
     @pulumi.getter(name="useManagementVdom")

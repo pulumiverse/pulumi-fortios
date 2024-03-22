@@ -97,6 +97,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly forwardServerAffinityTimeout!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
      */
     public readonly ldapUserCache!: pulumi.Output<string>;
@@ -117,6 +121,18 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly learnClientIpSrcaddrs!: pulumi.Output<outputs.webproxy.GlobalLearnClientIpSrcaddr[] | undefined>;
     /**
+     * Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+     */
+    public readonly logAppId!: pulumi.Output<string>;
+    /**
+     * Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+     */
+    public readonly logForwardServer!: pulumi.Output<string>;
+    /**
+     * Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+     */
+    public readonly logPolicyPending!: pulumi.Output<string>;
+    /**
      * Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
      */
     public readonly maxMessageLength!: pulumi.Output<number>;
@@ -128,6 +144,10 @@ export class Global extends pulumi.CustomResource {
      * Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
      */
     public readonly maxWafBodyCacheLength!: pulumi.Output<number>;
+    /**
+     * Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+     */
+    public readonly policyCategoryDeepInspect!: pulumi.Output<string>;
     /**
      * Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
      */
@@ -186,14 +206,19 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["fastPolicyMatch"] = state ? state.fastPolicyMatch : undefined;
             resourceInputs["forwardProxyAuth"] = state ? state.forwardProxyAuth : undefined;
             resourceInputs["forwardServerAffinityTimeout"] = state ? state.forwardServerAffinityTimeout : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ldapUserCache"] = state ? state.ldapUserCache : undefined;
             resourceInputs["learnClientIp"] = state ? state.learnClientIp : undefined;
             resourceInputs["learnClientIpFromHeader"] = state ? state.learnClientIpFromHeader : undefined;
             resourceInputs["learnClientIpSrcaddr6s"] = state ? state.learnClientIpSrcaddr6s : undefined;
             resourceInputs["learnClientIpSrcaddrs"] = state ? state.learnClientIpSrcaddrs : undefined;
+            resourceInputs["logAppId"] = state ? state.logAppId : undefined;
+            resourceInputs["logForwardServer"] = state ? state.logForwardServer : undefined;
+            resourceInputs["logPolicyPending"] = state ? state.logPolicyPending : undefined;
             resourceInputs["maxMessageLength"] = state ? state.maxMessageLength : undefined;
             resourceInputs["maxRequestLength"] = state ? state.maxRequestLength : undefined;
             resourceInputs["maxWafBodyCacheLength"] = state ? state.maxWafBodyCacheLength : undefined;
+            resourceInputs["policyCategoryDeepInspect"] = state ? state.policyCategoryDeepInspect : undefined;
             resourceInputs["proxyFqdn"] = state ? state.proxyFqdn : undefined;
             resourceInputs["srcAffinityExemptAddr"] = state ? state.srcAffinityExemptAddr : undefined;
             resourceInputs["srcAffinityExemptAddr6"] = state ? state.srcAffinityExemptAddr6 : undefined;
@@ -213,14 +238,19 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["fastPolicyMatch"] = args ? args.fastPolicyMatch : undefined;
             resourceInputs["forwardProxyAuth"] = args ? args.forwardProxyAuth : undefined;
             resourceInputs["forwardServerAffinityTimeout"] = args ? args.forwardServerAffinityTimeout : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ldapUserCache"] = args ? args.ldapUserCache : undefined;
             resourceInputs["learnClientIp"] = args ? args.learnClientIp : undefined;
             resourceInputs["learnClientIpFromHeader"] = args ? args.learnClientIpFromHeader : undefined;
             resourceInputs["learnClientIpSrcaddr6s"] = args ? args.learnClientIpSrcaddr6s : undefined;
             resourceInputs["learnClientIpSrcaddrs"] = args ? args.learnClientIpSrcaddrs : undefined;
+            resourceInputs["logAppId"] = args ? args.logAppId : undefined;
+            resourceInputs["logForwardServer"] = args ? args.logForwardServer : undefined;
+            resourceInputs["logPolicyPending"] = args ? args.logPolicyPending : undefined;
             resourceInputs["maxMessageLength"] = args ? args.maxMessageLength : undefined;
             resourceInputs["maxRequestLength"] = args ? args.maxRequestLength : undefined;
             resourceInputs["maxWafBodyCacheLength"] = args ? args.maxWafBodyCacheLength : undefined;
+            resourceInputs["policyCategoryDeepInspect"] = args ? args.policyCategoryDeepInspect : undefined;
             resourceInputs["proxyFqdn"] = args ? args.proxyFqdn : undefined;
             resourceInputs["srcAffinityExemptAddr"] = args ? args.srcAffinityExemptAddr : undefined;
             resourceInputs["srcAffinityExemptAddr6"] = args ? args.srcAffinityExemptAddr6 : undefined;
@@ -258,6 +288,10 @@ export interface GlobalState {
      */
     forwardServerAffinityTimeout?: pulumi.Input<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
      */
     ldapUserCache?: pulumi.Input<string>;
@@ -278,6 +312,18 @@ export interface GlobalState {
      */
     learnClientIpSrcaddrs?: pulumi.Input<pulumi.Input<inputs.webproxy.GlobalLearnClientIpSrcaddr>[]>;
     /**
+     * Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+     */
+    logAppId?: pulumi.Input<string>;
+    /**
+     * Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+     */
+    logForwardServer?: pulumi.Input<string>;
+    /**
+     * Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+     */
+    logPolicyPending?: pulumi.Input<string>;
+    /**
      * Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
      */
     maxMessageLength?: pulumi.Input<number>;
@@ -289,6 +335,10 @@ export interface GlobalState {
      * Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
      */
     maxWafBodyCacheLength?: pulumi.Input<number>;
+    /**
+     * Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+     */
+    policyCategoryDeepInspect?: pulumi.Input<string>;
     /**
      * Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
      */
@@ -352,6 +402,10 @@ export interface GlobalArgs {
      */
     forwardServerAffinityTimeout?: pulumi.Input<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
      */
     ldapUserCache?: pulumi.Input<string>;
@@ -372,6 +426,18 @@ export interface GlobalArgs {
      */
     learnClientIpSrcaddrs?: pulumi.Input<pulumi.Input<inputs.webproxy.GlobalLearnClientIpSrcaddr>[]>;
     /**
+     * Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+     */
+    logAppId?: pulumi.Input<string>;
+    /**
+     * Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+     */
+    logForwardServer?: pulumi.Input<string>;
+    /**
+     * Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+     */
+    logPolicyPending?: pulumi.Input<string>;
+    /**
      * Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
      */
     maxMessageLength?: pulumi.Input<number>;
@@ -383,6 +449,10 @@ export interface GlobalArgs {
      * Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
      */
     maxWafBodyCacheLength?: pulumi.Input<number>;
+    /**
+     * Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+     */
+    policyCategoryDeepInspect?: pulumi.Input<string>;
     /**
      * Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
      */

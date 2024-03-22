@@ -103,6 +103,10 @@ export class Externalresource extends pulumi.CustomResource {
      */
     public readonly resource!: pulumi.Output<string>;
     /**
+     * Certificate verification option. Valid values: `none`, `basic`, `full`.
+     */
+    public readonly serverIdentityCheck!: pulumi.Output<string>;
+    /**
      * Source IPv4 address used to communicate with server.
      */
     public readonly sourceIp!: pulumi.Output<string>;
@@ -111,7 +115,7 @@ export class Externalresource extends pulumi.CustomResource {
      */
     public readonly status!: pulumi.Output<string>;
     /**
-     * User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+     * User resource type.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -156,6 +160,7 @@ export class Externalresource extends pulumi.CustomResource {
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["refreshRate"] = state ? state.refreshRate : undefined;
             resourceInputs["resource"] = state ? state.resource : undefined;
+            resourceInputs["serverIdentityCheck"] = state ? state.serverIdentityCheck : undefined;
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -180,6 +185,7 @@ export class Externalresource extends pulumi.CustomResource {
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["refreshRate"] = args ? args.refreshRate : undefined;
             resourceInputs["resource"] = args ? args.resource : undefined;
+            resourceInputs["serverIdentityCheck"] = args ? args.serverIdentityCheck : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -233,6 +239,10 @@ export interface ExternalresourceState {
      */
     resource?: pulumi.Input<string>;
     /**
+     * Certificate verification option. Valid values: `none`, `basic`, `full`.
+     */
+    serverIdentityCheck?: pulumi.Input<string>;
+    /**
      * Source IPv4 address used to communicate with server.
      */
     sourceIp?: pulumi.Input<string>;
@@ -241,7 +251,7 @@ export interface ExternalresourceState {
      */
     status?: pulumi.Input<string>;
     /**
-     * User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+     * User resource type.
      */
     type?: pulumi.Input<string>;
     /**
@@ -303,6 +313,10 @@ export interface ExternalresourceArgs {
      */
     resource: pulumi.Input<string>;
     /**
+     * Certificate verification option. Valid values: `none`, `basic`, `full`.
+     */
+    serverIdentityCheck?: pulumi.Input<string>;
+    /**
      * Source IPv4 address used to communicate with server.
      */
     sourceIp?: pulumi.Input<string>;
@@ -311,7 +325,7 @@ export interface ExternalresourceArgs {
      */
     status?: pulumi.Input<string>;
     /**
-     * User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+     * User resource type.
      */
     type?: pulumi.Input<string>;
     /**

@@ -66,9 +66,17 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly activate6!: pulumi.Output<string>;
     /**
+     * Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
+     */
+    public readonly activateEvpn!: pulumi.Output<string>;
+    /**
      * Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
      */
     public readonly activateVpnv4!: pulumi.Output<string>;
+    /**
+     * Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
+     */
+    public readonly activateVpnv6!: pulumi.Output<string>;
     /**
      * Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
      */
@@ -82,6 +90,10 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly additionalPathVpnv4!: pulumi.Output<string>;
     /**
+     * Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+     */
+    public readonly additionalPathVpnv6!: pulumi.Output<string>;
+    /**
      * Number of IPv4 additional paths that can be advertised to this neighbor.
      */
     public readonly advAdditionalPath!: pulumi.Output<number>;
@@ -93,6 +105,10 @@ export class Neighbor extends pulumi.CustomResource {
      * Number of VPNv4 additional paths that can be advertised to this neighbor.
      */
     public readonly advAdditionalPathVpnv4!: pulumi.Output<number>;
+    /**
+     * Number of VPNv6 additional paths that can be advertised to this neighbor.
+     */
+    public readonly advAdditionalPathVpnv6!: pulumi.Output<number>;
     /**
      * Minimum interval (sec) between sending updates.
      */
@@ -114,9 +130,29 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly allowasInEnable6!: pulumi.Output<string>;
     /**
+     * Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+     */
+    public readonly allowasInEnableEvpn!: pulumi.Output<string>;
+    /**
+     * Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+     */
+    public readonly allowasInEnableVpnv4!: pulumi.Output<string>;
+    /**
+     * Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+     */
+    public readonly allowasInEnableVpnv6!: pulumi.Output<string>;
+    /**
+     * The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+     */
+    public readonly allowasInEvpn!: pulumi.Output<number>;
+    /**
      * The maximum number of occurrence of my AS number allowed for VPNv4 route.
      */
     public readonly allowasInVpnv4!: pulumi.Output<number>;
+    /**
+     * The maximum number of occurrence of my AS number allowed for VPNv6 route.
+     */
+    public readonly allowasInVpnv6!: pulumi.Output<number>;
     /**
      * Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
      */
@@ -137,6 +173,14 @@ export class Neighbor extends pulumi.CustomResource {
      * List of attributes that should be unchanged for VPNv4 route. Valid values: `as-path`, `med`, `next-hop`.
      */
     public readonly attributeUnchangedVpnv4!: pulumi.Output<string>;
+    /**
+     * List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+     */
+    public readonly attributeUnchangedVpnv6!: pulumi.Output<string>;
+    /**
+     * Key-chain name for TCP authentication options.
+     */
+    public readonly authOptions!: pulumi.Output<string>;
     /**
      * Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
      */
@@ -162,9 +206,17 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly capabilityGracefulRestart6!: pulumi.Output<string>;
     /**
+     * Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+     */
+    public readonly capabilityGracefulRestartEvpn!: pulumi.Output<string>;
+    /**
      * Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
      */
     public readonly capabilityGracefulRestartVpnv4!: pulumi.Output<string>;
+    /**
+     * Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+     */
+    public readonly capabilityGracefulRestartVpnv6!: pulumi.Output<string>;
     /**
      * Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
      */
@@ -214,6 +266,10 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly distributeListInVpnv4!: pulumi.Output<string>;
     /**
+     * Filter for VPNv6 updates from this neighbor.
+     */
+    public readonly distributeListInVpnv6!: pulumi.Output<string>;
+    /**
      * Filter for IPv4 updates to this neighbor.
      */
     public readonly distributeListOut!: pulumi.Output<string>;
@@ -225,6 +281,10 @@ export class Neighbor extends pulumi.CustomResource {
      * Filter for VPNv4 updates to this neighbor.
      */
     public readonly distributeListOutVpnv4!: pulumi.Output<string>;
+    /**
+     * Filter for VPNv6 updates to this neighbor.
+     */
+    public readonly distributeListOutVpnv6!: pulumi.Output<string>;
     /**
      * Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
      */
@@ -250,6 +310,14 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly filterListIn6!: pulumi.Output<string>;
     /**
+     * BGP filter for VPNv4 inbound routes.
+     */
+    public readonly filterListInVpnv4!: pulumi.Output<string>;
+    /**
+     * BGP filter for VPNv6 inbound routes.
+     */
+    public readonly filterListInVpnv6!: pulumi.Output<string>;
+    /**
      * BGP filter for IPv4 outbound routes.
      */
     public readonly filterListOut!: pulumi.Output<string>;
@@ -257,6 +325,18 @@ export class Neighbor extends pulumi.CustomResource {
      * BGP filter for IPv6 outbound routes.
      */
     public readonly filterListOut6!: pulumi.Output<string>;
+    /**
+     * BGP filter for VPNv4 outbound routes.
+     */
+    public readonly filterListOutVpnv4!: pulumi.Output<string>;
+    /**
+     * BGP filter for VPNv6 outbound routes.
+     */
+    public readonly filterListOutVpnv6!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Interval (sec) before peer considered dead.
      */
@@ -298,6 +378,10 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly maximumPrefix6!: pulumi.Output<number>;
     /**
+     * Maximum number of L2VPN EVPN prefixes to accept from this peer.
+     */
+    public readonly maximumPrefixEvpn!: pulumi.Output<number>;
+    /**
      * Maximum IPv4 prefix threshold value (1 - 100 percent).
      */
     public readonly maximumPrefixThreshold!: pulumi.Output<number>;
@@ -306,13 +390,25 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly maximumPrefixThreshold6!: pulumi.Output<number>;
     /**
+     * Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+     */
+    public readonly maximumPrefixThresholdEvpn!: pulumi.Output<number>;
+    /**
      * Maximum VPNv4 prefix threshold value (1 - 100 percent).
      */
     public readonly maximumPrefixThresholdVpnv4!: pulumi.Output<number>;
     /**
+     * Maximum VPNv6 prefix threshold value (1 - 100 percent).
+     */
+    public readonly maximumPrefixThresholdVpnv6!: pulumi.Output<number>;
+    /**
      * Maximum number of VPNv4 prefixes to accept from this peer.
      */
     public readonly maximumPrefixVpnv4!: pulumi.Output<number>;
+    /**
+     * Maximum number of VPNv6 prefixes to accept from this peer.
+     */
+    public readonly maximumPrefixVpnv6!: pulumi.Output<number>;
     /**
      * Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
      */
@@ -322,9 +418,17 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly maximumPrefixWarningOnly6!: pulumi.Output<string>;
     /**
+     * Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
+     */
+    public readonly maximumPrefixWarningOnlyEvpn!: pulumi.Output<string>;
+    /**
      * Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
      */
     public readonly maximumPrefixWarningOnlyVpnv4!: pulumi.Output<string>;
+    /**
+     * Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
+     */
+    public readonly maximumPrefixWarningOnlyVpnv6!: pulumi.Output<string>;
     /**
      * Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
      */
@@ -345,6 +449,10 @@ export class Neighbor extends pulumi.CustomResource {
      * Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor. Valid values: `enable`, `disable`.
      */
     public readonly nextHopSelfVpnv4!: pulumi.Output<string>;
+    /**
+     * Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
+     */
+    public readonly nextHopSelfVpnv6!: pulumi.Output<string>;
     /**
      * Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
      */
@@ -370,6 +478,10 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly prefixListInVpnv4!: pulumi.Output<string>;
     /**
+     * Inbound filter for VPNv6 updates from this neighbor.
+     */
+    public readonly prefixListInVpnv6!: pulumi.Output<string>;
+    /**
      * IPv4 Outbound filter for updates to this neighbor.
      */
     public readonly prefixListOut!: pulumi.Output<string>;
@@ -381,6 +493,10 @@ export class Neighbor extends pulumi.CustomResource {
      * Outbound filter for VPNv4 updates to this neighbor.
      */
     public readonly prefixListOutVpnv4!: pulumi.Output<string>;
+    /**
+     * Outbound filter for VPNv6 updates to this neighbor.
+     */
+    public readonly prefixListOutVpnv6!: pulumi.Output<string>;
     /**
      * AS number of neighbor.
      */
@@ -394,9 +510,17 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly removePrivateAs6!: pulumi.Output<string>;
     /**
+     * Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
+     */
+    public readonly removePrivateAsEvpn!: pulumi.Output<string>;
+    /**
      * Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
      */
     public readonly removePrivateAsVpnv4!: pulumi.Output<string>;
+    /**
+     * Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
+     */
+    public readonly removePrivateAsVpnv6!: pulumi.Output<string>;
     /**
      * Graceful restart delay time (sec, 0 = global default).
      */
@@ -414,9 +538,17 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly routeMapIn6!: pulumi.Output<string>;
     /**
+     * L2VPN EVPN inbound route map filter.
+     */
+    public readonly routeMapInEvpn!: pulumi.Output<string>;
+    /**
      * VPNv4 inbound route map filter.
      */
     public readonly routeMapInVpnv4!: pulumi.Output<string>;
+    /**
+     * VPNv6 inbound route map filter.
+     */
+    public readonly routeMapInVpnv6!: pulumi.Output<string>;
     /**
      * IPv4 Outbound route map filter.
      */
@@ -430,6 +562,10 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly routeMapOut6Preferable!: pulumi.Output<string>;
     /**
+     * L2VPN EVPN outbound route map filter.
+     */
+    public readonly routeMapOutEvpn!: pulumi.Output<string>;
+    /**
      * IPv4 outbound route map filter if the peer is preferred.
      */
     public readonly routeMapOutPreferable!: pulumi.Output<string>;
@@ -442,6 +578,14 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly routeMapOutVpnv4Preferable!: pulumi.Output<string>;
     /**
+     * VPNv6 outbound route map filter.
+     */
+    public readonly routeMapOutVpnv6!: pulumi.Output<string>;
+    /**
+     * VPNv6 outbound route map filter if this neighbor is preferred.
+     */
+    public readonly routeMapOutVpnv6Preferable!: pulumi.Output<string>;
+    /**
      * Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
      */
     public readonly routeReflectorClient!: pulumi.Output<string>;
@@ -450,9 +594,17 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly routeReflectorClient6!: pulumi.Output<string>;
     /**
+     * Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+     */
+    public readonly routeReflectorClientEvpn!: pulumi.Output<string>;
+    /**
      * Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
      */
     public readonly routeReflectorClientVpnv4!: pulumi.Output<string>;
+    /**
+     * Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+     */
+    public readonly routeReflectorClientVpnv6!: pulumi.Output<string>;
     /**
      * Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
      */
@@ -462,9 +614,17 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly routeServerClient6!: pulumi.Output<string>;
     /**
+     * Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
+     */
+    public readonly routeServerClientEvpn!: pulumi.Output<string>;
+    /**
      * Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
      */
     public readonly routeServerClientVpnv4!: pulumi.Output<string>;
+    /**
+     * Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+     */
+    public readonly routeServerClientVpnv6!: pulumi.Output<string>;
     /**
      * IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
      */
@@ -474,9 +634,17 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly sendCommunity6!: pulumi.Output<string>;
     /**
+     * Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
+     */
+    public readonly sendCommunityEvpn!: pulumi.Output<string>;
+    /**
      * Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
      */
     public readonly sendCommunityVpnv4!: pulumi.Output<string>;
+    /**
+     * Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+     */
+    public readonly sendCommunityVpnv6!: pulumi.Output<string>;
     /**
      * Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
      */
@@ -490,9 +658,17 @@ export class Neighbor extends pulumi.CustomResource {
      */
     public readonly softReconfiguration6!: pulumi.Output<string>;
     /**
+     * Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
+     */
+    public readonly softReconfigurationEvpn!: pulumi.Output<string>;
+    /**
      * Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
      */
     public readonly softReconfigurationVpnv4!: pulumi.Output<string>;
+    /**
+     * Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+     */
+    public readonly softReconfigurationVpnv6!: pulumi.Output<string>;
     /**
      * Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
      */
@@ -537,31 +713,44 @@ export class Neighbor extends pulumi.CustomResource {
             const state = argsOrState as NeighborState | undefined;
             resourceInputs["activate"] = state ? state.activate : undefined;
             resourceInputs["activate6"] = state ? state.activate6 : undefined;
+            resourceInputs["activateEvpn"] = state ? state.activateEvpn : undefined;
             resourceInputs["activateVpnv4"] = state ? state.activateVpnv4 : undefined;
+            resourceInputs["activateVpnv6"] = state ? state.activateVpnv6 : undefined;
             resourceInputs["additionalPath"] = state ? state.additionalPath : undefined;
             resourceInputs["additionalPath6"] = state ? state.additionalPath6 : undefined;
             resourceInputs["additionalPathVpnv4"] = state ? state.additionalPathVpnv4 : undefined;
+            resourceInputs["additionalPathVpnv6"] = state ? state.additionalPathVpnv6 : undefined;
             resourceInputs["advAdditionalPath"] = state ? state.advAdditionalPath : undefined;
             resourceInputs["advAdditionalPath6"] = state ? state.advAdditionalPath6 : undefined;
             resourceInputs["advAdditionalPathVpnv4"] = state ? state.advAdditionalPathVpnv4 : undefined;
+            resourceInputs["advAdditionalPathVpnv6"] = state ? state.advAdditionalPathVpnv6 : undefined;
             resourceInputs["advertisementInterval"] = state ? state.advertisementInterval : undefined;
             resourceInputs["allowasIn"] = state ? state.allowasIn : undefined;
             resourceInputs["allowasIn6"] = state ? state.allowasIn6 : undefined;
             resourceInputs["allowasInEnable"] = state ? state.allowasInEnable : undefined;
             resourceInputs["allowasInEnable6"] = state ? state.allowasInEnable6 : undefined;
+            resourceInputs["allowasInEnableEvpn"] = state ? state.allowasInEnableEvpn : undefined;
+            resourceInputs["allowasInEnableVpnv4"] = state ? state.allowasInEnableVpnv4 : undefined;
+            resourceInputs["allowasInEnableVpnv6"] = state ? state.allowasInEnableVpnv6 : undefined;
+            resourceInputs["allowasInEvpn"] = state ? state.allowasInEvpn : undefined;
             resourceInputs["allowasInVpnv4"] = state ? state.allowasInVpnv4 : undefined;
+            resourceInputs["allowasInVpnv6"] = state ? state.allowasInVpnv6 : undefined;
             resourceInputs["asOverride"] = state ? state.asOverride : undefined;
             resourceInputs["asOverride6"] = state ? state.asOverride6 : undefined;
             resourceInputs["attributeUnchanged"] = state ? state.attributeUnchanged : undefined;
             resourceInputs["attributeUnchanged6"] = state ? state.attributeUnchanged6 : undefined;
             resourceInputs["attributeUnchangedVpnv4"] = state ? state.attributeUnchangedVpnv4 : undefined;
+            resourceInputs["attributeUnchangedVpnv6"] = state ? state.attributeUnchangedVpnv6 : undefined;
+            resourceInputs["authOptions"] = state ? state.authOptions : undefined;
             resourceInputs["bfd"] = state ? state.bfd : undefined;
             resourceInputs["capabilityDefaultOriginate"] = state ? state.capabilityDefaultOriginate : undefined;
             resourceInputs["capabilityDefaultOriginate6"] = state ? state.capabilityDefaultOriginate6 : undefined;
             resourceInputs["capabilityDynamic"] = state ? state.capabilityDynamic : undefined;
             resourceInputs["capabilityGracefulRestart"] = state ? state.capabilityGracefulRestart : undefined;
             resourceInputs["capabilityGracefulRestart6"] = state ? state.capabilityGracefulRestart6 : undefined;
+            resourceInputs["capabilityGracefulRestartEvpn"] = state ? state.capabilityGracefulRestartEvpn : undefined;
             resourceInputs["capabilityGracefulRestartVpnv4"] = state ? state.capabilityGracefulRestartVpnv4 : undefined;
+            resourceInputs["capabilityGracefulRestartVpnv6"] = state ? state.capabilityGracefulRestartVpnv6 : undefined;
             resourceInputs["capabilityOrf"] = state ? state.capabilityOrf : undefined;
             resourceInputs["capabilityOrf6"] = state ? state.capabilityOrf6 : undefined;
             resourceInputs["capabilityRouteRefresh"] = state ? state.capabilityRouteRefresh : undefined;
@@ -574,17 +763,24 @@ export class Neighbor extends pulumi.CustomResource {
             resourceInputs["distributeListIn"] = state ? state.distributeListIn : undefined;
             resourceInputs["distributeListIn6"] = state ? state.distributeListIn6 : undefined;
             resourceInputs["distributeListInVpnv4"] = state ? state.distributeListInVpnv4 : undefined;
+            resourceInputs["distributeListInVpnv6"] = state ? state.distributeListInVpnv6 : undefined;
             resourceInputs["distributeListOut"] = state ? state.distributeListOut : undefined;
             resourceInputs["distributeListOut6"] = state ? state.distributeListOut6 : undefined;
             resourceInputs["distributeListOutVpnv4"] = state ? state.distributeListOutVpnv4 : undefined;
+            resourceInputs["distributeListOutVpnv6"] = state ? state.distributeListOutVpnv6 : undefined;
             resourceInputs["dontCapabilityNegotiate"] = state ? state.dontCapabilityNegotiate : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["ebgpEnforceMultihop"] = state ? state.ebgpEnforceMultihop : undefined;
             resourceInputs["ebgpMultihopTtl"] = state ? state.ebgpMultihopTtl : undefined;
             resourceInputs["filterListIn"] = state ? state.filterListIn : undefined;
             resourceInputs["filterListIn6"] = state ? state.filterListIn6 : undefined;
+            resourceInputs["filterListInVpnv4"] = state ? state.filterListInVpnv4 : undefined;
+            resourceInputs["filterListInVpnv6"] = state ? state.filterListInVpnv6 : undefined;
             resourceInputs["filterListOut"] = state ? state.filterListOut : undefined;
             resourceInputs["filterListOut6"] = state ? state.filterListOut6 : undefined;
+            resourceInputs["filterListOutVpnv4"] = state ? state.filterListOutVpnv4 : undefined;
+            resourceInputs["filterListOutVpnv6"] = state ? state.filterListOutVpnv6 : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["holdtimeTimer"] = state ? state.holdtimeTimer : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["ip"] = state ? state.ip : undefined;
@@ -595,55 +791,79 @@ export class Neighbor extends pulumi.CustomResource {
             resourceInputs["localAsReplaceAs"] = state ? state.localAsReplaceAs : undefined;
             resourceInputs["maximumPrefix"] = state ? state.maximumPrefix : undefined;
             resourceInputs["maximumPrefix6"] = state ? state.maximumPrefix6 : undefined;
+            resourceInputs["maximumPrefixEvpn"] = state ? state.maximumPrefixEvpn : undefined;
             resourceInputs["maximumPrefixThreshold"] = state ? state.maximumPrefixThreshold : undefined;
             resourceInputs["maximumPrefixThreshold6"] = state ? state.maximumPrefixThreshold6 : undefined;
+            resourceInputs["maximumPrefixThresholdEvpn"] = state ? state.maximumPrefixThresholdEvpn : undefined;
             resourceInputs["maximumPrefixThresholdVpnv4"] = state ? state.maximumPrefixThresholdVpnv4 : undefined;
+            resourceInputs["maximumPrefixThresholdVpnv6"] = state ? state.maximumPrefixThresholdVpnv6 : undefined;
             resourceInputs["maximumPrefixVpnv4"] = state ? state.maximumPrefixVpnv4 : undefined;
+            resourceInputs["maximumPrefixVpnv6"] = state ? state.maximumPrefixVpnv6 : undefined;
             resourceInputs["maximumPrefixWarningOnly"] = state ? state.maximumPrefixWarningOnly : undefined;
             resourceInputs["maximumPrefixWarningOnly6"] = state ? state.maximumPrefixWarningOnly6 : undefined;
+            resourceInputs["maximumPrefixWarningOnlyEvpn"] = state ? state.maximumPrefixWarningOnlyEvpn : undefined;
             resourceInputs["maximumPrefixWarningOnlyVpnv4"] = state ? state.maximumPrefixWarningOnlyVpnv4 : undefined;
+            resourceInputs["maximumPrefixWarningOnlyVpnv6"] = state ? state.maximumPrefixWarningOnlyVpnv6 : undefined;
             resourceInputs["nextHopSelf"] = state ? state.nextHopSelf : undefined;
             resourceInputs["nextHopSelf6"] = state ? state.nextHopSelf6 : undefined;
             resourceInputs["nextHopSelfRr"] = state ? state.nextHopSelfRr : undefined;
             resourceInputs["nextHopSelfRr6"] = state ? state.nextHopSelfRr6 : undefined;
             resourceInputs["nextHopSelfVpnv4"] = state ? state.nextHopSelfVpnv4 : undefined;
+            resourceInputs["nextHopSelfVpnv6"] = state ? state.nextHopSelfVpnv6 : undefined;
             resourceInputs["overrideCapability"] = state ? state.overrideCapability : undefined;
             resourceInputs["passive"] = state ? state.passive : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["prefixListIn"] = state ? state.prefixListIn : undefined;
             resourceInputs["prefixListIn6"] = state ? state.prefixListIn6 : undefined;
             resourceInputs["prefixListInVpnv4"] = state ? state.prefixListInVpnv4 : undefined;
+            resourceInputs["prefixListInVpnv6"] = state ? state.prefixListInVpnv6 : undefined;
             resourceInputs["prefixListOut"] = state ? state.prefixListOut : undefined;
             resourceInputs["prefixListOut6"] = state ? state.prefixListOut6 : undefined;
             resourceInputs["prefixListOutVpnv4"] = state ? state.prefixListOutVpnv4 : undefined;
+            resourceInputs["prefixListOutVpnv6"] = state ? state.prefixListOutVpnv6 : undefined;
             resourceInputs["remoteAs"] = state ? state.remoteAs : undefined;
             resourceInputs["removePrivateAs"] = state ? state.removePrivateAs : undefined;
             resourceInputs["removePrivateAs6"] = state ? state.removePrivateAs6 : undefined;
+            resourceInputs["removePrivateAsEvpn"] = state ? state.removePrivateAsEvpn : undefined;
             resourceInputs["removePrivateAsVpnv4"] = state ? state.removePrivateAsVpnv4 : undefined;
+            resourceInputs["removePrivateAsVpnv6"] = state ? state.removePrivateAsVpnv6 : undefined;
             resourceInputs["restartTime"] = state ? state.restartTime : undefined;
             resourceInputs["retainStaleTime"] = state ? state.retainStaleTime : undefined;
             resourceInputs["routeMapIn"] = state ? state.routeMapIn : undefined;
             resourceInputs["routeMapIn6"] = state ? state.routeMapIn6 : undefined;
+            resourceInputs["routeMapInEvpn"] = state ? state.routeMapInEvpn : undefined;
             resourceInputs["routeMapInVpnv4"] = state ? state.routeMapInVpnv4 : undefined;
+            resourceInputs["routeMapInVpnv6"] = state ? state.routeMapInVpnv6 : undefined;
             resourceInputs["routeMapOut"] = state ? state.routeMapOut : undefined;
             resourceInputs["routeMapOut6"] = state ? state.routeMapOut6 : undefined;
             resourceInputs["routeMapOut6Preferable"] = state ? state.routeMapOut6Preferable : undefined;
+            resourceInputs["routeMapOutEvpn"] = state ? state.routeMapOutEvpn : undefined;
             resourceInputs["routeMapOutPreferable"] = state ? state.routeMapOutPreferable : undefined;
             resourceInputs["routeMapOutVpnv4"] = state ? state.routeMapOutVpnv4 : undefined;
             resourceInputs["routeMapOutVpnv4Preferable"] = state ? state.routeMapOutVpnv4Preferable : undefined;
+            resourceInputs["routeMapOutVpnv6"] = state ? state.routeMapOutVpnv6 : undefined;
+            resourceInputs["routeMapOutVpnv6Preferable"] = state ? state.routeMapOutVpnv6Preferable : undefined;
             resourceInputs["routeReflectorClient"] = state ? state.routeReflectorClient : undefined;
             resourceInputs["routeReflectorClient6"] = state ? state.routeReflectorClient6 : undefined;
+            resourceInputs["routeReflectorClientEvpn"] = state ? state.routeReflectorClientEvpn : undefined;
             resourceInputs["routeReflectorClientVpnv4"] = state ? state.routeReflectorClientVpnv4 : undefined;
+            resourceInputs["routeReflectorClientVpnv6"] = state ? state.routeReflectorClientVpnv6 : undefined;
             resourceInputs["routeServerClient"] = state ? state.routeServerClient : undefined;
             resourceInputs["routeServerClient6"] = state ? state.routeServerClient6 : undefined;
+            resourceInputs["routeServerClientEvpn"] = state ? state.routeServerClientEvpn : undefined;
             resourceInputs["routeServerClientVpnv4"] = state ? state.routeServerClientVpnv4 : undefined;
+            resourceInputs["routeServerClientVpnv6"] = state ? state.routeServerClientVpnv6 : undefined;
             resourceInputs["sendCommunity"] = state ? state.sendCommunity : undefined;
             resourceInputs["sendCommunity6"] = state ? state.sendCommunity6 : undefined;
+            resourceInputs["sendCommunityEvpn"] = state ? state.sendCommunityEvpn : undefined;
             resourceInputs["sendCommunityVpnv4"] = state ? state.sendCommunityVpnv4 : undefined;
+            resourceInputs["sendCommunityVpnv6"] = state ? state.sendCommunityVpnv6 : undefined;
             resourceInputs["shutdown"] = state ? state.shutdown : undefined;
             resourceInputs["softReconfiguration"] = state ? state.softReconfiguration : undefined;
             resourceInputs["softReconfiguration6"] = state ? state.softReconfiguration6 : undefined;
+            resourceInputs["softReconfigurationEvpn"] = state ? state.softReconfigurationEvpn : undefined;
             resourceInputs["softReconfigurationVpnv4"] = state ? state.softReconfigurationVpnv4 : undefined;
+            resourceInputs["softReconfigurationVpnv6"] = state ? state.softReconfigurationVpnv6 : undefined;
             resourceInputs["staleRoute"] = state ? state.staleRoute : undefined;
             resourceInputs["strictCapabilityMatch"] = state ? state.strictCapabilityMatch : undefined;
             resourceInputs["unsuppressMap"] = state ? state.unsuppressMap : undefined;
@@ -658,31 +878,44 @@ export class Neighbor extends pulumi.CustomResource {
             }
             resourceInputs["activate"] = args ? args.activate : undefined;
             resourceInputs["activate6"] = args ? args.activate6 : undefined;
+            resourceInputs["activateEvpn"] = args ? args.activateEvpn : undefined;
             resourceInputs["activateVpnv4"] = args ? args.activateVpnv4 : undefined;
+            resourceInputs["activateVpnv6"] = args ? args.activateVpnv6 : undefined;
             resourceInputs["additionalPath"] = args ? args.additionalPath : undefined;
             resourceInputs["additionalPath6"] = args ? args.additionalPath6 : undefined;
             resourceInputs["additionalPathVpnv4"] = args ? args.additionalPathVpnv4 : undefined;
+            resourceInputs["additionalPathVpnv6"] = args ? args.additionalPathVpnv6 : undefined;
             resourceInputs["advAdditionalPath"] = args ? args.advAdditionalPath : undefined;
             resourceInputs["advAdditionalPath6"] = args ? args.advAdditionalPath6 : undefined;
             resourceInputs["advAdditionalPathVpnv4"] = args ? args.advAdditionalPathVpnv4 : undefined;
+            resourceInputs["advAdditionalPathVpnv6"] = args ? args.advAdditionalPathVpnv6 : undefined;
             resourceInputs["advertisementInterval"] = args ? args.advertisementInterval : undefined;
             resourceInputs["allowasIn"] = args ? args.allowasIn : undefined;
             resourceInputs["allowasIn6"] = args ? args.allowasIn6 : undefined;
             resourceInputs["allowasInEnable"] = args ? args.allowasInEnable : undefined;
             resourceInputs["allowasInEnable6"] = args ? args.allowasInEnable6 : undefined;
+            resourceInputs["allowasInEnableEvpn"] = args ? args.allowasInEnableEvpn : undefined;
+            resourceInputs["allowasInEnableVpnv4"] = args ? args.allowasInEnableVpnv4 : undefined;
+            resourceInputs["allowasInEnableVpnv6"] = args ? args.allowasInEnableVpnv6 : undefined;
+            resourceInputs["allowasInEvpn"] = args ? args.allowasInEvpn : undefined;
             resourceInputs["allowasInVpnv4"] = args ? args.allowasInVpnv4 : undefined;
+            resourceInputs["allowasInVpnv6"] = args ? args.allowasInVpnv6 : undefined;
             resourceInputs["asOverride"] = args ? args.asOverride : undefined;
             resourceInputs["asOverride6"] = args ? args.asOverride6 : undefined;
             resourceInputs["attributeUnchanged"] = args ? args.attributeUnchanged : undefined;
             resourceInputs["attributeUnchanged6"] = args ? args.attributeUnchanged6 : undefined;
             resourceInputs["attributeUnchangedVpnv4"] = args ? args.attributeUnchangedVpnv4 : undefined;
+            resourceInputs["attributeUnchangedVpnv6"] = args ? args.attributeUnchangedVpnv6 : undefined;
+            resourceInputs["authOptions"] = args ? args.authOptions : undefined;
             resourceInputs["bfd"] = args ? args.bfd : undefined;
             resourceInputs["capabilityDefaultOriginate"] = args ? args.capabilityDefaultOriginate : undefined;
             resourceInputs["capabilityDefaultOriginate6"] = args ? args.capabilityDefaultOriginate6 : undefined;
             resourceInputs["capabilityDynamic"] = args ? args.capabilityDynamic : undefined;
             resourceInputs["capabilityGracefulRestart"] = args ? args.capabilityGracefulRestart : undefined;
             resourceInputs["capabilityGracefulRestart6"] = args ? args.capabilityGracefulRestart6 : undefined;
+            resourceInputs["capabilityGracefulRestartEvpn"] = args ? args.capabilityGracefulRestartEvpn : undefined;
             resourceInputs["capabilityGracefulRestartVpnv4"] = args ? args.capabilityGracefulRestartVpnv4 : undefined;
+            resourceInputs["capabilityGracefulRestartVpnv6"] = args ? args.capabilityGracefulRestartVpnv6 : undefined;
             resourceInputs["capabilityOrf"] = args ? args.capabilityOrf : undefined;
             resourceInputs["capabilityOrf6"] = args ? args.capabilityOrf6 : undefined;
             resourceInputs["capabilityRouteRefresh"] = args ? args.capabilityRouteRefresh : undefined;
@@ -695,17 +928,24 @@ export class Neighbor extends pulumi.CustomResource {
             resourceInputs["distributeListIn"] = args ? args.distributeListIn : undefined;
             resourceInputs["distributeListIn6"] = args ? args.distributeListIn6 : undefined;
             resourceInputs["distributeListInVpnv4"] = args ? args.distributeListInVpnv4 : undefined;
+            resourceInputs["distributeListInVpnv6"] = args ? args.distributeListInVpnv6 : undefined;
             resourceInputs["distributeListOut"] = args ? args.distributeListOut : undefined;
             resourceInputs["distributeListOut6"] = args ? args.distributeListOut6 : undefined;
             resourceInputs["distributeListOutVpnv4"] = args ? args.distributeListOutVpnv4 : undefined;
+            resourceInputs["distributeListOutVpnv6"] = args ? args.distributeListOutVpnv6 : undefined;
             resourceInputs["dontCapabilityNegotiate"] = args ? args.dontCapabilityNegotiate : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["ebgpEnforceMultihop"] = args ? args.ebgpEnforceMultihop : undefined;
             resourceInputs["ebgpMultihopTtl"] = args ? args.ebgpMultihopTtl : undefined;
             resourceInputs["filterListIn"] = args ? args.filterListIn : undefined;
             resourceInputs["filterListIn6"] = args ? args.filterListIn6 : undefined;
+            resourceInputs["filterListInVpnv4"] = args ? args.filterListInVpnv4 : undefined;
+            resourceInputs["filterListInVpnv6"] = args ? args.filterListInVpnv6 : undefined;
             resourceInputs["filterListOut"] = args ? args.filterListOut : undefined;
             resourceInputs["filterListOut6"] = args ? args.filterListOut6 : undefined;
+            resourceInputs["filterListOutVpnv4"] = args ? args.filterListOutVpnv4 : undefined;
+            resourceInputs["filterListOutVpnv6"] = args ? args.filterListOutVpnv6 : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["holdtimeTimer"] = args ? args.holdtimeTimer : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["ip"] = args ? args.ip : undefined;
@@ -716,55 +956,79 @@ export class Neighbor extends pulumi.CustomResource {
             resourceInputs["localAsReplaceAs"] = args ? args.localAsReplaceAs : undefined;
             resourceInputs["maximumPrefix"] = args ? args.maximumPrefix : undefined;
             resourceInputs["maximumPrefix6"] = args ? args.maximumPrefix6 : undefined;
+            resourceInputs["maximumPrefixEvpn"] = args ? args.maximumPrefixEvpn : undefined;
             resourceInputs["maximumPrefixThreshold"] = args ? args.maximumPrefixThreshold : undefined;
             resourceInputs["maximumPrefixThreshold6"] = args ? args.maximumPrefixThreshold6 : undefined;
+            resourceInputs["maximumPrefixThresholdEvpn"] = args ? args.maximumPrefixThresholdEvpn : undefined;
             resourceInputs["maximumPrefixThresholdVpnv4"] = args ? args.maximumPrefixThresholdVpnv4 : undefined;
+            resourceInputs["maximumPrefixThresholdVpnv6"] = args ? args.maximumPrefixThresholdVpnv6 : undefined;
             resourceInputs["maximumPrefixVpnv4"] = args ? args.maximumPrefixVpnv4 : undefined;
+            resourceInputs["maximumPrefixVpnv6"] = args ? args.maximumPrefixVpnv6 : undefined;
             resourceInputs["maximumPrefixWarningOnly"] = args ? args.maximumPrefixWarningOnly : undefined;
             resourceInputs["maximumPrefixWarningOnly6"] = args ? args.maximumPrefixWarningOnly6 : undefined;
+            resourceInputs["maximumPrefixWarningOnlyEvpn"] = args ? args.maximumPrefixWarningOnlyEvpn : undefined;
             resourceInputs["maximumPrefixWarningOnlyVpnv4"] = args ? args.maximumPrefixWarningOnlyVpnv4 : undefined;
+            resourceInputs["maximumPrefixWarningOnlyVpnv6"] = args ? args.maximumPrefixWarningOnlyVpnv6 : undefined;
             resourceInputs["nextHopSelf"] = args ? args.nextHopSelf : undefined;
             resourceInputs["nextHopSelf6"] = args ? args.nextHopSelf6 : undefined;
             resourceInputs["nextHopSelfRr"] = args ? args.nextHopSelfRr : undefined;
             resourceInputs["nextHopSelfRr6"] = args ? args.nextHopSelfRr6 : undefined;
             resourceInputs["nextHopSelfVpnv4"] = args ? args.nextHopSelfVpnv4 : undefined;
+            resourceInputs["nextHopSelfVpnv6"] = args ? args.nextHopSelfVpnv6 : undefined;
             resourceInputs["overrideCapability"] = args ? args.overrideCapability : undefined;
             resourceInputs["passive"] = args ? args.passive : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["prefixListIn"] = args ? args.prefixListIn : undefined;
             resourceInputs["prefixListIn6"] = args ? args.prefixListIn6 : undefined;
             resourceInputs["prefixListInVpnv4"] = args ? args.prefixListInVpnv4 : undefined;
+            resourceInputs["prefixListInVpnv6"] = args ? args.prefixListInVpnv6 : undefined;
             resourceInputs["prefixListOut"] = args ? args.prefixListOut : undefined;
             resourceInputs["prefixListOut6"] = args ? args.prefixListOut6 : undefined;
             resourceInputs["prefixListOutVpnv4"] = args ? args.prefixListOutVpnv4 : undefined;
+            resourceInputs["prefixListOutVpnv6"] = args ? args.prefixListOutVpnv6 : undefined;
             resourceInputs["remoteAs"] = args ? args.remoteAs : undefined;
             resourceInputs["removePrivateAs"] = args ? args.removePrivateAs : undefined;
             resourceInputs["removePrivateAs6"] = args ? args.removePrivateAs6 : undefined;
+            resourceInputs["removePrivateAsEvpn"] = args ? args.removePrivateAsEvpn : undefined;
             resourceInputs["removePrivateAsVpnv4"] = args ? args.removePrivateAsVpnv4 : undefined;
+            resourceInputs["removePrivateAsVpnv6"] = args ? args.removePrivateAsVpnv6 : undefined;
             resourceInputs["restartTime"] = args ? args.restartTime : undefined;
             resourceInputs["retainStaleTime"] = args ? args.retainStaleTime : undefined;
             resourceInputs["routeMapIn"] = args ? args.routeMapIn : undefined;
             resourceInputs["routeMapIn6"] = args ? args.routeMapIn6 : undefined;
+            resourceInputs["routeMapInEvpn"] = args ? args.routeMapInEvpn : undefined;
             resourceInputs["routeMapInVpnv4"] = args ? args.routeMapInVpnv4 : undefined;
+            resourceInputs["routeMapInVpnv6"] = args ? args.routeMapInVpnv6 : undefined;
             resourceInputs["routeMapOut"] = args ? args.routeMapOut : undefined;
             resourceInputs["routeMapOut6"] = args ? args.routeMapOut6 : undefined;
             resourceInputs["routeMapOut6Preferable"] = args ? args.routeMapOut6Preferable : undefined;
+            resourceInputs["routeMapOutEvpn"] = args ? args.routeMapOutEvpn : undefined;
             resourceInputs["routeMapOutPreferable"] = args ? args.routeMapOutPreferable : undefined;
             resourceInputs["routeMapOutVpnv4"] = args ? args.routeMapOutVpnv4 : undefined;
             resourceInputs["routeMapOutVpnv4Preferable"] = args ? args.routeMapOutVpnv4Preferable : undefined;
+            resourceInputs["routeMapOutVpnv6"] = args ? args.routeMapOutVpnv6 : undefined;
+            resourceInputs["routeMapOutVpnv6Preferable"] = args ? args.routeMapOutVpnv6Preferable : undefined;
             resourceInputs["routeReflectorClient"] = args ? args.routeReflectorClient : undefined;
             resourceInputs["routeReflectorClient6"] = args ? args.routeReflectorClient6 : undefined;
+            resourceInputs["routeReflectorClientEvpn"] = args ? args.routeReflectorClientEvpn : undefined;
             resourceInputs["routeReflectorClientVpnv4"] = args ? args.routeReflectorClientVpnv4 : undefined;
+            resourceInputs["routeReflectorClientVpnv6"] = args ? args.routeReflectorClientVpnv6 : undefined;
             resourceInputs["routeServerClient"] = args ? args.routeServerClient : undefined;
             resourceInputs["routeServerClient6"] = args ? args.routeServerClient6 : undefined;
+            resourceInputs["routeServerClientEvpn"] = args ? args.routeServerClientEvpn : undefined;
             resourceInputs["routeServerClientVpnv4"] = args ? args.routeServerClientVpnv4 : undefined;
+            resourceInputs["routeServerClientVpnv6"] = args ? args.routeServerClientVpnv6 : undefined;
             resourceInputs["sendCommunity"] = args ? args.sendCommunity : undefined;
             resourceInputs["sendCommunity6"] = args ? args.sendCommunity6 : undefined;
+            resourceInputs["sendCommunityEvpn"] = args ? args.sendCommunityEvpn : undefined;
             resourceInputs["sendCommunityVpnv4"] = args ? args.sendCommunityVpnv4 : undefined;
+            resourceInputs["sendCommunityVpnv6"] = args ? args.sendCommunityVpnv6 : undefined;
             resourceInputs["shutdown"] = args ? args.shutdown : undefined;
             resourceInputs["softReconfiguration"] = args ? args.softReconfiguration : undefined;
             resourceInputs["softReconfiguration6"] = args ? args.softReconfiguration6 : undefined;
+            resourceInputs["softReconfigurationEvpn"] = args ? args.softReconfigurationEvpn : undefined;
             resourceInputs["softReconfigurationVpnv4"] = args ? args.softReconfigurationVpnv4 : undefined;
+            resourceInputs["softReconfigurationVpnv6"] = args ? args.softReconfigurationVpnv6 : undefined;
             resourceInputs["staleRoute"] = args ? args.staleRoute : undefined;
             resourceInputs["strictCapabilityMatch"] = args ? args.strictCapabilityMatch : undefined;
             resourceInputs["unsuppressMap"] = args ? args.unsuppressMap : undefined;
@@ -793,9 +1057,17 @@ export interface NeighborState {
      */
     activate6?: pulumi.Input<string>;
     /**
+     * Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
+     */
+    activateEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
      */
     activateVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
+     */
+    activateVpnv6?: pulumi.Input<string>;
     /**
      * Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
      */
@@ -809,6 +1081,10 @@ export interface NeighborState {
      */
     additionalPathVpnv4?: pulumi.Input<string>;
     /**
+     * Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+     */
+    additionalPathVpnv6?: pulumi.Input<string>;
+    /**
      * Number of IPv4 additional paths that can be advertised to this neighbor.
      */
     advAdditionalPath?: pulumi.Input<number>;
@@ -820,6 +1096,10 @@ export interface NeighborState {
      * Number of VPNv4 additional paths that can be advertised to this neighbor.
      */
     advAdditionalPathVpnv4?: pulumi.Input<number>;
+    /**
+     * Number of VPNv6 additional paths that can be advertised to this neighbor.
+     */
+    advAdditionalPathVpnv6?: pulumi.Input<number>;
     /**
      * Minimum interval (sec) between sending updates.
      */
@@ -841,9 +1121,29 @@ export interface NeighborState {
      */
     allowasInEnable6?: pulumi.Input<string>;
     /**
+     * Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+     */
+    allowasInEnableEvpn?: pulumi.Input<string>;
+    /**
+     * Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+     */
+    allowasInEnableVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+     */
+    allowasInEnableVpnv6?: pulumi.Input<string>;
+    /**
+     * The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+     */
+    allowasInEvpn?: pulumi.Input<number>;
+    /**
      * The maximum number of occurrence of my AS number allowed for VPNv4 route.
      */
     allowasInVpnv4?: pulumi.Input<number>;
+    /**
+     * The maximum number of occurrence of my AS number allowed for VPNv6 route.
+     */
+    allowasInVpnv6?: pulumi.Input<number>;
     /**
      * Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
      */
@@ -864,6 +1164,14 @@ export interface NeighborState {
      * List of attributes that should be unchanged for VPNv4 route. Valid values: `as-path`, `med`, `next-hop`.
      */
     attributeUnchangedVpnv4?: pulumi.Input<string>;
+    /**
+     * List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+     */
+    attributeUnchangedVpnv6?: pulumi.Input<string>;
+    /**
+     * Key-chain name for TCP authentication options.
+     */
+    authOptions?: pulumi.Input<string>;
     /**
      * Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
      */
@@ -889,9 +1197,17 @@ export interface NeighborState {
      */
     capabilityGracefulRestart6?: pulumi.Input<string>;
     /**
+     * Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+     */
+    capabilityGracefulRestartEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
      */
     capabilityGracefulRestartVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+     */
+    capabilityGracefulRestartVpnv6?: pulumi.Input<string>;
     /**
      * Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
      */
@@ -941,6 +1257,10 @@ export interface NeighborState {
      */
     distributeListInVpnv4?: pulumi.Input<string>;
     /**
+     * Filter for VPNv6 updates from this neighbor.
+     */
+    distributeListInVpnv6?: pulumi.Input<string>;
+    /**
      * Filter for IPv4 updates to this neighbor.
      */
     distributeListOut?: pulumi.Input<string>;
@@ -952,6 +1272,10 @@ export interface NeighborState {
      * Filter for VPNv4 updates to this neighbor.
      */
     distributeListOutVpnv4?: pulumi.Input<string>;
+    /**
+     * Filter for VPNv6 updates to this neighbor.
+     */
+    distributeListOutVpnv6?: pulumi.Input<string>;
     /**
      * Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
      */
@@ -977,6 +1301,14 @@ export interface NeighborState {
      */
     filterListIn6?: pulumi.Input<string>;
     /**
+     * BGP filter for VPNv4 inbound routes.
+     */
+    filterListInVpnv4?: pulumi.Input<string>;
+    /**
+     * BGP filter for VPNv6 inbound routes.
+     */
+    filterListInVpnv6?: pulumi.Input<string>;
+    /**
      * BGP filter for IPv4 outbound routes.
      */
     filterListOut?: pulumi.Input<string>;
@@ -984,6 +1316,18 @@ export interface NeighborState {
      * BGP filter for IPv6 outbound routes.
      */
     filterListOut6?: pulumi.Input<string>;
+    /**
+     * BGP filter for VPNv4 outbound routes.
+     */
+    filterListOutVpnv4?: pulumi.Input<string>;
+    /**
+     * BGP filter for VPNv6 outbound routes.
+     */
+    filterListOutVpnv6?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Interval (sec) before peer considered dead.
      */
@@ -1025,6 +1369,10 @@ export interface NeighborState {
      */
     maximumPrefix6?: pulumi.Input<number>;
     /**
+     * Maximum number of L2VPN EVPN prefixes to accept from this peer.
+     */
+    maximumPrefixEvpn?: pulumi.Input<number>;
+    /**
      * Maximum IPv4 prefix threshold value (1 - 100 percent).
      */
     maximumPrefixThreshold?: pulumi.Input<number>;
@@ -1033,13 +1381,25 @@ export interface NeighborState {
      */
     maximumPrefixThreshold6?: pulumi.Input<number>;
     /**
+     * Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+     */
+    maximumPrefixThresholdEvpn?: pulumi.Input<number>;
+    /**
      * Maximum VPNv4 prefix threshold value (1 - 100 percent).
      */
     maximumPrefixThresholdVpnv4?: pulumi.Input<number>;
     /**
+     * Maximum VPNv6 prefix threshold value (1 - 100 percent).
+     */
+    maximumPrefixThresholdVpnv6?: pulumi.Input<number>;
+    /**
      * Maximum number of VPNv4 prefixes to accept from this peer.
      */
     maximumPrefixVpnv4?: pulumi.Input<number>;
+    /**
+     * Maximum number of VPNv6 prefixes to accept from this peer.
+     */
+    maximumPrefixVpnv6?: pulumi.Input<number>;
     /**
      * Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
      */
@@ -1049,9 +1409,17 @@ export interface NeighborState {
      */
     maximumPrefixWarningOnly6?: pulumi.Input<string>;
     /**
+     * Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
+     */
+    maximumPrefixWarningOnlyEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
      */
     maximumPrefixWarningOnlyVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
+     */
+    maximumPrefixWarningOnlyVpnv6?: pulumi.Input<string>;
     /**
      * Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
      */
@@ -1072,6 +1440,10 @@ export interface NeighborState {
      * Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor. Valid values: `enable`, `disable`.
      */
     nextHopSelfVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
+     */
+    nextHopSelfVpnv6?: pulumi.Input<string>;
     /**
      * Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
      */
@@ -1097,6 +1469,10 @@ export interface NeighborState {
      */
     prefixListInVpnv4?: pulumi.Input<string>;
     /**
+     * Inbound filter for VPNv6 updates from this neighbor.
+     */
+    prefixListInVpnv6?: pulumi.Input<string>;
+    /**
      * IPv4 Outbound filter for updates to this neighbor.
      */
     prefixListOut?: pulumi.Input<string>;
@@ -1108,6 +1484,10 @@ export interface NeighborState {
      * Outbound filter for VPNv4 updates to this neighbor.
      */
     prefixListOutVpnv4?: pulumi.Input<string>;
+    /**
+     * Outbound filter for VPNv6 updates to this neighbor.
+     */
+    prefixListOutVpnv6?: pulumi.Input<string>;
     /**
      * AS number of neighbor.
      */
@@ -1121,9 +1501,17 @@ export interface NeighborState {
      */
     removePrivateAs6?: pulumi.Input<string>;
     /**
+     * Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
+     */
+    removePrivateAsEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
      */
     removePrivateAsVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
+     */
+    removePrivateAsVpnv6?: pulumi.Input<string>;
     /**
      * Graceful restart delay time (sec, 0 = global default).
      */
@@ -1141,9 +1529,17 @@ export interface NeighborState {
      */
     routeMapIn6?: pulumi.Input<string>;
     /**
+     * L2VPN EVPN inbound route map filter.
+     */
+    routeMapInEvpn?: pulumi.Input<string>;
+    /**
      * VPNv4 inbound route map filter.
      */
     routeMapInVpnv4?: pulumi.Input<string>;
+    /**
+     * VPNv6 inbound route map filter.
+     */
+    routeMapInVpnv6?: pulumi.Input<string>;
     /**
      * IPv4 Outbound route map filter.
      */
@@ -1157,6 +1553,10 @@ export interface NeighborState {
      */
     routeMapOut6Preferable?: pulumi.Input<string>;
     /**
+     * L2VPN EVPN outbound route map filter.
+     */
+    routeMapOutEvpn?: pulumi.Input<string>;
+    /**
      * IPv4 outbound route map filter if the peer is preferred.
      */
     routeMapOutPreferable?: pulumi.Input<string>;
@@ -1169,6 +1569,14 @@ export interface NeighborState {
      */
     routeMapOutVpnv4Preferable?: pulumi.Input<string>;
     /**
+     * VPNv6 outbound route map filter.
+     */
+    routeMapOutVpnv6?: pulumi.Input<string>;
+    /**
+     * VPNv6 outbound route map filter if this neighbor is preferred.
+     */
+    routeMapOutVpnv6Preferable?: pulumi.Input<string>;
+    /**
      * Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
      */
     routeReflectorClient?: pulumi.Input<string>;
@@ -1177,9 +1585,17 @@ export interface NeighborState {
      */
     routeReflectorClient6?: pulumi.Input<string>;
     /**
+     * Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+     */
+    routeReflectorClientEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
      */
     routeReflectorClientVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+     */
+    routeReflectorClientVpnv6?: pulumi.Input<string>;
     /**
      * Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
      */
@@ -1189,9 +1605,17 @@ export interface NeighborState {
      */
     routeServerClient6?: pulumi.Input<string>;
     /**
+     * Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
+     */
+    routeServerClientEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
      */
     routeServerClientVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+     */
+    routeServerClientVpnv6?: pulumi.Input<string>;
     /**
      * IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
      */
@@ -1201,9 +1625,17 @@ export interface NeighborState {
      */
     sendCommunity6?: pulumi.Input<string>;
     /**
+     * Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
+     */
+    sendCommunityEvpn?: pulumi.Input<string>;
+    /**
      * Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
      */
     sendCommunityVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+     */
+    sendCommunityVpnv6?: pulumi.Input<string>;
     /**
      * Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
      */
@@ -1217,9 +1649,17 @@ export interface NeighborState {
      */
     softReconfiguration6?: pulumi.Input<string>;
     /**
+     * Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
+     */
+    softReconfigurationEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
      */
     softReconfigurationVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+     */
+    softReconfigurationVpnv6?: pulumi.Input<string>;
     /**
      * Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
      */
@@ -1263,9 +1703,17 @@ export interface NeighborArgs {
      */
     activate6?: pulumi.Input<string>;
     /**
+     * Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
+     */
+    activateEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
      */
     activateVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
+     */
+    activateVpnv6?: pulumi.Input<string>;
     /**
      * Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
      */
@@ -1279,6 +1727,10 @@ export interface NeighborArgs {
      */
     additionalPathVpnv4?: pulumi.Input<string>;
     /**
+     * Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+     */
+    additionalPathVpnv6?: pulumi.Input<string>;
+    /**
      * Number of IPv4 additional paths that can be advertised to this neighbor.
      */
     advAdditionalPath?: pulumi.Input<number>;
@@ -1290,6 +1742,10 @@ export interface NeighborArgs {
      * Number of VPNv4 additional paths that can be advertised to this neighbor.
      */
     advAdditionalPathVpnv4?: pulumi.Input<number>;
+    /**
+     * Number of VPNv6 additional paths that can be advertised to this neighbor.
+     */
+    advAdditionalPathVpnv6?: pulumi.Input<number>;
     /**
      * Minimum interval (sec) between sending updates.
      */
@@ -1311,9 +1767,29 @@ export interface NeighborArgs {
      */
     allowasInEnable6?: pulumi.Input<string>;
     /**
+     * Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+     */
+    allowasInEnableEvpn?: pulumi.Input<string>;
+    /**
+     * Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+     */
+    allowasInEnableVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+     */
+    allowasInEnableVpnv6?: pulumi.Input<string>;
+    /**
+     * The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+     */
+    allowasInEvpn?: pulumi.Input<number>;
+    /**
      * The maximum number of occurrence of my AS number allowed for VPNv4 route.
      */
     allowasInVpnv4?: pulumi.Input<number>;
+    /**
+     * The maximum number of occurrence of my AS number allowed for VPNv6 route.
+     */
+    allowasInVpnv6?: pulumi.Input<number>;
     /**
      * Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
      */
@@ -1334,6 +1810,14 @@ export interface NeighborArgs {
      * List of attributes that should be unchanged for VPNv4 route. Valid values: `as-path`, `med`, `next-hop`.
      */
     attributeUnchangedVpnv4?: pulumi.Input<string>;
+    /**
+     * List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+     */
+    attributeUnchangedVpnv6?: pulumi.Input<string>;
+    /**
+     * Key-chain name for TCP authentication options.
+     */
+    authOptions?: pulumi.Input<string>;
     /**
      * Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
      */
@@ -1359,9 +1843,17 @@ export interface NeighborArgs {
      */
     capabilityGracefulRestart6?: pulumi.Input<string>;
     /**
+     * Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+     */
+    capabilityGracefulRestartEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
      */
     capabilityGracefulRestartVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+     */
+    capabilityGracefulRestartVpnv6?: pulumi.Input<string>;
     /**
      * Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
      */
@@ -1411,6 +1903,10 @@ export interface NeighborArgs {
      */
     distributeListInVpnv4?: pulumi.Input<string>;
     /**
+     * Filter for VPNv6 updates from this neighbor.
+     */
+    distributeListInVpnv6?: pulumi.Input<string>;
+    /**
      * Filter for IPv4 updates to this neighbor.
      */
     distributeListOut?: pulumi.Input<string>;
@@ -1422,6 +1918,10 @@ export interface NeighborArgs {
      * Filter for VPNv4 updates to this neighbor.
      */
     distributeListOutVpnv4?: pulumi.Input<string>;
+    /**
+     * Filter for VPNv6 updates to this neighbor.
+     */
+    distributeListOutVpnv6?: pulumi.Input<string>;
     /**
      * Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
      */
@@ -1447,6 +1947,14 @@ export interface NeighborArgs {
      */
     filterListIn6?: pulumi.Input<string>;
     /**
+     * BGP filter for VPNv4 inbound routes.
+     */
+    filterListInVpnv4?: pulumi.Input<string>;
+    /**
+     * BGP filter for VPNv6 inbound routes.
+     */
+    filterListInVpnv6?: pulumi.Input<string>;
+    /**
      * BGP filter for IPv4 outbound routes.
      */
     filterListOut?: pulumi.Input<string>;
@@ -1454,6 +1962,18 @@ export interface NeighborArgs {
      * BGP filter for IPv6 outbound routes.
      */
     filterListOut6?: pulumi.Input<string>;
+    /**
+     * BGP filter for VPNv4 outbound routes.
+     */
+    filterListOutVpnv4?: pulumi.Input<string>;
+    /**
+     * BGP filter for VPNv6 outbound routes.
+     */
+    filterListOutVpnv6?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Interval (sec) before peer considered dead.
      */
@@ -1495,6 +2015,10 @@ export interface NeighborArgs {
      */
     maximumPrefix6?: pulumi.Input<number>;
     /**
+     * Maximum number of L2VPN EVPN prefixes to accept from this peer.
+     */
+    maximumPrefixEvpn?: pulumi.Input<number>;
+    /**
      * Maximum IPv4 prefix threshold value (1 - 100 percent).
      */
     maximumPrefixThreshold?: pulumi.Input<number>;
@@ -1503,13 +2027,25 @@ export interface NeighborArgs {
      */
     maximumPrefixThreshold6?: pulumi.Input<number>;
     /**
+     * Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+     */
+    maximumPrefixThresholdEvpn?: pulumi.Input<number>;
+    /**
      * Maximum VPNv4 prefix threshold value (1 - 100 percent).
      */
     maximumPrefixThresholdVpnv4?: pulumi.Input<number>;
     /**
+     * Maximum VPNv6 prefix threshold value (1 - 100 percent).
+     */
+    maximumPrefixThresholdVpnv6?: pulumi.Input<number>;
+    /**
      * Maximum number of VPNv4 prefixes to accept from this peer.
      */
     maximumPrefixVpnv4?: pulumi.Input<number>;
+    /**
+     * Maximum number of VPNv6 prefixes to accept from this peer.
+     */
+    maximumPrefixVpnv6?: pulumi.Input<number>;
     /**
      * Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
      */
@@ -1519,9 +2055,17 @@ export interface NeighborArgs {
      */
     maximumPrefixWarningOnly6?: pulumi.Input<string>;
     /**
+     * Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
+     */
+    maximumPrefixWarningOnlyEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
      */
     maximumPrefixWarningOnlyVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
+     */
+    maximumPrefixWarningOnlyVpnv6?: pulumi.Input<string>;
     /**
      * Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
      */
@@ -1542,6 +2086,10 @@ export interface NeighborArgs {
      * Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor. Valid values: `enable`, `disable`.
      */
     nextHopSelfVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
+     */
+    nextHopSelfVpnv6?: pulumi.Input<string>;
     /**
      * Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
      */
@@ -1567,6 +2115,10 @@ export interface NeighborArgs {
      */
     prefixListInVpnv4?: pulumi.Input<string>;
     /**
+     * Inbound filter for VPNv6 updates from this neighbor.
+     */
+    prefixListInVpnv6?: pulumi.Input<string>;
+    /**
      * IPv4 Outbound filter for updates to this neighbor.
      */
     prefixListOut?: pulumi.Input<string>;
@@ -1578,6 +2130,10 @@ export interface NeighborArgs {
      * Outbound filter for VPNv4 updates to this neighbor.
      */
     prefixListOutVpnv4?: pulumi.Input<string>;
+    /**
+     * Outbound filter for VPNv6 updates to this neighbor.
+     */
+    prefixListOutVpnv6?: pulumi.Input<string>;
     /**
      * AS number of neighbor.
      */
@@ -1591,9 +2147,17 @@ export interface NeighborArgs {
      */
     removePrivateAs6?: pulumi.Input<string>;
     /**
+     * Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
+     */
+    removePrivateAsEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
      */
     removePrivateAsVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
+     */
+    removePrivateAsVpnv6?: pulumi.Input<string>;
     /**
      * Graceful restart delay time (sec, 0 = global default).
      */
@@ -1611,9 +2175,17 @@ export interface NeighborArgs {
      */
     routeMapIn6?: pulumi.Input<string>;
     /**
+     * L2VPN EVPN inbound route map filter.
+     */
+    routeMapInEvpn?: pulumi.Input<string>;
+    /**
      * VPNv4 inbound route map filter.
      */
     routeMapInVpnv4?: pulumi.Input<string>;
+    /**
+     * VPNv6 inbound route map filter.
+     */
+    routeMapInVpnv6?: pulumi.Input<string>;
     /**
      * IPv4 Outbound route map filter.
      */
@@ -1627,6 +2199,10 @@ export interface NeighborArgs {
      */
     routeMapOut6Preferable?: pulumi.Input<string>;
     /**
+     * L2VPN EVPN outbound route map filter.
+     */
+    routeMapOutEvpn?: pulumi.Input<string>;
+    /**
      * IPv4 outbound route map filter if the peer is preferred.
      */
     routeMapOutPreferable?: pulumi.Input<string>;
@@ -1639,6 +2215,14 @@ export interface NeighborArgs {
      */
     routeMapOutVpnv4Preferable?: pulumi.Input<string>;
     /**
+     * VPNv6 outbound route map filter.
+     */
+    routeMapOutVpnv6?: pulumi.Input<string>;
+    /**
+     * VPNv6 outbound route map filter if this neighbor is preferred.
+     */
+    routeMapOutVpnv6Preferable?: pulumi.Input<string>;
+    /**
      * Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
      */
     routeReflectorClient?: pulumi.Input<string>;
@@ -1647,9 +2231,17 @@ export interface NeighborArgs {
      */
     routeReflectorClient6?: pulumi.Input<string>;
     /**
+     * Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+     */
+    routeReflectorClientEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
      */
     routeReflectorClientVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+     */
+    routeReflectorClientVpnv6?: pulumi.Input<string>;
     /**
      * Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
      */
@@ -1659,9 +2251,17 @@ export interface NeighborArgs {
      */
     routeServerClient6?: pulumi.Input<string>;
     /**
+     * Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
+     */
+    routeServerClientEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
      */
     routeServerClientVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+     */
+    routeServerClientVpnv6?: pulumi.Input<string>;
     /**
      * IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
      */
@@ -1671,9 +2271,17 @@ export interface NeighborArgs {
      */
     sendCommunity6?: pulumi.Input<string>;
     /**
+     * Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
+     */
+    sendCommunityEvpn?: pulumi.Input<string>;
+    /**
      * Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
      */
     sendCommunityVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+     */
+    sendCommunityVpnv6?: pulumi.Input<string>;
     /**
      * Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
      */
@@ -1687,9 +2295,17 @@ export interface NeighborArgs {
      */
     softReconfiguration6?: pulumi.Input<string>;
     /**
+     * Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
+     */
+    softReconfigurationEvpn?: pulumi.Input<string>;
+    /**
      * Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
      */
     softReconfigurationVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+     */
+    softReconfigurationVpnv6?: pulumi.Input<string>;
     /**
      * Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
      */

@@ -86,6 +86,10 @@ import (
 type Radius struct {
 	pulumi.CustomResourceState
 
+	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyCertField pulumi.StringOutput `pulumi:"accountKeyCertField"`
+	// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+	AccountKeyProcessing pulumi.StringOutput `pulumi:"accountKeyProcessing"`
 	// Additional accounting servers. The structure of `accountingServer` block is documented below.
 	AccountingServers RadiusAccountingServerArrayOutput `pulumi:"accountingServers"`
 	// Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
@@ -96,12 +100,20 @@ type Radius struct {
 	AllUsergroup pulumi.StringOutput `pulumi:"allUsergroup"`
 	// Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `msChapV2`, `msChap`, `chap`, `pap`.
 	AuthType pulumi.StringOutput `pulumi:"authType"`
+	// CA of server to trust under TLS.
+	CaCert pulumi.StringOutput `pulumi:"caCert"`
+	// Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+	CallStationIdType pulumi.StringOutput `pulumi:"callStationIdType"`
 	// Class attribute name(s). The structure of `class` block is documented below.
 	Classes RadiusClassArrayOutput `pulumi:"classes"`
+	// Client certificate to use under TLS.
+	ClientCert pulumi.StringOutput `pulumi:"clientCert"`
 	// Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
 	Delimiter pulumi.StringOutput `pulumi:"delimiter"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
 	GroupOverrideAttrType pulumi.StringOutput `pulumi:"groupOverrideAttrType"`
 	// Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
@@ -118,6 +130,10 @@ type Radius struct {
 	MacUsernameDelimiter pulumi.StringOutput `pulumi:"macUsernameDelimiter"`
 	// RADIUS server entry name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Custom NAS identifier.
+	NasId pulumi.StringOutput `pulumi:"nasId"`
+	// NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+	NasIdType pulumi.StringOutput `pulumi:"nasIdType"`
 	// IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
 	NasIp pulumi.StringOutput `pulumi:"nasIp"`
 	// Password encoding. Valid values: `auto`, `ISO-8859-1`.
@@ -160,6 +176,8 @@ type Radius struct {
 	Secret pulumi.StringPtrOutput `pulumi:"secret"`
 	// Primary RADIUS server CN domain name or IP address.
 	Server pulumi.StringOutput `pulumi:"server"`
+	// Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+	ServerIdentityCheck pulumi.StringOutput `pulumi:"serverIdentityCheck"`
 	// Source IP address for communications to the RADIUS server.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
@@ -168,8 +186,12 @@ type Radius struct {
 	SsoAttributeKey pulumi.StringOutput `pulumi:"ssoAttributeKey"`
 	// Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
 	SsoAttributeValueOverride pulumi.StringOutput `pulumi:"ssoAttributeValueOverride"`
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl pulumi.IntOutput `pulumi:"statusTtl"`
 	// Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
 	SwitchControllerAcctFastFramedipDetect pulumi.IntOutput `pulumi:"switchControllerAcctFastFramedipDetect"`
+	// Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+	SwitchControllerNasIpDynamic pulumi.StringOutput `pulumi:"switchControllerNasIpDynamic"`
 	// RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
 	SwitchControllerServiceType pulumi.StringOutput `pulumi:"switchControllerServiceType"`
 	// Secret key to access the tertiary server.
@@ -178,6 +200,10 @@ type Radius struct {
 	TertiaryServer pulumi.StringOutput `pulumi:"tertiaryServer"`
 	// Time in seconds between re-sending authentication requests.
 	Timeout pulumi.IntOutput `pulumi:"timeout"`
+	// Minimum supported protocol version for TLS connections (default is to follow system global setting).
+	TlsMinProtoVersion pulumi.StringOutput `pulumi:"tlsMinProtoVersion"`
+	// Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+	TransportProtocol pulumi.StringOutput `pulumi:"transportProtocol"`
 	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
 	UseManagementVdom pulumi.StringOutput `pulumi:"useManagementVdom"`
 	// Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
@@ -239,6 +265,10 @@ func GetRadius(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Radius resources.
 type radiusState struct {
+	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyCertField *string `pulumi:"accountKeyCertField"`
+	// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+	AccountKeyProcessing *string `pulumi:"accountKeyProcessing"`
 	// Additional accounting servers. The structure of `accountingServer` block is documented below.
 	AccountingServers []RadiusAccountingServer `pulumi:"accountingServers"`
 	// Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
@@ -249,12 +279,20 @@ type radiusState struct {
 	AllUsergroup *string `pulumi:"allUsergroup"`
 	// Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `msChapV2`, `msChap`, `chap`, `pap`.
 	AuthType *string `pulumi:"authType"`
+	// CA of server to trust under TLS.
+	CaCert *string `pulumi:"caCert"`
+	// Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+	CallStationIdType *string `pulumi:"callStationIdType"`
 	// Class attribute name(s). The structure of `class` block is documented below.
 	Classes []RadiusClass `pulumi:"classes"`
+	// Client certificate to use under TLS.
+	ClientCert *string `pulumi:"clientCert"`
 	// Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
 	Delimiter *string `pulumi:"delimiter"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
 	GroupOverrideAttrType *string `pulumi:"groupOverrideAttrType"`
 	// Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
@@ -271,6 +309,10 @@ type radiusState struct {
 	MacUsernameDelimiter *string `pulumi:"macUsernameDelimiter"`
 	// RADIUS server entry name.
 	Name *string `pulumi:"name"`
+	// Custom NAS identifier.
+	NasId *string `pulumi:"nasId"`
+	// NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+	NasIdType *string `pulumi:"nasIdType"`
 	// IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
 	NasIp *string `pulumi:"nasIp"`
 	// Password encoding. Valid values: `auto`, `ISO-8859-1`.
@@ -313,6 +355,8 @@ type radiusState struct {
 	Secret *string `pulumi:"secret"`
 	// Primary RADIUS server CN domain name or IP address.
 	Server *string `pulumi:"server"`
+	// Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+	ServerIdentityCheck *string `pulumi:"serverIdentityCheck"`
 	// Source IP address for communications to the RADIUS server.
 	SourceIp *string `pulumi:"sourceIp"`
 	// RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
@@ -321,8 +365,12 @@ type radiusState struct {
 	SsoAttributeKey *string `pulumi:"ssoAttributeKey"`
 	// Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
 	SsoAttributeValueOverride *string `pulumi:"ssoAttributeValueOverride"`
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl *int `pulumi:"statusTtl"`
 	// Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
 	SwitchControllerAcctFastFramedipDetect *int `pulumi:"switchControllerAcctFastFramedipDetect"`
+	// Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+	SwitchControllerNasIpDynamic *string `pulumi:"switchControllerNasIpDynamic"`
 	// RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
 	SwitchControllerServiceType *string `pulumi:"switchControllerServiceType"`
 	// Secret key to access the tertiary server.
@@ -331,6 +379,10 @@ type radiusState struct {
 	TertiaryServer *string `pulumi:"tertiaryServer"`
 	// Time in seconds between re-sending authentication requests.
 	Timeout *int `pulumi:"timeout"`
+	// Minimum supported protocol version for TLS connections (default is to follow system global setting).
+	TlsMinProtoVersion *string `pulumi:"tlsMinProtoVersion"`
+	// Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+	TransportProtocol *string `pulumi:"transportProtocol"`
 	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
 	UseManagementVdom *string `pulumi:"useManagementVdom"`
 	// Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
@@ -340,6 +392,10 @@ type radiusState struct {
 }
 
 type RadiusState struct {
+	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyCertField pulumi.StringPtrInput
+	// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+	AccountKeyProcessing pulumi.StringPtrInput
 	// Additional accounting servers. The structure of `accountingServer` block is documented below.
 	AccountingServers RadiusAccountingServerArrayInput
 	// Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
@@ -350,12 +406,20 @@ type RadiusState struct {
 	AllUsergroup pulumi.StringPtrInput
 	// Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `msChapV2`, `msChap`, `chap`, `pap`.
 	AuthType pulumi.StringPtrInput
+	// CA of server to trust under TLS.
+	CaCert pulumi.StringPtrInput
+	// Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+	CallStationIdType pulumi.StringPtrInput
 	// Class attribute name(s). The structure of `class` block is documented below.
 	Classes RadiusClassArrayInput
+	// Client certificate to use under TLS.
+	ClientCert pulumi.StringPtrInput
 	// Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
 	Delimiter pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
 	GroupOverrideAttrType pulumi.StringPtrInput
 	// Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
@@ -372,6 +436,10 @@ type RadiusState struct {
 	MacUsernameDelimiter pulumi.StringPtrInput
 	// RADIUS server entry name.
 	Name pulumi.StringPtrInput
+	// Custom NAS identifier.
+	NasId pulumi.StringPtrInput
+	// NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+	NasIdType pulumi.StringPtrInput
 	// IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
 	NasIp pulumi.StringPtrInput
 	// Password encoding. Valid values: `auto`, `ISO-8859-1`.
@@ -414,6 +482,8 @@ type RadiusState struct {
 	Secret pulumi.StringPtrInput
 	// Primary RADIUS server CN domain name or IP address.
 	Server pulumi.StringPtrInput
+	// Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+	ServerIdentityCheck pulumi.StringPtrInput
 	// Source IP address for communications to the RADIUS server.
 	SourceIp pulumi.StringPtrInput
 	// RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
@@ -422,8 +492,12 @@ type RadiusState struct {
 	SsoAttributeKey pulumi.StringPtrInput
 	// Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
 	SsoAttributeValueOverride pulumi.StringPtrInput
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl pulumi.IntPtrInput
 	// Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
 	SwitchControllerAcctFastFramedipDetect pulumi.IntPtrInput
+	// Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+	SwitchControllerNasIpDynamic pulumi.StringPtrInput
 	// RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
 	SwitchControllerServiceType pulumi.StringPtrInput
 	// Secret key to access the tertiary server.
@@ -432,6 +506,10 @@ type RadiusState struct {
 	TertiaryServer pulumi.StringPtrInput
 	// Time in seconds between re-sending authentication requests.
 	Timeout pulumi.IntPtrInput
+	// Minimum supported protocol version for TLS connections (default is to follow system global setting).
+	TlsMinProtoVersion pulumi.StringPtrInput
+	// Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+	TransportProtocol pulumi.StringPtrInput
 	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
 	UseManagementVdom pulumi.StringPtrInput
 	// Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
@@ -445,6 +523,10 @@ func (RadiusState) ElementType() reflect.Type {
 }
 
 type radiusArgs struct {
+	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyCertField *string `pulumi:"accountKeyCertField"`
+	// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+	AccountKeyProcessing *string `pulumi:"accountKeyProcessing"`
 	// Additional accounting servers. The structure of `accountingServer` block is documented below.
 	AccountingServers []RadiusAccountingServer `pulumi:"accountingServers"`
 	// Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
@@ -455,12 +537,20 @@ type radiusArgs struct {
 	AllUsergroup *string `pulumi:"allUsergroup"`
 	// Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `msChapV2`, `msChap`, `chap`, `pap`.
 	AuthType *string `pulumi:"authType"`
+	// CA of server to trust under TLS.
+	CaCert *string `pulumi:"caCert"`
+	// Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+	CallStationIdType *string `pulumi:"callStationIdType"`
 	// Class attribute name(s). The structure of `class` block is documented below.
 	Classes []RadiusClass `pulumi:"classes"`
+	// Client certificate to use under TLS.
+	ClientCert *string `pulumi:"clientCert"`
 	// Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
 	Delimiter *string `pulumi:"delimiter"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
 	GroupOverrideAttrType *string `pulumi:"groupOverrideAttrType"`
 	// Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
@@ -477,6 +567,10 @@ type radiusArgs struct {
 	MacUsernameDelimiter *string `pulumi:"macUsernameDelimiter"`
 	// RADIUS server entry name.
 	Name *string `pulumi:"name"`
+	// Custom NAS identifier.
+	NasId *string `pulumi:"nasId"`
+	// NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+	NasIdType *string `pulumi:"nasIdType"`
 	// IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
 	NasIp *string `pulumi:"nasIp"`
 	// Password encoding. Valid values: `auto`, `ISO-8859-1`.
@@ -519,6 +613,8 @@ type radiusArgs struct {
 	Secret *string `pulumi:"secret"`
 	// Primary RADIUS server CN domain name or IP address.
 	Server *string `pulumi:"server"`
+	// Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+	ServerIdentityCheck *string `pulumi:"serverIdentityCheck"`
 	// Source IP address for communications to the RADIUS server.
 	SourceIp *string `pulumi:"sourceIp"`
 	// RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
@@ -527,8 +623,12 @@ type radiusArgs struct {
 	SsoAttributeKey *string `pulumi:"ssoAttributeKey"`
 	// Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
 	SsoAttributeValueOverride *string `pulumi:"ssoAttributeValueOverride"`
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl *int `pulumi:"statusTtl"`
 	// Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
 	SwitchControllerAcctFastFramedipDetect *int `pulumi:"switchControllerAcctFastFramedipDetect"`
+	// Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+	SwitchControllerNasIpDynamic *string `pulumi:"switchControllerNasIpDynamic"`
 	// RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
 	SwitchControllerServiceType *string `pulumi:"switchControllerServiceType"`
 	// Secret key to access the tertiary server.
@@ -537,6 +637,10 @@ type radiusArgs struct {
 	TertiaryServer *string `pulumi:"tertiaryServer"`
 	// Time in seconds between re-sending authentication requests.
 	Timeout *int `pulumi:"timeout"`
+	// Minimum supported protocol version for TLS connections (default is to follow system global setting).
+	TlsMinProtoVersion *string `pulumi:"tlsMinProtoVersion"`
+	// Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+	TransportProtocol *string `pulumi:"transportProtocol"`
 	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
 	UseManagementVdom *string `pulumi:"useManagementVdom"`
 	// Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
@@ -547,6 +651,10 @@ type radiusArgs struct {
 
 // The set of arguments for constructing a Radius resource.
 type RadiusArgs struct {
+	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyCertField pulumi.StringPtrInput
+	// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+	AccountKeyProcessing pulumi.StringPtrInput
 	// Additional accounting servers. The structure of `accountingServer` block is documented below.
 	AccountingServers RadiusAccountingServerArrayInput
 	// Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
@@ -557,12 +665,20 @@ type RadiusArgs struct {
 	AllUsergroup pulumi.StringPtrInput
 	// Authentication methods/protocols permitted for this RADIUS server. Valid values: `auto`, `msChapV2`, `msChap`, `chap`, `pap`.
 	AuthType pulumi.StringPtrInput
+	// CA of server to trust under TLS.
+	CaCert pulumi.StringPtrInput
+	// Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+	CallStationIdType pulumi.StringPtrInput
 	// Class attribute name(s). The structure of `class` block is documented below.
 	Classes RadiusClassArrayInput
+	// Client certificate to use under TLS.
+	ClientCert pulumi.StringPtrInput
 	// Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
 	Delimiter pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
 	GroupOverrideAttrType pulumi.StringPtrInput
 	// Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
@@ -579,6 +695,10 @@ type RadiusArgs struct {
 	MacUsernameDelimiter pulumi.StringPtrInput
 	// RADIUS server entry name.
 	Name pulumi.StringPtrInput
+	// Custom NAS identifier.
+	NasId pulumi.StringPtrInput
+	// NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+	NasIdType pulumi.StringPtrInput
 	// IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
 	NasIp pulumi.StringPtrInput
 	// Password encoding. Valid values: `auto`, `ISO-8859-1`.
@@ -621,6 +741,8 @@ type RadiusArgs struct {
 	Secret pulumi.StringPtrInput
 	// Primary RADIUS server CN domain name or IP address.
 	Server pulumi.StringPtrInput
+	// Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+	ServerIdentityCheck pulumi.StringPtrInput
 	// Source IP address for communications to the RADIUS server.
 	SourceIp pulumi.StringPtrInput
 	// RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `NAS-IP-Address`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Filter-Id`, `Login-IP-Host`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `Class`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Zone`, `Acct-Session-Id`, `Acct-Multi-Session-Id`.
@@ -629,8 +751,12 @@ type RadiusArgs struct {
 	SsoAttributeKey pulumi.StringPtrInput
 	// Enable/disable override old attribute value with new value for the same endpoint. Valid values: `enable`, `disable`.
 	SsoAttributeValueOverride pulumi.StringPtrInput
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl pulumi.IntPtrInput
 	// Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
 	SwitchControllerAcctFastFramedipDetect pulumi.IntPtrInput
+	// Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+	SwitchControllerNasIpDynamic pulumi.StringPtrInput
 	// RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
 	SwitchControllerServiceType pulumi.StringPtrInput
 	// Secret key to access the tertiary server.
@@ -639,6 +765,10 @@ type RadiusArgs struct {
 	TertiaryServer pulumi.StringPtrInput
 	// Time in seconds between re-sending authentication requests.
 	Timeout pulumi.IntPtrInput
+	// Minimum supported protocol version for TLS connections (default is to follow system global setting).
+	TlsMinProtoVersion pulumi.StringPtrInput
+	// Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+	TransportProtocol pulumi.StringPtrInput
 	// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
 	UseManagementVdom pulumi.StringPtrInput
 	// Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
@@ -734,6 +864,16 @@ func (o RadiusOutput) ToRadiusOutputWithContext(ctx context.Context) RadiusOutpu
 	return o
 }
 
+// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+func (o RadiusOutput) AccountKeyCertField() pulumi.StringOutput {
+	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.AccountKeyCertField }).(pulumi.StringOutput)
+}
+
+// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+func (o RadiusOutput) AccountKeyProcessing() pulumi.StringOutput {
+	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.AccountKeyProcessing }).(pulumi.StringOutput)
+}
+
 // Additional accounting servers. The structure of `accountingServer` block is documented below.
 func (o RadiusOutput) AccountingServers() RadiusAccountingServerArrayOutput {
 	return o.ApplyT(func(v *Radius) RadiusAccountingServerArrayOutput { return v.AccountingServers }).(RadiusAccountingServerArrayOutput)
@@ -759,9 +899,24 @@ func (o RadiusOutput) AuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.AuthType }).(pulumi.StringOutput)
 }
 
+// CA of server to trust under TLS.
+func (o RadiusOutput) CaCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.CaCert }).(pulumi.StringOutput)
+}
+
+// Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+func (o RadiusOutput) CallStationIdType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.CallStationIdType }).(pulumi.StringOutput)
+}
+
 // Class attribute name(s). The structure of `class` block is documented below.
 func (o RadiusOutput) Classes() RadiusClassArrayOutput {
 	return o.ApplyT(func(v *Radius) RadiusClassArrayOutput { return v.Classes }).(RadiusClassArrayOutput)
+}
+
+// Client certificate to use under TLS.
+func (o RadiusOutput) ClientCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.ClientCert }).(pulumi.StringOutput)
 }
 
 // Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
@@ -772,6 +927,11 @@ func (o RadiusOutput) Delimiter() pulumi.StringOutput {
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o RadiusOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Radius) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o RadiusOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Radius) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
@@ -812,6 +972,16 @@ func (o RadiusOutput) MacUsernameDelimiter() pulumi.StringOutput {
 // RADIUS server entry name.
 func (o RadiusOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Custom NAS identifier.
+func (o RadiusOutput) NasId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.NasId }).(pulumi.StringOutput)
+}
+
+// NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+func (o RadiusOutput) NasIdType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.NasIdType }).(pulumi.StringOutput)
 }
 
 // IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
@@ -919,6 +1089,11 @@ func (o RadiusOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
 }
 
+// Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+func (o RadiusOutput) ServerIdentityCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.ServerIdentityCheck }).(pulumi.StringOutput)
+}
+
 // Source IP address for communications to the RADIUS server.
 func (o RadiusOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
@@ -939,9 +1114,19 @@ func (o RadiusOutput) SsoAttributeValueOverride() pulumi.StringOutput {
 	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.SsoAttributeValueOverride }).(pulumi.StringOutput)
 }
 
+// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+func (o RadiusOutput) StatusTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *Radius) pulumi.IntOutput { return v.StatusTtl }).(pulumi.IntOutput)
+}
+
 // Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
 func (o RadiusOutput) SwitchControllerAcctFastFramedipDetect() pulumi.IntOutput {
 	return o.ApplyT(func(v *Radius) pulumi.IntOutput { return v.SwitchControllerAcctFastFramedipDetect }).(pulumi.IntOutput)
+}
+
+// Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+func (o RadiusOutput) SwitchControllerNasIpDynamic() pulumi.StringOutput {
+	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.SwitchControllerNasIpDynamic }).(pulumi.StringOutput)
 }
 
 // RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
@@ -962,6 +1147,16 @@ func (o RadiusOutput) TertiaryServer() pulumi.StringOutput {
 // Time in seconds between re-sending authentication requests.
 func (o RadiusOutput) Timeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Radius) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
+}
+
+// Minimum supported protocol version for TLS connections (default is to follow system global setting).
+func (o RadiusOutput) TlsMinProtoVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.TlsMinProtoVersion }).(pulumi.StringOutput)
+}
+
+// Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+func (o RadiusOutput) TransportProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.TransportProtocol }).(pulumi.StringOutput)
 }
 
 // Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.

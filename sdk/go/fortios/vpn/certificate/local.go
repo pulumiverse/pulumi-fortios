@@ -65,6 +65,22 @@ type Local struct {
 	Csr pulumi.StringOutput `pulumi:"csr"`
 	// Certificate enrollment protocol.
 	EnrollProtocol pulumi.StringOutput `pulumi:"enrollProtocol"`
+	// CA identifier of the CA server for signing via EST.
+	EstCaId pulumi.StringOutput `pulumi:"estCaId"`
+	// Certificate used to authenticate this FortiGate to EST server.
+	EstClientCert pulumi.StringOutput `pulumi:"estClientCert"`
+	// HTTP Authentication password for signing via EST.
+	EstHttpPassword pulumi.StringOutput `pulumi:"estHttpPassword"`
+	// HTTP Authentication username for signing via EST.
+	EstHttpUsername pulumi.StringOutput `pulumi:"estHttpUsername"`
+	// Address and port for EST server (e.g. https://example.com:1234).
+	EstServer pulumi.StringOutput `pulumi:"estServer"`
+	// EST server's certificate must be verifiable by this certificate to be authenticated.
+	EstServerCert pulumi.StringOutput `pulumi:"estServerCert"`
+	// EST SRP authentication password.
+	EstSrpPassword pulumi.StringOutput `pulumi:"estSrpPassword"`
+	// EST SRP authentication username.
+	EstSrpUsername pulumi.StringOutput `pulumi:"estSrpUsername"`
 	// Local ID the FortiGate uses for authentication as a VPN client.
 	IkeLocalid pulumi.StringOutput `pulumi:"ikeLocalid"`
 	// IKE local ID type. Valid values: `asn1dn`, `fqdn`.
@@ -178,6 +194,22 @@ type localState struct {
 	Csr *string `pulumi:"csr"`
 	// Certificate enrollment protocol.
 	EnrollProtocol *string `pulumi:"enrollProtocol"`
+	// CA identifier of the CA server for signing via EST.
+	EstCaId *string `pulumi:"estCaId"`
+	// Certificate used to authenticate this FortiGate to EST server.
+	EstClientCert *string `pulumi:"estClientCert"`
+	// HTTP Authentication password for signing via EST.
+	EstHttpPassword *string `pulumi:"estHttpPassword"`
+	// HTTP Authentication username for signing via EST.
+	EstHttpUsername *string `pulumi:"estHttpUsername"`
+	// Address and port for EST server (e.g. https://example.com:1234).
+	EstServer *string `pulumi:"estServer"`
+	// EST server's certificate must be verifiable by this certificate to be authenticated.
+	EstServerCert *string `pulumi:"estServerCert"`
+	// EST SRP authentication password.
+	EstSrpPassword *string `pulumi:"estSrpPassword"`
+	// EST SRP authentication username.
+	EstSrpUsername *string `pulumi:"estSrpUsername"`
 	// Local ID the FortiGate uses for authentication as a VPN client.
 	IkeLocalid *string `pulumi:"ikeLocalid"`
 	// IKE local ID type. Valid values: `asn1dn`, `fqdn`.
@@ -243,6 +275,22 @@ type LocalState struct {
 	Csr pulumi.StringPtrInput
 	// Certificate enrollment protocol.
 	EnrollProtocol pulumi.StringPtrInput
+	// CA identifier of the CA server for signing via EST.
+	EstCaId pulumi.StringPtrInput
+	// Certificate used to authenticate this FortiGate to EST server.
+	EstClientCert pulumi.StringPtrInput
+	// HTTP Authentication password for signing via EST.
+	EstHttpPassword pulumi.StringPtrInput
+	// HTTP Authentication username for signing via EST.
+	EstHttpUsername pulumi.StringPtrInput
+	// Address and port for EST server (e.g. https://example.com:1234).
+	EstServer pulumi.StringPtrInput
+	// EST server's certificate must be verifiable by this certificate to be authenticated.
+	EstServerCert pulumi.StringPtrInput
+	// EST SRP authentication password.
+	EstSrpPassword pulumi.StringPtrInput
+	// EST SRP authentication username.
+	EstSrpUsername pulumi.StringPtrInput
 	// Local ID the FortiGate uses for authentication as a VPN client.
 	IkeLocalid pulumi.StringPtrInput
 	// IKE local ID type. Valid values: `asn1dn`, `fqdn`.
@@ -312,6 +360,22 @@ type localArgs struct {
 	Csr *string `pulumi:"csr"`
 	// Certificate enrollment protocol.
 	EnrollProtocol *string `pulumi:"enrollProtocol"`
+	// CA identifier of the CA server for signing via EST.
+	EstCaId *string `pulumi:"estCaId"`
+	// Certificate used to authenticate this FortiGate to EST server.
+	EstClientCert *string `pulumi:"estClientCert"`
+	// HTTP Authentication password for signing via EST.
+	EstHttpPassword *string `pulumi:"estHttpPassword"`
+	// HTTP Authentication username for signing via EST.
+	EstHttpUsername *string `pulumi:"estHttpUsername"`
+	// Address and port for EST server (e.g. https://example.com:1234).
+	EstServer *string `pulumi:"estServer"`
+	// EST server's certificate must be verifiable by this certificate to be authenticated.
+	EstServerCert *string `pulumi:"estServerCert"`
+	// EST SRP authentication password.
+	EstSrpPassword *string `pulumi:"estSrpPassword"`
+	// EST SRP authentication username.
+	EstSrpUsername *string `pulumi:"estSrpUsername"`
 	// Local ID the FortiGate uses for authentication as a VPN client.
 	IkeLocalid *string `pulumi:"ikeLocalid"`
 	// IKE local ID type. Valid values: `asn1dn`, `fqdn`.
@@ -378,6 +442,22 @@ type LocalArgs struct {
 	Csr pulumi.StringPtrInput
 	// Certificate enrollment protocol.
 	EnrollProtocol pulumi.StringPtrInput
+	// CA identifier of the CA server for signing via EST.
+	EstCaId pulumi.StringPtrInput
+	// Certificate used to authenticate this FortiGate to EST server.
+	EstClientCert pulumi.StringPtrInput
+	// HTTP Authentication password for signing via EST.
+	EstHttpPassword pulumi.StringPtrInput
+	// HTTP Authentication username for signing via EST.
+	EstHttpUsername pulumi.StringPtrInput
+	// Address and port for EST server (e.g. https://example.com:1234).
+	EstServer pulumi.StringPtrInput
+	// EST server's certificate must be verifiable by this certificate to be authenticated.
+	EstServerCert pulumi.StringPtrInput
+	// EST SRP authentication password.
+	EstSrpPassword pulumi.StringPtrInput
+	// EST SRP authentication username.
+	EstSrpUsername pulumi.StringPtrInput
 	// Local ID the FortiGate uses for authentication as a VPN client.
 	IkeLocalid pulumi.StringPtrInput
 	// IKE local ID type. Valid values: `asn1dn`, `fqdn`.
@@ -575,6 +655,46 @@ func (o LocalOutput) Csr() pulumi.StringOutput {
 // Certificate enrollment protocol.
 func (o LocalOutput) EnrollProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EnrollProtocol }).(pulumi.StringOutput)
+}
+
+// CA identifier of the CA server for signing via EST.
+func (o LocalOutput) EstCaId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstCaId }).(pulumi.StringOutput)
+}
+
+// Certificate used to authenticate this FortiGate to EST server.
+func (o LocalOutput) EstClientCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstClientCert }).(pulumi.StringOutput)
+}
+
+// HTTP Authentication password for signing via EST.
+func (o LocalOutput) EstHttpPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstHttpPassword }).(pulumi.StringOutput)
+}
+
+// HTTP Authentication username for signing via EST.
+func (o LocalOutput) EstHttpUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstHttpUsername }).(pulumi.StringOutput)
+}
+
+// Address and port for EST server (e.g. https://example.com:1234).
+func (o LocalOutput) EstServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstServer }).(pulumi.StringOutput)
+}
+
+// EST server's certificate must be verifiable by this certificate to be authenticated.
+func (o LocalOutput) EstServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstServerCert }).(pulumi.StringOutput)
+}
+
+// EST SRP authentication password.
+func (o LocalOutput) EstSrpPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstSrpPassword }).(pulumi.StringOutput)
+}
+
+// EST SRP authentication username.
+func (o LocalOutput) EstSrpUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.EstSrpUsername }).(pulumi.StringOutput)
 }
 
 // Local ID the FortiGate uses for authentication as a VPN client.

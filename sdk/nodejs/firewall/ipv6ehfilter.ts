@@ -84,7 +84,7 @@ export class Ipv6ehfilter extends pulumi.CustomResource {
      */
     public readonly fragment!: pulumi.Output<string>;
     /**
-     * Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+     * Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
      */
     public readonly hdoptType!: pulumi.Output<number>;
     /**
@@ -164,7 +164,7 @@ export interface Ipv6ehfilterState {
      */
     fragment?: pulumi.Input<string>;
     /**
-     * Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+     * Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
      */
     hdoptType?: pulumi.Input<number>;
     /**
@@ -206,7 +206,7 @@ export interface Ipv6ehfilterArgs {
      */
     fragment?: pulumi.Input<string>;
     /**
-     * Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+     * Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
      */
     hdoptType?: pulumi.Input<number>;
     /**

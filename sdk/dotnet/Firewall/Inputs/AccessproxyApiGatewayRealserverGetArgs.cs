@@ -32,6 +32,12 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? Domain { get; set; }
 
         /// <summary>
+        /// Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("externalAuth")]
+        public Input<string>? ExternalAuth { get; set; }
+
+        /// <summary>
         /// Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("healthCheck")]
@@ -108,6 +114,18 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("translateHost")]
+        public Input<string>? TranslateHost { get; set; }
+
+        /// <summary>
+        /// Tunnel encryption. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("tunnelEncryption")]
+        public Input<string>? TunnelEncryption { get; set; }
 
         /// <summary>
         /// TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.

@@ -90,6 +90,10 @@ export class Contentdeliverynetworkrule extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Suffix portion of the fully qualified domain name (eg. fortinet.com in "www.fortinet.com"). The structure of `hostDomainNameSuffix` block is documented below.
      */
     public readonly hostDomainNameSuffixes!: pulumi.Output<outputs.wanopt.ContentdeliverynetworkruleHostDomainNameSuffix[] | undefined>;
@@ -146,6 +150,7 @@ export class Contentdeliverynetworkrule extends pulumi.CustomResource {
             resourceInputs["category"] = state ? state.category : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hostDomainNameSuffixes"] = state ? state.hostDomainNameSuffixes : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["requestCacheControl"] = state ? state.requestCacheControl : undefined;
@@ -161,6 +166,7 @@ export class Contentdeliverynetworkrule extends pulumi.CustomResource {
             resourceInputs["category"] = args ? args.category : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hostDomainNameSuffixes"] = args ? args.hostDomainNameSuffixes : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["requestCacheControl"] = args ? args.requestCacheControl : undefined;
@@ -193,6 +199,10 @@ export interface ContentdeliverynetworkruleState {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Suffix portion of the fully qualified domain name (eg. fortinet.com in "www.fortinet.com"). The structure of `hostDomainNameSuffix` block is documented below.
      */
@@ -251,6 +261,10 @@ export interface ContentdeliverynetworkruleArgs {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Suffix portion of the fully qualified domain name (eg. fortinet.com in "www.fortinet.com"). The structure of `hostDomainNameSuffix` block is documented below.
      */

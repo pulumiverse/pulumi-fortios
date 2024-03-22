@@ -19,7 +19,7 @@ namespace Pulumiverse.Fortios.Icap.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// Optionally assign a weight of the ICAP server for weighted load balancing (1 - 100, default = 10)
+        /// Optionally assign a weight of the forwarding server for weighted load balancing (1 - 100, default = 10).
         /// </summary>
         public readonly int? Weight;
 

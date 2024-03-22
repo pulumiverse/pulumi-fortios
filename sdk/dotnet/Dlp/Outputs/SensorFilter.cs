@@ -27,7 +27,7 @@ namespace Pulumiverse.Fortios.Dlp.Outputs
         /// </summary>
         public readonly string? CompanyIdentifier;
         /// <summary>
-        /// Quarantine duration in days, hours, minutes format (dddhhmm).
+        /// Quarantine duration in days, hours, minutes (format = dddhhmm).
         /// </summary>
         public readonly string? Expiry;
         /// <summary>

@@ -26,7 +26,9 @@ class DnsArgs:
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input['DnsDomainArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fqdn_cache_ttl: Optional[pulumi.Input[int]] = None,
+                 fqdn_max_refresh: Optional[pulumi.Input[int]] = None,
                  fqdn_min_refresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ip6_primary: Optional[pulumi.Input[str]] = None,
@@ -53,7 +55,9 @@ class DnsArgs:
         :param pulumi.Input[Sequence[pulumi.Input['DnsDomainArgs']]] domains: Search suffix list for hostname lookup. The structure of `domain` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fqdn_cache_ttl: FQDN cache time to live in seconds (0 - 86400, default = 0).
+        :param pulumi.Input[int] fqdn_max_refresh: FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
         :param pulumi.Input[int] fqdn_min_refresh: FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary DNS server IPv6 address.
@@ -88,8 +92,12 @@ class DnsArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fqdn_cache_ttl is not None:
             pulumi.set(__self__, "fqdn_cache_ttl", fqdn_cache_ttl)
+        if fqdn_max_refresh is not None:
+            pulumi.set(__self__, "fqdn_max_refresh", fqdn_max_refresh)
         if fqdn_min_refresh is not None:
             pulumi.set(__self__, "fqdn_min_refresh", fqdn_min_refresh)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -240,6 +248,18 @@ class DnsArgs:
         pulumi.set(self, "fqdn_cache_ttl", value)
 
     @property
+    @pulumi.getter(name="fqdnMaxRefresh")
+    def fqdn_max_refresh(self) -> Optional[pulumi.Input[int]]:
+        """
+        FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+        """
+        return pulumi.get(self, "fqdn_max_refresh")
+
+    @fqdn_max_refresh.setter
+    def fqdn_max_refresh(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fqdn_max_refresh", value)
+
+    @property
     @pulumi.getter(name="fqdnMinRefresh")
     def fqdn_min_refresh(self) -> Optional[pulumi.Input[int]]:
         """
@@ -250,6 +270,18 @@ class DnsArgs:
     @fqdn_min_refresh.setter
     def fqdn_min_refresh(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fqdn_min_refresh", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -432,7 +464,9 @@ class _DnsState:
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input['DnsDomainArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fqdn_cache_ttl: Optional[pulumi.Input[int]] = None,
+                 fqdn_max_refresh: Optional[pulumi.Input[int]] = None,
                  fqdn_min_refresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ip6_primary: Optional[pulumi.Input[str]] = None,
@@ -459,7 +493,9 @@ class _DnsState:
         :param pulumi.Input[Sequence[pulumi.Input['DnsDomainArgs']]] domains: Search suffix list for hostname lookup. The structure of `domain` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fqdn_cache_ttl: FQDN cache time to live in seconds (0 - 86400, default = 0).
+        :param pulumi.Input[int] fqdn_max_refresh: FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
         :param pulumi.Input[int] fqdn_min_refresh: FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary DNS server IPv6 address.
@@ -494,8 +530,12 @@ class _DnsState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fqdn_cache_ttl is not None:
             pulumi.set(__self__, "fqdn_cache_ttl", fqdn_cache_ttl)
+        if fqdn_max_refresh is not None:
+            pulumi.set(__self__, "fqdn_max_refresh", fqdn_max_refresh)
         if fqdn_min_refresh is not None:
             pulumi.set(__self__, "fqdn_min_refresh", fqdn_min_refresh)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -636,6 +676,18 @@ class _DnsState:
         pulumi.set(self, "fqdn_cache_ttl", value)
 
     @property
+    @pulumi.getter(name="fqdnMaxRefresh")
+    def fqdn_max_refresh(self) -> Optional[pulumi.Input[int]]:
+        """
+        FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+        """
+        return pulumi.get(self, "fqdn_max_refresh")
+
+    @fqdn_max_refresh.setter
+    def fqdn_max_refresh(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fqdn_max_refresh", value)
+
+    @property
     @pulumi.getter(name="fqdnMinRefresh")
     def fqdn_min_refresh(self) -> Optional[pulumi.Input[int]]:
         """
@@ -646,6 +698,18 @@ class _DnsState:
     @fqdn_min_refresh.setter
     def fqdn_min_refresh(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fqdn_min_refresh", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -842,7 +906,9 @@ class Dns(pulumi.CustomResource):
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsDomainArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fqdn_cache_ttl: Optional[pulumi.Input[int]] = None,
+                 fqdn_max_refresh: Optional[pulumi.Input[int]] = None,
                  fqdn_min_refresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ip6_primary: Optional[pulumi.Input[str]] = None,
@@ -912,7 +978,9 @@ class Dns(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsDomainArgs']]]] domains: Search suffix list for hostname lookup. The structure of `domain` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fqdn_cache_ttl: FQDN cache time to live in seconds (0 - 86400, default = 0).
+        :param pulumi.Input[int] fqdn_max_refresh: FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
         :param pulumi.Input[int] fqdn_min_refresh: FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary DNS server IPv6 address.
@@ -1001,7 +1069,9 @@ class Dns(pulumi.CustomResource):
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsDomainArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fqdn_cache_ttl: Optional[pulumi.Input[int]] = None,
+                 fqdn_max_refresh: Optional[pulumi.Input[int]] = None,
                  fqdn_min_refresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ip6_primary: Optional[pulumi.Input[str]] = None,
@@ -1035,7 +1105,9 @@ class Dns(pulumi.CustomResource):
             __props__.__dict__["domains"] = domains
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fqdn_cache_ttl"] = fqdn_cache_ttl
+            __props__.__dict__["fqdn_max_refresh"] = fqdn_max_refresh
             __props__.__dict__["fqdn_min_refresh"] = fqdn_min_refresh
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
             __props__.__dict__["ip6_primary"] = ip6_primary
@@ -1072,7 +1144,9 @@ class Dns(pulumi.CustomResource):
             domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsDomainArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fqdn_cache_ttl: Optional[pulumi.Input[int]] = None,
+            fqdn_max_refresh: Optional[pulumi.Input[int]] = None,
             fqdn_min_refresh: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
             ip6_primary: Optional[pulumi.Input[str]] = None,
@@ -1104,7 +1178,9 @@ class Dns(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsDomainArgs']]]] domains: Search suffix list for hostname lookup. The structure of `domain` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fqdn_cache_ttl: FQDN cache time to live in seconds (0 - 86400, default = 0).
+        :param pulumi.Input[int] fqdn_max_refresh: FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
         :param pulumi.Input[int] fqdn_min_refresh: FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary DNS server IPv6 address.
@@ -1134,7 +1210,9 @@ class Dns(pulumi.CustomResource):
         __props__.__dict__["domains"] = domains
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fqdn_cache_ttl"] = fqdn_cache_ttl
+        __props__.__dict__["fqdn_max_refresh"] = fqdn_max_refresh
         __props__.__dict__["fqdn_min_refresh"] = fqdn_min_refresh
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
         __props__.__dict__["ip6_primary"] = ip6_primary
@@ -1225,12 +1303,28 @@ class Dns(pulumi.CustomResource):
         return pulumi.get(self, "fqdn_cache_ttl")
 
     @property
+    @pulumi.getter(name="fqdnMaxRefresh")
+    def fqdn_max_refresh(self) -> pulumi.Output[int]:
+        """
+        FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+        """
+        return pulumi.get(self, "fqdn_max_refresh")
+
+    @property
     @pulumi.getter(name="fqdnMinRefresh")
     def fqdn_min_refresh(self) -> pulumi.Output[int]:
         """
         FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
         """
         return pulumi.get(self, "fqdn_min_refresh")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

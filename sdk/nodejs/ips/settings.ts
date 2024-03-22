@@ -86,6 +86,10 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly packetLogPostAttack!: pulumi.Output<number>;
     /**
+     * Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+     */
+    public readonly proxyInlineIps!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -107,6 +111,7 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["packetLogHistory"] = state ? state.packetLogHistory : undefined;
             resourceInputs["packetLogMemory"] = state ? state.packetLogMemory : undefined;
             resourceInputs["packetLogPostAttack"] = state ? state.packetLogPostAttack : undefined;
+            resourceInputs["proxyInlineIps"] = state ? state.proxyInlineIps : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SettingsArgs | undefined;
@@ -114,6 +119,7 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["packetLogHistory"] = args ? args.packetLogHistory : undefined;
             resourceInputs["packetLogMemory"] = args ? args.packetLogMemory : undefined;
             resourceInputs["packetLogPostAttack"] = args ? args.packetLogPostAttack : undefined;
+            resourceInputs["proxyInlineIps"] = args ? args.proxyInlineIps : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -142,6 +148,10 @@ export interface SettingsState {
      */
     packetLogPostAttack?: pulumi.Input<number>;
     /**
+     * Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+     */
+    proxyInlineIps?: pulumi.Input<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
@@ -167,6 +177,10 @@ export interface SettingsArgs {
      * Number of packets to log after the IPS signature is detected (0 - 255).
      */
     packetLogPostAttack?: pulumi.Input<number>;
+    /**
+     * Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+     */
+    proxyInlineIps?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

@@ -96,6 +96,12 @@ namespace Pulumiverse.Fortios.System
         public Output<int> AntispamCacheMpercent { get; private set; } = null!;
 
         /// <summary>
+        /// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+        /// </summary>
+        [Output("antispamCacheMpermille")]
+        public Output<int> AntispamCacheMpermille { get; private set; } = null!;
+
+        /// <summary>
         /// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         /// </summary>
         [Output("antispamCacheTtl")]
@@ -150,6 +156,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> AutoFirmwareUpgradeDay { get; private set; } = null!;
 
         /// <summary>
+        /// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+        /// </summary>
+        [Output("autoFirmwareUpgradeDelay")]
+        public Output<int> AutoFirmwareUpgradeDelay { get; private set; } = null!;
+
+        /// <summary>
         /// End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
         /// </summary>
         [Output("autoFirmwareUpgradeEndHour")]
@@ -186,6 +198,12 @@ namespace Pulumiverse.Fortios.System
         public Output<int> DdnsServerPort { get; private set; } = null!;
 
         /// <summary>
+        /// Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+        /// </summary>
+        [Output("fdsLicenseExpiringDays")]
+        public Output<int> FdsLicenseExpiringDays { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("fortiguardAnycast")]
@@ -196,6 +214,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("fortiguardAnycastSource")]
         public Output<string> FortiguardAnycastSource { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("guiPromptAutoUpgrade")]
+        public Output<string> GuiPromptAutoUpgrade { get; private set; } = null!;
 
         /// <summary>
         /// Specify outgoing interface to reach server.
@@ -226,6 +250,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("outbreakPreventionCacheMpercent")]
         public Output<int> OutbreakPreventionCacheMpercent { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+        /// </summary>
+        [Output("outbreakPreventionCacheMpermille")]
+        public Output<int> OutbreakPreventionCacheMpermille { get; private set; } = null!;
 
         /// <summary>
         /// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
@@ -352,6 +382,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("updateBuildProxy")]
         public Output<string> UpdateBuildProxy { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("updateDldb")]
+        public Output<string> UpdateDldb { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable external resource update. Valid values: `enable`, `disable`.
@@ -501,6 +537,12 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? AntispamCacheMpercent { get; set; }
 
         /// <summary>
+        /// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+        /// </summary>
+        [Input("antispamCacheMpermille")]
+        public Input<int>? AntispamCacheMpermille { get; set; }
+
+        /// <summary>
         /// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         /// </summary>
         [Input("antispamCacheTtl")]
@@ -555,6 +597,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? AutoFirmwareUpgradeDay { get; set; }
 
         /// <summary>
+        /// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+        /// </summary>
+        [Input("autoFirmwareUpgradeDelay")]
+        public Input<int>? AutoFirmwareUpgradeDelay { get; set; }
+
+        /// <summary>
         /// End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
         /// </summary>
         [Input("autoFirmwareUpgradeEndHour")]
@@ -591,6 +639,12 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? DdnsServerPort { get; set; }
 
         /// <summary>
+        /// Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+        /// </summary>
+        [Input("fdsLicenseExpiringDays")]
+        public Input<int>? FdsLicenseExpiringDays { get; set; }
+
+        /// <summary>
         /// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("fortiguardAnycast")]
@@ -601,6 +655,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("fortiguardAnycastSource")]
         public Input<string>? FortiguardAnycastSource { get; set; }
+
+        /// <summary>
+        /// Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiPromptAutoUpgrade")]
+        public Input<string>? GuiPromptAutoUpgrade { get; set; }
 
         /// <summary>
         /// Specify outgoing interface to reach server.
@@ -631,6 +691,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("outbreakPreventionCacheMpercent")]
         public Input<int>? OutbreakPreventionCacheMpercent { get; set; }
+
+        /// <summary>
+        /// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+        /// </summary>
+        [Input("outbreakPreventionCacheMpermille")]
+        public Input<int>? OutbreakPreventionCacheMpermille { get; set; }
 
         /// <summary>
         /// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
@@ -769,6 +835,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? UpdateBuildProxy { get; set; }
 
         /// <summary>
+        /// Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("updateDldb")]
+        public Input<string>? UpdateDldb { get; set; }
+
+        /// <summary>
         /// Enable/disable external resource update. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("updateExtdb")]
@@ -873,6 +945,12 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? AntispamCacheMpercent { get; set; }
 
         /// <summary>
+        /// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+        /// </summary>
+        [Input("antispamCacheMpermille")]
+        public Input<int>? AntispamCacheMpermille { get; set; }
+
+        /// <summary>
         /// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         /// </summary>
         [Input("antispamCacheTtl")]
@@ -927,6 +1005,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? AutoFirmwareUpgradeDay { get; set; }
 
         /// <summary>
+        /// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+        /// </summary>
+        [Input("autoFirmwareUpgradeDelay")]
+        public Input<int>? AutoFirmwareUpgradeDelay { get; set; }
+
+        /// <summary>
         /// End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
         /// </summary>
         [Input("autoFirmwareUpgradeEndHour")]
@@ -963,6 +1047,12 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? DdnsServerPort { get; set; }
 
         /// <summary>
+        /// Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+        /// </summary>
+        [Input("fdsLicenseExpiringDays")]
+        public Input<int>? FdsLicenseExpiringDays { get; set; }
+
+        /// <summary>
         /// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("fortiguardAnycast")]
@@ -973,6 +1063,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("fortiguardAnycastSource")]
         public Input<string>? FortiguardAnycastSource { get; set; }
+
+        /// <summary>
+        /// Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("guiPromptAutoUpgrade")]
+        public Input<string>? GuiPromptAutoUpgrade { get; set; }
 
         /// <summary>
         /// Specify outgoing interface to reach server.
@@ -1003,6 +1099,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("outbreakPreventionCacheMpercent")]
         public Input<int>? OutbreakPreventionCacheMpercent { get; set; }
+
+        /// <summary>
+        /// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+        /// </summary>
+        [Input("outbreakPreventionCacheMpermille")]
+        public Input<int>? OutbreakPreventionCacheMpermille { get; set; }
 
         /// <summary>
         /// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
@@ -1139,6 +1241,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("updateBuildProxy")]
         public Input<string>? UpdateBuildProxy { get; set; }
+
+        /// <summary>
+        /// Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("updateDldb")]
+        public Input<string>? UpdateDldb { get; set; }
 
         /// <summary>
         /// Enable/disable external resource update. Valid values: `enable`, `disable`.

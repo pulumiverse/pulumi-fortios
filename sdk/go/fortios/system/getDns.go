@@ -46,6 +46,8 @@ type LookupDnsResult struct {
 	Domains []GetDnsDomain `pulumi:"domains"`
 	// FQDN cache time to live in seconds (0 - 86400, default = 0).
 	FqdnCacheTtl int `pulumi:"fqdnCacheTtl"`
+	// FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+	FqdnMaxRefresh int `pulumi:"fqdnMaxRefresh"`
 	// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
 	FqdnMinRefresh int `pulumi:"fqdnMinRefresh"`
 	// The provider-assigned unique ID for this managed resource.
@@ -157,6 +159,11 @@ func (o LookupDnsResultOutput) Domains() GetDnsDomainArrayOutput {
 // FQDN cache time to live in seconds (0 - 86400, default = 0).
 func (o LookupDnsResultOutput) FqdnCacheTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupDnsResult) int { return v.FqdnCacheTtl }).(pulumi.IntOutput)
+}
+
+// FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+func (o LookupDnsResultOutput) FqdnMaxRefresh() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupDnsResult) int { return v.FqdnMaxRefresh }).(pulumi.IntOutput)
 }
 
 // FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).

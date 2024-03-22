@@ -34,6 +34,7 @@ class DdnsArgs:
                  ddns_zone: Optional[pulumi.Input[str]] = None,
                  ddnsid: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  update_interval: Optional[pulumi.Input[int]] = None,
@@ -59,6 +60,7 @@ class DdnsArgs:
         :param pulumi.Input[str] ddns_zone: Zone of your domain name (for example, DDNS.com).
         :param pulumi.Input[int] ddnsid: DDNS ID.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] server_type: Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
         :param pulumi.Input[int] update_interval: DDNS update interval (60 - 2592000 sec, default = 300).
@@ -99,6 +101,8 @@ class DdnsArgs:
             pulumi.set(__self__, "ddnsid", ddnsid)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if server_type is not None:
             pulumi.set(__self__, "server_type", server_type)
         if ssl_certificate is not None:
@@ -327,6 +331,18 @@ class DdnsArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="serverType")
     def server_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -407,6 +423,7 @@ class _DdnsState:
                  ddns_zone: Optional[pulumi.Input[str]] = None,
                  ddnsid: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  monitor_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['DdnsMonitorInterfaceArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
@@ -432,6 +449,7 @@ class _DdnsState:
         :param pulumi.Input[str] ddns_zone: Zone of your domain name (for example, DDNS.com).
         :param pulumi.Input[int] ddnsid: DDNS ID.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['DdnsMonitorInterfaceArgs']]] monitor_interfaces: Monitored interface. The structure of `monitor_interface` block is documented below.
         :param pulumi.Input[str] server_type: Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
@@ -473,6 +491,8 @@ class _DdnsState:
             pulumi.set(__self__, "ddnsid", ddnsid)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if monitor_interfaces is not None:
             pulumi.set(__self__, "monitor_interfaces", monitor_interfaces)
         if server_type is not None:
@@ -691,6 +711,18 @@ class _DdnsState:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="monitorInterfaces")
     def monitor_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DdnsMonitorInterfaceArgs']]]]:
         """
@@ -785,6 +817,7 @@ class Ddns(pulumi.CustomResource):
                  ddns_zone: Optional[pulumi.Input[str]] = None,
                  ddnsid: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  monitor_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DdnsMonitorInterfaceArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
@@ -859,6 +892,7 @@ class Ddns(pulumi.CustomResource):
         :param pulumi.Input[str] ddns_zone: Zone of your domain name (for example, DDNS.com).
         :param pulumi.Input[int] ddnsid: DDNS ID.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DdnsMonitorInterfaceArgs']]]] monitor_interfaces: Monitored interface. The structure of `monitor_interface` block is documented below.
         :param pulumi.Input[str] server_type: Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
@@ -952,6 +986,7 @@ class Ddns(pulumi.CustomResource):
                  ddns_zone: Optional[pulumi.Input[str]] = None,
                  ddnsid: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  monitor_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DdnsMonitorInterfaceArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
@@ -986,6 +1021,7 @@ class Ddns(pulumi.CustomResource):
             __props__.__dict__["ddns_zone"] = ddns_zone
             __props__.__dict__["ddnsid"] = ddnsid
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if monitor_interfaces is None and not opts.urn:
                 raise TypeError("Missing required property 'monitor_interfaces'")
             __props__.__dict__["monitor_interfaces"] = monitor_interfaces
@@ -1023,6 +1059,7 @@ class Ddns(pulumi.CustomResource):
             ddns_zone: Optional[pulumi.Input[str]] = None,
             ddnsid: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             monitor_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DdnsMonitorInterfaceArgs']]]]] = None,
             server_type: Optional[pulumi.Input[str]] = None,
             ssl_certificate: Optional[pulumi.Input[str]] = None,
@@ -1053,6 +1090,7 @@ class Ddns(pulumi.CustomResource):
         :param pulumi.Input[str] ddns_zone: Zone of your domain name (for example, DDNS.com).
         :param pulumi.Input[int] ddnsid: DDNS ID.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DdnsMonitorInterfaceArgs']]]] monitor_interfaces: Monitored interface. The structure of `monitor_interface` block is documented below.
         :param pulumi.Input[str] server_type: Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
@@ -1081,6 +1119,7 @@ class Ddns(pulumi.CustomResource):
         __props__.__dict__["ddns_zone"] = ddns_zone
         __props__.__dict__["ddnsid"] = ddnsid
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["monitor_interfaces"] = monitor_interfaces
         __props__.__dict__["server_type"] = server_type
         __props__.__dict__["ssl_certificate"] = ssl_certificate
@@ -1224,6 +1263,14 @@ class Ddns(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="monitorInterfaces")

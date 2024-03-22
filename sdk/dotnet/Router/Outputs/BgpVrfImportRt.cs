@@ -15,7 +15,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
     public sealed class BgpVrfImportRt
     {
         /// <summary>
-        /// Attribute: AA|AA:NN.
+        /// Attribute: AA:NN|A.B.C.D:NN
         /// </summary>
         public readonly string? RouteTarget;
 

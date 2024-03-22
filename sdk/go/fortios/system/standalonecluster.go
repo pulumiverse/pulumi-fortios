@@ -33,12 +33,16 @@ import (
 type Standalonecluster struct {
 	pulumi.CustomResourceState
 
+	// Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+	AsymmetricTrafficControl pulumi.StringOutput `pulumi:"asymmetricTrafficControl"`
 	// Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `clusterPeer` block is documented below.
 	ClusterPeers StandaloneclusterClusterPeerArrayOutput `pulumi:"clusterPeers"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
 	Encryption pulumi.StringOutput `pulumi:"encryption"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Cluster member ID (0 - 3).
 	GroupMemberId pulumi.IntOutput `pulumi:"groupMemberId"`
 	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
@@ -90,12 +94,16 @@ func GetStandalonecluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Standalonecluster resources.
 type standaloneclusterState struct {
+	// Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+	AsymmetricTrafficControl *string `pulumi:"asymmetricTrafficControl"`
 	// Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `clusterPeer` block is documented below.
 	ClusterPeers []StandaloneclusterClusterPeer `pulumi:"clusterPeers"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
 	Encryption *string `pulumi:"encryption"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Cluster member ID (0 - 3).
 	GroupMemberId *int `pulumi:"groupMemberId"`
 	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
@@ -111,12 +119,16 @@ type standaloneclusterState struct {
 }
 
 type StandaloneclusterState struct {
+	// Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+	AsymmetricTrafficControl pulumi.StringPtrInput
 	// Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `clusterPeer` block is documented below.
 	ClusterPeers StandaloneclusterClusterPeerArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
 	Encryption pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Cluster member ID (0 - 3).
 	GroupMemberId pulumi.IntPtrInput
 	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
@@ -136,12 +148,16 @@ func (StandaloneclusterState) ElementType() reflect.Type {
 }
 
 type standaloneclusterArgs struct {
+	// Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+	AsymmetricTrafficControl *string `pulumi:"asymmetricTrafficControl"`
 	// Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `clusterPeer` block is documented below.
 	ClusterPeers []StandaloneclusterClusterPeer `pulumi:"clusterPeers"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
 	Encryption *string `pulumi:"encryption"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Cluster member ID (0 - 3).
 	GroupMemberId *int `pulumi:"groupMemberId"`
 	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
@@ -158,12 +174,16 @@ type standaloneclusterArgs struct {
 
 // The set of arguments for constructing a Standalonecluster resource.
 type StandaloneclusterArgs struct {
+	// Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+	AsymmetricTrafficControl pulumi.StringPtrInput
 	// Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `clusterPeer` block is documented below.
 	ClusterPeers StandaloneclusterClusterPeerArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
 	Encryption pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Cluster member ID (0 - 3).
 	GroupMemberId pulumi.IntPtrInput
 	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
@@ -265,6 +285,11 @@ func (o StandaloneclusterOutput) ToStandaloneclusterOutputWithContext(ctx contex
 	return o
 }
 
+// Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+func (o StandaloneclusterOutput) AsymmetricTrafficControl() pulumi.StringOutput {
+	return o.ApplyT(func(v *Standalonecluster) pulumi.StringOutput { return v.AsymmetricTrafficControl }).(pulumi.StringOutput)
+}
+
 // Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `clusterPeer` block is documented below.
 func (o StandaloneclusterOutput) ClusterPeers() StandaloneclusterClusterPeerArrayOutput {
 	return o.ApplyT(func(v *Standalonecluster) StandaloneclusterClusterPeerArrayOutput { return v.ClusterPeers }).(StandaloneclusterClusterPeerArrayOutput)
@@ -278,6 +303,11 @@ func (o StandaloneclusterOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
 func (o StandaloneclusterOutput) Encryption() pulumi.StringOutput {
 	return o.ApplyT(func(v *Standalonecluster) pulumi.StringOutput { return v.Encryption }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o StandaloneclusterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Standalonecluster) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Cluster member ID (0 - 3).

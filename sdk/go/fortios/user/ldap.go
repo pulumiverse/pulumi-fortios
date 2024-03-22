@@ -77,10 +77,14 @@ import (
 type Ldap struct {
 	pulumi.CustomResourceState
 
+	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyCertField pulumi.StringOutput `pulumi:"accountKeyCertField"`
 	// Account key filter, using the UPN as the search filter.
 	AccountKeyFilter pulumi.StringOutput `pulumi:"accountKeyFilter"`
 	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 	AccountKeyProcessing pulumi.StringOutput `pulumi:"accountKeyProcessing"`
+	// Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyUpnSan pulumi.StringOutput `pulumi:"accountKeyUpnSan"`
 	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
 	Antiphish pulumi.StringOutput `pulumi:"antiphish"`
 	// CA certificate name.
@@ -135,7 +139,7 @@ type Ldap struct {
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Source port to be used for communication with the LDAP server.
 	SourcePort pulumi.IntOutput `pulumi:"sourcePort"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
 	// Tertiary LDAP server CN domain name or IP.
 	TertiaryServer pulumi.StringOutput `pulumi:"tertiaryServer"`
@@ -200,10 +204,14 @@ func GetLdap(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Ldap resources.
 type ldapState struct {
+	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyCertField *string `pulumi:"accountKeyCertField"`
 	// Account key filter, using the UPN as the search filter.
 	AccountKeyFilter *string `pulumi:"accountKeyFilter"`
 	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 	AccountKeyProcessing *string `pulumi:"accountKeyProcessing"`
+	// Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyUpnSan *string `pulumi:"accountKeyUpnSan"`
 	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
 	Antiphish *string `pulumi:"antiphish"`
 	// CA certificate name.
@@ -258,7 +266,7 @@ type ldapState struct {
 	SourceIp *string `pulumi:"sourceIp"`
 	// Source port to be used for communication with the LDAP server.
 	SourcePort *int `pulumi:"sourcePort"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Tertiary LDAP server CN domain name or IP.
 	TertiaryServer *string `pulumi:"tertiaryServer"`
@@ -281,10 +289,14 @@ type ldapState struct {
 }
 
 type LdapState struct {
+	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyCertField pulumi.StringPtrInput
 	// Account key filter, using the UPN as the search filter.
 	AccountKeyFilter pulumi.StringPtrInput
 	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 	AccountKeyProcessing pulumi.StringPtrInput
+	// Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyUpnSan pulumi.StringPtrInput
 	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
 	Antiphish pulumi.StringPtrInput
 	// CA certificate name.
@@ -339,7 +351,7 @@ type LdapState struct {
 	SourceIp pulumi.StringPtrInput
 	// Source port to be used for communication with the LDAP server.
 	SourcePort pulumi.IntPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Tertiary LDAP server CN domain name or IP.
 	TertiaryServer pulumi.StringPtrInput
@@ -366,10 +378,14 @@ func (LdapState) ElementType() reflect.Type {
 }
 
 type ldapArgs struct {
+	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyCertField *string `pulumi:"accountKeyCertField"`
 	// Account key filter, using the UPN as the search filter.
 	AccountKeyFilter *string `pulumi:"accountKeyFilter"`
 	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 	AccountKeyProcessing *string `pulumi:"accountKeyProcessing"`
+	// Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyUpnSan *string `pulumi:"accountKeyUpnSan"`
 	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
 	Antiphish *string `pulumi:"antiphish"`
 	// CA certificate name.
@@ -424,7 +440,7 @@ type ldapArgs struct {
 	SourceIp *string `pulumi:"sourceIp"`
 	// Source port to be used for communication with the LDAP server.
 	SourcePort *int `pulumi:"sourcePort"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Tertiary LDAP server CN domain name or IP.
 	TertiaryServer *string `pulumi:"tertiaryServer"`
@@ -448,10 +464,14 @@ type ldapArgs struct {
 
 // The set of arguments for constructing a Ldap resource.
 type LdapArgs struct {
+	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyCertField pulumi.StringPtrInput
 	// Account key filter, using the UPN as the search filter.
 	AccountKeyFilter pulumi.StringPtrInput
 	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 	AccountKeyProcessing pulumi.StringPtrInput
+	// Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+	AccountKeyUpnSan pulumi.StringPtrInput
 	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
 	Antiphish pulumi.StringPtrInput
 	// CA certificate name.
@@ -506,7 +526,7 @@ type LdapArgs struct {
 	SourceIp pulumi.StringPtrInput
 	// Source port to be used for communication with the LDAP server.
 	SourcePort pulumi.IntPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Tertiary LDAP server CN domain name or IP.
 	TertiaryServer pulumi.StringPtrInput
@@ -615,6 +635,11 @@ func (o LdapOutput) ToLdapOutputWithContext(ctx context.Context) LdapOutput {
 	return o
 }
 
+// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+func (o LdapOutput) AccountKeyCertField() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ldap) pulumi.StringOutput { return v.AccountKeyCertField }).(pulumi.StringOutput)
+}
+
 // Account key filter, using the UPN as the search filter.
 func (o LdapOutput) AccountKeyFilter() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ldap) pulumi.StringOutput { return v.AccountKeyFilter }).(pulumi.StringOutput)
@@ -623,6 +648,11 @@ func (o LdapOutput) AccountKeyFilter() pulumi.StringOutput {
 // Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 func (o LdapOutput) AccountKeyProcessing() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ldap) pulumi.StringOutput { return v.AccountKeyProcessing }).(pulumi.StringOutput)
+}
+
+// Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+func (o LdapOutput) AccountKeyUpnSan() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ldap) pulumi.StringOutput { return v.AccountKeyUpnSan }).(pulumi.StringOutput)
 }
 
 // Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
@@ -760,7 +790,7 @@ func (o LdapOutput) SourcePort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ldap) pulumi.IntOutput { return v.SourcePort }).(pulumi.IntOutput)
 }
 
-// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 func (o LdapOutput) SslMinProtoVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ldap) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
 }

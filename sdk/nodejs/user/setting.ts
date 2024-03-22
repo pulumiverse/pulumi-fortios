@@ -139,7 +139,7 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly authSslMaxProtoVersion!: pulumi.Output<string>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     public readonly authSslMinProtoVersion!: pulumi.Output<string>;
     /**
@@ -159,9 +159,17 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly authType!: pulumi.Output<string>;
     /**
+     * Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+     */
+    public readonly defaultUserPasswordPolicy!: pulumi.Output<string>;
+    /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
      */
@@ -207,7 +215,9 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["authTimeout"] = state ? state.authTimeout : undefined;
             resourceInputs["authTimeoutType"] = state ? state.authTimeoutType : undefined;
             resourceInputs["authType"] = state ? state.authType : undefined;
+            resourceInputs["defaultUserPasswordPolicy"] = state ? state.defaultUserPasswordPolicy : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["perPolicyDisclaimer"] = state ? state.perPolicyDisclaimer : undefined;
             resourceInputs["radiusSesTimeoutAct"] = state ? state.radiusSesTimeoutAct : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -232,7 +242,9 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["authTimeout"] = args ? args.authTimeout : undefined;
             resourceInputs["authTimeoutType"] = args ? args.authTimeoutType : undefined;
             resourceInputs["authType"] = args ? args.authType : undefined;
+            resourceInputs["defaultUserPasswordPolicy"] = args ? args.defaultUserPasswordPolicy : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["perPolicyDisclaimer"] = args ? args.perPolicyDisclaimer : undefined;
             resourceInputs["radiusSesTimeoutAct"] = args ? args.radiusSesTimeoutAct : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -303,7 +315,7 @@ export interface SettingState {
      */
     authSslMaxProtoVersion?: pulumi.Input<string>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     authSslMinProtoVersion?: pulumi.Input<string>;
     /**
@@ -323,9 +335,17 @@ export interface SettingState {
      */
     authType?: pulumi.Input<string>;
     /**
+     * Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+     */
+    defaultUserPasswordPolicy?: pulumi.Input<string>;
+    /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
      */
@@ -401,7 +421,7 @@ export interface SettingArgs {
      */
     authSslMaxProtoVersion?: pulumi.Input<string>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     authSslMinProtoVersion?: pulumi.Input<string>;
     /**
@@ -421,9 +441,17 @@ export interface SettingArgs {
      */
     authType?: pulumi.Input<string>;
     /**
+     * Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+     */
+    defaultUserPasswordPolicy?: pulumi.Input<string>;
+    /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
      */

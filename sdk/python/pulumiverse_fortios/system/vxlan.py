@@ -21,6 +21,9 @@ class VxlanArgs:
                  vni: pulumi.Input[int],
                  dstport: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 evpn_id: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 learn_from_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  remote_ip6s: Optional[pulumi.Input[Sequence[pulumi.Input['VxlanRemoteIp6Args']]]] = None,
@@ -33,6 +36,9 @@ class VxlanArgs:
         :param pulumi.Input[int] vni: VXLAN network ID.
         :param pulumi.Input[int] dstport: VXLAN destination port (1 - 65535, default = 4789).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[int] evpn_id: EVPN instance.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] learn_from_traffic: Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] multicast_ttl: VXLAN multicast TTL (1-255, default = 0).
         :param pulumi.Input[str] name: VXLAN device or interface name. Must be a unique interface name.
         :param pulumi.Input[Sequence[pulumi.Input['VxlanRemoteIp6Args']]] remote_ip6s: IPv6 IP address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remote_ip6` block is documented below.
@@ -46,6 +52,12 @@ class VxlanArgs:
             pulumi.set(__self__, "dstport", dstport)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if evpn_id is not None:
+            pulumi.set(__self__, "evpn_id", evpn_id)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if learn_from_traffic is not None:
+            pulumi.set(__self__, "learn_from_traffic", learn_from_traffic)
         if multicast_ttl is not None:
             pulumi.set(__self__, "multicast_ttl", multicast_ttl)
         if name is not None:
@@ -118,6 +130,42 @@ class VxlanArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="evpnId")
+    def evpn_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        EVPN instance.
+        """
+        return pulumi.get(self, "evpn_id")
+
+    @evpn_id.setter
+    def evpn_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "evpn_id", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="learnFromTraffic")
+    def learn_from_traffic(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "learn_from_traffic")
+
+    @learn_from_traffic.setter
+    def learn_from_traffic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "learn_from_traffic", value)
+
+    @property
     @pulumi.getter(name="multicastTtl")
     def multicast_ttl(self) -> Optional[pulumi.Input[int]]:
         """
@@ -183,8 +231,11 @@ class _VxlanState:
     def __init__(__self__, *,
                  dstport: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 evpn_id: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
+                 learn_from_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  remote_ip6s: Optional[pulumi.Input[Sequence[pulumi.Input['VxlanRemoteIp6Args']]]] = None,
@@ -195,8 +246,11 @@ class _VxlanState:
         Input properties used for looking up and filtering Vxlan resources.
         :param pulumi.Input[int] dstport: VXLAN destination port (1 - 65535, default = 4789).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[int] evpn_id: EVPN instance.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Outgoing interface for VXLAN encapsulated traffic.
         :param pulumi.Input[str] ip_version: IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
+        :param pulumi.Input[str] learn_from_traffic: Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] multicast_ttl: VXLAN multicast TTL (1-255, default = 0).
         :param pulumi.Input[str] name: VXLAN device or interface name. Must be a unique interface name.
         :param pulumi.Input[Sequence[pulumi.Input['VxlanRemoteIp6Args']]] remote_ip6s: IPv6 IP address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remote_ip6` block is documented below.
@@ -208,10 +262,16 @@ class _VxlanState:
             pulumi.set(__self__, "dstport", dstport)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if evpn_id is not None:
+            pulumi.set(__self__, "evpn_id", evpn_id)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if ip_version is not None:
             pulumi.set(__self__, "ip_version", ip_version)
+        if learn_from_traffic is not None:
+            pulumi.set(__self__, "learn_from_traffic", learn_from_traffic)
         if multicast_ttl is not None:
             pulumi.set(__self__, "multicast_ttl", multicast_ttl)
         if name is not None:
@@ -250,6 +310,30 @@ class _VxlanState:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="evpnId")
+    def evpn_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        EVPN instance.
+        """
+        return pulumi.get(self, "evpn_id")
+
+    @evpn_id.setter
+    def evpn_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "evpn_id", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         """
@@ -272,6 +356,18 @@ class _VxlanState:
     @ip_version.setter
     def ip_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip_version", value)
+
+    @property
+    @pulumi.getter(name="learnFromTraffic")
+    def learn_from_traffic(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "learn_from_traffic")
+
+    @learn_from_traffic.setter
+    def learn_from_traffic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "learn_from_traffic", value)
 
     @property
     @pulumi.getter(name="multicastTtl")
@@ -353,8 +449,11 @@ class Vxlan(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dstport: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 evpn_id: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
+                 learn_from_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  remote_ip6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VxlanRemoteIp6Args']]]]] = None,
@@ -405,8 +504,11 @@ class Vxlan(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dstport: VXLAN destination port (1 - 65535, default = 4789).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[int] evpn_id: EVPN instance.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Outgoing interface for VXLAN encapsulated traffic.
         :param pulumi.Input[str] ip_version: IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
+        :param pulumi.Input[str] learn_from_traffic: Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] multicast_ttl: VXLAN multicast TTL (1-255, default = 0).
         :param pulumi.Input[str] name: VXLAN device or interface name. Must be a unique interface name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VxlanRemoteIp6Args']]]] remote_ip6s: IPv6 IP address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remote_ip6` block is documented below.
@@ -476,8 +578,11 @@ class Vxlan(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dstport: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 evpn_id: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
+                 learn_from_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  remote_ip6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VxlanRemoteIp6Args']]]]] = None,
@@ -495,12 +600,15 @@ class Vxlan(pulumi.CustomResource):
 
             __props__.__dict__["dstport"] = dstport
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["evpn_id"] = evpn_id
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
             if ip_version is None and not opts.urn:
                 raise TypeError("Missing required property 'ip_version'")
             __props__.__dict__["ip_version"] = ip_version
+            __props__.__dict__["learn_from_traffic"] = learn_from_traffic
             __props__.__dict__["multicast_ttl"] = multicast_ttl
             __props__.__dict__["name"] = name
             __props__.__dict__["remote_ip6s"] = remote_ip6s
@@ -521,8 +629,11 @@ class Vxlan(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dstport: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            evpn_id: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ip_version: Optional[pulumi.Input[str]] = None,
+            learn_from_traffic: Optional[pulumi.Input[str]] = None,
             multicast_ttl: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             remote_ip6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VxlanRemoteIp6Args']]]]] = None,
@@ -538,8 +649,11 @@ class Vxlan(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] dstport: VXLAN destination port (1 - 65535, default = 4789).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[int] evpn_id: EVPN instance.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Outgoing interface for VXLAN encapsulated traffic.
         :param pulumi.Input[str] ip_version: IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
+        :param pulumi.Input[str] learn_from_traffic: Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] multicast_ttl: VXLAN multicast TTL (1-255, default = 0).
         :param pulumi.Input[str] name: VXLAN device or interface name. Must be a unique interface name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VxlanRemoteIp6Args']]]] remote_ip6s: IPv6 IP address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remote_ip6` block is documented below.
@@ -553,8 +667,11 @@ class Vxlan(pulumi.CustomResource):
 
         __props__.__dict__["dstport"] = dstport
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["evpn_id"] = evpn_id
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["ip_version"] = ip_version
+        __props__.__dict__["learn_from_traffic"] = learn_from_traffic
         __props__.__dict__["multicast_ttl"] = multicast_ttl
         __props__.__dict__["name"] = name
         __props__.__dict__["remote_ip6s"] = remote_ip6s
@@ -580,6 +697,22 @@ class Vxlan(pulumi.CustomResource):
         return pulumi.get(self, "dynamic_sort_subtable")
 
     @property
+    @pulumi.getter(name="evpnId")
+    def evpn_id(self) -> pulumi.Output[int]:
+        """
+        EVPN instance.
+        """
+        return pulumi.get(self, "evpn_id")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def interface(self) -> pulumi.Output[str]:
         """
@@ -594,6 +727,14 @@ class Vxlan(pulumi.CustomResource):
         IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
         """
         return pulumi.get(self, "ip_version")
+
+    @property
+    @pulumi.getter(name="learnFromTraffic")
+    def learn_from_traffic(self) -> pulumi.Output[str]:
+        """
+        Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "learn_from_traffic")
 
     @property
     @pulumi.getter(name="multicastTtl")

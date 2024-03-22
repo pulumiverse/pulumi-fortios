@@ -94,6 +94,8 @@ type Static6 struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// IPv6 address of the gateway.
 	Gateway pulumi.StringOutput `pulumi:"gateway"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt pulumi.StringOutput `pulumi:"linkMonitorExempt"`
 	// Administrative priority (0 - 4294967295).
@@ -171,6 +173,8 @@ type static6State struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// IPv6 address of the gateway.
 	Gateway *string `pulumi:"gateway"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt *string `pulumi:"linkMonitorExempt"`
 	// Administrative priority (0 - 4294967295).
@@ -216,6 +220,8 @@ type Static6State struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// IPv6 address of the gateway.
 	Gateway pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt pulumi.StringPtrInput
 	// Administrative priority (0 - 4294967295).
@@ -265,6 +271,8 @@ type static6Args struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// IPv6 address of the gateway.
 	Gateway *string `pulumi:"gateway"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt *string `pulumi:"linkMonitorExempt"`
 	// Administrative priority (0 - 4294967295).
@@ -311,6 +319,8 @@ type Static6Args struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// IPv6 address of the gateway.
 	Gateway pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt pulumi.StringPtrInput
 	// Administrative priority (0 - 4294967295).
@@ -473,6 +483,11 @@ func (o Static6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 // IPv6 address of the gateway.
 func (o Static6Output) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *Static6) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Static6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Static6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.

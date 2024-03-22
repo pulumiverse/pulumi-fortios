@@ -39,6 +39,8 @@ type Dynamicportpolicy struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// FortiLink interface for which this Dynamic port policy belongs to.
 	Fortilink pulumi.StringOutput `pulumi:"fortilink"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Dynamic port policy name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Port policies with matching criteria and actions. The structure of `policy` block is documented below.
@@ -83,6 +85,8 @@ type dynamicportpolicyState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// FortiLink interface for which this Dynamic port policy belongs to.
 	Fortilink *string `pulumi:"fortilink"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Dynamic port policy name.
 	Name *string `pulumi:"name"`
 	// Port policies with matching criteria and actions. The structure of `policy` block is documented below.
@@ -98,6 +102,8 @@ type DynamicportpolicyState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// FortiLink interface for which this Dynamic port policy belongs to.
 	Fortilink pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Dynamic port policy name.
 	Name pulumi.StringPtrInput
 	// Port policies with matching criteria and actions. The structure of `policy` block is documented below.
@@ -117,6 +123,8 @@ type dynamicportpolicyArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// FortiLink interface for which this Dynamic port policy belongs to.
 	Fortilink *string `pulumi:"fortilink"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Dynamic port policy name.
 	Name *string `pulumi:"name"`
 	// Port policies with matching criteria and actions. The structure of `policy` block is documented below.
@@ -133,6 +141,8 @@ type DynamicportpolicyArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// FortiLink interface for which this Dynamic port policy belongs to.
 	Fortilink pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Dynamic port policy name.
 	Name pulumi.StringPtrInput
 	// Port policies with matching criteria and actions. The structure of `policy` block is documented below.
@@ -241,6 +251,11 @@ func (o DynamicportpolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // FortiLink interface for which this Dynamic port policy belongs to.
 func (o DynamicportpolicyOutput) Fortilink() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dynamicportpolicy) pulumi.StringOutput { return v.Fortilink }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o DynamicportpolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Dynamicportpolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Dynamic port policy name.

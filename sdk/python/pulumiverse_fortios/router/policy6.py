@@ -24,7 +24,9 @@ class Policy6Args:
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['Policy6DstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
+                 end_source_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input['Policy6InternetServiceCustomArgs']]]] = None,
                  internet_service_ids: Optional[pulumi.Input[Sequence[pulumi.Input['Policy6InternetServiceIdArgs']]]] = None,
@@ -35,13 +37,14 @@ class Policy6Args:
                  src_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['Policy6SrcaddrArgs']]]] = None,
                  start_port: Optional[pulumi.Input[int]] = None,
+                 start_source_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tos: Optional[pulumi.Input[str]] = None,
                  tos_mask: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Policy6 resource.
-        :param pulumi.Input[str] input_device: Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `input_device  = "port2"`, for FortiOS Version >= "6.2.4": `input_device  = "\\"fortilink\\" \\"port1\\""`.
+        :param pulumi.Input[str] input_device: Incoming interface name.
         :param pulumi.Input[str] action: Action of the policy route. Valid values: `deny`, `permit`.
         :param pulumi.Input[str] comments: Optional comments.
         :param pulumi.Input[str] dst: Destination IPv6 prefix.
@@ -49,7 +52,9 @@ class Policy6Args:
         :param pulumi.Input[Sequence[pulumi.Input['Policy6DstaddrArgs']]] dstaddrs: Destination address name. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] end_port: End destination port number (1 - 65535).
+        :param pulumi.Input[int] end_source_port: End source port number (1 - 65535).
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] input_device_negate: Enable/disable negation of input device match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Policy6InternetServiceCustomArgs']]] internet_service_customs: Custom Destination Internet Service name. The structure of `internet_service_custom` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['Policy6InternetServiceIdArgs']]] internet_service_ids: Destination Internet Service ID. The structure of `internet_service_id` block is documented below.
@@ -60,6 +65,7 @@ class Policy6Args:
         :param pulumi.Input[str] src_negate: Enable/disable negating source address match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Policy6SrcaddrArgs']]] srcaddrs: Source address name. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[int] start_port: Start destination port number (1 - 65535).
+        :param pulumi.Input[int] start_source_port: Start source port number (1 - 65535).
         :param pulumi.Input[str] status: Enable/disable this policy route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tos: Type of service bit pattern.
         :param pulumi.Input[str] tos_mask: Type of service evaluated bits.
@@ -80,8 +86,12 @@ class Policy6Args:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if end_port is not None:
             pulumi.set(__self__, "end_port", end_port)
+        if end_source_port is not None:
+            pulumi.set(__self__, "end_source_port", end_source_port)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if input_device_negate is not None:
             pulumi.set(__self__, "input_device_negate", input_device_negate)
         if internet_service_customs is not None:
@@ -102,6 +112,8 @@ class Policy6Args:
             pulumi.set(__self__, "srcaddrs", srcaddrs)
         if start_port is not None:
             pulumi.set(__self__, "start_port", start_port)
+        if start_source_port is not None:
+            pulumi.set(__self__, "start_source_port", start_source_port)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tos is not None:
@@ -115,7 +127,7 @@ class Policy6Args:
     @pulumi.getter(name="inputDevice")
     def input_device(self) -> pulumi.Input[str]:
         """
-        Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `input_device  = "port2"`, for FortiOS Version >= "6.2.4": `input_device  = "\\"fortilink\\" \\"port1\\""`.
+        Incoming interface name.
         """
         return pulumi.get(self, "input_device")
 
@@ -208,6 +220,18 @@ class Policy6Args:
         pulumi.set(self, "end_port", value)
 
     @property
+    @pulumi.getter(name="endSourcePort")
+    def end_source_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        End source port number (1 - 65535).
+        """
+        return pulumi.get(self, "end_source_port")
+
+    @end_source_port.setter
+    def end_source_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "end_source_port", value)
+
+    @property
     @pulumi.getter
     def gateway(self) -> Optional[pulumi.Input[str]]:
         """
@@ -218,6 +242,18 @@ class Policy6Args:
     @gateway.setter
     def gateway(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gateway", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="inputDeviceNegate")
@@ -340,6 +376,18 @@ class Policy6Args:
         pulumi.set(self, "start_port", value)
 
     @property
+    @pulumi.getter(name="startSourcePort")
+    def start_source_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Start source port number (1 - 65535).
+        """
+        return pulumi.get(self, "start_source_port")
+
+    @start_source_port.setter
+    def start_source_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "start_source_port", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -398,7 +446,9 @@ class _Policy6State:
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['Policy6DstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
+                 end_source_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device: Optional[pulumi.Input[str]] = None,
                  input_device_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input['Policy6InternetServiceCustomArgs']]]] = None,
@@ -410,6 +460,7 @@ class _Policy6State:
                  src_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['Policy6SrcaddrArgs']]]] = None,
                  start_port: Optional[pulumi.Input[int]] = None,
+                 start_source_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tos: Optional[pulumi.Input[str]] = None,
                  tos_mask: Optional[pulumi.Input[str]] = None,
@@ -423,8 +474,10 @@ class _Policy6State:
         :param pulumi.Input[Sequence[pulumi.Input['Policy6DstaddrArgs']]] dstaddrs: Destination address name. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] end_port: End destination port number (1 - 65535).
+        :param pulumi.Input[int] end_source_port: End source port number (1 - 65535).
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
-        :param pulumi.Input[str] input_device: Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `input_device  = "port2"`, for FortiOS Version >= "6.2.4": `input_device  = "\\"fortilink\\" \\"port1\\""`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] input_device: Incoming interface name.
         :param pulumi.Input[str] input_device_negate: Enable/disable negation of input device match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Policy6InternetServiceCustomArgs']]] internet_service_customs: Custom Destination Internet Service name. The structure of `internet_service_custom` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['Policy6InternetServiceIdArgs']]] internet_service_ids: Destination Internet Service ID. The structure of `internet_service_id` block is documented below.
@@ -435,6 +488,7 @@ class _Policy6State:
         :param pulumi.Input[str] src_negate: Enable/disable negating source address match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Policy6SrcaddrArgs']]] srcaddrs: Source address name. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[int] start_port: Start destination port number (1 - 65535).
+        :param pulumi.Input[int] start_source_port: Start source port number (1 - 65535).
         :param pulumi.Input[str] status: Enable/disable this policy route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tos: Type of service bit pattern.
         :param pulumi.Input[str] tos_mask: Type of service evaluated bits.
@@ -454,8 +508,12 @@ class _Policy6State:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if end_port is not None:
             pulumi.set(__self__, "end_port", end_port)
+        if end_source_port is not None:
+            pulumi.set(__self__, "end_source_port", end_source_port)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if input_device is not None:
             pulumi.set(__self__, "input_device", input_device)
         if input_device_negate is not None:
@@ -478,6 +536,8 @@ class _Policy6State:
             pulumi.set(__self__, "srcaddrs", srcaddrs)
         if start_port is not None:
             pulumi.set(__self__, "start_port", start_port)
+        if start_source_port is not None:
+            pulumi.set(__self__, "start_source_port", start_source_port)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tos is not None:
@@ -572,6 +632,18 @@ class _Policy6State:
         pulumi.set(self, "end_port", value)
 
     @property
+    @pulumi.getter(name="endSourcePort")
+    def end_source_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        End source port number (1 - 65535).
+        """
+        return pulumi.get(self, "end_source_port")
+
+    @end_source_port.setter
+    def end_source_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "end_source_port", value)
+
+    @property
     @pulumi.getter
     def gateway(self) -> Optional[pulumi.Input[str]]:
         """
@@ -584,10 +656,22 @@ class _Policy6State:
         pulumi.set(self, "gateway", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="inputDevice")
     def input_device(self) -> Optional[pulumi.Input[str]]:
         """
-        Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `input_device  = "port2"`, for FortiOS Version >= "6.2.4": `input_device  = "\\"fortilink\\" \\"port1\\""`.
+        Incoming interface name.
         """
         return pulumi.get(self, "input_device")
 
@@ -716,6 +800,18 @@ class _Policy6State:
         pulumi.set(self, "start_port", value)
 
     @property
+    @pulumi.getter(name="startSourcePort")
+    def start_source_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Start source port number (1 - 65535).
+        """
+        return pulumi.get(self, "start_source_port")
+
+    @start_source_port.setter
+    def start_source_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "start_source_port", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -776,7 +872,9 @@ class Policy6(pulumi.CustomResource):
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6DstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
+                 end_source_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device: Optional[pulumi.Input[str]] = None,
                  input_device_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6InternetServiceCustomArgs']]]]] = None,
@@ -788,6 +886,7 @@ class Policy6(pulumi.CustomResource):
                  src_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6SrcaddrArgs']]]]] = None,
                  start_port: Optional[pulumi.Input[int]] = None,
+                 start_source_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tos: Optional[pulumi.Input[str]] = None,
                  tos_mask: Optional[pulumi.Input[str]] = None,
@@ -846,8 +945,10 @@ class Policy6(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6DstaddrArgs']]]] dstaddrs: Destination address name. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] end_port: End destination port number (1 - 65535).
+        :param pulumi.Input[int] end_source_port: End source port number (1 - 65535).
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
-        :param pulumi.Input[str] input_device: Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `input_device  = "port2"`, for FortiOS Version >= "6.2.4": `input_device  = "\\"fortilink\\" \\"port1\\""`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] input_device: Incoming interface name.
         :param pulumi.Input[str] input_device_negate: Enable/disable negation of input device match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6InternetServiceCustomArgs']]]] internet_service_customs: Custom Destination Internet Service name. The structure of `internet_service_custom` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6InternetServiceIdArgs']]]] internet_service_ids: Destination Internet Service ID. The structure of `internet_service_id` block is documented below.
@@ -858,6 +959,7 @@ class Policy6(pulumi.CustomResource):
         :param pulumi.Input[str] src_negate: Enable/disable negating source address match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6SrcaddrArgs']]]] srcaddrs: Source address name. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[int] start_port: Start destination port number (1 - 65535).
+        :param pulumi.Input[int] start_source_port: Start source port number (1 - 65535).
         :param pulumi.Input[str] status: Enable/disable this policy route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tos: Type of service bit pattern.
         :param pulumi.Input[str] tos_mask: Type of service evaluated bits.
@@ -935,7 +1037,9 @@ class Policy6(pulumi.CustomResource):
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6DstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
+                 end_source_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device: Optional[pulumi.Input[str]] = None,
                  input_device_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6InternetServiceCustomArgs']]]]] = None,
@@ -947,6 +1051,7 @@ class Policy6(pulumi.CustomResource):
                  src_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6SrcaddrArgs']]]]] = None,
                  start_port: Optional[pulumi.Input[int]] = None,
+                 start_source_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tos: Optional[pulumi.Input[str]] = None,
                  tos_mask: Optional[pulumi.Input[str]] = None,
@@ -967,7 +1072,9 @@ class Policy6(pulumi.CustomResource):
             __props__.__dict__["dstaddrs"] = dstaddrs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["end_port"] = end_port
+            __props__.__dict__["end_source_port"] = end_source_port
             __props__.__dict__["gateway"] = gateway
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if input_device is None and not opts.urn:
                 raise TypeError("Missing required property 'input_device'")
             __props__.__dict__["input_device"] = input_device
@@ -981,6 +1088,7 @@ class Policy6(pulumi.CustomResource):
             __props__.__dict__["src_negate"] = src_negate
             __props__.__dict__["srcaddrs"] = srcaddrs
             __props__.__dict__["start_port"] = start_port
+            __props__.__dict__["start_source_port"] = start_source_port
             __props__.__dict__["status"] = status
             __props__.__dict__["tos"] = tos
             __props__.__dict__["tos_mask"] = tos_mask
@@ -1002,7 +1110,9 @@ class Policy6(pulumi.CustomResource):
             dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6DstaddrArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             end_port: Optional[pulumi.Input[int]] = None,
+            end_source_port: Optional[pulumi.Input[int]] = None,
             gateway: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             input_device: Optional[pulumi.Input[str]] = None,
             input_device_negate: Optional[pulumi.Input[str]] = None,
             internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6InternetServiceCustomArgs']]]]] = None,
@@ -1014,6 +1124,7 @@ class Policy6(pulumi.CustomResource):
             src_negate: Optional[pulumi.Input[str]] = None,
             srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6SrcaddrArgs']]]]] = None,
             start_port: Optional[pulumi.Input[int]] = None,
+            start_source_port: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tos: Optional[pulumi.Input[str]] = None,
             tos_mask: Optional[pulumi.Input[str]] = None,
@@ -1032,8 +1143,10 @@ class Policy6(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6DstaddrArgs']]]] dstaddrs: Destination address name. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] end_port: End destination port number (1 - 65535).
+        :param pulumi.Input[int] end_source_port: End source port number (1 - 65535).
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
-        :param pulumi.Input[str] input_device: Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `input_device  = "port2"`, for FortiOS Version >= "6.2.4": `input_device  = "\\"fortilink\\" \\"port1\\""`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] input_device: Incoming interface name.
         :param pulumi.Input[str] input_device_negate: Enable/disable negation of input device match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6InternetServiceCustomArgs']]]] internet_service_customs: Custom Destination Internet Service name. The structure of `internet_service_custom` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6InternetServiceIdArgs']]]] internet_service_ids: Destination Internet Service ID. The structure of `internet_service_id` block is documented below.
@@ -1044,6 +1157,7 @@ class Policy6(pulumi.CustomResource):
         :param pulumi.Input[str] src_negate: Enable/disable negating source address match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6SrcaddrArgs']]]] srcaddrs: Source address name. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[int] start_port: Start destination port number (1 - 65535).
+        :param pulumi.Input[int] start_source_port: Start source port number (1 - 65535).
         :param pulumi.Input[str] status: Enable/disable this policy route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tos: Type of service bit pattern.
         :param pulumi.Input[str] tos_mask: Type of service evaluated bits.
@@ -1060,7 +1174,9 @@ class Policy6(pulumi.CustomResource):
         __props__.__dict__["dstaddrs"] = dstaddrs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["end_port"] = end_port
+        __props__.__dict__["end_source_port"] = end_source_port
         __props__.__dict__["gateway"] = gateway
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["input_device"] = input_device
         __props__.__dict__["input_device_negate"] = input_device_negate
         __props__.__dict__["internet_service_customs"] = internet_service_customs
@@ -1072,6 +1188,7 @@ class Policy6(pulumi.CustomResource):
         __props__.__dict__["src_negate"] = src_negate
         __props__.__dict__["srcaddrs"] = srcaddrs
         __props__.__dict__["start_port"] = start_port
+        __props__.__dict__["start_source_port"] = start_source_port
         __props__.__dict__["status"] = status
         __props__.__dict__["tos"] = tos
         __props__.__dict__["tos_mask"] = tos_mask
@@ -1135,6 +1252,14 @@ class Policy6(pulumi.CustomResource):
         return pulumi.get(self, "end_port")
 
     @property
+    @pulumi.getter(name="endSourcePort")
+    def end_source_port(self) -> pulumi.Output[int]:
+        """
+        End source port number (1 - 65535).
+        """
+        return pulumi.get(self, "end_source_port")
+
+    @property
     @pulumi.getter
     def gateway(self) -> pulumi.Output[str]:
         """
@@ -1143,10 +1268,18 @@ class Policy6(pulumi.CustomResource):
         return pulumi.get(self, "gateway")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="inputDevice")
     def input_device(self) -> pulumi.Output[str]:
         """
-        Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `input_device  = "port2"`, for FortiOS Version >= "6.2.4": `input_device  = "\\"fortilink\\" \\"port1\\""`.
+        Incoming interface name.
         """
         return pulumi.get(self, "input_device")
 
@@ -1229,6 +1362,14 @@ class Policy6(pulumi.CustomResource):
         Start destination port number (1 - 65535).
         """
         return pulumi.get(self, "start_port")
+
+    @property
+    @pulumi.getter(name="startSourcePort")
+    def start_source_port(self) -> pulumi.Output[int]:
+        """
+        Start source port number (1 - 65535).
+        """
+        return pulumi.get(self, "start_source_port")
 
     @property
     @pulumi.getter

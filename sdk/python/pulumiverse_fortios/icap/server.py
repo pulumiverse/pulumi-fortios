@@ -36,7 +36,7 @@ class ServerArgs:
         :param pulumi.Input[str] ip6_address: IPv6 address of the ICAP server.
         :param pulumi.Input[str] ip_address: IPv4 address of the ICAP server.
         :param pulumi.Input[str] ip_version: IP version. Valid values: `4`, `6`.
-        :param pulumi.Input[int] max_connections: Maximum number of concurrent connections to ICAP server.
+        :param pulumi.Input[int] max_connections: Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
         :param pulumi.Input[str] name: Server name.
         :param pulumi.Input[int] port: ICAP server port.
         :param pulumi.Input[str] secure: Enable/disable secure connection to ICAP server. Valid values: `enable`, `disable`.
@@ -158,7 +158,7 @@ class ServerArgs:
     @pulumi.getter(name="maxConnections")
     def max_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum number of concurrent connections to ICAP server.
+        Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
         """
         return pulumi.get(self, "max_connections")
 
@@ -252,7 +252,7 @@ class _ServerState:
         :param pulumi.Input[str] ip6_address: IPv6 address of the ICAP server.
         :param pulumi.Input[str] ip_address: IPv4 address of the ICAP server.
         :param pulumi.Input[str] ip_version: IP version. Valid values: `4`, `6`.
-        :param pulumi.Input[int] max_connections: Maximum number of concurrent connections to ICAP server.
+        :param pulumi.Input[int] max_connections: Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
         :param pulumi.Input[str] name: Server name.
         :param pulumi.Input[int] port: ICAP server port.
         :param pulumi.Input[str] secure: Enable/disable secure connection to ICAP server. Valid values: `enable`, `disable`.
@@ -374,7 +374,7 @@ class _ServerState:
     @pulumi.getter(name="maxConnections")
     def max_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum number of concurrent connections to ICAP server.
+        Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
         """
         return pulumi.get(self, "max_connections")
 
@@ -508,7 +508,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] ip6_address: IPv6 address of the ICAP server.
         :param pulumi.Input[str] ip_address: IPv4 address of the ICAP server.
         :param pulumi.Input[str] ip_version: IP version. Valid values: `4`, `6`.
-        :param pulumi.Input[int] max_connections: Maximum number of concurrent connections to ICAP server.
+        :param pulumi.Input[int] max_connections: Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
         :param pulumi.Input[str] name: Server name.
         :param pulumi.Input[int] port: ICAP server port.
         :param pulumi.Input[str] secure: Enable/disable secure connection to ICAP server. Valid values: `enable`, `disable`.
@@ -645,7 +645,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] ip6_address: IPv6 address of the ICAP server.
         :param pulumi.Input[str] ip_address: IPv4 address of the ICAP server.
         :param pulumi.Input[str] ip_version: IP version. Valid values: `4`, `6`.
-        :param pulumi.Input[int] max_connections: Maximum number of concurrent connections to ICAP server.
+        :param pulumi.Input[int] max_connections: Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
         :param pulumi.Input[str] name: Server name.
         :param pulumi.Input[int] port: ICAP server port.
         :param pulumi.Input[str] secure: Enable/disable secure connection to ICAP server. Valid values: `enable`, `disable`.
@@ -731,7 +731,7 @@ class Server(pulumi.CustomResource):
     @pulumi.getter(name="maxConnections")
     def max_connections(self) -> pulumi.Output[int]:
         """
-        Maximum number of concurrent connections to ICAP server.
+        Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
         """
         return pulumi.get(self, "max_connections")
 

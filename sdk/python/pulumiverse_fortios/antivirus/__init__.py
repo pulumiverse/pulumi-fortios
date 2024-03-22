@@ -5,6 +5,7 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .exemptlist import *
 from .heuristic import *
 from .profile import *
 from .quarantine import *

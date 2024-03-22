@@ -22,6 +22,7 @@ class SettingArgs:
                  conn_timeout: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -48,7 +49,8 @@ class SettingArgs:
         :param pulumi.Input[int] conn_timeout: FortiAnalyzer connection time-out in seconds (for status and log buffer).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] enc_algorithm: Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
-        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ips_archive: Enable/disable IPS packet archive logging. Valid values: `enable`, `disable`.
@@ -79,6 +81,8 @@ class SettingArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if enc_algorithm is not None:
             pulumi.set(__self__, "enc_algorithm", enc_algorithm)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hmac_algorithm is not None:
             pulumi.set(__self__, "hmac_algorithm", hmac_algorithm)
         if interface is not None:
@@ -189,10 +193,22 @@ class SettingArgs:
         pulumi.set(self, "enc_algorithm", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="hmacAlgorithm")
     def hmac_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        FortiAnalyzer IPsec tunnel HMAC algorithm.
         """
         return pulumi.get(self, "hmac_algorithm")
 
@@ -414,6 +430,7 @@ class _SettingState:
                  conn_timeout: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -440,7 +457,8 @@ class _SettingState:
         :param pulumi.Input[int] conn_timeout: FortiAnalyzer connection time-out in seconds (for status and log buffer).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] enc_algorithm: Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
-        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ips_archive: Enable/disable IPS packet archive logging. Valid values: `enable`, `disable`.
@@ -471,6 +489,8 @@ class _SettingState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if enc_algorithm is not None:
             pulumi.set(__self__, "enc_algorithm", enc_algorithm)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hmac_algorithm is not None:
             pulumi.set(__self__, "hmac_algorithm", hmac_algorithm)
         if interface is not None:
@@ -581,10 +601,22 @@ class _SettingState:
         pulumi.set(self, "enc_algorithm", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="hmacAlgorithm")
     def hmac_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        FortiAnalyzer IPsec tunnel HMAC algorithm.
         """
         return pulumi.get(self, "hmac_algorithm")
 
@@ -808,6 +840,7 @@ class Setting(pulumi.CustomResource):
                  conn_timeout: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -856,7 +889,8 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[int] conn_timeout: FortiAnalyzer connection time-out in seconds (for status and log buffer).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] enc_algorithm: Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
-        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ips_archive: Enable/disable IPS packet archive logging. Valid values: `enable`, `disable`.
@@ -923,6 +957,7 @@ class Setting(pulumi.CustomResource):
                  conn_timeout: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -956,6 +991,7 @@ class Setting(pulumi.CustomResource):
             __props__.__dict__["conn_timeout"] = conn_timeout
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["enc_algorithm"] = enc_algorithm
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hmac_algorithm"] = hmac_algorithm
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
@@ -990,6 +1026,7 @@ class Setting(pulumi.CustomResource):
             conn_timeout: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             enc_algorithm: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hmac_algorithm: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -1021,7 +1058,8 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[int] conn_timeout: FortiAnalyzer connection time-out in seconds (for status and log buffer).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] enc_algorithm: Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
-        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ips_archive: Enable/disable IPS packet archive logging. Valid values: `enable`, `disable`.
@@ -1050,6 +1088,7 @@ class Setting(pulumi.CustomResource):
         __props__.__dict__["conn_timeout"] = conn_timeout
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["enc_algorithm"] = enc_algorithm
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hmac_algorithm"] = hmac_algorithm
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
@@ -1119,10 +1158,18 @@ class Setting(pulumi.CustomResource):
         return pulumi.get(self, "enc_algorithm")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="hmacAlgorithm")
     def hmac_algorithm(self) -> pulumi.Output[str]:
         """
-        FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        FortiAnalyzer IPsec tunnel HMAC algorithm.
         """
         return pulumi.get(self, "hmac_algorithm")
 

@@ -22,7 +22,7 @@ class GetGroupResult:
     """
     A collection of values returned by getGroup.
     """
-    def __init__(__self__, color=None, comment=None, fabric_object=None, id=None, members=None, name=None, proxy=None, vdomparam=None):
+    def __init__(__self__, color=None, comment=None, fabric_object=None, id=None, members=None, name=None, proxy=None, uuid=None, vdomparam=None):
         if color and not isinstance(color, int):
             raise TypeError("Expected argument 'color' to be a int")
         pulumi.set(__self__, "color", color)
@@ -44,6 +44,9 @@ class GetGroupResult:
         if proxy and not isinstance(proxy, str):
             raise TypeError("Expected argument 'proxy' to be a str")
         pulumi.set(__self__, "proxy", proxy)
+        if uuid and not isinstance(uuid, str):
+            raise TypeError("Expected argument 'uuid' to be a str")
+        pulumi.set(__self__, "uuid", uuid)
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
@@ -106,6 +109,14 @@ class GetGroupResult:
 
     @property
     @pulumi.getter
+    def uuid(self) -> str:
+        """
+        Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        """
+        return pulumi.get(self, "uuid")
+
+    @property
+    @pulumi.getter
     def vdomparam(self) -> Optional[str]:
         return pulumi.get(self, "vdomparam")
 
@@ -123,6 +134,7 @@ class AwaitableGetGroupResult(GetGroupResult):
             members=self.members,
             name=self.name,
             proxy=self.proxy,
+            uuid=self.uuid,
             vdomparam=self.vdomparam)
 
 
@@ -150,6 +162,7 @@ def get_group(name: Optional[str] = None,
         members=pulumi.get(__ret__, 'members'),
         name=pulumi.get(__ret__, 'name'),
         proxy=pulumi.get(__ret__, 'proxy'),
+        uuid=pulumi.get(__ret__, 'uuid'),
         vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 

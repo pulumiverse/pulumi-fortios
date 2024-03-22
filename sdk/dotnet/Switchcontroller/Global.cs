@@ -84,10 +84,46 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<string> DefaultVirtualSwitchVlan { get; private set; } = null!;
 
         /// <summary>
+        /// List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+        /// </summary>
+        [Output("dhcpOption82CircuitId")]
+        public Output<string> DhcpOption82CircuitId { get; private set; } = null!;
+
+        /// <summary>
+        /// DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+        /// </summary>
+        [Output("dhcpOption82Format")]
+        public Output<string> DhcpOption82Format { get; private set; } = null!;
+
+        /// <summary>
+        /// List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+        /// </summary>
+        [Output("dhcpOption82RemoteId")]
+        public Output<string> DhcpOption82RemoteId { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("dhcpServerAccessList")]
         public Output<string> DhcpServerAccessList { get; private set; } = null!;
+
+        /// <summary>
+        /// Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+        /// </summary>
+        [Output("dhcpSnoopClientDbExp")]
+        public Output<int> DhcpSnoopClientDbExp { get; private set; } = null!;
+
+        /// <summary>
+        /// Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+        /// </summary>
+        [Output("dhcpSnoopClientReq")]
+        public Output<string> DhcpSnoopClientReq { get; private set; } = null!;
+
+        /// <summary>
+        /// Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+        /// </summary>
+        [Output("dhcpSnoopDbPerPortLearnLimit")]
+        public Output<int> DhcpSnoopDbPerPortLearnLimit { get; private set; } = null!;
 
         /// <summary>
         /// Prevent this FortiSwitch from discovering. The structure of `disable_discovery` block is documented below.
@@ -112,6 +148,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Output("firmwareProvisionOnAuthorization")]
         public Output<string> FirmwareProvisionOnAuthorization { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
@@ -178,6 +220,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Output("vlanAllMode")]
         public Output<string> VlanAllMode { get; private set; } = null!;
+
+        /// <summary>
+        /// Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+        /// </summary>
+        [Output("vlanIdentity")]
+        public Output<string> VlanIdentity { get; private set; } = null!;
 
         /// <summary>
         /// FortiLink VLAN optimization. Valid values: `enable`, `disable`.
@@ -263,10 +311,46 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? DefaultVirtualSwitchVlan { get; set; }
 
         /// <summary>
+        /// List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+        /// </summary>
+        [Input("dhcpOption82CircuitId")]
+        public Input<string>? DhcpOption82CircuitId { get; set; }
+
+        /// <summary>
+        /// DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+        /// </summary>
+        [Input("dhcpOption82Format")]
+        public Input<string>? DhcpOption82Format { get; set; }
+
+        /// <summary>
+        /// List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+        /// </summary>
+        [Input("dhcpOption82RemoteId")]
+        public Input<string>? DhcpOption82RemoteId { get; set; }
+
+        /// <summary>
         /// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("dhcpServerAccessList")]
         public Input<string>? DhcpServerAccessList { get; set; }
+
+        /// <summary>
+        /// Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+        /// </summary>
+        [Input("dhcpSnoopClientDbExp")]
+        public Input<int>? DhcpSnoopClientDbExp { get; set; }
+
+        /// <summary>
+        /// Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+        /// </summary>
+        [Input("dhcpSnoopClientReq")]
+        public Input<string>? DhcpSnoopClientReq { get; set; }
+
+        /// <summary>
+        /// Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+        /// </summary>
+        [Input("dhcpSnoopDbPerPortLearnLimit")]
+        public Input<int>? DhcpSnoopDbPerPortLearnLimit { get; set; }
 
         [Input("disableDiscoveries")]
         private InputList<Inputs.GlobalDisableDiscoveryArgs>? _disableDiscoveries;
@@ -297,6 +381,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("firmwareProvisionOnAuthorization")]
         public Input<string>? FirmwareProvisionOnAuthorization { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
@@ -363,6 +453,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("vlanAllMode")]
         public Input<string>? VlanAllMode { get; set; }
+
+        /// <summary>
+        /// Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+        /// </summary>
+        [Input("vlanIdentity")]
+        public Input<string>? VlanIdentity { get; set; }
 
         /// <summary>
         /// FortiLink VLAN optimization. Valid values: `enable`, `disable`.
@@ -409,10 +505,46 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? DefaultVirtualSwitchVlan { get; set; }
 
         /// <summary>
+        /// List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+        /// </summary>
+        [Input("dhcpOption82CircuitId")]
+        public Input<string>? DhcpOption82CircuitId { get; set; }
+
+        /// <summary>
+        /// DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+        /// </summary>
+        [Input("dhcpOption82Format")]
+        public Input<string>? DhcpOption82Format { get; set; }
+
+        /// <summary>
+        /// List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+        /// </summary>
+        [Input("dhcpOption82RemoteId")]
+        public Input<string>? DhcpOption82RemoteId { get; set; }
+
+        /// <summary>
         /// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("dhcpServerAccessList")]
         public Input<string>? DhcpServerAccessList { get; set; }
+
+        /// <summary>
+        /// Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+        /// </summary>
+        [Input("dhcpSnoopClientDbExp")]
+        public Input<int>? DhcpSnoopClientDbExp { get; set; }
+
+        /// <summary>
+        /// Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+        /// </summary>
+        [Input("dhcpSnoopClientReq")]
+        public Input<string>? DhcpSnoopClientReq { get; set; }
+
+        /// <summary>
+        /// Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+        /// </summary>
+        [Input("dhcpSnoopDbPerPortLearnLimit")]
+        public Input<int>? DhcpSnoopDbPerPortLearnLimit { get; set; }
 
         [Input("disableDiscoveries")]
         private InputList<Inputs.GlobalDisableDiscoveryGetArgs>? _disableDiscoveries;
@@ -443,6 +575,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("firmwareProvisionOnAuthorization")]
         public Input<string>? FirmwareProvisionOnAuthorization { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
@@ -509,6 +647,12 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("vlanAllMode")]
         public Input<string>? VlanAllMode { get; set; }
+
+        /// <summary>
+        /// Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+        /// </summary>
+        [Input("vlanIdentity")]
+        public Input<string>? VlanIdentity { get; set; }
 
         /// <summary>
         /// FortiLink VLAN optimization. Valid values: `enable`, `disable`.

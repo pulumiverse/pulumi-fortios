@@ -56,6 +56,10 @@ export class Standalonecluster extends pulumi.CustomResource {
     }
 
     /**
+     * Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+     */
+    public readonly asymmetricTrafficControl!: pulumi.Output<string>;
+    /**
      * Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `clusterPeer` block is documented below.
      */
     public readonly clusterPeers!: pulumi.Output<outputs.system.StandaloneclusterClusterPeer[] | undefined>;
@@ -67,6 +71,10 @@ export class Standalonecluster extends pulumi.CustomResource {
      * Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
      */
     public readonly encryption!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Cluster member ID (0 - 3).
      */
@@ -105,9 +113,11 @@ export class Standalonecluster extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StandaloneclusterState | undefined;
+            resourceInputs["asymmetricTrafficControl"] = state ? state.asymmetricTrafficControl : undefined;
             resourceInputs["clusterPeers"] = state ? state.clusterPeers : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["encryption"] = state ? state.encryption : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupMemberId"] = state ? state.groupMemberId : undefined;
             resourceInputs["layer2Connection"] = state ? state.layer2Connection : undefined;
             resourceInputs["psksecret"] = state ? state.psksecret : undefined;
@@ -116,9 +126,11 @@ export class Standalonecluster extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as StandaloneclusterArgs | undefined;
+            resourceInputs["asymmetricTrafficControl"] = args ? args.asymmetricTrafficControl : undefined;
             resourceInputs["clusterPeers"] = args ? args.clusterPeers : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["encryption"] = args ? args.encryption : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupMemberId"] = args ? args.groupMemberId : undefined;
             resourceInputs["layer2Connection"] = args ? args.layer2Connection : undefined;
             resourceInputs["psksecret"] = args?.psksecret ? pulumi.secret(args.psksecret) : undefined;
@@ -138,6 +150,10 @@ export class Standalonecluster extends pulumi.CustomResource {
  */
 export interface StandaloneclusterState {
     /**
+     * Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+     */
+    asymmetricTrafficControl?: pulumi.Input<string>;
+    /**
      * Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `clusterPeer` block is documented below.
      */
     clusterPeers?: pulumi.Input<pulumi.Input<inputs.system.StandaloneclusterClusterPeer>[]>;
@@ -149,6 +165,10 @@ export interface StandaloneclusterState {
      * Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
      */
     encryption?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Cluster member ID (0 - 3).
      */
@@ -180,6 +200,10 @@ export interface StandaloneclusterState {
  */
 export interface StandaloneclusterArgs {
     /**
+     * Asymmetric traffic control mode. Valid values: `cps-preferred`, `strict-anti-replay`.
+     */
+    asymmetricTrafficControl?: pulumi.Input<string>;
+    /**
      * Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `clusterPeer` block is documented below.
      */
     clusterPeers?: pulumi.Input<pulumi.Input<inputs.system.StandaloneclusterClusterPeer>[]>;
@@ -191,6 +215,10 @@ export interface StandaloneclusterArgs {
      * Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
      */
     encryption?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Cluster member ID (0 - 3).
      */

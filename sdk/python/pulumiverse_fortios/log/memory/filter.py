@@ -26,8 +26,10 @@ class FilterArgs:
                  event: Optional[pulumi.Input[str]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
                  filter_type: Optional[pulumi.Input[str]] = None,
+                 forti_switch: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input['FilterFreeStyleArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  ha: Optional[pulumi.Input[str]] = None,
                  ipsec: Optional[pulumi.Input[str]] = None,
@@ -64,8 +66,10 @@ class FilterArgs:
         :param pulumi.Input[str] event: Enable/disable event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter: Memory log filter.
         :param pulumi.Input[str] filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+        :param pulumi.Input[str] forti_switch: Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_traffic: Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FilterFreeStyleArgs']]] free_styles: Free Style Filters The structure of `free_style` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtp: Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ha: Enable/disable HA logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec: Enable/disable IPsec negotiation messages logging. Valid values: `enable`, `disable`.
@@ -111,10 +115,14 @@ class FilterArgs:
             pulumi.set(__self__, "filter", filter)
         if filter_type is not None:
             pulumi.set(__self__, "filter_type", filter_type)
+        if forti_switch is not None:
+            pulumi.set(__self__, "forti_switch", forti_switch)
         if forward_traffic is not None:
             pulumi.set(__self__, "forward_traffic", forward_traffic)
         if free_styles is not None:
             pulumi.set(__self__, "free_styles", free_styles)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gtp is not None:
             pulumi.set(__self__, "gtp", gtp)
         if ha is not None:
@@ -285,6 +293,18 @@ class FilterArgs:
         pulumi.set(self, "filter_type", value)
 
     @property
+    @pulumi.getter(name="fortiSwitch")
+    def forti_switch(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "forti_switch")
+
+    @forti_switch.setter
+    def forti_switch(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forti_switch", value)
+
+    @property
     @pulumi.getter(name="forwardTraffic")
     def forward_traffic(self) -> Optional[pulumi.Input[str]]:
         """
@@ -307,6 +327,18 @@ class FilterArgs:
     @free_styles.setter
     def free_styles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FilterFreeStyleArgs']]]]):
         pulumi.set(self, "free_styles", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -610,8 +642,10 @@ class _FilterState:
                  event: Optional[pulumi.Input[str]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
                  filter_type: Optional[pulumi.Input[str]] = None,
+                 forti_switch: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input['FilterFreeStyleArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  ha: Optional[pulumi.Input[str]] = None,
                  ipsec: Optional[pulumi.Input[str]] = None,
@@ -648,8 +682,10 @@ class _FilterState:
         :param pulumi.Input[str] event: Enable/disable event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter: Memory log filter.
         :param pulumi.Input[str] filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+        :param pulumi.Input[str] forti_switch: Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_traffic: Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FilterFreeStyleArgs']]] free_styles: Free Style Filters The structure of `free_style` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtp: Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ha: Enable/disable HA logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec: Enable/disable IPsec negotiation messages logging. Valid values: `enable`, `disable`.
@@ -695,10 +731,14 @@ class _FilterState:
             pulumi.set(__self__, "filter", filter)
         if filter_type is not None:
             pulumi.set(__self__, "filter_type", filter_type)
+        if forti_switch is not None:
+            pulumi.set(__self__, "forti_switch", forti_switch)
         if forward_traffic is not None:
             pulumi.set(__self__, "forward_traffic", forward_traffic)
         if free_styles is not None:
             pulumi.set(__self__, "free_styles", free_styles)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gtp is not None:
             pulumi.set(__self__, "gtp", gtp)
         if ha is not None:
@@ -869,6 +909,18 @@ class _FilterState:
         pulumi.set(self, "filter_type", value)
 
     @property
+    @pulumi.getter(name="fortiSwitch")
+    def forti_switch(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "forti_switch")
+
+    @forti_switch.setter
+    def forti_switch(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forti_switch", value)
+
+    @property
     @pulumi.getter(name="forwardTraffic")
     def forward_traffic(self) -> Optional[pulumi.Input[str]]:
         """
@@ -891,6 +943,18 @@ class _FilterState:
     @free_styles.setter
     def free_styles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FilterFreeStyleArgs']]]]):
         pulumi.set(self, "free_styles", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1196,8 +1260,10 @@ class Filter(pulumi.CustomResource):
                  event: Optional[pulumi.Input[str]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
                  filter_type: Optional[pulumi.Input[str]] = None,
+                 forti_switch: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FilterFreeStyleArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  ha: Optional[pulumi.Input[str]] = None,
                  ipsec: Optional[pulumi.Input[str]] = None,
@@ -1278,8 +1344,10 @@ class Filter(pulumi.CustomResource):
         :param pulumi.Input[str] event: Enable/disable event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter: Memory log filter.
         :param pulumi.Input[str] filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+        :param pulumi.Input[str] forti_switch: Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_traffic: Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FilterFreeStyleArgs']]]] free_styles: Free Style Filters The structure of `free_style` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtp: Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ha: Enable/disable HA logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec: Enable/disable IPsec negotiation messages logging. Valid values: `enable`, `disable`.
@@ -1379,8 +1447,10 @@ class Filter(pulumi.CustomResource):
                  event: Optional[pulumi.Input[str]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
                  filter_type: Optional[pulumi.Input[str]] = None,
+                 forti_switch: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FilterFreeStyleArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  ha: Optional[pulumi.Input[str]] = None,
                  ipsec: Optional[pulumi.Input[str]] = None,
@@ -1424,8 +1494,10 @@ class Filter(pulumi.CustomResource):
             __props__.__dict__["event"] = event
             __props__.__dict__["filter"] = filter
             __props__.__dict__["filter_type"] = filter_type
+            __props__.__dict__["forti_switch"] = forti_switch
             __props__.__dict__["forward_traffic"] = forward_traffic
             __props__.__dict__["free_styles"] = free_styles
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gtp"] = gtp
             __props__.__dict__["ha"] = ha
             __props__.__dict__["ipsec"] = ipsec
@@ -1470,8 +1542,10 @@ class Filter(pulumi.CustomResource):
             event: Optional[pulumi.Input[str]] = None,
             filter: Optional[pulumi.Input[str]] = None,
             filter_type: Optional[pulumi.Input[str]] = None,
+            forti_switch: Optional[pulumi.Input[str]] = None,
             forward_traffic: Optional[pulumi.Input[str]] = None,
             free_styles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FilterFreeStyleArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gtp: Optional[pulumi.Input[str]] = None,
             ha: Optional[pulumi.Input[str]] = None,
             ipsec: Optional[pulumi.Input[str]] = None,
@@ -1513,8 +1587,10 @@ class Filter(pulumi.CustomResource):
         :param pulumi.Input[str] event: Enable/disable event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter: Memory log filter.
         :param pulumi.Input[str] filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+        :param pulumi.Input[str] forti_switch: Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_traffic: Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FilterFreeStyleArgs']]]] free_styles: Free Style Filters The structure of `free_style` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtp: Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ha: Enable/disable HA logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec: Enable/disable IPsec negotiation messages logging. Valid values: `enable`, `disable`.
@@ -1554,8 +1630,10 @@ class Filter(pulumi.CustomResource):
         __props__.__dict__["event"] = event
         __props__.__dict__["filter"] = filter
         __props__.__dict__["filter_type"] = filter_type
+        __props__.__dict__["forti_switch"] = forti_switch
         __props__.__dict__["forward_traffic"] = forward_traffic
         __props__.__dict__["free_styles"] = free_styles
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gtp"] = gtp
         __props__.__dict__["ha"] = ha
         __props__.__dict__["ipsec"] = ipsec
@@ -1663,6 +1741,14 @@ class Filter(pulumi.CustomResource):
         return pulumi.get(self, "filter_type")
 
     @property
+    @pulumi.getter(name="fortiSwitch")
+    def forti_switch(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "forti_switch")
+
+    @property
     @pulumi.getter(name="forwardTraffic")
     def forward_traffic(self) -> pulumi.Output[str]:
         """
@@ -1677,6 +1763,14 @@ class Filter(pulumi.CustomResource):
         Free Style Filters The structure of `free_style` block is documented below.
         """
         return pulumi.get(self, "free_styles")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

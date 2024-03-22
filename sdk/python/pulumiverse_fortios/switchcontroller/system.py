@@ -14,6 +14,8 @@ __all__ = ['SystemArgs', 'System']
 @pulumi.input_type
 class SystemArgs:
     def __init__(__self__, *,
+                 caputp_echo_interval: Optional[pulumi.Input[int]] = None,
+                 caputp_max_retransmit: Optional[pulumi.Input[int]] = None,
                  data_sync_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
                  iot_holdoff: Optional[pulumi.Input[int]] = None,
@@ -27,6 +29,8 @@ class SystemArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a System resource.
+        :param pulumi.Input[int] caputp_echo_interval: Echo interval for the caputp echo requests from swtp.
+        :param pulumi.Input[int] caputp_max_retransmit: Maximum retransmission count for the caputp tunnel packets.
         :param pulumi.Input[int] data_sync_interval: Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
         :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] iot_holdoff: MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
@@ -36,9 +40,13 @@ class SystemArgs:
         :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] parallel_process: Maximum number of parallel processes (1 - 300, default = 1).
         :param pulumi.Input[str] parallel_process_override: Enable/disable parallel process override. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if caputp_echo_interval is not None:
+            pulumi.set(__self__, "caputp_echo_interval", caputp_echo_interval)
+        if caputp_max_retransmit is not None:
+            pulumi.set(__self__, "caputp_max_retransmit", caputp_max_retransmit)
         if data_sync_interval is not None:
             pulumi.set(__self__, "data_sync_interval", data_sync_interval)
         if dynamic_periodic_interval is not None:
@@ -61,6 +69,30 @@ class SystemArgs:
             pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="caputpEchoInterval")
+    def caputp_echo_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Echo interval for the caputp echo requests from swtp.
+        """
+        return pulumi.get(self, "caputp_echo_interval")
+
+    @caputp_echo_interval.setter
+    def caputp_echo_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "caputp_echo_interval", value)
+
+    @property
+    @pulumi.getter(name="caputpMaxRetransmit")
+    def caputp_max_retransmit(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum retransmission count for the caputp tunnel packets.
+        """
+        return pulumi.get(self, "caputp_max_retransmit")
+
+    @caputp_max_retransmit.setter
+    def caputp_max_retransmit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "caputp_max_retransmit", value)
 
     @property
     @pulumi.getter(name="dataSyncInterval")
@@ -174,7 +206,7 @@ class SystemArgs:
     @pulumi.getter(name="tunnelMode")
     def tunnel_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        Compatible/strict tunnel mode.
         """
         return pulumi.get(self, "tunnel_mode")
 
@@ -198,6 +230,8 @@ class SystemArgs:
 @pulumi.input_type
 class _SystemState:
     def __init__(__self__, *,
+                 caputp_echo_interval: Optional[pulumi.Input[int]] = None,
+                 caputp_max_retransmit: Optional[pulumi.Input[int]] = None,
                  data_sync_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
                  iot_holdoff: Optional[pulumi.Input[int]] = None,
@@ -211,6 +245,8 @@ class _SystemState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering System resources.
+        :param pulumi.Input[int] caputp_echo_interval: Echo interval for the caputp echo requests from swtp.
+        :param pulumi.Input[int] caputp_max_retransmit: Maximum retransmission count for the caputp tunnel packets.
         :param pulumi.Input[int] data_sync_interval: Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
         :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] iot_holdoff: MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
@@ -220,9 +256,13 @@ class _SystemState:
         :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] parallel_process: Maximum number of parallel processes (1 - 300, default = 1).
         :param pulumi.Input[str] parallel_process_override: Enable/disable parallel process override. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if caputp_echo_interval is not None:
+            pulumi.set(__self__, "caputp_echo_interval", caputp_echo_interval)
+        if caputp_max_retransmit is not None:
+            pulumi.set(__self__, "caputp_max_retransmit", caputp_max_retransmit)
         if data_sync_interval is not None:
             pulumi.set(__self__, "data_sync_interval", data_sync_interval)
         if dynamic_periodic_interval is not None:
@@ -245,6 +285,30 @@ class _SystemState:
             pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="caputpEchoInterval")
+    def caputp_echo_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Echo interval for the caputp echo requests from swtp.
+        """
+        return pulumi.get(self, "caputp_echo_interval")
+
+    @caputp_echo_interval.setter
+    def caputp_echo_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "caputp_echo_interval", value)
+
+    @property
+    @pulumi.getter(name="caputpMaxRetransmit")
+    def caputp_max_retransmit(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum retransmission count for the caputp tunnel packets.
+        """
+        return pulumi.get(self, "caputp_max_retransmit")
+
+    @caputp_max_retransmit.setter
+    def caputp_max_retransmit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "caputp_max_retransmit", value)
 
     @property
     @pulumi.getter(name="dataSyncInterval")
@@ -358,7 +422,7 @@ class _SystemState:
     @pulumi.getter(name="tunnelMode")
     def tunnel_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        Compatible/strict tunnel mode.
         """
         return pulumi.get(self, "tunnel_mode")
 
@@ -384,6 +448,8 @@ class System(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 caputp_echo_interval: Optional[pulumi.Input[int]] = None,
+                 caputp_max_retransmit: Optional[pulumi.Input[int]] = None,
                  data_sync_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
                  iot_holdoff: Optional[pulumi.Input[int]] = None,
@@ -419,6 +485,8 @@ class System(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] caputp_echo_interval: Echo interval for the caputp echo requests from swtp.
+        :param pulumi.Input[int] caputp_max_retransmit: Maximum retransmission count for the caputp tunnel packets.
         :param pulumi.Input[int] data_sync_interval: Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
         :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] iot_holdoff: MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
@@ -428,7 +496,7 @@ class System(pulumi.CustomResource):
         :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] parallel_process: Maximum number of parallel processes (1 - 300, default = 1).
         :param pulumi.Input[str] parallel_process_override: Enable/disable parallel process override. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -473,6 +541,8 @@ class System(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 caputp_echo_interval: Optional[pulumi.Input[int]] = None,
+                 caputp_max_retransmit: Optional[pulumi.Input[int]] = None,
                  data_sync_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
                  iot_holdoff: Optional[pulumi.Input[int]] = None,
@@ -493,6 +563,8 @@ class System(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemArgs.__new__(SystemArgs)
 
+            __props__.__dict__["caputp_echo_interval"] = caputp_echo_interval
+            __props__.__dict__["caputp_max_retransmit"] = caputp_max_retransmit
             __props__.__dict__["data_sync_interval"] = data_sync_interval
             __props__.__dict__["dynamic_periodic_interval"] = dynamic_periodic_interval
             __props__.__dict__["iot_holdoff"] = iot_holdoff
@@ -514,6 +586,8 @@ class System(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            caputp_echo_interval: Optional[pulumi.Input[int]] = None,
+            caputp_max_retransmit: Optional[pulumi.Input[int]] = None,
             data_sync_interval: Optional[pulumi.Input[int]] = None,
             dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
             iot_holdoff: Optional[pulumi.Input[int]] = None,
@@ -532,6 +606,8 @@ class System(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] caputp_echo_interval: Echo interval for the caputp echo requests from swtp.
+        :param pulumi.Input[int] caputp_max_retransmit: Maximum retransmission count for the caputp tunnel packets.
         :param pulumi.Input[int] data_sync_interval: Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
         :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] iot_holdoff: MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
@@ -541,13 +617,15 @@ class System(pulumi.CustomResource):
         :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] parallel_process: Maximum number of parallel processes (1 - 300, default = 1).
         :param pulumi.Input[str] parallel_process_override: Enable/disable parallel process override. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _SystemState.__new__(_SystemState)
 
+        __props__.__dict__["caputp_echo_interval"] = caputp_echo_interval
+        __props__.__dict__["caputp_max_retransmit"] = caputp_max_retransmit
         __props__.__dict__["data_sync_interval"] = data_sync_interval
         __props__.__dict__["dynamic_periodic_interval"] = dynamic_periodic_interval
         __props__.__dict__["iot_holdoff"] = iot_holdoff
@@ -560,6 +638,22 @@ class System(pulumi.CustomResource):
         __props__.__dict__["tunnel_mode"] = tunnel_mode
         __props__.__dict__["vdomparam"] = vdomparam
         return System(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="caputpEchoInterval")
+    def caputp_echo_interval(self) -> pulumi.Output[int]:
+        """
+        Echo interval for the caputp echo requests from swtp.
+        """
+        return pulumi.get(self, "caputp_echo_interval")
+
+    @property
+    @pulumi.getter(name="caputpMaxRetransmit")
+    def caputp_max_retransmit(self) -> pulumi.Output[int]:
+        """
+        Maximum retransmission count for the caputp tunnel packets.
+        """
+        return pulumi.get(self, "caputp_max_retransmit")
 
     @property
     @pulumi.getter(name="dataSyncInterval")
@@ -637,7 +731,7 @@ class System(pulumi.CustomResource):
     @pulumi.getter(name="tunnelMode")
     def tunnel_mode(self) -> pulumi.Output[str]:
         """
-        Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        Compatible/strict tunnel mode.
         """
         return pulumi.get(self, "tunnel_mode")
 

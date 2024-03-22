@@ -76,6 +76,8 @@ type Profile struct {
 
 	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
 	ChunkEncap pulumi.StringOutput `pulumi:"chunkEncap"`
+	// Comment.
+	Comment pulumi.StringPtrOutput `pulumi:"comment"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
@@ -88,6 +90,8 @@ type Profile struct {
 	FileTransferPath pulumi.StringOutput `pulumi:"fileTransferPath"`
 	// ICAP server to use for a file transfer.
 	FileTransferServer pulumi.StringOutput `pulumi:"fileTransferServer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
 	IcapBlockLog pulumi.StringOutput `pulumi:"icapBlockLog"`
 	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
@@ -170,6 +174,8 @@ func GetProfile(ctx *pulumi.Context,
 type profileState struct {
 	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
 	ChunkEncap *string `pulumi:"chunkEncap"`
+	// Comment.
+	Comment *string `pulumi:"comment"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
@@ -182,6 +188,8 @@ type profileState struct {
 	FileTransferPath *string `pulumi:"fileTransferPath"`
 	// ICAP server to use for a file transfer.
 	FileTransferServer *string `pulumi:"fileTransferServer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
 	IcapBlockLog *string `pulumi:"icapBlockLog"`
 	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
@@ -235,6 +243,8 @@ type profileState struct {
 type ProfileState struct {
 	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
 	ChunkEncap pulumi.StringPtrInput
+	// Comment.
+	Comment pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
@@ -247,6 +257,8 @@ type ProfileState struct {
 	FileTransferPath pulumi.StringPtrInput
 	// ICAP server to use for a file transfer.
 	FileTransferServer pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
 	IcapBlockLog pulumi.StringPtrInput
 	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
@@ -304,6 +316,8 @@ func (ProfileState) ElementType() reflect.Type {
 type profileArgs struct {
 	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
 	ChunkEncap *string `pulumi:"chunkEncap"`
+	// Comment.
+	Comment *string `pulumi:"comment"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
@@ -316,6 +330,8 @@ type profileArgs struct {
 	FileTransferPath *string `pulumi:"fileTransferPath"`
 	// ICAP server to use for a file transfer.
 	FileTransferServer *string `pulumi:"fileTransferServer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
 	IcapBlockLog *string `pulumi:"icapBlockLog"`
 	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
@@ -370,6 +386,8 @@ type profileArgs struct {
 type ProfileArgs struct {
 	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
 	ChunkEncap pulumi.StringPtrInput
+	// Comment.
+	Comment pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
@@ -382,6 +400,8 @@ type ProfileArgs struct {
 	FileTransferPath pulumi.StringPtrInput
 	// ICAP server to use for a file transfer.
 	FileTransferServer pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
 	IcapBlockLog pulumi.StringPtrInput
 	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
@@ -524,6 +544,11 @@ func (o ProfileOutput) ChunkEncap() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.ChunkEncap }).(pulumi.StringOutput)
 }
 
+// Comment.
+func (o ProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o ProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
@@ -552,6 +577,11 @@ func (o ProfileOutput) FileTransferPath() pulumi.StringOutput {
 // ICAP server to use for a file transfer.
 func (o ProfileOutput) FileTransferServer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.FileTransferServer }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.

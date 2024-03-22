@@ -19,6 +19,7 @@ class PtpArgs:
                  interface: pulumi.Input[str],
                  delay_mechanism: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  request_interval: Optional[pulumi.Input[int]] = None,
                  server_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['PtpServerInterfaceArgs']]]] = None,
@@ -30,6 +31,7 @@ class PtpArgs:
         :param pulumi.Input[str] interface: PTP slave will reply through this interface.
         :param pulumi.Input[str] delay_mechanism: End to end delay detection or peer to peer delay detection. Valid values: `E2E`, `P2P`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] mode: Multicast transmission or hybrid transmission. Valid values: `multicast`, `hybrid`.
         :param pulumi.Input[int] request_interval: The delay request value is the logarithmic mean interval in seconds between the delay request messages sent by the slave to the master.
         :param pulumi.Input[Sequence[pulumi.Input['PtpServerInterfaceArgs']]] server_interfaces: FortiGate interface(s) with PTP server mode enabled. Devices on your network can contact these interfaces for PTP services. The structure of `server_interface` block is documented below.
@@ -42,6 +44,8 @@ class PtpArgs:
             pulumi.set(__self__, "delay_mechanism", delay_mechanism)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if request_interval is not None:
@@ -90,6 +94,18 @@ class PtpArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -169,6 +185,7 @@ class _PtpState:
     def __init__(__self__, *,
                  delay_mechanism: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  request_interval: Optional[pulumi.Input[int]] = None,
@@ -180,6 +197,7 @@ class _PtpState:
         Input properties used for looking up and filtering Ptp resources.
         :param pulumi.Input[str] delay_mechanism: End to end delay detection or peer to peer delay detection. Valid values: `E2E`, `P2P`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: PTP slave will reply through this interface.
         :param pulumi.Input[str] mode: Multicast transmission or hybrid transmission. Valid values: `multicast`, `hybrid`.
         :param pulumi.Input[int] request_interval: The delay request value is the logarithmic mean interval in seconds between the delay request messages sent by the slave to the master.
@@ -192,6 +210,8 @@ class _PtpState:
             pulumi.set(__self__, "delay_mechanism", delay_mechanism)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if mode is not None:
@@ -230,6 +250,18 @@ class _PtpState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -323,6 +355,7 @@ class Ptp(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  delay_mechanism: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  request_interval: Optional[pulumi.Input[int]] = None,
@@ -372,6 +405,7 @@ class Ptp(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] delay_mechanism: End to end delay detection or peer to peer delay detection. Valid values: `E2E`, `P2P`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: PTP slave will reply through this interface.
         :param pulumi.Input[str] mode: Multicast transmission or hybrid transmission. Valid values: `multicast`, `hybrid`.
         :param pulumi.Input[int] request_interval: The delay request value is the logarithmic mean interval in seconds between the delay request messages sent by the slave to the master.
@@ -440,6 +474,7 @@ class Ptp(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  delay_mechanism: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  request_interval: Optional[pulumi.Input[int]] = None,
@@ -458,6 +493,7 @@ class Ptp(pulumi.CustomResource):
 
             __props__.__dict__["delay_mechanism"] = delay_mechanism
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
@@ -479,6 +515,7 @@ class Ptp(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             delay_mechanism: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             mode: Optional[pulumi.Input[str]] = None,
             request_interval: Optional[pulumi.Input[int]] = None,
@@ -495,6 +532,7 @@ class Ptp(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] delay_mechanism: End to end delay detection or peer to peer delay detection. Valid values: `E2E`, `P2P`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: PTP slave will reply through this interface.
         :param pulumi.Input[str] mode: Multicast transmission or hybrid transmission. Valid values: `multicast`, `hybrid`.
         :param pulumi.Input[int] request_interval: The delay request value is the logarithmic mean interval in seconds between the delay request messages sent by the slave to the master.
@@ -509,6 +547,7 @@ class Ptp(pulumi.CustomResource):
 
         __props__.__dict__["delay_mechanism"] = delay_mechanism
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["mode"] = mode
         __props__.__dict__["request_interval"] = request_interval
@@ -533,6 +572,14 @@ class Ptp(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

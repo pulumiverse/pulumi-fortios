@@ -50,6 +50,8 @@ type LookupExternalresourceResult struct {
 	RefreshRate int `pulumi:"refreshRate"`
 	// URI of external resource.
 	Resource string `pulumi:"resource"`
+	// Certificate verification option.
+	ServerIdentityCheck string `pulumi:"serverIdentityCheck"`
 	// Source IPv4 address used to communicate with server.
 	SourceIp string `pulumi:"sourceIp"`
 	// Enable/disable user resource.
@@ -150,6 +152,11 @@ func (o LookupExternalresourceResultOutput) RefreshRate() pulumi.IntOutput {
 // URI of external resource.
 func (o LookupExternalresourceResultOutput) Resource() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupExternalresourceResult) string { return v.Resource }).(pulumi.StringOutput)
+}
+
+// Certificate verification option.
+func (o LookupExternalresourceResultOutput) ServerIdentityCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupExternalresourceResult) string { return v.ServerIdentityCheck }).(pulumi.StringOutput)
 }
 
 // Source IPv4 address used to communicate with server.

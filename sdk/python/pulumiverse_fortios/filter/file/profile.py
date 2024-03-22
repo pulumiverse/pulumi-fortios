@@ -20,6 +20,7 @@ class ProfileArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -32,11 +33,12 @@ class ProfileArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] extended_log: Enable/disable file-filter extended logging. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log: Enable/disable file-filter logging. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[str] replacemsg_group: Replacement message group
         :param pulumi.Input[Sequence[pulumi.Input['ProfileRuleArgs']]] rules: File filter rules. The structure of `rules` block is documented below.
-        :param pulumi.Input[str] scan_archive_contents: Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] scan_archive_contents: Enable/disable archive contents scan. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if comment is not None:
@@ -47,6 +49,8 @@ class ProfileArgs:
             pulumi.set(__self__, "extended_log", extended_log)
         if feature_set is not None:
             pulumi.set(__self__, "feature_set", feature_set)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log is not None:
             pulumi.set(__self__, "log", log)
         if name is not None:
@@ -109,6 +113,18 @@ class ProfileArgs:
         pulumi.set(self, "feature_set", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def log(self) -> Optional[pulumi.Input[str]]:
         """
@@ -160,7 +176,7 @@ class ProfileArgs:
     @pulumi.getter(name="scanArchiveContents")
     def scan_archive_contents(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+        Enable/disable archive contents scan. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "scan_archive_contents")
 
@@ -188,6 +204,7 @@ class _ProfileState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -200,11 +217,12 @@ class _ProfileState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] extended_log: Enable/disable file-filter extended logging. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log: Enable/disable file-filter logging. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[str] replacemsg_group: Replacement message group
         :param pulumi.Input[Sequence[pulumi.Input['ProfileRuleArgs']]] rules: File filter rules. The structure of `rules` block is documented below.
-        :param pulumi.Input[str] scan_archive_contents: Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] scan_archive_contents: Enable/disable archive contents scan. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if comment is not None:
@@ -215,6 +233,8 @@ class _ProfileState:
             pulumi.set(__self__, "extended_log", extended_log)
         if feature_set is not None:
             pulumi.set(__self__, "feature_set", feature_set)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log is not None:
             pulumi.set(__self__, "log", log)
         if name is not None:
@@ -277,6 +297,18 @@ class _ProfileState:
         pulumi.set(self, "feature_set", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def log(self) -> Optional[pulumi.Input[str]]:
         """
@@ -328,7 +360,7 @@ class _ProfileState:
     @pulumi.getter(name="scanArchiveContents")
     def scan_archive_contents(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+        Enable/disable archive contents scan. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "scan_archive_contents")
 
@@ -358,6 +390,7 @@ class Profile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -392,11 +425,12 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] extended_log: Enable/disable file-filter extended logging. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log: Enable/disable file-filter logging. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[str] replacemsg_group: Replacement message group
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileRuleArgs']]]] rules: File filter rules. The structure of `rules` block is documented below.
-        :param pulumi.Input[str] scan_archive_contents: Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] scan_archive_contents: Enable/disable archive contents scan. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -445,6 +479,7 @@ class Profile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -464,6 +499,7 @@ class Profile(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["extended_log"] = extended_log
             __props__.__dict__["feature_set"] = feature_set
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["log"] = log
             __props__.__dict__["name"] = name
             __props__.__dict__["replacemsg_group"] = replacemsg_group
@@ -484,6 +520,7 @@ class Profile(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             extended_log: Optional[pulumi.Input[str]] = None,
             feature_set: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             log: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -501,11 +538,12 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] extended_log: Enable/disable file-filter extended logging. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log: Enable/disable file-filter logging. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[str] replacemsg_group: Replacement message group
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileRuleArgs']]]] rules: File filter rules. The structure of `rules` block is documented below.
-        :param pulumi.Input[str] scan_archive_contents: Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] scan_archive_contents: Enable/disable archive contents scan. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -516,6 +554,7 @@ class Profile(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["extended_log"] = extended_log
         __props__.__dict__["feature_set"] = feature_set
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["log"] = log
         __props__.__dict__["name"] = name
         __props__.__dict__["replacemsg_group"] = replacemsg_group
@@ -557,6 +596,14 @@ class Profile(pulumi.CustomResource):
         return pulumi.get(self, "feature_set")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def log(self) -> pulumi.Output[str]:
         """
@@ -592,7 +639,7 @@ class Profile(pulumi.CustomResource):
     @pulumi.getter(name="scanArchiveContents")
     def scan_archive_contents(self) -> pulumi.Output[str]:
         """
-        Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+        Enable/disable archive contents scan. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "scan_archive_contents")
 

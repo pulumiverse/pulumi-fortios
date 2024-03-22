@@ -21,6 +21,7 @@ class DeviceArgs:
                  category: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  master_device: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['DeviceTaggingArgs']]]] = None,
@@ -34,6 +35,7 @@ class DeviceArgs:
         :param pulumi.Input[str] category: Device category. Valid values: `none`, `amazon-device`, `android-device`, `blackberry-device`, `fortinet-device`, `ios-device`, `windows-device`.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] mac: Device MAC address.
         :param pulumi.Input[str] master_device: Master device (optional).
         :param pulumi.Input[Sequence[pulumi.Input['DeviceTaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -51,6 +53,8 @@ class DeviceArgs:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if mac is not None:
             pulumi.set(__self__, "mac", mac)
         if master_device is not None:
@@ -123,6 +127,18 @@ class DeviceArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -205,6 +221,7 @@ class _DeviceState:
                  category: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  master_device: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['DeviceTaggingArgs']]]] = None,
@@ -218,6 +235,7 @@ class _DeviceState:
         :param pulumi.Input[str] category: Device category. Valid values: `none`, `amazon-device`, `android-device`, `blackberry-device`, `fortinet-device`, `ios-device`, `windows-device`.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] mac: Device MAC address.
         :param pulumi.Input[str] master_device: Master device (optional).
         :param pulumi.Input[Sequence[pulumi.Input['DeviceTaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -235,6 +253,8 @@ class _DeviceState:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if mac is not None:
             pulumi.set(__self__, "mac", mac)
         if master_device is not None:
@@ -307,6 +327,18 @@ class _DeviceState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -391,6 +423,7 @@ class Device(pulumi.CustomResource):
                  category: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  master_device: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeviceTaggingArgs']]]]] = None,
@@ -441,6 +474,7 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] category: Device category. Valid values: `none`, `amazon-device`, `android-device`, `blackberry-device`, `fortinet-device`, `ios-device`, `windows-device`.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] mac: Device MAC address.
         :param pulumi.Input[str] master_device: Master device (optional).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeviceTaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -510,6 +544,7 @@ class Device(pulumi.CustomResource):
                  category: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  master_device: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeviceTaggingArgs']]]]] = None,
@@ -530,6 +565,7 @@ class Device(pulumi.CustomResource):
             __props__.__dict__["category"] = category
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["mac"] = mac
             __props__.__dict__["master_device"] = master_device
             __props__.__dict__["taggings"] = taggings
@@ -551,6 +587,7 @@ class Device(pulumi.CustomResource):
             category: Optional[pulumi.Input[str]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             mac: Optional[pulumi.Input[str]] = None,
             master_device: Optional[pulumi.Input[str]] = None,
             taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeviceTaggingArgs']]]]] = None,
@@ -569,6 +606,7 @@ class Device(pulumi.CustomResource):
         :param pulumi.Input[str] category: Device category. Valid values: `none`, `amazon-device`, `android-device`, `blackberry-device`, `fortinet-device`, `ios-device`, `windows-device`.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] mac: Device MAC address.
         :param pulumi.Input[str] master_device: Master device (optional).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DeviceTaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -585,6 +623,7 @@ class Device(pulumi.CustomResource):
         __props__.__dict__["category"] = category
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["mac"] = mac
         __props__.__dict__["master_device"] = master_device
         __props__.__dict__["taggings"] = taggings
@@ -632,6 +671,14 @@ class Device(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

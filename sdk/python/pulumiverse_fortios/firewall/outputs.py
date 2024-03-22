@@ -13,21 +13,25 @@ from . import outputs
 __all__ = [
     'Accessproxy6ApiGateway6',
     'Accessproxy6ApiGateway6Application',
+    'Accessproxy6ApiGateway6Quic',
     'Accessproxy6ApiGateway6Realserver',
     'Accessproxy6ApiGateway6RealserverSshHostKey',
     'Accessproxy6ApiGateway6SslCipherSuite',
     'Accessproxy6ApiGateway',
     'Accessproxy6ApiGatewayApplication',
+    'Accessproxy6ApiGatewayQuic',
     'Accessproxy6ApiGatewayRealserver',
     'Accessproxy6ApiGatewayRealserverSshHostKey',
     'Accessproxy6ApiGatewaySslCipherSuite',
     'AccessproxyApiGateway6',
     'AccessproxyApiGateway6Application',
+    'AccessproxyApiGateway6Quic',
     'AccessproxyApiGateway6Realserver',
     'AccessproxyApiGateway6RealserverSshHostKey',
     'AccessproxyApiGateway6SslCipherSuite',
     'AccessproxyApiGateway',
     'AccessproxyApiGatewayApplication',
+    'AccessproxyApiGatewayQuic',
     'AccessproxyApiGatewayRealserver',
     'AccessproxyApiGatewayRealserverSshHostKey',
     'AccessproxyApiGatewaySslCipherSuite',
@@ -44,6 +48,7 @@ __all__ = [
     'AddressMacaddr',
     'AddressTagging',
     'AddressTaggingTag',
+    'Addrgrp6ExcludeMember',
     'Addrgrp6Member',
     'Addrgrp6Tagging',
     'Addrgrp6TaggingTag',
@@ -59,6 +64,7 @@ __all__ = [
     'CentralsnatmapNatIppool',
     'CentralsnatmapOrigAddr6',
     'CentralsnatmapOrigAddr',
+    'CentralsnatmapSortStatePolicyList',
     'CentralsnatmapSrcintf',
     'CountryRegion',
     'DecryptedtrafficmirrorInterface',
@@ -96,6 +102,7 @@ __all__ = [
     'InternetserviceextensionEntryDst',
     'InternetserviceextensionEntryPortRange',
     'InternetservicegroupMember',
+    'InternetservicesubappSubApp',
     'Localinpolicy6Dstaddr',
     'Localinpolicy6Service',
     'Localinpolicy6Srcaddr',
@@ -165,11 +172,13 @@ __all__ = [
     'PolicyNetworkServiceDynamic',
     'PolicyNetworkServiceSrcDynamic',
     'PolicyNtlmEnabledBrowser',
+    'PolicyPcpPoolname',
     'PolicyPoolname6',
     'PolicyPoolname',
     'PolicyRtpAddr',
     'PolicyService',
     'PolicySgt',
+    'PolicySortStatePolicyList',
     'PolicySrcVendorMac',
     'PolicySrcaddr6',
     'PolicySrcaddr',
@@ -178,6 +187,7 @@ __all__ = [
     'PolicyUrlCategory',
     'PolicyUser',
     'PolicyZtnaEmsTag',
+    'PolicyZtnaEmsTagSecondary',
     'PolicyZtnaGeoTag',
     'ProfileprotocoloptionsCifs',
     'ProfileprotocoloptionsCifsServerKeytab',
@@ -205,6 +215,10 @@ __all__ = [
     'ProxypolicyDstaddr',
     'ProxypolicyDstintf',
     'ProxypolicyGroup',
+    'ProxypolicyInternetService6Custom',
+    'ProxypolicyInternetService6CustomGroup',
+    'ProxypolicyInternetService6Group',
+    'ProxypolicyInternetService6Name',
     'ProxypolicyInternetServiceCustom',
     'ProxypolicyInternetServiceCustomGroup',
     'ProxypolicyInternetServiceGroup',
@@ -212,6 +226,7 @@ __all__ = [
     'ProxypolicyInternetServiceName',
     'ProxypolicyPoolname',
     'ProxypolicyService',
+    'ProxypolicySortStatePolicyList',
     'ProxypolicySrcaddr6',
     'ProxypolicySrcaddr',
     'ProxypolicySrcintf',
@@ -219,7 +234,6 @@ __all__ = [
     'ProxypolicyZtnaEmsTag',
     'RegionCity',
     'SecurityPolicyseqStatePolicyList',
-    'SecurityPolicysortStatePolicyList',
     'SecuritypolicyAppCategory',
     'SecuritypolicyAppGroup',
     'SecuritypolicyApplication',
@@ -248,6 +262,7 @@ __all__ = [
     'SecuritypolicyInternetServiceSrcId',
     'SecuritypolicyInternetServiceSrcName',
     'SecuritypolicyService',
+    'SecuritypolicySortStatePolicyList',
     'SecuritypolicySrcaddr4',
     'SecuritypolicySrcaddr6',
     'SecuritypolicySrcaddr',
@@ -300,13 +315,16 @@ __all__ = [
     'Vip64Realserver',
     'Vip64SrcFilter',
     'Vip6Monitor',
+    'Vip6Quic',
     'Vip6Realserver',
     'Vip6SrcFilter',
     'Vip6SslCipherSuite',
     'Vip6SslServerCipherSuite',
     'VipExtaddr',
+    'VipGslbPublicIp',
     'VipMappedip',
     'VipMonitor',
+    'VipQuic',
     'VipRealserver',
     'VipService',
     'VipSrcFilter',
@@ -329,6 +347,7 @@ __all__ = [
     'GetAddressMacaddrResult',
     'GetAddressTaggingResult',
     'GetAddressTaggingTagResult',
+    'GetAddrgrp6ExcludeMemberResult',
     'GetAddrgrp6MemberResult',
     'GetAddrgrp6TaggingResult',
     'GetAddrgrp6TaggingTagResult',
@@ -427,6 +446,7 @@ __all__ = [
     'GetPolicyNetworkServiceDynamicResult',
     'GetPolicyNetworkServiceSrcDynamicResult',
     'GetPolicyNtlmEnabledBrowserResult',
+    'GetPolicyPcpPoolnameResult',
     'GetPolicyPoolname6Result',
     'GetPolicyPoolnameResult',
     'GetPolicyRtpAddrResult',
@@ -440,6 +460,7 @@ __all__ = [
     'GetPolicyUrlCategoryResult',
     'GetPolicyUserResult',
     'GetPolicyZtnaEmsTagResult',
+    'GetPolicyZtnaEmsTagSecondaryResult',
     'GetPolicyZtnaGeoTagResult',
     'GetProfileprotocoloptionsCifResult',
     'GetProfileprotocoloptionsCifServerKeytabResult',
@@ -467,6 +488,10 @@ __all__ = [
     'GetProxypolicyDstaddrResult',
     'GetProxypolicyDstintfResult',
     'GetProxypolicyGroupResult',
+    'GetProxypolicyInternetService6CustomResult',
+    'GetProxypolicyInternetService6CustomGroupResult',
+    'GetProxypolicyInternetService6GroupResult',
+    'GetProxypolicyInternetService6NameResult',
     'GetProxypolicyInternetServiceCustomResult',
     'GetProxypolicyInternetServiceCustomGroupResult',
     'GetProxypolicyInternetServiceGroupResult',
@@ -486,7 +511,11 @@ class Accessproxy6ApiGateway6(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "httpCookieAge":
+        if key == "h2Support":
+            suggest = "h2_support"
+        elif key == "h3Support":
+            suggest = "h3_support"
+        elif key == "httpCookieAge":
             suggest = "http_cookie_age"
         elif key == "httpCookieDomain":
             suggest = "http_cookie_domain"
@@ -516,6 +545,8 @@ class Accessproxy6ApiGateway6(dict):
             suggest = "ssl_max_version"
         elif key == "sslMinVersion":
             suggest = "ssl_min_version"
+        elif key == "sslRenegotiation":
+            suggest = "ssl_renegotiation"
         elif key == "sslVpnWebPortal":
             suggest = "ssl_vpn_web_portal"
         elif key == "urlMap":
@@ -538,6 +569,8 @@ class Accessproxy6ApiGateway6(dict):
 
     def __init__(__self__, *,
                  applications: Optional[Sequence['outputs.Accessproxy6ApiGateway6Application']] = None,
+                 h2_support: Optional[str] = None,
+                 h3_support: Optional[str] = None,
                  http_cookie_age: Optional[int] = None,
                  http_cookie_domain: Optional[str] = None,
                  http_cookie_domain_from_host: Optional[str] = None,
@@ -548,6 +581,7 @@ class Accessproxy6ApiGateway6(dict):
                  id: Optional[int] = None,
                  ldb_method: Optional[str] = None,
                  persistence: Optional[str] = None,
+                 quic: Optional['outputs.Accessproxy6ApiGateway6Quic'] = None,
                  realservers: Optional[Sequence['outputs.Accessproxy6ApiGateway6Realserver']] = None,
                  saml_redirect: Optional[str] = None,
                  saml_server: Optional[str] = None,
@@ -557,12 +591,15 @@ class Accessproxy6ApiGateway6(dict):
                  ssl_dh_bits: Optional[str] = None,
                  ssl_max_version: Optional[str] = None,
                  ssl_min_version: Optional[str] = None,
+                 ssl_renegotiation: Optional[str] = None,
                  ssl_vpn_web_portal: Optional[str] = None,
                  url_map: Optional[str] = None,
                  url_map_type: Optional[str] = None,
                  virtual_host: Optional[str] = None):
         """
         :param Sequence['Accessproxy6ApiGateway6ApplicationArgs'] applications: SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
+        :param str h2_support: HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+        :param str h3_support: HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
         :param int http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
         :param str http_cookie_domain: Domain that HTTP cookie persistence should apply to.
         :param str http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -573,6 +610,7 @@ class Accessproxy6ApiGateway6(dict):
         :param int id: API Gateway ID.
         :param str ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
         :param str persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+        :param 'Accessproxy6ApiGateway6QuicArgs' quic: QUIC setting. The structure of `quic` block is documented below.
         :param Sequence['Accessproxy6ApiGateway6RealserverArgs'] realservers: Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
         :param str saml_redirect: Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
         :param str saml_server: SAML service provider configuration for VIP authentication.
@@ -582,6 +620,7 @@ class Accessproxy6ApiGateway6(dict):
         :param str ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
         :param str ssl_max_version: Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
         :param str ssl_min_version: Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        :param str ssl_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
         :param str ssl_vpn_web_portal: SSL-VPN web portal.
         :param str url_map: URL pattern to match.
         :param str url_map_type: Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
@@ -589,6 +628,10 @@ class Accessproxy6ApiGateway6(dict):
         """
         if applications is not None:
             pulumi.set(__self__, "applications", applications)
+        if h2_support is not None:
+            pulumi.set(__self__, "h2_support", h2_support)
+        if h3_support is not None:
+            pulumi.set(__self__, "h3_support", h3_support)
         if http_cookie_age is not None:
             pulumi.set(__self__, "http_cookie_age", http_cookie_age)
         if http_cookie_domain is not None:
@@ -609,6 +652,8 @@ class Accessproxy6ApiGateway6(dict):
             pulumi.set(__self__, "ldb_method", ldb_method)
         if persistence is not None:
             pulumi.set(__self__, "persistence", persistence)
+        if quic is not None:
+            pulumi.set(__self__, "quic", quic)
         if realservers is not None:
             pulumi.set(__self__, "realservers", realservers)
         if saml_redirect is not None:
@@ -627,6 +672,8 @@ class Accessproxy6ApiGateway6(dict):
             pulumi.set(__self__, "ssl_max_version", ssl_max_version)
         if ssl_min_version is not None:
             pulumi.set(__self__, "ssl_min_version", ssl_min_version)
+        if ssl_renegotiation is not None:
+            pulumi.set(__self__, "ssl_renegotiation", ssl_renegotiation)
         if ssl_vpn_web_portal is not None:
             pulumi.set(__self__, "ssl_vpn_web_portal", ssl_vpn_web_portal)
         if url_map is not None:
@@ -643,6 +690,22 @@ class Accessproxy6ApiGateway6(dict):
         SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
         """
         return pulumi.get(self, "applications")
+
+    @property
+    @pulumi.getter(name="h2Support")
+    def h2_support(self) -> Optional[str]:
+        """
+        HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h2_support")
+
+    @property
+    @pulumi.getter(name="h3Support")
+    def h3_support(self) -> Optional[str]:
+        """
+        HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h3_support")
 
     @property
     @pulumi.getter(name="httpCookieAge")
@@ -726,6 +789,14 @@ class Accessproxy6ApiGateway6(dict):
 
     @property
     @pulumi.getter
+    def quic(self) -> Optional['outputs.Accessproxy6ApiGateway6Quic']:
+        """
+        QUIC setting. The structure of `quic` block is documented below.
+        """
+        return pulumi.get(self, "quic")
+
+    @property
+    @pulumi.getter
     def realservers(self) -> Optional[Sequence['outputs.Accessproxy6ApiGateway6Realserver']]:
         """
         Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
@@ -797,6 +868,14 @@ class Accessproxy6ApiGateway6(dict):
         return pulumi.get(self, "ssl_min_version")
 
     @property
+    @pulumi.getter(name="sslRenegotiation")
+    def ssl_renegotiation(self) -> Optional[str]:
+        """
+        Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_renegotiation")
+
+    @property
     @pulumi.getter(name="sslVpnWebPortal")
     def ssl_vpn_web_portal(self) -> Optional[str]:
         """
@@ -849,12 +928,148 @@ class Accessproxy6ApiGateway6Application(dict):
 
 
 @pulumi.output_type
+class Accessproxy6ApiGateway6Quic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ackDelayExponent":
+            suggest = "ack_delay_exponent"
+        elif key == "activeConnectionIdLimit":
+            suggest = "active_connection_id_limit"
+        elif key == "activeMigration":
+            suggest = "active_migration"
+        elif key == "greaseQuicBit":
+            suggest = "grease_quic_bit"
+        elif key == "maxAckDelay":
+            suggest = "max_ack_delay"
+        elif key == "maxDatagramFrameSize":
+            suggest = "max_datagram_frame_size"
+        elif key == "maxIdleTimeout":
+            suggest = "max_idle_timeout"
+        elif key == "maxUdpPayloadSize":
+            suggest = "max_udp_payload_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Accessproxy6ApiGateway6Quic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Accessproxy6ApiGateway6Quic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Accessproxy6ApiGateway6Quic.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ack_delay_exponent: Optional[int] = None,
+                 active_connection_id_limit: Optional[int] = None,
+                 active_migration: Optional[str] = None,
+                 grease_quic_bit: Optional[str] = None,
+                 max_ack_delay: Optional[int] = None,
+                 max_datagram_frame_size: Optional[int] = None,
+                 max_idle_timeout: Optional[int] = None,
+                 max_udp_payload_size: Optional[int] = None):
+        """
+        :param int ack_delay_exponent: ACK delay exponent (1 - 20, default = 3).
+        :param int active_connection_id_limit: Active connection ID limit (1 - 8, default = 2).
+        :param str active_migration: Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+        :param str grease_quic_bit: Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+        :param int max_ack_delay: Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+        :param int max_datagram_frame_size: Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+        :param int max_idle_timeout: Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+        :param int max_udp_payload_size: Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+        """
+        if ack_delay_exponent is not None:
+            pulumi.set(__self__, "ack_delay_exponent", ack_delay_exponent)
+        if active_connection_id_limit is not None:
+            pulumi.set(__self__, "active_connection_id_limit", active_connection_id_limit)
+        if active_migration is not None:
+            pulumi.set(__self__, "active_migration", active_migration)
+        if grease_quic_bit is not None:
+            pulumi.set(__self__, "grease_quic_bit", grease_quic_bit)
+        if max_ack_delay is not None:
+            pulumi.set(__self__, "max_ack_delay", max_ack_delay)
+        if max_datagram_frame_size is not None:
+            pulumi.set(__self__, "max_datagram_frame_size", max_datagram_frame_size)
+        if max_idle_timeout is not None:
+            pulumi.set(__self__, "max_idle_timeout", max_idle_timeout)
+        if max_udp_payload_size is not None:
+            pulumi.set(__self__, "max_udp_payload_size", max_udp_payload_size)
+
+    @property
+    @pulumi.getter(name="ackDelayExponent")
+    def ack_delay_exponent(self) -> Optional[int]:
+        """
+        ACK delay exponent (1 - 20, default = 3).
+        """
+        return pulumi.get(self, "ack_delay_exponent")
+
+    @property
+    @pulumi.getter(name="activeConnectionIdLimit")
+    def active_connection_id_limit(self) -> Optional[int]:
+        """
+        Active connection ID limit (1 - 8, default = 2).
+        """
+        return pulumi.get(self, "active_connection_id_limit")
+
+    @property
+    @pulumi.getter(name="activeMigration")
+    def active_migration(self) -> Optional[str]:
+        """
+        Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "active_migration")
+
+    @property
+    @pulumi.getter(name="greaseQuicBit")
+    def grease_quic_bit(self) -> Optional[str]:
+        """
+        Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "grease_quic_bit")
+
+    @property
+    @pulumi.getter(name="maxAckDelay")
+    def max_ack_delay(self) -> Optional[int]:
+        """
+        Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+        """
+        return pulumi.get(self, "max_ack_delay")
+
+    @property
+    @pulumi.getter(name="maxDatagramFrameSize")
+    def max_datagram_frame_size(self) -> Optional[int]:
+        """
+        Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+        """
+        return pulumi.get(self, "max_datagram_frame_size")
+
+    @property
+    @pulumi.getter(name="maxIdleTimeout")
+    def max_idle_timeout(self) -> Optional[int]:
+        """
+        Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+        """
+        return pulumi.get(self, "max_idle_timeout")
+
+    @property
+    @pulumi.getter(name="maxUdpPayloadSize")
+    def max_udp_payload_size(self) -> Optional[int]:
+        """
+        Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+        """
+        return pulumi.get(self, "max_udp_payload_size")
+
+
+@pulumi.output_type
 class Accessproxy6ApiGateway6Realserver(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
         if key == "addrType":
             suggest = "addr_type"
+        elif key == "externalAuth":
+            suggest = "external_auth"
         elif key == "healthCheck":
             suggest = "health_check"
         elif key == "healthCheckProto":
@@ -869,6 +1084,10 @@ class Accessproxy6ApiGateway6Realserver(dict):
             suggest = "ssh_host_key_validation"
         elif key == "sshHostKeys":
             suggest = "ssh_host_keys"
+        elif key == "translateHost":
+            suggest = "translate_host"
+        elif key == "tunnelEncryption":
+            suggest = "tunnel_encryption"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in Accessproxy6ApiGateway6Realserver. Access the value via the '{suggest}' property getter instead.")
@@ -885,6 +1104,7 @@ class Accessproxy6ApiGateway6Realserver(dict):
                  addr_type: Optional[str] = None,
                  address: Optional[str] = None,
                  domain: Optional[str] = None,
+                 external_auth: Optional[str] = None,
                  health_check: Optional[str] = None,
                  health_check_proto: Optional[str] = None,
                  holddown_interval: Optional[str] = None,
@@ -897,12 +1117,15 @@ class Accessproxy6ApiGateway6Realserver(dict):
                  ssh_host_key_validation: Optional[str] = None,
                  ssh_host_keys: Optional[Sequence['outputs.Accessproxy6ApiGateway6RealserverSshHostKey']] = None,
                  status: Optional[str] = None,
+                 translate_host: Optional[str] = None,
+                 tunnel_encryption: Optional[str] = None,
                  type: Optional[str] = None,
                  weight: Optional[int] = None):
         """
         :param str addr_type: Type of address. Valid values: `ip`, `fqdn`.
         :param str address: Address or address group of the real server.
         :param str domain: Wildcard domain name of the real server.
+        :param str external_auth: Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
         :param str health_check: Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
         :param str health_check_proto: Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
         :param str holddown_interval: Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
@@ -915,6 +1138,8 @@ class Accessproxy6ApiGateway6Realserver(dict):
         :param str ssh_host_key_validation: Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
         :param Sequence['Accessproxy6ApiGateway6RealserverSshHostKeyArgs'] ssh_host_keys: One or more server host key. The structure of `ssh_host_key` block is documented below.
         :param str status: Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        :param str translate_host: Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        :param str tunnel_encryption: Tunnel encryption. Valid values: `enable`, `disable`.
         :param str type: TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
         :param int weight: Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
         """
@@ -924,6 +1149,8 @@ class Accessproxy6ApiGateway6Realserver(dict):
             pulumi.set(__self__, "address", address)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if external_auth is not None:
+            pulumi.set(__self__, "external_auth", external_auth)
         if health_check is not None:
             pulumi.set(__self__, "health_check", health_check)
         if health_check_proto is not None:
@@ -948,6 +1175,10 @@ class Accessproxy6ApiGateway6Realserver(dict):
             pulumi.set(__self__, "ssh_host_keys", ssh_host_keys)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if translate_host is not None:
+            pulumi.set(__self__, "translate_host", translate_host)
+        if tunnel_encryption is not None:
+            pulumi.set(__self__, "tunnel_encryption", tunnel_encryption)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if weight is not None:
@@ -976,6 +1207,14 @@ class Accessproxy6ApiGateway6Realserver(dict):
         Wildcard domain name of the real server.
         """
         return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="externalAuth")
+    def external_auth(self) -> Optional[str]:
+        """
+        Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "external_auth")
 
     @property
     @pulumi.getter(name="healthCheck")
@@ -1074,6 +1313,22 @@ class Accessproxy6ApiGateway6Realserver(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter(name="translateHost")
+    def translate_host(self) -> Optional[str]:
+        """
+        Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "translate_host")
+
+    @property
+    @pulumi.getter(name="tunnelEncryption")
+    def tunnel_encryption(self) -> Optional[str]:
+        """
+        Tunnel encryption. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "tunnel_encryption")
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[str]:
         """
@@ -1157,7 +1412,11 @@ class Accessproxy6ApiGateway(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "httpCookieAge":
+        if key == "h2Support":
+            suggest = "h2_support"
+        elif key == "h3Support":
+            suggest = "h3_support"
+        elif key == "httpCookieAge":
             suggest = "http_cookie_age"
         elif key == "httpCookieDomain":
             suggest = "http_cookie_domain"
@@ -1187,6 +1446,8 @@ class Accessproxy6ApiGateway(dict):
             suggest = "ssl_max_version"
         elif key == "sslMinVersion":
             suggest = "ssl_min_version"
+        elif key == "sslRenegotiation":
+            suggest = "ssl_renegotiation"
         elif key == "sslVpnWebPortal":
             suggest = "ssl_vpn_web_portal"
         elif key == "urlMap":
@@ -1209,6 +1470,8 @@ class Accessproxy6ApiGateway(dict):
 
     def __init__(__self__, *,
                  applications: Optional[Sequence['outputs.Accessproxy6ApiGatewayApplication']] = None,
+                 h2_support: Optional[str] = None,
+                 h3_support: Optional[str] = None,
                  http_cookie_age: Optional[int] = None,
                  http_cookie_domain: Optional[str] = None,
                  http_cookie_domain_from_host: Optional[str] = None,
@@ -1219,6 +1482,7 @@ class Accessproxy6ApiGateway(dict):
                  id: Optional[int] = None,
                  ldb_method: Optional[str] = None,
                  persistence: Optional[str] = None,
+                 quic: Optional['outputs.Accessproxy6ApiGatewayQuic'] = None,
                  realservers: Optional[Sequence['outputs.Accessproxy6ApiGatewayRealserver']] = None,
                  saml_redirect: Optional[str] = None,
                  saml_server: Optional[str] = None,
@@ -1228,12 +1492,15 @@ class Accessproxy6ApiGateway(dict):
                  ssl_dh_bits: Optional[str] = None,
                  ssl_max_version: Optional[str] = None,
                  ssl_min_version: Optional[str] = None,
+                 ssl_renegotiation: Optional[str] = None,
                  ssl_vpn_web_portal: Optional[str] = None,
                  url_map: Optional[str] = None,
                  url_map_type: Optional[str] = None,
                  virtual_host: Optional[str] = None):
         """
         :param Sequence['Accessproxy6ApiGatewayApplicationArgs'] applications: SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
+        :param str h2_support: HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+        :param str h3_support: HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
         :param int http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
         :param str http_cookie_domain: Domain that HTTP cookie persistence should apply to.
         :param str http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -1244,6 +1511,7 @@ class Accessproxy6ApiGateway(dict):
         :param int id: API Gateway ID.
         :param str ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
         :param str persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+        :param 'Accessproxy6ApiGatewayQuicArgs' quic: QUIC setting. The structure of `quic` block is documented below.
         :param Sequence['Accessproxy6ApiGatewayRealserverArgs'] realservers: Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
         :param str saml_redirect: Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
         :param str saml_server: SAML service provider configuration for VIP authentication.
@@ -1253,6 +1521,7 @@ class Accessproxy6ApiGateway(dict):
         :param str ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
         :param str ssl_max_version: Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
         :param str ssl_min_version: Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        :param str ssl_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
         :param str ssl_vpn_web_portal: SSL-VPN web portal.
         :param str url_map: URL pattern to match.
         :param str url_map_type: Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
@@ -1260,6 +1529,10 @@ class Accessproxy6ApiGateway(dict):
         """
         if applications is not None:
             pulumi.set(__self__, "applications", applications)
+        if h2_support is not None:
+            pulumi.set(__self__, "h2_support", h2_support)
+        if h3_support is not None:
+            pulumi.set(__self__, "h3_support", h3_support)
         if http_cookie_age is not None:
             pulumi.set(__self__, "http_cookie_age", http_cookie_age)
         if http_cookie_domain is not None:
@@ -1280,6 +1553,8 @@ class Accessproxy6ApiGateway(dict):
             pulumi.set(__self__, "ldb_method", ldb_method)
         if persistence is not None:
             pulumi.set(__self__, "persistence", persistence)
+        if quic is not None:
+            pulumi.set(__self__, "quic", quic)
         if realservers is not None:
             pulumi.set(__self__, "realservers", realservers)
         if saml_redirect is not None:
@@ -1298,6 +1573,8 @@ class Accessproxy6ApiGateway(dict):
             pulumi.set(__self__, "ssl_max_version", ssl_max_version)
         if ssl_min_version is not None:
             pulumi.set(__self__, "ssl_min_version", ssl_min_version)
+        if ssl_renegotiation is not None:
+            pulumi.set(__self__, "ssl_renegotiation", ssl_renegotiation)
         if ssl_vpn_web_portal is not None:
             pulumi.set(__self__, "ssl_vpn_web_portal", ssl_vpn_web_portal)
         if url_map is not None:
@@ -1314,6 +1591,22 @@ class Accessproxy6ApiGateway(dict):
         SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
         """
         return pulumi.get(self, "applications")
+
+    @property
+    @pulumi.getter(name="h2Support")
+    def h2_support(self) -> Optional[str]:
+        """
+        HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h2_support")
+
+    @property
+    @pulumi.getter(name="h3Support")
+    def h3_support(self) -> Optional[str]:
+        """
+        HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h3_support")
 
     @property
     @pulumi.getter(name="httpCookieAge")
@@ -1397,6 +1690,14 @@ class Accessproxy6ApiGateway(dict):
 
     @property
     @pulumi.getter
+    def quic(self) -> Optional['outputs.Accessproxy6ApiGatewayQuic']:
+        """
+        QUIC setting. The structure of `quic` block is documented below.
+        """
+        return pulumi.get(self, "quic")
+
+    @property
+    @pulumi.getter
     def realservers(self) -> Optional[Sequence['outputs.Accessproxy6ApiGatewayRealserver']]:
         """
         Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
@@ -1468,6 +1769,14 @@ class Accessproxy6ApiGateway(dict):
         return pulumi.get(self, "ssl_min_version")
 
     @property
+    @pulumi.getter(name="sslRenegotiation")
+    def ssl_renegotiation(self) -> Optional[str]:
+        """
+        Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_renegotiation")
+
+    @property
     @pulumi.getter(name="sslVpnWebPortal")
     def ssl_vpn_web_portal(self) -> Optional[str]:
         """
@@ -1520,12 +1829,148 @@ class Accessproxy6ApiGatewayApplication(dict):
 
 
 @pulumi.output_type
+class Accessproxy6ApiGatewayQuic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ackDelayExponent":
+            suggest = "ack_delay_exponent"
+        elif key == "activeConnectionIdLimit":
+            suggest = "active_connection_id_limit"
+        elif key == "activeMigration":
+            suggest = "active_migration"
+        elif key == "greaseQuicBit":
+            suggest = "grease_quic_bit"
+        elif key == "maxAckDelay":
+            suggest = "max_ack_delay"
+        elif key == "maxDatagramFrameSize":
+            suggest = "max_datagram_frame_size"
+        elif key == "maxIdleTimeout":
+            suggest = "max_idle_timeout"
+        elif key == "maxUdpPayloadSize":
+            suggest = "max_udp_payload_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Accessproxy6ApiGatewayQuic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Accessproxy6ApiGatewayQuic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Accessproxy6ApiGatewayQuic.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ack_delay_exponent: Optional[int] = None,
+                 active_connection_id_limit: Optional[int] = None,
+                 active_migration: Optional[str] = None,
+                 grease_quic_bit: Optional[str] = None,
+                 max_ack_delay: Optional[int] = None,
+                 max_datagram_frame_size: Optional[int] = None,
+                 max_idle_timeout: Optional[int] = None,
+                 max_udp_payload_size: Optional[int] = None):
+        """
+        :param int ack_delay_exponent: ACK delay exponent (1 - 20, default = 3).
+        :param int active_connection_id_limit: Active connection ID limit (1 - 8, default = 2).
+        :param str active_migration: Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+        :param str grease_quic_bit: Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+        :param int max_ack_delay: Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+        :param int max_datagram_frame_size: Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+        :param int max_idle_timeout: Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+        :param int max_udp_payload_size: Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+        """
+        if ack_delay_exponent is not None:
+            pulumi.set(__self__, "ack_delay_exponent", ack_delay_exponent)
+        if active_connection_id_limit is not None:
+            pulumi.set(__self__, "active_connection_id_limit", active_connection_id_limit)
+        if active_migration is not None:
+            pulumi.set(__self__, "active_migration", active_migration)
+        if grease_quic_bit is not None:
+            pulumi.set(__self__, "grease_quic_bit", grease_quic_bit)
+        if max_ack_delay is not None:
+            pulumi.set(__self__, "max_ack_delay", max_ack_delay)
+        if max_datagram_frame_size is not None:
+            pulumi.set(__self__, "max_datagram_frame_size", max_datagram_frame_size)
+        if max_idle_timeout is not None:
+            pulumi.set(__self__, "max_idle_timeout", max_idle_timeout)
+        if max_udp_payload_size is not None:
+            pulumi.set(__self__, "max_udp_payload_size", max_udp_payload_size)
+
+    @property
+    @pulumi.getter(name="ackDelayExponent")
+    def ack_delay_exponent(self) -> Optional[int]:
+        """
+        ACK delay exponent (1 - 20, default = 3).
+        """
+        return pulumi.get(self, "ack_delay_exponent")
+
+    @property
+    @pulumi.getter(name="activeConnectionIdLimit")
+    def active_connection_id_limit(self) -> Optional[int]:
+        """
+        Active connection ID limit (1 - 8, default = 2).
+        """
+        return pulumi.get(self, "active_connection_id_limit")
+
+    @property
+    @pulumi.getter(name="activeMigration")
+    def active_migration(self) -> Optional[str]:
+        """
+        Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "active_migration")
+
+    @property
+    @pulumi.getter(name="greaseQuicBit")
+    def grease_quic_bit(self) -> Optional[str]:
+        """
+        Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "grease_quic_bit")
+
+    @property
+    @pulumi.getter(name="maxAckDelay")
+    def max_ack_delay(self) -> Optional[int]:
+        """
+        Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+        """
+        return pulumi.get(self, "max_ack_delay")
+
+    @property
+    @pulumi.getter(name="maxDatagramFrameSize")
+    def max_datagram_frame_size(self) -> Optional[int]:
+        """
+        Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+        """
+        return pulumi.get(self, "max_datagram_frame_size")
+
+    @property
+    @pulumi.getter(name="maxIdleTimeout")
+    def max_idle_timeout(self) -> Optional[int]:
+        """
+        Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+        """
+        return pulumi.get(self, "max_idle_timeout")
+
+    @property
+    @pulumi.getter(name="maxUdpPayloadSize")
+    def max_udp_payload_size(self) -> Optional[int]:
+        """
+        Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+        """
+        return pulumi.get(self, "max_udp_payload_size")
+
+
+@pulumi.output_type
 class Accessproxy6ApiGatewayRealserver(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
         if key == "addrType":
             suggest = "addr_type"
+        elif key == "externalAuth":
+            suggest = "external_auth"
         elif key == "healthCheck":
             suggest = "health_check"
         elif key == "healthCheckProto":
@@ -1540,6 +1985,10 @@ class Accessproxy6ApiGatewayRealserver(dict):
             suggest = "ssh_host_key_validation"
         elif key == "sshHostKeys":
             suggest = "ssh_host_keys"
+        elif key == "translateHost":
+            suggest = "translate_host"
+        elif key == "tunnelEncryption":
+            suggest = "tunnel_encryption"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in Accessproxy6ApiGatewayRealserver. Access the value via the '{suggest}' property getter instead.")
@@ -1556,6 +2005,7 @@ class Accessproxy6ApiGatewayRealserver(dict):
                  addr_type: Optional[str] = None,
                  address: Optional[str] = None,
                  domain: Optional[str] = None,
+                 external_auth: Optional[str] = None,
                  health_check: Optional[str] = None,
                  health_check_proto: Optional[str] = None,
                  holddown_interval: Optional[str] = None,
@@ -1568,12 +2018,15 @@ class Accessproxy6ApiGatewayRealserver(dict):
                  ssh_host_key_validation: Optional[str] = None,
                  ssh_host_keys: Optional[Sequence['outputs.Accessproxy6ApiGatewayRealserverSshHostKey']] = None,
                  status: Optional[str] = None,
+                 translate_host: Optional[str] = None,
+                 tunnel_encryption: Optional[str] = None,
                  type: Optional[str] = None,
                  weight: Optional[int] = None):
         """
         :param str addr_type: Type of address. Valid values: `ip`, `fqdn`.
         :param str address: Address or address group of the real server.
         :param str domain: Wildcard domain name of the real server.
+        :param str external_auth: Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
         :param str health_check: Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
         :param str health_check_proto: Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
         :param str holddown_interval: Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
@@ -1586,6 +2039,8 @@ class Accessproxy6ApiGatewayRealserver(dict):
         :param str ssh_host_key_validation: Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
         :param Sequence['Accessproxy6ApiGatewayRealserverSshHostKeyArgs'] ssh_host_keys: One or more server host key. The structure of `ssh_host_key` block is documented below.
         :param str status: Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        :param str translate_host: Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        :param str tunnel_encryption: Tunnel encryption. Valid values: `enable`, `disable`.
         :param str type: TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
         :param int weight: Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
         """
@@ -1595,6 +2050,8 @@ class Accessproxy6ApiGatewayRealserver(dict):
             pulumi.set(__self__, "address", address)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if external_auth is not None:
+            pulumi.set(__self__, "external_auth", external_auth)
         if health_check is not None:
             pulumi.set(__self__, "health_check", health_check)
         if health_check_proto is not None:
@@ -1619,6 +2076,10 @@ class Accessproxy6ApiGatewayRealserver(dict):
             pulumi.set(__self__, "ssh_host_keys", ssh_host_keys)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if translate_host is not None:
+            pulumi.set(__self__, "translate_host", translate_host)
+        if tunnel_encryption is not None:
+            pulumi.set(__self__, "tunnel_encryption", tunnel_encryption)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if weight is not None:
@@ -1647,6 +2108,14 @@ class Accessproxy6ApiGatewayRealserver(dict):
         Wildcard domain name of the real server.
         """
         return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="externalAuth")
+    def external_auth(self) -> Optional[str]:
+        """
+        Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "external_auth")
 
     @property
     @pulumi.getter(name="healthCheck")
@@ -1745,6 +2214,22 @@ class Accessproxy6ApiGatewayRealserver(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter(name="translateHost")
+    def translate_host(self) -> Optional[str]:
+        """
+        Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "translate_host")
+
+    @property
+    @pulumi.getter(name="tunnelEncryption")
+    def tunnel_encryption(self) -> Optional[str]:
+        """
+        Tunnel encryption. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "tunnel_encryption")
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[str]:
         """
@@ -1828,7 +2313,11 @@ class AccessproxyApiGateway6(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "httpCookieAge":
+        if key == "h2Support":
+            suggest = "h2_support"
+        elif key == "h3Support":
+            suggest = "h3_support"
+        elif key == "httpCookieAge":
             suggest = "http_cookie_age"
         elif key == "httpCookieDomain":
             suggest = "http_cookie_domain"
@@ -1858,6 +2347,8 @@ class AccessproxyApiGateway6(dict):
             suggest = "ssl_max_version"
         elif key == "sslMinVersion":
             suggest = "ssl_min_version"
+        elif key == "sslRenegotiation":
+            suggest = "ssl_renegotiation"
         elif key == "sslVpnWebPortal":
             suggest = "ssl_vpn_web_portal"
         elif key == "urlMap":
@@ -1880,6 +2371,8 @@ class AccessproxyApiGateway6(dict):
 
     def __init__(__self__, *,
                  applications: Optional[Sequence['outputs.AccessproxyApiGateway6Application']] = None,
+                 h2_support: Optional[str] = None,
+                 h3_support: Optional[str] = None,
                  http_cookie_age: Optional[int] = None,
                  http_cookie_domain: Optional[str] = None,
                  http_cookie_domain_from_host: Optional[str] = None,
@@ -1890,6 +2383,7 @@ class AccessproxyApiGateway6(dict):
                  id: Optional[int] = None,
                  ldb_method: Optional[str] = None,
                  persistence: Optional[str] = None,
+                 quic: Optional['outputs.AccessproxyApiGateway6Quic'] = None,
                  realservers: Optional[Sequence['outputs.AccessproxyApiGateway6Realserver']] = None,
                  saml_redirect: Optional[str] = None,
                  saml_server: Optional[str] = None,
@@ -1899,12 +2393,15 @@ class AccessproxyApiGateway6(dict):
                  ssl_dh_bits: Optional[str] = None,
                  ssl_max_version: Optional[str] = None,
                  ssl_min_version: Optional[str] = None,
+                 ssl_renegotiation: Optional[str] = None,
                  ssl_vpn_web_portal: Optional[str] = None,
                  url_map: Optional[str] = None,
                  url_map_type: Optional[str] = None,
                  virtual_host: Optional[str] = None):
         """
         :param Sequence['AccessproxyApiGateway6ApplicationArgs'] applications: SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
+        :param str h2_support: HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+        :param str h3_support: HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
         :param int http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
         :param str http_cookie_domain: Domain that HTTP cookie persistence should apply to.
         :param str http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -1915,6 +2412,7 @@ class AccessproxyApiGateway6(dict):
         :param int id: API Gateway ID.
         :param str ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
         :param str persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+        :param 'AccessproxyApiGateway6QuicArgs' quic: QUIC setting. The structure of `quic` block is documented below.
         :param Sequence['AccessproxyApiGateway6RealserverArgs'] realservers: Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
         :param str saml_redirect: Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
         :param str saml_server: SAML service provider configuration for VIP authentication.
@@ -1924,6 +2422,7 @@ class AccessproxyApiGateway6(dict):
         :param str ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
         :param str ssl_max_version: Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
         :param str ssl_min_version: Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        :param str ssl_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
         :param str ssl_vpn_web_portal: SSL-VPN web portal.
         :param str url_map: URL pattern to match.
         :param str url_map_type: Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
@@ -1931,6 +2430,10 @@ class AccessproxyApiGateway6(dict):
         """
         if applications is not None:
             pulumi.set(__self__, "applications", applications)
+        if h2_support is not None:
+            pulumi.set(__self__, "h2_support", h2_support)
+        if h3_support is not None:
+            pulumi.set(__self__, "h3_support", h3_support)
         if http_cookie_age is not None:
             pulumi.set(__self__, "http_cookie_age", http_cookie_age)
         if http_cookie_domain is not None:
@@ -1951,6 +2454,8 @@ class AccessproxyApiGateway6(dict):
             pulumi.set(__self__, "ldb_method", ldb_method)
         if persistence is not None:
             pulumi.set(__self__, "persistence", persistence)
+        if quic is not None:
+            pulumi.set(__self__, "quic", quic)
         if realservers is not None:
             pulumi.set(__self__, "realservers", realservers)
         if saml_redirect is not None:
@@ -1969,6 +2474,8 @@ class AccessproxyApiGateway6(dict):
             pulumi.set(__self__, "ssl_max_version", ssl_max_version)
         if ssl_min_version is not None:
             pulumi.set(__self__, "ssl_min_version", ssl_min_version)
+        if ssl_renegotiation is not None:
+            pulumi.set(__self__, "ssl_renegotiation", ssl_renegotiation)
         if ssl_vpn_web_portal is not None:
             pulumi.set(__self__, "ssl_vpn_web_portal", ssl_vpn_web_portal)
         if url_map is not None:
@@ -1985,6 +2492,22 @@ class AccessproxyApiGateway6(dict):
         SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
         """
         return pulumi.get(self, "applications")
+
+    @property
+    @pulumi.getter(name="h2Support")
+    def h2_support(self) -> Optional[str]:
+        """
+        HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h2_support")
+
+    @property
+    @pulumi.getter(name="h3Support")
+    def h3_support(self) -> Optional[str]:
+        """
+        HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h3_support")
 
     @property
     @pulumi.getter(name="httpCookieAge")
@@ -2068,6 +2591,14 @@ class AccessproxyApiGateway6(dict):
 
     @property
     @pulumi.getter
+    def quic(self) -> Optional['outputs.AccessproxyApiGateway6Quic']:
+        """
+        QUIC setting. The structure of `quic` block is documented below.
+        """
+        return pulumi.get(self, "quic")
+
+    @property
+    @pulumi.getter
     def realservers(self) -> Optional[Sequence['outputs.AccessproxyApiGateway6Realserver']]:
         """
         Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
@@ -2139,6 +2670,14 @@ class AccessproxyApiGateway6(dict):
         return pulumi.get(self, "ssl_min_version")
 
     @property
+    @pulumi.getter(name="sslRenegotiation")
+    def ssl_renegotiation(self) -> Optional[str]:
+        """
+        Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_renegotiation")
+
+    @property
     @pulumi.getter(name="sslVpnWebPortal")
     def ssl_vpn_web_portal(self) -> Optional[str]:
         """
@@ -2191,12 +2730,148 @@ class AccessproxyApiGateway6Application(dict):
 
 
 @pulumi.output_type
+class AccessproxyApiGateway6Quic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ackDelayExponent":
+            suggest = "ack_delay_exponent"
+        elif key == "activeConnectionIdLimit":
+            suggest = "active_connection_id_limit"
+        elif key == "activeMigration":
+            suggest = "active_migration"
+        elif key == "greaseQuicBit":
+            suggest = "grease_quic_bit"
+        elif key == "maxAckDelay":
+            suggest = "max_ack_delay"
+        elif key == "maxDatagramFrameSize":
+            suggest = "max_datagram_frame_size"
+        elif key == "maxIdleTimeout":
+            suggest = "max_idle_timeout"
+        elif key == "maxUdpPayloadSize":
+            suggest = "max_udp_payload_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AccessproxyApiGateway6Quic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AccessproxyApiGateway6Quic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AccessproxyApiGateway6Quic.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ack_delay_exponent: Optional[int] = None,
+                 active_connection_id_limit: Optional[int] = None,
+                 active_migration: Optional[str] = None,
+                 grease_quic_bit: Optional[str] = None,
+                 max_ack_delay: Optional[int] = None,
+                 max_datagram_frame_size: Optional[int] = None,
+                 max_idle_timeout: Optional[int] = None,
+                 max_udp_payload_size: Optional[int] = None):
+        """
+        :param int ack_delay_exponent: ACK delay exponent (1 - 20, default = 3).
+        :param int active_connection_id_limit: Active connection ID limit (1 - 8, default = 2).
+        :param str active_migration: Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+        :param str grease_quic_bit: Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+        :param int max_ack_delay: Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+        :param int max_datagram_frame_size: Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+        :param int max_idle_timeout: Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+        :param int max_udp_payload_size: Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+        """
+        if ack_delay_exponent is not None:
+            pulumi.set(__self__, "ack_delay_exponent", ack_delay_exponent)
+        if active_connection_id_limit is not None:
+            pulumi.set(__self__, "active_connection_id_limit", active_connection_id_limit)
+        if active_migration is not None:
+            pulumi.set(__self__, "active_migration", active_migration)
+        if grease_quic_bit is not None:
+            pulumi.set(__self__, "grease_quic_bit", grease_quic_bit)
+        if max_ack_delay is not None:
+            pulumi.set(__self__, "max_ack_delay", max_ack_delay)
+        if max_datagram_frame_size is not None:
+            pulumi.set(__self__, "max_datagram_frame_size", max_datagram_frame_size)
+        if max_idle_timeout is not None:
+            pulumi.set(__self__, "max_idle_timeout", max_idle_timeout)
+        if max_udp_payload_size is not None:
+            pulumi.set(__self__, "max_udp_payload_size", max_udp_payload_size)
+
+    @property
+    @pulumi.getter(name="ackDelayExponent")
+    def ack_delay_exponent(self) -> Optional[int]:
+        """
+        ACK delay exponent (1 - 20, default = 3).
+        """
+        return pulumi.get(self, "ack_delay_exponent")
+
+    @property
+    @pulumi.getter(name="activeConnectionIdLimit")
+    def active_connection_id_limit(self) -> Optional[int]:
+        """
+        Active connection ID limit (1 - 8, default = 2).
+        """
+        return pulumi.get(self, "active_connection_id_limit")
+
+    @property
+    @pulumi.getter(name="activeMigration")
+    def active_migration(self) -> Optional[str]:
+        """
+        Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "active_migration")
+
+    @property
+    @pulumi.getter(name="greaseQuicBit")
+    def grease_quic_bit(self) -> Optional[str]:
+        """
+        Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "grease_quic_bit")
+
+    @property
+    @pulumi.getter(name="maxAckDelay")
+    def max_ack_delay(self) -> Optional[int]:
+        """
+        Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+        """
+        return pulumi.get(self, "max_ack_delay")
+
+    @property
+    @pulumi.getter(name="maxDatagramFrameSize")
+    def max_datagram_frame_size(self) -> Optional[int]:
+        """
+        Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+        """
+        return pulumi.get(self, "max_datagram_frame_size")
+
+    @property
+    @pulumi.getter(name="maxIdleTimeout")
+    def max_idle_timeout(self) -> Optional[int]:
+        """
+        Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+        """
+        return pulumi.get(self, "max_idle_timeout")
+
+    @property
+    @pulumi.getter(name="maxUdpPayloadSize")
+    def max_udp_payload_size(self) -> Optional[int]:
+        """
+        Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+        """
+        return pulumi.get(self, "max_udp_payload_size")
+
+
+@pulumi.output_type
 class AccessproxyApiGateway6Realserver(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
         if key == "addrType":
             suggest = "addr_type"
+        elif key == "externalAuth":
+            suggest = "external_auth"
         elif key == "healthCheck":
             suggest = "health_check"
         elif key == "healthCheckProto":
@@ -2211,6 +2886,10 @@ class AccessproxyApiGateway6Realserver(dict):
             suggest = "ssh_host_key_validation"
         elif key == "sshHostKeys":
             suggest = "ssh_host_keys"
+        elif key == "translateHost":
+            suggest = "translate_host"
+        elif key == "tunnelEncryption":
+            suggest = "tunnel_encryption"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in AccessproxyApiGateway6Realserver. Access the value via the '{suggest}' property getter instead.")
@@ -2227,6 +2906,7 @@ class AccessproxyApiGateway6Realserver(dict):
                  addr_type: Optional[str] = None,
                  address: Optional[str] = None,
                  domain: Optional[str] = None,
+                 external_auth: Optional[str] = None,
                  health_check: Optional[str] = None,
                  health_check_proto: Optional[str] = None,
                  holddown_interval: Optional[str] = None,
@@ -2239,12 +2919,15 @@ class AccessproxyApiGateway6Realserver(dict):
                  ssh_host_key_validation: Optional[str] = None,
                  ssh_host_keys: Optional[Sequence['outputs.AccessproxyApiGateway6RealserverSshHostKey']] = None,
                  status: Optional[str] = None,
+                 translate_host: Optional[str] = None,
+                 tunnel_encryption: Optional[str] = None,
                  type: Optional[str] = None,
                  weight: Optional[int] = None):
         """
         :param str addr_type: Type of address. Valid values: `ip`, `fqdn`.
         :param str address: Address or address group of the real server.
         :param str domain: Wildcard domain name of the real server.
+        :param str external_auth: Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
         :param str health_check: Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
         :param str health_check_proto: Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
         :param str holddown_interval: Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
@@ -2257,6 +2940,8 @@ class AccessproxyApiGateway6Realserver(dict):
         :param str ssh_host_key_validation: Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
         :param Sequence['AccessproxyApiGateway6RealserverSshHostKeyArgs'] ssh_host_keys: One or more server host key. The structure of `ssh_host_key` block is documented below.
         :param str status: Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        :param str translate_host: Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        :param str tunnel_encryption: Tunnel encryption. Valid values: `enable`, `disable`.
         :param str type: TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
         :param int weight: Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
         """
@@ -2266,6 +2951,8 @@ class AccessproxyApiGateway6Realserver(dict):
             pulumi.set(__self__, "address", address)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if external_auth is not None:
+            pulumi.set(__self__, "external_auth", external_auth)
         if health_check is not None:
             pulumi.set(__self__, "health_check", health_check)
         if health_check_proto is not None:
@@ -2290,6 +2977,10 @@ class AccessproxyApiGateway6Realserver(dict):
             pulumi.set(__self__, "ssh_host_keys", ssh_host_keys)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if translate_host is not None:
+            pulumi.set(__self__, "translate_host", translate_host)
+        if tunnel_encryption is not None:
+            pulumi.set(__self__, "tunnel_encryption", tunnel_encryption)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if weight is not None:
@@ -2318,6 +3009,14 @@ class AccessproxyApiGateway6Realserver(dict):
         Wildcard domain name of the real server.
         """
         return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="externalAuth")
+    def external_auth(self) -> Optional[str]:
+        """
+        Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "external_auth")
 
     @property
     @pulumi.getter(name="healthCheck")
@@ -2416,6 +3115,22 @@ class AccessproxyApiGateway6Realserver(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter(name="translateHost")
+    def translate_host(self) -> Optional[str]:
+        """
+        Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "translate_host")
+
+    @property
+    @pulumi.getter(name="tunnelEncryption")
+    def tunnel_encryption(self) -> Optional[str]:
+        """
+        Tunnel encryption. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "tunnel_encryption")
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[str]:
         """
@@ -2499,7 +3214,11 @@ class AccessproxyApiGateway(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "httpCookieAge":
+        if key == "h2Support":
+            suggest = "h2_support"
+        elif key == "h3Support":
+            suggest = "h3_support"
+        elif key == "httpCookieAge":
             suggest = "http_cookie_age"
         elif key == "httpCookieDomain":
             suggest = "http_cookie_domain"
@@ -2529,6 +3248,8 @@ class AccessproxyApiGateway(dict):
             suggest = "ssl_max_version"
         elif key == "sslMinVersion":
             suggest = "ssl_min_version"
+        elif key == "sslRenegotiation":
+            suggest = "ssl_renegotiation"
         elif key == "sslVpnWebPortal":
             suggest = "ssl_vpn_web_portal"
         elif key == "urlMap":
@@ -2551,6 +3272,8 @@ class AccessproxyApiGateway(dict):
 
     def __init__(__self__, *,
                  applications: Optional[Sequence['outputs.AccessproxyApiGatewayApplication']] = None,
+                 h2_support: Optional[str] = None,
+                 h3_support: Optional[str] = None,
                  http_cookie_age: Optional[int] = None,
                  http_cookie_domain: Optional[str] = None,
                  http_cookie_domain_from_host: Optional[str] = None,
@@ -2561,6 +3284,7 @@ class AccessproxyApiGateway(dict):
                  id: Optional[int] = None,
                  ldb_method: Optional[str] = None,
                  persistence: Optional[str] = None,
+                 quic: Optional['outputs.AccessproxyApiGatewayQuic'] = None,
                  realservers: Optional[Sequence['outputs.AccessproxyApiGatewayRealserver']] = None,
                  saml_redirect: Optional[str] = None,
                  saml_server: Optional[str] = None,
@@ -2570,12 +3294,15 @@ class AccessproxyApiGateway(dict):
                  ssl_dh_bits: Optional[str] = None,
                  ssl_max_version: Optional[str] = None,
                  ssl_min_version: Optional[str] = None,
+                 ssl_renegotiation: Optional[str] = None,
                  ssl_vpn_web_portal: Optional[str] = None,
                  url_map: Optional[str] = None,
                  url_map_type: Optional[str] = None,
                  virtual_host: Optional[str] = None):
         """
         :param Sequence['AccessproxyApiGatewayApplicationArgs'] applications: SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
+        :param str h2_support: HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+        :param str h3_support: HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
         :param int http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
         :param str http_cookie_domain: Domain that HTTP cookie persistence should apply to.
         :param str http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -2586,6 +3313,7 @@ class AccessproxyApiGateway(dict):
         :param int id: API Gateway ID.
         :param str ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
         :param str persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+        :param 'AccessproxyApiGatewayQuicArgs' quic: QUIC setting. The structure of `quic` block is documented below.
         :param Sequence['AccessproxyApiGatewayRealserverArgs'] realservers: Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
         :param str saml_redirect: Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
         :param str saml_server: SAML service provider configuration for VIP authentication.
@@ -2595,6 +3323,7 @@ class AccessproxyApiGateway(dict):
         :param str ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
         :param str ssl_max_version: Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
         :param str ssl_min_version: Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        :param str ssl_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
         :param str ssl_vpn_web_portal: SSL-VPN web portal.
         :param str url_map: URL pattern to match.
         :param str url_map_type: Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
@@ -2602,6 +3331,10 @@ class AccessproxyApiGateway(dict):
         """
         if applications is not None:
             pulumi.set(__self__, "applications", applications)
+        if h2_support is not None:
+            pulumi.set(__self__, "h2_support", h2_support)
+        if h3_support is not None:
+            pulumi.set(__self__, "h3_support", h3_support)
         if http_cookie_age is not None:
             pulumi.set(__self__, "http_cookie_age", http_cookie_age)
         if http_cookie_domain is not None:
@@ -2622,6 +3355,8 @@ class AccessproxyApiGateway(dict):
             pulumi.set(__self__, "ldb_method", ldb_method)
         if persistence is not None:
             pulumi.set(__self__, "persistence", persistence)
+        if quic is not None:
+            pulumi.set(__self__, "quic", quic)
         if realservers is not None:
             pulumi.set(__self__, "realservers", realservers)
         if saml_redirect is not None:
@@ -2640,6 +3375,8 @@ class AccessproxyApiGateway(dict):
             pulumi.set(__self__, "ssl_max_version", ssl_max_version)
         if ssl_min_version is not None:
             pulumi.set(__self__, "ssl_min_version", ssl_min_version)
+        if ssl_renegotiation is not None:
+            pulumi.set(__self__, "ssl_renegotiation", ssl_renegotiation)
         if ssl_vpn_web_portal is not None:
             pulumi.set(__self__, "ssl_vpn_web_portal", ssl_vpn_web_portal)
         if url_map is not None:
@@ -2656,6 +3393,22 @@ class AccessproxyApiGateway(dict):
         SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
         """
         return pulumi.get(self, "applications")
+
+    @property
+    @pulumi.getter(name="h2Support")
+    def h2_support(self) -> Optional[str]:
+        """
+        HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h2_support")
+
+    @property
+    @pulumi.getter(name="h3Support")
+    def h3_support(self) -> Optional[str]:
+        """
+        HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h3_support")
 
     @property
     @pulumi.getter(name="httpCookieAge")
@@ -2739,6 +3492,14 @@ class AccessproxyApiGateway(dict):
 
     @property
     @pulumi.getter
+    def quic(self) -> Optional['outputs.AccessproxyApiGatewayQuic']:
+        """
+        QUIC setting. The structure of `quic` block is documented below.
+        """
+        return pulumi.get(self, "quic")
+
+    @property
+    @pulumi.getter
     def realservers(self) -> Optional[Sequence['outputs.AccessproxyApiGatewayRealserver']]:
         """
         Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
@@ -2810,6 +3571,14 @@ class AccessproxyApiGateway(dict):
         return pulumi.get(self, "ssl_min_version")
 
     @property
+    @pulumi.getter(name="sslRenegotiation")
+    def ssl_renegotiation(self) -> Optional[str]:
+        """
+        Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_renegotiation")
+
+    @property
     @pulumi.getter(name="sslVpnWebPortal")
     def ssl_vpn_web_portal(self) -> Optional[str]:
         """
@@ -2862,12 +3631,148 @@ class AccessproxyApiGatewayApplication(dict):
 
 
 @pulumi.output_type
+class AccessproxyApiGatewayQuic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ackDelayExponent":
+            suggest = "ack_delay_exponent"
+        elif key == "activeConnectionIdLimit":
+            suggest = "active_connection_id_limit"
+        elif key == "activeMigration":
+            suggest = "active_migration"
+        elif key == "greaseQuicBit":
+            suggest = "grease_quic_bit"
+        elif key == "maxAckDelay":
+            suggest = "max_ack_delay"
+        elif key == "maxDatagramFrameSize":
+            suggest = "max_datagram_frame_size"
+        elif key == "maxIdleTimeout":
+            suggest = "max_idle_timeout"
+        elif key == "maxUdpPayloadSize":
+            suggest = "max_udp_payload_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AccessproxyApiGatewayQuic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AccessproxyApiGatewayQuic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AccessproxyApiGatewayQuic.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ack_delay_exponent: Optional[int] = None,
+                 active_connection_id_limit: Optional[int] = None,
+                 active_migration: Optional[str] = None,
+                 grease_quic_bit: Optional[str] = None,
+                 max_ack_delay: Optional[int] = None,
+                 max_datagram_frame_size: Optional[int] = None,
+                 max_idle_timeout: Optional[int] = None,
+                 max_udp_payload_size: Optional[int] = None):
+        """
+        :param int ack_delay_exponent: ACK delay exponent (1 - 20, default = 3).
+        :param int active_connection_id_limit: Active connection ID limit (1 - 8, default = 2).
+        :param str active_migration: Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+        :param str grease_quic_bit: Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+        :param int max_ack_delay: Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+        :param int max_datagram_frame_size: Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+        :param int max_idle_timeout: Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+        :param int max_udp_payload_size: Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+        """
+        if ack_delay_exponent is not None:
+            pulumi.set(__self__, "ack_delay_exponent", ack_delay_exponent)
+        if active_connection_id_limit is not None:
+            pulumi.set(__self__, "active_connection_id_limit", active_connection_id_limit)
+        if active_migration is not None:
+            pulumi.set(__self__, "active_migration", active_migration)
+        if grease_quic_bit is not None:
+            pulumi.set(__self__, "grease_quic_bit", grease_quic_bit)
+        if max_ack_delay is not None:
+            pulumi.set(__self__, "max_ack_delay", max_ack_delay)
+        if max_datagram_frame_size is not None:
+            pulumi.set(__self__, "max_datagram_frame_size", max_datagram_frame_size)
+        if max_idle_timeout is not None:
+            pulumi.set(__self__, "max_idle_timeout", max_idle_timeout)
+        if max_udp_payload_size is not None:
+            pulumi.set(__self__, "max_udp_payload_size", max_udp_payload_size)
+
+    @property
+    @pulumi.getter(name="ackDelayExponent")
+    def ack_delay_exponent(self) -> Optional[int]:
+        """
+        ACK delay exponent (1 - 20, default = 3).
+        """
+        return pulumi.get(self, "ack_delay_exponent")
+
+    @property
+    @pulumi.getter(name="activeConnectionIdLimit")
+    def active_connection_id_limit(self) -> Optional[int]:
+        """
+        Active connection ID limit (1 - 8, default = 2).
+        """
+        return pulumi.get(self, "active_connection_id_limit")
+
+    @property
+    @pulumi.getter(name="activeMigration")
+    def active_migration(self) -> Optional[str]:
+        """
+        Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "active_migration")
+
+    @property
+    @pulumi.getter(name="greaseQuicBit")
+    def grease_quic_bit(self) -> Optional[str]:
+        """
+        Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "grease_quic_bit")
+
+    @property
+    @pulumi.getter(name="maxAckDelay")
+    def max_ack_delay(self) -> Optional[int]:
+        """
+        Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+        """
+        return pulumi.get(self, "max_ack_delay")
+
+    @property
+    @pulumi.getter(name="maxDatagramFrameSize")
+    def max_datagram_frame_size(self) -> Optional[int]:
+        """
+        Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+        """
+        return pulumi.get(self, "max_datagram_frame_size")
+
+    @property
+    @pulumi.getter(name="maxIdleTimeout")
+    def max_idle_timeout(self) -> Optional[int]:
+        """
+        Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+        """
+        return pulumi.get(self, "max_idle_timeout")
+
+    @property
+    @pulumi.getter(name="maxUdpPayloadSize")
+    def max_udp_payload_size(self) -> Optional[int]:
+        """
+        Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+        """
+        return pulumi.get(self, "max_udp_payload_size")
+
+
+@pulumi.output_type
 class AccessproxyApiGatewayRealserver(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
         if key == "addrType":
             suggest = "addr_type"
+        elif key == "externalAuth":
+            suggest = "external_auth"
         elif key == "healthCheck":
             suggest = "health_check"
         elif key == "healthCheckProto":
@@ -2882,6 +3787,10 @@ class AccessproxyApiGatewayRealserver(dict):
             suggest = "ssh_host_key_validation"
         elif key == "sshHostKeys":
             suggest = "ssh_host_keys"
+        elif key == "translateHost":
+            suggest = "translate_host"
+        elif key == "tunnelEncryption":
+            suggest = "tunnel_encryption"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in AccessproxyApiGatewayRealserver. Access the value via the '{suggest}' property getter instead.")
@@ -2898,6 +3807,7 @@ class AccessproxyApiGatewayRealserver(dict):
                  addr_type: Optional[str] = None,
                  address: Optional[str] = None,
                  domain: Optional[str] = None,
+                 external_auth: Optional[str] = None,
                  health_check: Optional[str] = None,
                  health_check_proto: Optional[str] = None,
                  holddown_interval: Optional[str] = None,
@@ -2910,12 +3820,15 @@ class AccessproxyApiGatewayRealserver(dict):
                  ssh_host_key_validation: Optional[str] = None,
                  ssh_host_keys: Optional[Sequence['outputs.AccessproxyApiGatewayRealserverSshHostKey']] = None,
                  status: Optional[str] = None,
+                 translate_host: Optional[str] = None,
+                 tunnel_encryption: Optional[str] = None,
                  type: Optional[str] = None,
                  weight: Optional[int] = None):
         """
         :param str addr_type: Type of address. Valid values: `ip`, `fqdn`.
         :param str address: Address or address group of the real server.
         :param str domain: Wildcard domain name of the real server.
+        :param str external_auth: Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
         :param str health_check: Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
         :param str health_check_proto: Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
         :param str holddown_interval: Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
@@ -2928,6 +3841,8 @@ class AccessproxyApiGatewayRealserver(dict):
         :param str ssh_host_key_validation: Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
         :param Sequence['AccessproxyApiGatewayRealserverSshHostKeyArgs'] ssh_host_keys: One or more server host key. The structure of `ssh_host_key` block is documented below.
         :param str status: Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        :param str translate_host: Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        :param str tunnel_encryption: Tunnel encryption. Valid values: `enable`, `disable`.
         :param str type: TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
         :param int weight: Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
         """
@@ -2937,6 +3852,8 @@ class AccessproxyApiGatewayRealserver(dict):
             pulumi.set(__self__, "address", address)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if external_auth is not None:
+            pulumi.set(__self__, "external_auth", external_auth)
         if health_check is not None:
             pulumi.set(__self__, "health_check", health_check)
         if health_check_proto is not None:
@@ -2961,6 +3878,10 @@ class AccessproxyApiGatewayRealserver(dict):
             pulumi.set(__self__, "ssh_host_keys", ssh_host_keys)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if translate_host is not None:
+            pulumi.set(__self__, "translate_host", translate_host)
+        if tunnel_encryption is not None:
+            pulumi.set(__self__, "tunnel_encryption", tunnel_encryption)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if weight is not None:
@@ -2989,6 +3910,14 @@ class AccessproxyApiGatewayRealserver(dict):
         Wildcard domain name of the real server.
         """
         return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="externalAuth")
+    def external_auth(self) -> Optional[str]:
+        """
+        Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "external_auth")
 
     @property
     @pulumi.getter(name="healthCheck")
@@ -3085,6 +4014,22 @@ class AccessproxyApiGatewayRealserver(dict):
         Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="translateHost")
+    def translate_host(self) -> Optional[str]:
+        """
+        Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "translate_host")
+
+    @property
+    @pulumi.getter(name="tunnelEncryption")
+    def tunnel_encryption(self) -> Optional[str]:
+        """
+        Tunnel encryption. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "tunnel_encryption")
 
     @property
     @pulumi.getter
@@ -3581,6 +4526,25 @@ class AddressTaggingTag(dict):
 
 
 @pulumi.output_type
+class Addrgrp6ExcludeMember(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Address6 name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Address6 name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class Addrgrp6Member(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
@@ -3914,6 +4878,19 @@ class CentralsnatmapOrigAddr(dict):
 
 
 @pulumi.output_type
+class CentralsnatmapSortStatePolicyList(dict):
+    def __init__(__self__, *,
+                 policyid: Optional[str] = None):
+        if policyid is not None:
+            pulumi.set(__self__, "policyid", policyid)
+
+    @property
+    @pulumi.getter
+    def policyid(self) -> Optional[str]:
+        return pulumi.get(self, "policyid")
+
+
+@pulumi.output_type
 class CentralsnatmapSrcintf(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
@@ -4009,8 +4986,8 @@ class DoSpolicy6Anomaly(dict):
         :param str quarantine_expiry: Duration of quarantine. (Format ###d##h##m, minimum 1m, maximum 364d23h59m, default = 5m). Requires quarantine set to attacker.
         :param str quarantine_log: Enable/disable quarantine logging. Valid values: `disable`, `enable`.
         :param str status: Enable/disable this anomaly. Valid values: `disable`, `enable`.
-        :param int threshold: Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
-        :param int thresholddefault: Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+        :param int threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        :param int thresholddefault: Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
         """
         if action is not None:
             pulumi.set(__self__, "action", action)
@@ -4091,7 +5068,7 @@ class DoSpolicy6Anomaly(dict):
     @pulumi.getter
     def threshold(self) -> Optional[int]:
         """
-        Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "threshold")
 
@@ -4099,7 +5076,7 @@ class DoSpolicy6Anomaly(dict):
     @pulumi.getter
     def thresholddefault(self) -> Optional[int]:
         """
-        Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+        Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "thresholddefault")
 
@@ -4200,8 +5177,8 @@ class DoSpolicyAnomaly(dict):
         :param str quarantine_expiry: Duration of quarantine. (Format ###d##h##m, minimum 1m, maximum 364d23h59m, default = 5m). Requires quarantine set to attacker.
         :param str quarantine_log: Enable/disable quarantine logging. Valid values: `disable`, `enable`.
         :param str status: Enable/disable this anomaly. Valid values: `disable`, `enable`.
-        :param int threshold: Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
-        :param int thresholddefault: Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+        :param int threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        :param int thresholddefault: Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
         """
         if action is not None:
             pulumi.set(__self__, "action", action)
@@ -4282,7 +5259,7 @@ class DoSpolicyAnomaly(dict):
     @pulumi.getter
     def threshold(self) -> Optional[int]:
         """
-        Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "threshold")
 
@@ -4290,7 +5267,7 @@ class DoSpolicyAnomaly(dict):
     @pulumi.getter
     def thresholddefault(self) -> Optional[int]:
         """
-        Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+        Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "thresholddefault")
 
@@ -5586,6 +6563,25 @@ class InternetservicegroupMember(dict):
         Internet Service name.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class InternetservicesubappSubApp(dict):
+    def __init__(__self__, *,
+                 id: Optional[int] = None):
+        """
+        :param int id: Subapp ID.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Subapp ID.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -6999,6 +7995,25 @@ class PolicyNtlmEnabledBrowser(dict):
 
 
 @pulumi.output_type
+class PolicyPcpPoolname(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: PCP pool name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        PCP pool name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class PolicyPoolname6(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
@@ -7091,6 +8106,35 @@ class PolicySgt(dict):
         Security group tag.
         """
         return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class PolicySortStatePolicyList(dict):
+    def __init__(__self__, *,
+                 action: Optional[str] = None,
+                 name: Optional[str] = None,
+                 policyid: Optional[str] = None):
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if policyid is not None:
+            pulumi.set(__self__, "policyid", policyid)
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def policyid(self) -> Optional[str]:
+        return pulumi.get(self, "policyid")
 
 
 @pulumi.output_type
@@ -7250,6 +8294,25 @@ class PolicyZtnaEmsTag(dict):
 
 
 @pulumi.output_type
+class PolicyZtnaEmsTagSecondary(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Address name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Address name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class PolicyZtnaGeoTag(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
@@ -7325,18 +8388,18 @@ class ProfileprotocoloptionsCifs(dict):
         """
         :param str domain_controller: Domain for which to decrypt CIFS traffic.
         :param str options: One or more options that can be applied to the session. Valid values: `oversize`.
-        :param int oversize_limit: Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        :param int oversize_limit: Maximum in-memory file size that can be scanned (MB).
         :param int ports: Ports to scan for content (1 - 65535, default = 445).
         :param str scan_bzip2: Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
         :param str server_credential_type: CIFS server credential type. Valid values: `none`, `credential-replication`, `credential-keytab`.
         :param Sequence['ProfileprotocoloptionsCifsServerKeytabArgs'] server_keytabs: Server keytab. The structure of `server_keytab` block is documented below.
         :param str status: Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
-        :param int tcp_window_maximum: Maximum dynamic TCP window size (default = 8MB).
-        :param int tcp_window_minimum: Minimum dynamic TCP window size (default = 128KB).
-        :param int tcp_window_size: Set TCP static window size (default = 256KB).
+        :param int tcp_window_maximum: Maximum dynamic TCP window size.
+        :param int tcp_window_minimum: Minimum dynamic TCP window size.
+        :param int tcp_window_size: Set TCP static window size.
         :param str tcp_window_type: Specify type of TCP window to use for this protocol.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         if domain_controller is not None:
             pulumi.set(__self__, "domain_controller", domain_controller)
@@ -7387,7 +8450,7 @@ class ProfileprotocoloptionsCifs(dict):
     @pulumi.getter(name="oversizeLimit")
     def oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        Maximum in-memory file size that can be scanned (MB).
         """
         return pulumi.get(self, "oversize_limit")
 
@@ -7435,7 +8498,7 @@ class ProfileprotocoloptionsCifs(dict):
     @pulumi.getter(name="tcpWindowMaximum")
     def tcp_window_maximum(self) -> Optional[int]:
         """
-        Maximum dynamic TCP window size (default = 8MB).
+        Maximum dynamic TCP window size.
         """
         return pulumi.get(self, "tcp_window_maximum")
 
@@ -7443,7 +8506,7 @@ class ProfileprotocoloptionsCifs(dict):
     @pulumi.getter(name="tcpWindowMinimum")
     def tcp_window_minimum(self) -> Optional[int]:
         """
-        Minimum dynamic TCP window size (default = 128KB).
+        Minimum dynamic TCP window size.
         """
         return pulumi.get(self, "tcp_window_minimum")
 
@@ -7451,7 +8514,7 @@ class ProfileprotocoloptionsCifs(dict):
     @pulumi.getter(name="tcpWindowSize")
     def tcp_window_size(self) -> Optional[int]:
         """
-        Set TCP static window size (default = 256KB).
+        Set TCP static window size.
         """
         return pulumi.get(self, "tcp_window_size")
 
@@ -7475,7 +8538,7 @@ class ProfileprotocoloptionsCifs(dict):
     @pulumi.getter(name="uncompressedOversizeLimit")
     def uncompressed_oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         return pulumi.get(self, "uncompressed_oversize_limit")
 
@@ -7606,23 +8669,23 @@ class ProfileprotocoloptionsFtp(dict):
                  uncompressed_nest_limit: Optional[int] = None,
                  uncompressed_oversize_limit: Optional[int] = None):
         """
-        :param int comfort_amount: Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
-        :param int comfort_interval: Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+        :param int comfort_amount: Number of bytes to send in each transmission for client comforting (bytes). On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
+        :param int comfort_interval: Interval between successive transmissions of data for client comforting (seconds).
         :param str explicit_ftp_tls: Enable/disable FTP redirection for explicit FTPS. Valid values: `enable`, `disable`.
         :param str inspect_all: Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
         :param str options: One or more options that can be applied to the session. Valid values: `clientcomfort`, `oversize`, `splice`, `bypass-rest-command`, `bypass-mode-command`.
-        :param int oversize_limit: Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        :param int oversize_limit: Maximum in-memory file size that can be scanned (MB).
         :param int ports: Ports to scan for content (1 - 65535, default = 21).
         :param str scan_bzip2: Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
         :param str ssl_offloaded: SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
         :param str status: Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
-        :param int stream_based_uncompressed_limit: Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+        :param int stream_based_uncompressed_limit: Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
         :param int tcp_window_maximum: Maximum dynamic TCP window size.
         :param int tcp_window_minimum: Minimum dynamic TCP window size.
         :param int tcp_window_size: Set TCP static window size.
         :param str tcp_window_type: TCP window type to use for this protocol.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         if comfort_amount is not None:
             pulumi.set(__self__, "comfort_amount", comfort_amount)
@@ -7663,7 +8726,7 @@ class ProfileprotocoloptionsFtp(dict):
     @pulumi.getter(name="comfortAmount")
     def comfort_amount(self) -> Optional[int]:
         """
-        Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+        Number of bytes to send in each transmission for client comforting (bytes). On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
         """
         return pulumi.get(self, "comfort_amount")
 
@@ -7671,7 +8734,7 @@ class ProfileprotocoloptionsFtp(dict):
     @pulumi.getter(name="comfortInterval")
     def comfort_interval(self) -> Optional[int]:
         """
-        Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+        Interval between successive transmissions of data for client comforting (seconds).
         """
         return pulumi.get(self, "comfort_interval")
 
@@ -7703,7 +8766,7 @@ class ProfileprotocoloptionsFtp(dict):
     @pulumi.getter(name="oversizeLimit")
     def oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        Maximum in-memory file size that can be scanned (MB).
         """
         return pulumi.get(self, "oversize_limit")
 
@@ -7743,7 +8806,7 @@ class ProfileprotocoloptionsFtp(dict):
     @pulumi.getter(name="streamBasedUncompressedLimit")
     def stream_based_uncompressed_limit(self) -> Optional[int]:
         """
-        Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+        Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
         """
         return pulumi.get(self, "stream_based_uncompressed_limit")
 
@@ -7791,7 +8854,7 @@ class ProfileprotocoloptionsFtp(dict):
     @pulumi.getter(name="uncompressedOversizeLimit")
     def uncompressed_oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         return pulumi.get(self, "uncompressed_oversize_limit")
 
@@ -7853,6 +8916,8 @@ class ProfileprotocoloptionsHttp(dict):
             suggest = "uncompressed_nest_limit"
         elif key == "uncompressedOversizeLimit":
             suggest = "uncompressed_oversize_limit"
+        elif key == "unknownContentEncoding":
+            suggest = "unknown_content_encoding"
         elif key == "unknownHttpVersion":
             suggest = "unknown_http_version"
         elif key == "verifyDnsForPolicyMatching":
@@ -7900,20 +8965,21 @@ class ProfileprotocoloptionsHttp(dict):
                  tunnel_non_http: Optional[str] = None,
                  uncompressed_nest_limit: Optional[int] = None,
                  uncompressed_oversize_limit: Optional[int] = None,
+                 unknown_content_encoding: Optional[str] = None,
                  unknown_http_version: Optional[str] = None,
                  verify_dns_for_policy_matching: Optional[str] = None):
         """
         :param str address_ip_rating: Enable/disable IP based URL rating. Valid values: `enable`, `disable`.
         :param int block_page_status_code: Code number returned for blocked HTTP pages (non-FortiGuard only) (100 - 599, default = 403).
-        :param int comfort_amount: Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
-        :param int comfort_interval: Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+        :param int comfort_amount: Amount of data to send in a transmission for client comforting. On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
+        :param int comfort_interval: Interval between successive transmissions of data for client comforting (seconds).
         :param str fortinet_bar: Enable/disable Fortinet bar on HTML content. Valid values: `enable`, `disable`.
         :param int fortinet_bar_port: Port for use by Fortinet Bar (1 - 65535, default = 8011).
         :param str h2c: Enable/disable h2c HTTP connection upgrade. Valid values: `enable`, `disable`.
         :param str http_policy: Enable/disable HTTP policy check. Valid values: `disable`, `enable`.
         :param str inspect_all: Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
         :param str options: One or more options that can be applied to the session. Valid values: `clientcomfort`, `servercomfort`, `oversize`, `chunkedbypass`.
-        :param int oversize_limit: Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        :param int oversize_limit: Maximum in-memory file size that can be scanned (MB). On FortiOS versions 6.2.0-7.2.3: 1 - 383 MB, default = 10.
         :param int ports: Ports to scan for content (1 - 65535, default = 80).
         :param str post_lang: ID codes for character sets to be used to convert to UTF-8 for banned words and DLP on HTTP posts (maximum of 5 character sets). Valid values: `jisx0201`, `jisx0208`, `jisx0212`, `gb2312`, `ksc5601-ex`, `euc-jp`, `sjis`, `iso2022-jp`, `iso2022-jp-1`, `iso2022-jp-2`, `euc-cn`, `ces-gbk`, `hz`, `ces-big5`, `euc-kr`, `iso2022-jp-3`, `iso8859-1`, `tis620`, `cp874`, `cp1252`, `cp1251`.
         :param str proxy_after_tcp_handshake: Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
@@ -7922,17 +8988,18 @@ class ProfileprotocoloptionsHttp(dict):
         :param str scan_bzip2: Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
         :param str ssl_offloaded: SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
         :param str status: Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
-        :param int stream_based_uncompressed_limit: Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+        :param int stream_based_uncompressed_limit: Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
         :param str streaming_content_bypass: Enable/disable bypassing of streaming content from buffering. Valid values: `enable`, `disable`.
         :param str strip_x_forwarded_for: Enable/disable stripping of HTTP X-Forwarded-For header. Valid values: `disable`, `enable`.
         :param str switching_protocols: Bypass from scanning, or block a connection that attempts to switch protocol. Valid values: `bypass`, `block`.
-        :param int tcp_window_maximum: Maximum dynamic TCP window size (default = 8MB).
-        :param int tcp_window_minimum: Minimum dynamic TCP window size (default = 128KB).
-        :param int tcp_window_size: Set TCP static window size (default = 256KB).
+        :param int tcp_window_maximum: Maximum dynamic TCP window size.
+        :param int tcp_window_minimum: Minimum dynamic TCP window size.
+        :param int tcp_window_size: Set TCP static window size.
         :param str tcp_window_type: Specify type of TCP window to use for this protocol.
         :param str tunnel_non_http: Configure how to process non-HTTP traffic when a profile configured for HTTP traffic accepts a non-HTTP session. Can occur if an application sends non-HTTP traffic using an HTTP destination port. Valid values: `enable`, `disable`.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (MB).
+        :param str unknown_content_encoding: Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
         :param str unknown_http_version: How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: `reject`, `tunnel`, `best-effort`.
         :param str verify_dns_for_policy_matching: Enable/disable verification of DNS for policy matching. Valid values: `enable`, `disable`.
         """
@@ -7996,6 +9063,8 @@ class ProfileprotocoloptionsHttp(dict):
             pulumi.set(__self__, "uncompressed_nest_limit", uncompressed_nest_limit)
         if uncompressed_oversize_limit is not None:
             pulumi.set(__self__, "uncompressed_oversize_limit", uncompressed_oversize_limit)
+        if unknown_content_encoding is not None:
+            pulumi.set(__self__, "unknown_content_encoding", unknown_content_encoding)
         if unknown_http_version is not None:
             pulumi.set(__self__, "unknown_http_version", unknown_http_version)
         if verify_dns_for_policy_matching is not None:
@@ -8021,7 +9090,7 @@ class ProfileprotocoloptionsHttp(dict):
     @pulumi.getter(name="comfortAmount")
     def comfort_amount(self) -> Optional[int]:
         """
-        Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+        Amount of data to send in a transmission for client comforting. On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
         """
         return pulumi.get(self, "comfort_amount")
 
@@ -8029,7 +9098,7 @@ class ProfileprotocoloptionsHttp(dict):
     @pulumi.getter(name="comfortInterval")
     def comfort_interval(self) -> Optional[int]:
         """
-        Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+        Interval between successive transmissions of data for client comforting (seconds).
         """
         return pulumi.get(self, "comfort_interval")
 
@@ -8085,7 +9154,7 @@ class ProfileprotocoloptionsHttp(dict):
     @pulumi.getter(name="oversizeLimit")
     def oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        Maximum in-memory file size that can be scanned (MB). On FortiOS versions 6.2.0-7.2.3: 1 - 383 MB, default = 10.
         """
         return pulumi.get(self, "oversize_limit")
 
@@ -8157,7 +9226,7 @@ class ProfileprotocoloptionsHttp(dict):
     @pulumi.getter(name="streamBasedUncompressedLimit")
     def stream_based_uncompressed_limit(self) -> Optional[int]:
         """
-        Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+        Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
         """
         return pulumi.get(self, "stream_based_uncompressed_limit")
 
@@ -8189,7 +9258,7 @@ class ProfileprotocoloptionsHttp(dict):
     @pulumi.getter(name="tcpWindowMaximum")
     def tcp_window_maximum(self) -> Optional[int]:
         """
-        Maximum dynamic TCP window size (default = 8MB).
+        Maximum dynamic TCP window size.
         """
         return pulumi.get(self, "tcp_window_maximum")
 
@@ -8197,7 +9266,7 @@ class ProfileprotocoloptionsHttp(dict):
     @pulumi.getter(name="tcpWindowMinimum")
     def tcp_window_minimum(self) -> Optional[int]:
         """
-        Minimum dynamic TCP window size (default = 128KB).
+        Minimum dynamic TCP window size.
         """
         return pulumi.get(self, "tcp_window_minimum")
 
@@ -8205,7 +9274,7 @@ class ProfileprotocoloptionsHttp(dict):
     @pulumi.getter(name="tcpWindowSize")
     def tcp_window_size(self) -> Optional[int]:
         """
-        Set TCP static window size (default = 256KB).
+        Set TCP static window size.
         """
         return pulumi.get(self, "tcp_window_size")
 
@@ -8237,9 +9306,17 @@ class ProfileprotocoloptionsHttp(dict):
     @pulumi.getter(name="uncompressedOversizeLimit")
     def uncompressed_oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         return pulumi.get(self, "uncompressed_oversize_limit")
+
+    @property
+    @pulumi.getter(name="unknownContentEncoding")
+    def unknown_content_encoding(self) -> Optional[str]:
+        """
+        Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
+        """
+        return pulumi.get(self, "unknown_content_encoding")
 
     @property
     @pulumi.getter(name="unknownHttpVersion")
@@ -8303,14 +9380,14 @@ class ProfileprotocoloptionsImap(dict):
         """
         :param str inspect_all: Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
         :param str options: One or more options that can be applied to the session. Valid values: `fragmail`, `oversize`.
-        :param int oversize_limit: Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        :param int oversize_limit: Maximum in-memory file size that can be scanned (MB).
         :param int ports: Ports to scan for content (1 - 65535, default = 143).
         :param str proxy_after_tcp_handshake: Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
         :param str scan_bzip2: Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
         :param str ssl_offloaded: SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
         :param str status: Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         if inspect_all is not None:
             pulumi.set(__self__, "inspect_all", inspect_all)
@@ -8353,7 +9430,7 @@ class ProfileprotocoloptionsImap(dict):
     @pulumi.getter(name="oversizeLimit")
     def oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        Maximum in-memory file size that can be scanned (MB).
         """
         return pulumi.get(self, "oversize_limit")
 
@@ -8409,7 +9486,7 @@ class ProfileprotocoloptionsImap(dict):
     @pulumi.getter(name="uncompressedOversizeLimit")
     def uncompressed_oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         return pulumi.get(self, "uncompressed_oversize_limit")
 
@@ -8480,12 +9557,12 @@ class ProfileprotocoloptionsMapi(dict):
                  uncompressed_oversize_limit: Optional[int] = None):
         """
         :param str options: One or more options that can be applied to the session. Valid values: `fragmail`, `oversize`.
-        :param int oversize_limit: Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        :param int oversize_limit: Maximum in-memory file size that can be scanned (MB).
         :param int ports: Ports to scan for content (1 - 65535, default = 110).
         :param str scan_bzip2: Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
         :param str status: Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         if options is not None:
             pulumi.set(__self__, "options", options)
@@ -8514,7 +9591,7 @@ class ProfileprotocoloptionsMapi(dict):
     @pulumi.getter(name="oversizeLimit")
     def oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        Maximum in-memory file size that can be scanned (MB).
         """
         return pulumi.get(self, "oversize_limit")
 
@@ -8554,7 +9631,7 @@ class ProfileprotocoloptionsMapi(dict):
     @pulumi.getter(name="uncompressedOversizeLimit")
     def uncompressed_oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         return pulumi.get(self, "uncompressed_oversize_limit")
 
@@ -8601,13 +9678,13 @@ class ProfileprotocoloptionsNntp(dict):
         """
         :param str inspect_all: Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
         :param str options: One or more options that can be applied to the session. Valid values: `oversize`, `splice`.
-        :param int oversize_limit: Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        :param int oversize_limit: Maximum in-memory file size that can be scanned (MB).
         :param int ports: Ports to scan for content (1 - 65535, default = 119).
         :param str proxy_after_tcp_handshake: Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
         :param str scan_bzip2: Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
         :param str status: Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         if inspect_all is not None:
             pulumi.set(__self__, "inspect_all", inspect_all)
@@ -8648,7 +9725,7 @@ class ProfileprotocoloptionsNntp(dict):
     @pulumi.getter(name="oversizeLimit")
     def oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        Maximum in-memory file size that can be scanned (MB).
         """
         return pulumi.get(self, "oversize_limit")
 
@@ -8696,7 +9773,7 @@ class ProfileprotocoloptionsNntp(dict):
     @pulumi.getter(name="uncompressedOversizeLimit")
     def uncompressed_oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         return pulumi.get(self, "uncompressed_oversize_limit")
 
@@ -8746,14 +9823,14 @@ class ProfileprotocoloptionsPop3(dict):
         """
         :param str inspect_all: Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
         :param str options: One or more options that can be applied to the session. Valid values: `oversize`.
-        :param int oversize_limit: Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        :param int oversize_limit: Maximum in-memory file size that can be scanned (MB).
         :param int ports: Ports to scan for content (1 - 65535, default = 445).
         :param str proxy_after_tcp_handshake: Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
         :param str scan_bzip2: Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
         :param str ssl_offloaded: SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
         :param str status: Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         if inspect_all is not None:
             pulumi.set(__self__, "inspect_all", inspect_all)
@@ -8796,7 +9873,7 @@ class ProfileprotocoloptionsPop3(dict):
     @pulumi.getter(name="oversizeLimit")
     def oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        Maximum in-memory file size that can be scanned (MB).
         """
         return pulumi.get(self, "oversize_limit")
 
@@ -8852,7 +9929,7 @@ class ProfileprotocoloptionsPop3(dict):
     @pulumi.getter(name="uncompressedOversizeLimit")
     def uncompressed_oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         return pulumi.get(self, "uncompressed_oversize_limit")
 
@@ -8905,7 +9982,7 @@ class ProfileprotocoloptionsSmtp(dict):
         """
         :param str inspect_all: Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
         :param str options: One or more options that can be applied to the session. Valid values: `fragmail`, `oversize`, `splice`.
-        :param int oversize_limit: Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        :param int oversize_limit: Maximum in-memory file size that can be scanned (MB).
         :param int ports: Ports to scan for content (1 - 65535, default = 25).
         :param str proxy_after_tcp_handshake: Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
         :param str scan_bzip2: Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
@@ -8913,7 +9990,7 @@ class ProfileprotocoloptionsSmtp(dict):
         :param str ssl_offloaded: SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
         :param str status: Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         if inspect_all is not None:
             pulumi.set(__self__, "inspect_all", inspect_all)
@@ -8958,7 +10035,7 @@ class ProfileprotocoloptionsSmtp(dict):
     @pulumi.getter(name="oversizeLimit")
     def oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        Maximum in-memory file size that can be scanned (MB).
         """
         return pulumi.get(self, "oversize_limit")
 
@@ -9022,7 +10099,7 @@ class ProfileprotocoloptionsSmtp(dict):
     @pulumi.getter(name="uncompressedOversizeLimit")
     def uncompressed_oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         return pulumi.get(self, "uncompressed_oversize_limit")
 
@@ -9083,19 +10160,19 @@ class ProfileprotocoloptionsSsh(dict):
                  uncompressed_nest_limit: Optional[int] = None,
                  uncompressed_oversize_limit: Optional[int] = None):
         """
-        :param int comfort_amount: Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
-        :param int comfort_interval: Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+        :param int comfort_amount: Number of bytes to send in each transmission for client comforting (bytes).
+        :param int comfort_interval: Interval between successive transmissions of data for client comforting (seconds).
         :param str options: One or more options that can be applied to the session. Valid values: `oversize`, `clientcomfort`, `servercomfort`.
-        :param int oversize_limit: Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        :param int oversize_limit: Maximum in-memory file size that can be scanned (MB).
         :param str scan_bzip2: Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
         :param str ssl_offloaded: SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
-        :param int stream_based_uncompressed_limit: Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+        :param int stream_based_uncompressed_limit: Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
         :param int tcp_window_maximum: Maximum dynamic TCP window size.
         :param int tcp_window_minimum: Minimum dynamic TCP window size.
         :param int tcp_window_size: Set TCP static window size.
         :param str tcp_window_type: TCP window type to use for this protocol.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         if comfort_amount is not None:
             pulumi.set(__self__, "comfort_amount", comfort_amount)
@@ -9128,7 +10205,7 @@ class ProfileprotocoloptionsSsh(dict):
     @pulumi.getter(name="comfortAmount")
     def comfort_amount(self) -> Optional[int]:
         """
-        Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
+        Number of bytes to send in each transmission for client comforting (bytes).
         """
         return pulumi.get(self, "comfort_amount")
 
@@ -9136,7 +10213,7 @@ class ProfileprotocoloptionsSsh(dict):
     @pulumi.getter(name="comfortInterval")
     def comfort_interval(self) -> Optional[int]:
         """
-        Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+        Interval between successive transmissions of data for client comforting (seconds).
         """
         return pulumi.get(self, "comfort_interval")
 
@@ -9152,7 +10229,7 @@ class ProfileprotocoloptionsSsh(dict):
     @pulumi.getter(name="oversizeLimit")
     def oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        Maximum in-memory file size that can be scanned (MB).
         """
         return pulumi.get(self, "oversize_limit")
 
@@ -9176,7 +10253,7 @@ class ProfileprotocoloptionsSsh(dict):
     @pulumi.getter(name="streamBasedUncompressedLimit")
     def stream_based_uncompressed_limit(self) -> Optional[int]:
         """
-        Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+        Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
         """
         return pulumi.get(self, "stream_based_uncompressed_limit")
 
@@ -9224,7 +10301,7 @@ class ProfileprotocoloptionsSsh(dict):
     @pulumi.getter(name="uncompressedOversizeLimit")
     def uncompressed_oversize_limit(self) -> Optional[int]:
         """
-        Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        Maximum in-memory uncompressed file size that can be scanned (MB).
         """
         return pulumi.get(self, "uncompressed_oversize_limit")
 
@@ -9599,6 +10676,82 @@ class ProxypolicyGroup(dict):
 
 
 @pulumi.output_type
+class ProxypolicyInternetService6Custom(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Policy name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Policy name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class ProxypolicyInternetService6CustomGroup(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Policy name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Policy name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class ProxypolicyInternetService6Group(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Policy name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Policy name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class ProxypolicyInternetService6Name(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Policy name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Policy name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class ProxypolicyInternetServiceCustom(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
@@ -9622,7 +10775,7 @@ class ProxypolicyInternetServiceCustomGroup(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
-        :param str name: Custom Internet Service group name.
+        :param str name: Custom Internet Service IPv6 group name.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -9631,7 +10784,7 @@ class ProxypolicyInternetServiceCustomGroup(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Custom Internet Service group name.
+        Custom Internet Service IPv6 group name.
         """
         return pulumi.get(self, "name")
 
@@ -9729,6 +10882,35 @@ class ProxypolicyService(dict):
         Address name.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class ProxypolicySortStatePolicyList(dict):
+    def __init__(__self__, *,
+                 action: Optional[str] = None,
+                 name: Optional[str] = None,
+                 policyid: Optional[str] = None):
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if policyid is not None:
+            pulumi.set(__self__, "policyid", policyid)
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def policyid(self) -> Optional[str]:
+        return pulumi.get(self, "policyid")
 
 
 @pulumi.output_type
@@ -9847,35 +11029,6 @@ class RegionCity(dict):
 
 @pulumi.output_type
 class SecurityPolicyseqStatePolicyList(dict):
-    def __init__(__self__, *,
-                 action: Optional[str] = None,
-                 name: Optional[str] = None,
-                 policyid: Optional[str] = None):
-        if action is not None:
-            pulumi.set(__self__, "action", action)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if policyid is not None:
-            pulumi.set(__self__, "policyid", policyid)
-
-    @property
-    @pulumi.getter
-    def action(self) -> Optional[str]:
-        return pulumi.get(self, "action")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def policyid(self) -> Optional[str]:
-        return pulumi.get(self, "policyid")
-
-
-@pulumi.output_type
-class SecurityPolicysortStatePolicyList(dict):
     def __init__(__self__, *,
                  action: Optional[str] = None,
                  name: Optional[str] = None,
@@ -10433,6 +11586,35 @@ class SecuritypolicyService(dict):
         Service name.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class SecuritypolicySortStatePolicyList(dict):
+    def __init__(__self__, *,
+                 action: Optional[str] = None,
+                 name: Optional[str] = None,
+                 policyid: Optional[str] = None):
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if policyid is not None:
+            pulumi.set(__self__, "policyid", policyid)
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def policyid(self) -> Optional[str]:
+        return pulumi.get(self, "policyid")
 
 
 @pulumi.output_type
@@ -11191,8 +12373,8 @@ class SnifferAnomaly(dict):
         :param str quarantine_expiry: Duration of quarantine. (Format ###d##h##m, minimum 1m, maximum 364d23h59m, default = 5m). Requires quarantine set to attacker.
         :param str quarantine_log: Enable/disable quarantine logging. Valid values: `disable`, `enable`.
         :param str status: Enable/disable this anomaly. Valid values: `disable`, `enable`.
-        :param int threshold: Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
-        :param int thresholddefault: Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+        :param int threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        :param int thresholddefault: Number of detected instances (packets per second or concurrent session number) which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
         """
         if action is not None:
             pulumi.set(__self__, "action", action)
@@ -11273,7 +12455,7 @@ class SnifferAnomaly(dict):
     @pulumi.getter
     def threshold(self) -> Optional[int]:
         """
-        Anomaly threshold. Number of detected instances per minute that triggers the anomaly action.
+        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "threshold")
 
@@ -11281,7 +12463,7 @@ class SnifferAnomaly(dict):
     @pulumi.getter
     def thresholddefault(self) -> Optional[int]:
         """
-        Number of detected instances per minute which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
+        Number of detected instances (packets per second or concurrent session number) which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
         """
         return pulumi.get(self, "thresholddefault")
 
@@ -11350,6 +12532,7 @@ class SslsshprofileDot(dict):
                  client_certificate: Optional[str] = None,
                  expired_server_cert: Optional[str] = None,
                  proxy_after_tcp_handshake: Optional[str] = None,
+                 quic: Optional[str] = None,
                  revoked_server_cert: Optional[str] = None,
                  sni_server_cert_check: Optional[str] = None,
                  status: Optional[str] = None,
@@ -11363,6 +12546,7 @@ class SslsshprofileDot(dict):
         :param str client_certificate: Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
         :param str expired_server_cert: Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
         :param str proxy_after_tcp_handshake: Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
+        :param str quic: QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
         :param str revoked_server_cert: Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
         :param str sni_server_cert_check: Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
         :param str status: Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
@@ -11381,6 +12565,8 @@ class SslsshprofileDot(dict):
             pulumi.set(__self__, "expired_server_cert", expired_server_cert)
         if proxy_after_tcp_handshake is not None:
             pulumi.set(__self__, "proxy_after_tcp_handshake", proxy_after_tcp_handshake)
+        if quic is not None:
+            pulumi.set(__self__, "quic", quic)
         if revoked_server_cert is not None:
             pulumi.set(__self__, "revoked_server_cert", revoked_server_cert)
         if sni_server_cert_check is not None:
@@ -11435,6 +12621,14 @@ class SslsshprofileDot(dict):
         Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "proxy_after_tcp_handshake")
+
+    @property
+    @pulumi.getter
+    def quic(self) -> Optional[str]:
+        """
+        QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+        """
+        return pulumi.get(self, "quic")
 
     @property
     @pulumi.getter(name="revokedServerCert")
@@ -11795,6 +12989,7 @@ class SslsshprofileHttps(dict):
                  min_allowed_ssl_version: Optional[str] = None,
                  ports: Optional[str] = None,
                  proxy_after_tcp_handshake: Optional[str] = None,
+                 quic: Optional[str] = None,
                  revoked_server_cert: Optional[str] = None,
                  sni_server_cert_check: Optional[str] = None,
                  status: Optional[str] = None,
@@ -11814,6 +13009,7 @@ class SslsshprofileHttps(dict):
         :param str min_allowed_ssl_version: Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
         :param str ports: Ports to use for scanning (1 - 65535, default = 443).
         :param str proxy_after_tcp_handshake: Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
+        :param str quic: QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
         :param str revoked_server_cert: Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
         :param str sni_server_cert_check: Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
         :param str status: Configure protocol inspection status. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
@@ -11843,6 +13039,8 @@ class SslsshprofileHttps(dict):
             pulumi.set(__self__, "ports", ports)
         if proxy_after_tcp_handshake is not None:
             pulumi.set(__self__, "proxy_after_tcp_handshake", proxy_after_tcp_handshake)
+        if quic is not None:
+            pulumi.set(__self__, "quic", quic)
         if revoked_server_cert is not None:
             pulumi.set(__self__, "revoked_server_cert", revoked_server_cert)
         if sni_server_cert_check is not None:
@@ -11939,6 +13137,14 @@ class SslsshprofileHttps(dict):
         Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "proxy_after_tcp_handshake")
+
+    @property
+    @pulumi.getter
+    def quic(self) -> Optional[str]:
+        """
+        QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions >= 7.4.2: default = inspect.
+        """
+        return pulumi.get(self, "quic")
 
     @property
     @pulumi.getter(name="revokedServerCert")
@@ -13897,6 +15103,140 @@ class Vip6Monitor(dict):
 
 
 @pulumi.output_type
+class Vip6Quic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ackDelayExponent":
+            suggest = "ack_delay_exponent"
+        elif key == "activeConnectionIdLimit":
+            suggest = "active_connection_id_limit"
+        elif key == "activeMigration":
+            suggest = "active_migration"
+        elif key == "greaseQuicBit":
+            suggest = "grease_quic_bit"
+        elif key == "maxAckDelay":
+            suggest = "max_ack_delay"
+        elif key == "maxDatagramFrameSize":
+            suggest = "max_datagram_frame_size"
+        elif key == "maxIdleTimeout":
+            suggest = "max_idle_timeout"
+        elif key == "maxUdpPayloadSize":
+            suggest = "max_udp_payload_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Vip6Quic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Vip6Quic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Vip6Quic.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ack_delay_exponent: Optional[int] = None,
+                 active_connection_id_limit: Optional[int] = None,
+                 active_migration: Optional[str] = None,
+                 grease_quic_bit: Optional[str] = None,
+                 max_ack_delay: Optional[int] = None,
+                 max_datagram_frame_size: Optional[int] = None,
+                 max_idle_timeout: Optional[int] = None,
+                 max_udp_payload_size: Optional[int] = None):
+        """
+        :param int ack_delay_exponent: ACK delay exponent (1 - 20, default = 3).
+        :param int active_connection_id_limit: Active connection ID limit (1 - 8, default = 2).
+        :param str active_migration: Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+        :param str grease_quic_bit: Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+        :param int max_ack_delay: Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+        :param int max_datagram_frame_size: Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+        :param int max_idle_timeout: Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+        :param int max_udp_payload_size: Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+        """
+        if ack_delay_exponent is not None:
+            pulumi.set(__self__, "ack_delay_exponent", ack_delay_exponent)
+        if active_connection_id_limit is not None:
+            pulumi.set(__self__, "active_connection_id_limit", active_connection_id_limit)
+        if active_migration is not None:
+            pulumi.set(__self__, "active_migration", active_migration)
+        if grease_quic_bit is not None:
+            pulumi.set(__self__, "grease_quic_bit", grease_quic_bit)
+        if max_ack_delay is not None:
+            pulumi.set(__self__, "max_ack_delay", max_ack_delay)
+        if max_datagram_frame_size is not None:
+            pulumi.set(__self__, "max_datagram_frame_size", max_datagram_frame_size)
+        if max_idle_timeout is not None:
+            pulumi.set(__self__, "max_idle_timeout", max_idle_timeout)
+        if max_udp_payload_size is not None:
+            pulumi.set(__self__, "max_udp_payload_size", max_udp_payload_size)
+
+    @property
+    @pulumi.getter(name="ackDelayExponent")
+    def ack_delay_exponent(self) -> Optional[int]:
+        """
+        ACK delay exponent (1 - 20, default = 3).
+        """
+        return pulumi.get(self, "ack_delay_exponent")
+
+    @property
+    @pulumi.getter(name="activeConnectionIdLimit")
+    def active_connection_id_limit(self) -> Optional[int]:
+        """
+        Active connection ID limit (1 - 8, default = 2).
+        """
+        return pulumi.get(self, "active_connection_id_limit")
+
+    @property
+    @pulumi.getter(name="activeMigration")
+    def active_migration(self) -> Optional[str]:
+        """
+        Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "active_migration")
+
+    @property
+    @pulumi.getter(name="greaseQuicBit")
+    def grease_quic_bit(self) -> Optional[str]:
+        """
+        Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "grease_quic_bit")
+
+    @property
+    @pulumi.getter(name="maxAckDelay")
+    def max_ack_delay(self) -> Optional[int]:
+        """
+        Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+        """
+        return pulumi.get(self, "max_ack_delay")
+
+    @property
+    @pulumi.getter(name="maxDatagramFrameSize")
+    def max_datagram_frame_size(self) -> Optional[int]:
+        """
+        Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+        """
+        return pulumi.get(self, "max_datagram_frame_size")
+
+    @property
+    @pulumi.getter(name="maxIdleTimeout")
+    def max_idle_timeout(self) -> Optional[int]:
+        """
+        Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+        """
+        return pulumi.get(self, "max_idle_timeout")
+
+    @property
+    @pulumi.getter(name="maxUdpPayloadSize")
+    def max_udp_payload_size(self) -> Optional[int]:
+        """
+        Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+        """
+        return pulumi.get(self, "max_udp_payload_size")
+
+
+@pulumi.output_type
 class Vip6Realserver(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -13909,6 +15249,8 @@ class Vip6Realserver(dict):
             suggest = "http_host"
         elif key == "maxConnections":
             suggest = "max_connections"
+        elif key == "translateHost":
+            suggest = "translate_host"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in Vip6Realserver. Access the value via the '{suggest}' property getter instead.")
@@ -13932,6 +15274,7 @@ class Vip6Realserver(dict):
                  monitor: Optional[str] = None,
                  port: Optional[int] = None,
                  status: Optional[str] = None,
+                 translate_host: Optional[str] = None,
                  weight: Optional[int] = None):
         """
         :param str client_ip: Only clients in this IP range can connect to this real server.
@@ -13944,6 +15287,7 @@ class Vip6Realserver(dict):
         :param str monitor: Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
         :param int port: Port for communicating with the real server. Required if port forwarding is enabled.
         :param str status: Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        :param str translate_host: Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
         :param int weight: Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
         """
         if client_ip is not None:
@@ -13966,6 +15310,8 @@ class Vip6Realserver(dict):
             pulumi.set(__self__, "port", port)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if translate_host is not None:
+            pulumi.set(__self__, "translate_host", translate_host)
         if weight is not None:
             pulumi.set(__self__, "weight", weight)
 
@@ -14048,6 +15394,14 @@ class Vip6Realserver(dict):
         Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="translateHost")
+    def translate_host(self) -> Optional[str]:
+        """
+        Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "translate_host")
 
     @property
     @pulumi.getter
@@ -14183,6 +15537,37 @@ class VipExtaddr(dict):
 
 
 @pulumi.output_type
+class VipGslbPublicIp(dict):
+    def __init__(__self__, *,
+                 index: Optional[int] = None,
+                 ip: Optional[str] = None):
+        """
+        :param int index: Index of this public IP setting.
+        :param str ip: The publicly accessible IP address.
+        """
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+
+    @property
+    @pulumi.getter
+    def index(self) -> Optional[int]:
+        """
+        Index of this public IP setting.
+        """
+        return pulumi.get(self, "index")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> Optional[str]:
+        """
+        The publicly accessible IP address.
+        """
+        return pulumi.get(self, "ip")
+
+
+@pulumi.output_type
 class VipMappedip(dict):
     def __init__(__self__, *,
                  range: Optional[str] = None):
@@ -14221,6 +15606,140 @@ class VipMonitor(dict):
 
 
 @pulumi.output_type
+class VipQuic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ackDelayExponent":
+            suggest = "ack_delay_exponent"
+        elif key == "activeConnectionIdLimit":
+            suggest = "active_connection_id_limit"
+        elif key == "activeMigration":
+            suggest = "active_migration"
+        elif key == "greaseQuicBit":
+            suggest = "grease_quic_bit"
+        elif key == "maxAckDelay":
+            suggest = "max_ack_delay"
+        elif key == "maxDatagramFrameSize":
+            suggest = "max_datagram_frame_size"
+        elif key == "maxIdleTimeout":
+            suggest = "max_idle_timeout"
+        elif key == "maxUdpPayloadSize":
+            suggest = "max_udp_payload_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VipQuic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VipQuic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VipQuic.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ack_delay_exponent: Optional[int] = None,
+                 active_connection_id_limit: Optional[int] = None,
+                 active_migration: Optional[str] = None,
+                 grease_quic_bit: Optional[str] = None,
+                 max_ack_delay: Optional[int] = None,
+                 max_datagram_frame_size: Optional[int] = None,
+                 max_idle_timeout: Optional[int] = None,
+                 max_udp_payload_size: Optional[int] = None):
+        """
+        :param int ack_delay_exponent: ACK delay exponent (1 - 20, default = 3).
+        :param int active_connection_id_limit: Active connection ID limit (1 - 8, default = 2).
+        :param str active_migration: Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+        :param str grease_quic_bit: Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+        :param int max_ack_delay: Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+        :param int max_datagram_frame_size: Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+        :param int max_idle_timeout: Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+        :param int max_udp_payload_size: Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+        """
+        if ack_delay_exponent is not None:
+            pulumi.set(__self__, "ack_delay_exponent", ack_delay_exponent)
+        if active_connection_id_limit is not None:
+            pulumi.set(__self__, "active_connection_id_limit", active_connection_id_limit)
+        if active_migration is not None:
+            pulumi.set(__self__, "active_migration", active_migration)
+        if grease_quic_bit is not None:
+            pulumi.set(__self__, "grease_quic_bit", grease_quic_bit)
+        if max_ack_delay is not None:
+            pulumi.set(__self__, "max_ack_delay", max_ack_delay)
+        if max_datagram_frame_size is not None:
+            pulumi.set(__self__, "max_datagram_frame_size", max_datagram_frame_size)
+        if max_idle_timeout is not None:
+            pulumi.set(__self__, "max_idle_timeout", max_idle_timeout)
+        if max_udp_payload_size is not None:
+            pulumi.set(__self__, "max_udp_payload_size", max_udp_payload_size)
+
+    @property
+    @pulumi.getter(name="ackDelayExponent")
+    def ack_delay_exponent(self) -> Optional[int]:
+        """
+        ACK delay exponent (1 - 20, default = 3).
+        """
+        return pulumi.get(self, "ack_delay_exponent")
+
+    @property
+    @pulumi.getter(name="activeConnectionIdLimit")
+    def active_connection_id_limit(self) -> Optional[int]:
+        """
+        Active connection ID limit (1 - 8, default = 2).
+        """
+        return pulumi.get(self, "active_connection_id_limit")
+
+    @property
+    @pulumi.getter(name="activeMigration")
+    def active_migration(self) -> Optional[str]:
+        """
+        Enable/disable active migration (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "active_migration")
+
+    @property
+    @pulumi.getter(name="greaseQuicBit")
+    def grease_quic_bit(self) -> Optional[str]:
+        """
+        Enable/disable grease QUIC bit (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "grease_quic_bit")
+
+    @property
+    @pulumi.getter(name="maxAckDelay")
+    def max_ack_delay(self) -> Optional[int]:
+        """
+        Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+        """
+        return pulumi.get(self, "max_ack_delay")
+
+    @property
+    @pulumi.getter(name="maxDatagramFrameSize")
+    def max_datagram_frame_size(self) -> Optional[int]:
+        """
+        Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+        """
+        return pulumi.get(self, "max_datagram_frame_size")
+
+    @property
+    @pulumi.getter(name="maxIdleTimeout")
+    def max_idle_timeout(self) -> Optional[int]:
+        """
+        Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+        """
+        return pulumi.get(self, "max_idle_timeout")
+
+    @property
+    @pulumi.getter(name="maxUdpPayloadSize")
+    def max_udp_payload_size(self) -> Optional[int]:
+        """
+        Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
+        """
+        return pulumi.get(self, "max_udp_payload_size")
+
+
+@pulumi.output_type
 class VipRealserver(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -14233,6 +15752,8 @@ class VipRealserver(dict):
             suggest = "http_host"
         elif key == "maxConnections":
             suggest = "max_connections"
+        elif key == "translateHost":
+            suggest = "translate_host"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in VipRealserver. Access the value via the '{suggest}' property getter instead.")
@@ -14257,6 +15778,7 @@ class VipRealserver(dict):
                  monitor: Optional[str] = None,
                  port: Optional[int] = None,
                  status: Optional[str] = None,
+                 translate_host: Optional[str] = None,
                  type: Optional[str] = None,
                  weight: Optional[int] = None):
         """
@@ -14271,6 +15793,7 @@ class VipRealserver(dict):
         :param str monitor: Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
         :param int port: Port for communicating with the real server. Required if port forwarding is enabled.
         :param str status: Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        :param str translate_host: Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
         :param str type: Type of address. Valid values: `ip`, `address`.
         :param int weight: Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
         """
@@ -14296,6 +15819,8 @@ class VipRealserver(dict):
             pulumi.set(__self__, "port", port)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if translate_host is not None:
+            pulumi.set(__self__, "translate_host", translate_host)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if weight is not None:
@@ -14388,6 +15913,14 @@ class VipRealserver(dict):
         Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="translateHost")
+    def translate_host(self) -> Optional[str]:
+        """
+        Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "translate_host")
 
     @property
     @pulumi.getter
@@ -14975,6 +16508,24 @@ class GetAddressTaggingTagResult(dict):
     def name(self) -> str:
         """
         Specify the name of the desired firewall address.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetAddrgrp6ExcludeMemberResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Specify the name of the desired firewall addrgrp6.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Specify the name of the desired firewall addrgrp6.
         """
         return pulumi.get(self, "name")
 
@@ -17382,6 +18933,24 @@ class GetPolicyNtlmEnabledBrowserResult(dict):
 
 
 @pulumi.output_type
+class GetPolicyPcpPoolnameResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Mirror Interface name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Mirror Interface name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class GetPolicyPoolname6Result(dict):
     def __init__(__self__, *,
                  name: str):
@@ -17599,6 +19168,24 @@ class GetPolicyUserResult(dict):
 
 @pulumi.output_type
 class GetPolicyZtnaEmsTagResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Mirror Interface name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Mirror Interface name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetPolicyZtnaEmsTagSecondaryResult(dict):
     def __init__(__self__, *,
                  name: str):
         """
@@ -18079,6 +19666,7 @@ class GetProfileprotocoloptionsHttpResult(dict):
                  tunnel_non_http: str,
                  uncompressed_nest_limit: int,
                  uncompressed_oversize_limit: int,
+                 unknown_content_encoding: str,
                  unknown_http_version: str,
                  verify_dns_for_policy_matching: str):
         """
@@ -18112,6 +19700,7 @@ class GetProfileprotocoloptionsHttpResult(dict):
         :param str tunnel_non_http: Configure how to process non-HTTP traffic when a profile configured for HTTP traffic accepts a non-HTTP session. Can occur if an application sends non-HTTP traffic using an HTTP destination port.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
         :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        :param str unknown_content_encoding: Configure the action the FortiGate unit will take on unknown content-encoding.
         :param str unknown_http_version: How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1.
         :param str verify_dns_for_policy_matching: Enable/disable verification of DNS for policy matching.
         """
@@ -18145,6 +19734,7 @@ class GetProfileprotocoloptionsHttpResult(dict):
         pulumi.set(__self__, "tunnel_non_http", tunnel_non_http)
         pulumi.set(__self__, "uncompressed_nest_limit", uncompressed_nest_limit)
         pulumi.set(__self__, "uncompressed_oversize_limit", uncompressed_oversize_limit)
+        pulumi.set(__self__, "unknown_content_encoding", unknown_content_encoding)
         pulumi.set(__self__, "unknown_http_version", unknown_http_version)
         pulumi.set(__self__, "verify_dns_for_policy_matching", verify_dns_for_policy_matching)
 
@@ -18387,6 +19977,14 @@ class GetProfileprotocoloptionsHttpResult(dict):
         Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
         """
         return pulumi.get(self, "uncompressed_oversize_limit")
+
+    @property
+    @pulumi.getter(name="unknownContentEncoding")
+    def unknown_content_encoding(self) -> str:
+        """
+        Configure the action the FortiGate unit will take on unknown content-encoding.
+        """
+        return pulumi.get(self, "unknown_content_encoding")
 
     @property
     @pulumi.getter(name="unknownHttpVersion")
@@ -19449,6 +21047,78 @@ class GetProxypolicyDstintfResult(dict):
 
 @pulumi.output_type
 class GetProxypolicyGroupResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetProxypolicyInternetService6CustomResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetProxypolicyInternetService6CustomGroupResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetProxypolicyInternetService6GroupResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetProxypolicyInternetService6NameResult(dict):
     def __init__(__self__, *,
                  name: str):
         """

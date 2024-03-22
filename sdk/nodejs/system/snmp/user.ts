@@ -97,6 +97,10 @@ export class User extends pulumi.CustomResource {
      */
     public readonly events!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
      */
     public readonly haDirect!: pulumi.Output<string>;
@@ -186,6 +190,7 @@ export class User extends pulumi.CustomResource {
             resourceInputs["authPwd"] = state ? state.authPwd : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["events"] = state ? state.events : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["haDirect"] = state ? state.haDirect : undefined;
             resourceInputs["mibView"] = state ? state.mibView : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -210,6 +215,7 @@ export class User extends pulumi.CustomResource {
             resourceInputs["authPwd"] = args?.authPwd ? pulumi.secret(args.authPwd) : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["events"] = args ? args.events : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["haDirect"] = args ? args.haDirect : undefined;
             resourceInputs["mibView"] = args ? args.mibView : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -256,6 +262,10 @@ export interface UserState {
      * SNMP notifications (traps) to send.
      */
     events?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
      */
@@ -350,6 +360,10 @@ export interface UserArgs {
      * SNMP notifications (traps) to send.
      */
     events?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
      */

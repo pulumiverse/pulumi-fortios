@@ -86,6 +86,8 @@ type Vip64 struct {
 	Extport pulumi.StringOutput `pulumi:"extport"`
 	// Custom defined id.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
 	LdbMethod pulumi.StringOutput `pulumi:"ldbMethod"`
 	// Start-mapped-IP [-end-mapped-IP].
@@ -164,6 +166,8 @@ type vip64State struct {
 	Extport *string `pulumi:"extport"`
 	// Custom defined id.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
 	LdbMethod *string `pulumi:"ldbMethod"`
 	// Start-mapped-IP [-end-mapped-IP].
@@ -207,6 +211,8 @@ type Vip64State struct {
 	Extport pulumi.StringPtrInput
 	// Custom defined id.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
 	LdbMethod pulumi.StringPtrInput
 	// Start-mapped-IP [-end-mapped-IP].
@@ -254,6 +260,8 @@ type vip64Args struct {
 	Extport *string `pulumi:"extport"`
 	// Custom defined id.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
 	LdbMethod *string `pulumi:"ldbMethod"`
 	// Start-mapped-IP [-end-mapped-IP].
@@ -298,6 +306,8 @@ type Vip64Args struct {
 	Extport pulumi.StringPtrInput
 	// Custom defined id.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
 	LdbMethod pulumi.StringPtrInput
 	// Start-mapped-IP [-end-mapped-IP].
@@ -446,6 +456,11 @@ func (o Vip64Output) Extport() pulumi.StringOutput {
 // Custom defined id.
 func (o Vip64Output) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vip64) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Vip64Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Vip64) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.

@@ -123,6 +123,10 @@ export class Policy8021X extends pulumi.CustomResource {
      */
     public readonly framevidApply!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Guest authentication delay (1 - 900  sec, default = 30).
      */
     public readonly guestAuthDelay!: pulumi.Output<number>;
@@ -194,6 +198,7 @@ export class Policy8021X extends pulumi.CustomResource {
             resourceInputs["eapAutoUntaggedVlans"] = state ? state.eapAutoUntaggedVlans : undefined;
             resourceInputs["eapPassthru"] = state ? state.eapPassthru : undefined;
             resourceInputs["framevidApply"] = state ? state.framevidApply : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["guestAuthDelay"] = state ? state.guestAuthDelay : undefined;
             resourceInputs["guestVlan"] = state ? state.guestVlan : undefined;
             resourceInputs["guestVlanId"] = state ? state.guestVlanId : undefined;
@@ -218,6 +223,7 @@ export class Policy8021X extends pulumi.CustomResource {
             resourceInputs["eapAutoUntaggedVlans"] = args ? args.eapAutoUntaggedVlans : undefined;
             resourceInputs["eapPassthru"] = args ? args.eapPassthru : undefined;
             resourceInputs["framevidApply"] = args ? args.framevidApply : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["guestAuthDelay"] = args ? args.guestAuthDelay : undefined;
             resourceInputs["guestVlan"] = args ? args.guestVlan : undefined;
             resourceInputs["guestVlanId"] = args ? args.guestVlanId : undefined;
@@ -280,6 +286,10 @@ export interface Policy8021XState {
      * Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
      */
     framevidApply?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Guest authentication delay (1 - 900  sec, default = 30).
      */
@@ -374,6 +384,10 @@ export interface Policy8021XArgs {
      * Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
      */
     framevidApply?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Guest authentication delay (1 - 900  sec, default = 30).
      */

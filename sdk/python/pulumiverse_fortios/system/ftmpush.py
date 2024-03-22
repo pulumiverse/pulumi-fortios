@@ -14,6 +14,7 @@ __all__ = ['FtmpushArgs', 'Ftmpush']
 @pulumi.input_type
 class FtmpushArgs:
     def __init__(__self__, *,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  server_cert: Optional[pulumi.Input[str]] = None,
                  server_ip: Optional[pulumi.Input[str]] = None,
@@ -22,6 +23,7 @@ class FtmpushArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Ftmpush resource.
+        :param pulumi.Input[str] proxy: Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server: IPv4 address or domain name of FortiToken Mobile push services server.
         :param pulumi.Input[str] server_cert: Name of the server certificate to be used for SSL (default = Fortinet_Factory).
         :param pulumi.Input[str] server_ip: IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
@@ -29,6 +31,8 @@ class FtmpushArgs:
         :param pulumi.Input[str] status: Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
         if server is not None:
             pulumi.set(__self__, "server", server)
         if server_cert is not None:
@@ -41,6 +45,18 @@ class FtmpushArgs:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy")
+
+    @proxy.setter
+    def proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy", value)
 
     @property
     @pulumi.getter
@@ -118,6 +134,7 @@ class FtmpushArgs:
 @pulumi.input_type
 class _FtmpushState:
     def __init__(__self__, *,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  server_cert: Optional[pulumi.Input[str]] = None,
                  server_ip: Optional[pulumi.Input[str]] = None,
@@ -126,6 +143,7 @@ class _FtmpushState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Ftmpush resources.
+        :param pulumi.Input[str] proxy: Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server: IPv4 address or domain name of FortiToken Mobile push services server.
         :param pulumi.Input[str] server_cert: Name of the server certificate to be used for SSL (default = Fortinet_Factory).
         :param pulumi.Input[str] server_ip: IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
@@ -133,6 +151,8 @@ class _FtmpushState:
         :param pulumi.Input[str] status: Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
         if server is not None:
             pulumi.set(__self__, "server", server)
         if server_cert is not None:
@@ -145,6 +165,18 @@ class _FtmpushState:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy")
+
+    @proxy.setter
+    def proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy", value)
 
     @property
     @pulumi.getter
@@ -224,6 +256,7 @@ class Ftmpush(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  server_cert: Optional[pulumi.Input[str]] = None,
                  server_ip: Optional[pulumi.Input[str]] = None,
@@ -268,6 +301,7 @@ class Ftmpush(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] proxy: Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server: IPv4 address or domain name of FortiToken Mobile push services server.
         :param pulumi.Input[str] server_cert: Name of the server certificate to be used for SSL (default = Fortinet_Factory).
         :param pulumi.Input[str] server_ip: IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
@@ -331,6 +365,7 @@ class Ftmpush(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  server_cert: Optional[pulumi.Input[str]] = None,
                  server_ip: Optional[pulumi.Input[str]] = None,
@@ -346,6 +381,7 @@ class Ftmpush(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FtmpushArgs.__new__(FtmpushArgs)
 
+            __props__.__dict__["proxy"] = proxy
             __props__.__dict__["server"] = server
             __props__.__dict__["server_cert"] = server_cert
             __props__.__dict__["server_ip"] = server_ip
@@ -362,6 +398,7 @@ class Ftmpush(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            proxy: Optional[pulumi.Input[str]] = None,
             server: Optional[pulumi.Input[str]] = None,
             server_cert: Optional[pulumi.Input[str]] = None,
             server_ip: Optional[pulumi.Input[str]] = None,
@@ -375,6 +412,7 @@ class Ftmpush(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] proxy: Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server: IPv4 address or domain name of FortiToken Mobile push services server.
         :param pulumi.Input[str] server_cert: Name of the server certificate to be used for SSL (default = Fortinet_Factory).
         :param pulumi.Input[str] server_ip: IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
@@ -386,6 +424,7 @@ class Ftmpush(pulumi.CustomResource):
 
         __props__ = _FtmpushState.__new__(_FtmpushState)
 
+        __props__.__dict__["proxy"] = proxy
         __props__.__dict__["server"] = server
         __props__.__dict__["server_cert"] = server_cert
         __props__.__dict__["server_ip"] = server_ip
@@ -393,6 +432,14 @@ class Ftmpush(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["vdomparam"] = vdomparam
         return Ftmpush(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> pulumi.Output[str]:
+        """
+        Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy")
 
     @property
     @pulumi.getter

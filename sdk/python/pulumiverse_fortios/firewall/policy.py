@@ -32,12 +32,14 @@ class PolicyArgs:
                  block_notification: Optional[pulumi.Input[str]] = None,
                  captive_portal_exempt: Optional[pulumi.Input[str]] = None,
                  capture_packet: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyCustomLogFieldArgs']]]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
                  delay_tcp_npu_session: Optional[pulumi.Input[str]] = None,
                  devices: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyDeviceArgs']]]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  diffserv_copy: Optional[pulumi.Input[str]] = None,
                  diffserv_forward: Optional[pulumi.Input[str]] = None,
                  diffserv_reverse: Optional[pulumi.Input[str]] = None,
@@ -65,6 +67,7 @@ class PolicyArgs:
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyFssoGroupArgs']]]] = None,
                  geoip_anycast: Optional[pulumi.Input[str]] = None,
                  geoip_match: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyGroupArgs']]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -100,6 +103,7 @@ class PolicyArgs:
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
@@ -121,11 +125,15 @@ class PolicyArgs:
                  ntlm_guest: Optional[pulumi.Input[str]] = None,
                  outbound: Optional[pulumi.Input[str]] = None,
                  passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
+                 pcp_inbound: Optional[pulumi.Input[str]] = None,
+                 pcp_outbound: Optional[pulumi.Input[str]] = None,
+                 pcp_poolnames: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPcpPoolnameArgs']]]] = None,
                  per_ip_shaper: Optional[pulumi.Input[str]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  permit_stun_host: Optional[pulumi.Input[str]] = None,
                  policy_expiry: Optional[pulumi.Input[str]] = None,
                  policy_expiry_date: Optional[pulumi.Input[str]] = None,
+                 policy_expiry_date_utc: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPoolname6Args']]]] = None,
                  poolnames: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPoolnameArgs']]]] = None,
@@ -179,6 +187,7 @@ class PolicyArgs:
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
                  vlan_cos_rev: Optional[pulumi.Input[int]] = None,
                  vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -197,14 +206,18 @@ class PolicyArgs:
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
                  wsso: Optional[pulumi.Input[str]] = None,
+                 ztna_device_ownership: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tag_secondaries: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagSecondaryArgs']]]] = None,
                  ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagArgs']]]] = None,
                  ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyZtnaGeoTagArgs']]]] = None,
-                 ztna_status: Optional[pulumi.Input[str]] = None):
+                 ztna_policy_redirect: Optional[pulumi.Input[str]] = None,
+                 ztna_status: Optional[pulumi.Input[str]] = None,
+                 ztna_tags_match_logic: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Policy resource.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyDstintfArgs']]] dstintfs: Outgoing (egress) interface. The structure of `dstintf` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PolicySrcintfArgs']]] srcintfs: Incoming (ingress) interface. The structure of `srcintf` block is documented below.
-        :param pulumi.Input[str] action: Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+        :param pulumi.Input[str] action: Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
         :param pulumi.Input[str] anti_replay: Enable/disable anti-replay check. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyAppCategoryArgs']]] app_categories: Application category ID list. The structure of `app_category` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyAppGroupArgs']]] app_groups: Application group names. The structure of `app_group` block is documented below.
@@ -218,12 +231,14 @@ class PolicyArgs:
         :param pulumi.Input[str] block_notification: Enable/disable block notification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] captive_portal_exempt: Enable to exempt some users from the captive portal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] capture_packet: Enable/disable capture packets. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyCustomLogFieldArgs']]] custom_log_fields: Custom fields to append to log messages for this policy. The structure of `custom_log_fields` block is documented below.
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
         :param pulumi.Input[str] delay_tcp_npu_session: Enable TCP NPU session delay to guarantee packet order of 3-way handshake. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyDeviceArgs']]] devices: Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] diffserv_copy: Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffserv_forward: Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffserv_reverse: Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
@@ -251,6 +266,7 @@ class PolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input['PolicyFssoGroupArgs']]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
         :param pulumi.Input[str] geoip_anycast: Enable/disable recognition of anycast IP addresses using the geography IP database. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] geoip_match: Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Label for the policy that appears when the GUI is in Global View mode.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyGroupArgs']]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -286,6 +302,7 @@ class PolicyArgs:
         :param pulumi.Input[str] internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ippool: Enable to use IP Pools for source NAT. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] label: Label for the policy that appears when the GUI is in Section View mode.
         :param pulumi.Input[str] learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
@@ -307,11 +324,15 @@ class PolicyArgs:
         :param pulumi.Input[str] ntlm_guest: Enable/disable NTLM guest user access. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] outbound: Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] passive_wan_health_measurement: Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pcp_inbound: Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pcp_outbound: Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['PolicyPcpPoolnameArgs']]] pcp_poolnames: PCP pool names. The structure of `pcp_poolname` block is documented below.
         :param pulumi.Input[str] per_ip_shaper: Per-IP traffic shaper.
         :param pulumi.Input[str] permit_any_host: Accept UDP packets from any host. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] permit_stun_host: Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] policy_expiry: Enable/disable policy expiry. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] policy_expiry_date: Policy expiry date (YYYY-MM-DD HH:MM:SS).
+        :param pulumi.Input[str] policy_expiry_date_utc: Policy expiry date and time, in epoch format.
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyPoolname6Args']]] poolname6s: IPv6 pool names. The structure of `poolname6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyPoolnameArgs']]] poolnames: IP Pool names. The structure of `poolname` block is documented below.
@@ -365,10 +386,11 @@ class PolicyArgs:
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
         :param pulumi.Input[int] vlan_cos_fwd: VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[int] vlan_cos_rev: VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[str] vlan_filter: Set VLAN filters.
-        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP (voipd) profile.
         :param pulumi.Input[str] vpntunnel: Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] wanopt: Enable/disable WAN optimization. Valid values: `enable`, `disable`.
@@ -383,9 +405,13 @@ class PolicyArgs:
         :param pulumi.Input[str] webproxy_forward_server: Web proxy forward server name.
         :param pulumi.Input[str] webproxy_profile: Webproxy profile name.
         :param pulumi.Input[str] wsso: Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_device_ownership: Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagSecondaryArgs']]] ztna_ems_tag_secondaries: Source ztna-ems-tag-secondary names. The structure of `ztna_ems_tag_secondary` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagArgs']]] ztna_ems_tags: Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyZtnaGeoTagArgs']]] ztna_geo_tags: Source ztna-geo-tag names. The structure of `ztna_geo_tag` block is documented below.
+        :param pulumi.Input[str] ztna_policy_redirect: Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ztna_status: Enable/disable zero trust access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_tags_match_logic: ZTNA tag matching logic. Valid values: `or`, `and`.
         """
         pulumi.set(__self__, "dstintfs", dstintfs)
         pulumi.set(__self__, "srcintfs", srcintfs)
@@ -417,6 +443,8 @@ class PolicyArgs:
             pulumi.set(__self__, "captive_portal_exempt", captive_portal_exempt)
         if capture_packet is not None:
             pulumi.set(__self__, "capture_packet", capture_packet)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
@@ -429,6 +457,8 @@ class PolicyArgs:
             pulumi.set(__self__, "delay_tcp_npu_session", delay_tcp_npu_session)
         if devices is not None:
             pulumi.set(__self__, "devices", devices)
+        if diameter_filter_profile is not None:
+            pulumi.set(__self__, "diameter_filter_profile", diameter_filter_profile)
         if diffserv_copy is not None:
             pulumi.set(__self__, "diffserv_copy", diffserv_copy)
         if diffserv_forward is not None:
@@ -483,6 +513,8 @@ class PolicyArgs:
             pulumi.set(__self__, "geoip_anycast", geoip_anycast)
         if geoip_match is not None:
             pulumi.set(__self__, "geoip_match", geoip_match)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if global_label is not None:
             pulumi.set(__self__, "global_label", global_label)
         if groups is not None:
@@ -553,6 +585,8 @@ class PolicyArgs:
             pulumi.set(__self__, "ippool", ippool)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if label is not None:
             pulumi.set(__self__, "label", label)
         if learning_mode is not None:
@@ -595,6 +629,12 @@ class PolicyArgs:
             pulumi.set(__self__, "outbound", outbound)
         if passive_wan_health_measurement is not None:
             pulumi.set(__self__, "passive_wan_health_measurement", passive_wan_health_measurement)
+        if pcp_inbound is not None:
+            pulumi.set(__self__, "pcp_inbound", pcp_inbound)
+        if pcp_outbound is not None:
+            pulumi.set(__self__, "pcp_outbound", pcp_outbound)
+        if pcp_poolnames is not None:
+            pulumi.set(__self__, "pcp_poolnames", pcp_poolnames)
         if per_ip_shaper is not None:
             pulumi.set(__self__, "per_ip_shaper", per_ip_shaper)
         if permit_any_host is not None:
@@ -605,6 +645,8 @@ class PolicyArgs:
             pulumi.set(__self__, "policy_expiry", policy_expiry)
         if policy_expiry_date is not None:
             pulumi.set(__self__, "policy_expiry_date", policy_expiry_date)
+        if policy_expiry_date_utc is not None:
+            pulumi.set(__self__, "policy_expiry_date_utc", policy_expiry_date_utc)
         if policyid is not None:
             pulumi.set(__self__, "policyid", policyid)
         if poolname6s is not None:
@@ -711,6 +753,8 @@ class PolicyArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if vlan_cos_fwd is not None:
             pulumi.set(__self__, "vlan_cos_fwd", vlan_cos_fwd)
         if vlan_cos_rev is not None:
@@ -747,12 +791,20 @@ class PolicyArgs:
             pulumi.set(__self__, "webproxy_profile", webproxy_profile)
         if wsso is not None:
             pulumi.set(__self__, "wsso", wsso)
+        if ztna_device_ownership is not None:
+            pulumi.set(__self__, "ztna_device_ownership", ztna_device_ownership)
+        if ztna_ems_tag_secondaries is not None:
+            pulumi.set(__self__, "ztna_ems_tag_secondaries", ztna_ems_tag_secondaries)
         if ztna_ems_tags is not None:
             pulumi.set(__self__, "ztna_ems_tags", ztna_ems_tags)
         if ztna_geo_tags is not None:
             pulumi.set(__self__, "ztna_geo_tags", ztna_geo_tags)
+        if ztna_policy_redirect is not None:
+            pulumi.set(__self__, "ztna_policy_redirect", ztna_policy_redirect)
         if ztna_status is not None:
             pulumi.set(__self__, "ztna_status", ztna_status)
+        if ztna_tags_match_logic is not None:
+            pulumi.set(__self__, "ztna_tags_match_logic", ztna_tags_match_logic)
 
     @property
     @pulumi.getter
@@ -782,7 +834,7 @@ class PolicyArgs:
     @pulumi.getter
     def action(self) -> Optional[pulumi.Input[str]]:
         """
-        Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+        Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
         """
         return pulumi.get(self, "action")
 
@@ -947,6 +999,18 @@ class PolicyArgs:
         pulumi.set(self, "capture_packet", value)
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1017,6 +1081,18 @@ class PolicyArgs:
     @devices.setter
     def devices(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyDeviceArgs']]]]):
         pulumi.set(self, "devices", value)
+
+    @property
+    @pulumi.getter(name="diameterFilterProfile")
+    def diameter_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing Diameter filter profile.
+        """
+        return pulumi.get(self, "diameter_filter_profile")
+
+    @diameter_filter_profile.setter
+    def diameter_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "diameter_filter_profile", value)
 
     @property
     @pulumi.getter(name="diffservCopy")
@@ -1341,6 +1417,18 @@ class PolicyArgs:
     @geoip_match.setter
     def geoip_match(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "geoip_match", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="globalLabel")
@@ -1763,6 +1851,18 @@ class PolicyArgs:
         pulumi.set(self, "ips_sensor", value)
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VoIP (ips) profile.
+        """
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
+
+    @property
     @pulumi.getter
     def label(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2015,6 +2115,42 @@ class PolicyArgs:
         pulumi.set(self, "passive_wan_health_measurement", value)
 
     @property
+    @pulumi.getter(name="pcpInbound")
+    def pcp_inbound(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "pcp_inbound")
+
+    @pcp_inbound.setter
+    def pcp_inbound(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pcp_inbound", value)
+
+    @property
+    @pulumi.getter(name="pcpOutbound")
+    def pcp_outbound(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "pcp_outbound")
+
+    @pcp_outbound.setter
+    def pcp_outbound(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pcp_outbound", value)
+
+    @property
+    @pulumi.getter(name="pcpPoolnames")
+    def pcp_poolnames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPcpPoolnameArgs']]]]:
+        """
+        PCP pool names. The structure of `pcp_poolname` block is documented below.
+        """
+        return pulumi.get(self, "pcp_poolnames")
+
+    @pcp_poolnames.setter
+    def pcp_poolnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPcpPoolnameArgs']]]]):
+        pulumi.set(self, "pcp_poolnames", value)
+
+    @property
     @pulumi.getter(name="perIpShaper")
     def per_ip_shaper(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2073,6 +2209,18 @@ class PolicyArgs:
     @policy_expiry_date.setter
     def policy_expiry_date(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy_expiry_date", value)
+
+    @property
+    @pulumi.getter(name="policyExpiryDateUtc")
+    def policy_expiry_date_utc(self) -> Optional[pulumi.Input[str]]:
+        """
+        Policy expiry date and time, in epoch format.
+        """
+        return pulumi.get(self, "policy_expiry_date_utc")
+
+    @policy_expiry_date_utc.setter
+    def policy_expiry_date_utc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy_expiry_date_utc", value)
 
     @property
     @pulumi.getter
@@ -2711,6 +2859,18 @@ class PolicyArgs:
         pulumi.set(self, "videofilter_profile", value)
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing virtual-patch profile.
+        """
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
+
+    @property
     @pulumi.getter(name="vlanCosFwd")
     def vlan_cos_fwd(self) -> Optional[pulumi.Input[int]]:
         """
@@ -2750,7 +2910,7 @@ class PolicyArgs:
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of an existing VoIP profile.
+        Name of an existing VoIP (voipd) profile.
         """
         return pulumi.get(self, "voip_profile")
 
@@ -2927,6 +3087,30 @@ class PolicyArgs:
         pulumi.set(self, "wsso", value)
 
     @property
+    @pulumi.getter(name="ztnaDeviceOwnership")
+    def ztna_device_ownership(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_device_ownership")
+
+    @ztna_device_ownership.setter
+    def ztna_device_ownership(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_device_ownership", value)
+
+    @property
+    @pulumi.getter(name="ztnaEmsTagSecondaries")
+    def ztna_ems_tag_secondaries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagSecondaryArgs']]]]:
+        """
+        Source ztna-ems-tag-secondary names. The structure of `ztna_ems_tag_secondary` block is documented below.
+        """
+        return pulumi.get(self, "ztna_ems_tag_secondaries")
+
+    @ztna_ems_tag_secondaries.setter
+    def ztna_ems_tag_secondaries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagSecondaryArgs']]]]):
+        pulumi.set(self, "ztna_ems_tag_secondaries", value)
+
+    @property
     @pulumi.getter(name="ztnaEmsTags")
     def ztna_ems_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagArgs']]]]:
         """
@@ -2951,6 +3135,18 @@ class PolicyArgs:
         pulumi.set(self, "ztna_geo_tags", value)
 
     @property
+    @pulumi.getter(name="ztnaPolicyRedirect")
+    def ztna_policy_redirect(self) -> Optional[pulumi.Input[str]]:
+        """
+        Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_policy_redirect")
+
+    @ztna_policy_redirect.setter
+    def ztna_policy_redirect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_policy_redirect", value)
+
+    @property
     @pulumi.getter(name="ztnaStatus")
     def ztna_status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2961,6 +3157,18 @@ class PolicyArgs:
     @ztna_status.setter
     def ztna_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ztna_status", value)
+
+    @property
+    @pulumi.getter(name="ztnaTagsMatchLogic")
+    def ztna_tags_match_logic(self) -> Optional[pulumi.Input[str]]:
+        """
+        ZTNA tag matching logic. Valid values: `or`, `and`.
+        """
+        return pulumi.get(self, "ztna_tags_match_logic")
+
+    @ztna_tags_match_logic.setter
+    def ztna_tags_match_logic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_tags_match_logic", value)
 
 
 @pulumi.input_type
@@ -2980,12 +3188,14 @@ class _PolicyState:
                  block_notification: Optional[pulumi.Input[str]] = None,
                  captive_portal_exempt: Optional[pulumi.Input[str]] = None,
                  capture_packet: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyCustomLogFieldArgs']]]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
                  delay_tcp_npu_session: Optional[pulumi.Input[str]] = None,
                  devices: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyDeviceArgs']]]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  diffserv_copy: Optional[pulumi.Input[str]] = None,
                  diffserv_forward: Optional[pulumi.Input[str]] = None,
                  diffserv_reverse: Optional[pulumi.Input[str]] = None,
@@ -3014,6 +3224,7 @@ class _PolicyState:
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyFssoGroupArgs']]]] = None,
                  geoip_anycast: Optional[pulumi.Input[str]] = None,
                  geoip_match: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyGroupArgs']]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -3049,6 +3260,7 @@ class _PolicyState:
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
@@ -3070,11 +3282,15 @@ class _PolicyState:
                  ntlm_guest: Optional[pulumi.Input[str]] = None,
                  outbound: Optional[pulumi.Input[str]] = None,
                  passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
+                 pcp_inbound: Optional[pulumi.Input[str]] = None,
+                 pcp_outbound: Optional[pulumi.Input[str]] = None,
+                 pcp_poolnames: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPcpPoolnameArgs']]]] = None,
                  per_ip_shaper: Optional[pulumi.Input[str]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  permit_stun_host: Optional[pulumi.Input[str]] = None,
                  policy_expiry: Optional[pulumi.Input[str]] = None,
                  policy_expiry_date: Optional[pulumi.Input[str]] = None,
+                 policy_expiry_date_utc: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPoolname6Args']]]] = None,
                  poolnames: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPoolnameArgs']]]] = None,
@@ -3129,6 +3345,7 @@ class _PolicyState:
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
                  vlan_cos_rev: Optional[pulumi.Input[int]] = None,
                  vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -3147,12 +3364,16 @@ class _PolicyState:
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
                  wsso: Optional[pulumi.Input[str]] = None,
+                 ztna_device_ownership: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tag_secondaries: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagSecondaryArgs']]]] = None,
                  ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagArgs']]]] = None,
                  ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyZtnaGeoTagArgs']]]] = None,
-                 ztna_status: Optional[pulumi.Input[str]] = None):
+                 ztna_policy_redirect: Optional[pulumi.Input[str]] = None,
+                 ztna_status: Optional[pulumi.Input[str]] = None,
+                 ztna_tags_match_logic: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Policy resources.
-        :param pulumi.Input[str] action: Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+        :param pulumi.Input[str] action: Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
         :param pulumi.Input[str] anti_replay: Enable/disable anti-replay check. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyAppCategoryArgs']]] app_categories: Application category ID list. The structure of `app_category` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyAppGroupArgs']]] app_groups: Application group names. The structure of `app_group` block is documented below.
@@ -3166,12 +3387,14 @@ class _PolicyState:
         :param pulumi.Input[str] block_notification: Enable/disable block notification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] captive_portal_exempt: Enable to exempt some users from the captive portal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] capture_packet: Enable/disable capture packets. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyCustomLogFieldArgs']]] custom_log_fields: Custom fields to append to log messages for this policy. The structure of `custom_log_fields` block is documented below.
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
         :param pulumi.Input[str] delay_tcp_npu_session: Enable TCP NPU session delay to guarantee packet order of 3-way handshake. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyDeviceArgs']]] devices: Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] diffserv_copy: Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffserv_forward: Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffserv_reverse: Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
@@ -3200,6 +3423,7 @@ class _PolicyState:
         :param pulumi.Input[Sequence[pulumi.Input['PolicyFssoGroupArgs']]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
         :param pulumi.Input[str] geoip_anycast: Enable/disable recognition of anycast IP addresses using the geography IP database. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] geoip_match: Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Label for the policy that appears when the GUI is in Global View mode.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyGroupArgs']]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -3235,6 +3459,7 @@ class _PolicyState:
         :param pulumi.Input[str] internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ippool: Enable to use IP Pools for source NAT. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] label: Label for the policy that appears when the GUI is in Section View mode.
         :param pulumi.Input[str] learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
@@ -3256,11 +3481,15 @@ class _PolicyState:
         :param pulumi.Input[str] ntlm_guest: Enable/disable NTLM guest user access. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] outbound: Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] passive_wan_health_measurement: Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pcp_inbound: Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pcp_outbound: Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['PolicyPcpPoolnameArgs']]] pcp_poolnames: PCP pool names. The structure of `pcp_poolname` block is documented below.
         :param pulumi.Input[str] per_ip_shaper: Per-IP traffic shaper.
         :param pulumi.Input[str] permit_any_host: Accept UDP packets from any host. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] permit_stun_host: Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] policy_expiry: Enable/disable policy expiry. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] policy_expiry_date: Policy expiry date (YYYY-MM-DD HH:MM:SS).
+        :param pulumi.Input[str] policy_expiry_date_utc: Policy expiry date and time, in epoch format.
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyPoolname6Args']]] poolname6s: IPv6 pool names. The structure of `poolname6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyPoolnameArgs']]] poolnames: IP Pool names. The structure of `poolname` block is documented below.
@@ -3315,10 +3544,11 @@ class _PolicyState:
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
         :param pulumi.Input[int] vlan_cos_fwd: VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[int] vlan_cos_rev: VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[str] vlan_filter: Set VLAN filters.
-        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP (voipd) profile.
         :param pulumi.Input[str] vpntunnel: Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] wanopt: Enable/disable WAN optimization. Valid values: `enable`, `disable`.
@@ -3333,9 +3563,13 @@ class _PolicyState:
         :param pulumi.Input[str] webproxy_forward_server: Web proxy forward server name.
         :param pulumi.Input[str] webproxy_profile: Webproxy profile name.
         :param pulumi.Input[str] wsso: Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_device_ownership: Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagSecondaryArgs']]] ztna_ems_tag_secondaries: Source ztna-ems-tag-secondary names. The structure of `ztna_ems_tag_secondary` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagArgs']]] ztna_ems_tags: Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyZtnaGeoTagArgs']]] ztna_geo_tags: Source ztna-geo-tag names. The structure of `ztna_geo_tag` block is documented below.
+        :param pulumi.Input[str] ztna_policy_redirect: Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ztna_status: Enable/disable zero trust access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_tags_match_logic: ZTNA tag matching logic. Valid values: `or`, `and`.
         """
         if action is not None:
             pulumi.set(__self__, "action", action)
@@ -3365,6 +3599,8 @@ class _PolicyState:
             pulumi.set(__self__, "captive_portal_exempt", captive_portal_exempt)
         if capture_packet is not None:
             pulumi.set(__self__, "capture_packet", capture_packet)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
@@ -3377,6 +3613,8 @@ class _PolicyState:
             pulumi.set(__self__, "delay_tcp_npu_session", delay_tcp_npu_session)
         if devices is not None:
             pulumi.set(__self__, "devices", devices)
+        if diameter_filter_profile is not None:
+            pulumi.set(__self__, "diameter_filter_profile", diameter_filter_profile)
         if diffserv_copy is not None:
             pulumi.set(__self__, "diffserv_copy", diffserv_copy)
         if diffserv_forward is not None:
@@ -3433,6 +3671,8 @@ class _PolicyState:
             pulumi.set(__self__, "geoip_anycast", geoip_anycast)
         if geoip_match is not None:
             pulumi.set(__self__, "geoip_match", geoip_match)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if global_label is not None:
             pulumi.set(__self__, "global_label", global_label)
         if groups is not None:
@@ -3503,6 +3743,8 @@ class _PolicyState:
             pulumi.set(__self__, "ippool", ippool)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if label is not None:
             pulumi.set(__self__, "label", label)
         if learning_mode is not None:
@@ -3545,6 +3787,12 @@ class _PolicyState:
             pulumi.set(__self__, "outbound", outbound)
         if passive_wan_health_measurement is not None:
             pulumi.set(__self__, "passive_wan_health_measurement", passive_wan_health_measurement)
+        if pcp_inbound is not None:
+            pulumi.set(__self__, "pcp_inbound", pcp_inbound)
+        if pcp_outbound is not None:
+            pulumi.set(__self__, "pcp_outbound", pcp_outbound)
+        if pcp_poolnames is not None:
+            pulumi.set(__self__, "pcp_poolnames", pcp_poolnames)
         if per_ip_shaper is not None:
             pulumi.set(__self__, "per_ip_shaper", per_ip_shaper)
         if permit_any_host is not None:
@@ -3555,6 +3803,8 @@ class _PolicyState:
             pulumi.set(__self__, "policy_expiry", policy_expiry)
         if policy_expiry_date is not None:
             pulumi.set(__self__, "policy_expiry_date", policy_expiry_date)
+        if policy_expiry_date_utc is not None:
+            pulumi.set(__self__, "policy_expiry_date_utc", policy_expiry_date_utc)
         if policyid is not None:
             pulumi.set(__self__, "policyid", policyid)
         if poolname6s is not None:
@@ -3663,6 +3913,8 @@ class _PolicyState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if vlan_cos_fwd is not None:
             pulumi.set(__self__, "vlan_cos_fwd", vlan_cos_fwd)
         if vlan_cos_rev is not None:
@@ -3699,18 +3951,26 @@ class _PolicyState:
             pulumi.set(__self__, "webproxy_profile", webproxy_profile)
         if wsso is not None:
             pulumi.set(__self__, "wsso", wsso)
+        if ztna_device_ownership is not None:
+            pulumi.set(__self__, "ztna_device_ownership", ztna_device_ownership)
+        if ztna_ems_tag_secondaries is not None:
+            pulumi.set(__self__, "ztna_ems_tag_secondaries", ztna_ems_tag_secondaries)
         if ztna_ems_tags is not None:
             pulumi.set(__self__, "ztna_ems_tags", ztna_ems_tags)
         if ztna_geo_tags is not None:
             pulumi.set(__self__, "ztna_geo_tags", ztna_geo_tags)
+        if ztna_policy_redirect is not None:
+            pulumi.set(__self__, "ztna_policy_redirect", ztna_policy_redirect)
         if ztna_status is not None:
             pulumi.set(__self__, "ztna_status", ztna_status)
+        if ztna_tags_match_logic is not None:
+            pulumi.set(__self__, "ztna_tags_match_logic", ztna_tags_match_logic)
 
     @property
     @pulumi.getter
     def action(self) -> Optional[pulumi.Input[str]]:
         """
-        Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+        Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
         """
         return pulumi.get(self, "action")
 
@@ -3875,6 +4135,18 @@ class _PolicyState:
         pulumi.set(self, "capture_packet", value)
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3945,6 +4217,18 @@ class _PolicyState:
     @devices.setter
     def devices(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyDeviceArgs']]]]):
         pulumi.set(self, "devices", value)
+
+    @property
+    @pulumi.getter(name="diameterFilterProfile")
+    def diameter_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing Diameter filter profile.
+        """
+        return pulumi.get(self, "diameter_filter_profile")
+
+    @diameter_filter_profile.setter
+    def diameter_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "diameter_filter_profile", value)
 
     @property
     @pulumi.getter(name="diffservCopy")
@@ -4281,6 +4565,18 @@ class _PolicyState:
     @geoip_match.setter
     def geoip_match(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "geoip_match", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="globalLabel")
@@ -4703,6 +4999,18 @@ class _PolicyState:
         pulumi.set(self, "ips_sensor", value)
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VoIP (ips) profile.
+        """
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
+
+    @property
     @pulumi.getter
     def label(self) -> Optional[pulumi.Input[str]]:
         """
@@ -4955,6 +5263,42 @@ class _PolicyState:
         pulumi.set(self, "passive_wan_health_measurement", value)
 
     @property
+    @pulumi.getter(name="pcpInbound")
+    def pcp_inbound(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "pcp_inbound")
+
+    @pcp_inbound.setter
+    def pcp_inbound(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pcp_inbound", value)
+
+    @property
+    @pulumi.getter(name="pcpOutbound")
+    def pcp_outbound(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "pcp_outbound")
+
+    @pcp_outbound.setter
+    def pcp_outbound(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pcp_outbound", value)
+
+    @property
+    @pulumi.getter(name="pcpPoolnames")
+    def pcp_poolnames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPcpPoolnameArgs']]]]:
+        """
+        PCP pool names. The structure of `pcp_poolname` block is documented below.
+        """
+        return pulumi.get(self, "pcp_poolnames")
+
+    @pcp_poolnames.setter
+    def pcp_poolnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPcpPoolnameArgs']]]]):
+        pulumi.set(self, "pcp_poolnames", value)
+
+    @property
     @pulumi.getter(name="perIpShaper")
     def per_ip_shaper(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5013,6 +5357,18 @@ class _PolicyState:
     @policy_expiry_date.setter
     def policy_expiry_date(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy_expiry_date", value)
+
+    @property
+    @pulumi.getter(name="policyExpiryDateUtc")
+    def policy_expiry_date_utc(self) -> Optional[pulumi.Input[str]]:
+        """
+        Policy expiry date and time, in epoch format.
+        """
+        return pulumi.get(self, "policy_expiry_date_utc")
+
+    @policy_expiry_date_utc.setter
+    def policy_expiry_date_utc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy_expiry_date_utc", value)
 
     @property
     @pulumi.getter
@@ -5663,6 +6019,18 @@ class _PolicyState:
         pulumi.set(self, "videofilter_profile", value)
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing virtual-patch profile.
+        """
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
+
+    @property
     @pulumi.getter(name="vlanCosFwd")
     def vlan_cos_fwd(self) -> Optional[pulumi.Input[int]]:
         """
@@ -5702,7 +6070,7 @@ class _PolicyState:
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of an existing VoIP profile.
+        Name of an existing VoIP (voipd) profile.
         """
         return pulumi.get(self, "voip_profile")
 
@@ -5879,6 +6247,30 @@ class _PolicyState:
         pulumi.set(self, "wsso", value)
 
     @property
+    @pulumi.getter(name="ztnaDeviceOwnership")
+    def ztna_device_ownership(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_device_ownership")
+
+    @ztna_device_ownership.setter
+    def ztna_device_ownership(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_device_ownership", value)
+
+    @property
+    @pulumi.getter(name="ztnaEmsTagSecondaries")
+    def ztna_ems_tag_secondaries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagSecondaryArgs']]]]:
+        """
+        Source ztna-ems-tag-secondary names. The structure of `ztna_ems_tag_secondary` block is documented below.
+        """
+        return pulumi.get(self, "ztna_ems_tag_secondaries")
+
+    @ztna_ems_tag_secondaries.setter
+    def ztna_ems_tag_secondaries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagSecondaryArgs']]]]):
+        pulumi.set(self, "ztna_ems_tag_secondaries", value)
+
+    @property
     @pulumi.getter(name="ztnaEmsTags")
     def ztna_ems_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PolicyZtnaEmsTagArgs']]]]:
         """
@@ -5903,6 +6295,18 @@ class _PolicyState:
         pulumi.set(self, "ztna_geo_tags", value)
 
     @property
+    @pulumi.getter(name="ztnaPolicyRedirect")
+    def ztna_policy_redirect(self) -> Optional[pulumi.Input[str]]:
+        """
+        Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_policy_redirect")
+
+    @ztna_policy_redirect.setter
+    def ztna_policy_redirect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_policy_redirect", value)
+
+    @property
     @pulumi.getter(name="ztnaStatus")
     def ztna_status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5913,6 +6317,18 @@ class _PolicyState:
     @ztna_status.setter
     def ztna_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ztna_status", value)
+
+    @property
+    @pulumi.getter(name="ztnaTagsMatchLogic")
+    def ztna_tags_match_logic(self) -> Optional[pulumi.Input[str]]:
+        """
+        ZTNA tag matching logic. Valid values: `or`, `and`.
+        """
+        return pulumi.get(self, "ztna_tags_match_logic")
+
+    @ztna_tags_match_logic.setter
+    def ztna_tags_match_logic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_tags_match_logic", value)
 
 
 class Policy(pulumi.CustomResource):
@@ -5934,12 +6350,14 @@ class Policy(pulumi.CustomResource):
                  block_notification: Optional[pulumi.Input[str]] = None,
                  captive_portal_exempt: Optional[pulumi.Input[str]] = None,
                  capture_packet: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyCustomLogFieldArgs']]]]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
                  delay_tcp_npu_session: Optional[pulumi.Input[str]] = None,
                  devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyDeviceArgs']]]]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  diffserv_copy: Optional[pulumi.Input[str]] = None,
                  diffserv_forward: Optional[pulumi.Input[str]] = None,
                  diffserv_reverse: Optional[pulumi.Input[str]] = None,
@@ -5968,6 +6386,7 @@ class Policy(pulumi.CustomResource):
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyFssoGroupArgs']]]]] = None,
                  geoip_anycast: Optional[pulumi.Input[str]] = None,
                  geoip_match: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyGroupArgs']]]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -6003,6 +6422,7 @@ class Policy(pulumi.CustomResource):
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
@@ -6024,11 +6444,15 @@ class Policy(pulumi.CustomResource):
                  ntlm_guest: Optional[pulumi.Input[str]] = None,
                  outbound: Optional[pulumi.Input[str]] = None,
                  passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
+                 pcp_inbound: Optional[pulumi.Input[str]] = None,
+                 pcp_outbound: Optional[pulumi.Input[str]] = None,
+                 pcp_poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPcpPoolnameArgs']]]]] = None,
                  per_ip_shaper: Optional[pulumi.Input[str]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  permit_stun_host: Optional[pulumi.Input[str]] = None,
                  policy_expiry: Optional[pulumi.Input[str]] = None,
                  policy_expiry_date: Optional[pulumi.Input[str]] = None,
+                 policy_expiry_date_utc: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolname6Args']]]]] = None,
                  poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolnameArgs']]]]] = None,
@@ -6083,6 +6507,7 @@ class Policy(pulumi.CustomResource):
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
                  vlan_cos_rev: Optional[pulumi.Input[int]] = None,
                  vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -6101,9 +6526,13 @@ class Policy(pulumi.CustomResource):
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
                  wsso: Optional[pulumi.Input[str]] = None,
+                 ztna_device_ownership: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tag_secondaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaEmsTagSecondaryArgs']]]]] = None,
                  ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaEmsTagArgs']]]]] = None,
                  ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaGeoTagArgs']]]]] = None,
+                 ztna_policy_redirect: Optional[pulumi.Input[str]] = None,
                  ztna_status: Optional[pulumi.Input[str]] = None,
+                 ztna_tags_match_logic: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Configure IPv4 policies.
@@ -6197,7 +6626,7 @@ class Policy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] action: Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+        :param pulumi.Input[str] action: Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
         :param pulumi.Input[str] anti_replay: Enable/disable anti-replay check. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyAppCategoryArgs']]]] app_categories: Application category ID list. The structure of `app_category` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyAppGroupArgs']]]] app_groups: Application group names. The structure of `app_group` block is documented below.
@@ -6211,12 +6640,14 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] block_notification: Enable/disable block notification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] captive_portal_exempt: Enable to exempt some users from the captive portal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] capture_packet: Enable/disable capture packets. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyCustomLogFieldArgs']]]] custom_log_fields: Custom fields to append to log messages for this policy. The structure of `custom_log_fields` block is documented below.
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
         :param pulumi.Input[str] delay_tcp_npu_session: Enable TCP NPU session delay to guarantee packet order of 3-way handshake. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyDeviceArgs']]]] devices: Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] diffserv_copy: Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffserv_forward: Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffserv_reverse: Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
@@ -6245,6 +6676,7 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyFssoGroupArgs']]]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
         :param pulumi.Input[str] geoip_anycast: Enable/disable recognition of anycast IP addresses using the geography IP database. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] geoip_match: Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Label for the policy that appears when the GUI is in Global View mode.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyGroupArgs']]]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -6280,6 +6712,7 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ippool: Enable to use IP Pools for source NAT. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] label: Label for the policy that appears when the GUI is in Section View mode.
         :param pulumi.Input[str] learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
@@ -6301,11 +6734,15 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] ntlm_guest: Enable/disable NTLM guest user access. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] outbound: Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] passive_wan_health_measurement: Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pcp_inbound: Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pcp_outbound: Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPcpPoolnameArgs']]]] pcp_poolnames: PCP pool names. The structure of `pcp_poolname` block is documented below.
         :param pulumi.Input[str] per_ip_shaper: Per-IP traffic shaper.
         :param pulumi.Input[str] permit_any_host: Accept UDP packets from any host. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] permit_stun_host: Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] policy_expiry: Enable/disable policy expiry. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] policy_expiry_date: Policy expiry date (YYYY-MM-DD HH:MM:SS).
+        :param pulumi.Input[str] policy_expiry_date_utc: Policy expiry date and time, in epoch format.
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolname6Args']]]] poolname6s: IPv6 pool names. The structure of `poolname6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolnameArgs']]]] poolnames: IP Pool names. The structure of `poolname` block is documented below.
@@ -6360,10 +6797,11 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
         :param pulumi.Input[int] vlan_cos_fwd: VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[int] vlan_cos_rev: VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[str] vlan_filter: Set VLAN filters.
-        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP (voipd) profile.
         :param pulumi.Input[str] vpntunnel: Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] wanopt: Enable/disable WAN optimization. Valid values: `enable`, `disable`.
@@ -6378,9 +6816,13 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] webproxy_forward_server: Web proxy forward server name.
         :param pulumi.Input[str] webproxy_profile: Webproxy profile name.
         :param pulumi.Input[str] wsso: Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_device_ownership: Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaEmsTagSecondaryArgs']]]] ztna_ems_tag_secondaries: Source ztna-ems-tag-secondary names. The structure of `ztna_ems_tag_secondary` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaEmsTagArgs']]]] ztna_ems_tags: Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaGeoTagArgs']]]] ztna_geo_tags: Source ztna-geo-tag names. The structure of `ztna_geo_tag` block is documented below.
+        :param pulumi.Input[str] ztna_policy_redirect: Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ztna_status: Enable/disable zero trust access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_tags_match_logic: ZTNA tag matching logic. Valid values: `or`, `and`.
         """
         ...
     @overload
@@ -6507,12 +6949,14 @@ class Policy(pulumi.CustomResource):
                  block_notification: Optional[pulumi.Input[str]] = None,
                  captive_portal_exempt: Optional[pulumi.Input[str]] = None,
                  capture_packet: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyCustomLogFieldArgs']]]]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
                  delay_tcp_npu_session: Optional[pulumi.Input[str]] = None,
                  devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyDeviceArgs']]]]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  diffserv_copy: Optional[pulumi.Input[str]] = None,
                  diffserv_forward: Optional[pulumi.Input[str]] = None,
                  diffserv_reverse: Optional[pulumi.Input[str]] = None,
@@ -6541,6 +6985,7 @@ class Policy(pulumi.CustomResource):
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyFssoGroupArgs']]]]] = None,
                  geoip_anycast: Optional[pulumi.Input[str]] = None,
                  geoip_match: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyGroupArgs']]]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -6576,6 +7021,7 @@ class Policy(pulumi.CustomResource):
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
@@ -6597,11 +7043,15 @@ class Policy(pulumi.CustomResource):
                  ntlm_guest: Optional[pulumi.Input[str]] = None,
                  outbound: Optional[pulumi.Input[str]] = None,
                  passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
+                 pcp_inbound: Optional[pulumi.Input[str]] = None,
+                 pcp_outbound: Optional[pulumi.Input[str]] = None,
+                 pcp_poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPcpPoolnameArgs']]]]] = None,
                  per_ip_shaper: Optional[pulumi.Input[str]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  permit_stun_host: Optional[pulumi.Input[str]] = None,
                  policy_expiry: Optional[pulumi.Input[str]] = None,
                  policy_expiry_date: Optional[pulumi.Input[str]] = None,
+                 policy_expiry_date_utc: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolname6Args']]]]] = None,
                  poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolnameArgs']]]]] = None,
@@ -6656,6 +7106,7 @@ class Policy(pulumi.CustomResource):
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
                  vlan_cos_rev: Optional[pulumi.Input[int]] = None,
                  vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -6674,9 +7125,13 @@ class Policy(pulumi.CustomResource):
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
                  wsso: Optional[pulumi.Input[str]] = None,
+                 ztna_device_ownership: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tag_secondaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaEmsTagSecondaryArgs']]]]] = None,
                  ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaEmsTagArgs']]]]] = None,
                  ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaGeoTagArgs']]]]] = None,
+                 ztna_policy_redirect: Optional[pulumi.Input[str]] = None,
                  ztna_status: Optional[pulumi.Input[str]] = None,
+                 ztna_tags_match_logic: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -6700,12 +7155,14 @@ class Policy(pulumi.CustomResource):
             __props__.__dict__["block_notification"] = block_notification
             __props__.__dict__["captive_portal_exempt"] = captive_portal_exempt
             __props__.__dict__["capture_packet"] = capture_packet
+            __props__.__dict__["casb_profile"] = casb_profile
             __props__.__dict__["cifs_profile"] = cifs_profile
             __props__.__dict__["comments"] = comments
             __props__.__dict__["custom_log_fields"] = custom_log_fields
             __props__.__dict__["decrypted_traffic_mirror"] = decrypted_traffic_mirror
             __props__.__dict__["delay_tcp_npu_session"] = delay_tcp_npu_session
             __props__.__dict__["devices"] = devices
+            __props__.__dict__["diameter_filter_profile"] = diameter_filter_profile
             __props__.__dict__["diffserv_copy"] = diffserv_copy
             __props__.__dict__["diffserv_forward"] = diffserv_forward
             __props__.__dict__["diffserv_reverse"] = diffserv_reverse
@@ -6736,6 +7193,7 @@ class Policy(pulumi.CustomResource):
             __props__.__dict__["fsso_groups"] = fsso_groups
             __props__.__dict__["geoip_anycast"] = geoip_anycast
             __props__.__dict__["geoip_match"] = geoip_match
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["global_label"] = global_label
             __props__.__dict__["groups"] = groups
             __props__.__dict__["http_policy_redirect"] = http_policy_redirect
@@ -6771,6 +7229,7 @@ class Policy(pulumi.CustomResource):
             __props__.__dict__["internet_service_src_negate"] = internet_service_src_negate
             __props__.__dict__["ippool"] = ippool
             __props__.__dict__["ips_sensor"] = ips_sensor
+            __props__.__dict__["ips_voip_filter"] = ips_voip_filter
             __props__.__dict__["label"] = label
             __props__.__dict__["learning_mode"] = learning_mode
             __props__.__dict__["logtraffic"] = logtraffic
@@ -6792,11 +7251,15 @@ class Policy(pulumi.CustomResource):
             __props__.__dict__["ntlm_guest"] = ntlm_guest
             __props__.__dict__["outbound"] = outbound
             __props__.__dict__["passive_wan_health_measurement"] = passive_wan_health_measurement
+            __props__.__dict__["pcp_inbound"] = pcp_inbound
+            __props__.__dict__["pcp_outbound"] = pcp_outbound
+            __props__.__dict__["pcp_poolnames"] = pcp_poolnames
             __props__.__dict__["per_ip_shaper"] = per_ip_shaper
             __props__.__dict__["permit_any_host"] = permit_any_host
             __props__.__dict__["permit_stun_host"] = permit_stun_host
             __props__.__dict__["policy_expiry"] = policy_expiry
             __props__.__dict__["policy_expiry_date"] = policy_expiry_date
+            __props__.__dict__["policy_expiry_date_utc"] = policy_expiry_date_utc
             __props__.__dict__["policyid"] = policyid
             __props__.__dict__["poolname6s"] = poolname6s
             __props__.__dict__["poolnames"] = poolnames
@@ -6853,6 +7316,7 @@ class Policy(pulumi.CustomResource):
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["videofilter_profile"] = videofilter_profile
+            __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
             __props__.__dict__["vlan_cos_fwd"] = vlan_cos_fwd
             __props__.__dict__["vlan_cos_rev"] = vlan_cos_rev
             __props__.__dict__["vlan_filter"] = vlan_filter
@@ -6871,9 +7335,13 @@ class Policy(pulumi.CustomResource):
             __props__.__dict__["webproxy_forward_server"] = webproxy_forward_server
             __props__.__dict__["webproxy_profile"] = webproxy_profile
             __props__.__dict__["wsso"] = wsso
+            __props__.__dict__["ztna_device_ownership"] = ztna_device_ownership
+            __props__.__dict__["ztna_ems_tag_secondaries"] = ztna_ems_tag_secondaries
             __props__.__dict__["ztna_ems_tags"] = ztna_ems_tags
             __props__.__dict__["ztna_geo_tags"] = ztna_geo_tags
+            __props__.__dict__["ztna_policy_redirect"] = ztna_policy_redirect
             __props__.__dict__["ztna_status"] = ztna_status
+            __props__.__dict__["ztna_tags_match_logic"] = ztna_tags_match_logic
         super(Policy, __self__).__init__(
             'fortios:firewall/policy:Policy',
             resource_name,
@@ -6898,12 +7366,14 @@ class Policy(pulumi.CustomResource):
             block_notification: Optional[pulumi.Input[str]] = None,
             captive_portal_exempt: Optional[pulumi.Input[str]] = None,
             capture_packet: Optional[pulumi.Input[str]] = None,
+            casb_profile: Optional[pulumi.Input[str]] = None,
             cifs_profile: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyCustomLogFieldArgs']]]]] = None,
             decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
             delay_tcp_npu_session: Optional[pulumi.Input[str]] = None,
             devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyDeviceArgs']]]]] = None,
+            diameter_filter_profile: Optional[pulumi.Input[str]] = None,
             diffserv_copy: Optional[pulumi.Input[str]] = None,
             diffserv_forward: Optional[pulumi.Input[str]] = None,
             diffserv_reverse: Optional[pulumi.Input[str]] = None,
@@ -6932,6 +7402,7 @@ class Policy(pulumi.CustomResource):
             fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyFssoGroupArgs']]]]] = None,
             geoip_anycast: Optional[pulumi.Input[str]] = None,
             geoip_match: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             global_label: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyGroupArgs']]]]] = None,
             http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -6967,6 +7438,7 @@ class Policy(pulumi.CustomResource):
             internet_service_src_negate: Optional[pulumi.Input[str]] = None,
             ippool: Optional[pulumi.Input[str]] = None,
             ips_sensor: Optional[pulumi.Input[str]] = None,
+            ips_voip_filter: Optional[pulumi.Input[str]] = None,
             label: Optional[pulumi.Input[str]] = None,
             learning_mode: Optional[pulumi.Input[str]] = None,
             logtraffic: Optional[pulumi.Input[str]] = None,
@@ -6988,11 +7460,15 @@ class Policy(pulumi.CustomResource):
             ntlm_guest: Optional[pulumi.Input[str]] = None,
             outbound: Optional[pulumi.Input[str]] = None,
             passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
+            pcp_inbound: Optional[pulumi.Input[str]] = None,
+            pcp_outbound: Optional[pulumi.Input[str]] = None,
+            pcp_poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPcpPoolnameArgs']]]]] = None,
             per_ip_shaper: Optional[pulumi.Input[str]] = None,
             permit_any_host: Optional[pulumi.Input[str]] = None,
             permit_stun_host: Optional[pulumi.Input[str]] = None,
             policy_expiry: Optional[pulumi.Input[str]] = None,
             policy_expiry_date: Optional[pulumi.Input[str]] = None,
+            policy_expiry_date_utc: Optional[pulumi.Input[str]] = None,
             policyid: Optional[pulumi.Input[int]] = None,
             poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolname6Args']]]]] = None,
             poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolnameArgs']]]]] = None,
@@ -7047,6 +7523,7 @@ class Policy(pulumi.CustomResource):
             uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             videofilter_profile: Optional[pulumi.Input[str]] = None,
+            virtual_patch_profile: Optional[pulumi.Input[str]] = None,
             vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
             vlan_cos_rev: Optional[pulumi.Input[int]] = None,
             vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -7065,9 +7542,13 @@ class Policy(pulumi.CustomResource):
             webproxy_forward_server: Optional[pulumi.Input[str]] = None,
             webproxy_profile: Optional[pulumi.Input[str]] = None,
             wsso: Optional[pulumi.Input[str]] = None,
+            ztna_device_ownership: Optional[pulumi.Input[str]] = None,
+            ztna_ems_tag_secondaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaEmsTagSecondaryArgs']]]]] = None,
             ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaEmsTagArgs']]]]] = None,
             ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaGeoTagArgs']]]]] = None,
-            ztna_status: Optional[pulumi.Input[str]] = None) -> 'Policy':
+            ztna_policy_redirect: Optional[pulumi.Input[str]] = None,
+            ztna_status: Optional[pulumi.Input[str]] = None,
+            ztna_tags_match_logic: Optional[pulumi.Input[str]] = None) -> 'Policy':
         """
         Get an existing Policy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -7075,7 +7556,7 @@ class Policy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] action: Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+        :param pulumi.Input[str] action: Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
         :param pulumi.Input[str] anti_replay: Enable/disable anti-replay check. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyAppCategoryArgs']]]] app_categories: Application category ID list. The structure of `app_category` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyAppGroupArgs']]]] app_groups: Application group names. The structure of `app_group` block is documented below.
@@ -7089,12 +7570,14 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] block_notification: Enable/disable block notification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] captive_portal_exempt: Enable to exempt some users from the captive portal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] capture_packet: Enable/disable capture packets. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyCustomLogFieldArgs']]]] custom_log_fields: Custom fields to append to log messages for this policy. The structure of `custom_log_fields` block is documented below.
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
         :param pulumi.Input[str] delay_tcp_npu_session: Enable TCP NPU session delay to guarantee packet order of 3-way handshake. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyDeviceArgs']]]] devices: Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] diffserv_copy: Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffserv_forward: Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffserv_reverse: Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
@@ -7123,6 +7606,7 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyFssoGroupArgs']]]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
         :param pulumi.Input[str] geoip_anycast: Enable/disable recognition of anycast IP addresses using the geography IP database. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] geoip_match: Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Label for the policy that appears when the GUI is in Global View mode.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyGroupArgs']]]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -7158,6 +7642,7 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ippool: Enable to use IP Pools for source NAT. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] label: Label for the policy that appears when the GUI is in Section View mode.
         :param pulumi.Input[str] learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
@@ -7179,11 +7664,15 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] ntlm_guest: Enable/disable NTLM guest user access. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] outbound: Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] passive_wan_health_measurement: Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pcp_inbound: Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pcp_outbound: Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPcpPoolnameArgs']]]] pcp_poolnames: PCP pool names. The structure of `pcp_poolname` block is documented below.
         :param pulumi.Input[str] per_ip_shaper: Per-IP traffic shaper.
         :param pulumi.Input[str] permit_any_host: Accept UDP packets from any host. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] permit_stun_host: Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] policy_expiry: Enable/disable policy expiry. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] policy_expiry_date: Policy expiry date (YYYY-MM-DD HH:MM:SS).
+        :param pulumi.Input[str] policy_expiry_date_utc: Policy expiry date and time, in epoch format.
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolname6Args']]]] poolname6s: IPv6 pool names. The structure of `poolname6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolnameArgs']]]] poolnames: IP Pool names. The structure of `poolname` block is documented below.
@@ -7238,10 +7727,11 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
         :param pulumi.Input[int] vlan_cos_fwd: VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[int] vlan_cos_rev: VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[str] vlan_filter: Set VLAN filters.
-        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP (voipd) profile.
         :param pulumi.Input[str] vpntunnel: Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] wanopt: Enable/disable WAN optimization. Valid values: `enable`, `disable`.
@@ -7256,9 +7746,13 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] webproxy_forward_server: Web proxy forward server name.
         :param pulumi.Input[str] webproxy_profile: Webproxy profile name.
         :param pulumi.Input[str] wsso: Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_device_ownership: Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaEmsTagSecondaryArgs']]]] ztna_ems_tag_secondaries: Source ztna-ems-tag-secondary names. The structure of `ztna_ems_tag_secondary` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaEmsTagArgs']]]] ztna_ems_tags: Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyZtnaGeoTagArgs']]]] ztna_geo_tags: Source ztna-geo-tag names. The structure of `ztna_geo_tag` block is documented below.
+        :param pulumi.Input[str] ztna_policy_redirect: Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ztna_status: Enable/disable zero trust access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_tags_match_logic: ZTNA tag matching logic. Valid values: `or`, `and`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -7278,12 +7772,14 @@ class Policy(pulumi.CustomResource):
         __props__.__dict__["block_notification"] = block_notification
         __props__.__dict__["captive_portal_exempt"] = captive_portal_exempt
         __props__.__dict__["capture_packet"] = capture_packet
+        __props__.__dict__["casb_profile"] = casb_profile
         __props__.__dict__["cifs_profile"] = cifs_profile
         __props__.__dict__["comments"] = comments
         __props__.__dict__["custom_log_fields"] = custom_log_fields
         __props__.__dict__["decrypted_traffic_mirror"] = decrypted_traffic_mirror
         __props__.__dict__["delay_tcp_npu_session"] = delay_tcp_npu_session
         __props__.__dict__["devices"] = devices
+        __props__.__dict__["diameter_filter_profile"] = diameter_filter_profile
         __props__.__dict__["diffserv_copy"] = diffserv_copy
         __props__.__dict__["diffserv_forward"] = diffserv_forward
         __props__.__dict__["diffserv_reverse"] = diffserv_reverse
@@ -7312,6 +7808,7 @@ class Policy(pulumi.CustomResource):
         __props__.__dict__["fsso_groups"] = fsso_groups
         __props__.__dict__["geoip_anycast"] = geoip_anycast
         __props__.__dict__["geoip_match"] = geoip_match
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["global_label"] = global_label
         __props__.__dict__["groups"] = groups
         __props__.__dict__["http_policy_redirect"] = http_policy_redirect
@@ -7347,6 +7844,7 @@ class Policy(pulumi.CustomResource):
         __props__.__dict__["internet_service_src_negate"] = internet_service_src_negate
         __props__.__dict__["ippool"] = ippool
         __props__.__dict__["ips_sensor"] = ips_sensor
+        __props__.__dict__["ips_voip_filter"] = ips_voip_filter
         __props__.__dict__["label"] = label
         __props__.__dict__["learning_mode"] = learning_mode
         __props__.__dict__["logtraffic"] = logtraffic
@@ -7368,11 +7866,15 @@ class Policy(pulumi.CustomResource):
         __props__.__dict__["ntlm_guest"] = ntlm_guest
         __props__.__dict__["outbound"] = outbound
         __props__.__dict__["passive_wan_health_measurement"] = passive_wan_health_measurement
+        __props__.__dict__["pcp_inbound"] = pcp_inbound
+        __props__.__dict__["pcp_outbound"] = pcp_outbound
+        __props__.__dict__["pcp_poolnames"] = pcp_poolnames
         __props__.__dict__["per_ip_shaper"] = per_ip_shaper
         __props__.__dict__["permit_any_host"] = permit_any_host
         __props__.__dict__["permit_stun_host"] = permit_stun_host
         __props__.__dict__["policy_expiry"] = policy_expiry
         __props__.__dict__["policy_expiry_date"] = policy_expiry_date
+        __props__.__dict__["policy_expiry_date_utc"] = policy_expiry_date_utc
         __props__.__dict__["policyid"] = policyid
         __props__.__dict__["poolname6s"] = poolname6s
         __props__.__dict__["poolnames"] = poolnames
@@ -7427,6 +7929,7 @@ class Policy(pulumi.CustomResource):
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["videofilter_profile"] = videofilter_profile
+        __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
         __props__.__dict__["vlan_cos_fwd"] = vlan_cos_fwd
         __props__.__dict__["vlan_cos_rev"] = vlan_cos_rev
         __props__.__dict__["vlan_filter"] = vlan_filter
@@ -7445,16 +7948,20 @@ class Policy(pulumi.CustomResource):
         __props__.__dict__["webproxy_forward_server"] = webproxy_forward_server
         __props__.__dict__["webproxy_profile"] = webproxy_profile
         __props__.__dict__["wsso"] = wsso
+        __props__.__dict__["ztna_device_ownership"] = ztna_device_ownership
+        __props__.__dict__["ztna_ems_tag_secondaries"] = ztna_ems_tag_secondaries
         __props__.__dict__["ztna_ems_tags"] = ztna_ems_tags
         __props__.__dict__["ztna_geo_tags"] = ztna_geo_tags
+        __props__.__dict__["ztna_policy_redirect"] = ztna_policy_redirect
         __props__.__dict__["ztna_status"] = ztna_status
+        __props__.__dict__["ztna_tags_match_logic"] = ztna_tags_match_logic
         return Policy(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
     def action(self) -> pulumi.Output[str]:
         """
-        Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+        Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions >= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
         """
         return pulumi.get(self, "action")
 
@@ -7563,6 +8070,14 @@ class Policy(pulumi.CustomResource):
         return pulumi.get(self, "capture_packet")
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> pulumi.Output[Optional[str]]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> pulumi.Output[Optional[str]]:
         """
@@ -7609,6 +8124,14 @@ class Policy(pulumi.CustomResource):
         Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
         """
         return pulumi.get(self, "devices")
+
+    @property
+    @pulumi.getter(name="diameterFilterProfile")
+    def diameter_filter_profile(self) -> pulumi.Output[Optional[str]]:
+        """
+        Name of an existing Diameter filter profile.
+        """
+        return pulumi.get(self, "diameter_filter_profile")
 
     @property
     @pulumi.getter(name="diffservCopy")
@@ -7833,6 +8356,14 @@ class Policy(pulumi.CustomResource):
         Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
         """
         return pulumi.get(self, "geoip_match")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="globalLabel")
@@ -8115,6 +8646,14 @@ class Policy(pulumi.CustomResource):
         return pulumi.get(self, "ips_sensor")
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> pulumi.Output[Optional[str]]:
+        """
+        Name of an existing VoIP (ips) profile.
+        """
+        return pulumi.get(self, "ips_voip_filter")
+
+    @property
     @pulumi.getter
     def label(self) -> pulumi.Output[Optional[str]]:
         """
@@ -8283,6 +8822,30 @@ class Policy(pulumi.CustomResource):
         return pulumi.get(self, "passive_wan_health_measurement")
 
     @property
+    @pulumi.getter(name="pcpInbound")
+    def pcp_inbound(self) -> pulumi.Output[str]:
+        """
+        Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "pcp_inbound")
+
+    @property
+    @pulumi.getter(name="pcpOutbound")
+    def pcp_outbound(self) -> pulumi.Output[str]:
+        """
+        Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "pcp_outbound")
+
+    @property
+    @pulumi.getter(name="pcpPoolnames")
+    def pcp_poolnames(self) -> pulumi.Output[Optional[Sequence['outputs.PolicyPcpPoolname']]]:
+        """
+        PCP pool names. The structure of `pcp_poolname` block is documented below.
+        """
+        return pulumi.get(self, "pcp_poolnames")
+
+    @property
     @pulumi.getter(name="perIpShaper")
     def per_ip_shaper(self) -> pulumi.Output[Optional[str]]:
         """
@@ -8321,6 +8884,14 @@ class Policy(pulumi.CustomResource):
         Policy expiry date (YYYY-MM-DD HH:MM:SS).
         """
         return pulumi.get(self, "policy_expiry_date")
+
+    @property
+    @pulumi.getter(name="policyExpiryDateUtc")
+    def policy_expiry_date_utc(self) -> pulumi.Output[Optional[str]]:
+        """
+        Policy expiry date and time, in epoch format.
+        """
+        return pulumi.get(self, "policy_expiry_date_utc")
 
     @property
     @pulumi.getter
@@ -8755,6 +9326,14 @@ class Policy(pulumi.CustomResource):
         return pulumi.get(self, "videofilter_profile")
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> pulumi.Output[Optional[str]]:
+        """
+        Name of an existing virtual-patch profile.
+        """
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @property
     @pulumi.getter(name="vlanCosFwd")
     def vlan_cos_fwd(self) -> pulumi.Output[int]:
         """
@@ -8782,7 +9361,7 @@ class Policy(pulumi.CustomResource):
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> pulumi.Output[Optional[str]]:
         """
-        Name of an existing VoIP profile.
+        Name of an existing VoIP (voipd) profile.
         """
         return pulumi.get(self, "voip_profile")
 
@@ -8899,6 +9478,22 @@ class Policy(pulumi.CustomResource):
         return pulumi.get(self, "wsso")
 
     @property
+    @pulumi.getter(name="ztnaDeviceOwnership")
+    def ztna_device_ownership(self) -> pulumi.Output[str]:
+        """
+        Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_device_ownership")
+
+    @property
+    @pulumi.getter(name="ztnaEmsTagSecondaries")
+    def ztna_ems_tag_secondaries(self) -> pulumi.Output[Optional[Sequence['outputs.PolicyZtnaEmsTagSecondary']]]:
+        """
+        Source ztna-ems-tag-secondary names. The structure of `ztna_ems_tag_secondary` block is documented below.
+        """
+        return pulumi.get(self, "ztna_ems_tag_secondaries")
+
+    @property
     @pulumi.getter(name="ztnaEmsTags")
     def ztna_ems_tags(self) -> pulumi.Output[Optional[Sequence['outputs.PolicyZtnaEmsTag']]]:
         """
@@ -8915,10 +9510,26 @@ class Policy(pulumi.CustomResource):
         return pulumi.get(self, "ztna_geo_tags")
 
     @property
+    @pulumi.getter(name="ztnaPolicyRedirect")
+    def ztna_policy_redirect(self) -> pulumi.Output[str]:
+        """
+        Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_policy_redirect")
+
+    @property
     @pulumi.getter(name="ztnaStatus")
     def ztna_status(self) -> pulumi.Output[str]:
         """
         Enable/disable zero trust access. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ztna_status")
+
+    @property
+    @pulumi.getter(name="ztnaTagsMatchLogic")
+    def ztna_tags_match_logic(self) -> pulumi.Output[str]:
+        """
+        ZTNA tag matching logic. Valid values: `or`, `and`.
+        """
+        return pulumi.get(self, "ztna_tags_match_logic")
 

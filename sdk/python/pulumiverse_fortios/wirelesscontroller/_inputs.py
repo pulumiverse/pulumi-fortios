@@ -41,6 +41,8 @@ __all__ = [
     'VapVlanPoolArgs',
     'VapgroupVapArgs',
     'WidsprofileApBgscanDisableScheduleArgs',
+    'WidsprofileApScanChannelList2g5gArgs',
+    'WidsprofileApScanChannelList6gArgs',
     'WtpLanArgs',
     'WtpRadio1Args',
     'WtpRadio1ChannelArgs',
@@ -492,7 +494,7 @@ class BonjourprofilePolicyListArgs:
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] from_vlan: VLAN ID from which the Bonjour service is advertised (0 - 4094, default = 0).
         :param pulumi.Input[int] policy_id: Policy ID.
-        :param pulumi.Input[str] services: Bonjour services for the VLAN connecting to the Bonjour network. Valid values: `all`, `airplay`, `afp`, `bit-torrent`, `ftp`, `ichat`, `itunes`, `printers`, `samba`, `scanners`, `ssh`, `chromecast`.
+        :param pulumi.Input[str] services: Bonjour services for the VLAN connecting to the Bonjour network.
         :param pulumi.Input[str] to_vlan: VLAN ID to which the Bonjour service is made available (0 - 4094, default = all).
         """
         if description is not None:
@@ -546,7 +548,7 @@ class BonjourprofilePolicyListArgs:
     @pulumi.getter
     def services(self) -> Optional[pulumi.Input[str]]:
         """
-        Bonjour services for the VLAN connecting to the Bonjour network. Valid values: `all`, `airplay`, `afp`, `bit-torrent`, `ftp`, `ichat`, `itunes`, `printers`, `samba`, `scanners`, `ssh`, `chromecast`.
+        Bonjour services for the VLAN connecting to the Bonjour network.
         """
         return pulumi.get(self, "services")
 
@@ -1812,6 +1814,52 @@ class WidsprofileApBgscanDisableScheduleArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class WidsprofileApScanChannelList2g5gArgs:
+    def __init__(__self__, *,
+                 chan: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] chan: Channel 6g number.
+        """
+        if chan is not None:
+            pulumi.set(__self__, "chan", chan)
+
+    @property
+    @pulumi.getter
+    def chan(self) -> Optional[pulumi.Input[str]]:
+        """
+        Channel 6g number.
+        """
+        return pulumi.get(self, "chan")
+
+    @chan.setter
+    def chan(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "chan", value)
+
+
+@pulumi.input_type
+class WidsprofileApScanChannelList6gArgs:
+    def __init__(__self__, *,
+                 chan: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] chan: Channel 6g number.
+        """
+        if chan is not None:
+            pulumi.set(__self__, "chan", chan)
+
+    @property
+    @pulumi.getter
+    def chan(self) -> Optional[pulumi.Input[str]]:
+        """
+        Channel 6g number.
+        """
+        return pulumi.get(self, "chan")
+
+    @chan.setter
+    def chan(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "chan", value)
 
 
 @pulumi.input_type
@@ -4178,6 +4226,19 @@ class WtpprofileLbsArgs:
                  fortipresence_server_addr_type: Optional[pulumi.Input[str]] = None,
                  fortipresence_server_fqdn: Optional[pulumi.Input[str]] = None,
                  fortipresence_unassoc: Optional[pulumi.Input[str]] = None,
+                 polestar: Optional[pulumi.Input[str]] = None,
+                 polestar_accumulation_interval: Optional[pulumi.Input[int]] = None,
+                 polestar_asset_addrgrp_list: Optional[pulumi.Input[str]] = None,
+                 polestar_asset_uuid_list1: Optional[pulumi.Input[str]] = None,
+                 polestar_asset_uuid_list2: Optional[pulumi.Input[str]] = None,
+                 polestar_asset_uuid_list3: Optional[pulumi.Input[str]] = None,
+                 polestar_asset_uuid_list4: Optional[pulumi.Input[str]] = None,
+                 polestar_protocol: Optional[pulumi.Input[str]] = None,
+                 polestar_reporting_interval: Optional[pulumi.Input[int]] = None,
+                 polestar_server_fqdn: Optional[pulumi.Input[str]] = None,
+                 polestar_server_path: Optional[pulumi.Input[str]] = None,
+                 polestar_server_port: Optional[pulumi.Input[int]] = None,
+                 polestar_server_token: Optional[pulumi.Input[str]] = None,
                  station_locate: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] aeroscout: Enable/disable AeroScout Real Time Location Service (RTLS) support. Valid values: `enable`, `disable`.
@@ -4203,6 +4264,19 @@ class WtpprofileLbsArgs:
         :param pulumi.Input[str] fortipresence_server_addr_type: FortiPresence server address type (default = ipv4). Valid values: `ipv4`, `fqdn`.
         :param pulumi.Input[str] fortipresence_server_fqdn: FQDN of FortiPresence server.
         :param pulumi.Input[str] fortipresence_unassoc: Enable/disable FortiPresence finding and reporting unassociated stations. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] polestar: Enable/disable PoleStar BLE NAO Track Real Time Location Service (RTLS) support (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] polestar_accumulation_interval: Time that measurements should be accumulated in seconds (default = 2).
+        :param pulumi.Input[str] polestar_asset_addrgrp_list: Tags and asset addrgrp list to be reported.
+        :param pulumi.Input[str] polestar_asset_uuid_list1: Tags and asset UUID list 1 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+        :param pulumi.Input[str] polestar_asset_uuid_list2: Tags and asset UUID list 2 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+        :param pulumi.Input[str] polestar_asset_uuid_list3: Tags and asset UUID list 3 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+        :param pulumi.Input[str] polestar_asset_uuid_list4: Tags and asset UUID list 4 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+        :param pulumi.Input[str] polestar_protocol: Select the protocol to report Measurements, Advertising Data, or Location Data to NAO Cloud. (default = WSS). Valid values: `WSS`.
+        :param pulumi.Input[int] polestar_reporting_interval: Time between reporting accumulated measurements in seconds (default = 2).
+        :param pulumi.Input[str] polestar_server_fqdn: FQDN of PoleStar Nao Track Server (default = ws.nao-cloud.com).
+        :param pulumi.Input[str] polestar_server_path: Path of PoleStar Nao Track Server (default = /v1/token/<access_token>/pst-v2).
+        :param pulumi.Input[int] polestar_server_port: Port of PoleStar Nao Track Server (default = 443).
+        :param pulumi.Input[str] polestar_server_token: Access Token of PoleStar Nao Track Server.
         :param pulumi.Input[str] station_locate: Enable/disable client station locating services for all clients, whether associated or not (default = disable). Valid values: `enable`, `disable`.
         """
         if aeroscout is not None:
@@ -4251,6 +4325,32 @@ class WtpprofileLbsArgs:
             pulumi.set(__self__, "fortipresence_server_fqdn", fortipresence_server_fqdn)
         if fortipresence_unassoc is not None:
             pulumi.set(__self__, "fortipresence_unassoc", fortipresence_unassoc)
+        if polestar is not None:
+            pulumi.set(__self__, "polestar", polestar)
+        if polestar_accumulation_interval is not None:
+            pulumi.set(__self__, "polestar_accumulation_interval", polestar_accumulation_interval)
+        if polestar_asset_addrgrp_list is not None:
+            pulumi.set(__self__, "polestar_asset_addrgrp_list", polestar_asset_addrgrp_list)
+        if polestar_asset_uuid_list1 is not None:
+            pulumi.set(__self__, "polestar_asset_uuid_list1", polestar_asset_uuid_list1)
+        if polestar_asset_uuid_list2 is not None:
+            pulumi.set(__self__, "polestar_asset_uuid_list2", polestar_asset_uuid_list2)
+        if polestar_asset_uuid_list3 is not None:
+            pulumi.set(__self__, "polestar_asset_uuid_list3", polestar_asset_uuid_list3)
+        if polestar_asset_uuid_list4 is not None:
+            pulumi.set(__self__, "polestar_asset_uuid_list4", polestar_asset_uuid_list4)
+        if polestar_protocol is not None:
+            pulumi.set(__self__, "polestar_protocol", polestar_protocol)
+        if polestar_reporting_interval is not None:
+            pulumi.set(__self__, "polestar_reporting_interval", polestar_reporting_interval)
+        if polestar_server_fqdn is not None:
+            pulumi.set(__self__, "polestar_server_fqdn", polestar_server_fqdn)
+        if polestar_server_path is not None:
+            pulumi.set(__self__, "polestar_server_path", polestar_server_path)
+        if polestar_server_port is not None:
+            pulumi.set(__self__, "polestar_server_port", polestar_server_port)
+        if polestar_server_token is not None:
+            pulumi.set(__self__, "polestar_server_token", polestar_server_token)
         if station_locate is not None:
             pulumi.set(__self__, "station_locate", station_locate)
 
@@ -4531,6 +4631,162 @@ class WtpprofileLbsArgs:
         pulumi.set(self, "fortipresence_unassoc", value)
 
     @property
+    @pulumi.getter
+    def polestar(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable PoleStar BLE NAO Track Real Time Location Service (RTLS) support (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "polestar")
+
+    @polestar.setter
+    def polestar(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "polestar", value)
+
+    @property
+    @pulumi.getter(name="polestarAccumulationInterval")
+    def polestar_accumulation_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time that measurements should be accumulated in seconds (default = 2).
+        """
+        return pulumi.get(self, "polestar_accumulation_interval")
+
+    @polestar_accumulation_interval.setter
+    def polestar_accumulation_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "polestar_accumulation_interval", value)
+
+    @property
+    @pulumi.getter(name="polestarAssetAddrgrpList")
+    def polestar_asset_addrgrp_list(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tags and asset addrgrp list to be reported.
+        """
+        return pulumi.get(self, "polestar_asset_addrgrp_list")
+
+    @polestar_asset_addrgrp_list.setter
+    def polestar_asset_addrgrp_list(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "polestar_asset_addrgrp_list", value)
+
+    @property
+    @pulumi.getter(name="polestarAssetUuidList1")
+    def polestar_asset_uuid_list1(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tags and asset UUID list 1 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+        """
+        return pulumi.get(self, "polestar_asset_uuid_list1")
+
+    @polestar_asset_uuid_list1.setter
+    def polestar_asset_uuid_list1(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "polestar_asset_uuid_list1", value)
+
+    @property
+    @pulumi.getter(name="polestarAssetUuidList2")
+    def polestar_asset_uuid_list2(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tags and asset UUID list 2 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+        """
+        return pulumi.get(self, "polestar_asset_uuid_list2")
+
+    @polestar_asset_uuid_list2.setter
+    def polestar_asset_uuid_list2(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "polestar_asset_uuid_list2", value)
+
+    @property
+    @pulumi.getter(name="polestarAssetUuidList3")
+    def polestar_asset_uuid_list3(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tags and asset UUID list 3 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+        """
+        return pulumi.get(self, "polestar_asset_uuid_list3")
+
+    @polestar_asset_uuid_list3.setter
+    def polestar_asset_uuid_list3(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "polestar_asset_uuid_list3", value)
+
+    @property
+    @pulumi.getter(name="polestarAssetUuidList4")
+    def polestar_asset_uuid_list4(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tags and asset UUID list 4 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+        """
+        return pulumi.get(self, "polestar_asset_uuid_list4")
+
+    @polestar_asset_uuid_list4.setter
+    def polestar_asset_uuid_list4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "polestar_asset_uuid_list4", value)
+
+    @property
+    @pulumi.getter(name="polestarProtocol")
+    def polestar_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select the protocol to report Measurements, Advertising Data, or Location Data to NAO Cloud. (default = WSS). Valid values: `WSS`.
+        """
+        return pulumi.get(self, "polestar_protocol")
+
+    @polestar_protocol.setter
+    def polestar_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "polestar_protocol", value)
+
+    @property
+    @pulumi.getter(name="polestarReportingInterval")
+    def polestar_reporting_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time between reporting accumulated measurements in seconds (default = 2).
+        """
+        return pulumi.get(self, "polestar_reporting_interval")
+
+    @polestar_reporting_interval.setter
+    def polestar_reporting_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "polestar_reporting_interval", value)
+
+    @property
+    @pulumi.getter(name="polestarServerFqdn")
+    def polestar_server_fqdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        FQDN of PoleStar Nao Track Server (default = ws.nao-cloud.com).
+        """
+        return pulumi.get(self, "polestar_server_fqdn")
+
+    @polestar_server_fqdn.setter
+    def polestar_server_fqdn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "polestar_server_fqdn", value)
+
+    @property
+    @pulumi.getter(name="polestarServerPath")
+    def polestar_server_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path of PoleStar Nao Track Server (default = /v1/token/<access_token>/pst-v2).
+        """
+        return pulumi.get(self, "polestar_server_path")
+
+    @polestar_server_path.setter
+    def polestar_server_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "polestar_server_path", value)
+
+    @property
+    @pulumi.getter(name="polestarServerPort")
+    def polestar_server_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port of PoleStar Nao Track Server (default = 443).
+        """
+        return pulumi.get(self, "polestar_server_port")
+
+    @polestar_server_port.setter
+    def polestar_server_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "polestar_server_port", value)
+
+    @property
+    @pulumi.getter(name="polestarServerToken")
+    def polestar_server_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Access Token of PoleStar Nao Track Server.
+        """
+        return pulumi.get(self, "polestar_server_token")
+
+    @polestar_server_token.setter
+    def polestar_server_token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "polestar_server_token", value)
+
+    @property
     @pulumi.getter(name="stationLocate")
     def station_locate(self) -> Optional[pulumi.Input[str]]:
         """
@@ -4663,8 +4919,11 @@ class WtpprofileRadio1Args:
                  iperf_server_port: Optional[pulumi.Input[int]] = None,
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_distance: Optional[pulumi.Input[int]] = None,
+                 mimo_mode: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  n80211d: Optional[pulumi.Input[str]] = None,
+                 optional_antenna: Optional[pulumi.Input[str]] = None,
+                 optional_antenna_gain: Optional[pulumi.Input[str]] = None,
                  power_level: Optional[pulumi.Input[int]] = None,
                  power_mode: Optional[pulumi.Input[str]] = None,
                  power_value: Optional[pulumi.Input[int]] = None,
@@ -4673,14 +4932,19 @@ class WtpprofileRadio1Args:
                  radio_id: Optional[pulumi.Input[int]] = None,
                  rts_threshold: Optional[pulumi.Input[int]] = None,
                  sam_bssid: Optional[pulumi.Input[str]] = None,
+                 sam_ca_certificate: Optional[pulumi.Input[str]] = None,
                  sam_captive_portal: Optional[pulumi.Input[str]] = None,
+                 sam_client_certificate: Optional[pulumi.Input[str]] = None,
                  sam_cwp_failure_string: Optional[pulumi.Input[str]] = None,
                  sam_cwp_match_string: Optional[pulumi.Input[str]] = None,
                  sam_cwp_password: Optional[pulumi.Input[str]] = None,
                  sam_cwp_success_string: Optional[pulumi.Input[str]] = None,
                  sam_cwp_test_url: Optional[pulumi.Input[str]] = None,
                  sam_cwp_username: Optional[pulumi.Input[str]] = None,
+                 sam_eap_method: Optional[pulumi.Input[str]] = None,
                  sam_password: Optional[pulumi.Input[str]] = None,
+                 sam_private_key: Optional[pulumi.Input[str]] = None,
+                 sam_private_key_password: Optional[pulumi.Input[str]] = None,
                  sam_report_intv: Optional[pulumi.Input[int]] = None,
                  sam_security_type: Optional[pulumi.Input[str]] = None,
                  sam_server_fqdn: Optional[pulumi.Input[str]] = None,
@@ -4736,8 +5000,11 @@ class WtpprofileRadio1Args:
         :param pulumi.Input[int] iperf_server_port: Iperf service port number.
         :param pulumi.Input[int] max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
         :param pulumi.Input[int] max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
+        :param pulumi.Input[str] mimo_mode: Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
         :param pulumi.Input[str] mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         :param pulumi.Input[str] n80211d: Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] optional_antenna: Optional antenna used on FAP (default = none).
+        :param pulumi.Input[str] optional_antenna_gain: Optional antenna gain in dBi (0 to 20, default = 0).
         :param pulumi.Input[int] power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
         :param pulumi.Input[str] power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
         :param pulumi.Input[int] power_value: Radio EIRP power in dBm (1 - 33, default = 27).
@@ -4746,16 +5013,21 @@ class WtpprofileRadio1Args:
         :param pulumi.Input[int] radio_id: radio-id
         :param pulumi.Input[int] rts_threshold: Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
         :param pulumi.Input[str] sam_bssid: BSSID for WiFi network.
+        :param pulumi.Input[str] sam_ca_certificate: CA certificate for WPA2/WPA3-ENTERPRISE.
         :param pulumi.Input[str] sam_captive_portal: Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sam_client_certificate: Client certificate for WPA2/WPA3-ENTERPRISE.
         :param pulumi.Input[str] sam_cwp_failure_string: Failure identification on the page after an incorrect login.
         :param pulumi.Input[str] sam_cwp_match_string: Identification string from the captive portal login form.
         :param pulumi.Input[str] sam_cwp_password: Password for captive portal authentication.
         :param pulumi.Input[str] sam_cwp_success_string: Success identification on the page after a successful login.
         :param pulumi.Input[str] sam_cwp_test_url: Website the client is trying to access.
         :param pulumi.Input[str] sam_cwp_username: Username for captive portal authentication.
+        :param pulumi.Input[str] sam_eap_method: Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
         :param pulumi.Input[str] sam_password: Passphrase for WiFi network connection.
+        :param pulumi.Input[str] sam_private_key: Private key for WPA2/WPA3-ENTERPRISE.
+        :param pulumi.Input[str] sam_private_key_password: Password for private key file for WPA2/WPA3-ENTERPRISE.
         :param pulumi.Input[int] sam_report_intv: SAM report interval (sec), 0 for a one-time report.
-        :param pulumi.Input[str] sam_security_type: Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        :param pulumi.Input[str] sam_security_type: Select WiFi network security type (default = "wpa-personal").
         :param pulumi.Input[str] sam_server_fqdn: SAM test server domain name.
         :param pulumi.Input[str] sam_server_ip: SAM test server IP address.
         :param pulumi.Input[str] sam_server_type: Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
@@ -4848,10 +5120,16 @@ class WtpprofileRadio1Args:
             pulumi.set(__self__, "max_clients", max_clients)
         if max_distance is not None:
             pulumi.set(__self__, "max_distance", max_distance)
+        if mimo_mode is not None:
+            pulumi.set(__self__, "mimo_mode", mimo_mode)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if n80211d is not None:
             pulumi.set(__self__, "n80211d", n80211d)
+        if optional_antenna is not None:
+            pulumi.set(__self__, "optional_antenna", optional_antenna)
+        if optional_antenna_gain is not None:
+            pulumi.set(__self__, "optional_antenna_gain", optional_antenna_gain)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
         if power_mode is not None:
@@ -4868,8 +5146,12 @@ class WtpprofileRadio1Args:
             pulumi.set(__self__, "rts_threshold", rts_threshold)
         if sam_bssid is not None:
             pulumi.set(__self__, "sam_bssid", sam_bssid)
+        if sam_ca_certificate is not None:
+            pulumi.set(__self__, "sam_ca_certificate", sam_ca_certificate)
         if sam_captive_portal is not None:
             pulumi.set(__self__, "sam_captive_portal", sam_captive_portal)
+        if sam_client_certificate is not None:
+            pulumi.set(__self__, "sam_client_certificate", sam_client_certificate)
         if sam_cwp_failure_string is not None:
             pulumi.set(__self__, "sam_cwp_failure_string", sam_cwp_failure_string)
         if sam_cwp_match_string is not None:
@@ -4882,8 +5164,14 @@ class WtpprofileRadio1Args:
             pulumi.set(__self__, "sam_cwp_test_url", sam_cwp_test_url)
         if sam_cwp_username is not None:
             pulumi.set(__self__, "sam_cwp_username", sam_cwp_username)
+        if sam_eap_method is not None:
+            pulumi.set(__self__, "sam_eap_method", sam_eap_method)
         if sam_password is not None:
             pulumi.set(__self__, "sam_password", sam_password)
+        if sam_private_key is not None:
+            pulumi.set(__self__, "sam_private_key", sam_private_key)
+        if sam_private_key_password is not None:
+            pulumi.set(__self__, "sam_private_key_password", sam_private_key_password)
         if sam_report_intv is not None:
             pulumi.set(__self__, "sam_report_intv", sam_report_intv)
         if sam_security_type is not None:
@@ -5384,6 +5672,18 @@ class WtpprofileRadio1Args:
         pulumi.set(self, "max_distance", value)
 
     @property
+    @pulumi.getter(name="mimoMode")
+    def mimo_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+        """
+        return pulumi.get(self, "mimo_mode")
+
+    @mimo_mode.setter
+    def mimo_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mimo_mode", value)
+
+    @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5406,6 +5706,30 @@ class WtpprofileRadio1Args:
     @n80211d.setter
     def n80211d(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "n80211d", value)
+
+    @property
+    @pulumi.getter(name="optionalAntenna")
+    def optional_antenna(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional antenna used on FAP (default = none).
+        """
+        return pulumi.get(self, "optional_antenna")
+
+    @optional_antenna.setter
+    def optional_antenna(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "optional_antenna", value)
+
+    @property
+    @pulumi.getter(name="optionalAntennaGain")
+    def optional_antenna_gain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional antenna gain in dBi (0 to 20, default = 0).
+        """
+        return pulumi.get(self, "optional_antenna_gain")
+
+    @optional_antenna_gain.setter
+    def optional_antenna_gain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "optional_antenna_gain", value)
 
     @property
     @pulumi.getter(name="powerLevel")
@@ -5504,6 +5828,18 @@ class WtpprofileRadio1Args:
         pulumi.set(self, "sam_bssid", value)
 
     @property
+    @pulumi.getter(name="samCaCertificate")
+    def sam_ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA certificate for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_ca_certificate")
+
+    @sam_ca_certificate.setter
+    def sam_ca_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_ca_certificate", value)
+
+    @property
     @pulumi.getter(name="samCaptivePortal")
     def sam_captive_portal(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5514,6 +5850,18 @@ class WtpprofileRadio1Args:
     @sam_captive_portal.setter
     def sam_captive_portal(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sam_captive_portal", value)
+
+    @property
+    @pulumi.getter(name="samClientCertificate")
+    def sam_client_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_client_certificate")
+
+    @sam_client_certificate.setter
+    def sam_client_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_client_certificate", value)
 
     @property
     @pulumi.getter(name="samCwpFailureString")
@@ -5588,6 +5936,18 @@ class WtpprofileRadio1Args:
         pulumi.set(self, "sam_cwp_username", value)
 
     @property
+    @pulumi.getter(name="samEapMethod")
+    def sam_eap_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+        """
+        return pulumi.get(self, "sam_eap_method")
+
+    @sam_eap_method.setter
+    def sam_eap_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_eap_method", value)
+
+    @property
     @pulumi.getter(name="samPassword")
     def sam_password(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5598,6 +5958,30 @@ class WtpprofileRadio1Args:
     @sam_password.setter
     def sam_password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sam_password", value)
+
+    @property
+    @pulumi.getter(name="samPrivateKey")
+    def sam_private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private key for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_private_key")
+
+    @sam_private_key.setter
+    def sam_private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_private_key", value)
+
+    @property
+    @pulumi.getter(name="samPrivateKeyPassword")
+    def sam_private_key_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for private key file for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_private_key_password")
+
+    @sam_private_key_password.setter
+    def sam_private_key_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_private_key_password", value)
 
     @property
     @pulumi.getter(name="samReportIntv")
@@ -5615,7 +5999,7 @@ class WtpprofileRadio1Args:
     @pulumi.getter(name="samSecurityType")
     def sam_security_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        Select WiFi network security type (default = "wpa-personal").
         """
         return pulumi.get(self, "sam_security_type")
 
@@ -5868,8 +6252,11 @@ class WtpprofileRadio2Args:
                  iperf_server_port: Optional[pulumi.Input[int]] = None,
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_distance: Optional[pulumi.Input[int]] = None,
+                 mimo_mode: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  n80211d: Optional[pulumi.Input[str]] = None,
+                 optional_antenna: Optional[pulumi.Input[str]] = None,
+                 optional_antenna_gain: Optional[pulumi.Input[str]] = None,
                  power_level: Optional[pulumi.Input[int]] = None,
                  power_mode: Optional[pulumi.Input[str]] = None,
                  power_value: Optional[pulumi.Input[int]] = None,
@@ -5878,14 +6265,19 @@ class WtpprofileRadio2Args:
                  radio_id: Optional[pulumi.Input[int]] = None,
                  rts_threshold: Optional[pulumi.Input[int]] = None,
                  sam_bssid: Optional[pulumi.Input[str]] = None,
+                 sam_ca_certificate: Optional[pulumi.Input[str]] = None,
                  sam_captive_portal: Optional[pulumi.Input[str]] = None,
+                 sam_client_certificate: Optional[pulumi.Input[str]] = None,
                  sam_cwp_failure_string: Optional[pulumi.Input[str]] = None,
                  sam_cwp_match_string: Optional[pulumi.Input[str]] = None,
                  sam_cwp_password: Optional[pulumi.Input[str]] = None,
                  sam_cwp_success_string: Optional[pulumi.Input[str]] = None,
                  sam_cwp_test_url: Optional[pulumi.Input[str]] = None,
                  sam_cwp_username: Optional[pulumi.Input[str]] = None,
+                 sam_eap_method: Optional[pulumi.Input[str]] = None,
                  sam_password: Optional[pulumi.Input[str]] = None,
+                 sam_private_key: Optional[pulumi.Input[str]] = None,
+                 sam_private_key_password: Optional[pulumi.Input[str]] = None,
                  sam_report_intv: Optional[pulumi.Input[int]] = None,
                  sam_security_type: Optional[pulumi.Input[str]] = None,
                  sam_server_fqdn: Optional[pulumi.Input[str]] = None,
@@ -5941,8 +6333,11 @@ class WtpprofileRadio2Args:
         :param pulumi.Input[int] iperf_server_port: Iperf service port number.
         :param pulumi.Input[int] max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
         :param pulumi.Input[int] max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
+        :param pulumi.Input[str] mimo_mode: Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
         :param pulumi.Input[str] mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         :param pulumi.Input[str] n80211d: Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] optional_antenna: Optional antenna used on FAP (default = none).
+        :param pulumi.Input[str] optional_antenna_gain: Optional antenna gain in dBi (0 to 20, default = 0).
         :param pulumi.Input[int] power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
         :param pulumi.Input[str] power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
         :param pulumi.Input[int] power_value: Radio EIRP power in dBm (1 - 33, default = 27).
@@ -5951,16 +6346,21 @@ class WtpprofileRadio2Args:
         :param pulumi.Input[int] radio_id: radio-id
         :param pulumi.Input[int] rts_threshold: Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
         :param pulumi.Input[str] sam_bssid: BSSID for WiFi network.
+        :param pulumi.Input[str] sam_ca_certificate: CA certificate for WPA2/WPA3-ENTERPRISE.
         :param pulumi.Input[str] sam_captive_portal: Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sam_client_certificate: Client certificate for WPA2/WPA3-ENTERPRISE.
         :param pulumi.Input[str] sam_cwp_failure_string: Failure identification on the page after an incorrect login.
         :param pulumi.Input[str] sam_cwp_match_string: Identification string from the captive portal login form.
         :param pulumi.Input[str] sam_cwp_password: Password for captive portal authentication.
         :param pulumi.Input[str] sam_cwp_success_string: Success identification on the page after a successful login.
         :param pulumi.Input[str] sam_cwp_test_url: Website the client is trying to access.
         :param pulumi.Input[str] sam_cwp_username: Username for captive portal authentication.
+        :param pulumi.Input[str] sam_eap_method: Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
         :param pulumi.Input[str] sam_password: Passphrase for WiFi network connection.
+        :param pulumi.Input[str] sam_private_key: Private key for WPA2/WPA3-ENTERPRISE.
+        :param pulumi.Input[str] sam_private_key_password: Password for private key file for WPA2/WPA3-ENTERPRISE.
         :param pulumi.Input[int] sam_report_intv: SAM report interval (sec), 0 for a one-time report.
-        :param pulumi.Input[str] sam_security_type: Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        :param pulumi.Input[str] sam_security_type: Select WiFi network security type (default = "wpa-personal").
         :param pulumi.Input[str] sam_server_fqdn: SAM test server domain name.
         :param pulumi.Input[str] sam_server_ip: SAM test server IP address.
         :param pulumi.Input[str] sam_server_type: Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
@@ -6053,10 +6453,16 @@ class WtpprofileRadio2Args:
             pulumi.set(__self__, "max_clients", max_clients)
         if max_distance is not None:
             pulumi.set(__self__, "max_distance", max_distance)
+        if mimo_mode is not None:
+            pulumi.set(__self__, "mimo_mode", mimo_mode)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if n80211d is not None:
             pulumi.set(__self__, "n80211d", n80211d)
+        if optional_antenna is not None:
+            pulumi.set(__self__, "optional_antenna", optional_antenna)
+        if optional_antenna_gain is not None:
+            pulumi.set(__self__, "optional_antenna_gain", optional_antenna_gain)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
         if power_mode is not None:
@@ -6073,8 +6479,12 @@ class WtpprofileRadio2Args:
             pulumi.set(__self__, "rts_threshold", rts_threshold)
         if sam_bssid is not None:
             pulumi.set(__self__, "sam_bssid", sam_bssid)
+        if sam_ca_certificate is not None:
+            pulumi.set(__self__, "sam_ca_certificate", sam_ca_certificate)
         if sam_captive_portal is not None:
             pulumi.set(__self__, "sam_captive_portal", sam_captive_portal)
+        if sam_client_certificate is not None:
+            pulumi.set(__self__, "sam_client_certificate", sam_client_certificate)
         if sam_cwp_failure_string is not None:
             pulumi.set(__self__, "sam_cwp_failure_string", sam_cwp_failure_string)
         if sam_cwp_match_string is not None:
@@ -6087,8 +6497,14 @@ class WtpprofileRadio2Args:
             pulumi.set(__self__, "sam_cwp_test_url", sam_cwp_test_url)
         if sam_cwp_username is not None:
             pulumi.set(__self__, "sam_cwp_username", sam_cwp_username)
+        if sam_eap_method is not None:
+            pulumi.set(__self__, "sam_eap_method", sam_eap_method)
         if sam_password is not None:
             pulumi.set(__self__, "sam_password", sam_password)
+        if sam_private_key is not None:
+            pulumi.set(__self__, "sam_private_key", sam_private_key)
+        if sam_private_key_password is not None:
+            pulumi.set(__self__, "sam_private_key_password", sam_private_key_password)
         if sam_report_intv is not None:
             pulumi.set(__self__, "sam_report_intv", sam_report_intv)
         if sam_security_type is not None:
@@ -6589,6 +7005,18 @@ class WtpprofileRadio2Args:
         pulumi.set(self, "max_distance", value)
 
     @property
+    @pulumi.getter(name="mimoMode")
+    def mimo_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+        """
+        return pulumi.get(self, "mimo_mode")
+
+    @mimo_mode.setter
+    def mimo_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mimo_mode", value)
+
+    @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -6611,6 +7039,30 @@ class WtpprofileRadio2Args:
     @n80211d.setter
     def n80211d(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "n80211d", value)
+
+    @property
+    @pulumi.getter(name="optionalAntenna")
+    def optional_antenna(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional antenna used on FAP (default = none).
+        """
+        return pulumi.get(self, "optional_antenna")
+
+    @optional_antenna.setter
+    def optional_antenna(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "optional_antenna", value)
+
+    @property
+    @pulumi.getter(name="optionalAntennaGain")
+    def optional_antenna_gain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional antenna gain in dBi (0 to 20, default = 0).
+        """
+        return pulumi.get(self, "optional_antenna_gain")
+
+    @optional_antenna_gain.setter
+    def optional_antenna_gain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "optional_antenna_gain", value)
 
     @property
     @pulumi.getter(name="powerLevel")
@@ -6709,6 +7161,18 @@ class WtpprofileRadio2Args:
         pulumi.set(self, "sam_bssid", value)
 
     @property
+    @pulumi.getter(name="samCaCertificate")
+    def sam_ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA certificate for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_ca_certificate")
+
+    @sam_ca_certificate.setter
+    def sam_ca_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_ca_certificate", value)
+
+    @property
     @pulumi.getter(name="samCaptivePortal")
     def sam_captive_portal(self) -> Optional[pulumi.Input[str]]:
         """
@@ -6719,6 +7183,18 @@ class WtpprofileRadio2Args:
     @sam_captive_portal.setter
     def sam_captive_portal(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sam_captive_portal", value)
+
+    @property
+    @pulumi.getter(name="samClientCertificate")
+    def sam_client_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_client_certificate")
+
+    @sam_client_certificate.setter
+    def sam_client_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_client_certificate", value)
 
     @property
     @pulumi.getter(name="samCwpFailureString")
@@ -6793,6 +7269,18 @@ class WtpprofileRadio2Args:
         pulumi.set(self, "sam_cwp_username", value)
 
     @property
+    @pulumi.getter(name="samEapMethod")
+    def sam_eap_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+        """
+        return pulumi.get(self, "sam_eap_method")
+
+    @sam_eap_method.setter
+    def sam_eap_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_eap_method", value)
+
+    @property
     @pulumi.getter(name="samPassword")
     def sam_password(self) -> Optional[pulumi.Input[str]]:
         """
@@ -6803,6 +7291,30 @@ class WtpprofileRadio2Args:
     @sam_password.setter
     def sam_password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sam_password", value)
+
+    @property
+    @pulumi.getter(name="samPrivateKey")
+    def sam_private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private key for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_private_key")
+
+    @sam_private_key.setter
+    def sam_private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_private_key", value)
+
+    @property
+    @pulumi.getter(name="samPrivateKeyPassword")
+    def sam_private_key_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for private key file for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_private_key_password")
+
+    @sam_private_key_password.setter
+    def sam_private_key_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_private_key_password", value)
 
     @property
     @pulumi.getter(name="samReportIntv")
@@ -6820,7 +7332,7 @@ class WtpprofileRadio2Args:
     @pulumi.getter(name="samSecurityType")
     def sam_security_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        Select WiFi network security type (default = "wpa-personal").
         """
         return pulumi.get(self, "sam_security_type")
 
@@ -7073,8 +7585,11 @@ class WtpprofileRadio3Args:
                  iperf_server_port: Optional[pulumi.Input[int]] = None,
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_distance: Optional[pulumi.Input[int]] = None,
+                 mimo_mode: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  n80211d: Optional[pulumi.Input[str]] = None,
+                 optional_antenna: Optional[pulumi.Input[str]] = None,
+                 optional_antenna_gain: Optional[pulumi.Input[str]] = None,
                  power_level: Optional[pulumi.Input[int]] = None,
                  power_mode: Optional[pulumi.Input[str]] = None,
                  power_value: Optional[pulumi.Input[int]] = None,
@@ -7082,14 +7597,19 @@ class WtpprofileRadio3Args:
                  protection_mode: Optional[pulumi.Input[str]] = None,
                  rts_threshold: Optional[pulumi.Input[int]] = None,
                  sam_bssid: Optional[pulumi.Input[str]] = None,
+                 sam_ca_certificate: Optional[pulumi.Input[str]] = None,
                  sam_captive_portal: Optional[pulumi.Input[str]] = None,
+                 sam_client_certificate: Optional[pulumi.Input[str]] = None,
                  sam_cwp_failure_string: Optional[pulumi.Input[str]] = None,
                  sam_cwp_match_string: Optional[pulumi.Input[str]] = None,
                  sam_cwp_password: Optional[pulumi.Input[str]] = None,
                  sam_cwp_success_string: Optional[pulumi.Input[str]] = None,
                  sam_cwp_test_url: Optional[pulumi.Input[str]] = None,
                  sam_cwp_username: Optional[pulumi.Input[str]] = None,
+                 sam_eap_method: Optional[pulumi.Input[str]] = None,
                  sam_password: Optional[pulumi.Input[str]] = None,
+                 sam_private_key: Optional[pulumi.Input[str]] = None,
+                 sam_private_key_password: Optional[pulumi.Input[str]] = None,
                  sam_report_intv: Optional[pulumi.Input[int]] = None,
                  sam_security_type: Optional[pulumi.Input[str]] = None,
                  sam_server_fqdn: Optional[pulumi.Input[str]] = None,
@@ -7145,8 +7665,11 @@ class WtpprofileRadio3Args:
         :param pulumi.Input[int] iperf_server_port: Iperf service port number.
         :param pulumi.Input[int] max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
         :param pulumi.Input[int] max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
+        :param pulumi.Input[str] mimo_mode: Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
         :param pulumi.Input[str] mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         :param pulumi.Input[str] n80211d: Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] optional_antenna: Optional antenna used on FAP (default = none).
+        :param pulumi.Input[str] optional_antenna_gain: Optional antenna gain in dBi (0 to 20, default = 0).
         :param pulumi.Input[int] power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
         :param pulumi.Input[str] power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
         :param pulumi.Input[int] power_value: Radio EIRP power in dBm (1 - 33, default = 27).
@@ -7154,16 +7677,21 @@ class WtpprofileRadio3Args:
         :param pulumi.Input[str] protection_mode: Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
         :param pulumi.Input[int] rts_threshold: Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
         :param pulumi.Input[str] sam_bssid: BSSID for WiFi network.
+        :param pulumi.Input[str] sam_ca_certificate: CA certificate for WPA2/WPA3-ENTERPRISE.
         :param pulumi.Input[str] sam_captive_portal: Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sam_client_certificate: Client certificate for WPA2/WPA3-ENTERPRISE.
         :param pulumi.Input[str] sam_cwp_failure_string: Failure identification on the page after an incorrect login.
         :param pulumi.Input[str] sam_cwp_match_string: Identification string from the captive portal login form.
         :param pulumi.Input[str] sam_cwp_password: Password for captive portal authentication.
         :param pulumi.Input[str] sam_cwp_success_string: Success identification on the page after a successful login.
         :param pulumi.Input[str] sam_cwp_test_url: Website the client is trying to access.
         :param pulumi.Input[str] sam_cwp_username: Username for captive portal authentication.
+        :param pulumi.Input[str] sam_eap_method: Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
         :param pulumi.Input[str] sam_password: Passphrase for WiFi network connection.
+        :param pulumi.Input[str] sam_private_key: Private key for WPA2/WPA3-ENTERPRISE.
+        :param pulumi.Input[str] sam_private_key_password: Password for private key file for WPA2/WPA3-ENTERPRISE.
         :param pulumi.Input[int] sam_report_intv: SAM report interval (sec), 0 for a one-time report.
-        :param pulumi.Input[str] sam_security_type: Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        :param pulumi.Input[str] sam_security_type: Select WiFi network security type (default = "wpa-personal").
         :param pulumi.Input[str] sam_server_fqdn: SAM test server domain name.
         :param pulumi.Input[str] sam_server_ip: SAM test server IP address.
         :param pulumi.Input[str] sam_server_type: Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
@@ -7256,10 +7784,16 @@ class WtpprofileRadio3Args:
             pulumi.set(__self__, "max_clients", max_clients)
         if max_distance is not None:
             pulumi.set(__self__, "max_distance", max_distance)
+        if mimo_mode is not None:
+            pulumi.set(__self__, "mimo_mode", mimo_mode)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if n80211d is not None:
             pulumi.set(__self__, "n80211d", n80211d)
+        if optional_antenna is not None:
+            pulumi.set(__self__, "optional_antenna", optional_antenna)
+        if optional_antenna_gain is not None:
+            pulumi.set(__self__, "optional_antenna_gain", optional_antenna_gain)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
         if power_mode is not None:
@@ -7274,8 +7808,12 @@ class WtpprofileRadio3Args:
             pulumi.set(__self__, "rts_threshold", rts_threshold)
         if sam_bssid is not None:
             pulumi.set(__self__, "sam_bssid", sam_bssid)
+        if sam_ca_certificate is not None:
+            pulumi.set(__self__, "sam_ca_certificate", sam_ca_certificate)
         if sam_captive_portal is not None:
             pulumi.set(__self__, "sam_captive_portal", sam_captive_portal)
+        if sam_client_certificate is not None:
+            pulumi.set(__self__, "sam_client_certificate", sam_client_certificate)
         if sam_cwp_failure_string is not None:
             pulumi.set(__self__, "sam_cwp_failure_string", sam_cwp_failure_string)
         if sam_cwp_match_string is not None:
@@ -7288,8 +7826,14 @@ class WtpprofileRadio3Args:
             pulumi.set(__self__, "sam_cwp_test_url", sam_cwp_test_url)
         if sam_cwp_username is not None:
             pulumi.set(__self__, "sam_cwp_username", sam_cwp_username)
+        if sam_eap_method is not None:
+            pulumi.set(__self__, "sam_eap_method", sam_eap_method)
         if sam_password is not None:
             pulumi.set(__self__, "sam_password", sam_password)
+        if sam_private_key is not None:
+            pulumi.set(__self__, "sam_private_key", sam_private_key)
+        if sam_private_key_password is not None:
+            pulumi.set(__self__, "sam_private_key_password", sam_private_key_password)
         if sam_report_intv is not None:
             pulumi.set(__self__, "sam_report_intv", sam_report_intv)
         if sam_security_type is not None:
@@ -7790,6 +8334,18 @@ class WtpprofileRadio3Args:
         pulumi.set(self, "max_distance", value)
 
     @property
+    @pulumi.getter(name="mimoMode")
+    def mimo_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+        """
+        return pulumi.get(self, "mimo_mode")
+
+    @mimo_mode.setter
+    def mimo_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mimo_mode", value)
+
+    @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -7812,6 +8368,30 @@ class WtpprofileRadio3Args:
     @n80211d.setter
     def n80211d(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "n80211d", value)
+
+    @property
+    @pulumi.getter(name="optionalAntenna")
+    def optional_antenna(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional antenna used on FAP (default = none).
+        """
+        return pulumi.get(self, "optional_antenna")
+
+    @optional_antenna.setter
+    def optional_antenna(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "optional_antenna", value)
+
+    @property
+    @pulumi.getter(name="optionalAntennaGain")
+    def optional_antenna_gain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional antenna gain in dBi (0 to 20, default = 0).
+        """
+        return pulumi.get(self, "optional_antenna_gain")
+
+    @optional_antenna_gain.setter
+    def optional_antenna_gain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "optional_antenna_gain", value)
 
     @property
     @pulumi.getter(name="powerLevel")
@@ -7898,6 +8478,18 @@ class WtpprofileRadio3Args:
         pulumi.set(self, "sam_bssid", value)
 
     @property
+    @pulumi.getter(name="samCaCertificate")
+    def sam_ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA certificate for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_ca_certificate")
+
+    @sam_ca_certificate.setter
+    def sam_ca_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_ca_certificate", value)
+
+    @property
     @pulumi.getter(name="samCaptivePortal")
     def sam_captive_portal(self) -> Optional[pulumi.Input[str]]:
         """
@@ -7908,6 +8500,18 @@ class WtpprofileRadio3Args:
     @sam_captive_portal.setter
     def sam_captive_portal(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sam_captive_portal", value)
+
+    @property
+    @pulumi.getter(name="samClientCertificate")
+    def sam_client_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_client_certificate")
+
+    @sam_client_certificate.setter
+    def sam_client_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_client_certificate", value)
 
     @property
     @pulumi.getter(name="samCwpFailureString")
@@ -7982,6 +8586,18 @@ class WtpprofileRadio3Args:
         pulumi.set(self, "sam_cwp_username", value)
 
     @property
+    @pulumi.getter(name="samEapMethod")
+    def sam_eap_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+        """
+        return pulumi.get(self, "sam_eap_method")
+
+    @sam_eap_method.setter
+    def sam_eap_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_eap_method", value)
+
+    @property
     @pulumi.getter(name="samPassword")
     def sam_password(self) -> Optional[pulumi.Input[str]]:
         """
@@ -7992,6 +8608,30 @@ class WtpprofileRadio3Args:
     @sam_password.setter
     def sam_password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sam_password", value)
+
+    @property
+    @pulumi.getter(name="samPrivateKey")
+    def sam_private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private key for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_private_key")
+
+    @sam_private_key.setter
+    def sam_private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_private_key", value)
+
+    @property
+    @pulumi.getter(name="samPrivateKeyPassword")
+    def sam_private_key_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for private key file for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_private_key_password")
+
+    @sam_private_key_password.setter
+    def sam_private_key_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_private_key_password", value)
 
     @property
     @pulumi.getter(name="samReportIntv")
@@ -8009,7 +8649,7 @@ class WtpprofileRadio3Args:
     @pulumi.getter(name="samSecurityType")
     def sam_security_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        Select WiFi network security type (default = "wpa-personal").
         """
         return pulumi.get(self, "sam_security_type")
 
@@ -8262,8 +8902,11 @@ class WtpprofileRadio4Args:
                  iperf_server_port: Optional[pulumi.Input[int]] = None,
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_distance: Optional[pulumi.Input[int]] = None,
+                 mimo_mode: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  n80211d: Optional[pulumi.Input[str]] = None,
+                 optional_antenna: Optional[pulumi.Input[str]] = None,
+                 optional_antenna_gain: Optional[pulumi.Input[str]] = None,
                  power_level: Optional[pulumi.Input[int]] = None,
                  power_mode: Optional[pulumi.Input[str]] = None,
                  power_value: Optional[pulumi.Input[int]] = None,
@@ -8271,14 +8914,19 @@ class WtpprofileRadio4Args:
                  protection_mode: Optional[pulumi.Input[str]] = None,
                  rts_threshold: Optional[pulumi.Input[int]] = None,
                  sam_bssid: Optional[pulumi.Input[str]] = None,
+                 sam_ca_certificate: Optional[pulumi.Input[str]] = None,
                  sam_captive_portal: Optional[pulumi.Input[str]] = None,
+                 sam_client_certificate: Optional[pulumi.Input[str]] = None,
                  sam_cwp_failure_string: Optional[pulumi.Input[str]] = None,
                  sam_cwp_match_string: Optional[pulumi.Input[str]] = None,
                  sam_cwp_password: Optional[pulumi.Input[str]] = None,
                  sam_cwp_success_string: Optional[pulumi.Input[str]] = None,
                  sam_cwp_test_url: Optional[pulumi.Input[str]] = None,
                  sam_cwp_username: Optional[pulumi.Input[str]] = None,
+                 sam_eap_method: Optional[pulumi.Input[str]] = None,
                  sam_password: Optional[pulumi.Input[str]] = None,
+                 sam_private_key: Optional[pulumi.Input[str]] = None,
+                 sam_private_key_password: Optional[pulumi.Input[str]] = None,
                  sam_report_intv: Optional[pulumi.Input[int]] = None,
                  sam_security_type: Optional[pulumi.Input[str]] = None,
                  sam_server_fqdn: Optional[pulumi.Input[str]] = None,
@@ -8334,8 +8982,11 @@ class WtpprofileRadio4Args:
         :param pulumi.Input[int] iperf_server_port: Iperf service port number.
         :param pulumi.Input[int] max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
         :param pulumi.Input[int] max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
+        :param pulumi.Input[str] mimo_mode: Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
         :param pulumi.Input[str] mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         :param pulumi.Input[str] n80211d: Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] optional_antenna: Optional antenna used on FAP (default = none).
+        :param pulumi.Input[str] optional_antenna_gain: Optional antenna gain in dBi (0 to 20, default = 0).
         :param pulumi.Input[int] power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
         :param pulumi.Input[str] power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
         :param pulumi.Input[int] power_value: Radio EIRP power in dBm (1 - 33, default = 27).
@@ -8343,16 +8994,21 @@ class WtpprofileRadio4Args:
         :param pulumi.Input[str] protection_mode: Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
         :param pulumi.Input[int] rts_threshold: Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
         :param pulumi.Input[str] sam_bssid: BSSID for WiFi network.
+        :param pulumi.Input[str] sam_ca_certificate: CA certificate for WPA2/WPA3-ENTERPRISE.
         :param pulumi.Input[str] sam_captive_portal: Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sam_client_certificate: Client certificate for WPA2/WPA3-ENTERPRISE.
         :param pulumi.Input[str] sam_cwp_failure_string: Failure identification on the page after an incorrect login.
         :param pulumi.Input[str] sam_cwp_match_string: Identification string from the captive portal login form.
         :param pulumi.Input[str] sam_cwp_password: Password for captive portal authentication.
         :param pulumi.Input[str] sam_cwp_success_string: Success identification on the page after a successful login.
         :param pulumi.Input[str] sam_cwp_test_url: Website the client is trying to access.
         :param pulumi.Input[str] sam_cwp_username: Username for captive portal authentication.
+        :param pulumi.Input[str] sam_eap_method: Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
         :param pulumi.Input[str] sam_password: Passphrase for WiFi network connection.
+        :param pulumi.Input[str] sam_private_key: Private key for WPA2/WPA3-ENTERPRISE.
+        :param pulumi.Input[str] sam_private_key_password: Password for private key file for WPA2/WPA3-ENTERPRISE.
         :param pulumi.Input[int] sam_report_intv: SAM report interval (sec), 0 for a one-time report.
-        :param pulumi.Input[str] sam_security_type: Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        :param pulumi.Input[str] sam_security_type: Select WiFi network security type (default = "wpa-personal").
         :param pulumi.Input[str] sam_server_fqdn: SAM test server domain name.
         :param pulumi.Input[str] sam_server_ip: SAM test server IP address.
         :param pulumi.Input[str] sam_server_type: Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
@@ -8445,10 +9101,16 @@ class WtpprofileRadio4Args:
             pulumi.set(__self__, "max_clients", max_clients)
         if max_distance is not None:
             pulumi.set(__self__, "max_distance", max_distance)
+        if mimo_mode is not None:
+            pulumi.set(__self__, "mimo_mode", mimo_mode)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if n80211d is not None:
             pulumi.set(__self__, "n80211d", n80211d)
+        if optional_antenna is not None:
+            pulumi.set(__self__, "optional_antenna", optional_antenna)
+        if optional_antenna_gain is not None:
+            pulumi.set(__self__, "optional_antenna_gain", optional_antenna_gain)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
         if power_mode is not None:
@@ -8463,8 +9125,12 @@ class WtpprofileRadio4Args:
             pulumi.set(__self__, "rts_threshold", rts_threshold)
         if sam_bssid is not None:
             pulumi.set(__self__, "sam_bssid", sam_bssid)
+        if sam_ca_certificate is not None:
+            pulumi.set(__self__, "sam_ca_certificate", sam_ca_certificate)
         if sam_captive_portal is not None:
             pulumi.set(__self__, "sam_captive_portal", sam_captive_portal)
+        if sam_client_certificate is not None:
+            pulumi.set(__self__, "sam_client_certificate", sam_client_certificate)
         if sam_cwp_failure_string is not None:
             pulumi.set(__self__, "sam_cwp_failure_string", sam_cwp_failure_string)
         if sam_cwp_match_string is not None:
@@ -8477,8 +9143,14 @@ class WtpprofileRadio4Args:
             pulumi.set(__self__, "sam_cwp_test_url", sam_cwp_test_url)
         if sam_cwp_username is not None:
             pulumi.set(__self__, "sam_cwp_username", sam_cwp_username)
+        if sam_eap_method is not None:
+            pulumi.set(__self__, "sam_eap_method", sam_eap_method)
         if sam_password is not None:
             pulumi.set(__self__, "sam_password", sam_password)
+        if sam_private_key is not None:
+            pulumi.set(__self__, "sam_private_key", sam_private_key)
+        if sam_private_key_password is not None:
+            pulumi.set(__self__, "sam_private_key_password", sam_private_key_password)
         if sam_report_intv is not None:
             pulumi.set(__self__, "sam_report_intv", sam_report_intv)
         if sam_security_type is not None:
@@ -8979,6 +9651,18 @@ class WtpprofileRadio4Args:
         pulumi.set(self, "max_distance", value)
 
     @property
+    @pulumi.getter(name="mimoMode")
+    def mimo_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+        """
+        return pulumi.get(self, "mimo_mode")
+
+    @mimo_mode.setter
+    def mimo_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mimo_mode", value)
+
+    @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -9001,6 +9685,30 @@ class WtpprofileRadio4Args:
     @n80211d.setter
     def n80211d(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "n80211d", value)
+
+    @property
+    @pulumi.getter(name="optionalAntenna")
+    def optional_antenna(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional antenna used on FAP (default = none).
+        """
+        return pulumi.get(self, "optional_antenna")
+
+    @optional_antenna.setter
+    def optional_antenna(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "optional_antenna", value)
+
+    @property
+    @pulumi.getter(name="optionalAntennaGain")
+    def optional_antenna_gain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional antenna gain in dBi (0 to 20, default = 0).
+        """
+        return pulumi.get(self, "optional_antenna_gain")
+
+    @optional_antenna_gain.setter
+    def optional_antenna_gain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "optional_antenna_gain", value)
 
     @property
     @pulumi.getter(name="powerLevel")
@@ -9087,6 +9795,18 @@ class WtpprofileRadio4Args:
         pulumi.set(self, "sam_bssid", value)
 
     @property
+    @pulumi.getter(name="samCaCertificate")
+    def sam_ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA certificate for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_ca_certificate")
+
+    @sam_ca_certificate.setter
+    def sam_ca_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_ca_certificate", value)
+
+    @property
     @pulumi.getter(name="samCaptivePortal")
     def sam_captive_portal(self) -> Optional[pulumi.Input[str]]:
         """
@@ -9097,6 +9817,18 @@ class WtpprofileRadio4Args:
     @sam_captive_portal.setter
     def sam_captive_portal(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sam_captive_portal", value)
+
+    @property
+    @pulumi.getter(name="samClientCertificate")
+    def sam_client_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_client_certificate")
+
+    @sam_client_certificate.setter
+    def sam_client_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_client_certificate", value)
 
     @property
     @pulumi.getter(name="samCwpFailureString")
@@ -9171,6 +9903,18 @@ class WtpprofileRadio4Args:
         pulumi.set(self, "sam_cwp_username", value)
 
     @property
+    @pulumi.getter(name="samEapMethod")
+    def sam_eap_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+        """
+        return pulumi.get(self, "sam_eap_method")
+
+    @sam_eap_method.setter
+    def sam_eap_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_eap_method", value)
+
+    @property
     @pulumi.getter(name="samPassword")
     def sam_password(self) -> Optional[pulumi.Input[str]]:
         """
@@ -9181,6 +9925,30 @@ class WtpprofileRadio4Args:
     @sam_password.setter
     def sam_password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sam_password", value)
+
+    @property
+    @pulumi.getter(name="samPrivateKey")
+    def sam_private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private key for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_private_key")
+
+    @sam_private_key.setter
+    def sam_private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_private_key", value)
+
+    @property
+    @pulumi.getter(name="samPrivateKeyPassword")
+    def sam_private_key_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password for private key file for WPA2/WPA3-ENTERPRISE.
+        """
+        return pulumi.get(self, "sam_private_key_password")
+
+    @sam_private_key_password.setter
+    def sam_private_key_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sam_private_key_password", value)
 
     @property
     @pulumi.getter(name="samReportIntv")
@@ -9198,7 +9966,7 @@ class WtpprofileRadio4Args:
     @pulumi.getter(name="samSecurityType")
     def sam_security_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        Select WiFi network security type (default = "wpa-personal").
         """
         return pulumi.get(self, "sam_security_type")
 

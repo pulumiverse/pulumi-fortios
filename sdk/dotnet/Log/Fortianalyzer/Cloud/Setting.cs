@@ -71,7 +71,13 @@ namespace Pulumiverse.Fortios.Log.Fortianalyzer.Cloud
         public Output<string> EncAlgorithm { get; private set; } = null!;
 
         /// <summary>
-        /// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
+        /// FortiAnalyzer IPsec tunnel HMAC algorithm.
         /// </summary>
         [Output("hmacAlgorithm")]
         public Output<string> HmacAlgorithm { get; private set; } = null!;
@@ -262,7 +268,13 @@ namespace Pulumiverse.Fortios.Log.Fortianalyzer.Cloud
         public Input<string>? EncAlgorithm { get; set; }
 
         /// <summary>
-        /// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// FortiAnalyzer IPsec tunnel HMAC algorithm.
         /// </summary>
         [Input("hmacAlgorithm")]
         public Input<string>? HmacAlgorithm { get; set; }
@@ -420,7 +432,13 @@ namespace Pulumiverse.Fortios.Log.Fortianalyzer.Cloud
         public Input<string>? EncAlgorithm { get; set; }
 
         /// <summary>
-        /// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// FortiAnalyzer IPsec tunnel HMAC algorithm.
         /// </summary>
         [Input("hmacAlgorithm")]
         public Input<string>? HmacAlgorithm { get; set; }

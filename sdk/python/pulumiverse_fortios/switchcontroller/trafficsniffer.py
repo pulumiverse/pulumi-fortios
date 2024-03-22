@@ -18,6 +18,7 @@ class TrafficsnifferArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  erspan_ip: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  target_ips: Optional[pulumi.Input[Sequence[pulumi.Input['TrafficsnifferTargetIpArgs']]]] = None,
                  target_macs: Optional[pulumi.Input[Sequence[pulumi.Input['TrafficsnifferTargetMacArgs']]]] = None,
@@ -27,6 +28,7 @@ class TrafficsnifferArgs:
         The set of arguments for constructing a Trafficsniffer resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] erspan_ip: Configure ERSPAN collector IP address.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] mode: Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
         :param pulumi.Input[Sequence[pulumi.Input['TrafficsnifferTargetIpArgs']]] target_ips: Sniffer IPs to filter. The structure of `target_ip` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['TrafficsnifferTargetMacArgs']]] target_macs: Sniffer MACs to filter. The structure of `target_mac` block is documented below.
@@ -37,6 +39,8 @@ class TrafficsnifferArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if erspan_ip is not None:
             pulumi.set(__self__, "erspan_ip", erspan_ip)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if target_ips is not None:
@@ -71,6 +75,18 @@ class TrafficsnifferArgs:
     @erspan_ip.setter
     def erspan_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "erspan_ip", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -138,6 +154,7 @@ class _TrafficsnifferState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  erspan_ip: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  target_ips: Optional[pulumi.Input[Sequence[pulumi.Input['TrafficsnifferTargetIpArgs']]]] = None,
                  target_macs: Optional[pulumi.Input[Sequence[pulumi.Input['TrafficsnifferTargetMacArgs']]]] = None,
@@ -147,6 +164,7 @@ class _TrafficsnifferState:
         Input properties used for looking up and filtering Trafficsniffer resources.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] erspan_ip: Configure ERSPAN collector IP address.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] mode: Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
         :param pulumi.Input[Sequence[pulumi.Input['TrafficsnifferTargetIpArgs']]] target_ips: Sniffer IPs to filter. The structure of `target_ip` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['TrafficsnifferTargetMacArgs']]] target_macs: Sniffer MACs to filter. The structure of `target_mac` block is documented below.
@@ -157,6 +175,8 @@ class _TrafficsnifferState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if erspan_ip is not None:
             pulumi.set(__self__, "erspan_ip", erspan_ip)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if target_ips is not None:
@@ -191,6 +211,18 @@ class _TrafficsnifferState:
     @erspan_ip.setter
     def erspan_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "erspan_ip", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -260,6 +292,7 @@ class Trafficsniffer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  erspan_ip: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  target_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TrafficsnifferTargetIpArgs']]]]] = None,
                  target_macs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TrafficsnifferTargetMacArgs']]]]] = None,
@@ -291,6 +324,7 @@ class Trafficsniffer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] erspan_ip: Configure ERSPAN collector IP address.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] mode: Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TrafficsnifferTargetIpArgs']]]] target_ips: Sniffer IPs to filter. The structure of `target_ip` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TrafficsnifferTargetMacArgs']]]] target_macs: Sniffer MACs to filter. The structure of `target_mac` block is documented below.
@@ -341,6 +375,7 @@ class Trafficsniffer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  erspan_ip: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  target_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TrafficsnifferTargetIpArgs']]]]] = None,
                  target_macs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TrafficsnifferTargetMacArgs']]]]] = None,
@@ -357,6 +392,7 @@ class Trafficsniffer(pulumi.CustomResource):
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["erspan_ip"] = erspan_ip
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["mode"] = mode
             __props__.__dict__["target_ips"] = target_ips
             __props__.__dict__["target_macs"] = target_macs
@@ -374,6 +410,7 @@ class Trafficsniffer(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             erspan_ip: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             mode: Optional[pulumi.Input[str]] = None,
             target_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TrafficsnifferTargetIpArgs']]]]] = None,
             target_macs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TrafficsnifferTargetMacArgs']]]]] = None,
@@ -388,6 +425,7 @@ class Trafficsniffer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] erspan_ip: Configure ERSPAN collector IP address.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] mode: Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TrafficsnifferTargetIpArgs']]]] target_ips: Sniffer IPs to filter. The structure of `target_ip` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TrafficsnifferTargetMacArgs']]]] target_macs: Sniffer MACs to filter. The structure of `target_mac` block is documented below.
@@ -400,6 +438,7 @@ class Trafficsniffer(pulumi.CustomResource):
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["erspan_ip"] = erspan_ip
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["mode"] = mode
         __props__.__dict__["target_ips"] = target_ips
         __props__.__dict__["target_macs"] = target_macs
@@ -422,6 +461,14 @@ class Trafficsniffer(pulumi.CustomResource):
         Configure ERSPAN collector IP address.
         """
         return pulumi.get(self, "erspan_ip")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

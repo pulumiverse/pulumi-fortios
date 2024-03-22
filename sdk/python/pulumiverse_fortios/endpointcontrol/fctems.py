@@ -34,24 +34,27 @@ class FctemsArgs:
                  pull_sysinfo: Optional[pulumi.Input[str]] = None,
                  pull_tags: Optional[pulumi.Input[str]] = None,
                  pull_vulnerabilities: Optional[pulumi.Input[str]] = None,
+                 send_tags_to_all_vdoms: Optional[pulumi.Input[str]] = None,
                  serial_number: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  status_check_interval: Optional[pulumi.Input[int]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
+                 trust_ca_cn: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 verifying_ca: Optional[pulumi.Input[str]] = None,
                  websocket_override: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Fctems resource.
         :param pulumi.Input[str] admin_password: FortiClient EMS admin password.
         :param pulumi.Input[str] admin_username: FortiClient EMS admin username.
-        :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         :param pulumi.Input[str] capabilities: List of EMS capabilities.
         :param pulumi.Input[str] certificate: FortiClient EMS certificate.
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] dirty_reason: Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
-        :param pulumi.Input[int] ems_id: EMS ID in order (1 - 5)
+        :param pulumi.Input[int] ems_id: EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         :param pulumi.Input[str] fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -64,13 +67,16 @@ class FctemsArgs:
         :param pulumi.Input[str] pull_sysinfo: Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_tags: Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_vulnerabilities: Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] send_tags_to_all_vdoms: Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
         :param pulumi.Input[str] serial_number: FortiClient EMS Serial Number.
         :param pulumi.Input[str] server: FortiClient EMS FQDN or IPv4 address.
         :param pulumi.Input[str] source_ip: REST API call source IP.
         :param pulumi.Input[str] status: Enable or disable this EMS configuration. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] status_check_interval: FortiClient EMS call timeout in seconds (1 - 120 seconds, default = 5).
         :param pulumi.Input[str] tenant_id: EMS Tenant ID.
+        :param pulumi.Input[str] trust_ca_cn: Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] verifying_ca: Lowest CA cert on Fortigate in verified EMS cert chain.
         :param pulumi.Input[str] websocket_override: Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
         """
         if admin_password is not None:
@@ -113,6 +119,8 @@ class FctemsArgs:
             pulumi.set(__self__, "pull_tags", pull_tags)
         if pull_vulnerabilities is not None:
             pulumi.set(__self__, "pull_vulnerabilities", pull_vulnerabilities)
+        if send_tags_to_all_vdoms is not None:
+            pulumi.set(__self__, "send_tags_to_all_vdoms", send_tags_to_all_vdoms)
         if serial_number is not None:
             pulumi.set(__self__, "serial_number", serial_number)
         if server is not None:
@@ -125,8 +133,12 @@ class FctemsArgs:
             pulumi.set(__self__, "status_check_interval", status_check_interval)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+        if trust_ca_cn is not None:
+            pulumi.set(__self__, "trust_ca_cn", trust_ca_cn)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if verifying_ca is not None:
+            pulumi.set(__self__, "verifying_ca", verifying_ca)
         if websocket_override is not None:
             pulumi.set(__self__, "websocket_override", websocket_override)
 
@@ -158,7 +170,7 @@ class FctemsArgs:
     @pulumi.getter(name="callTimeout")
     def call_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         """
         return pulumi.get(self, "call_timeout")
 
@@ -218,7 +230,7 @@ class FctemsArgs:
     @pulumi.getter(name="emsId")
     def ems_id(self) -> Optional[pulumi.Input[int]]:
         """
-        EMS ID in order (1 - 5)
+        EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         """
         return pulumi.get(self, "ems_id")
 
@@ -371,6 +383,18 @@ class FctemsArgs:
         pulumi.set(self, "pull_vulnerabilities", value)
 
     @property
+    @pulumi.getter(name="sendTagsToAllVdoms")
+    def send_tags_to_all_vdoms(self) -> Optional[pulumi.Input[str]]:
+        """
+        Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "send_tags_to_all_vdoms")
+
+    @send_tags_to_all_vdoms.setter
+    def send_tags_to_all_vdoms(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "send_tags_to_all_vdoms", value)
+
+    @property
     @pulumi.getter(name="serialNumber")
     def serial_number(self) -> Optional[pulumi.Input[str]]:
         """
@@ -443,6 +467,18 @@ class FctemsArgs:
         pulumi.set(self, "tenant_id", value)
 
     @property
+    @pulumi.getter(name="trustCaCn")
+    def trust_ca_cn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "trust_ca_cn")
+
+    @trust_ca_cn.setter
+    def trust_ca_cn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trust_ca_cn", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -453,6 +489,18 @@ class FctemsArgs:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="verifyingCa")
+    def verifying_ca(self) -> Optional[pulumi.Input[str]]:
+        """
+        Lowest CA cert on Fortigate in verified EMS cert chain.
+        """
+        return pulumi.get(self, "verifying_ca")
+
+    @verifying_ca.setter
+    def verifying_ca(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "verifying_ca", value)
 
     @property
     @pulumi.getter(name="websocketOverride")
@@ -490,24 +538,27 @@ class _FctemsState:
                  pull_sysinfo: Optional[pulumi.Input[str]] = None,
                  pull_tags: Optional[pulumi.Input[str]] = None,
                  pull_vulnerabilities: Optional[pulumi.Input[str]] = None,
+                 send_tags_to_all_vdoms: Optional[pulumi.Input[str]] = None,
                  serial_number: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  status_check_interval: Optional[pulumi.Input[int]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
+                 trust_ca_cn: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 verifying_ca: Optional[pulumi.Input[str]] = None,
                  websocket_override: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Fctems resources.
         :param pulumi.Input[str] admin_password: FortiClient EMS admin password.
         :param pulumi.Input[str] admin_username: FortiClient EMS admin username.
-        :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         :param pulumi.Input[str] capabilities: List of EMS capabilities.
         :param pulumi.Input[str] certificate: FortiClient EMS certificate.
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] dirty_reason: Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
-        :param pulumi.Input[int] ems_id: EMS ID in order (1 - 5)
+        :param pulumi.Input[int] ems_id: EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         :param pulumi.Input[str] fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -520,13 +571,16 @@ class _FctemsState:
         :param pulumi.Input[str] pull_sysinfo: Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_tags: Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_vulnerabilities: Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] send_tags_to_all_vdoms: Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
         :param pulumi.Input[str] serial_number: FortiClient EMS Serial Number.
         :param pulumi.Input[str] server: FortiClient EMS FQDN or IPv4 address.
         :param pulumi.Input[str] source_ip: REST API call source IP.
         :param pulumi.Input[str] status: Enable or disable this EMS configuration. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] status_check_interval: FortiClient EMS call timeout in seconds (1 - 120 seconds, default = 5).
         :param pulumi.Input[str] tenant_id: EMS Tenant ID.
+        :param pulumi.Input[str] trust_ca_cn: Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] verifying_ca: Lowest CA cert on Fortigate in verified EMS cert chain.
         :param pulumi.Input[str] websocket_override: Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
         """
         if admin_password is not None:
@@ -569,6 +623,8 @@ class _FctemsState:
             pulumi.set(__self__, "pull_tags", pull_tags)
         if pull_vulnerabilities is not None:
             pulumi.set(__self__, "pull_vulnerabilities", pull_vulnerabilities)
+        if send_tags_to_all_vdoms is not None:
+            pulumi.set(__self__, "send_tags_to_all_vdoms", send_tags_to_all_vdoms)
         if serial_number is not None:
             pulumi.set(__self__, "serial_number", serial_number)
         if server is not None:
@@ -581,8 +637,12 @@ class _FctemsState:
             pulumi.set(__self__, "status_check_interval", status_check_interval)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+        if trust_ca_cn is not None:
+            pulumi.set(__self__, "trust_ca_cn", trust_ca_cn)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if verifying_ca is not None:
+            pulumi.set(__self__, "verifying_ca", verifying_ca)
         if websocket_override is not None:
             pulumi.set(__self__, "websocket_override", websocket_override)
 
@@ -614,7 +674,7 @@ class _FctemsState:
     @pulumi.getter(name="callTimeout")
     def call_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         """
         return pulumi.get(self, "call_timeout")
 
@@ -674,7 +734,7 @@ class _FctemsState:
     @pulumi.getter(name="emsId")
     def ems_id(self) -> Optional[pulumi.Input[int]]:
         """
-        EMS ID in order (1 - 5)
+        EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         """
         return pulumi.get(self, "ems_id")
 
@@ -827,6 +887,18 @@ class _FctemsState:
         pulumi.set(self, "pull_vulnerabilities", value)
 
     @property
+    @pulumi.getter(name="sendTagsToAllVdoms")
+    def send_tags_to_all_vdoms(self) -> Optional[pulumi.Input[str]]:
+        """
+        Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "send_tags_to_all_vdoms")
+
+    @send_tags_to_all_vdoms.setter
+    def send_tags_to_all_vdoms(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "send_tags_to_all_vdoms", value)
+
+    @property
     @pulumi.getter(name="serialNumber")
     def serial_number(self) -> Optional[pulumi.Input[str]]:
         """
@@ -899,6 +971,18 @@ class _FctemsState:
         pulumi.set(self, "tenant_id", value)
 
     @property
+    @pulumi.getter(name="trustCaCn")
+    def trust_ca_cn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "trust_ca_cn")
+
+    @trust_ca_cn.setter
+    def trust_ca_cn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trust_ca_cn", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -909,6 +993,18 @@ class _FctemsState:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="verifyingCa")
+    def verifying_ca(self) -> Optional[pulumi.Input[str]]:
+        """
+        Lowest CA cert on Fortigate in verified EMS cert chain.
+        """
+        return pulumi.get(self, "verifying_ca")
+
+    @verifying_ca.setter
+    def verifying_ca(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "verifying_ca", value)
 
     @property
     @pulumi.getter(name="websocketOverride")
@@ -948,13 +1044,16 @@ class Fctems(pulumi.CustomResource):
                  pull_sysinfo: Optional[pulumi.Input[str]] = None,
                  pull_tags: Optional[pulumi.Input[str]] = None,
                  pull_vulnerabilities: Optional[pulumi.Input[str]] = None,
+                 send_tags_to_all_vdoms: Optional[pulumi.Input[str]] = None,
                  serial_number: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  status_check_interval: Optional[pulumi.Input[int]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
+                 trust_ca_cn: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 verifying_ca: Optional[pulumi.Input[str]] = None,
                  websocket_override: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -982,12 +1081,12 @@ class Fctems(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] admin_password: FortiClient EMS admin password.
         :param pulumi.Input[str] admin_username: FortiClient EMS admin username.
-        :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         :param pulumi.Input[str] capabilities: List of EMS capabilities.
         :param pulumi.Input[str] certificate: FortiClient EMS certificate.
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] dirty_reason: Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
-        :param pulumi.Input[int] ems_id: EMS ID in order (1 - 5)
+        :param pulumi.Input[int] ems_id: EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         :param pulumi.Input[str] fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -1000,13 +1099,16 @@ class Fctems(pulumi.CustomResource):
         :param pulumi.Input[str] pull_sysinfo: Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_tags: Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_vulnerabilities: Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] send_tags_to_all_vdoms: Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
         :param pulumi.Input[str] serial_number: FortiClient EMS Serial Number.
         :param pulumi.Input[str] server: FortiClient EMS FQDN or IPv4 address.
         :param pulumi.Input[str] source_ip: REST API call source IP.
         :param pulumi.Input[str] status: Enable or disable this EMS configuration. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] status_check_interval: FortiClient EMS call timeout in seconds (1 - 120 seconds, default = 5).
         :param pulumi.Input[str] tenant_id: EMS Tenant ID.
+        :param pulumi.Input[str] trust_ca_cn: Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] verifying_ca: Lowest CA cert on Fortigate in verified EMS cert chain.
         :param pulumi.Input[str] websocket_override: Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
         """
         ...
@@ -1071,13 +1173,16 @@ class Fctems(pulumi.CustomResource):
                  pull_sysinfo: Optional[pulumi.Input[str]] = None,
                  pull_tags: Optional[pulumi.Input[str]] = None,
                  pull_vulnerabilities: Optional[pulumi.Input[str]] = None,
+                 send_tags_to_all_vdoms: Optional[pulumi.Input[str]] = None,
                  serial_number: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  status_check_interval: Optional[pulumi.Input[int]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
+                 trust_ca_cn: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 verifying_ca: Optional[pulumi.Input[str]] = None,
                  websocket_override: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1108,13 +1213,16 @@ class Fctems(pulumi.CustomResource):
             __props__.__dict__["pull_sysinfo"] = pull_sysinfo
             __props__.__dict__["pull_tags"] = pull_tags
             __props__.__dict__["pull_vulnerabilities"] = pull_vulnerabilities
+            __props__.__dict__["send_tags_to_all_vdoms"] = send_tags_to_all_vdoms
             __props__.__dict__["serial_number"] = serial_number
             __props__.__dict__["server"] = server
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["status"] = status
             __props__.__dict__["status_check_interval"] = status_check_interval
             __props__.__dict__["tenant_id"] = tenant_id
+            __props__.__dict__["trust_ca_cn"] = trust_ca_cn
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["verifying_ca"] = verifying_ca
             __props__.__dict__["websocket_override"] = websocket_override
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["adminPassword"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -1148,13 +1256,16 @@ class Fctems(pulumi.CustomResource):
             pull_sysinfo: Optional[pulumi.Input[str]] = None,
             pull_tags: Optional[pulumi.Input[str]] = None,
             pull_vulnerabilities: Optional[pulumi.Input[str]] = None,
+            send_tags_to_all_vdoms: Optional[pulumi.Input[str]] = None,
             serial_number: Optional[pulumi.Input[str]] = None,
             server: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             status_check_interval: Optional[pulumi.Input[int]] = None,
             tenant_id: Optional[pulumi.Input[str]] = None,
+            trust_ca_cn: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
+            verifying_ca: Optional[pulumi.Input[str]] = None,
             websocket_override: Optional[pulumi.Input[str]] = None) -> 'Fctems':
         """
         Get an existing Fctems resource's state with the given name, id, and optional extra
@@ -1165,12 +1276,12 @@ class Fctems(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] admin_password: FortiClient EMS admin password.
         :param pulumi.Input[str] admin_username: FortiClient EMS admin username.
-        :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         :param pulumi.Input[str] capabilities: List of EMS capabilities.
         :param pulumi.Input[str] certificate: FortiClient EMS certificate.
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] dirty_reason: Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
-        :param pulumi.Input[int] ems_id: EMS ID in order (1 - 5)
+        :param pulumi.Input[int] ems_id: EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         :param pulumi.Input[str] fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -1183,13 +1294,16 @@ class Fctems(pulumi.CustomResource):
         :param pulumi.Input[str] pull_sysinfo: Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_tags: Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_vulnerabilities: Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] send_tags_to_all_vdoms: Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
         :param pulumi.Input[str] serial_number: FortiClient EMS Serial Number.
         :param pulumi.Input[str] server: FortiClient EMS FQDN or IPv4 address.
         :param pulumi.Input[str] source_ip: REST API call source IP.
         :param pulumi.Input[str] status: Enable or disable this EMS configuration. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] status_check_interval: FortiClient EMS call timeout in seconds (1 - 120 seconds, default = 5).
         :param pulumi.Input[str] tenant_id: EMS Tenant ID.
+        :param pulumi.Input[str] trust_ca_cn: Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] verifying_ca: Lowest CA cert on Fortigate in verified EMS cert chain.
         :param pulumi.Input[str] websocket_override: Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1216,13 +1330,16 @@ class Fctems(pulumi.CustomResource):
         __props__.__dict__["pull_sysinfo"] = pull_sysinfo
         __props__.__dict__["pull_tags"] = pull_tags
         __props__.__dict__["pull_vulnerabilities"] = pull_vulnerabilities
+        __props__.__dict__["send_tags_to_all_vdoms"] = send_tags_to_all_vdoms
         __props__.__dict__["serial_number"] = serial_number
         __props__.__dict__["server"] = server
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["status"] = status
         __props__.__dict__["status_check_interval"] = status_check_interval
         __props__.__dict__["tenant_id"] = tenant_id
+        __props__.__dict__["trust_ca_cn"] = trust_ca_cn
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["verifying_ca"] = verifying_ca
         __props__.__dict__["websocket_override"] = websocket_override
         return Fctems(resource_name, opts=opts, __props__=__props__)
 
@@ -1246,7 +1363,7 @@ class Fctems(pulumi.CustomResource):
     @pulumi.getter(name="callTimeout")
     def call_timeout(self) -> pulumi.Output[int]:
         """
-        FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         """
         return pulumi.get(self, "call_timeout")
 
@@ -1286,7 +1403,7 @@ class Fctems(pulumi.CustomResource):
     @pulumi.getter(name="emsId")
     def ems_id(self) -> pulumi.Output[int]:
         """
-        EMS ID in order (1 - 5)
+        EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         """
         return pulumi.get(self, "ems_id")
 
@@ -1387,6 +1504,14 @@ class Fctems(pulumi.CustomResource):
         return pulumi.get(self, "pull_vulnerabilities")
 
     @property
+    @pulumi.getter(name="sendTagsToAllVdoms")
+    def send_tags_to_all_vdoms(self) -> pulumi.Output[str]:
+        """
+        Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "send_tags_to_all_vdoms")
+
+    @property
     @pulumi.getter(name="serialNumber")
     def serial_number(self) -> pulumi.Output[str]:
         """
@@ -1435,12 +1560,28 @@ class Fctems(pulumi.CustomResource):
         return pulumi.get(self, "tenant_id")
 
     @property
+    @pulumi.getter(name="trustCaCn")
+    def trust_ca_cn(self) -> pulumi.Output[str]:
+        """
+        Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "trust_ca_cn")
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> pulumi.Output[Optional[str]]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="verifyingCa")
+    def verifying_ca(self) -> pulumi.Output[str]:
+        """
+        Lowest CA cert on Fortigate in verified EMS cert chain.
+        """
+        return pulumi.get(self, "verifying_ca")
 
     @property
     @pulumi.getter(name="websocketOverride")

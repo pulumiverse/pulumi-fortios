@@ -73,6 +73,8 @@ type Nat64 struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
 	GenerateIpv6FragmentHeader pulumi.StringOutput `pulumi:"generateIpv6FragmentHeader"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
 	Nat46ForceIpv4PacketForwarding pulumi.StringOutput `pulumi:"nat46ForceIpv4PacketForwarding"`
 	// NAT64 prefix must be ::/96 (default = 64:ff9b::/96).
@@ -126,6 +128,8 @@ type nat64State struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
 	GenerateIpv6FragmentHeader *string `pulumi:"generateIpv6FragmentHeader"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
 	Nat46ForceIpv4PacketForwarding *string `pulumi:"nat46ForceIpv4PacketForwarding"`
 	// NAT64 prefix must be ::/96 (default = 64:ff9b::/96).
@@ -147,6 +151,8 @@ type Nat64State struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
 	GenerateIpv6FragmentHeader pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
 	Nat46ForceIpv4PacketForwarding pulumi.StringPtrInput
 	// NAT64 prefix must be ::/96 (default = 64:ff9b::/96).
@@ -172,6 +178,8 @@ type nat64Args struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
 	GenerateIpv6FragmentHeader *string `pulumi:"generateIpv6FragmentHeader"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
 	Nat46ForceIpv4PacketForwarding *string `pulumi:"nat46ForceIpv4PacketForwarding"`
 	// NAT64 prefix must be ::/96 (default = 64:ff9b::/96).
@@ -194,6 +202,8 @@ type Nat64Args struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
 	GenerateIpv6FragmentHeader pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
 	Nat46ForceIpv4PacketForwarding pulumi.StringPtrInput
 	// NAT64 prefix must be ::/96 (default = 64:ff9b::/96).
@@ -308,6 +318,11 @@ func (o Nat64Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
 func (o Nat64Output) GenerateIpv6FragmentHeader() pulumi.StringOutput {
 	return o.ApplyT(func(v *Nat64) pulumi.StringOutput { return v.GenerateIpv6FragmentHeader }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Nat64Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Nat64) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.

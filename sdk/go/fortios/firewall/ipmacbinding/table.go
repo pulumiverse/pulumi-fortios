@@ -67,7 +67,7 @@ type Table struct {
 
 	// IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
 	Ip pulumi.StringOutput `pulumi:"ip"`
-	// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+	// MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
 	Mac pulumi.StringOutput `pulumi:"mac"`
 	// Name of the pair (optional, default = no name).
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -114,7 +114,7 @@ func GetTable(ctx *pulumi.Context,
 type tableState struct {
 	// IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
 	Ip *string `pulumi:"ip"`
-	// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+	// MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
 	Mac *string `pulumi:"mac"`
 	// Name of the pair (optional, default = no name).
 	Name *string `pulumi:"name"`
@@ -129,7 +129,7 @@ type tableState struct {
 type TableState struct {
 	// IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
 	Ip pulumi.StringPtrInput
-	// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+	// MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
 	Mac pulumi.StringPtrInput
 	// Name of the pair (optional, default = no name).
 	Name pulumi.StringPtrInput
@@ -148,7 +148,7 @@ func (TableState) ElementType() reflect.Type {
 type tableArgs struct {
 	// IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
 	Ip string `pulumi:"ip"`
-	// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+	// MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
 	Mac *string `pulumi:"mac"`
 	// Name of the pair (optional, default = no name).
 	Name *string `pulumi:"name"`
@@ -164,7 +164,7 @@ type tableArgs struct {
 type TableArgs struct {
 	// IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx).
 	Ip pulumi.StringInput
-	// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+	// MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
 	Mac pulumi.StringPtrInput
 	// Name of the pair (optional, default = no name).
 	Name pulumi.StringPtrInput
@@ -268,7 +268,7 @@ func (o TableOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v *Table) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
 }
 
-// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+// MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
 func (o TableOutput) Mac() pulumi.StringOutput {
 	return o.ApplyT(func(v *Table) pulumi.StringOutput { return v.Mac }).(pulumi.StringOutput)
 }

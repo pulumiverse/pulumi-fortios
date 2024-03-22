@@ -212,6 +212,10 @@ export class Phase1interface extends pulumi.CustomResource {
      */
     public readonly authusrgrp!: pulumi.Output<string>;
     /**
+     * Allow/block set-up of short-cut tunnels between different network IDs. Valid values: `allow`, `block`.
+     */
+    public readonly autoDiscoveryCrossover!: pulumi.Output<string>;
+    /**
      * Enable/disable forwarding auto-discovery short-cut messages. Valid values: `enable`, `disable`.
      */
     public readonly autoDiscoveryForwarder!: pulumi.Output<string>;
@@ -240,6 +244,10 @@ export class Phase1interface extends pulumi.CustomResource {
      */
     public readonly autoNegotiate!: pulumi.Output<string>;
     /**
+     * Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+     */
+    public readonly azureAdAutoconnect!: pulumi.Output<string>;
+    /**
      * Instruct unity clients about the backup gateway address(es). The structure of `backupGateway` block is documented below.
      */
     public readonly backupGateways!: pulumi.Output<outputs.vpn.ipsec.Phase1interfaceBackupGateway[] | undefined>;
@@ -251,6 +259,10 @@ export class Phase1interface extends pulumi.CustomResource {
      * Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
      */
     public readonly certIdValidation!: pulumi.Output<string>;
+    /**
+     * CA certificate trust store. Valid values: `local`, `ems`.
+     */
+    public readonly certTrustStore!: pulumi.Output<string>;
     /**
      * The names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
      */
@@ -279,6 +291,14 @@ export class Phase1interface extends pulumi.CustomResource {
      * Priority for default gateway route. A higher priority number signifies a less preferred route.
      */
     public readonly defaultGwPriority!: pulumi.Output<number>;
+    /**
+     * Device ID carried by the device ID notification.
+     */
+    public readonly devId!: pulumi.Output<string>;
+    /**
+     * Enable/disable device ID notification. Valid values: `disable`, `enable`.
+     */
+    public readonly devIdNotification!: pulumi.Output<string>;
     /**
      * Relay agent IPv6 link address to use in DHCP6 requests.
      */
@@ -328,6 +348,10 @@ export class Phase1interface extends pulumi.CustomResource {
      */
     public readonly eap!: pulumi.Output<string>;
     /**
+     * Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+     */
+    public readonly eapCertAuth!: pulumi.Output<string>;
+    /**
      * Peer group excluded from EAP authentication.
      */
     public readonly eapExcludePeergrp!: pulumi.Output<string>;
@@ -335,6 +359,10 @@ export class Phase1interface extends pulumi.CustomResource {
      * IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
      */
     public readonly eapIdentity!: pulumi.Output<string>;
+    /**
+     * Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+     */
+    public readonly emsSnCheck!: pulumi.Output<string>;
     /**
      * Local IPv4 address of GRE/VXLAN tunnel.
      */
@@ -368,6 +396,10 @@ export class Phase1interface extends pulumi.CustomResource {
      */
     public readonly esn!: pulumi.Output<string>;
     /**
+     * Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+     */
+    public readonly exchangeFgtDeviceId!: pulumi.Output<string>;
+    /**
      * Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
      */
     public readonly exchangeInterfaceIp!: pulumi.Output<string>;
@@ -380,6 +412,10 @@ export class Phase1interface extends pulumi.CustomResource {
      */
     public readonly exchangeIpAddr6!: pulumi.Output<string>;
     /**
+     * Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+     */
+    public readonly fallbackTcpThreshold!: pulumi.Output<number>;
+    /**
      * Number of base Forward Error Correction packets (1 - 100).
      */
     public readonly fecBase!: pulumi.Output<number>;
@@ -387,6 +423,10 @@ export class Phase1interface extends pulumi.CustomResource {
      * ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
      */
     public readonly fecCodec!: pulumi.Output<number>;
+    /**
+     * Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+     */
+    public readonly fecCodecString!: pulumi.Output<string>;
     /**
      * Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
      */
@@ -424,6 +464,10 @@ export class Phase1interface extends pulumi.CustomResource {
      */
     public readonly forticlientEnforcement!: pulumi.Output<string>;
     /**
+     * Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+     */
+    public readonly fortinetEsp!: pulumi.Output<string>;
+    /**
      * Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
      */
     public readonly fragmentation!: pulumi.Output<string>;
@@ -431,6 +475,10 @@ export class Phase1interface extends pulumi.CustomResource {
      * IKE fragmentation MTU (500 - 16000).
      */
     public readonly fragmentationMtu!: pulumi.Output<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
      */
@@ -467,6 +515,10 @@ export class Phase1interface extends pulumi.CustomResource {
      * Local physical, aggregate, or VLAN outgoing interface.
      */
     public readonly interface!: pulumi.Output<string>;
+    /**
+     * One or more internal domain names in quotes separated by spaces. The structure of `internalDomainList` block is documented below.
+     */
+    public readonly internalDomainLists!: pulumi.Output<outputs.vpn.ipsec.Phase1interfaceInternalDomainList[] | undefined>;
     /**
      * IP address reuse delay interval in seconds (0 - 28800).
      */
@@ -576,6 +628,10 @@ export class Phase1interface extends pulumi.CustomResource {
      */
     public readonly keylife!: pulumi.Output<number>;
     /**
+     * Key Management Services server.
+     */
+    public readonly kms!: pulumi.Output<string>;
+    /**
      * VPN tunnel underlay link cost.
      */
     public readonly linkCost!: pulumi.Output<number>;
@@ -635,6 +691,10 @@ export class Phase1interface extends pulumi.CustomResource {
      * Day of the week to recover once primary re-establishes. Valid values: `everyday`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
      */
     public readonly monitorHoldDownWeekday!: pulumi.Output<string>;
+    /**
+     * Minimum number of links to become degraded before activating this interface.  Zero (0) means all links must be down before activating this interface.
+     */
+    public readonly monitorMin!: pulumi.Output<number>;
     /**
      * IPsec remote gateway name.
      */
@@ -716,6 +776,14 @@ export class Phase1interface extends pulumi.CustomResource {
      */
     public readonly psksecretRemote!: pulumi.Output<string | undefined>;
     /**
+     * Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+     */
+    public readonly qkd!: pulumi.Output<string>;
+    /**
+     * Quantum Key Distribution (QKD) server profile.
+     */
+    public readonly qkdProfile!: pulumi.Output<string>;
+    /**
      * Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
      */
     public readonly reauth!: pulumi.Output<string>;
@@ -763,6 +831,10 @@ export class Phase1interface extends pulumi.CustomResource {
      * Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
      */
     public readonly suiteB!: pulumi.Output<string>;
+    /**
+     * Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+     */
+    public readonly transport!: pulumi.Output<string>;
     /**
      * Tunnel search method for when the interface is shared. Valid values: `selectors`, `nexthop`.
      */
@@ -821,6 +893,7 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["authpasswd"] = state ? state.authpasswd : undefined;
             resourceInputs["authusr"] = state ? state.authusr : undefined;
             resourceInputs["authusrgrp"] = state ? state.authusrgrp : undefined;
+            resourceInputs["autoDiscoveryCrossover"] = state ? state.autoDiscoveryCrossover : undefined;
             resourceInputs["autoDiscoveryForwarder"] = state ? state.autoDiscoveryForwarder : undefined;
             resourceInputs["autoDiscoveryOfferInterval"] = state ? state.autoDiscoveryOfferInterval : undefined;
             resourceInputs["autoDiscoveryPsk"] = state ? state.autoDiscoveryPsk : undefined;
@@ -828,9 +901,11 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["autoDiscoverySender"] = state ? state.autoDiscoverySender : undefined;
             resourceInputs["autoDiscoveryShortcuts"] = state ? state.autoDiscoveryShortcuts : undefined;
             resourceInputs["autoNegotiate"] = state ? state.autoNegotiate : undefined;
+            resourceInputs["azureAdAutoconnect"] = state ? state.azureAdAutoconnect : undefined;
             resourceInputs["backupGateways"] = state ? state.backupGateways : undefined;
             resourceInputs["banner"] = state ? state.banner : undefined;
             resourceInputs["certIdValidation"] = state ? state.certIdValidation : undefined;
+            resourceInputs["certTrustStore"] = state ? state.certTrustStore : undefined;
             resourceInputs["certificates"] = state ? state.certificates : undefined;
             resourceInputs["childlessIke"] = state ? state.childlessIke : undefined;
             resourceInputs["clientAutoNegotiate"] = state ? state.clientAutoNegotiate : undefined;
@@ -838,6 +913,8 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["defaultGw"] = state ? state.defaultGw : undefined;
             resourceInputs["defaultGwPriority"] = state ? state.defaultGwPriority : undefined;
+            resourceInputs["devId"] = state ? state.devId : undefined;
+            resourceInputs["devIdNotification"] = state ? state.devIdNotification : undefined;
             resourceInputs["dhcp6RaLinkaddr"] = state ? state.dhcp6RaLinkaddr : undefined;
             resourceInputs["dhcpRaGiaddr"] = state ? state.dhcpRaGiaddr : undefined;
             resourceInputs["dhgrp"] = state ? state.dhgrp : undefined;
@@ -850,8 +927,10 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["dpdRetryinterval"] = state ? state.dpdRetryinterval : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["eap"] = state ? state.eap : undefined;
+            resourceInputs["eapCertAuth"] = state ? state.eapCertAuth : undefined;
             resourceInputs["eapExcludePeergrp"] = state ? state.eapExcludePeergrp : undefined;
             resourceInputs["eapIdentity"] = state ? state.eapIdentity : undefined;
+            resourceInputs["emsSnCheck"] = state ? state.emsSnCheck : undefined;
             resourceInputs["encapLocalGw4"] = state ? state.encapLocalGw4 : undefined;
             resourceInputs["encapLocalGw6"] = state ? state.encapLocalGw6 : undefined;
             resourceInputs["encapRemoteGw4"] = state ? state.encapRemoteGw4 : undefined;
@@ -860,11 +939,14 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["encapsulationAddress"] = state ? state.encapsulationAddress : undefined;
             resourceInputs["enforceUniqueId"] = state ? state.enforceUniqueId : undefined;
             resourceInputs["esn"] = state ? state.esn : undefined;
+            resourceInputs["exchangeFgtDeviceId"] = state ? state.exchangeFgtDeviceId : undefined;
             resourceInputs["exchangeInterfaceIp"] = state ? state.exchangeInterfaceIp : undefined;
             resourceInputs["exchangeIpAddr4"] = state ? state.exchangeIpAddr4 : undefined;
             resourceInputs["exchangeIpAddr6"] = state ? state.exchangeIpAddr6 : undefined;
+            resourceInputs["fallbackTcpThreshold"] = state ? state.fallbackTcpThreshold : undefined;
             resourceInputs["fecBase"] = state ? state.fecBase : undefined;
             resourceInputs["fecCodec"] = state ? state.fecCodec : undefined;
+            resourceInputs["fecCodecString"] = state ? state.fecCodecString : undefined;
             resourceInputs["fecEgress"] = state ? state.fecEgress : undefined;
             resourceInputs["fecHealthCheck"] = state ? state.fecHealthCheck : undefined;
             resourceInputs["fecIngress"] = state ? state.fecIngress : undefined;
@@ -874,8 +956,10 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["fecSendTimeout"] = state ? state.fecSendTimeout : undefined;
             resourceInputs["fgspSync"] = state ? state.fgspSync : undefined;
             resourceInputs["forticlientEnforcement"] = state ? state.forticlientEnforcement : undefined;
+            resourceInputs["fortinetEsp"] = state ? state.fortinetEsp : undefined;
             resourceInputs["fragmentation"] = state ? state.fragmentation : undefined;
             resourceInputs["fragmentationMtu"] = state ? state.fragmentationMtu : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupAuthentication"] = state ? state.groupAuthentication : undefined;
             resourceInputs["groupAuthenticationSecret"] = state ? state.groupAuthenticationSecret : undefined;
             resourceInputs["haSyncEspSeqno"] = state ? state.haSyncEspSeqno : undefined;
@@ -885,6 +969,7 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["inboundDscpCopy"] = state ? state.inboundDscpCopy : undefined;
             resourceInputs["includeLocalLan"] = state ? state.includeLocalLan : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["internalDomainLists"] = state ? state.internalDomainLists : undefined;
             resourceInputs["ipDelayInterval"] = state ? state.ipDelayInterval : undefined;
             resourceInputs["ipFragmentation"] = state ? state.ipFragmentation : undefined;
             resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
@@ -912,6 +997,7 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["ipv6StartIp"] = state ? state.ipv6StartIp : undefined;
             resourceInputs["keepalive"] = state ? state.keepalive : undefined;
             resourceInputs["keylife"] = state ? state.keylife : undefined;
+            resourceInputs["kms"] = state ? state.kms : undefined;
             resourceInputs["linkCost"] = state ? state.linkCost : undefined;
             resourceInputs["localGw"] = state ? state.localGw : undefined;
             resourceInputs["localGw6"] = state ? state.localGw6 : undefined;
@@ -927,6 +1013,7 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["monitorHoldDownTime"] = state ? state.monitorHoldDownTime : undefined;
             resourceInputs["monitorHoldDownType"] = state ? state.monitorHoldDownType : undefined;
             resourceInputs["monitorHoldDownWeekday"] = state ? state.monitorHoldDownWeekday : undefined;
+            resourceInputs["monitorMin"] = state ? state.monitorMin : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nattraversal"] = state ? state.nattraversal : undefined;
             resourceInputs["negotiateTimeout"] = state ? state.negotiateTimeout : undefined;
@@ -947,6 +1034,8 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["proposal"] = state ? state.proposal : undefined;
             resourceInputs["psksecret"] = state ? state.psksecret : undefined;
             resourceInputs["psksecretRemote"] = state ? state.psksecretRemote : undefined;
+            resourceInputs["qkd"] = state ? state.qkd : undefined;
+            resourceInputs["qkdProfile"] = state ? state.qkdProfile : undefined;
             resourceInputs["reauth"] = state ? state.reauth : undefined;
             resourceInputs["rekey"] = state ? state.rekey : undefined;
             resourceInputs["remoteGw"] = state ? state.remoteGw : undefined;
@@ -959,6 +1048,7 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["signatureHashAlg"] = state ? state.signatureHashAlg : undefined;
             resourceInputs["splitIncludeService"] = state ? state.splitIncludeService : undefined;
             resourceInputs["suiteB"] = state ? state.suiteB : undefined;
+            resourceInputs["transport"] = state ? state.transport : undefined;
             resourceInputs["tunnelSearch"] = state ? state.tunnelSearch : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["unitySupport"] = state ? state.unitySupport : undefined;
@@ -987,6 +1077,7 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["authpasswd"] = args?.authpasswd ? pulumi.secret(args.authpasswd) : undefined;
             resourceInputs["authusr"] = args ? args.authusr : undefined;
             resourceInputs["authusrgrp"] = args ? args.authusrgrp : undefined;
+            resourceInputs["autoDiscoveryCrossover"] = args ? args.autoDiscoveryCrossover : undefined;
             resourceInputs["autoDiscoveryForwarder"] = args ? args.autoDiscoveryForwarder : undefined;
             resourceInputs["autoDiscoveryOfferInterval"] = args ? args.autoDiscoveryOfferInterval : undefined;
             resourceInputs["autoDiscoveryPsk"] = args ? args.autoDiscoveryPsk : undefined;
@@ -994,9 +1085,11 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["autoDiscoverySender"] = args ? args.autoDiscoverySender : undefined;
             resourceInputs["autoDiscoveryShortcuts"] = args ? args.autoDiscoveryShortcuts : undefined;
             resourceInputs["autoNegotiate"] = args ? args.autoNegotiate : undefined;
+            resourceInputs["azureAdAutoconnect"] = args ? args.azureAdAutoconnect : undefined;
             resourceInputs["backupGateways"] = args ? args.backupGateways : undefined;
             resourceInputs["banner"] = args ? args.banner : undefined;
             resourceInputs["certIdValidation"] = args ? args.certIdValidation : undefined;
+            resourceInputs["certTrustStore"] = args ? args.certTrustStore : undefined;
             resourceInputs["certificates"] = args ? args.certificates : undefined;
             resourceInputs["childlessIke"] = args ? args.childlessIke : undefined;
             resourceInputs["clientAutoNegotiate"] = args ? args.clientAutoNegotiate : undefined;
@@ -1004,6 +1097,8 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["defaultGw"] = args ? args.defaultGw : undefined;
             resourceInputs["defaultGwPriority"] = args ? args.defaultGwPriority : undefined;
+            resourceInputs["devId"] = args ? args.devId : undefined;
+            resourceInputs["devIdNotification"] = args ? args.devIdNotification : undefined;
             resourceInputs["dhcp6RaLinkaddr"] = args ? args.dhcp6RaLinkaddr : undefined;
             resourceInputs["dhcpRaGiaddr"] = args ? args.dhcpRaGiaddr : undefined;
             resourceInputs["dhgrp"] = args ? args.dhgrp : undefined;
@@ -1016,8 +1111,10 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["dpdRetryinterval"] = args ? args.dpdRetryinterval : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["eap"] = args ? args.eap : undefined;
+            resourceInputs["eapCertAuth"] = args ? args.eapCertAuth : undefined;
             resourceInputs["eapExcludePeergrp"] = args ? args.eapExcludePeergrp : undefined;
             resourceInputs["eapIdentity"] = args ? args.eapIdentity : undefined;
+            resourceInputs["emsSnCheck"] = args ? args.emsSnCheck : undefined;
             resourceInputs["encapLocalGw4"] = args ? args.encapLocalGw4 : undefined;
             resourceInputs["encapLocalGw6"] = args ? args.encapLocalGw6 : undefined;
             resourceInputs["encapRemoteGw4"] = args ? args.encapRemoteGw4 : undefined;
@@ -1026,11 +1123,14 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["encapsulationAddress"] = args ? args.encapsulationAddress : undefined;
             resourceInputs["enforceUniqueId"] = args ? args.enforceUniqueId : undefined;
             resourceInputs["esn"] = args ? args.esn : undefined;
+            resourceInputs["exchangeFgtDeviceId"] = args ? args.exchangeFgtDeviceId : undefined;
             resourceInputs["exchangeInterfaceIp"] = args ? args.exchangeInterfaceIp : undefined;
             resourceInputs["exchangeIpAddr4"] = args ? args.exchangeIpAddr4 : undefined;
             resourceInputs["exchangeIpAddr6"] = args ? args.exchangeIpAddr6 : undefined;
+            resourceInputs["fallbackTcpThreshold"] = args ? args.fallbackTcpThreshold : undefined;
             resourceInputs["fecBase"] = args ? args.fecBase : undefined;
             resourceInputs["fecCodec"] = args ? args.fecCodec : undefined;
+            resourceInputs["fecCodecString"] = args ? args.fecCodecString : undefined;
             resourceInputs["fecEgress"] = args ? args.fecEgress : undefined;
             resourceInputs["fecHealthCheck"] = args ? args.fecHealthCheck : undefined;
             resourceInputs["fecIngress"] = args ? args.fecIngress : undefined;
@@ -1040,8 +1140,10 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["fecSendTimeout"] = args ? args.fecSendTimeout : undefined;
             resourceInputs["fgspSync"] = args ? args.fgspSync : undefined;
             resourceInputs["forticlientEnforcement"] = args ? args.forticlientEnforcement : undefined;
+            resourceInputs["fortinetEsp"] = args ? args.fortinetEsp : undefined;
             resourceInputs["fragmentation"] = args ? args.fragmentation : undefined;
             resourceInputs["fragmentationMtu"] = args ? args.fragmentationMtu : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupAuthentication"] = args ? args.groupAuthentication : undefined;
             resourceInputs["groupAuthenticationSecret"] = args?.groupAuthenticationSecret ? pulumi.secret(args.groupAuthenticationSecret) : undefined;
             resourceInputs["haSyncEspSeqno"] = args ? args.haSyncEspSeqno : undefined;
@@ -1051,6 +1153,7 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["inboundDscpCopy"] = args ? args.inboundDscpCopy : undefined;
             resourceInputs["includeLocalLan"] = args ? args.includeLocalLan : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["internalDomainLists"] = args ? args.internalDomainLists : undefined;
             resourceInputs["ipDelayInterval"] = args ? args.ipDelayInterval : undefined;
             resourceInputs["ipFragmentation"] = args ? args.ipFragmentation : undefined;
             resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
@@ -1078,6 +1181,7 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["ipv6StartIp"] = args ? args.ipv6StartIp : undefined;
             resourceInputs["keepalive"] = args ? args.keepalive : undefined;
             resourceInputs["keylife"] = args ? args.keylife : undefined;
+            resourceInputs["kms"] = args ? args.kms : undefined;
             resourceInputs["linkCost"] = args ? args.linkCost : undefined;
             resourceInputs["localGw"] = args ? args.localGw : undefined;
             resourceInputs["localGw6"] = args ? args.localGw6 : undefined;
@@ -1093,6 +1197,7 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["monitorHoldDownTime"] = args ? args.monitorHoldDownTime : undefined;
             resourceInputs["monitorHoldDownType"] = args ? args.monitorHoldDownType : undefined;
             resourceInputs["monitorHoldDownWeekday"] = args ? args.monitorHoldDownWeekday : undefined;
+            resourceInputs["monitorMin"] = args ? args.monitorMin : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nattraversal"] = args ? args.nattraversal : undefined;
             resourceInputs["negotiateTimeout"] = args ? args.negotiateTimeout : undefined;
@@ -1113,6 +1218,8 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["proposal"] = args ? args.proposal : undefined;
             resourceInputs["psksecret"] = args?.psksecret ? pulumi.secret(args.psksecret) : undefined;
             resourceInputs["psksecretRemote"] = args?.psksecretRemote ? pulumi.secret(args.psksecretRemote) : undefined;
+            resourceInputs["qkd"] = args ? args.qkd : undefined;
+            resourceInputs["qkdProfile"] = args ? args.qkdProfile : undefined;
             resourceInputs["reauth"] = args ? args.reauth : undefined;
             resourceInputs["rekey"] = args ? args.rekey : undefined;
             resourceInputs["remoteGw"] = args ? args.remoteGw : undefined;
@@ -1125,6 +1232,7 @@ export class Phase1interface extends pulumi.CustomResource {
             resourceInputs["signatureHashAlg"] = args ? args.signatureHashAlg : undefined;
             resourceInputs["splitIncludeService"] = args ? args.splitIncludeService : undefined;
             resourceInputs["suiteB"] = args ? args.suiteB : undefined;
+            resourceInputs["transport"] = args ? args.transport : undefined;
             resourceInputs["tunnelSearch"] = args ? args.tunnelSearch : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["unitySupport"] = args ? args.unitySupport : undefined;
@@ -1194,6 +1302,10 @@ export interface Phase1interfaceState {
      */
     authusrgrp?: pulumi.Input<string>;
     /**
+     * Allow/block set-up of short-cut tunnels between different network IDs. Valid values: `allow`, `block`.
+     */
+    autoDiscoveryCrossover?: pulumi.Input<string>;
+    /**
      * Enable/disable forwarding auto-discovery short-cut messages. Valid values: `enable`, `disable`.
      */
     autoDiscoveryForwarder?: pulumi.Input<string>;
@@ -1222,6 +1334,10 @@ export interface Phase1interfaceState {
      */
     autoNegotiate?: pulumi.Input<string>;
     /**
+     * Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+     */
+    azureAdAutoconnect?: pulumi.Input<string>;
+    /**
      * Instruct unity clients about the backup gateway address(es). The structure of `backupGateway` block is documented below.
      */
     backupGateways?: pulumi.Input<pulumi.Input<inputs.vpn.ipsec.Phase1interfaceBackupGateway>[]>;
@@ -1233,6 +1349,10 @@ export interface Phase1interfaceState {
      * Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
      */
     certIdValidation?: pulumi.Input<string>;
+    /**
+     * CA certificate trust store. Valid values: `local`, `ems`.
+     */
+    certTrustStore?: pulumi.Input<string>;
     /**
      * The names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
      */
@@ -1261,6 +1381,14 @@ export interface Phase1interfaceState {
      * Priority for default gateway route. A higher priority number signifies a less preferred route.
      */
     defaultGwPriority?: pulumi.Input<number>;
+    /**
+     * Device ID carried by the device ID notification.
+     */
+    devId?: pulumi.Input<string>;
+    /**
+     * Enable/disable device ID notification. Valid values: `disable`, `enable`.
+     */
+    devIdNotification?: pulumi.Input<string>;
     /**
      * Relay agent IPv6 link address to use in DHCP6 requests.
      */
@@ -1310,6 +1438,10 @@ export interface Phase1interfaceState {
      */
     eap?: pulumi.Input<string>;
     /**
+     * Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+     */
+    eapCertAuth?: pulumi.Input<string>;
+    /**
      * Peer group excluded from EAP authentication.
      */
     eapExcludePeergrp?: pulumi.Input<string>;
@@ -1317,6 +1449,10 @@ export interface Phase1interfaceState {
      * IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
      */
     eapIdentity?: pulumi.Input<string>;
+    /**
+     * Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+     */
+    emsSnCheck?: pulumi.Input<string>;
     /**
      * Local IPv4 address of GRE/VXLAN tunnel.
      */
@@ -1350,6 +1486,10 @@ export interface Phase1interfaceState {
      */
     esn?: pulumi.Input<string>;
     /**
+     * Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+     */
+    exchangeFgtDeviceId?: pulumi.Input<string>;
+    /**
      * Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
      */
     exchangeInterfaceIp?: pulumi.Input<string>;
@@ -1362,6 +1502,10 @@ export interface Phase1interfaceState {
      */
     exchangeIpAddr6?: pulumi.Input<string>;
     /**
+     * Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+     */
+    fallbackTcpThreshold?: pulumi.Input<number>;
+    /**
      * Number of base Forward Error Correction packets (1 - 100).
      */
     fecBase?: pulumi.Input<number>;
@@ -1369,6 +1513,10 @@ export interface Phase1interfaceState {
      * ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
      */
     fecCodec?: pulumi.Input<number>;
+    /**
+     * Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+     */
+    fecCodecString?: pulumi.Input<string>;
     /**
      * Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
      */
@@ -1406,6 +1554,10 @@ export interface Phase1interfaceState {
      */
     forticlientEnforcement?: pulumi.Input<string>;
     /**
+     * Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+     */
+    fortinetEsp?: pulumi.Input<string>;
+    /**
      * Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
      */
     fragmentation?: pulumi.Input<string>;
@@ -1413,6 +1565,10 @@ export interface Phase1interfaceState {
      * IKE fragmentation MTU (500 - 16000).
      */
     fragmentationMtu?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
      */
@@ -1449,6 +1605,10 @@ export interface Phase1interfaceState {
      * Local physical, aggregate, or VLAN outgoing interface.
      */
     interface?: pulumi.Input<string>;
+    /**
+     * One or more internal domain names in quotes separated by spaces. The structure of `internalDomainList` block is documented below.
+     */
+    internalDomainLists?: pulumi.Input<pulumi.Input<inputs.vpn.ipsec.Phase1interfaceInternalDomainList>[]>;
     /**
      * IP address reuse delay interval in seconds (0 - 28800).
      */
@@ -1558,6 +1718,10 @@ export interface Phase1interfaceState {
      */
     keylife?: pulumi.Input<number>;
     /**
+     * Key Management Services server.
+     */
+    kms?: pulumi.Input<string>;
+    /**
      * VPN tunnel underlay link cost.
      */
     linkCost?: pulumi.Input<number>;
@@ -1617,6 +1781,10 @@ export interface Phase1interfaceState {
      * Day of the week to recover once primary re-establishes. Valid values: `everyday`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
      */
     monitorHoldDownWeekday?: pulumi.Input<string>;
+    /**
+     * Minimum number of links to become degraded before activating this interface.  Zero (0) means all links must be down before activating this interface.
+     */
+    monitorMin?: pulumi.Input<number>;
     /**
      * IPsec remote gateway name.
      */
@@ -1698,6 +1866,14 @@ export interface Phase1interfaceState {
      */
     psksecretRemote?: pulumi.Input<string>;
     /**
+     * Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+     */
+    qkd?: pulumi.Input<string>;
+    /**
+     * Quantum Key Distribution (QKD) server profile.
+     */
+    qkdProfile?: pulumi.Input<string>;
+    /**
      * Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
      */
     reauth?: pulumi.Input<string>;
@@ -1745,6 +1921,10 @@ export interface Phase1interfaceState {
      * Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
      */
     suiteB?: pulumi.Input<string>;
+    /**
+     * Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+     */
+    transport?: pulumi.Input<string>;
     /**
      * Tunnel search method for when the interface is shared. Valid values: `selectors`, `nexthop`.
      */
@@ -1832,6 +2012,10 @@ export interface Phase1interfaceArgs {
      */
     authusrgrp?: pulumi.Input<string>;
     /**
+     * Allow/block set-up of short-cut tunnels between different network IDs. Valid values: `allow`, `block`.
+     */
+    autoDiscoveryCrossover?: pulumi.Input<string>;
+    /**
      * Enable/disable forwarding auto-discovery short-cut messages. Valid values: `enable`, `disable`.
      */
     autoDiscoveryForwarder?: pulumi.Input<string>;
@@ -1860,6 +2044,10 @@ export interface Phase1interfaceArgs {
      */
     autoNegotiate?: pulumi.Input<string>;
     /**
+     * Enable/disable Azure AD Auto-Connect for FortiClient. Valid values: `enable`, `disable`.
+     */
+    azureAdAutoconnect?: pulumi.Input<string>;
+    /**
      * Instruct unity clients about the backup gateway address(es). The structure of `backupGateway` block is documented below.
      */
     backupGateways?: pulumi.Input<pulumi.Input<inputs.vpn.ipsec.Phase1interfaceBackupGateway>[]>;
@@ -1871,6 +2059,10 @@ export interface Phase1interfaceArgs {
      * Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
      */
     certIdValidation?: pulumi.Input<string>;
+    /**
+     * CA certificate trust store. Valid values: `local`, `ems`.
+     */
+    certTrustStore?: pulumi.Input<string>;
     /**
      * The names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
      */
@@ -1899,6 +2091,14 @@ export interface Phase1interfaceArgs {
      * Priority for default gateway route. A higher priority number signifies a less preferred route.
      */
     defaultGwPriority?: pulumi.Input<number>;
+    /**
+     * Device ID carried by the device ID notification.
+     */
+    devId?: pulumi.Input<string>;
+    /**
+     * Enable/disable device ID notification. Valid values: `disable`, `enable`.
+     */
+    devIdNotification?: pulumi.Input<string>;
     /**
      * Relay agent IPv6 link address to use in DHCP6 requests.
      */
@@ -1948,6 +2148,10 @@ export interface Phase1interfaceArgs {
      */
     eap?: pulumi.Input<string>;
     /**
+     * Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. Valid values: `enable`, `disable`.
+     */
+    eapCertAuth?: pulumi.Input<string>;
+    /**
      * Peer group excluded from EAP authentication.
      */
     eapExcludePeergrp?: pulumi.Input<string>;
@@ -1955,6 +2159,10 @@ export interface Phase1interfaceArgs {
      * IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
      */
     eapIdentity?: pulumi.Input<string>;
+    /**
+     * Enable/disable verification of EMS serial number. Valid values: `enable`, `disable`.
+     */
+    emsSnCheck?: pulumi.Input<string>;
     /**
      * Local IPv4 address of GRE/VXLAN tunnel.
      */
@@ -1988,6 +2196,10 @@ export interface Phase1interfaceArgs {
      */
     esn?: pulumi.Input<string>;
     /**
+     * Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. Valid values: `enable`, `disable`.
+     */
+    exchangeFgtDeviceId?: pulumi.Input<string>;
+    /**
      * Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
      */
     exchangeInterfaceIp?: pulumi.Input<string>;
@@ -2000,6 +2212,10 @@ export interface Phase1interfaceArgs {
      */
     exchangeIpAddr6?: pulumi.Input<string>;
     /**
+     * Timeout in seconds before falling back IKE/IPsec traffic to tcp.
+     */
+    fallbackTcpThreshold?: pulumi.Input<number>;
+    /**
      * Number of base Forward Error Correction packets (1 - 100).
      */
     fecBase?: pulumi.Input<number>;
@@ -2007,6 +2223,10 @@ export interface Phase1interfaceArgs {
      * ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
      */
     fecCodec?: pulumi.Input<number>;
+    /**
+     * Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+     */
+    fecCodecString?: pulumi.Input<string>;
     /**
      * Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
      */
@@ -2044,6 +2264,10 @@ export interface Phase1interfaceArgs {
      */
     forticlientEnforcement?: pulumi.Input<string>;
     /**
+     * Enable/disable Fortinet ESP encapsulaton. Valid values: `enable`, `disable`.
+     */
+    fortinetEsp?: pulumi.Input<string>;
+    /**
      * Enable/disable fragment IKE message on re-transmission. Valid values: `enable`, `disable`.
      */
     fragmentation?: pulumi.Input<string>;
@@ -2051,6 +2275,10 @@ export interface Phase1interfaceArgs {
      * IKE fragmentation MTU (500 - 16000).
      */
     fragmentationMtu?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
      */
@@ -2087,6 +2315,10 @@ export interface Phase1interfaceArgs {
      * Local physical, aggregate, or VLAN outgoing interface.
      */
     interface: pulumi.Input<string>;
+    /**
+     * One or more internal domain names in quotes separated by spaces. The structure of `internalDomainList` block is documented below.
+     */
+    internalDomainLists?: pulumi.Input<pulumi.Input<inputs.vpn.ipsec.Phase1interfaceInternalDomainList>[]>;
     /**
      * IP address reuse delay interval in seconds (0 - 28800).
      */
@@ -2196,6 +2428,10 @@ export interface Phase1interfaceArgs {
      */
     keylife?: pulumi.Input<number>;
     /**
+     * Key Management Services server.
+     */
+    kms?: pulumi.Input<string>;
+    /**
      * VPN tunnel underlay link cost.
      */
     linkCost?: pulumi.Input<number>;
@@ -2255,6 +2491,10 @@ export interface Phase1interfaceArgs {
      * Day of the week to recover once primary re-establishes. Valid values: `everyday`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
      */
     monitorHoldDownWeekday?: pulumi.Input<string>;
+    /**
+     * Minimum number of links to become degraded before activating this interface.  Zero (0) means all links must be down before activating this interface.
+     */
+    monitorMin?: pulumi.Input<number>;
     /**
      * IPsec remote gateway name.
      */
@@ -2336,6 +2576,14 @@ export interface Phase1interfaceArgs {
      */
     psksecretRemote?: pulumi.Input<string>;
     /**
+     * Enable/disable use of Quantum Key Distribution (QKD) server. Valid values: `disable`, `allow`, `require`.
+     */
+    qkd?: pulumi.Input<string>;
+    /**
+     * Quantum Key Distribution (QKD) server profile.
+     */
+    qkdProfile?: pulumi.Input<string>;
+    /**
      * Enable/disable re-authentication upon IKE SA lifetime expiration. Valid values: `disable`, `enable`.
      */
     reauth?: pulumi.Input<string>;
@@ -2383,6 +2631,10 @@ export interface Phase1interfaceArgs {
      * Use Suite-B. Valid values: `disable`, `suite-b-gcm-128`, `suite-b-gcm-256`.
      */
     suiteB?: pulumi.Input<string>;
+    /**
+     * Set IKE transport protocol. Valid values: `udp`, `udp-fallback-tcp`, `tcp`.
+     */
+    transport?: pulumi.Input<string>;
     /**
      * Tunnel search method for when the interface is shared. Valid values: `selectors`, `nexthop`.
      */

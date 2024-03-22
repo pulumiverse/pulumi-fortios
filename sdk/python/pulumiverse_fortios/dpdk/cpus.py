@@ -19,7 +19,8 @@ class CpusArgs:
                  rx_cpus: Optional[pulumi.Input[str]] = None,
                  tx_cpus: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
-                 vnp_cpus: Optional[pulumi.Input[str]] = None):
+                 vnp_cpus: Optional[pulumi.Input[str]] = None,
+                 vnpsp_cpus: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Cpus resource.
         :param pulumi.Input[str] ips_cpus: CPUs enabled to run DPDK IPS engines.
@@ -28,6 +29,7 @@ class CpusArgs:
         :param pulumi.Input[str] tx_cpus: CPUs enabled to run DPDK TX engines.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vnp_cpus: CPUs enabled to run DPDK VNP engines.
+        :param pulumi.Input[str] vnpsp_cpus: CPUs enabled to run DPDK VNP slow path.
         """
         if ips_cpus is not None:
             pulumi.set(__self__, "ips_cpus", ips_cpus)
@@ -41,6 +43,8 @@ class CpusArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vnp_cpus is not None:
             pulumi.set(__self__, "vnp_cpus", vnp_cpus)
+        if vnpsp_cpus is not None:
+            pulumi.set(__self__, "vnpsp_cpus", vnpsp_cpus)
 
     @property
     @pulumi.getter(name="ipsCpus")
@@ -113,6 +117,18 @@ class CpusArgs:
     @vnp_cpus.setter
     def vnp_cpus(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vnp_cpus", value)
+
+    @property
+    @pulumi.getter(name="vnpspCpus")
+    def vnpsp_cpus(self) -> Optional[pulumi.Input[str]]:
+        """
+        CPUs enabled to run DPDK VNP slow path.
+        """
+        return pulumi.get(self, "vnpsp_cpus")
+
+    @vnpsp_cpus.setter
+    def vnpsp_cpus(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vnpsp_cpus", value)
 
 
 @pulumi.input_type
@@ -123,7 +139,8 @@ class _CpusState:
                  rx_cpus: Optional[pulumi.Input[str]] = None,
                  tx_cpus: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
-                 vnp_cpus: Optional[pulumi.Input[str]] = None):
+                 vnp_cpus: Optional[pulumi.Input[str]] = None,
+                 vnpsp_cpus: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Cpus resources.
         :param pulumi.Input[str] ips_cpus: CPUs enabled to run DPDK IPS engines.
@@ -132,6 +149,7 @@ class _CpusState:
         :param pulumi.Input[str] tx_cpus: CPUs enabled to run DPDK TX engines.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vnp_cpus: CPUs enabled to run DPDK VNP engines.
+        :param pulumi.Input[str] vnpsp_cpus: CPUs enabled to run DPDK VNP slow path.
         """
         if ips_cpus is not None:
             pulumi.set(__self__, "ips_cpus", ips_cpus)
@@ -145,6 +163,8 @@ class _CpusState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vnp_cpus is not None:
             pulumi.set(__self__, "vnp_cpus", vnp_cpus)
+        if vnpsp_cpus is not None:
+            pulumi.set(__self__, "vnpsp_cpus", vnpsp_cpus)
 
     @property
     @pulumi.getter(name="ipsCpus")
@@ -217,6 +237,18 @@ class _CpusState:
     @vnp_cpus.setter
     def vnp_cpus(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vnp_cpus", value)
+
+    @property
+    @pulumi.getter(name="vnpspCpus")
+    def vnpsp_cpus(self) -> Optional[pulumi.Input[str]]:
+        """
+        CPUs enabled to run DPDK VNP slow path.
+        """
+        return pulumi.get(self, "vnpsp_cpus")
+
+    @vnpsp_cpus.setter
+    def vnpsp_cpus(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vnpsp_cpus", value)
 
 
 class Cpus(pulumi.CustomResource):
@@ -230,6 +262,7 @@ class Cpus(pulumi.CustomResource):
                  tx_cpus: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vnp_cpus: Optional[pulumi.Input[str]] = None,
+                 vnpsp_cpus: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Configure CPUs enabled to run engines in each DPDK stage. Applies to FortiOS Version `>= 6.2.4`.
@@ -260,6 +293,7 @@ class Cpus(pulumi.CustomResource):
         :param pulumi.Input[str] tx_cpus: CPUs enabled to run DPDK TX engines.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vnp_cpus: CPUs enabled to run DPDK VNP engines.
+        :param pulumi.Input[str] vnpsp_cpus: CPUs enabled to run DPDK VNP slow path.
         """
         ...
     @overload
@@ -309,6 +343,7 @@ class Cpus(pulumi.CustomResource):
                  tx_cpus: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vnp_cpus: Optional[pulumi.Input[str]] = None,
+                 vnpsp_cpus: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -324,6 +359,7 @@ class Cpus(pulumi.CustomResource):
             __props__.__dict__["tx_cpus"] = tx_cpus
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["vnp_cpus"] = vnp_cpus
+            __props__.__dict__["vnpsp_cpus"] = vnpsp_cpus
         super(Cpus, __self__).__init__(
             'fortios:dpdk/cpus:Cpus',
             resource_name,
@@ -339,7 +375,8 @@ class Cpus(pulumi.CustomResource):
             rx_cpus: Optional[pulumi.Input[str]] = None,
             tx_cpus: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
-            vnp_cpus: Optional[pulumi.Input[str]] = None) -> 'Cpus':
+            vnp_cpus: Optional[pulumi.Input[str]] = None,
+            vnpsp_cpus: Optional[pulumi.Input[str]] = None) -> 'Cpus':
         """
         Get an existing Cpus resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -353,6 +390,7 @@ class Cpus(pulumi.CustomResource):
         :param pulumi.Input[str] tx_cpus: CPUs enabled to run DPDK TX engines.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vnp_cpus: CPUs enabled to run DPDK VNP engines.
+        :param pulumi.Input[str] vnpsp_cpus: CPUs enabled to run DPDK VNP slow path.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -364,6 +402,7 @@ class Cpus(pulumi.CustomResource):
         __props__.__dict__["tx_cpus"] = tx_cpus
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["vnp_cpus"] = vnp_cpus
+        __props__.__dict__["vnpsp_cpus"] = vnpsp_cpus
         return Cpus(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -413,4 +452,12 @@ class Cpus(pulumi.CustomResource):
         CPUs enabled to run DPDK VNP engines.
         """
         return pulumi.get(self, "vnp_cpus")
+
+    @property
+    @pulumi.getter(name="vnpspCpus")
+    def vnpsp_cpus(self) -> pulumi.Output[str]:
+        """
+        CPUs enabled to run DPDK VNP slow path.
+        """
+        return pulumi.get(self, "vnpsp_cpus")
 

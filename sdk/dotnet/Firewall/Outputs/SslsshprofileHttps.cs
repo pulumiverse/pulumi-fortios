@@ -55,6 +55,10 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? ProxyAfterTcpHandshake;
         /// <summary>
+        /// QUIC inspection status. On FortiOS versions 7.4.1: default = disable. On FortiOS versions &gt;= 7.4.2: default = inspect.
+        /// </summary>
+        public readonly string? Quic;
+        /// <summary>
         /// Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
         /// </summary>
         public readonly string? RevokedServerCert;
@@ -109,6 +113,8 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
 
             string? proxyAfterTcpHandshake,
 
+            string? quic,
+
             string? revokedServerCert,
 
             string? sniServerCertCheck,
@@ -135,6 +141,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
             MinAllowedSslVersion = minAllowedSslVersion;
             Ports = ports;
             ProxyAfterTcpHandshake = proxyAfterTcpHandshake;
+            Quic = quic;
             RevokedServerCert = revokedServerCert;
             SniServerCertCheck = sniServerCertCheck;
             Status = status;

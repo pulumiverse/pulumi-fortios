@@ -35,6 +35,18 @@ namespace Pulumiverse.Fortios.Log.Tacacsaccounting.V3
     public partial class Setting : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Specify outgoing interface to reach server.
+        /// </summary>
+        [Output("interface")]
+        public Output<string> Interface { get; private set; } = null!;
+
+        /// <summary>
+        /// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        /// </summary>
+        [Output("interfaceSelectMethod")]
+        public Output<string> InterfaceSelectMethod { get; private set; } = null!;
+
+        /// <summary>
         /// Address of TACACS+ server.
         /// </summary>
         [Output("server")]
@@ -45,6 +57,12 @@ namespace Pulumiverse.Fortios.Log.Tacacsaccounting.V3
         /// </summary>
         [Output("serverKey")]
         public Output<string?> ServerKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Source IP address for communication to TACACS+ server.
+        /// </summary>
+        [Output("sourceIp")]
+        public Output<string> SourceIp { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
@@ -106,6 +124,18 @@ namespace Pulumiverse.Fortios.Log.Tacacsaccounting.V3
     public sealed class SettingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Specify outgoing interface to reach server.
+        /// </summary>
+        [Input("interface")]
+        public Input<string>? Interface { get; set; }
+
+        /// <summary>
+        /// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        /// </summary>
+        [Input("interfaceSelectMethod")]
+        public Input<string>? InterfaceSelectMethod { get; set; }
+
+        /// <summary>
         /// Address of TACACS+ server.
         /// </summary>
         [Input("server")]
@@ -116,6 +146,12 @@ namespace Pulumiverse.Fortios.Log.Tacacsaccounting.V3
         /// </summary>
         [Input("serverKey")]
         public Input<string>? ServerKey { get; set; }
+
+        /// <summary>
+        /// Source IP address for communication to TACACS+ server.
+        /// </summary>
+        [Input("sourceIp")]
+        public Input<string>? SourceIp { get; set; }
 
         /// <summary>
         /// Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
@@ -138,6 +174,18 @@ namespace Pulumiverse.Fortios.Log.Tacacsaccounting.V3
     public sealed class SettingState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Specify outgoing interface to reach server.
+        /// </summary>
+        [Input("interface")]
+        public Input<string>? Interface { get; set; }
+
+        /// <summary>
+        /// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        /// </summary>
+        [Input("interfaceSelectMethod")]
+        public Input<string>? InterfaceSelectMethod { get; set; }
+
+        /// <summary>
         /// Address of TACACS+ server.
         /// </summary>
         [Input("server")]
@@ -148,6 +196,12 @@ namespace Pulumiverse.Fortios.Log.Tacacsaccounting.V3
         /// </summary>
         [Input("serverKey")]
         public Input<string>? ServerKey { get; set; }
+
+        /// <summary>
+        /// Source IP address for communication to TACACS+ server.
+        /// </summary>
+        [Input("sourceIp")]
+        public Input<string>? SourceIp { get; set; }
 
         /// <summary>
         /// Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.

@@ -71,6 +71,8 @@ type Intercontroller struct {
 	FastFailoverMax pulumi.IntOutput `pulumi:"fastFailoverMax"`
 	// Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
 	FastFailoverWait pulumi.IntOutput `pulumi:"fastFailoverWait"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Secret key for inter-controller communications.
 	InterControllerKey pulumi.StringPtrOutput `pulumi:"interControllerKey"`
 	// Configure inter-controller mode (disable, l2-roaming, 1+1, default = disable). Valid values: `disable`, `l2-roaming`, `1+1`.
@@ -128,6 +130,8 @@ type intercontrollerState struct {
 	FastFailoverMax *int `pulumi:"fastFailoverMax"`
 	// Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
 	FastFailoverWait *int `pulumi:"fastFailoverWait"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Secret key for inter-controller communications.
 	InterControllerKey *string `pulumi:"interControllerKey"`
 	// Configure inter-controller mode (disable, l2-roaming, 1+1, default = disable). Valid values: `disable`, `l2-roaming`, `1+1`.
@@ -149,6 +153,8 @@ type IntercontrollerState struct {
 	FastFailoverMax pulumi.IntPtrInput
 	// Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
 	FastFailoverWait pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Secret key for inter-controller communications.
 	InterControllerKey pulumi.StringPtrInput
 	// Configure inter-controller mode (disable, l2-roaming, 1+1, default = disable). Valid values: `disable`, `l2-roaming`, `1+1`.
@@ -174,6 +180,8 @@ type intercontrollerArgs struct {
 	FastFailoverMax *int `pulumi:"fastFailoverMax"`
 	// Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
 	FastFailoverWait *int `pulumi:"fastFailoverWait"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Secret key for inter-controller communications.
 	InterControllerKey *string `pulumi:"interControllerKey"`
 	// Configure inter-controller mode (disable, l2-roaming, 1+1, default = disable). Valid values: `disable`, `l2-roaming`, `1+1`.
@@ -196,6 +204,8 @@ type IntercontrollerArgs struct {
 	FastFailoverMax pulumi.IntPtrInput
 	// Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
 	FastFailoverWait pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Secret key for inter-controller communications.
 	InterControllerKey pulumi.StringPtrInput
 	// Configure inter-controller mode (disable, l2-roaming, 1+1, default = disable). Valid values: `disable`, `l2-roaming`, `1+1`.
@@ -310,6 +320,11 @@ func (o IntercontrollerOutput) FastFailoverMax() pulumi.IntOutput {
 // Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
 func (o IntercontrollerOutput) FastFailoverWait() pulumi.IntOutput {
 	return o.ApplyT(func(v *Intercontroller) pulumi.IntOutput { return v.FastFailoverWait }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o IntercontrollerOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Intercontroller) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Secret key for inter-controller communications.

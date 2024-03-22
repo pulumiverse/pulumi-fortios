@@ -29,6 +29,7 @@ class SettingsArgs:
                  forticlient_sys_update_interval: Optional[pulumi.Input[int]] = None,
                  forticlient_user_avatar: Optional[pulumi.Input[str]] = None,
                  forticlient_warning_interval: Optional[pulumi.Input[int]] = None,
+                 override: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Settings resource.
@@ -47,6 +48,7 @@ class SettingsArgs:
         :param pulumi.Input[int] forticlient_sys_update_interval: Interval between two system update messages from FortiClient (30 - 1440 min, default = 720).
         :param pulumi.Input[str] forticlient_user_avatar: Enable/disable uploading FortiClient user avatars. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forticlient_warning_interval: Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
+        :param pulumi.Input[str] override: Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if download_custom_link is not None:
@@ -79,6 +81,8 @@ class SettingsArgs:
             pulumi.set(__self__, "forticlient_user_avatar", forticlient_user_avatar)
         if forticlient_warning_interval is not None:
             pulumi.set(__self__, "forticlient_warning_interval", forticlient_warning_interval)
+        if override is not None:
+            pulumi.set(__self__, "override", override)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -264,6 +268,18 @@ class SettingsArgs:
 
     @property
     @pulumi.getter
+    def override(self) -> Optional[pulumi.Input[str]]:
+        """
+        Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override")
+
+    @override.setter
+    def override(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "override", value)
+
+    @property
+    @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -293,6 +309,7 @@ class _SettingsState:
                  forticlient_sys_update_interval: Optional[pulumi.Input[int]] = None,
                  forticlient_user_avatar: Optional[pulumi.Input[str]] = None,
                  forticlient_warning_interval: Optional[pulumi.Input[int]] = None,
+                 override: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Settings resources.
@@ -311,6 +328,7 @@ class _SettingsState:
         :param pulumi.Input[int] forticlient_sys_update_interval: Interval between two system update messages from FortiClient (30 - 1440 min, default = 720).
         :param pulumi.Input[str] forticlient_user_avatar: Enable/disable uploading FortiClient user avatars. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forticlient_warning_interval: Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
+        :param pulumi.Input[str] override: Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if download_custom_link is not None:
@@ -343,6 +361,8 @@ class _SettingsState:
             pulumi.set(__self__, "forticlient_user_avatar", forticlient_user_avatar)
         if forticlient_warning_interval is not None:
             pulumi.set(__self__, "forticlient_warning_interval", forticlient_warning_interval)
+        if override is not None:
+            pulumi.set(__self__, "override", override)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -525,6 +545,18 @@ class _SettingsState:
     @forticlient_warning_interval.setter
     def forticlient_warning_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "forticlient_warning_interval", value)
+
+    @property
+    @pulumi.getter
+    def override(self) -> Optional[pulumi.Input[str]]:
+        """
+        Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override")
+
+    @override.setter
+    def override(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "override", value)
 
     @property
     @pulumi.getter
@@ -559,10 +591,11 @@ class Settings(pulumi.CustomResource):
                  forticlient_sys_update_interval: Optional[pulumi.Input[int]] = None,
                  forticlient_user_avatar: Optional[pulumi.Input[str]] = None,
                  forticlient_warning_interval: Optional[pulumi.Input[int]] = None,
+                 override: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure endpoint control settings. Applies to FortiOS Version `<= 6.2.6`.
+        Configure endpoint control settings. Applies to FortiOS Version `6.2.0,6.2.4,6.2.6,7.4.0,7.4.1,7.4.2`.
 
         ## Example Usage
 
@@ -622,6 +655,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[int] forticlient_sys_update_interval: Interval between two system update messages from FortiClient (30 - 1440 min, default = 720).
         :param pulumi.Input[str] forticlient_user_avatar: Enable/disable uploading FortiClient user avatars. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forticlient_warning_interval: Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
+        :param pulumi.Input[str] override: Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -631,7 +665,7 @@ class Settings(pulumi.CustomResource):
                  args: Optional[SettingsArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure endpoint control settings. Applies to FortiOS Version `<= 6.2.6`.
+        Configure endpoint control settings. Applies to FortiOS Version `6.2.0,6.2.4,6.2.6,7.4.0,7.4.1,7.4.2`.
 
         ## Example Usage
 
@@ -704,6 +738,7 @@ class Settings(pulumi.CustomResource):
                  forticlient_sys_update_interval: Optional[pulumi.Input[int]] = None,
                  forticlient_user_avatar: Optional[pulumi.Input[str]] = None,
                  forticlient_warning_interval: Optional[pulumi.Input[int]] = None,
+                 override: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -729,6 +764,7 @@ class Settings(pulumi.CustomResource):
             __props__.__dict__["forticlient_sys_update_interval"] = forticlient_sys_update_interval
             __props__.__dict__["forticlient_user_avatar"] = forticlient_user_avatar
             __props__.__dict__["forticlient_warning_interval"] = forticlient_warning_interval
+            __props__.__dict__["override"] = override
             __props__.__dict__["vdomparam"] = vdomparam
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["forticlientRegKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -757,6 +793,7 @@ class Settings(pulumi.CustomResource):
             forticlient_sys_update_interval: Optional[pulumi.Input[int]] = None,
             forticlient_user_avatar: Optional[pulumi.Input[str]] = None,
             forticlient_warning_interval: Optional[pulumi.Input[int]] = None,
+            override: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Settings':
         """
         Get an existing Settings resource's state with the given name, id, and optional extra
@@ -780,6 +817,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[int] forticlient_sys_update_interval: Interval between two system update messages from FortiClient (30 - 1440 min, default = 720).
         :param pulumi.Input[str] forticlient_user_avatar: Enable/disable uploading FortiClient user avatars. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forticlient_warning_interval: Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
+        :param pulumi.Input[str] override: Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -801,6 +839,7 @@ class Settings(pulumi.CustomResource):
         __props__.__dict__["forticlient_sys_update_interval"] = forticlient_sys_update_interval
         __props__.__dict__["forticlient_user_avatar"] = forticlient_user_avatar
         __props__.__dict__["forticlient_warning_interval"] = forticlient_warning_interval
+        __props__.__dict__["override"] = override
         __props__.__dict__["vdomparam"] = vdomparam
         return Settings(resource_name, opts=opts, __props__=__props__)
 
@@ -923,6 +962,14 @@ class Settings(pulumi.CustomResource):
         Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
         """
         return pulumi.get(self, "forticlient_warning_interval")
+
+    @property
+    @pulumi.getter
+    def override(self) -> pulumi.Output[str]:
+        """
+        Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override")
 
     @property
     @pulumi.getter

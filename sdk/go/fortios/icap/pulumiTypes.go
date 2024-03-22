@@ -496,7 +496,7 @@ func (o ProfileRespmodForwardRuleHttpRespStatusCodeArrayOutput) Index(i pulumi.I
 type ServergroupServerList struct {
 	// ICAP server name.
 	Name *string `pulumi:"name"`
-	// Optionally assign a weight of the ICAP server for weighted load balancing (1 - 100, default = 10)
+	// Optionally assign a weight of the forwarding server for weighted load balancing (1 - 100, default = 10).
 	Weight *int `pulumi:"weight"`
 }
 
@@ -514,7 +514,7 @@ type ServergroupServerListInput interface {
 type ServergroupServerListArgs struct {
 	// ICAP server name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Optionally assign a weight of the ICAP server for weighted load balancing (1 - 100, default = 10)
+	// Optionally assign a weight of the forwarding server for weighted load balancing (1 - 100, default = 10).
 	Weight pulumi.IntPtrInput `pulumi:"weight"`
 }
 
@@ -574,7 +574,7 @@ func (o ServergroupServerListOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServergroupServerList) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Optionally assign a weight of the ICAP server for weighted load balancing (1 - 100, default = 10)
+// Optionally assign a weight of the forwarding server for weighted load balancing (1 - 100, default = 10).
 func (o ServergroupServerListOutput) Weight() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServergroupServerList) *int { return v.Weight }).(pulumi.IntPtrOutput)
 }

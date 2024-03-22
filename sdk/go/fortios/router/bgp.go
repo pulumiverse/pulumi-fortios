@@ -149,8 +149,12 @@ type Bgp struct {
 	AdditionalPathSelect6 pulumi.IntOutput `pulumi:"additionalPathSelect6"`
 	// Number of additional paths to be selected for each VPNv4 NLRI.
 	AdditionalPathSelectVpnv4 pulumi.IntOutput `pulumi:"additionalPathSelectVpnv4"`
+	// Number of additional paths to be selected for each VPNv6 NLRI.
+	AdditionalPathSelectVpnv6 pulumi.IntOutput `pulumi:"additionalPathSelectVpnv6"`
 	// Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
 	AdditionalPathVpnv4 pulumi.StringOutput `pulumi:"additionalPathVpnv4"`
+	// Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+	AdditionalPathVpnv6 pulumi.StringOutput `pulumi:"additionalPathVpnv6"`
 	// Administrative distance modifications. The structure of `adminDistance` block is documented below.
 	AdminDistances BgpAdminDistanceArrayOutput `pulumi:"adminDistances"`
 	// BGP IPv6 aggregate address table. The structure of `aggregateAddress6` block is documented below.
@@ -161,6 +165,8 @@ type Bgp struct {
 	AlwaysCompareMed pulumi.StringOutput `pulumi:"alwaysCompareMed"`
 	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
 	As pulumi.IntOutput `pulumi:"as"`
+	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+	AsString pulumi.StringOutput `pulumi:"asString"`
 	// Enable/disable ignore AS path. Valid values: `enable`, `disable`.
 	BestpathAsPathIgnore pulumi.StringOutput `pulumi:"bestpathAsPathIgnore"`
 	// Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
@@ -179,6 +185,8 @@ type Bgp struct {
 	ConfederationIdentifier pulumi.IntOutput `pulumi:"confederationIdentifier"`
 	// Confederation peers. The structure of `confederationPeers` block is documented below.
 	ConfederationPeers BgpConfederationPeerArrayOutput `pulumi:"confederationPeers"`
+	// Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+	CrossFamilyConditionalAdv pulumi.StringOutput `pulumi:"crossFamilyConditionalAdv"`
 	// Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
 	Dampening pulumi.StringOutput `pulumi:"dampening"`
 	// Maximum minutes a route can be suppressed.
@@ -211,6 +219,8 @@ type Bgp struct {
 	EnforceFirstAs pulumi.StringOutput `pulumi:"enforceFirstAs"`
 	// Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
 	FastExternalFailover pulumi.StringOutput `pulumi:"fastExternalFailover"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
 	GracefulEndOnTimer pulumi.StringOutput `pulumi:"gracefulEndOnTimer"`
 	// Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
@@ -318,8 +328,12 @@ type bgpState struct {
 	AdditionalPathSelect6 *int `pulumi:"additionalPathSelect6"`
 	// Number of additional paths to be selected for each VPNv4 NLRI.
 	AdditionalPathSelectVpnv4 *int `pulumi:"additionalPathSelectVpnv4"`
+	// Number of additional paths to be selected for each VPNv6 NLRI.
+	AdditionalPathSelectVpnv6 *int `pulumi:"additionalPathSelectVpnv6"`
 	// Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
 	AdditionalPathVpnv4 *string `pulumi:"additionalPathVpnv4"`
+	// Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+	AdditionalPathVpnv6 *string `pulumi:"additionalPathVpnv6"`
 	// Administrative distance modifications. The structure of `adminDistance` block is documented below.
 	AdminDistances []BgpAdminDistance `pulumi:"adminDistances"`
 	// BGP IPv6 aggregate address table. The structure of `aggregateAddress6` block is documented below.
@@ -330,6 +344,8 @@ type bgpState struct {
 	AlwaysCompareMed *string `pulumi:"alwaysCompareMed"`
 	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
 	As *int `pulumi:"as"`
+	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+	AsString *string `pulumi:"asString"`
 	// Enable/disable ignore AS path. Valid values: `enable`, `disable`.
 	BestpathAsPathIgnore *string `pulumi:"bestpathAsPathIgnore"`
 	// Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
@@ -348,6 +364,8 @@ type bgpState struct {
 	ConfederationIdentifier *int `pulumi:"confederationIdentifier"`
 	// Confederation peers. The structure of `confederationPeers` block is documented below.
 	ConfederationPeers []BgpConfederationPeer `pulumi:"confederationPeers"`
+	// Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+	CrossFamilyConditionalAdv *string `pulumi:"crossFamilyConditionalAdv"`
 	// Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
 	Dampening *string `pulumi:"dampening"`
 	// Maximum minutes a route can be suppressed.
@@ -380,6 +398,8 @@ type bgpState struct {
 	EnforceFirstAs *string `pulumi:"enforceFirstAs"`
 	// Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
 	FastExternalFailover *string `pulumi:"fastExternalFailover"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
 	GracefulEndOnTimer *string `pulumi:"gracefulEndOnTimer"`
 	// Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
@@ -455,8 +475,12 @@ type BgpState struct {
 	AdditionalPathSelect6 pulumi.IntPtrInput
 	// Number of additional paths to be selected for each VPNv4 NLRI.
 	AdditionalPathSelectVpnv4 pulumi.IntPtrInput
+	// Number of additional paths to be selected for each VPNv6 NLRI.
+	AdditionalPathSelectVpnv6 pulumi.IntPtrInput
 	// Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
 	AdditionalPathVpnv4 pulumi.StringPtrInput
+	// Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+	AdditionalPathVpnv6 pulumi.StringPtrInput
 	// Administrative distance modifications. The structure of `adminDistance` block is documented below.
 	AdminDistances BgpAdminDistanceArrayInput
 	// BGP IPv6 aggregate address table. The structure of `aggregateAddress6` block is documented below.
@@ -467,6 +491,8 @@ type BgpState struct {
 	AlwaysCompareMed pulumi.StringPtrInput
 	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
 	As pulumi.IntPtrInput
+	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+	AsString pulumi.StringPtrInput
 	// Enable/disable ignore AS path. Valid values: `enable`, `disable`.
 	BestpathAsPathIgnore pulumi.StringPtrInput
 	// Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
@@ -485,6 +511,8 @@ type BgpState struct {
 	ConfederationIdentifier pulumi.IntPtrInput
 	// Confederation peers. The structure of `confederationPeers` block is documented below.
 	ConfederationPeers BgpConfederationPeerArrayInput
+	// Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+	CrossFamilyConditionalAdv pulumi.StringPtrInput
 	// Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
 	Dampening pulumi.StringPtrInput
 	// Maximum minutes a route can be suppressed.
@@ -517,6 +545,8 @@ type BgpState struct {
 	EnforceFirstAs pulumi.StringPtrInput
 	// Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
 	FastExternalFailover pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
 	GracefulEndOnTimer pulumi.StringPtrInput
 	// Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
@@ -596,8 +626,12 @@ type bgpArgs struct {
 	AdditionalPathSelect6 *int `pulumi:"additionalPathSelect6"`
 	// Number of additional paths to be selected for each VPNv4 NLRI.
 	AdditionalPathSelectVpnv4 *int `pulumi:"additionalPathSelectVpnv4"`
+	// Number of additional paths to be selected for each VPNv6 NLRI.
+	AdditionalPathSelectVpnv6 *int `pulumi:"additionalPathSelectVpnv6"`
 	// Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
 	AdditionalPathVpnv4 *string `pulumi:"additionalPathVpnv4"`
+	// Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+	AdditionalPathVpnv6 *string `pulumi:"additionalPathVpnv6"`
 	// Administrative distance modifications. The structure of `adminDistance` block is documented below.
 	AdminDistances []BgpAdminDistance `pulumi:"adminDistances"`
 	// BGP IPv6 aggregate address table. The structure of `aggregateAddress6` block is documented below.
@@ -608,6 +642,8 @@ type bgpArgs struct {
 	AlwaysCompareMed *string `pulumi:"alwaysCompareMed"`
 	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
 	As int `pulumi:"as"`
+	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+	AsString *string `pulumi:"asString"`
 	// Enable/disable ignore AS path. Valid values: `enable`, `disable`.
 	BestpathAsPathIgnore *string `pulumi:"bestpathAsPathIgnore"`
 	// Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
@@ -626,6 +662,8 @@ type bgpArgs struct {
 	ConfederationIdentifier *int `pulumi:"confederationIdentifier"`
 	// Confederation peers. The structure of `confederationPeers` block is documented below.
 	ConfederationPeers []BgpConfederationPeer `pulumi:"confederationPeers"`
+	// Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+	CrossFamilyConditionalAdv *string `pulumi:"crossFamilyConditionalAdv"`
 	// Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
 	Dampening *string `pulumi:"dampening"`
 	// Maximum minutes a route can be suppressed.
@@ -658,6 +696,8 @@ type bgpArgs struct {
 	EnforceFirstAs *string `pulumi:"enforceFirstAs"`
 	// Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
 	FastExternalFailover *string `pulumi:"fastExternalFailover"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
 	GracefulEndOnTimer *string `pulumi:"gracefulEndOnTimer"`
 	// Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
@@ -734,8 +774,12 @@ type BgpArgs struct {
 	AdditionalPathSelect6 pulumi.IntPtrInput
 	// Number of additional paths to be selected for each VPNv4 NLRI.
 	AdditionalPathSelectVpnv4 pulumi.IntPtrInput
+	// Number of additional paths to be selected for each VPNv6 NLRI.
+	AdditionalPathSelectVpnv6 pulumi.IntPtrInput
 	// Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
 	AdditionalPathVpnv4 pulumi.StringPtrInput
+	// Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+	AdditionalPathVpnv6 pulumi.StringPtrInput
 	// Administrative distance modifications. The structure of `adminDistance` block is documented below.
 	AdminDistances BgpAdminDistanceArrayInput
 	// BGP IPv6 aggregate address table. The structure of `aggregateAddress6` block is documented below.
@@ -746,6 +790,8 @@ type BgpArgs struct {
 	AlwaysCompareMed pulumi.StringPtrInput
 	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
 	As pulumi.IntInput
+	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+	AsString pulumi.StringPtrInput
 	// Enable/disable ignore AS path. Valid values: `enable`, `disable`.
 	BestpathAsPathIgnore pulumi.StringPtrInput
 	// Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
@@ -764,6 +810,8 @@ type BgpArgs struct {
 	ConfederationIdentifier pulumi.IntPtrInput
 	// Confederation peers. The structure of `confederationPeers` block is documented below.
 	ConfederationPeers BgpConfederationPeerArrayInput
+	// Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+	CrossFamilyConditionalAdv pulumi.StringPtrInput
 	// Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
 	Dampening pulumi.StringPtrInput
 	// Maximum minutes a route can be suppressed.
@@ -796,6 +844,8 @@ type BgpArgs struct {
 	EnforceFirstAs pulumi.StringPtrInput
 	// Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
 	FastExternalFailover pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
 	GracefulEndOnTimer pulumi.StringPtrInput
 	// Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
@@ -972,9 +1022,19 @@ func (o BgpOutput) AdditionalPathSelectVpnv4() pulumi.IntOutput {
 	return o.ApplyT(func(v *Bgp) pulumi.IntOutput { return v.AdditionalPathSelectVpnv4 }).(pulumi.IntOutput)
 }
 
+// Number of additional paths to be selected for each VPNv6 NLRI.
+func (o BgpOutput) AdditionalPathSelectVpnv6() pulumi.IntOutput {
+	return o.ApplyT(func(v *Bgp) pulumi.IntOutput { return v.AdditionalPathSelectVpnv6 }).(pulumi.IntOutput)
+}
+
 // Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
 func (o BgpOutput) AdditionalPathVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bgp) pulumi.StringOutput { return v.AdditionalPathVpnv4 }).(pulumi.StringOutput)
+}
+
+// Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+func (o BgpOutput) AdditionalPathVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bgp) pulumi.StringOutput { return v.AdditionalPathVpnv6 }).(pulumi.StringOutput)
 }
 
 // Administrative distance modifications. The structure of `adminDistance` block is documented below.
@@ -1000,6 +1060,11 @@ func (o BgpOutput) AlwaysCompareMed() pulumi.StringOutput {
 // Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
 func (o BgpOutput) As() pulumi.IntOutput {
 	return o.ApplyT(func(v *Bgp) pulumi.IntOutput { return v.As }).(pulumi.IntOutput)
+}
+
+// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+func (o BgpOutput) AsString() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bgp) pulumi.StringOutput { return v.AsString }).(pulumi.StringOutput)
 }
 
 // Enable/disable ignore AS path. Valid values: `enable`, `disable`.
@@ -1045,6 +1110,11 @@ func (o BgpOutput) ConfederationIdentifier() pulumi.IntOutput {
 // Confederation peers. The structure of `confederationPeers` block is documented below.
 func (o BgpOutput) ConfederationPeers() BgpConfederationPeerArrayOutput {
 	return o.ApplyT(func(v *Bgp) BgpConfederationPeerArrayOutput { return v.ConfederationPeers }).(BgpConfederationPeerArrayOutput)
+}
+
+// Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+func (o BgpOutput) CrossFamilyConditionalAdv() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bgp) pulumi.StringOutput { return v.CrossFamilyConditionalAdv }).(pulumi.StringOutput)
 }
 
 // Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
@@ -1125,6 +1195,11 @@ func (o BgpOutput) EnforceFirstAs() pulumi.StringOutput {
 // Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
 func (o BgpOutput) FastExternalFailover() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bgp) pulumi.StringOutput { return v.FastExternalFailover }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o BgpOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Bgp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.

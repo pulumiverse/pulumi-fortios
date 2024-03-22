@@ -74,10 +74,16 @@ type Vxlan struct {
 	Dstport pulumi.IntOutput `pulumi:"dstport"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// EVPN instance.
+	EvpnId pulumi.IntOutput `pulumi:"evpnId"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Outgoing interface for VXLAN encapsulated traffic.
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
 	IpVersion pulumi.StringOutput `pulumi:"ipVersion"`
+	// Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
+	LearnFromTraffic pulumi.StringOutput `pulumi:"learnFromTraffic"`
 	// VXLAN multicast TTL (1-255, default = 0).
 	MulticastTtl pulumi.IntOutput `pulumi:"multicastTtl"`
 	// VXLAN device or interface name. Must be a unique interface name.
@@ -135,10 +141,16 @@ type vxlanState struct {
 	Dstport *int `pulumi:"dstport"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// EVPN instance.
+	EvpnId *int `pulumi:"evpnId"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Outgoing interface for VXLAN encapsulated traffic.
 	Interface *string `pulumi:"interface"`
 	// IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
 	IpVersion *string `pulumi:"ipVersion"`
+	// Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
+	LearnFromTraffic *string `pulumi:"learnFromTraffic"`
 	// VXLAN multicast TTL (1-255, default = 0).
 	MulticastTtl *int `pulumi:"multicastTtl"`
 	// VXLAN device or interface name. Must be a unique interface name.
@@ -158,10 +170,16 @@ type VxlanState struct {
 	Dstport pulumi.IntPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// EVPN instance.
+	EvpnId pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Outgoing interface for VXLAN encapsulated traffic.
 	Interface pulumi.StringPtrInput
 	// IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
 	IpVersion pulumi.StringPtrInput
+	// Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
+	LearnFromTraffic pulumi.StringPtrInput
 	// VXLAN multicast TTL (1-255, default = 0).
 	MulticastTtl pulumi.IntPtrInput
 	// VXLAN device or interface name. Must be a unique interface name.
@@ -185,10 +203,16 @@ type vxlanArgs struct {
 	Dstport *int `pulumi:"dstport"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// EVPN instance.
+	EvpnId *int `pulumi:"evpnId"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Outgoing interface for VXLAN encapsulated traffic.
 	Interface string `pulumi:"interface"`
 	// IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
 	IpVersion string `pulumi:"ipVersion"`
+	// Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
+	LearnFromTraffic *string `pulumi:"learnFromTraffic"`
 	// VXLAN multicast TTL (1-255, default = 0).
 	MulticastTtl *int `pulumi:"multicastTtl"`
 	// VXLAN device or interface name. Must be a unique interface name.
@@ -209,10 +233,16 @@ type VxlanArgs struct {
 	Dstport pulumi.IntPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// EVPN instance.
+	EvpnId pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Outgoing interface for VXLAN encapsulated traffic.
 	Interface pulumi.StringInput
 	// IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
 	IpVersion pulumi.StringInput
+	// Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
+	LearnFromTraffic pulumi.StringPtrInput
 	// VXLAN multicast TTL (1-255, default = 0).
 	MulticastTtl pulumi.IntPtrInput
 	// VXLAN device or interface name. Must be a unique interface name.
@@ -324,6 +354,16 @@ func (o VxlanOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Vxlan) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+// EVPN instance.
+func (o VxlanOutput) EvpnId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Vxlan) pulumi.IntOutput { return v.EvpnId }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o VxlanOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Vxlan) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Outgoing interface for VXLAN encapsulated traffic.
 func (o VxlanOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vxlan) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
@@ -332,6 +372,11 @@ func (o VxlanOutput) Interface() pulumi.StringOutput {
 // IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. Valid values: `ipv4-unicast`, `ipv6-unicast`, `ipv4-multicast`, `ipv6-multicast`.
 func (o VxlanOutput) IpVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vxlan) pulumi.StringOutput { return v.IpVersion }).(pulumi.StringOutput)
+}
+
+// Enable/disable VXLAN MAC learning from traffic. Valid values: `enable`, `disable`.
+func (o VxlanOutput) LearnFromTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vxlan) pulumi.StringOutput { return v.LearnFromTraffic }).(pulumi.StringOutput)
 }
 
 // VXLAN multicast TTL (1-255, default = 0).

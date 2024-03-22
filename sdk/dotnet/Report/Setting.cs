@@ -77,7 +77,7 @@ namespace Pulumiverse.Fortios.Report
         public Output<string> ReportSource { get; private set; } = null!;
 
         /// <summary>
-        /// Number of items to populate (100 - 4000).
+        /// Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions &gt;= 6.2.4: 1000 - 20000.
         /// </summary>
         [Output("topN")]
         public Output<int> TopN { get; private set; } = null!;
@@ -160,7 +160,7 @@ namespace Pulumiverse.Fortios.Report
         public Input<string>? ReportSource { get; set; }
 
         /// <summary>
-        /// Number of items to populate (100 - 4000).
+        /// Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions &gt;= 6.2.4: 1000 - 20000.
         /// </summary>
         [Input("topN")]
         public Input<int>? TopN { get; set; }
@@ -204,7 +204,7 @@ namespace Pulumiverse.Fortios.Report
         public Input<string>? ReportSource { get; set; }
 
         /// <summary>
-        /// Number of items to populate (100 - 4000).
+        /// Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions &gt;= 6.2.4: 1000 - 20000.
         /// </summary>
         [Input("topN")]
         public Input<int>? TopN { get; set; }

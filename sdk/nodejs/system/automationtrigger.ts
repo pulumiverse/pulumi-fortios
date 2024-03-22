@@ -111,6 +111,10 @@ export class Automationtrigger extends pulumi.CustomResource {
      */
     public readonly fields!: pulumi.Output<outputs.system.AutomationtriggerField[] | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * IOC threat level. Valid values: `medium`, `high`.
      */
     public readonly iocLevel!: pulumi.Output<string>;
@@ -123,7 +127,7 @@ export class Automationtrigger extends pulumi.CustomResource {
      */
     public readonly logid!: pulumi.Output<number>;
     /**
-     * Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+     * Log IDs to trigger event. The structure of `logidBlock` block is documented below.
      */
     public readonly logidBlocks!: pulumi.Output<outputs.system.AutomationtriggerLogidBlock[] | undefined>;
     /**
@@ -197,6 +201,7 @@ export class Automationtrigger extends pulumi.CustomResource {
             resourceInputs["fazEventSeverity"] = state ? state.fazEventSeverity : undefined;
             resourceInputs["fazEventTags"] = state ? state.fazEventTags : undefined;
             resourceInputs["fields"] = state ? state.fields : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["iocLevel"] = state ? state.iocLevel : undefined;
             resourceInputs["licenseType"] = state ? state.licenseType : undefined;
             resourceInputs["logid"] = state ? state.logid : undefined;
@@ -224,6 +229,7 @@ export class Automationtrigger extends pulumi.CustomResource {
             resourceInputs["fazEventSeverity"] = args ? args.fazEventSeverity : undefined;
             resourceInputs["fazEventTags"] = args ? args.fazEventTags : undefined;
             resourceInputs["fields"] = args ? args.fields : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["iocLevel"] = args ? args.iocLevel : undefined;
             resourceInputs["licenseType"] = args ? args.licenseType : undefined;
             resourceInputs["logid"] = args ? args.logid : undefined;
@@ -287,6 +293,10 @@ export interface AutomationtriggerState {
      */
     fields?: pulumi.Input<pulumi.Input<inputs.system.AutomationtriggerField>[]>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * IOC threat level. Valid values: `medium`, `high`.
      */
     iocLevel?: pulumi.Input<string>;
@@ -299,7 +309,7 @@ export interface AutomationtriggerState {
      */
     logid?: pulumi.Input<number>;
     /**
-     * Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+     * Log IDs to trigger event. The structure of `logidBlock` block is documented below.
      */
     logidBlocks?: pulumi.Input<pulumi.Input<inputs.system.AutomationtriggerLogidBlock>[]>;
     /**
@@ -393,6 +403,10 @@ export interface AutomationtriggerArgs {
      */
     fields?: pulumi.Input<pulumi.Input<inputs.system.AutomationtriggerField>[]>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * IOC threat level. Valid values: `medium`, `high`.
      */
     iocLevel?: pulumi.Input<string>;
@@ -405,7 +419,7 @@ export interface AutomationtriggerArgs {
      */
     logid?: pulumi.Input<number>;
     /**
-     * Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+     * Log IDs to trigger event. The structure of `logidBlock` block is documented below.
      */
     logidBlocks?: pulumi.Input<pulumi.Input<inputs.system.AutomationtriggerLogidBlock>[]>;
     /**

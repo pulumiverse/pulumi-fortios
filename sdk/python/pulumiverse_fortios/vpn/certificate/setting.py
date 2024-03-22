@@ -34,11 +34,17 @@ class SettingArgs:
                  cn_allow_multi: Optional[pulumi.Input[str]] = None,
                  cn_match: Optional[pulumi.Input[str]] = None,
                  crl_verification: Optional[pulumi.Input['SettingCrlVerificationArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ocsp_default_server: Optional[pulumi.Input[str]] = None,
                  ocsp_option: Optional[pulumi.Input[str]] = None,
                  ocsp_status: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
+                 proxy_password: Optional[pulumi.Input[str]] = None,
+                 proxy_port: Optional[pulumi.Input[int]] = None,
+                 proxy_username: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  ssl_ocsp_source_ip: Optional[pulumi.Input[str]] = None,
                  strict_crl_check: Optional[pulumi.Input[str]] = None,
@@ -66,12 +72,18 @@ class SettingArgs:
         :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
         :param pulumi.Input['SettingCrlVerificationArgs'] crl_verification: CRL verification options. The structure of `crl_verification` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ocsp_default_server: Default OCSP server.
         :param pulumi.Input[str] ocsp_option: Specify whether the OCSP URL is from certificate or configured OCSP server. Valid values: `certificate`, `server`.
-        :param pulumi.Input[str] ocsp_status: Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ocsp_status: Enable/disable receiving certificates using the OCSP.
+        :param pulumi.Input[str] proxy: Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+        :param pulumi.Input[str] proxy_password: Proxy server password.
+        :param pulumi.Input[int] proxy_port: Proxy server port (1 - 65535, default = 8080).
+        :param pulumi.Input[str] proxy_username: Proxy server user name.
+        :param pulumi.Input[str] source_ip: Source IP address for dynamic AIA and OCSP queries.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] ssl_ocsp_source_ip: Source IP address to use to communicate with the OCSP server.
         :param pulumi.Input[str] strict_crl_check: Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_ocsp_check: Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
@@ -109,6 +121,8 @@ class SettingArgs:
             pulumi.set(__self__, "cn_match", cn_match)
         if crl_verification is not None:
             pulumi.set(__self__, "crl_verification", crl_verification)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -119,6 +133,16 @@ class SettingArgs:
             pulumi.set(__self__, "ocsp_option", ocsp_option)
         if ocsp_status is not None:
             pulumi.set(__self__, "ocsp_status", ocsp_status)
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
+        if proxy_password is not None:
+            pulumi.set(__self__, "proxy_password", proxy_password)
+        if proxy_port is not None:
+            pulumi.set(__self__, "proxy_port", proxy_port)
+        if proxy_username is not None:
+            pulumi.set(__self__, "proxy_username", proxy_username)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
         if ssl_min_proto_version is not None:
             pulumi.set(__self__, "ssl_min_proto_version", ssl_min_proto_version)
         if ssl_ocsp_source_ip is not None:
@@ -351,6 +375,18 @@ class SettingArgs:
         pulumi.set(self, "crl_verification", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         """
@@ -402,7 +438,7 @@ class SettingArgs:
     @pulumi.getter(name="ocspStatus")
     def ocsp_status(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+        Enable/disable receiving certificates using the OCSP.
         """
         return pulumi.get(self, "ocsp_status")
 
@@ -411,10 +447,70 @@ class SettingArgs:
         pulumi.set(self, "ocsp_status", value)
 
     @property
+    @pulumi.getter
+    def proxy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+        """
+        return pulumi.get(self, "proxy")
+
+    @proxy.setter
+    def proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy", value)
+
+    @property
+    @pulumi.getter(name="proxyPassword")
+    def proxy_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Proxy server password.
+        """
+        return pulumi.get(self, "proxy_password")
+
+    @proxy_password.setter
+    def proxy_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_password", value)
+
+    @property
+    @pulumi.getter(name="proxyPort")
+    def proxy_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Proxy server port (1 - 65535, default = 8080).
+        """
+        return pulumi.get(self, "proxy_port")
+
+    @proxy_port.setter
+    def proxy_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "proxy_port", value)
+
+    @property
+    @pulumi.getter(name="proxyUsername")
+    def proxy_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Proxy server user name.
+        """
+        return pulumi.get(self, "proxy_username")
+
+    @proxy_username.setter
+    def proxy_username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_username", value)
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Source IP address for dynamic AIA and OCSP queries.
+        """
+        return pulumi.get(self, "source_ip")
+
+    @source_ip.setter
+    def source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip", value)
+
+    @property
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -516,11 +612,17 @@ class _SettingState:
                  cn_allow_multi: Optional[pulumi.Input[str]] = None,
                  cn_match: Optional[pulumi.Input[str]] = None,
                  crl_verification: Optional[pulumi.Input['SettingCrlVerificationArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ocsp_default_server: Optional[pulumi.Input[str]] = None,
                  ocsp_option: Optional[pulumi.Input[str]] = None,
                  ocsp_status: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
+                 proxy_password: Optional[pulumi.Input[str]] = None,
+                 proxy_port: Optional[pulumi.Input[int]] = None,
+                 proxy_username: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  ssl_ocsp_source_ip: Optional[pulumi.Input[str]] = None,
                  strict_crl_check: Optional[pulumi.Input[str]] = None,
@@ -548,12 +650,18 @@ class _SettingState:
         :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
         :param pulumi.Input['SettingCrlVerificationArgs'] crl_verification: CRL verification options. The structure of `crl_verification` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ocsp_default_server: Default OCSP server.
         :param pulumi.Input[str] ocsp_option: Specify whether the OCSP URL is from certificate or configured OCSP server. Valid values: `certificate`, `server`.
-        :param pulumi.Input[str] ocsp_status: Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ocsp_status: Enable/disable receiving certificates using the OCSP.
+        :param pulumi.Input[str] proxy: Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+        :param pulumi.Input[str] proxy_password: Proxy server password.
+        :param pulumi.Input[int] proxy_port: Proxy server port (1 - 65535, default = 8080).
+        :param pulumi.Input[str] proxy_username: Proxy server user name.
+        :param pulumi.Input[str] source_ip: Source IP address for dynamic AIA and OCSP queries.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] ssl_ocsp_source_ip: Source IP address to use to communicate with the OCSP server.
         :param pulumi.Input[str] strict_crl_check: Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_ocsp_check: Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
@@ -597,6 +705,8 @@ class _SettingState:
             pulumi.set(__self__, "cn_match", cn_match)
         if crl_verification is not None:
             pulumi.set(__self__, "crl_verification", crl_verification)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -607,6 +717,16 @@ class _SettingState:
             pulumi.set(__self__, "ocsp_option", ocsp_option)
         if ocsp_status is not None:
             pulumi.set(__self__, "ocsp_status", ocsp_status)
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
+        if proxy_password is not None:
+            pulumi.set(__self__, "proxy_password", proxy_password)
+        if proxy_port is not None:
+            pulumi.set(__self__, "proxy_port", proxy_port)
+        if proxy_username is not None:
+            pulumi.set(__self__, "proxy_username", proxy_username)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
         if ssl_min_proto_version is not None:
             pulumi.set(__self__, "ssl_min_proto_version", ssl_min_proto_version)
         if ssl_ocsp_source_ip is not None:
@@ -839,6 +959,18 @@ class _SettingState:
         pulumi.set(self, "crl_verification", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         """
@@ -890,7 +1022,7 @@ class _SettingState:
     @pulumi.getter(name="ocspStatus")
     def ocsp_status(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+        Enable/disable receiving certificates using the OCSP.
         """
         return pulumi.get(self, "ocsp_status")
 
@@ -899,10 +1031,70 @@ class _SettingState:
         pulumi.set(self, "ocsp_status", value)
 
     @property
+    @pulumi.getter
+    def proxy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+        """
+        return pulumi.get(self, "proxy")
+
+    @proxy.setter
+    def proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy", value)
+
+    @property
+    @pulumi.getter(name="proxyPassword")
+    def proxy_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Proxy server password.
+        """
+        return pulumi.get(self, "proxy_password")
+
+    @proxy_password.setter
+    def proxy_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_password", value)
+
+    @property
+    @pulumi.getter(name="proxyPort")
+    def proxy_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Proxy server port (1 - 65535, default = 8080).
+        """
+        return pulumi.get(self, "proxy_port")
+
+    @proxy_port.setter
+    def proxy_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "proxy_port", value)
+
+    @property
+    @pulumi.getter(name="proxyUsername")
+    def proxy_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Proxy server user name.
+        """
+        return pulumi.get(self, "proxy_username")
+
+    @proxy_username.setter
+    def proxy_username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_username", value)
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Source IP address for dynamic AIA and OCSP queries.
+        """
+        return pulumi.get(self, "source_ip")
+
+    @source_ip.setter
+    def source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip", value)
+
+    @property
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -1006,11 +1198,17 @@ class Setting(pulumi.CustomResource):
                  cn_allow_multi: Optional[pulumi.Input[str]] = None,
                  cn_match: Optional[pulumi.Input[str]] = None,
                  crl_verification: Optional[pulumi.Input[pulumi.InputType['SettingCrlVerificationArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ocsp_default_server: Optional[pulumi.Input[str]] = None,
                  ocsp_option: Optional[pulumi.Input[str]] = None,
                  ocsp_status: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
+                 proxy_password: Optional[pulumi.Input[str]] = None,
+                 proxy_port: Optional[pulumi.Input[int]] = None,
+                 proxy_username: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  ssl_ocsp_source_ip: Optional[pulumi.Input[str]] = None,
                  strict_crl_check: Optional[pulumi.Input[str]] = None,
@@ -1087,12 +1285,18 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
         :param pulumi.Input[pulumi.InputType['SettingCrlVerificationArgs']] crl_verification: CRL verification options. The structure of `crl_verification` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ocsp_default_server: Default OCSP server.
         :param pulumi.Input[str] ocsp_option: Specify whether the OCSP URL is from certificate or configured OCSP server. Valid values: `certificate`, `server`.
-        :param pulumi.Input[str] ocsp_status: Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ocsp_status: Enable/disable receiving certificates using the OCSP.
+        :param pulumi.Input[str] proxy: Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+        :param pulumi.Input[str] proxy_password: Proxy server password.
+        :param pulumi.Input[int] proxy_port: Proxy server port (1 - 65535, default = 8080).
+        :param pulumi.Input[str] proxy_username: Proxy server user name.
+        :param pulumi.Input[str] source_ip: Source IP address for dynamic AIA and OCSP queries.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] ssl_ocsp_source_ip: Source IP address to use to communicate with the OCSP server.
         :param pulumi.Input[str] strict_crl_check: Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_ocsp_check: Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
@@ -1187,11 +1391,17 @@ class Setting(pulumi.CustomResource):
                  cn_allow_multi: Optional[pulumi.Input[str]] = None,
                  cn_match: Optional[pulumi.Input[str]] = None,
                  crl_verification: Optional[pulumi.Input[pulumi.InputType['SettingCrlVerificationArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ocsp_default_server: Optional[pulumi.Input[str]] = None,
                  ocsp_option: Optional[pulumi.Input[str]] = None,
                  ocsp_status: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
+                 proxy_password: Optional[pulumi.Input[str]] = None,
+                 proxy_port: Optional[pulumi.Input[int]] = None,
+                 proxy_username: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  ssl_ocsp_source_ip: Optional[pulumi.Input[str]] = None,
                  strict_crl_check: Optional[pulumi.Input[str]] = None,
@@ -1238,11 +1448,17 @@ class Setting(pulumi.CustomResource):
             __props__.__dict__["cn_allow_multi"] = cn_allow_multi
             __props__.__dict__["cn_match"] = cn_match
             __props__.__dict__["crl_verification"] = crl_verification
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
             __props__.__dict__["ocsp_default_server"] = ocsp_default_server
             __props__.__dict__["ocsp_option"] = ocsp_option
             __props__.__dict__["ocsp_status"] = ocsp_status
+            __props__.__dict__["proxy"] = proxy
+            __props__.__dict__["proxy_password"] = proxy_password
+            __props__.__dict__["proxy_port"] = proxy_port
+            __props__.__dict__["proxy_username"] = proxy_username
+            __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
             __props__.__dict__["ssl_ocsp_source_ip"] = ssl_ocsp_source_ip
             __props__.__dict__["strict_crl_check"] = strict_crl_check
@@ -1278,11 +1494,17 @@ class Setting(pulumi.CustomResource):
             cn_allow_multi: Optional[pulumi.Input[str]] = None,
             cn_match: Optional[pulumi.Input[str]] = None,
             crl_verification: Optional[pulumi.Input[pulumi.InputType['SettingCrlVerificationArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
             ocsp_default_server: Optional[pulumi.Input[str]] = None,
             ocsp_option: Optional[pulumi.Input[str]] = None,
             ocsp_status: Optional[pulumi.Input[str]] = None,
+            proxy: Optional[pulumi.Input[str]] = None,
+            proxy_password: Optional[pulumi.Input[str]] = None,
+            proxy_port: Optional[pulumi.Input[int]] = None,
+            proxy_username: Optional[pulumi.Input[str]] = None,
+            source_ip: Optional[pulumi.Input[str]] = None,
             ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
             ssl_ocsp_source_ip: Optional[pulumi.Input[str]] = None,
             strict_crl_check: Optional[pulumi.Input[str]] = None,
@@ -1315,12 +1537,18 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
         :param pulumi.Input[pulumi.InputType['SettingCrlVerificationArgs']] crl_verification: CRL verification options. The structure of `crl_verification` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ocsp_default_server: Default OCSP server.
         :param pulumi.Input[str] ocsp_option: Specify whether the OCSP URL is from certificate or configured OCSP server. Valid values: `certificate`, `server`.
-        :param pulumi.Input[str] ocsp_status: Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ocsp_status: Enable/disable receiving certificates using the OCSP.
+        :param pulumi.Input[str] proxy: Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+        :param pulumi.Input[str] proxy_password: Proxy server password.
+        :param pulumi.Input[int] proxy_port: Proxy server port (1 - 65535, default = 8080).
+        :param pulumi.Input[str] proxy_username: Proxy server user name.
+        :param pulumi.Input[str] source_ip: Source IP address for dynamic AIA and OCSP queries.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] ssl_ocsp_source_ip: Source IP address to use to communicate with the OCSP server.
         :param pulumi.Input[str] strict_crl_check: Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_ocsp_check: Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
@@ -1350,11 +1578,17 @@ class Setting(pulumi.CustomResource):
         __props__.__dict__["cn_allow_multi"] = cn_allow_multi
         __props__.__dict__["cn_match"] = cn_match
         __props__.__dict__["crl_verification"] = crl_verification
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
         __props__.__dict__["ocsp_default_server"] = ocsp_default_server
         __props__.__dict__["ocsp_option"] = ocsp_option
         __props__.__dict__["ocsp_status"] = ocsp_status
+        __props__.__dict__["proxy"] = proxy
+        __props__.__dict__["proxy_password"] = proxy_password
+        __props__.__dict__["proxy_port"] = proxy_port
+        __props__.__dict__["proxy_username"] = proxy_username
+        __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
         __props__.__dict__["ssl_ocsp_source_ip"] = ssl_ocsp_source_ip
         __props__.__dict__["strict_crl_check"] = strict_crl_check
@@ -1509,6 +1743,14 @@ class Setting(pulumi.CustomResource):
         return pulumi.get(self, "crl_verification")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def interface(self) -> pulumi.Output[str]:
         """
@@ -1544,15 +1786,55 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="ocspStatus")
     def ocsp_status(self) -> pulumi.Output[str]:
         """
-        Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+        Enable/disable receiving certificates using the OCSP.
         """
         return pulumi.get(self, "ocsp_status")
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> pulumi.Output[str]:
+        """
+        Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+        """
+        return pulumi.get(self, "proxy")
+
+    @property
+    @pulumi.getter(name="proxyPassword")
+    def proxy_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Proxy server password.
+        """
+        return pulumi.get(self, "proxy_password")
+
+    @property
+    @pulumi.getter(name="proxyPort")
+    def proxy_port(self) -> pulumi.Output[int]:
+        """
+        Proxy server port (1 - 65535, default = 8080).
+        """
+        return pulumi.get(self, "proxy_port")
+
+    @property
+    @pulumi.getter(name="proxyUsername")
+    def proxy_username(self) -> pulumi.Output[str]:
+        """
+        Proxy server user name.
+        """
+        return pulumi.get(self, "proxy_username")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> pulumi.Output[str]:
+        """
+        Source IP address for dynamic AIA and OCSP queries.
+        """
+        return pulumi.get(self, "source_ip")
 
     @property
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> pulumi.Output[str]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 

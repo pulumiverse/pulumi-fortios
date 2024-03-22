@@ -7,6 +7,7 @@ import typing
 # Export this package's modules as members:
 from .debugurl import *
 from .explicit import *
+from .fastfallback import *
 from .forwardserver import *
 from .forwardservergroup import *
 from .global_ import *

@@ -16,11 +16,13 @@ __all__ = ['SdwanArgs', 'Sdwan']
 @pulumi.input_type
 class SdwanArgs:
     def __init__(__self__, *,
+                 app_perf_log_period: Optional[pulumi.Input[int]] = None,
                  duplication_max_num: Optional[pulumi.Input[int]] = None,
                  duplications: Optional[pulumi.Input[Sequence[pulumi.Input['SdwanDuplicationArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['SdwanFailAlertInterfaceArgs']]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input['SdwanHealthCheckArgs']]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['SdwanMemberArgs']]]] = None,
@@ -35,11 +37,13 @@ class SdwanArgs:
                  zones: Optional[pulumi.Input[Sequence[pulumi.Input['SdwanZoneArgs']]]] = None):
         """
         The set of arguments for constructing a Sdwan resource.
+        :param pulumi.Input[int] app_perf_log_period: Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
         :param pulumi.Input[int] duplication_max_num: Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
         :param pulumi.Input[Sequence[pulumi.Input['SdwanDuplicationArgs']]] duplications: Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input['SdwanFailAlertInterfaceArgs']]] fail_alert_interfaces: Physical interfaces that will be alerted. The structure of `fail_alert_interfaces` block is documented below.
         :param pulumi.Input[str] fail_detect: Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['SdwanHealthCheckArgs']]] health_checks: SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `health_check` block is documented below.
         :param pulumi.Input[str] load_balance_mode: Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
         :param pulumi.Input[Sequence[pulumi.Input['SdwanMemberArgs']]] members: FortiGate interfaces added to the SD-WAN. The structure of `members` block is documented below.
@@ -53,6 +57,8 @@ class SdwanArgs:
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input['SdwanZoneArgs']]] zones: Configure SD-WAN zones. The structure of `zone` block is documented below.
         """
+        if app_perf_log_period is not None:
+            pulumi.set(__self__, "app_perf_log_period", app_perf_log_period)
         if duplication_max_num is not None:
             pulumi.set(__self__, "duplication_max_num", duplication_max_num)
         if duplications is not None:
@@ -63,6 +69,8 @@ class SdwanArgs:
             pulumi.set(__self__, "fail_alert_interfaces", fail_alert_interfaces)
         if fail_detect is not None:
             pulumi.set(__self__, "fail_detect", fail_detect)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if health_checks is not None:
             pulumi.set(__self__, "health_checks", health_checks)
         if load_balance_mode is not None:
@@ -87,6 +95,18 @@ class SdwanArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if zones is not None:
             pulumi.set(__self__, "zones", zones)
+
+    @property
+    @pulumi.getter(name="appPerfLogPeriod")
+    def app_perf_log_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+        """
+        return pulumi.get(self, "app_perf_log_period")
+
+    @app_perf_log_period.setter
+    def app_perf_log_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "app_perf_log_period", value)
 
     @property
     @pulumi.getter(name="duplicationMaxNum")
@@ -147,6 +167,18 @@ class SdwanArgs:
     @fail_detect.setter
     def fail_detect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fail_detect", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="healthChecks")
@@ -296,11 +328,13 @@ class SdwanArgs:
 @pulumi.input_type
 class _SdwanState:
     def __init__(__self__, *,
+                 app_perf_log_period: Optional[pulumi.Input[int]] = None,
                  duplication_max_num: Optional[pulumi.Input[int]] = None,
                  duplications: Optional[pulumi.Input[Sequence[pulumi.Input['SdwanDuplicationArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['SdwanFailAlertInterfaceArgs']]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input['SdwanHealthCheckArgs']]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['SdwanMemberArgs']]]] = None,
@@ -315,11 +349,13 @@ class _SdwanState:
                  zones: Optional[pulumi.Input[Sequence[pulumi.Input['SdwanZoneArgs']]]] = None):
         """
         Input properties used for looking up and filtering Sdwan resources.
+        :param pulumi.Input[int] app_perf_log_period: Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
         :param pulumi.Input[int] duplication_max_num: Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
         :param pulumi.Input[Sequence[pulumi.Input['SdwanDuplicationArgs']]] duplications: Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input['SdwanFailAlertInterfaceArgs']]] fail_alert_interfaces: Physical interfaces that will be alerted. The structure of `fail_alert_interfaces` block is documented below.
         :param pulumi.Input[str] fail_detect: Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['SdwanHealthCheckArgs']]] health_checks: SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `health_check` block is documented below.
         :param pulumi.Input[str] load_balance_mode: Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
         :param pulumi.Input[Sequence[pulumi.Input['SdwanMemberArgs']]] members: FortiGate interfaces added to the SD-WAN. The structure of `members` block is documented below.
@@ -333,6 +369,8 @@ class _SdwanState:
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input['SdwanZoneArgs']]] zones: Configure SD-WAN zones. The structure of `zone` block is documented below.
         """
+        if app_perf_log_period is not None:
+            pulumi.set(__self__, "app_perf_log_period", app_perf_log_period)
         if duplication_max_num is not None:
             pulumi.set(__self__, "duplication_max_num", duplication_max_num)
         if duplications is not None:
@@ -343,6 +381,8 @@ class _SdwanState:
             pulumi.set(__self__, "fail_alert_interfaces", fail_alert_interfaces)
         if fail_detect is not None:
             pulumi.set(__self__, "fail_detect", fail_detect)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if health_checks is not None:
             pulumi.set(__self__, "health_checks", health_checks)
         if load_balance_mode is not None:
@@ -367,6 +407,18 @@ class _SdwanState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if zones is not None:
             pulumi.set(__self__, "zones", zones)
+
+    @property
+    @pulumi.getter(name="appPerfLogPeriod")
+    def app_perf_log_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+        """
+        return pulumi.get(self, "app_perf_log_period")
+
+    @app_perf_log_period.setter
+    def app_perf_log_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "app_perf_log_period", value)
 
     @property
     @pulumi.getter(name="duplicationMaxNum")
@@ -427,6 +479,18 @@ class _SdwanState:
     @fail_detect.setter
     def fail_detect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fail_detect", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="healthChecks")
@@ -578,11 +642,13 @@ class Sdwan(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 app_perf_log_period: Optional[pulumi.Input[int]] = None,
                  duplication_max_num: Optional[pulumi.Input[int]] = None,
                  duplications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanDuplicationArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanFailAlertInterfaceArgs']]]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanHealthCheckArgs']]]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanMemberArgs']]]]] = None,
@@ -619,11 +685,13 @@ class Sdwan(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] app_perf_log_period: Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
         :param pulumi.Input[int] duplication_max_num: Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanDuplicationArgs']]]] duplications: Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanFailAlertInterfaceArgs']]]] fail_alert_interfaces: Physical interfaces that will be alerted. The structure of `fail_alert_interfaces` block is documented below.
         :param pulumi.Input[str] fail_detect: Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanHealthCheckArgs']]]] health_checks: SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `health_check` block is documented below.
         :param pulumi.Input[str] load_balance_mode: Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanMemberArgs']]]] members: FortiGate interfaces added to the SD-WAN. The structure of `members` block is documented below.
@@ -679,11 +747,13 @@ class Sdwan(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 app_perf_log_period: Optional[pulumi.Input[int]] = None,
                  duplication_max_num: Optional[pulumi.Input[int]] = None,
                  duplications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanDuplicationArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanFailAlertInterfaceArgs']]]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanHealthCheckArgs']]]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanMemberArgs']]]]] = None,
@@ -705,11 +775,13 @@ class Sdwan(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SdwanArgs.__new__(SdwanArgs)
 
+            __props__.__dict__["app_perf_log_period"] = app_perf_log_period
             __props__.__dict__["duplication_max_num"] = duplication_max_num
             __props__.__dict__["duplications"] = duplications
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fail_alert_interfaces"] = fail_alert_interfaces
             __props__.__dict__["fail_detect"] = fail_detect
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["health_checks"] = health_checks
             __props__.__dict__["load_balance_mode"] = load_balance_mode
             __props__.__dict__["members"] = members
@@ -732,11 +804,13 @@ class Sdwan(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            app_perf_log_period: Optional[pulumi.Input[int]] = None,
             duplication_max_num: Optional[pulumi.Input[int]] = None,
             duplications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanDuplicationArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanFailAlertInterfaceArgs']]]]] = None,
             fail_detect: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanHealthCheckArgs']]]]] = None,
             load_balance_mode: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanMemberArgs']]]]] = None,
@@ -756,11 +830,13 @@ class Sdwan(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] app_perf_log_period: Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
         :param pulumi.Input[int] duplication_max_num: Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanDuplicationArgs']]]] duplications: Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanFailAlertInterfaceArgs']]]] fail_alert_interfaces: Physical interfaces that will be alerted. The structure of `fail_alert_interfaces` block is documented below.
         :param pulumi.Input[str] fail_detect: Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanHealthCheckArgs']]]] health_checks: SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `health_check` block is documented below.
         :param pulumi.Input[str] load_balance_mode: Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdwanMemberArgs']]]] members: FortiGate interfaces added to the SD-WAN. The structure of `members` block is documented below.
@@ -778,11 +854,13 @@ class Sdwan(pulumi.CustomResource):
 
         __props__ = _SdwanState.__new__(_SdwanState)
 
+        __props__.__dict__["app_perf_log_period"] = app_perf_log_period
         __props__.__dict__["duplication_max_num"] = duplication_max_num
         __props__.__dict__["duplications"] = duplications
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fail_alert_interfaces"] = fail_alert_interfaces
         __props__.__dict__["fail_detect"] = fail_detect
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["health_checks"] = health_checks
         __props__.__dict__["load_balance_mode"] = load_balance_mode
         __props__.__dict__["members"] = members
@@ -796,6 +874,14 @@ class Sdwan(pulumi.CustomResource):
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["zones"] = zones
         return Sdwan(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="appPerfLogPeriod")
+    def app_perf_log_period(self) -> pulumi.Output[int]:
+        """
+        Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+        """
+        return pulumi.get(self, "app_perf_log_period")
 
     @property
     @pulumi.getter(name="duplicationMaxNum")
@@ -836,6 +922,14 @@ class Sdwan(pulumi.CustomResource):
         Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "fail_detect")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="healthChecks")

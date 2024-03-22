@@ -18,6 +18,7 @@ class AccesscontrollistArgs:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  layer3_ipv4_rules: Optional[pulumi.Input[Sequence[pulumi.Input['AccesscontrollistLayer3Ipv4RuleArgs']]]] = None,
                  layer3_ipv6_rules: Optional[pulumi.Input[Sequence[pulumi.Input['AccesscontrollistLayer3Ipv6RuleArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -26,6 +27,7 @@ class AccesscontrollistArgs:
         The set of arguments for constructing a Accesscontrollist resource.
         :param pulumi.Input[str] comment: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['AccesscontrollistLayer3Ipv4RuleArgs']]] layer3_ipv4_rules: AP ACL layer3 ipv4 rule list. The structure of `layer3_ipv4_rules` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['AccesscontrollistLayer3Ipv6RuleArgs']]] layer3_ipv6_rules: AP ACL layer3 ipv6 rule list. The structure of `layer3_ipv6_rules` block is documented below.
         :param pulumi.Input[str] name: AP access control list name.
@@ -37,6 +39,8 @@ class AccesscontrollistArgs:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if layer3_ipv4_rules is not None:
             pulumi.set(__self__, "layer3_ipv4_rules", layer3_ipv4_rules)
         if layer3_ipv6_rules is not None:
@@ -69,6 +73,18 @@ class AccesscontrollistArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="layer3Ipv4Rules")
@@ -126,6 +142,7 @@ class _AccesscontrollistState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  layer3_ipv4_rules: Optional[pulumi.Input[Sequence[pulumi.Input['AccesscontrollistLayer3Ipv4RuleArgs']]]] = None,
                  layer3_ipv6_rules: Optional[pulumi.Input[Sequence[pulumi.Input['AccesscontrollistLayer3Ipv6RuleArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -134,6 +151,7 @@ class _AccesscontrollistState:
         Input properties used for looking up and filtering Accesscontrollist resources.
         :param pulumi.Input[str] comment: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['AccesscontrollistLayer3Ipv4RuleArgs']]] layer3_ipv4_rules: AP ACL layer3 ipv4 rule list. The structure of `layer3_ipv4_rules` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['AccesscontrollistLayer3Ipv6RuleArgs']]] layer3_ipv6_rules: AP ACL layer3 ipv6 rule list. The structure of `layer3_ipv6_rules` block is documented below.
         :param pulumi.Input[str] name: AP access control list name.
@@ -145,6 +163,8 @@ class _AccesscontrollistState:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if layer3_ipv4_rules is not None:
             pulumi.set(__self__, "layer3_ipv4_rules", layer3_ipv4_rules)
         if layer3_ipv6_rules is not None:
@@ -177,6 +197,18 @@ class _AccesscontrollistState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="layer3Ipv4Rules")
@@ -236,6 +268,7 @@ class Accesscontrollist(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  layer3_ipv4_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccesscontrollistLayer3Ipv4RuleArgs']]]]] = None,
                  layer3_ipv6_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccesscontrollistLayer3Ipv6RuleArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -266,6 +299,7 @@ class Accesscontrollist(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccesscontrollistLayer3Ipv4RuleArgs']]]] layer3_ipv4_rules: AP ACL layer3 ipv4 rule list. The structure of `layer3_ipv4_rules` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccesscontrollistLayer3Ipv6RuleArgs']]]] layer3_ipv6_rules: AP ACL layer3 ipv6 rule list. The structure of `layer3_ipv6_rules` block is documented below.
         :param pulumi.Input[str] name: AP access control list name.
@@ -317,6 +351,7 @@ class Accesscontrollist(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  layer3_ipv4_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccesscontrollistLayer3Ipv4RuleArgs']]]]] = None,
                  layer3_ipv6_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccesscontrollistLayer3Ipv6RuleArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -332,6 +367,7 @@ class Accesscontrollist(pulumi.CustomResource):
 
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["layer3_ipv4_rules"] = layer3_ipv4_rules
             __props__.__dict__["layer3_ipv6_rules"] = layer3_ipv6_rules
             __props__.__dict__["name"] = name
@@ -348,6 +384,7 @@ class Accesscontrollist(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             layer3_ipv4_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccesscontrollistLayer3Ipv4RuleArgs']]]]] = None,
             layer3_ipv6_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccesscontrollistLayer3Ipv6RuleArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -361,6 +398,7 @@ class Accesscontrollist(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccesscontrollistLayer3Ipv4RuleArgs']]]] layer3_ipv4_rules: AP ACL layer3 ipv4 rule list. The structure of `layer3_ipv4_rules` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccesscontrollistLayer3Ipv6RuleArgs']]]] layer3_ipv6_rules: AP ACL layer3 ipv6 rule list. The structure of `layer3_ipv6_rules` block is documented below.
         :param pulumi.Input[str] name: AP access control list name.
@@ -374,6 +412,7 @@ class Accesscontrollist(pulumi.CustomResource):
 
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["layer3_ipv4_rules"] = layer3_ipv4_rules
         __props__.__dict__["layer3_ipv6_rules"] = layer3_ipv6_rules
         __props__.__dict__["name"] = name
@@ -395,6 +434,14 @@ class Accesscontrollist(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="layer3Ipv4Rules")

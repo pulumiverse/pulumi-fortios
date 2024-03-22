@@ -27,7 +27,13 @@ class VipArgs:
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
+                 gslb_domain_name: Optional[pulumi.Input[str]] = None,
+                 gslb_hostname: Optional[pulumi.Input[str]] = None,
+                 gslb_public_ips: Optional[pulumi.Input[Sequence[pulumi.Input['VipGslbPublicIpArgs']]]] = None,
+                 h2_support: Optional[pulumi.Input[str]] = None,
+                 h3_support: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -37,7 +43,11 @@ class VipArgs:
                  http_ip_header: Optional[pulumi.Input[str]] = None,
                  http_ip_header_name: Optional[pulumi.Input[str]] = None,
                  http_multiplex: Optional[pulumi.Input[str]] = None,
+                 http_multiplex_max_concurrent_request: Optional[pulumi.Input[int]] = None,
+                 http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
+                 http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  https_cookie_secure: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedip: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedport: Optional[pulumi.Input[str]] = None,
@@ -51,11 +61,13 @@ class VipArgs:
                  nat44: Optional[pulumi.Input[str]] = None,
                  nat46: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
+                 one_click_gslb_server: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
                  portforward: Optional[pulumi.Input[str]] = None,
                  portmapping_type: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 quic: Optional[pulumi.Input['VipQuicArgs']] = None,
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input['VipRealserverArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['VipServiceArgs']]]] = None,
@@ -92,6 +104,7 @@ class VipArgs:
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input['VipSslServerCipherSuiteArgs']]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -114,7 +127,13 @@ class VipArgs:
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] gratuitous_arp_interval: Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
+        :param pulumi.Input[str] gslb_domain_name: Domain to use when integrating with FortiGSLB.
+        :param pulumi.Input[str] gslb_hostname: Hostname to use within the configured FortiGSLB domain.
+        :param pulumi.Input[Sequence[pulumi.Input['VipGslbPublicIpArgs']]] gslb_public_ips: Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslb_public_ips` block is documented below.
+        :param pulumi.Input[str] h2_support: Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] h3_support: Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
         :param pulumi.Input[str] http_cookie_domain: Domain that HTTP cookie persistence should apply to.
         :param pulumi.Input[str] http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -124,7 +143,11 @@ class VipArgs:
         :param pulumi.Input[str] http_ip_header: For HTTP multiplexing, enable to add the original client IP address in the XForwarded-For HTTP header. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] http_ip_header_name: For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
         :param pulumi.Input[str] http_multiplex: Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] http_multiplex_max_concurrent_request: Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+        :param pulumi.Input[int] http_multiplex_max_request: Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+        :param pulumi.Input[int] http_multiplex_ttl: Time-to-live for idle connections to servers.
         :param pulumi.Input[str] http_redirect: Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] http_supported_max_version: Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
         :param pulumi.Input[str] https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ipv6_mappedip: Start-mapped-IPv6-address [-end mapped-IPv6-address].
         :param pulumi.Input[str] ipv6_mappedport: IPv6 port number range on the destination network to which the external port number range is mapped.
@@ -138,11 +161,13 @@ class VipArgs:
         :param pulumi.Input[str] nat44: Enable/disable NAT44. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat_source_vip: Enable/disable forcing the source NAT mapped IP to the external IP for all traffic. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] one_click_gslb_server: Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
         :param pulumi.Input[str] portforward: Enable/disable port forwarding. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] portmapping_type: Port mapping type. Valid values: `1-to-1`, `m-to-n`.
         :param pulumi.Input[str] protocol: Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`, `icmp`.
+        :param pulumi.Input['VipQuicArgs'] quic: QUIC setting. The structure of `quic` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['VipRealserverArgs']]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input['VipServiceArgs']]] services: Service name. The structure of `service` block is documented below.
@@ -179,6 +204,7 @@ class VipArgs:
         :param pulumi.Input[Sequence[pulumi.Input['VipSslServerCipherSuiteArgs']]] ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_server_cipher_suites` block is documented below.
         :param pulumi.Input[str] ssl_server_max_version: Highest SSL/TLS version acceptable from a server. Use the client setting by default.
         :param pulumi.Input[str] ssl_server_min_version: Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
+        :param pulumi.Input[str] ssl_server_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep.
         :param pulumi.Input[int] ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state.
         :param pulumi.Input[str] ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
@@ -211,8 +237,20 @@ class VipArgs:
             pulumi.set(__self__, "extport", extport)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gratuitous_arp_interval is not None:
             pulumi.set(__self__, "gratuitous_arp_interval", gratuitous_arp_interval)
+        if gslb_domain_name is not None:
+            pulumi.set(__self__, "gslb_domain_name", gslb_domain_name)
+        if gslb_hostname is not None:
+            pulumi.set(__self__, "gslb_hostname", gslb_hostname)
+        if gslb_public_ips is not None:
+            pulumi.set(__self__, "gslb_public_ips", gslb_public_ips)
+        if h2_support is not None:
+            pulumi.set(__self__, "h2_support", h2_support)
+        if h3_support is not None:
+            pulumi.set(__self__, "h3_support", h3_support)
         if http_cookie_age is not None:
             pulumi.set(__self__, "http_cookie_age", http_cookie_age)
         if http_cookie_domain is not None:
@@ -231,8 +269,16 @@ class VipArgs:
             pulumi.set(__self__, "http_ip_header_name", http_ip_header_name)
         if http_multiplex is not None:
             pulumi.set(__self__, "http_multiplex", http_multiplex)
+        if http_multiplex_max_concurrent_request is not None:
+            pulumi.set(__self__, "http_multiplex_max_concurrent_request", http_multiplex_max_concurrent_request)
+        if http_multiplex_max_request is not None:
+            pulumi.set(__self__, "http_multiplex_max_request", http_multiplex_max_request)
+        if http_multiplex_ttl is not None:
+            pulumi.set(__self__, "http_multiplex_ttl", http_multiplex_ttl)
         if http_redirect is not None:
             pulumi.set(__self__, "http_redirect", http_redirect)
+        if http_supported_max_version is not None:
+            pulumi.set(__self__, "http_supported_max_version", http_supported_max_version)
         if https_cookie_secure is not None:
             pulumi.set(__self__, "https_cookie_secure", https_cookie_secure)
         if ipv6_mappedip is not None:
@@ -259,6 +305,8 @@ class VipArgs:
             pulumi.set(__self__, "nat46", nat46)
         if nat_source_vip is not None:
             pulumi.set(__self__, "nat_source_vip", nat_source_vip)
+        if one_click_gslb_server is not None:
+            pulumi.set(__self__, "one_click_gslb_server", one_click_gslb_server)
         if outlook_web_access is not None:
             pulumi.set(__self__, "outlook_web_access", outlook_web_access)
         if persistence is not None:
@@ -269,6 +317,8 @@ class VipArgs:
             pulumi.set(__self__, "portmapping_type", portmapping_type)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if quic is not None:
+            pulumi.set(__self__, "quic", quic)
         if realservers is not None:
             pulumi.set(__self__, "realservers", realservers)
         if server_type is not None:
@@ -341,6 +391,8 @@ class VipArgs:
             pulumi.set(__self__, "ssl_server_max_version", ssl_server_max_version)
         if ssl_server_min_version is not None:
             pulumi.set(__self__, "ssl_server_min_version", ssl_server_min_version)
+        if ssl_server_renegotiation is not None:
+            pulumi.set(__self__, "ssl_server_renegotiation", ssl_server_renegotiation)
         if ssl_server_session_state_max is not None:
             pulumi.set(__self__, "ssl_server_session_state_max", ssl_server_session_state_max)
         if ssl_server_session_state_timeout is not None:
@@ -493,6 +545,18 @@ class VipArgs:
         pulumi.set(self, "fosid", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="gratuitousArpInterval")
     def gratuitous_arp_interval(self) -> Optional[pulumi.Input[int]]:
         """
@@ -503,6 +567,66 @@ class VipArgs:
     @gratuitous_arp_interval.setter
     def gratuitous_arp_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "gratuitous_arp_interval", value)
+
+    @property
+    @pulumi.getter(name="gslbDomainName")
+    def gslb_domain_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Domain to use when integrating with FortiGSLB.
+        """
+        return pulumi.get(self, "gslb_domain_name")
+
+    @gslb_domain_name.setter
+    def gslb_domain_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gslb_domain_name", value)
+
+    @property
+    @pulumi.getter(name="gslbHostname")
+    def gslb_hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        Hostname to use within the configured FortiGSLB domain.
+        """
+        return pulumi.get(self, "gslb_hostname")
+
+    @gslb_hostname.setter
+    def gslb_hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gslb_hostname", value)
+
+    @property
+    @pulumi.getter(name="gslbPublicIps")
+    def gslb_public_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VipGslbPublicIpArgs']]]]:
+        """
+        Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslb_public_ips` block is documented below.
+        """
+        return pulumi.get(self, "gslb_public_ips")
+
+    @gslb_public_ips.setter
+    def gslb_public_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VipGslbPublicIpArgs']]]]):
+        pulumi.set(self, "gslb_public_ips", value)
+
+    @property
+    @pulumi.getter(name="h2Support")
+    def h2_support(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h2_support")
+
+    @h2_support.setter
+    def h2_support(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h2_support", value)
+
+    @property
+    @pulumi.getter(name="h3Support")
+    def h3_support(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h3_support")
+
+    @h3_support.setter
+    def h3_support(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h3_support", value)
 
     @property
     @pulumi.getter(name="httpCookieAge")
@@ -613,6 +737,42 @@ class VipArgs:
         pulumi.set(self, "http_multiplex", value)
 
     @property
+    @pulumi.getter(name="httpMultiplexMaxConcurrentRequest")
+    def http_multiplex_max_concurrent_request(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+        """
+        return pulumi.get(self, "http_multiplex_max_concurrent_request")
+
+    @http_multiplex_max_concurrent_request.setter
+    def http_multiplex_max_concurrent_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "http_multiplex_max_concurrent_request", value)
+
+    @property
+    @pulumi.getter(name="httpMultiplexMaxRequest")
+    def http_multiplex_max_request(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+        """
+        return pulumi.get(self, "http_multiplex_max_request")
+
+    @http_multiplex_max_request.setter
+    def http_multiplex_max_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "http_multiplex_max_request", value)
+
+    @property
+    @pulumi.getter(name="httpMultiplexTtl")
+    def http_multiplex_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time-to-live for idle connections to servers.
+        """
+        return pulumi.get(self, "http_multiplex_ttl")
+
+    @http_multiplex_ttl.setter
+    def http_multiplex_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "http_multiplex_ttl", value)
+
+    @property
     @pulumi.getter(name="httpRedirect")
     def http_redirect(self) -> Optional[pulumi.Input[str]]:
         """
@@ -623,6 +783,18 @@ class VipArgs:
     @http_redirect.setter
     def http_redirect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "http_redirect", value)
+
+    @property
+    @pulumi.getter(name="httpSupportedMaxVersion")
+    def http_supported_max_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+        """
+        return pulumi.get(self, "http_supported_max_version")
+
+    @http_supported_max_version.setter
+    def http_supported_max_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_supported_max_version", value)
 
     @property
     @pulumi.getter(name="httpsCookieSecure")
@@ -781,6 +953,18 @@ class VipArgs:
         pulumi.set(self, "nat_source_vip", value)
 
     @property
+    @pulumi.getter(name="oneClickGslbServer")
+    def one_click_gslb_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "one_click_gslb_server")
+
+    @one_click_gslb_server.setter
+    def one_click_gslb_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "one_click_gslb_server", value)
+
+    @property
     @pulumi.getter(name="outlookWebAccess")
     def outlook_web_access(self) -> Optional[pulumi.Input[str]]:
         """
@@ -839,6 +1023,18 @@ class VipArgs:
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter
+    def quic(self) -> Optional[pulumi.Input['VipQuicArgs']]:
+        """
+        QUIC setting. The structure of `quic` block is documented below.
+        """
+        return pulumi.get(self, "quic")
+
+    @quic.setter
+    def quic(self, value: Optional[pulumi.Input['VipQuicArgs']]):
+        pulumi.set(self, "quic", value)
 
     @property
     @pulumi.getter
@@ -1271,6 +1467,18 @@ class VipArgs:
     @ssl_server_min_version.setter
     def ssl_server_min_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssl_server_min_version", value)
+
+    @property
+    @pulumi.getter(name="sslServerRenegotiation")
+    def ssl_server_renegotiation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_server_renegotiation")
+
+    @ssl_server_renegotiation.setter
+    def ssl_server_renegotiation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_server_renegotiation", value)
 
     @property
     @pulumi.getter(name="sslServerSessionStateMax")
@@ -1395,7 +1603,13 @@ class _VipState:
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
+                 gslb_domain_name: Optional[pulumi.Input[str]] = None,
+                 gslb_hostname: Optional[pulumi.Input[str]] = None,
+                 gslb_public_ips: Optional[pulumi.Input[Sequence[pulumi.Input['VipGslbPublicIpArgs']]]] = None,
+                 h2_support: Optional[pulumi.Input[str]] = None,
+                 h3_support: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -1405,7 +1619,11 @@ class _VipState:
                  http_ip_header: Optional[pulumi.Input[str]] = None,
                  http_ip_header_name: Optional[pulumi.Input[str]] = None,
                  http_multiplex: Optional[pulumi.Input[str]] = None,
+                 http_multiplex_max_concurrent_request: Optional[pulumi.Input[int]] = None,
+                 http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
+                 http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  https_cookie_secure: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedip: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedport: Optional[pulumi.Input[str]] = None,
@@ -1419,11 +1637,13 @@ class _VipState:
                  nat44: Optional[pulumi.Input[str]] = None,
                  nat46: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
+                 one_click_gslb_server: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
                  portforward: Optional[pulumi.Input[str]] = None,
                  portmapping_type: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 quic: Optional[pulumi.Input['VipQuicArgs']] = None,
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input['VipRealserverArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['VipServiceArgs']]]] = None,
@@ -1460,6 +1680,7 @@ class _VipState:
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input['VipSslServerCipherSuiteArgs']]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -1482,7 +1703,13 @@ class _VipState:
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] gratuitous_arp_interval: Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
+        :param pulumi.Input[str] gslb_domain_name: Domain to use when integrating with FortiGSLB.
+        :param pulumi.Input[str] gslb_hostname: Hostname to use within the configured FortiGSLB domain.
+        :param pulumi.Input[Sequence[pulumi.Input['VipGslbPublicIpArgs']]] gslb_public_ips: Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslb_public_ips` block is documented below.
+        :param pulumi.Input[str] h2_support: Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] h3_support: Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
         :param pulumi.Input[str] http_cookie_domain: Domain that HTTP cookie persistence should apply to.
         :param pulumi.Input[str] http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -1492,7 +1719,11 @@ class _VipState:
         :param pulumi.Input[str] http_ip_header: For HTTP multiplexing, enable to add the original client IP address in the XForwarded-For HTTP header. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] http_ip_header_name: For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
         :param pulumi.Input[str] http_multiplex: Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] http_multiplex_max_concurrent_request: Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+        :param pulumi.Input[int] http_multiplex_max_request: Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+        :param pulumi.Input[int] http_multiplex_ttl: Time-to-live for idle connections to servers.
         :param pulumi.Input[str] http_redirect: Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] http_supported_max_version: Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
         :param pulumi.Input[str] https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ipv6_mappedip: Start-mapped-IPv6-address [-end mapped-IPv6-address].
         :param pulumi.Input[str] ipv6_mappedport: IPv6 port number range on the destination network to which the external port number range is mapped.
@@ -1506,11 +1737,13 @@ class _VipState:
         :param pulumi.Input[str] nat44: Enable/disable NAT44. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat_source_vip: Enable/disable forcing the source NAT mapped IP to the external IP for all traffic. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] one_click_gslb_server: Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
         :param pulumi.Input[str] portforward: Enable/disable port forwarding. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] portmapping_type: Port mapping type. Valid values: `1-to-1`, `m-to-n`.
         :param pulumi.Input[str] protocol: Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`, `icmp`.
+        :param pulumi.Input['VipQuicArgs'] quic: QUIC setting. The structure of `quic` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['VipRealserverArgs']]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input['VipServiceArgs']]] services: Service name. The structure of `service` block is documented below.
@@ -1547,6 +1780,7 @@ class _VipState:
         :param pulumi.Input[Sequence[pulumi.Input['VipSslServerCipherSuiteArgs']]] ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_server_cipher_suites` block is documented below.
         :param pulumi.Input[str] ssl_server_max_version: Highest SSL/TLS version acceptable from a server. Use the client setting by default.
         :param pulumi.Input[str] ssl_server_min_version: Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
+        :param pulumi.Input[str] ssl_server_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep.
         :param pulumi.Input[int] ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state.
         :param pulumi.Input[str] ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
@@ -1579,8 +1813,20 @@ class _VipState:
             pulumi.set(__self__, "extport", extport)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gratuitous_arp_interval is not None:
             pulumi.set(__self__, "gratuitous_arp_interval", gratuitous_arp_interval)
+        if gslb_domain_name is not None:
+            pulumi.set(__self__, "gslb_domain_name", gslb_domain_name)
+        if gslb_hostname is not None:
+            pulumi.set(__self__, "gslb_hostname", gslb_hostname)
+        if gslb_public_ips is not None:
+            pulumi.set(__self__, "gslb_public_ips", gslb_public_ips)
+        if h2_support is not None:
+            pulumi.set(__self__, "h2_support", h2_support)
+        if h3_support is not None:
+            pulumi.set(__self__, "h3_support", h3_support)
         if http_cookie_age is not None:
             pulumi.set(__self__, "http_cookie_age", http_cookie_age)
         if http_cookie_domain is not None:
@@ -1599,8 +1845,16 @@ class _VipState:
             pulumi.set(__self__, "http_ip_header_name", http_ip_header_name)
         if http_multiplex is not None:
             pulumi.set(__self__, "http_multiplex", http_multiplex)
+        if http_multiplex_max_concurrent_request is not None:
+            pulumi.set(__self__, "http_multiplex_max_concurrent_request", http_multiplex_max_concurrent_request)
+        if http_multiplex_max_request is not None:
+            pulumi.set(__self__, "http_multiplex_max_request", http_multiplex_max_request)
+        if http_multiplex_ttl is not None:
+            pulumi.set(__self__, "http_multiplex_ttl", http_multiplex_ttl)
         if http_redirect is not None:
             pulumi.set(__self__, "http_redirect", http_redirect)
+        if http_supported_max_version is not None:
+            pulumi.set(__self__, "http_supported_max_version", http_supported_max_version)
         if https_cookie_secure is not None:
             pulumi.set(__self__, "https_cookie_secure", https_cookie_secure)
         if ipv6_mappedip is not None:
@@ -1627,6 +1881,8 @@ class _VipState:
             pulumi.set(__self__, "nat46", nat46)
         if nat_source_vip is not None:
             pulumi.set(__self__, "nat_source_vip", nat_source_vip)
+        if one_click_gslb_server is not None:
+            pulumi.set(__self__, "one_click_gslb_server", one_click_gslb_server)
         if outlook_web_access is not None:
             pulumi.set(__self__, "outlook_web_access", outlook_web_access)
         if persistence is not None:
@@ -1637,6 +1893,8 @@ class _VipState:
             pulumi.set(__self__, "portmapping_type", portmapping_type)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if quic is not None:
+            pulumi.set(__self__, "quic", quic)
         if realservers is not None:
             pulumi.set(__self__, "realservers", realservers)
         if server_type is not None:
@@ -1709,6 +1967,8 @@ class _VipState:
             pulumi.set(__self__, "ssl_server_max_version", ssl_server_max_version)
         if ssl_server_min_version is not None:
             pulumi.set(__self__, "ssl_server_min_version", ssl_server_min_version)
+        if ssl_server_renegotiation is not None:
+            pulumi.set(__self__, "ssl_server_renegotiation", ssl_server_renegotiation)
         if ssl_server_session_state_max is not None:
             pulumi.set(__self__, "ssl_server_session_state_max", ssl_server_session_state_max)
         if ssl_server_session_state_timeout is not None:
@@ -1861,6 +2121,18 @@ class _VipState:
         pulumi.set(self, "fosid", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="gratuitousArpInterval")
     def gratuitous_arp_interval(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1871,6 +2143,66 @@ class _VipState:
     @gratuitous_arp_interval.setter
     def gratuitous_arp_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "gratuitous_arp_interval", value)
+
+    @property
+    @pulumi.getter(name="gslbDomainName")
+    def gslb_domain_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Domain to use when integrating with FortiGSLB.
+        """
+        return pulumi.get(self, "gslb_domain_name")
+
+    @gslb_domain_name.setter
+    def gslb_domain_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gslb_domain_name", value)
+
+    @property
+    @pulumi.getter(name="gslbHostname")
+    def gslb_hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        Hostname to use within the configured FortiGSLB domain.
+        """
+        return pulumi.get(self, "gslb_hostname")
+
+    @gslb_hostname.setter
+    def gslb_hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gslb_hostname", value)
+
+    @property
+    @pulumi.getter(name="gslbPublicIps")
+    def gslb_public_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VipGslbPublicIpArgs']]]]:
+        """
+        Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslb_public_ips` block is documented below.
+        """
+        return pulumi.get(self, "gslb_public_ips")
+
+    @gslb_public_ips.setter
+    def gslb_public_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VipGslbPublicIpArgs']]]]):
+        pulumi.set(self, "gslb_public_ips", value)
+
+    @property
+    @pulumi.getter(name="h2Support")
+    def h2_support(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h2_support")
+
+    @h2_support.setter
+    def h2_support(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h2_support", value)
+
+    @property
+    @pulumi.getter(name="h3Support")
+    def h3_support(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h3_support")
+
+    @h3_support.setter
+    def h3_support(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h3_support", value)
 
     @property
     @pulumi.getter(name="httpCookieAge")
@@ -1981,6 +2313,42 @@ class _VipState:
         pulumi.set(self, "http_multiplex", value)
 
     @property
+    @pulumi.getter(name="httpMultiplexMaxConcurrentRequest")
+    def http_multiplex_max_concurrent_request(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+        """
+        return pulumi.get(self, "http_multiplex_max_concurrent_request")
+
+    @http_multiplex_max_concurrent_request.setter
+    def http_multiplex_max_concurrent_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "http_multiplex_max_concurrent_request", value)
+
+    @property
+    @pulumi.getter(name="httpMultiplexMaxRequest")
+    def http_multiplex_max_request(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+        """
+        return pulumi.get(self, "http_multiplex_max_request")
+
+    @http_multiplex_max_request.setter
+    def http_multiplex_max_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "http_multiplex_max_request", value)
+
+    @property
+    @pulumi.getter(name="httpMultiplexTtl")
+    def http_multiplex_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time-to-live for idle connections to servers.
+        """
+        return pulumi.get(self, "http_multiplex_ttl")
+
+    @http_multiplex_ttl.setter
+    def http_multiplex_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "http_multiplex_ttl", value)
+
+    @property
     @pulumi.getter(name="httpRedirect")
     def http_redirect(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1991,6 +2359,18 @@ class _VipState:
     @http_redirect.setter
     def http_redirect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "http_redirect", value)
+
+    @property
+    @pulumi.getter(name="httpSupportedMaxVersion")
+    def http_supported_max_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+        """
+        return pulumi.get(self, "http_supported_max_version")
+
+    @http_supported_max_version.setter
+    def http_supported_max_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_supported_max_version", value)
 
     @property
     @pulumi.getter(name="httpsCookieSecure")
@@ -2149,6 +2529,18 @@ class _VipState:
         pulumi.set(self, "nat_source_vip", value)
 
     @property
+    @pulumi.getter(name="oneClickGslbServer")
+    def one_click_gslb_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "one_click_gslb_server")
+
+    @one_click_gslb_server.setter
+    def one_click_gslb_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "one_click_gslb_server", value)
+
+    @property
     @pulumi.getter(name="outlookWebAccess")
     def outlook_web_access(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2207,6 +2599,18 @@ class _VipState:
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter
+    def quic(self) -> Optional[pulumi.Input['VipQuicArgs']]:
+        """
+        QUIC setting. The structure of `quic` block is documented below.
+        """
+        return pulumi.get(self, "quic")
+
+    @quic.setter
+    def quic(self, value: Optional[pulumi.Input['VipQuicArgs']]):
+        pulumi.set(self, "quic", value)
 
     @property
     @pulumi.getter
@@ -2639,6 +3043,18 @@ class _VipState:
     @ssl_server_min_version.setter
     def ssl_server_min_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssl_server_min_version", value)
+
+    @property
+    @pulumi.getter(name="sslServerRenegotiation")
+    def ssl_server_renegotiation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_server_renegotiation")
+
+    @ssl_server_renegotiation.setter
+    def ssl_server_renegotiation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_server_renegotiation", value)
 
     @property
     @pulumi.getter(name="sslServerSessionStateMax")
@@ -2765,7 +3181,13 @@ class Vip(pulumi.CustomResource):
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
+                 gslb_domain_name: Optional[pulumi.Input[str]] = None,
+                 gslb_hostname: Optional[pulumi.Input[str]] = None,
+                 gslb_public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipGslbPublicIpArgs']]]]] = None,
+                 h2_support: Optional[pulumi.Input[str]] = None,
+                 h3_support: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -2775,7 +3197,11 @@ class Vip(pulumi.CustomResource):
                  http_ip_header: Optional[pulumi.Input[str]] = None,
                  http_ip_header_name: Optional[pulumi.Input[str]] = None,
                  http_multiplex: Optional[pulumi.Input[str]] = None,
+                 http_multiplex_max_concurrent_request: Optional[pulumi.Input[int]] = None,
+                 http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
+                 http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  https_cookie_secure: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedip: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedport: Optional[pulumi.Input[str]] = None,
@@ -2789,11 +3215,13 @@ class Vip(pulumi.CustomResource):
                  nat44: Optional[pulumi.Input[str]] = None,
                  nat46: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
+                 one_click_gslb_server: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
                  portforward: Optional[pulumi.Input[str]] = None,
                  portmapping_type: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 quic: Optional[pulumi.Input[pulumi.InputType['VipQuicArgs']]] = None,
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipRealserverArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipServiceArgs']]]]] = None,
@@ -2830,6 +3258,7 @@ class Vip(pulumi.CustomResource):
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSslServerCipherSuiteArgs']]]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -2940,7 +3369,13 @@ class Vip(pulumi.CustomResource):
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] gratuitous_arp_interval: Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
+        :param pulumi.Input[str] gslb_domain_name: Domain to use when integrating with FortiGSLB.
+        :param pulumi.Input[str] gslb_hostname: Hostname to use within the configured FortiGSLB domain.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipGslbPublicIpArgs']]]] gslb_public_ips: Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslb_public_ips` block is documented below.
+        :param pulumi.Input[str] h2_support: Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] h3_support: Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
         :param pulumi.Input[str] http_cookie_domain: Domain that HTTP cookie persistence should apply to.
         :param pulumi.Input[str] http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -2950,7 +3385,11 @@ class Vip(pulumi.CustomResource):
         :param pulumi.Input[str] http_ip_header: For HTTP multiplexing, enable to add the original client IP address in the XForwarded-For HTTP header. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] http_ip_header_name: For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
         :param pulumi.Input[str] http_multiplex: Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] http_multiplex_max_concurrent_request: Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+        :param pulumi.Input[int] http_multiplex_max_request: Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+        :param pulumi.Input[int] http_multiplex_ttl: Time-to-live for idle connections to servers.
         :param pulumi.Input[str] http_redirect: Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] http_supported_max_version: Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
         :param pulumi.Input[str] https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ipv6_mappedip: Start-mapped-IPv6-address [-end mapped-IPv6-address].
         :param pulumi.Input[str] ipv6_mappedport: IPv6 port number range on the destination network to which the external port number range is mapped.
@@ -2964,11 +3403,13 @@ class Vip(pulumi.CustomResource):
         :param pulumi.Input[str] nat44: Enable/disable NAT44. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat_source_vip: Enable/disable forcing the source NAT mapped IP to the external IP for all traffic. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] one_click_gslb_server: Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
         :param pulumi.Input[str] portforward: Enable/disable port forwarding. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] portmapping_type: Port mapping type. Valid values: `1-to-1`, `m-to-n`.
         :param pulumi.Input[str] protocol: Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`, `icmp`.
+        :param pulumi.Input[pulumi.InputType['VipQuicArgs']] quic: QUIC setting. The structure of `quic` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipRealserverArgs']]]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipServiceArgs']]]] services: Service name. The structure of `service` block is documented below.
@@ -3005,6 +3446,7 @@ class Vip(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSslServerCipherSuiteArgs']]]] ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_server_cipher_suites` block is documented below.
         :param pulumi.Input[str] ssl_server_max_version: Highest SSL/TLS version acceptable from a server. Use the client setting by default.
         :param pulumi.Input[str] ssl_server_min_version: Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
+        :param pulumi.Input[str] ssl_server_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep.
         :param pulumi.Input[int] ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state.
         :param pulumi.Input[str] ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
@@ -3134,7 +3576,13 @@ class Vip(pulumi.CustomResource):
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
+                 gslb_domain_name: Optional[pulumi.Input[str]] = None,
+                 gslb_hostname: Optional[pulumi.Input[str]] = None,
+                 gslb_public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipGslbPublicIpArgs']]]]] = None,
+                 h2_support: Optional[pulumi.Input[str]] = None,
+                 h3_support: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -3144,7 +3592,11 @@ class Vip(pulumi.CustomResource):
                  http_ip_header: Optional[pulumi.Input[str]] = None,
                  http_ip_header_name: Optional[pulumi.Input[str]] = None,
                  http_multiplex: Optional[pulumi.Input[str]] = None,
+                 http_multiplex_max_concurrent_request: Optional[pulumi.Input[int]] = None,
+                 http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
+                 http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  https_cookie_secure: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedip: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedport: Optional[pulumi.Input[str]] = None,
@@ -3158,11 +3610,13 @@ class Vip(pulumi.CustomResource):
                  nat44: Optional[pulumi.Input[str]] = None,
                  nat46: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
+                 one_click_gslb_server: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
                  portforward: Optional[pulumi.Input[str]] = None,
                  portmapping_type: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 quic: Optional[pulumi.Input[pulumi.InputType['VipQuicArgs']]] = None,
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipRealserverArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipServiceArgs']]]]] = None,
@@ -3199,6 +3653,7 @@ class Vip(pulumi.CustomResource):
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSslServerCipherSuiteArgs']]]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -3228,7 +3683,13 @@ class Vip(pulumi.CustomResource):
             __props__.__dict__["extip"] = extip
             __props__.__dict__["extport"] = extport
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gratuitous_arp_interval"] = gratuitous_arp_interval
+            __props__.__dict__["gslb_domain_name"] = gslb_domain_name
+            __props__.__dict__["gslb_hostname"] = gslb_hostname
+            __props__.__dict__["gslb_public_ips"] = gslb_public_ips
+            __props__.__dict__["h2_support"] = h2_support
+            __props__.__dict__["h3_support"] = h3_support
             __props__.__dict__["http_cookie_age"] = http_cookie_age
             __props__.__dict__["http_cookie_domain"] = http_cookie_domain
             __props__.__dict__["http_cookie_domain_from_host"] = http_cookie_domain_from_host
@@ -3238,7 +3699,11 @@ class Vip(pulumi.CustomResource):
             __props__.__dict__["http_ip_header"] = http_ip_header
             __props__.__dict__["http_ip_header_name"] = http_ip_header_name
             __props__.__dict__["http_multiplex"] = http_multiplex
+            __props__.__dict__["http_multiplex_max_concurrent_request"] = http_multiplex_max_concurrent_request
+            __props__.__dict__["http_multiplex_max_request"] = http_multiplex_max_request
+            __props__.__dict__["http_multiplex_ttl"] = http_multiplex_ttl
             __props__.__dict__["http_redirect"] = http_redirect
+            __props__.__dict__["http_supported_max_version"] = http_supported_max_version
             __props__.__dict__["https_cookie_secure"] = https_cookie_secure
             __props__.__dict__["ipv6_mappedip"] = ipv6_mappedip
             __props__.__dict__["ipv6_mappedport"] = ipv6_mappedport
@@ -3252,11 +3717,13 @@ class Vip(pulumi.CustomResource):
             __props__.__dict__["nat44"] = nat44
             __props__.__dict__["nat46"] = nat46
             __props__.__dict__["nat_source_vip"] = nat_source_vip
+            __props__.__dict__["one_click_gslb_server"] = one_click_gslb_server
             __props__.__dict__["outlook_web_access"] = outlook_web_access
             __props__.__dict__["persistence"] = persistence
             __props__.__dict__["portforward"] = portforward
             __props__.__dict__["portmapping_type"] = portmapping_type
             __props__.__dict__["protocol"] = protocol
+            __props__.__dict__["quic"] = quic
             __props__.__dict__["realservers"] = realservers
             __props__.__dict__["server_type"] = server_type
             __props__.__dict__["services"] = services
@@ -3293,6 +3760,7 @@ class Vip(pulumi.CustomResource):
             __props__.__dict__["ssl_server_cipher_suites"] = ssl_server_cipher_suites
             __props__.__dict__["ssl_server_max_version"] = ssl_server_max_version
             __props__.__dict__["ssl_server_min_version"] = ssl_server_min_version
+            __props__.__dict__["ssl_server_renegotiation"] = ssl_server_renegotiation
             __props__.__dict__["ssl_server_session_state_max"] = ssl_server_session_state_max
             __props__.__dict__["ssl_server_session_state_timeout"] = ssl_server_session_state_timeout
             __props__.__dict__["ssl_server_session_state_type"] = ssl_server_session_state_type
@@ -3323,7 +3791,13 @@ class Vip(pulumi.CustomResource):
             extip: Optional[pulumi.Input[str]] = None,
             extport: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
+            gslb_domain_name: Optional[pulumi.Input[str]] = None,
+            gslb_hostname: Optional[pulumi.Input[str]] = None,
+            gslb_public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipGslbPublicIpArgs']]]]] = None,
+            h2_support: Optional[pulumi.Input[str]] = None,
+            h3_support: Optional[pulumi.Input[str]] = None,
             http_cookie_age: Optional[pulumi.Input[int]] = None,
             http_cookie_domain: Optional[pulumi.Input[str]] = None,
             http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -3333,7 +3807,11 @@ class Vip(pulumi.CustomResource):
             http_ip_header: Optional[pulumi.Input[str]] = None,
             http_ip_header_name: Optional[pulumi.Input[str]] = None,
             http_multiplex: Optional[pulumi.Input[str]] = None,
+            http_multiplex_max_concurrent_request: Optional[pulumi.Input[int]] = None,
+            http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
+            http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
             http_redirect: Optional[pulumi.Input[str]] = None,
+            http_supported_max_version: Optional[pulumi.Input[str]] = None,
             https_cookie_secure: Optional[pulumi.Input[str]] = None,
             ipv6_mappedip: Optional[pulumi.Input[str]] = None,
             ipv6_mappedport: Optional[pulumi.Input[str]] = None,
@@ -3347,11 +3825,13 @@ class Vip(pulumi.CustomResource):
             nat44: Optional[pulumi.Input[str]] = None,
             nat46: Optional[pulumi.Input[str]] = None,
             nat_source_vip: Optional[pulumi.Input[str]] = None,
+            one_click_gslb_server: Optional[pulumi.Input[str]] = None,
             outlook_web_access: Optional[pulumi.Input[str]] = None,
             persistence: Optional[pulumi.Input[str]] = None,
             portforward: Optional[pulumi.Input[str]] = None,
             portmapping_type: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
+            quic: Optional[pulumi.Input[pulumi.InputType['VipQuicArgs']]] = None,
             realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipRealserverArgs']]]]] = None,
             server_type: Optional[pulumi.Input[str]] = None,
             services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipServiceArgs']]]]] = None,
@@ -3388,6 +3868,7 @@ class Vip(pulumi.CustomResource):
             ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSslServerCipherSuiteArgs']]]]] = None,
             ssl_server_max_version: Optional[pulumi.Input[str]] = None,
             ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+            ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
             ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
             ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
             ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -3415,7 +3896,13 @@ class Vip(pulumi.CustomResource):
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] gratuitous_arp_interval: Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
+        :param pulumi.Input[str] gslb_domain_name: Domain to use when integrating with FortiGSLB.
+        :param pulumi.Input[str] gslb_hostname: Hostname to use within the configured FortiGSLB domain.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipGslbPublicIpArgs']]]] gslb_public_ips: Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslb_public_ips` block is documented below.
+        :param pulumi.Input[str] h2_support: Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] h3_support: Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
         :param pulumi.Input[str] http_cookie_domain: Domain that HTTP cookie persistence should apply to.
         :param pulumi.Input[str] http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -3425,7 +3912,11 @@ class Vip(pulumi.CustomResource):
         :param pulumi.Input[str] http_ip_header: For HTTP multiplexing, enable to add the original client IP address in the XForwarded-For HTTP header. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] http_ip_header_name: For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
         :param pulumi.Input[str] http_multiplex: Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] http_multiplex_max_concurrent_request: Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+        :param pulumi.Input[int] http_multiplex_max_request: Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+        :param pulumi.Input[int] http_multiplex_ttl: Time-to-live for idle connections to servers.
         :param pulumi.Input[str] http_redirect: Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] http_supported_max_version: Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
         :param pulumi.Input[str] https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ipv6_mappedip: Start-mapped-IPv6-address [-end mapped-IPv6-address].
         :param pulumi.Input[str] ipv6_mappedport: IPv6 port number range on the destination network to which the external port number range is mapped.
@@ -3439,11 +3930,13 @@ class Vip(pulumi.CustomResource):
         :param pulumi.Input[str] nat44: Enable/disable NAT44. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat_source_vip: Enable/disable forcing the source NAT mapped IP to the external IP for all traffic. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] one_click_gslb_server: Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
         :param pulumi.Input[str] portforward: Enable/disable port forwarding. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] portmapping_type: Port mapping type. Valid values: `1-to-1`, `m-to-n`.
         :param pulumi.Input[str] protocol: Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`, `icmp`.
+        :param pulumi.Input[pulumi.InputType['VipQuicArgs']] quic: QUIC setting. The structure of `quic` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipRealserverArgs']]]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipServiceArgs']]]] services: Service name. The structure of `service` block is documented below.
@@ -3480,6 +3973,7 @@ class Vip(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSslServerCipherSuiteArgs']]]] ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_server_cipher_suites` block is documented below.
         :param pulumi.Input[str] ssl_server_max_version: Highest SSL/TLS version acceptable from a server. Use the client setting by default.
         :param pulumi.Input[str] ssl_server_min_version: Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
+        :param pulumi.Input[str] ssl_server_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep.
         :param pulumi.Input[int] ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state.
         :param pulumi.Input[str] ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
@@ -3505,7 +3999,13 @@ class Vip(pulumi.CustomResource):
         __props__.__dict__["extip"] = extip
         __props__.__dict__["extport"] = extport
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gratuitous_arp_interval"] = gratuitous_arp_interval
+        __props__.__dict__["gslb_domain_name"] = gslb_domain_name
+        __props__.__dict__["gslb_hostname"] = gslb_hostname
+        __props__.__dict__["gslb_public_ips"] = gslb_public_ips
+        __props__.__dict__["h2_support"] = h2_support
+        __props__.__dict__["h3_support"] = h3_support
         __props__.__dict__["http_cookie_age"] = http_cookie_age
         __props__.__dict__["http_cookie_domain"] = http_cookie_domain
         __props__.__dict__["http_cookie_domain_from_host"] = http_cookie_domain_from_host
@@ -3515,7 +4015,11 @@ class Vip(pulumi.CustomResource):
         __props__.__dict__["http_ip_header"] = http_ip_header
         __props__.__dict__["http_ip_header_name"] = http_ip_header_name
         __props__.__dict__["http_multiplex"] = http_multiplex
+        __props__.__dict__["http_multiplex_max_concurrent_request"] = http_multiplex_max_concurrent_request
+        __props__.__dict__["http_multiplex_max_request"] = http_multiplex_max_request
+        __props__.__dict__["http_multiplex_ttl"] = http_multiplex_ttl
         __props__.__dict__["http_redirect"] = http_redirect
+        __props__.__dict__["http_supported_max_version"] = http_supported_max_version
         __props__.__dict__["https_cookie_secure"] = https_cookie_secure
         __props__.__dict__["ipv6_mappedip"] = ipv6_mappedip
         __props__.__dict__["ipv6_mappedport"] = ipv6_mappedport
@@ -3529,11 +4033,13 @@ class Vip(pulumi.CustomResource):
         __props__.__dict__["nat44"] = nat44
         __props__.__dict__["nat46"] = nat46
         __props__.__dict__["nat_source_vip"] = nat_source_vip
+        __props__.__dict__["one_click_gslb_server"] = one_click_gslb_server
         __props__.__dict__["outlook_web_access"] = outlook_web_access
         __props__.__dict__["persistence"] = persistence
         __props__.__dict__["portforward"] = portforward
         __props__.__dict__["portmapping_type"] = portmapping_type
         __props__.__dict__["protocol"] = protocol
+        __props__.__dict__["quic"] = quic
         __props__.__dict__["realservers"] = realservers
         __props__.__dict__["server_type"] = server_type
         __props__.__dict__["services"] = services
@@ -3570,6 +4076,7 @@ class Vip(pulumi.CustomResource):
         __props__.__dict__["ssl_server_cipher_suites"] = ssl_server_cipher_suites
         __props__.__dict__["ssl_server_max_version"] = ssl_server_max_version
         __props__.__dict__["ssl_server_min_version"] = ssl_server_min_version
+        __props__.__dict__["ssl_server_renegotiation"] = ssl_server_renegotiation
         __props__.__dict__["ssl_server_session_state_max"] = ssl_server_session_state_max
         __props__.__dict__["ssl_server_session_state_timeout"] = ssl_server_session_state_timeout
         __props__.__dict__["ssl_server_session_state_type"] = ssl_server_session_state_type
@@ -3670,12 +4177,60 @@ class Vip(pulumi.CustomResource):
         return pulumi.get(self, "fosid")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="gratuitousArpInterval")
     def gratuitous_arp_interval(self) -> pulumi.Output[int]:
         """
         Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
         """
         return pulumi.get(self, "gratuitous_arp_interval")
+
+    @property
+    @pulumi.getter(name="gslbDomainName")
+    def gslb_domain_name(self) -> pulumi.Output[str]:
+        """
+        Domain to use when integrating with FortiGSLB.
+        """
+        return pulumi.get(self, "gslb_domain_name")
+
+    @property
+    @pulumi.getter(name="gslbHostname")
+    def gslb_hostname(self) -> pulumi.Output[str]:
+        """
+        Hostname to use within the configured FortiGSLB domain.
+        """
+        return pulumi.get(self, "gslb_hostname")
+
+    @property
+    @pulumi.getter(name="gslbPublicIps")
+    def gslb_public_ips(self) -> pulumi.Output[Optional[Sequence['outputs.VipGslbPublicIp']]]:
+        """
+        Publicly accessible IP addresses for the FortiGSLB service. The structure of `gslb_public_ips` block is documented below.
+        """
+        return pulumi.get(self, "gslb_public_ips")
+
+    @property
+    @pulumi.getter(name="h2Support")
+    def h2_support(self) -> pulumi.Output[str]:
+        """
+        Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h2_support")
+
+    @property
+    @pulumi.getter(name="h3Support")
+    def h3_support(self) -> pulumi.Output[str]:
+        """
+        Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h3_support")
 
     @property
     @pulumi.getter(name="httpCookieAge")
@@ -3750,12 +4305,44 @@ class Vip(pulumi.CustomResource):
         return pulumi.get(self, "http_multiplex")
 
     @property
+    @pulumi.getter(name="httpMultiplexMaxConcurrentRequest")
+    def http_multiplex_max_concurrent_request(self) -> pulumi.Output[int]:
+        """
+        Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
+        """
+        return pulumi.get(self, "http_multiplex_max_concurrent_request")
+
+    @property
+    @pulumi.getter(name="httpMultiplexMaxRequest")
+    def http_multiplex_max_request(self) -> pulumi.Output[int]:
+        """
+        Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+        """
+        return pulumi.get(self, "http_multiplex_max_request")
+
+    @property
+    @pulumi.getter(name="httpMultiplexTtl")
+    def http_multiplex_ttl(self) -> pulumi.Output[int]:
+        """
+        Time-to-live for idle connections to servers.
+        """
+        return pulumi.get(self, "http_multiplex_ttl")
+
+    @property
     @pulumi.getter(name="httpRedirect")
     def http_redirect(self) -> pulumi.Output[str]:
         """
         Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "http_redirect")
+
+    @property
+    @pulumi.getter(name="httpSupportedMaxVersion")
+    def http_supported_max_version(self) -> pulumi.Output[str]:
+        """
+        Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+        """
+        return pulumi.get(self, "http_supported_max_version")
 
     @property
     @pulumi.getter(name="httpsCookieSecure")
@@ -3862,6 +4449,14 @@ class Vip(pulumi.CustomResource):
         return pulumi.get(self, "nat_source_vip")
 
     @property
+    @pulumi.getter(name="oneClickGslbServer")
+    def one_click_gslb_server(self) -> pulumi.Output[str]:
+        """
+        Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "one_click_gslb_server")
+
+    @property
     @pulumi.getter(name="outlookWebAccess")
     def outlook_web_access(self) -> pulumi.Output[str]:
         """
@@ -3900,6 +4495,14 @@ class Vip(pulumi.CustomResource):
         Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`, `icmp`.
         """
         return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter
+    def quic(self) -> pulumi.Output['outputs.VipQuic']:
+        """
+        QUIC setting. The structure of `quic` block is documented below.
+        """
+        return pulumi.get(self, "quic")
 
     @property
     @pulumi.getter
@@ -4188,6 +4791,14 @@ class Vip(pulumi.CustomResource):
         Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
         """
         return pulumi.get(self, "ssl_server_min_version")
+
+    @property
+    @pulumi.getter(name="sslServerRenegotiation")
+    def ssl_server_renegotiation(self) -> pulumi.Output[str]:
+        """
+        Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_server_renegotiation")
 
     @property
     @pulumi.getter(name="sslServerSessionStateMax")

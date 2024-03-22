@@ -97,6 +97,8 @@ type Policy struct {
 	EndSourcePort pulumi.IntOutput `pulumi:"endSourcePort"`
 	// IP address of the gateway.
 	Gateway pulumi.StringOutput `pulumi:"gateway"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate pulumi.StringOutput `pulumi:"inputDeviceNegate"`
 	// Incoming interface name. The structure of `inputDevice` block is documented below.
@@ -179,6 +181,8 @@ type policyState struct {
 	EndSourcePort *int `pulumi:"endSourcePort"`
 	// IP address of the gateway.
 	Gateway *string `pulumi:"gateway"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate *string `pulumi:"inputDeviceNegate"`
 	// Incoming interface name. The structure of `inputDevice` block is documented below.
@@ -232,6 +236,8 @@ type PolicyState struct {
 	EndSourcePort pulumi.IntPtrInput
 	// IP address of the gateway.
 	Gateway pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate pulumi.StringPtrInput
 	// Incoming interface name. The structure of `inputDevice` block is documented below.
@@ -289,6 +295,8 @@ type policyArgs struct {
 	EndSourcePort *int `pulumi:"endSourcePort"`
 	// IP address of the gateway.
 	Gateway *string `pulumi:"gateway"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate *string `pulumi:"inputDeviceNegate"`
 	// Incoming interface name. The structure of `inputDevice` block is documented below.
@@ -343,6 +351,8 @@ type PolicyArgs struct {
 	EndSourcePort pulumi.IntPtrInput
 	// IP address of the gateway.
 	Gateway pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate pulumi.StringPtrInput
 	// Incoming interface name. The structure of `inputDevice` block is documented below.
@@ -507,6 +517,11 @@ func (o PolicyOutput) EndSourcePort() pulumi.IntOutput {
 // IP address of the gateway.
 func (o PolicyOutput) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o PolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable negation of input device match. Valid values: `enable`, `disable`.

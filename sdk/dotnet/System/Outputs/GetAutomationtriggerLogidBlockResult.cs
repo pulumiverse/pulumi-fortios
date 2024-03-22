@@ -15,7 +15,7 @@ namespace Pulumiverse.Fortios.System.Outputs
     public sealed class GetAutomationtriggerLogidBlockResult
     {
         /// <summary>
-        /// Log ID.
+        /// Entry ID.
         /// </summary>
         public readonly int Id;
 

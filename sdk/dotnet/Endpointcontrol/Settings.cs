@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Fortios.Endpointcontrol
 {
     /// <summary>
-    /// Configure endpoint control settings. Applies to FortiOS Version `&lt;= 6.2.6`.
+    /// Configure endpoint control settings. Applies to FortiOS Version `6.2.0,6.2.4,6.2.6,7.4.0,7.4.1,7.4.2`.
     /// 
     /// ## Example Usage
     /// 
@@ -154,6 +154,12 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         /// </summary>
         [Output("forticlientWarningInterval")]
         public Output<int> ForticlientWarningInterval { get; private set; } = null!;
+
+        /// <summary>
+        /// Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("override")]
+        public Output<string> Override { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -313,6 +319,12 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Input<int>? ForticlientWarningInterval { get; set; }
 
         /// <summary>
+        /// Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("override")]
+        public Input<string>? Override { get; set; }
+
+        /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Input("vdomparam")]
@@ -425,6 +437,12 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         /// </summary>
         [Input("forticlientWarningInterval")]
         public Input<int>? ForticlientWarningInterval { get; set; }
+
+        /// <summary>
+        /// Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("override")]
+        public Input<string>? Override { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

@@ -26,6 +26,7 @@ class ExtenderArgs:
                  extension_type: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  login_password_change: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -39,7 +40,7 @@ class ExtenderArgs:
         """
         The set of arguments for constructing a Extender resource.
         :param pulumi.Input[str] allowaccess: Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-        :param pulumi.Input[str] authorized: FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] authorized: FortiExtender Administration (enable or disable).
         :param pulumi.Input[int] bandwidth_limit: FortiExtender LAN extension bandwidth limit (Mbps).
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[int] device_id: Device ID.
@@ -48,6 +49,7 @@ class ExtenderArgs:
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: Set the managed extender's administrator password.
         :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[str] name: FortiExtender entry name.
@@ -79,6 +81,8 @@ class ExtenderArgs:
             pulumi.set(__self__, "firmware_provision_latest", firmware_provision_latest)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if login_password is not None:
             pulumi.set(__self__, "login_password", login_password)
         if login_password_change is not None:
@@ -116,7 +120,7 @@ class ExtenderArgs:
     @pulumi.getter
     def authorized(self) -> Optional[pulumi.Input[str]]:
         """
-        FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        FortiExtender Administration (enable or disable).
         """
         return pulumi.get(self, "authorized")
 
@@ -219,6 +223,18 @@ class ExtenderArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="loginPassword")
@@ -354,6 +370,7 @@ class _ExtenderState:
                  extension_type: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  login_password_change: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -367,7 +384,7 @@ class _ExtenderState:
         """
         Input properties used for looking up and filtering Extender resources.
         :param pulumi.Input[str] allowaccess: Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-        :param pulumi.Input[str] authorized: FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] authorized: FortiExtender Administration (enable or disable).
         :param pulumi.Input[int] bandwidth_limit: FortiExtender LAN extension bandwidth limit (Mbps).
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[int] device_id: Device ID.
@@ -376,6 +393,7 @@ class _ExtenderState:
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: Set the managed extender's administrator password.
         :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[str] name: FortiExtender entry name.
@@ -407,6 +425,8 @@ class _ExtenderState:
             pulumi.set(__self__, "firmware_provision_latest", firmware_provision_latest)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if login_password is not None:
             pulumi.set(__self__, "login_password", login_password)
         if login_password_change is not None:
@@ -444,7 +464,7 @@ class _ExtenderState:
     @pulumi.getter
     def authorized(self) -> Optional[pulumi.Input[str]]:
         """
-        FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        FortiExtender Administration (enable or disable).
         """
         return pulumi.get(self, "authorized")
 
@@ -547,6 +567,18 @@ class _ExtenderState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="loginPassword")
@@ -684,6 +716,7 @@ class Extender(pulumi.CustomResource):
                  extension_type: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  login_password_change: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -696,7 +729,8 @@ class Extender(pulumi.CustomResource):
                  wan_extension: Optional[pulumi.Input[pulumi.InputType['ExtenderWanExtensionArgs']]] = None,
                  __props__=None):
         """
-        Extender controller configuration. Applies to FortiOS Version `>= 7.2.1`.
+        Extender controller configuration.
+        The resource applies to FortiOS Version >= 7.2.1. For FortiOS version < 7.2.1, see `extendercontroller.Extender`
 
         ## Import
 
@@ -719,7 +753,7 @@ class Extender(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allowaccess: Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-        :param pulumi.Input[str] authorized: FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] authorized: FortiExtender Administration (enable or disable).
         :param pulumi.Input[int] bandwidth_limit: FortiExtender LAN extension bandwidth limit (Mbps).
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[int] device_id: Device ID.
@@ -728,6 +762,7 @@ class Extender(pulumi.CustomResource):
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: Set the managed extender's administrator password.
         :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[str] name: FortiExtender entry name.
@@ -746,7 +781,8 @@ class Extender(pulumi.CustomResource):
                  args: Optional[ExtenderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Extender controller configuration. Applies to FortiOS Version `>= 7.2.1`.
+        Extender controller configuration.
+        The resource applies to FortiOS Version >= 7.2.1. For FortiOS version < 7.2.1, see `extendercontroller.Extender`
 
         ## Import
 
@@ -791,6 +827,7 @@ class Extender(pulumi.CustomResource):
                  extension_type: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  login_password_change: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -820,6 +857,7 @@ class Extender(pulumi.CustomResource):
             __props__.__dict__["extension_type"] = extension_type
             __props__.__dict__["firmware_provision_latest"] = firmware_provision_latest
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["login_password"] = login_password
             __props__.__dict__["login_password_change"] = login_password_change
             __props__.__dict__["name"] = name
@@ -850,6 +888,7 @@ class Extender(pulumi.CustomResource):
             extension_type: Optional[pulumi.Input[str]] = None,
             firmware_provision_latest: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             login_password: Optional[pulumi.Input[str]] = None,
             login_password_change: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -868,7 +907,7 @@ class Extender(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allowaccess: Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
-        :param pulumi.Input[str] authorized: FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] authorized: FortiExtender Administration (enable or disable).
         :param pulumi.Input[int] bandwidth_limit: FortiExtender LAN extension bandwidth limit (Mbps).
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[int] device_id: Device ID.
@@ -877,6 +916,7 @@ class Extender(pulumi.CustomResource):
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: Set the managed extender's administrator password.
         :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[str] name: FortiExtender entry name.
@@ -902,6 +942,7 @@ class Extender(pulumi.CustomResource):
         __props__.__dict__["extension_type"] = extension_type
         __props__.__dict__["firmware_provision_latest"] = firmware_provision_latest
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["login_password"] = login_password
         __props__.__dict__["login_password_change"] = login_password_change
         __props__.__dict__["name"] = name
@@ -926,7 +967,7 @@ class Extender(pulumi.CustomResource):
     @pulumi.getter
     def authorized(self) -> pulumi.Output[str]:
         """
-        FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        FortiExtender Administration (enable or disable).
         """
         return pulumi.get(self, "authorized")
 
@@ -993,6 +1034,14 @@ class Extender(pulumi.CustomResource):
         FortiExtender serial number.
         """
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="loginPassword")

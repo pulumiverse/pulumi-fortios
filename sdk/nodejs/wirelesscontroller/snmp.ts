@@ -72,6 +72,10 @@ export class Snmp extends pulumi.CustomResource {
      */
     public readonly engineId!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * CPU usage when trap is sent.
      */
     public readonly trapHighCpuThreshold!: pulumi.Output<number>;
@@ -105,6 +109,7 @@ export class Snmp extends pulumi.CustomResource {
             resourceInputs["contactInfo"] = state ? state.contactInfo : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["engineId"] = state ? state.engineId : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["trapHighCpuThreshold"] = state ? state.trapHighCpuThreshold : undefined;
             resourceInputs["trapHighMemThreshold"] = state ? state.trapHighMemThreshold : undefined;
             resourceInputs["users"] = state ? state.users : undefined;
@@ -115,6 +120,7 @@ export class Snmp extends pulumi.CustomResource {
             resourceInputs["contactInfo"] = args ? args.contactInfo : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["engineId"] = args ? args.engineId : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["trapHighCpuThreshold"] = args ? args.trapHighCpuThreshold : undefined;
             resourceInputs["trapHighMemThreshold"] = args ? args.trapHighMemThreshold : undefined;
             resourceInputs["users"] = args ? args.users : undefined;
@@ -145,6 +151,10 @@ export interface SnmpState {
      * AC SNMP engineId string (maximum 24 characters).
      */
     engineId?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * CPU usage when trap is sent.
      */
@@ -183,6 +193,10 @@ export interface SnmpArgs {
      * AC SNMP engineId string (maximum 24 characters).
      */
     engineId?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * CPU usage when trap is sent.
      */

@@ -16,6 +16,8 @@ class DnsserverArgs:
     def __init__(__self__, *,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  doh: Optional[pulumi.Input[str]] = None,
+                 doh3: Optional[pulumi.Input[str]] = None,
+                 doq: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -23,6 +25,8 @@ class DnsserverArgs:
         The set of arguments for constructing a Dnsserver resource.
         :param pulumi.Input[str] dnsfilter_profile: DNS filter profile.
         :param pulumi.Input[str] doh: DNS over HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] doh3: Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] doq: Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
         :param pulumi.Input[str] name: DNS server name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -31,6 +35,10 @@ class DnsserverArgs:
             pulumi.set(__self__, "dnsfilter_profile", dnsfilter_profile)
         if doh is not None:
             pulumi.set(__self__, "doh", doh)
+        if doh3 is not None:
+            pulumi.set(__self__, "doh3", doh3)
+        if doq is not None:
+            pulumi.set(__self__, "doq", doq)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if name is not None:
@@ -61,6 +69,30 @@ class DnsserverArgs:
     @doh.setter
     def doh(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "doh", value)
+
+    @property
+    @pulumi.getter
+    def doh3(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "doh3")
+
+    @doh3.setter
+    def doh3(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "doh3", value)
+
+    @property
+    @pulumi.getter
+    def doq(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "doq")
+
+    @doq.setter
+    def doq(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "doq", value)
 
     @property
     @pulumi.getter
@@ -104,6 +136,8 @@ class _DnsserverState:
     def __init__(__self__, *,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  doh: Optional[pulumi.Input[str]] = None,
+                 doh3: Optional[pulumi.Input[str]] = None,
+                 doq: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -111,6 +145,8 @@ class _DnsserverState:
         Input properties used for looking up and filtering Dnsserver resources.
         :param pulumi.Input[str] dnsfilter_profile: DNS filter profile.
         :param pulumi.Input[str] doh: DNS over HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] doh3: Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] doq: Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
         :param pulumi.Input[str] name: DNS server name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -119,6 +155,10 @@ class _DnsserverState:
             pulumi.set(__self__, "dnsfilter_profile", dnsfilter_profile)
         if doh is not None:
             pulumi.set(__self__, "doh", doh)
+        if doh3 is not None:
+            pulumi.set(__self__, "doh3", doh3)
+        if doq is not None:
+            pulumi.set(__self__, "doq", doq)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if name is not None:
@@ -149,6 +189,30 @@ class _DnsserverState:
     @doh.setter
     def doh(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "doh", value)
+
+    @property
+    @pulumi.getter
+    def doh3(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "doh3")
+
+    @doh3.setter
+    def doh3(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "doh3", value)
+
+    @property
+    @pulumi.getter
+    def doq(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "doq")
+
+    @doq.setter
+    def doq(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "doq", value)
 
     @property
     @pulumi.getter
@@ -194,6 +258,8 @@ class Dnsserver(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  doh: Optional[pulumi.Input[str]] = None,
+                 doh3: Optional[pulumi.Input[str]] = None,
+                 doq: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -236,6 +302,8 @@ class Dnsserver(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dnsfilter_profile: DNS filter profile.
         :param pulumi.Input[str] doh: DNS over HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] doh3: Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] doq: Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
         :param pulumi.Input[str] name: DNS server name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -297,6 +365,8 @@ class Dnsserver(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  doh: Optional[pulumi.Input[str]] = None,
+                 doh3: Optional[pulumi.Input[str]] = None,
+                 doq: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -311,6 +381,8 @@ class Dnsserver(pulumi.CustomResource):
 
             __props__.__dict__["dnsfilter_profile"] = dnsfilter_profile
             __props__.__dict__["doh"] = doh
+            __props__.__dict__["doh3"] = doh3
+            __props__.__dict__["doq"] = doq
             __props__.__dict__["mode"] = mode
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
@@ -326,6 +398,8 @@ class Dnsserver(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dnsfilter_profile: Optional[pulumi.Input[str]] = None,
             doh: Optional[pulumi.Input[str]] = None,
+            doh3: Optional[pulumi.Input[str]] = None,
+            doq: Optional[pulumi.Input[str]] = None,
             mode: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Dnsserver':
@@ -338,6 +412,8 @@ class Dnsserver(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dnsfilter_profile: DNS filter profile.
         :param pulumi.Input[str] doh: DNS over HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] doh3: Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] doq: Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
         :param pulumi.Input[str] name: DNS server name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -348,6 +424,8 @@ class Dnsserver(pulumi.CustomResource):
 
         __props__.__dict__["dnsfilter_profile"] = dnsfilter_profile
         __props__.__dict__["doh"] = doh
+        __props__.__dict__["doh3"] = doh3
+        __props__.__dict__["doq"] = doq
         __props__.__dict__["mode"] = mode
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
@@ -368,6 +446,22 @@ class Dnsserver(pulumi.CustomResource):
         DNS over HTTPS. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "doh")
+
+    @property
+    @pulumi.getter
+    def doh3(self) -> pulumi.Output[str]:
+        """
+        Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "doh3")
+
+    @property
+    @pulumi.getter
+    def doq(self) -> pulumi.Output[str]:
+        """
+        Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "doq")
 
     @property
     @pulumi.getter

@@ -15,12 +15,14 @@ import (
 type ProxypolicySort struct {
 	pulumi.CustomResourceState
 
-	Comment       pulumi.StringPtrOutput `pulumi:"comment"`
-	ForceRecreate pulumi.StringPtrOutput `pulumi:"forceRecreate"`
-	Sortby        pulumi.StringOutput    `pulumi:"sortby"`
-	Sortdirection pulumi.StringOutput    `pulumi:"sortdirection"`
-	Status        pulumi.StringPtrOutput `pulumi:"status"`
-	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment          pulumi.StringPtrOutput                    `pulumi:"comment"`
+	ForceRecreate    pulumi.StringOutput                       `pulumi:"forceRecreate"`
+	ManualOrders     pulumi.StringArrayOutput                  `pulumi:"manualOrders"`
+	Sortby           pulumi.StringOutput                       `pulumi:"sortby"`
+	Sortdirection    pulumi.StringOutput                       `pulumi:"sortdirection"`
+	StatePolicyLists ProxypolicySortStatePolicyListArrayOutput `pulumi:"statePolicyLists"`
+	Status           pulumi.StringOutput                       `pulumi:"status"`
+	Vdomparam        pulumi.StringPtrOutput                    `pulumi:"vdomparam"`
 }
 
 // NewProxypolicySort registers a new resource with the given unique name, arguments, and options.
@@ -59,21 +61,25 @@ func GetProxypolicySort(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ProxypolicySort resources.
 type proxypolicySortState struct {
-	Comment       *string `pulumi:"comment"`
-	ForceRecreate *string `pulumi:"forceRecreate"`
-	Sortby        *string `pulumi:"sortby"`
-	Sortdirection *string `pulumi:"sortdirection"`
-	Status        *string `pulumi:"status"`
-	Vdomparam     *string `pulumi:"vdomparam"`
+	Comment          *string                          `pulumi:"comment"`
+	ForceRecreate    *string                          `pulumi:"forceRecreate"`
+	ManualOrders     []string                         `pulumi:"manualOrders"`
+	Sortby           *string                          `pulumi:"sortby"`
+	Sortdirection    *string                          `pulumi:"sortdirection"`
+	StatePolicyLists []ProxypolicySortStatePolicyList `pulumi:"statePolicyLists"`
+	Status           *string                          `pulumi:"status"`
+	Vdomparam        *string                          `pulumi:"vdomparam"`
 }
 
 type ProxypolicySortState struct {
-	Comment       pulumi.StringPtrInput
-	ForceRecreate pulumi.StringPtrInput
-	Sortby        pulumi.StringPtrInput
-	Sortdirection pulumi.StringPtrInput
-	Status        pulumi.StringPtrInput
-	Vdomparam     pulumi.StringPtrInput
+	Comment          pulumi.StringPtrInput
+	ForceRecreate    pulumi.StringPtrInput
+	ManualOrders     pulumi.StringArrayInput
+	Sortby           pulumi.StringPtrInput
+	Sortdirection    pulumi.StringPtrInput
+	StatePolicyLists ProxypolicySortStatePolicyListArrayInput
+	Status           pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (ProxypolicySortState) ElementType() reflect.Type {
@@ -81,18 +87,20 @@ func (ProxypolicySortState) ElementType() reflect.Type {
 }
 
 type proxypolicySortArgs struct {
-	Comment       *string `pulumi:"comment"`
-	ForceRecreate *string `pulumi:"forceRecreate"`
-	Sortby        string  `pulumi:"sortby"`
-	Sortdirection string  `pulumi:"sortdirection"`
-	Status        *string `pulumi:"status"`
-	Vdomparam     *string `pulumi:"vdomparam"`
+	Comment       *string  `pulumi:"comment"`
+	ForceRecreate *string  `pulumi:"forceRecreate"`
+	ManualOrders  []string `pulumi:"manualOrders"`
+	Sortby        string   `pulumi:"sortby"`
+	Sortdirection string   `pulumi:"sortdirection"`
+	Status        *string  `pulumi:"status"`
+	Vdomparam     *string  `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a ProxypolicySort resource.
 type ProxypolicySortArgs struct {
 	Comment       pulumi.StringPtrInput
 	ForceRecreate pulumi.StringPtrInput
+	ManualOrders  pulumi.StringArrayInput
 	Sortby        pulumi.StringInput
 	Sortdirection pulumi.StringInput
 	Status        pulumi.StringPtrInput
@@ -190,8 +198,12 @@ func (o ProxypolicySortOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProxypolicySort) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-func (o ProxypolicySortOutput) ForceRecreate() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ProxypolicySort) pulumi.StringPtrOutput { return v.ForceRecreate }).(pulumi.StringPtrOutput)
+func (o ProxypolicySortOutput) ForceRecreate() pulumi.StringOutput {
+	return o.ApplyT(func(v *ProxypolicySort) pulumi.StringOutput { return v.ForceRecreate }).(pulumi.StringOutput)
+}
+
+func (o ProxypolicySortOutput) ManualOrders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ProxypolicySort) pulumi.StringArrayOutput { return v.ManualOrders }).(pulumi.StringArrayOutput)
 }
 
 func (o ProxypolicySortOutput) Sortby() pulumi.StringOutput {
@@ -202,8 +214,12 @@ func (o ProxypolicySortOutput) Sortdirection() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProxypolicySort) pulumi.StringOutput { return v.Sortdirection }).(pulumi.StringOutput)
 }
 
-func (o ProxypolicySortOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ProxypolicySort) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
+func (o ProxypolicySortOutput) StatePolicyLists() ProxypolicySortStatePolicyListArrayOutput {
+	return o.ApplyT(func(v *ProxypolicySort) ProxypolicySortStatePolicyListArrayOutput { return v.StatePolicyLists }).(ProxypolicySortStatePolicyListArrayOutput)
+}
+
+func (o ProxypolicySortOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *ProxypolicySort) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
 func (o ProxypolicySortOutput) Vdomparam() pulumi.StringPtrOutput {

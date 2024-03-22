@@ -440,6 +440,11 @@ export type Internetservicereputation = import("./internetservicereputation").In
 export const Internetservicereputation: typeof import("./internetservicereputation").Internetservicereputation = null as any;
 utilities.lazyLoad(exports, ["Internetservicereputation"], () => require("./internetservicereputation"));
 
+export { InternetservicesubappArgs, InternetservicesubappState } from "./internetservicesubapp";
+export type Internetservicesubapp = import("./internetservicesubapp").Internetservicesubapp;
+export const Internetservicesubapp: typeof import("./internetservicesubapp").Internetservicesubapp = null as any;
+utilities.lazyLoad(exports, ["Internetservicesubapp"], () => require("./internetservicesubapp"));
+
 export { IppoolArgs, IppoolState } from "./ippool";
 export type Ippool = import("./ippool").Ippool;
 export const Ippool: typeof import("./ippool").Ippool = null as any;
@@ -560,6 +565,16 @@ export type Policy64 = import("./policy64").Policy64;
 export const Policy64: typeof import("./policy64").Policy64 = null as any;
 utilities.lazyLoad(exports, ["Policy64"], () => require("./policy64"));
 
+export { PolicyMoveArgs, PolicyMoveState } from "./policyMove";
+export type PolicyMove = import("./policyMove").PolicyMove;
+export const PolicyMove: typeof import("./policyMove").PolicyMove = null as any;
+utilities.lazyLoad(exports, ["PolicyMove"], () => require("./policyMove"));
+
+export { PolicySortArgs, PolicySortState } from "./policySort";
+export type PolicySort = import("./policySort").PolicySort;
+export const PolicySort: typeof import("./policySort").PolicySort = null as any;
+utilities.lazyLoad(exports, ["PolicySort"], () => require("./policySort"));
+
 export { ProfilegroupArgs, ProfilegroupState } from "./profilegroup";
 export type Profilegroup = import("./profilegroup").Profilegroup;
 export const Profilegroup: typeof import("./profilegroup").Profilegroup = null as any;
@@ -605,15 +620,20 @@ export type SecurityPolicyseq = import("./securityPolicyseq").SecurityPolicyseq;
 export const SecurityPolicyseq: typeof import("./securityPolicyseq").SecurityPolicyseq = null as any;
 utilities.lazyLoad(exports, ["SecurityPolicyseq"], () => require("./securityPolicyseq"));
 
-export { SecurityPolicysortArgs, SecurityPolicysortState } from "./securityPolicysort";
-export type SecurityPolicysort = import("./securityPolicysort").SecurityPolicysort;
-export const SecurityPolicysort: typeof import("./securityPolicysort").SecurityPolicysort = null as any;
-utilities.lazyLoad(exports, ["SecurityPolicysort"], () => require("./securityPolicysort"));
-
 export { SecuritypolicyArgs, SecuritypolicyState } from "./securitypolicy";
 export type Securitypolicy = import("./securitypolicy").Securitypolicy;
 export const Securitypolicy: typeof import("./securitypolicy").Securitypolicy = null as any;
 utilities.lazyLoad(exports, ["Securitypolicy"], () => require("./securitypolicy"));
+
+export { SecuritypolicyMoveArgs, SecuritypolicyMoveState } from "./securitypolicyMove";
+export type SecuritypolicyMove = import("./securitypolicyMove").SecuritypolicyMove;
+export const SecuritypolicyMove: typeof import("./securitypolicyMove").SecuritypolicyMove = null as any;
+utilities.lazyLoad(exports, ["SecuritypolicyMove"], () => require("./securitypolicyMove"));
+
+export { SecuritypolicySortArgs, SecuritypolicySortState } from "./securitypolicySort";
+export type SecuritypolicySort = import("./securitypolicySort").SecuritypolicySort;
+export const SecuritypolicySort: typeof import("./securitypolicySort").SecuritypolicySort = null as any;
+utilities.lazyLoad(exports, ["SecuritypolicySort"], () => require("./securitypolicySort"));
 
 export { ShapingpolicyArgs, ShapingpolicyState } from "./shapingpolicy";
 export type Shapingpolicy = import("./shapingpolicy").Shapingpolicy;
@@ -797,6 +817,8 @@ const _module = {
                 return new Internetserviceowner(name, <any>undefined, { urn })
             case "fortios:firewall/internetservicereputation:Internetservicereputation":
                 return new Internetservicereputation(name, <any>undefined, { urn })
+            case "fortios:firewall/internetservicesubapp:Internetservicesubapp":
+                return new Internetservicesubapp(name, <any>undefined, { urn })
             case "fortios:firewall/ippool6:Ippool6":
                 return new Ippool6(name, <any>undefined, { urn })
             case "fortios:firewall/ippool:Ippool":
@@ -845,6 +867,10 @@ const _module = {
                 return new Policy6(name, <any>undefined, { urn })
             case "fortios:firewall/policy:Policy":
                 return new Policy(name, <any>undefined, { urn })
+            case "fortios:firewall/policyMove:PolicyMove":
+                return new PolicyMove(name, <any>undefined, { urn })
+            case "fortios:firewall/policySort:PolicySort":
+                return new PolicySort(name, <any>undefined, { urn })
             case "fortios:firewall/profilegroup:Profilegroup":
                 return new Profilegroup(name, <any>undefined, { urn })
             case "fortios:firewall/profileprotocoloptions:Profileprotocoloptions":
@@ -863,10 +889,12 @@ const _module = {
                 return new Region(name, <any>undefined, { urn })
             case "fortios:firewall/securityPolicyseq:SecurityPolicyseq":
                 return new SecurityPolicyseq(name, <any>undefined, { urn })
-            case "fortios:firewall/securityPolicysort:SecurityPolicysort":
-                return new SecurityPolicysort(name, <any>undefined, { urn })
             case "fortios:firewall/securitypolicy:Securitypolicy":
                 return new Securitypolicy(name, <any>undefined, { urn })
+            case "fortios:firewall/securitypolicyMove:SecuritypolicyMove":
+                return new SecuritypolicyMove(name, <any>undefined, { urn })
+            case "fortios:firewall/securitypolicySort:SecuritypolicySort":
+                return new SecuritypolicySort(name, <any>undefined, { urn })
             case "fortios:firewall/shapingpolicy:Shapingpolicy":
                 return new Shapingpolicy(name, <any>undefined, { urn })
             case "fortios:firewall/shapingprofile:Shapingprofile":
@@ -942,6 +970,7 @@ pulumi.runtime.registerResourceModule("fortios", "firewall/internetservicelist",
 pulumi.runtime.registerResourceModule("fortios", "firewall/internetservicename", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/internetserviceowner", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/internetservicereputation", _module)
+pulumi.runtime.registerResourceModule("fortios", "firewall/internetservicesubapp", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/ippool", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/ippool6", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/iptranslation", _module)
@@ -966,6 +995,8 @@ pulumi.runtime.registerResourceModule("fortios", "firewall/policy", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/policy46", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/policy6", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/policy64", _module)
+pulumi.runtime.registerResourceModule("fortios", "firewall/policyMove", _module)
+pulumi.runtime.registerResourceModule("fortios", "firewall/policySort", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/profilegroup", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/profileprotocoloptions", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/proxyaddress", _module)
@@ -975,8 +1006,9 @@ pulumi.runtime.registerResourceModule("fortios", "firewall/proxypolicyMove", _mo
 pulumi.runtime.registerResourceModule("fortios", "firewall/proxypolicySort", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/region", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/securityPolicyseq", _module)
-pulumi.runtime.registerResourceModule("fortios", "firewall/securityPolicysort", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/securitypolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "firewall/securitypolicyMove", _module)
+pulumi.runtime.registerResourceModule("fortios", "firewall/securitypolicySort", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/shapingpolicy", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/shapingprofile", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/sniffer", _module)

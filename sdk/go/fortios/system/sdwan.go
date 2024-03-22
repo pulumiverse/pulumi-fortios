@@ -33,6 +33,8 @@ import (
 type Sdwan struct {
 	pulumi.CustomResourceState
 
+	// Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+	AppPerfLogPeriod pulumi.IntOutput `pulumi:"appPerfLogPeriod"`
 	// Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
 	DuplicationMaxNum pulumi.IntOutput `pulumi:"duplicationMaxNum"`
 	// Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
@@ -43,6 +45,8 @@ type Sdwan struct {
 	FailAlertInterfaces SdwanFailAlertInterfaceArrayOutput `pulumi:"failAlertInterfaces"`
 	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
 	FailDetect pulumi.StringOutput `pulumi:"failDetect"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
 	HealthChecks SdwanHealthCheckArrayOutput `pulumi:"healthChecks"`
 	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
@@ -99,6 +103,8 @@ func GetSdwan(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Sdwan resources.
 type sdwanState struct {
+	// Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+	AppPerfLogPeriod *int `pulumi:"appPerfLogPeriod"`
 	// Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
 	DuplicationMaxNum *int `pulumi:"duplicationMaxNum"`
 	// Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
@@ -109,6 +115,8 @@ type sdwanState struct {
 	FailAlertInterfaces []SdwanFailAlertInterface `pulumi:"failAlertInterfaces"`
 	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
 	FailDetect *string `pulumi:"failDetect"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
 	HealthChecks []SdwanHealthCheck `pulumi:"healthChecks"`
 	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
@@ -136,6 +144,8 @@ type sdwanState struct {
 }
 
 type SdwanState struct {
+	// Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+	AppPerfLogPeriod pulumi.IntPtrInput
 	// Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
 	DuplicationMaxNum pulumi.IntPtrInput
 	// Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
@@ -146,6 +156,8 @@ type SdwanState struct {
 	FailAlertInterfaces SdwanFailAlertInterfaceArrayInput
 	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
 	FailDetect pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
 	HealthChecks SdwanHealthCheckArrayInput
 	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
@@ -177,6 +189,8 @@ func (SdwanState) ElementType() reflect.Type {
 }
 
 type sdwanArgs struct {
+	// Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+	AppPerfLogPeriod *int `pulumi:"appPerfLogPeriod"`
 	// Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
 	DuplicationMaxNum *int `pulumi:"duplicationMaxNum"`
 	// Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
@@ -187,6 +201,8 @@ type sdwanArgs struct {
 	FailAlertInterfaces []SdwanFailAlertInterface `pulumi:"failAlertInterfaces"`
 	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
 	FailDetect *string `pulumi:"failDetect"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
 	HealthChecks []SdwanHealthCheck `pulumi:"healthChecks"`
 	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
@@ -215,6 +231,8 @@ type sdwanArgs struct {
 
 // The set of arguments for constructing a Sdwan resource.
 type SdwanArgs struct {
+	// Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+	AppPerfLogPeriod pulumi.IntPtrInput
 	// Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
 	DuplicationMaxNum pulumi.IntPtrInput
 	// Create SD-WAN duplication rule. The structure of `duplication` block is documented below.
@@ -225,6 +243,8 @@ type SdwanArgs struct {
 	FailAlertInterfaces SdwanFailAlertInterfaceArrayInput
 	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
 	FailDetect pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
 	HealthChecks SdwanHealthCheckArrayInput
 	// Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
@@ -338,6 +358,11 @@ func (o SdwanOutput) ToSdwanOutputWithContext(ctx context.Context) SdwanOutput {
 	return o
 }
 
+// Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
+func (o SdwanOutput) AppPerfLogPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *Sdwan) pulumi.IntOutput { return v.AppPerfLogPeriod }).(pulumi.IntOutput)
+}
+
 // Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
 func (o SdwanOutput) DuplicationMaxNum() pulumi.IntOutput {
 	return o.ApplyT(func(v *Sdwan) pulumi.IntOutput { return v.DuplicationMaxNum }).(pulumi.IntOutput)
@@ -361,6 +386,11 @@ func (o SdwanOutput) FailAlertInterfaces() SdwanFailAlertInterfaceArrayOutput {
 // Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
 func (o SdwanOutput) FailDetect() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sdwan) pulumi.StringOutput { return v.FailDetect }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SdwanOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Sdwan) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.

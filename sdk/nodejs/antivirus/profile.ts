@@ -91,11 +91,11 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly analyticsDb!: pulumi.Output<string>;
     /**
-     * Do not submit files matching this DLP file-pattern to FortiSandbox.
+     * Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
      */
     public readonly analyticsIgnoreFiletype!: pulumi.Output<number>;
     /**
-     * Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+     * Maximum size of files that can be uploaded to FortiSandbox.
      */
     public readonly analyticsMaxUpload!: pulumi.Output<number>;
     /**
@@ -187,6 +187,10 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly ftp!: pulumi.Output<outputs.antivirus.ProfileFtp>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Configure HTTP AntiVirus options. The structure of `http` block is documented below.
      */
     public readonly http!: pulumi.Output<outputs.antivirus.ProfileHttp>;
@@ -235,7 +239,7 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly replacemsgGroup!: pulumi.Output<string>;
     /**
-     * Choose between full scan mode and quick scan mode.
+     * Configure scan mode (default or legacy).
      */
     public readonly scanMode!: pulumi.Output<string>;
     /**
@@ -295,6 +299,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["fortisandboxTimeoutAction"] = state ? state.fortisandboxTimeoutAction : undefined;
             resourceInputs["ftgdAnalytics"] = state ? state.ftgdAnalytics : undefined;
             resourceInputs["ftp"] = state ? state.ftp : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["http"] = state ? state.http : undefined;
             resourceInputs["imap"] = state ? state.imap : undefined;
             resourceInputs["inspectionMode"] = state ? state.inspectionMode : undefined;
@@ -341,6 +346,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["fortisandboxTimeoutAction"] = args ? args.fortisandboxTimeoutAction : undefined;
             resourceInputs["ftgdAnalytics"] = args ? args.ftgdAnalytics : undefined;
             resourceInputs["ftp"] = args ? args.ftp : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["http"] = args ? args.http : undefined;
             resourceInputs["imap"] = args ? args.imap : undefined;
             resourceInputs["inspectionMode"] = args ? args.inspectionMode : undefined;
@@ -381,11 +387,11 @@ export interface ProfileState {
      */
     analyticsDb?: pulumi.Input<string>;
     /**
-     * Do not submit files matching this DLP file-pattern to FortiSandbox.
+     * Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
      */
     analyticsIgnoreFiletype?: pulumi.Input<number>;
     /**
-     * Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+     * Maximum size of files that can be uploaded to FortiSandbox.
      */
     analyticsMaxUpload?: pulumi.Input<number>;
     /**
@@ -477,6 +483,10 @@ export interface ProfileState {
      */
     ftp?: pulumi.Input<inputs.antivirus.ProfileFtp>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Configure HTTP AntiVirus options. The structure of `http` block is documented below.
      */
     http?: pulumi.Input<inputs.antivirus.ProfileHttp>;
@@ -525,7 +535,7 @@ export interface ProfileState {
      */
     replacemsgGroup?: pulumi.Input<string>;
     /**
-     * Choose between full scan mode and quick scan mode.
+     * Configure scan mode (default or legacy).
      */
     scanMode?: pulumi.Input<string>;
     /**
@@ -563,11 +573,11 @@ export interface ProfileArgs {
      */
     analyticsDb?: pulumi.Input<string>;
     /**
-     * Do not submit files matching this DLP file-pattern to FortiSandbox.
+     * Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
      */
     analyticsIgnoreFiletype?: pulumi.Input<number>;
     /**
-     * Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+     * Maximum size of files that can be uploaded to FortiSandbox.
      */
     analyticsMaxUpload?: pulumi.Input<number>;
     /**
@@ -659,6 +669,10 @@ export interface ProfileArgs {
      */
     ftp?: pulumi.Input<inputs.antivirus.ProfileFtp>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Configure HTTP AntiVirus options. The structure of `http` block is documented below.
      */
     http?: pulumi.Input<inputs.antivirus.ProfileHttp>;
@@ -707,7 +721,7 @@ export interface ProfileArgs {
      */
     replacemsgGroup?: pulumi.Input<string>;
     /**
-     * Choose between full scan mode and quick scan mode.
+     * Configure scan mode (default or legacy).
      */
     scanMode?: pulumi.Input<string>;
     /**

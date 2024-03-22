@@ -26,10 +26,34 @@ namespace Pulumiverse.Fortios.System.Dhcp.Inputs
         public Input<int>? Id { get; set; }
 
         /// <summary>
+        /// Lease time in seconds, 0 means default lease time.
+        /// </summary>
+        [Input("leaseTime")]
+        public Input<int>? LeaseTime { get; set; }
+
+        /// <summary>
         /// Start of IP range.
         /// </summary>
         [Input("startIp")]
         public Input<string>? StartIp { get; set; }
+
+        /// <summary>
+        /// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("uciMatch")]
+        public Input<string>? UciMatch { get; set; }
+
+        [Input("uciStrings")]
+        private InputList<Inputs.ServerIpRangeUciStringArgs>? _uciStrings;
+
+        /// <summary>
+        /// One or more UCI strings in quotes separated by spaces. The structure of `uci_string` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ServerIpRangeUciStringArgs> UciStrings
+        {
+            get => _uciStrings ?? (_uciStrings = new InputList<Inputs.ServerIpRangeUciStringArgs>());
+            set => _uciStrings = value;
+        }
 
         /// <summary>
         /// Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.

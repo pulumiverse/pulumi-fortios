@@ -61,7 +61,7 @@ namespace Pulumiverse.Fortios.System
     public partial class Netflow : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Timeout to report active flows (1 - 60 min, default = 30).
+        /// Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions &gt;= 7.0.1: 60 - 3600 sec, default = 1800.
         /// </summary>
         [Output("activeFlowTimeout")]
         public Output<int> ActiveFlowTimeout { get; private set; } = null!;
@@ -77,6 +77,24 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("collectorPort")]
         public Output<int> CollectorPort { get; private set; } = null!;
+
+        /// <summary>
+        /// Netflow collectors. The structure of `collectors` block is documented below.
+        /// </summary>
+        [Output("collectors")]
+        public Output<ImmutableArray<Outputs.NetflowCollector>> Collectors { get; private set; } = null!;
+
+        /// <summary>
+        /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
+        /// </summary>
+        [Output("dynamicSortSubtable")]
+        public Output<string?> DynamicSortSubtable { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
@@ -109,7 +127,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> TemplateTxCounter { get; private set; } = null!;
 
         /// <summary>
-        /// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+        /// Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions &gt;= 7.0.1: 60 - 86400 sec, default = 1800.
         /// </summary>
         [Output("templateTxTimeout")]
         public Output<int> TemplateTxTimeout { get; private set; } = null!;
@@ -168,7 +186,7 @@ namespace Pulumiverse.Fortios.System
     public sealed class NetflowArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Timeout to report active flows (1 - 60 min, default = 30).
+        /// Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions &gt;= 7.0.1: 60 - 3600 sec, default = 1800.
         /// </summary>
         [Input("activeFlowTimeout")]
         public Input<int>? ActiveFlowTimeout { get; set; }
@@ -184,6 +202,30 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("collectorPort")]
         public Input<int>? CollectorPort { get; set; }
+
+        [Input("collectors")]
+        private InputList<Inputs.NetflowCollectorArgs>? _collectors;
+
+        /// <summary>
+        /// Netflow collectors. The structure of `collectors` block is documented below.
+        /// </summary>
+        public InputList<Inputs.NetflowCollectorArgs> Collectors
+        {
+            get => _collectors ?? (_collectors = new InputList<Inputs.NetflowCollectorArgs>());
+            set => _collectors = value;
+        }
+
+        /// <summary>
+        /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
+        /// </summary>
+        [Input("dynamicSortSubtable")]
+        public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
@@ -216,7 +258,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? TemplateTxCounter { get; set; }
 
         /// <summary>
-        /// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+        /// Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions &gt;= 7.0.1: 60 - 86400 sec, default = 1800.
         /// </summary>
         [Input("templateTxTimeout")]
         public Input<int>? TemplateTxTimeout { get; set; }
@@ -236,7 +278,7 @@ namespace Pulumiverse.Fortios.System
     public sealed class NetflowState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Timeout to report active flows (1 - 60 min, default = 30).
+        /// Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions &gt;= 7.0.1: 60 - 3600 sec, default = 1800.
         /// </summary>
         [Input("activeFlowTimeout")]
         public Input<int>? ActiveFlowTimeout { get; set; }
@@ -252,6 +294,30 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("collectorPort")]
         public Input<int>? CollectorPort { get; set; }
+
+        [Input("collectors")]
+        private InputList<Inputs.NetflowCollectorGetArgs>? _collectors;
+
+        /// <summary>
+        /// Netflow collectors. The structure of `collectors` block is documented below.
+        /// </summary>
+        public InputList<Inputs.NetflowCollectorGetArgs> Collectors
+        {
+            get => _collectors ?? (_collectors = new InputList<Inputs.NetflowCollectorGetArgs>());
+            set => _collectors = value;
+        }
+
+        /// <summary>
+        /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
+        /// </summary>
+        [Input("dynamicSortSubtable")]
+        public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
@@ -284,7 +350,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? TemplateTxCounter { get; set; }
 
         /// <summary>
-        /// Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+        /// Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions &gt;= 7.0.1: 60 - 86400 sec, default = 1800.
         /// </summary>
         [Input("templateTxTimeout")]
         public Input<int>? TemplateTxTimeout { get; set; }

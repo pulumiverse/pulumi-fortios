@@ -16,8 +16,6 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec.Outputs
     {
         /// <summary>
         /// Certificate name.
-        /// 
-        /// The `ipv4_exclude_range` block supports:
         /// </summary>
         public readonly string? Name;
 

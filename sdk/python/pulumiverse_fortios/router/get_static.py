@@ -22,7 +22,7 @@ class GetStaticResult:
     """
     A collection of values returned by getStatic.
     """
-    def __init__(__self__, bfd=None, blackhole=None, comment=None, device=None, distance=None, dst=None, dstaddr=None, dynamic_gateway=None, gateway=None, id=None, internet_service=None, internet_service_custom=None, link_monitor_exempt=None, priority=None, sdwan=None, sdwan_zones=None, seq_num=None, src=None, status=None, vdomparam=None, virtual_wan_link=None, vrf=None, weight=None):
+    def __init__(__self__, bfd=None, blackhole=None, comment=None, device=None, distance=None, dst=None, dstaddr=None, dynamic_gateway=None, gateway=None, id=None, internet_service=None, internet_service_custom=None, link_monitor_exempt=None, preferred_source=None, priority=None, sdwan=None, sdwan_zones=None, seq_num=None, src=None, status=None, tag=None, vdomparam=None, virtual_wan_link=None, vrf=None, weight=None):
         if bfd and not isinstance(bfd, str):
             raise TypeError("Expected argument 'bfd' to be a str")
         pulumi.set(__self__, "bfd", bfd)
@@ -62,6 +62,9 @@ class GetStaticResult:
         if link_monitor_exempt and not isinstance(link_monitor_exempt, str):
             raise TypeError("Expected argument 'link_monitor_exempt' to be a str")
         pulumi.set(__self__, "link_monitor_exempt", link_monitor_exempt)
+        if preferred_source and not isinstance(preferred_source, str):
+            raise TypeError("Expected argument 'preferred_source' to be a str")
+        pulumi.set(__self__, "preferred_source", preferred_source)
         if priority and not isinstance(priority, int):
             raise TypeError("Expected argument 'priority' to be a int")
         pulumi.set(__self__, "priority", priority)
@@ -80,6 +83,9 @@ class GetStaticResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if tag and not isinstance(tag, int):
+            raise TypeError("Expected argument 'tag' to be a int")
+        pulumi.set(__self__, "tag", tag)
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
@@ -198,6 +204,14 @@ class GetStaticResult:
         return pulumi.get(self, "link_monitor_exempt")
 
     @property
+    @pulumi.getter(name="preferredSource")
+    def preferred_source(self) -> str:
+        """
+        Preferred source IP for this route.
+        """
+        return pulumi.get(self, "preferred_source")
+
+    @property
     @pulumi.getter
     def priority(self) -> int:
         """
@@ -244,6 +258,14 @@ class GetStaticResult:
         Enable/disable this static route.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tag(self) -> int:
+        """
+        Route tag.
+        """
+        return pulumi.get(self, "tag")
 
     @property
     @pulumi.getter
@@ -294,12 +316,14 @@ class AwaitableGetStaticResult(GetStaticResult):
             internet_service=self.internet_service,
             internet_service_custom=self.internet_service_custom,
             link_monitor_exempt=self.link_monitor_exempt,
+            preferred_source=self.preferred_source,
             priority=self.priority,
             sdwan=self.sdwan,
             sdwan_zones=self.sdwan_zones,
             seq_num=self.seq_num,
             src=self.src,
             status=self.status,
+            tag=self.tag,
             vdomparam=self.vdomparam,
             virtual_wan_link=self.virtual_wan_link,
             vrf=self.vrf,
@@ -348,12 +372,14 @@ def get_static(seq_num: Optional[int] = None,
         internet_service=pulumi.get(__ret__, 'internet_service'),
         internet_service_custom=pulumi.get(__ret__, 'internet_service_custom'),
         link_monitor_exempt=pulumi.get(__ret__, 'link_monitor_exempt'),
+        preferred_source=pulumi.get(__ret__, 'preferred_source'),
         priority=pulumi.get(__ret__, 'priority'),
         sdwan=pulumi.get(__ret__, 'sdwan'),
         sdwan_zones=pulumi.get(__ret__, 'sdwan_zones'),
         seq_num=pulumi.get(__ret__, 'seq_num'),
         src=pulumi.get(__ret__, 'src'),
         status=pulumi.get(__ret__, 'status'),
+        tag=pulumi.get(__ret__, 'tag'),
         vdomparam=pulumi.get(__ret__, 'vdomparam'),
         virtual_wan_link=pulumi.get(__ret__, 'virtual_wan_link'),
         vrf=pulumi.get(__ret__, 'vrf'),

@@ -56,6 +56,10 @@ export class Speedtestschedule extends pulumi.CustomResource {
     }
 
     /**
+     * Port of the controller to get access token.
+     */
+    public readonly ctrlPort!: pulumi.Output<number>;
+    /**
      * DSCP used for speed test.
      */
     public readonly diffserv!: pulumi.Output<string>;
@@ -68,9 +72,17 @@ export class Speedtestschedule extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Interface name.
      */
     public readonly interface!: pulumi.Output<string>;
+    /**
+     * Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+     */
+    public readonly mode!: pulumi.Output<string>;
     /**
      * Schedules for the interface. The structure of `schedules` block is documented below.
      */
@@ -79,6 +91,10 @@ export class Speedtestschedule extends pulumi.CustomResource {
      * Speed test server name.
      */
     public readonly serverName!: pulumi.Output<string>;
+    /**
+     * Port of the server to run speed test.
+     */
+    public readonly serverPort!: pulumi.Output<number>;
     /**
      * Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
      */
@@ -108,6 +124,10 @@ export class Speedtestschedule extends pulumi.CustomResource {
      */
     public readonly updateOutbandwidthMinimum!: pulumi.Output<number>;
     /**
+     * Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+     */
+    public readonly updateShaper!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -125,12 +145,16 @@ export class Speedtestschedule extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SpeedtestscheduleState | undefined;
+            resourceInputs["ctrlPort"] = state ? state.ctrlPort : undefined;
             resourceInputs["diffserv"] = state ? state.diffserv : undefined;
             resourceInputs["dynamicServer"] = state ? state.dynamicServer : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
             resourceInputs["schedules"] = state ? state.schedules : undefined;
             resourceInputs["serverName"] = state ? state.serverName : undefined;
+            resourceInputs["serverPort"] = state ? state.serverPort : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["updateInbandwidth"] = state ? state.updateInbandwidth : undefined;
             resourceInputs["updateInbandwidthMaximum"] = state ? state.updateInbandwidthMaximum : undefined;
@@ -138,15 +162,20 @@ export class Speedtestschedule extends pulumi.CustomResource {
             resourceInputs["updateOutbandwidth"] = state ? state.updateOutbandwidth : undefined;
             resourceInputs["updateOutbandwidthMaximum"] = state ? state.updateOutbandwidthMaximum : undefined;
             resourceInputs["updateOutbandwidthMinimum"] = state ? state.updateOutbandwidthMinimum : undefined;
+            resourceInputs["updateShaper"] = state ? state.updateShaper : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SpeedtestscheduleArgs | undefined;
+            resourceInputs["ctrlPort"] = args ? args.ctrlPort : undefined;
             resourceInputs["diffserv"] = args ? args.diffserv : undefined;
             resourceInputs["dynamicServer"] = args ? args.dynamicServer : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
             resourceInputs["schedules"] = args ? args.schedules : undefined;
             resourceInputs["serverName"] = args ? args.serverName : undefined;
+            resourceInputs["serverPort"] = args ? args.serverPort : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["updateInbandwidth"] = args ? args.updateInbandwidth : undefined;
             resourceInputs["updateInbandwidthMaximum"] = args ? args.updateInbandwidthMaximum : undefined;
@@ -154,6 +183,7 @@ export class Speedtestschedule extends pulumi.CustomResource {
             resourceInputs["updateOutbandwidth"] = args ? args.updateOutbandwidth : undefined;
             resourceInputs["updateOutbandwidthMaximum"] = args ? args.updateOutbandwidthMaximum : undefined;
             resourceInputs["updateOutbandwidthMinimum"] = args ? args.updateOutbandwidthMinimum : undefined;
+            resourceInputs["updateShaper"] = args ? args.updateShaper : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -166,6 +196,10 @@ export class Speedtestschedule extends pulumi.CustomResource {
  */
 export interface SpeedtestscheduleState {
     /**
+     * Port of the controller to get access token.
+     */
+    ctrlPort?: pulumi.Input<number>;
+    /**
      * DSCP used for speed test.
      */
     diffserv?: pulumi.Input<string>;
@@ -178,9 +212,17 @@ export interface SpeedtestscheduleState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Interface name.
      */
     interface?: pulumi.Input<string>;
+    /**
+     * Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+     */
+    mode?: pulumi.Input<string>;
     /**
      * Schedules for the interface. The structure of `schedules` block is documented below.
      */
@@ -189,6 +231,10 @@ export interface SpeedtestscheduleState {
      * Speed test server name.
      */
     serverName?: pulumi.Input<string>;
+    /**
+     * Port of the server to run speed test.
+     */
+    serverPort?: pulumi.Input<number>;
     /**
      * Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
      */
@@ -217,6 +263,10 @@ export interface SpeedtestscheduleState {
      * Minimum uploading bandwidth (kbps) to be considered effective.
      */
     updateOutbandwidthMinimum?: pulumi.Input<number>;
+    /**
+     * Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+     */
+    updateShaper?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -228,6 +278,10 @@ export interface SpeedtestscheduleState {
  */
 export interface SpeedtestscheduleArgs {
     /**
+     * Port of the controller to get access token.
+     */
+    ctrlPort?: pulumi.Input<number>;
+    /**
      * DSCP used for speed test.
      */
     diffserv?: pulumi.Input<string>;
@@ -240,9 +294,17 @@ export interface SpeedtestscheduleArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Interface name.
      */
     interface?: pulumi.Input<string>;
+    /**
+     * Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+     */
+    mode?: pulumi.Input<string>;
     /**
      * Schedules for the interface. The structure of `schedules` block is documented below.
      */
@@ -251,6 +313,10 @@ export interface SpeedtestscheduleArgs {
      * Speed test server name.
      */
     serverName?: pulumi.Input<string>;
+    /**
+     * Port of the server to run speed test.
+     */
+    serverPort?: pulumi.Input<number>;
     /**
      * Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
      */
@@ -279,6 +345,10 @@ export interface SpeedtestscheduleArgs {
      * Minimum uploading bandwidth (kbps) to be considered effective.
      */
     updateOutbandwidthMinimum?: pulumi.Input<number>;
+    /**
+     * Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+     */
+    updateShaper?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

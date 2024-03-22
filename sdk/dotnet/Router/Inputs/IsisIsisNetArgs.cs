@@ -20,7 +20,7 @@ namespace Pulumiverse.Fortios.Router.Inputs
         public Input<int>? Id { get; set; }
 
         /// <summary>
-        /// IS-IS net xx.xxxx. ... .xxxx.xx.
+        /// IS-IS networks (format = xx.xxxx.  .xxxx.xx.).
         /// </summary>
         [Input("net")]
         public Input<string>? Net { get; set; }

@@ -32,7 +32,7 @@ namespace Pulumiverse.Fortios.Dlp.Inputs
         public Input<string>? Expiry { get; set; }
 
         /// <summary>
-        /// Match files this size or larger (0 - 4294967295 kbytes).
+        /// Match files greater than or equal to this size (KB).
         /// </summary>
         [Input("fileSize")]
         public Input<int>? FileSize { get; set; }

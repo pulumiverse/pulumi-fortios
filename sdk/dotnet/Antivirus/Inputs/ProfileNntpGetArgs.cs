@@ -50,7 +50,7 @@ namespace Pulumiverse.Fortios.Antivirus.Inputs
         public Input<string>? Fortiai { get; set; }
 
         /// <summary>
-        /// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+        /// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
         /// </summary>
         [Input("fortindr")]
         public Input<string>? Fortindr { get; set; }

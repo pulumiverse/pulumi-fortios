@@ -22,9 +22,11 @@ class SettingArgs:
                  daemon_log: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  expolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 extended_log: Optional[pulumi.Input[str]] = None,
                  faz_override: Optional[pulumi.Input[str]] = None,
                  fwpolicy6_implicit_log: Optional[pulumi.Input[str]] = None,
                  fwpolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  local_in_allow: Optional[pulumi.Input[str]] = None,
                  local_in_deny_broadcast: Optional[pulumi.Input[str]] = None,
                  local_in_deny_unicast: Optional[pulumi.Input[str]] = None,
@@ -34,6 +36,7 @@ class SettingArgs:
                  log_policy_comment: Optional[pulumi.Input[str]] = None,
                  log_policy_name: Optional[pulumi.Input[str]] = None,
                  log_user_in_upper: Optional[pulumi.Input[str]] = None,
+                 long_live_session_stat: Optional[pulumi.Input[str]] = None,
                  neighbor_event: Optional[pulumi.Input[str]] = None,
                  resolve_ip: Optional[pulumi.Input[str]] = None,
                  resolve_port: Optional[pulumi.Input[str]] = None,
@@ -50,9 +53,11 @@ class SettingArgs:
         :param pulumi.Input[str] daemon_log: Enable/disable daemon logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] expolicy_implicit_log: Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] extended_log: Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] faz_override: Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy6_implicit_log: Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy_implicit_log: Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] local_in_allow: Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_broadcast: Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_unicast: Enable/disable local-in-deny-unicast logging. Valid values: `enable`, `disable`.
@@ -62,6 +67,7 @@ class SettingArgs:
         :param pulumi.Input[str] log_policy_comment: Enable/disable inserting policy comments into traffic logs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_policy_name: Enable/disable inserting policy name into traffic logs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_user_in_upper: Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] long_live_session_stat: Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] neighbor_event: Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_ip: Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_port: Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
@@ -83,12 +89,16 @@ class SettingArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if expolicy_implicit_log is not None:
             pulumi.set(__self__, "expolicy_implicit_log", expolicy_implicit_log)
+        if extended_log is not None:
+            pulumi.set(__self__, "extended_log", extended_log)
         if faz_override is not None:
             pulumi.set(__self__, "faz_override", faz_override)
         if fwpolicy6_implicit_log is not None:
             pulumi.set(__self__, "fwpolicy6_implicit_log", fwpolicy6_implicit_log)
         if fwpolicy_implicit_log is not None:
             pulumi.set(__self__, "fwpolicy_implicit_log", fwpolicy_implicit_log)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if local_in_allow is not None:
             pulumi.set(__self__, "local_in_allow", local_in_allow)
         if local_in_deny_broadcast is not None:
@@ -107,6 +117,8 @@ class SettingArgs:
             pulumi.set(__self__, "log_policy_name", log_policy_name)
         if log_user_in_upper is not None:
             pulumi.set(__self__, "log_user_in_upper", log_user_in_upper)
+        if long_live_session_stat is not None:
+            pulumi.set(__self__, "long_live_session_stat", long_live_session_stat)
         if neighbor_event is not None:
             pulumi.set(__self__, "neighbor_event", neighbor_event)
         if resolve_ip is not None:
@@ -197,6 +209,18 @@ class SettingArgs:
         pulumi.set(self, "expolicy_implicit_log", value)
 
     @property
+    @pulumi.getter(name="extendedLog")
+    def extended_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "extended_log")
+
+    @extended_log.setter
+    def extended_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extended_log", value)
+
+    @property
     @pulumi.getter(name="fazOverride")
     def faz_override(self) -> Optional[pulumi.Input[str]]:
         """
@@ -231,6 +255,18 @@ class SettingArgs:
     @fwpolicy_implicit_log.setter
     def fwpolicy_implicit_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fwpolicy_implicit_log", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="localInAllow")
@@ -339,6 +375,18 @@ class SettingArgs:
     @log_user_in_upper.setter
     def log_user_in_upper(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "log_user_in_upper", value)
+
+    @property
+    @pulumi.getter(name="longLiveSessionStat")
+    def long_live_session_stat(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "long_live_session_stat")
+
+    @long_live_session_stat.setter
+    def long_live_session_stat(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "long_live_session_stat", value)
 
     @property
     @pulumi.getter(name="neighborEvent")
@@ -446,9 +494,11 @@ class _SettingState:
                  daemon_log: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  expolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 extended_log: Optional[pulumi.Input[str]] = None,
                  faz_override: Optional[pulumi.Input[str]] = None,
                  fwpolicy6_implicit_log: Optional[pulumi.Input[str]] = None,
                  fwpolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  local_in_allow: Optional[pulumi.Input[str]] = None,
                  local_in_deny_broadcast: Optional[pulumi.Input[str]] = None,
                  local_in_deny_unicast: Optional[pulumi.Input[str]] = None,
@@ -458,6 +508,7 @@ class _SettingState:
                  log_policy_comment: Optional[pulumi.Input[str]] = None,
                  log_policy_name: Optional[pulumi.Input[str]] = None,
                  log_user_in_upper: Optional[pulumi.Input[str]] = None,
+                 long_live_session_stat: Optional[pulumi.Input[str]] = None,
                  neighbor_event: Optional[pulumi.Input[str]] = None,
                  resolve_ip: Optional[pulumi.Input[str]] = None,
                  resolve_port: Optional[pulumi.Input[str]] = None,
@@ -474,9 +525,11 @@ class _SettingState:
         :param pulumi.Input[str] daemon_log: Enable/disable daemon logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] expolicy_implicit_log: Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] extended_log: Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] faz_override: Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy6_implicit_log: Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy_implicit_log: Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] local_in_allow: Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_broadcast: Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_unicast: Enable/disable local-in-deny-unicast logging. Valid values: `enable`, `disable`.
@@ -486,6 +539,7 @@ class _SettingState:
         :param pulumi.Input[str] log_policy_comment: Enable/disable inserting policy comments into traffic logs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_policy_name: Enable/disable inserting policy name into traffic logs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_user_in_upper: Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] long_live_session_stat: Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] neighbor_event: Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_ip: Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_port: Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
@@ -507,12 +561,16 @@ class _SettingState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if expolicy_implicit_log is not None:
             pulumi.set(__self__, "expolicy_implicit_log", expolicy_implicit_log)
+        if extended_log is not None:
+            pulumi.set(__self__, "extended_log", extended_log)
         if faz_override is not None:
             pulumi.set(__self__, "faz_override", faz_override)
         if fwpolicy6_implicit_log is not None:
             pulumi.set(__self__, "fwpolicy6_implicit_log", fwpolicy6_implicit_log)
         if fwpolicy_implicit_log is not None:
             pulumi.set(__self__, "fwpolicy_implicit_log", fwpolicy_implicit_log)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if local_in_allow is not None:
             pulumi.set(__self__, "local_in_allow", local_in_allow)
         if local_in_deny_broadcast is not None:
@@ -531,6 +589,8 @@ class _SettingState:
             pulumi.set(__self__, "log_policy_name", log_policy_name)
         if log_user_in_upper is not None:
             pulumi.set(__self__, "log_user_in_upper", log_user_in_upper)
+        if long_live_session_stat is not None:
+            pulumi.set(__self__, "long_live_session_stat", long_live_session_stat)
         if neighbor_event is not None:
             pulumi.set(__self__, "neighbor_event", neighbor_event)
         if resolve_ip is not None:
@@ -621,6 +681,18 @@ class _SettingState:
         pulumi.set(self, "expolicy_implicit_log", value)
 
     @property
+    @pulumi.getter(name="extendedLog")
+    def extended_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "extended_log")
+
+    @extended_log.setter
+    def extended_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extended_log", value)
+
+    @property
     @pulumi.getter(name="fazOverride")
     def faz_override(self) -> Optional[pulumi.Input[str]]:
         """
@@ -655,6 +727,18 @@ class _SettingState:
     @fwpolicy_implicit_log.setter
     def fwpolicy_implicit_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fwpolicy_implicit_log", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="localInAllow")
@@ -763,6 +847,18 @@ class _SettingState:
     @log_user_in_upper.setter
     def log_user_in_upper(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "log_user_in_upper", value)
+
+    @property
+    @pulumi.getter(name="longLiveSessionStat")
+    def long_live_session_stat(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "long_live_session_stat")
+
+    @long_live_session_stat.setter
+    def long_live_session_stat(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "long_live_session_stat", value)
 
     @property
     @pulumi.getter(name="neighborEvent")
@@ -872,9 +968,11 @@ class Setting(pulumi.CustomResource):
                  daemon_log: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  expolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 extended_log: Optional[pulumi.Input[str]] = None,
                  faz_override: Optional[pulumi.Input[str]] = None,
                  fwpolicy6_implicit_log: Optional[pulumi.Input[str]] = None,
                  fwpolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  local_in_allow: Optional[pulumi.Input[str]] = None,
                  local_in_deny_broadcast: Optional[pulumi.Input[str]] = None,
                  local_in_deny_unicast: Optional[pulumi.Input[str]] = None,
@@ -884,6 +982,7 @@ class Setting(pulumi.CustomResource):
                  log_policy_comment: Optional[pulumi.Input[str]] = None,
                  log_policy_name: Optional[pulumi.Input[str]] = None,
                  log_user_in_upper: Optional[pulumi.Input[str]] = None,
+                 long_live_session_stat: Optional[pulumi.Input[str]] = None,
                  neighbor_event: Optional[pulumi.Input[str]] = None,
                  resolve_ip: Optional[pulumi.Input[str]] = None,
                  resolve_port: Optional[pulumi.Input[str]] = None,
@@ -952,9 +1051,11 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] daemon_log: Enable/disable daemon logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] expolicy_implicit_log: Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] extended_log: Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] faz_override: Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy6_implicit_log: Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy_implicit_log: Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] local_in_allow: Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_broadcast: Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_unicast: Enable/disable local-in-deny-unicast logging. Valid values: `enable`, `disable`.
@@ -964,6 +1065,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] log_policy_comment: Enable/disable inserting policy comments into traffic logs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_policy_name: Enable/disable inserting policy name into traffic logs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_user_in_upper: Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] long_live_session_stat: Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] neighbor_event: Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_ip: Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_port: Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
@@ -1051,9 +1153,11 @@ class Setting(pulumi.CustomResource):
                  daemon_log: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  expolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 extended_log: Optional[pulumi.Input[str]] = None,
                  faz_override: Optional[pulumi.Input[str]] = None,
                  fwpolicy6_implicit_log: Optional[pulumi.Input[str]] = None,
                  fwpolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  local_in_allow: Optional[pulumi.Input[str]] = None,
                  local_in_deny_broadcast: Optional[pulumi.Input[str]] = None,
                  local_in_deny_unicast: Optional[pulumi.Input[str]] = None,
@@ -1063,6 +1167,7 @@ class Setting(pulumi.CustomResource):
                  log_policy_comment: Optional[pulumi.Input[str]] = None,
                  log_policy_name: Optional[pulumi.Input[str]] = None,
                  log_user_in_upper: Optional[pulumi.Input[str]] = None,
+                 long_live_session_stat: Optional[pulumi.Input[str]] = None,
                  neighbor_event: Optional[pulumi.Input[str]] = None,
                  resolve_ip: Optional[pulumi.Input[str]] = None,
                  resolve_port: Optional[pulumi.Input[str]] = None,
@@ -1086,9 +1191,11 @@ class Setting(pulumi.CustomResource):
             __props__.__dict__["daemon_log"] = daemon_log
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["expolicy_implicit_log"] = expolicy_implicit_log
+            __props__.__dict__["extended_log"] = extended_log
             __props__.__dict__["faz_override"] = faz_override
             __props__.__dict__["fwpolicy6_implicit_log"] = fwpolicy6_implicit_log
             __props__.__dict__["fwpolicy_implicit_log"] = fwpolicy_implicit_log
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["local_in_allow"] = local_in_allow
             __props__.__dict__["local_in_deny_broadcast"] = local_in_deny_broadcast
             __props__.__dict__["local_in_deny_unicast"] = local_in_deny_unicast
@@ -1098,6 +1205,7 @@ class Setting(pulumi.CustomResource):
             __props__.__dict__["log_policy_comment"] = log_policy_comment
             __props__.__dict__["log_policy_name"] = log_policy_name
             __props__.__dict__["log_user_in_upper"] = log_user_in_upper
+            __props__.__dict__["long_live_session_stat"] = long_live_session_stat
             __props__.__dict__["neighbor_event"] = neighbor_event
             __props__.__dict__["resolve_ip"] = resolve_ip
             __props__.__dict__["resolve_port"] = resolve_port
@@ -1122,9 +1230,11 @@ class Setting(pulumi.CustomResource):
             daemon_log: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             expolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+            extended_log: Optional[pulumi.Input[str]] = None,
             faz_override: Optional[pulumi.Input[str]] = None,
             fwpolicy6_implicit_log: Optional[pulumi.Input[str]] = None,
             fwpolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             local_in_allow: Optional[pulumi.Input[str]] = None,
             local_in_deny_broadcast: Optional[pulumi.Input[str]] = None,
             local_in_deny_unicast: Optional[pulumi.Input[str]] = None,
@@ -1134,6 +1244,7 @@ class Setting(pulumi.CustomResource):
             log_policy_comment: Optional[pulumi.Input[str]] = None,
             log_policy_name: Optional[pulumi.Input[str]] = None,
             log_user_in_upper: Optional[pulumi.Input[str]] = None,
+            long_live_session_stat: Optional[pulumi.Input[str]] = None,
             neighbor_event: Optional[pulumi.Input[str]] = None,
             resolve_ip: Optional[pulumi.Input[str]] = None,
             resolve_port: Optional[pulumi.Input[str]] = None,
@@ -1155,9 +1266,11 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] daemon_log: Enable/disable daemon logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] expolicy_implicit_log: Enable/disable explicit proxy firewall implicit policy logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] extended_log: Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] faz_override: Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy6_implicit_log: Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy_implicit_log: Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] local_in_allow: Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_broadcast: Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_unicast: Enable/disable local-in-deny-unicast logging. Valid values: `enable`, `disable`.
@@ -1167,6 +1280,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] log_policy_comment: Enable/disable inserting policy comments into traffic logs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_policy_name: Enable/disable inserting policy name into traffic logs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_user_in_upper: Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] long_live_session_stat: Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] neighbor_event: Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_ip: Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_port: Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
@@ -1186,9 +1300,11 @@ class Setting(pulumi.CustomResource):
         __props__.__dict__["daemon_log"] = daemon_log
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["expolicy_implicit_log"] = expolicy_implicit_log
+        __props__.__dict__["extended_log"] = extended_log
         __props__.__dict__["faz_override"] = faz_override
         __props__.__dict__["fwpolicy6_implicit_log"] = fwpolicy6_implicit_log
         __props__.__dict__["fwpolicy_implicit_log"] = fwpolicy_implicit_log
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["local_in_allow"] = local_in_allow
         __props__.__dict__["local_in_deny_broadcast"] = local_in_deny_broadcast
         __props__.__dict__["local_in_deny_unicast"] = local_in_deny_unicast
@@ -1198,6 +1314,7 @@ class Setting(pulumi.CustomResource):
         __props__.__dict__["log_policy_comment"] = log_policy_comment
         __props__.__dict__["log_policy_name"] = log_policy_name
         __props__.__dict__["log_user_in_upper"] = log_user_in_upper
+        __props__.__dict__["long_live_session_stat"] = long_live_session_stat
         __props__.__dict__["neighbor_event"] = neighbor_event
         __props__.__dict__["resolve_ip"] = resolve_ip
         __props__.__dict__["resolve_port"] = resolve_port
@@ -1257,6 +1374,14 @@ class Setting(pulumi.CustomResource):
         return pulumi.get(self, "expolicy_implicit_log")
 
     @property
+    @pulumi.getter(name="extendedLog")
+    def extended_log(self) -> pulumi.Output[str]:
+        """
+        Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "extended_log")
+
+    @property
     @pulumi.getter(name="fazOverride")
     def faz_override(self) -> pulumi.Output[str]:
         """
@@ -1279,6 +1404,14 @@ class Setting(pulumi.CustomResource):
         Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "fwpolicy_implicit_log")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="localInAllow")
@@ -1351,6 +1484,14 @@ class Setting(pulumi.CustomResource):
         Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "log_user_in_upper")
+
+    @property
+    @pulumi.getter(name="longLiveSessionStat")
+    def long_live_session_stat(self) -> pulumi.Output[str]:
+        """
+        Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "long_live_session_stat")
 
     @property
     @pulumi.getter(name="neighborEvent")

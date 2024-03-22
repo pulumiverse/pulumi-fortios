@@ -80,6 +80,18 @@ namespace Pulumiverse.Fortios.User
     public partial class Radius : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        /// </summary>
+        [Output("accountKeyCertField")]
+        public Output<string> AccountKeyCertField { get; private set; } = null!;
+
+        /// <summary>
+        /// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+        /// </summary>
+        [Output("accountKeyProcessing")]
+        public Output<string> AccountKeyProcessing { get; private set; } = null!;
+
+        /// <summary>
         /// Additional accounting servers. The structure of `accounting_server` block is documented below.
         /// </summary>
         [Output("accountingServers")]
@@ -110,10 +122,28 @@ namespace Pulumiverse.Fortios.User
         public Output<string> AuthType { get; private set; } = null!;
 
         /// <summary>
+        /// CA of server to trust under TLS.
+        /// </summary>
+        [Output("caCert")]
+        public Output<string> CaCert { get; private set; } = null!;
+
+        /// <summary>
+        /// Calling &amp; Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+        /// </summary>
+        [Output("callStationIdType")]
+        public Output<string> CallStationIdType { get; private set; } = null!;
+
+        /// <summary>
         /// Class attribute name(s). The structure of `class` block is documented below.
         /// </summary>
         [Output("classes")]
         public Output<ImmutableArray<Outputs.RadiusClass>> Classes { get; private set; } = null!;
+
+        /// <summary>
+        /// Client certificate to use under TLS.
+        /// </summary>
+        [Output("clientCert")]
+        public Output<string> ClientCert { get; private set; } = null!;
 
         /// <summary>
         /// Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
@@ -126,6 +156,12 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Output("dynamicSortSubtable")]
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
@@ -174,6 +210,18 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// Custom NAS identifier.
+        /// </summary>
+        [Output("nasId")]
+        public Output<string> NasId { get; private set; } = null!;
+
+        /// <summary>
+        /// NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+        /// </summary>
+        [Output("nasIdType")]
+        public Output<string> NasIdType { get; private set; } = null!;
 
         /// <summary>
         /// IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
@@ -302,6 +350,12 @@ namespace Pulumiverse.Fortios.User
         public Output<string> Server { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("serverIdentityCheck")]
+        public Output<string> ServerIdentityCheck { get; private set; } = null!;
+
+        /// <summary>
         /// Source IP address for communications to the RADIUS server.
         /// </summary>
         [Output("sourceIp")]
@@ -326,10 +380,22 @@ namespace Pulumiverse.Fortios.User
         public Output<string> SsoAttributeValueOverride { get; private set; } = null!;
 
         /// <summary>
+        /// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        /// </summary>
+        [Output("statusTtl")]
+        public Output<int> StatusTtl { get; private set; } = null!;
+
+        /// <summary>
         /// Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
         /// </summary>
         [Output("switchControllerAcctFastFramedipDetect")]
         public Output<int> SwitchControllerAcctFastFramedipDetect { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("switchControllerNasIpDynamic")]
+        public Output<string> SwitchControllerNasIpDynamic { get; private set; } = null!;
 
         /// <summary>
         /// RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
@@ -354,6 +420,18 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Output("timeout")]
         public Output<int> Timeout { get; private set; } = null!;
+
+        /// <summary>
+        /// Minimum supported protocol version for TLS connections (default is to follow system global setting).
+        /// </summary>
+        [Output("tlsMinProtoVersion")]
+        public Output<string> TlsMinProtoVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+        /// </summary>
+        [Output("transportProtocol")]
+        public Output<string> TransportProtocol { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
@@ -428,6 +506,18 @@ namespace Pulumiverse.Fortios.User
 
     public sealed class RadiusArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        /// </summary>
+        [Input("accountKeyCertField")]
+        public Input<string>? AccountKeyCertField { get; set; }
+
+        /// <summary>
+        /// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+        /// </summary>
+        [Input("accountKeyProcessing")]
+        public Input<string>? AccountKeyProcessing { get; set; }
+
         [Input("accountingServers")]
         private InputList<Inputs.RadiusAccountingServerArgs>? _accountingServers;
 
@@ -464,6 +554,18 @@ namespace Pulumiverse.Fortios.User
         [Input("authType")]
         public Input<string>? AuthType { get; set; }
 
+        /// <summary>
+        /// CA of server to trust under TLS.
+        /// </summary>
+        [Input("caCert")]
+        public Input<string>? CaCert { get; set; }
+
+        /// <summary>
+        /// Calling &amp; Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+        /// </summary>
+        [Input("callStationIdType")]
+        public Input<string>? CallStationIdType { get; set; }
+
         [Input("classes")]
         private InputList<Inputs.RadiusClassArgs>? _classes;
 
@@ -477,6 +579,12 @@ namespace Pulumiverse.Fortios.User
         }
 
         /// <summary>
+        /// Client certificate to use under TLS.
+        /// </summary>
+        [Input("clientCert")]
+        public Input<string>? ClientCert { get; set; }
+
+        /// <summary>
         /// Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
         /// </summary>
         [Input("delimiter")]
@@ -487,6 +595,12 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
@@ -535,6 +649,18 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Custom NAS identifier.
+        /// </summary>
+        [Input("nasId")]
+        public Input<string>? NasId { get; set; }
+
+        /// <summary>
+        /// NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+        /// </summary>
+        [Input("nasIdType")]
+        public Input<string>? NasIdType { get; set; }
 
         /// <summary>
         /// IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
@@ -693,6 +819,12 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? Server { get; set; }
 
         /// <summary>
+        /// Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("serverIdentityCheck")]
+        public Input<string>? ServerIdentityCheck { get; set; }
+
+        /// <summary>
         /// Source IP address for communications to the RADIUS server.
         /// </summary>
         [Input("sourceIp")]
@@ -727,10 +859,22 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? SsoAttributeValueOverride { get; set; }
 
         /// <summary>
+        /// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        /// </summary>
+        [Input("statusTtl")]
+        public Input<int>? StatusTtl { get; set; }
+
+        /// <summary>
         /// Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
         /// </summary>
         [Input("switchControllerAcctFastFramedipDetect")]
         public Input<int>? SwitchControllerAcctFastFramedipDetect { get; set; }
+
+        /// <summary>
+        /// Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("switchControllerNasIpDynamic")]
+        public Input<string>? SwitchControllerNasIpDynamic { get; set; }
 
         /// <summary>
         /// RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
@@ -767,6 +911,18 @@ namespace Pulumiverse.Fortios.User
         public Input<int>? Timeout { get; set; }
 
         /// <summary>
+        /// Minimum supported protocol version for TLS connections (default is to follow system global setting).
+        /// </summary>
+        [Input("tlsMinProtoVersion")]
+        public Input<string>? TlsMinProtoVersion { get; set; }
+
+        /// <summary>
+        /// Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+        /// </summary>
+        [Input("transportProtocol")]
+        public Input<string>? TransportProtocol { get; set; }
+
+        /// <summary>
         /// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("useManagementVdom")]
@@ -792,6 +948,18 @@ namespace Pulumiverse.Fortios.User
 
     public sealed class RadiusState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        /// </summary>
+        [Input("accountKeyCertField")]
+        public Input<string>? AccountKeyCertField { get; set; }
+
+        /// <summary>
+        /// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+        /// </summary>
+        [Input("accountKeyProcessing")]
+        public Input<string>? AccountKeyProcessing { get; set; }
+
         [Input("accountingServers")]
         private InputList<Inputs.RadiusAccountingServerGetArgs>? _accountingServers;
 
@@ -828,6 +996,18 @@ namespace Pulumiverse.Fortios.User
         [Input("authType")]
         public Input<string>? AuthType { get; set; }
 
+        /// <summary>
+        /// CA of server to trust under TLS.
+        /// </summary>
+        [Input("caCert")]
+        public Input<string>? CaCert { get; set; }
+
+        /// <summary>
+        /// Calling &amp; Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+        /// </summary>
+        [Input("callStationIdType")]
+        public Input<string>? CallStationIdType { get; set; }
+
         [Input("classes")]
         private InputList<Inputs.RadiusClassGetArgs>? _classes;
 
@@ -841,6 +1021,12 @@ namespace Pulumiverse.Fortios.User
         }
 
         /// <summary>
+        /// Client certificate to use under TLS.
+        /// </summary>
+        [Input("clientCert")]
+        public Input<string>? ClientCert { get; set; }
+
+        /// <summary>
         /// Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
         /// </summary>
         [Input("delimiter")]
@@ -851,6 +1037,12 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
@@ -899,6 +1091,18 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Custom NAS identifier.
+        /// </summary>
+        [Input("nasId")]
+        public Input<string>? NasId { get; set; }
+
+        /// <summary>
+        /// NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+        /// </summary>
+        [Input("nasIdType")]
+        public Input<string>? NasIdType { get; set; }
 
         /// <summary>
         /// IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
@@ -1057,6 +1261,12 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? Server { get; set; }
 
         /// <summary>
+        /// Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("serverIdentityCheck")]
+        public Input<string>? ServerIdentityCheck { get; set; }
+
+        /// <summary>
         /// Source IP address for communications to the RADIUS server.
         /// </summary>
         [Input("sourceIp")]
@@ -1091,10 +1301,22 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? SsoAttributeValueOverride { get; set; }
 
         /// <summary>
+        /// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        /// </summary>
+        [Input("statusTtl")]
+        public Input<int>? StatusTtl { get; set; }
+
+        /// <summary>
         /// Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
         /// </summary>
         [Input("switchControllerAcctFastFramedipDetect")]
         public Input<int>? SwitchControllerAcctFastFramedipDetect { get; set; }
+
+        /// <summary>
+        /// Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("switchControllerNasIpDynamic")]
+        public Input<string>? SwitchControllerNasIpDynamic { get; set; }
 
         /// <summary>
         /// RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
@@ -1129,6 +1351,18 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
+
+        /// <summary>
+        /// Minimum supported protocol version for TLS connections (default is to follow system global setting).
+        /// </summary>
+        [Input("tlsMinProtoVersion")]
+        public Input<string>? TlsMinProtoVersion { get; set; }
+
+        /// <summary>
+        /// Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+        /// </summary>
+        [Input("transportProtocol")]
+        public Input<string>? TransportProtocol { get; set; }
 
         /// <summary>
         /// Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.

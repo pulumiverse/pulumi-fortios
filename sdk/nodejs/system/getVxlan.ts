@@ -41,6 +41,10 @@ export interface GetVxlanResult {
      */
     readonly dstport: number;
     /**
+     * EVPN instance.
+     */
+    readonly evpnId: number;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
@@ -52,6 +56,10 @@ export interface GetVxlanResult {
      * IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast.
      */
     readonly ipVersion: string;
+    /**
+     * Enable/disable VXLAN MAC learning from traffic.
+     */
+    readonly learnFromTraffic: string;
     /**
      * VXLAN multicast TTL (1-255, default = 0).
      */

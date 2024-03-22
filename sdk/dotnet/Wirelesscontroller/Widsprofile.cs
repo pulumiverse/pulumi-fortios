@@ -107,6 +107,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> ApScan { get; private set; } = null!;
 
         /// <summary>
+        /// Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
+        /// </summary>
+        [Output("apScanChannelList2g5gs")]
+        public Output<ImmutableArray<Outputs.WidsprofileApScanChannelList2g5g>> ApScanChannelList2g5gs { get; private set; } = null!;
+
+        /// <summary>
+        /// Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
+        /// </summary>
+        [Output("apScanChannelList6gs")]
+        public Output<ImmutableArray<Outputs.WidsprofileApScanChannelList6g>> ApScanChannelList6gs { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Output("apScanPassive")]
@@ -293,6 +305,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> EapolSuccThresh { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("invalidMacOui")]
@@ -336,6 +354,8 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        /// 
+        /// The `ap_scan_channel_list_2g_5g` block supports:
         /// </summary>
         [Output("vdomparam")]
         public Output<string?> Vdomparam { get; private set; } = null!;
@@ -477,6 +497,30 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         [Input("apScan")]
         public Input<string>? ApScan { get; set; }
 
+        [Input("apScanChannelList2g5gs")]
+        private InputList<Inputs.WidsprofileApScanChannelList2g5gArgs>? _apScanChannelList2g5gs;
+
+        /// <summary>
+        /// Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
+        /// </summary>
+        public InputList<Inputs.WidsprofileApScanChannelList2g5gArgs> ApScanChannelList2g5gs
+        {
+            get => _apScanChannelList2g5gs ?? (_apScanChannelList2g5gs = new InputList<Inputs.WidsprofileApScanChannelList2g5gArgs>());
+            set => _apScanChannelList2g5gs = value;
+        }
+
+        [Input("apScanChannelList6gs")]
+        private InputList<Inputs.WidsprofileApScanChannelList6gArgs>? _apScanChannelList6gs;
+
+        /// <summary>
+        /// Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
+        /// </summary>
+        public InputList<Inputs.WidsprofileApScanChannelList6gArgs> ApScanChannelList6gs
+        {
+            get => _apScanChannelList6gs ?? (_apScanChannelList6gs = new InputList<Inputs.WidsprofileApScanChannelList6gArgs>());
+            set => _apScanChannelList6gs = value;
+        }
+
         /// <summary>
         /// Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
@@ -664,6 +708,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? EapolSuccThresh { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("invalidMacOui")]
@@ -707,6 +757,8 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        /// 
+        /// The `ap_scan_channel_list_2g_5g` block supports:
         /// </summary>
         [Input("vdomparam")]
         public Input<string>? Vdomparam { get; set; }
@@ -809,6 +861,30 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         [Input("apScan")]
         public Input<string>? ApScan { get; set; }
 
+        [Input("apScanChannelList2g5gs")]
+        private InputList<Inputs.WidsprofileApScanChannelList2g5gGetArgs>? _apScanChannelList2g5gs;
+
+        /// <summary>
+        /// Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
+        /// </summary>
+        public InputList<Inputs.WidsprofileApScanChannelList2g5gGetArgs> ApScanChannelList2g5gs
+        {
+            get => _apScanChannelList2g5gs ?? (_apScanChannelList2g5gs = new InputList<Inputs.WidsprofileApScanChannelList2g5gGetArgs>());
+            set => _apScanChannelList2g5gs = value;
+        }
+
+        [Input("apScanChannelList6gs")]
+        private InputList<Inputs.WidsprofileApScanChannelList6gGetArgs>? _apScanChannelList6gs;
+
+        /// <summary>
+        /// Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
+        /// </summary>
+        public InputList<Inputs.WidsprofileApScanChannelList6gGetArgs> ApScanChannelList6gs
+        {
+            get => _apScanChannelList6gs ?? (_apScanChannelList6gs = new InputList<Inputs.WidsprofileApScanChannelList6gGetArgs>());
+            set => _apScanChannelList6gs = value;
+        }
+
         /// <summary>
         /// Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
@@ -996,6 +1072,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? EapolSuccThresh { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("invalidMacOui")]
@@ -1039,6 +1121,8 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        /// 
+        /// The `ap_scan_channel_list_2g_5g` block supports:
         /// </summary>
         [Input("vdomparam")]
         public Input<string>? Vdomparam { get; set; }

@@ -22,8 +22,10 @@ class OverridefilterArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
                  filter_type: Optional[pulumi.Input[str]] = None,
+                 forti_switch: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input['OverridefilterFreeStyleArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  local_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_traffic: Optional[pulumi.Input[str]] = None,
@@ -43,8 +45,10 @@ class OverridefilterArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] filter: FortiAnalyzer 3 log filter.
         :param pulumi.Input[str] filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+        :param pulumi.Input[str] forti_switch: Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_traffic: Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['OverridefilterFreeStyleArgs']]] free_styles: Free Style Filters The structure of `free_style` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtp: Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_traffic: Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_traffic: Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
@@ -69,10 +73,14 @@ class OverridefilterArgs:
             pulumi.set(__self__, "filter", filter)
         if filter_type is not None:
             pulumi.set(__self__, "filter_type", filter_type)
+        if forti_switch is not None:
+            pulumi.set(__self__, "forti_switch", forti_switch)
         if forward_traffic is not None:
             pulumi.set(__self__, "forward_traffic", forward_traffic)
         if free_styles is not None:
             pulumi.set(__self__, "free_styles", free_styles)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gtp is not None:
             pulumi.set(__self__, "gtp", gtp)
         if local_traffic is not None:
@@ -169,6 +177,18 @@ class OverridefilterArgs:
         pulumi.set(self, "filter_type", value)
 
     @property
+    @pulumi.getter(name="fortiSwitch")
+    def forti_switch(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "forti_switch")
+
+    @forti_switch.setter
+    def forti_switch(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forti_switch", value)
+
+    @property
     @pulumi.getter(name="forwardTraffic")
     def forward_traffic(self) -> Optional[pulumi.Input[str]]:
         """
@@ -191,6 +211,18 @@ class OverridefilterArgs:
     @free_styles.setter
     def free_styles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OverridefilterFreeStyleArgs']]]]):
         pulumi.set(self, "free_styles", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -334,8 +366,10 @@ class _OverridefilterState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
                  filter_type: Optional[pulumi.Input[str]] = None,
+                 forti_switch: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input['OverridefilterFreeStyleArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  local_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_traffic: Optional[pulumi.Input[str]] = None,
@@ -355,8 +389,10 @@ class _OverridefilterState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] filter: FortiAnalyzer 3 log filter.
         :param pulumi.Input[str] filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+        :param pulumi.Input[str] forti_switch: Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_traffic: Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['OverridefilterFreeStyleArgs']]] free_styles: Free Style Filters The structure of `free_style` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtp: Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_traffic: Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_traffic: Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
@@ -381,10 +417,14 @@ class _OverridefilterState:
             pulumi.set(__self__, "filter", filter)
         if filter_type is not None:
             pulumi.set(__self__, "filter_type", filter_type)
+        if forti_switch is not None:
+            pulumi.set(__self__, "forti_switch", forti_switch)
         if forward_traffic is not None:
             pulumi.set(__self__, "forward_traffic", forward_traffic)
         if free_styles is not None:
             pulumi.set(__self__, "free_styles", free_styles)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gtp is not None:
             pulumi.set(__self__, "gtp", gtp)
         if local_traffic is not None:
@@ -481,6 +521,18 @@ class _OverridefilterState:
         pulumi.set(self, "filter_type", value)
 
     @property
+    @pulumi.getter(name="fortiSwitch")
+    def forti_switch(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "forti_switch")
+
+    @forti_switch.setter
+    def forti_switch(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forti_switch", value)
+
+    @property
     @pulumi.getter(name="forwardTraffic")
     def forward_traffic(self) -> Optional[pulumi.Input[str]]:
         """
@@ -503,6 +555,18 @@ class _OverridefilterState:
     @free_styles.setter
     def free_styles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OverridefilterFreeStyleArgs']]]]):
         pulumi.set(self, "free_styles", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -648,8 +712,10 @@ class Overridefilter(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
                  filter_type: Optional[pulumi.Input[str]] = None,
+                 forti_switch: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OverridefilterFreeStyleArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  local_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_traffic: Optional[pulumi.Input[str]] = None,
@@ -714,8 +780,10 @@ class Overridefilter(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] filter: FortiAnalyzer 3 log filter.
         :param pulumi.Input[str] filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+        :param pulumi.Input[str] forti_switch: Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_traffic: Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OverridefilterFreeStyleArgs']]]] free_styles: Free Style Filters The structure of `free_style` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtp: Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_traffic: Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_traffic: Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
@@ -799,8 +867,10 @@ class Overridefilter(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
                  filter_type: Optional[pulumi.Input[str]] = None,
+                 forti_switch: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OverridefilterFreeStyleArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  local_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_traffic: Optional[pulumi.Input[str]] = None,
@@ -827,8 +897,10 @@ class Overridefilter(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["filter"] = filter
             __props__.__dict__["filter_type"] = filter_type
+            __props__.__dict__["forti_switch"] = forti_switch
             __props__.__dict__["forward_traffic"] = forward_traffic
             __props__.__dict__["free_styles"] = free_styles
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gtp"] = gtp
             __props__.__dict__["local_traffic"] = local_traffic
             __props__.__dict__["multicast_traffic"] = multicast_traffic
@@ -856,8 +928,10 @@ class Overridefilter(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             filter: Optional[pulumi.Input[str]] = None,
             filter_type: Optional[pulumi.Input[str]] = None,
+            forti_switch: Optional[pulumi.Input[str]] = None,
             forward_traffic: Optional[pulumi.Input[str]] = None,
             free_styles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OverridefilterFreeStyleArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gtp: Optional[pulumi.Input[str]] = None,
             local_traffic: Optional[pulumi.Input[str]] = None,
             multicast_traffic: Optional[pulumi.Input[str]] = None,
@@ -882,8 +956,10 @@ class Overridefilter(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] filter: FortiAnalyzer 3 log filter.
         :param pulumi.Input[str] filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
+        :param pulumi.Input[str] forti_switch: Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_traffic: Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OverridefilterFreeStyleArgs']]]] free_styles: Free Style Filters The structure of `free_style` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtp: Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_traffic: Enable/disable local in or out traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_traffic: Enable/disable multicast traffic logging. Valid values: `enable`, `disable`.
@@ -906,8 +982,10 @@ class Overridefilter(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["filter"] = filter
         __props__.__dict__["filter_type"] = filter_type
+        __props__.__dict__["forti_switch"] = forti_switch
         __props__.__dict__["forward_traffic"] = forward_traffic
         __props__.__dict__["free_styles"] = free_styles
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gtp"] = gtp
         __props__.__dict__["local_traffic"] = local_traffic
         __props__.__dict__["multicast_traffic"] = multicast_traffic
@@ -970,6 +1048,14 @@ class Overridefilter(pulumi.CustomResource):
         return pulumi.get(self, "filter_type")
 
     @property
+    @pulumi.getter(name="fortiSwitch")
+    def forti_switch(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "forti_switch")
+
+    @property
     @pulumi.getter(name="forwardTraffic")
     def forward_traffic(self) -> pulumi.Output[str]:
         """
@@ -984,6 +1070,14 @@ class Overridefilter(pulumi.CustomResource):
         Free Style Filters The structure of `free_style` block is documented below.
         """
         return pulumi.get(self, "free_styles")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

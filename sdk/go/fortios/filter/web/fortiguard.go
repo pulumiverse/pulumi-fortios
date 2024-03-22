@@ -73,12 +73,16 @@ type Fortiguard struct {
 
 	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
 	CacheMemPercent pulumi.IntOutput `pulumi:"cacheMemPercent"`
+	// Maximum permille of available memory allocated to caching (1 - 150).
+	CacheMemPermille pulumi.IntOutput `pulumi:"cacheMemPermille"`
 	// Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
 	CacheMode pulumi.StringOutput `pulumi:"cacheMode"`
 	// Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
 	CachePrefixMatch pulumi.StringOutput `pulumi:"cachePrefixMatch"`
 	// Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
 	ClosePorts pulumi.StringOutput `pulumi:"closePorts"`
+	// Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+	EmbedImage pulumi.StringOutput `pulumi:"embedImage"`
 	// Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
 	OvrdAuthHttps pulumi.StringOutput `pulumi:"ovrdAuthHttps"`
 	// Port to use for FortiGuard Web Filter override authentication.
@@ -131,12 +135,16 @@ func GetFortiguard(ctx *pulumi.Context,
 type fortiguardState struct {
 	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
 	CacheMemPercent *int `pulumi:"cacheMemPercent"`
+	// Maximum permille of available memory allocated to caching (1 - 150).
+	CacheMemPermille *int `pulumi:"cacheMemPermille"`
 	// Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
 	CacheMode *string `pulumi:"cacheMode"`
 	// Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
 	CachePrefixMatch *string `pulumi:"cachePrefixMatch"`
 	// Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
 	ClosePorts *string `pulumi:"closePorts"`
+	// Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+	EmbedImage *string `pulumi:"embedImage"`
 	// Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
 	OvrdAuthHttps *string `pulumi:"ovrdAuthHttps"`
 	// Port to use for FortiGuard Web Filter override authentication.
@@ -160,12 +168,16 @@ type fortiguardState struct {
 type FortiguardState struct {
 	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
 	CacheMemPercent pulumi.IntPtrInput
+	// Maximum permille of available memory allocated to caching (1 - 150).
+	CacheMemPermille pulumi.IntPtrInput
 	// Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
 	CacheMode pulumi.StringPtrInput
 	// Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
 	CachePrefixMatch pulumi.StringPtrInput
 	// Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
 	ClosePorts pulumi.StringPtrInput
+	// Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+	EmbedImage pulumi.StringPtrInput
 	// Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
 	OvrdAuthHttps pulumi.StringPtrInput
 	// Port to use for FortiGuard Web Filter override authentication.
@@ -193,12 +205,16 @@ func (FortiguardState) ElementType() reflect.Type {
 type fortiguardArgs struct {
 	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
 	CacheMemPercent *int `pulumi:"cacheMemPercent"`
+	// Maximum permille of available memory allocated to caching (1 - 150).
+	CacheMemPermille *int `pulumi:"cacheMemPermille"`
 	// Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
 	CacheMode *string `pulumi:"cacheMode"`
 	// Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
 	CachePrefixMatch *string `pulumi:"cachePrefixMatch"`
 	// Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
 	ClosePorts *string `pulumi:"closePorts"`
+	// Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+	EmbedImage *string `pulumi:"embedImage"`
 	// Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
 	OvrdAuthHttps *string `pulumi:"ovrdAuthHttps"`
 	// Port to use for FortiGuard Web Filter override authentication.
@@ -223,12 +239,16 @@ type fortiguardArgs struct {
 type FortiguardArgs struct {
 	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
 	CacheMemPercent pulumi.IntPtrInput
+	// Maximum permille of available memory allocated to caching (1 - 150).
+	CacheMemPermille pulumi.IntPtrInput
 	// Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
 	CacheMode pulumi.StringPtrInput
 	// Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
 	CachePrefixMatch pulumi.StringPtrInput
 	// Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
 	ClosePorts pulumi.StringPtrInput
+	// Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+	EmbedImage pulumi.StringPtrInput
 	// Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.
 	OvrdAuthHttps pulumi.StringPtrInput
 	// Port to use for FortiGuard Web Filter override authentication.
@@ -341,6 +361,11 @@ func (o FortiguardOutput) CacheMemPercent() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.CacheMemPercent }).(pulumi.IntOutput)
 }
 
+// Maximum permille of available memory allocated to caching (1 - 150).
+func (o FortiguardOutput) CacheMemPermille() pulumi.IntOutput {
+	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.CacheMemPermille }).(pulumi.IntOutput)
+}
+
 // Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
 func (o FortiguardOutput) CacheMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.CacheMode }).(pulumi.StringOutput)
@@ -354,6 +379,11 @@ func (o FortiguardOutput) CachePrefixMatch() pulumi.StringOutput {
 // Close ports used for HTTP/HTTPS override authentication and disable user overrides. Valid values: `enable`, `disable`.
 func (o FortiguardOutput) ClosePorts() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.ClosePorts }).(pulumi.StringOutput)
+}
+
+// Enable/disable embedding images into replacement messages (default = enable). Valid values: `enable`, `disable`.
+func (o FortiguardOutput) EmbedImage() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.EmbedImage }).(pulumi.StringOutput)
 }
 
 // Enable/disable use of HTTPS for override authentication. Valid values: `enable`, `disable`.

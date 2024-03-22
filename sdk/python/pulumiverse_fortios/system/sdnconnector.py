@@ -19,11 +19,13 @@ class SdnconnectorArgs:
                  status: pulumi.Input[str],
                  type: pulumi.Input[str],
                  access_key: Optional[pulumi.Input[str]] = None,
+                 alt_resource_ip: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  azure_region: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  compartment_id: Optional[pulumi.Input[str]] = None,
+                 compartment_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorCompartmentListArgs']]]] = None,
                  compute_generation: Optional[pulumi.Input[int]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -32,6 +34,7 @@ class SdnconnectorArgs:
                  forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorForwardingRuleArgs']]]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
                  gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorGcpProjectListArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
@@ -44,9 +47,11 @@ class SdnconnectorArgs:
                  oci_cert: Optional[pulumi.Input[str]] = None,
                  oci_fingerprint: Optional[pulumi.Input[str]] = None,
                  oci_region: Optional[pulumi.Input[str]] = None,
+                 oci_region_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorOciRegionListArgs']]]] = None,
                  oci_region_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  resource_group: Optional[pulumi.Input[str]] = None,
                  resource_url: Optional[pulumi.Input[str]] = None,
@@ -55,6 +60,8 @@ class SdnconnectorArgs:
                  secret_key: Optional[pulumi.Input[str]] = None,
                  secret_token: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_ca_cert: Optional[pulumi.Input[str]] = None,
+                 server_cert: Optional[pulumi.Input[str]] = None,
                  server_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorServerListArgs']]]] = None,
                  server_port: Optional[pulumi.Input[int]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
@@ -75,11 +82,13 @@ class SdnconnectorArgs:
         :param pulumi.Input[str] status: Enable/disable connection to the remote SDN connector. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] type: Type of SDN connector.
         :param pulumi.Input[str] access_key: AWS access key ID.
+        :param pulumi.Input[str] alt_resource_ip: Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] api_key: IBM cloud API key or service ID API key.
         :param pulumi.Input[str] azure_region: Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
         :param pulumi.Input[str] client_id: Azure client ID (application ID).
         :param pulumi.Input[str] client_secret: Azure client secret (application key).
         :param pulumi.Input[str] compartment_id: Compartment ID.
+        :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorCompartmentListArgs']]] compartment_lists: Configure OCI compartment list. The structure of `compartment_list` block is documented below.
         :param pulumi.Input[int] compute_generation: Compute generation for IBM cloud infrastructure.
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -88,6 +97,7 @@ class SdnconnectorArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorForwardingRuleArgs']]] forwarding_rules: Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
         :param pulumi.Input[str] gcp_project: GCP project name.
         :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorGcpProjectListArgs']]] gcp_project_lists: Configure GCP project list. The structure of `gcp_project_list` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ibm_region: IBM cloud region name.
@@ -100,9 +110,11 @@ class SdnconnectorArgs:
         :param pulumi.Input[str] oci_cert: OCI certificate.
         :param pulumi.Input[str] oci_fingerprint: OCI pubkey fingerprint.
         :param pulumi.Input[str] oci_region: OCI server region.
+        :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorOciRegionListArgs']]] oci_region_lists: Configure OCI region list. The structure of `oci_region_list` block is documented below.
         :param pulumi.Input[str] oci_region_type: OCI region type. Valid values: `commercial`, `government`.
         :param pulumi.Input[str] password: Password of the remote SDN connector as login credentials.
         :param pulumi.Input[str] private_key: Private key of GCP service account.
+        :param pulumi.Input[str] proxy: SDN proxy.
         :param pulumi.Input[str] region: AWS region name.
         :param pulumi.Input[str] resource_group: Azure resource group.
         :param pulumi.Input[str] resource_url: Azure Stack resource URL.
@@ -111,6 +123,8 @@ class SdnconnectorArgs:
         :param pulumi.Input[str] secret_key: AWS secret access key.
         :param pulumi.Input[str] secret_token: Secret token of Kubernetes service account.
         :param pulumi.Input[str] server: Server address of the remote SDN connector.
+        :param pulumi.Input[str] server_ca_cert: Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+        :param pulumi.Input[str] server_cert: Trust servers that contain this certificate only.
         :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorServerListArgs']]] server_lists: Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
         :param pulumi.Input[int] server_port: Port number of the remote SDN connector.
         :param pulumi.Input[str] service_account: GCP service account email.
@@ -131,6 +145,8 @@ class SdnconnectorArgs:
         pulumi.set(__self__, "type", type)
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
+        if alt_resource_ip is not None:
+            pulumi.set(__self__, "alt_resource_ip", alt_resource_ip)
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
         if azure_region is not None:
@@ -141,6 +157,8 @@ class SdnconnectorArgs:
             pulumi.set(__self__, "client_secret", client_secret)
         if compartment_id is not None:
             pulumi.set(__self__, "compartment_id", compartment_id)
+        if compartment_lists is not None:
+            pulumi.set(__self__, "compartment_lists", compartment_lists)
         if compute_generation is not None:
             pulumi.set(__self__, "compute_generation", compute_generation)
         if domain is not None:
@@ -157,6 +175,8 @@ class SdnconnectorArgs:
             pulumi.set(__self__, "gcp_project", gcp_project)
         if gcp_project_lists is not None:
             pulumi.set(__self__, "gcp_project_lists", gcp_project_lists)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if ha_status is not None:
@@ -181,12 +201,16 @@ class SdnconnectorArgs:
             pulumi.set(__self__, "oci_fingerprint", oci_fingerprint)
         if oci_region is not None:
             pulumi.set(__self__, "oci_region", oci_region)
+        if oci_region_lists is not None:
+            pulumi.set(__self__, "oci_region_lists", oci_region_lists)
         if oci_region_type is not None:
             pulumi.set(__self__, "oci_region_type", oci_region_type)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if resource_group is not None:
@@ -203,6 +227,10 @@ class SdnconnectorArgs:
             pulumi.set(__self__, "secret_token", secret_token)
         if server is not None:
             pulumi.set(__self__, "server", server)
+        if server_ca_cert is not None:
+            pulumi.set(__self__, "server_ca_cert", server_ca_cert)
+        if server_cert is not None:
+            pulumi.set(__self__, "server_cert", server_cert)
         if server_lists is not None:
             pulumi.set(__self__, "server_lists", server_lists)
         if server_port is not None:
@@ -271,6 +299,18 @@ class SdnconnectorArgs:
         pulumi.set(self, "access_key", value)
 
     @property
+    @pulumi.getter(name="altResourceIp")
+    def alt_resource_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "alt_resource_ip")
+
+    @alt_resource_ip.setter
+    def alt_resource_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_resource_ip", value)
+
+    @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
         """
@@ -329,6 +369,18 @@ class SdnconnectorArgs:
     @compartment_id.setter
     def compartment_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "compartment_id", value)
+
+    @property
+    @pulumi.getter(name="compartmentLists")
+    def compartment_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorCompartmentListArgs']]]]:
+        """
+        Configure OCI compartment list. The structure of `compartment_list` block is documented below.
+        """
+        return pulumi.get(self, "compartment_lists")
+
+    @compartment_lists.setter
+    def compartment_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorCompartmentListArgs']]]]):
+        pulumi.set(self, "compartment_lists", value)
 
     @property
     @pulumi.getter(name="computeGeneration")
@@ -425,6 +477,18 @@ class SdnconnectorArgs:
     @gcp_project_lists.setter
     def gcp_project_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorGcpProjectListArgs']]]]):
         pulumi.set(self, "gcp_project_lists", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -571,6 +635,18 @@ class SdnconnectorArgs:
         pulumi.set(self, "oci_region", value)
 
     @property
+    @pulumi.getter(name="ociRegionLists")
+    def oci_region_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorOciRegionListArgs']]]]:
+        """
+        Configure OCI region list. The structure of `oci_region_list` block is documented below.
+        """
+        return pulumi.get(self, "oci_region_lists")
+
+    @oci_region_lists.setter
+    def oci_region_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorOciRegionListArgs']]]]):
+        pulumi.set(self, "oci_region_lists", value)
+
+    @property
     @pulumi.getter(name="ociRegionType")
     def oci_region_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -605,6 +681,18 @@ class SdnconnectorArgs:
     @private_key.setter
     def private_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> Optional[pulumi.Input[str]]:
+        """
+        SDN proxy.
+        """
+        return pulumi.get(self, "proxy")
+
+    @proxy.setter
+    def proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy", value)
 
     @property
     @pulumi.getter
@@ -701,6 +789,30 @@ class SdnconnectorArgs:
     @server.setter
     def server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server", value)
+
+    @property
+    @pulumi.getter(name="serverCaCert")
+    def server_ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+        """
+        return pulumi.get(self, "server_ca_cert")
+
+    @server_ca_cert.setter
+    def server_ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_ca_cert", value)
+
+    @property
+    @pulumi.getter(name="serverCert")
+    def server_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Trust servers that contain this certificate only.
+        """
+        return pulumi.get(self, "server_cert")
+
+    @server_cert.setter
+    def server_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_cert", value)
 
     @property
     @pulumi.getter(name="serverLists")
@@ -887,11 +999,13 @@ class SdnconnectorArgs:
 class _SdnconnectorState:
     def __init__(__self__, *,
                  access_key: Optional[pulumi.Input[str]] = None,
+                 alt_resource_ip: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  azure_region: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  compartment_id: Optional[pulumi.Input[str]] = None,
+                 compartment_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorCompartmentListArgs']]]] = None,
                  compute_generation: Optional[pulumi.Input[int]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -900,6 +1014,7 @@ class _SdnconnectorState:
                  forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorForwardingRuleArgs']]]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
                  gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorGcpProjectListArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
@@ -912,9 +1027,11 @@ class _SdnconnectorState:
                  oci_cert: Optional[pulumi.Input[str]] = None,
                  oci_fingerprint: Optional[pulumi.Input[str]] = None,
                  oci_region: Optional[pulumi.Input[str]] = None,
+                 oci_region_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorOciRegionListArgs']]]] = None,
                  oci_region_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  resource_group: Optional[pulumi.Input[str]] = None,
                  resource_url: Optional[pulumi.Input[str]] = None,
@@ -923,6 +1040,8 @@ class _SdnconnectorState:
                  secret_key: Optional[pulumi.Input[str]] = None,
                  secret_token: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_ca_cert: Optional[pulumi.Input[str]] = None,
+                 server_cert: Optional[pulumi.Input[str]] = None,
                  server_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorServerListArgs']]]] = None,
                  server_port: Optional[pulumi.Input[int]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
@@ -943,11 +1062,13 @@ class _SdnconnectorState:
         """
         Input properties used for looking up and filtering Sdnconnector resources.
         :param pulumi.Input[str] access_key: AWS access key ID.
+        :param pulumi.Input[str] alt_resource_ip: Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] api_key: IBM cloud API key or service ID API key.
         :param pulumi.Input[str] azure_region: Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
         :param pulumi.Input[str] client_id: Azure client ID (application ID).
         :param pulumi.Input[str] client_secret: Azure client secret (application key).
         :param pulumi.Input[str] compartment_id: Compartment ID.
+        :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorCompartmentListArgs']]] compartment_lists: Configure OCI compartment list. The structure of `compartment_list` block is documented below.
         :param pulumi.Input[int] compute_generation: Compute generation for IBM cloud infrastructure.
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -956,6 +1077,7 @@ class _SdnconnectorState:
         :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorForwardingRuleArgs']]] forwarding_rules: Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
         :param pulumi.Input[str] gcp_project: GCP project name.
         :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorGcpProjectListArgs']]] gcp_project_lists: Configure GCP project list. The structure of `gcp_project_list` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ibm_region: IBM cloud region name.
@@ -968,9 +1090,11 @@ class _SdnconnectorState:
         :param pulumi.Input[str] oci_cert: OCI certificate.
         :param pulumi.Input[str] oci_fingerprint: OCI pubkey fingerprint.
         :param pulumi.Input[str] oci_region: OCI server region.
+        :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorOciRegionListArgs']]] oci_region_lists: Configure OCI region list. The structure of `oci_region_list` block is documented below.
         :param pulumi.Input[str] oci_region_type: OCI region type. Valid values: `commercial`, `government`.
         :param pulumi.Input[str] password: Password of the remote SDN connector as login credentials.
         :param pulumi.Input[str] private_key: Private key of GCP service account.
+        :param pulumi.Input[str] proxy: SDN proxy.
         :param pulumi.Input[str] region: AWS region name.
         :param pulumi.Input[str] resource_group: Azure resource group.
         :param pulumi.Input[str] resource_url: Azure Stack resource URL.
@@ -979,6 +1103,8 @@ class _SdnconnectorState:
         :param pulumi.Input[str] secret_key: AWS secret access key.
         :param pulumi.Input[str] secret_token: Secret token of Kubernetes service account.
         :param pulumi.Input[str] server: Server address of the remote SDN connector.
+        :param pulumi.Input[str] server_ca_cert: Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+        :param pulumi.Input[str] server_cert: Trust servers that contain this certificate only.
         :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorServerListArgs']]] server_lists: Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
         :param pulumi.Input[int] server_port: Port number of the remote SDN connector.
         :param pulumi.Input[str] service_account: GCP service account email.
@@ -999,6 +1125,8 @@ class _SdnconnectorState:
         """
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
+        if alt_resource_ip is not None:
+            pulumi.set(__self__, "alt_resource_ip", alt_resource_ip)
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
         if azure_region is not None:
@@ -1009,6 +1137,8 @@ class _SdnconnectorState:
             pulumi.set(__self__, "client_secret", client_secret)
         if compartment_id is not None:
             pulumi.set(__self__, "compartment_id", compartment_id)
+        if compartment_lists is not None:
+            pulumi.set(__self__, "compartment_lists", compartment_lists)
         if compute_generation is not None:
             pulumi.set(__self__, "compute_generation", compute_generation)
         if domain is not None:
@@ -1025,6 +1155,8 @@ class _SdnconnectorState:
             pulumi.set(__self__, "gcp_project", gcp_project)
         if gcp_project_lists is not None:
             pulumi.set(__self__, "gcp_project_lists", gcp_project_lists)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if ha_status is not None:
@@ -1049,12 +1181,16 @@ class _SdnconnectorState:
             pulumi.set(__self__, "oci_fingerprint", oci_fingerprint)
         if oci_region is not None:
             pulumi.set(__self__, "oci_region", oci_region)
+        if oci_region_lists is not None:
+            pulumi.set(__self__, "oci_region_lists", oci_region_lists)
         if oci_region_type is not None:
             pulumi.set(__self__, "oci_region_type", oci_region_type)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if resource_group is not None:
@@ -1071,6 +1207,10 @@ class _SdnconnectorState:
             pulumi.set(__self__, "secret_token", secret_token)
         if server is not None:
             pulumi.set(__self__, "server", server)
+        if server_ca_cert is not None:
+            pulumi.set(__self__, "server_ca_cert", server_ca_cert)
+        if server_cert is not None:
+            pulumi.set(__self__, "server_cert", server_cert)
         if server_lists is not None:
             pulumi.set(__self__, "server_lists", server_lists)
         if server_port is not None:
@@ -1117,6 +1257,18 @@ class _SdnconnectorState:
     @access_key.setter
     def access_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "access_key", value)
+
+    @property
+    @pulumi.getter(name="altResourceIp")
+    def alt_resource_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "alt_resource_ip")
+
+    @alt_resource_ip.setter
+    def alt_resource_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_resource_ip", value)
 
     @property
     @pulumi.getter(name="apiKey")
@@ -1177,6 +1329,18 @@ class _SdnconnectorState:
     @compartment_id.setter
     def compartment_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "compartment_id", value)
+
+    @property
+    @pulumi.getter(name="compartmentLists")
+    def compartment_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorCompartmentListArgs']]]]:
+        """
+        Configure OCI compartment list. The structure of `compartment_list` block is documented below.
+        """
+        return pulumi.get(self, "compartment_lists")
+
+    @compartment_lists.setter
+    def compartment_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorCompartmentListArgs']]]]):
+        pulumi.set(self, "compartment_lists", value)
 
     @property
     @pulumi.getter(name="computeGeneration")
@@ -1273,6 +1437,18 @@ class _SdnconnectorState:
     @gcp_project_lists.setter
     def gcp_project_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorGcpProjectListArgs']]]]):
         pulumi.set(self, "gcp_project_lists", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -1419,6 +1595,18 @@ class _SdnconnectorState:
         pulumi.set(self, "oci_region", value)
 
     @property
+    @pulumi.getter(name="ociRegionLists")
+    def oci_region_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorOciRegionListArgs']]]]:
+        """
+        Configure OCI region list. The structure of `oci_region_list` block is documented below.
+        """
+        return pulumi.get(self, "oci_region_lists")
+
+    @oci_region_lists.setter
+    def oci_region_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SdnconnectorOciRegionListArgs']]]]):
+        pulumi.set(self, "oci_region_lists", value)
+
+    @property
     @pulumi.getter(name="ociRegionType")
     def oci_region_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1453,6 +1641,18 @@ class _SdnconnectorState:
     @private_key.setter
     def private_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> Optional[pulumi.Input[str]]:
+        """
+        SDN proxy.
+        """
+        return pulumi.get(self, "proxy")
+
+    @proxy.setter
+    def proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy", value)
 
     @property
     @pulumi.getter
@@ -1549,6 +1749,30 @@ class _SdnconnectorState:
     @server.setter
     def server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server", value)
+
+    @property
+    @pulumi.getter(name="serverCaCert")
+    def server_ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+        """
+        return pulumi.get(self, "server_ca_cert")
+
+    @server_ca_cert.setter
+    def server_ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_ca_cert", value)
+
+    @property
+    @pulumi.getter(name="serverCert")
+    def server_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Trust servers that contain this certificate only.
+        """
+        return pulumi.get(self, "server_cert")
+
+    @server_cert.setter
+    def server_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_cert", value)
 
     @property
     @pulumi.getter(name="serverLists")
@@ -1761,11 +1985,13 @@ class Sdnconnector(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
+                 alt_resource_ip: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  azure_region: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  compartment_id: Optional[pulumi.Input[str]] = None,
+                 compartment_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorCompartmentListArgs']]]]] = None,
                  compute_generation: Optional[pulumi.Input[int]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -1774,6 +2000,7 @@ class Sdnconnector(pulumi.CustomResource):
                  forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorForwardingRuleArgs']]]]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
                  gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorGcpProjectListArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
@@ -1786,9 +2013,11 @@ class Sdnconnector(pulumi.CustomResource):
                  oci_cert: Optional[pulumi.Input[str]] = None,
                  oci_fingerprint: Optional[pulumi.Input[str]] = None,
                  oci_region: Optional[pulumi.Input[str]] = None,
+                 oci_region_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorOciRegionListArgs']]]]] = None,
                  oci_region_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  resource_group: Optional[pulumi.Input[str]] = None,
                  resource_url: Optional[pulumi.Input[str]] = None,
@@ -1797,6 +2026,8 @@ class Sdnconnector(pulumi.CustomResource):
                  secret_key: Optional[pulumi.Input[str]] = None,
                  secret_token: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_ca_cert: Optional[pulumi.Input[str]] = None,
+                 server_cert: Optional[pulumi.Input[str]] = None,
                  server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorServerListArgs']]]]] = None,
                  server_port: Optional[pulumi.Input[int]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
@@ -1860,11 +2091,13 @@ class Sdnconnector(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: AWS access key ID.
+        :param pulumi.Input[str] alt_resource_ip: Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] api_key: IBM cloud API key or service ID API key.
         :param pulumi.Input[str] azure_region: Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
         :param pulumi.Input[str] client_id: Azure client ID (application ID).
         :param pulumi.Input[str] client_secret: Azure client secret (application key).
         :param pulumi.Input[str] compartment_id: Compartment ID.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorCompartmentListArgs']]]] compartment_lists: Configure OCI compartment list. The structure of `compartment_list` block is documented below.
         :param pulumi.Input[int] compute_generation: Compute generation for IBM cloud infrastructure.
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -1873,6 +2106,7 @@ class Sdnconnector(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorForwardingRuleArgs']]]] forwarding_rules: Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
         :param pulumi.Input[str] gcp_project: GCP project name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorGcpProjectListArgs']]]] gcp_project_lists: Configure GCP project list. The structure of `gcp_project_list` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ibm_region: IBM cloud region name.
@@ -1885,9 +2119,11 @@ class Sdnconnector(pulumi.CustomResource):
         :param pulumi.Input[str] oci_cert: OCI certificate.
         :param pulumi.Input[str] oci_fingerprint: OCI pubkey fingerprint.
         :param pulumi.Input[str] oci_region: OCI server region.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorOciRegionListArgs']]]] oci_region_lists: Configure OCI region list. The structure of `oci_region_list` block is documented below.
         :param pulumi.Input[str] oci_region_type: OCI region type. Valid values: `commercial`, `government`.
         :param pulumi.Input[str] password: Password of the remote SDN connector as login credentials.
         :param pulumi.Input[str] private_key: Private key of GCP service account.
+        :param pulumi.Input[str] proxy: SDN proxy.
         :param pulumi.Input[str] region: AWS region name.
         :param pulumi.Input[str] resource_group: Azure resource group.
         :param pulumi.Input[str] resource_url: Azure Stack resource URL.
@@ -1896,6 +2132,8 @@ class Sdnconnector(pulumi.CustomResource):
         :param pulumi.Input[str] secret_key: AWS secret access key.
         :param pulumi.Input[str] secret_token: Secret token of Kubernetes service account.
         :param pulumi.Input[str] server: Server address of the remote SDN connector.
+        :param pulumi.Input[str] server_ca_cert: Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+        :param pulumi.Input[str] server_cert: Trust servers that contain this certificate only.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorServerListArgs']]]] server_lists: Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
         :param pulumi.Input[int] server_port: Port number of the remote SDN connector.
         :param pulumi.Input[str] service_account: GCP service account email.
@@ -1978,11 +2216,13 @@ class Sdnconnector(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
+                 alt_resource_ip: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  azure_region: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  compartment_id: Optional[pulumi.Input[str]] = None,
+                 compartment_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorCompartmentListArgs']]]]] = None,
                  compute_generation: Optional[pulumi.Input[int]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -1991,6 +2231,7 @@ class Sdnconnector(pulumi.CustomResource):
                  forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorForwardingRuleArgs']]]]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
                  gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorGcpProjectListArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
@@ -2003,9 +2244,11 @@ class Sdnconnector(pulumi.CustomResource):
                  oci_cert: Optional[pulumi.Input[str]] = None,
                  oci_fingerprint: Optional[pulumi.Input[str]] = None,
                  oci_region: Optional[pulumi.Input[str]] = None,
+                 oci_region_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorOciRegionListArgs']]]]] = None,
                  oci_region_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  resource_group: Optional[pulumi.Input[str]] = None,
                  resource_url: Optional[pulumi.Input[str]] = None,
@@ -2014,6 +2257,8 @@ class Sdnconnector(pulumi.CustomResource):
                  secret_key: Optional[pulumi.Input[str]] = None,
                  secret_token: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_ca_cert: Optional[pulumi.Input[str]] = None,
+                 server_cert: Optional[pulumi.Input[str]] = None,
                  server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorServerListArgs']]]]] = None,
                  server_port: Optional[pulumi.Input[int]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
@@ -2041,11 +2286,13 @@ class Sdnconnector(pulumi.CustomResource):
             __props__ = SdnconnectorArgs.__new__(SdnconnectorArgs)
 
             __props__.__dict__["access_key"] = None if access_key is None else pulumi.Output.secret(access_key)
+            __props__.__dict__["alt_resource_ip"] = alt_resource_ip
             __props__.__dict__["api_key"] = None if api_key is None else pulumi.Output.secret(api_key)
             __props__.__dict__["azure_region"] = azure_region
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
             __props__.__dict__["compartment_id"] = compartment_id
+            __props__.__dict__["compartment_lists"] = compartment_lists
             __props__.__dict__["compute_generation"] = compute_generation
             __props__.__dict__["domain"] = domain
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -2054,6 +2301,7 @@ class Sdnconnector(pulumi.CustomResource):
             __props__.__dict__["forwarding_rules"] = forwarding_rules
             __props__.__dict__["gcp_project"] = gcp_project
             __props__.__dict__["gcp_project_lists"] = gcp_project_lists
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_name"] = group_name
             __props__.__dict__["ha_status"] = ha_status
             __props__.__dict__["ibm_region"] = ibm_region
@@ -2066,9 +2314,11 @@ class Sdnconnector(pulumi.CustomResource):
             __props__.__dict__["oci_cert"] = oci_cert
             __props__.__dict__["oci_fingerprint"] = oci_fingerprint
             __props__.__dict__["oci_region"] = oci_region
+            __props__.__dict__["oci_region_lists"] = oci_region_lists
             __props__.__dict__["oci_region_type"] = oci_region_type
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
+            __props__.__dict__["proxy"] = proxy
             __props__.__dict__["region"] = region
             __props__.__dict__["resource_group"] = resource_group
             __props__.__dict__["resource_url"] = resource_url
@@ -2077,6 +2327,8 @@ class Sdnconnector(pulumi.CustomResource):
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["secret_token"] = None if secret_token is None else pulumi.Output.secret(secret_token)
             __props__.__dict__["server"] = server
+            __props__.__dict__["server_ca_cert"] = server_ca_cert
+            __props__.__dict__["server_cert"] = server_cert
             __props__.__dict__["server_lists"] = server_lists
             __props__.__dict__["server_port"] = server_port
             __props__.__dict__["service_account"] = service_account
@@ -2111,11 +2363,13 @@ class Sdnconnector(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             access_key: Optional[pulumi.Input[str]] = None,
+            alt_resource_ip: Optional[pulumi.Input[str]] = None,
             api_key: Optional[pulumi.Input[str]] = None,
             azure_region: Optional[pulumi.Input[str]] = None,
             client_id: Optional[pulumi.Input[str]] = None,
             client_secret: Optional[pulumi.Input[str]] = None,
             compartment_id: Optional[pulumi.Input[str]] = None,
+            compartment_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorCompartmentListArgs']]]]] = None,
             compute_generation: Optional[pulumi.Input[int]] = None,
             domain: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -2124,6 +2378,7 @@ class Sdnconnector(pulumi.CustomResource):
             forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorForwardingRuleArgs']]]]] = None,
             gcp_project: Optional[pulumi.Input[str]] = None,
             gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorGcpProjectListArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_name: Optional[pulumi.Input[str]] = None,
             ha_status: Optional[pulumi.Input[str]] = None,
             ibm_region: Optional[pulumi.Input[str]] = None,
@@ -2136,9 +2391,11 @@ class Sdnconnector(pulumi.CustomResource):
             oci_cert: Optional[pulumi.Input[str]] = None,
             oci_fingerprint: Optional[pulumi.Input[str]] = None,
             oci_region: Optional[pulumi.Input[str]] = None,
+            oci_region_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorOciRegionListArgs']]]]] = None,
             oci_region_type: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
+            proxy: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             resource_group: Optional[pulumi.Input[str]] = None,
             resource_url: Optional[pulumi.Input[str]] = None,
@@ -2147,6 +2404,8 @@ class Sdnconnector(pulumi.CustomResource):
             secret_key: Optional[pulumi.Input[str]] = None,
             secret_token: Optional[pulumi.Input[str]] = None,
             server: Optional[pulumi.Input[str]] = None,
+            server_ca_cert: Optional[pulumi.Input[str]] = None,
+            server_cert: Optional[pulumi.Input[str]] = None,
             server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorServerListArgs']]]]] = None,
             server_port: Optional[pulumi.Input[int]] = None,
             service_account: Optional[pulumi.Input[str]] = None,
@@ -2172,11 +2431,13 @@ class Sdnconnector(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: AWS access key ID.
+        :param pulumi.Input[str] alt_resource_ip: Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] api_key: IBM cloud API key or service ID API key.
         :param pulumi.Input[str] azure_region: Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
         :param pulumi.Input[str] client_id: Azure client ID (application ID).
         :param pulumi.Input[str] client_secret: Azure client secret (application key).
         :param pulumi.Input[str] compartment_id: Compartment ID.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorCompartmentListArgs']]]] compartment_lists: Configure OCI compartment list. The structure of `compartment_list` block is documented below.
         :param pulumi.Input[int] compute_generation: Compute generation for IBM cloud infrastructure.
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -2185,6 +2446,7 @@ class Sdnconnector(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorForwardingRuleArgs']]]] forwarding_rules: Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
         :param pulumi.Input[str] gcp_project: GCP project name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorGcpProjectListArgs']]]] gcp_project_lists: Configure GCP project list. The structure of `gcp_project_list` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ibm_region: IBM cloud region name.
@@ -2197,9 +2459,11 @@ class Sdnconnector(pulumi.CustomResource):
         :param pulumi.Input[str] oci_cert: OCI certificate.
         :param pulumi.Input[str] oci_fingerprint: OCI pubkey fingerprint.
         :param pulumi.Input[str] oci_region: OCI server region.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorOciRegionListArgs']]]] oci_region_lists: Configure OCI region list. The structure of `oci_region_list` block is documented below.
         :param pulumi.Input[str] oci_region_type: OCI region type. Valid values: `commercial`, `government`.
         :param pulumi.Input[str] password: Password of the remote SDN connector as login credentials.
         :param pulumi.Input[str] private_key: Private key of GCP service account.
+        :param pulumi.Input[str] proxy: SDN proxy.
         :param pulumi.Input[str] region: AWS region name.
         :param pulumi.Input[str] resource_group: Azure resource group.
         :param pulumi.Input[str] resource_url: Azure Stack resource URL.
@@ -2208,6 +2472,8 @@ class Sdnconnector(pulumi.CustomResource):
         :param pulumi.Input[str] secret_key: AWS secret access key.
         :param pulumi.Input[str] secret_token: Secret token of Kubernetes service account.
         :param pulumi.Input[str] server: Server address of the remote SDN connector.
+        :param pulumi.Input[str] server_ca_cert: Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+        :param pulumi.Input[str] server_cert: Trust servers that contain this certificate only.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorServerListArgs']]]] server_lists: Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
         :param pulumi.Input[int] server_port: Port number of the remote SDN connector.
         :param pulumi.Input[str] service_account: GCP service account email.
@@ -2231,11 +2497,13 @@ class Sdnconnector(pulumi.CustomResource):
         __props__ = _SdnconnectorState.__new__(_SdnconnectorState)
 
         __props__.__dict__["access_key"] = access_key
+        __props__.__dict__["alt_resource_ip"] = alt_resource_ip
         __props__.__dict__["api_key"] = api_key
         __props__.__dict__["azure_region"] = azure_region
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
         __props__.__dict__["compartment_id"] = compartment_id
+        __props__.__dict__["compartment_lists"] = compartment_lists
         __props__.__dict__["compute_generation"] = compute_generation
         __props__.__dict__["domain"] = domain
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -2244,6 +2512,7 @@ class Sdnconnector(pulumi.CustomResource):
         __props__.__dict__["forwarding_rules"] = forwarding_rules
         __props__.__dict__["gcp_project"] = gcp_project
         __props__.__dict__["gcp_project_lists"] = gcp_project_lists
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_name"] = group_name
         __props__.__dict__["ha_status"] = ha_status
         __props__.__dict__["ibm_region"] = ibm_region
@@ -2256,9 +2525,11 @@ class Sdnconnector(pulumi.CustomResource):
         __props__.__dict__["oci_cert"] = oci_cert
         __props__.__dict__["oci_fingerprint"] = oci_fingerprint
         __props__.__dict__["oci_region"] = oci_region
+        __props__.__dict__["oci_region_lists"] = oci_region_lists
         __props__.__dict__["oci_region_type"] = oci_region_type
         __props__.__dict__["password"] = password
         __props__.__dict__["private_key"] = private_key
+        __props__.__dict__["proxy"] = proxy
         __props__.__dict__["region"] = region
         __props__.__dict__["resource_group"] = resource_group
         __props__.__dict__["resource_url"] = resource_url
@@ -2267,6 +2538,8 @@ class Sdnconnector(pulumi.CustomResource):
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["secret_token"] = secret_token
         __props__.__dict__["server"] = server
+        __props__.__dict__["server_ca_cert"] = server_ca_cert
+        __props__.__dict__["server_cert"] = server_cert
         __props__.__dict__["server_lists"] = server_lists
         __props__.__dict__["server_port"] = server_port
         __props__.__dict__["service_account"] = service_account
@@ -2293,6 +2566,14 @@ class Sdnconnector(pulumi.CustomResource):
         AWS access key ID.
         """
         return pulumi.get(self, "access_key")
+
+    @property
+    @pulumi.getter(name="altResourceIp")
+    def alt_resource_ip(self) -> pulumi.Output[str]:
+        """
+        Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "alt_resource_ip")
 
     @property
     @pulumi.getter(name="apiKey")
@@ -2333,6 +2614,14 @@ class Sdnconnector(pulumi.CustomResource):
         Compartment ID.
         """
         return pulumi.get(self, "compartment_id")
+
+    @property
+    @pulumi.getter(name="compartmentLists")
+    def compartment_lists(self) -> pulumi.Output[Optional[Sequence['outputs.SdnconnectorCompartmentList']]]:
+        """
+        Configure OCI compartment list. The structure of `compartment_list` block is documented below.
+        """
+        return pulumi.get(self, "compartment_lists")
 
     @property
     @pulumi.getter(name="computeGeneration")
@@ -2397,6 +2686,14 @@ class Sdnconnector(pulumi.CustomResource):
         Configure GCP project list. The structure of `gcp_project_list` block is documented below.
         """
         return pulumi.get(self, "gcp_project_lists")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupName")
@@ -2495,6 +2792,14 @@ class Sdnconnector(pulumi.CustomResource):
         return pulumi.get(self, "oci_region")
 
     @property
+    @pulumi.getter(name="ociRegionLists")
+    def oci_region_lists(self) -> pulumi.Output[Optional[Sequence['outputs.SdnconnectorOciRegionList']]]:
+        """
+        Configure OCI region list. The structure of `oci_region_list` block is documented below.
+        """
+        return pulumi.get(self, "oci_region_lists")
+
+    @property
     @pulumi.getter(name="ociRegionType")
     def oci_region_type(self) -> pulumi.Output[str]:
         """
@@ -2517,6 +2822,14 @@ class Sdnconnector(pulumi.CustomResource):
         Private key of GCP service account.
         """
         return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> pulumi.Output[str]:
+        """
+        SDN proxy.
+        """
+        return pulumi.get(self, "proxy")
 
     @property
     @pulumi.getter
@@ -2581,6 +2894,22 @@ class Sdnconnector(pulumi.CustomResource):
         Server address of the remote SDN connector.
         """
         return pulumi.get(self, "server")
+
+    @property
+    @pulumi.getter(name="serverCaCert")
+    def server_ca_cert(self) -> pulumi.Output[str]:
+        """
+        Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+        """
+        return pulumi.get(self, "server_ca_cert")
+
+    @property
+    @pulumi.getter(name="serverCert")
+    def server_cert(self) -> pulumi.Output[str]:
+        """
+        Trust servers that contain this certificate only.
+        """
+        return pulumi.get(self, "server_cert")
 
     @property
     @pulumi.getter(name="serverLists")

@@ -95,6 +95,8 @@ type Custom struct {
 	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Helper name.
 	Helper pulumi.StringOutput `pulumi:"helper"`
 	// ICMP code.
@@ -125,10 +127,12 @@ type Custom struct {
 	TcpRstTimer pulumi.IntOutput `pulumi:"tcpRstTimer"`
 	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
 	TcpTimewaitTimer pulumi.IntOutput `pulumi:"tcpTimewaitTimer"`
-	// UDP half close timeout (0 - 86400 sec, 0 = default).
+	// Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
 	UdpIdleTimer pulumi.IntOutput `pulumi:"udpIdleTimer"`
 	// Multiple UDP port ranges.
 	UdpPortrange pulumi.StringOutput `pulumi:"udpPortrange"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
@@ -185,6 +189,8 @@ type customState struct {
 	FabricObject *string `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn *string `pulumi:"fqdn"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Helper name.
 	Helper *string `pulumi:"helper"`
 	// ICMP code.
@@ -215,10 +221,12 @@ type customState struct {
 	TcpRstTimer *int `pulumi:"tcpRstTimer"`
 	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
 	TcpTimewaitTimer *int `pulumi:"tcpTimewaitTimer"`
-	// UDP half close timeout (0 - 86400 sec, 0 = default).
+	// Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
 	UdpIdleTimer *int `pulumi:"udpIdleTimer"`
 	// Multiple UDP port ranges.
 	UdpPortrange *string `pulumi:"udpPortrange"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
@@ -246,6 +254,8 @@ type CustomState struct {
 	FabricObject pulumi.StringPtrInput
 	// Fully qualified domain name.
 	Fqdn pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Helper name.
 	Helper pulumi.StringPtrInput
 	// ICMP code.
@@ -276,10 +286,12 @@ type CustomState struct {
 	TcpRstTimer pulumi.IntPtrInput
 	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
 	TcpTimewaitTimer pulumi.IntPtrInput
-	// UDP half close timeout (0 - 86400 sec, 0 = default).
+	// Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
 	UdpIdleTimer pulumi.IntPtrInput
 	// Multiple UDP port ranges.
 	UdpPortrange pulumi.StringPtrInput
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
@@ -311,6 +323,8 @@ type customArgs struct {
 	FabricObject *string `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn *string `pulumi:"fqdn"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Helper name.
 	Helper *string `pulumi:"helper"`
 	// ICMP code.
@@ -341,10 +355,12 @@ type customArgs struct {
 	TcpRstTimer *int `pulumi:"tcpRstTimer"`
 	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
 	TcpTimewaitTimer *int `pulumi:"tcpTimewaitTimer"`
-	// UDP half close timeout (0 - 86400 sec, 0 = default).
+	// Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
 	UdpIdleTimer *int `pulumi:"udpIdleTimer"`
 	// Multiple UDP port ranges.
 	UdpPortrange *string `pulumi:"udpPortrange"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
@@ -373,6 +389,8 @@ type CustomArgs struct {
 	FabricObject pulumi.StringPtrInput
 	// Fully qualified domain name.
 	Fqdn pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Helper name.
 	Helper pulumi.StringPtrInput
 	// ICMP code.
@@ -403,10 +421,12 @@ type CustomArgs struct {
 	TcpRstTimer pulumi.IntPtrInput
 	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
 	TcpTimewaitTimer pulumi.IntPtrInput
-	// UDP half close timeout (0 - 86400 sec, 0 = default).
+	// Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
 	UdpIdleTimer pulumi.IntPtrInput
 	// Multiple UDP port ranges.
 	UdpPortrange pulumi.StringPtrInput
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
@@ -550,6 +570,11 @@ func (o CustomOutput) Fqdn() pulumi.StringOutput {
 	return o.ApplyT(func(v *Custom) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o CustomOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Custom) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Helper name.
 func (o CustomOutput) Helper() pulumi.StringOutput {
 	return o.ApplyT(func(v *Custom) pulumi.StringOutput { return v.Helper }).(pulumi.StringOutput)
@@ -625,7 +650,7 @@ func (o CustomOutput) TcpTimewaitTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v *Custom) pulumi.IntOutput { return v.TcpTimewaitTimer }).(pulumi.IntOutput)
 }
 
-// UDP half close timeout (0 - 86400 sec, 0 = default).
+// Number of seconds before an idle UDP connection times out (0 - 86400 sec, 0 = default).
 func (o CustomOutput) UdpIdleTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v *Custom) pulumi.IntOutput { return v.UdpIdleTimer }).(pulumi.IntOutput)
 }
@@ -633,6 +658,11 @@ func (o CustomOutput) UdpIdleTimer() pulumi.IntOutput {
 // Multiple UDP port ranges.
 func (o CustomOutput) UdpPortrange() pulumi.StringOutput {
 	return o.ApplyT(func(v *Custom) pulumi.StringOutput { return v.UdpPortrange }).(pulumi.StringOutput)
+}
+
+// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+func (o CustomOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *Custom) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

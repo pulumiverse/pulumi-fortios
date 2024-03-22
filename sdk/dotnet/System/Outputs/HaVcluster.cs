@@ -14,15 +14,49 @@ namespace Pulumiverse.Fortios.System.Outputs
     [OutputType]
     public sealed class HaVcluster
     {
+        /// <summary>
+        /// Interfaces to check for port monitoring (or link failure).
+        /// </summary>
         public readonly string? Monitor;
+        /// <summary>
+        /// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        /// </summary>
         public readonly string? Override;
+        /// <summary>
+        /// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+        /// </summary>
         public readonly int? OverrideWaitTime;
+        /// <summary>
+        /// Remote IP monitoring failover threshold (0 - 50).
+        /// </summary>
         public readonly int? PingserverFailoverThreshold;
+        /// <summary>
+        /// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+        /// </summary>
+        public readonly int? PingserverFlipTimeout;
+        /// <summary>
+        /// Interfaces to check for remote IP monitoring.
+        /// </summary>
         public readonly string? PingserverMonitorInterface;
+        /// <summary>
+        /// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        /// </summary>
         public readonly string? PingserverSecondaryForceReset;
+        /// <summary>
+        /// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+        /// </summary>
         public readonly string? PingserverSlaveForceReset;
+        /// <summary>
+        /// Increase the priority to select the primary unit (0 - 255).
+        /// </summary>
         public readonly int? Priority;
+        /// <summary>
+        /// ID.
+        /// </summary>
         public readonly int? VclusterId;
+        /// <summary>
+        /// Virtual domain(s) in the virtual cluster. The structure of `vdom` block is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.HaVclusterVdom> Vdoms;
 
         [OutputConstructor]
@@ -34,6 +68,8 @@ namespace Pulumiverse.Fortios.System.Outputs
             int? overrideWaitTime,
 
             int? pingserverFailoverThreshold,
+
+            int? pingserverFlipTimeout,
 
             string? pingserverMonitorInterface,
 
@@ -51,6 +87,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             Override = @override;
             OverrideWaitTime = overrideWaitTime;
             PingserverFailoverThreshold = pingserverFailoverThreshold;
+            PingserverFlipTimeout = pingserverFlipTimeout;
             PingserverMonitorInterface = pingserverMonitorInterface;
             PingserverSecondaryForceReset = pingserverSecondaryForceReset;
             PingserverSlaveForceReset = pingserverSlaveForceReset;

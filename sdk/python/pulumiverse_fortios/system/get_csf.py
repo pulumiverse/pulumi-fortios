@@ -22,7 +22,7 @@ class GetCsfResult:
     """
     A collection of values returned by getCsf.
     """
-    def __init__(__self__, accept_auth_by_cert=None, authorization_request_type=None, certificate=None, configuration_sync=None, downstream_access=None, downstream_accprofile=None, fabric_connectors=None, fabric_devices=None, fabric_object_unification=None, fabric_workers=None, fixed_key=None, forticloud_account_enforcement=None, group_name=None, group_password=None, id=None, log_unification=None, management_ip=None, management_port=None, saml_configuration_sync=None, status=None, trusted_lists=None, upstream=None, upstream_ip=None, upstream_port=None, vdomparam=None):
+    def __init__(__self__, accept_auth_by_cert=None, authorization_request_type=None, certificate=None, configuration_sync=None, downstream_access=None, downstream_accprofile=None, fabric_connectors=None, fabric_devices=None, fabric_object_unification=None, fabric_workers=None, file_mgmt=None, file_quota=None, file_quota_warning=None, fixed_key=None, forticloud_account_enforcement=None, group_name=None, group_password=None, id=None, log_unification=None, management_ip=None, management_port=None, saml_configuration_sync=None, status=None, trusted_lists=None, uid=None, upstream=None, upstream_ip=None, upstream_port=None, vdomparam=None):
         if accept_auth_by_cert and not isinstance(accept_auth_by_cert, str):
             raise TypeError("Expected argument 'accept_auth_by_cert' to be a str")
         pulumi.set(__self__, "accept_auth_by_cert", accept_auth_by_cert)
@@ -53,6 +53,15 @@ class GetCsfResult:
         if fabric_workers and not isinstance(fabric_workers, int):
             raise TypeError("Expected argument 'fabric_workers' to be a int")
         pulumi.set(__self__, "fabric_workers", fabric_workers)
+        if file_mgmt and not isinstance(file_mgmt, str):
+            raise TypeError("Expected argument 'file_mgmt' to be a str")
+        pulumi.set(__self__, "file_mgmt", file_mgmt)
+        if file_quota and not isinstance(file_quota, int):
+            raise TypeError("Expected argument 'file_quota' to be a int")
+        pulumi.set(__self__, "file_quota", file_quota)
+        if file_quota_warning and not isinstance(file_quota_warning, int):
+            raise TypeError("Expected argument 'file_quota_warning' to be a int")
+        pulumi.set(__self__, "file_quota_warning", file_quota_warning)
         if fixed_key and not isinstance(fixed_key, str):
             raise TypeError("Expected argument 'fixed_key' to be a str")
         pulumi.set(__self__, "fixed_key", fixed_key)
@@ -86,6 +95,9 @@ class GetCsfResult:
         if trusted_lists and not isinstance(trusted_lists, list):
             raise TypeError("Expected argument 'trusted_lists' to be a list")
         pulumi.set(__self__, "trusted_lists", trusted_lists)
+        if uid and not isinstance(uid, str):
+            raise TypeError("Expected argument 'uid' to be a str")
+        pulumi.set(__self__, "uid", uid)
         if upstream and not isinstance(upstream, str):
             raise TypeError("Expected argument 'upstream' to be a str")
         pulumi.set(__self__, "upstream", upstream)
@@ -180,6 +192,30 @@ class GetCsfResult:
         return pulumi.get(self, "fabric_workers")
 
     @property
+    @pulumi.getter(name="fileMgmt")
+    def file_mgmt(self) -> str:
+        """
+        Enable/disable Security Fabric daemon file management.
+        """
+        return pulumi.get(self, "file_mgmt")
+
+    @property
+    @pulumi.getter(name="fileQuota")
+    def file_quota(self) -> int:
+        """
+        Maximum amount of memory that can be used by the daemon files (in bytes).
+        """
+        return pulumi.get(self, "file_quota")
+
+    @property
+    @pulumi.getter(name="fileQuotaWarning")
+    def file_quota_warning(self) -> int:
+        """
+        Warn when the set percentage of quota has been used.
+        """
+        return pulumi.get(self, "file_quota_warning")
+
+    @property
     @pulumi.getter(name="fixedKey")
     def fixed_key(self) -> str:
         """
@@ -269,6 +305,14 @@ class GetCsfResult:
 
     @property
     @pulumi.getter
+    def uid(self) -> str:
+        """
+        Unique ID of the current CSF node
+        """
+        return pulumi.get(self, "uid")
+
+    @property
+    @pulumi.getter
     def upstream(self) -> str:
         """
         IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
@@ -313,6 +357,9 @@ class AwaitableGetCsfResult(GetCsfResult):
             fabric_devices=self.fabric_devices,
             fabric_object_unification=self.fabric_object_unification,
             fabric_workers=self.fabric_workers,
+            file_mgmt=self.file_mgmt,
+            file_quota=self.file_quota,
+            file_quota_warning=self.file_quota_warning,
             fixed_key=self.fixed_key,
             forticloud_account_enforcement=self.forticloud_account_enforcement,
             group_name=self.group_name,
@@ -324,6 +371,7 @@ class AwaitableGetCsfResult(GetCsfResult):
             saml_configuration_sync=self.saml_configuration_sync,
             status=self.status,
             trusted_lists=self.trusted_lists,
+            uid=self.uid,
             upstream=self.upstream,
             upstream_ip=self.upstream_ip,
             upstream_port=self.upstream_port,
@@ -354,6 +402,9 @@ def get_csf(vdomparam: Optional[str] = None,
         fabric_devices=pulumi.get(__ret__, 'fabric_devices'),
         fabric_object_unification=pulumi.get(__ret__, 'fabric_object_unification'),
         fabric_workers=pulumi.get(__ret__, 'fabric_workers'),
+        file_mgmt=pulumi.get(__ret__, 'file_mgmt'),
+        file_quota=pulumi.get(__ret__, 'file_quota'),
+        file_quota_warning=pulumi.get(__ret__, 'file_quota_warning'),
         fixed_key=pulumi.get(__ret__, 'fixed_key'),
         forticloud_account_enforcement=pulumi.get(__ret__, 'forticloud_account_enforcement'),
         group_name=pulumi.get(__ret__, 'group_name'),
@@ -365,6 +416,7 @@ def get_csf(vdomparam: Optional[str] = None,
         saml_configuration_sync=pulumi.get(__ret__, 'saml_configuration_sync'),
         status=pulumi.get(__ret__, 'status'),
         trusted_lists=pulumi.get(__ret__, 'trusted_lists'),
+        uid=pulumi.get(__ret__, 'uid'),
         upstream=pulumi.get(__ret__, 'upstream'),
         upstream_ip=pulumi.get(__ret__, 'upstream_ip'),
         upstream_port=pulumi.get(__ret__, 'upstream_port'),

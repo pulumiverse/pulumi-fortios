@@ -73,6 +73,8 @@ type Sdnconnector struct {
 
 	// AWS access key ID.
 	AccessKey pulumi.StringOutput `pulumi:"accessKey"`
+	// Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+	AltResourceIp pulumi.StringOutput `pulumi:"altResourceIp"`
 	// IBM cloud API key or service ID API key.
 	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
 	// Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
@@ -83,6 +85,8 @@ type Sdnconnector struct {
 	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
 	// Compartment ID.
 	CompartmentId pulumi.StringOutput `pulumi:"compartmentId"`
+	// Configure OCI compartment list. The structure of `compartmentList` block is documented below.
+	CompartmentLists SdnconnectorCompartmentListArrayOutput `pulumi:"compartmentLists"`
 	// Compute generation for IBM cloud infrastructure.
 	ComputeGeneration pulumi.IntOutput `pulumi:"computeGeneration"`
 	// Domain name.
@@ -99,6 +103,8 @@ type Sdnconnector struct {
 	GcpProject pulumi.StringOutput `pulumi:"gcpProject"`
 	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
 	GcpProjectLists SdnconnectorGcpProjectListArrayOutput `pulumi:"gcpProjectLists"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Group name of computers.
 	GroupName pulumi.StringOutput `pulumi:"groupName"`
 	// Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
@@ -123,12 +129,16 @@ type Sdnconnector struct {
 	OciFingerprint pulumi.StringOutput `pulumi:"ociFingerprint"`
 	// OCI server region.
 	OciRegion pulumi.StringOutput `pulumi:"ociRegion"`
+	// Configure OCI region list. The structure of `ociRegionList` block is documented below.
+	OciRegionLists SdnconnectorOciRegionListArrayOutput `pulumi:"ociRegionLists"`
 	// OCI region type. Valid values: `commercial`, `government`.
 	OciRegionType pulumi.StringOutput `pulumi:"ociRegionType"`
 	// Password of the remote SDN connector as login credentials.
 	Password pulumi.StringOutput `pulumi:"password"`
 	// Private key of GCP service account.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
+	// SDN proxy.
+	Proxy pulumi.StringOutput `pulumi:"proxy"`
 	// AWS region name.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Azure resource group.
@@ -145,6 +155,10 @@ type Sdnconnector struct {
 	SecretToken pulumi.StringOutput `pulumi:"secretToken"`
 	// Server address of the remote SDN connector.
 	Server pulumi.StringOutput `pulumi:"server"`
+	// Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+	ServerCaCert pulumi.StringOutput `pulumi:"serverCaCert"`
+	// Trust servers that contain this certificate only.
+	ServerCert pulumi.StringOutput `pulumi:"serverCert"`
 	// Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
 	ServerLists SdnconnectorServerListArrayOutput `pulumi:"serverLists"`
 	// Port number of the remote SDN connector.
@@ -258,6 +272,8 @@ func GetSdnconnector(ctx *pulumi.Context,
 type sdnconnectorState struct {
 	// AWS access key ID.
 	AccessKey *string `pulumi:"accessKey"`
+	// Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+	AltResourceIp *string `pulumi:"altResourceIp"`
 	// IBM cloud API key or service ID API key.
 	ApiKey *string `pulumi:"apiKey"`
 	// Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
@@ -268,6 +284,8 @@ type sdnconnectorState struct {
 	ClientSecret *string `pulumi:"clientSecret"`
 	// Compartment ID.
 	CompartmentId *string `pulumi:"compartmentId"`
+	// Configure OCI compartment list. The structure of `compartmentList` block is documented below.
+	CompartmentLists []SdnconnectorCompartmentList `pulumi:"compartmentLists"`
 	// Compute generation for IBM cloud infrastructure.
 	ComputeGeneration *int `pulumi:"computeGeneration"`
 	// Domain name.
@@ -284,6 +302,8 @@ type sdnconnectorState struct {
 	GcpProject *string `pulumi:"gcpProject"`
 	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
 	GcpProjectLists []SdnconnectorGcpProjectList `pulumi:"gcpProjectLists"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Group name of computers.
 	GroupName *string `pulumi:"groupName"`
 	// Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
@@ -308,12 +328,16 @@ type sdnconnectorState struct {
 	OciFingerprint *string `pulumi:"ociFingerprint"`
 	// OCI server region.
 	OciRegion *string `pulumi:"ociRegion"`
+	// Configure OCI region list. The structure of `ociRegionList` block is documented below.
+	OciRegionLists []SdnconnectorOciRegionList `pulumi:"ociRegionLists"`
 	// OCI region type. Valid values: `commercial`, `government`.
 	OciRegionType *string `pulumi:"ociRegionType"`
 	// Password of the remote SDN connector as login credentials.
 	Password *string `pulumi:"password"`
 	// Private key of GCP service account.
 	PrivateKey *string `pulumi:"privateKey"`
+	// SDN proxy.
+	Proxy *string `pulumi:"proxy"`
 	// AWS region name.
 	Region *string `pulumi:"region"`
 	// Azure resource group.
@@ -330,6 +354,10 @@ type sdnconnectorState struct {
 	SecretToken *string `pulumi:"secretToken"`
 	// Server address of the remote SDN connector.
 	Server *string `pulumi:"server"`
+	// Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+	ServerCaCert *string `pulumi:"serverCaCert"`
+	// Trust servers that contain this certificate only.
+	ServerCert *string `pulumi:"serverCert"`
 	// Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
 	ServerLists []SdnconnectorServerList `pulumi:"serverLists"`
 	// Port number of the remote SDN connector.
@@ -369,6 +397,8 @@ type sdnconnectorState struct {
 type SdnconnectorState struct {
 	// AWS access key ID.
 	AccessKey pulumi.StringPtrInput
+	// Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+	AltResourceIp pulumi.StringPtrInput
 	// IBM cloud API key or service ID API key.
 	ApiKey pulumi.StringPtrInput
 	// Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
@@ -379,6 +409,8 @@ type SdnconnectorState struct {
 	ClientSecret pulumi.StringPtrInput
 	// Compartment ID.
 	CompartmentId pulumi.StringPtrInput
+	// Configure OCI compartment list. The structure of `compartmentList` block is documented below.
+	CompartmentLists SdnconnectorCompartmentListArrayInput
 	// Compute generation for IBM cloud infrastructure.
 	ComputeGeneration pulumi.IntPtrInput
 	// Domain name.
@@ -395,6 +427,8 @@ type SdnconnectorState struct {
 	GcpProject pulumi.StringPtrInput
 	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
 	GcpProjectLists SdnconnectorGcpProjectListArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Group name of computers.
 	GroupName pulumi.StringPtrInput
 	// Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
@@ -419,12 +453,16 @@ type SdnconnectorState struct {
 	OciFingerprint pulumi.StringPtrInput
 	// OCI server region.
 	OciRegion pulumi.StringPtrInput
+	// Configure OCI region list. The structure of `ociRegionList` block is documented below.
+	OciRegionLists SdnconnectorOciRegionListArrayInput
 	// OCI region type. Valid values: `commercial`, `government`.
 	OciRegionType pulumi.StringPtrInput
 	// Password of the remote SDN connector as login credentials.
 	Password pulumi.StringPtrInput
 	// Private key of GCP service account.
 	PrivateKey pulumi.StringPtrInput
+	// SDN proxy.
+	Proxy pulumi.StringPtrInput
 	// AWS region name.
 	Region pulumi.StringPtrInput
 	// Azure resource group.
@@ -441,6 +479,10 @@ type SdnconnectorState struct {
 	SecretToken pulumi.StringPtrInput
 	// Server address of the remote SDN connector.
 	Server pulumi.StringPtrInput
+	// Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+	ServerCaCert pulumi.StringPtrInput
+	// Trust servers that contain this certificate only.
+	ServerCert pulumi.StringPtrInput
 	// Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
 	ServerLists SdnconnectorServerListArrayInput
 	// Port number of the remote SDN connector.
@@ -484,6 +526,8 @@ func (SdnconnectorState) ElementType() reflect.Type {
 type sdnconnectorArgs struct {
 	// AWS access key ID.
 	AccessKey *string `pulumi:"accessKey"`
+	// Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+	AltResourceIp *string `pulumi:"altResourceIp"`
 	// IBM cloud API key or service ID API key.
 	ApiKey *string `pulumi:"apiKey"`
 	// Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
@@ -494,6 +538,8 @@ type sdnconnectorArgs struct {
 	ClientSecret *string `pulumi:"clientSecret"`
 	// Compartment ID.
 	CompartmentId *string `pulumi:"compartmentId"`
+	// Configure OCI compartment list. The structure of `compartmentList` block is documented below.
+	CompartmentLists []SdnconnectorCompartmentList `pulumi:"compartmentLists"`
 	// Compute generation for IBM cloud infrastructure.
 	ComputeGeneration *int `pulumi:"computeGeneration"`
 	// Domain name.
@@ -510,6 +556,8 @@ type sdnconnectorArgs struct {
 	GcpProject *string `pulumi:"gcpProject"`
 	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
 	GcpProjectLists []SdnconnectorGcpProjectList `pulumi:"gcpProjectLists"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Group name of computers.
 	GroupName *string `pulumi:"groupName"`
 	// Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
@@ -534,12 +582,16 @@ type sdnconnectorArgs struct {
 	OciFingerprint *string `pulumi:"ociFingerprint"`
 	// OCI server region.
 	OciRegion *string `pulumi:"ociRegion"`
+	// Configure OCI region list. The structure of `ociRegionList` block is documented below.
+	OciRegionLists []SdnconnectorOciRegionList `pulumi:"ociRegionLists"`
 	// OCI region type. Valid values: `commercial`, `government`.
 	OciRegionType *string `pulumi:"ociRegionType"`
 	// Password of the remote SDN connector as login credentials.
 	Password *string `pulumi:"password"`
 	// Private key of GCP service account.
 	PrivateKey *string `pulumi:"privateKey"`
+	// SDN proxy.
+	Proxy *string `pulumi:"proxy"`
 	// AWS region name.
 	Region *string `pulumi:"region"`
 	// Azure resource group.
@@ -556,6 +608,10 @@ type sdnconnectorArgs struct {
 	SecretToken *string `pulumi:"secretToken"`
 	// Server address of the remote SDN connector.
 	Server *string `pulumi:"server"`
+	// Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+	ServerCaCert *string `pulumi:"serverCaCert"`
+	// Trust servers that contain this certificate only.
+	ServerCert *string `pulumi:"serverCert"`
 	// Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
 	ServerLists []SdnconnectorServerList `pulumi:"serverLists"`
 	// Port number of the remote SDN connector.
@@ -596,6 +652,8 @@ type sdnconnectorArgs struct {
 type SdnconnectorArgs struct {
 	// AWS access key ID.
 	AccessKey pulumi.StringPtrInput
+	// Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+	AltResourceIp pulumi.StringPtrInput
 	// IBM cloud API key or service ID API key.
 	ApiKey pulumi.StringPtrInput
 	// Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
@@ -606,6 +664,8 @@ type SdnconnectorArgs struct {
 	ClientSecret pulumi.StringPtrInput
 	// Compartment ID.
 	CompartmentId pulumi.StringPtrInput
+	// Configure OCI compartment list. The structure of `compartmentList` block is documented below.
+	CompartmentLists SdnconnectorCompartmentListArrayInput
 	// Compute generation for IBM cloud infrastructure.
 	ComputeGeneration pulumi.IntPtrInput
 	// Domain name.
@@ -622,6 +682,8 @@ type SdnconnectorArgs struct {
 	GcpProject pulumi.StringPtrInput
 	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
 	GcpProjectLists SdnconnectorGcpProjectListArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Group name of computers.
 	GroupName pulumi.StringPtrInput
 	// Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
@@ -646,12 +708,16 @@ type SdnconnectorArgs struct {
 	OciFingerprint pulumi.StringPtrInput
 	// OCI server region.
 	OciRegion pulumi.StringPtrInput
+	// Configure OCI region list. The structure of `ociRegionList` block is documented below.
+	OciRegionLists SdnconnectorOciRegionListArrayInput
 	// OCI region type. Valid values: `commercial`, `government`.
 	OciRegionType pulumi.StringPtrInput
 	// Password of the remote SDN connector as login credentials.
 	Password pulumi.StringPtrInput
 	// Private key of GCP service account.
 	PrivateKey pulumi.StringPtrInput
+	// SDN proxy.
+	Proxy pulumi.StringPtrInput
 	// AWS region name.
 	Region pulumi.StringPtrInput
 	// Azure resource group.
@@ -668,6 +734,10 @@ type SdnconnectorArgs struct {
 	SecretToken pulumi.StringPtrInput
 	// Server address of the remote SDN connector.
 	Server pulumi.StringPtrInput
+	// Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+	ServerCaCert pulumi.StringPtrInput
+	// Trust servers that contain this certificate only.
+	ServerCert pulumi.StringPtrInput
 	// Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
 	ServerLists SdnconnectorServerListArrayInput
 	// Port number of the remote SDN connector.
@@ -796,6 +866,11 @@ func (o SdnconnectorOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sdnconnector) pulumi.StringOutput { return v.AccessKey }).(pulumi.StringOutput)
 }
 
+// Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+func (o SdnconnectorOutput) AltResourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sdnconnector) pulumi.StringOutput { return v.AltResourceIp }).(pulumi.StringOutput)
+}
+
 // IBM cloud API key or service ID API key.
 func (o SdnconnectorOutput) ApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Sdnconnector) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
@@ -819,6 +894,11 @@ func (o SdnconnectorOutput) ClientSecret() pulumi.StringPtrOutput {
 // Compartment ID.
 func (o SdnconnectorOutput) CompartmentId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sdnconnector) pulumi.StringOutput { return v.CompartmentId }).(pulumi.StringOutput)
+}
+
+// Configure OCI compartment list. The structure of `compartmentList` block is documented below.
+func (o SdnconnectorOutput) CompartmentLists() SdnconnectorCompartmentListArrayOutput {
+	return o.ApplyT(func(v *Sdnconnector) SdnconnectorCompartmentListArrayOutput { return v.CompartmentLists }).(SdnconnectorCompartmentListArrayOutput)
 }
 
 // Compute generation for IBM cloud infrastructure.
@@ -859,6 +939,11 @@ func (o SdnconnectorOutput) GcpProject() pulumi.StringOutput {
 // Configure GCP project list. The structure of `gcpProjectList` block is documented below.
 func (o SdnconnectorOutput) GcpProjectLists() SdnconnectorGcpProjectListArrayOutput {
 	return o.ApplyT(func(v *Sdnconnector) SdnconnectorGcpProjectListArrayOutput { return v.GcpProjectLists }).(SdnconnectorGcpProjectListArrayOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SdnconnectorOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Sdnconnector) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Group name of computers.
@@ -921,6 +1006,11 @@ func (o SdnconnectorOutput) OciRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sdnconnector) pulumi.StringOutput { return v.OciRegion }).(pulumi.StringOutput)
 }
 
+// Configure OCI region list. The structure of `ociRegionList` block is documented below.
+func (o SdnconnectorOutput) OciRegionLists() SdnconnectorOciRegionListArrayOutput {
+	return o.ApplyT(func(v *Sdnconnector) SdnconnectorOciRegionListArrayOutput { return v.OciRegionLists }).(SdnconnectorOciRegionListArrayOutput)
+}
+
 // OCI region type. Valid values: `commercial`, `government`.
 func (o SdnconnectorOutput) OciRegionType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sdnconnector) pulumi.StringOutput { return v.OciRegionType }).(pulumi.StringOutput)
@@ -934,6 +1024,11 @@ func (o SdnconnectorOutput) Password() pulumi.StringOutput {
 // Private key of GCP service account.
 func (o SdnconnectorOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sdnconnector) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+// SDN proxy.
+func (o SdnconnectorOutput) Proxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sdnconnector) pulumi.StringOutput { return v.Proxy }).(pulumi.StringOutput)
 }
 
 // AWS region name.
@@ -974,6 +1069,16 @@ func (o SdnconnectorOutput) SecretToken() pulumi.StringOutput {
 // Server address of the remote SDN connector.
 func (o SdnconnectorOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sdnconnector) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+// Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+func (o SdnconnectorOutput) ServerCaCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sdnconnector) pulumi.StringOutput { return v.ServerCaCert }).(pulumi.StringOutput)
+}
+
+// Trust servers that contain this certificate only.
+func (o SdnconnectorOutput) ServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sdnconnector) pulumi.StringOutput { return v.ServerCert }).(pulumi.StringOutput)
 }
 
 // Server address list of the remote SDN connector. The structure of `serverList` block is documented below.

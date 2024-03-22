@@ -85,13 +85,15 @@ type Automationtrigger struct {
 	FazEventTags pulumi.StringPtrOutput `pulumi:"fazEventTags"`
 	// Customized trigger field settings. The structure of `fields` block is documented below.
 	Fields AutomationtriggerFieldArrayOutput `pulumi:"fields"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// IOC threat level. Valid values: `medium`, `high`.
 	IocLevel pulumi.StringOutput `pulumi:"iocLevel"`
 	// License type.
 	LicenseType pulumi.StringOutput `pulumi:"licenseType"`
 	// Log ID to trigger event.
 	Logid pulumi.IntOutput `pulumi:"logid"`
-	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+	// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
 	LogidBlocks AutomationtriggerLogidBlockArrayOutput `pulumi:"logidBlocks"`
 	// Name.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -167,13 +169,15 @@ type automationtriggerState struct {
 	FazEventTags *string `pulumi:"fazEventTags"`
 	// Customized trigger field settings. The structure of `fields` block is documented below.
 	Fields []AutomationtriggerField `pulumi:"fields"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// IOC threat level. Valid values: `medium`, `high`.
 	IocLevel *string `pulumi:"iocLevel"`
 	// License type.
 	LicenseType *string `pulumi:"licenseType"`
 	// Log ID to trigger event.
 	Logid *int `pulumi:"logid"`
-	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+	// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
 	LogidBlocks []AutomationtriggerLogidBlock `pulumi:"logidBlocks"`
 	// Name.
 	Name *string `pulumi:"name"`
@@ -220,13 +224,15 @@ type AutomationtriggerState struct {
 	FazEventTags pulumi.StringPtrInput
 	// Customized trigger field settings. The structure of `fields` block is documented below.
 	Fields AutomationtriggerFieldArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// IOC threat level. Valid values: `medium`, `high`.
 	IocLevel pulumi.StringPtrInput
 	// License type.
 	LicenseType pulumi.StringPtrInput
 	// Log ID to trigger event.
 	Logid pulumi.IntPtrInput
-	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+	// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
 	LogidBlocks AutomationtriggerLogidBlockArrayInput
 	// Name.
 	Name pulumi.StringPtrInput
@@ -277,13 +283,15 @@ type automationtriggerArgs struct {
 	FazEventTags *string `pulumi:"fazEventTags"`
 	// Customized trigger field settings. The structure of `fields` block is documented below.
 	Fields []AutomationtriggerField `pulumi:"fields"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// IOC threat level. Valid values: `medium`, `high`.
 	IocLevel *string `pulumi:"iocLevel"`
 	// License type.
 	LicenseType *string `pulumi:"licenseType"`
 	// Log ID to trigger event.
 	Logid *int `pulumi:"logid"`
-	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+	// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
 	LogidBlocks []AutomationtriggerLogidBlock `pulumi:"logidBlocks"`
 	// Name.
 	Name *string `pulumi:"name"`
@@ -331,13 +339,15 @@ type AutomationtriggerArgs struct {
 	FazEventTags pulumi.StringPtrInput
 	// Customized trigger field settings. The structure of `fields` block is documented below.
 	Fields AutomationtriggerFieldArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// IOC threat level. Valid values: `medium`, `high`.
 	IocLevel pulumi.StringPtrInput
 	// License type.
 	LicenseType pulumi.StringPtrInput
 	// Log ID to trigger event.
 	Logid pulumi.IntPtrInput
-	// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+	// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
 	LogidBlocks AutomationtriggerLogidBlockArrayInput
 	// Name.
 	Name pulumi.StringPtrInput
@@ -497,6 +507,11 @@ func (o AutomationtriggerOutput) Fields() AutomationtriggerFieldArrayOutput {
 	return o.ApplyT(func(v *Automationtrigger) AutomationtriggerFieldArrayOutput { return v.Fields }).(AutomationtriggerFieldArrayOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o AutomationtriggerOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Automationtrigger) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // IOC threat level. Valid values: `medium`, `high`.
 func (o AutomationtriggerOutput) IocLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v *Automationtrigger) pulumi.StringOutput { return v.IocLevel }).(pulumi.StringOutput)
@@ -512,7 +527,7 @@ func (o AutomationtriggerOutput) Logid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Automationtrigger) pulumi.IntOutput { return v.Logid }).(pulumi.IntOutput)
 }
 
-// Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logidBlock` block is documented below.
+// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
 func (o AutomationtriggerOutput) LogidBlocks() AutomationtriggerLogidBlockArrayOutput {
 	return o.ApplyT(func(v *Automationtrigger) AutomationtriggerLogidBlockArrayOutput { return v.LogidBlocks }).(AutomationtriggerLogidBlockArrayOutput)
 }

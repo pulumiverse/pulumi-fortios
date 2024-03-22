@@ -39,7 +39,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string? Role;
         /// <summary>
-        /// Origin VRF ID (0 - 63).
+        /// Origin VRF ID. On FortiOS versions 7.2.0-7.2.3: 0 - 63. On FortiOS versions &gt;= 7.2.4: 0 - 251.
         /// </summary>
         public readonly string? Vrf;
 

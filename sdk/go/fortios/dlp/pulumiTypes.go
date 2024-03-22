@@ -164,6 +164,121 @@ func (o DictionaryEntryArrayOutput) Index(i pulumi.IntInput) DictionaryEntryOutp
 	}).(DictionaryEntryOutput)
 }
 
+type ExactdatamatchColumn struct {
+	// Column index.
+	Index *int `pulumi:"index"`
+	// Enable/disable optional match. Valid values: `enable`, `disable`.
+	Optional *string `pulumi:"optional"`
+	// Data-type for this column.
+	Type *string `pulumi:"type"`
+}
+
+// ExactdatamatchColumnInput is an input type that accepts ExactdatamatchColumnArgs and ExactdatamatchColumnOutput values.
+// You can construct a concrete instance of `ExactdatamatchColumnInput` via:
+//
+//	ExactdatamatchColumnArgs{...}
+type ExactdatamatchColumnInput interface {
+	pulumi.Input
+
+	ToExactdatamatchColumnOutput() ExactdatamatchColumnOutput
+	ToExactdatamatchColumnOutputWithContext(context.Context) ExactdatamatchColumnOutput
+}
+
+type ExactdatamatchColumnArgs struct {
+	// Column index.
+	Index pulumi.IntPtrInput `pulumi:"index"`
+	// Enable/disable optional match. Valid values: `enable`, `disable`.
+	Optional pulumi.StringPtrInput `pulumi:"optional"`
+	// Data-type for this column.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (ExactdatamatchColumnArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExactdatamatchColumn)(nil)).Elem()
+}
+
+func (i ExactdatamatchColumnArgs) ToExactdatamatchColumnOutput() ExactdatamatchColumnOutput {
+	return i.ToExactdatamatchColumnOutputWithContext(context.Background())
+}
+
+func (i ExactdatamatchColumnArgs) ToExactdatamatchColumnOutputWithContext(ctx context.Context) ExactdatamatchColumnOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExactdatamatchColumnOutput)
+}
+
+// ExactdatamatchColumnArrayInput is an input type that accepts ExactdatamatchColumnArray and ExactdatamatchColumnArrayOutput values.
+// You can construct a concrete instance of `ExactdatamatchColumnArrayInput` via:
+//
+//	ExactdatamatchColumnArray{ ExactdatamatchColumnArgs{...} }
+type ExactdatamatchColumnArrayInput interface {
+	pulumi.Input
+
+	ToExactdatamatchColumnArrayOutput() ExactdatamatchColumnArrayOutput
+	ToExactdatamatchColumnArrayOutputWithContext(context.Context) ExactdatamatchColumnArrayOutput
+}
+
+type ExactdatamatchColumnArray []ExactdatamatchColumnInput
+
+func (ExactdatamatchColumnArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExactdatamatchColumn)(nil)).Elem()
+}
+
+func (i ExactdatamatchColumnArray) ToExactdatamatchColumnArrayOutput() ExactdatamatchColumnArrayOutput {
+	return i.ToExactdatamatchColumnArrayOutputWithContext(context.Background())
+}
+
+func (i ExactdatamatchColumnArray) ToExactdatamatchColumnArrayOutputWithContext(ctx context.Context) ExactdatamatchColumnArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExactdatamatchColumnArrayOutput)
+}
+
+type ExactdatamatchColumnOutput struct{ *pulumi.OutputState }
+
+func (ExactdatamatchColumnOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExactdatamatchColumn)(nil)).Elem()
+}
+
+func (o ExactdatamatchColumnOutput) ToExactdatamatchColumnOutput() ExactdatamatchColumnOutput {
+	return o
+}
+
+func (o ExactdatamatchColumnOutput) ToExactdatamatchColumnOutputWithContext(ctx context.Context) ExactdatamatchColumnOutput {
+	return o
+}
+
+// Column index.
+func (o ExactdatamatchColumnOutput) Index() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ExactdatamatchColumn) *int { return v.Index }).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable optional match. Valid values: `enable`, `disable`.
+func (o ExactdatamatchColumnOutput) Optional() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExactdatamatchColumn) *string { return v.Optional }).(pulumi.StringPtrOutput)
+}
+
+// Data-type for this column.
+func (o ExactdatamatchColumnOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExactdatamatchColumn) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type ExactdatamatchColumnArrayOutput struct{ *pulumi.OutputState }
+
+func (ExactdatamatchColumnArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExactdatamatchColumn)(nil)).Elem()
+}
+
+func (o ExactdatamatchColumnArrayOutput) ToExactdatamatchColumnArrayOutput() ExactdatamatchColumnArrayOutput {
+	return o
+}
+
+func (o ExactdatamatchColumnArrayOutput) ToExactdatamatchColumnArrayOutputWithContext(ctx context.Context) ExactdatamatchColumnArrayOutput {
+	return o
+}
+
+func (o ExactdatamatchColumnArrayOutput) Index(i pulumi.IntInput) ExactdatamatchColumnOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExactdatamatchColumn {
+		return vs[0].([]ExactdatamatchColumn)[vs[1].(int)]
+	}).(ExactdatamatchColumnOutput)
+}
+
 type FilepatternEntry struct {
 	// Select a file type.
 	FileType *string `pulumi:"fileType"`
@@ -286,7 +401,7 @@ type ProfileRule struct {
 	Archive *string `pulumi:"archive"`
 	// Quarantine duration in days, hours, minutes (format = dddhhmm).
 	Expiry *string `pulumi:"expiry"`
-	// Match files this size or larger (0 - 4294967295 kbytes).
+	// Match files greater than or equal to this size (KB).
 	FileSize *int `pulumi:"fileSize"`
 	// Select the number of a DLP file pattern table to match.
 	FileType *int `pulumi:"fileType"`
@@ -330,7 +445,7 @@ type ProfileRuleArgs struct {
 	Archive pulumi.StringPtrInput `pulumi:"archive"`
 	// Quarantine duration in days, hours, minutes (format = dddhhmm).
 	Expiry pulumi.StringPtrInput `pulumi:"expiry"`
-	// Match files this size or larger (0 - 4294967295 kbytes).
+	// Match files greater than or equal to this size (KB).
 	FileSize pulumi.IntPtrInput `pulumi:"fileSize"`
 	// Select the number of a DLP file pattern table to match.
 	FileType pulumi.IntPtrInput `pulumi:"fileType"`
@@ -422,7 +537,7 @@ func (o ProfileRuleOutput) Expiry() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileRule) *string { return v.Expiry }).(pulumi.StringPtrOutput)
 }
 
-// Match files this size or larger (0 - 4294967295 kbytes).
+// Match files greater than or equal to this size (KB).
 func (o ProfileRuleOutput) FileSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileRule) *int { return v.FileSize }).(pulumi.IntPtrOutput)
 }
@@ -827,7 +942,7 @@ type SensorFilter struct {
 	Archive *string `pulumi:"archive"`
 	// Enter a company identifier watermark to match. Only watermarks that your company has placed on the files are matched.
 	CompanyIdentifier *string `pulumi:"companyIdentifier"`
-	// Quarantine duration in days, hours, minutes format (dddhhmm).
+	// Quarantine duration in days, hours, minutes (format = dddhhmm).
 	Expiry *string `pulumi:"expiry"`
 	// Match files this size or larger (0 - 4294967295 kbytes).
 	FileSize *int `pulumi:"fileSize"`
@@ -873,7 +988,7 @@ type SensorFilterArgs struct {
 	Archive pulumi.StringPtrInput `pulumi:"archive"`
 	// Enter a company identifier watermark to match. Only watermarks that your company has placed on the files are matched.
 	CompanyIdentifier pulumi.StringPtrInput `pulumi:"companyIdentifier"`
-	// Quarantine duration in days, hours, minutes format (dddhhmm).
+	// Quarantine duration in days, hours, minutes (format = dddhhmm).
 	Expiry pulumi.StringPtrInput `pulumi:"expiry"`
 	// Match files this size or larger (0 - 4294967295 kbytes).
 	FileSize pulumi.IntPtrInput `pulumi:"fileSize"`
@@ -967,7 +1082,7 @@ func (o SensorFilterOutput) CompanyIdentifier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SensorFilter) *string { return v.CompanyIdentifier }).(pulumi.StringPtrOutput)
 }
 
-// Quarantine duration in days, hours, minutes format (dddhhmm).
+// Quarantine duration in days, hours, minutes (format = dddhhmm).
 func (o SensorFilterOutput) Expiry() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SensorFilter) *string { return v.Expiry }).(pulumi.StringPtrOutput)
 }
@@ -1249,6 +1364,8 @@ func (o SensorFilterSensitivityArrayOutput) Index(i pulumi.IntInput) SensorFilte
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DictionaryEntryInput)(nil)).Elem(), DictionaryEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DictionaryEntryArrayInput)(nil)).Elem(), DictionaryEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExactdatamatchColumnInput)(nil)).Elem(), ExactdatamatchColumnArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExactdatamatchColumnArrayInput)(nil)).Elem(), ExactdatamatchColumnArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FilepatternEntryInput)(nil)).Elem(), FilepatternEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FilepatternEntryArrayInput)(nil)).Elem(), FilepatternEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProfileRuleInput)(nil)).Elem(), ProfileRuleArgs{})
@@ -1267,6 +1384,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SensorFilterSensitivityArrayInput)(nil)).Elem(), SensorFilterSensitivityArray{})
 	pulumi.RegisterOutputType(DictionaryEntryOutput{})
 	pulumi.RegisterOutputType(DictionaryEntryArrayOutput{})
+	pulumi.RegisterOutputType(ExactdatamatchColumnOutput{})
+	pulumi.RegisterOutputType(ExactdatamatchColumnArrayOutput{})
 	pulumi.RegisterOutputType(FilepatternEntryOutput{})
 	pulumi.RegisterOutputType(FilepatternEntryArrayOutput{})
 	pulumi.RegisterOutputType(ProfileRuleOutput{})

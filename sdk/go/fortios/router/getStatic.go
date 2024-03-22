@@ -87,6 +87,8 @@ type LookupStaticResult struct {
 	InternetServiceCustom string `pulumi:"internetServiceCustom"`
 	// Enable/disable withdrawing this route when link monitor or health check is down.
 	LinkMonitorExempt string `pulumi:"linkMonitorExempt"`
+	// Preferred source IP for this route.
+	PreferredSource string `pulumi:"preferredSource"`
 	// Administrative priority (0 - 4294967295).
 	Priority int `pulumi:"priority"`
 	// Enable/disable egress through SD-WAN.
@@ -98,7 +100,9 @@ type LookupStaticResult struct {
 	// Source prefix for this route.
 	Src string `pulumi:"src"`
 	// Enable/disable this static route.
-	Status    string  `pulumi:"status"`
+	Status string `pulumi:"status"`
+	// Route tag.
+	Tag       int     `pulumi:"tag"`
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable egress through the virtual-wan-link.
 	VirtualWanLink string `pulumi:"virtualWanLink"`
@@ -213,6 +217,11 @@ func (o LookupStaticResultOutput) LinkMonitorExempt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStaticResult) string { return v.LinkMonitorExempt }).(pulumi.StringOutput)
 }
 
+// Preferred source IP for this route.
+func (o LookupStaticResultOutput) PreferredSource() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStaticResult) string { return v.PreferredSource }).(pulumi.StringOutput)
+}
+
 // Administrative priority (0 - 4294967295).
 func (o LookupStaticResultOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupStaticResult) int { return v.Priority }).(pulumi.IntOutput)
@@ -241,6 +250,11 @@ func (o LookupStaticResultOutput) Src() pulumi.StringOutput {
 // Enable/disable this static route.
 func (o LookupStaticResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStaticResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Route tag.
+func (o LookupStaticResultOutput) Tag() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupStaticResult) int { return v.Tag }).(pulumi.IntOutput)
 }
 
 func (o LookupStaticResultOutput) Vdomparam() pulumi.StringPtrOutput {

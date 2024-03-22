@@ -94,6 +94,14 @@ export class Sysinfo extends pulumi.CustomResource {
      */
     public readonly status!: pulumi.Output<string>;
     /**
+     * Free memory usage when trap is sent.
+     */
+    public readonly trapFreeMemoryThreshold!: pulumi.Output<number>;
+    /**
+     * Freeable memory usage when trap is sent.
+     */
+    public readonly trapFreeableMemoryThreshold!: pulumi.Output<number>;
+    /**
      * CPU usage when trap is sent.
      */
     public readonly trapHighCpuThreshold!: pulumi.Output<number>;
@@ -129,6 +137,8 @@ export class Sysinfo extends pulumi.CustomResource {
             resourceInputs["engineIdType"] = state ? state.engineIdType : undefined;
             resourceInputs["location"] = state ? state.location : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["trapFreeMemoryThreshold"] = state ? state.trapFreeMemoryThreshold : undefined;
+            resourceInputs["trapFreeableMemoryThreshold"] = state ? state.trapFreeableMemoryThreshold : undefined;
             resourceInputs["trapHighCpuThreshold"] = state ? state.trapHighCpuThreshold : undefined;
             resourceInputs["trapLogFullThreshold"] = state ? state.trapLogFullThreshold : undefined;
             resourceInputs["trapLowMemoryThreshold"] = state ? state.trapLowMemoryThreshold : undefined;
@@ -141,6 +151,8 @@ export class Sysinfo extends pulumi.CustomResource {
             resourceInputs["engineIdType"] = args ? args.engineIdType : undefined;
             resourceInputs["location"] = args ? args.location : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["trapFreeMemoryThreshold"] = args ? args.trapFreeMemoryThreshold : undefined;
+            resourceInputs["trapFreeableMemoryThreshold"] = args ? args.trapFreeableMemoryThreshold : undefined;
             resourceInputs["trapHighCpuThreshold"] = args ? args.trapHighCpuThreshold : undefined;
             resourceInputs["trapLogFullThreshold"] = args ? args.trapLogFullThreshold : undefined;
             resourceInputs["trapLowMemoryThreshold"] = args ? args.trapLowMemoryThreshold : undefined;
@@ -179,6 +191,14 @@ export interface SysinfoState {
      * Enable/disable SNMP. Valid values: `enable`, `disable`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Free memory usage when trap is sent.
+     */
+    trapFreeMemoryThreshold?: pulumi.Input<number>;
+    /**
+     * Freeable memory usage when trap is sent.
+     */
+    trapFreeableMemoryThreshold?: pulumi.Input<number>;
     /**
      * CPU usage when trap is sent.
      */
@@ -225,6 +245,14 @@ export interface SysinfoArgs {
      * Enable/disable SNMP. Valid values: `enable`, `disable`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Free memory usage when trap is sent.
+     */
+    trapFreeMemoryThreshold?: pulumi.Input<number>;
+    /**
+     * Freeable memory usage when trap is sent.
+     */
+    trapFreeableMemoryThreshold?: pulumi.Input<number>;
     /**
      * CPU usage when trap is sent.
      */

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
-// FortiExtender dataplan configuration. Applies to FortiOS Version `6.4.2,6.4.10,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.2.0`.
+// FortiExtender dataplan configuration. Applies to FortiOS Version `6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7,7.0.8,7.0.9,7.0.10,7.0.11,7.0.12,7.0.13,7.2.0`.
 //
 // ## Import
 //
@@ -57,7 +57,7 @@ type Dataplan struct {
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
 	Pdn pulumi.StringOutput `pulumi:"pdn"`
-	// Preferred subnet mask (8 - 32).
+	// Preferred subnet mask. On FortiOS versions 6.4.2-7.0.1: 8 - 32. On FortiOS versions 7.0.2-7.2.0: 0 - 32.
 	PreferredSubnet pulumi.IntOutput `pulumi:"preferredSubnet"`
 	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
 	PrivateNetwork pulumi.StringOutput `pulumi:"privateNetwork"`
@@ -136,7 +136,7 @@ type dataplanState struct {
 	Password *string `pulumi:"password"`
 	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
 	Pdn *string `pulumi:"pdn"`
-	// Preferred subnet mask (8 - 32).
+	// Preferred subnet mask. On FortiOS versions 6.4.2-7.0.1: 8 - 32. On FortiOS versions 7.0.2-7.2.0: 0 - 32.
 	PreferredSubnet *int `pulumi:"preferredSubnet"`
 	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
 	PrivateNetwork *string `pulumi:"privateNetwork"`
@@ -179,7 +179,7 @@ type DataplanState struct {
 	Password pulumi.StringPtrInput
 	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
 	Pdn pulumi.StringPtrInput
-	// Preferred subnet mask (8 - 32).
+	// Preferred subnet mask. On FortiOS versions 6.4.2-7.0.1: 8 - 32. On FortiOS versions 7.0.2-7.2.0: 0 - 32.
 	PreferredSubnet pulumi.IntPtrInput
 	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
 	PrivateNetwork pulumi.StringPtrInput
@@ -226,7 +226,7 @@ type dataplanArgs struct {
 	Password *string `pulumi:"password"`
 	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
 	Pdn *string `pulumi:"pdn"`
-	// Preferred subnet mask (8 - 32).
+	// Preferred subnet mask. On FortiOS versions 6.4.2-7.0.1: 8 - 32. On FortiOS versions 7.0.2-7.2.0: 0 - 32.
 	PreferredSubnet *int `pulumi:"preferredSubnet"`
 	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
 	PrivateNetwork *string `pulumi:"privateNetwork"`
@@ -270,7 +270,7 @@ type DataplanArgs struct {
 	Password pulumi.StringPtrInput
 	// PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
 	Pdn pulumi.StringPtrInput
-	// Preferred subnet mask (8 - 32).
+	// Preferred subnet mask. On FortiOS versions 6.4.2-7.0.1: 8 - 32. On FortiOS versions 7.0.2-7.2.0: 0 - 32.
 	PreferredSubnet pulumi.IntPtrInput
 	// Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
 	PrivateNetwork pulumi.StringPtrInput
@@ -435,7 +435,7 @@ func (o DataplanOutput) Pdn() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dataplan) pulumi.StringOutput { return v.Pdn }).(pulumi.StringOutput)
 }
 
-// Preferred subnet mask (8 - 32).
+// Preferred subnet mask. On FortiOS versions 6.4.2-7.0.1: 8 - 32. On FortiOS versions 7.0.2-7.2.0: 0 - 32.
 func (o DataplanOutput) PreferredSubnet() pulumi.IntOutput {
 	return o.ApplyT(func(v *Dataplan) pulumi.IntOutput { return v.PreferredSubnet }).(pulumi.IntOutput)
 }

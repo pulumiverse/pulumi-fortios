@@ -115,6 +115,10 @@ export class Group extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
      */
     public readonly groupType!: pulumi.Output<string>;
@@ -205,6 +209,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["expire"] = state ? state.expire : undefined;
             resourceInputs["expireType"] = state ? state.expireType : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupType"] = state ? state.groupType : undefined;
             resourceInputs["guests"] = state ? state.guests : undefined;
             resourceInputs["httpDigestRealm"] = state ? state.httpDigestRealm : undefined;
@@ -233,6 +238,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["expire"] = args ? args.expire : undefined;
             resourceInputs["expireType"] = args ? args.expireType : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupType"] = args ? args.groupType : undefined;
             resourceInputs["guests"] = args ? args.guests : undefined;
             resourceInputs["httpDigestRealm"] = args ? args.httpDigestRealm : undefined;
@@ -296,6 +302,10 @@ export interface GroupState {
      * Group ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
      */
@@ -406,6 +416,10 @@ export interface GroupArgs {
      * Group ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
      */

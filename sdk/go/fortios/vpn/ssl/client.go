@@ -43,6 +43,10 @@ type Client struct {
 	Distance pulumi.IntOutput `pulumi:"distance"`
 	// SSL interface to send/receive traffic over.
 	Interface pulumi.StringOutput `pulumi:"interface"`
+	// IPv4 subnets that the client is protecting.
+	Ipv4Subnets pulumi.StringOutput `pulumi:"ipv4Subnets"`
+	// IPv6 subnets that the client is protecting.
+	Ipv6Subnets pulumi.StringOutput `pulumi:"ipv6Subnets"`
 	// SSL-VPN tunnel name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Authenticate peer's certificate with the peer/peergrp.
@@ -107,6 +111,10 @@ type clientState struct {
 	Distance *int `pulumi:"distance"`
 	// SSL interface to send/receive traffic over.
 	Interface *string `pulumi:"interface"`
+	// IPv4 subnets that the client is protecting.
+	Ipv4Subnets *string `pulumi:"ipv4Subnets"`
+	// IPv6 subnets that the client is protecting.
+	Ipv6Subnets *string `pulumi:"ipv6Subnets"`
 	// SSL-VPN tunnel name.
 	Name *string `pulumi:"name"`
 	// Authenticate peer's certificate with the peer/peergrp.
@@ -142,6 +150,10 @@ type ClientState struct {
 	Distance pulumi.IntPtrInput
 	// SSL interface to send/receive traffic over.
 	Interface pulumi.StringPtrInput
+	// IPv4 subnets that the client is protecting.
+	Ipv4Subnets pulumi.StringPtrInput
+	// IPv6 subnets that the client is protecting.
+	Ipv6Subnets pulumi.StringPtrInput
 	// SSL-VPN tunnel name.
 	Name pulumi.StringPtrInput
 	// Authenticate peer's certificate with the peer/peergrp.
@@ -181,6 +193,10 @@ type clientArgs struct {
 	Distance *int `pulumi:"distance"`
 	// SSL interface to send/receive traffic over.
 	Interface *string `pulumi:"interface"`
+	// IPv4 subnets that the client is protecting.
+	Ipv4Subnets *string `pulumi:"ipv4Subnets"`
+	// IPv6 subnets that the client is protecting.
+	Ipv6Subnets *string `pulumi:"ipv6Subnets"`
 	// SSL-VPN tunnel name.
 	Name *string `pulumi:"name"`
 	// Authenticate peer's certificate with the peer/peergrp.
@@ -217,6 +233,10 @@ type ClientArgs struct {
 	Distance pulumi.IntPtrInput
 	// SSL interface to send/receive traffic over.
 	Interface pulumi.StringPtrInput
+	// IPv4 subnets that the client is protecting.
+	Ipv4Subnets pulumi.StringPtrInput
+	// IPv6 subnets that the client is protecting.
+	Ipv6Subnets pulumi.StringPtrInput
 	// SSL-VPN tunnel name.
 	Name pulumi.StringPtrInput
 	// Authenticate peer's certificate with the peer/peergrp.
@@ -351,6 +371,16 @@ func (o ClientOutput) Distance() pulumi.IntOutput {
 // SSL interface to send/receive traffic over.
 func (o ClientOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+// IPv4 subnets that the client is protecting.
+func (o ClientOutput) Ipv4Subnets() pulumi.StringOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.Ipv4Subnets }).(pulumi.StringOutput)
+}
+
+// IPv6 subnets that the client is protecting.
+func (o ClientOutput) Ipv6Subnets() pulumi.StringOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.Ipv6Subnets }).(pulumi.StringOutput)
 }
 
 // SSL-VPN tunnel name.

@@ -18,6 +18,7 @@ class FortigateprofileArgs:
     def __init__(__self__, *,
                  extension: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  lan_extension: Optional[pulumi.Input['FortigateprofileLanExtensionArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -25,6 +26,7 @@ class FortigateprofileArgs:
         The set of arguments for constructing a Fortigateprofile resource.
         :param pulumi.Input[str] extension: Extension option. Valid values: `lan-extension`.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['FortigateprofileLanExtensionArgs'] lan_extension: FortiGate connector LAN extension configuration. The structure of `lan_extension` block is documented below.
         :param pulumi.Input[str] name: FortiGate connector profile name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -33,6 +35,8 @@ class FortigateprofileArgs:
             pulumi.set(__self__, "extension", extension)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if lan_extension is not None:
             pulumi.set(__self__, "lan_extension", lan_extension)
         if name is not None:
@@ -63,6 +67,18 @@ class FortigateprofileArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="lanExtension")
@@ -106,6 +122,7 @@ class _FortigateprofileState:
     def __init__(__self__, *,
                  extension: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  lan_extension: Optional[pulumi.Input['FortigateprofileLanExtensionArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -113,6 +130,7 @@ class _FortigateprofileState:
         Input properties used for looking up and filtering Fortigateprofile resources.
         :param pulumi.Input[str] extension: Extension option. Valid values: `lan-extension`.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['FortigateprofileLanExtensionArgs'] lan_extension: FortiGate connector LAN extension configuration. The structure of `lan_extension` block is documented below.
         :param pulumi.Input[str] name: FortiGate connector profile name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -121,6 +139,8 @@ class _FortigateprofileState:
             pulumi.set(__self__, "extension", extension)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if lan_extension is not None:
             pulumi.set(__self__, "lan_extension", lan_extension)
         if name is not None:
@@ -151,6 +171,18 @@ class _FortigateprofileState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="lanExtension")
@@ -196,6 +228,7 @@ class Fortigateprofile(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  extension: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  lan_extension: Optional[pulumi.Input[pulumi.InputType['FortigateprofileLanExtensionArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -225,6 +258,7 @@ class Fortigateprofile(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] extension: Extension option. Valid values: `lan-extension`.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['FortigateprofileLanExtensionArgs']] lan_extension: FortiGate connector LAN extension configuration. The structure of `lan_extension` block is documented below.
         :param pulumi.Input[str] name: FortiGate connector profile name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -273,6 +307,7 @@ class Fortigateprofile(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  extension: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  lan_extension: Optional[pulumi.Input[pulumi.InputType['FortigateprofileLanExtensionArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -287,6 +322,7 @@ class Fortigateprofile(pulumi.CustomResource):
 
             __props__.__dict__["extension"] = extension
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["lan_extension"] = lan_extension
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
@@ -302,6 +338,7 @@ class Fortigateprofile(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             extension: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             lan_extension: Optional[pulumi.Input[pulumi.InputType['FortigateprofileLanExtensionArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Fortigateprofile':
@@ -314,6 +351,7 @@ class Fortigateprofile(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] extension: Extension option. Valid values: `lan-extension`.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['FortigateprofileLanExtensionArgs']] lan_extension: FortiGate connector LAN extension configuration. The structure of `lan_extension` block is documented below.
         :param pulumi.Input[str] name: FortiGate connector profile name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -324,6 +362,7 @@ class Fortigateprofile(pulumi.CustomResource):
 
         __props__.__dict__["extension"] = extension
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["lan_extension"] = lan_extension
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
@@ -344,6 +383,14 @@ class Fortigateprofile(pulumi.CustomResource):
         ID.
         """
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="lanExtension")

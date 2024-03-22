@@ -13,9 +13,7 @@ import (
 
 // Configure HA.
 //
-// By design considerations, the feature is using the system.Autoscript resource as documented below.
-//
-// ## Example1
+// ## Example Usage
 //
 // <!--Start PulumiCodeChooser -->
 // ```go
@@ -30,22 +28,42 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := system.NewAutoscript(ctx, "trname", &system.AutoscriptArgs{
-//				Interval:   pulumi.Int(1),
-//				OutputSize: pulumi.Int(10),
-//				Repeat:     pulumi.Int(1),
-//				Script: pulumi.String(`config system ha
-//	    set session-pickup enable
-//	    set session-pickup-connectionless enable
-//	    set session-pickup-expectation enable
-//	    set session-pickup-nat enable
-//	    set override disable
-//
-// end
-//
-// `),
-//
-//				Start: pulumi.String("auto"),
+//			_, err := system.NewHa(ctx, "trname", &system.HaArgs{
+//				CpuThreshold:            pulumi.String("5 0 0"),
+//				Encryption:              pulumi.String("disable"),
+//				FtpProxyThreshold:       pulumi.String("5 0 0"),
+//				GratuitousArps:          pulumi.String("enable"),
+//				GroupId:                 pulumi.Int(0),
+//				HaDirect:                pulumi.String("disable"),
+//				HaEthType:               pulumi.String("8890"),
+//				HaMgmtStatus:            pulumi.String("disable"),
+//				HaUptimeDiffMargin:      pulumi.Int(300),
+//				HbInterval:              pulumi.Int(2),
+//				HbLostThreshold:         pulumi.Int(20),
+//				HcEthType:               pulumi.String("8891"),
+//				HelloHolddown:           pulumi.Int(20),
+//				HttpProxyThreshold:      pulumi.String("5 0 0"),
+//				ImapProxyThreshold:      pulumi.String("5 0 0"),
+//				InterClusterSessionSync: pulumi.String("disable"),
+//				L2epEthType:             pulumi.String("8893"),
+//				LinkFailedSignal:        pulumi.String("disable"),
+//				LoadBalanceAll:          pulumi.String("disable"),
+//				MemoryCompatibleMode:    pulumi.String("disable"),
+//				MemoryThreshold:         pulumi.String("5 0 0"),
+//				Mode:                    pulumi.String("standalone"),
+//				MulticastTtl:            pulumi.Int(600),
+//				NntpProxyThreshold:      pulumi.String("5 0 0"),
+//				Override:                pulumi.String("disable"),
+//				OverrideWaitTime:        pulumi.Int(0),
+//				SecondaryVcluster: &system.HaSecondaryVclusterArgs{
+//					Override:                    pulumi.String("enable"),
+//					OverrideWaitTime:            pulumi.Int(0),
+//					PingserverFailoverThreshold: pulumi.Int(0),
+//					PingserverSlaveForceReset:   pulumi.String("enable"),
+//					Priority:                    pulumi.Int(128),
+//					VclusterId:                  pulumi.Int(1),
+//				},
+//				Weight: pulumi.String("40 "),
 //			})
 //			if err != nil {
 //				return err
@@ -56,92 +74,201 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// System Ha can be imported using any of these accepted formats:
+//
+// ```sh
+// $ pulumi import fortios:system/ha:Ha labelname SystemHa
+// ```
+//
+// If you do not want to import arguments of block:
+//
+// $ export "FORTIOS_IMPORT_TABLE"="false"
+//
+// ```sh
+// $ pulumi import fortios:system/ha:Ha labelname SystemHa
+// ```
+//
+// $ unset "FORTIOS_IMPORT_TABLE"
 type Ha struct {
 	pulumi.CustomResourceState
 
-	Arps                          pulumi.IntOutput             `pulumi:"arps"`
-	ArpsInterval                  pulumi.IntOutput             `pulumi:"arpsInterval"`
-	Authentication                pulumi.StringOutput          `pulumi:"authentication"`
-	CpuThreshold                  pulumi.StringOutput          `pulumi:"cpuThreshold"`
-	DynamicSortSubtable           pulumi.StringPtrOutput       `pulumi:"dynamicSortSubtable"`
-	Encryption                    pulumi.StringOutput          `pulumi:"encryption"`
-	FailoverHoldTime              pulumi.IntOutput             `pulumi:"failoverHoldTime"`
-	FtpProxyThreshold             pulumi.StringOutput          `pulumi:"ftpProxyThreshold"`
-	GratuitousArps                pulumi.StringOutput          `pulumi:"gratuitousArps"`
-	GroupId                       pulumi.IntOutput             `pulumi:"groupId"`
-	GroupName                     pulumi.StringOutput          `pulumi:"groupName"`
-	HaDirect                      pulumi.StringOutput          `pulumi:"haDirect"`
-	HaEthType                     pulumi.StringOutput          `pulumi:"haEthType"`
-	HaMgmtInterfaces              HaHaMgmtInterfaceArrayOutput `pulumi:"haMgmtInterfaces"`
-	HaMgmtStatus                  pulumi.StringOutput          `pulumi:"haMgmtStatus"`
-	HaUptimeDiffMargin            pulumi.IntOutput             `pulumi:"haUptimeDiffMargin"`
-	HbInterval                    pulumi.IntOutput             `pulumi:"hbInterval"`
-	HbIntervalInMilliseconds      pulumi.StringOutput          `pulumi:"hbIntervalInMilliseconds"`
-	HbLostThreshold               pulumi.IntOutput             `pulumi:"hbLostThreshold"`
-	Hbdev                         pulumi.StringOutput          `pulumi:"hbdev"`
-	HcEthType                     pulumi.StringOutput          `pulumi:"hcEthType"`
-	HelloHolddown                 pulumi.IntOutput             `pulumi:"helloHolddown"`
-	HttpProxyThreshold            pulumi.StringOutput          `pulumi:"httpProxyThreshold"`
-	ImapProxyThreshold            pulumi.StringOutput          `pulumi:"imapProxyThreshold"`
-	InterClusterSessionSync       pulumi.StringOutput          `pulumi:"interClusterSessionSync"`
-	Key                           pulumi.StringPtrOutput       `pulumi:"key"`
-	L2epEthType                   pulumi.StringOutput          `pulumi:"l2epEthType"`
-	LinkFailedSignal              pulumi.StringOutput          `pulumi:"linkFailedSignal"`
-	LoadBalanceAll                pulumi.StringOutput          `pulumi:"loadBalanceAll"`
-	LogicalSn                     pulumi.StringOutput          `pulumi:"logicalSn"`
-	MemoryBasedFailover           pulumi.StringOutput          `pulumi:"memoryBasedFailover"`
-	MemoryCompatibleMode          pulumi.StringOutput          `pulumi:"memoryCompatibleMode"`
-	MemoryFailoverFlipTimeout     pulumi.IntOutput             `pulumi:"memoryFailoverFlipTimeout"`
-	MemoryFailoverMonitorPeriod   pulumi.IntOutput             `pulumi:"memoryFailoverMonitorPeriod"`
-	MemoryFailoverSampleRate      pulumi.IntOutput             `pulumi:"memoryFailoverSampleRate"`
-	MemoryFailoverThreshold       pulumi.IntOutput             `pulumi:"memoryFailoverThreshold"`
-	MemoryThreshold               pulumi.StringOutput          `pulumi:"memoryThreshold"`
-	Mode                          pulumi.StringOutput          `pulumi:"mode"`
-	Monitor                       pulumi.StringOutput          `pulumi:"monitor"`
-	MulticastTtl                  pulumi.IntOutput             `pulumi:"multicastTtl"`
-	NntpProxyThreshold            pulumi.StringOutput          `pulumi:"nntpProxyThreshold"`
-	Override                      pulumi.StringOutput          `pulumi:"override"`
-	OverrideWaitTime              pulumi.IntOutput             `pulumi:"overrideWaitTime"`
-	Password                      pulumi.StringPtrOutput       `pulumi:"password"`
-	PingserverFailoverThreshold   pulumi.IntOutput             `pulumi:"pingserverFailoverThreshold"`
-	PingserverFlipTimeout         pulumi.IntOutput             `pulumi:"pingserverFlipTimeout"`
-	PingserverMonitorInterface    pulumi.StringOutput          `pulumi:"pingserverMonitorInterface"`
-	PingserverSecondaryForceReset pulumi.StringOutput          `pulumi:"pingserverSecondaryForceReset"`
-	PingserverSlaveForceReset     pulumi.StringOutput          `pulumi:"pingserverSlaveForceReset"`
-	Pop3ProxyThreshold            pulumi.StringOutput          `pulumi:"pop3ProxyThreshold"`
-	Priority                      pulumi.IntOutput             `pulumi:"priority"`
-	RouteHold                     pulumi.IntOutput             `pulumi:"routeHold"`
-	RouteTtl                      pulumi.IntOutput             `pulumi:"routeTtl"`
-	RouteWait                     pulumi.IntOutput             `pulumi:"routeWait"`
-	Schedule                      pulumi.StringOutput          `pulumi:"schedule"`
-	SecondaryVcluster             HaSecondaryVclusterOutput    `pulumi:"secondaryVcluster"`
-	SessionPickup                 pulumi.StringOutput          `pulumi:"sessionPickup"`
-	SessionPickupConnectionless   pulumi.StringOutput          `pulumi:"sessionPickupConnectionless"`
-	SessionPickupDelay            pulumi.StringOutput          `pulumi:"sessionPickupDelay"`
-	SessionPickupExpectation      pulumi.StringOutput          `pulumi:"sessionPickupExpectation"`
-	SessionPickupNat              pulumi.StringOutput          `pulumi:"sessionPickupNat"`
-	SessionSyncDev                pulumi.StringOutput          `pulumi:"sessionSyncDev"`
-	SmtpProxyThreshold            pulumi.StringOutput          `pulumi:"smtpProxyThreshold"`
-	SsdFailover                   pulumi.StringOutput          `pulumi:"ssdFailover"`
-	StandaloneConfigSync          pulumi.StringOutput          `pulumi:"standaloneConfigSync"`
-	StandaloneMgmtVdom            pulumi.StringOutput          `pulumi:"standaloneMgmtVdom"`
-	SyncConfig                    pulumi.StringOutput          `pulumi:"syncConfig"`
-	SyncPacketBalance             pulumi.StringOutput          `pulumi:"syncPacketBalance"`
-	UnicastGateway                pulumi.StringOutput          `pulumi:"unicastGateway"`
-	UnicastHb                     pulumi.StringOutput          `pulumi:"unicastHb"`
-	UnicastHbNetmask              pulumi.StringOutput          `pulumi:"unicastHbNetmask"`
-	UnicastHbPeerip               pulumi.StringOutput          `pulumi:"unicastHbPeerip"`
-	UnicastPeers                  HaUnicastPeerArrayOutput     `pulumi:"unicastPeers"`
-	UnicastStatus                 pulumi.StringOutput          `pulumi:"unicastStatus"`
-	UninterruptiblePrimaryWait    pulumi.IntOutput             `pulumi:"uninterruptiblePrimaryWait"`
-	UninterruptibleUpgrade        pulumi.StringOutput          `pulumi:"uninterruptibleUpgrade"`
-	Vcluster2                     pulumi.StringOutput          `pulumi:"vcluster2"`
-	VclusterId                    pulumi.IntOutput             `pulumi:"vclusterId"`
-	VclusterStatus                pulumi.StringOutput          `pulumi:"vclusterStatus"`
-	Vclusters                     HaVclusterArrayOutput        `pulumi:"vclusters"`
-	Vdom                          pulumi.StringOutput          `pulumi:"vdom"`
-	Vdomparam                     pulumi.StringPtrOutput       `pulumi:"vdomparam"`
-	Weight                        pulumi.StringOutput          `pulumi:"weight"`
+	// Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+	Arps pulumi.IntOutput `pulumi:"arps"`
+	// Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+	ArpsInterval pulumi.IntOutput `pulumi:"arpsInterval"`
+	// Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+	Authentication pulumi.StringOutput `pulumi:"authentication"`
+	// Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+	CpuThreshold pulumi.StringOutput `pulumi:"cpuThreshold"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+	Encryption pulumi.StringOutput `pulumi:"encryption"`
+	// HA EVPN FDB TTL on primary box (5 - 3600 sec).
+	EvpnTtl pulumi.IntOutput `pulumi:"evpnTtl"`
+	// Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+	FailoverHoldTime pulumi.IntOutput `pulumi:"failoverHoldTime"`
+	// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+	FtpProxyThreshold pulumi.StringOutput `pulumi:"ftpProxyThreshold"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+	GratuitousArps pulumi.StringOutput `pulumi:"gratuitousArps"`
+	// Cluster group ID  (0 - 255). Must be the same for all members.
+	GroupId pulumi.IntOutput `pulumi:"groupId"`
+	// Cluster group name. Must be the same for all members.
+	GroupName pulumi.StringOutput `pulumi:"groupName"`
+	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+	HaDirect pulumi.StringOutput `pulumi:"haDirect"`
+	// HA heartbeat packet Ethertype (4-digit hex).
+	HaEthType pulumi.StringOutput `pulumi:"haEthType"`
+	// Reserve interfaces to manage individual cluster units. The structure of `haMgmtInterfaces` block is documented below.
+	HaMgmtInterfaces HaHaMgmtInterfaceArrayOutput `pulumi:"haMgmtInterfaces"`
+	// Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+	HaMgmtStatus pulumi.StringOutput `pulumi:"haMgmtStatus"`
+	// Normally you would only reduce this value for failover testing.
+	HaUptimeDiffMargin pulumi.IntOutput `pulumi:"haUptimeDiffMargin"`
+	// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+	HbInterval pulumi.IntOutput `pulumi:"hbInterval"`
+	// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+	HbIntervalInMilliseconds pulumi.StringOutput `pulumi:"hbIntervalInMilliseconds"`
+	// Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+	HbLostThreshold pulumi.IntOutput `pulumi:"hbLostThreshold"`
+	// Heartbeat interfaces. Must be the same for all members.
+	Hbdev pulumi.StringOutput `pulumi:"hbdev"`
+	// Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+	HcEthType pulumi.StringOutput `pulumi:"hcEthType"`
+	// Time to wait before changing from hello to work state (5 - 300 sec).
+	HelloHolddown pulumi.IntOutput `pulumi:"helloHolddown"`
+	// Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+	HttpProxyThreshold pulumi.StringOutput `pulumi:"httpProxyThreshold"`
+	// Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+	ImapProxyThreshold pulumi.StringOutput `pulumi:"imapProxyThreshold"`
+	// Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+	InterClusterSessionSync pulumi.StringOutput `pulumi:"interClusterSessionSync"`
+	// IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+	IpsecPhase2Proposal pulumi.StringOutput `pulumi:"ipsecPhase2Proposal"`
+	// key
+	Key pulumi.StringPtrOutput `pulumi:"key"`
+	// Telnet session HA heartbeat packet Ethertype (4-digit hex).
+	L2epEthType pulumi.StringOutput `pulumi:"l2epEthType"`
+	// Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+	LinkFailedSignal pulumi.StringOutput `pulumi:"linkFailedSignal"`
+	// Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+	LoadBalanceAll pulumi.StringOutput `pulumi:"loadBalanceAll"`
+	// Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+	LogicalSn pulumi.StringOutput `pulumi:"logicalSn"`
+	// Enable/disable memory based failover. Valid values: `enable`, `disable`.
+	MemoryBasedFailover pulumi.StringOutput `pulumi:"memoryBasedFailover"`
+	// Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+	MemoryCompatibleMode pulumi.StringOutput `pulumi:"memoryCompatibleMode"`
+	// Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+	MemoryFailoverFlipTimeout pulumi.IntOutput `pulumi:"memoryFailoverFlipTimeout"`
+	// Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+	MemoryFailoverMonitorPeriod pulumi.IntOutput `pulumi:"memoryFailoverMonitorPeriod"`
+	// Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+	MemoryFailoverSampleRate pulumi.IntOutput `pulumi:"memoryFailoverSampleRate"`
+	// Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+	MemoryFailoverThreshold pulumi.IntOutput `pulumi:"memoryFailoverThreshold"`
+	// Dynamic weighted load balancing memory usage weight and high and low thresholds.
+	MemoryThreshold pulumi.StringOutput `pulumi:"memoryThreshold"`
+	// HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+	Mode pulumi.StringOutput `pulumi:"mode"`
+	// Interfaces to check for port monitoring (or link failure).
+	Monitor pulumi.StringOutput `pulumi:"monitor"`
+	// HA multicast TTL on master (5 - 3600 sec).
+	MulticastTtl pulumi.IntOutput `pulumi:"multicastTtl"`
+	// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+	NntpProxyThreshold pulumi.StringOutput `pulumi:"nntpProxyThreshold"`
+	// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+	Override pulumi.StringOutput `pulumi:"override"`
+	// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+	OverrideWaitTime pulumi.IntOutput `pulumi:"overrideWaitTime"`
+	// Cluster password. Must be the same for all members.
+	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// Remote IP monitoring failover threshold (0 - 50).
+	PingserverFailoverThreshold pulumi.IntOutput `pulumi:"pingserverFailoverThreshold"`
+	// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+	PingserverFlipTimeout pulumi.IntOutput `pulumi:"pingserverFlipTimeout"`
+	// Interfaces to check for remote IP monitoring.
+	PingserverMonitorInterface pulumi.StringOutput `pulumi:"pingserverMonitorInterface"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSecondaryForceReset pulumi.StringOutput `pulumi:"pingserverSecondaryForceReset"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSlaveForceReset pulumi.StringOutput `pulumi:"pingserverSlaveForceReset"`
+	// Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+	Pop3ProxyThreshold pulumi.StringOutput `pulumi:"pop3ProxyThreshold"`
+	// Increase the priority to select the primary unit (0 - 255).
+	Priority pulumi.IntOutput `pulumi:"priority"`
+	// Time to wait between routing table updates to the cluster (0 - 3600 sec).
+	RouteHold pulumi.IntOutput `pulumi:"routeHold"`
+	// TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+	RouteTtl pulumi.IntOutput `pulumi:"routeTtl"`
+	// Time to wait before sending new routes to the cluster (0 - 3600 sec).
+	RouteWait pulumi.IntOutput `pulumi:"routeWait"`
+	// Type of A-A load balancing. Use none if you have external load balancers.
+	Schedule pulumi.StringOutput `pulumi:"schedule"`
+	// Configure virtual cluster 2. The structure of `secondaryVcluster` block is documented below.
+	SecondaryVcluster HaSecondaryVclusterOutput `pulumi:"secondaryVcluster"`
+	// Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+	SessionPickup pulumi.StringOutput `pulumi:"sessionPickup"`
+	// Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+	SessionPickupConnectionless pulumi.StringOutput `pulumi:"sessionPickupConnectionless"`
+	// Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+	SessionPickupDelay pulumi.StringOutput `pulumi:"sessionPickupDelay"`
+	// Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+	SessionPickupExpectation pulumi.StringOutput `pulumi:"sessionPickupExpectation"`
+	// Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+	SessionPickupNat pulumi.StringOutput `pulumi:"sessionPickupNat"`
+	// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+	SessionSyncDev pulumi.StringOutput `pulumi:"sessionSyncDev"`
+	// Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+	SmtpProxyThreshold pulumi.StringOutput `pulumi:"smtpProxyThreshold"`
+	// Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+	SsdFailover pulumi.StringOutput `pulumi:"ssdFailover"`
+	// Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+	StandaloneConfigSync pulumi.StringOutput `pulumi:"standaloneConfigSync"`
+	// Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+	StandaloneMgmtVdom pulumi.StringOutput `pulumi:"standaloneMgmtVdom"`
+	// Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+	SyncConfig pulumi.StringOutput `pulumi:"syncConfig"`
+	// Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+	SyncPacketBalance pulumi.StringOutput `pulumi:"syncPacketBalance"`
+	// Default route gateway for unicast interface.
+	UnicastGateway pulumi.StringOutput `pulumi:"unicastGateway"`
+	// Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+	UnicastHb pulumi.StringOutput `pulumi:"unicastHb"`
+	// Unicast heartbeat netmask.
+	UnicastHbNetmask pulumi.StringOutput `pulumi:"unicastHbNetmask"`
+	// Unicast heartbeat peer IP.
+	UnicastHbPeerip pulumi.StringOutput `pulumi:"unicastHbPeerip"`
+	// Number of unicast peers. The structure of `unicastPeers` block is documented below.
+	UnicastPeers HaUnicastPeerArrayOutput `pulumi:"unicastPeers"`
+	// Enable/disable unicast connection. Valid values: `enable`, `disable`.
+	UnicastStatus pulumi.StringOutput `pulumi:"unicastStatus"`
+	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+	UninterruptiblePrimaryWait pulumi.IntOutput `pulumi:"uninterruptiblePrimaryWait"`
+	// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+	UninterruptibleUpgrade pulumi.StringOutput `pulumi:"uninterruptibleUpgrade"`
+	// The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+	UpgradeMode pulumi.StringOutput `pulumi:"upgradeMode"`
+	// Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+	Vcluster2 pulumi.StringOutput `pulumi:"vcluster2"`
+	// Cluster ID.
+	VclusterId pulumi.IntOutput `pulumi:"vclusterId"`
+	// Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+	VclusterStatus pulumi.StringOutput `pulumi:"vclusterStatus"`
+	// Virtual cluster table. The structure of `vcluster` block is documented below.
+	Vclusters HaVclusterArrayOutput `pulumi:"vclusters"`
+	// VDOMs in virtual cluster 1.
+	Vdom pulumi.StringOutput `pulumi:"vdom"`
+	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
+	Weight pulumi.StringOutput `pulumi:"weight"`
 }
 
 // NewHa registers a new resource with the given unique name, arguments, and options.
@@ -185,175 +312,357 @@ func GetHa(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Ha resources.
 type haState struct {
-	Arps                          *int                 `pulumi:"arps"`
-	ArpsInterval                  *int                 `pulumi:"arpsInterval"`
-	Authentication                *string              `pulumi:"authentication"`
-	CpuThreshold                  *string              `pulumi:"cpuThreshold"`
-	DynamicSortSubtable           *string              `pulumi:"dynamicSortSubtable"`
-	Encryption                    *string              `pulumi:"encryption"`
-	FailoverHoldTime              *int                 `pulumi:"failoverHoldTime"`
-	FtpProxyThreshold             *string              `pulumi:"ftpProxyThreshold"`
-	GratuitousArps                *string              `pulumi:"gratuitousArps"`
-	GroupId                       *int                 `pulumi:"groupId"`
-	GroupName                     *string              `pulumi:"groupName"`
-	HaDirect                      *string              `pulumi:"haDirect"`
-	HaEthType                     *string              `pulumi:"haEthType"`
-	HaMgmtInterfaces              []HaHaMgmtInterface  `pulumi:"haMgmtInterfaces"`
-	HaMgmtStatus                  *string              `pulumi:"haMgmtStatus"`
-	HaUptimeDiffMargin            *int                 `pulumi:"haUptimeDiffMargin"`
-	HbInterval                    *int                 `pulumi:"hbInterval"`
-	HbIntervalInMilliseconds      *string              `pulumi:"hbIntervalInMilliseconds"`
-	HbLostThreshold               *int                 `pulumi:"hbLostThreshold"`
-	Hbdev                         *string              `pulumi:"hbdev"`
-	HcEthType                     *string              `pulumi:"hcEthType"`
-	HelloHolddown                 *int                 `pulumi:"helloHolddown"`
-	HttpProxyThreshold            *string              `pulumi:"httpProxyThreshold"`
-	ImapProxyThreshold            *string              `pulumi:"imapProxyThreshold"`
-	InterClusterSessionSync       *string              `pulumi:"interClusterSessionSync"`
-	Key                           *string              `pulumi:"key"`
-	L2epEthType                   *string              `pulumi:"l2epEthType"`
-	LinkFailedSignal              *string              `pulumi:"linkFailedSignal"`
-	LoadBalanceAll                *string              `pulumi:"loadBalanceAll"`
-	LogicalSn                     *string              `pulumi:"logicalSn"`
-	MemoryBasedFailover           *string              `pulumi:"memoryBasedFailover"`
-	MemoryCompatibleMode          *string              `pulumi:"memoryCompatibleMode"`
-	MemoryFailoverFlipTimeout     *int                 `pulumi:"memoryFailoverFlipTimeout"`
-	MemoryFailoverMonitorPeriod   *int                 `pulumi:"memoryFailoverMonitorPeriod"`
-	MemoryFailoverSampleRate      *int                 `pulumi:"memoryFailoverSampleRate"`
-	MemoryFailoverThreshold       *int                 `pulumi:"memoryFailoverThreshold"`
-	MemoryThreshold               *string              `pulumi:"memoryThreshold"`
-	Mode                          *string              `pulumi:"mode"`
-	Monitor                       *string              `pulumi:"monitor"`
-	MulticastTtl                  *int                 `pulumi:"multicastTtl"`
-	NntpProxyThreshold            *string              `pulumi:"nntpProxyThreshold"`
-	Override                      *string              `pulumi:"override"`
-	OverrideWaitTime              *int                 `pulumi:"overrideWaitTime"`
-	Password                      *string              `pulumi:"password"`
-	PingserverFailoverThreshold   *int                 `pulumi:"pingserverFailoverThreshold"`
-	PingserverFlipTimeout         *int                 `pulumi:"pingserverFlipTimeout"`
-	PingserverMonitorInterface    *string              `pulumi:"pingserverMonitorInterface"`
-	PingserverSecondaryForceReset *string              `pulumi:"pingserverSecondaryForceReset"`
-	PingserverSlaveForceReset     *string              `pulumi:"pingserverSlaveForceReset"`
-	Pop3ProxyThreshold            *string              `pulumi:"pop3ProxyThreshold"`
-	Priority                      *int                 `pulumi:"priority"`
-	RouteHold                     *int                 `pulumi:"routeHold"`
-	RouteTtl                      *int                 `pulumi:"routeTtl"`
-	RouteWait                     *int                 `pulumi:"routeWait"`
-	Schedule                      *string              `pulumi:"schedule"`
-	SecondaryVcluster             *HaSecondaryVcluster `pulumi:"secondaryVcluster"`
-	SessionPickup                 *string              `pulumi:"sessionPickup"`
-	SessionPickupConnectionless   *string              `pulumi:"sessionPickupConnectionless"`
-	SessionPickupDelay            *string              `pulumi:"sessionPickupDelay"`
-	SessionPickupExpectation      *string              `pulumi:"sessionPickupExpectation"`
-	SessionPickupNat              *string              `pulumi:"sessionPickupNat"`
-	SessionSyncDev                *string              `pulumi:"sessionSyncDev"`
-	SmtpProxyThreshold            *string              `pulumi:"smtpProxyThreshold"`
-	SsdFailover                   *string              `pulumi:"ssdFailover"`
-	StandaloneConfigSync          *string              `pulumi:"standaloneConfigSync"`
-	StandaloneMgmtVdom            *string              `pulumi:"standaloneMgmtVdom"`
-	SyncConfig                    *string              `pulumi:"syncConfig"`
-	SyncPacketBalance             *string              `pulumi:"syncPacketBalance"`
-	UnicastGateway                *string              `pulumi:"unicastGateway"`
-	UnicastHb                     *string              `pulumi:"unicastHb"`
-	UnicastHbNetmask              *string              `pulumi:"unicastHbNetmask"`
-	UnicastHbPeerip               *string              `pulumi:"unicastHbPeerip"`
-	UnicastPeers                  []HaUnicastPeer      `pulumi:"unicastPeers"`
-	UnicastStatus                 *string              `pulumi:"unicastStatus"`
-	UninterruptiblePrimaryWait    *int                 `pulumi:"uninterruptiblePrimaryWait"`
-	UninterruptibleUpgrade        *string              `pulumi:"uninterruptibleUpgrade"`
-	Vcluster2                     *string              `pulumi:"vcluster2"`
-	VclusterId                    *int                 `pulumi:"vclusterId"`
-	VclusterStatus                *string              `pulumi:"vclusterStatus"`
-	Vclusters                     []HaVcluster         `pulumi:"vclusters"`
-	Vdom                          *string              `pulumi:"vdom"`
-	Vdomparam                     *string              `pulumi:"vdomparam"`
-	Weight                        *string              `pulumi:"weight"`
+	// Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+	Arps *int `pulumi:"arps"`
+	// Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+	ArpsInterval *int `pulumi:"arpsInterval"`
+	// Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+	Authentication *string `pulumi:"authentication"`
+	// Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+	CpuThreshold *string `pulumi:"cpuThreshold"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+	Encryption *string `pulumi:"encryption"`
+	// HA EVPN FDB TTL on primary box (5 - 3600 sec).
+	EvpnTtl *int `pulumi:"evpnTtl"`
+	// Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+	FailoverHoldTime *int `pulumi:"failoverHoldTime"`
+	// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+	FtpProxyThreshold *string `pulumi:"ftpProxyThreshold"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+	GratuitousArps *string `pulumi:"gratuitousArps"`
+	// Cluster group ID  (0 - 255). Must be the same for all members.
+	GroupId *int `pulumi:"groupId"`
+	// Cluster group name. Must be the same for all members.
+	GroupName *string `pulumi:"groupName"`
+	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+	HaDirect *string `pulumi:"haDirect"`
+	// HA heartbeat packet Ethertype (4-digit hex).
+	HaEthType *string `pulumi:"haEthType"`
+	// Reserve interfaces to manage individual cluster units. The structure of `haMgmtInterfaces` block is documented below.
+	HaMgmtInterfaces []HaHaMgmtInterface `pulumi:"haMgmtInterfaces"`
+	// Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+	HaMgmtStatus *string `pulumi:"haMgmtStatus"`
+	// Normally you would only reduce this value for failover testing.
+	HaUptimeDiffMargin *int `pulumi:"haUptimeDiffMargin"`
+	// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+	HbInterval *int `pulumi:"hbInterval"`
+	// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+	HbIntervalInMilliseconds *string `pulumi:"hbIntervalInMilliseconds"`
+	// Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+	HbLostThreshold *int `pulumi:"hbLostThreshold"`
+	// Heartbeat interfaces. Must be the same for all members.
+	Hbdev *string `pulumi:"hbdev"`
+	// Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+	HcEthType *string `pulumi:"hcEthType"`
+	// Time to wait before changing from hello to work state (5 - 300 sec).
+	HelloHolddown *int `pulumi:"helloHolddown"`
+	// Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+	HttpProxyThreshold *string `pulumi:"httpProxyThreshold"`
+	// Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+	ImapProxyThreshold *string `pulumi:"imapProxyThreshold"`
+	// Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+	InterClusterSessionSync *string `pulumi:"interClusterSessionSync"`
+	// IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+	IpsecPhase2Proposal *string `pulumi:"ipsecPhase2Proposal"`
+	// key
+	Key *string `pulumi:"key"`
+	// Telnet session HA heartbeat packet Ethertype (4-digit hex).
+	L2epEthType *string `pulumi:"l2epEthType"`
+	// Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+	LinkFailedSignal *string `pulumi:"linkFailedSignal"`
+	// Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+	LoadBalanceAll *string `pulumi:"loadBalanceAll"`
+	// Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+	LogicalSn *string `pulumi:"logicalSn"`
+	// Enable/disable memory based failover. Valid values: `enable`, `disable`.
+	MemoryBasedFailover *string `pulumi:"memoryBasedFailover"`
+	// Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+	MemoryCompatibleMode *string `pulumi:"memoryCompatibleMode"`
+	// Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+	MemoryFailoverFlipTimeout *int `pulumi:"memoryFailoverFlipTimeout"`
+	// Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+	MemoryFailoverMonitorPeriod *int `pulumi:"memoryFailoverMonitorPeriod"`
+	// Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+	MemoryFailoverSampleRate *int `pulumi:"memoryFailoverSampleRate"`
+	// Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+	MemoryFailoverThreshold *int `pulumi:"memoryFailoverThreshold"`
+	// Dynamic weighted load balancing memory usage weight and high and low thresholds.
+	MemoryThreshold *string `pulumi:"memoryThreshold"`
+	// HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+	Mode *string `pulumi:"mode"`
+	// Interfaces to check for port monitoring (or link failure).
+	Monitor *string `pulumi:"monitor"`
+	// HA multicast TTL on master (5 - 3600 sec).
+	MulticastTtl *int `pulumi:"multicastTtl"`
+	// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+	NntpProxyThreshold *string `pulumi:"nntpProxyThreshold"`
+	// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+	Override *string `pulumi:"override"`
+	// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+	OverrideWaitTime *int `pulumi:"overrideWaitTime"`
+	// Cluster password. Must be the same for all members.
+	Password *string `pulumi:"password"`
+	// Remote IP monitoring failover threshold (0 - 50).
+	PingserverFailoverThreshold *int `pulumi:"pingserverFailoverThreshold"`
+	// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+	PingserverFlipTimeout *int `pulumi:"pingserverFlipTimeout"`
+	// Interfaces to check for remote IP monitoring.
+	PingserverMonitorInterface *string `pulumi:"pingserverMonitorInterface"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSecondaryForceReset *string `pulumi:"pingserverSecondaryForceReset"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSlaveForceReset *string `pulumi:"pingserverSlaveForceReset"`
+	// Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+	Pop3ProxyThreshold *string `pulumi:"pop3ProxyThreshold"`
+	// Increase the priority to select the primary unit (0 - 255).
+	Priority *int `pulumi:"priority"`
+	// Time to wait between routing table updates to the cluster (0 - 3600 sec).
+	RouteHold *int `pulumi:"routeHold"`
+	// TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+	RouteTtl *int `pulumi:"routeTtl"`
+	// Time to wait before sending new routes to the cluster (0 - 3600 sec).
+	RouteWait *int `pulumi:"routeWait"`
+	// Type of A-A load balancing. Use none if you have external load balancers.
+	Schedule *string `pulumi:"schedule"`
+	// Configure virtual cluster 2. The structure of `secondaryVcluster` block is documented below.
+	SecondaryVcluster *HaSecondaryVcluster `pulumi:"secondaryVcluster"`
+	// Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+	SessionPickup *string `pulumi:"sessionPickup"`
+	// Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+	SessionPickupConnectionless *string `pulumi:"sessionPickupConnectionless"`
+	// Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+	SessionPickupDelay *string `pulumi:"sessionPickupDelay"`
+	// Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+	SessionPickupExpectation *string `pulumi:"sessionPickupExpectation"`
+	// Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+	SessionPickupNat *string `pulumi:"sessionPickupNat"`
+	// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+	SessionSyncDev *string `pulumi:"sessionSyncDev"`
+	// Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+	SmtpProxyThreshold *string `pulumi:"smtpProxyThreshold"`
+	// Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+	SsdFailover *string `pulumi:"ssdFailover"`
+	// Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+	StandaloneConfigSync *string `pulumi:"standaloneConfigSync"`
+	// Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+	StandaloneMgmtVdom *string `pulumi:"standaloneMgmtVdom"`
+	// Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+	SyncConfig *string `pulumi:"syncConfig"`
+	// Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+	SyncPacketBalance *string `pulumi:"syncPacketBalance"`
+	// Default route gateway for unicast interface.
+	UnicastGateway *string `pulumi:"unicastGateway"`
+	// Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+	UnicastHb *string `pulumi:"unicastHb"`
+	// Unicast heartbeat netmask.
+	UnicastHbNetmask *string `pulumi:"unicastHbNetmask"`
+	// Unicast heartbeat peer IP.
+	UnicastHbPeerip *string `pulumi:"unicastHbPeerip"`
+	// Number of unicast peers. The structure of `unicastPeers` block is documented below.
+	UnicastPeers []HaUnicastPeer `pulumi:"unicastPeers"`
+	// Enable/disable unicast connection. Valid values: `enable`, `disable`.
+	UnicastStatus *string `pulumi:"unicastStatus"`
+	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+	UninterruptiblePrimaryWait *int `pulumi:"uninterruptiblePrimaryWait"`
+	// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+	UninterruptibleUpgrade *string `pulumi:"uninterruptibleUpgrade"`
+	// The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+	UpgradeMode *string `pulumi:"upgradeMode"`
+	// Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+	Vcluster2 *string `pulumi:"vcluster2"`
+	// Cluster ID.
+	VclusterId *int `pulumi:"vclusterId"`
+	// Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+	VclusterStatus *string `pulumi:"vclusterStatus"`
+	// Virtual cluster table. The structure of `vcluster` block is documented below.
+	Vclusters []HaVcluster `pulumi:"vclusters"`
+	// VDOMs in virtual cluster 1.
+	Vdom *string `pulumi:"vdom"`
+	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam *string `pulumi:"vdomparam"`
+	// Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
+	Weight *string `pulumi:"weight"`
 }
 
 type HaState struct {
-	Arps                          pulumi.IntPtrInput
-	ArpsInterval                  pulumi.IntPtrInput
-	Authentication                pulumi.StringPtrInput
-	CpuThreshold                  pulumi.StringPtrInput
-	DynamicSortSubtable           pulumi.StringPtrInput
-	Encryption                    pulumi.StringPtrInput
-	FailoverHoldTime              pulumi.IntPtrInput
-	FtpProxyThreshold             pulumi.StringPtrInput
-	GratuitousArps                pulumi.StringPtrInput
-	GroupId                       pulumi.IntPtrInput
-	GroupName                     pulumi.StringPtrInput
-	HaDirect                      pulumi.StringPtrInput
-	HaEthType                     pulumi.StringPtrInput
-	HaMgmtInterfaces              HaHaMgmtInterfaceArrayInput
-	HaMgmtStatus                  pulumi.StringPtrInput
-	HaUptimeDiffMargin            pulumi.IntPtrInput
-	HbInterval                    pulumi.IntPtrInput
-	HbIntervalInMilliseconds      pulumi.StringPtrInput
-	HbLostThreshold               pulumi.IntPtrInput
-	Hbdev                         pulumi.StringPtrInput
-	HcEthType                     pulumi.StringPtrInput
-	HelloHolddown                 pulumi.IntPtrInput
-	HttpProxyThreshold            pulumi.StringPtrInput
-	ImapProxyThreshold            pulumi.StringPtrInput
-	InterClusterSessionSync       pulumi.StringPtrInput
-	Key                           pulumi.StringPtrInput
-	L2epEthType                   pulumi.StringPtrInput
-	LinkFailedSignal              pulumi.StringPtrInput
-	LoadBalanceAll                pulumi.StringPtrInput
-	LogicalSn                     pulumi.StringPtrInput
-	MemoryBasedFailover           pulumi.StringPtrInput
-	MemoryCompatibleMode          pulumi.StringPtrInput
-	MemoryFailoverFlipTimeout     pulumi.IntPtrInput
-	MemoryFailoverMonitorPeriod   pulumi.IntPtrInput
-	MemoryFailoverSampleRate      pulumi.IntPtrInput
-	MemoryFailoverThreshold       pulumi.IntPtrInput
-	MemoryThreshold               pulumi.StringPtrInput
-	Mode                          pulumi.StringPtrInput
-	Monitor                       pulumi.StringPtrInput
-	MulticastTtl                  pulumi.IntPtrInput
-	NntpProxyThreshold            pulumi.StringPtrInput
-	Override                      pulumi.StringPtrInput
-	OverrideWaitTime              pulumi.IntPtrInput
-	Password                      pulumi.StringPtrInput
-	PingserverFailoverThreshold   pulumi.IntPtrInput
-	PingserverFlipTimeout         pulumi.IntPtrInput
-	PingserverMonitorInterface    pulumi.StringPtrInput
+	// Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+	Arps pulumi.IntPtrInput
+	// Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+	ArpsInterval pulumi.IntPtrInput
+	// Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+	Authentication pulumi.StringPtrInput
+	// Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+	CpuThreshold pulumi.StringPtrInput
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrInput
+	// Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+	Encryption pulumi.StringPtrInput
+	// HA EVPN FDB TTL on primary box (5 - 3600 sec).
+	EvpnTtl pulumi.IntPtrInput
+	// Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+	FailoverHoldTime pulumi.IntPtrInput
+	// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+	FtpProxyThreshold pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+	GratuitousArps pulumi.StringPtrInput
+	// Cluster group ID  (0 - 255). Must be the same for all members.
+	GroupId pulumi.IntPtrInput
+	// Cluster group name. Must be the same for all members.
+	GroupName pulumi.StringPtrInput
+	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+	HaDirect pulumi.StringPtrInput
+	// HA heartbeat packet Ethertype (4-digit hex).
+	HaEthType pulumi.StringPtrInput
+	// Reserve interfaces to manage individual cluster units. The structure of `haMgmtInterfaces` block is documented below.
+	HaMgmtInterfaces HaHaMgmtInterfaceArrayInput
+	// Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+	HaMgmtStatus pulumi.StringPtrInput
+	// Normally you would only reduce this value for failover testing.
+	HaUptimeDiffMargin pulumi.IntPtrInput
+	// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+	HbInterval pulumi.IntPtrInput
+	// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+	HbIntervalInMilliseconds pulumi.StringPtrInput
+	// Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+	HbLostThreshold pulumi.IntPtrInput
+	// Heartbeat interfaces. Must be the same for all members.
+	Hbdev pulumi.StringPtrInput
+	// Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+	HcEthType pulumi.StringPtrInput
+	// Time to wait before changing from hello to work state (5 - 300 sec).
+	HelloHolddown pulumi.IntPtrInput
+	// Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+	HttpProxyThreshold pulumi.StringPtrInput
+	// Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+	ImapProxyThreshold pulumi.StringPtrInput
+	// Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+	InterClusterSessionSync pulumi.StringPtrInput
+	// IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+	IpsecPhase2Proposal pulumi.StringPtrInput
+	// key
+	Key pulumi.StringPtrInput
+	// Telnet session HA heartbeat packet Ethertype (4-digit hex).
+	L2epEthType pulumi.StringPtrInput
+	// Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+	LinkFailedSignal pulumi.StringPtrInput
+	// Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+	LoadBalanceAll pulumi.StringPtrInput
+	// Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+	LogicalSn pulumi.StringPtrInput
+	// Enable/disable memory based failover. Valid values: `enable`, `disable`.
+	MemoryBasedFailover pulumi.StringPtrInput
+	// Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+	MemoryCompatibleMode pulumi.StringPtrInput
+	// Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+	MemoryFailoverFlipTimeout pulumi.IntPtrInput
+	// Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+	MemoryFailoverMonitorPeriod pulumi.IntPtrInput
+	// Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+	MemoryFailoverSampleRate pulumi.IntPtrInput
+	// Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+	MemoryFailoverThreshold pulumi.IntPtrInput
+	// Dynamic weighted load balancing memory usage weight and high and low thresholds.
+	MemoryThreshold pulumi.StringPtrInput
+	// HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+	Mode pulumi.StringPtrInput
+	// Interfaces to check for port monitoring (or link failure).
+	Monitor pulumi.StringPtrInput
+	// HA multicast TTL on master (5 - 3600 sec).
+	MulticastTtl pulumi.IntPtrInput
+	// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+	NntpProxyThreshold pulumi.StringPtrInput
+	// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+	Override pulumi.StringPtrInput
+	// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+	OverrideWaitTime pulumi.IntPtrInput
+	// Cluster password. Must be the same for all members.
+	Password pulumi.StringPtrInput
+	// Remote IP monitoring failover threshold (0 - 50).
+	PingserverFailoverThreshold pulumi.IntPtrInput
+	// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+	PingserverFlipTimeout pulumi.IntPtrInput
+	// Interfaces to check for remote IP monitoring.
+	PingserverMonitorInterface pulumi.StringPtrInput
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
 	PingserverSecondaryForceReset pulumi.StringPtrInput
-	PingserverSlaveForceReset     pulumi.StringPtrInput
-	Pop3ProxyThreshold            pulumi.StringPtrInput
-	Priority                      pulumi.IntPtrInput
-	RouteHold                     pulumi.IntPtrInput
-	RouteTtl                      pulumi.IntPtrInput
-	RouteWait                     pulumi.IntPtrInput
-	Schedule                      pulumi.StringPtrInput
-	SecondaryVcluster             HaSecondaryVclusterPtrInput
-	SessionPickup                 pulumi.StringPtrInput
-	SessionPickupConnectionless   pulumi.StringPtrInput
-	SessionPickupDelay            pulumi.StringPtrInput
-	SessionPickupExpectation      pulumi.StringPtrInput
-	SessionPickupNat              pulumi.StringPtrInput
-	SessionSyncDev                pulumi.StringPtrInput
-	SmtpProxyThreshold            pulumi.StringPtrInput
-	SsdFailover                   pulumi.StringPtrInput
-	StandaloneConfigSync          pulumi.StringPtrInput
-	StandaloneMgmtVdom            pulumi.StringPtrInput
-	SyncConfig                    pulumi.StringPtrInput
-	SyncPacketBalance             pulumi.StringPtrInput
-	UnicastGateway                pulumi.StringPtrInput
-	UnicastHb                     pulumi.StringPtrInput
-	UnicastHbNetmask              pulumi.StringPtrInput
-	UnicastHbPeerip               pulumi.StringPtrInput
-	UnicastPeers                  HaUnicastPeerArrayInput
-	UnicastStatus                 pulumi.StringPtrInput
-	UninterruptiblePrimaryWait    pulumi.IntPtrInput
-	UninterruptibleUpgrade        pulumi.StringPtrInput
-	Vcluster2                     pulumi.StringPtrInput
-	VclusterId                    pulumi.IntPtrInput
-	VclusterStatus                pulumi.StringPtrInput
-	Vclusters                     HaVclusterArrayInput
-	Vdom                          pulumi.StringPtrInput
-	Vdomparam                     pulumi.StringPtrInput
-	Weight                        pulumi.StringPtrInput
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSlaveForceReset pulumi.StringPtrInput
+	// Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+	Pop3ProxyThreshold pulumi.StringPtrInput
+	// Increase the priority to select the primary unit (0 - 255).
+	Priority pulumi.IntPtrInput
+	// Time to wait between routing table updates to the cluster (0 - 3600 sec).
+	RouteHold pulumi.IntPtrInput
+	// TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+	RouteTtl pulumi.IntPtrInput
+	// Time to wait before sending new routes to the cluster (0 - 3600 sec).
+	RouteWait pulumi.IntPtrInput
+	// Type of A-A load balancing. Use none if you have external load balancers.
+	Schedule pulumi.StringPtrInput
+	// Configure virtual cluster 2. The structure of `secondaryVcluster` block is documented below.
+	SecondaryVcluster HaSecondaryVclusterPtrInput
+	// Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+	SessionPickup pulumi.StringPtrInput
+	// Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+	SessionPickupConnectionless pulumi.StringPtrInput
+	// Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+	SessionPickupDelay pulumi.StringPtrInput
+	// Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+	SessionPickupExpectation pulumi.StringPtrInput
+	// Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+	SessionPickupNat pulumi.StringPtrInput
+	// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+	SessionSyncDev pulumi.StringPtrInput
+	// Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+	SmtpProxyThreshold pulumi.StringPtrInput
+	// Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+	SsdFailover pulumi.StringPtrInput
+	// Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+	StandaloneConfigSync pulumi.StringPtrInput
+	// Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+	StandaloneMgmtVdom pulumi.StringPtrInput
+	// Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+	SyncConfig pulumi.StringPtrInput
+	// Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+	SyncPacketBalance pulumi.StringPtrInput
+	// Default route gateway for unicast interface.
+	UnicastGateway pulumi.StringPtrInput
+	// Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+	UnicastHb pulumi.StringPtrInput
+	// Unicast heartbeat netmask.
+	UnicastHbNetmask pulumi.StringPtrInput
+	// Unicast heartbeat peer IP.
+	UnicastHbPeerip pulumi.StringPtrInput
+	// Number of unicast peers. The structure of `unicastPeers` block is documented below.
+	UnicastPeers HaUnicastPeerArrayInput
+	// Enable/disable unicast connection. Valid values: `enable`, `disable`.
+	UnicastStatus pulumi.StringPtrInput
+	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+	UninterruptiblePrimaryWait pulumi.IntPtrInput
+	// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+	UninterruptibleUpgrade pulumi.StringPtrInput
+	// The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+	UpgradeMode pulumi.StringPtrInput
+	// Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+	Vcluster2 pulumi.StringPtrInput
+	// Cluster ID.
+	VclusterId pulumi.IntPtrInput
+	// Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+	VclusterStatus pulumi.StringPtrInput
+	// Virtual cluster table. The structure of `vcluster` block is documented below.
+	Vclusters HaVclusterArrayInput
+	// VDOMs in virtual cluster 1.
+	Vdom pulumi.StringPtrInput
+	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput
+	// Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
+	Weight pulumi.StringPtrInput
 }
 
 func (HaState) ElementType() reflect.Type {
@@ -361,176 +670,358 @@ func (HaState) ElementType() reflect.Type {
 }
 
 type haArgs struct {
-	Arps                          *int                 `pulumi:"arps"`
-	ArpsInterval                  *int                 `pulumi:"arpsInterval"`
-	Authentication                *string              `pulumi:"authentication"`
-	CpuThreshold                  *string              `pulumi:"cpuThreshold"`
-	DynamicSortSubtable           *string              `pulumi:"dynamicSortSubtable"`
-	Encryption                    *string              `pulumi:"encryption"`
-	FailoverHoldTime              *int                 `pulumi:"failoverHoldTime"`
-	FtpProxyThreshold             *string              `pulumi:"ftpProxyThreshold"`
-	GratuitousArps                *string              `pulumi:"gratuitousArps"`
-	GroupId                       *int                 `pulumi:"groupId"`
-	GroupName                     *string              `pulumi:"groupName"`
-	HaDirect                      *string              `pulumi:"haDirect"`
-	HaEthType                     *string              `pulumi:"haEthType"`
-	HaMgmtInterfaces              []HaHaMgmtInterface  `pulumi:"haMgmtInterfaces"`
-	HaMgmtStatus                  *string              `pulumi:"haMgmtStatus"`
-	HaUptimeDiffMargin            *int                 `pulumi:"haUptimeDiffMargin"`
-	HbInterval                    *int                 `pulumi:"hbInterval"`
-	HbIntervalInMilliseconds      *string              `pulumi:"hbIntervalInMilliseconds"`
-	HbLostThreshold               *int                 `pulumi:"hbLostThreshold"`
-	Hbdev                         *string              `pulumi:"hbdev"`
-	HcEthType                     *string              `pulumi:"hcEthType"`
-	HelloHolddown                 *int                 `pulumi:"helloHolddown"`
-	HttpProxyThreshold            *string              `pulumi:"httpProxyThreshold"`
-	ImapProxyThreshold            *string              `pulumi:"imapProxyThreshold"`
-	InterClusterSessionSync       *string              `pulumi:"interClusterSessionSync"`
-	Key                           *string              `pulumi:"key"`
-	L2epEthType                   *string              `pulumi:"l2epEthType"`
-	LinkFailedSignal              *string              `pulumi:"linkFailedSignal"`
-	LoadBalanceAll                *string              `pulumi:"loadBalanceAll"`
-	LogicalSn                     *string              `pulumi:"logicalSn"`
-	MemoryBasedFailover           *string              `pulumi:"memoryBasedFailover"`
-	MemoryCompatibleMode          *string              `pulumi:"memoryCompatibleMode"`
-	MemoryFailoverFlipTimeout     *int                 `pulumi:"memoryFailoverFlipTimeout"`
-	MemoryFailoverMonitorPeriod   *int                 `pulumi:"memoryFailoverMonitorPeriod"`
-	MemoryFailoverSampleRate      *int                 `pulumi:"memoryFailoverSampleRate"`
-	MemoryFailoverThreshold       *int                 `pulumi:"memoryFailoverThreshold"`
-	MemoryThreshold               *string              `pulumi:"memoryThreshold"`
-	Mode                          *string              `pulumi:"mode"`
-	Monitor                       *string              `pulumi:"monitor"`
-	MulticastTtl                  *int                 `pulumi:"multicastTtl"`
-	NntpProxyThreshold            *string              `pulumi:"nntpProxyThreshold"`
-	Override                      *string              `pulumi:"override"`
-	OverrideWaitTime              *int                 `pulumi:"overrideWaitTime"`
-	Password                      *string              `pulumi:"password"`
-	PingserverFailoverThreshold   *int                 `pulumi:"pingserverFailoverThreshold"`
-	PingserverFlipTimeout         *int                 `pulumi:"pingserverFlipTimeout"`
-	PingserverMonitorInterface    *string              `pulumi:"pingserverMonitorInterface"`
-	PingserverSecondaryForceReset *string              `pulumi:"pingserverSecondaryForceReset"`
-	PingserverSlaveForceReset     *string              `pulumi:"pingserverSlaveForceReset"`
-	Pop3ProxyThreshold            *string              `pulumi:"pop3ProxyThreshold"`
-	Priority                      *int                 `pulumi:"priority"`
-	RouteHold                     *int                 `pulumi:"routeHold"`
-	RouteTtl                      *int                 `pulumi:"routeTtl"`
-	RouteWait                     *int                 `pulumi:"routeWait"`
-	Schedule                      *string              `pulumi:"schedule"`
-	SecondaryVcluster             *HaSecondaryVcluster `pulumi:"secondaryVcluster"`
-	SessionPickup                 *string              `pulumi:"sessionPickup"`
-	SessionPickupConnectionless   *string              `pulumi:"sessionPickupConnectionless"`
-	SessionPickupDelay            *string              `pulumi:"sessionPickupDelay"`
-	SessionPickupExpectation      *string              `pulumi:"sessionPickupExpectation"`
-	SessionPickupNat              *string              `pulumi:"sessionPickupNat"`
-	SessionSyncDev                *string              `pulumi:"sessionSyncDev"`
-	SmtpProxyThreshold            *string              `pulumi:"smtpProxyThreshold"`
-	SsdFailover                   *string              `pulumi:"ssdFailover"`
-	StandaloneConfigSync          *string              `pulumi:"standaloneConfigSync"`
-	StandaloneMgmtVdom            *string              `pulumi:"standaloneMgmtVdom"`
-	SyncConfig                    *string              `pulumi:"syncConfig"`
-	SyncPacketBalance             *string              `pulumi:"syncPacketBalance"`
-	UnicastGateway                *string              `pulumi:"unicastGateway"`
-	UnicastHb                     *string              `pulumi:"unicastHb"`
-	UnicastHbNetmask              *string              `pulumi:"unicastHbNetmask"`
-	UnicastHbPeerip               *string              `pulumi:"unicastHbPeerip"`
-	UnicastPeers                  []HaUnicastPeer      `pulumi:"unicastPeers"`
-	UnicastStatus                 *string              `pulumi:"unicastStatus"`
-	UninterruptiblePrimaryWait    *int                 `pulumi:"uninterruptiblePrimaryWait"`
-	UninterruptibleUpgrade        *string              `pulumi:"uninterruptibleUpgrade"`
-	Vcluster2                     *string              `pulumi:"vcluster2"`
-	VclusterId                    *int                 `pulumi:"vclusterId"`
-	VclusterStatus                *string              `pulumi:"vclusterStatus"`
-	Vclusters                     []HaVcluster         `pulumi:"vclusters"`
-	Vdom                          *string              `pulumi:"vdom"`
-	Vdomparam                     *string              `pulumi:"vdomparam"`
-	Weight                        *string              `pulumi:"weight"`
+	// Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+	Arps *int `pulumi:"arps"`
+	// Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+	ArpsInterval *int `pulumi:"arpsInterval"`
+	// Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+	Authentication *string `pulumi:"authentication"`
+	// Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+	CpuThreshold *string `pulumi:"cpuThreshold"`
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+	Encryption *string `pulumi:"encryption"`
+	// HA EVPN FDB TTL on primary box (5 - 3600 sec).
+	EvpnTtl *int `pulumi:"evpnTtl"`
+	// Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+	FailoverHoldTime *int `pulumi:"failoverHoldTime"`
+	// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+	FtpProxyThreshold *string `pulumi:"ftpProxyThreshold"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+	GratuitousArps *string `pulumi:"gratuitousArps"`
+	// Cluster group ID  (0 - 255). Must be the same for all members.
+	GroupId *int `pulumi:"groupId"`
+	// Cluster group name. Must be the same for all members.
+	GroupName *string `pulumi:"groupName"`
+	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+	HaDirect *string `pulumi:"haDirect"`
+	// HA heartbeat packet Ethertype (4-digit hex).
+	HaEthType *string `pulumi:"haEthType"`
+	// Reserve interfaces to manage individual cluster units. The structure of `haMgmtInterfaces` block is documented below.
+	HaMgmtInterfaces []HaHaMgmtInterface `pulumi:"haMgmtInterfaces"`
+	// Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+	HaMgmtStatus *string `pulumi:"haMgmtStatus"`
+	// Normally you would only reduce this value for failover testing.
+	HaUptimeDiffMargin *int `pulumi:"haUptimeDiffMargin"`
+	// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+	HbInterval *int `pulumi:"hbInterval"`
+	// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+	HbIntervalInMilliseconds *string `pulumi:"hbIntervalInMilliseconds"`
+	// Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+	HbLostThreshold *int `pulumi:"hbLostThreshold"`
+	// Heartbeat interfaces. Must be the same for all members.
+	Hbdev *string `pulumi:"hbdev"`
+	// Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+	HcEthType *string `pulumi:"hcEthType"`
+	// Time to wait before changing from hello to work state (5 - 300 sec).
+	HelloHolddown *int `pulumi:"helloHolddown"`
+	// Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+	HttpProxyThreshold *string `pulumi:"httpProxyThreshold"`
+	// Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+	ImapProxyThreshold *string `pulumi:"imapProxyThreshold"`
+	// Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+	InterClusterSessionSync *string `pulumi:"interClusterSessionSync"`
+	// IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+	IpsecPhase2Proposal *string `pulumi:"ipsecPhase2Proposal"`
+	// key
+	Key *string `pulumi:"key"`
+	// Telnet session HA heartbeat packet Ethertype (4-digit hex).
+	L2epEthType *string `pulumi:"l2epEthType"`
+	// Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+	LinkFailedSignal *string `pulumi:"linkFailedSignal"`
+	// Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+	LoadBalanceAll *string `pulumi:"loadBalanceAll"`
+	// Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+	LogicalSn *string `pulumi:"logicalSn"`
+	// Enable/disable memory based failover. Valid values: `enable`, `disable`.
+	MemoryBasedFailover *string `pulumi:"memoryBasedFailover"`
+	// Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+	MemoryCompatibleMode *string `pulumi:"memoryCompatibleMode"`
+	// Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+	MemoryFailoverFlipTimeout *int `pulumi:"memoryFailoverFlipTimeout"`
+	// Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+	MemoryFailoverMonitorPeriod *int `pulumi:"memoryFailoverMonitorPeriod"`
+	// Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+	MemoryFailoverSampleRate *int `pulumi:"memoryFailoverSampleRate"`
+	// Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+	MemoryFailoverThreshold *int `pulumi:"memoryFailoverThreshold"`
+	// Dynamic weighted load balancing memory usage weight and high and low thresholds.
+	MemoryThreshold *string `pulumi:"memoryThreshold"`
+	// HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+	Mode *string `pulumi:"mode"`
+	// Interfaces to check for port monitoring (or link failure).
+	Monitor *string `pulumi:"monitor"`
+	// HA multicast TTL on master (5 - 3600 sec).
+	MulticastTtl *int `pulumi:"multicastTtl"`
+	// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+	NntpProxyThreshold *string `pulumi:"nntpProxyThreshold"`
+	// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+	Override *string `pulumi:"override"`
+	// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+	OverrideWaitTime *int `pulumi:"overrideWaitTime"`
+	// Cluster password. Must be the same for all members.
+	Password *string `pulumi:"password"`
+	// Remote IP monitoring failover threshold (0 - 50).
+	PingserverFailoverThreshold *int `pulumi:"pingserverFailoverThreshold"`
+	// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+	PingserverFlipTimeout *int `pulumi:"pingserverFlipTimeout"`
+	// Interfaces to check for remote IP monitoring.
+	PingserverMonitorInterface *string `pulumi:"pingserverMonitorInterface"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSecondaryForceReset *string `pulumi:"pingserverSecondaryForceReset"`
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSlaveForceReset *string `pulumi:"pingserverSlaveForceReset"`
+	// Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+	Pop3ProxyThreshold *string `pulumi:"pop3ProxyThreshold"`
+	// Increase the priority to select the primary unit (0 - 255).
+	Priority *int `pulumi:"priority"`
+	// Time to wait between routing table updates to the cluster (0 - 3600 sec).
+	RouteHold *int `pulumi:"routeHold"`
+	// TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+	RouteTtl *int `pulumi:"routeTtl"`
+	// Time to wait before sending new routes to the cluster (0 - 3600 sec).
+	RouteWait *int `pulumi:"routeWait"`
+	// Type of A-A load balancing. Use none if you have external load balancers.
+	Schedule *string `pulumi:"schedule"`
+	// Configure virtual cluster 2. The structure of `secondaryVcluster` block is documented below.
+	SecondaryVcluster *HaSecondaryVcluster `pulumi:"secondaryVcluster"`
+	// Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+	SessionPickup *string `pulumi:"sessionPickup"`
+	// Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+	SessionPickupConnectionless *string `pulumi:"sessionPickupConnectionless"`
+	// Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+	SessionPickupDelay *string `pulumi:"sessionPickupDelay"`
+	// Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+	SessionPickupExpectation *string `pulumi:"sessionPickupExpectation"`
+	// Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+	SessionPickupNat *string `pulumi:"sessionPickupNat"`
+	// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+	SessionSyncDev *string `pulumi:"sessionSyncDev"`
+	// Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+	SmtpProxyThreshold *string `pulumi:"smtpProxyThreshold"`
+	// Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+	SsdFailover *string `pulumi:"ssdFailover"`
+	// Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+	StandaloneConfigSync *string `pulumi:"standaloneConfigSync"`
+	// Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+	StandaloneMgmtVdom *string `pulumi:"standaloneMgmtVdom"`
+	// Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+	SyncConfig *string `pulumi:"syncConfig"`
+	// Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+	SyncPacketBalance *string `pulumi:"syncPacketBalance"`
+	// Default route gateway for unicast interface.
+	UnicastGateway *string `pulumi:"unicastGateway"`
+	// Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+	UnicastHb *string `pulumi:"unicastHb"`
+	// Unicast heartbeat netmask.
+	UnicastHbNetmask *string `pulumi:"unicastHbNetmask"`
+	// Unicast heartbeat peer IP.
+	UnicastHbPeerip *string `pulumi:"unicastHbPeerip"`
+	// Number of unicast peers. The structure of `unicastPeers` block is documented below.
+	UnicastPeers []HaUnicastPeer `pulumi:"unicastPeers"`
+	// Enable/disable unicast connection. Valid values: `enable`, `disable`.
+	UnicastStatus *string `pulumi:"unicastStatus"`
+	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+	UninterruptiblePrimaryWait *int `pulumi:"uninterruptiblePrimaryWait"`
+	// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+	UninterruptibleUpgrade *string `pulumi:"uninterruptibleUpgrade"`
+	// The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+	UpgradeMode *string `pulumi:"upgradeMode"`
+	// Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+	Vcluster2 *string `pulumi:"vcluster2"`
+	// Cluster ID.
+	VclusterId *int `pulumi:"vclusterId"`
+	// Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+	VclusterStatus *string `pulumi:"vclusterStatus"`
+	// Virtual cluster table. The structure of `vcluster` block is documented below.
+	Vclusters []HaVcluster `pulumi:"vclusters"`
+	// VDOMs in virtual cluster 1.
+	Vdom *string `pulumi:"vdom"`
+	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam *string `pulumi:"vdomparam"`
+	// Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
+	Weight *string `pulumi:"weight"`
 }
 
 // The set of arguments for constructing a Ha resource.
 type HaArgs struct {
-	Arps                          pulumi.IntPtrInput
-	ArpsInterval                  pulumi.IntPtrInput
-	Authentication                pulumi.StringPtrInput
-	CpuThreshold                  pulumi.StringPtrInput
-	DynamicSortSubtable           pulumi.StringPtrInput
-	Encryption                    pulumi.StringPtrInput
-	FailoverHoldTime              pulumi.IntPtrInput
-	FtpProxyThreshold             pulumi.StringPtrInput
-	GratuitousArps                pulumi.StringPtrInput
-	GroupId                       pulumi.IntPtrInput
-	GroupName                     pulumi.StringPtrInput
-	HaDirect                      pulumi.StringPtrInput
-	HaEthType                     pulumi.StringPtrInput
-	HaMgmtInterfaces              HaHaMgmtInterfaceArrayInput
-	HaMgmtStatus                  pulumi.StringPtrInput
-	HaUptimeDiffMargin            pulumi.IntPtrInput
-	HbInterval                    pulumi.IntPtrInput
-	HbIntervalInMilliseconds      pulumi.StringPtrInput
-	HbLostThreshold               pulumi.IntPtrInput
-	Hbdev                         pulumi.StringPtrInput
-	HcEthType                     pulumi.StringPtrInput
-	HelloHolddown                 pulumi.IntPtrInput
-	HttpProxyThreshold            pulumi.StringPtrInput
-	ImapProxyThreshold            pulumi.StringPtrInput
-	InterClusterSessionSync       pulumi.StringPtrInput
-	Key                           pulumi.StringPtrInput
-	L2epEthType                   pulumi.StringPtrInput
-	LinkFailedSignal              pulumi.StringPtrInput
-	LoadBalanceAll                pulumi.StringPtrInput
-	LogicalSn                     pulumi.StringPtrInput
-	MemoryBasedFailover           pulumi.StringPtrInput
-	MemoryCompatibleMode          pulumi.StringPtrInput
-	MemoryFailoverFlipTimeout     pulumi.IntPtrInput
-	MemoryFailoverMonitorPeriod   pulumi.IntPtrInput
-	MemoryFailoverSampleRate      pulumi.IntPtrInput
-	MemoryFailoverThreshold       pulumi.IntPtrInput
-	MemoryThreshold               pulumi.StringPtrInput
-	Mode                          pulumi.StringPtrInput
-	Monitor                       pulumi.StringPtrInput
-	MulticastTtl                  pulumi.IntPtrInput
-	NntpProxyThreshold            pulumi.StringPtrInput
-	Override                      pulumi.StringPtrInput
-	OverrideWaitTime              pulumi.IntPtrInput
-	Password                      pulumi.StringPtrInput
-	PingserverFailoverThreshold   pulumi.IntPtrInput
-	PingserverFlipTimeout         pulumi.IntPtrInput
-	PingserverMonitorInterface    pulumi.StringPtrInput
+	// Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
+	Arps pulumi.IntPtrInput
+	// Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
+	ArpsInterval pulumi.IntPtrInput
+	// Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
+	Authentication pulumi.StringPtrInput
+	// Dynamic weighted load balancing CPU usage weight and high and low thresholds.
+	CpuThreshold pulumi.StringPtrInput
+	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+	DynamicSortSubtable pulumi.StringPtrInput
+	// Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
+	Encryption pulumi.StringPtrInput
+	// HA EVPN FDB TTL on primary box (5 - 3600 sec).
+	EvpnTtl pulumi.IntPtrInput
+	// Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+	FailoverHoldTime pulumi.IntPtrInput
+	// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
+	FtpProxyThreshold pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
+	GratuitousArps pulumi.StringPtrInput
+	// Cluster group ID  (0 - 255). Must be the same for all members.
+	GroupId pulumi.IntPtrInput
+	// Cluster group name. Must be the same for all members.
+	GroupName pulumi.StringPtrInput
+	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+	HaDirect pulumi.StringPtrInput
+	// HA heartbeat packet Ethertype (4-digit hex).
+	HaEthType pulumi.StringPtrInput
+	// Reserve interfaces to manage individual cluster units. The structure of `haMgmtInterfaces` block is documented below.
+	HaMgmtInterfaces HaHaMgmtInterfaceArrayInput
+	// Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
+	HaMgmtStatus pulumi.StringPtrInput
+	// Normally you would only reduce this value for failover testing.
+	HaUptimeDiffMargin pulumi.IntPtrInput
+	// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+	HbInterval pulumi.IntPtrInput
+	// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
+	HbIntervalInMilliseconds pulumi.StringPtrInput
+	// Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
+	HbLostThreshold pulumi.IntPtrInput
+	// Heartbeat interfaces. Must be the same for all members.
+	Hbdev pulumi.StringPtrInput
+	// Transparent mode HA heartbeat packet Ethertype (4-digit hex).
+	HcEthType pulumi.StringPtrInput
+	// Time to wait before changing from hello to work state (5 - 300 sec).
+	HelloHolddown pulumi.IntPtrInput
+	// Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
+	HttpProxyThreshold pulumi.StringPtrInput
+	// Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
+	ImapProxyThreshold pulumi.StringPtrInput
+	// Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
+	InterClusterSessionSync pulumi.StringPtrInput
+	// IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+	IpsecPhase2Proposal pulumi.StringPtrInput
+	// key
+	Key pulumi.StringPtrInput
+	// Telnet session HA heartbeat packet Ethertype (4-digit hex).
+	L2epEthType pulumi.StringPtrInput
+	// Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
+	LinkFailedSignal pulumi.StringPtrInput
+	// Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
+	LoadBalanceAll pulumi.StringPtrInput
+	// Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
+	LogicalSn pulumi.StringPtrInput
+	// Enable/disable memory based failover. Valid values: `enable`, `disable`.
+	MemoryBasedFailover pulumi.StringPtrInput
+	// Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
+	MemoryCompatibleMode pulumi.StringPtrInput
+	// Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+	MemoryFailoverFlipTimeout pulumi.IntPtrInput
+	// Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+	MemoryFailoverMonitorPeriod pulumi.IntPtrInput
+	// Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+	MemoryFailoverSampleRate pulumi.IntPtrInput
+	// Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+	MemoryFailoverThreshold pulumi.IntPtrInput
+	// Dynamic weighted load balancing memory usage weight and high and low thresholds.
+	MemoryThreshold pulumi.StringPtrInput
+	// HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
+	Mode pulumi.StringPtrInput
+	// Interfaces to check for port monitoring (or link failure).
+	Monitor pulumi.StringPtrInput
+	// HA multicast TTL on master (5 - 3600 sec).
+	MulticastTtl pulumi.IntPtrInput
+	// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
+	NntpProxyThreshold pulumi.StringPtrInput
+	// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+	Override pulumi.StringPtrInput
+	// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
+	OverrideWaitTime pulumi.IntPtrInput
+	// Cluster password. Must be the same for all members.
+	Password pulumi.StringPtrInput
+	// Remote IP monitoring failover threshold (0 - 50).
+	PingserverFailoverThreshold pulumi.IntPtrInput
+	// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
+	PingserverFlipTimeout pulumi.IntPtrInput
+	// Interfaces to check for remote IP monitoring.
+	PingserverMonitorInterface pulumi.StringPtrInput
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
 	PingserverSecondaryForceReset pulumi.StringPtrInput
-	PingserverSlaveForceReset     pulumi.StringPtrInput
-	Pop3ProxyThreshold            pulumi.StringPtrInput
-	Priority                      pulumi.IntPtrInput
-	RouteHold                     pulumi.IntPtrInput
-	RouteTtl                      pulumi.IntPtrInput
-	RouteWait                     pulumi.IntPtrInput
-	Schedule                      pulumi.StringPtrInput
-	SecondaryVcluster             HaSecondaryVclusterPtrInput
-	SessionPickup                 pulumi.StringPtrInput
-	SessionPickupConnectionless   pulumi.StringPtrInput
-	SessionPickupDelay            pulumi.StringPtrInput
-	SessionPickupExpectation      pulumi.StringPtrInput
-	SessionPickupNat              pulumi.StringPtrInput
-	SessionSyncDev                pulumi.StringPtrInput
-	SmtpProxyThreshold            pulumi.StringPtrInput
-	SsdFailover                   pulumi.StringPtrInput
-	StandaloneConfigSync          pulumi.StringPtrInput
-	StandaloneMgmtVdom            pulumi.StringPtrInput
-	SyncConfig                    pulumi.StringPtrInput
-	SyncPacketBalance             pulumi.StringPtrInput
-	UnicastGateway                pulumi.StringPtrInput
-	UnicastHb                     pulumi.StringPtrInput
-	UnicastHbNetmask              pulumi.StringPtrInput
-	UnicastHbPeerip               pulumi.StringPtrInput
-	UnicastPeers                  HaUnicastPeerArrayInput
-	UnicastStatus                 pulumi.StringPtrInput
-	UninterruptiblePrimaryWait    pulumi.IntPtrInput
-	UninterruptibleUpgrade        pulumi.StringPtrInput
-	Vcluster2                     pulumi.StringPtrInput
-	VclusterId                    pulumi.IntPtrInput
-	VclusterStatus                pulumi.StringPtrInput
-	Vclusters                     HaVclusterArrayInput
-	Vdom                          pulumi.StringPtrInput
-	Vdomparam                     pulumi.StringPtrInput
-	Weight                        pulumi.StringPtrInput
+	// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
+	PingserverSlaveForceReset pulumi.StringPtrInput
+	// Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
+	Pop3ProxyThreshold pulumi.StringPtrInput
+	// Increase the priority to select the primary unit (0 - 255).
+	Priority pulumi.IntPtrInput
+	// Time to wait between routing table updates to the cluster (0 - 3600 sec).
+	RouteHold pulumi.IntPtrInput
+	// TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
+	RouteTtl pulumi.IntPtrInput
+	// Time to wait before sending new routes to the cluster (0 - 3600 sec).
+	RouteWait pulumi.IntPtrInput
+	// Type of A-A load balancing. Use none if you have external load balancers.
+	Schedule pulumi.StringPtrInput
+	// Configure virtual cluster 2. The structure of `secondaryVcluster` block is documented below.
+	SecondaryVcluster HaSecondaryVclusterPtrInput
+	// Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
+	SessionPickup pulumi.StringPtrInput
+	// Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
+	SessionPickupConnectionless pulumi.StringPtrInput
+	// Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
+	SessionPickupDelay pulumi.StringPtrInput
+	// Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
+	SessionPickupExpectation pulumi.StringPtrInput
+	// Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
+	SessionPickupNat pulumi.StringPtrInput
+	// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
+	SessionSyncDev pulumi.StringPtrInput
+	// Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
+	SmtpProxyThreshold pulumi.StringPtrInput
+	// Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
+	SsdFailover pulumi.StringPtrInput
+	// Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
+	StandaloneConfigSync pulumi.StringPtrInput
+	// Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
+	StandaloneMgmtVdom pulumi.StringPtrInput
+	// Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
+	SyncConfig pulumi.StringPtrInput
+	// Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
+	SyncPacketBalance pulumi.StringPtrInput
+	// Default route gateway for unicast interface.
+	UnicastGateway pulumi.StringPtrInput
+	// Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
+	UnicastHb pulumi.StringPtrInput
+	// Unicast heartbeat netmask.
+	UnicastHbNetmask pulumi.StringPtrInput
+	// Unicast heartbeat peer IP.
+	UnicastHbPeerip pulumi.StringPtrInput
+	// Number of unicast peers. The structure of `unicastPeers` block is documented below.
+	UnicastPeers HaUnicastPeerArrayInput
+	// Enable/disable unicast connection. Valid values: `enable`, `disable`.
+	UnicastStatus pulumi.StringPtrInput
+	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+	UninterruptiblePrimaryWait pulumi.IntPtrInput
+	// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
+	UninterruptibleUpgrade pulumi.StringPtrInput
+	// The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+	UpgradeMode pulumi.StringPtrInput
+	// Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
+	Vcluster2 pulumi.StringPtrInput
+	// Cluster ID.
+	VclusterId pulumi.IntPtrInput
+	// Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
+	VclusterStatus pulumi.StringPtrInput
+	// Virtual cluster table. The structure of `vcluster` block is documented below.
+	Vclusters HaVclusterArrayInput
+	// VDOMs in virtual cluster 1.
+	Vdom pulumi.StringPtrInput
+	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput
+	// Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
+	Weight pulumi.StringPtrInput
 }
 
 func (HaArgs) ElementType() reflect.Type {
@@ -620,334 +1111,437 @@ func (o HaOutput) ToHaOutputWithContext(ctx context.Context) HaOutput {
 	return o
 }
 
+// Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time.
 func (o HaOutput) Arps() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.Arps }).(pulumi.IntOutput)
 }
 
+// Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic.
 func (o HaOutput) ArpsInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.ArpsInterval }).(pulumi.IntOutput)
 }
 
+// Enable/disable heartbeat message authentication. Valid values: `enable`, `disable`.
 func (o HaOutput) Authentication() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.Authentication }).(pulumi.StringOutput)
 }
 
+// Dynamic weighted load balancing CPU usage weight and high and low thresholds.
 func (o HaOutput) CpuThreshold() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.CpuThreshold }).(pulumi.StringOutput)
 }
 
+// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o HaOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+// Enable/disable heartbeat message encryption. Valid values: `enable`, `disable`.
 func (o HaOutput) Encryption() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.Encryption }).(pulumi.StringOutput)
 }
 
+// HA EVPN FDB TTL on primary box (5 - 3600 sec).
+func (o HaOutput) EvpnTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.EvpnTtl }).(pulumi.IntOutput)
+}
+
+// Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
 func (o HaOutput) FailoverHoldTime() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.FailoverHoldTime }).(pulumi.IntOutput)
 }
 
+// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
 func (o HaOutput) FtpProxyThreshold() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.FtpProxyThreshold }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o HaOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Ha) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
 func (o HaOutput) GratuitousArps() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.GratuitousArps }).(pulumi.StringOutput)
 }
 
+// Cluster group ID  (0 - 255). Must be the same for all members.
 func (o HaOutput) GroupId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.GroupId }).(pulumi.IntOutput)
 }
 
+// Cluster group name. Must be the same for all members.
 func (o HaOutput) GroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.GroupName }).(pulumi.StringOutput)
 }
 
+// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
 func (o HaOutput) HaDirect() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.HaDirect }).(pulumi.StringOutput)
 }
 
+// HA heartbeat packet Ethertype (4-digit hex).
 func (o HaOutput) HaEthType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.HaEthType }).(pulumi.StringOutput)
 }
 
+// Reserve interfaces to manage individual cluster units. The structure of `haMgmtInterfaces` block is documented below.
 func (o HaOutput) HaMgmtInterfaces() HaHaMgmtInterfaceArrayOutput {
 	return o.ApplyT(func(v *Ha) HaHaMgmtInterfaceArrayOutput { return v.HaMgmtInterfaces }).(HaHaMgmtInterfaceArrayOutput)
 }
 
+// Enable to reserve interfaces to manage individual cluster units. Valid values: `enable`, `disable`.
 func (o HaOutput) HaMgmtStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.HaMgmtStatus }).(pulumi.StringOutput)
 }
 
+// Normally you would only reduce this value for failover testing.
 func (o HaOutput) HaUptimeDiffMargin() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.HaUptimeDiffMargin }).(pulumi.IntOutput)
 }
 
+// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
 func (o HaOutput) HbInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.HbInterval }).(pulumi.IntOutput)
 }
 
+// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
 func (o HaOutput) HbIntervalInMilliseconds() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.HbIntervalInMilliseconds }).(pulumi.StringOutput)
 }
 
+// Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
 func (o HaOutput) HbLostThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.HbLostThreshold }).(pulumi.IntOutput)
 }
 
+// Heartbeat interfaces. Must be the same for all members.
 func (o HaOutput) Hbdev() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.Hbdev }).(pulumi.StringOutput)
 }
 
+// Transparent mode HA heartbeat packet Ethertype (4-digit hex).
 func (o HaOutput) HcEthType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.HcEthType }).(pulumi.StringOutput)
 }
 
+// Time to wait before changing from hello to work state (5 - 300 sec).
 func (o HaOutput) HelloHolddown() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.HelloHolddown }).(pulumi.IntOutput)
 }
 
+// Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions.
 func (o HaOutput) HttpProxyThreshold() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.HttpProxyThreshold }).(pulumi.StringOutput)
 }
 
+// Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions.
 func (o HaOutput) ImapProxyThreshold() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.ImapProxyThreshold }).(pulumi.StringOutput)
 }
 
+// Enable/disable synchronization of sessions among HA clusters. Valid values: `enable`, `disable`.
 func (o HaOutput) InterClusterSessionSync() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.InterClusterSessionSync }).(pulumi.StringOutput)
 }
 
+// IPsec phase2 proposal. Valid values: `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes128gcm`, `aes256gcm`, `chacha20poly1305`.
+func (o HaOutput) IpsecPhase2Proposal() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.IpsecPhase2Proposal }).(pulumi.StringOutput)
+}
+
+// key
 func (o HaOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringPtrOutput { return v.Key }).(pulumi.StringPtrOutput)
 }
 
+// Telnet session HA heartbeat packet Ethertype (4-digit hex).
 func (o HaOutput) L2epEthType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.L2epEthType }).(pulumi.StringOutput)
 }
 
+// Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. Valid values: `enable`, `disable`.
 func (o HaOutput) LinkFailedSignal() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.LinkFailedSignal }).(pulumi.StringOutput)
 }
 
+// Enable to load balance TCP sessions. Disable to load balance proxy sessions only. Valid values: `enable`, `disable`.
 func (o HaOutput) LoadBalanceAll() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.LoadBalanceAll }).(pulumi.StringOutput)
 }
 
+// Enable/disable usage of the logical serial number. Valid values: `enable`, `disable`.
 func (o HaOutput) LogicalSn() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.LogicalSn }).(pulumi.StringOutput)
 }
 
+// Enable/disable memory based failover. Valid values: `enable`, `disable`.
 func (o HaOutput) MemoryBasedFailover() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.MemoryBasedFailover }).(pulumi.StringOutput)
 }
 
+// Enable/disable memory compatible mode. Valid values: `enable`, `disable`.
 func (o HaOutput) MemoryCompatibleMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.MemoryCompatibleMode }).(pulumi.StringOutput)
 }
 
+// Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
 func (o HaOutput) MemoryFailoverFlipTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.MemoryFailoverFlipTimeout }).(pulumi.IntOutput)
 }
 
+// Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
 func (o HaOutput) MemoryFailoverMonitorPeriod() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.MemoryFailoverMonitorPeriod }).(pulumi.IntOutput)
 }
 
+// Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
 func (o HaOutput) MemoryFailoverSampleRate() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.MemoryFailoverSampleRate }).(pulumi.IntOutput)
 }
 
+// Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
 func (o HaOutput) MemoryFailoverThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.MemoryFailoverThreshold }).(pulumi.IntOutput)
 }
 
+// Dynamic weighted load balancing memory usage weight and high and low thresholds.
 func (o HaOutput) MemoryThreshold() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.MemoryThreshold }).(pulumi.StringOutput)
 }
 
+// HA mode. Must be the same for all members. FGSP requires standalone. Valid values: `standalone`, `a-a`, `a-p`.
 func (o HaOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
 }
 
+// Interfaces to check for port monitoring (or link failure).
 func (o HaOutput) Monitor() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.Monitor }).(pulumi.StringOutput)
 }
 
+// HA multicast TTL on master (5 - 3600 sec).
 func (o HaOutput) MulticastTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.MulticastTtl }).(pulumi.IntOutput)
 }
 
+// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
 func (o HaOutput) NntpProxyThreshold() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.NntpProxyThreshold }).(pulumi.StringOutput)
 }
 
+// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
 func (o HaOutput) Override() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.Override }).(pulumi.StringOutput)
 }
 
+// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
 func (o HaOutput) OverrideWaitTime() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.OverrideWaitTime }).(pulumi.IntOutput)
 }
 
+// Cluster password. Must be the same for all members.
 func (o HaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Remote IP monitoring failover threshold (0 - 50).
 func (o HaOutput) PingserverFailoverThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.PingserverFailoverThreshold }).(pulumi.IntOutput)
 }
 
+// Time to wait in minutes before renegotiating after a remote IP monitoring failover.
 func (o HaOutput) PingserverFlipTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.PingserverFlipTimeout }).(pulumi.IntOutput)
 }
 
+// Interfaces to check for remote IP monitoring.
 func (o HaOutput) PingserverMonitorInterface() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.PingserverMonitorInterface }).(pulumi.StringOutput)
 }
 
+// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
 func (o HaOutput) PingserverSecondaryForceReset() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.PingserverSecondaryForceReset }).(pulumi.StringOutput)
 }
 
+// Enable to force the cluster to negotiate after a remote IP monitoring failover. Valid values: `enable`, `disable`.
 func (o HaOutput) PingserverSlaveForceReset() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.PingserverSlaveForceReset }).(pulumi.StringOutput)
 }
 
+// Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions.
 func (o HaOutput) Pop3ProxyThreshold() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.Pop3ProxyThreshold }).(pulumi.StringOutput)
 }
 
+// Increase the priority to select the primary unit (0 - 255).
 func (o HaOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
 }
 
+// Time to wait between routing table updates to the cluster (0 - 3600 sec).
 func (o HaOutput) RouteHold() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.RouteHold }).(pulumi.IntOutput)
 }
 
+// TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover.
 func (o HaOutput) RouteTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.RouteTtl }).(pulumi.IntOutput)
 }
 
+// Time to wait before sending new routes to the cluster (0 - 3600 sec).
 func (o HaOutput) RouteWait() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.RouteWait }).(pulumi.IntOutput)
 }
 
+// Type of A-A load balancing. Use none if you have external load balancers.
 func (o HaOutput) Schedule() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.Schedule }).(pulumi.StringOutput)
 }
 
+// Configure virtual cluster 2. The structure of `secondaryVcluster` block is documented below.
 func (o HaOutput) SecondaryVcluster() HaSecondaryVclusterOutput {
 	return o.ApplyT(func(v *Ha) HaSecondaryVclusterOutput { return v.SecondaryVcluster }).(HaSecondaryVclusterOutput)
 }
 
+// Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. Valid values: `enable`, `disable`.
 func (o HaOutput) SessionPickup() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.SessionPickup }).(pulumi.StringOutput)
 }
 
+// Enable/disable UDP and ICMP session sync. Valid values: `enable`, `disable`.
 func (o HaOutput) SessionPickupConnectionless() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.SessionPickupConnectionless }).(pulumi.StringOutput)
 }
 
+// Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. Valid values: `enable`, `disable`.
 func (o HaOutput) SessionPickupDelay() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.SessionPickupDelay }).(pulumi.StringOutput)
 }
 
+// Enable/disable session helper expectation session sync for FGSP. Valid values: `enable`, `disable`.
 func (o HaOutput) SessionPickupExpectation() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.SessionPickupExpectation }).(pulumi.StringOutput)
 }
 
+// Enable/disable NAT session sync for FGSP. Valid values: `enable`, `disable`.
 func (o HaOutput) SessionPickupNat() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.SessionPickupNat }).(pulumi.StringOutput)
 }
 
+// Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
 func (o HaOutput) SessionSyncDev() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.SessionSyncDev }).(pulumi.StringOutput)
 }
 
+// Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions.
 func (o HaOutput) SmtpProxyThreshold() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.SmtpProxyThreshold }).(pulumi.StringOutput)
 }
 
+// Enable/disable automatic HA failover on SSD disk failure. Valid values: `enable`, `disable`.
 func (o HaOutput) SsdFailover() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.SsdFailover }).(pulumi.StringOutput)
 }
 
+// Enable/disable FGSP configuration synchronization. Valid values: `enable`, `disable`.
 func (o HaOutput) StandaloneConfigSync() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.StandaloneConfigSync }).(pulumi.StringOutput)
 }
 
+// Enable/disable standalone management VDOM. Valid values: `enable`, `disable`.
 func (o HaOutput) StandaloneMgmtVdom() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.StandaloneMgmtVdom }).(pulumi.StringOutput)
 }
 
+// Enable/disable configuration synchronization. Valid values: `enable`, `disable`.
 func (o HaOutput) SyncConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.SyncConfig }).(pulumi.StringOutput)
 }
 
+// Enable/disable HA packet distribution to multiple CPUs. Valid values: `enable`, `disable`.
 func (o HaOutput) SyncPacketBalance() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.SyncPacketBalance }).(pulumi.StringOutput)
 }
 
+// Default route gateway for unicast interface.
 func (o HaOutput) UnicastGateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.UnicastGateway }).(pulumi.StringOutput)
 }
 
+// Enable/disable unicast heartbeat. Valid values: `enable`, `disable`.
 func (o HaOutput) UnicastHb() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.UnicastHb }).(pulumi.StringOutput)
 }
 
+// Unicast heartbeat netmask.
 func (o HaOutput) UnicastHbNetmask() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.UnicastHbNetmask }).(pulumi.StringOutput)
 }
 
+// Unicast heartbeat peer IP.
 func (o HaOutput) UnicastHbPeerip() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.UnicastHbPeerip }).(pulumi.StringOutput)
 }
 
+// Number of unicast peers. The structure of `unicastPeers` block is documented below.
 func (o HaOutput) UnicastPeers() HaUnicastPeerArrayOutput {
 	return o.ApplyT(func(v *Ha) HaUnicastPeerArrayOutput { return v.UnicastPeers }).(HaUnicastPeerArrayOutput)
 }
 
+// Enable/disable unicast connection. Valid values: `enable`, `disable`.
 func (o HaOutput) UnicastStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.UnicastStatus }).(pulumi.StringOutput)
 }
 
+// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
 func (o HaOutput) UninterruptiblePrimaryWait() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.UninterruptiblePrimaryWait }).(pulumi.IntOutput)
 }
 
+// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
 func (o HaOutput) UninterruptibleUpgrade() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.UninterruptibleUpgrade }).(pulumi.StringOutput)
 }
 
+// The mode to upgrade a cluster. Valid values: `simultaneous`, `uninterruptible`, `local-only`, `secondary-only`.
+func (o HaOutput) UpgradeMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.UpgradeMode }).(pulumi.StringOutput)
+}
+
+// Enable/disable virtual cluster 2 for virtual clustering. Valid values: `enable`, `disable`.
 func (o HaOutput) Vcluster2() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.Vcluster2 }).(pulumi.StringOutput)
 }
 
+// Cluster ID.
 func (o HaOutput) VclusterId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.VclusterId }).(pulumi.IntOutput)
 }
 
+// Enable/disable virtual cluster for virtual clustering. Valid values: `enable`, `disable`.
 func (o HaOutput) VclusterStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.VclusterStatus }).(pulumi.StringOutput)
 }
 
+// Virtual cluster table. The structure of `vcluster` block is documented below.
 func (o HaOutput) Vclusters() HaVclusterArrayOutput {
 	return o.ApplyT(func(v *Ha) HaVclusterArrayOutput { return v.Vclusters }).(HaVclusterArrayOutput)
 }
 
+// VDOMs in virtual cluster 1.
 func (o HaOutput) Vdom() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.Vdom }).(pulumi.StringOutput)
 }
 
+// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 func (o HaOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
+// Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
 func (o HaOutput) Weight() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.Weight }).(pulumi.StringOutput)
 }

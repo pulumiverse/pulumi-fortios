@@ -17,12 +17,19 @@ __all__ = ['LldpprofileArgs', 'Lldpprofile']
 class LldpprofileArgs:
     def __init__(__self__, *,
                  auto_isl: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_encrypt: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_identity: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_macsec_profile: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_reauth: Optional[pulumi.Input[int]] = None,
+                 auto_isl_auth_user: Optional[pulumi.Input[str]] = None,
                  auto_isl_hello_timer: Optional[pulumi.Input[int]] = None,
                  auto_isl_port_group: Optional[pulumi.Input[int]] = None,
                  auto_isl_receive_timeout: Optional[pulumi.Input[int]] = None,
                  auto_mclag_icl: Optional[pulumi.Input[str]] = None,
                  custom_tlvs: Optional[pulumi.Input[Sequence[pulumi.Input['LldpprofileCustomTlvArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  med_location_services: Optional[pulumi.Input[Sequence[pulumi.Input['LldpprofileMedLocationServiceArgs']]]] = None,
                  med_network_policies: Optional[pulumi.Input[Sequence[pulumi.Input['LldpprofileMedNetworkPolicyArgs']]]] = None,
                  med_tlvs: Optional[pulumi.Input[str]] = None,
@@ -33,12 +40,19 @@ class LldpprofileArgs:
         """
         The set of arguments for constructing a Lldpprofile resource.
         :param pulumi.Input[str] auto_isl: Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] auto_isl_auth: Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+        :param pulumi.Input[str] auto_isl_auth_encrypt: Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+        :param pulumi.Input[str] auto_isl_auth_identity: Auto inter-switch LAG authentication identity.
+        :param pulumi.Input[str] auto_isl_auth_macsec_profile: Auto inter-switch LAG macsec profile for encryption.
+        :param pulumi.Input[int] auto_isl_auth_reauth: Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+        :param pulumi.Input[str] auto_isl_auth_user: Auto inter-switch LAG authentication user certificate.
         :param pulumi.Input[int] auto_isl_hello_timer: Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
         :param pulumi.Input[int] auto_isl_port_group: Auto inter-switch LAG port group ID (0 - 9).
         :param pulumi.Input[int] auto_isl_receive_timeout: Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9).
         :param pulumi.Input[str] auto_mclag_icl: Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['LldpprofileCustomTlvArgs']]] custom_tlvs: Configuration method to edit custom TLV entries. The structure of `custom_tlvs` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['LldpprofileMedLocationServiceArgs']]] med_location_services: Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `med_location_service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['LldpprofileMedNetworkPolicyArgs']]] med_network_policies: Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `med_network_policy` block is documented below.
         :param pulumi.Input[str] med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
@@ -49,6 +63,18 @@ class LldpprofileArgs:
         """
         if auto_isl is not None:
             pulumi.set(__self__, "auto_isl", auto_isl)
+        if auto_isl_auth is not None:
+            pulumi.set(__self__, "auto_isl_auth", auto_isl_auth)
+        if auto_isl_auth_encrypt is not None:
+            pulumi.set(__self__, "auto_isl_auth_encrypt", auto_isl_auth_encrypt)
+        if auto_isl_auth_identity is not None:
+            pulumi.set(__self__, "auto_isl_auth_identity", auto_isl_auth_identity)
+        if auto_isl_auth_macsec_profile is not None:
+            pulumi.set(__self__, "auto_isl_auth_macsec_profile", auto_isl_auth_macsec_profile)
+        if auto_isl_auth_reauth is not None:
+            pulumi.set(__self__, "auto_isl_auth_reauth", auto_isl_auth_reauth)
+        if auto_isl_auth_user is not None:
+            pulumi.set(__self__, "auto_isl_auth_user", auto_isl_auth_user)
         if auto_isl_hello_timer is not None:
             pulumi.set(__self__, "auto_isl_hello_timer", auto_isl_hello_timer)
         if auto_isl_port_group is not None:
@@ -61,6 +87,8 @@ class LldpprofileArgs:
             pulumi.set(__self__, "custom_tlvs", custom_tlvs)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if med_location_services is not None:
             pulumi.set(__self__, "med_location_services", med_location_services)
         if med_network_policies is not None:
@@ -87,6 +115,78 @@ class LldpprofileArgs:
     @auto_isl.setter
     def auto_isl(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auto_isl", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuth")
+    def auto_isl_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+        """
+        return pulumi.get(self, "auto_isl_auth")
+
+    @auto_isl_auth.setter
+    def auto_isl_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthEncrypt")
+    def auto_isl_auth_encrypt(self) -> Optional[pulumi.Input[str]]:
+        """
+        Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+        """
+        return pulumi.get(self, "auto_isl_auth_encrypt")
+
+    @auto_isl_auth_encrypt.setter
+    def auto_isl_auth_encrypt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_encrypt", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthIdentity")
+    def auto_isl_auth_identity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Auto inter-switch LAG authentication identity.
+        """
+        return pulumi.get(self, "auto_isl_auth_identity")
+
+    @auto_isl_auth_identity.setter
+    def auto_isl_auth_identity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_identity", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthMacsecProfile")
+    def auto_isl_auth_macsec_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Auto inter-switch LAG macsec profile for encryption.
+        """
+        return pulumi.get(self, "auto_isl_auth_macsec_profile")
+
+    @auto_isl_auth_macsec_profile.setter
+    def auto_isl_auth_macsec_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_macsec_profile", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthReauth")
+    def auto_isl_auth_reauth(self) -> Optional[pulumi.Input[int]]:
+        """
+        Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+        """
+        return pulumi.get(self, "auto_isl_auth_reauth")
+
+    @auto_isl_auth_reauth.setter
+    def auto_isl_auth_reauth(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_isl_auth_reauth", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthUser")
+    def auto_isl_auth_user(self) -> Optional[pulumi.Input[str]]:
+        """
+        Auto inter-switch LAG authentication user certificate.
+        """
+        return pulumi.get(self, "auto_isl_auth_user")
+
+    @auto_isl_auth_user.setter
+    def auto_isl_auth_user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_user", value)
 
     @property
     @pulumi.getter(name="autoIslHelloTimer")
@@ -159,6 +259,18 @@ class LldpprofileArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="medLocationServices")
@@ -249,12 +361,19 @@ class LldpprofileArgs:
 class _LldpprofileState:
     def __init__(__self__, *,
                  auto_isl: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_encrypt: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_identity: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_macsec_profile: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_reauth: Optional[pulumi.Input[int]] = None,
+                 auto_isl_auth_user: Optional[pulumi.Input[str]] = None,
                  auto_isl_hello_timer: Optional[pulumi.Input[int]] = None,
                  auto_isl_port_group: Optional[pulumi.Input[int]] = None,
                  auto_isl_receive_timeout: Optional[pulumi.Input[int]] = None,
                  auto_mclag_icl: Optional[pulumi.Input[str]] = None,
                  custom_tlvs: Optional[pulumi.Input[Sequence[pulumi.Input['LldpprofileCustomTlvArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  med_location_services: Optional[pulumi.Input[Sequence[pulumi.Input['LldpprofileMedLocationServiceArgs']]]] = None,
                  med_network_policies: Optional[pulumi.Input[Sequence[pulumi.Input['LldpprofileMedNetworkPolicyArgs']]]] = None,
                  med_tlvs: Optional[pulumi.Input[str]] = None,
@@ -265,12 +384,19 @@ class _LldpprofileState:
         """
         Input properties used for looking up and filtering Lldpprofile resources.
         :param pulumi.Input[str] auto_isl: Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] auto_isl_auth: Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+        :param pulumi.Input[str] auto_isl_auth_encrypt: Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+        :param pulumi.Input[str] auto_isl_auth_identity: Auto inter-switch LAG authentication identity.
+        :param pulumi.Input[str] auto_isl_auth_macsec_profile: Auto inter-switch LAG macsec profile for encryption.
+        :param pulumi.Input[int] auto_isl_auth_reauth: Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+        :param pulumi.Input[str] auto_isl_auth_user: Auto inter-switch LAG authentication user certificate.
         :param pulumi.Input[int] auto_isl_hello_timer: Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
         :param pulumi.Input[int] auto_isl_port_group: Auto inter-switch LAG port group ID (0 - 9).
         :param pulumi.Input[int] auto_isl_receive_timeout: Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9).
         :param pulumi.Input[str] auto_mclag_icl: Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['LldpprofileCustomTlvArgs']]] custom_tlvs: Configuration method to edit custom TLV entries. The structure of `custom_tlvs` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['LldpprofileMedLocationServiceArgs']]] med_location_services: Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `med_location_service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['LldpprofileMedNetworkPolicyArgs']]] med_network_policies: Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `med_network_policy` block is documented below.
         :param pulumi.Input[str] med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
@@ -281,6 +407,18 @@ class _LldpprofileState:
         """
         if auto_isl is not None:
             pulumi.set(__self__, "auto_isl", auto_isl)
+        if auto_isl_auth is not None:
+            pulumi.set(__self__, "auto_isl_auth", auto_isl_auth)
+        if auto_isl_auth_encrypt is not None:
+            pulumi.set(__self__, "auto_isl_auth_encrypt", auto_isl_auth_encrypt)
+        if auto_isl_auth_identity is not None:
+            pulumi.set(__self__, "auto_isl_auth_identity", auto_isl_auth_identity)
+        if auto_isl_auth_macsec_profile is not None:
+            pulumi.set(__self__, "auto_isl_auth_macsec_profile", auto_isl_auth_macsec_profile)
+        if auto_isl_auth_reauth is not None:
+            pulumi.set(__self__, "auto_isl_auth_reauth", auto_isl_auth_reauth)
+        if auto_isl_auth_user is not None:
+            pulumi.set(__self__, "auto_isl_auth_user", auto_isl_auth_user)
         if auto_isl_hello_timer is not None:
             pulumi.set(__self__, "auto_isl_hello_timer", auto_isl_hello_timer)
         if auto_isl_port_group is not None:
@@ -293,6 +431,8 @@ class _LldpprofileState:
             pulumi.set(__self__, "custom_tlvs", custom_tlvs)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if med_location_services is not None:
             pulumi.set(__self__, "med_location_services", med_location_services)
         if med_network_policies is not None:
@@ -319,6 +459,78 @@ class _LldpprofileState:
     @auto_isl.setter
     def auto_isl(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auto_isl", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuth")
+    def auto_isl_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+        """
+        return pulumi.get(self, "auto_isl_auth")
+
+    @auto_isl_auth.setter
+    def auto_isl_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthEncrypt")
+    def auto_isl_auth_encrypt(self) -> Optional[pulumi.Input[str]]:
+        """
+        Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+        """
+        return pulumi.get(self, "auto_isl_auth_encrypt")
+
+    @auto_isl_auth_encrypt.setter
+    def auto_isl_auth_encrypt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_encrypt", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthIdentity")
+    def auto_isl_auth_identity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Auto inter-switch LAG authentication identity.
+        """
+        return pulumi.get(self, "auto_isl_auth_identity")
+
+    @auto_isl_auth_identity.setter
+    def auto_isl_auth_identity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_identity", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthMacsecProfile")
+    def auto_isl_auth_macsec_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Auto inter-switch LAG macsec profile for encryption.
+        """
+        return pulumi.get(self, "auto_isl_auth_macsec_profile")
+
+    @auto_isl_auth_macsec_profile.setter
+    def auto_isl_auth_macsec_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_macsec_profile", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthReauth")
+    def auto_isl_auth_reauth(self) -> Optional[pulumi.Input[int]]:
+        """
+        Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+        """
+        return pulumi.get(self, "auto_isl_auth_reauth")
+
+    @auto_isl_auth_reauth.setter
+    def auto_isl_auth_reauth(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_isl_auth_reauth", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthUser")
+    def auto_isl_auth_user(self) -> Optional[pulumi.Input[str]]:
+        """
+        Auto inter-switch LAG authentication user certificate.
+        """
+        return pulumi.get(self, "auto_isl_auth_user")
+
+    @auto_isl_auth_user.setter
+    def auto_isl_auth_user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_user", value)
 
     @property
     @pulumi.getter(name="autoIslHelloTimer")
@@ -391,6 +603,18 @@ class _LldpprofileState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="medLocationServices")
@@ -483,12 +707,19 @@ class Lldpprofile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_isl: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_encrypt: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_identity: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_macsec_profile: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_reauth: Optional[pulumi.Input[int]] = None,
+                 auto_isl_auth_user: Optional[pulumi.Input[str]] = None,
                  auto_isl_hello_timer: Optional[pulumi.Input[int]] = None,
                  auto_isl_port_group: Optional[pulumi.Input[int]] = None,
                  auto_isl_receive_timeout: Optional[pulumi.Input[int]] = None,
                  auto_mclag_icl: Optional[pulumi.Input[str]] = None,
                  custom_tlvs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileCustomTlvArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  med_location_services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedLocationServiceArgs']]]]] = None,
                  med_network_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedNetworkPolicyArgs']]]]] = None,
                  med_tlvs: Optional[pulumi.Input[str]] = None,
@@ -537,12 +768,19 @@ class Lldpprofile(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auto_isl: Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] auto_isl_auth: Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+        :param pulumi.Input[str] auto_isl_auth_encrypt: Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+        :param pulumi.Input[str] auto_isl_auth_identity: Auto inter-switch LAG authentication identity.
+        :param pulumi.Input[str] auto_isl_auth_macsec_profile: Auto inter-switch LAG macsec profile for encryption.
+        :param pulumi.Input[int] auto_isl_auth_reauth: Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+        :param pulumi.Input[str] auto_isl_auth_user: Auto inter-switch LAG authentication user certificate.
         :param pulumi.Input[int] auto_isl_hello_timer: Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
         :param pulumi.Input[int] auto_isl_port_group: Auto inter-switch LAG port group ID (0 - 9).
         :param pulumi.Input[int] auto_isl_receive_timeout: Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9).
         :param pulumi.Input[str] auto_mclag_icl: Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileCustomTlvArgs']]]] custom_tlvs: Configuration method to edit custom TLV entries. The structure of `custom_tlvs` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedLocationServiceArgs']]]] med_location_services: Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `med_location_service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedNetworkPolicyArgs']]]] med_network_policies: Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `med_network_policy` block is documented below.
         :param pulumi.Input[str] med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
@@ -610,12 +848,19 @@ class Lldpprofile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_isl: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_encrypt: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_identity: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_macsec_profile: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_reauth: Optional[pulumi.Input[int]] = None,
+                 auto_isl_auth_user: Optional[pulumi.Input[str]] = None,
                  auto_isl_hello_timer: Optional[pulumi.Input[int]] = None,
                  auto_isl_port_group: Optional[pulumi.Input[int]] = None,
                  auto_isl_receive_timeout: Optional[pulumi.Input[int]] = None,
                  auto_mclag_icl: Optional[pulumi.Input[str]] = None,
                  custom_tlvs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileCustomTlvArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  med_location_services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedLocationServiceArgs']]]]] = None,
                  med_network_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedNetworkPolicyArgs']]]]] = None,
                  med_tlvs: Optional[pulumi.Input[str]] = None,
@@ -633,12 +878,19 @@ class Lldpprofile(pulumi.CustomResource):
             __props__ = LldpprofileArgs.__new__(LldpprofileArgs)
 
             __props__.__dict__["auto_isl"] = auto_isl
+            __props__.__dict__["auto_isl_auth"] = auto_isl_auth
+            __props__.__dict__["auto_isl_auth_encrypt"] = auto_isl_auth_encrypt
+            __props__.__dict__["auto_isl_auth_identity"] = auto_isl_auth_identity
+            __props__.__dict__["auto_isl_auth_macsec_profile"] = auto_isl_auth_macsec_profile
+            __props__.__dict__["auto_isl_auth_reauth"] = auto_isl_auth_reauth
+            __props__.__dict__["auto_isl_auth_user"] = auto_isl_auth_user
             __props__.__dict__["auto_isl_hello_timer"] = auto_isl_hello_timer
             __props__.__dict__["auto_isl_port_group"] = auto_isl_port_group
             __props__.__dict__["auto_isl_receive_timeout"] = auto_isl_receive_timeout
             __props__.__dict__["auto_mclag_icl"] = auto_mclag_icl
             __props__.__dict__["custom_tlvs"] = custom_tlvs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["med_location_services"] = med_location_services
             __props__.__dict__["med_network_policies"] = med_network_policies
             __props__.__dict__["med_tlvs"] = med_tlvs
@@ -657,12 +909,19 @@ class Lldpprofile(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             auto_isl: Optional[pulumi.Input[str]] = None,
+            auto_isl_auth: Optional[pulumi.Input[str]] = None,
+            auto_isl_auth_encrypt: Optional[pulumi.Input[str]] = None,
+            auto_isl_auth_identity: Optional[pulumi.Input[str]] = None,
+            auto_isl_auth_macsec_profile: Optional[pulumi.Input[str]] = None,
+            auto_isl_auth_reauth: Optional[pulumi.Input[int]] = None,
+            auto_isl_auth_user: Optional[pulumi.Input[str]] = None,
             auto_isl_hello_timer: Optional[pulumi.Input[int]] = None,
             auto_isl_port_group: Optional[pulumi.Input[int]] = None,
             auto_isl_receive_timeout: Optional[pulumi.Input[int]] = None,
             auto_mclag_icl: Optional[pulumi.Input[str]] = None,
             custom_tlvs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileCustomTlvArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             med_location_services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedLocationServiceArgs']]]]] = None,
             med_network_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedNetworkPolicyArgs']]]]] = None,
             med_tlvs: Optional[pulumi.Input[str]] = None,
@@ -678,12 +937,19 @@ class Lldpprofile(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auto_isl: Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] auto_isl_auth: Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+        :param pulumi.Input[str] auto_isl_auth_encrypt: Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+        :param pulumi.Input[str] auto_isl_auth_identity: Auto inter-switch LAG authentication identity.
+        :param pulumi.Input[str] auto_isl_auth_macsec_profile: Auto inter-switch LAG macsec profile for encryption.
+        :param pulumi.Input[int] auto_isl_auth_reauth: Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+        :param pulumi.Input[str] auto_isl_auth_user: Auto inter-switch LAG authentication user certificate.
         :param pulumi.Input[int] auto_isl_hello_timer: Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3).
         :param pulumi.Input[int] auto_isl_port_group: Auto inter-switch LAG port group ID (0 - 9).
         :param pulumi.Input[int] auto_isl_receive_timeout: Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9).
         :param pulumi.Input[str] auto_mclag_icl: Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileCustomTlvArgs']]]] custom_tlvs: Configuration method to edit custom TLV entries. The structure of `custom_tlvs` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedLocationServiceArgs']]]] med_location_services: Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `med_location_service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedNetworkPolicyArgs']]]] med_network_policies: Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `med_network_policy` block is documented below.
         :param pulumi.Input[str] med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
@@ -697,12 +963,19 @@ class Lldpprofile(pulumi.CustomResource):
         __props__ = _LldpprofileState.__new__(_LldpprofileState)
 
         __props__.__dict__["auto_isl"] = auto_isl
+        __props__.__dict__["auto_isl_auth"] = auto_isl_auth
+        __props__.__dict__["auto_isl_auth_encrypt"] = auto_isl_auth_encrypt
+        __props__.__dict__["auto_isl_auth_identity"] = auto_isl_auth_identity
+        __props__.__dict__["auto_isl_auth_macsec_profile"] = auto_isl_auth_macsec_profile
+        __props__.__dict__["auto_isl_auth_reauth"] = auto_isl_auth_reauth
+        __props__.__dict__["auto_isl_auth_user"] = auto_isl_auth_user
         __props__.__dict__["auto_isl_hello_timer"] = auto_isl_hello_timer
         __props__.__dict__["auto_isl_port_group"] = auto_isl_port_group
         __props__.__dict__["auto_isl_receive_timeout"] = auto_isl_receive_timeout
         __props__.__dict__["auto_mclag_icl"] = auto_mclag_icl
         __props__.__dict__["custom_tlvs"] = custom_tlvs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["med_location_services"] = med_location_services
         __props__.__dict__["med_network_policies"] = med_network_policies
         __props__.__dict__["med_tlvs"] = med_tlvs
@@ -719,6 +992,54 @@ class Lldpprofile(pulumi.CustomResource):
         Enable/disable auto inter-switch LAG. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "auto_isl")
+
+    @property
+    @pulumi.getter(name="autoIslAuth")
+    def auto_isl_auth(self) -> pulumi.Output[str]:
+        """
+        Auto inter-switch LAG authentication mode. Valid values: `legacy`, `strict`, `relax`.
+        """
+        return pulumi.get(self, "auto_isl_auth")
+
+    @property
+    @pulumi.getter(name="autoIslAuthEncrypt")
+    def auto_isl_auth_encrypt(self) -> pulumi.Output[str]:
+        """
+        Auto inter-switch LAG encryption mode. Valid values: `none`, `mixed`, `must`.
+        """
+        return pulumi.get(self, "auto_isl_auth_encrypt")
+
+    @property
+    @pulumi.getter(name="autoIslAuthIdentity")
+    def auto_isl_auth_identity(self) -> pulumi.Output[str]:
+        """
+        Auto inter-switch LAG authentication identity.
+        """
+        return pulumi.get(self, "auto_isl_auth_identity")
+
+    @property
+    @pulumi.getter(name="autoIslAuthMacsecProfile")
+    def auto_isl_auth_macsec_profile(self) -> pulumi.Output[str]:
+        """
+        Auto inter-switch LAG macsec profile for encryption.
+        """
+        return pulumi.get(self, "auto_isl_auth_macsec_profile")
+
+    @property
+    @pulumi.getter(name="autoIslAuthReauth")
+    def auto_isl_auth_reauth(self) -> pulumi.Output[int]:
+        """
+        Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600).
+        """
+        return pulumi.get(self, "auto_isl_auth_reauth")
+
+    @property
+    @pulumi.getter(name="autoIslAuthUser")
+    def auto_isl_auth_user(self) -> pulumi.Output[str]:
+        """
+        Auto inter-switch LAG authentication user certificate.
+        """
+        return pulumi.get(self, "auto_isl_auth_user")
 
     @property
     @pulumi.getter(name="autoIslHelloTimer")
@@ -767,6 +1088,14 @@ class Lldpprofile(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="medLocationServices")

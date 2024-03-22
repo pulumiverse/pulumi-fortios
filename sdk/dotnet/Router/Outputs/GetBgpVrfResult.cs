@@ -31,7 +31,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetBgpVrfLeakTargetResult> LeakTargets;
         /// <summary>
-        /// Route Distinguisher: AA|AA:NN.
+        /// Route Distinguisher: AA:NN|A.B.C.D:NN.
         /// </summary>
         public readonly string Rd;
         /// <summary>

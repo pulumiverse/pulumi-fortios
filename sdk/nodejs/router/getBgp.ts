@@ -65,9 +65,17 @@ export interface GetBgpResult {
      */
     readonly additionalPathSelectVpnv4: number;
     /**
+     * Number of additional paths to be selected for each VPNv6 NLRI.
+     */
+    readonly additionalPathSelectVpnv6: number;
+    /**
      * Enable/disable VPNv4 additional-path capability.
      */
     readonly additionalPathVpnv4: string;
+    /**
+     * Enable/disable VPNv6 additional-path capability.
+     */
+    readonly additionalPathVpnv6: string;
     /**
      * Administrative distance modifications. The structure of `adminDistance` block is documented below.
      */
@@ -88,6 +96,10 @@ export interface GetBgpResult {
      * Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
      */
     readonly as: number;
+    /**
+     * Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+     */
+    readonly asString: string;
     /**
      * Enable/disable ignore AS path.
      */
@@ -124,6 +136,10 @@ export interface GetBgpResult {
      * Confederation peers. The structure of `confederationPeers` block is documented below.
      */
     readonly confederationPeers: outputs.router.GetBgpConfederationPeer[];
+    /**
+     * Enable/disable cross address family conditional advertisement.
+     */
+    readonly crossFamilyConditionalAdv: string;
     /**
      * Enable/disable route-flap dampening.
      */

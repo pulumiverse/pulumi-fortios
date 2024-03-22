@@ -276,7 +276,7 @@ class ServergroupServerListArgs:
                  weight: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] name: ICAP server name.
-        :param pulumi.Input[int] weight: Optionally assign a weight of the ICAP server for weighted load balancing (1 - 100, default = 10)
+        :param pulumi.Input[int] weight: Optionally assign a weight of the forwarding server for weighted load balancing (1 - 100, default = 10).
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -299,7 +299,7 @@ class ServergroupServerListArgs:
     @pulumi.getter
     def weight(self) -> Optional[pulumi.Input[int]]:
         """
-        Optionally assign a weight of the ICAP server for weighted load balancing (1 - 100, default = 10)
+        Optionally assign a weight of the forwarding server for weighted load balancing (1 - 100, default = 10).
         """
         return pulumi.get(self, "weight")
 

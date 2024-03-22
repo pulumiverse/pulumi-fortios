@@ -113,6 +113,8 @@ type Setting struct {
 	CnMatch pulumi.StringOutput `pulumi:"cnMatch"`
 	// CRL verification options. The structure of `crlVerification` block is documented below.
 	CrlVerification SettingCrlVerificationOutput `pulumi:"crlVerification"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -121,9 +123,19 @@ type Setting struct {
 	OcspDefaultServer pulumi.StringOutput `pulumi:"ocspDefaultServer"`
 	// Specify whether the OCSP URL is from certificate or configured OCSP server. Valid values: `certificate`, `server`.
 	OcspOption pulumi.StringOutput `pulumi:"ocspOption"`
-	// Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+	// Enable/disable receiving certificates using the OCSP.
 	OcspStatus pulumi.StringOutput `pulumi:"ocspStatus"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+	Proxy pulumi.StringOutput `pulumi:"proxy"`
+	// Proxy server password.
+	ProxyPassword pulumi.StringPtrOutput `pulumi:"proxyPassword"`
+	// Proxy server port (1 - 65535, default = 8080).
+	ProxyPort pulumi.IntOutput `pulumi:"proxyPort"`
+	// Proxy server user name.
+	ProxyUsername pulumi.StringOutput `pulumi:"proxyUsername"`
+	// Source IP address for dynamic AIA and OCSP queries.
+	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
 	// Source IP address to use to communicate with the OCSP server.
 	SslOcspSourceIp pulumi.StringOutput `pulumi:"sslOcspSourceIp"`
@@ -223,6 +235,8 @@ type settingState struct {
 	CnMatch *string `pulumi:"cnMatch"`
 	// CRL verification options. The structure of `crlVerification` block is documented below.
 	CrlVerification *SettingCrlVerification `pulumi:"crlVerification"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -231,9 +245,19 @@ type settingState struct {
 	OcspDefaultServer *string `pulumi:"ocspDefaultServer"`
 	// Specify whether the OCSP URL is from certificate or configured OCSP server. Valid values: `certificate`, `server`.
 	OcspOption *string `pulumi:"ocspOption"`
-	// Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+	// Enable/disable receiving certificates using the OCSP.
 	OcspStatus *string `pulumi:"ocspStatus"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+	Proxy *string `pulumi:"proxy"`
+	// Proxy server password.
+	ProxyPassword *string `pulumi:"proxyPassword"`
+	// Proxy server port (1 - 65535, default = 8080).
+	ProxyPort *int `pulumi:"proxyPort"`
+	// Proxy server user name.
+	ProxyUsername *string `pulumi:"proxyUsername"`
+	// Source IP address for dynamic AIA and OCSP queries.
+	SourceIp *string `pulumi:"sourceIp"`
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Source IP address to use to communicate with the OCSP server.
 	SslOcspSourceIp *string `pulumi:"sslOcspSourceIp"`
@@ -286,6 +310,8 @@ type SettingState struct {
 	CnMatch pulumi.StringPtrInput
 	// CRL verification options. The structure of `crlVerification` block is documented below.
 	CrlVerification SettingCrlVerificationPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -294,9 +320,19 @@ type SettingState struct {
 	OcspDefaultServer pulumi.StringPtrInput
 	// Specify whether the OCSP URL is from certificate or configured OCSP server. Valid values: `certificate`, `server`.
 	OcspOption pulumi.StringPtrInput
-	// Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+	// Enable/disable receiving certificates using the OCSP.
 	OcspStatus pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+	Proxy pulumi.StringPtrInput
+	// Proxy server password.
+	ProxyPassword pulumi.StringPtrInput
+	// Proxy server port (1 - 65535, default = 8080).
+	ProxyPort pulumi.IntPtrInput
+	// Proxy server user name.
+	ProxyUsername pulumi.StringPtrInput
+	// Source IP address for dynamic AIA and OCSP queries.
+	SourceIp pulumi.StringPtrInput
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Source IP address to use to communicate with the OCSP server.
 	SslOcspSourceIp pulumi.StringPtrInput
@@ -353,6 +389,8 @@ type settingArgs struct {
 	CnMatch *string `pulumi:"cnMatch"`
 	// CRL verification options. The structure of `crlVerification` block is documented below.
 	CrlVerification *SettingCrlVerification `pulumi:"crlVerification"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -361,9 +399,19 @@ type settingArgs struct {
 	OcspDefaultServer *string `pulumi:"ocspDefaultServer"`
 	// Specify whether the OCSP URL is from certificate or configured OCSP server. Valid values: `certificate`, `server`.
 	OcspOption *string `pulumi:"ocspOption"`
-	// Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+	// Enable/disable receiving certificates using the OCSP.
 	OcspStatus *string `pulumi:"ocspStatus"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+	Proxy *string `pulumi:"proxy"`
+	// Proxy server password.
+	ProxyPassword *string `pulumi:"proxyPassword"`
+	// Proxy server port (1 - 65535, default = 8080).
+	ProxyPort *int `pulumi:"proxyPort"`
+	// Proxy server user name.
+	ProxyUsername *string `pulumi:"proxyUsername"`
+	// Source IP address for dynamic AIA and OCSP queries.
+	SourceIp *string `pulumi:"sourceIp"`
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Source IP address to use to communicate with the OCSP server.
 	SslOcspSourceIp *string `pulumi:"sslOcspSourceIp"`
@@ -417,6 +465,8 @@ type SettingArgs struct {
 	CnMatch pulumi.StringPtrInput
 	// CRL verification options. The structure of `crlVerification` block is documented below.
 	CrlVerification SettingCrlVerificationPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -425,9 +475,19 @@ type SettingArgs struct {
 	OcspDefaultServer pulumi.StringPtrInput
 	// Specify whether the OCSP URL is from certificate or configured OCSP server. Valid values: `certificate`, `server`.
 	OcspOption pulumi.StringPtrInput
-	// Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+	// Enable/disable receiving certificates using the OCSP.
 	OcspStatus pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+	Proxy pulumi.StringPtrInput
+	// Proxy server password.
+	ProxyPassword pulumi.StringPtrInput
+	// Proxy server port (1 - 65535, default = 8080).
+	ProxyPort pulumi.IntPtrInput
+	// Proxy server user name.
+	ProxyUsername pulumi.StringPtrInput
+	// Source IP address for dynamic AIA and OCSP queries.
+	SourceIp pulumi.StringPtrInput
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Source IP address to use to communicate with the OCSP server.
 	SslOcspSourceIp pulumi.StringPtrInput
@@ -620,6 +680,11 @@ func (o SettingOutput) CrlVerification() SettingCrlVerificationOutput {
 	return o.ApplyT(func(v *Setting) SettingCrlVerificationOutput { return v.CrlVerification }).(SettingCrlVerificationOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Specify outgoing interface to reach server.
 func (o SettingOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
@@ -640,12 +705,37 @@ func (o SettingOutput) OcspOption() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.OcspOption }).(pulumi.StringOutput)
 }
 
-// Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+// Enable/disable receiving certificates using the OCSP.
 func (o SettingOutput) OcspStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.OcspStatus }).(pulumi.StringOutput)
 }
 
-// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+// Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+func (o SettingOutput) Proxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Proxy }).(pulumi.StringOutput)
+}
+
+// Proxy server password.
+func (o SettingOutput) ProxyPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.ProxyPassword }).(pulumi.StringPtrOutput)
+}
+
+// Proxy server port (1 - 65535, default = 8080).
+func (o SettingOutput) ProxyPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *Setting) pulumi.IntOutput { return v.ProxyPort }).(pulumi.IntOutput)
+}
+
+// Proxy server user name.
+func (o SettingOutput) ProxyUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.ProxyUsername }).(pulumi.StringOutput)
+}
+
+// Source IP address for dynamic AIA and OCSP queries.
+func (o SettingOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 func (o SettingOutput) SslMinProtoVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
 }

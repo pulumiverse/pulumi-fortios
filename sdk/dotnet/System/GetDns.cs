@@ -91,6 +91,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly int FqdnCacheTtl;
         /// <summary>
+        /// FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
+        /// </summary>
+        public readonly int FqdnMaxRefresh;
+        /// <summary>
         /// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
         /// </summary>
         public readonly int FqdnMinRefresh;
@@ -174,6 +178,8 @@ namespace Pulumiverse.Fortios.System
 
             int fqdnCacheTtl,
 
+            int fqdnMaxRefresh,
+
             int fqdnMinRefresh,
 
             string id,
@@ -216,6 +222,7 @@ namespace Pulumiverse.Fortios.System
             DnsOverTls = dnsOverTls;
             Domains = domains;
             FqdnCacheTtl = fqdnCacheTtl;
+            FqdnMaxRefresh = fqdnMaxRefresh;
             FqdnMinRefresh = fqdnMinRefresh;
             Id = id;
             Interface = @interface;

@@ -122,7 +122,15 @@ export class Multicastpolicy extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
-     * Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * Name of an existing IPS sensor.
+     */
+    public readonly ipsSensor!: pulumi.Output<string>;
+    /**
+     * Enable/disable logging traffic accepted by this policy.
      */
     public readonly logtraffic!: pulumi.Output<string>;
     /**
@@ -162,6 +170,10 @@ export class Multicastpolicy extends pulumi.CustomResource {
      */
     public readonly trafficShaper!: pulumi.Output<string>;
     /**
+     * Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+     */
+    public readonly utmStatus!: pulumi.Output<string>;
+    /**
      * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
      */
     public readonly uuid!: pulumi.Output<string>;
@@ -192,6 +204,8 @@ export class Multicastpolicy extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["endPort"] = state ? state.endPort : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
             resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
@@ -202,6 +216,7 @@ export class Multicastpolicy extends pulumi.CustomResource {
             resourceInputs["startPort"] = state ? state.startPort : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["trafficShaper"] = state ? state.trafficShaper : undefined;
+            resourceInputs["utmStatus"] = state ? state.utmStatus : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -227,6 +242,8 @@ export class Multicastpolicy extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["endPort"] = args ? args.endPort : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
             resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
@@ -237,6 +254,7 @@ export class Multicastpolicy extends pulumi.CustomResource {
             resourceInputs["startPort"] = args ? args.startPort : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["trafficShaper"] = args ? args.trafficShaper : undefined;
+            resourceInputs["utmStatus"] = args ? args.utmStatus : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -286,7 +304,15 @@ export interface MulticastpolicyState {
      */
     fosid?: pulumi.Input<number>;
     /**
-     * Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Name of an existing IPS sensor.
+     */
+    ipsSensor?: pulumi.Input<string>;
+    /**
+     * Enable/disable logging traffic accepted by this policy.
      */
     logtraffic?: pulumi.Input<string>;
     /**
@@ -325,6 +351,10 @@ export interface MulticastpolicyState {
      * Traffic shaper to apply to traffic forwarded by the multicast policy.
      */
     trafficShaper?: pulumi.Input<string>;
+    /**
+     * Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+     */
+    utmStatus?: pulumi.Input<string>;
     /**
      * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
      */
@@ -376,7 +406,15 @@ export interface MulticastpolicyArgs {
      */
     fosid?: pulumi.Input<number>;
     /**
-     * Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Name of an existing IPS sensor.
+     */
+    ipsSensor?: pulumi.Input<string>;
+    /**
+     * Enable/disable logging traffic accepted by this policy.
      */
     logtraffic?: pulumi.Input<string>;
     /**
@@ -415,6 +453,10 @@ export interface MulticastpolicyArgs {
      * Traffic shaper to apply to traffic forwarded by the multicast policy.
      */
     trafficShaper?: pulumi.Input<string>;
+    /**
+     * Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+     */
+    utmStatus?: pulumi.Input<string>;
     /**
      * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
      */

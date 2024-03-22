@@ -132,6 +132,12 @@ namespace Pulumiverse.Fortios.Log.Disk
         public Output<string> FilterType { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("fortiSwitch")]
+        public Output<string> FortiSwitch { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("forwardTraffic")]
@@ -142,6 +148,12 @@ namespace Pulumiverse.Fortios.Log.Disk
         /// </summary>
         [Output("freeStyles")]
         public Output<ImmutableArray<Outputs.FilterFreeStyle>> FreeStyles { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
@@ -401,6 +413,12 @@ namespace Pulumiverse.Fortios.Log.Disk
         public Input<string>? FilterType { get; set; }
 
         /// <summary>
+        /// Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("fortiSwitch")]
+        public Input<string>? FortiSwitch { get; set; }
+
+        /// <summary>
         /// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("forwardTraffic")]
@@ -417,6 +435,12 @@ namespace Pulumiverse.Fortios.Log.Disk
             get => _freeStyles ?? (_freeStyles = new InputList<Inputs.FilterFreeStyleArgs>());
             set => _freeStyles = value;
         }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
@@ -637,6 +661,12 @@ namespace Pulumiverse.Fortios.Log.Disk
         public Input<string>? FilterType { get; set; }
 
         /// <summary>
+        /// Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("fortiSwitch")]
+        public Input<string>? FortiSwitch { get; set; }
+
+        /// <summary>
         /// Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("forwardTraffic")]
@@ -653,6 +683,12 @@ namespace Pulumiverse.Fortios.Log.Disk
             get => _freeStyles ?? (_freeStyles = new InputList<Inputs.FilterFreeStyleGetArgs>());
             set => _freeStyles = value;
         }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.

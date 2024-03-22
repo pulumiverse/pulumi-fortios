@@ -94,6 +94,10 @@ export class Multicastaddress extends pulumi.CustomResource {
      */
     public readonly endIp!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Multicast address name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -140,6 +144,7 @@ export class Multicastaddress extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["endIp"] = state ? state.endIp : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["startIp"] = state ? state.startIp : undefined;
             resourceInputs["subnet"] = state ? state.subnet : undefined;
@@ -154,6 +159,7 @@ export class Multicastaddress extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["endIp"] = args ? args.endIp : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["startIp"] = args ? args.startIp : undefined;
             resourceInputs["subnet"] = args ? args.subnet : undefined;
@@ -191,6 +197,10 @@ export interface MulticastaddressState {
      * Final IPv4 address (inclusive) in the range for the address.
      */
     endIp?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Multicast address name.
      */
@@ -245,6 +255,10 @@ export interface MulticastaddressArgs {
      * Final IPv4 address (inclusive) in the range for the address.
      */
     endIp?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Multicast address name.
      */

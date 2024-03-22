@@ -12,8 +12,7 @@ namespace Pulumiverse.Fortios.Extendercontroller
 {
     /// <summary>
     /// Extender controller configuration.
-    /// 
-    /// &gt; The resource applies to FortiOS Version &gt;= 6.4.2. For FortiOS Version &lt; 6.4.2, see `fortios.extendercontroller.Extender`.
+    /// This resource will be deprecated. For FortiOS Version &gt;= 7.2.1, using `fortios.extensioncontroller.Extender`. For FortiOS version &lt; 7.2.1, see `fortios.extendercontroller.Extender`
     /// 
     /// ## Example Usage
     /// 
@@ -137,6 +136,12 @@ namespace Pulumiverse.Fortios.Extendercontroller
         public Output<string> Fosid { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// FortiExtender login password.
         /// </summary>
         [Output("loginPassword")]
@@ -253,6 +258,12 @@ namespace Pulumiverse.Fortios.Extendercontroller
         [Input("fosid")]
         public Input<string>? Fosid { get; set; }
 
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
         [Input("loginPassword")]
         private Input<string>? _loginPassword;
 
@@ -336,6 +347,12 @@ namespace Pulumiverse.Fortios.Extendercontroller
         /// </summary>
         [Input("fosid")]
         public Input<string>? Fosid { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("loginPassword")]
         private Input<string>? _loginPassword;

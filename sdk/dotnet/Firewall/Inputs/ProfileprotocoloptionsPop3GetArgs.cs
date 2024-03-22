@@ -26,7 +26,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? Options { get; set; }
 
         /// <summary>
-        /// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        /// Maximum in-memory file size that can be scanned (MB).
         /// </summary>
         [Input("oversizeLimit")]
         public Input<int>? OversizeLimit { get; set; }
@@ -68,7 +68,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<int>? UncompressedNestLimit { get; set; }
 
         /// <summary>
-        /// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        /// Maximum in-memory uncompressed file size that can be scanned (MB).
         /// </summary>
         [Input("uncompressedOversizeLimit")]
         public Input<int>? UncompressedOversizeLimit { get; set; }

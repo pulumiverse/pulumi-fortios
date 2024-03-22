@@ -22,7 +22,7 @@ class GetInterfaceResult:
     """
     A collection of values returned by getInterface.
     """
-    def __init__(__self__, ac_name=None, aggregate=None, aggregate_type=None, algorithm=None, alias=None, allowaccess=None, ap_discover=None, arpforward=None, auth_cert=None, auth_portal_addr=None, auth_type=None, auto_auth_extension_device=None, bandwidth_measure_time=None, bfd=None, bfd_desired_min_tx=None, bfd_detect_mult=None, bfd_required_min_rx=None, broadcast_forticlient_discovery=None, broadcast_forward=None, captive_portal=None, cli_conn_status=None, client_options=None, color=None, dedicated_to=None, defaultgw=None, description=None, detected_peer_mtu=None, detectprotocol=None, detectserver=None, device_access_list=None, device_identification=None, device_identification_active_scan=None, device_netscan=None, device_user_identification=None, devindex=None, dhcp_classless_route_addition=None, dhcp_client_identifier=None, dhcp_relay_agent_option=None, dhcp_relay_interface=None, dhcp_relay_interface_select_method=None, dhcp_relay_ip=None, dhcp_relay_link_selection=None, dhcp_relay_request_all_server=None, dhcp_relay_service=None, dhcp_relay_type=None, dhcp_renew_time=None, dhcp_snooping_server_lists=None, disc_retry_timeout=None, disconnect_threshold=None, distance=None, dns_server_override=None, dns_server_protocol=None, drop_fragment=None, drop_overlapped_fragment=None, eap_ca_cert=None, eap_identity=None, eap_method=None, eap_password=None, eap_supplicant=None, eap_user_cert=None, egress_shaping_profile=None, endpoint_compliance=None, estimated_downstream_bandwidth=None, estimated_upstream_bandwidth=None, explicit_ftp_proxy=None, explicit_web_proxy=None, external=None, fail_action_on_extender=None, fail_alert_interfaces=None, fail_alert_method=None, fail_detect=None, fail_detect_option=None, fortiheartbeat=None, fortilink=None, fortilink_backup_link=None, fortilink_neighbor_detect=None, fortilink_split_interface=None, fortilink_stacking=None, forward_domain=None, forward_error_correction=None, gwdetect=None, ha_priority=None, icmp_accept_redirect=None, icmp_send_redirect=None, id=None, ident_accept=None, idle_timeout=None, ike_saml_server=None, inbandwidth=None, ingress_shaping_profile=None, ingress_spillover_threshold=None, interface=None, internal=None, ip=None, ip_managed_by_fortiipam=None, ipmac=None, ips_sniffer_mode=None, ipunnumbered=None, ipv6s=None, l2forward=None, lacp_ha_secondary=None, lacp_ha_slave=None, lacp_mode=None, lacp_speed=None, lcp_echo_interval=None, lcp_max_echo_fails=None, link_up_delay=None, lldp_network_policy=None, lldp_reception=None, lldp_transmission=None, macaddr=None, managed_devices=None, managed_subnetwork_size=None, management_ip=None, measured_downstream_bandwidth=None, measured_upstream_bandwidth=None, mediatype=None, members=None, min_links=None, min_links_down=None, mode=None, monitor_bandwidth=None, mtu=None, mtu_override=None, name=None, ndiscforward=None, netbios_forward=None, netflow_sampler=None, outbandwidth=None, padt_retry_timeout=None, password=None, ping_serv_status=None, polling_interval=None, pppoe_unnumbered_negotiate=None, pptp_auth_type=None, pptp_client=None, pptp_password=None, pptp_server_ip=None, pptp_timeout=None, pptp_user=None, preserve_session_route=None, priority=None, priority_override=None, proxy_captive_portal=None, reachable_time=None, redundant_interface=None, remote_ip=None, replacemsg_override_group=None, ring_rx=None, ring_tx=None, role=None, sample_direction=None, sample_rate=None, scan_botnet_connections=None, secondary_ip=None, secondaryips=None, security_exempt_list=None, security_external_logout=None, security_external_web=None, security_groups=None, security_mac_auth_bypass=None, security_mode=None, security_redirect_url=None, service_name=None, sflow_sampler=None, snmp_index=None, speed=None, spillover_threshold=None, src_check=None, status=None, stp=None, stp_ha_secondary=None, stpforward=None, stpforward_mode=None, subst=None, substitute_dst_mac=None, swc_first_create=None, swc_vlan=None, switch=None, switch_controller_access_vlan=None, switch_controller_arp_inspection=None, switch_controller_dhcp_snooping=None, switch_controller_dhcp_snooping_option82=None, switch_controller_dhcp_snooping_verify_mac=None, switch_controller_dynamic=None, switch_controller_feature=None, switch_controller_igmp_snooping=None, switch_controller_igmp_snooping_fast_leave=None, switch_controller_igmp_snooping_proxy=None, switch_controller_iot_scanning=None, switch_controller_learning_limit=None, switch_controller_mgmt_vlan=None, switch_controller_nac=None, switch_controller_netflow_collect=None, switch_controller_rspan_mode=None, switch_controller_source_ip=None, switch_controller_traffic_policy=None, system_id=None, system_id_type=None, taggings=None, tcp_mss=None, trunk=None, trust_ip1=None, trust_ip2=None, trust_ip3=None, trust_ip61=None, trust_ip62=None, trust_ip63=None, type=None, username=None, vdom=None, vdomparam=None, vindex=None, vlan_protocol=None, vlanforward=None, vlanid=None, vrf=None, vrrp_virtual_mac=None, vrrps=None, wccp=None, weight=None, wins_ip=None):
+    def __init__(__self__, ac_name=None, aggregate=None, aggregate_type=None, algorithm=None, alias=None, allowaccess=None, ap_discover=None, arpforward=None, auth_cert=None, auth_portal_addr=None, auth_type=None, auto_auth_extension_device=None, bandwidth_measure_time=None, bfd=None, bfd_desired_min_tx=None, bfd_detect_mult=None, bfd_required_min_rx=None, broadcast_forticlient_discovery=None, broadcast_forward=None, captive_portal=None, cli_conn_status=None, client_options=None, color=None, dedicated_to=None, default_purdue_level=None, defaultgw=None, description=None, detected_peer_mtu=None, detectprotocol=None, detectserver=None, device_access_list=None, device_identification=None, device_identification_active_scan=None, device_netscan=None, device_user_identification=None, devindex=None, dhcp_broadcast_flag=None, dhcp_classless_route_addition=None, dhcp_client_identifier=None, dhcp_relay_agent_option=None, dhcp_relay_circuit_id=None, dhcp_relay_interface=None, dhcp_relay_interface_select_method=None, dhcp_relay_ip=None, dhcp_relay_link_selection=None, dhcp_relay_request_all_server=None, dhcp_relay_service=None, dhcp_relay_source_ip=None, dhcp_relay_type=None, dhcp_renew_time=None, dhcp_smart_relay=None, dhcp_snooping_server_lists=None, disc_retry_timeout=None, disconnect_threshold=None, distance=None, dns_server_override=None, dns_server_protocol=None, drop_fragment=None, drop_overlapped_fragment=None, eap_ca_cert=None, eap_identity=None, eap_method=None, eap_password=None, eap_supplicant=None, eap_user_cert=None, egress_shaping_profile=None, endpoint_compliance=None, estimated_downstream_bandwidth=None, estimated_upstream_bandwidth=None, explicit_ftp_proxy=None, explicit_web_proxy=None, external=None, fail_action_on_extender=None, fail_alert_interfaces=None, fail_alert_method=None, fail_detect=None, fail_detect_option=None, fortiheartbeat=None, fortilink=None, fortilink_backup_link=None, fortilink_neighbor_detect=None, fortilink_split_interface=None, fortilink_stacking=None, forward_domain=None, forward_error_correction=None, gwdetect=None, ha_priority=None, icmp_accept_redirect=None, icmp_send_redirect=None, id=None, ident_accept=None, idle_timeout=None, ike_saml_server=None, inbandwidth=None, ingress_shaping_profile=None, ingress_spillover_threshold=None, interface=None, internal=None, ip=None, ip_managed_by_fortiipam=None, ipmac=None, ips_sniffer_mode=None, ipunnumbered=None, ipv6s=None, l2forward=None, lacp_ha_secondary=None, lacp_ha_slave=None, lacp_mode=None, lacp_speed=None, lcp_echo_interval=None, lcp_max_echo_fails=None, link_up_delay=None, lldp_network_policy=None, lldp_reception=None, lldp_transmission=None, macaddr=None, managed_devices=None, managed_subnetwork_size=None, management_ip=None, measured_downstream_bandwidth=None, measured_upstream_bandwidth=None, mediatype=None, members=None, min_links=None, min_links_down=None, mode=None, monitor_bandwidth=None, mtu=None, mtu_override=None, name=None, ndiscforward=None, netbios_forward=None, netflow_sampler=None, outbandwidth=None, padt_retry_timeout=None, password=None, ping_serv_status=None, polling_interval=None, pppoe_unnumbered_negotiate=None, pptp_auth_type=None, pptp_client=None, pptp_password=None, pptp_server_ip=None, pptp_timeout=None, pptp_user=None, preserve_session_route=None, priority=None, priority_override=None, proxy_captive_portal=None, reachable_time=None, redundant_interface=None, remote_ip=None, replacemsg_override_group=None, ring_rx=None, ring_tx=None, role=None, sample_direction=None, sample_rate=None, scan_botnet_connections=None, secondary_ip=None, secondaryips=None, security_exempt_list=None, security_external_logout=None, security_external_web=None, security_groups=None, security_mac_auth_bypass=None, security_mode=None, security_redirect_url=None, service_name=None, sflow_sampler=None, snmp_index=None, speed=None, spillover_threshold=None, src_check=None, status=None, stp=None, stp_ha_secondary=None, stpforward=None, stpforward_mode=None, subst=None, substitute_dst_mac=None, swc_first_create=None, swc_vlan=None, switch=None, switch_controller_access_vlan=None, switch_controller_arp_inspection=None, switch_controller_dhcp_snooping=None, switch_controller_dhcp_snooping_option82=None, switch_controller_dhcp_snooping_verify_mac=None, switch_controller_dynamic=None, switch_controller_feature=None, switch_controller_igmp_snooping=None, switch_controller_igmp_snooping_fast_leave=None, switch_controller_igmp_snooping_proxy=None, switch_controller_iot_scanning=None, switch_controller_learning_limit=None, switch_controller_mgmt_vlan=None, switch_controller_nac=None, switch_controller_netflow_collect=None, switch_controller_offload=None, switch_controller_offload_gw=None, switch_controller_offload_ip=None, switch_controller_rspan_mode=None, switch_controller_source_ip=None, switch_controller_traffic_policy=None, system_id=None, system_id_type=None, taggings=None, tcp_mss=None, trunk=None, trust_ip1=None, trust_ip2=None, trust_ip3=None, trust_ip61=None, trust_ip62=None, trust_ip63=None, type=None, username=None, vdom=None, vdomparam=None, vindex=None, vlan_protocol=None, vlanforward=None, vlanid=None, vrf=None, vrrp_virtual_mac=None, vrrps=None, wccp=None, weight=None, wins_ip=None):
         if ac_name and not isinstance(ac_name, str):
             raise TypeError("Expected argument 'ac_name' to be a str")
         pulumi.set(__self__, "ac_name", ac_name)
@@ -95,6 +95,9 @@ class GetInterfaceResult:
         if dedicated_to and not isinstance(dedicated_to, str):
             raise TypeError("Expected argument 'dedicated_to' to be a str")
         pulumi.set(__self__, "dedicated_to", dedicated_to)
+        if default_purdue_level and not isinstance(default_purdue_level, str):
+            raise TypeError("Expected argument 'default_purdue_level' to be a str")
+        pulumi.set(__self__, "default_purdue_level", default_purdue_level)
         if defaultgw and not isinstance(defaultgw, str):
             raise TypeError("Expected argument 'defaultgw' to be a str")
         pulumi.set(__self__, "defaultgw", defaultgw)
@@ -128,6 +131,9 @@ class GetInterfaceResult:
         if devindex and not isinstance(devindex, int):
             raise TypeError("Expected argument 'devindex' to be a int")
         pulumi.set(__self__, "devindex", devindex)
+        if dhcp_broadcast_flag and not isinstance(dhcp_broadcast_flag, str):
+            raise TypeError("Expected argument 'dhcp_broadcast_flag' to be a str")
+        pulumi.set(__self__, "dhcp_broadcast_flag", dhcp_broadcast_flag)
         if dhcp_classless_route_addition and not isinstance(dhcp_classless_route_addition, str):
             raise TypeError("Expected argument 'dhcp_classless_route_addition' to be a str")
         pulumi.set(__self__, "dhcp_classless_route_addition", dhcp_classless_route_addition)
@@ -137,6 +143,9 @@ class GetInterfaceResult:
         if dhcp_relay_agent_option and not isinstance(dhcp_relay_agent_option, str):
             raise TypeError("Expected argument 'dhcp_relay_agent_option' to be a str")
         pulumi.set(__self__, "dhcp_relay_agent_option", dhcp_relay_agent_option)
+        if dhcp_relay_circuit_id and not isinstance(dhcp_relay_circuit_id, str):
+            raise TypeError("Expected argument 'dhcp_relay_circuit_id' to be a str")
+        pulumi.set(__self__, "dhcp_relay_circuit_id", dhcp_relay_circuit_id)
         if dhcp_relay_interface and not isinstance(dhcp_relay_interface, str):
             raise TypeError("Expected argument 'dhcp_relay_interface' to be a str")
         pulumi.set(__self__, "dhcp_relay_interface", dhcp_relay_interface)
@@ -155,12 +164,18 @@ class GetInterfaceResult:
         if dhcp_relay_service and not isinstance(dhcp_relay_service, str):
             raise TypeError("Expected argument 'dhcp_relay_service' to be a str")
         pulumi.set(__self__, "dhcp_relay_service", dhcp_relay_service)
+        if dhcp_relay_source_ip and not isinstance(dhcp_relay_source_ip, str):
+            raise TypeError("Expected argument 'dhcp_relay_source_ip' to be a str")
+        pulumi.set(__self__, "dhcp_relay_source_ip", dhcp_relay_source_ip)
         if dhcp_relay_type and not isinstance(dhcp_relay_type, str):
             raise TypeError("Expected argument 'dhcp_relay_type' to be a str")
         pulumi.set(__self__, "dhcp_relay_type", dhcp_relay_type)
         if dhcp_renew_time and not isinstance(dhcp_renew_time, int):
             raise TypeError("Expected argument 'dhcp_renew_time' to be a int")
         pulumi.set(__self__, "dhcp_renew_time", dhcp_renew_time)
+        if dhcp_smart_relay and not isinstance(dhcp_smart_relay, str):
+            raise TypeError("Expected argument 'dhcp_smart_relay' to be a str")
+        pulumi.set(__self__, "dhcp_smart_relay", dhcp_smart_relay)
         if dhcp_snooping_server_lists and not isinstance(dhcp_snooping_server_lists, list):
             raise TypeError("Expected argument 'dhcp_snooping_server_lists' to be a list")
         pulumi.set(__self__, "dhcp_snooping_server_lists", dhcp_snooping_server_lists)
@@ -605,6 +620,15 @@ class GetInterfaceResult:
         if switch_controller_netflow_collect and not isinstance(switch_controller_netflow_collect, str):
             raise TypeError("Expected argument 'switch_controller_netflow_collect' to be a str")
         pulumi.set(__self__, "switch_controller_netflow_collect", switch_controller_netflow_collect)
+        if switch_controller_offload and not isinstance(switch_controller_offload, str):
+            raise TypeError("Expected argument 'switch_controller_offload' to be a str")
+        pulumi.set(__self__, "switch_controller_offload", switch_controller_offload)
+        if switch_controller_offload_gw and not isinstance(switch_controller_offload_gw, str):
+            raise TypeError("Expected argument 'switch_controller_offload_gw' to be a str")
+        pulumi.set(__self__, "switch_controller_offload_gw", switch_controller_offload_gw)
+        if switch_controller_offload_ip and not isinstance(switch_controller_offload_ip, str):
+            raise TypeError("Expected argument 'switch_controller_offload_ip' to be a str")
+        pulumi.set(__self__, "switch_controller_offload_ip", switch_controller_offload_ip)
         if switch_controller_rspan_mode and not isinstance(switch_controller_rspan_mode, str):
             raise TypeError("Expected argument 'switch_controller_rspan_mode' to be a str")
         pulumi.set(__self__, "switch_controller_rspan_mode", switch_controller_rspan_mode)
@@ -883,6 +907,14 @@ class GetInterfaceResult:
         return pulumi.get(self, "dedicated_to")
 
     @property
+    @pulumi.getter(name="defaultPurdueLevel")
+    def default_purdue_level(self) -> str:
+        """
+        default purdue level of device detected on this interface.
+        """
+        return pulumi.get(self, "default_purdue_level")
+
+    @property
     @pulumi.getter
     def defaultgw(self) -> str:
         """
@@ -971,6 +1003,14 @@ class GetInterfaceResult:
         return pulumi.get(self, "devindex")
 
     @property
+    @pulumi.getter(name="dhcpBroadcastFlag")
+    def dhcp_broadcast_flag(self) -> str:
+        """
+        Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable).
+        """
+        return pulumi.get(self, "dhcp_broadcast_flag")
+
+    @property
     @pulumi.getter(name="dhcpClasslessRouteAddition")
     def dhcp_classless_route_addition(self) -> str:
         """
@@ -993,6 +1033,14 @@ class GetInterfaceResult:
         Enable/disable DHCP relay agent option.
         """
         return pulumi.get(self, "dhcp_relay_agent_option")
+
+    @property
+    @pulumi.getter(name="dhcpRelayCircuitId")
+    def dhcp_relay_circuit_id(self) -> str:
+        """
+        DHCP relay circuit ID.
+        """
+        return pulumi.get(self, "dhcp_relay_circuit_id")
 
     @property
     @pulumi.getter(name="dhcpRelayInterface")
@@ -1043,6 +1091,14 @@ class GetInterfaceResult:
         return pulumi.get(self, "dhcp_relay_service")
 
     @property
+    @pulumi.getter(name="dhcpRelaySourceIp")
+    def dhcp_relay_source_ip(self) -> str:
+        """
+        IP address used by the DHCP relay as its source IP.
+        """
+        return pulumi.get(self, "dhcp_relay_source_ip")
+
+    @property
     @pulumi.getter(name="dhcpRelayType")
     def dhcp_relay_type(self) -> str:
         """
@@ -1057,6 +1113,14 @@ class GetInterfaceResult:
         DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
         """
         return pulumi.get(self, "dhcp_renew_time")
+
+    @property
+    @pulumi.getter(name="dhcpSmartRelay")
+    def dhcp_smart_relay(self) -> str:
+        """
+        Enable/disable DHCP smart relay.
+        """
+        return pulumi.get(self, "dhcp_smart_relay")
 
     @property
     @pulumi.getter(name="dhcpSnoopingServerLists")
@@ -2243,6 +2307,30 @@ class GetInterfaceResult:
         return pulumi.get(self, "switch_controller_netflow_collect")
 
     @property
+    @pulumi.getter(name="switchControllerOffload")
+    def switch_controller_offload(self) -> str:
+        """
+        Enable/disable managed FortiSwitch routing offload.
+        """
+        return pulumi.get(self, "switch_controller_offload")
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadGw")
+    def switch_controller_offload_gw(self) -> str:
+        """
+        Enable/disable managed FortiSwitch routing offload gateway.
+        """
+        return pulumi.get(self, "switch_controller_offload_gw")
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadIp")
+    def switch_controller_offload_ip(self) -> str:
+        """
+        IP for routing offload on FortiSwitch.
+        """
+        return pulumi.get(self, "switch_controller_offload_ip")
+
+    @property
     @pulumi.getter(name="switchControllerRspanMode")
     def switch_controller_rspan_mode(self) -> str:
         """
@@ -2494,6 +2582,7 @@ class AwaitableGetInterfaceResult(GetInterfaceResult):
             client_options=self.client_options,
             color=self.color,
             dedicated_to=self.dedicated_to,
+            default_purdue_level=self.default_purdue_level,
             defaultgw=self.defaultgw,
             description=self.description,
             detected_peer_mtu=self.detected_peer_mtu,
@@ -2505,17 +2594,21 @@ class AwaitableGetInterfaceResult(GetInterfaceResult):
             device_netscan=self.device_netscan,
             device_user_identification=self.device_user_identification,
             devindex=self.devindex,
+            dhcp_broadcast_flag=self.dhcp_broadcast_flag,
             dhcp_classless_route_addition=self.dhcp_classless_route_addition,
             dhcp_client_identifier=self.dhcp_client_identifier,
             dhcp_relay_agent_option=self.dhcp_relay_agent_option,
+            dhcp_relay_circuit_id=self.dhcp_relay_circuit_id,
             dhcp_relay_interface=self.dhcp_relay_interface,
             dhcp_relay_interface_select_method=self.dhcp_relay_interface_select_method,
             dhcp_relay_ip=self.dhcp_relay_ip,
             dhcp_relay_link_selection=self.dhcp_relay_link_selection,
             dhcp_relay_request_all_server=self.dhcp_relay_request_all_server,
             dhcp_relay_service=self.dhcp_relay_service,
+            dhcp_relay_source_ip=self.dhcp_relay_source_ip,
             dhcp_relay_type=self.dhcp_relay_type,
             dhcp_renew_time=self.dhcp_renew_time,
+            dhcp_smart_relay=self.dhcp_smart_relay,
             dhcp_snooping_server_lists=self.dhcp_snooping_server_lists,
             disc_retry_timeout=self.disc_retry_timeout,
             disconnect_threshold=self.disconnect_threshold,
@@ -2664,6 +2757,9 @@ class AwaitableGetInterfaceResult(GetInterfaceResult):
             switch_controller_mgmt_vlan=self.switch_controller_mgmt_vlan,
             switch_controller_nac=self.switch_controller_nac,
             switch_controller_netflow_collect=self.switch_controller_netflow_collect,
+            switch_controller_offload=self.switch_controller_offload,
+            switch_controller_offload_gw=self.switch_controller_offload_gw,
+            switch_controller_offload_ip=self.switch_controller_offload_ip,
             switch_controller_rspan_mode=self.switch_controller_rspan_mode,
             switch_controller_source_ip=self.switch_controller_source_ip,
             switch_controller_traffic_policy=self.switch_controller_traffic_policy,
@@ -2747,6 +2843,7 @@ def get_interface(name: Optional[str] = None,
         client_options=pulumi.get(__ret__, 'client_options'),
         color=pulumi.get(__ret__, 'color'),
         dedicated_to=pulumi.get(__ret__, 'dedicated_to'),
+        default_purdue_level=pulumi.get(__ret__, 'default_purdue_level'),
         defaultgw=pulumi.get(__ret__, 'defaultgw'),
         description=pulumi.get(__ret__, 'description'),
         detected_peer_mtu=pulumi.get(__ret__, 'detected_peer_mtu'),
@@ -2758,17 +2855,21 @@ def get_interface(name: Optional[str] = None,
         device_netscan=pulumi.get(__ret__, 'device_netscan'),
         device_user_identification=pulumi.get(__ret__, 'device_user_identification'),
         devindex=pulumi.get(__ret__, 'devindex'),
+        dhcp_broadcast_flag=pulumi.get(__ret__, 'dhcp_broadcast_flag'),
         dhcp_classless_route_addition=pulumi.get(__ret__, 'dhcp_classless_route_addition'),
         dhcp_client_identifier=pulumi.get(__ret__, 'dhcp_client_identifier'),
         dhcp_relay_agent_option=pulumi.get(__ret__, 'dhcp_relay_agent_option'),
+        dhcp_relay_circuit_id=pulumi.get(__ret__, 'dhcp_relay_circuit_id'),
         dhcp_relay_interface=pulumi.get(__ret__, 'dhcp_relay_interface'),
         dhcp_relay_interface_select_method=pulumi.get(__ret__, 'dhcp_relay_interface_select_method'),
         dhcp_relay_ip=pulumi.get(__ret__, 'dhcp_relay_ip'),
         dhcp_relay_link_selection=pulumi.get(__ret__, 'dhcp_relay_link_selection'),
         dhcp_relay_request_all_server=pulumi.get(__ret__, 'dhcp_relay_request_all_server'),
         dhcp_relay_service=pulumi.get(__ret__, 'dhcp_relay_service'),
+        dhcp_relay_source_ip=pulumi.get(__ret__, 'dhcp_relay_source_ip'),
         dhcp_relay_type=pulumi.get(__ret__, 'dhcp_relay_type'),
         dhcp_renew_time=pulumi.get(__ret__, 'dhcp_renew_time'),
+        dhcp_smart_relay=pulumi.get(__ret__, 'dhcp_smart_relay'),
         dhcp_snooping_server_lists=pulumi.get(__ret__, 'dhcp_snooping_server_lists'),
         disc_retry_timeout=pulumi.get(__ret__, 'disc_retry_timeout'),
         disconnect_threshold=pulumi.get(__ret__, 'disconnect_threshold'),
@@ -2917,6 +3018,9 @@ def get_interface(name: Optional[str] = None,
         switch_controller_mgmt_vlan=pulumi.get(__ret__, 'switch_controller_mgmt_vlan'),
         switch_controller_nac=pulumi.get(__ret__, 'switch_controller_nac'),
         switch_controller_netflow_collect=pulumi.get(__ret__, 'switch_controller_netflow_collect'),
+        switch_controller_offload=pulumi.get(__ret__, 'switch_controller_offload'),
+        switch_controller_offload_gw=pulumi.get(__ret__, 'switch_controller_offload_gw'),
+        switch_controller_offload_ip=pulumi.get(__ret__, 'switch_controller_offload_ip'),
         switch_controller_rspan_mode=pulumi.get(__ret__, 'switch_controller_rspan_mode'),
         switch_controller_source_ip=pulumi.get(__ret__, 'switch_controller_source_ip'),
         switch_controller_traffic_policy=pulumi.get(__ret__, 'switch_controller_traffic_policy'),

@@ -22,6 +22,7 @@ class ProfileArgs:
                  extended_log: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -36,6 +37,7 @@ class ProfileArgs:
         :param pulumi.Input[str] extended_log: Enable/disable extended logging for data leak prevention. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input[str] full_archive_proto: Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nac_quar_log: Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Name of the DLP profile.
         :param pulumi.Input[str] replacemsg_group: Replacement message group used by this DLP profile.
@@ -55,6 +57,8 @@ class ProfileArgs:
             pulumi.set(__self__, "feature_set", feature_set)
         if full_archive_proto is not None:
             pulumi.set(__self__, "full_archive_proto", full_archive_proto)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if nac_quar_log is not None:
             pulumi.set(__self__, "nac_quar_log", nac_quar_log)
         if name is not None:
@@ -139,6 +143,18 @@ class ProfileArgs:
     @full_archive_proto.setter
     def full_archive_proto(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "full_archive_proto", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="nacQuarLog")
@@ -222,6 +238,7 @@ class _ProfileState:
                  extended_log: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -236,6 +253,7 @@ class _ProfileState:
         :param pulumi.Input[str] extended_log: Enable/disable extended logging for data leak prevention. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input[str] full_archive_proto: Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nac_quar_log: Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Name of the DLP profile.
         :param pulumi.Input[str] replacemsg_group: Replacement message group used by this DLP profile.
@@ -255,6 +273,8 @@ class _ProfileState:
             pulumi.set(__self__, "feature_set", feature_set)
         if full_archive_proto is not None:
             pulumi.set(__self__, "full_archive_proto", full_archive_proto)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if nac_quar_log is not None:
             pulumi.set(__self__, "nac_quar_log", nac_quar_log)
         if name is not None:
@@ -339,6 +359,18 @@ class _ProfileState:
     @full_archive_proto.setter
     def full_archive_proto(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "full_archive_proto", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="nacQuarLog")
@@ -424,6 +456,7 @@ class Profile(pulumi.CustomResource):
                  extended_log: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -460,6 +493,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] extended_log: Enable/disable extended logging for data leak prevention. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input[str] full_archive_proto: Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nac_quar_log: Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Name of the DLP profile.
         :param pulumi.Input[str] replacemsg_group: Replacement message group used by this DLP profile.
@@ -515,6 +549,7 @@ class Profile(pulumi.CustomResource):
                  extended_log: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -536,6 +571,7 @@ class Profile(pulumi.CustomResource):
             __props__.__dict__["extended_log"] = extended_log
             __props__.__dict__["feature_set"] = feature_set
             __props__.__dict__["full_archive_proto"] = full_archive_proto
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["nac_quar_log"] = nac_quar_log
             __props__.__dict__["name"] = name
             __props__.__dict__["replacemsg_group"] = replacemsg_group
@@ -558,6 +594,7 @@ class Profile(pulumi.CustomResource):
             extended_log: Optional[pulumi.Input[str]] = None,
             feature_set: Optional[pulumi.Input[str]] = None,
             full_archive_proto: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             nac_quar_log: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -577,6 +614,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] extended_log: Enable/disable extended logging for data leak prevention. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
         :param pulumi.Input[str] full_archive_proto: Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nac_quar_log: Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Name of the DLP profile.
         :param pulumi.Input[str] replacemsg_group: Replacement message group used by this DLP profile.
@@ -594,6 +632,7 @@ class Profile(pulumi.CustomResource):
         __props__.__dict__["extended_log"] = extended_log
         __props__.__dict__["feature_set"] = feature_set
         __props__.__dict__["full_archive_proto"] = full_archive_proto
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["nac_quar_log"] = nac_quar_log
         __props__.__dict__["name"] = name
         __props__.__dict__["replacemsg_group"] = replacemsg_group
@@ -649,6 +688,14 @@ class Profile(pulumi.CustomResource):
         Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
         """
         return pulumi.get(self, "full_archive_proto")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="nacQuarLog")

@@ -74,6 +74,8 @@ type Profile struct {
 	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
 	// Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
 	External pulumi.StringOutput `pulumi:"external"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Method restriction. The structure of `method` block is documented below.
 	Method ProfileMethodOutput `pulumi:"method"`
 	// WAF Profile name.
@@ -128,6 +130,8 @@ type profileState struct {
 	ExtendedLog *string `pulumi:"extendedLog"`
 	// Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
 	External *string `pulumi:"external"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Method restriction. The structure of `method` block is documented below.
 	Method *ProfileMethod `pulumi:"method"`
 	// WAF Profile name.
@@ -153,6 +157,8 @@ type ProfileState struct {
 	ExtendedLog pulumi.StringPtrInput
 	// Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
 	External pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Method restriction. The structure of `method` block is documented below.
 	Method ProfileMethodPtrInput
 	// WAF Profile name.
@@ -182,6 +188,8 @@ type profileArgs struct {
 	ExtendedLog *string `pulumi:"extendedLog"`
 	// Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
 	External *string `pulumi:"external"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Method restriction. The structure of `method` block is documented below.
 	Method *ProfileMethod `pulumi:"method"`
 	// WAF Profile name.
@@ -208,6 +216,8 @@ type ProfileArgs struct {
 	ExtendedLog pulumi.StringPtrInput
 	// Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
 	External pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Method restriction. The structure of `method` block is documented below.
 	Method ProfileMethodPtrInput
 	// WAF Profile name.
@@ -335,6 +345,11 @@ func (o ProfileOutput) ExtendedLog() pulumi.StringOutput {
 // Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
 func (o ProfileOutput) External() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.External }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Method restriction. The structure of `method` block is documented below.

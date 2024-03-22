@@ -25,6 +25,7 @@ class AddrgrpArgs:
                  exclude: Optional[pulumi.Input[str]] = None,
                  exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input['AddrgrpExcludeMemberArgs']]]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['AddrgrpTaggingArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -42,6 +43,7 @@ class AddrgrpArgs:
         :param pulumi.Input[str] exclude: Enable/disable address exclusion. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['AddrgrpExcludeMemberArgs']]] exclude_members: Address exclusion member. The structure of `exclude_member` block is documented below.
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Address group name.
         :param pulumi.Input[Sequence[pulumi.Input['AddrgrpTaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
         :param pulumi.Input[str] type: Address group type. Valid values: `default`, `folder`.
@@ -66,6 +68,8 @@ class AddrgrpArgs:
             pulumi.set(__self__, "exclude_members", exclude_members)
         if fabric_object is not None:
             pulumi.set(__self__, "fabric_object", fabric_object)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if taggings is not None:
@@ -188,6 +192,18 @@ class AddrgrpArgs:
         pulumi.set(self, "fabric_object", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -271,6 +287,7 @@ class _AddrgrpState:
                  exclude: Optional[pulumi.Input[str]] = None,
                  exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input['AddrgrpExcludeMemberArgs']]]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['AddrgrpMemberArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['AddrgrpTaggingArgs']]]] = None,
@@ -288,6 +305,7 @@ class _AddrgrpState:
         :param pulumi.Input[str] exclude: Enable/disable address exclusion. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['AddrgrpExcludeMemberArgs']]] exclude_members: Address exclusion member. The structure of `exclude_member` block is documented below.
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['AddrgrpMemberArgs']]] members: Address objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: Address group name.
         :param pulumi.Input[Sequence[pulumi.Input['AddrgrpTaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -312,6 +330,8 @@ class _AddrgrpState:
             pulumi.set(__self__, "exclude_members", exclude_members)
         if fabric_object is not None:
             pulumi.set(__self__, "fabric_object", fabric_object)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if members is not None:
             pulumi.set(__self__, "members", members)
         if name is not None:
@@ -424,6 +444,18 @@ class _AddrgrpState:
         pulumi.set(self, "fabric_object", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AddrgrpMemberArgs']]]]:
         """
@@ -521,6 +553,7 @@ class Addrgrp(pulumi.CustomResource):
                  exclude: Optional[pulumi.Input[str]] = None,
                  exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpExcludeMemberArgs']]]]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpMemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpTaggingArgs']]]]] = None,
@@ -588,6 +621,7 @@ class Addrgrp(pulumi.CustomResource):
         :param pulumi.Input[str] exclude: Enable/disable address exclusion. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpExcludeMemberArgs']]]] exclude_members: Address exclusion member. The structure of `exclude_member` block is documented below.
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpMemberArgs']]]] members: Address objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: Address group name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpTaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -674,6 +708,7 @@ class Addrgrp(pulumi.CustomResource):
                  exclude: Optional[pulumi.Input[str]] = None,
                  exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpExcludeMemberArgs']]]]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpMemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpTaggingArgs']]]]] = None,
@@ -698,6 +733,7 @@ class Addrgrp(pulumi.CustomResource):
             __props__.__dict__["exclude"] = exclude
             __props__.__dict__["exclude_members"] = exclude_members
             __props__.__dict__["fabric_object"] = fabric_object
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if members is None and not opts.urn:
                 raise TypeError("Missing required property 'members'")
             __props__.__dict__["members"] = members
@@ -725,6 +761,7 @@ class Addrgrp(pulumi.CustomResource):
             exclude: Optional[pulumi.Input[str]] = None,
             exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpExcludeMemberArgs']]]]] = None,
             fabric_object: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpMemberArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpTaggingArgs']]]]] = None,
@@ -747,6 +784,7 @@ class Addrgrp(pulumi.CustomResource):
         :param pulumi.Input[str] exclude: Enable/disable address exclusion. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpExcludeMemberArgs']]]] exclude_members: Address exclusion member. The structure of `exclude_member` block is documented below.
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpMemberArgs']]]] members: Address objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: Address group name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddrgrpTaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -767,6 +805,7 @@ class Addrgrp(pulumi.CustomResource):
         __props__.__dict__["exclude"] = exclude
         __props__.__dict__["exclude_members"] = exclude_members
         __props__.__dict__["fabric_object"] = fabric_object
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["members"] = members
         __props__.__dict__["name"] = name
         __props__.__dict__["taggings"] = taggings
@@ -839,6 +878,14 @@ class Addrgrp(pulumi.CustomResource):
         Security Fabric global object setting. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "fabric_object")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

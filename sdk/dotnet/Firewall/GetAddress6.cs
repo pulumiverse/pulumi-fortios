@@ -139,6 +139,10 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly string ObjId;
         /// <summary>
+        /// route-tag address.
+        /// </summary>
+        public readonly int RouteTag;
+        /// <summary>
         /// SDN.
         /// </summary>
         public readonly string Sdn;
@@ -220,6 +224,8 @@ namespace Pulumiverse.Fortios.Firewall
 
             string objId,
 
+            int routeTag,
+
             string sdn,
 
             string sdnTag,
@@ -261,6 +267,7 @@ namespace Pulumiverse.Fortios.Firewall
             Macaddrs = macaddrs;
             Name = name;
             ObjId = objId;
+            RouteTag = routeTag;
             Sdn = sdn;
             SdnTag = sdnTag;
             StartIp = startIp;

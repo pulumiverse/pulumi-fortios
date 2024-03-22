@@ -8,8 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Extender controller configuration.
- *
- * > The resource applies to FortiOS Version < 6.4.2. For FortiOS Version >= 6.4.2, see `fortios.extendercontroller.Extender1`.
+ * The resource applies to FortiOS Version < 7.2.1. For FortiOS version >= 7.2.1, see `fortios.extensioncontroller.Extender`
  *
  * ## Example Usage
  *
@@ -172,6 +171,10 @@ export class Extender extends pulumi.CustomResource {
      * FortiExtender serial number.
      */
     public readonly fosid!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * HA shared secret.
      */
@@ -343,6 +346,7 @@ export class Extender extends pulumi.CustomResource {
             resourceInputs["extName"] = state ? state.extName : undefined;
             resourceInputs["extensionType"] = state ? state.extensionType : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["haSharedSecret"] = state ? state.haSharedSecret : undefined;
             resourceInputs["ifname"] = state ? state.ifname : undefined;
             resourceInputs["initiatedUpdate"] = state ? state.initiatedUpdate : undefined;
@@ -409,6 +413,7 @@ export class Extender extends pulumi.CustomResource {
             resourceInputs["extName"] = args ? args.extName : undefined;
             resourceInputs["extensionType"] = args ? args.extensionType : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["haSharedSecret"] = args?.haSharedSecret ? pulumi.secret(args.haSharedSecret) : undefined;
             resourceInputs["ifname"] = args ? args.ifname : undefined;
             resourceInputs["initiatedUpdate"] = args ? args.initiatedUpdate : undefined;
@@ -539,6 +544,10 @@ export interface ExtenderState {
      * FortiExtender serial number.
      */
     fosid?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * HA shared secret.
      */
@@ -765,6 +774,10 @@ export interface ExtenderArgs {
      * FortiExtender serial number.
      */
     fosid: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * HA shared secret.
      */

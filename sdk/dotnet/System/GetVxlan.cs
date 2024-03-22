@@ -75,6 +75,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly int Dstport;
         /// <summary>
+        /// EVPN instance.
+        /// </summary>
+        public readonly int EvpnId;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -86,6 +90,10 @@ namespace Pulumiverse.Fortios.System
         /// IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast.
         /// </summary>
         public readonly string IpVersion;
+        /// <summary>
+        /// Enable/disable VXLAN MAC learning from traffic.
+        /// </summary>
+        public readonly string LearnFromTraffic;
         /// <summary>
         /// VXLAN multicast TTL (1-255, default = 0).
         /// </summary>
@@ -112,11 +120,15 @@ namespace Pulumiverse.Fortios.System
         private GetVxlanResult(
             int dstport,
 
+            int evpnId,
+
             string id,
 
             string @interface,
 
             string ipVersion,
+
+            string learnFromTraffic,
 
             int multicastTtl,
 
@@ -131,9 +143,11 @@ namespace Pulumiverse.Fortios.System
             int vni)
         {
             Dstport = dstport;
+            EvpnId = evpnId;
             Id = id;
             Interface = @interface;
             IpVersion = ipVersion;
+            LearnFromTraffic = learnFromTraffic;
             MulticastTtl = multicastTtl;
             Name = name;
             RemoteIp6s = remoteIp6s;

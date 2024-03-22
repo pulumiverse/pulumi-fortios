@@ -34,6 +34,12 @@ type LookupTrafficshaperArgs struct {
 type LookupTrafficshaperResult struct {
 	// Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps).
 	BandwidthUnit string `pulumi:"bandwidthUnit"`
+	// VLAN CoS mark.
+	Cos string `pulumi:"cos"`
+	// Enable/disable VLAN CoS marking.
+	CosMarking string `pulumi:"cosMarking"`
+	// Select VLAN CoS marking method.
+	CosMarkingMethod string `pulumi:"cosMarkingMethod"`
 	// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper.
 	Diffserv string `pulumi:"diffserv"`
 	// DiffServ setting to be applied to traffic accepted by this shaper.
@@ -44,6 +50,8 @@ type LookupTrafficshaperResult struct {
 	ExceedBandwidth int `pulumi:"exceedBandwidth"`
 	// Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
 	ExceedClassId int `pulumi:"exceedClassId"`
+	// VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+	ExceedCos string `pulumi:"exceedCos"`
 	// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
 	ExceedDscp string `pulumi:"exceedDscp"`
 	// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
@@ -52,6 +60,8 @@ type LookupTrafficshaperResult struct {
 	Id string `pulumi:"id"`
 	// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
 	MaximumBandwidth int `pulumi:"maximumBandwidth"`
+	// VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+	MaximumCos string `pulumi:"maximumCos"`
 	// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
 	MaximumDscp string `pulumi:"maximumDscp"`
 	// Traffic shaper name.
@@ -110,6 +120,21 @@ func (o LookupTrafficshaperResultOutput) BandwidthUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTrafficshaperResult) string { return v.BandwidthUnit }).(pulumi.StringOutput)
 }
 
+// VLAN CoS mark.
+func (o LookupTrafficshaperResultOutput) Cos() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTrafficshaperResult) string { return v.Cos }).(pulumi.StringOutput)
+}
+
+// Enable/disable VLAN CoS marking.
+func (o LookupTrafficshaperResultOutput) CosMarking() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTrafficshaperResult) string { return v.CosMarking }).(pulumi.StringOutput)
+}
+
+// Select VLAN CoS marking method.
+func (o LookupTrafficshaperResultOutput) CosMarkingMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTrafficshaperResult) string { return v.CosMarkingMethod }).(pulumi.StringOutput)
+}
+
 // Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper.
 func (o LookupTrafficshaperResultOutput) Diffserv() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTrafficshaperResult) string { return v.Diffserv }).(pulumi.StringOutput)
@@ -135,6 +160,11 @@ func (o LookupTrafficshaperResultOutput) ExceedClassId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTrafficshaperResult) int { return v.ExceedClassId }).(pulumi.IntOutput)
 }
 
+// VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+func (o LookupTrafficshaperResultOutput) ExceedCos() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTrafficshaperResult) string { return v.ExceedCos }).(pulumi.StringOutput)
+}
+
 // DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
 func (o LookupTrafficshaperResultOutput) ExceedDscp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTrafficshaperResult) string { return v.ExceedDscp }).(pulumi.StringOutput)
@@ -153,6 +183,11 @@ func (o LookupTrafficshaperResultOutput) Id() pulumi.StringOutput {
 // Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
 func (o LookupTrafficshaperResultOutput) MaximumBandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTrafficshaperResult) int { return v.MaximumBandwidth }).(pulumi.IntOutput)
+}
+
+// VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+func (o LookupTrafficshaperResultOutput) MaximumCos() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTrafficshaperResult) string { return v.MaximumCos }).(pulumi.StringOutput)
 }
 
 // DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].

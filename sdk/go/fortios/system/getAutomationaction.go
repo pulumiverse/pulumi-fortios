@@ -90,6 +90,8 @@ type LookupAutomationactionResult struct {
 	EmailTos []GetAutomationactionEmailTo `pulumi:"emailTos"`
 	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric.
 	ExecuteSecurityFabric string `pulumi:"executeSecurityFabric"`
+	// Enable/disable use of your FortiCare email address as the email-to address.
+	ForticareEmail string `pulumi:"forticareEmail"`
 	// Google Cloud function name.
 	GcpFunction string `pulumi:"gcpFunction"`
 	// Google Cloud function domain.
@@ -330,6 +332,11 @@ func (o LookupAutomationactionResultOutput) EmailTos() GetAutomationactionEmailT
 // Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric.
 func (o LookupAutomationactionResultOutput) ExecuteSecurityFabric() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAutomationactionResult) string { return v.ExecuteSecurityFabric }).(pulumi.StringOutput)
+}
+
+// Enable/disable use of your FortiCare email address as the email-to address.
+func (o LookupAutomationactionResultOutput) ForticareEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAutomationactionResult) string { return v.ForticareEmail }).(pulumi.StringOutput)
 }
 
 // Google Cloud function name.

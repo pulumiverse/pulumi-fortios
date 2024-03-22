@@ -73,7 +73,7 @@ export class Trafficclass extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: TrafficclassArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: TrafficclassArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TrafficclassArgs | TrafficclassState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -84,6 +84,9 @@ export class Trafficclass extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as TrafficclassArgs | undefined;
+            if ((!args || args.classId === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'classId'");
+            }
             resourceInputs["classId"] = args ? args.classId : undefined;
             resourceInputs["className"] = args ? args.className : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -118,7 +121,7 @@ export interface TrafficclassArgs {
     /**
      * Class ID to be named.
      */
-    classId?: pulumi.Input<number>;
+    classId: pulumi.Input<number>;
     /**
      * Define the name for this class-id.
      */

@@ -81,6 +81,8 @@ type User struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// SNMP notifications (traps) to send.
 	Events pulumi.StringOutput `pulumi:"events"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
 	HaDirect pulumi.StringOutput `pulumi:"haDirect"`
 	// SNMP access control MIB view.
@@ -168,6 +170,8 @@ type userState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// SNMP notifications (traps) to send.
 	Events *string `pulumi:"events"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
 	HaDirect *string `pulumi:"haDirect"`
 	// SNMP access control MIB view.
@@ -215,6 +219,8 @@ type UserState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// SNMP notifications (traps) to send.
 	Events pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
 	HaDirect pulumi.StringPtrInput
 	// SNMP access control MIB view.
@@ -266,6 +272,8 @@ type userArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// SNMP notifications (traps) to send.
 	Events *string `pulumi:"events"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
 	HaDirect *string `pulumi:"haDirect"`
 	// SNMP access control MIB view.
@@ -314,6 +322,8 @@ type UserArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// SNMP notifications (traps) to send.
 	Events pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
 	HaDirect pulumi.StringPtrInput
 	// SNMP access control MIB view.
@@ -457,6 +467,11 @@ func (o UserOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // SNMP notifications (traps) to send.
 func (o UserOutput) Events() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Events }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o UserOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.

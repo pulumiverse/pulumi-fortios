@@ -80,6 +80,10 @@ export class Extenderprofile extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
      */
     public readonly lanExtension!: pulumi.Output<outputs.extensioncontroller.ExtenderprofileLanExtension>;
@@ -123,6 +127,7 @@ export class Extenderprofile extends pulumi.CustomResource {
             resourceInputs["enforceBandwidth"] = state ? state.enforceBandwidth : undefined;
             resourceInputs["extension"] = state ? state.extension : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["lanExtension"] = state ? state.lanExtension : undefined;
             resourceInputs["loginPassword"] = state ? state.loginPassword : undefined;
             resourceInputs["loginPasswordChange"] = state ? state.loginPasswordChange : undefined;
@@ -137,6 +142,7 @@ export class Extenderprofile extends pulumi.CustomResource {
             resourceInputs["enforceBandwidth"] = args ? args.enforceBandwidth : undefined;
             resourceInputs["extension"] = args ? args.extension : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["lanExtension"] = args ? args.lanExtension : undefined;
             resourceInputs["loginPassword"] = args ? args.loginPassword : undefined;
             resourceInputs["loginPasswordChange"] = args ? args.loginPasswordChange : undefined;
@@ -177,6 +183,10 @@ export interface ExtenderprofileState {
      * ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
      */
@@ -231,6 +241,10 @@ export interface ExtenderprofileArgs {
      * ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
      */

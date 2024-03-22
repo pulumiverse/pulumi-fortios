@@ -28,8 +28,12 @@ class CsfArgs:
                  fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input['CsfFabricDeviceArgs']]]] = None,
                  fabric_object_unification: Optional[pulumi.Input[str]] = None,
                  fabric_workers: Optional[pulumi.Input[int]] = None,
+                 file_mgmt: Optional[pulumi.Input[str]] = None,
+                 file_quota: Optional[pulumi.Input[int]] = None,
+                 file_quota_warning: Optional[pulumi.Input[int]] = None,
                  fixed_key: Optional[pulumi.Input[str]] = None,
                  forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  group_password: Optional[pulumi.Input[str]] = None,
                  log_unification: Optional[pulumi.Input[str]] = None,
@@ -37,6 +41,7 @@ class CsfArgs:
                  management_port: Optional[pulumi.Input[int]] = None,
                  saml_configuration_sync: Optional[pulumi.Input[str]] = None,
                  trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input['CsfTrustedListArgs']]]] = None,
+                 uid: Optional[pulumi.Input[str]] = None,
                  upstream: Optional[pulumi.Input[str]] = None,
                  upstream_ip: Optional[pulumi.Input[str]] = None,
                  upstream_port: Optional[pulumi.Input[int]] = None,
@@ -55,8 +60,12 @@ class CsfArgs:
         :param pulumi.Input[Sequence[pulumi.Input['CsfFabricDeviceArgs']]] fabric_devices: Fabric device configuration. The structure of `fabric_device` block is documented below.
         :param pulumi.Input[str] fabric_object_unification: Fabric CMDB Object Unification Valid values: `default`, `local`.
         :param pulumi.Input[int] fabric_workers: Number of worker processes for Security Fabric daemon.
+        :param pulumi.Input[str] file_mgmt: Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] file_quota: Maximum amount of memory that can be used by the daemon files (in bytes).
+        :param pulumi.Input[int] file_quota_warning: Warn when the set percentage of quota has been used.
         :param pulumi.Input[str] fixed_key: Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
         :param pulumi.Input[str] forticloud_account_enforcement: Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
         :param pulumi.Input[str] group_password: Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
         :param pulumi.Input[str] log_unification: Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
@@ -64,6 +73,7 @@ class CsfArgs:
         :param pulumi.Input[int] management_port: Overriding port for management connection (Overrides admin port).
         :param pulumi.Input[str] saml_configuration_sync: SAML setting configuration synchronization. Valid values: `default`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input['CsfTrustedListArgs']]] trusted_lists: Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
+        :param pulumi.Input[str] uid: Unique ID of the current CSF node
         :param pulumi.Input[str] upstream: IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[str] upstream_ip: IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[int] upstream_port: The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
@@ -92,10 +102,18 @@ class CsfArgs:
             pulumi.set(__self__, "fabric_object_unification", fabric_object_unification)
         if fabric_workers is not None:
             pulumi.set(__self__, "fabric_workers", fabric_workers)
+        if file_mgmt is not None:
+            pulumi.set(__self__, "file_mgmt", file_mgmt)
+        if file_quota is not None:
+            pulumi.set(__self__, "file_quota", file_quota)
+        if file_quota_warning is not None:
+            pulumi.set(__self__, "file_quota_warning", file_quota_warning)
         if fixed_key is not None:
             pulumi.set(__self__, "fixed_key", fixed_key)
         if forticloud_account_enforcement is not None:
             pulumi.set(__self__, "forticloud_account_enforcement", forticloud_account_enforcement)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if group_password is not None:
@@ -110,6 +128,8 @@ class CsfArgs:
             pulumi.set(__self__, "saml_configuration_sync", saml_configuration_sync)
         if trusted_lists is not None:
             pulumi.set(__self__, "trusted_lists", trusted_lists)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
         if upstream is not None:
             pulumi.set(__self__, "upstream", upstream)
         if upstream_ip is not None:
@@ -264,6 +284,42 @@ class CsfArgs:
         pulumi.set(self, "fabric_workers", value)
 
     @property
+    @pulumi.getter(name="fileMgmt")
+    def file_mgmt(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "file_mgmt")
+
+    @file_mgmt.setter
+    def file_mgmt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "file_mgmt", value)
+
+    @property
+    @pulumi.getter(name="fileQuota")
+    def file_quota(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum amount of memory that can be used by the daemon files (in bytes).
+        """
+        return pulumi.get(self, "file_quota")
+
+    @file_quota.setter
+    def file_quota(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "file_quota", value)
+
+    @property
+    @pulumi.getter(name="fileQuotaWarning")
+    def file_quota_warning(self) -> Optional[pulumi.Input[int]]:
+        """
+        Warn when the set percentage of quota has been used.
+        """
+        return pulumi.get(self, "file_quota_warning")
+
+    @file_quota_warning.setter
+    def file_quota_warning(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "file_quota_warning", value)
+
+    @property
     @pulumi.getter(name="fixedKey")
     def fixed_key(self) -> Optional[pulumi.Input[str]]:
         """
@@ -286,6 +342,18 @@ class CsfArgs:
     @forticloud_account_enforcement.setter
     def forticloud_account_enforcement(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "forticloud_account_enforcement", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -373,6 +441,18 @@ class CsfArgs:
 
     @property
     @pulumi.getter
+    def uid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique ID of the current CSF node
+        """
+        return pulumi.get(self, "uid")
+
+    @uid.setter
+    def uid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uid", value)
+
+    @property
+    @pulumi.getter
     def upstream(self) -> Optional[pulumi.Input[str]]:
         """
         IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
@@ -434,8 +514,12 @@ class _CsfState:
                  fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input['CsfFabricDeviceArgs']]]] = None,
                  fabric_object_unification: Optional[pulumi.Input[str]] = None,
                  fabric_workers: Optional[pulumi.Input[int]] = None,
+                 file_mgmt: Optional[pulumi.Input[str]] = None,
+                 file_quota: Optional[pulumi.Input[int]] = None,
+                 file_quota_warning: Optional[pulumi.Input[int]] = None,
                  fixed_key: Optional[pulumi.Input[str]] = None,
                  forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  group_password: Optional[pulumi.Input[str]] = None,
                  log_unification: Optional[pulumi.Input[str]] = None,
@@ -444,6 +528,7 @@ class _CsfState:
                  saml_configuration_sync: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input['CsfTrustedListArgs']]]] = None,
+                 uid: Optional[pulumi.Input[str]] = None,
                  upstream: Optional[pulumi.Input[str]] = None,
                  upstream_ip: Optional[pulumi.Input[str]] = None,
                  upstream_port: Optional[pulumi.Input[int]] = None,
@@ -461,8 +546,12 @@ class _CsfState:
         :param pulumi.Input[Sequence[pulumi.Input['CsfFabricDeviceArgs']]] fabric_devices: Fabric device configuration. The structure of `fabric_device` block is documented below.
         :param pulumi.Input[str] fabric_object_unification: Fabric CMDB Object Unification Valid values: `default`, `local`.
         :param pulumi.Input[int] fabric_workers: Number of worker processes for Security Fabric daemon.
+        :param pulumi.Input[str] file_mgmt: Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] file_quota: Maximum amount of memory that can be used by the daemon files (in bytes).
+        :param pulumi.Input[int] file_quota_warning: Warn when the set percentage of quota has been used.
         :param pulumi.Input[str] fixed_key: Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
         :param pulumi.Input[str] forticloud_account_enforcement: Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
         :param pulumi.Input[str] group_password: Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
         :param pulumi.Input[str] log_unification: Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
@@ -471,6 +560,7 @@ class _CsfState:
         :param pulumi.Input[str] saml_configuration_sync: SAML setting configuration synchronization. Valid values: `default`, `local`.
         :param pulumi.Input[str] status: Enable/disable Security Fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['CsfTrustedListArgs']]] trusted_lists: Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
+        :param pulumi.Input[str] uid: Unique ID of the current CSF node
         :param pulumi.Input[str] upstream: IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[str] upstream_ip: IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[int] upstream_port: The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
@@ -498,10 +588,18 @@ class _CsfState:
             pulumi.set(__self__, "fabric_object_unification", fabric_object_unification)
         if fabric_workers is not None:
             pulumi.set(__self__, "fabric_workers", fabric_workers)
+        if file_mgmt is not None:
+            pulumi.set(__self__, "file_mgmt", file_mgmt)
+        if file_quota is not None:
+            pulumi.set(__self__, "file_quota", file_quota)
+        if file_quota_warning is not None:
+            pulumi.set(__self__, "file_quota_warning", file_quota_warning)
         if fixed_key is not None:
             pulumi.set(__self__, "fixed_key", fixed_key)
         if forticloud_account_enforcement is not None:
             pulumi.set(__self__, "forticloud_account_enforcement", forticloud_account_enforcement)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if group_password is not None:
@@ -518,6 +616,8 @@ class _CsfState:
             pulumi.set(__self__, "status", status)
         if trusted_lists is not None:
             pulumi.set(__self__, "trusted_lists", trusted_lists)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
         if upstream is not None:
             pulumi.set(__self__, "upstream", upstream)
         if upstream_ip is not None:
@@ -660,6 +760,42 @@ class _CsfState:
         pulumi.set(self, "fabric_workers", value)
 
     @property
+    @pulumi.getter(name="fileMgmt")
+    def file_mgmt(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "file_mgmt")
+
+    @file_mgmt.setter
+    def file_mgmt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "file_mgmt", value)
+
+    @property
+    @pulumi.getter(name="fileQuota")
+    def file_quota(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum amount of memory that can be used by the daemon files (in bytes).
+        """
+        return pulumi.get(self, "file_quota")
+
+    @file_quota.setter
+    def file_quota(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "file_quota", value)
+
+    @property
+    @pulumi.getter(name="fileQuotaWarning")
+    def file_quota_warning(self) -> Optional[pulumi.Input[int]]:
+        """
+        Warn when the set percentage of quota has been used.
+        """
+        return pulumi.get(self, "file_quota_warning")
+
+    @file_quota_warning.setter
+    def file_quota_warning(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "file_quota_warning", value)
+
+    @property
     @pulumi.getter(name="fixedKey")
     def fixed_key(self) -> Optional[pulumi.Input[str]]:
         """
@@ -682,6 +818,18 @@ class _CsfState:
     @forticloud_account_enforcement.setter
     def forticloud_account_enforcement(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "forticloud_account_enforcement", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -781,6 +929,18 @@ class _CsfState:
 
     @property
     @pulumi.getter
+    def uid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique ID of the current CSF node
+        """
+        return pulumi.get(self, "uid")
+
+    @uid.setter
+    def uid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uid", value)
+
+    @property
+    @pulumi.getter
     def upstream(self) -> Optional[pulumi.Input[str]]:
         """
         IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
@@ -844,8 +1004,12 @@ class Csf(pulumi.CustomResource):
                  fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfFabricDeviceArgs']]]]] = None,
                  fabric_object_unification: Optional[pulumi.Input[str]] = None,
                  fabric_workers: Optional[pulumi.Input[int]] = None,
+                 file_mgmt: Optional[pulumi.Input[str]] = None,
+                 file_quota: Optional[pulumi.Input[int]] = None,
+                 file_quota_warning: Optional[pulumi.Input[int]] = None,
                  fixed_key: Optional[pulumi.Input[str]] = None,
                  forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  group_password: Optional[pulumi.Input[str]] = None,
                  log_unification: Optional[pulumi.Input[str]] = None,
@@ -854,6 +1018,7 @@ class Csf(pulumi.CustomResource):
                  saml_configuration_sync: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfTrustedListArgs']]]]] = None,
+                 uid: Optional[pulumi.Input[str]] = None,
                  upstream: Optional[pulumi.Input[str]] = None,
                  upstream_ip: Optional[pulumi.Input[str]] = None,
                  upstream_port: Optional[pulumi.Input[int]] = None,
@@ -911,8 +1076,12 @@ class Csf(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfFabricDeviceArgs']]]] fabric_devices: Fabric device configuration. The structure of `fabric_device` block is documented below.
         :param pulumi.Input[str] fabric_object_unification: Fabric CMDB Object Unification Valid values: `default`, `local`.
         :param pulumi.Input[int] fabric_workers: Number of worker processes for Security Fabric daemon.
+        :param pulumi.Input[str] file_mgmt: Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] file_quota: Maximum amount of memory that can be used by the daemon files (in bytes).
+        :param pulumi.Input[int] file_quota_warning: Warn when the set percentage of quota has been used.
         :param pulumi.Input[str] fixed_key: Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
         :param pulumi.Input[str] forticloud_account_enforcement: Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
         :param pulumi.Input[str] group_password: Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
         :param pulumi.Input[str] log_unification: Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
@@ -921,6 +1090,7 @@ class Csf(pulumi.CustomResource):
         :param pulumi.Input[str] saml_configuration_sync: SAML setting configuration synchronization. Valid values: `default`, `local`.
         :param pulumi.Input[str] status: Enable/disable Security Fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfTrustedListArgs']]]] trusted_lists: Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
+        :param pulumi.Input[str] uid: Unique ID of the current CSF node
         :param pulumi.Input[str] upstream: IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[str] upstream_ip: IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[int] upstream_port: The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
@@ -997,8 +1167,12 @@ class Csf(pulumi.CustomResource):
                  fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfFabricDeviceArgs']]]]] = None,
                  fabric_object_unification: Optional[pulumi.Input[str]] = None,
                  fabric_workers: Optional[pulumi.Input[int]] = None,
+                 file_mgmt: Optional[pulumi.Input[str]] = None,
+                 file_quota: Optional[pulumi.Input[int]] = None,
+                 file_quota_warning: Optional[pulumi.Input[int]] = None,
                  fixed_key: Optional[pulumi.Input[str]] = None,
                  forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  group_password: Optional[pulumi.Input[str]] = None,
                  log_unification: Optional[pulumi.Input[str]] = None,
@@ -1007,6 +1181,7 @@ class Csf(pulumi.CustomResource):
                  saml_configuration_sync: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfTrustedListArgs']]]]] = None,
+                 uid: Optional[pulumi.Input[str]] = None,
                  upstream: Optional[pulumi.Input[str]] = None,
                  upstream_ip: Optional[pulumi.Input[str]] = None,
                  upstream_port: Optional[pulumi.Input[int]] = None,
@@ -1031,8 +1206,12 @@ class Csf(pulumi.CustomResource):
             __props__.__dict__["fabric_devices"] = fabric_devices
             __props__.__dict__["fabric_object_unification"] = fabric_object_unification
             __props__.__dict__["fabric_workers"] = fabric_workers
+            __props__.__dict__["file_mgmt"] = file_mgmt
+            __props__.__dict__["file_quota"] = file_quota
+            __props__.__dict__["file_quota_warning"] = file_quota_warning
             __props__.__dict__["fixed_key"] = None if fixed_key is None else pulumi.Output.secret(fixed_key)
             __props__.__dict__["forticloud_account_enforcement"] = forticloud_account_enforcement
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_name"] = group_name
             __props__.__dict__["group_password"] = None if group_password is None else pulumi.Output.secret(group_password)
             __props__.__dict__["log_unification"] = log_unification
@@ -1043,6 +1222,7 @@ class Csf(pulumi.CustomResource):
                 raise TypeError("Missing required property 'status'")
             __props__.__dict__["status"] = status
             __props__.__dict__["trusted_lists"] = trusted_lists
+            __props__.__dict__["uid"] = uid
             __props__.__dict__["upstream"] = upstream
             __props__.__dict__["upstream_ip"] = upstream_ip
             __props__.__dict__["upstream_port"] = upstream_port
@@ -1070,8 +1250,12 @@ class Csf(pulumi.CustomResource):
             fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfFabricDeviceArgs']]]]] = None,
             fabric_object_unification: Optional[pulumi.Input[str]] = None,
             fabric_workers: Optional[pulumi.Input[int]] = None,
+            file_mgmt: Optional[pulumi.Input[str]] = None,
+            file_quota: Optional[pulumi.Input[int]] = None,
+            file_quota_warning: Optional[pulumi.Input[int]] = None,
             fixed_key: Optional[pulumi.Input[str]] = None,
             forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_name: Optional[pulumi.Input[str]] = None,
             group_password: Optional[pulumi.Input[str]] = None,
             log_unification: Optional[pulumi.Input[str]] = None,
@@ -1080,6 +1264,7 @@ class Csf(pulumi.CustomResource):
             saml_configuration_sync: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfTrustedListArgs']]]]] = None,
+            uid: Optional[pulumi.Input[str]] = None,
             upstream: Optional[pulumi.Input[str]] = None,
             upstream_ip: Optional[pulumi.Input[str]] = None,
             upstream_port: Optional[pulumi.Input[int]] = None,
@@ -1102,8 +1287,12 @@ class Csf(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfFabricDeviceArgs']]]] fabric_devices: Fabric device configuration. The structure of `fabric_device` block is documented below.
         :param pulumi.Input[str] fabric_object_unification: Fabric CMDB Object Unification Valid values: `default`, `local`.
         :param pulumi.Input[int] fabric_workers: Number of worker processes for Security Fabric daemon.
+        :param pulumi.Input[str] file_mgmt: Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] file_quota: Maximum amount of memory that can be used by the daemon files (in bytes).
+        :param pulumi.Input[int] file_quota_warning: Warn when the set percentage of quota has been used.
         :param pulumi.Input[str] fixed_key: Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
         :param pulumi.Input[str] forticloud_account_enforcement: Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
         :param pulumi.Input[str] group_password: Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
         :param pulumi.Input[str] log_unification: Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
@@ -1112,6 +1301,7 @@ class Csf(pulumi.CustomResource):
         :param pulumi.Input[str] saml_configuration_sync: SAML setting configuration synchronization. Valid values: `default`, `local`.
         :param pulumi.Input[str] status: Enable/disable Security Fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfTrustedListArgs']]]] trusted_lists: Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
+        :param pulumi.Input[str] uid: Unique ID of the current CSF node
         :param pulumi.Input[str] upstream: IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[str] upstream_ip: IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[int] upstream_port: The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
@@ -1132,8 +1322,12 @@ class Csf(pulumi.CustomResource):
         __props__.__dict__["fabric_devices"] = fabric_devices
         __props__.__dict__["fabric_object_unification"] = fabric_object_unification
         __props__.__dict__["fabric_workers"] = fabric_workers
+        __props__.__dict__["file_mgmt"] = file_mgmt
+        __props__.__dict__["file_quota"] = file_quota
+        __props__.__dict__["file_quota_warning"] = file_quota_warning
         __props__.__dict__["fixed_key"] = fixed_key
         __props__.__dict__["forticloud_account_enforcement"] = forticloud_account_enforcement
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_name"] = group_name
         __props__.__dict__["group_password"] = group_password
         __props__.__dict__["log_unification"] = log_unification
@@ -1142,6 +1336,7 @@ class Csf(pulumi.CustomResource):
         __props__.__dict__["saml_configuration_sync"] = saml_configuration_sync
         __props__.__dict__["status"] = status
         __props__.__dict__["trusted_lists"] = trusted_lists
+        __props__.__dict__["uid"] = uid
         __props__.__dict__["upstream"] = upstream
         __props__.__dict__["upstream_ip"] = upstream_ip
         __props__.__dict__["upstream_port"] = upstream_port
@@ -1237,6 +1432,30 @@ class Csf(pulumi.CustomResource):
         return pulumi.get(self, "fabric_workers")
 
     @property
+    @pulumi.getter(name="fileMgmt")
+    def file_mgmt(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "file_mgmt")
+
+    @property
+    @pulumi.getter(name="fileQuota")
+    def file_quota(self) -> pulumi.Output[int]:
+        """
+        Maximum amount of memory that can be used by the daemon files (in bytes).
+        """
+        return pulumi.get(self, "file_quota")
+
+    @property
+    @pulumi.getter(name="fileQuotaWarning")
+    def file_quota_warning(self) -> pulumi.Output[int]:
+        """
+        Warn when the set percentage of quota has been used.
+        """
+        return pulumi.get(self, "file_quota_warning")
+
+    @property
     @pulumi.getter(name="fixedKey")
     def fixed_key(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1251,6 +1470,14 @@ class Csf(pulumi.CustomResource):
         Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "forticloud_account_enforcement")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupName")
@@ -1315,6 +1542,14 @@ class Csf(pulumi.CustomResource):
         Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
         """
         return pulumi.get(self, "trusted_lists")
+
+    @property
+    @pulumi.getter
+    def uid(self) -> pulumi.Output[str]:
+        """
+        Unique ID of the current CSF node
+        """
+        return pulumi.get(self, "uid")
 
     @property
     @pulumi.getter

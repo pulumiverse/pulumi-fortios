@@ -32,6 +32,36 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         public Input<string>? MabReauth { get; set; }
 
         /// <summary>
+        /// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Input("macCalledStationDelimiter")]
+        public Input<string>? MacCalledStationDelimiter { get; set; }
+
+        /// <summary>
+        /// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Input("macCallingStationDelimiter")]
+        public Input<string>? MacCallingStationDelimiter { get; set; }
+
+        /// <summary>
+        /// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        /// </summary>
+        [Input("macCase")]
+        public Input<string>? MacCase { get; set; }
+
+        /// <summary>
+        /// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Input("macPasswordDelimiter")]
+        public Input<string>? MacPasswordDelimiter { get; set; }
+
+        /// <summary>
+        /// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Input("macUsernameDelimiter")]
+        public Input<string>? MacUsernameDelimiter { get; set; }
+
+        /// <summary>
         /// Maximum number of authentication attempts (0 - 15, default = 3).
         /// </summary>
         [Input("maxReauthAttempt")]

@@ -44,6 +44,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<string>? HaMembers { get; set; }
 
         /// <summary>
+        /// Index of the downstream in tree.
+        /// </summary>
+        [Input("index")]
+        public Input<int>? Index { get; set; }
+
+        /// <summary>
         /// Name.
         /// </summary>
         [Input("name")]

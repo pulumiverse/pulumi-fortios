@@ -69,6 +69,8 @@ type Onetime struct {
 	Color pulumi.IntOutput `pulumi:"color"`
 	// Schedule end date and time, format hh:mm yyyy/mm/dd.
 	End pulumi.StringOutput `pulumi:"end"`
+	// Schedule end date and time, in epoch format.
+	EndUtc pulumi.StringOutput `pulumi:"endUtc"`
 	// Write an event log message this many days before the schedule expires.
 	ExpirationDays pulumi.IntOutput `pulumi:"expirationDays"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
@@ -77,6 +79,8 @@ type Onetime struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Schedule start date and time, format hh:mm yyyy/mm/dd.
 	Start pulumi.StringOutput `pulumi:"start"`
+	// Schedule start date and time, in epoch format.
+	StartUtc pulumi.StringOutput `pulumi:"startUtc"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -121,6 +125,8 @@ type onetimeState struct {
 	Color *int `pulumi:"color"`
 	// Schedule end date and time, format hh:mm yyyy/mm/dd.
 	End *string `pulumi:"end"`
+	// Schedule end date and time, in epoch format.
+	EndUtc *string `pulumi:"endUtc"`
 	// Write an event log message this many days before the schedule expires.
 	ExpirationDays *int `pulumi:"expirationDays"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
@@ -129,6 +135,8 @@ type onetimeState struct {
 	Name *string `pulumi:"name"`
 	// Schedule start date and time, format hh:mm yyyy/mm/dd.
 	Start *string `pulumi:"start"`
+	// Schedule start date and time, in epoch format.
+	StartUtc *string `pulumi:"startUtc"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -138,6 +146,8 @@ type OnetimeState struct {
 	Color pulumi.IntPtrInput
 	// Schedule end date and time, format hh:mm yyyy/mm/dd.
 	End pulumi.StringPtrInput
+	// Schedule end date and time, in epoch format.
+	EndUtc pulumi.StringPtrInput
 	// Write an event log message this many days before the schedule expires.
 	ExpirationDays pulumi.IntPtrInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
@@ -146,6 +156,8 @@ type OnetimeState struct {
 	Name pulumi.StringPtrInput
 	// Schedule start date and time, format hh:mm yyyy/mm/dd.
 	Start pulumi.StringPtrInput
+	// Schedule start date and time, in epoch format.
+	StartUtc pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -159,6 +171,8 @@ type onetimeArgs struct {
 	Color *int `pulumi:"color"`
 	// Schedule end date and time, format hh:mm yyyy/mm/dd.
 	End string `pulumi:"end"`
+	// Schedule end date and time, in epoch format.
+	EndUtc *string `pulumi:"endUtc"`
 	// Write an event log message this many days before the schedule expires.
 	ExpirationDays *int `pulumi:"expirationDays"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
@@ -167,6 +181,8 @@ type onetimeArgs struct {
 	Name *string `pulumi:"name"`
 	// Schedule start date and time, format hh:mm yyyy/mm/dd.
 	Start string `pulumi:"start"`
+	// Schedule start date and time, in epoch format.
+	StartUtc *string `pulumi:"startUtc"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -177,6 +193,8 @@ type OnetimeArgs struct {
 	Color pulumi.IntPtrInput
 	// Schedule end date and time, format hh:mm yyyy/mm/dd.
 	End pulumi.StringInput
+	// Schedule end date and time, in epoch format.
+	EndUtc pulumi.StringPtrInput
 	// Write an event log message this many days before the schedule expires.
 	ExpirationDays pulumi.IntPtrInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
@@ -185,6 +203,8 @@ type OnetimeArgs struct {
 	Name pulumi.StringPtrInput
 	// Schedule start date and time, format hh:mm yyyy/mm/dd.
 	Start pulumi.StringInput
+	// Schedule start date and time, in epoch format.
+	StartUtc pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -286,6 +306,11 @@ func (o OnetimeOutput) End() pulumi.StringOutput {
 	return o.ApplyT(func(v *Onetime) pulumi.StringOutput { return v.End }).(pulumi.StringOutput)
 }
 
+// Schedule end date and time, in epoch format.
+func (o OnetimeOutput) EndUtc() pulumi.StringOutput {
+	return o.ApplyT(func(v *Onetime) pulumi.StringOutput { return v.EndUtc }).(pulumi.StringOutput)
+}
+
 // Write an event log message this many days before the schedule expires.
 func (o OnetimeOutput) ExpirationDays() pulumi.IntOutput {
 	return o.ApplyT(func(v *Onetime) pulumi.IntOutput { return v.ExpirationDays }).(pulumi.IntOutput)
@@ -304,6 +329,11 @@ func (o OnetimeOutput) Name() pulumi.StringOutput {
 // Schedule start date and time, format hh:mm yyyy/mm/dd.
 func (o OnetimeOutput) Start() pulumi.StringOutput {
 	return o.ApplyT(func(v *Onetime) pulumi.StringOutput { return v.Start }).(pulumi.StringOutput)
+}
+
+// Schedule start date and time, in epoch format.
+func (o OnetimeOutput) StartUtc() pulumi.StringOutput {
+	return o.ApplyT(func(v *Onetime) pulumi.StringOutput { return v.StartUtc }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

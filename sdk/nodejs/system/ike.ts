@@ -152,6 +152,10 @@ export class Ike extends pulumi.CustomResource {
      */
     public readonly embryonicLimit!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      *
      * The `dhGroup1` block supports:
@@ -195,6 +199,7 @@ export class Ike extends pulumi.CustomResource {
             resourceInputs["dhMultiprocess"] = state ? state.dhMultiprocess : undefined;
             resourceInputs["dhWorkerCount"] = state ? state.dhWorkerCount : undefined;
             resourceInputs["embryonicLimit"] = state ? state.embryonicLimit : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as IkeArgs | undefined;
@@ -222,6 +227,7 @@ export class Ike extends pulumi.CustomResource {
             resourceInputs["dhMultiprocess"] = args ? args.dhMultiprocess : undefined;
             resourceInputs["dhWorkerCount"] = args ? args.dhWorkerCount : undefined;
             resourceInputs["embryonicLimit"] = args ? args.embryonicLimit : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -330,6 +336,10 @@ export interface IkeState {
      */
     embryonicLimit?: pulumi.Input<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      *
      * The `dhGroup1` block supports:
@@ -437,6 +447,10 @@ export interface IkeArgs {
      * Maximum number of IPsec tunnels to negotiate simultaneously.
      */
     embryonicLimit?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      *

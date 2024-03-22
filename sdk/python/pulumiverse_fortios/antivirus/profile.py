@@ -43,6 +43,7 @@ class ProfileArgs:
                  fortisandbox_timeout_action: Optional[pulumi.Input[str]] = None,
                  ftgd_analytics: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input['ProfileFtpArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input['ProfileHttpArgs']] = None,
                  imap: Optional[pulumi.Input['ProfileImapArgs']] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
@@ -65,8 +66,8 @@ class ProfileArgs:
         :param pulumi.Input[int] analytics_accept_filetype: Only submit files matching this DLP file-pattern to FortiSandbox.
         :param pulumi.Input[int] analytics_bl_filetype: Only submit files matching this DLP file-pattern to FortiSandbox.
         :param pulumi.Input[str] analytics_db: Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] analytics_ignore_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox.
-        :param pulumi.Input[int] analytics_max_upload: Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+        :param pulumi.Input[int] analytics_ignore_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
+        :param pulumi.Input[int] analytics_max_upload: Maximum size of files that can be uploaded to FortiSandbox.
         :param pulumi.Input[int] analytics_wl_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox.
         :param pulumi.Input[str] av_block_log: Enable/disable logging for AntiVirus file blocking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] av_virus_log: Enable/disable AntiVirus logging. Valid values: `enable`, `disable`.
@@ -89,6 +90,7 @@ class ProfileArgs:
         :param pulumi.Input[str] fortisandbox_timeout_action: Action to take if FortiSandbox inline scan encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
         :param pulumi.Input[str] ftgd_analytics: Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
         :param pulumi.Input['ProfileFtpArgs'] ftp: Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileHttpArgs'] http: Configure HTTP AntiVirus options. The structure of `http` block is documented below.
         :param pulumi.Input['ProfileImapArgs'] imap: Configure IMAP AntiVirus options. The structure of `imap` block is documented below.
         :param pulumi.Input[str] inspection_mode: Inspection mode. Valid values: `proxy`, `flow-based`.
@@ -101,7 +103,7 @@ class ProfileArgs:
         :param pulumi.Input[str] outbreak_prevention_archive_scan: Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
         :param pulumi.Input['ProfilePop3Args'] pop3: Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
         :param pulumi.Input[str] replacemsg_group: Replacement message group customized for this profile.
-        :param pulumi.Input[str] scan_mode: Choose between full scan mode and quick scan mode.
+        :param pulumi.Input[str] scan_mode: Configure scan mode (default or legacy).
         :param pulumi.Input['ProfileSmbArgs'] smb: Configure SMB AntiVirus options. The structure of `smb` block is documented below.
         :param pulumi.Input['ProfileSmtpArgs'] smtp: Configure SMTP AntiVirus options. The structure of `smtp` block is documented below.
         :param pulumi.Input['ProfileSshArgs'] ssh: Configure SFTP and SCP AntiVirus options. The structure of `ssh` block is documented below.
@@ -161,6 +163,8 @@ class ProfileArgs:
             pulumi.set(__self__, "ftgd_analytics", ftgd_analytics)
         if ftp is not None:
             pulumi.set(__self__, "ftp", ftp)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http is not None:
             pulumi.set(__self__, "http", http)
         if imap is not None:
@@ -236,7 +240,7 @@ class ProfileArgs:
     @pulumi.getter(name="analyticsIgnoreFiletype")
     def analytics_ignore_filetype(self) -> Optional[pulumi.Input[int]]:
         """
-        Do not submit files matching this DLP file-pattern to FortiSandbox.
+        Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
         """
         return pulumi.get(self, "analytics_ignore_filetype")
 
@@ -248,7 +252,7 @@ class ProfileArgs:
     @pulumi.getter(name="analyticsMaxUpload")
     def analytics_max_upload(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+        Maximum size of files that can be uploaded to FortiSandbox.
         """
         return pulumi.get(self, "analytics_max_upload")
 
@@ -521,6 +525,18 @@ class ProfileArgs:
         pulumi.set(self, "ftp", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def http(self) -> Optional[pulumi.Input['ProfileHttpArgs']]:
         """
@@ -668,7 +684,7 @@ class ProfileArgs:
     @pulumi.getter(name="scanMode")
     def scan_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Choose between full scan mode and quick scan mode.
+        Configure scan mode (default or legacy).
         """
         return pulumi.get(self, "scan_mode")
 
@@ -755,6 +771,7 @@ class _ProfileState:
                  fortisandbox_timeout_action: Optional[pulumi.Input[str]] = None,
                  ftgd_analytics: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input['ProfileFtpArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input['ProfileHttpArgs']] = None,
                  imap: Optional[pulumi.Input['ProfileImapArgs']] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
@@ -777,8 +794,8 @@ class _ProfileState:
         :param pulumi.Input[int] analytics_accept_filetype: Only submit files matching this DLP file-pattern to FortiSandbox.
         :param pulumi.Input[int] analytics_bl_filetype: Only submit files matching this DLP file-pattern to FortiSandbox.
         :param pulumi.Input[str] analytics_db: Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] analytics_ignore_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox.
-        :param pulumi.Input[int] analytics_max_upload: Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+        :param pulumi.Input[int] analytics_ignore_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
+        :param pulumi.Input[int] analytics_max_upload: Maximum size of files that can be uploaded to FortiSandbox.
         :param pulumi.Input[int] analytics_wl_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox.
         :param pulumi.Input[str] av_block_log: Enable/disable logging for AntiVirus file blocking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] av_virus_log: Enable/disable AntiVirus logging. Valid values: `enable`, `disable`.
@@ -801,6 +818,7 @@ class _ProfileState:
         :param pulumi.Input[str] fortisandbox_timeout_action: Action to take if FortiSandbox inline scan encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
         :param pulumi.Input[str] ftgd_analytics: Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
         :param pulumi.Input['ProfileFtpArgs'] ftp: Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileHttpArgs'] http: Configure HTTP AntiVirus options. The structure of `http` block is documented below.
         :param pulumi.Input['ProfileImapArgs'] imap: Configure IMAP AntiVirus options. The structure of `imap` block is documented below.
         :param pulumi.Input[str] inspection_mode: Inspection mode. Valid values: `proxy`, `flow-based`.
@@ -813,7 +831,7 @@ class _ProfileState:
         :param pulumi.Input[str] outbreak_prevention_archive_scan: Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
         :param pulumi.Input['ProfilePop3Args'] pop3: Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
         :param pulumi.Input[str] replacemsg_group: Replacement message group customized for this profile.
-        :param pulumi.Input[str] scan_mode: Choose between full scan mode and quick scan mode.
+        :param pulumi.Input[str] scan_mode: Configure scan mode (default or legacy).
         :param pulumi.Input['ProfileSmbArgs'] smb: Configure SMB AntiVirus options. The structure of `smb` block is documented below.
         :param pulumi.Input['ProfileSmtpArgs'] smtp: Configure SMTP AntiVirus options. The structure of `smtp` block is documented below.
         :param pulumi.Input['ProfileSshArgs'] ssh: Configure SFTP and SCP AntiVirus options. The structure of `ssh` block is documented below.
@@ -873,6 +891,8 @@ class _ProfileState:
             pulumi.set(__self__, "ftgd_analytics", ftgd_analytics)
         if ftp is not None:
             pulumi.set(__self__, "ftp", ftp)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http is not None:
             pulumi.set(__self__, "http", http)
         if imap is not None:
@@ -948,7 +968,7 @@ class _ProfileState:
     @pulumi.getter(name="analyticsIgnoreFiletype")
     def analytics_ignore_filetype(self) -> Optional[pulumi.Input[int]]:
         """
-        Do not submit files matching this DLP file-pattern to FortiSandbox.
+        Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
         """
         return pulumi.get(self, "analytics_ignore_filetype")
 
@@ -960,7 +980,7 @@ class _ProfileState:
     @pulumi.getter(name="analyticsMaxUpload")
     def analytics_max_upload(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+        Maximum size of files that can be uploaded to FortiSandbox.
         """
         return pulumi.get(self, "analytics_max_upload")
 
@@ -1233,6 +1253,18 @@ class _ProfileState:
         pulumi.set(self, "ftp", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def http(self) -> Optional[pulumi.Input['ProfileHttpArgs']]:
         """
@@ -1380,7 +1412,7 @@ class _ProfileState:
     @pulumi.getter(name="scanMode")
     def scan_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Choose between full scan mode and quick scan mode.
+        Configure scan mode (default or legacy).
         """
         return pulumi.get(self, "scan_mode")
 
@@ -1469,6 +1501,7 @@ class Profile(pulumi.CustomResource):
                  fortisandbox_timeout_action: Optional[pulumi.Input[str]] = None,
                  ftgd_analytics: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input[pulumi.InputType['ProfileFtpArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input[pulumi.InputType['ProfileHttpArgs']]] = None,
                  imap: Optional[pulumi.Input[pulumi.InputType['ProfileImapArgs']]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
@@ -1535,8 +1568,8 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[int] analytics_accept_filetype: Only submit files matching this DLP file-pattern to FortiSandbox.
         :param pulumi.Input[int] analytics_bl_filetype: Only submit files matching this DLP file-pattern to FortiSandbox.
         :param pulumi.Input[str] analytics_db: Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] analytics_ignore_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox.
-        :param pulumi.Input[int] analytics_max_upload: Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+        :param pulumi.Input[int] analytics_ignore_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
+        :param pulumi.Input[int] analytics_max_upload: Maximum size of files that can be uploaded to FortiSandbox.
         :param pulumi.Input[int] analytics_wl_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox.
         :param pulumi.Input[str] av_block_log: Enable/disable logging for AntiVirus file blocking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] av_virus_log: Enable/disable AntiVirus logging. Valid values: `enable`, `disable`.
@@ -1559,6 +1592,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] fortisandbox_timeout_action: Action to take if FortiSandbox inline scan encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
         :param pulumi.Input[str] ftgd_analytics: Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
         :param pulumi.Input[pulumi.InputType['ProfileFtpArgs']] ftp: Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileHttpArgs']] http: Configure HTTP AntiVirus options. The structure of `http` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileImapArgs']] imap: Configure IMAP AntiVirus options. The structure of `imap` block is documented below.
         :param pulumi.Input[str] inspection_mode: Inspection mode. Valid values: `proxy`, `flow-based`.
@@ -1571,7 +1605,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] outbreak_prevention_archive_scan: Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
         :param pulumi.Input[pulumi.InputType['ProfilePop3Args']] pop3: Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
         :param pulumi.Input[str] replacemsg_group: Replacement message group customized for this profile.
-        :param pulumi.Input[str] scan_mode: Choose between full scan mode and quick scan mode.
+        :param pulumi.Input[str] scan_mode: Configure scan mode (default or legacy).
         :param pulumi.Input[pulumi.InputType['ProfileSmbArgs']] smb: Configure SMB AntiVirus options. The structure of `smb` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileSmtpArgs']] smtp: Configure SMTP AntiVirus options. The structure of `smtp` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileSshArgs']] ssh: Configure SFTP and SCP AntiVirus options. The structure of `ssh` block is documented below.
@@ -1668,6 +1702,7 @@ class Profile(pulumi.CustomResource):
                  fortisandbox_timeout_action: Optional[pulumi.Input[str]] = None,
                  ftgd_analytics: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input[pulumi.InputType['ProfileFtpArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input[pulumi.InputType['ProfileHttpArgs']]] = None,
                  imap: Optional[pulumi.Input[pulumi.InputType['ProfileImapArgs']]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
@@ -1721,6 +1756,7 @@ class Profile(pulumi.CustomResource):
             __props__.__dict__["fortisandbox_timeout_action"] = fortisandbox_timeout_action
             __props__.__dict__["ftgd_analytics"] = ftgd_analytics
             __props__.__dict__["ftp"] = ftp
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["http"] = http
             __props__.__dict__["imap"] = imap
             __props__.__dict__["inspection_mode"] = inspection_mode
@@ -1775,6 +1811,7 @@ class Profile(pulumi.CustomResource):
             fortisandbox_timeout_action: Optional[pulumi.Input[str]] = None,
             ftgd_analytics: Optional[pulumi.Input[str]] = None,
             ftp: Optional[pulumi.Input[pulumi.InputType['ProfileFtpArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             http: Optional[pulumi.Input[pulumi.InputType['ProfileHttpArgs']]] = None,
             imap: Optional[pulumi.Input[pulumi.InputType['ProfileImapArgs']]] = None,
             inspection_mode: Optional[pulumi.Input[str]] = None,
@@ -1802,8 +1839,8 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[int] analytics_accept_filetype: Only submit files matching this DLP file-pattern to FortiSandbox.
         :param pulumi.Input[int] analytics_bl_filetype: Only submit files matching this DLP file-pattern to FortiSandbox.
         :param pulumi.Input[str] analytics_db: Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] analytics_ignore_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox.
-        :param pulumi.Input[int] analytics_max_upload: Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+        :param pulumi.Input[int] analytics_ignore_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
+        :param pulumi.Input[int] analytics_max_upload: Maximum size of files that can be uploaded to FortiSandbox.
         :param pulumi.Input[int] analytics_wl_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox.
         :param pulumi.Input[str] av_block_log: Enable/disable logging for AntiVirus file blocking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] av_virus_log: Enable/disable AntiVirus logging. Valid values: `enable`, `disable`.
@@ -1826,6 +1863,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] fortisandbox_timeout_action: Action to take if FortiSandbox inline scan encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
         :param pulumi.Input[str] ftgd_analytics: Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
         :param pulumi.Input[pulumi.InputType['ProfileFtpArgs']] ftp: Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileHttpArgs']] http: Configure HTTP AntiVirus options. The structure of `http` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileImapArgs']] imap: Configure IMAP AntiVirus options. The structure of `imap` block is documented below.
         :param pulumi.Input[str] inspection_mode: Inspection mode. Valid values: `proxy`, `flow-based`.
@@ -1838,7 +1876,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] outbreak_prevention_archive_scan: Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
         :param pulumi.Input[pulumi.InputType['ProfilePop3Args']] pop3: Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
         :param pulumi.Input[str] replacemsg_group: Replacement message group customized for this profile.
-        :param pulumi.Input[str] scan_mode: Choose between full scan mode and quick scan mode.
+        :param pulumi.Input[str] scan_mode: Configure scan mode (default or legacy).
         :param pulumi.Input[pulumi.InputType['ProfileSmbArgs']] smb: Configure SMB AntiVirus options. The structure of `smb` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileSmtpArgs']] smtp: Configure SMTP AntiVirus options. The structure of `smtp` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileSshArgs']] ssh: Configure SFTP and SCP AntiVirus options. The structure of `ssh` block is documented below.
@@ -1875,6 +1913,7 @@ class Profile(pulumi.CustomResource):
         __props__.__dict__["fortisandbox_timeout_action"] = fortisandbox_timeout_action
         __props__.__dict__["ftgd_analytics"] = ftgd_analytics
         __props__.__dict__["ftp"] = ftp
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["http"] = http
         __props__.__dict__["imap"] = imap
         __props__.__dict__["inspection_mode"] = inspection_mode
@@ -1922,7 +1961,7 @@ class Profile(pulumi.CustomResource):
     @pulumi.getter(name="analyticsIgnoreFiletype")
     def analytics_ignore_filetype(self) -> pulumi.Output[int]:
         """
-        Do not submit files matching this DLP file-pattern to FortiSandbox.
+        Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only).
         """
         return pulumi.get(self, "analytics_ignore_filetype")
 
@@ -1930,7 +1969,7 @@ class Profile(pulumi.CustomResource):
     @pulumi.getter(name="analyticsMaxUpload")
     def analytics_max_upload(self) -> pulumi.Output[int]:
         """
-        Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
+        Maximum size of files that can be uploaded to FortiSandbox.
         """
         return pulumi.get(self, "analytics_max_upload")
 
@@ -2111,6 +2150,14 @@ class Profile(pulumi.CustomResource):
         return pulumi.get(self, "ftp")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def http(self) -> pulumi.Output['outputs.ProfileHttp']:
         """
@@ -2210,7 +2257,7 @@ class Profile(pulumi.CustomResource):
     @pulumi.getter(name="scanMode")
     def scan_mode(self) -> pulumi.Output[str]:
         """
-        Choose between full scan mode and quick scan mode.
+        Configure scan mode (default or legacy).
         """
         return pulumi.get(self, "scan_mode")
 

@@ -54,6 +54,14 @@ export class System extends pulumi.CustomResource {
     }
 
     /**
+     * Echo interval for the caputp echo requests from swtp.
+     */
+    public readonly caputpEchoInterval!: pulumi.Output<number>;
+    /**
+     * Maximum retransmission count for the caputp tunnel packets.
+     */
+    public readonly caputpMaxRetransmit!: pulumi.Output<number>;
+    /**
      * Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
      */
     public readonly dataSyncInterval!: pulumi.Output<number>;
@@ -90,7 +98,7 @@ export class System extends pulumi.CustomResource {
      */
     public readonly parallelProcessOverride!: pulumi.Output<string>;
     /**
-     * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+     * Compatible/strict tunnel mode.
      */
     public readonly tunnelMode!: pulumi.Output<string>;
     /**
@@ -111,6 +119,8 @@ export class System extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemState | undefined;
+            resourceInputs["caputpEchoInterval"] = state ? state.caputpEchoInterval : undefined;
+            resourceInputs["caputpMaxRetransmit"] = state ? state.caputpMaxRetransmit : undefined;
             resourceInputs["dataSyncInterval"] = state ? state.dataSyncInterval : undefined;
             resourceInputs["dynamicPeriodicInterval"] = state ? state.dynamicPeriodicInterval : undefined;
             resourceInputs["iotHoldoff"] = state ? state.iotHoldoff : undefined;
@@ -124,6 +134,8 @@ export class System extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemArgs | undefined;
+            resourceInputs["caputpEchoInterval"] = args ? args.caputpEchoInterval : undefined;
+            resourceInputs["caputpMaxRetransmit"] = args ? args.caputpMaxRetransmit : undefined;
             resourceInputs["dataSyncInterval"] = args ? args.dataSyncInterval : undefined;
             resourceInputs["dynamicPeriodicInterval"] = args ? args.dynamicPeriodicInterval : undefined;
             resourceInputs["iotHoldoff"] = args ? args.iotHoldoff : undefined;
@@ -146,6 +158,14 @@ export class System extends pulumi.CustomResource {
  */
 export interface SystemState {
     /**
+     * Echo interval for the caputp echo requests from swtp.
+     */
+    caputpEchoInterval?: pulumi.Input<number>;
+    /**
+     * Maximum retransmission count for the caputp tunnel packets.
+     */
+    caputpMaxRetransmit?: pulumi.Input<number>;
+    /**
      * Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
      */
     dataSyncInterval?: pulumi.Input<number>;
@@ -182,7 +202,7 @@ export interface SystemState {
      */
     parallelProcessOverride?: pulumi.Input<string>;
     /**
-     * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+     * Compatible/strict tunnel mode.
      */
     tunnelMode?: pulumi.Input<string>;
     /**
@@ -196,6 +216,14 @@ export interface SystemState {
  */
 export interface SystemArgs {
     /**
+     * Echo interval for the caputp echo requests from swtp.
+     */
+    caputpEchoInterval?: pulumi.Input<number>;
+    /**
+     * Maximum retransmission count for the caputp tunnel packets.
+     */
+    caputpMaxRetransmit?: pulumi.Input<number>;
+    /**
      * Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
      */
     dataSyncInterval?: pulumi.Input<number>;
@@ -232,7 +260,7 @@ export interface SystemArgs {
      */
     parallelProcessOverride?: pulumi.Input<string>;
     /**
-     * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+     * Compatible/strict tunnel mode.
      */
     tunnelMode?: pulumi.Input<string>;
     /**

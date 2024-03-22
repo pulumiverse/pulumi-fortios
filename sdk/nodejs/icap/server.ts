@@ -99,7 +99,7 @@ export class Server extends pulumi.CustomResource {
      */
     public readonly ipVersion!: pulumi.Output<string>;
     /**
-     * Maximum number of concurrent connections to ICAP server.
+     * Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
      */
     public readonly maxConnections!: pulumi.Output<number>;
     /**
@@ -203,7 +203,7 @@ export interface ServerState {
      */
     ipVersion?: pulumi.Input<string>;
     /**
-     * Maximum number of concurrent connections to ICAP server.
+     * Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
      */
     maxConnections?: pulumi.Input<number>;
     /**
@@ -261,7 +261,7 @@ export interface ServerArgs {
      */
     ipVersion?: pulumi.Input<string>;
     /**
-     * Maximum number of concurrent connections to ICAP server.
+     * Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
      */
     maxConnections?: pulumi.Input<number>;
     /**

@@ -41,6 +41,8 @@ type Npu struct {
 	DedicatedManagementCpu pulumi.StringOutput `pulumi:"dedicatedManagementCpu"`
 	// Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
 	Fastpath pulumi.StringOutput `pulumi:"fastpath"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
 	IpsecDecSubengineMask pulumi.StringOutput `pulumi:"ipsecDecSubengineMask"`
 	// IPsec encryption subengine mask (0x1 - 0xff, default 0xff).
@@ -113,6 +115,8 @@ type npuState struct {
 	DedicatedManagementCpu *string `pulumi:"dedicatedManagementCpu"`
 	// Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
 	Fastpath *string `pulumi:"fastpath"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
 	IpsecDecSubengineMask *string `pulumi:"ipsecDecSubengineMask"`
 	// IPsec encryption subengine mask (0x1 - 0xff, default 0xff).
@@ -156,6 +160,8 @@ type NpuState struct {
 	DedicatedManagementCpu pulumi.StringPtrInput
 	// Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
 	Fastpath pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
 	IpsecDecSubengineMask pulumi.StringPtrInput
 	// IPsec encryption subengine mask (0x1 - 0xff, default 0xff).
@@ -203,6 +209,8 @@ type npuArgs struct {
 	DedicatedManagementCpu *string `pulumi:"dedicatedManagementCpu"`
 	// Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
 	Fastpath *string `pulumi:"fastpath"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
 	IpsecDecSubengineMask *string `pulumi:"ipsecDecSubengineMask"`
 	// IPsec encryption subengine mask (0x1 - 0xff, default 0xff).
@@ -247,6 +255,8 @@ type NpuArgs struct {
 	DedicatedManagementCpu pulumi.StringPtrInput
 	// Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
 	Fastpath pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
 	IpsecDecSubengineMask pulumi.StringPtrInput
 	// IPsec encryption subengine mask (0x1 - 0xff, default 0xff).
@@ -386,6 +396,11 @@ func (o NpuOutput) DedicatedManagementCpu() pulumi.StringOutput {
 // Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
 func (o NpuOutput) Fastpath() pulumi.StringOutput {
 	return o.ApplyT(func(v *Npu) pulumi.StringOutput { return v.Fastpath }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o NpuOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Npu) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // IPsec decryption subengine mask (0x1 - 0xff, default 0xff).

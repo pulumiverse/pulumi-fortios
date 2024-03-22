@@ -30,16 +30,16 @@ class LdbmonitorArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Ldbmonitor resource.
-        :param pulumi.Input[str] type: Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
+        :param pulumi.Input[str] type: Select the Monitor type used by the health check monitor to check the health of the server. On FortiOS versions 6.2.0: PING | TCP | HTTP. On FortiOS versions 6.2.4-7.0.0: PING | TCP | HTTP | HTTPS. On FortiOS versions >= 7.0.1: PING | TCP | HTTP | HTTPS | DNS.
         :param pulumi.Input[str] dns_match_ip: Response IP expected from DNS server.
         :param pulumi.Input[str] dns_protocol: Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
         :param pulumi.Input[str] dns_request_domain: Fully qualified domain name to resolve for the DNS probe.
         :param pulumi.Input[str] http_get: URL used to send a GET request to check the health of an HTTP server.
         :param pulumi.Input[str] http_match: String to match the value expected in response to an HTTP-GET request.
         :param pulumi.Input[int] http_max_redirects: The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
-        :param pulumi.Input[int] interval: Time between health checks (5 - 65635 sec, default = 10).
+        :param pulumi.Input[int] interval: Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions >= 7.2.0: 5 - 65535 sec.
         :param pulumi.Input[str] name: Monitor name.
-        :param pulumi.Input[int] port: Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
+        :param pulumi.Input[int] port: Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions >= 7.2.0: 0 - 65535.
         :param pulumi.Input[int] retry: Number health check attempts before the server is considered down (1 - 255, default = 3).
         :param pulumi.Input[str] src_ip: Source IP for ldb-monitor.
         :param pulumi.Input[int] timeout: Time to wait to receive response to a health check from a server. Reaching the timeout means the health check failed (1 - 255 sec, default = 2).
@@ -77,7 +77,7 @@ class LdbmonitorArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
+        Select the Monitor type used by the health check monitor to check the health of the server. On FortiOS versions 6.2.0: PING | TCP | HTTP. On FortiOS versions 6.2.4-7.0.0: PING | TCP | HTTP | HTTPS. On FortiOS versions >= 7.0.1: PING | TCP | HTTP | HTTPS | DNS.
         """
         return pulumi.get(self, "type")
 
@@ -161,7 +161,7 @@ class LdbmonitorArgs:
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Time between health checks (5 - 65635 sec, default = 10).
+        Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions >= 7.2.0: 5 - 65535 sec.
         """
         return pulumi.get(self, "interval")
 
@@ -185,7 +185,7 @@ class LdbmonitorArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
+        Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions >= 7.2.0: 0 - 65535.
         """
         return pulumi.get(self, "port")
 
@@ -267,13 +267,13 @@ class _LdbmonitorState:
         :param pulumi.Input[str] http_get: URL used to send a GET request to check the health of an HTTP server.
         :param pulumi.Input[str] http_match: String to match the value expected in response to an HTTP-GET request.
         :param pulumi.Input[int] http_max_redirects: The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
-        :param pulumi.Input[int] interval: Time between health checks (5 - 65635 sec, default = 10).
+        :param pulumi.Input[int] interval: Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions >= 7.2.0: 5 - 65535 sec.
         :param pulumi.Input[str] name: Monitor name.
-        :param pulumi.Input[int] port: Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
+        :param pulumi.Input[int] port: Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions >= 7.2.0: 0 - 65535.
         :param pulumi.Input[int] retry: Number health check attempts before the server is considered down (1 - 255, default = 3).
         :param pulumi.Input[str] src_ip: Source IP for ldb-monitor.
         :param pulumi.Input[int] timeout: Time to wait to receive response to a health check from a server. Reaching the timeout means the health check failed (1 - 255 sec, default = 2).
-        :param pulumi.Input[str] type: Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
+        :param pulumi.Input[str] type: Select the Monitor type used by the health check monitor to check the health of the server. On FortiOS versions 6.2.0: PING | TCP | HTTP. On FortiOS versions 6.2.4-7.0.0: PING | TCP | HTTP | HTTPS. On FortiOS versions >= 7.0.1: PING | TCP | HTTP | HTTPS | DNS.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if dns_match_ip is not None:
@@ -381,7 +381,7 @@ class _LdbmonitorState:
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Time between health checks (5 - 65635 sec, default = 10).
+        Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions >= 7.2.0: 5 - 65535 sec.
         """
         return pulumi.get(self, "interval")
 
@@ -405,7 +405,7 @@ class _LdbmonitorState:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
+        Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions >= 7.2.0: 0 - 65535.
         """
         return pulumi.get(self, "port")
 
@@ -453,7 +453,7 @@ class _LdbmonitorState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
+        Select the Monitor type used by the health check monitor to check the health of the server. On FortiOS versions 6.2.0: PING | TCP | HTTP. On FortiOS versions 6.2.4-7.0.0: PING | TCP | HTTP | HTTPS. On FortiOS versions >= 7.0.1: PING | TCP | HTTP | HTTPS | DNS.
         """
         return pulumi.get(self, "type")
 
@@ -540,13 +540,13 @@ class Ldbmonitor(pulumi.CustomResource):
         :param pulumi.Input[str] http_get: URL used to send a GET request to check the health of an HTTP server.
         :param pulumi.Input[str] http_match: String to match the value expected in response to an HTTP-GET request.
         :param pulumi.Input[int] http_max_redirects: The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
-        :param pulumi.Input[int] interval: Time between health checks (5 - 65635 sec, default = 10).
+        :param pulumi.Input[int] interval: Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions >= 7.2.0: 5 - 65535 sec.
         :param pulumi.Input[str] name: Monitor name.
-        :param pulumi.Input[int] port: Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
+        :param pulumi.Input[int] port: Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions >= 7.2.0: 0 - 65535.
         :param pulumi.Input[int] retry: Number health check attempts before the server is considered down (1 - 255, default = 3).
         :param pulumi.Input[str] src_ip: Source IP for ldb-monitor.
         :param pulumi.Input[int] timeout: Time to wait to receive response to a health check from a server. Reaching the timeout means the health check failed (1 - 255 sec, default = 2).
-        :param pulumi.Input[str] type: Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
+        :param pulumi.Input[str] type: Select the Monitor type used by the health check monitor to check the health of the server. On FortiOS versions 6.2.0: PING | TCP | HTTP. On FortiOS versions 6.2.4-7.0.0: PING | TCP | HTTP | HTTPS. On FortiOS versions >= 7.0.1: PING | TCP | HTTP | HTTPS | DNS.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -684,13 +684,13 @@ class Ldbmonitor(pulumi.CustomResource):
         :param pulumi.Input[str] http_get: URL used to send a GET request to check the health of an HTTP server.
         :param pulumi.Input[str] http_match: String to match the value expected in response to an HTTP-GET request.
         :param pulumi.Input[int] http_max_redirects: The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
-        :param pulumi.Input[int] interval: Time between health checks (5 - 65635 sec, default = 10).
+        :param pulumi.Input[int] interval: Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions >= 7.2.0: 5 - 65535 sec.
         :param pulumi.Input[str] name: Monitor name.
-        :param pulumi.Input[int] port: Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
+        :param pulumi.Input[int] port: Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions >= 7.2.0: 0 - 65535.
         :param pulumi.Input[int] retry: Number health check attempts before the server is considered down (1 - 255, default = 3).
         :param pulumi.Input[str] src_ip: Source IP for ldb-monitor.
         :param pulumi.Input[int] timeout: Time to wait to receive response to a health check from a server. Reaching the timeout means the health check failed (1 - 255 sec, default = 2).
-        :param pulumi.Input[str] type: Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
+        :param pulumi.Input[str] type: Select the Monitor type used by the health check monitor to check the health of the server. On FortiOS versions 6.2.0: PING | TCP | HTTP. On FortiOS versions 6.2.4-7.0.0: PING | TCP | HTTP | HTTPS. On FortiOS versions >= 7.0.1: PING | TCP | HTTP | HTTPS | DNS.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -765,7 +765,7 @@ class Ldbmonitor(pulumi.CustomResource):
     @pulumi.getter
     def interval(self) -> pulumi.Output[int]:
         """
-        Time between health checks (5 - 65635 sec, default = 10).
+        Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions >= 7.2.0: 5 - 65535 sec.
         """
         return pulumi.get(self, "interval")
 
@@ -781,7 +781,7 @@ class Ldbmonitor(pulumi.CustomResource):
     @pulumi.getter
     def port(self) -> pulumi.Output[int]:
         """
-        Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
+        Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions >= 7.2.0: 0 - 65535.
         """
         return pulumi.get(self, "port")
 
@@ -813,7 +813,7 @@ class Ldbmonitor(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
+        Select the Monitor type used by the health check monitor to check the health of the server. On FortiOS versions 6.2.0: PING | TCP | HTTP. On FortiOS versions 6.2.4-7.0.0: PING | TCP | HTTP | HTTPS. On FortiOS versions >= 7.0.1: PING | TCP | HTTP | HTTPS | DNS.
         """
         return pulumi.get(self, "type")
 

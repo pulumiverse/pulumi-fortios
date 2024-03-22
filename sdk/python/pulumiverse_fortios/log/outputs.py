@@ -309,6 +309,8 @@ class ThreatweightMalware(dict):
             suggest = "fsa_malicious"
         elif key == "fsaMediumRisk":
             suggest = "fsa_medium_risk"
+        elif key == "inlineBlock":
+            suggest = "inline_block"
         elif key == "malwareList":
             suggest = "malware_list"
         elif key == "switchProto":
@@ -345,6 +347,7 @@ class ThreatweightMalware(dict):
                  fsa_high_risk: Optional[str] = None,
                  fsa_malicious: Optional[str] = None,
                  fsa_medium_risk: Optional[str] = None,
+                 inline_block: Optional[str] = None,
                  malware_list: Optional[str] = None,
                  mimefragmented: Optional[str] = None,
                  oversized: Optional[str] = None,
@@ -365,6 +368,7 @@ class ThreatweightMalware(dict):
         :param str fsa_high_risk: Threat weight score for FortiSandbox high risk malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param str fsa_malicious: Threat weight score for FortiSandbox malicious malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param str fsa_medium_risk: Threat weight score for FortiSandbox medium risk malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+        :param str inline_block: Threat weight score for malware detected by inline block. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param str malware_list: Threat weight score for virus (malware list) detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param str mimefragmented: Threat weight score for mimefragmented detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param str oversized: Threat weight score for oversized file detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
@@ -396,6 +400,8 @@ class ThreatweightMalware(dict):
             pulumi.set(__self__, "fsa_malicious", fsa_malicious)
         if fsa_medium_risk is not None:
             pulumi.set(__self__, "fsa_medium_risk", fsa_medium_risk)
+        if inline_block is not None:
+            pulumi.set(__self__, "inline_block", inline_block)
         if malware_list is not None:
             pulumi.set(__self__, "malware_list", malware_list)
         if mimefragmented is not None:
@@ -500,6 +506,14 @@ class ThreatweightMalware(dict):
         Threat weight score for FortiSandbox medium risk malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         """
         return pulumi.get(self, "fsa_medium_risk")
+
+    @property
+    @pulumi.getter(name="inlineBlock")
+    def inline_block(self) -> Optional[str]:
+        """
+        Threat weight score for malware detected by inline block. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+        """
+        return pulumi.get(self, "inline_block")
 
     @property
     @pulumi.getter(name="malwareList")

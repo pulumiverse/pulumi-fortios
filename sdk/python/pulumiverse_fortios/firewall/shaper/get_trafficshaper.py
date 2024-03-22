@@ -21,10 +21,19 @@ class GetTrafficshaperResult:
     """
     A collection of values returned by getTrafficshaper.
     """
-    def __init__(__self__, bandwidth_unit=None, diffserv=None, diffservcode=None, dscp_marking_method=None, exceed_bandwidth=None, exceed_class_id=None, exceed_dscp=None, guaranteed_bandwidth=None, id=None, maximum_bandwidth=None, maximum_dscp=None, name=None, overhead=None, per_policy=None, priority=None, vdomparam=None):
+    def __init__(__self__, bandwidth_unit=None, cos=None, cos_marking=None, cos_marking_method=None, diffserv=None, diffservcode=None, dscp_marking_method=None, exceed_bandwidth=None, exceed_class_id=None, exceed_cos=None, exceed_dscp=None, guaranteed_bandwidth=None, id=None, maximum_bandwidth=None, maximum_cos=None, maximum_dscp=None, name=None, overhead=None, per_policy=None, priority=None, vdomparam=None):
         if bandwidth_unit and not isinstance(bandwidth_unit, str):
             raise TypeError("Expected argument 'bandwidth_unit' to be a str")
         pulumi.set(__self__, "bandwidth_unit", bandwidth_unit)
+        if cos and not isinstance(cos, str):
+            raise TypeError("Expected argument 'cos' to be a str")
+        pulumi.set(__self__, "cos", cos)
+        if cos_marking and not isinstance(cos_marking, str):
+            raise TypeError("Expected argument 'cos_marking' to be a str")
+        pulumi.set(__self__, "cos_marking", cos_marking)
+        if cos_marking_method and not isinstance(cos_marking_method, str):
+            raise TypeError("Expected argument 'cos_marking_method' to be a str")
+        pulumi.set(__self__, "cos_marking_method", cos_marking_method)
         if diffserv and not isinstance(diffserv, str):
             raise TypeError("Expected argument 'diffserv' to be a str")
         pulumi.set(__self__, "diffserv", diffserv)
@@ -40,6 +49,9 @@ class GetTrafficshaperResult:
         if exceed_class_id and not isinstance(exceed_class_id, int):
             raise TypeError("Expected argument 'exceed_class_id' to be a int")
         pulumi.set(__self__, "exceed_class_id", exceed_class_id)
+        if exceed_cos and not isinstance(exceed_cos, str):
+            raise TypeError("Expected argument 'exceed_cos' to be a str")
+        pulumi.set(__self__, "exceed_cos", exceed_cos)
         if exceed_dscp and not isinstance(exceed_dscp, str):
             raise TypeError("Expected argument 'exceed_dscp' to be a str")
         pulumi.set(__self__, "exceed_dscp", exceed_dscp)
@@ -52,6 +64,9 @@ class GetTrafficshaperResult:
         if maximum_bandwidth and not isinstance(maximum_bandwidth, int):
             raise TypeError("Expected argument 'maximum_bandwidth' to be a int")
         pulumi.set(__self__, "maximum_bandwidth", maximum_bandwidth)
+        if maximum_cos and not isinstance(maximum_cos, str):
+            raise TypeError("Expected argument 'maximum_cos' to be a str")
+        pulumi.set(__self__, "maximum_cos", maximum_cos)
         if maximum_dscp and not isinstance(maximum_dscp, str):
             raise TypeError("Expected argument 'maximum_dscp' to be a str")
         pulumi.set(__self__, "maximum_dscp", maximum_dscp)
@@ -78,6 +93,30 @@ class GetTrafficshaperResult:
         Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps).
         """
         return pulumi.get(self, "bandwidth_unit")
+
+    @property
+    @pulumi.getter
+    def cos(self) -> str:
+        """
+        VLAN CoS mark.
+        """
+        return pulumi.get(self, "cos")
+
+    @property
+    @pulumi.getter(name="cosMarking")
+    def cos_marking(self) -> str:
+        """
+        Enable/disable VLAN CoS marking.
+        """
+        return pulumi.get(self, "cos_marking")
+
+    @property
+    @pulumi.getter(name="cosMarkingMethod")
+    def cos_marking_method(self) -> str:
+        """
+        Select VLAN CoS marking method.
+        """
+        return pulumi.get(self, "cos_marking_method")
 
     @property
     @pulumi.getter
@@ -120,6 +159,14 @@ class GetTrafficshaperResult:
         return pulumi.get(self, "exceed_class_id")
 
     @property
+    @pulumi.getter(name="exceedCos")
+    def exceed_cos(self) -> str:
+        """
+        VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+        """
+        return pulumi.get(self, "exceed_cos")
+
+    @property
     @pulumi.getter(name="exceedDscp")
     def exceed_dscp(self) -> str:
         """
@@ -150,6 +197,14 @@ class GetTrafficshaperResult:
         Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
         """
         return pulumi.get(self, "maximum_bandwidth")
+
+    @property
+    @pulumi.getter(name="maximumCos")
+    def maximum_cos(self) -> str:
+        """
+        VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+        """
+        return pulumi.get(self, "maximum_cos")
 
     @property
     @pulumi.getter(name="maximumDscp")
@@ -204,15 +259,20 @@ class AwaitableGetTrafficshaperResult(GetTrafficshaperResult):
             yield self
         return GetTrafficshaperResult(
             bandwidth_unit=self.bandwidth_unit,
+            cos=self.cos,
+            cos_marking=self.cos_marking,
+            cos_marking_method=self.cos_marking_method,
             diffserv=self.diffserv,
             diffservcode=self.diffservcode,
             dscp_marking_method=self.dscp_marking_method,
             exceed_bandwidth=self.exceed_bandwidth,
             exceed_class_id=self.exceed_class_id,
+            exceed_cos=self.exceed_cos,
             exceed_dscp=self.exceed_dscp,
             guaranteed_bandwidth=self.guaranteed_bandwidth,
             id=self.id,
             maximum_bandwidth=self.maximum_bandwidth,
+            maximum_cos=self.maximum_cos,
             maximum_dscp=self.maximum_dscp,
             name=self.name,
             overhead=self.overhead,
@@ -239,15 +299,20 @@ def get_trafficshaper(name: Optional[str] = None,
 
     return AwaitableGetTrafficshaperResult(
         bandwidth_unit=pulumi.get(__ret__, 'bandwidth_unit'),
+        cos=pulumi.get(__ret__, 'cos'),
+        cos_marking=pulumi.get(__ret__, 'cos_marking'),
+        cos_marking_method=pulumi.get(__ret__, 'cos_marking_method'),
         diffserv=pulumi.get(__ret__, 'diffserv'),
         diffservcode=pulumi.get(__ret__, 'diffservcode'),
         dscp_marking_method=pulumi.get(__ret__, 'dscp_marking_method'),
         exceed_bandwidth=pulumi.get(__ret__, 'exceed_bandwidth'),
         exceed_class_id=pulumi.get(__ret__, 'exceed_class_id'),
+        exceed_cos=pulumi.get(__ret__, 'exceed_cos'),
         exceed_dscp=pulumi.get(__ret__, 'exceed_dscp'),
         guaranteed_bandwidth=pulumi.get(__ret__, 'guaranteed_bandwidth'),
         id=pulumi.get(__ret__, 'id'),
         maximum_bandwidth=pulumi.get(__ret__, 'maximum_bandwidth'),
+        maximum_cos=pulumi.get(__ret__, 'maximum_cos'),
         maximum_dscp=pulumi.get(__ret__, 'maximum_dscp'),
         name=pulumi.get(__ret__, 'name'),
         overhead=pulumi.get(__ret__, 'overhead'),

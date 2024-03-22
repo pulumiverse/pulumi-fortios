@@ -110,6 +110,10 @@ type Centralmanagement struct {
 	FmgSourceIp6 pulumi.StringOutput `pulumi:"fmgSourceIp6"`
 	// Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
 	FmgUpdatePort pulumi.StringOutput `pulumi:"fmgUpdatePort"`
+	// Override access profile.
+	FortigateCloudSsoDefaultProfile pulumi.StringOutput `pulumi:"fortigateCloudSsoDefaultProfile"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
 	IncludeDefaultServers pulumi.StringOutput `pulumi:"includeDefaultServers"`
 	// Specify outgoing interface to reach server.
@@ -188,6 +192,10 @@ type centralmanagementState struct {
 	FmgSourceIp6 *string `pulumi:"fmgSourceIp6"`
 	// Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
 	FmgUpdatePort *string `pulumi:"fmgUpdatePort"`
+	// Override access profile.
+	FortigateCloudSsoDefaultProfile *string `pulumi:"fortigateCloudSsoDefaultProfile"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
 	IncludeDefaultServers *string `pulumi:"includeDefaultServers"`
 	// Specify outgoing interface to reach server.
@@ -237,6 +245,10 @@ type CentralmanagementState struct {
 	FmgSourceIp6 pulumi.StringPtrInput
 	// Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
 	FmgUpdatePort pulumi.StringPtrInput
+	// Override access profile.
+	FortigateCloudSsoDefaultProfile pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
 	IncludeDefaultServers pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
@@ -290,6 +302,10 @@ type centralmanagementArgs struct {
 	FmgSourceIp6 *string `pulumi:"fmgSourceIp6"`
 	// Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
 	FmgUpdatePort *string `pulumi:"fmgUpdatePort"`
+	// Override access profile.
+	FortigateCloudSsoDefaultProfile *string `pulumi:"fortigateCloudSsoDefaultProfile"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
 	IncludeDefaultServers *string `pulumi:"includeDefaultServers"`
 	// Specify outgoing interface to reach server.
@@ -340,6 +356,10 @@ type CentralmanagementArgs struct {
 	FmgSourceIp6 pulumi.StringPtrInput
 	// Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
 	FmgUpdatePort pulumi.StringPtrInput
+	// Override access profile.
+	FortigateCloudSsoDefaultProfile pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
 	IncludeDefaultServers pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
@@ -506,6 +526,16 @@ func (o CentralmanagementOutput) FmgSourceIp6() pulumi.StringOutput {
 // Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
 func (o CentralmanagementOutput) FmgUpdatePort() pulumi.StringOutput {
 	return o.ApplyT(func(v *Centralmanagement) pulumi.StringOutput { return v.FmgUpdatePort }).(pulumi.StringOutput)
+}
+
+// Override access profile.
+func (o CentralmanagementOutput) FortigateCloudSsoDefaultProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Centralmanagement) pulumi.StringOutput { return v.FortigateCloudSsoDefaultProfile }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o CentralmanagementOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Centralmanagement) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.

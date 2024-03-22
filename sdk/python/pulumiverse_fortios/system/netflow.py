@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['NetflowArgs', 'Netflow']
 
@@ -17,6 +19,9 @@ class NetflowArgs:
                  active_flow_timeout: Optional[pulumi.Input[int]] = None,
                  collector_ip: Optional[pulumi.Input[str]] = None,
                  collector_port: Optional[pulumi.Input[int]] = None,
+                 collectors: Optional[pulumi.Input[Sequence[pulumi.Input['NetflowCollectorArgs']]]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_flow_timeout: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -26,15 +31,18 @@ class NetflowArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Netflow resource.
-        :param pulumi.Input[int] active_flow_timeout: Timeout to report active flows (1 - 60 min, default = 30).
+        :param pulumi.Input[int] active_flow_timeout: Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 3600 sec, default = 1800.
         :param pulumi.Input[str] collector_ip: Collector IP.
         :param pulumi.Input[int] collector_port: NetFlow collector port number.
+        :param pulumi.Input[Sequence[pulumi.Input['NetflowCollectorArgs']]] collectors: Netflow collectors. The structure of `collectors` block is documented below.
+        :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] inactive_flow_timeout: Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] source_ip: Source IP address for communication with the NetFlow agent.
         :param pulumi.Input[int] template_tx_counter: Counter of flowset records before resending a template flowset record.
-        :param pulumi.Input[int] template_tx_timeout: Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+        :param pulumi.Input[int] template_tx_timeout: Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 86400 sec, default = 1800.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if active_flow_timeout is not None:
@@ -43,6 +51,12 @@ class NetflowArgs:
             pulumi.set(__self__, "collector_ip", collector_ip)
         if collector_port is not None:
             pulumi.set(__self__, "collector_port", collector_port)
+        if collectors is not None:
+            pulumi.set(__self__, "collectors", collectors)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if inactive_flow_timeout is not None:
             pulumi.set(__self__, "inactive_flow_timeout", inactive_flow_timeout)
         if interface is not None:
@@ -62,7 +76,7 @@ class NetflowArgs:
     @pulumi.getter(name="activeFlowTimeout")
     def active_flow_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Timeout to report active flows (1 - 60 min, default = 30).
+        Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 3600 sec, default = 1800.
         """
         return pulumi.get(self, "active_flow_timeout")
 
@@ -93,6 +107,42 @@ class NetflowArgs:
     @collector_port.setter
     def collector_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "collector_port", value)
+
+    @property
+    @pulumi.getter
+    def collectors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NetflowCollectorArgs']]]]:
+        """
+        Netflow collectors. The structure of `collectors` block is documented below.
+        """
+        return pulumi.get(self, "collectors")
+
+    @collectors.setter
+    def collectors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NetflowCollectorArgs']]]]):
+        pulumi.set(self, "collectors", value)
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="inactiveFlowTimeout")
@@ -158,7 +208,7 @@ class NetflowArgs:
     @pulumi.getter(name="templateTxTimeout")
     def template_tx_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+        Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 86400 sec, default = 1800.
         """
         return pulumi.get(self, "template_tx_timeout")
 
@@ -185,6 +235,9 @@ class _NetflowState:
                  active_flow_timeout: Optional[pulumi.Input[int]] = None,
                  collector_ip: Optional[pulumi.Input[str]] = None,
                  collector_port: Optional[pulumi.Input[int]] = None,
+                 collectors: Optional[pulumi.Input[Sequence[pulumi.Input['NetflowCollectorArgs']]]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_flow_timeout: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -194,15 +247,18 @@ class _NetflowState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Netflow resources.
-        :param pulumi.Input[int] active_flow_timeout: Timeout to report active flows (1 - 60 min, default = 30).
+        :param pulumi.Input[int] active_flow_timeout: Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 3600 sec, default = 1800.
         :param pulumi.Input[str] collector_ip: Collector IP.
         :param pulumi.Input[int] collector_port: NetFlow collector port number.
+        :param pulumi.Input[Sequence[pulumi.Input['NetflowCollectorArgs']]] collectors: Netflow collectors. The structure of `collectors` block is documented below.
+        :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] inactive_flow_timeout: Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] source_ip: Source IP address for communication with the NetFlow agent.
         :param pulumi.Input[int] template_tx_counter: Counter of flowset records before resending a template flowset record.
-        :param pulumi.Input[int] template_tx_timeout: Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+        :param pulumi.Input[int] template_tx_timeout: Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 86400 sec, default = 1800.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if active_flow_timeout is not None:
@@ -211,6 +267,12 @@ class _NetflowState:
             pulumi.set(__self__, "collector_ip", collector_ip)
         if collector_port is not None:
             pulumi.set(__self__, "collector_port", collector_port)
+        if collectors is not None:
+            pulumi.set(__self__, "collectors", collectors)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if inactive_flow_timeout is not None:
             pulumi.set(__self__, "inactive_flow_timeout", inactive_flow_timeout)
         if interface is not None:
@@ -230,7 +292,7 @@ class _NetflowState:
     @pulumi.getter(name="activeFlowTimeout")
     def active_flow_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Timeout to report active flows (1 - 60 min, default = 30).
+        Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 3600 sec, default = 1800.
         """
         return pulumi.get(self, "active_flow_timeout")
 
@@ -261,6 +323,42 @@ class _NetflowState:
     @collector_port.setter
     def collector_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "collector_port", value)
+
+    @property
+    @pulumi.getter
+    def collectors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NetflowCollectorArgs']]]]:
+        """
+        Netflow collectors. The structure of `collectors` block is documented below.
+        """
+        return pulumi.get(self, "collectors")
+
+    @collectors.setter
+    def collectors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NetflowCollectorArgs']]]]):
+        pulumi.set(self, "collectors", value)
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="inactiveFlowTimeout")
@@ -326,7 +424,7 @@ class _NetflowState:
     @pulumi.getter(name="templateTxTimeout")
     def template_tx_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+        Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 86400 sec, default = 1800.
         """
         return pulumi.get(self, "template_tx_timeout")
 
@@ -355,6 +453,9 @@ class Netflow(pulumi.CustomResource):
                  active_flow_timeout: Optional[pulumi.Input[int]] = None,
                  collector_ip: Optional[pulumi.Input[str]] = None,
                  collector_port: Optional[pulumi.Input[int]] = None,
+                 collectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetflowCollectorArgs']]]]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_flow_timeout: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -404,15 +505,18 @@ class Netflow(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] active_flow_timeout: Timeout to report active flows (1 - 60 min, default = 30).
+        :param pulumi.Input[int] active_flow_timeout: Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 3600 sec, default = 1800.
         :param pulumi.Input[str] collector_ip: Collector IP.
         :param pulumi.Input[int] collector_port: NetFlow collector port number.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetflowCollectorArgs']]]] collectors: Netflow collectors. The structure of `collectors` block is documented below.
+        :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] inactive_flow_timeout: Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] source_ip: Source IP address for communication with the NetFlow agent.
         :param pulumi.Input[int] template_tx_counter: Counter of flowset records before resending a template flowset record.
-        :param pulumi.Input[int] template_tx_timeout: Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+        :param pulumi.Input[int] template_tx_timeout: Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 86400 sec, default = 1800.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -478,6 +582,9 @@ class Netflow(pulumi.CustomResource):
                  active_flow_timeout: Optional[pulumi.Input[int]] = None,
                  collector_ip: Optional[pulumi.Input[str]] = None,
                  collector_port: Optional[pulumi.Input[int]] = None,
+                 collectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetflowCollectorArgs']]]]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_flow_timeout: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -497,6 +604,9 @@ class Netflow(pulumi.CustomResource):
             __props__.__dict__["active_flow_timeout"] = active_flow_timeout
             __props__.__dict__["collector_ip"] = collector_ip
             __props__.__dict__["collector_port"] = collector_port
+            __props__.__dict__["collectors"] = collectors
+            __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["inactive_flow_timeout"] = inactive_flow_timeout
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
@@ -517,6 +627,9 @@ class Netflow(pulumi.CustomResource):
             active_flow_timeout: Optional[pulumi.Input[int]] = None,
             collector_ip: Optional[pulumi.Input[str]] = None,
             collector_port: Optional[pulumi.Input[int]] = None,
+            collectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetflowCollectorArgs']]]]] = None,
+            dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             inactive_flow_timeout: Optional[pulumi.Input[int]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -531,15 +644,18 @@ class Netflow(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] active_flow_timeout: Timeout to report active flows (1 - 60 min, default = 30).
+        :param pulumi.Input[int] active_flow_timeout: Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 3600 sec, default = 1800.
         :param pulumi.Input[str] collector_ip: Collector IP.
         :param pulumi.Input[int] collector_port: NetFlow collector port number.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetflowCollectorArgs']]]] collectors: Netflow collectors. The structure of `collectors` block is documented below.
+        :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] inactive_flow_timeout: Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] source_ip: Source IP address for communication with the NetFlow agent.
         :param pulumi.Input[int] template_tx_counter: Counter of flowset records before resending a template flowset record.
-        :param pulumi.Input[int] template_tx_timeout: Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+        :param pulumi.Input[int] template_tx_timeout: Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 86400 sec, default = 1800.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -549,6 +665,9 @@ class Netflow(pulumi.CustomResource):
         __props__.__dict__["active_flow_timeout"] = active_flow_timeout
         __props__.__dict__["collector_ip"] = collector_ip
         __props__.__dict__["collector_port"] = collector_port
+        __props__.__dict__["collectors"] = collectors
+        __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["inactive_flow_timeout"] = inactive_flow_timeout
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
@@ -562,7 +681,7 @@ class Netflow(pulumi.CustomResource):
     @pulumi.getter(name="activeFlowTimeout")
     def active_flow_timeout(self) -> pulumi.Output[int]:
         """
-        Timeout to report active flows (1 - 60 min, default = 30).
+        Timeout to report active flows. On FortiOS versions 6.2.0-7.0.0: 1 - 60 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 3600 sec, default = 1800.
         """
         return pulumi.get(self, "active_flow_timeout")
 
@@ -581,6 +700,30 @@ class Netflow(pulumi.CustomResource):
         NetFlow collector port number.
         """
         return pulumi.get(self, "collector_port")
+
+    @property
+    @pulumi.getter
+    def collectors(self) -> pulumi.Output[Optional[Sequence['outputs.NetflowCollector']]]:
+        """
+        Netflow collectors. The structure of `collectors` block is documented below.
+        """
+        return pulumi.get(self, "collectors")
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
+        """
+        Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="inactiveFlowTimeout")
@@ -626,7 +769,7 @@ class Netflow(pulumi.CustomResource):
     @pulumi.getter(name="templateTxTimeout")
     def template_tx_timeout(self) -> pulumi.Output[int]:
         """
-        Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
+        Timeout for periodic template flowset transmission. On FortiOS versions 6.2.0-7.0.0: 1 - 1440 min, default = 30. On FortiOS versions >= 7.0.1: 60 - 86400 sec, default = 1800.
         """
         return pulumi.get(self, "template_tx_timeout")
 

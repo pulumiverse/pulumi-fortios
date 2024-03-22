@@ -21,8 +21,12 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "fortios:switchcontroller/ptp/interfacepolicy:Interfacepolicy":
+		r = &Interfacepolicy{}
 	case "fortios:switchcontroller/ptp/policy:Policy":
 		r = &Policy{}
+	case "fortios:switchcontroller/ptp/profile:Profile":
+		r = &Profile{}
 	case "fortios:switchcontroller/ptp/settings:Settings":
 		r = &Settings{}
 	default:
@@ -40,7 +44,17 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"switchcontroller/ptp/interfacepolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"switchcontroller/ptp/policy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"switchcontroller/ptp/profile",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

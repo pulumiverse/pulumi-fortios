@@ -72,6 +72,10 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly fileFilter!: pulumi.Output<outputs.filter.email.ProfileFileFilter>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Gmail. The structure of `gmail` block is documented below.
      */
     public readonly gmail!: pulumi.Output<outputs.filter.email.ProfileGmail>;
@@ -177,6 +181,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["external"] = state ? state.external : undefined;
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
             resourceInputs["fileFilter"] = state ? state.fileFilter : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gmail"] = state ? state.gmail : undefined;
             resourceInputs["imap"] = state ? state.imap : undefined;
             resourceInputs["mapi"] = state ? state.mapi : undefined;
@@ -205,6 +210,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["external"] = args ? args.external : undefined;
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
             resourceInputs["fileFilter"] = args ? args.fileFilter : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gmail"] = args ? args.gmail : undefined;
             resourceInputs["imap"] = args ? args.imap : undefined;
             resourceInputs["mapi"] = args ? args.mapi : undefined;
@@ -253,6 +259,10 @@ export interface ProfileState {
      * File filter. The structure of `fileFilter` block is documented below.
      */
     fileFilter?: pulumi.Input<inputs.filter.email.ProfileFileFilter>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Gmail. The structure of `gmail` block is documented below.
      */
@@ -363,6 +373,10 @@ export interface ProfileArgs {
      * File filter. The structure of `fileFilter` block is documented below.
      */
     fileFilter?: pulumi.Input<inputs.filter.email.ProfileFileFilter>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Gmail. The structure of `gmail` block is documented below.
      */

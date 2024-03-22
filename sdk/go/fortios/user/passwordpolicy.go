@@ -64,10 +64,26 @@ type Passwordpolicy struct {
 
 	// Time in days before the user's password expires.
 	ExpireDays pulumi.IntOutput `pulumi:"expireDays"`
+	// Enable/disable password expiration. Valid values: `enable`, `disable`.
+	ExpireStatus pulumi.StringOutput `pulumi:"expireStatus"`
 	// Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
 	ExpiredPasswordRenewal pulumi.StringOutput `pulumi:"expiredPasswordRenewal"`
+	// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
+	MinChangeCharacters pulumi.IntOutput `pulumi:"minChangeCharacters"`
+	// Minimum number of lowercase characters in password (0 - 128, default = 0).
+	MinLowerCaseLetter pulumi.IntOutput `pulumi:"minLowerCaseLetter"`
+	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
+	MinNonAlphanumeric pulumi.IntOutput `pulumi:"minNonAlphanumeric"`
+	// Minimum number of numeric characters in password (0 - 128, default = 0).
+	MinNumber pulumi.IntOutput `pulumi:"minNumber"`
+	// Minimum number of uppercase characters in password (0 - 128, default = 0).
+	MinUpperCaseLetter pulumi.IntOutput `pulumi:"minUpperCaseLetter"`
+	// Minimum password length (8 - 128, default = 8).
+	MinimumLength pulumi.IntOutput `pulumi:"minimumLength"`
 	// Password policy name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `enable`, `disable`.
+	ReusePassword pulumi.StringOutput `pulumi:"reusePassword"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Time in days before a password expiration warning message is displayed to the user upon login.
@@ -106,10 +122,26 @@ func GetPasswordpolicy(ctx *pulumi.Context,
 type passwordpolicyState struct {
 	// Time in days before the user's password expires.
 	ExpireDays *int `pulumi:"expireDays"`
+	// Enable/disable password expiration. Valid values: `enable`, `disable`.
+	ExpireStatus *string `pulumi:"expireStatus"`
 	// Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
 	ExpiredPasswordRenewal *string `pulumi:"expiredPasswordRenewal"`
+	// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
+	MinChangeCharacters *int `pulumi:"minChangeCharacters"`
+	// Minimum number of lowercase characters in password (0 - 128, default = 0).
+	MinLowerCaseLetter *int `pulumi:"minLowerCaseLetter"`
+	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
+	MinNonAlphanumeric *int `pulumi:"minNonAlphanumeric"`
+	// Minimum number of numeric characters in password (0 - 128, default = 0).
+	MinNumber *int `pulumi:"minNumber"`
+	// Minimum number of uppercase characters in password (0 - 128, default = 0).
+	MinUpperCaseLetter *int `pulumi:"minUpperCaseLetter"`
+	// Minimum password length (8 - 128, default = 8).
+	MinimumLength *int `pulumi:"minimumLength"`
 	// Password policy name.
 	Name *string `pulumi:"name"`
+	// Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `enable`, `disable`.
+	ReusePassword *string `pulumi:"reusePassword"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Time in days before a password expiration warning message is displayed to the user upon login.
@@ -119,10 +151,26 @@ type passwordpolicyState struct {
 type PasswordpolicyState struct {
 	// Time in days before the user's password expires.
 	ExpireDays pulumi.IntPtrInput
+	// Enable/disable password expiration. Valid values: `enable`, `disable`.
+	ExpireStatus pulumi.StringPtrInput
 	// Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
 	ExpiredPasswordRenewal pulumi.StringPtrInput
+	// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
+	MinChangeCharacters pulumi.IntPtrInput
+	// Minimum number of lowercase characters in password (0 - 128, default = 0).
+	MinLowerCaseLetter pulumi.IntPtrInput
+	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
+	MinNonAlphanumeric pulumi.IntPtrInput
+	// Minimum number of numeric characters in password (0 - 128, default = 0).
+	MinNumber pulumi.IntPtrInput
+	// Minimum number of uppercase characters in password (0 - 128, default = 0).
+	MinUpperCaseLetter pulumi.IntPtrInput
+	// Minimum password length (8 - 128, default = 8).
+	MinimumLength pulumi.IntPtrInput
 	// Password policy name.
 	Name pulumi.StringPtrInput
+	// Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `enable`, `disable`.
+	ReusePassword pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Time in days before a password expiration warning message is displayed to the user upon login.
@@ -136,10 +184,26 @@ func (PasswordpolicyState) ElementType() reflect.Type {
 type passwordpolicyArgs struct {
 	// Time in days before the user's password expires.
 	ExpireDays *int `pulumi:"expireDays"`
+	// Enable/disable password expiration. Valid values: `enable`, `disable`.
+	ExpireStatus *string `pulumi:"expireStatus"`
 	// Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
 	ExpiredPasswordRenewal *string `pulumi:"expiredPasswordRenewal"`
+	// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
+	MinChangeCharacters *int `pulumi:"minChangeCharacters"`
+	// Minimum number of lowercase characters in password (0 - 128, default = 0).
+	MinLowerCaseLetter *int `pulumi:"minLowerCaseLetter"`
+	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
+	MinNonAlphanumeric *int `pulumi:"minNonAlphanumeric"`
+	// Minimum number of numeric characters in password (0 - 128, default = 0).
+	MinNumber *int `pulumi:"minNumber"`
+	// Minimum number of uppercase characters in password (0 - 128, default = 0).
+	MinUpperCaseLetter *int `pulumi:"minUpperCaseLetter"`
+	// Minimum password length (8 - 128, default = 8).
+	MinimumLength *int `pulumi:"minimumLength"`
 	// Password policy name.
 	Name *string `pulumi:"name"`
+	// Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `enable`, `disable`.
+	ReusePassword *string `pulumi:"reusePassword"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Time in days before a password expiration warning message is displayed to the user upon login.
@@ -150,10 +214,26 @@ type passwordpolicyArgs struct {
 type PasswordpolicyArgs struct {
 	// Time in days before the user's password expires.
 	ExpireDays pulumi.IntPtrInput
+	// Enable/disable password expiration. Valid values: `enable`, `disable`.
+	ExpireStatus pulumi.StringPtrInput
 	// Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
 	ExpiredPasswordRenewal pulumi.StringPtrInput
+	// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
+	MinChangeCharacters pulumi.IntPtrInput
+	// Minimum number of lowercase characters in password (0 - 128, default = 0).
+	MinLowerCaseLetter pulumi.IntPtrInput
+	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
+	MinNonAlphanumeric pulumi.IntPtrInput
+	// Minimum number of numeric characters in password (0 - 128, default = 0).
+	MinNumber pulumi.IntPtrInput
+	// Minimum number of uppercase characters in password (0 - 128, default = 0).
+	MinUpperCaseLetter pulumi.IntPtrInput
+	// Minimum password length (8 - 128, default = 8).
+	MinimumLength pulumi.IntPtrInput
 	// Password policy name.
 	Name pulumi.StringPtrInput
+	// Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `enable`, `disable`.
+	ReusePassword pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Time in days before a password expiration warning message is displayed to the user upon login.
@@ -252,14 +332,54 @@ func (o PasswordpolicyOutput) ExpireDays() pulumi.IntOutput {
 	return o.ApplyT(func(v *Passwordpolicy) pulumi.IntOutput { return v.ExpireDays }).(pulumi.IntOutput)
 }
 
+// Enable/disable password expiration. Valid values: `enable`, `disable`.
+func (o PasswordpolicyOutput) ExpireStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Passwordpolicy) pulumi.StringOutput { return v.ExpireStatus }).(pulumi.StringOutput)
+}
+
 // Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
 func (o PasswordpolicyOutput) ExpiredPasswordRenewal() pulumi.StringOutput {
 	return o.ApplyT(func(v *Passwordpolicy) pulumi.StringOutput { return v.ExpiredPasswordRenewal }).(pulumi.StringOutput)
 }
 
+// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
+func (o PasswordpolicyOutput) MinChangeCharacters() pulumi.IntOutput {
+	return o.ApplyT(func(v *Passwordpolicy) pulumi.IntOutput { return v.MinChangeCharacters }).(pulumi.IntOutput)
+}
+
+// Minimum number of lowercase characters in password (0 - 128, default = 0).
+func (o PasswordpolicyOutput) MinLowerCaseLetter() pulumi.IntOutput {
+	return o.ApplyT(func(v *Passwordpolicy) pulumi.IntOutput { return v.MinLowerCaseLetter }).(pulumi.IntOutput)
+}
+
+// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
+func (o PasswordpolicyOutput) MinNonAlphanumeric() pulumi.IntOutput {
+	return o.ApplyT(func(v *Passwordpolicy) pulumi.IntOutput { return v.MinNonAlphanumeric }).(pulumi.IntOutput)
+}
+
+// Minimum number of numeric characters in password (0 - 128, default = 0).
+func (o PasswordpolicyOutput) MinNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v *Passwordpolicy) pulumi.IntOutput { return v.MinNumber }).(pulumi.IntOutput)
+}
+
+// Minimum number of uppercase characters in password (0 - 128, default = 0).
+func (o PasswordpolicyOutput) MinUpperCaseLetter() pulumi.IntOutput {
+	return o.ApplyT(func(v *Passwordpolicy) pulumi.IntOutput { return v.MinUpperCaseLetter }).(pulumi.IntOutput)
+}
+
+// Minimum password length (8 - 128, default = 8).
+func (o PasswordpolicyOutput) MinimumLength() pulumi.IntOutput {
+	return o.ApplyT(func(v *Passwordpolicy) pulumi.IntOutput { return v.MinimumLength }).(pulumi.IntOutput)
+}
+
 // Password policy name.
 func (o PasswordpolicyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Passwordpolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `enable`, `disable`.
+func (o PasswordpolicyOutput) ReusePassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *Passwordpolicy) pulumi.StringOutput { return v.ReusePassword }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

@@ -95,6 +95,30 @@ namespace Pulumiverse.Fortios.Certificate
         [Output("enrollProtocol")]
         public Output<string> EnrollProtocol { get; private set; } = null!;
 
+        [Output("estCaId")]
+        public Output<string> EstCaId { get; private set; } = null!;
+
+        [Output("estClientCert")]
+        public Output<string> EstClientCert { get; private set; } = null!;
+
+        [Output("estHttpPassword")]
+        public Output<string> EstHttpPassword { get; private set; } = null!;
+
+        [Output("estHttpUsername")]
+        public Output<string> EstHttpUsername { get; private set; } = null!;
+
+        [Output("estServer")]
+        public Output<string> EstServer { get; private set; } = null!;
+
+        [Output("estServerCert")]
+        public Output<string> EstServerCert { get; private set; } = null!;
+
+        [Output("estSrpPassword")]
+        public Output<string> EstSrpPassword { get; private set; } = null!;
+
+        [Output("estSrpUsername")]
+        public Output<string> EstSrpUsername { get; private set; } = null!;
+
         [Output("ikeLocalid")]
         public Output<string> IkeLocalid { get; private set; } = null!;
 
@@ -241,6 +265,30 @@ namespace Pulumiverse.Fortios.Certificate
         [Input("enrollProtocol")]
         public Input<string>? EnrollProtocol { get; set; }
 
+        [Input("estCaId")]
+        public Input<string>? EstCaId { get; set; }
+
+        [Input("estClientCert")]
+        public Input<string>? EstClientCert { get; set; }
+
+        [Input("estHttpPassword")]
+        public Input<string>? EstHttpPassword { get; set; }
+
+        [Input("estHttpUsername")]
+        public Input<string>? EstHttpUsername { get; set; }
+
+        [Input("estServer")]
+        public Input<string>? EstServer { get; set; }
+
+        [Input("estServerCert")]
+        public Input<string>? EstServerCert { get; set; }
+
+        [Input("estSrpPassword")]
+        public Input<string>? EstSrpPassword { get; set; }
+
+        [Input("estSrpUsername")]
+        public Input<string>? EstSrpUsername { get; set; }
+
         [Input("ikeLocalid")]
         public Input<string>? IkeLocalid { get; set; }
 
@@ -368,6 +416,30 @@ namespace Pulumiverse.Fortios.Certificate
 
         [Input("enrollProtocol")]
         public Input<string>? EnrollProtocol { get; set; }
+
+        [Input("estCaId")]
+        public Input<string>? EstCaId { get; set; }
+
+        [Input("estClientCert")]
+        public Input<string>? EstClientCert { get; set; }
+
+        [Input("estHttpPassword")]
+        public Input<string>? EstHttpPassword { get; set; }
+
+        [Input("estHttpUsername")]
+        public Input<string>? EstHttpUsername { get; set; }
+
+        [Input("estServer")]
+        public Input<string>? EstServer { get; set; }
+
+        [Input("estServerCert")]
+        public Input<string>? EstServerCert { get; set; }
+
+        [Input("estSrpPassword")]
+        public Input<string>? EstSrpPassword { get; set; }
+
+        [Input("estSrpUsername")]
+        public Input<string>? EstSrpUsername { get; set; }
 
         [Input("ikeLocalid")]
         public Input<string>? IkeLocalid { get; set; }

@@ -79,6 +79,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string Encryption;
         /// <summary>
+        /// HA EVPN FDB TTL on primary box (5 - 3600 sec).
+        /// </summary>
+        public readonly int EvpnTtl;
+        /// <summary>
         /// Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
         /// </summary>
         public readonly int FailoverHoldTime;
@@ -158,6 +162,10 @@ namespace Pulumiverse.Fortios.System
         /// Enable/disable synchronization of sessions among HA clusters.
         /// </summary>
         public readonly string InterClusterSessionSync;
+        /// <summary>
+        /// IPsec phase2 proposal.
+        /// </summary>
+        public readonly string IpsecPhase2Proposal;
         /// <summary>
         /// key
         /// </summary>
@@ -363,6 +371,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string UninterruptibleUpgrade;
         /// <summary>
+        /// The mode to upgrade a cluster.
+        /// </summary>
+        public readonly string UpgradeMode;
+        /// <summary>
         /// Enable/disable virtual cluster 2 for virtual clustering.
         /// </summary>
         public readonly string Vcluster2;
@@ -399,6 +411,8 @@ namespace Pulumiverse.Fortios.System
             string cpuThreshold,
 
             string encryption,
+
+            int evpnTtl,
 
             int failoverHoldTime,
 
@@ -439,6 +453,8 @@ namespace Pulumiverse.Fortios.System
             string imapProxyThreshold,
 
             string interClusterSessionSync,
+
+            string ipsecPhase2Proposal,
 
             string key,
 
@@ -542,6 +558,8 @@ namespace Pulumiverse.Fortios.System
 
             string uninterruptibleUpgrade,
 
+            string upgradeMode,
+
             string vcluster2,
 
             int vclusterId,
@@ -561,6 +579,7 @@ namespace Pulumiverse.Fortios.System
             Authentication = authentication;
             CpuThreshold = cpuThreshold;
             Encryption = encryption;
+            EvpnTtl = evpnTtl;
             FailoverHoldTime = failoverHoldTime;
             FtpProxyThreshold = ftpProxyThreshold;
             GratuitousArps = gratuitousArps;
@@ -581,6 +600,7 @@ namespace Pulumiverse.Fortios.System
             Id = id;
             ImapProxyThreshold = imapProxyThreshold;
             InterClusterSessionSync = interClusterSessionSync;
+            IpsecPhase2Proposal = ipsecPhase2Proposal;
             Key = key;
             L2epEthType = l2epEthType;
             LinkFailedSignal = linkFailedSignal;
@@ -632,6 +652,7 @@ namespace Pulumiverse.Fortios.System
             UnicastStatus = unicastStatus;
             UninterruptiblePrimaryWait = uninterruptiblePrimaryWait;
             UninterruptibleUpgrade = uninterruptibleUpgrade;
+            UpgradeMode = upgradeMode;
             Vcluster2 = vcluster2;
             VclusterId = vclusterId;
             VclusterStatus = vclusterStatus;

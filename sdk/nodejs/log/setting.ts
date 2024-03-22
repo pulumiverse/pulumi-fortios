@@ -111,6 +111,10 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly expolicyImplicitLog!: pulumi.Output<string>;
     /**
+     * Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+     */
+    public readonly extendedLog!: pulumi.Output<string>;
+    /**
      * Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
      */
     public readonly fazOverride!: pulumi.Output<string>;
@@ -122,6 +126,10 @@ export class Setting extends pulumi.CustomResource {
      * Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
      */
     public readonly fwpolicyImplicitLog!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
      */
@@ -158,6 +166,10 @@ export class Setting extends pulumi.CustomResource {
      * Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
      */
     public readonly logUserInUpper!: pulumi.Output<string>;
+    /**
+     * Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+     */
+    public readonly longLiveSessionStat!: pulumi.Output<string>;
     /**
      * Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
      */
@@ -210,9 +222,11 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["daemonLog"] = state ? state.daemonLog : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["expolicyImplicitLog"] = state ? state.expolicyImplicitLog : undefined;
+            resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
             resourceInputs["fazOverride"] = state ? state.fazOverride : undefined;
             resourceInputs["fwpolicy6ImplicitLog"] = state ? state.fwpolicy6ImplicitLog : undefined;
             resourceInputs["fwpolicyImplicitLog"] = state ? state.fwpolicyImplicitLog : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["localInAllow"] = state ? state.localInAllow : undefined;
             resourceInputs["localInDenyBroadcast"] = state ? state.localInDenyBroadcast : undefined;
             resourceInputs["localInDenyUnicast"] = state ? state.localInDenyUnicast : undefined;
@@ -222,6 +236,7 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["logPolicyComment"] = state ? state.logPolicyComment : undefined;
             resourceInputs["logPolicyName"] = state ? state.logPolicyName : undefined;
             resourceInputs["logUserInUpper"] = state ? state.logUserInUpper : undefined;
+            resourceInputs["longLiveSessionStat"] = state ? state.longLiveSessionStat : undefined;
             resourceInputs["neighborEvent"] = state ? state.neighborEvent : undefined;
             resourceInputs["resolveIp"] = state ? state.resolveIp : undefined;
             resourceInputs["resolvePort"] = state ? state.resolvePort : undefined;
@@ -238,9 +253,11 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["daemonLog"] = args ? args.daemonLog : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["expolicyImplicitLog"] = args ? args.expolicyImplicitLog : undefined;
+            resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
             resourceInputs["fazOverride"] = args ? args.fazOverride : undefined;
             resourceInputs["fwpolicy6ImplicitLog"] = args ? args.fwpolicy6ImplicitLog : undefined;
             resourceInputs["fwpolicyImplicitLog"] = args ? args.fwpolicyImplicitLog : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["localInAllow"] = args ? args.localInAllow : undefined;
             resourceInputs["localInDenyBroadcast"] = args ? args.localInDenyBroadcast : undefined;
             resourceInputs["localInDenyUnicast"] = args ? args.localInDenyUnicast : undefined;
@@ -250,6 +267,7 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["logPolicyComment"] = args ? args.logPolicyComment : undefined;
             resourceInputs["logPolicyName"] = args ? args.logPolicyName : undefined;
             resourceInputs["logUserInUpper"] = args ? args.logUserInUpper : undefined;
+            resourceInputs["longLiveSessionStat"] = args ? args.longLiveSessionStat : undefined;
             resourceInputs["neighborEvent"] = args ? args.neighborEvent : undefined;
             resourceInputs["resolveIp"] = args ? args.resolveIp : undefined;
             resourceInputs["resolvePort"] = args ? args.resolvePort : undefined;
@@ -293,6 +311,10 @@ export interface SettingState {
      */
     expolicyImplicitLog?: pulumi.Input<string>;
     /**
+     * Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+     */
+    extendedLog?: pulumi.Input<string>;
+    /**
      * Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
      */
     fazOverride?: pulumi.Input<string>;
@@ -304,6 +326,10 @@ export interface SettingState {
      * Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
      */
     fwpolicyImplicitLog?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
      */
@@ -340,6 +366,10 @@ export interface SettingState {
      * Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
      */
     logUserInUpper?: pulumi.Input<string>;
+    /**
+     * Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+     */
+    longLiveSessionStat?: pulumi.Input<string>;
     /**
      * Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
      */
@@ -403,6 +433,10 @@ export interface SettingArgs {
      */
     expolicyImplicitLog?: pulumi.Input<string>;
     /**
+     * Enable/disable extended traffic logging. Valid values: `enable`, `disable`.
+     */
+    extendedLog?: pulumi.Input<string>;
+    /**
      * Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
      */
     fazOverride?: pulumi.Input<string>;
@@ -414,6 +448,10 @@ export interface SettingArgs {
      * Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
      */
     fwpolicyImplicitLog?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
      */
@@ -450,6 +488,10 @@ export interface SettingArgs {
      * Enable/disable logs with user-in-upper. Valid values: `enable`, `disable`.
      */
     logUserInUpper?: pulumi.Input<string>;
+    /**
+     * Enable/disable long-live-session statistics logging. Valid values: `enable`, `disable`.
+     */
+    longLiveSessionStat?: pulumi.Input<string>;
     /**
      * Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
      */

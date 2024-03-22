@@ -89,6 +89,8 @@ type Address6 struct {
 	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Host Address.
 	Host pulumi.StringOutput `pulumi:"host"`
 	// Host type. Valid values: `any`, `specific`.
@@ -103,6 +105,8 @@ type Address6 struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Object ID for NSX.
 	ObjId pulumi.StringPtrOutput `pulumi:"objId"`
+	// route-tag address.
+	RouteTag pulumi.IntOutput `pulumi:"routeTag"`
 	// SDN.
 	Sdn pulumi.StringOutput `pulumi:"sdn"`
 	// SDN Tag.
@@ -179,6 +183,8 @@ type address6State struct {
 	FabricObject *string `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn *string `pulumi:"fqdn"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Host Address.
 	Host *string `pulumi:"host"`
 	// Host type. Valid values: `any`, `specific`.
@@ -193,6 +199,8 @@ type address6State struct {
 	Name *string `pulumi:"name"`
 	// Object ID for NSX.
 	ObjId *string `pulumi:"objId"`
+	// route-tag address.
+	RouteTag *int `pulumi:"routeTag"`
 	// SDN.
 	Sdn *string `pulumi:"sdn"`
 	// SDN Tag.
@@ -240,6 +248,8 @@ type Address6State struct {
 	FabricObject pulumi.StringPtrInput
 	// Fully qualified domain name.
 	Fqdn pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Host Address.
 	Host pulumi.StringPtrInput
 	// Host type. Valid values: `any`, `specific`.
@@ -254,6 +264,8 @@ type Address6State struct {
 	Name pulumi.StringPtrInput
 	// Object ID for NSX.
 	ObjId pulumi.StringPtrInput
+	// route-tag address.
+	RouteTag pulumi.IntPtrInput
 	// SDN.
 	Sdn pulumi.StringPtrInput
 	// SDN Tag.
@@ -305,6 +317,8 @@ type address6Args struct {
 	FabricObject *string `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn *string `pulumi:"fqdn"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Host Address.
 	Host *string `pulumi:"host"`
 	// Host type. Valid values: `any`, `specific`.
@@ -319,6 +333,8 @@ type address6Args struct {
 	Name *string `pulumi:"name"`
 	// Object ID for NSX.
 	ObjId *string `pulumi:"objId"`
+	// route-tag address.
+	RouteTag *int `pulumi:"routeTag"`
 	// SDN.
 	Sdn *string `pulumi:"sdn"`
 	// SDN Tag.
@@ -367,6 +383,8 @@ type Address6Args struct {
 	FabricObject pulumi.StringPtrInput
 	// Fully qualified domain name.
 	Fqdn pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Host Address.
 	Host pulumi.StringPtrInput
 	// Host type. Valid values: `any`, `specific`.
@@ -381,6 +399,8 @@ type Address6Args struct {
 	Name pulumi.StringPtrInput
 	// Object ID for NSX.
 	ObjId pulumi.StringPtrInput
+	// route-tag address.
+	RouteTag pulumi.IntPtrInput
 	// SDN.
 	Sdn pulumi.StringPtrInput
 	// SDN Tag.
@@ -544,6 +564,11 @@ func (o Address6Output) Fqdn() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address6) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Address6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Address6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Host Address.
 func (o Address6Output) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address6) pulumi.StringOutput { return v.Host }).(pulumi.StringOutput)
@@ -577,6 +602,11 @@ func (o Address6Output) Name() pulumi.StringOutput {
 // Object ID for NSX.
 func (o Address6Output) ObjId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Address6) pulumi.StringPtrOutput { return v.ObjId }).(pulumi.StringPtrOutput)
+}
+
+// route-tag address.
+func (o Address6Output) RouteTag() pulumi.IntOutput {
+	return o.ApplyT(func(v *Address6) pulumi.IntOutput { return v.RouteTag }).(pulumi.IntOutput)
 }
 
 // SDN.

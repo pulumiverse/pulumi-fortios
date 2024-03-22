@@ -13,8 +13,7 @@ import (
 )
 
 // Extender controller configuration.
-//
-// > The resource applies to FortiOS Version >= 6.4.2. For FortiOS Version < 6.4.2, see `extendercontroller.Extender`.
+// This resource will be deprecated. For FortiOS Version >= 7.2.1, using `extensioncontroller.Extender`. For FortiOS version < 7.2.1, see `extendercontroller.Extender`
 //
 // ## Example Usage
 //
@@ -119,6 +118,8 @@ type Extender1 struct {
 	ExtName pulumi.StringOutput `pulumi:"extName"`
 	// FortiExtender serial number.
 	Fosid pulumi.StringOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// FortiExtender login password.
 	LoginPassword pulumi.StringPtrOutput `pulumi:"loginPassword"`
 	// Configuration options for modem 1. The structure of `modem1` block is documented below.
@@ -183,6 +184,8 @@ type extender1State struct {
 	ExtName *string `pulumi:"extName"`
 	// FortiExtender serial number.
 	Fosid *string `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiExtender login password.
 	LoginPassword *string `pulumi:"loginPassword"`
 	// Configuration options for modem 1. The structure of `modem1` block is documented below.
@@ -208,6 +211,8 @@ type Extender1State struct {
 	ExtName pulumi.StringPtrInput
 	// FortiExtender serial number.
 	Fosid pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// FortiExtender login password.
 	LoginPassword pulumi.StringPtrInput
 	// Configuration options for modem 1. The structure of `modem1` block is documented below.
@@ -237,6 +242,8 @@ type extender1Args struct {
 	ExtName *string `pulumi:"extName"`
 	// FortiExtender serial number.
 	Fosid *string `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiExtender login password.
 	LoginPassword *string `pulumi:"loginPassword"`
 	// Configuration options for modem 1. The structure of `modem1` block is documented below.
@@ -263,6 +270,8 @@ type Extender1Args struct {
 	ExtName pulumi.StringPtrInput
 	// FortiExtender serial number.
 	Fosid pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// FortiExtender login password.
 	LoginPassword pulumi.StringPtrInput
 	// Configuration options for modem 1. The structure of `modem1` block is documented below.
@@ -387,6 +396,11 @@ func (o Extender1Output) ExtName() pulumi.StringOutput {
 // FortiExtender serial number.
 func (o Extender1Output) Fosid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Extender1) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Extender1Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Extender1) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // FortiExtender login password.

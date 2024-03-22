@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "fortios:antivirus/exemptlist:Exemptlist":
+		r = &Exemptlist{}
 	case "fortios:antivirus/heuristic:Heuristic":
 		r = &Heuristic{}
 	case "fortios:antivirus/profile:Profile":
@@ -42,6 +44,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"antivirus/exemptlist",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"antivirus/heuristic",

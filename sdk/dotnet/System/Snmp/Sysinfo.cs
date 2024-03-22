@@ -94,6 +94,18 @@ namespace Pulumiverse.Fortios.System.Snmp
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
+        /// Free memory usage when trap is sent.
+        /// </summary>
+        [Output("trapFreeMemoryThreshold")]
+        public Output<int> TrapFreeMemoryThreshold { get; private set; } = null!;
+
+        /// <summary>
+        /// Freeable memory usage when trap is sent.
+        /// </summary>
+        [Output("trapFreeableMemoryThreshold")]
+        public Output<int> TrapFreeableMemoryThreshold { get; private set; } = null!;
+
+        /// <summary>
         /// CPU usage when trap is sent.
         /// </summary>
         [Output("trapHighCpuThreshold")]
@@ -201,6 +213,18 @@ namespace Pulumiverse.Fortios.System.Snmp
         public Input<string>? Status { get; set; }
 
         /// <summary>
+        /// Free memory usage when trap is sent.
+        /// </summary>
+        [Input("trapFreeMemoryThreshold")]
+        public Input<int>? TrapFreeMemoryThreshold { get; set; }
+
+        /// <summary>
+        /// Freeable memory usage when trap is sent.
+        /// </summary>
+        [Input("trapFreeableMemoryThreshold")]
+        public Input<int>? TrapFreeableMemoryThreshold { get; set; }
+
+        /// <summary>
         /// CPU usage when trap is sent.
         /// </summary>
         [Input("trapHighCpuThreshold")]
@@ -267,6 +291,18 @@ namespace Pulumiverse.Fortios.System.Snmp
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Free memory usage when trap is sent.
+        /// </summary>
+        [Input("trapFreeMemoryThreshold")]
+        public Input<int>? TrapFreeMemoryThreshold { get; set; }
+
+        /// <summary>
+        /// Freeable memory usage when trap is sent.
+        /// </summary>
+        [Input("trapFreeableMemoryThreshold")]
+        public Input<int>? TrapFreeableMemoryThreshold { get; set; }
 
         /// <summary>
         /// CPU usage when trap is sent.

@@ -107,6 +107,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> FirmwareProvisionOnAuthorization { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Configure offending SSID. The structure of `offending_ssid` block is documented below.
         /// </summary>
         [Output("offendingSsids")]
@@ -117,6 +123,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("phishingSsidDetect")]
         public Output<string> PhishingSsidDetect { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("rollingWtpUpgrade")]
+        public Output<string> RollingWtpUpgrade { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -255,6 +267,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         [Input("firmwareProvisionOnAuthorization")]
         public Input<string>? FirmwareProvisionOnAuthorization { get; set; }
 
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
         [Input("offendingSsids")]
         private InputList<Inputs.SettingOffendingSsidArgs>? _offendingSsids;
 
@@ -272,6 +290,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("phishingSsidDetect")]
         public Input<string>? PhishingSsidDetect { get; set; }
+
+        /// <summary>
+        /// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("rollingWtpUpgrade")]
+        public Input<string>? RollingWtpUpgrade { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -371,6 +395,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         [Input("firmwareProvisionOnAuthorization")]
         public Input<string>? FirmwareProvisionOnAuthorization { get; set; }
 
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
         [Input("offendingSsids")]
         private InputList<Inputs.SettingOffendingSsidGetArgs>? _offendingSsids;
 
@@ -388,6 +418,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("phishingSsidDetect")]
         public Input<string>? PhishingSsidDetect { get; set; }
+
+        /// <summary>
+        /// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("rollingWtpUpgrade")]
+        public Input<string>? RollingWtpUpgrade { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

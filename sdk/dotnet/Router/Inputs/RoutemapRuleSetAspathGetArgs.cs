@@ -14,7 +14,7 @@ namespace Pulumiverse.Fortios.Router.Inputs
     public sealed class RoutemapRuleSetAspathGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// AS number (0 - 42949672). NOTE: Use quotes for repeating numbers, e.g.: "1 1 2"
+        /// AS number. Use quotes for repeating numbers, For example, "1 1 2". On FortiOS versions 6.2.0-7.0.0: 0 - 42949672. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295.
         /// </summary>
         [Input("as")]
         public Input<string>? As { get; set; }

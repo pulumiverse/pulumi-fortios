@@ -44,6 +44,10 @@ type LookupSysinfoResult struct {
 	Location string `pulumi:"location"`
 	// Enable/disable SNMP.
 	Status string `pulumi:"status"`
+	// Free memory usage when trap is sent.
+	TrapFreeMemoryThreshold int `pulumi:"trapFreeMemoryThreshold"`
+	// Freeable memory usage when trap is sent.
+	TrapFreeableMemoryThreshold int `pulumi:"trapFreeableMemoryThreshold"`
 	// CPU usage when trap is sent.
 	TrapHighCpuThreshold int `pulumi:"trapHighCpuThreshold"`
 	// Log disk usage when trap is sent.
@@ -124,6 +128,16 @@ func (o LookupSysinfoResultOutput) Location() pulumi.StringOutput {
 // Enable/disable SNMP.
 func (o LookupSysinfoResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSysinfoResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Free memory usage when trap is sent.
+func (o LookupSysinfoResultOutput) TrapFreeMemoryThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSysinfoResult) int { return v.TrapFreeMemoryThreshold }).(pulumi.IntOutput)
+}
+
+// Freeable memory usage when trap is sent.
+func (o LookupSysinfoResultOutput) TrapFreeableMemoryThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSysinfoResult) int { return v.TrapFreeableMemoryThreshold }).(pulumi.IntOutput)
 }
 
 // CPU usage when trap is sent.

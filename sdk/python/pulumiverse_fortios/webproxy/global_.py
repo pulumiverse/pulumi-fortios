@@ -21,14 +21,19 @@ class GlobalArgs:
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
                  forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldap_user_cache: Optional[pulumi.Input[str]] = None,
                  learn_client_ip: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalLearnClientIpSrcaddr6Args']]]] = None,
                  learn_client_ip_srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalLearnClientIpSrcaddrArgs']]]] = None,
+                 log_app_id: Optional[pulumi.Input[str]] = None,
+                 log_forward_server: Optional[pulumi.Input[str]] = None,
+                 log_policy_pending: Optional[pulumi.Input[str]] = None,
                  max_message_length: Optional[pulumi.Input[int]] = None,
                  max_request_length: Optional[pulumi.Input[int]] = None,
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
+                 policy_category_deep_inspect: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
                  ssl_ca_cert: Optional[pulumi.Input[str]] = None,
@@ -45,14 +50,19 @@ class GlobalArgs:
         :param pulumi.Input[str] fast_policy_match: Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_proxy_auth: Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_server_affinity_timeout: Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldap_user_cache: Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip: Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip_from_header: Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalLearnClientIpSrcaddr6Args']]] learn_client_ip_srcaddr6s: IPv6 Source address name (srcaddr or srcaddr6 must be set). The structure of `learn_client_ip_srcaddr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalLearnClientIpSrcaddrArgs']]] learn_client_ip_srcaddrs: Source address name (srcaddr or srcaddr6 must be set). The structure of `learn_client_ip_srcaddr` block is documented below.
+        :param pulumi.Input[str] log_app_id: Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] log_forward_server: Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] log_policy_pending: Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_message_length: Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
         :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
         :param pulumi.Input[int] max_waf_body_cache_length: Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
+        :param pulumi.Input[str] policy_category_deep_inspect: Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] src_affinity_exempt_addr: IPv4 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] ssl_ca_cert: SSL CA certificate for SSL interception.
@@ -72,6 +82,8 @@ class GlobalArgs:
             pulumi.set(__self__, "forward_proxy_auth", forward_proxy_auth)
         if forward_server_affinity_timeout is not None:
             pulumi.set(__self__, "forward_server_affinity_timeout", forward_server_affinity_timeout)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ldap_user_cache is not None:
             pulumi.set(__self__, "ldap_user_cache", ldap_user_cache)
         if learn_client_ip is not None:
@@ -82,12 +94,20 @@ class GlobalArgs:
             pulumi.set(__self__, "learn_client_ip_srcaddr6s", learn_client_ip_srcaddr6s)
         if learn_client_ip_srcaddrs is not None:
             pulumi.set(__self__, "learn_client_ip_srcaddrs", learn_client_ip_srcaddrs)
+        if log_app_id is not None:
+            pulumi.set(__self__, "log_app_id", log_app_id)
+        if log_forward_server is not None:
+            pulumi.set(__self__, "log_forward_server", log_forward_server)
+        if log_policy_pending is not None:
+            pulumi.set(__self__, "log_policy_pending", log_policy_pending)
         if max_message_length is not None:
             pulumi.set(__self__, "max_message_length", max_message_length)
         if max_request_length is not None:
             pulumi.set(__self__, "max_request_length", max_request_length)
         if max_waf_body_cache_length is not None:
             pulumi.set(__self__, "max_waf_body_cache_length", max_waf_body_cache_length)
+        if policy_category_deep_inspect is not None:
+            pulumi.set(__self__, "policy_category_deep_inspect", policy_category_deep_inspect)
         if src_affinity_exempt_addr is not None:
             pulumi.set(__self__, "src_affinity_exempt_addr", src_affinity_exempt_addr)
         if src_affinity_exempt_addr6 is not None:
@@ -168,6 +188,18 @@ class GlobalArgs:
         pulumi.set(self, "forward_server_affinity_timeout", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="ldapUserCache")
     def ldap_user_cache(self) -> Optional[pulumi.Input[str]]:
         """
@@ -228,6 +260,42 @@ class GlobalArgs:
         pulumi.set(self, "learn_client_ip_srcaddrs", value)
 
     @property
+    @pulumi.getter(name="logAppId")
+    def log_app_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "log_app_id")
+
+    @log_app_id.setter
+    def log_app_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_app_id", value)
+
+    @property
+    @pulumi.getter(name="logForwardServer")
+    def log_forward_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "log_forward_server")
+
+    @log_forward_server.setter
+    def log_forward_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_forward_server", value)
+
+    @property
+    @pulumi.getter(name="logPolicyPending")
+    def log_policy_pending(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "log_policy_pending")
+
+    @log_policy_pending.setter
+    def log_policy_pending(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_policy_pending", value)
+
+    @property
     @pulumi.getter(name="maxMessageLength")
     def max_message_length(self) -> Optional[pulumi.Input[int]]:
         """
@@ -262,6 +330,18 @@ class GlobalArgs:
     @max_waf_body_cache_length.setter
     def max_waf_body_cache_length(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_waf_body_cache_length", value)
+
+    @property
+    @pulumi.getter(name="policyCategoryDeepInspect")
+    def policy_category_deep_inspect(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "policy_category_deep_inspect")
+
+    @policy_category_deep_inspect.setter
+    def policy_category_deep_inspect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy_category_deep_inspect", value)
 
     @property
     @pulumi.getter(name="srcAffinityExemptAddr")
@@ -379,14 +459,19 @@ class _GlobalState:
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
                  forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldap_user_cache: Optional[pulumi.Input[str]] = None,
                  learn_client_ip: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalLearnClientIpSrcaddr6Args']]]] = None,
                  learn_client_ip_srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalLearnClientIpSrcaddrArgs']]]] = None,
+                 log_app_id: Optional[pulumi.Input[str]] = None,
+                 log_forward_server: Optional[pulumi.Input[str]] = None,
+                 log_policy_pending: Optional[pulumi.Input[str]] = None,
                  max_message_length: Optional[pulumi.Input[int]] = None,
                  max_request_length: Optional[pulumi.Input[int]] = None,
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
+                 policy_category_deep_inspect: Optional[pulumi.Input[str]] = None,
                  proxy_fqdn: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
@@ -403,14 +488,19 @@ class _GlobalState:
         :param pulumi.Input[str] fast_policy_match: Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_proxy_auth: Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_server_affinity_timeout: Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldap_user_cache: Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip: Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip_from_header: Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalLearnClientIpSrcaddr6Args']]] learn_client_ip_srcaddr6s: IPv6 Source address name (srcaddr or srcaddr6 must be set). The structure of `learn_client_ip_srcaddr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalLearnClientIpSrcaddrArgs']]] learn_client_ip_srcaddrs: Source address name (srcaddr or srcaddr6 must be set). The structure of `learn_client_ip_srcaddr` block is documented below.
+        :param pulumi.Input[str] log_app_id: Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] log_forward_server: Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] log_policy_pending: Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_message_length: Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
         :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
         :param pulumi.Input[int] max_waf_body_cache_length: Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
+        :param pulumi.Input[str] policy_category_deep_inspect: Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] proxy_fqdn: Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
         :param pulumi.Input[str] src_affinity_exempt_addr: IPv4 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy affinity.
@@ -430,6 +520,8 @@ class _GlobalState:
             pulumi.set(__self__, "forward_proxy_auth", forward_proxy_auth)
         if forward_server_affinity_timeout is not None:
             pulumi.set(__self__, "forward_server_affinity_timeout", forward_server_affinity_timeout)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ldap_user_cache is not None:
             pulumi.set(__self__, "ldap_user_cache", ldap_user_cache)
         if learn_client_ip is not None:
@@ -440,12 +532,20 @@ class _GlobalState:
             pulumi.set(__self__, "learn_client_ip_srcaddr6s", learn_client_ip_srcaddr6s)
         if learn_client_ip_srcaddrs is not None:
             pulumi.set(__self__, "learn_client_ip_srcaddrs", learn_client_ip_srcaddrs)
+        if log_app_id is not None:
+            pulumi.set(__self__, "log_app_id", log_app_id)
+        if log_forward_server is not None:
+            pulumi.set(__self__, "log_forward_server", log_forward_server)
+        if log_policy_pending is not None:
+            pulumi.set(__self__, "log_policy_pending", log_policy_pending)
         if max_message_length is not None:
             pulumi.set(__self__, "max_message_length", max_message_length)
         if max_request_length is not None:
             pulumi.set(__self__, "max_request_length", max_request_length)
         if max_waf_body_cache_length is not None:
             pulumi.set(__self__, "max_waf_body_cache_length", max_waf_body_cache_length)
+        if policy_category_deep_inspect is not None:
+            pulumi.set(__self__, "policy_category_deep_inspect", policy_category_deep_inspect)
         if proxy_fqdn is not None:
             pulumi.set(__self__, "proxy_fqdn", proxy_fqdn)
         if src_affinity_exempt_addr is not None:
@@ -516,6 +616,18 @@ class _GlobalState:
         pulumi.set(self, "forward_server_affinity_timeout", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="ldapUserCache")
     def ldap_user_cache(self) -> Optional[pulumi.Input[str]]:
         """
@@ -576,6 +688,42 @@ class _GlobalState:
         pulumi.set(self, "learn_client_ip_srcaddrs", value)
 
     @property
+    @pulumi.getter(name="logAppId")
+    def log_app_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "log_app_id")
+
+    @log_app_id.setter
+    def log_app_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_app_id", value)
+
+    @property
+    @pulumi.getter(name="logForwardServer")
+    def log_forward_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "log_forward_server")
+
+    @log_forward_server.setter
+    def log_forward_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_forward_server", value)
+
+    @property
+    @pulumi.getter(name="logPolicyPending")
+    def log_policy_pending(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "log_policy_pending")
+
+    @log_policy_pending.setter
+    def log_policy_pending(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_policy_pending", value)
+
+    @property
     @pulumi.getter(name="maxMessageLength")
     def max_message_length(self) -> Optional[pulumi.Input[int]]:
         """
@@ -610,6 +758,18 @@ class _GlobalState:
     @max_waf_body_cache_length.setter
     def max_waf_body_cache_length(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_waf_body_cache_length", value)
+
+    @property
+    @pulumi.getter(name="policyCategoryDeepInspect")
+    def policy_category_deep_inspect(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "policy_category_deep_inspect")
+
+    @policy_category_deep_inspect.setter
+    def policy_category_deep_inspect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy_category_deep_inspect", value)
 
     @property
     @pulumi.getter(name="proxyFqdn")
@@ -741,14 +901,19 @@ class Global(pulumi.CustomResource):
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
                  forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldap_user_cache: Optional[pulumi.Input[str]] = None,
                  learn_client_ip: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalLearnClientIpSrcaddr6Args']]]]] = None,
                  learn_client_ip_srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalLearnClientIpSrcaddrArgs']]]]] = None,
+                 log_app_id: Optional[pulumi.Input[str]] = None,
+                 log_forward_server: Optional[pulumi.Input[str]] = None,
+                 log_policy_pending: Optional[pulumi.Input[str]] = None,
                  max_message_length: Optional[pulumi.Input[int]] = None,
                  max_request_length: Optional[pulumi.Input[int]] = None,
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
+                 policy_category_deep_inspect: Optional[pulumi.Input[str]] = None,
                  proxy_fqdn: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
@@ -811,14 +976,19 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] fast_policy_match: Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_proxy_auth: Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_server_affinity_timeout: Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldap_user_cache: Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip: Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip_from_header: Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalLearnClientIpSrcaddr6Args']]]] learn_client_ip_srcaddr6s: IPv6 Source address name (srcaddr or srcaddr6 must be set). The structure of `learn_client_ip_srcaddr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalLearnClientIpSrcaddrArgs']]]] learn_client_ip_srcaddrs: Source address name (srcaddr or srcaddr6 must be set). The structure of `learn_client_ip_srcaddr` block is documented below.
+        :param pulumi.Input[str] log_app_id: Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] log_forward_server: Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] log_policy_pending: Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_message_length: Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
         :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
         :param pulumi.Input[int] max_waf_body_cache_length: Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
+        :param pulumi.Input[str] policy_category_deep_inspect: Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] proxy_fqdn: Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
         :param pulumi.Input[str] src_affinity_exempt_addr: IPv4 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy affinity.
@@ -900,14 +1070,19 @@ class Global(pulumi.CustomResource):
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
                  forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldap_user_cache: Optional[pulumi.Input[str]] = None,
                  learn_client_ip: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalLearnClientIpSrcaddr6Args']]]]] = None,
                  learn_client_ip_srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalLearnClientIpSrcaddrArgs']]]]] = None,
+                 log_app_id: Optional[pulumi.Input[str]] = None,
+                 log_forward_server: Optional[pulumi.Input[str]] = None,
+                 log_policy_pending: Optional[pulumi.Input[str]] = None,
                  max_message_length: Optional[pulumi.Input[int]] = None,
                  max_request_length: Optional[pulumi.Input[int]] = None,
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
+                 policy_category_deep_inspect: Optional[pulumi.Input[str]] = None,
                  proxy_fqdn: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
@@ -931,14 +1106,19 @@ class Global(pulumi.CustomResource):
             __props__.__dict__["fast_policy_match"] = fast_policy_match
             __props__.__dict__["forward_proxy_auth"] = forward_proxy_auth
             __props__.__dict__["forward_server_affinity_timeout"] = forward_server_affinity_timeout
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ldap_user_cache"] = ldap_user_cache
             __props__.__dict__["learn_client_ip"] = learn_client_ip
             __props__.__dict__["learn_client_ip_from_header"] = learn_client_ip_from_header
             __props__.__dict__["learn_client_ip_srcaddr6s"] = learn_client_ip_srcaddr6s
             __props__.__dict__["learn_client_ip_srcaddrs"] = learn_client_ip_srcaddrs
+            __props__.__dict__["log_app_id"] = log_app_id
+            __props__.__dict__["log_forward_server"] = log_forward_server
+            __props__.__dict__["log_policy_pending"] = log_policy_pending
             __props__.__dict__["max_message_length"] = max_message_length
             __props__.__dict__["max_request_length"] = max_request_length
             __props__.__dict__["max_waf_body_cache_length"] = max_waf_body_cache_length
+            __props__.__dict__["policy_category_deep_inspect"] = policy_category_deep_inspect
             if proxy_fqdn is None and not opts.urn:
                 raise TypeError("Missing required property 'proxy_fqdn'")
             __props__.__dict__["proxy_fqdn"] = proxy_fqdn
@@ -965,14 +1145,19 @@ class Global(pulumi.CustomResource):
             fast_policy_match: Optional[pulumi.Input[str]] = None,
             forward_proxy_auth: Optional[pulumi.Input[str]] = None,
             forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ldap_user_cache: Optional[pulumi.Input[str]] = None,
             learn_client_ip: Optional[pulumi.Input[str]] = None,
             learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
             learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalLearnClientIpSrcaddr6Args']]]]] = None,
             learn_client_ip_srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalLearnClientIpSrcaddrArgs']]]]] = None,
+            log_app_id: Optional[pulumi.Input[str]] = None,
+            log_forward_server: Optional[pulumi.Input[str]] = None,
+            log_policy_pending: Optional[pulumi.Input[str]] = None,
             max_message_length: Optional[pulumi.Input[int]] = None,
             max_request_length: Optional[pulumi.Input[int]] = None,
             max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
+            policy_category_deep_inspect: Optional[pulumi.Input[str]] = None,
             proxy_fqdn: Optional[pulumi.Input[str]] = None,
             src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
             src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
@@ -994,14 +1179,19 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] fast_policy_match: Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_proxy_auth: Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_server_affinity_timeout: Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldap_user_cache: Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip: Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip_from_header: Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalLearnClientIpSrcaddr6Args']]]] learn_client_ip_srcaddr6s: IPv6 Source address name (srcaddr or srcaddr6 must be set). The structure of `learn_client_ip_srcaddr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalLearnClientIpSrcaddrArgs']]]] learn_client_ip_srcaddrs: Source address name (srcaddr or srcaddr6 must be set). The structure of `learn_client_ip_srcaddr` block is documented below.
+        :param pulumi.Input[str] log_app_id: Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] log_forward_server: Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] log_policy_pending: Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_message_length: Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
         :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
         :param pulumi.Input[int] max_waf_body_cache_length: Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
+        :param pulumi.Input[str] policy_category_deep_inspect: Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] proxy_fqdn: Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
         :param pulumi.Input[str] src_affinity_exempt_addr: IPv4 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy affinity.
@@ -1021,14 +1211,19 @@ class Global(pulumi.CustomResource):
         __props__.__dict__["fast_policy_match"] = fast_policy_match
         __props__.__dict__["forward_proxy_auth"] = forward_proxy_auth
         __props__.__dict__["forward_server_affinity_timeout"] = forward_server_affinity_timeout
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ldap_user_cache"] = ldap_user_cache
         __props__.__dict__["learn_client_ip"] = learn_client_ip
         __props__.__dict__["learn_client_ip_from_header"] = learn_client_ip_from_header
         __props__.__dict__["learn_client_ip_srcaddr6s"] = learn_client_ip_srcaddr6s
         __props__.__dict__["learn_client_ip_srcaddrs"] = learn_client_ip_srcaddrs
+        __props__.__dict__["log_app_id"] = log_app_id
+        __props__.__dict__["log_forward_server"] = log_forward_server
+        __props__.__dict__["log_policy_pending"] = log_policy_pending
         __props__.__dict__["max_message_length"] = max_message_length
         __props__.__dict__["max_request_length"] = max_request_length
         __props__.__dict__["max_waf_body_cache_length"] = max_waf_body_cache_length
+        __props__.__dict__["policy_category_deep_inspect"] = policy_category_deep_inspect
         __props__.__dict__["proxy_fqdn"] = proxy_fqdn
         __props__.__dict__["src_affinity_exempt_addr"] = src_affinity_exempt_addr
         __props__.__dict__["src_affinity_exempt_addr6"] = src_affinity_exempt_addr6
@@ -1074,6 +1269,14 @@ class Global(pulumi.CustomResource):
         return pulumi.get(self, "forward_server_affinity_timeout")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="ldapUserCache")
     def ldap_user_cache(self) -> pulumi.Output[str]:
         """
@@ -1114,6 +1317,30 @@ class Global(pulumi.CustomResource):
         return pulumi.get(self, "learn_client_ip_srcaddrs")
 
     @property
+    @pulumi.getter(name="logAppId")
+    def log_app_id(self) -> pulumi.Output[str]:
+        """
+        Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "log_app_id")
+
+    @property
+    @pulumi.getter(name="logForwardServer")
+    def log_forward_server(self) -> pulumi.Output[str]:
+        """
+        Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "log_forward_server")
+
+    @property
+    @pulumi.getter(name="logPolicyPending")
+    def log_policy_pending(self) -> pulumi.Output[str]:
+        """
+        Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "log_policy_pending")
+
+    @property
     @pulumi.getter(name="maxMessageLength")
     def max_message_length(self) -> pulumi.Output[int]:
         """
@@ -1136,6 +1363,14 @@ class Global(pulumi.CustomResource):
         Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
         """
         return pulumi.get(self, "max_waf_body_cache_length")
+
+    @property
+    @pulumi.getter(name="policyCategoryDeepInspect")
+    def policy_category_deep_inspect(self) -> pulumi.Output[str]:
+        """
+        Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "policy_category_deep_inspect")
 
     @property
     @pulumi.getter(name="proxyFqdn")

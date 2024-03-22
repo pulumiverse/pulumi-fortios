@@ -76,7 +76,7 @@ type Layout struct {
 	BodyItems LayoutBodyItemArrayOutput `pulumi:"bodyItems"`
 	// Cutoff-option is either run-time or custom. Valid values: `run-time`, `custom`.
 	CutoffOption pulumi.StringOutput `pulumi:"cutoffOption"`
-	// Custom cutoff time to generate report [hh:mm].
+	// Custom cutoff time to generate report (format = hh:mm).
 	CutoffTime pulumi.StringOutput `pulumi:"cutoffTime"`
 	// Schedule days of week to generate report. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	Day pulumi.StringOutput `pulumi:"day"`
@@ -90,6 +90,8 @@ type Layout struct {
 	EmailSend pulumi.StringOutput `pulumi:"emailSend"`
 	// Report format. Valid values: `pdf`.
 	Format pulumi.StringOutput `pulumi:"format"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
 	MaxPdfReport pulumi.IntOutput `pulumi:"maxPdfReport"`
 	// Report layout name.
@@ -104,7 +106,7 @@ type Layout struct {
 	StyleTheme pulumi.StringOutput `pulumi:"styleTheme"`
 	// Report subtitle.
 	Subtitle pulumi.StringOutput `pulumi:"subtitle"`
-	// Schedule time to generate report [hh:mm].
+	// Schedule time to generate report (format = hh:mm).
 	Time pulumi.StringOutput `pulumi:"time"`
 	// Report title.
 	Title pulumi.StringOutput `pulumi:"title"`
@@ -149,7 +151,7 @@ type layoutState struct {
 	BodyItems []LayoutBodyItem `pulumi:"bodyItems"`
 	// Cutoff-option is either run-time or custom. Valid values: `run-time`, `custom`.
 	CutoffOption *string `pulumi:"cutoffOption"`
-	// Custom cutoff time to generate report [hh:mm].
+	// Custom cutoff time to generate report (format = hh:mm).
 	CutoffTime *string `pulumi:"cutoffTime"`
 	// Schedule days of week to generate report. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	Day *string `pulumi:"day"`
@@ -163,6 +165,8 @@ type layoutState struct {
 	EmailSend *string `pulumi:"emailSend"`
 	// Report format. Valid values: `pdf`.
 	Format *string `pulumi:"format"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
 	MaxPdfReport *int `pulumi:"maxPdfReport"`
 	// Report layout name.
@@ -177,7 +181,7 @@ type layoutState struct {
 	StyleTheme *string `pulumi:"styleTheme"`
 	// Report subtitle.
 	Subtitle *string `pulumi:"subtitle"`
-	// Schedule time to generate report [hh:mm].
+	// Schedule time to generate report (format = hh:mm).
 	Time *string `pulumi:"time"`
 	// Report title.
 	Title *string `pulumi:"title"`
@@ -190,7 +194,7 @@ type LayoutState struct {
 	BodyItems LayoutBodyItemArrayInput
 	// Cutoff-option is either run-time or custom. Valid values: `run-time`, `custom`.
 	CutoffOption pulumi.StringPtrInput
-	// Custom cutoff time to generate report [hh:mm].
+	// Custom cutoff time to generate report (format = hh:mm).
 	CutoffTime pulumi.StringPtrInput
 	// Schedule days of week to generate report. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	Day pulumi.StringPtrInput
@@ -204,6 +208,8 @@ type LayoutState struct {
 	EmailSend pulumi.StringPtrInput
 	// Report format. Valid values: `pdf`.
 	Format pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
 	MaxPdfReport pulumi.IntPtrInput
 	// Report layout name.
@@ -218,7 +224,7 @@ type LayoutState struct {
 	StyleTheme pulumi.StringPtrInput
 	// Report subtitle.
 	Subtitle pulumi.StringPtrInput
-	// Schedule time to generate report [hh:mm].
+	// Schedule time to generate report (format = hh:mm).
 	Time pulumi.StringPtrInput
 	// Report title.
 	Title pulumi.StringPtrInput
@@ -235,7 +241,7 @@ type layoutArgs struct {
 	BodyItems []LayoutBodyItem `pulumi:"bodyItems"`
 	// Cutoff-option is either run-time or custom. Valid values: `run-time`, `custom`.
 	CutoffOption *string `pulumi:"cutoffOption"`
-	// Custom cutoff time to generate report [hh:mm].
+	// Custom cutoff time to generate report (format = hh:mm).
 	CutoffTime *string `pulumi:"cutoffTime"`
 	// Schedule days of week to generate report. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	Day *string `pulumi:"day"`
@@ -249,6 +255,8 @@ type layoutArgs struct {
 	EmailSend *string `pulumi:"emailSend"`
 	// Report format. Valid values: `pdf`.
 	Format *string `pulumi:"format"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
 	MaxPdfReport *int `pulumi:"maxPdfReport"`
 	// Report layout name.
@@ -263,7 +271,7 @@ type layoutArgs struct {
 	StyleTheme string `pulumi:"styleTheme"`
 	// Report subtitle.
 	Subtitle *string `pulumi:"subtitle"`
-	// Schedule time to generate report [hh:mm].
+	// Schedule time to generate report (format = hh:mm).
 	Time *string `pulumi:"time"`
 	// Report title.
 	Title *string `pulumi:"title"`
@@ -277,7 +285,7 @@ type LayoutArgs struct {
 	BodyItems LayoutBodyItemArrayInput
 	// Cutoff-option is either run-time or custom. Valid values: `run-time`, `custom`.
 	CutoffOption pulumi.StringPtrInput
-	// Custom cutoff time to generate report [hh:mm].
+	// Custom cutoff time to generate report (format = hh:mm).
 	CutoffTime pulumi.StringPtrInput
 	// Schedule days of week to generate report. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	Day pulumi.StringPtrInput
@@ -291,6 +299,8 @@ type LayoutArgs struct {
 	EmailSend pulumi.StringPtrInput
 	// Report format. Valid values: `pdf`.
 	Format pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
 	MaxPdfReport pulumi.IntPtrInput
 	// Report layout name.
@@ -305,7 +315,7 @@ type LayoutArgs struct {
 	StyleTheme pulumi.StringInput
 	// Report subtitle.
 	Subtitle pulumi.StringPtrInput
-	// Schedule time to generate report [hh:mm].
+	// Schedule time to generate report (format = hh:mm).
 	Time pulumi.StringPtrInput
 	// Report title.
 	Title pulumi.StringPtrInput
@@ -410,7 +420,7 @@ func (o LayoutOutput) CutoffOption() pulumi.StringOutput {
 	return o.ApplyT(func(v *Layout) pulumi.StringOutput { return v.CutoffOption }).(pulumi.StringOutput)
 }
 
-// Custom cutoff time to generate report [hh:mm].
+// Custom cutoff time to generate report (format = hh:mm).
 func (o LayoutOutput) CutoffTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Layout) pulumi.StringOutput { return v.CutoffTime }).(pulumi.StringOutput)
 }
@@ -443,6 +453,11 @@ func (o LayoutOutput) EmailSend() pulumi.StringOutput {
 // Report format. Valid values: `pdf`.
 func (o LayoutOutput) Format() pulumi.StringOutput {
 	return o.ApplyT(func(v *Layout) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o LayoutOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Layout) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Maximum number of PDF reports to keep at one time (oldest report is overwritten).
@@ -480,7 +495,7 @@ func (o LayoutOutput) Subtitle() pulumi.StringOutput {
 	return o.ApplyT(func(v *Layout) pulumi.StringOutput { return v.Subtitle }).(pulumi.StringOutput)
 }
 
-// Schedule time to generate report [hh:mm].
+// Schedule time to generate report (format = hh:mm).
 func (o LayoutOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v *Layout) pulumi.StringOutput { return v.Time }).(pulumi.StringOutput)
 }

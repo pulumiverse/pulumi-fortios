@@ -40,6 +40,7 @@ class PolicyArgs:
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyFssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyGroupArgs']]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
@@ -134,6 +135,7 @@ class PolicyArgs:
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
         :param pulumi.Input[str] fixedport: Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyFssoGroupArgs']]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyGroupArgs']]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
@@ -251,6 +253,8 @@ class PolicyArgs:
             pulumi.set(__self__, "fixedport", fixedport)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if http_policy_redirect is not None:
@@ -675,6 +679,18 @@ class PolicyArgs:
     @fsso_groups.setter
     def fsso_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyFssoGroupArgs']]]]):
         pulumi.set(self, "fsso_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1520,6 +1536,7 @@ class _PolicyState:
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyFssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyGroupArgs']]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
@@ -1614,6 +1631,7 @@ class _PolicyState:
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
         :param pulumi.Input[str] fixedport: Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyFssoGroupArgs']]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyGroupArgs']]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
@@ -1731,6 +1749,8 @@ class _PolicyState:
             pulumi.set(__self__, "fixedport", fixedport)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if http_policy_redirect is not None:
@@ -2155,6 +2175,18 @@ class _PolicyState:
     @fsso_groups.setter
     def fsso_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyFssoGroupArgs']]]]):
         pulumi.set(self, "fsso_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -3002,6 +3034,7 @@ class Policy(pulumi.CustomResource):
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyFssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyGroupArgs']]]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
@@ -3118,6 +3151,7 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
         :param pulumi.Input[str] fixedport: Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyFssoGroupArgs']]]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyGroupArgs']]]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
@@ -3253,6 +3287,7 @@ class Policy(pulumi.CustomResource):
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyFssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyGroupArgs']]]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
@@ -3354,6 +3389,7 @@ class Policy(pulumi.CustomResource):
             __props__.__dict__["emailfilter_profile"] = emailfilter_profile
             __props__.__dict__["fixedport"] = fixedport
             __props__.__dict__["fsso_groups"] = fsso_groups
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["groups"] = groups
             __props__.__dict__["http_policy_redirect"] = http_policy_redirect
             __props__.__dict__["icap_profile"] = icap_profile
@@ -3456,6 +3492,7 @@ class Policy(pulumi.CustomResource):
             emailfilter_profile: Optional[pulumi.Input[str]] = None,
             fixedport: Optional[pulumi.Input[str]] = None,
             fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyFssoGroupArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyGroupArgs']]]]] = None,
             http_policy_redirect: Optional[pulumi.Input[str]] = None,
             icap_profile: Optional[pulumi.Input[str]] = None,
@@ -3555,6 +3592,7 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
         :param pulumi.Input[str] fixedport: Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyFssoGroupArgs']]]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyGroupArgs']]]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
@@ -3652,6 +3690,7 @@ class Policy(pulumi.CustomResource):
         __props__.__dict__["emailfilter_profile"] = emailfilter_profile
         __props__.__dict__["fixedport"] = fixedport
         __props__.__dict__["fsso_groups"] = fsso_groups
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["groups"] = groups
         __props__.__dict__["http_policy_redirect"] = http_policy_redirect
         __props__.__dict__["icap_profile"] = icap_profile
@@ -3913,6 +3952,14 @@ class Policy(pulumi.CustomResource):
         Names of FSSO groups. The structure of `fsso_groups` block is documented below.
         """
         return pulumi.get(self, "fsso_groups")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

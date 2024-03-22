@@ -27,7 +27,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly int? PolicyId;
         /// <summary>
-        /// Bonjour services for the VLAN connecting to the Bonjour network. Valid values: `all`, `airplay`, `afp`, `bit-torrent`, `ftp`, `ichat`, `itunes`, `printers`, `samba`, `scanners`, `ssh`, `chromecast`.
+        /// Bonjour services for the VLAN connecting to the Bonjour network.
         /// </summary>
         public readonly string? Services;
         /// <summary>

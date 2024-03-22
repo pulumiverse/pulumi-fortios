@@ -35,6 +35,14 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string? MatchCommunityExact;
         /// <summary>
+        /// Match BGP extended community list.
+        /// </summary>
+        public readonly string? MatchExtcommunity;
+        /// <summary>
+        /// Enable/disable exact matching of extended communities. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? MatchExtcommunityExact;
+        /// <summary>
         /// BGP flag value to match (0 - 65535)
         /// </summary>
         public readonly int? MatchFlags;
@@ -155,6 +163,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string? SetIpNexthop;
         /// <summary>
+        /// IP address of preferred source.
+        /// </summary>
+        public readonly string? SetIpPrefsrc;
+        /// <summary>
         /// BGP local preference path attribute.
         /// </summary>
         public readonly int? SetLocalPreference;
@@ -187,6 +199,18 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly int? SetTag;
         /// <summary>
+        /// IP address of VPNv4 next-hop.
+        /// </summary>
+        public readonly string? SetVpnv4Nexthop;
+        /// <summary>
+        /// IPv6 global address of VPNv6 next-hop.
+        /// </summary>
+        public readonly string? SetVpnv6Nexthop;
+        /// <summary>
+        /// IPv6 link-local address of VPNv6 next-hop.
+        /// </summary>
+        public readonly string? SetVpnv6NexthopLocal;
+        /// <summary>
         /// BGP weight for routing table.
         /// </summary>
         public readonly int? SetWeight;
@@ -202,6 +226,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
             string? matchCommunity,
 
             string? matchCommunityExact,
+
+            string? matchExtcommunity,
+
+            string? matchExtcommunityExact,
 
             int? matchFlags,
 
@@ -263,6 +291,8 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             string? setIpNexthop,
 
+            string? setIpPrefsrc,
+
             int? setLocalPreference,
 
             int? setMetric,
@@ -279,6 +309,12 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             int? setTag,
 
+            string? setVpnv4Nexthop,
+
+            string? setVpnv6Nexthop,
+
+            string? setVpnv6NexthopLocal,
+
             int? setWeight)
         {
             Action = action;
@@ -286,6 +322,8 @@ namespace Pulumiverse.Fortios.Router.Outputs
             MatchAsPath = matchAsPath;
             MatchCommunity = matchCommunity;
             MatchCommunityExact = matchCommunityExact;
+            MatchExtcommunity = matchExtcommunity;
+            MatchExtcommunityExact = matchExtcommunityExact;
             MatchFlags = matchFlags;
             MatchInterface = matchInterface;
             MatchIp6Address = matchIp6Address;
@@ -316,6 +354,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
             SetIp6Nexthop = setIp6Nexthop;
             SetIp6NexthopLocal = setIp6NexthopLocal;
             SetIpNexthop = setIpNexthop;
+            SetIpPrefsrc = setIpPrefsrc;
             SetLocalPreference = setLocalPreference;
             SetMetric = setMetric;
             SetMetricType = setMetricType;
@@ -324,6 +363,9 @@ namespace Pulumiverse.Fortios.Router.Outputs
             SetPriority = setPriority;
             SetRouteTag = setRouteTag;
             SetTag = setTag;
+            SetVpnv4Nexthop = setVpnv4Nexthop;
+            SetVpnv6Nexthop = setVpnv6Nexthop;
+            SetVpnv6NexthopLocal = setVpnv6NexthopLocal;
             SetWeight = setWeight;
         }
     }

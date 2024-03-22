@@ -157,6 +157,24 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<int> Fosid { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("h2Support")]
+        public Output<string> H2Support { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("h3Support")]
+        public Output<string> H3Support { get; private set; } = null!;
+
+        /// <summary>
         /// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
         /// </summary>
         [Output("httpCookieAge")]
@@ -289,6 +307,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> NatSourceVip { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("ndpReply")]
+        public Output<string> NdpReply { get; private set; } = null!;
+
+        /// <summary>
         /// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         /// </summary>
         [Output("outlookWebAccess")]
@@ -311,6 +335,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
+
+        /// <summary>
+        /// QUIC setting. The structure of `quic` block is documented below.
+        /// </summary>
+        [Output("quic")]
+        public Output<Outputs.Vip6Quic> Quic { get; private set; } = null!;
 
         /// <summary>
         /// Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
@@ -517,6 +547,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> SslServerMinVersion { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("sslServerRenegotiation")]
+        public Output<string> SslServerRenegotiation { get; private set; } = null!;
+
+        /// <summary>
         /// Maximum number of FortiGate to Server SSL session states to keep.
         /// </summary>
         [Output("sslServerSessionStateMax")]
@@ -666,6 +702,24 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("h2Support")]
+        public Input<string>? H2Support { get; set; }
+
+        /// <summary>
+        /// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("h3Support")]
+        public Input<string>? H3Support { get; set; }
+
+        /// <summary>
         /// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
         /// </summary>
         [Input("httpCookieAge")]
@@ -804,6 +858,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? NatSourceVip { get; set; }
 
         /// <summary>
+        /// Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("ndpReply")]
+        public Input<string>? NdpReply { get; set; }
+
+        /// <summary>
         /// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("outlookWebAccess")]
@@ -826,6 +886,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
+
+        /// <summary>
+        /// QUIC setting. The structure of `quic` block is documented below.
+        /// </summary>
+        [Input("quic")]
+        public Input<Inputs.Vip6QuicArgs>? Quic { get; set; }
 
         [Input("realservers")]
         private InputList<Inputs.Vip6RealserverArgs>? _realservers;
@@ -1056,6 +1122,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? SslServerMinVersion { get; set; }
 
         /// <summary>
+        /// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("sslServerRenegotiation")]
+        public Input<string>? SslServerRenegotiation { get; set; }
+
+        /// <summary>
         /// Maximum number of FortiGate to Server SSL session states to keep.
         /// </summary>
         [Input("sslServerSessionStateMax")]
@@ -1164,6 +1236,24 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("fosid")]
         public Input<int>? Fosid { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
+        /// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("h2Support")]
+        public Input<string>? H2Support { get; set; }
+
+        /// <summary>
+        /// Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("h3Support")]
+        public Input<string>? H3Support { get; set; }
 
         /// <summary>
         /// Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
@@ -1304,6 +1394,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? NatSourceVip { get; set; }
 
         /// <summary>
+        /// Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("ndpReply")]
+        public Input<string>? NdpReply { get; set; }
+
+        /// <summary>
         /// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("outlookWebAccess")]
@@ -1326,6 +1422,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
+
+        /// <summary>
+        /// QUIC setting. The structure of `quic` block is documented below.
+        /// </summary>
+        [Input("quic")]
+        public Input<Inputs.Vip6QuicGetArgs>? Quic { get; set; }
 
         [Input("realservers")]
         private InputList<Inputs.Vip6RealserverGetArgs>? _realservers;
@@ -1554,6 +1656,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("sslServerMinVersion")]
         public Input<string>? SslServerMinVersion { get; set; }
+
+        /// <summary>
+        /// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("sslServerRenegotiation")]
+        public Input<string>? SslServerRenegotiation { get; set; }
 
         /// <summary>
         /// Maximum number of FortiGate to Server SSL session states to keep.

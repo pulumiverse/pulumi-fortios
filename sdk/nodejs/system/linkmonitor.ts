@@ -122,6 +122,10 @@ export class Linkmonitor extends pulumi.CustomResource {
      */
     public readonly gatewayIp6!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * HA election priority (1 - 50).
      */
     public readonly haPriority!: pulumi.Output<number>;
@@ -255,6 +259,7 @@ export class Linkmonitor extends pulumi.CustomResource {
             resourceInputs["failtime"] = state ? state.failtime : undefined;
             resourceInputs["gatewayIp"] = state ? state.gatewayIp : undefined;
             resourceInputs["gatewayIp6"] = state ? state.gatewayIp6 : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["haPriority"] = state ? state.haPriority : undefined;
             resourceInputs["httpAgent"] = state ? state.httpAgent : undefined;
             resourceInputs["httpGet"] = state ? state.httpGet : undefined;
@@ -296,6 +301,7 @@ export class Linkmonitor extends pulumi.CustomResource {
             resourceInputs["failtime"] = args ? args.failtime : undefined;
             resourceInputs["gatewayIp"] = args ? args.gatewayIp : undefined;
             resourceInputs["gatewayIp6"] = args ? args.gatewayIp6 : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["haPriority"] = args ? args.haPriority : undefined;
             resourceInputs["httpAgent"] = args ? args.httpAgent : undefined;
             resourceInputs["httpGet"] = args ? args.httpGet : undefined;
@@ -368,6 +374,10 @@ export interface LinkmonitorState {
      * Gateway IPv6 address used to probe the server.
      */
     gatewayIp6?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * HA election priority (1 - 50).
      */
@@ -518,6 +528,10 @@ export interface LinkmonitorArgs {
      * Gateway IPv6 address used to probe the server.
      */
     gatewayIp6?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * HA election priority (1 - 50).
      */

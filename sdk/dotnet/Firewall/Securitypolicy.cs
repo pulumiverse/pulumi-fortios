@@ -125,6 +125,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> AvProfile { get; private set; } = null!;
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Output("casbProfile")]
+        public Output<string> CasbProfile { get; private set; } = null!;
+
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         [Output("cifsProfile")]
@@ -135,6 +141,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("comments")]
         public Output<string?> Comments { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        [Output("diameterFilterProfile")]
+        public Output<string> DiameterFilterProfile { get; private set; } = null!;
 
         /// <summary>
         /// Name of an existing DLP profile.
@@ -159,6 +171,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("dstaddr4s")]
         public Output<ImmutableArray<Outputs.SecuritypolicyDstaddr4>> Dstaddr4s { get; private set; } = null!;
+
+        /// <summary>
+        /// When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("dstaddr6Negate")]
+        public Output<string> Dstaddr6Negate { get; private set; } = null!;
 
         /// <summary>
         /// Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
@@ -213,6 +231,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("fssoGroups")]
         public Output<ImmutableArray<Outputs.SecuritypolicyFssoGroup>> FssoGroups { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
@@ -389,6 +413,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> IpsSensor { get; private set; } = null!;
 
         /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        [Output("ipsVoipFilter")]
+        public Output<string> IpsVoipFilter { get; private set; } = null!;
+
+        /// <summary>
         /// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("learningMode")]
@@ -485,6 +515,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<ImmutableArray<Outputs.SecuritypolicySrcaddr4>> Srcaddr4s { get; private set; } = null!;
 
         /// <summary>
+        /// When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("srcaddr6Negate")]
+        public Output<string> Srcaddr6Negate { get; private set; } = null!;
+
+        /// <summary>
         /// Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
         /// </summary>
         [Output("srcaddr6s")]
@@ -533,6 +569,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<ImmutableArray<Outputs.SecuritypolicyUrlCategory>> UrlCategories { get; private set; } = null!;
 
         /// <summary>
+        /// URL categories or groups.
+        /// </summary>
+        [Output("urlCategoryUnitary")]
+        public Output<string> UrlCategoryUnitary { get; private set; } = null!;
+
+        /// <summary>
         /// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
         /// </summary>
         [Output("users")]
@@ -557,7 +599,13 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> VideofilterProfile { get; private set; } = null!;
 
         /// <summary>
-        /// Name of an existing VoIP profile.
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        [Output("virtualPatchProfile")]
+        public Output<string> VirtualPatchProfile { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of an existing VoIP (voipd) profile.
         /// </summary>
         [Output("voipProfile")]
         public Output<string> VoipProfile { get; private set; } = null!;
@@ -670,6 +718,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? AvProfile { get; set; }
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Input("casbProfile")]
+        public Input<string>? CasbProfile { get; set; }
+
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         [Input("cifsProfile")]
@@ -680,6 +734,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("comments")]
         public Input<string>? Comments { get; set; }
+
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        [Input("diameterFilterProfile")]
+        public Input<string>? DiameterFilterProfile { get; set; }
 
         /// <summary>
         /// Name of an existing DLP profile.
@@ -710,6 +770,12 @@ namespace Pulumiverse.Fortios.Firewall
             get => _dstaddr4s ?? (_dstaddr4s = new InputList<Inputs.SecuritypolicyDstaddr4Args>());
             set => _dstaddr4s = value;
         }
+
+        /// <summary>
+        /// When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("dstaddr6Negate")]
+        public Input<string>? Dstaddr6Negate { get; set; }
 
         [Input("dstaddr6s")]
         private InputList<Inputs.SecuritypolicyDstaddr6Args>? _dstaddr6s;
@@ -788,6 +854,12 @@ namespace Pulumiverse.Fortios.Firewall
             get => _fssoGroups ?? (_fssoGroups = new InputList<Inputs.SecuritypolicyFssoGroupArgs>());
             set => _fssoGroups = value;
         }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("groups")]
         private InputList<Inputs.SecuritypolicyGroupArgs>? _groups;
@@ -1078,6 +1150,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? IpsSensor { get; set; }
 
         /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        [Input("ipsVoipFilter")]
+        public Input<string>? IpsVoipFilter { get; set; }
+
+        /// <summary>
         /// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("learningMode")]
@@ -1185,6 +1263,12 @@ namespace Pulumiverse.Fortios.Firewall
             set => _srcaddr4s = value;
         }
 
+        /// <summary>
+        /// When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("srcaddr6Negate")]
+        public Input<string>? Srcaddr6Negate { get; set; }
+
         [Input("srcaddr6s")]
         private InputList<Inputs.SecuritypolicySrcaddr6Args>? _srcaddr6s;
 
@@ -1257,6 +1341,12 @@ namespace Pulumiverse.Fortios.Firewall
             set => _urlCategories = value;
         }
 
+        /// <summary>
+        /// URL categories or groups.
+        /// </summary>
+        [Input("urlCategoryUnitary")]
+        public Input<string>? UrlCategoryUnitary { get; set; }
+
         [Input("users")]
         private InputList<Inputs.SecuritypolicyUserArgs>? _users;
 
@@ -1288,7 +1378,13 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? VideofilterProfile { get; set; }
 
         /// <summary>
-        /// Name of an existing VoIP profile.
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        [Input("virtualPatchProfile")]
+        public Input<string>? VirtualPatchProfile { get; set; }
+
+        /// <summary>
+        /// Name of an existing VoIP (voipd) profile.
         /// </summary>
         [Input("voipProfile")]
         public Input<string>? VoipProfile { get; set; }
@@ -1362,6 +1458,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? AvProfile { get; set; }
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Input("casbProfile")]
+        public Input<string>? CasbProfile { get; set; }
+
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         [Input("cifsProfile")]
@@ -1372,6 +1474,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("comments")]
         public Input<string>? Comments { get; set; }
+
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        [Input("diameterFilterProfile")]
+        public Input<string>? DiameterFilterProfile { get; set; }
 
         /// <summary>
         /// Name of an existing DLP profile.
@@ -1402,6 +1510,12 @@ namespace Pulumiverse.Fortios.Firewall
             get => _dstaddr4s ?? (_dstaddr4s = new InputList<Inputs.SecuritypolicyDstaddr4GetArgs>());
             set => _dstaddr4s = value;
         }
+
+        /// <summary>
+        /// When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("dstaddr6Negate")]
+        public Input<string>? Dstaddr6Negate { get; set; }
 
         [Input("dstaddr6s")]
         private InputList<Inputs.SecuritypolicyDstaddr6GetArgs>? _dstaddr6s;
@@ -1480,6 +1594,12 @@ namespace Pulumiverse.Fortios.Firewall
             get => _fssoGroups ?? (_fssoGroups = new InputList<Inputs.SecuritypolicyFssoGroupGetArgs>());
             set => _fssoGroups = value;
         }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("groups")]
         private InputList<Inputs.SecuritypolicyGroupGetArgs>? _groups;
@@ -1770,6 +1890,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? IpsSensor { get; set; }
 
         /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        [Input("ipsVoipFilter")]
+        public Input<string>? IpsVoipFilter { get; set; }
+
+        /// <summary>
         /// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("learningMode")]
@@ -1877,6 +2003,12 @@ namespace Pulumiverse.Fortios.Firewall
             set => _srcaddr4s = value;
         }
 
+        /// <summary>
+        /// When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("srcaddr6Negate")]
+        public Input<string>? Srcaddr6Negate { get; set; }
+
         [Input("srcaddr6s")]
         private InputList<Inputs.SecuritypolicySrcaddr6GetArgs>? _srcaddr6s;
 
@@ -1949,6 +2081,12 @@ namespace Pulumiverse.Fortios.Firewall
             set => _urlCategories = value;
         }
 
+        /// <summary>
+        /// URL categories or groups.
+        /// </summary>
+        [Input("urlCategoryUnitary")]
+        public Input<string>? UrlCategoryUnitary { get; set; }
+
         [Input("users")]
         private InputList<Inputs.SecuritypolicyUserGetArgs>? _users;
 
@@ -1980,7 +2118,13 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? VideofilterProfile { get; set; }
 
         /// <summary>
-        /// Name of an existing VoIP profile.
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        [Input("virtualPatchProfile")]
+        public Input<string>? VirtualPatchProfile { get; set; }
+
+        /// <summary>
+        /// Name of an existing VoIP (voipd) profile.
         /// </summary>
         [Input("voipProfile")]
         public Input<string>? VoipProfile { get; set; }

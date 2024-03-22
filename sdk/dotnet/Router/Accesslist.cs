@@ -100,6 +100,9 @@ namespace Pulumiverse.Fortios.Router
         [Output("dynamicSortSubtable")]
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
         /// <summary>
         /// Name.
         /// </summary>
@@ -171,6 +174,9 @@ namespace Pulumiverse.Fortios.Router
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
 
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
         /// <summary>
         /// Name.
         /// </summary>
@@ -208,6 +214,9 @@ namespace Pulumiverse.Fortios.Router
 
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Name.

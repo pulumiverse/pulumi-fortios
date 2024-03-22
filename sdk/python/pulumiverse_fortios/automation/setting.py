@@ -14,17 +14,33 @@ __all__ = ['SettingArgs', 'Setting']
 @pulumi.input_type
 class SettingArgs:
     def __init__(__self__, *,
+                 fabric_sync: Optional[pulumi.Input[str]] = None,
                  max_concurrent_stitches: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Setting resource.
+        :param pulumi.Input[str] fabric_sync: Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_concurrent_stitches: Maximum number of automation stitches that are allowed to run concurrently.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if fabric_sync is not None:
+            pulumi.set(__self__, "fabric_sync", fabric_sync)
         if max_concurrent_stitches is not None:
             pulumi.set(__self__, "max_concurrent_stitches", max_concurrent_stitches)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="fabricSync")
+    def fabric_sync(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_sync")
+
+    @fabric_sync.setter
+    def fabric_sync(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_sync", value)
 
     @property
     @pulumi.getter(name="maxConcurrentStitches")
@@ -54,17 +70,33 @@ class SettingArgs:
 @pulumi.input_type
 class _SettingState:
     def __init__(__self__, *,
+                 fabric_sync: Optional[pulumi.Input[str]] = None,
                  max_concurrent_stitches: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Setting resources.
+        :param pulumi.Input[str] fabric_sync: Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_concurrent_stitches: Maximum number of automation stitches that are allowed to run concurrently.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if fabric_sync is not None:
+            pulumi.set(__self__, "fabric_sync", fabric_sync)
         if max_concurrent_stitches is not None:
             pulumi.set(__self__, "max_concurrent_stitches", max_concurrent_stitches)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="fabricSync")
+    def fabric_sync(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_sync")
+
+    @fabric_sync.setter
+    def fabric_sync(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_sync", value)
 
     @property
     @pulumi.getter(name="maxConcurrentStitches")
@@ -96,6 +128,7 @@ class Setting(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 fabric_sync: Optional[pulumi.Input[str]] = None,
                  max_concurrent_stitches: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -122,6 +155,7 @@ class Setting(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] fabric_sync: Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_concurrent_stitches: Maximum number of automation stitches that are allowed to run concurrently.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -167,6 +201,7 @@ class Setting(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 fabric_sync: Optional[pulumi.Input[str]] = None,
                  max_concurrent_stitches: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -178,6 +213,7 @@ class Setting(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SettingArgs.__new__(SettingArgs)
 
+            __props__.__dict__["fabric_sync"] = fabric_sync
             __props__.__dict__["max_concurrent_stitches"] = max_concurrent_stitches
             __props__.__dict__["vdomparam"] = vdomparam
         super(Setting, __self__).__init__(
@@ -190,6 +226,7 @@ class Setting(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            fabric_sync: Optional[pulumi.Input[str]] = None,
             max_concurrent_stitches: Optional[pulumi.Input[int]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Setting':
         """
@@ -199,6 +236,7 @@ class Setting(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] fabric_sync: Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_concurrent_stitches: Maximum number of automation stitches that are allowed to run concurrently.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -206,9 +244,18 @@ class Setting(pulumi.CustomResource):
 
         __props__ = _SettingState.__new__(_SettingState)
 
+        __props__.__dict__["fabric_sync"] = fabric_sync
         __props__.__dict__["max_concurrent_stitches"] = max_concurrent_stitches
         __props__.__dict__["vdomparam"] = vdomparam
         return Setting(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="fabricSync")
+    def fabric_sync(self) -> pulumi.Output[str]:
+        """
+        Enable/disable synchronization of automation settings with security fabric. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_sync")
 
     @property
     @pulumi.getter(name="maxConcurrentStitches")

@@ -65,20 +65,28 @@ type LookupNeighborResult struct {
 	Activate string `pulumi:"activate"`
 	// Enable/disable address family IPv6 for this neighbor.
 	Activate6 string `pulumi:"activate6"`
+	// Enable/disable address family L2VPN EVPN for this neighbor.
+	ActivateEvpn string `pulumi:"activateEvpn"`
 	// Enable/disable address family VPNv4 for this neighbor.
 	ActivateVpnv4 string `pulumi:"activateVpnv4"`
+	// Enable/disable address family VPNv6 for this neighbor.
+	ActivateVpnv6 string `pulumi:"activateVpnv6"`
 	// Enable/disable IPv4 additional-path capability.
 	AdditionalPath string `pulumi:"additionalPath"`
 	// Enable/disable IPv6 additional-path capability.
 	AdditionalPath6 string `pulumi:"additionalPath6"`
 	// Enable/disable VPNv4 additional-path capability.
 	AdditionalPathVpnv4 string `pulumi:"additionalPathVpnv4"`
+	// Enable/disable VPNv6 additional-path capability.
+	AdditionalPathVpnv6 string `pulumi:"additionalPathVpnv6"`
 	// Number of IPv4 additional paths that can be advertised to this neighbor.
 	AdvAdditionalPath int `pulumi:"advAdditionalPath"`
 	// Number of IPv6 additional paths that can be advertised to this neighbor.
 	AdvAdditionalPath6 int `pulumi:"advAdditionalPath6"`
 	// Number of VPNv4 additional paths that can be advertised to this neighbor.
 	AdvAdditionalPathVpnv4 int `pulumi:"advAdditionalPathVpnv4"`
+	// Number of VPNv6 additional paths that can be advertised to this neighbor.
+	AdvAdditionalPathVpnv6 int `pulumi:"advAdditionalPathVpnv6"`
 	// Minimum interval (sec) between sending updates.
 	AdvertisementInterval int `pulumi:"advertisementInterval"`
 	// IPv4 The maximum number of occurrence of my AS number allowed.
@@ -89,8 +97,18 @@ type LookupNeighborResult struct {
 	AllowasInEnable string `pulumi:"allowasInEnable"`
 	// Enable/disable IPv6 Enable to allow my AS in AS path.
 	AllowasInEnable6 string `pulumi:"allowasInEnable6"`
+	// Enable/disable to allow my AS in AS path for L2VPN EVPN route.
+	AllowasInEnableEvpn string `pulumi:"allowasInEnableEvpn"`
+	// Enable/disable to allow my AS in AS path for VPNv4 route.
+	AllowasInEnableVpnv4 string `pulumi:"allowasInEnableVpnv4"`
+	// Enable/disable use of my AS in AS path for VPNv6 route.
+	AllowasInEnableVpnv6 string `pulumi:"allowasInEnableVpnv6"`
+	// The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+	AllowasInEvpn int `pulumi:"allowasInEvpn"`
 	// The maximum number of occurrence of my AS number allowed for VPNv4 route.
 	AllowasInVpnv4 int `pulumi:"allowasInVpnv4"`
+	// The maximum number of occurrence of my AS number allowed for VPNv6 route.
+	AllowasInVpnv6 int `pulumi:"allowasInVpnv6"`
 	// Enable/disable replace peer AS with own AS for IPv4.
 	AsOverride string `pulumi:"asOverride"`
 	// Enable/disable replace peer AS with own AS for IPv6.
@@ -101,6 +119,10 @@ type LookupNeighborResult struct {
 	AttributeUnchanged6 string `pulumi:"attributeUnchanged6"`
 	// List of attributes that should be unchanged for VPNv4 route.
 	AttributeUnchangedVpnv4 string `pulumi:"attributeUnchangedVpnv4"`
+	// List of attributes that should not be changed for VPNv6 route.
+	AttributeUnchangedVpnv6 string `pulumi:"attributeUnchangedVpnv6"`
+	// Key-chain name for TCP authentication options.
+	AuthOptions string `pulumi:"authOptions"`
 	// Enable/disable BFD for this neighbor.
 	Bfd string `pulumi:"bfd"`
 	// Enable/disable advertise default IPv4 route to this neighbor.
@@ -113,8 +135,12 @@ type LookupNeighborResult struct {
 	CapabilityGracefulRestart string `pulumi:"capabilityGracefulRestart"`
 	// Enable/disable advertise IPv6 graceful restart capability to this neighbor.
 	CapabilityGracefulRestart6 string `pulumi:"capabilityGracefulRestart6"`
+	// Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor.
+	CapabilityGracefulRestartEvpn string `pulumi:"capabilityGracefulRestartEvpn"`
 	// Enable/disable advertise VPNv4 graceful restart capability to this neighbor.
 	CapabilityGracefulRestartVpnv4 string `pulumi:"capabilityGracefulRestartVpnv4"`
+	// Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor.
+	CapabilityGracefulRestartVpnv6 string `pulumi:"capabilityGracefulRestartVpnv6"`
 	// Accept/Send IPv4 ORF lists to/from this neighbor.
 	CapabilityOrf string `pulumi:"capabilityOrf"`
 	// Accept/Send IPv6 ORF lists to/from this neighbor.
@@ -139,12 +165,16 @@ type LookupNeighborResult struct {
 	DistributeListIn6 string `pulumi:"distributeListIn6"`
 	// Filter for VPNv4 updates from this neighbor.
 	DistributeListInVpnv4 string `pulumi:"distributeListInVpnv4"`
+	// Filter for VPNv6 updates from this neighbor.
+	DistributeListInVpnv6 string `pulumi:"distributeListInVpnv6"`
 	// Filter for IPv4 updates to this neighbor.
 	DistributeListOut string `pulumi:"distributeListOut"`
 	// Filter for IPv6 updates to this neighbor.
 	DistributeListOut6 string `pulumi:"distributeListOut6"`
 	// Filter for VPNv4 updates to this neighbor.
 	DistributeListOutVpnv4 string `pulumi:"distributeListOutVpnv4"`
+	// Filter for VPNv6 updates to this neighbor.
+	DistributeListOutVpnv6 string `pulumi:"distributeListOutVpnv6"`
 	// Don't negotiate capabilities with this neighbor
 	DontCapabilityNegotiate string `pulumi:"dontCapabilityNegotiate"`
 	// Enable/disable allow multi-hop EBGP neighbors.
@@ -155,10 +185,18 @@ type LookupNeighborResult struct {
 	FilterListIn string `pulumi:"filterListIn"`
 	// BGP filter for IPv6 inbound routes.
 	FilterListIn6 string `pulumi:"filterListIn6"`
+	// BGP filter for VPNv4 inbound routes.
+	FilterListInVpnv4 string `pulumi:"filterListInVpnv4"`
+	// BGP filter for VPNv6 inbound routes.
+	FilterListInVpnv6 string `pulumi:"filterListInVpnv6"`
 	// BGP filter for IPv4 outbound routes.
 	FilterListOut string `pulumi:"filterListOut"`
 	// BGP filter for IPv6 outbound routes.
 	FilterListOut6 string `pulumi:"filterListOut6"`
+	// BGP filter for VPNv4 outbound routes.
+	FilterListOutVpnv4 string `pulumi:"filterListOutVpnv4"`
+	// BGP filter for VPNv6 outbound routes.
+	FilterListOutVpnv6 string `pulumi:"filterListOutVpnv6"`
 	// Interval (sec) before peer considered dead.
 	HoldtimeTimer int `pulumi:"holdtimeTimer"`
 	// The provider-assigned unique ID for this managed resource.
@@ -181,20 +219,32 @@ type LookupNeighborResult struct {
 	MaximumPrefix int `pulumi:"maximumPrefix"`
 	// Maximum number of IPv6 prefixes to accept from this peer.
 	MaximumPrefix6 int `pulumi:"maximumPrefix6"`
+	// Maximum number of L2VPN EVPN prefixes to accept from this peer.
+	MaximumPrefixEvpn int `pulumi:"maximumPrefixEvpn"`
 	// Maximum IPv4 prefix threshold value (1 - 100 percent).
 	MaximumPrefixThreshold int `pulumi:"maximumPrefixThreshold"`
 	// Maximum IPv6 prefix threshold value (1 - 100 percent).
 	MaximumPrefixThreshold6 int `pulumi:"maximumPrefixThreshold6"`
+	// Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+	MaximumPrefixThresholdEvpn int `pulumi:"maximumPrefixThresholdEvpn"`
 	// Maximum VPNv4 prefix threshold value (1 - 100 percent).
 	MaximumPrefixThresholdVpnv4 int `pulumi:"maximumPrefixThresholdVpnv4"`
+	// Maximum VPNv6 prefix threshold value (1 - 100 percent).
+	MaximumPrefixThresholdVpnv6 int `pulumi:"maximumPrefixThresholdVpnv6"`
 	// Maximum number of VPNv4 prefixes to accept from this peer.
 	MaximumPrefixVpnv4 int `pulumi:"maximumPrefixVpnv4"`
+	// Maximum number of VPNv6 prefixes to accept from this peer.
+	MaximumPrefixVpnv6 int `pulumi:"maximumPrefixVpnv6"`
 	// Enable/disable IPv4 Only give warning message when limit is exceeded.
 	MaximumPrefixWarningOnly string `pulumi:"maximumPrefixWarningOnly"`
 	// Enable/disable IPv6 Only give warning message when limit is exceeded.
 	MaximumPrefixWarningOnly6 string `pulumi:"maximumPrefixWarningOnly6"`
+	// Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes.
+	MaximumPrefixWarningOnlyEvpn string `pulumi:"maximumPrefixWarningOnlyEvpn"`
 	// Enable/disable only giving warning message when limit is exceeded for VPNv4 routes.
 	MaximumPrefixWarningOnlyVpnv4 string `pulumi:"maximumPrefixWarningOnlyVpnv4"`
+	// Enable/disable warning message when limit is exceeded for VPNv6 routes.
+	MaximumPrefixWarningOnlyVpnv6 string `pulumi:"maximumPrefixWarningOnlyVpnv6"`
 	// Enable/disable IPv4 next-hop calculation for this neighbor.
 	NextHopSelf string `pulumi:"nextHopSelf"`
 	// Enable/disable IPv6 next-hop calculation for this neighbor.
@@ -205,6 +255,8 @@ type LookupNeighborResult struct {
 	NextHopSelfRr6 string `pulumi:"nextHopSelfRr6"`
 	// Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor.
 	NextHopSelfVpnv4 string `pulumi:"nextHopSelfVpnv4"`
+	// Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor.
+	NextHopSelfVpnv6 string `pulumi:"nextHopSelfVpnv6"`
 	// Enable/disable override result of capability negotiation.
 	OverrideCapability string `pulumi:"overrideCapability"`
 	// Enable/disable sending of open messages to this neighbor.
@@ -217,20 +269,28 @@ type LookupNeighborResult struct {
 	PrefixListIn6 string `pulumi:"prefixListIn6"`
 	// Inbound filter for VPNv4 updates from this neighbor.
 	PrefixListInVpnv4 string `pulumi:"prefixListInVpnv4"`
+	// Inbound filter for VPNv6 updates from this neighbor.
+	PrefixListInVpnv6 string `pulumi:"prefixListInVpnv6"`
 	// IPv4 Outbound filter for updates to this neighbor.
 	PrefixListOut string `pulumi:"prefixListOut"`
 	// IPv6 Outbound filter for updates to this neighbor.
 	PrefixListOut6 string `pulumi:"prefixListOut6"`
 	// Outbound filter for VPNv4 updates to this neighbor.
 	PrefixListOutVpnv4 string `pulumi:"prefixListOutVpnv4"`
+	// Outbound filter for VPNv6 updates to this neighbor.
+	PrefixListOutVpnv6 string `pulumi:"prefixListOutVpnv6"`
 	// AS number of neighbor.
 	RemoteAs int `pulumi:"remoteAs"`
 	// Enable/disable remove private AS number from IPv4 outbound updates.
 	RemovePrivateAs string `pulumi:"removePrivateAs"`
 	// Enable/disable remove private AS number from IPv6 outbound updates.
 	RemovePrivateAs6 string `pulumi:"removePrivateAs6"`
+	// Enable/disable removing private AS number from L2VPN EVPN outbound updates.
+	RemovePrivateAsEvpn string `pulumi:"removePrivateAsEvpn"`
 	// Enable/disable remove private AS number from VPNv4 outbound updates.
 	RemovePrivateAsVpnv4 string `pulumi:"removePrivateAsVpnv4"`
+	// Enable/disable to remove private AS number from VPNv6 outbound updates.
+	RemovePrivateAsVpnv6 string `pulumi:"removePrivateAsVpnv6"`
 	// Graceful restart delay time (sec, 0 = global default).
 	RestartTime int `pulumi:"restartTime"`
 	// Time to retain stale routes.
@@ -239,46 +299,72 @@ type LookupNeighborResult struct {
 	RouteMapIn string `pulumi:"routeMapIn"`
 	// IPv6 Inbound route map filter.
 	RouteMapIn6 string `pulumi:"routeMapIn6"`
+	// L2VPN EVPN inbound route map filter.
+	RouteMapInEvpn string `pulumi:"routeMapInEvpn"`
 	// VPNv4 inbound route map filter.
 	RouteMapInVpnv4 string `pulumi:"routeMapInVpnv4"`
+	// VPNv6 inbound route map filter.
+	RouteMapInVpnv6 string `pulumi:"routeMapInVpnv6"`
 	// IPv4 Outbound route map filter.
 	RouteMapOut string `pulumi:"routeMapOut"`
 	// IPv6 Outbound route map filter.
 	RouteMapOut6 string `pulumi:"routeMapOut6"`
 	// IPv6 outbound route map filter if the peer is preferred.
 	RouteMapOut6Preferable string `pulumi:"routeMapOut6Preferable"`
+	// L2VPN EVPN outbound route map filter.
+	RouteMapOutEvpn string `pulumi:"routeMapOutEvpn"`
 	// IPv4 outbound route map filter if the peer is preferred.
 	RouteMapOutPreferable string `pulumi:"routeMapOutPreferable"`
 	// VPNv4 outbound route map filter.
 	RouteMapOutVpnv4 string `pulumi:"routeMapOutVpnv4"`
 	// VPNv4 outbound route map filter if the peer is preferred.
 	RouteMapOutVpnv4Preferable string `pulumi:"routeMapOutVpnv4Preferable"`
+	// VPNv6 outbound route map filter.
+	RouteMapOutVpnv6 string `pulumi:"routeMapOutVpnv6"`
+	// VPNv6 outbound route map filter if this neighbor is preferred.
+	RouteMapOutVpnv6Preferable string `pulumi:"routeMapOutVpnv6Preferable"`
 	// Enable/disable IPv4 AS route reflector client.
 	RouteReflectorClient string `pulumi:"routeReflectorClient"`
 	// Enable/disable IPv6 AS route reflector client.
 	RouteReflectorClient6 string `pulumi:"routeReflectorClient6"`
+	// Enable/disable L2VPN EVPN AS route reflector client for this neighbor.
+	RouteReflectorClientEvpn string `pulumi:"routeReflectorClientEvpn"`
 	// Enable/disable VPNv4 AS route reflector client for this neighbor.
 	RouteReflectorClientVpnv4 string `pulumi:"routeReflectorClientVpnv4"`
+	// Enable/disable VPNv6 AS route reflector client for this neighbor.
+	RouteReflectorClientVpnv6 string `pulumi:"routeReflectorClientVpnv6"`
 	// Enable/disable IPv4 AS route server client.
 	RouteServerClient string `pulumi:"routeServerClient"`
 	// Enable/disable IPv6 AS route server client.
 	RouteServerClient6 string `pulumi:"routeServerClient6"`
+	// Enable/disable L2VPN EVPN AS route server client for this neighbor.
+	RouteServerClientEvpn string `pulumi:"routeServerClientEvpn"`
 	// Enable/disable VPNv4 AS route server client for this neighbor.
 	RouteServerClientVpnv4 string `pulumi:"routeServerClientVpnv4"`
+	// Enable/disable VPNv6 AS route server client for this neighbor.
+	RouteServerClientVpnv6 string `pulumi:"routeServerClientVpnv6"`
 	// IPv4 Send community attribute to neighbor.
 	SendCommunity string `pulumi:"sendCommunity"`
 	// IPv6 Send community attribute to neighbor.
 	SendCommunity6 string `pulumi:"sendCommunity6"`
+	// Enable/disable sending community attribute to neighbor for L2VPN EVPN address family.
+	SendCommunityEvpn string `pulumi:"sendCommunityEvpn"`
 	// Send community attribute to neighbor for VPNv4 address family.
 	SendCommunityVpnv4 string `pulumi:"sendCommunityVpnv4"`
+	// Enable/disable sending community attribute to this neighbor for VPNv6 address family.
+	SendCommunityVpnv6 string `pulumi:"sendCommunityVpnv6"`
 	// Enable/disable shutdown this neighbor.
 	Shutdown string `pulumi:"shutdown"`
 	// Enable/disable allow IPv4 inbound soft reconfiguration.
 	SoftReconfiguration string `pulumi:"softReconfiguration"`
 	// Enable/disable allow IPv6 inbound soft reconfiguration.
 	SoftReconfiguration6 string `pulumi:"softReconfiguration6"`
+	// Enable/disable L2VPN EVPN inbound soft reconfiguration.
+	SoftReconfigurationEvpn string `pulumi:"softReconfigurationEvpn"`
 	// Enable/disable allow VPNv4 inbound soft reconfiguration.
 	SoftReconfigurationVpnv4 string `pulumi:"softReconfigurationVpnv4"`
+	// Enable/disable VPNv6 inbound soft reconfiguration.
+	SoftReconfigurationVpnv6 string `pulumi:"softReconfigurationVpnv6"`
 	// Enable/disable stale route after neighbor down.
 	StaleRoute string `pulumi:"staleRoute"`
 	// Enable/disable strict capability matching.
@@ -344,9 +430,19 @@ func (o LookupNeighborResultOutput) Activate6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.Activate6 }).(pulumi.StringOutput)
 }
 
+// Enable/disable address family L2VPN EVPN for this neighbor.
+func (o LookupNeighborResultOutput) ActivateEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.ActivateEvpn }).(pulumi.StringOutput)
+}
+
 // Enable/disable address family VPNv4 for this neighbor.
 func (o LookupNeighborResultOutput) ActivateVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.ActivateVpnv4 }).(pulumi.StringOutput)
+}
+
+// Enable/disable address family VPNv6 for this neighbor.
+func (o LookupNeighborResultOutput) ActivateVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.ActivateVpnv6 }).(pulumi.StringOutput)
 }
 
 // Enable/disable IPv4 additional-path capability.
@@ -364,6 +460,11 @@ func (o LookupNeighborResultOutput) AdditionalPathVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.AdditionalPathVpnv4 }).(pulumi.StringOutput)
 }
 
+// Enable/disable VPNv6 additional-path capability.
+func (o LookupNeighborResultOutput) AdditionalPathVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.AdditionalPathVpnv6 }).(pulumi.StringOutput)
+}
+
 // Number of IPv4 additional paths that can be advertised to this neighbor.
 func (o LookupNeighborResultOutput) AdvAdditionalPath() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNeighborResult) int { return v.AdvAdditionalPath }).(pulumi.IntOutput)
@@ -377,6 +478,11 @@ func (o LookupNeighborResultOutput) AdvAdditionalPath6() pulumi.IntOutput {
 // Number of VPNv4 additional paths that can be advertised to this neighbor.
 func (o LookupNeighborResultOutput) AdvAdditionalPathVpnv4() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNeighborResult) int { return v.AdvAdditionalPathVpnv4 }).(pulumi.IntOutput)
+}
+
+// Number of VPNv6 additional paths that can be advertised to this neighbor.
+func (o LookupNeighborResultOutput) AdvAdditionalPathVpnv6() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupNeighborResult) int { return v.AdvAdditionalPathVpnv6 }).(pulumi.IntOutput)
 }
 
 // Minimum interval (sec) between sending updates.
@@ -404,9 +510,34 @@ func (o LookupNeighborResultOutput) AllowasInEnable6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.AllowasInEnable6 }).(pulumi.StringOutput)
 }
 
+// Enable/disable to allow my AS in AS path for L2VPN EVPN route.
+func (o LookupNeighborResultOutput) AllowasInEnableEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.AllowasInEnableEvpn }).(pulumi.StringOutput)
+}
+
+// Enable/disable to allow my AS in AS path for VPNv4 route.
+func (o LookupNeighborResultOutput) AllowasInEnableVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.AllowasInEnableVpnv4 }).(pulumi.StringOutput)
+}
+
+// Enable/disable use of my AS in AS path for VPNv6 route.
+func (o LookupNeighborResultOutput) AllowasInEnableVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.AllowasInEnableVpnv6 }).(pulumi.StringOutput)
+}
+
+// The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+func (o LookupNeighborResultOutput) AllowasInEvpn() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupNeighborResult) int { return v.AllowasInEvpn }).(pulumi.IntOutput)
+}
+
 // The maximum number of occurrence of my AS number allowed for VPNv4 route.
 func (o LookupNeighborResultOutput) AllowasInVpnv4() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNeighborResult) int { return v.AllowasInVpnv4 }).(pulumi.IntOutput)
+}
+
+// The maximum number of occurrence of my AS number allowed for VPNv6 route.
+func (o LookupNeighborResultOutput) AllowasInVpnv6() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupNeighborResult) int { return v.AllowasInVpnv6 }).(pulumi.IntOutput)
 }
 
 // Enable/disable replace peer AS with own AS for IPv4.
@@ -432,6 +563,16 @@ func (o LookupNeighborResultOutput) AttributeUnchanged6() pulumi.StringOutput {
 // List of attributes that should be unchanged for VPNv4 route.
 func (o LookupNeighborResultOutput) AttributeUnchangedVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.AttributeUnchangedVpnv4 }).(pulumi.StringOutput)
+}
+
+// List of attributes that should not be changed for VPNv6 route.
+func (o LookupNeighborResultOutput) AttributeUnchangedVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.AttributeUnchangedVpnv6 }).(pulumi.StringOutput)
+}
+
+// Key-chain name for TCP authentication options.
+func (o LookupNeighborResultOutput) AuthOptions() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.AuthOptions }).(pulumi.StringOutput)
 }
 
 // Enable/disable BFD for this neighbor.
@@ -464,9 +605,19 @@ func (o LookupNeighborResultOutput) CapabilityGracefulRestart6() pulumi.StringOu
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.CapabilityGracefulRestart6 }).(pulumi.StringOutput)
 }
 
+// Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor.
+func (o LookupNeighborResultOutput) CapabilityGracefulRestartEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.CapabilityGracefulRestartEvpn }).(pulumi.StringOutput)
+}
+
 // Enable/disable advertise VPNv4 graceful restart capability to this neighbor.
 func (o LookupNeighborResultOutput) CapabilityGracefulRestartVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.CapabilityGracefulRestartVpnv4 }).(pulumi.StringOutput)
+}
+
+// Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor.
+func (o LookupNeighborResultOutput) CapabilityGracefulRestartVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.CapabilityGracefulRestartVpnv6 }).(pulumi.StringOutput)
 }
 
 // Accept/Send IPv4 ORF lists to/from this neighbor.
@@ -529,6 +680,11 @@ func (o LookupNeighborResultOutput) DistributeListInVpnv4() pulumi.StringOutput 
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.DistributeListInVpnv4 }).(pulumi.StringOutput)
 }
 
+// Filter for VPNv6 updates from this neighbor.
+func (o LookupNeighborResultOutput) DistributeListInVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.DistributeListInVpnv6 }).(pulumi.StringOutput)
+}
+
 // Filter for IPv4 updates to this neighbor.
 func (o LookupNeighborResultOutput) DistributeListOut() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.DistributeListOut }).(pulumi.StringOutput)
@@ -542,6 +698,11 @@ func (o LookupNeighborResultOutput) DistributeListOut6() pulumi.StringOutput {
 // Filter for VPNv4 updates to this neighbor.
 func (o LookupNeighborResultOutput) DistributeListOutVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.DistributeListOutVpnv4 }).(pulumi.StringOutput)
+}
+
+// Filter for VPNv6 updates to this neighbor.
+func (o LookupNeighborResultOutput) DistributeListOutVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.DistributeListOutVpnv6 }).(pulumi.StringOutput)
 }
 
 // Don't negotiate capabilities with this neighbor
@@ -569,6 +730,16 @@ func (o LookupNeighborResultOutput) FilterListIn6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.FilterListIn6 }).(pulumi.StringOutput)
 }
 
+// BGP filter for VPNv4 inbound routes.
+func (o LookupNeighborResultOutput) FilterListInVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.FilterListInVpnv4 }).(pulumi.StringOutput)
+}
+
+// BGP filter for VPNv6 inbound routes.
+func (o LookupNeighborResultOutput) FilterListInVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.FilterListInVpnv6 }).(pulumi.StringOutput)
+}
+
 // BGP filter for IPv4 outbound routes.
 func (o LookupNeighborResultOutput) FilterListOut() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.FilterListOut }).(pulumi.StringOutput)
@@ -577,6 +748,16 @@ func (o LookupNeighborResultOutput) FilterListOut() pulumi.StringOutput {
 // BGP filter for IPv6 outbound routes.
 func (o LookupNeighborResultOutput) FilterListOut6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.FilterListOut6 }).(pulumi.StringOutput)
+}
+
+// BGP filter for VPNv4 outbound routes.
+func (o LookupNeighborResultOutput) FilterListOutVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.FilterListOutVpnv4 }).(pulumi.StringOutput)
+}
+
+// BGP filter for VPNv6 outbound routes.
+func (o LookupNeighborResultOutput) FilterListOutVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.FilterListOutVpnv6 }).(pulumi.StringOutput)
 }
 
 // Interval (sec) before peer considered dead.
@@ -634,6 +815,11 @@ func (o LookupNeighborResultOutput) MaximumPrefix6() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNeighborResult) int { return v.MaximumPrefix6 }).(pulumi.IntOutput)
 }
 
+// Maximum number of L2VPN EVPN prefixes to accept from this peer.
+func (o LookupNeighborResultOutput) MaximumPrefixEvpn() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupNeighborResult) int { return v.MaximumPrefixEvpn }).(pulumi.IntOutput)
+}
+
 // Maximum IPv4 prefix threshold value (1 - 100 percent).
 func (o LookupNeighborResultOutput) MaximumPrefixThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNeighborResult) int { return v.MaximumPrefixThreshold }).(pulumi.IntOutput)
@@ -644,14 +830,29 @@ func (o LookupNeighborResultOutput) MaximumPrefixThreshold6() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNeighborResult) int { return v.MaximumPrefixThreshold6 }).(pulumi.IntOutput)
 }
 
+// Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+func (o LookupNeighborResultOutput) MaximumPrefixThresholdEvpn() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupNeighborResult) int { return v.MaximumPrefixThresholdEvpn }).(pulumi.IntOutput)
+}
+
 // Maximum VPNv4 prefix threshold value (1 - 100 percent).
 func (o LookupNeighborResultOutput) MaximumPrefixThresholdVpnv4() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNeighborResult) int { return v.MaximumPrefixThresholdVpnv4 }).(pulumi.IntOutput)
 }
 
+// Maximum VPNv6 prefix threshold value (1 - 100 percent).
+func (o LookupNeighborResultOutput) MaximumPrefixThresholdVpnv6() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupNeighborResult) int { return v.MaximumPrefixThresholdVpnv6 }).(pulumi.IntOutput)
+}
+
 // Maximum number of VPNv4 prefixes to accept from this peer.
 func (o LookupNeighborResultOutput) MaximumPrefixVpnv4() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNeighborResult) int { return v.MaximumPrefixVpnv4 }).(pulumi.IntOutput)
+}
+
+// Maximum number of VPNv6 prefixes to accept from this peer.
+func (o LookupNeighborResultOutput) MaximumPrefixVpnv6() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupNeighborResult) int { return v.MaximumPrefixVpnv6 }).(pulumi.IntOutput)
 }
 
 // Enable/disable IPv4 Only give warning message when limit is exceeded.
@@ -664,9 +865,19 @@ func (o LookupNeighborResultOutput) MaximumPrefixWarningOnly6() pulumi.StringOut
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.MaximumPrefixWarningOnly6 }).(pulumi.StringOutput)
 }
 
+// Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes.
+func (o LookupNeighborResultOutput) MaximumPrefixWarningOnlyEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.MaximumPrefixWarningOnlyEvpn }).(pulumi.StringOutput)
+}
+
 // Enable/disable only giving warning message when limit is exceeded for VPNv4 routes.
 func (o LookupNeighborResultOutput) MaximumPrefixWarningOnlyVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.MaximumPrefixWarningOnlyVpnv4 }).(pulumi.StringOutput)
+}
+
+// Enable/disable warning message when limit is exceeded for VPNv6 routes.
+func (o LookupNeighborResultOutput) MaximumPrefixWarningOnlyVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.MaximumPrefixWarningOnlyVpnv6 }).(pulumi.StringOutput)
 }
 
 // Enable/disable IPv4 next-hop calculation for this neighbor.
@@ -692,6 +903,11 @@ func (o LookupNeighborResultOutput) NextHopSelfRr6() pulumi.StringOutput {
 // Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor.
 func (o LookupNeighborResultOutput) NextHopSelfVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.NextHopSelfVpnv4 }).(pulumi.StringOutput)
+}
+
+// Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor.
+func (o LookupNeighborResultOutput) NextHopSelfVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.NextHopSelfVpnv6 }).(pulumi.StringOutput)
 }
 
 // Enable/disable override result of capability negotiation.
@@ -724,6 +940,11 @@ func (o LookupNeighborResultOutput) PrefixListInVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.PrefixListInVpnv4 }).(pulumi.StringOutput)
 }
 
+// Inbound filter for VPNv6 updates from this neighbor.
+func (o LookupNeighborResultOutput) PrefixListInVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.PrefixListInVpnv6 }).(pulumi.StringOutput)
+}
+
 // IPv4 Outbound filter for updates to this neighbor.
 func (o LookupNeighborResultOutput) PrefixListOut() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.PrefixListOut }).(pulumi.StringOutput)
@@ -737,6 +958,11 @@ func (o LookupNeighborResultOutput) PrefixListOut6() pulumi.StringOutput {
 // Outbound filter for VPNv4 updates to this neighbor.
 func (o LookupNeighborResultOutput) PrefixListOutVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.PrefixListOutVpnv4 }).(pulumi.StringOutput)
+}
+
+// Outbound filter for VPNv6 updates to this neighbor.
+func (o LookupNeighborResultOutput) PrefixListOutVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.PrefixListOutVpnv6 }).(pulumi.StringOutput)
 }
 
 // AS number of neighbor.
@@ -754,9 +980,19 @@ func (o LookupNeighborResultOutput) RemovePrivateAs6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.RemovePrivateAs6 }).(pulumi.StringOutput)
 }
 
+// Enable/disable removing private AS number from L2VPN EVPN outbound updates.
+func (o LookupNeighborResultOutput) RemovePrivateAsEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.RemovePrivateAsEvpn }).(pulumi.StringOutput)
+}
+
 // Enable/disable remove private AS number from VPNv4 outbound updates.
 func (o LookupNeighborResultOutput) RemovePrivateAsVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.RemovePrivateAsVpnv4 }).(pulumi.StringOutput)
+}
+
+// Enable/disable to remove private AS number from VPNv6 outbound updates.
+func (o LookupNeighborResultOutput) RemovePrivateAsVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.RemovePrivateAsVpnv6 }).(pulumi.StringOutput)
 }
 
 // Graceful restart delay time (sec, 0 = global default).
@@ -779,9 +1015,19 @@ func (o LookupNeighborResultOutput) RouteMapIn6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteMapIn6 }).(pulumi.StringOutput)
 }
 
+// L2VPN EVPN inbound route map filter.
+func (o LookupNeighborResultOutput) RouteMapInEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteMapInEvpn }).(pulumi.StringOutput)
+}
+
 // VPNv4 inbound route map filter.
 func (o LookupNeighborResultOutput) RouteMapInVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteMapInVpnv4 }).(pulumi.StringOutput)
+}
+
+// VPNv6 inbound route map filter.
+func (o LookupNeighborResultOutput) RouteMapInVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteMapInVpnv6 }).(pulumi.StringOutput)
 }
 
 // IPv4 Outbound route map filter.
@@ -799,6 +1045,11 @@ func (o LookupNeighborResultOutput) RouteMapOut6Preferable() pulumi.StringOutput
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteMapOut6Preferable }).(pulumi.StringOutput)
 }
 
+// L2VPN EVPN outbound route map filter.
+func (o LookupNeighborResultOutput) RouteMapOutEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteMapOutEvpn }).(pulumi.StringOutput)
+}
+
 // IPv4 outbound route map filter if the peer is preferred.
 func (o LookupNeighborResultOutput) RouteMapOutPreferable() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteMapOutPreferable }).(pulumi.StringOutput)
@@ -814,6 +1065,16 @@ func (o LookupNeighborResultOutput) RouteMapOutVpnv4Preferable() pulumi.StringOu
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteMapOutVpnv4Preferable }).(pulumi.StringOutput)
 }
 
+// VPNv6 outbound route map filter.
+func (o LookupNeighborResultOutput) RouteMapOutVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteMapOutVpnv6 }).(pulumi.StringOutput)
+}
+
+// VPNv6 outbound route map filter if this neighbor is preferred.
+func (o LookupNeighborResultOutput) RouteMapOutVpnv6Preferable() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteMapOutVpnv6Preferable }).(pulumi.StringOutput)
+}
+
 // Enable/disable IPv4 AS route reflector client.
 func (o LookupNeighborResultOutput) RouteReflectorClient() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteReflectorClient }).(pulumi.StringOutput)
@@ -824,9 +1085,19 @@ func (o LookupNeighborResultOutput) RouteReflectorClient6() pulumi.StringOutput 
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteReflectorClient6 }).(pulumi.StringOutput)
 }
 
+// Enable/disable L2VPN EVPN AS route reflector client for this neighbor.
+func (o LookupNeighborResultOutput) RouteReflectorClientEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteReflectorClientEvpn }).(pulumi.StringOutput)
+}
+
 // Enable/disable VPNv4 AS route reflector client for this neighbor.
 func (o LookupNeighborResultOutput) RouteReflectorClientVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteReflectorClientVpnv4 }).(pulumi.StringOutput)
+}
+
+// Enable/disable VPNv6 AS route reflector client for this neighbor.
+func (o LookupNeighborResultOutput) RouteReflectorClientVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteReflectorClientVpnv6 }).(pulumi.StringOutput)
 }
 
 // Enable/disable IPv4 AS route server client.
@@ -839,9 +1110,19 @@ func (o LookupNeighborResultOutput) RouteServerClient6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteServerClient6 }).(pulumi.StringOutput)
 }
 
+// Enable/disable L2VPN EVPN AS route server client for this neighbor.
+func (o LookupNeighborResultOutput) RouteServerClientEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteServerClientEvpn }).(pulumi.StringOutput)
+}
+
 // Enable/disable VPNv4 AS route server client for this neighbor.
 func (o LookupNeighborResultOutput) RouteServerClientVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteServerClientVpnv4 }).(pulumi.StringOutput)
+}
+
+// Enable/disable VPNv6 AS route server client for this neighbor.
+func (o LookupNeighborResultOutput) RouteServerClientVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.RouteServerClientVpnv6 }).(pulumi.StringOutput)
 }
 
 // IPv4 Send community attribute to neighbor.
@@ -854,9 +1135,19 @@ func (o LookupNeighborResultOutput) SendCommunity6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.SendCommunity6 }).(pulumi.StringOutput)
 }
 
+// Enable/disable sending community attribute to neighbor for L2VPN EVPN address family.
+func (o LookupNeighborResultOutput) SendCommunityEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.SendCommunityEvpn }).(pulumi.StringOutput)
+}
+
 // Send community attribute to neighbor for VPNv4 address family.
 func (o LookupNeighborResultOutput) SendCommunityVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.SendCommunityVpnv4 }).(pulumi.StringOutput)
+}
+
+// Enable/disable sending community attribute to this neighbor for VPNv6 address family.
+func (o LookupNeighborResultOutput) SendCommunityVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.SendCommunityVpnv6 }).(pulumi.StringOutput)
 }
 
 // Enable/disable shutdown this neighbor.
@@ -874,9 +1165,19 @@ func (o LookupNeighborResultOutput) SoftReconfiguration6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.SoftReconfiguration6 }).(pulumi.StringOutput)
 }
 
+// Enable/disable L2VPN EVPN inbound soft reconfiguration.
+func (o LookupNeighborResultOutput) SoftReconfigurationEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.SoftReconfigurationEvpn }).(pulumi.StringOutput)
+}
+
 // Enable/disable allow VPNv4 inbound soft reconfiguration.
 func (o LookupNeighborResultOutput) SoftReconfigurationVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNeighborResult) string { return v.SoftReconfigurationVpnv4 }).(pulumi.StringOutput)
+}
+
+// Enable/disable VPNv6 inbound soft reconfiguration.
+func (o LookupNeighborResultOutput) SoftReconfigurationVpnv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNeighborResult) string { return v.SoftReconfigurationVpnv6 }).(pulumi.StringOutput)
 }
 
 // Enable/disable stale route after neighbor down.

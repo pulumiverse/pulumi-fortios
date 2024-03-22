@@ -39,6 +39,18 @@ export interface GetTrafficshaperResult {
      */
     readonly bandwidthUnit: string;
     /**
+     * VLAN CoS mark.
+     */
+    readonly cos: string;
+    /**
+     * Enable/disable VLAN CoS marking.
+     */
+    readonly cosMarking: string;
+    /**
+     * Select VLAN CoS marking method.
+     */
+    readonly cosMarkingMethod: string;
+    /**
      * Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper.
      */
     readonly diffserv: string;
@@ -59,6 +71,10 @@ export interface GetTrafficshaperResult {
      */
     readonly exceedClassId: number;
     /**
+     * VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+     */
+    readonly exceedCos: string;
+    /**
      * DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
      */
     readonly exceedDscp: string;
@@ -74,6 +90,10 @@ export interface GetTrafficshaperResult {
      * Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
      */
     readonly maximumBandwidth: number;
+    /**
+     * VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+     */
+    readonly maximumCos: string;
     /**
      * DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
      */

@@ -91,6 +91,12 @@ namespace Pulumiverse.Fortios.Webproxy
         public Output<int> ForwardServerAffinityTimeout { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("ldapUserCache")]
@@ -121,6 +127,24 @@ namespace Pulumiverse.Fortios.Webproxy
         public Output<ImmutableArray<Outputs.GlobalLearnClientIpSrcaddr>> LearnClientIpSrcaddrs { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("logAppId")]
+        public Output<string> LogAppId { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("logForwardServer")]
+        public Output<string> LogForwardServer { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("logPolicyPending")]
+        public Output<string> LogPolicyPending { get; private set; } = null!;
+
+        /// <summary>
         /// Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
         /// </summary>
         [Output("maxMessageLength")]
@@ -137,6 +161,12 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Output("maxWafBodyCacheLength")]
         public Output<int> MaxWafBodyCacheLength { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("policyCategoryDeepInspect")]
+        public Output<string> PolicyCategoryDeepInspect { get; private set; } = null!;
 
         /// <summary>
         /// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
@@ -270,6 +300,12 @@ namespace Pulumiverse.Fortios.Webproxy
         public Input<int>? ForwardServerAffinityTimeout { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("ldapUserCache")]
@@ -312,6 +348,24 @@ namespace Pulumiverse.Fortios.Webproxy
         }
 
         /// <summary>
+        /// Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("logAppId")]
+        public Input<string>? LogAppId { get; set; }
+
+        /// <summary>
+        /// Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("logForwardServer")]
+        public Input<string>? LogForwardServer { get; set; }
+
+        /// <summary>
+        /// Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("logPolicyPending")]
+        public Input<string>? LogPolicyPending { get; set; }
+
+        /// <summary>
         /// Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
         /// </summary>
         [Input("maxMessageLength")]
@@ -328,6 +382,12 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Input("maxWafBodyCacheLength")]
         public Input<int>? MaxWafBodyCacheLength { get; set; }
+
+        /// <summary>
+        /// Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("policyCategoryDeepInspect")]
+        public Input<string>? PolicyCategoryDeepInspect { get; set; }
 
         /// <summary>
         /// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
@@ -422,6 +482,12 @@ namespace Pulumiverse.Fortios.Webproxy
         public Input<int>? ForwardServerAffinityTimeout { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("ldapUserCache")]
@@ -464,6 +530,24 @@ namespace Pulumiverse.Fortios.Webproxy
         }
 
         /// <summary>
+        /// Enable/disable always log application type in traffic log. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("logAppId")]
+        public Input<string>? LogAppId { get; set; }
+
+        /// <summary>
+        /// Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("logForwardServer")]
+        public Input<string>? LogForwardServer { get; set; }
+
+        /// <summary>
+        /// Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("logPolicyPending")]
+        public Input<string>? LogPolicyPending { get; set; }
+
+        /// <summary>
         /// Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
         /// </summary>
         [Input("maxMessageLength")]
@@ -480,6 +564,12 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Input("maxWafBodyCacheLength")]
         public Input<int>? MaxWafBodyCacheLength { get; set; }
+
+        /// <summary>
+        /// Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("policyCategoryDeepInspect")]
+        public Input<string>? PolicyCategoryDeepInspect { get; set; }
 
         /// <summary>
         /// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.

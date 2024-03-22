@@ -64,6 +64,10 @@ export class Decryptedtrafficmirror extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Decrypted traffic mirror interface The structure of `interface` block is documented below.
      */
     public readonly interfaces!: pulumi.Output<outputs.firewall.DecryptedtrafficmirrorInterface[] | undefined>;
@@ -99,6 +103,7 @@ export class Decryptedtrafficmirror extends pulumi.CustomResource {
             const state = argsOrState as DecryptedtrafficmirrorState | undefined;
             resourceInputs["dstmac"] = state ? state.dstmac : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interfaces"] = state ? state.interfaces : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["trafficSource"] = state ? state.trafficSource : undefined;
@@ -108,6 +113,7 @@ export class Decryptedtrafficmirror extends pulumi.CustomResource {
             const args = argsOrState as DecryptedtrafficmirrorArgs | undefined;
             resourceInputs["dstmac"] = args ? args.dstmac : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interfaces"] = args ? args.interfaces : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["trafficSource"] = args ? args.trafficSource : undefined;
@@ -131,6 +137,10 @@ export interface DecryptedtrafficmirrorState {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Decrypted traffic mirror interface The structure of `interface` block is documented below.
      */
@@ -165,6 +175,10 @@ export interface DecryptedtrafficmirrorArgs {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Decrypted traffic mirror interface The structure of `interface` block is documented below.
      */

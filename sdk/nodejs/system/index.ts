@@ -130,6 +130,11 @@ export type Dedicatedmgmt = import("./dedicatedmgmt").Dedicatedmgmt;
 export const Dedicatedmgmt: typeof import("./dedicatedmgmt").Dedicatedmgmt = null as any;
 utilities.lazyLoad(exports, ["Dedicatedmgmt"], () => require("./dedicatedmgmt"));
 
+export { DeviceupgradeArgs, DeviceupgradeState } from "./deviceupgrade";
+export type Deviceupgrade = import("./deviceupgrade").Deviceupgrade;
+export const Deviceupgrade: typeof import("./deviceupgrade").Deviceupgrade = null as any;
+utilities.lazyLoad(exports, ["Deviceupgrade"], () => require("./deviceupgrade"));
+
 export { DnsArgs, DnsState } from "./dns";
 export type Dns = import("./dns").Dns;
 export const Dns: typeof import("./dns").Dns = null as any;
@@ -160,10 +165,20 @@ export type Emailserver = import("./emailserver").Emailserver;
 export const Emailserver: typeof import("./emailserver").Emailserver = null as any;
 utilities.lazyLoad(exports, ["Emailserver"], () => require("./emailserver"));
 
+export { EvpnArgs, EvpnState } from "./evpn";
+export type Evpn = import("./evpn").Evpn;
+export const Evpn: typeof import("./evpn").Evpn = null as any;
+utilities.lazyLoad(exports, ["Evpn"], () => require("./evpn"));
+
 export { ExternalresourceArgs, ExternalresourceState } from "./externalresource";
 export type Externalresource = import("./externalresource").Externalresource;
 export const Externalresource: typeof import("./externalresource").Externalresource = null as any;
 utilities.lazyLoad(exports, ["Externalresource"], () => require("./externalresource"));
+
+export { FabricvpnArgs, FabricvpnState } from "./fabricvpn";
+export type Fabricvpn = import("./fabricvpn").Fabricvpn;
+export const Fabricvpn: typeof import("./fabricvpn").Fabricvpn = null as any;
+utilities.lazyLoad(exports, ["Fabricvpn"], () => require("./fabricvpn"));
 
 export { FederatedupgradeArgs, FederatedupgradeState } from "./federatedupgrade";
 export type Federatedupgrade = import("./federatedupgrade").Federatedupgrade;
@@ -905,6 +920,11 @@ export type Passwordpolicyguestadmin = import("./passwordpolicyguestadmin").Pass
 export const Passwordpolicyguestadmin: typeof import("./passwordpolicyguestadmin").Passwordpolicyguestadmin = null as any;
 utilities.lazyLoad(exports, ["Passwordpolicyguestadmin"], () => require("./passwordpolicyguestadmin"));
 
+export { PcpserverArgs, PcpserverState } from "./pcpserver";
+export type Pcpserver = import("./pcpserver").Pcpserver;
+export const Pcpserver: typeof import("./pcpserver").Pcpserver = null as any;
+utilities.lazyLoad(exports, ["Pcpserver"], () => require("./pcpserver"));
+
 export { PhysicalswitchArgs, PhysicalswitchState } from "./physicalswitch";
 export type Physicalswitch = import("./physicalswitch").Physicalswitch;
 export const Physicalswitch: typeof import("./physicalswitch").Physicalswitch = null as any;
@@ -954,6 +974,11 @@ export { SdnconnectorArgs, SdnconnectorState } from "./sdnconnector";
 export type Sdnconnector = import("./sdnconnector").Sdnconnector;
 export const Sdnconnector: typeof import("./sdnconnector").Sdnconnector = null as any;
 utilities.lazyLoad(exports, ["Sdnconnector"], () => require("./sdnconnector"));
+
+export { SdnproxyArgs, SdnproxyState } from "./sdnproxy";
+export type Sdnproxy = import("./sdnproxy").Sdnproxy;
+export const Sdnproxy: typeof import("./sdnproxy").Sdnproxy = null as any;
+utilities.lazyLoad(exports, ["Sdnproxy"], () => require("./sdnproxy"));
 
 export { SdwanArgs, SdwanState } from "./sdwan";
 export type Sdwan = import("./sdwan").Sdwan;
@@ -1015,6 +1040,11 @@ export type Speedtestserver = import("./speedtestserver").Speedtestserver;
 export const Speedtestserver: typeof import("./speedtestserver").Speedtestserver = null as any;
 utilities.lazyLoad(exports, ["Speedtestserver"], () => require("./speedtestserver"));
 
+export { SpeedtestsettingArgs, SpeedtestsettingState } from "./speedtestsetting";
+export type Speedtestsetting = import("./speedtestsetting").Speedtestsetting;
+export const Speedtestsetting: typeof import("./speedtestsetting").Speedtestsetting = null as any;
+utilities.lazyLoad(exports, ["Speedtestsetting"], () => require("./speedtestsetting"));
+
 export { SsoadminArgs, SsoadminState } from "./ssoadmin";
 export type Ssoadmin = import("./ssoadmin").Ssoadmin;
 export const Ssoadmin: typeof import("./ssoadmin").Ssoadmin = null as any;
@@ -1024,6 +1054,11 @@ export { SsoforticloudadminArgs, SsoforticloudadminState } from "./ssoforticloud
 export type Ssoforticloudadmin = import("./ssoforticloudadmin").Ssoforticloudadmin;
 export const Ssoforticloudadmin: typeof import("./ssoforticloudadmin").Ssoforticloudadmin = null as any;
 utilities.lazyLoad(exports, ["Ssoforticloudadmin"], () => require("./ssoforticloudadmin"));
+
+export { SsofortigatecloudadminArgs, SsofortigatecloudadminState } from "./ssofortigatecloudadmin";
+export type Ssofortigatecloudadmin = import("./ssofortigatecloudadmin").Ssofortigatecloudadmin;
+export const Ssofortigatecloudadmin: typeof import("./ssofortigatecloudadmin").Ssofortigatecloudadmin = null as any;
+utilities.lazyLoad(exports, ["Ssofortigatecloudadmin"], () => require("./ssofortigatecloudadmin"));
 
 export { StandaloneclusterArgs, StandaloneclusterState } from "./standalonecluster";
 export type Standalonecluster = import("./standalonecluster").Standalonecluster;
@@ -1204,6 +1239,8 @@ const _module = {
                 return new Ddns(name, <any>undefined, { urn })
             case "fortios:system/dedicatedmgmt:Dedicatedmgmt":
                 return new Dedicatedmgmt(name, <any>undefined, { urn })
+            case "fortios:system/deviceupgrade:Deviceupgrade":
+                return new Deviceupgrade(name, <any>undefined, { urn })
             case "fortios:system/dns64:Dns64":
                 return new Dns64(name, <any>undefined, { urn })
             case "fortios:system/dns:Dns":
@@ -1216,8 +1253,12 @@ const _module = {
                 return new Dscpbasedpriority(name, <any>undefined, { urn })
             case "fortios:system/emailserver:Emailserver":
                 return new Emailserver(name, <any>undefined, { urn })
+            case "fortios:system/evpn:Evpn":
+                return new Evpn(name, <any>undefined, { urn })
             case "fortios:system/externalresource:Externalresource":
                 return new Externalresource(name, <any>undefined, { urn })
+            case "fortios:system/fabricvpn:Fabricvpn":
+                return new Fabricvpn(name, <any>undefined, { urn })
             case "fortios:system/federatedupgrade:Federatedupgrade":
                 return new Federatedupgrade(name, <any>undefined, { urn })
             case "fortios:system/fipscc:Fipscc":
@@ -1308,6 +1349,8 @@ const _module = {
                 return new Passwordpolicy(name, <any>undefined, { urn })
             case "fortios:system/passwordpolicyguestadmin:Passwordpolicyguestadmin":
                 return new Passwordpolicyguestadmin(name, <any>undefined, { urn })
+            case "fortios:system/pcpserver:Pcpserver":
+                return new Pcpserver(name, <any>undefined, { urn })
             case "fortios:system/physicalswitch:Physicalswitch":
                 return new Physicalswitch(name, <any>undefined, { urn })
             case "fortios:system/pppoeinterface:Pppoeinterface":
@@ -1328,6 +1371,8 @@ const _module = {
                 return new Saml(name, <any>undefined, { urn })
             case "fortios:system/sdnconnector:Sdnconnector":
                 return new Sdnconnector(name, <any>undefined, { urn })
+            case "fortios:system/sdnproxy:Sdnproxy":
+                return new Sdnproxy(name, <any>undefined, { urn })
             case "fortios:system/sdwan:Sdwan":
                 return new Sdwan(name, <any>undefined, { urn })
             case "fortios:system/sessionhelper:Sessionhelper":
@@ -1352,10 +1397,14 @@ const _module = {
                 return new Speedtestschedule(name, <any>undefined, { urn })
             case "fortios:system/speedtestserver:Speedtestserver":
                 return new Speedtestserver(name, <any>undefined, { urn })
+            case "fortios:system/speedtestsetting:Speedtestsetting":
+                return new Speedtestsetting(name, <any>undefined, { urn })
             case "fortios:system/ssoadmin:Ssoadmin":
                 return new Ssoadmin(name, <any>undefined, { urn })
             case "fortios:system/ssoforticloudadmin:Ssoforticloudadmin":
                 return new Ssoforticloudadmin(name, <any>undefined, { urn })
+            case "fortios:system/ssofortigatecloudadmin:Ssofortigatecloudadmin":
+                return new Ssofortigatecloudadmin(name, <any>undefined, { urn })
             case "fortios:system/standalonecluster:Standalonecluster":
                 return new Standalonecluster(name, <any>undefined, { urn })
             case "fortios:system/storage:Storage":
@@ -1428,13 +1477,16 @@ pulumi.runtime.registerResourceModule("fortios", "system/csf", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/customlanguage", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/ddns", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/dedicatedmgmt", _module)
+pulumi.runtime.registerResourceModule("fortios", "system/deviceupgrade", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/dns", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/dns64", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/dnsdatabase", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/dnsserver", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/dscpbasedpriority", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/emailserver", _module)
+pulumi.runtime.registerResourceModule("fortios", "system/evpn", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/externalresource", _module)
+pulumi.runtime.registerResourceModule("fortios", "system/fabricvpn", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/federatedupgrade", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/fipscc", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/fm", _module)
@@ -1480,6 +1532,7 @@ pulumi.runtime.registerResourceModule("fortios", "system/ntp", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/objecttagging", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/passwordpolicy", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/passwordpolicyguestadmin", _module)
+pulumi.runtime.registerResourceModule("fortios", "system/pcpserver", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/physicalswitch", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/pppoeinterface", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/proberesponse", _module)
@@ -1490,6 +1543,7 @@ pulumi.runtime.registerResourceModule("fortios", "system/replacemsgimage", _modu
 pulumi.runtime.registerResourceModule("fortios", "system/resourcelimits", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/saml", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/sdnconnector", _module)
+pulumi.runtime.registerResourceModule("fortios", "system/sdnproxy", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/sdwan", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/sessionhelper", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/sessionttl", _module)
@@ -1502,8 +1556,10 @@ pulumi.runtime.registerResourceModule("fortios", "system/sittunnel", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/smsserver", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/speedtestschedule", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/speedtestserver", _module)
+pulumi.runtime.registerResourceModule("fortios", "system/speedtestsetting", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/ssoadmin", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/ssoforticloudadmin", _module)
+pulumi.runtime.registerResourceModule("fortios", "system/ssofortigatecloudadmin", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/standalonecluster", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/storage", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/stp", _module)

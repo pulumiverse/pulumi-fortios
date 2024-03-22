@@ -70,6 +70,24 @@ namespace Pulumiverse.Fortios.System
         public Output<int> CollectorPort { get; private set; } = null!;
 
         /// <summary>
+        /// Netflow collectors. The structure of `collectors` block is documented below.
+        /// </summary>
+        [Output("collectors")]
+        public Output<ImmutableArray<Outputs.VdomnetflowCollector>> Collectors { get; private set; } = null!;
+
+        /// <summary>
+        /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
+        /// </summary>
+        [Output("dynamicSortSubtable")]
+        public Output<string?> DynamicSortSubtable { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Specify outgoing interface to reach server.
         /// </summary>
         [Output("interface")]
@@ -158,6 +176,30 @@ namespace Pulumiverse.Fortios.System
         [Input("collectorPort")]
         public Input<int>? CollectorPort { get; set; }
 
+        [Input("collectors")]
+        private InputList<Inputs.VdomnetflowCollectorArgs>? _collectors;
+
+        /// <summary>
+        /// Netflow collectors. The structure of `collectors` block is documented below.
+        /// </summary>
+        public InputList<Inputs.VdomnetflowCollectorArgs> Collectors
+        {
+            get => _collectors ?? (_collectors = new InputList<Inputs.VdomnetflowCollectorArgs>());
+            set => _collectors = value;
+        }
+
+        /// <summary>
+        /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
+        /// </summary>
+        [Input("dynamicSortSubtable")]
+        public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
         /// <summary>
         /// Specify outgoing interface to reach server.
         /// </summary>
@@ -207,6 +249,30 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("collectorPort")]
         public Input<int>? CollectorPort { get; set; }
+
+        [Input("collectors")]
+        private InputList<Inputs.VdomnetflowCollectorGetArgs>? _collectors;
+
+        /// <summary>
+        /// Netflow collectors. The structure of `collectors` block is documented below.
+        /// </summary>
+        public InputList<Inputs.VdomnetflowCollectorGetArgs> Collectors
+        {
+            get => _collectors ?? (_collectors = new InputList<Inputs.VdomnetflowCollectorGetArgs>());
+            set => _collectors = value;
+        }
+
+        /// <summary>
+        /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
+        /// </summary>
+        [Input("dynamicSortSubtable")]
+        public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Specify outgoing interface to reach server.

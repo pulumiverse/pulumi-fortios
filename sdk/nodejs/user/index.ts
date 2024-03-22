@@ -45,6 +45,11 @@ export type Exchange = import("./exchange").Exchange;
 export const Exchange: typeof import("./exchange").Exchange = null as any;
 utilities.lazyLoad(exports, ["Exchange"], () => require("./exchange"));
 
+export { ExternalidentityproviderArgs, ExternalidentityproviderState } from "./externalidentityprovider";
+export type Externalidentityprovider = import("./externalidentityprovider").Externalidentityprovider;
+export const Externalidentityprovider: typeof import("./externalidentityprovider").Externalidentityprovider = null as any;
+utilities.lazyLoad(exports, ["Externalidentityprovider"], () => require("./externalidentityprovider"));
+
 export { FortitokenArgs, FortitokenState } from "./fortitoken";
 export type Fortitoken = import("./fortitoken").Fortitoken;
 export const Fortitoken: typeof import("./fortitoken").Fortitoken = null as any;
@@ -166,6 +171,8 @@ const _module = {
                 return new Domaincontroller(name, <any>undefined, { urn })
             case "fortios:user/exchange:Exchange":
                 return new Exchange(name, <any>undefined, { urn })
+            case "fortios:user/externalidentityprovider:Externalidentityprovider":
+                return new Externalidentityprovider(name, <any>undefined, { urn })
             case "fortios:user/fortitoken:Fortitoken":
                 return new Fortitoken(name, <any>undefined, { urn })
             case "fortios:user/fsso:Fsso":
@@ -215,6 +222,7 @@ pulumi.runtime.registerResourceModule("fortios", "user/devicecategory", _module)
 pulumi.runtime.registerResourceModule("fortios", "user/devicegroup", _module)
 pulumi.runtime.registerResourceModule("fortios", "user/domaincontroller", _module)
 pulumi.runtime.registerResourceModule("fortios", "user/exchange", _module)
+pulumi.runtime.registerResourceModule("fortios", "user/externalidentityprovider", _module)
 pulumi.runtime.registerResourceModule("fortios", "user/fortitoken", _module)
 pulumi.runtime.registerResourceModule("fortios", "user/fsso", _module)
 pulumi.runtime.registerResourceModule("fortios", "user/fssopolling", _module)

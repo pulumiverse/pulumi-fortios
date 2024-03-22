@@ -64,6 +64,10 @@ export class H2qposuprovider extends pulumi.CustomResource {
      */
     public readonly friendlyNames!: pulumi.Output<outputs.wirelesscontroller.hotspot20.H2qposuproviderFriendlyName[] | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * OSU provider icon.
      */
     public readonly icon!: pulumi.Output<string>;
@@ -107,6 +111,7 @@ export class H2qposuprovider extends pulumi.CustomResource {
             const state = argsOrState as H2qposuproviderState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["friendlyNames"] = state ? state.friendlyNames : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["icon"] = state ? state.icon : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["osuMethod"] = state ? state.osuMethod : undefined;
@@ -118,6 +123,7 @@ export class H2qposuprovider extends pulumi.CustomResource {
             const args = argsOrState as H2qposuproviderArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["friendlyNames"] = args ? args.friendlyNames : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["icon"] = args ? args.icon : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["osuMethod"] = args ? args.osuMethod : undefined;
@@ -143,6 +149,10 @@ export interface H2qposuproviderState {
      * OSU provider friendly name. The structure of `friendlyName` block is documented below.
      */
     friendlyNames?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.hotspot20.H2qposuproviderFriendlyName>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * OSU provider icon.
      */
@@ -185,6 +195,10 @@ export interface H2qposuproviderArgs {
      * OSU provider friendly name. The structure of `friendlyName` block is documented below.
      */
     friendlyNames?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.hotspot20.H2qposuproviderFriendlyName>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * OSU provider icon.
      */

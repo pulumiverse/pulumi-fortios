@@ -71,11 +71,13 @@ type Explicit struct {
 	OutgoingIp pulumi.StringOutput `pulumi:"outgoingIp"`
 	// Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
 	SecDefaultAction pulumi.StringOutput `pulumi:"secDefaultAction"`
+	// Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+	ServerDataMode pulumi.StringOutput `pulumi:"serverDataMode"`
 	// Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
 	Ssl pulumi.StringOutput `pulumi:"ssl"`
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm pulumi.StringOutput `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
 	SslCert pulumi.StringOutput `pulumi:"sslCert"`
 	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
 	SslDhBits pulumi.StringOutput `pulumi:"sslDhBits"`
@@ -123,11 +125,13 @@ type explicitState struct {
 	OutgoingIp *string `pulumi:"outgoingIp"`
 	// Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
 	SecDefaultAction *string `pulumi:"secDefaultAction"`
+	// Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+	ServerDataMode *string `pulumi:"serverDataMode"`
 	// Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
 	Ssl *string `pulumi:"ssl"`
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
 	SslCert *string `pulumi:"sslCert"`
 	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
 	SslDhBits *string `pulumi:"sslDhBits"`
@@ -146,11 +150,13 @@ type ExplicitState struct {
 	OutgoingIp pulumi.StringPtrInput
 	// Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
 	SecDefaultAction pulumi.StringPtrInput
+	// Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+	ServerDataMode pulumi.StringPtrInput
 	// Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
 	Ssl pulumi.StringPtrInput
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm pulumi.StringPtrInput
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
 	SslCert pulumi.StringPtrInput
 	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
 	SslDhBits pulumi.StringPtrInput
@@ -173,11 +179,13 @@ type explicitArgs struct {
 	OutgoingIp *string `pulumi:"outgoingIp"`
 	// Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
 	SecDefaultAction *string `pulumi:"secDefaultAction"`
+	// Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+	ServerDataMode *string `pulumi:"serverDataMode"`
 	// Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
 	Ssl *string `pulumi:"ssl"`
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
 	SslCert *string `pulumi:"sslCert"`
 	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
 	SslDhBits *string `pulumi:"sslDhBits"`
@@ -197,11 +205,13 @@ type ExplicitArgs struct {
 	OutgoingIp pulumi.StringPtrInput
 	// Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
 	SecDefaultAction pulumi.StringPtrInput
+	// Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+	ServerDataMode pulumi.StringPtrInput
 	// Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
 	Ssl pulumi.StringPtrInput
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm pulumi.StringPtrInput
-	// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
 	SslCert pulumi.StringPtrInput
 	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
 	SslDhBits pulumi.StringPtrInput
@@ -318,6 +328,11 @@ func (o ExplicitOutput) SecDefaultAction() pulumi.StringOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.SecDefaultAction }).(pulumi.StringOutput)
 }
 
+// Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+func (o ExplicitOutput) ServerDataMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.ServerDataMode }).(pulumi.StringOutput)
+}
+
 // Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
 func (o ExplicitOutput) Ssl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.Ssl }).(pulumi.StringOutput)
@@ -328,7 +343,7 @@ func (o ExplicitOutput) SslAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.SslAlgorithm }).(pulumi.StringOutput)
 }
 
-// Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
 func (o ExplicitOutput) SslCert() pulumi.StringOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.SslCert }).(pulumi.StringOutput)
 }

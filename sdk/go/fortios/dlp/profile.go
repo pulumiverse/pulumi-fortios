@@ -45,6 +45,8 @@ type Profile struct {
 	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
 	// Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 	FullArchiveProto pulumi.StringOutput `pulumi:"fullArchiveProto"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
 	NacQuarLog pulumi.StringOutput `pulumi:"nacQuarLog"`
 	// Name of the DLP profile.
@@ -101,6 +103,8 @@ type profileState struct {
 	FeatureSet *string `pulumi:"featureSet"`
 	// Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 	FullArchiveProto *string `pulumi:"fullArchiveProto"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
 	NacQuarLog *string `pulumi:"nacQuarLog"`
 	// Name of the DLP profile.
@@ -128,6 +132,8 @@ type ProfileState struct {
 	FeatureSet pulumi.StringPtrInput
 	// Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 	FullArchiveProto pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
 	NacQuarLog pulumi.StringPtrInput
 	// Name of the DLP profile.
@@ -159,6 +165,8 @@ type profileArgs struct {
 	FeatureSet *string `pulumi:"featureSet"`
 	// Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 	FullArchiveProto *string `pulumi:"fullArchiveProto"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
 	NacQuarLog *string `pulumi:"nacQuarLog"`
 	// Name of the DLP profile.
@@ -187,6 +195,8 @@ type ProfileArgs struct {
 	FeatureSet pulumi.StringPtrInput
 	// Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 	FullArchiveProto pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
 	NacQuarLog pulumi.StringPtrInput
 	// Name of the DLP profile.
@@ -316,6 +326,11 @@ func (o ProfileOutput) FeatureSet() pulumi.StringOutput {
 // Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 func (o ProfileOutput) FullArchiveProto() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.FullArchiveProto }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.

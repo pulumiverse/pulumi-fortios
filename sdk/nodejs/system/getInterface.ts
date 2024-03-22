@@ -147,6 +147,10 @@ export interface GetInterfaceResult {
      */
     readonly dedicatedTo: string;
     /**
+     * default purdue level of device detected on this interface.
+     */
+    readonly defaultPurdueLevel: string;
+    /**
      * Enable to get the gateway IP from the DHCP or PPPoE server.
      */
     readonly defaultgw: string;
@@ -191,6 +195,10 @@ export interface GetInterfaceResult {
      */
     readonly devindex: number;
     /**
+     * Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable).
+     */
+    readonly dhcpBroadcastFlag: string;
+    /**
      * Enable/disable addition of classless static routes retrieved from DHCP server.
      */
     readonly dhcpClasslessRouteAddition: string;
@@ -202,6 +210,10 @@ export interface GetInterfaceResult {
      * Enable/disable DHCP relay agent option.
      */
     readonly dhcpRelayAgentOption: string;
+    /**
+     * DHCP relay circuit ID.
+     */
+    readonly dhcpRelayCircuitId: string;
     /**
      * Specify outgoing interface to reach server.
      */
@@ -227,6 +239,10 @@ export interface GetInterfaceResult {
      */
     readonly dhcpRelayService: string;
     /**
+     * IP address used by the DHCP relay as its source IP.
+     */
+    readonly dhcpRelaySourceIp: string;
+    /**
      * DHCP relay type (regular or IPsec).
      */
     readonly dhcpRelayType: string;
@@ -234,6 +250,10 @@ export interface GetInterfaceResult {
      * DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
      */
     readonly dhcpRenewTime: number;
+    /**
+     * Enable/disable DHCP smart relay.
+     */
+    readonly dhcpSmartRelay: string;
     /**
      * Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
      */
@@ -826,6 +846,18 @@ export interface GetInterfaceResult {
      * NetFlow collection and processing.
      */
     readonly switchControllerNetflowCollect: string;
+    /**
+     * Enable/disable managed FortiSwitch routing offload.
+     */
+    readonly switchControllerOffload: string;
+    /**
+     * Enable/disable managed FortiSwitch routing offload gateway.
+     */
+    readonly switchControllerOffloadGw: string;
+    /**
+     * IP for routing offload on FortiSwitch.
+     */
+    readonly switchControllerOffloadIp: string;
     /**
      * Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface.
      */

@@ -78,6 +78,10 @@ export class Onetime extends pulumi.CustomResource {
      */
     public readonly end!: pulumi.Output<string>;
     /**
+     * Schedule end date and time, in epoch format.
+     */
+    public readonly endUtc!: pulumi.Output<string>;
+    /**
      * Write an event log message this many days before the schedule expires.
      */
     public readonly expirationDays!: pulumi.Output<number>;
@@ -93,6 +97,10 @@ export class Onetime extends pulumi.CustomResource {
      * Schedule start date and time, format hh:mm yyyy/mm/dd.
      */
     public readonly start!: pulumi.Output<string>;
+    /**
+     * Schedule start date and time, in epoch format.
+     */
+    public readonly startUtc!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -113,10 +121,12 @@ export class Onetime extends pulumi.CustomResource {
             const state = argsOrState as OnetimeState | undefined;
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["end"] = state ? state.end : undefined;
+            resourceInputs["endUtc"] = state ? state.endUtc : undefined;
             resourceInputs["expirationDays"] = state ? state.expirationDays : undefined;
             resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["start"] = state ? state.start : undefined;
+            resourceInputs["startUtc"] = state ? state.startUtc : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as OnetimeArgs | undefined;
@@ -128,10 +138,12 @@ export class Onetime extends pulumi.CustomResource {
             }
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["end"] = args ? args.end : undefined;
+            resourceInputs["endUtc"] = args ? args.endUtc : undefined;
             resourceInputs["expirationDays"] = args ? args.expirationDays : undefined;
             resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["start"] = args ? args.start : undefined;
+            resourceInputs["startUtc"] = args ? args.startUtc : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -152,6 +164,10 @@ export interface OnetimeState {
      */
     end?: pulumi.Input<string>;
     /**
+     * Schedule end date and time, in epoch format.
+     */
+    endUtc?: pulumi.Input<string>;
+    /**
      * Write an event log message this many days before the schedule expires.
      */
     expirationDays?: pulumi.Input<number>;
@@ -167,6 +183,10 @@ export interface OnetimeState {
      * Schedule start date and time, format hh:mm yyyy/mm/dd.
      */
     start?: pulumi.Input<string>;
+    /**
+     * Schedule start date and time, in epoch format.
+     */
+    startUtc?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -186,6 +206,10 @@ export interface OnetimeArgs {
      */
     end: pulumi.Input<string>;
     /**
+     * Schedule end date and time, in epoch format.
+     */
+    endUtc?: pulumi.Input<string>;
+    /**
      * Write an event log message this many days before the schedule expires.
      */
     expirationDays?: pulumi.Input<number>;
@@ -201,6 +225,10 @@ export interface OnetimeArgs {
      * Schedule start date and time, format hh:mm yyyy/mm/dd.
      */
     start: pulumi.Input<string>;
+    /**
+     * Schedule start date and time, in epoch format.
+     */
+    startUtc?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

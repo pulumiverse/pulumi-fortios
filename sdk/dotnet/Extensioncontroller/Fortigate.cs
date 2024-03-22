@@ -35,7 +35,7 @@ namespace Pulumiverse.Fortios.Extensioncontroller
     public partial class Fortigate : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+        /// Enable/disable FortiGate administration.
         /// </summary>
         [Output("authorized")]
         public Output<string> Authorized { get; private set; } = null!;
@@ -136,7 +136,7 @@ namespace Pulumiverse.Fortios.Extensioncontroller
     public sealed class FortigateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+        /// Enable/disable FortiGate administration.
         /// </summary>
         [Input("authorized")]
         public Input<string>? Authorized { get; set; }
@@ -198,7 +198,7 @@ namespace Pulumiverse.Fortios.Extensioncontroller
     public sealed class FortigateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+        /// Enable/disable FortiGate administration.
         /// </summary>
         [Input("authorized")]
         public Input<string>? Authorized { get; set; }

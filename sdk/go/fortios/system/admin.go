@@ -94,6 +94,8 @@ type Admin struct {
 	ForcePasswordChange pulumi.StringOutput `pulumi:"forcePasswordChange"`
 	// This administrator's FortiToken serial number.
 	Fortitoken pulumi.StringOutput `pulumi:"fortitoken"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable guest authentication. Valid values: `disable`, `enable`.
 	GuestAuth pulumi.StringOutput `pulumi:"guestAuth"`
 	// Guest management portal language.
@@ -138,7 +140,7 @@ type Admin struct {
 	LoginTimes AdminLoginTimeArrayOutput `pulumi:"loginTimes"`
 	// User name.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Admin user password.
+	// Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// Password expire time.
 	PasswordExpire pulumi.StringOutput `pulumi:"passwordExpire"`
@@ -277,6 +279,8 @@ type adminState struct {
 	ForcePasswordChange *string `pulumi:"forcePasswordChange"`
 	// This administrator's FortiToken serial number.
 	Fortitoken *string `pulumi:"fortitoken"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable guest authentication. Valid values: `disable`, `enable`.
 	GuestAuth *string `pulumi:"guestAuth"`
 	// Guest management portal language.
@@ -321,7 +325,7 @@ type adminState struct {
 	LoginTimes []AdminLoginTime `pulumi:"loginTimes"`
 	// User name.
 	Name *string `pulumi:"name"`
-	// Admin user password.
+	// Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
 	Password *string `pulumi:"password"`
 	// Password expire time.
 	PasswordExpire *string `pulumi:"passwordExpire"`
@@ -404,6 +408,8 @@ type AdminState struct {
 	ForcePasswordChange pulumi.StringPtrInput
 	// This administrator's FortiToken serial number.
 	Fortitoken pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable guest authentication. Valid values: `disable`, `enable`.
 	GuestAuth pulumi.StringPtrInput
 	// Guest management portal language.
@@ -448,7 +454,7 @@ type AdminState struct {
 	LoginTimes AdminLoginTimeArrayInput
 	// User name.
 	Name pulumi.StringPtrInput
-	// Admin user password.
+	// Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
 	Password pulumi.StringPtrInput
 	// Password expire time.
 	PasswordExpire pulumi.StringPtrInput
@@ -535,6 +541,8 @@ type adminArgs struct {
 	ForcePasswordChange *string `pulumi:"forcePasswordChange"`
 	// This administrator's FortiToken serial number.
 	Fortitoken *string `pulumi:"fortitoken"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable guest authentication. Valid values: `disable`, `enable`.
 	GuestAuth *string `pulumi:"guestAuth"`
 	// Guest management portal language.
@@ -579,7 +587,7 @@ type adminArgs struct {
 	LoginTimes []AdminLoginTime `pulumi:"loginTimes"`
 	// User name.
 	Name *string `pulumi:"name"`
-	// Admin user password.
+	// Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
 	Password *string `pulumi:"password"`
 	// Password expire time.
 	PasswordExpire *string `pulumi:"passwordExpire"`
@@ -663,6 +671,8 @@ type AdminArgs struct {
 	ForcePasswordChange pulumi.StringPtrInput
 	// This administrator's FortiToken serial number.
 	Fortitoken pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable guest authentication. Valid values: `disable`, `enable`.
 	GuestAuth pulumi.StringPtrInput
 	// Guest management portal language.
@@ -707,7 +717,7 @@ type AdminArgs struct {
 	LoginTimes AdminLoginTimeArrayInput
 	// User name.
 	Name pulumi.StringPtrInput
-	// Admin user password.
+	// Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
 	Password pulumi.StringPtrInput
 	// Password expire time.
 	PasswordExpire pulumi.StringPtrInput
@@ -900,6 +910,11 @@ func (o AdminOutput) Fortitoken() pulumi.StringOutput {
 	return o.ApplyT(func(v *Admin) pulumi.StringOutput { return v.Fortitoken }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o AdminOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Admin) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable guest authentication. Valid values: `disable`, `enable`.
 func (o AdminOutput) GuestAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v *Admin) pulumi.StringOutput { return v.GuestAuth }).(pulumi.StringOutput)
@@ -1010,7 +1025,7 @@ func (o AdminOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Admin) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Admin user password.
+// Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
 func (o AdminOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Admin) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }

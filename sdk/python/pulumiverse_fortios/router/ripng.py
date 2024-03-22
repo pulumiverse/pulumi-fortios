@@ -23,6 +23,7 @@ class RipngArgs:
                  distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input['RipngDistributeListArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  garbage_timer: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['RipngInterfaceArgs']]]] = None,
                  max_out_metric: Optional[pulumi.Input[int]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input['RipngNeighborArgs']]]] = None,
@@ -42,6 +43,7 @@ class RipngArgs:
         :param pulumi.Input[Sequence[pulumi.Input['RipngDistributeListArgs']]] distribute_lists: Distribute list. The structure of `distribute_list` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] garbage_timer: Garbage timer.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['RipngInterfaceArgs']]] interfaces: RIPng interface configuration. The structure of `interface` block is documented below.
         :param pulumi.Input[int] max_out_metric: Maximum metric allowed to output(0 means 'not set').
         :param pulumi.Input[Sequence[pulumi.Input['RipngNeighborArgs']]] neighbors: neighbor The structure of `neighbor` block is documented below.
@@ -67,6 +69,8 @@ class RipngArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if garbage_timer is not None:
             pulumi.set(__self__, "garbage_timer", garbage_timer)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interfaces is not None:
             pulumi.set(__self__, "interfaces", interfaces)
         if max_out_metric is not None:
@@ -171,6 +175,18 @@ class RipngArgs:
     @garbage_timer.setter
     def garbage_timer(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "garbage_timer", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -303,6 +319,7 @@ class _RipngState:
                  distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input['RipngDistributeListArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  garbage_timer: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['RipngInterfaceArgs']]]] = None,
                  max_out_metric: Optional[pulumi.Input[int]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input['RipngNeighborArgs']]]] = None,
@@ -322,6 +339,7 @@ class _RipngState:
         :param pulumi.Input[Sequence[pulumi.Input['RipngDistributeListArgs']]] distribute_lists: Distribute list. The structure of `distribute_list` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] garbage_timer: Garbage timer.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['RipngInterfaceArgs']]] interfaces: RIPng interface configuration. The structure of `interface` block is documented below.
         :param pulumi.Input[int] max_out_metric: Maximum metric allowed to output(0 means 'not set').
         :param pulumi.Input[Sequence[pulumi.Input['RipngNeighborArgs']]] neighbors: neighbor The structure of `neighbor` block is documented below.
@@ -347,6 +365,8 @@ class _RipngState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if garbage_timer is not None:
             pulumi.set(__self__, "garbage_timer", garbage_timer)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interfaces is not None:
             pulumi.set(__self__, "interfaces", interfaces)
         if max_out_metric is not None:
@@ -451,6 +471,18 @@ class _RipngState:
     @garbage_timer.setter
     def garbage_timer(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "garbage_timer", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -585,6 +617,7 @@ class Ripng(pulumi.CustomResource):
                  distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngDistributeListArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  garbage_timer: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngInterfaceArgs']]]]] = None,
                  max_out_metric: Optional[pulumi.Input[int]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngNeighborArgs']]]]] = None,
@@ -670,6 +703,7 @@ class Ripng(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngDistributeListArgs']]]] distribute_lists: Distribute list. The structure of `distribute_list` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] garbage_timer: Garbage timer.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngInterfaceArgs']]]] interfaces: RIPng interface configuration. The structure of `interface` block is documented below.
         :param pulumi.Input[int] max_out_metric: Maximum metric allowed to output(0 means 'not set').
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngNeighborArgs']]]] neighbors: neighbor The structure of `neighbor` block is documented below.
@@ -774,6 +808,7 @@ class Ripng(pulumi.CustomResource):
                  distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngDistributeListArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  garbage_timer: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngInterfaceArgs']]]]] = None,
                  max_out_metric: Optional[pulumi.Input[int]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngNeighborArgs']]]]] = None,
@@ -800,6 +835,7 @@ class Ripng(pulumi.CustomResource):
             __props__.__dict__["distribute_lists"] = distribute_lists
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["garbage_timer"] = garbage_timer
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interfaces"] = interfaces
             __props__.__dict__["max_out_metric"] = max_out_metric
             __props__.__dict__["neighbors"] = neighbors
@@ -827,6 +863,7 @@ class Ripng(pulumi.CustomResource):
             distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngDistributeListArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             garbage_timer: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngInterfaceArgs']]]]] = None,
             max_out_metric: Optional[pulumi.Input[int]] = None,
             neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngNeighborArgs']]]]] = None,
@@ -851,6 +888,7 @@ class Ripng(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngDistributeListArgs']]]] distribute_lists: Distribute list. The structure of `distribute_list` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] garbage_timer: Garbage timer.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngInterfaceArgs']]]] interfaces: RIPng interface configuration. The structure of `interface` block is documented below.
         :param pulumi.Input[int] max_out_metric: Maximum metric allowed to output(0 means 'not set').
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RipngNeighborArgs']]]] neighbors: neighbor The structure of `neighbor` block is documented below.
@@ -873,6 +911,7 @@ class Ripng(pulumi.CustomResource):
         __props__.__dict__["distribute_lists"] = distribute_lists
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["garbage_timer"] = garbage_timer
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interfaces"] = interfaces
         __props__.__dict__["max_out_metric"] = max_out_metric
         __props__.__dict__["neighbors"] = neighbors
@@ -940,6 +979,14 @@ class Ripng(pulumi.CustomResource):
         Garbage timer.
         """
         return pulumi.get(self, "garbage_timer")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

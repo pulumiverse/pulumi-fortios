@@ -90,9 +90,33 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly defaultVirtualSwitchVlan!: pulumi.Output<string>;
     /**
+     * List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+     */
+    public readonly dhcpOption82CircuitId!: pulumi.Output<string>;
+    /**
+     * DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+     */
+    public readonly dhcpOption82Format!: pulumi.Output<string>;
+    /**
+     * List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+     */
+    public readonly dhcpOption82RemoteId!: pulumi.Output<string>;
+    /**
      * Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
      */
     public readonly dhcpServerAccessList!: pulumi.Output<string>;
+    /**
+     * Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+     */
+    public readonly dhcpSnoopClientDbExp!: pulumi.Output<number>;
+    /**
+     * Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+     */
+    public readonly dhcpSnoopClientReq!: pulumi.Output<string>;
+    /**
+     * Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+     */
+    public readonly dhcpSnoopDbPerPortLearnLimit!: pulumi.Output<number>;
     /**
      * Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
      */
@@ -109,6 +133,10 @@ export class Global extends pulumi.CustomResource {
      * Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
      */
     public readonly firmwareProvisionOnAuthorization!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
      */
@@ -154,6 +182,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly vlanAllMode!: pulumi.Output<string>;
     /**
+     * Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+     */
+    public readonly vlanIdentity!: pulumi.Output<string>;
+    /**
      * FortiLink VLAN optimization. Valid values: `enable`, `disable`.
      */
     public readonly vlanOptimization!: pulumi.Output<string>;
@@ -175,11 +207,18 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["bounceQuarantinedLink"] = state ? state.bounceQuarantinedLink : undefined;
             resourceInputs["customCommands"] = state ? state.customCommands : undefined;
             resourceInputs["defaultVirtualSwitchVlan"] = state ? state.defaultVirtualSwitchVlan : undefined;
+            resourceInputs["dhcpOption82CircuitId"] = state ? state.dhcpOption82CircuitId : undefined;
+            resourceInputs["dhcpOption82Format"] = state ? state.dhcpOption82Format : undefined;
+            resourceInputs["dhcpOption82RemoteId"] = state ? state.dhcpOption82RemoteId : undefined;
             resourceInputs["dhcpServerAccessList"] = state ? state.dhcpServerAccessList : undefined;
+            resourceInputs["dhcpSnoopClientDbExp"] = state ? state.dhcpSnoopClientDbExp : undefined;
+            resourceInputs["dhcpSnoopClientReq"] = state ? state.dhcpSnoopClientReq : undefined;
+            resourceInputs["dhcpSnoopDbPerPortLearnLimit"] = state ? state.dhcpSnoopDbPerPortLearnLimit : undefined;
             resourceInputs["disableDiscoveries"] = state ? state.disableDiscoveries : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fipsEnforce"] = state ? state.fipsEnforce : undefined;
             resourceInputs["firmwareProvisionOnAuthorization"] = state ? state.firmwareProvisionOnAuthorization : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["httpsImagePush"] = state ? state.httpsImagePush : undefined;
             resourceInputs["logMacLimitViolations"] = state ? state.logMacLimitViolations : undefined;
             resourceInputs["macAgingInterval"] = state ? state.macAgingInterval : undefined;
@@ -191,6 +230,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["updateUserDevice"] = state ? state.updateUserDevice : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["vlanAllMode"] = state ? state.vlanAllMode : undefined;
+            resourceInputs["vlanIdentity"] = state ? state.vlanIdentity : undefined;
             resourceInputs["vlanOptimization"] = state ? state.vlanOptimization : undefined;
         } else {
             const args = argsOrState as GlobalArgs | undefined;
@@ -198,11 +238,18 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["bounceQuarantinedLink"] = args ? args.bounceQuarantinedLink : undefined;
             resourceInputs["customCommands"] = args ? args.customCommands : undefined;
             resourceInputs["defaultVirtualSwitchVlan"] = args ? args.defaultVirtualSwitchVlan : undefined;
+            resourceInputs["dhcpOption82CircuitId"] = args ? args.dhcpOption82CircuitId : undefined;
+            resourceInputs["dhcpOption82Format"] = args ? args.dhcpOption82Format : undefined;
+            resourceInputs["dhcpOption82RemoteId"] = args ? args.dhcpOption82RemoteId : undefined;
             resourceInputs["dhcpServerAccessList"] = args ? args.dhcpServerAccessList : undefined;
+            resourceInputs["dhcpSnoopClientDbExp"] = args ? args.dhcpSnoopClientDbExp : undefined;
+            resourceInputs["dhcpSnoopClientReq"] = args ? args.dhcpSnoopClientReq : undefined;
+            resourceInputs["dhcpSnoopDbPerPortLearnLimit"] = args ? args.dhcpSnoopDbPerPortLearnLimit : undefined;
             resourceInputs["disableDiscoveries"] = args ? args.disableDiscoveries : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fipsEnforce"] = args ? args.fipsEnforce : undefined;
             resourceInputs["firmwareProvisionOnAuthorization"] = args ? args.firmwareProvisionOnAuthorization : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["httpsImagePush"] = args ? args.httpsImagePush : undefined;
             resourceInputs["logMacLimitViolations"] = args ? args.logMacLimitViolations : undefined;
             resourceInputs["macAgingInterval"] = args ? args.macAgingInterval : undefined;
@@ -214,6 +261,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["updateUserDevice"] = args ? args.updateUserDevice : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["vlanAllMode"] = args ? args.vlanAllMode : undefined;
+            resourceInputs["vlanIdentity"] = args ? args.vlanIdentity : undefined;
             resourceInputs["vlanOptimization"] = args ? args.vlanOptimization : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -242,9 +290,33 @@ export interface GlobalState {
      */
     defaultVirtualSwitchVlan?: pulumi.Input<string>;
     /**
+     * List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+     */
+    dhcpOption82CircuitId?: pulumi.Input<string>;
+    /**
+     * DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+     */
+    dhcpOption82Format?: pulumi.Input<string>;
+    /**
+     * List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+     */
+    dhcpOption82RemoteId?: pulumi.Input<string>;
+    /**
      * Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
      */
     dhcpServerAccessList?: pulumi.Input<string>;
+    /**
+     * Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+     */
+    dhcpSnoopClientDbExp?: pulumi.Input<number>;
+    /**
+     * Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+     */
+    dhcpSnoopClientReq?: pulumi.Input<string>;
+    /**
+     * Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+     */
+    dhcpSnoopDbPerPortLearnLimit?: pulumi.Input<number>;
     /**
      * Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
      */
@@ -261,6 +333,10 @@ export interface GlobalState {
      * Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
      */
     firmwareProvisionOnAuthorization?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
      */
@@ -305,6 +381,10 @@ export interface GlobalState {
      * VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
      */
     vlanAllMode?: pulumi.Input<string>;
+    /**
+     * Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+     */
+    vlanIdentity?: pulumi.Input<string>;
     /**
      * FortiLink VLAN optimization. Valid values: `enable`, `disable`.
      */
@@ -332,9 +412,33 @@ export interface GlobalArgs {
      */
     defaultVirtualSwitchVlan?: pulumi.Input<string>;
     /**
+     * List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+     */
+    dhcpOption82CircuitId?: pulumi.Input<string>;
+    /**
+     * DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+     */
+    dhcpOption82Format?: pulumi.Input<string>;
+    /**
+     * List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+     */
+    dhcpOption82RemoteId?: pulumi.Input<string>;
+    /**
      * Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
      */
     dhcpServerAccessList?: pulumi.Input<string>;
+    /**
+     * Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+     */
+    dhcpSnoopClientDbExp?: pulumi.Input<number>;
+    /**
+     * Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+     */
+    dhcpSnoopClientReq?: pulumi.Input<string>;
+    /**
+     * Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+     */
+    dhcpSnoopDbPerPortLearnLimit?: pulumi.Input<number>;
     /**
      * Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
      */
@@ -351,6 +455,10 @@ export interface GlobalArgs {
      * Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
      */
     firmwareProvisionOnAuthorization?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
      */
@@ -395,6 +503,10 @@ export interface GlobalArgs {
      * VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
      */
     vlanAllMode?: pulumi.Input<string>;
+    /**
+     * Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+     */
+    vlanIdentity?: pulumi.Input<string>;
     /**
      * FortiLink VLAN optimization. Valid values: `enable`, `disable`.
      */

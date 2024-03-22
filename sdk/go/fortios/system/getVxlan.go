@@ -34,12 +34,16 @@ type LookupVxlanArgs struct {
 type LookupVxlanResult struct {
 	// VXLAN destination port (1 - 65535, default = 4789).
 	Dstport int `pulumi:"dstport"`
+	// EVPN instance.
+	EvpnId int `pulumi:"evpnId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Outgoing interface for VXLAN encapsulated traffic.
 	Interface string `pulumi:"interface"`
 	// IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast.
 	IpVersion string `pulumi:"ipVersion"`
+	// Enable/disable VXLAN MAC learning from traffic.
+	LearnFromTraffic string `pulumi:"learnFromTraffic"`
 	// VXLAN multicast TTL (1-255, default = 0).
 	MulticastTtl int `pulumi:"multicastTtl"`
 	// VXLAN device or interface name. Must be a unique interface name.
@@ -98,6 +102,11 @@ func (o LookupVxlanResultOutput) Dstport() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupVxlanResult) int { return v.Dstport }).(pulumi.IntOutput)
 }
 
+// EVPN instance.
+func (o LookupVxlanResultOutput) EvpnId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupVxlanResult) int { return v.EvpnId }).(pulumi.IntOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupVxlanResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVxlanResult) string { return v.Id }).(pulumi.StringOutput)
@@ -111,6 +120,11 @@ func (o LookupVxlanResultOutput) Interface() pulumi.StringOutput {
 // IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast.
 func (o LookupVxlanResultOutput) IpVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVxlanResult) string { return v.IpVersion }).(pulumi.StringOutput)
+}
+
+// Enable/disable VXLAN MAC learning from traffic.
+func (o LookupVxlanResultOutput) LearnFromTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVxlanResult) string { return v.LearnFromTraffic }).(pulumi.StringOutput)
 }
 
 // VXLAN multicast TTL (1-255, default = 0).

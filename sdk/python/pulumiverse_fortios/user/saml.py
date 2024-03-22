@@ -29,6 +29,7 @@ class SamlArgs:
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
                  limit_relaystate: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 reauth: Optional[pulumi.Input[str]] = None,
                  single_logout_url: Optional[pulumi.Input[str]] = None,
                  user_claim_type: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
@@ -50,6 +51,7 @@ class SamlArgs:
         :param pulumi.Input[str] idp_single_logout_url: IDP single logout url.
         :param pulumi.Input[str] limit_relaystate: Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: SAML server entry name.
+        :param pulumi.Input[str] reauth: Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] single_logout_url: SP single logout URL.
         :param pulumi.Input[str] user_claim_type: User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
         :param pulumi.Input[str] user_name: User name in assertion statement.
@@ -80,6 +82,8 @@ class SamlArgs:
             pulumi.set(__self__, "limit_relaystate", limit_relaystate)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if reauth is not None:
+            pulumi.set(__self__, "reauth", reauth)
         if single_logout_url is not None:
             pulumi.set(__self__, "single_logout_url", single_logout_url)
         if user_claim_type is not None:
@@ -270,6 +274,18 @@ class SamlArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def reauth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "reauth")
+
+    @reauth.setter
+    def reauth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "reauth", value)
+
+    @property
     @pulumi.getter(name="singleLogoutUrl")
     def single_logout_url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -335,6 +351,7 @@ class _SamlState:
                  idp_single_sign_on_url: Optional[pulumi.Input[str]] = None,
                  limit_relaystate: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 reauth: Optional[pulumi.Input[str]] = None,
                  single_logout_url: Optional[pulumi.Input[str]] = None,
                  single_sign_on_url: Optional[pulumi.Input[str]] = None,
                  user_claim_type: Optional[pulumi.Input[str]] = None,
@@ -356,6 +373,7 @@ class _SamlState:
         :param pulumi.Input[str] idp_single_sign_on_url: IDP single sign-on URL.
         :param pulumi.Input[str] limit_relaystate: Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: SAML server entry name.
+        :param pulumi.Input[str] reauth: Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] single_logout_url: SP single logout URL.
         :param pulumi.Input[str] single_sign_on_url: SP single sign-on URL.
         :param pulumi.Input[str] user_claim_type: User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
@@ -390,6 +408,8 @@ class _SamlState:
             pulumi.set(__self__, "limit_relaystate", limit_relaystate)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if reauth is not None:
+            pulumi.set(__self__, "reauth", reauth)
         if single_logout_url is not None:
             pulumi.set(__self__, "single_logout_url", single_logout_url)
         if single_sign_on_url is not None:
@@ -570,6 +590,18 @@ class _SamlState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def reauth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "reauth")
+
+    @reauth.setter
+    def reauth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "reauth", value)
+
+    @property
     @pulumi.getter(name="singleLogoutUrl")
     def single_logout_url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -649,6 +681,7 @@ class Saml(pulumi.CustomResource):
                  idp_single_sign_on_url: Optional[pulumi.Input[str]] = None,
                  limit_relaystate: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 reauth: Optional[pulumi.Input[str]] = None,
                  single_logout_url: Optional[pulumi.Input[str]] = None,
                  single_sign_on_url: Optional[pulumi.Input[str]] = None,
                  user_claim_type: Optional[pulumi.Input[str]] = None,
@@ -712,6 +745,7 @@ class Saml(pulumi.CustomResource):
         :param pulumi.Input[str] idp_single_sign_on_url: IDP single sign-on URL.
         :param pulumi.Input[str] limit_relaystate: Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: SAML server entry name.
+        :param pulumi.Input[str] reauth: Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] single_logout_url: SP single logout URL.
         :param pulumi.Input[str] single_sign_on_url: SP single sign-on URL.
         :param pulumi.Input[str] user_claim_type: User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
@@ -794,6 +828,7 @@ class Saml(pulumi.CustomResource):
                  idp_single_sign_on_url: Optional[pulumi.Input[str]] = None,
                  limit_relaystate: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 reauth: Optional[pulumi.Input[str]] = None,
                  single_logout_url: Optional[pulumi.Input[str]] = None,
                  single_sign_on_url: Optional[pulumi.Input[str]] = None,
                  user_claim_type: Optional[pulumi.Input[str]] = None,
@@ -830,6 +865,7 @@ class Saml(pulumi.CustomResource):
             __props__.__dict__["idp_single_sign_on_url"] = idp_single_sign_on_url
             __props__.__dict__["limit_relaystate"] = limit_relaystate
             __props__.__dict__["name"] = name
+            __props__.__dict__["reauth"] = reauth
             __props__.__dict__["single_logout_url"] = single_logout_url
             if single_sign_on_url is None and not opts.urn:
                 raise TypeError("Missing required property 'single_sign_on_url'")
@@ -861,6 +897,7 @@ class Saml(pulumi.CustomResource):
             idp_single_sign_on_url: Optional[pulumi.Input[str]] = None,
             limit_relaystate: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            reauth: Optional[pulumi.Input[str]] = None,
             single_logout_url: Optional[pulumi.Input[str]] = None,
             single_sign_on_url: Optional[pulumi.Input[str]] = None,
             user_claim_type: Optional[pulumi.Input[str]] = None,
@@ -887,6 +924,7 @@ class Saml(pulumi.CustomResource):
         :param pulumi.Input[str] idp_single_sign_on_url: IDP single sign-on URL.
         :param pulumi.Input[str] limit_relaystate: Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: SAML server entry name.
+        :param pulumi.Input[str] reauth: Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] single_logout_url: SP single logout URL.
         :param pulumi.Input[str] single_sign_on_url: SP single sign-on URL.
         :param pulumi.Input[str] user_claim_type: User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
@@ -911,6 +949,7 @@ class Saml(pulumi.CustomResource):
         __props__.__dict__["idp_single_sign_on_url"] = idp_single_sign_on_url
         __props__.__dict__["limit_relaystate"] = limit_relaystate
         __props__.__dict__["name"] = name
+        __props__.__dict__["reauth"] = reauth
         __props__.__dict__["single_logout_url"] = single_logout_url
         __props__.__dict__["single_sign_on_url"] = single_sign_on_url
         __props__.__dict__["user_claim_type"] = user_claim_type
@@ -1029,6 +1068,14 @@ class Saml(pulumi.CustomResource):
         SAML server entry name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def reauth(self) -> pulumi.Output[str]:
+        """
+        Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "reauth")
 
     @property
     @pulumi.getter(name="singleLogoutUrl")

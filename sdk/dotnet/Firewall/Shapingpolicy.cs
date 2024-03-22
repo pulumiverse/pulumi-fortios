@@ -125,6 +125,18 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> Comment { get; private set; } = null!;
 
         /// <summary>
+        /// VLAN CoS bit pattern.
+        /// </summary>
+        [Output("cos")]
+        public Output<string> Cos { get; private set; } = null!;
+
+        /// <summary>
+        /// VLAN CoS evaluated bits.
+        /// </summary>
+        [Output("cosMask")]
+        public Output<string> CosMask { get; private set; } = null!;
+
+        /// <summary>
         /// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("diffservForward")]
@@ -177,6 +189,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("fosid")]
         public Output<int> Fosid { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
@@ -341,6 +359,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> TrafficShaperReverse { get; private set; } = null!;
 
         /// <summary>
+        /// Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+        /// </summary>
+        [Output("trafficType")]
+        public Output<string> TrafficType { get; private set; } = null!;
+
+        /// <summary>
         /// IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `url_category` block is documented below.
         /// </summary>
         [Output("urlCategories")]
@@ -460,6 +484,18 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Comment { get; set; }
 
         /// <summary>
+        /// VLAN CoS bit pattern.
+        /// </summary>
+        [Input("cos")]
+        public Input<string>? Cos { get; set; }
+
+        /// <summary>
+        /// VLAN CoS evaluated bits.
+        /// </summary>
+        [Input("cosMask")]
+        public Input<string>? CosMask { get; set; }
+
+        /// <summary>
         /// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("diffservForward")]
@@ -495,7 +531,7 @@ namespace Pulumiverse.Fortios.Firewall
             set => _dstaddr6s = value;
         }
 
-        [Input("dstaddrs", required: true)]
+        [Input("dstaddrs")]
         private InputList<Inputs.ShapingpolicyDstaddrArgs>? _dstaddrs;
 
         /// <summary>
@@ -530,6 +566,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("fosid")]
         public Input<int>? Fosid { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("groups")]
         private InputList<Inputs.ShapingpolicyGroupArgs>? _groups;
@@ -699,7 +741,7 @@ namespace Pulumiverse.Fortios.Firewall
         [Input("schedule")]
         public Input<string>? Schedule { get; set; }
 
-        [Input("services", required: true)]
+        [Input("services")]
         private InputList<Inputs.ShapingpolicyServiceArgs>? _services;
 
         /// <summary>
@@ -782,6 +824,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("trafficShaperReverse")]
         public Input<string>? TrafficShaperReverse { get; set; }
+
+        /// <summary>
+        /// Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+        /// </summary>
+        [Input("trafficType")]
+        public Input<string>? TrafficType { get; set; }
 
         [Input("urlCategories")]
         private InputList<Inputs.ShapingpolicyUrlCategoryArgs>? _urlCategories;
@@ -876,6 +924,18 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Comment { get; set; }
 
         /// <summary>
+        /// VLAN CoS bit pattern.
+        /// </summary>
+        [Input("cos")]
+        public Input<string>? Cos { get; set; }
+
+        /// <summary>
+        /// VLAN CoS evaluated bits.
+        /// </summary>
+        [Input("cosMask")]
+        public Input<string>? CosMask { get; set; }
+
+        /// <summary>
         /// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("diffservForward")]
@@ -946,6 +1006,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("fosid")]
         public Input<int>? Fosid { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         [Input("groups")]
         private InputList<Inputs.ShapingpolicyGroupGetArgs>? _groups;
@@ -1198,6 +1264,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("trafficShaperReverse")]
         public Input<string>? TrafficShaperReverse { get; set; }
+
+        /// <summary>
+        /// Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+        /// </summary>
+        [Input("trafficType")]
+        public Input<string>? TrafficType { get; set; }
 
         [Input("urlCategories")]
         private InputList<Inputs.ShapingpolicyUrlCategoryGetArgs>? _urlCategories;

@@ -13,6 +13,139 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type KmipserverServerList struct {
+	// Client certificate to use for connectivity to the KMIP server.
+	Cert *string `pulumi:"cert"`
+	// ID
+	Id *int `pulumi:"id"`
+	// KMIP server port.
+	Port *int `pulumi:"port"`
+	// KMIP server FQDN or IP address.
+	Server *string `pulumi:"server"`
+	// Enable/disable KMIP server. Valid values: `enable`, `disable`.
+	Status *string `pulumi:"status"`
+}
+
+// KmipserverServerListInput is an input type that accepts KmipserverServerListArgs and KmipserverServerListOutput values.
+// You can construct a concrete instance of `KmipserverServerListInput` via:
+//
+//	KmipserverServerListArgs{...}
+type KmipserverServerListInput interface {
+	pulumi.Input
+
+	ToKmipserverServerListOutput() KmipserverServerListOutput
+	ToKmipserverServerListOutputWithContext(context.Context) KmipserverServerListOutput
+}
+
+type KmipserverServerListArgs struct {
+	// Client certificate to use for connectivity to the KMIP server.
+	Cert pulumi.StringPtrInput `pulumi:"cert"`
+	// ID
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// KMIP server port.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// KMIP server FQDN or IP address.
+	Server pulumi.StringPtrInput `pulumi:"server"`
+	// Enable/disable KMIP server. Valid values: `enable`, `disable`.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (KmipserverServerListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KmipserverServerList)(nil)).Elem()
+}
+
+func (i KmipserverServerListArgs) ToKmipserverServerListOutput() KmipserverServerListOutput {
+	return i.ToKmipserverServerListOutputWithContext(context.Background())
+}
+
+func (i KmipserverServerListArgs) ToKmipserverServerListOutputWithContext(ctx context.Context) KmipserverServerListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KmipserverServerListOutput)
+}
+
+// KmipserverServerListArrayInput is an input type that accepts KmipserverServerListArray and KmipserverServerListArrayOutput values.
+// You can construct a concrete instance of `KmipserverServerListArrayInput` via:
+//
+//	KmipserverServerListArray{ KmipserverServerListArgs{...} }
+type KmipserverServerListArrayInput interface {
+	pulumi.Input
+
+	ToKmipserverServerListArrayOutput() KmipserverServerListArrayOutput
+	ToKmipserverServerListArrayOutputWithContext(context.Context) KmipserverServerListArrayOutput
+}
+
+type KmipserverServerListArray []KmipserverServerListInput
+
+func (KmipserverServerListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KmipserverServerList)(nil)).Elem()
+}
+
+func (i KmipserverServerListArray) ToKmipserverServerListArrayOutput() KmipserverServerListArrayOutput {
+	return i.ToKmipserverServerListArrayOutputWithContext(context.Background())
+}
+
+func (i KmipserverServerListArray) ToKmipserverServerListArrayOutputWithContext(ctx context.Context) KmipserverServerListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KmipserverServerListArrayOutput)
+}
+
+type KmipserverServerListOutput struct{ *pulumi.OutputState }
+
+func (KmipserverServerListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KmipserverServerList)(nil)).Elem()
+}
+
+func (o KmipserverServerListOutput) ToKmipserverServerListOutput() KmipserverServerListOutput {
+	return o
+}
+
+func (o KmipserverServerListOutput) ToKmipserverServerListOutputWithContext(ctx context.Context) KmipserverServerListOutput {
+	return o
+}
+
+// Client certificate to use for connectivity to the KMIP server.
+func (o KmipserverServerListOutput) Cert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KmipserverServerList) *string { return v.Cert }).(pulumi.StringPtrOutput)
+}
+
+// ID
+func (o KmipserverServerListOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v KmipserverServerList) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+// KMIP server port.
+func (o KmipserverServerListOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v KmipserverServerList) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// KMIP server FQDN or IP address.
+func (o KmipserverServerListOutput) Server() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KmipserverServerList) *string { return v.Server }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable KMIP server. Valid values: `enable`, `disable`.
+func (o KmipserverServerListOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KmipserverServerList) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type KmipserverServerListArrayOutput struct{ *pulumi.OutputState }
+
+func (KmipserverServerListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KmipserverServerList)(nil)).Elem()
+}
+
+func (o KmipserverServerListArrayOutput) ToKmipserverServerListArrayOutput() KmipserverServerListArrayOutput {
+	return o
+}
+
+func (o KmipserverServerListArrayOutput) ToKmipserverServerListArrayOutputWithContext(ctx context.Context) KmipserverServerListArrayOutput {
+	return o
+}
+
+func (o KmipserverServerListArrayOutput) Index(i pulumi.IntInput) KmipserverServerListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KmipserverServerList {
+		return vs[0].([]KmipserverServerList)[vs[1].(int)]
+	}).(KmipserverServerListOutput)
+}
+
 type OcvpnForticlientAccess struct {
 	// FortiClient user authentication groups. The structure of `authGroups` block is documented below.
 	AuthGroups []OcvpnForticlientAccessAuthGroup `pulumi:"authGroups"`
@@ -781,7 +914,106 @@ func (o OcvpnWanInterfaceArrayOutput) Index(i pulumi.IntInput) OcvpnWanInterface
 	}).(OcvpnWanInterfaceOutput)
 }
 
+type QkdCertificate struct {
+	// Certificate name.
+	Name *string `pulumi:"name"`
+}
+
+// QkdCertificateInput is an input type that accepts QkdCertificateArgs and QkdCertificateOutput values.
+// You can construct a concrete instance of `QkdCertificateInput` via:
+//
+//	QkdCertificateArgs{...}
+type QkdCertificateInput interface {
+	pulumi.Input
+
+	ToQkdCertificateOutput() QkdCertificateOutput
+	ToQkdCertificateOutputWithContext(context.Context) QkdCertificateOutput
+}
+
+type QkdCertificateArgs struct {
+	// Certificate name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (QkdCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QkdCertificate)(nil)).Elem()
+}
+
+func (i QkdCertificateArgs) ToQkdCertificateOutput() QkdCertificateOutput {
+	return i.ToQkdCertificateOutputWithContext(context.Background())
+}
+
+func (i QkdCertificateArgs) ToQkdCertificateOutputWithContext(ctx context.Context) QkdCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QkdCertificateOutput)
+}
+
+// QkdCertificateArrayInput is an input type that accepts QkdCertificateArray and QkdCertificateArrayOutput values.
+// You can construct a concrete instance of `QkdCertificateArrayInput` via:
+//
+//	QkdCertificateArray{ QkdCertificateArgs{...} }
+type QkdCertificateArrayInput interface {
+	pulumi.Input
+
+	ToQkdCertificateArrayOutput() QkdCertificateArrayOutput
+	ToQkdCertificateArrayOutputWithContext(context.Context) QkdCertificateArrayOutput
+}
+
+type QkdCertificateArray []QkdCertificateInput
+
+func (QkdCertificateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QkdCertificate)(nil)).Elem()
+}
+
+func (i QkdCertificateArray) ToQkdCertificateArrayOutput() QkdCertificateArrayOutput {
+	return i.ToQkdCertificateArrayOutputWithContext(context.Background())
+}
+
+func (i QkdCertificateArray) ToQkdCertificateArrayOutputWithContext(ctx context.Context) QkdCertificateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QkdCertificateArrayOutput)
+}
+
+type QkdCertificateOutput struct{ *pulumi.OutputState }
+
+func (QkdCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QkdCertificate)(nil)).Elem()
+}
+
+func (o QkdCertificateOutput) ToQkdCertificateOutput() QkdCertificateOutput {
+	return o
+}
+
+func (o QkdCertificateOutput) ToQkdCertificateOutputWithContext(ctx context.Context) QkdCertificateOutput {
+	return o
+}
+
+// Certificate name.
+func (o QkdCertificateOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QkdCertificate) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type QkdCertificateArrayOutput struct{ *pulumi.OutputState }
+
+func (QkdCertificateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QkdCertificate)(nil)).Elem()
+}
+
+func (o QkdCertificateArrayOutput) ToQkdCertificateArrayOutput() QkdCertificateArrayOutput {
+	return o
+}
+
+func (o QkdCertificateArrayOutput) ToQkdCertificateArrayOutputWithContext(ctx context.Context) QkdCertificateArrayOutput {
+	return o
+}
+
+func (o QkdCertificateArrayOutput) Index(i pulumi.IntInput) QkdCertificateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) QkdCertificate {
+		return vs[0].([]QkdCertificate)[vs[1].(int)]
+	}).(QkdCertificateOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*KmipserverServerListInput)(nil)).Elem(), KmipserverServerListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KmipserverServerListArrayInput)(nil)).Elem(), KmipserverServerListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OcvpnForticlientAccessInput)(nil)).Elem(), OcvpnForticlientAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OcvpnForticlientAccessPtrInput)(nil)).Elem(), OcvpnForticlientAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OcvpnForticlientAccessAuthGroupInput)(nil)).Elem(), OcvpnForticlientAccessAuthGroupArgs{})
@@ -794,6 +1026,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OcvpnOverlaySubnetArrayInput)(nil)).Elem(), OcvpnOverlaySubnetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OcvpnWanInterfaceInput)(nil)).Elem(), OcvpnWanInterfaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OcvpnWanInterfaceArrayInput)(nil)).Elem(), OcvpnWanInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QkdCertificateInput)(nil)).Elem(), QkdCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QkdCertificateArrayInput)(nil)).Elem(), QkdCertificateArray{})
+	pulumi.RegisterOutputType(KmipserverServerListOutput{})
+	pulumi.RegisterOutputType(KmipserverServerListArrayOutput{})
 	pulumi.RegisterOutputType(OcvpnForticlientAccessOutput{})
 	pulumi.RegisterOutputType(OcvpnForticlientAccessPtrOutput{})
 	pulumi.RegisterOutputType(OcvpnForticlientAccessAuthGroupOutput{})
@@ -806,4 +1042,6 @@ func init() {
 	pulumi.RegisterOutputType(OcvpnOverlaySubnetArrayOutput{})
 	pulumi.RegisterOutputType(OcvpnWanInterfaceOutput{})
 	pulumi.RegisterOutputType(OcvpnWanInterfaceArrayOutput{})
+	pulumi.RegisterOutputType(QkdCertificateOutput{})
+	pulumi.RegisterOutputType(QkdCertificateArrayOutput{})
 }

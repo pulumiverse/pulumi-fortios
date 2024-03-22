@@ -13,8 +13,7 @@ import (
 )
 
 // Extender controller configuration.
-//
-// > The resource applies to FortiOS Version < 6.4.2. For FortiOS Version >= 6.4.2, see `extendercontroller.Extender1`.
+// The resource applies to FortiOS Version < 7.2.1. For FortiOS version >= 7.2.1, see `extensioncontroller.Extender`
 //
 // ## Example Usage
 //
@@ -124,6 +123,8 @@ type Extender struct {
 	ExtensionType pulumi.StringOutput `pulumi:"extensionType"`
 	// FortiExtender serial number.
 	Fosid pulumi.StringOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// HA shared secret.
 	HaSharedSecret pulumi.StringPtrOutput `pulumi:"haSharedSecret"`
 	// FortiExtender interface name.
@@ -298,6 +299,8 @@ type extenderState struct {
 	ExtensionType *string `pulumi:"extensionType"`
 	// FortiExtender serial number.
 	Fosid *string `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// HA shared secret.
 	HaSharedSecret *string `pulumi:"haSharedSecret"`
 	// FortiExtender interface name.
@@ -411,6 +414,8 @@ type ExtenderState struct {
 	ExtensionType pulumi.StringPtrInput
 	// FortiExtender serial number.
 	Fosid pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// HA shared secret.
 	HaSharedSecret pulumi.StringPtrInput
 	// FortiExtender interface name.
@@ -528,6 +533,8 @@ type extenderArgs struct {
 	ExtensionType *string `pulumi:"extensionType"`
 	// FortiExtender serial number.
 	Fosid string `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// HA shared secret.
 	HaSharedSecret *string `pulumi:"haSharedSecret"`
 	// FortiExtender interface name.
@@ -642,6 +649,8 @@ type ExtenderArgs struct {
 	ExtensionType pulumi.StringPtrInput
 	// FortiExtender serial number.
 	Fosid pulumi.StringInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// HA shared secret.
 	HaSharedSecret pulumi.StringPtrInput
 	// FortiExtender interface name.
@@ -902,6 +911,11 @@ func (o ExtenderOutput) ExtensionType() pulumi.StringOutput {
 // FortiExtender serial number.
 func (o ExtenderOutput) Fosid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Extender) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ExtenderOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Extender) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // HA shared secret.

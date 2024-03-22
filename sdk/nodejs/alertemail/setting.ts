@@ -118,7 +118,7 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly errorInterval!: pulumi.Output<number>;
     /**
-     * Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+     * Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
      */
     public readonly fdsLicenseExpiringDays!: pulumi.Output<number>;
     /**
@@ -174,15 +174,15 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly logDiskUsageWarning!: pulumi.Output<string>;
     /**
-     * Email address to send alert email to (usually a system administrator) (max. 64 characters).
+     * Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
      */
     public readonly mailto1!: pulumi.Output<string>;
     /**
-     * Optional second email address to send alert email to (max. 64 characters).
+     * Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
      */
     public readonly mailto2!: pulumi.Output<string>;
     /**
-     * Optional third email address to send alert email to (max. 64 characters).
+     * Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
      */
     public readonly mailto3!: pulumi.Output<string>;
     /**
@@ -206,7 +206,7 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly sslvpnAuthenticationErrorsLogs!: pulumi.Output<string>;
     /**
-     * Name that appears in the From: field of alert emails (max. 36 characters).
+     * Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
      */
     public readonly username!: pulumi.Output<string>;
     /**
@@ -366,7 +366,7 @@ export interface SettingState {
      */
     errorInterval?: pulumi.Input<number>;
     /**
-     * Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+     * Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
      */
     fdsLicenseExpiringDays?: pulumi.Input<number>;
     /**
@@ -422,15 +422,15 @@ export interface SettingState {
      */
     logDiskUsageWarning?: pulumi.Input<string>;
     /**
-     * Email address to send alert email to (usually a system administrator) (max. 64 characters).
+     * Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
      */
     mailto1?: pulumi.Input<string>;
     /**
-     * Optional second email address to send alert email to (max. 64 characters).
+     * Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
      */
     mailto2?: pulumi.Input<string>;
     /**
-     * Optional third email address to send alert email to (max. 64 characters).
+     * Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
      */
     mailto3?: pulumi.Input<string>;
     /**
@@ -454,7 +454,7 @@ export interface SettingState {
      */
     sslvpnAuthenticationErrorsLogs?: pulumi.Input<string>;
     /**
-     * Name that appears in the From: field of alert emails (max. 36 characters).
+     * Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
      */
     username?: pulumi.Input<string>;
     /**
@@ -520,7 +520,7 @@ export interface SettingArgs {
      */
     errorInterval?: pulumi.Input<number>;
     /**
-     * Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+     * Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
      */
     fdsLicenseExpiringDays?: pulumi.Input<number>;
     /**
@@ -576,15 +576,15 @@ export interface SettingArgs {
      */
     logDiskUsageWarning?: pulumi.Input<string>;
     /**
-     * Email address to send alert email to (usually a system administrator) (max. 64 characters).
+     * Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
      */
     mailto1?: pulumi.Input<string>;
     /**
-     * Optional second email address to send alert email to (max. 64 characters).
+     * Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
      */
     mailto2?: pulumi.Input<string>;
     /**
-     * Optional third email address to send alert email to (max. 64 characters).
+     * Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
      */
     mailto3?: pulumi.Input<string>;
     /**
@@ -608,7 +608,7 @@ export interface SettingArgs {
      */
     sslvpnAuthenticationErrorsLogs?: pulumi.Input<string>;
     /**
-     * Name that appears in the From: field of alert emails (max. 36 characters).
+     * Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
      */
     username?: pulumi.Input<string>;
     /**

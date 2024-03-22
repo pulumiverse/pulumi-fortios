@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -31,13 +33,17 @@ export interface GetVdomnetflowArgs {
  */
 export interface GetVdomnetflowResult {
     /**
-     * NetFlow collector IP address.
+     * Collector IP.
      */
     readonly collectorIp: string;
     /**
      * NetFlow collector port number.
      */
     readonly collectorPort: number;
+    /**
+     * Netflow collectors. The structure of `collectors` block is documented below.
+     */
+    readonly collectors: outputs.system.GetVdomnetflowCollector[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */

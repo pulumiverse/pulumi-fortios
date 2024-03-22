@@ -199,7 +199,7 @@ class GetAutomationtriggerResult:
     @pulumi.getter(name="logidBlocks")
     def logid_blocks(self) -> Sequence['outputs.GetAutomationtriggerLogidBlockResult']:
         """
-        Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
+        Log IDs to trigger event. The structure of `logid_block` block is documented below.
         """
         return pulumi.get(self, "logid_blocks")
 

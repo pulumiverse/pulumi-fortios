@@ -85,6 +85,8 @@ type Sensor struct {
 	FlowBased pulumi.StringOutput `pulumi:"flowBased"`
 	// Protocols to always content archive.
 	FullArchiveProto pulumi.StringOutput `pulumi:"fullArchiveProto"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
 	MatchType pulumi.StringOutput `pulumi:"matchType"`
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
@@ -151,6 +153,8 @@ type sensorState struct {
 	FlowBased *string `pulumi:"flowBased"`
 	// Protocols to always content archive.
 	FullArchiveProto *string `pulumi:"fullArchiveProto"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
 	MatchType *string `pulumi:"matchType"`
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
@@ -188,6 +192,8 @@ type SensorState struct {
 	FlowBased pulumi.StringPtrInput
 	// Protocols to always content archive.
 	FullArchiveProto pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
 	MatchType pulumi.StringPtrInput
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
@@ -229,6 +235,8 @@ type sensorArgs struct {
 	FlowBased *string `pulumi:"flowBased"`
 	// Protocols to always content archive.
 	FullArchiveProto *string `pulumi:"fullArchiveProto"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
 	MatchType *string `pulumi:"matchType"`
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
@@ -267,6 +275,8 @@ type SensorArgs struct {
 	FlowBased pulumi.StringPtrInput
 	// Protocols to always content archive.
 	FullArchiveProto pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
 	MatchType pulumi.StringPtrInput
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
@@ -418,6 +428,11 @@ func (o SensorOutput) FlowBased() pulumi.StringOutput {
 // Protocols to always content archive.
 func (o SensorOutput) FullArchiveProto() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sensor) pulumi.StringOutput { return v.FullArchiveProto }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SensorOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Sensor) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.

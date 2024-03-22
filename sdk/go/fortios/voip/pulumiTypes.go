@@ -482,6 +482,8 @@ type ProfileSip struct {
 	ByeRate *int `pulumi:"byeRate"`
 	// Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
 	ByeRateTrack *string `pulumi:"byeRateTrack"`
+	// Validate PCRE regular expression for Call-Id header value.
+	CallIdRegex *string `pulumi:"callIdRegex"`
 	// Continue tracking calls with no RTP for this many minutes.
 	CallKeepalive *int `pulumi:"callKeepalive"`
 	// CANCEL request rate limit (per second, per policy).
@@ -490,6 +492,8 @@ type ProfileSip struct {
 	CancelRateTrack *string `pulumi:"cancelRateTrack"`
 	// Fixup contact anyway even if contact's IP:port doesn't match session's IP:port. Valid values: `disable`, `enable`.
 	ContactFixup *string `pulumi:"contactFixup"`
+	// Validate PCRE regular expression for Content-Type header value.
+	ContentTypeRegex *string `pulumi:"contentTypeRegex"`
 	// Enable/disable restrict RTP source IP to be the same as SIP source IP when HNT is enabled. Valid values: `disable`, `enable`.
 	HntRestrictSourceIp *string `pulumi:"hntRestrictSourceIp"`
 	// Hosted NAT Traversal (HNT). Valid values: `disable`, `enable`.
@@ -722,6 +726,8 @@ type ProfileSipArgs struct {
 	ByeRate pulumi.IntPtrInput `pulumi:"byeRate"`
 	// Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
 	ByeRateTrack pulumi.StringPtrInput `pulumi:"byeRateTrack"`
+	// Validate PCRE regular expression for Call-Id header value.
+	CallIdRegex pulumi.StringPtrInput `pulumi:"callIdRegex"`
 	// Continue tracking calls with no RTP for this many minutes.
 	CallKeepalive pulumi.IntPtrInput `pulumi:"callKeepalive"`
 	// CANCEL request rate limit (per second, per policy).
@@ -730,6 +736,8 @@ type ProfileSipArgs struct {
 	CancelRateTrack pulumi.StringPtrInput `pulumi:"cancelRateTrack"`
 	// Fixup contact anyway even if contact's IP:port doesn't match session's IP:port. Valid values: `disable`, `enable`.
 	ContactFixup pulumi.StringPtrInput `pulumi:"contactFixup"`
+	// Validate PCRE regular expression for Content-Type header value.
+	ContentTypeRegex pulumi.StringPtrInput `pulumi:"contentTypeRegex"`
 	// Enable/disable restrict RTP source IP to be the same as SIP source IP when HNT is enabled. Valid values: `disable`, `enable`.
 	HntRestrictSourceIp pulumi.StringPtrInput `pulumi:"hntRestrictSourceIp"`
 	// Hosted NAT Traversal (HNT). Valid values: `disable`, `enable`.
@@ -1090,6 +1098,11 @@ func (o ProfileSipOutput) ByeRateTrack() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileSip) *string { return v.ByeRateTrack }).(pulumi.StringPtrOutput)
 }
 
+// Validate PCRE regular expression for Call-Id header value.
+func (o ProfileSipOutput) CallIdRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSip) *string { return v.CallIdRegex }).(pulumi.StringPtrOutput)
+}
+
 // Continue tracking calls with no RTP for this many minutes.
 func (o ProfileSipOutput) CallKeepalive() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileSip) *int { return v.CallKeepalive }).(pulumi.IntPtrOutput)
@@ -1108,6 +1121,11 @@ func (o ProfileSipOutput) CancelRateTrack() pulumi.StringPtrOutput {
 // Fixup contact anyway even if contact's IP:port doesn't match session's IP:port. Valid values: `disable`, `enable`.
 func (o ProfileSipOutput) ContactFixup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileSip) *string { return v.ContactFixup }).(pulumi.StringPtrOutput)
+}
+
+// Validate PCRE regular expression for Content-Type header value.
+func (o ProfileSipOutput) ContentTypeRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileSip) *string { return v.ContentTypeRegex }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable restrict RTP source IP to be the same as SIP source IP when HNT is enabled. Valid values: `disable`, `enable`.
@@ -1784,6 +1802,16 @@ func (o ProfileSipPtrOutput) ByeRateTrack() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Validate PCRE regular expression for Call-Id header value.
+func (o ProfileSipPtrOutput) CallIdRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CallIdRegex
+	}).(pulumi.StringPtrOutput)
+}
+
 // Continue tracking calls with no RTP for this many minutes.
 func (o ProfileSipPtrOutput) CallKeepalive() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileSip) *int {
@@ -1821,6 +1849,16 @@ func (o ProfileSipPtrOutput) ContactFixup() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.ContactFixup
+	}).(pulumi.StringPtrOutput)
+}
+
+// Validate PCRE regular expression for Content-Type header value.
+func (o ProfileSipPtrOutput) ContentTypeRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ContentTypeRegex
 	}).(pulumi.StringPtrOutput)
 }
 

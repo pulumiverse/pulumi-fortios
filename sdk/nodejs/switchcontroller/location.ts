@@ -68,6 +68,10 @@ export class Location extends pulumi.CustomResource {
      */
     public readonly elinNumber!: pulumi.Output<outputs.switchcontroller.LocationElinNumber>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Unique location item name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -92,6 +96,7 @@ export class Location extends pulumi.CustomResource {
             resourceInputs["addressCivic"] = state ? state.addressCivic : undefined;
             resourceInputs["coordinates"] = state ? state.coordinates : undefined;
             resourceInputs["elinNumber"] = state ? state.elinNumber : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -99,6 +104,7 @@ export class Location extends pulumi.CustomResource {
             resourceInputs["addressCivic"] = args ? args.addressCivic : undefined;
             resourceInputs["coordinates"] = args ? args.coordinates : undefined;
             resourceInputs["elinNumber"] = args ? args.elinNumber : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -123,6 +129,10 @@ export interface LocationState {
      * Configure location ELIN number. The structure of `elinNumber` block is documented below.
      */
     elinNumber?: pulumi.Input<inputs.switchcontroller.LocationElinNumber>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Unique location item name.
      */
@@ -149,6 +159,10 @@ export interface LocationArgs {
      * Configure location ELIN number. The structure of `elinNumber` block is documented below.
      */
     elinNumber?: pulumi.Input<inputs.switchcontroller.LocationElinNumber>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Unique location item name.
      */

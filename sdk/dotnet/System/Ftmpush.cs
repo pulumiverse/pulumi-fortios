@@ -57,6 +57,12 @@ namespace Pulumiverse.Fortios.System
     public partial class Ftmpush : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("proxy")]
+        public Output<string> Proxy { get; private set; } = null!;
+
+        /// <summary>
         /// IPv4 address or domain name of FortiToken Mobile push services server.
         /// </summary>
         [Output("server")]
@@ -140,6 +146,12 @@ namespace Pulumiverse.Fortios.System
     public sealed class FtmpushArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("proxy")]
+        public Input<string>? Proxy { get; set; }
+
+        /// <summary>
         /// IPv4 address or domain name of FortiToken Mobile push services server.
         /// </summary>
         [Input("server")]
@@ -183,6 +195,12 @@ namespace Pulumiverse.Fortios.System
 
     public sealed class FtmpushState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("proxy")]
+        public Input<string>? Proxy { get; set; }
+
         /// <summary>
         /// IPv4 address or domain name of FortiToken Mobile push services server.
         /// </summary>

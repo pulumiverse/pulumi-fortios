@@ -65,6 +65,8 @@ type Quarantine struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Firewall address group which includes all quarantine MAC address.
 	FirewallGroups pulumi.StringOutput `pulumi:"firewallGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable quarantine. Valid values: `enable`, `disable`.
 	Quarantine pulumi.StringOutput `pulumi:"quarantine"`
 	// Quarantine entry to hold multiple MACs. The structure of `targets` block is documented below.
@@ -109,6 +111,8 @@ type quarantineState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Firewall address group which includes all quarantine MAC address.
 	FirewallGroups *string `pulumi:"firewallGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable quarantine. Valid values: `enable`, `disable`.
 	Quarantine *string `pulumi:"quarantine"`
 	// Quarantine entry to hold multiple MACs. The structure of `targets` block is documented below.
@@ -124,6 +128,8 @@ type QuarantineState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Firewall address group which includes all quarantine MAC address.
 	FirewallGroups pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable quarantine. Valid values: `enable`, `disable`.
 	Quarantine pulumi.StringPtrInput
 	// Quarantine entry to hold multiple MACs. The structure of `targets` block is documented below.
@@ -143,6 +149,8 @@ type quarantineArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Firewall address group which includes all quarantine MAC address.
 	FirewallGroups *string `pulumi:"firewallGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable quarantine. Valid values: `enable`, `disable`.
 	Quarantine *string `pulumi:"quarantine"`
 	// Quarantine entry to hold multiple MACs. The structure of `targets` block is documented below.
@@ -159,6 +167,8 @@ type QuarantineArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Firewall address group which includes all quarantine MAC address.
 	FirewallGroups pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable quarantine. Valid values: `enable`, `disable`.
 	Quarantine pulumi.StringPtrInput
 	// Quarantine entry to hold multiple MACs. The structure of `targets` block is documented below.
@@ -264,6 +274,11 @@ func (o QuarantineOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Firewall address group which includes all quarantine MAC address.
 func (o QuarantineOutput) FirewallGroups() pulumi.StringOutput {
 	return o.ApplyT(func(v *Quarantine) pulumi.StringOutput { return v.FirewallGroups }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o QuarantineOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Quarantine) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable quarantine. Valid values: `enable`, `disable`.

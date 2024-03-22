@@ -87,9 +87,13 @@ type Policy6 struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// End destination port number (1 - 65535).
 	EndPort pulumi.IntOutput `pulumi:"endPort"`
+	// End source port number (1 - 65535).
+	EndSourcePort pulumi.IntOutput `pulumi:"endSourcePort"`
 	// IPv6 address of the gateway.
 	Gateway pulumi.StringOutput `pulumi:"gateway"`
-	// Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// Incoming interface name.
 	InputDevice pulumi.StringOutput `pulumi:"inputDevice"`
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate pulumi.StringOutput `pulumi:"inputDeviceNegate"`
@@ -111,6 +115,8 @@ type Policy6 struct {
 	Srcaddrs Policy6SrcaddrArrayOutput `pulumi:"srcaddrs"`
 	// Start destination port number (1 - 65535).
 	StartPort pulumi.IntOutput `pulumi:"startPort"`
+	// Start source port number (1 - 65535).
+	StartSourcePort pulumi.IntOutput `pulumi:"startSourcePort"`
 	// Enable/disable this policy route. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Type of service bit pattern.
@@ -168,9 +174,13 @@ type policy6State struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// End destination port number (1 - 65535).
 	EndPort *int `pulumi:"endPort"`
+	// End source port number (1 - 65535).
+	EndSourcePort *int `pulumi:"endSourcePort"`
 	// IPv6 address of the gateway.
 	Gateway *string `pulumi:"gateway"`
-	// Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Incoming interface name.
 	InputDevice *string `pulumi:"inputDevice"`
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate *string `pulumi:"inputDeviceNegate"`
@@ -192,6 +202,8 @@ type policy6State struct {
 	Srcaddrs []Policy6Srcaddr `pulumi:"srcaddrs"`
 	// Start destination port number (1 - 65535).
 	StartPort *int `pulumi:"startPort"`
+	// Start source port number (1 - 65535).
+	StartSourcePort *int `pulumi:"startSourcePort"`
 	// Enable/disable this policy route. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Type of service bit pattern.
@@ -217,9 +229,13 @@ type Policy6State struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// End destination port number (1 - 65535).
 	EndPort pulumi.IntPtrInput
+	// End source port number (1 - 65535).
+	EndSourcePort pulumi.IntPtrInput
 	// IPv6 address of the gateway.
 	Gateway pulumi.StringPtrInput
-	// Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Incoming interface name.
 	InputDevice pulumi.StringPtrInput
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate pulumi.StringPtrInput
@@ -241,6 +257,8 @@ type Policy6State struct {
 	Srcaddrs Policy6SrcaddrArrayInput
 	// Start destination port number (1 - 65535).
 	StartPort pulumi.IntPtrInput
+	// Start source port number (1 - 65535).
+	StartSourcePort pulumi.IntPtrInput
 	// Enable/disable this policy route. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// Type of service bit pattern.
@@ -270,9 +288,13 @@ type policy6Args struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// End destination port number (1 - 65535).
 	EndPort *int `pulumi:"endPort"`
+	// End source port number (1 - 65535).
+	EndSourcePort *int `pulumi:"endSourcePort"`
 	// IPv6 address of the gateway.
 	Gateway *string `pulumi:"gateway"`
-	// Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Incoming interface name.
 	InputDevice string `pulumi:"inputDevice"`
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate *string `pulumi:"inputDeviceNegate"`
@@ -294,6 +316,8 @@ type policy6Args struct {
 	Srcaddrs []Policy6Srcaddr `pulumi:"srcaddrs"`
 	// Start destination port number (1 - 65535).
 	StartPort *int `pulumi:"startPort"`
+	// Start source port number (1 - 65535).
+	StartSourcePort *int `pulumi:"startSourcePort"`
 	// Enable/disable this policy route. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Type of service bit pattern.
@@ -320,9 +344,13 @@ type Policy6Args struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// End destination port number (1 - 65535).
 	EndPort pulumi.IntPtrInput
+	// End source port number (1 - 65535).
+	EndSourcePort pulumi.IntPtrInput
 	// IPv6 address of the gateway.
 	Gateway pulumi.StringPtrInput
-	// Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Incoming interface name.
 	InputDevice pulumi.StringInput
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate pulumi.StringPtrInput
@@ -344,6 +372,8 @@ type Policy6Args struct {
 	Srcaddrs Policy6SrcaddrArrayInput
 	// Start destination port number (1 - 65535).
 	StartPort pulumi.IntPtrInput
+	// Start source port number (1 - 65535).
+	StartSourcePort pulumi.IntPtrInput
 	// Enable/disable this policy route. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// Type of service bit pattern.
@@ -476,12 +506,22 @@ func (o Policy6Output) EndPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Policy6) pulumi.IntOutput { return v.EndPort }).(pulumi.IntOutput)
 }
 
+// End source port number (1 - 65535).
+func (o Policy6Output) EndSourcePort() pulumi.IntOutput {
+	return o.ApplyT(func(v *Policy6) pulumi.IntOutput { return v.EndSourcePort }).(pulumi.IntOutput)
+}
+
 // IPv6 address of the gateway.
 func (o Policy6Output) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy6) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
 }
 
-// Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Policy6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Policy6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// Incoming interface name.
 func (o Policy6Output) InputDevice() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy6) pulumi.StringOutput { return v.InputDevice }).(pulumi.StringOutput)
 }
@@ -534,6 +574,11 @@ func (o Policy6Output) Srcaddrs() Policy6SrcaddrArrayOutput {
 // Start destination port number (1 - 65535).
 func (o Policy6Output) StartPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Policy6) pulumi.IntOutput { return v.StartPort }).(pulumi.IntOutput)
+}
+
+// Start source port number (1 - 65535).
+func (o Policy6Output) StartSourcePort() pulumi.IntOutput {
+	return o.ApplyT(func(v *Policy6) pulumi.IntOutput { return v.StartSourcePort }).(pulumi.IntOutput)
 }
 
 // Enable/disable this policy route. Valid values: `enable`, `disable`.

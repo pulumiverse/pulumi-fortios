@@ -14,6 +14,12 @@ namespace Pulumiverse.Fortios.System.Inputs
     public sealed class SpeedtestserverHostArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Speed test host distance.
+        /// </summary>
+        [Input("distance")]
+        public Input<int>? Distance { get; set; }
+
+        /// <summary>
         /// Server host ID.
         /// </summary>
         [Input("id")]
@@ -24,6 +30,18 @@ namespace Pulumiverse.Fortios.System.Inputs
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
+
+        /// <summary>
+        /// Speed test host latitude.
+        /// </summary>
+        [Input("latitude")]
+        public Input<string>? Latitude { get; set; }
+
+        /// <summary>
+        /// Speed test host longitude.
+        /// </summary>
+        [Input("longitude")]
+        public Input<string>? Longitude { get; set; }
 
         [Input("password")]
         private Input<string>? _password;

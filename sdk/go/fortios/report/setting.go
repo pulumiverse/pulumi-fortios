@@ -71,7 +71,7 @@ type Setting struct {
 	PdfReport pulumi.StringOutput `pulumi:"pdfReport"`
 	// Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
 	ReportSource pulumi.StringOutput `pulumi:"reportSource"`
-	// Number of items to populate (100 - 4000).
+	// Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
 	TopN pulumi.IntOutput `pulumi:"topN"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
@@ -115,7 +115,7 @@ type settingState struct {
 	PdfReport *string `pulumi:"pdfReport"`
 	// Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
 	ReportSource *string `pulumi:"reportSource"`
-	// Number of items to populate (100 - 4000).
+	// Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
 	TopN *int `pulumi:"topN"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -130,7 +130,7 @@ type SettingState struct {
 	PdfReport pulumi.StringPtrInput
 	// Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
 	ReportSource pulumi.StringPtrInput
-	// Number of items to populate (100 - 4000).
+	// Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
 	TopN pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -149,7 +149,7 @@ type settingArgs struct {
 	PdfReport *string `pulumi:"pdfReport"`
 	// Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
 	ReportSource *string `pulumi:"reportSource"`
-	// Number of items to populate (100 - 4000).
+	// Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
 	TopN *int `pulumi:"topN"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -165,7 +165,7 @@ type SettingArgs struct {
 	PdfReport pulumi.StringPtrInput
 	// Report log source. Valid values: `forward-traffic`, `sniffer-traffic`, `local-deny-traffic`.
 	ReportSource pulumi.StringPtrInput
-	// Number of items to populate (100 - 4000).
+	// Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
 	TopN pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -275,7 +275,7 @@ func (o SettingOutput) ReportSource() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.ReportSource }).(pulumi.StringOutput)
 }
 
-// Number of items to populate (100 - 4000).
+// Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
 func (o SettingOutput) TopN() pulumi.IntOutput {
 	return o.ApplyT(func(v *Setting) pulumi.IntOutput { return v.TopN }).(pulumi.IntOutput)
 }

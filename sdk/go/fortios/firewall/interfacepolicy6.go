@@ -99,6 +99,10 @@ type Interfacepolicy6 struct {
 	AvProfile pulumi.StringOutput `pulumi:"avProfile"`
 	// Enable/disable antivirus. Valid values: `enable`, `disable`.
 	AvProfileStatus pulumi.StringOutput `pulumi:"avProfileStatus"`
+	// CASB profile.
+	CasbProfile pulumi.StringOutput `pulumi:"casbProfile"`
+	// Enable/disable CASB. Valid values: `enable`, `disable`.
+	CasbProfileStatus pulumi.StringOutput `pulumi:"casbProfileStatus"`
 	// Comments.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
 	// DLP profile name.
@@ -119,6 +123,8 @@ type Interfacepolicy6 struct {
 	EmailfilterProfile pulumi.StringOutput `pulumi:"emailfilterProfile"`
 	// Enable/disable email filter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus pulumi.StringOutput `pulumi:"emailfilterProfileStatus"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Monitored interface name from available interfaces.
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// IPS sensor name.
@@ -143,6 +149,8 @@ type Interfacepolicy6 struct {
 	Srcaddr6s Interfacepolicy6Srcaddr6ArrayOutput `pulumi:"srcaddr6s"`
 	// Enable/disable this policy. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	//
 	// The `srcaddr6` block supports:
@@ -202,6 +210,10 @@ type interfacepolicy6State struct {
 	AvProfile *string `pulumi:"avProfile"`
 	// Enable/disable antivirus. Valid values: `enable`, `disable`.
 	AvProfileStatus *string `pulumi:"avProfileStatus"`
+	// CASB profile.
+	CasbProfile *string `pulumi:"casbProfile"`
+	// Enable/disable CASB. Valid values: `enable`, `disable`.
+	CasbProfileStatus *string `pulumi:"casbProfileStatus"`
 	// Comments.
 	Comments *string `pulumi:"comments"`
 	// DLP profile name.
@@ -222,6 +234,8 @@ type interfacepolicy6State struct {
 	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
 	// Enable/disable email filter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus *string `pulumi:"emailfilterProfileStatus"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Monitored interface name from available interfaces.
 	Interface *string `pulumi:"interface"`
 	// IPS sensor name.
@@ -246,6 +260,8 @@ type interfacepolicy6State struct {
 	Srcaddr6s []Interfacepolicy6Srcaddr6 `pulumi:"srcaddr6s"`
 	// Enable/disable this policy. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	//
 	// The `srcaddr6` block supports:
@@ -267,6 +283,10 @@ type Interfacepolicy6State struct {
 	AvProfile pulumi.StringPtrInput
 	// Enable/disable antivirus. Valid values: `enable`, `disable`.
 	AvProfileStatus pulumi.StringPtrInput
+	// CASB profile.
+	CasbProfile pulumi.StringPtrInput
+	// Enable/disable CASB. Valid values: `enable`, `disable`.
+	CasbProfileStatus pulumi.StringPtrInput
 	// Comments.
 	Comments pulumi.StringPtrInput
 	// DLP profile name.
@@ -287,6 +307,8 @@ type Interfacepolicy6State struct {
 	EmailfilterProfile pulumi.StringPtrInput
 	// Enable/disable email filter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Monitored interface name from available interfaces.
 	Interface pulumi.StringPtrInput
 	// IPS sensor name.
@@ -311,6 +333,8 @@ type Interfacepolicy6State struct {
 	Srcaddr6s Interfacepolicy6Srcaddr6ArrayInput
 	// Enable/disable this policy. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	//
 	// The `srcaddr6` block supports:
@@ -336,6 +360,10 @@ type interfacepolicy6Args struct {
 	AvProfile *string `pulumi:"avProfile"`
 	// Enable/disable antivirus. Valid values: `enable`, `disable`.
 	AvProfileStatus *string `pulumi:"avProfileStatus"`
+	// CASB profile.
+	CasbProfile *string `pulumi:"casbProfile"`
+	// Enable/disable CASB. Valid values: `enable`, `disable`.
+	CasbProfileStatus *string `pulumi:"casbProfileStatus"`
 	// Comments.
 	Comments *string `pulumi:"comments"`
 	// DLP profile name.
@@ -356,6 +384,8 @@ type interfacepolicy6Args struct {
 	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
 	// Enable/disable email filter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus *string `pulumi:"emailfilterProfileStatus"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Monitored interface name from available interfaces.
 	Interface string `pulumi:"interface"`
 	// IPS sensor name.
@@ -380,6 +410,8 @@ type interfacepolicy6Args struct {
 	Srcaddr6s []Interfacepolicy6Srcaddr6 `pulumi:"srcaddr6s"`
 	// Enable/disable this policy. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	//
 	// The `srcaddr6` block supports:
@@ -402,6 +434,10 @@ type Interfacepolicy6Args struct {
 	AvProfile pulumi.StringPtrInput
 	// Enable/disable antivirus. Valid values: `enable`, `disable`.
 	AvProfileStatus pulumi.StringPtrInput
+	// CASB profile.
+	CasbProfile pulumi.StringPtrInput
+	// Enable/disable CASB. Valid values: `enable`, `disable`.
+	CasbProfileStatus pulumi.StringPtrInput
 	// Comments.
 	Comments pulumi.StringPtrInput
 	// DLP profile name.
@@ -422,6 +458,8 @@ type Interfacepolicy6Args struct {
 	EmailfilterProfile pulumi.StringPtrInput
 	// Enable/disable email filter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Monitored interface name from available interfaces.
 	Interface pulumi.StringInput
 	// IPS sensor name.
@@ -446,6 +484,8 @@ type Interfacepolicy6Args struct {
 	Srcaddr6s Interfacepolicy6Srcaddr6ArrayInput
 	// Enable/disable this policy. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	//
 	// The `srcaddr6` block supports:
@@ -568,6 +608,16 @@ func (o Interfacepolicy6Output) AvProfileStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interfacepolicy6) pulumi.StringOutput { return v.AvProfileStatus }).(pulumi.StringOutput)
 }
 
+// CASB profile.
+func (o Interfacepolicy6Output) CasbProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interfacepolicy6) pulumi.StringOutput { return v.CasbProfile }).(pulumi.StringOutput)
+}
+
+// Enable/disable CASB. Valid values: `enable`, `disable`.
+func (o Interfacepolicy6Output) CasbProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interfacepolicy6) pulumi.StringOutput { return v.CasbProfileStatus }).(pulumi.StringOutput)
+}
+
 // Comments.
 func (o Interfacepolicy6Output) Comments() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Interfacepolicy6) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
@@ -616,6 +666,11 @@ func (o Interfacepolicy6Output) EmailfilterProfile() pulumi.StringOutput {
 // Enable/disable email filter. Valid values: `enable`, `disable`.
 func (o Interfacepolicy6Output) EmailfilterProfileStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interfacepolicy6) pulumi.StringOutput { return v.EmailfilterProfileStatus }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Interfacepolicy6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Interfacepolicy6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Monitored interface name from available interfaces.
@@ -676,6 +731,11 @@ func (o Interfacepolicy6Output) Srcaddr6s() Interfacepolicy6Srcaddr6ArrayOutput 
 // Enable/disable this policy. Valid values: `enable`, `disable`.
 func (o Interfacepolicy6Output) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interfacepolicy6) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+func (o Interfacepolicy6Output) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interfacepolicy6) pulumi.StringOutput { return v.Uuid }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

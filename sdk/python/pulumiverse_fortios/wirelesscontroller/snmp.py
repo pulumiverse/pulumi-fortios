@@ -20,6 +20,7 @@ class SnmpArgs:
                  contact_info: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
                  trap_high_mem_threshold: Optional[pulumi.Input[int]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['SnmpUserArgs']]]] = None,
@@ -30,6 +31,7 @@ class SnmpArgs:
         :param pulumi.Input[str] contact_info: Contact Information.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] engine_id: AC SNMP engineId string (maximum 24 characters).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] trap_high_cpu_threshold: CPU usage when trap is sent.
         :param pulumi.Input[int] trap_high_mem_threshold: Memory usage when trap is sent.
         :param pulumi.Input[Sequence[pulumi.Input['SnmpUserArgs']]] users: SNMP User Configuration. The structure of `user` block is documented below.
@@ -43,6 +45,8 @@ class SnmpArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if engine_id is not None:
             pulumi.set(__self__, "engine_id", engine_id)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if trap_high_cpu_threshold is not None:
             pulumi.set(__self__, "trap_high_cpu_threshold", trap_high_cpu_threshold)
         if trap_high_mem_threshold is not None:
@@ -99,6 +103,18 @@ class SnmpArgs:
     @engine_id.setter
     def engine_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "engine_id", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="trapHighCpuThreshold")
@@ -156,6 +172,7 @@ class _SnmpState:
                  contact_info: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
                  trap_high_mem_threshold: Optional[pulumi.Input[int]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['SnmpUserArgs']]]] = None,
@@ -166,6 +183,7 @@ class _SnmpState:
         :param pulumi.Input[str] contact_info: Contact Information.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] engine_id: AC SNMP engineId string (maximum 24 characters).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] trap_high_cpu_threshold: CPU usage when trap is sent.
         :param pulumi.Input[int] trap_high_mem_threshold: Memory usage when trap is sent.
         :param pulumi.Input[Sequence[pulumi.Input['SnmpUserArgs']]] users: SNMP User Configuration. The structure of `user` block is documented below.
@@ -179,6 +197,8 @@ class _SnmpState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if engine_id is not None:
             pulumi.set(__self__, "engine_id", engine_id)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if trap_high_cpu_threshold is not None:
             pulumi.set(__self__, "trap_high_cpu_threshold", trap_high_cpu_threshold)
         if trap_high_mem_threshold is not None:
@@ -235,6 +255,18 @@ class _SnmpState:
     @engine_id.setter
     def engine_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "engine_id", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="trapHighCpuThreshold")
@@ -294,6 +326,7 @@ class Snmp(pulumi.CustomResource):
                  contact_info: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
                  trap_high_mem_threshold: Optional[pulumi.Input[int]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SnmpUserArgs']]]]] = None,
@@ -326,6 +359,7 @@ class Snmp(pulumi.CustomResource):
         :param pulumi.Input[str] contact_info: Contact Information.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] engine_id: AC SNMP engineId string (maximum 24 characters).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] trap_high_cpu_threshold: CPU usage when trap is sent.
         :param pulumi.Input[int] trap_high_mem_threshold: Memory usage when trap is sent.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SnmpUserArgs']]]] users: SNMP User Configuration. The structure of `user` block is documented below.
@@ -377,6 +411,7 @@ class Snmp(pulumi.CustomResource):
                  contact_info: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
                  trap_high_mem_threshold: Optional[pulumi.Input[int]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SnmpUserArgs']]]]] = None,
@@ -394,6 +429,7 @@ class Snmp(pulumi.CustomResource):
             __props__.__dict__["contact_info"] = contact_info
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["engine_id"] = engine_id
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["trap_high_cpu_threshold"] = trap_high_cpu_threshold
             __props__.__dict__["trap_high_mem_threshold"] = trap_high_mem_threshold
             __props__.__dict__["users"] = users
@@ -412,6 +448,7 @@ class Snmp(pulumi.CustomResource):
             contact_info: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             engine_id: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
             trap_high_mem_threshold: Optional[pulumi.Input[int]] = None,
             users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SnmpUserArgs']]]]] = None,
@@ -427,6 +464,7 @@ class Snmp(pulumi.CustomResource):
         :param pulumi.Input[str] contact_info: Contact Information.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] engine_id: AC SNMP engineId string (maximum 24 characters).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] trap_high_cpu_threshold: CPU usage when trap is sent.
         :param pulumi.Input[int] trap_high_mem_threshold: Memory usage when trap is sent.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SnmpUserArgs']]]] users: SNMP User Configuration. The structure of `user` block is documented below.
@@ -440,6 +478,7 @@ class Snmp(pulumi.CustomResource):
         __props__.__dict__["contact_info"] = contact_info
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["engine_id"] = engine_id
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["trap_high_cpu_threshold"] = trap_high_cpu_threshold
         __props__.__dict__["trap_high_mem_threshold"] = trap_high_mem_threshold
         __props__.__dict__["users"] = users
@@ -477,6 +516,14 @@ class Snmp(pulumi.CustomResource):
         AC SNMP engineId string (maximum 24 characters).
         """
         return pulumi.get(self, "engine_id")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="trapHighCpuThreshold")

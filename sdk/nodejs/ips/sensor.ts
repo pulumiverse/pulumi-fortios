@@ -80,6 +80,10 @@ export class Sensor extends pulumi.CustomResource {
      */
     public readonly filters!: pulumi.Output<outputs.ips.SensorFilter[] | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Sensor name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -119,6 +123,7 @@ export class Sensor extends pulumi.CustomResource {
             resourceInputs["entries"] = state ? state.entries : undefined;
             resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
             resourceInputs["filters"] = state ? state.filters : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["overrides"] = state ? state.overrides : undefined;
             resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
@@ -132,6 +137,7 @@ export class Sensor extends pulumi.CustomResource {
             resourceInputs["entries"] = args ? args.entries : undefined;
             resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
             resourceInputs["filters"] = args ? args.filters : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["overrides"] = args ? args.overrides : undefined;
             resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
@@ -171,6 +177,10 @@ export interface SensorState {
      * IPS sensor filter. The structure of `filter` block is documented below.
      */
     filters?: pulumi.Input<pulumi.Input<inputs.ips.SensorFilter>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Sensor name.
      */
@@ -221,6 +231,10 @@ export interface SensorArgs {
      * IPS sensor filter. The structure of `filter` block is documented below.
      */
     filters?: pulumi.Input<pulumi.Input<inputs.ips.SensorFilter>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Sensor name.
      */

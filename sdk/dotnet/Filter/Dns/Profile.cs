@@ -148,6 +148,12 @@ namespace Pulumiverse.Fortios.Filter.Dns
         public Output<Outputs.ProfileFtgdDns> FtgdDns { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
         /// </summary>
         [Output("logAllDomain")]
@@ -188,6 +194,12 @@ namespace Pulumiverse.Fortios.Filter.Dns
         /// </summary>
         [Output("sdnsFtgdErrLog")]
         public Output<string> SdnsFtgdErrLog { get; private set; } = null!;
+
+        /// <summary>
+        /// Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
+        /// </summary>
+        [Output("transparentDnsDatabases")]
+        public Output<ImmutableArray<Outputs.ProfileTransparentDnsDatabase>> TransparentDnsDatabases { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -309,6 +321,12 @@ namespace Pulumiverse.Fortios.Filter.Dns
         public Input<Inputs.ProfileFtgdDnsArgs>? FtgdDns { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("logAllDomain")]
@@ -349,6 +367,18 @@ namespace Pulumiverse.Fortios.Filter.Dns
         /// </summary>
         [Input("sdnsFtgdErrLog")]
         public Input<string>? SdnsFtgdErrLog { get; set; }
+
+        [Input("transparentDnsDatabases")]
+        private InputList<Inputs.ProfileTransparentDnsDatabaseArgs>? _transparentDnsDatabases;
+
+        /// <summary>
+        /// Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ProfileTransparentDnsDatabaseArgs> TransparentDnsDatabases
+        {
+            get => _transparentDnsDatabases ?? (_transparentDnsDatabases = new InputList<Inputs.ProfileTransparentDnsDatabaseArgs>());
+            set => _transparentDnsDatabases = value;
+        }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -431,6 +461,12 @@ namespace Pulumiverse.Fortios.Filter.Dns
         public Input<Inputs.ProfileFtgdDnsGetArgs>? FtgdDns { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("logAllDomain")]
@@ -471,6 +507,18 @@ namespace Pulumiverse.Fortios.Filter.Dns
         /// </summary>
         [Input("sdnsFtgdErrLog")]
         public Input<string>? SdnsFtgdErrLog { get; set; }
+
+        [Input("transparentDnsDatabases")]
+        private InputList<Inputs.ProfileTransparentDnsDatabaseGetArgs>? _transparentDnsDatabases;
+
+        /// <summary>
+        /// Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
+        /// </summary>
+        public InputList<Inputs.ProfileTransparentDnsDatabaseGetArgs> TransparentDnsDatabases
+        {
+            get => _transparentDnsDatabases ?? (_transparentDnsDatabases = new InputList<Inputs.ProfileTransparentDnsDatabaseGetArgs>());
+            set => _transparentDnsDatabases = value;
+        }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

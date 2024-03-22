@@ -82,7 +82,7 @@ namespace Pulumiverse.Fortios.User
         public Output<string> Server { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Output("sslMinProtoVersion")]
         public Output<string> SslMinProtoVersion { get; private set; } = null!;
@@ -165,7 +165,7 @@ namespace Pulumiverse.Fortios.User
         public Input<string> Server { get; set; } = null!;
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Input("sslMinProtoVersion")]
         public Input<string>? SslMinProtoVersion { get; set; }
@@ -209,7 +209,7 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? Server { get; set; }
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Input("sslMinProtoVersion")]
         public Input<string>? SslMinProtoVersion { get; set; }

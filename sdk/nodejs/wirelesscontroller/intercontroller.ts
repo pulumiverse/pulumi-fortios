@@ -85,6 +85,10 @@ export class Intercontroller extends pulumi.CustomResource {
      */
     public readonly fastFailoverWait!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Secret key for inter-controller communications.
      */
     public readonly interControllerKey!: pulumi.Output<string | undefined>;
@@ -125,6 +129,7 @@ export class Intercontroller extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fastFailoverMax"] = state ? state.fastFailoverMax : undefined;
             resourceInputs["fastFailoverWait"] = state ? state.fastFailoverWait : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interControllerKey"] = state ? state.interControllerKey : undefined;
             resourceInputs["interControllerMode"] = state ? state.interControllerMode : undefined;
             resourceInputs["interControllerPeers"] = state ? state.interControllerPeers : undefined;
@@ -136,6 +141,7 @@ export class Intercontroller extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fastFailoverMax"] = args ? args.fastFailoverMax : undefined;
             resourceInputs["fastFailoverWait"] = args ? args.fastFailoverWait : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interControllerKey"] = args?.interControllerKey ? pulumi.secret(args.interControllerKey) : undefined;
             resourceInputs["interControllerMode"] = args ? args.interControllerMode : undefined;
             resourceInputs["interControllerPeers"] = args ? args.interControllerPeers : undefined;
@@ -166,6 +172,10 @@ export interface IntercontrollerState {
      * Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
      */
     fastFailoverWait?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Secret key for inter-controller communications.
      */
@@ -208,6 +218,10 @@ export interface IntercontrollerArgs {
      * Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
      */
     fastFailoverWait?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Secret key for inter-controller communications.
      */

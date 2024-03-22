@@ -82,6 +82,10 @@ export class Ldap extends pulumi.CustomResource {
     }
 
     /**
+     * Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+     */
+    public readonly accountKeyCertField!: pulumi.Output<string>;
+    /**
      * Account key filter, using the UPN as the search filter.
      */
     public readonly accountKeyFilter!: pulumi.Output<string>;
@@ -89,6 +93,10 @@ export class Ldap extends pulumi.CustomResource {
      * Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
      */
     public readonly accountKeyProcessing!: pulumi.Output<string>;
+    /**
+     * Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+     */
+    public readonly accountKeyUpnSan!: pulumi.Output<string>;
     /**
      * Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
      */
@@ -198,7 +206,7 @@ export class Ldap extends pulumi.CustomResource {
      */
     public readonly sourcePort!: pulumi.Output<number>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     public readonly sslMinProtoVersion!: pulumi.Output<string>;
     /**
@@ -251,8 +259,10 @@ export class Ldap extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LdapState | undefined;
+            resourceInputs["accountKeyCertField"] = state ? state.accountKeyCertField : undefined;
             resourceInputs["accountKeyFilter"] = state ? state.accountKeyFilter : undefined;
             resourceInputs["accountKeyProcessing"] = state ? state.accountKeyProcessing : undefined;
+            resourceInputs["accountKeyUpnSan"] = state ? state.accountKeyUpnSan : undefined;
             resourceInputs["antiphish"] = state ? state.antiphish : undefined;
             resourceInputs["caCert"] = state ? state.caCert : undefined;
             resourceInputs["clientCert"] = state ? state.clientCert : undefined;
@@ -298,8 +308,10 @@ export class Ldap extends pulumi.CustomResource {
             if ((!args || args.server === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'server'");
             }
+            resourceInputs["accountKeyCertField"] = args ? args.accountKeyCertField : undefined;
             resourceInputs["accountKeyFilter"] = args ? args.accountKeyFilter : undefined;
             resourceInputs["accountKeyProcessing"] = args ? args.accountKeyProcessing : undefined;
+            resourceInputs["accountKeyUpnSan"] = args ? args.accountKeyUpnSan : undefined;
             resourceInputs["antiphish"] = args ? args.antiphish : undefined;
             resourceInputs["caCert"] = args ? args.caCert : undefined;
             resourceInputs["clientCert"] = args ? args.clientCert : undefined;
@@ -350,6 +362,10 @@ export class Ldap extends pulumi.CustomResource {
  */
 export interface LdapState {
     /**
+     * Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+     */
+    accountKeyCertField?: pulumi.Input<string>;
+    /**
      * Account key filter, using the UPN as the search filter.
      */
     accountKeyFilter?: pulumi.Input<string>;
@@ -357,6 +373,10 @@ export interface LdapState {
      * Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
      */
     accountKeyProcessing?: pulumi.Input<string>;
+    /**
+     * Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+     */
+    accountKeyUpnSan?: pulumi.Input<string>;
     /**
      * Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
      */
@@ -466,7 +486,7 @@ export interface LdapState {
      */
     sourcePort?: pulumi.Input<number>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     sslMinProtoVersion?: pulumi.Input<string>;
     /**
@@ -512,6 +532,10 @@ export interface LdapState {
  */
 export interface LdapArgs {
     /**
+     * Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+     */
+    accountKeyCertField?: pulumi.Input<string>;
+    /**
      * Account key filter, using the UPN as the search filter.
      */
     accountKeyFilter?: pulumi.Input<string>;
@@ -519,6 +543,10 @@ export interface LdapArgs {
      * Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
      */
     accountKeyProcessing?: pulumi.Input<string>;
+    /**
+     * Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+     */
+    accountKeyUpnSan?: pulumi.Input<string>;
     /**
      * Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
      */
@@ -628,7 +656,7 @@ export interface LdapArgs {
      */
     sourcePort?: pulumi.Input<number>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     sslMinProtoVersion?: pulumi.Input<string>;
     /**

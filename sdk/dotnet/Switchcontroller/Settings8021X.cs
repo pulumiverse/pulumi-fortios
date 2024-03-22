@@ -69,6 +69,36 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<string> MabReauth { get; private set; } = null!;
 
         /// <summary>
+        /// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Output("macCalledStationDelimiter")]
+        public Output<string> MacCalledStationDelimiter { get; private set; } = null!;
+
+        /// <summary>
+        /// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Output("macCallingStationDelimiter")]
+        public Output<string> MacCallingStationDelimiter { get; private set; } = null!;
+
+        /// <summary>
+        /// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        /// </summary>
+        [Output("macCase")]
+        public Output<string> MacCase { get; private set; } = null!;
+
+        /// <summary>
+        /// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Output("macPasswordDelimiter")]
+        public Output<string> MacPasswordDelimiter { get; private set; } = null!;
+
+        /// <summary>
+        /// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Output("macUsernameDelimiter")]
+        public Output<string> MacUsernameDelimiter { get; private set; } = null!;
+
+        /// <summary>
         /// Maximum number of authentication attempts (0 - 15, default = 3).
         /// </summary>
         [Output("maxReauthAttempt")]
@@ -152,6 +182,36 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? MabReauth { get; set; }
 
         /// <summary>
+        /// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Input("macCalledStationDelimiter")]
+        public Input<string>? MacCalledStationDelimiter { get; set; }
+
+        /// <summary>
+        /// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Input("macCallingStationDelimiter")]
+        public Input<string>? MacCallingStationDelimiter { get; set; }
+
+        /// <summary>
+        /// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        /// </summary>
+        [Input("macCase")]
+        public Input<string>? MacCase { get; set; }
+
+        /// <summary>
+        /// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Input("macPasswordDelimiter")]
+        public Input<string>? MacPasswordDelimiter { get; set; }
+
+        /// <summary>
+        /// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Input("macUsernameDelimiter")]
+        public Input<string>? MacUsernameDelimiter { get; set; }
+
+        /// <summary>
         /// Maximum number of authentication attempts (0 - 15, default = 3).
         /// </summary>
         [Input("maxReauthAttempt")]
@@ -194,6 +254,36 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// </summary>
         [Input("mabReauth")]
         public Input<string>? MabReauth { get; set; }
+
+        /// <summary>
+        /// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Input("macCalledStationDelimiter")]
+        public Input<string>? MacCalledStationDelimiter { get; set; }
+
+        /// <summary>
+        /// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Input("macCallingStationDelimiter")]
+        public Input<string>? MacCallingStationDelimiter { get; set; }
+
+        /// <summary>
+        /// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+        /// </summary>
+        [Input("macCase")]
+        public Input<string>? MacCase { get; set; }
+
+        /// <summary>
+        /// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Input("macPasswordDelimiter")]
+        public Input<string>? MacPasswordDelimiter { get; set; }
+
+        /// <summary>
+        /// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+        /// </summary>
+        [Input("macUsernameDelimiter")]
+        public Input<string>? MacUsernameDelimiter { get; set; }
 
         /// <summary>
         /// Maximum number of authentication attempts (0 - 15, default = 3).

@@ -118,6 +118,38 @@ export class Local extends pulumi.CustomResource {
      */
     public readonly enrollProtocol!: pulumi.Output<string>;
     /**
+     * CA identifier of the CA server for signing via EST.
+     */
+    public readonly estCaId!: pulumi.Output<string>;
+    /**
+     * Certificate used to authenticate this FortiGate to EST server.
+     */
+    public readonly estClientCert!: pulumi.Output<string>;
+    /**
+     * HTTP Authentication password for signing via EST.
+     */
+    public readonly estHttpPassword!: pulumi.Output<string>;
+    /**
+     * HTTP Authentication username for signing via EST.
+     */
+    public readonly estHttpUsername!: pulumi.Output<string>;
+    /**
+     * Address and port for EST server (e.g. https://example.com:1234).
+     */
+    public readonly estServer!: pulumi.Output<string>;
+    /**
+     * EST server's certificate must be verifiable by this certificate to be authenticated.
+     */
+    public readonly estServerCert!: pulumi.Output<string>;
+    /**
+     * EST SRP authentication password.
+     */
+    public readonly estSrpPassword!: pulumi.Output<string>;
+    /**
+     * EST SRP authentication username.
+     */
+    public readonly estSrpUsername!: pulumi.Output<string>;
+    /**
      * Local ID the FortiGate uses for authentication as a VPN client.
      */
     public readonly ikeLocalid!: pulumi.Output<string>;
@@ -207,6 +239,14 @@ export class Local extends pulumi.CustomResource {
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["csr"] = state ? state.csr : undefined;
             resourceInputs["enrollProtocol"] = state ? state.enrollProtocol : undefined;
+            resourceInputs["estCaId"] = state ? state.estCaId : undefined;
+            resourceInputs["estClientCert"] = state ? state.estClientCert : undefined;
+            resourceInputs["estHttpPassword"] = state ? state.estHttpPassword : undefined;
+            resourceInputs["estHttpUsername"] = state ? state.estHttpUsername : undefined;
+            resourceInputs["estServer"] = state ? state.estServer : undefined;
+            resourceInputs["estServerCert"] = state ? state.estServerCert : undefined;
+            resourceInputs["estSrpPassword"] = state ? state.estSrpPassword : undefined;
+            resourceInputs["estSrpUsername"] = state ? state.estSrpUsername : undefined;
             resourceInputs["ikeLocalid"] = state ? state.ikeLocalid : undefined;
             resourceInputs["ikeLocalidType"] = state ? state.ikeLocalidType : undefined;
             resourceInputs["lastUpdated"] = state ? state.lastUpdated : undefined;
@@ -240,6 +280,14 @@ export class Local extends pulumi.CustomResource {
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["csr"] = args ? args.csr : undefined;
             resourceInputs["enrollProtocol"] = args ? args.enrollProtocol : undefined;
+            resourceInputs["estCaId"] = args ? args.estCaId : undefined;
+            resourceInputs["estClientCert"] = args ? args.estClientCert : undefined;
+            resourceInputs["estHttpPassword"] = args ? args.estHttpPassword : undefined;
+            resourceInputs["estHttpUsername"] = args ? args.estHttpUsername : undefined;
+            resourceInputs["estServer"] = args ? args.estServer : undefined;
+            resourceInputs["estServerCert"] = args ? args.estServerCert : undefined;
+            resourceInputs["estSrpPassword"] = args ? args.estSrpPassword : undefined;
+            resourceInputs["estSrpUsername"] = args ? args.estSrpUsername : undefined;
             resourceInputs["ikeLocalid"] = args ? args.ikeLocalid : undefined;
             resourceInputs["ikeLocalidType"] = args ? args.ikeLocalidType : undefined;
             resourceInputs["lastUpdated"] = args ? args.lastUpdated : undefined;
@@ -331,6 +379,38 @@ export interface LocalState {
      * Certificate enrollment protocol.
      */
     enrollProtocol?: pulumi.Input<string>;
+    /**
+     * CA identifier of the CA server for signing via EST.
+     */
+    estCaId?: pulumi.Input<string>;
+    /**
+     * Certificate used to authenticate this FortiGate to EST server.
+     */
+    estClientCert?: pulumi.Input<string>;
+    /**
+     * HTTP Authentication password for signing via EST.
+     */
+    estHttpPassword?: pulumi.Input<string>;
+    /**
+     * HTTP Authentication username for signing via EST.
+     */
+    estHttpUsername?: pulumi.Input<string>;
+    /**
+     * Address and port for EST server (e.g. https://example.com:1234).
+     */
+    estServer?: pulumi.Input<string>;
+    /**
+     * EST server's certificate must be verifiable by this certificate to be authenticated.
+     */
+    estServerCert?: pulumi.Input<string>;
+    /**
+     * EST SRP authentication password.
+     */
+    estSrpPassword?: pulumi.Input<string>;
+    /**
+     * EST SRP authentication username.
+     */
+    estSrpUsername?: pulumi.Input<string>;
     /**
      * Local ID the FortiGate uses for authentication as a VPN client.
      */
@@ -461,6 +541,38 @@ export interface LocalArgs {
      * Certificate enrollment protocol.
      */
     enrollProtocol?: pulumi.Input<string>;
+    /**
+     * CA identifier of the CA server for signing via EST.
+     */
+    estCaId?: pulumi.Input<string>;
+    /**
+     * Certificate used to authenticate this FortiGate to EST server.
+     */
+    estClientCert?: pulumi.Input<string>;
+    /**
+     * HTTP Authentication password for signing via EST.
+     */
+    estHttpPassword?: pulumi.Input<string>;
+    /**
+     * HTTP Authentication username for signing via EST.
+     */
+    estHttpUsername?: pulumi.Input<string>;
+    /**
+     * Address and port for EST server (e.g. https://example.com:1234).
+     */
+    estServer?: pulumi.Input<string>;
+    /**
+     * EST server's certificate must be verifiable by this certificate to be authenticated.
+     */
+    estServerCert?: pulumi.Input<string>;
+    /**
+     * EST SRP authentication password.
+     */
+    estSrpPassword?: pulumi.Input<string>;
+    /**
+     * EST SRP authentication username.
+     */
+    estSrpUsername?: pulumi.Input<string>;
     /**
      * Local ID the FortiGate uses for authentication as a VPN client.
      */

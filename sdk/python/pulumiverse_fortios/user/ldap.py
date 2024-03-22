@@ -16,8 +16,10 @@ class LdapArgs:
     def __init__(__self__, *,
                  dn: pulumi.Input[str],
                  server: pulumi.Input[str],
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
+                 account_key_upn_san: Optional[pulumi.Input[str]] = None,
                  antiphish: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  client_cert: Optional[pulumi.Input[str]] = None,
@@ -57,8 +59,10 @@ class LdapArgs:
         The set of arguments for constructing a Ldap resource.
         :param pulumi.Input[str] dn: Distinguished name used to look up entries on the LDAP server.
         :param pulumi.Input[str] server: LDAP server CN domain name or IP.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
         :param pulumi.Input[str] account_key_filter: Account key filter, using the UPN as the search filter.
         :param pulumi.Input[str] account_key_processing: Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
+        :param pulumi.Input[str] account_key_upn_san: Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
         :param pulumi.Input[str] antiphish: Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ca_cert: CA certificate name.
         :param pulumi.Input[str] client_cert: Client certificate name.
@@ -84,7 +88,7 @@ class LdapArgs:
         :param pulumi.Input[str] server_identity_check: Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP for communications to LDAP server.
         :param pulumi.Input[int] source_port: Source port to be used for communication with the LDAP server.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] tertiary_server: Tertiary LDAP server CN domain name or IP.
         :param pulumi.Input[str] two_factor: Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
         :param pulumi.Input[str] two_factor_authentication: Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
@@ -97,10 +101,14 @@ class LdapArgs:
         """
         pulumi.set(__self__, "dn", dn)
         pulumi.set(__self__, "server", server)
+        if account_key_cert_field is not None:
+            pulumi.set(__self__, "account_key_cert_field", account_key_cert_field)
         if account_key_filter is not None:
             pulumi.set(__self__, "account_key_filter", account_key_filter)
         if account_key_processing is not None:
             pulumi.set(__self__, "account_key_processing", account_key_processing)
+        if account_key_upn_san is not None:
+            pulumi.set(__self__, "account_key_upn_san", account_key_upn_san)
         if antiphish is not None:
             pulumi.set(__self__, "antiphish", antiphish)
         if ca_cert is not None:
@@ -197,6 +205,18 @@ class LdapArgs:
         pulumi.set(self, "server", value)
 
     @property
+    @pulumi.getter(name="accountKeyCertField")
+    def account_key_cert_field(self) -> Optional[pulumi.Input[str]]:
+        """
+        Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        """
+        return pulumi.get(self, "account_key_cert_field")
+
+    @account_key_cert_field.setter
+    def account_key_cert_field(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_cert_field", value)
+
+    @property
     @pulumi.getter(name="accountKeyFilter")
     def account_key_filter(self) -> Optional[pulumi.Input[str]]:
         """
@@ -219,6 +239,18 @@ class LdapArgs:
     @account_key_processing.setter
     def account_key_processing(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "account_key_processing", value)
+
+    @property
+    @pulumi.getter(name="accountKeyUpnSan")
+    def account_key_upn_san(self) -> Optional[pulumi.Input[str]]:
+        """
+        Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+        """
+        return pulumi.get(self, "account_key_upn_san")
+
+    @account_key_upn_san.setter
+    def account_key_upn_san(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_upn_san", value)
 
     @property
     @pulumi.getter
@@ -524,7 +556,7 @@ class LdapArgs:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -644,8 +676,10 @@ class LdapArgs:
 @pulumi.input_type
 class _LdapState:
     def __init__(__self__, *,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
+                 account_key_upn_san: Optional[pulumi.Input[str]] = None,
                  antiphish: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  client_cert: Optional[pulumi.Input[str]] = None,
@@ -685,8 +719,10 @@ class _LdapState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Ldap resources.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
         :param pulumi.Input[str] account_key_filter: Account key filter, using the UPN as the search filter.
         :param pulumi.Input[str] account_key_processing: Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
+        :param pulumi.Input[str] account_key_upn_san: Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
         :param pulumi.Input[str] antiphish: Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ca_cert: CA certificate name.
         :param pulumi.Input[str] client_cert: Client certificate name.
@@ -714,7 +750,7 @@ class _LdapState:
         :param pulumi.Input[str] server_identity_check: Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP for communications to LDAP server.
         :param pulumi.Input[int] source_port: Source port to be used for communication with the LDAP server.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] tertiary_server: Tertiary LDAP server CN domain name or IP.
         :param pulumi.Input[str] two_factor: Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
         :param pulumi.Input[str] two_factor_authentication: Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
@@ -725,10 +761,14 @@ class _LdapState:
         :param pulumi.Input[str] username: Username (full DN) for initial binding.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if account_key_cert_field is not None:
+            pulumi.set(__self__, "account_key_cert_field", account_key_cert_field)
         if account_key_filter is not None:
             pulumi.set(__self__, "account_key_filter", account_key_filter)
         if account_key_processing is not None:
             pulumi.set(__self__, "account_key_processing", account_key_processing)
+        if account_key_upn_san is not None:
+            pulumi.set(__self__, "account_key_upn_san", account_key_upn_san)
         if antiphish is not None:
             pulumi.set(__self__, "antiphish", antiphish)
         if ca_cert is not None:
@@ -805,6 +845,18 @@ class _LdapState:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
     @property
+    @pulumi.getter(name="accountKeyCertField")
+    def account_key_cert_field(self) -> Optional[pulumi.Input[str]]:
+        """
+        Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        """
+        return pulumi.get(self, "account_key_cert_field")
+
+    @account_key_cert_field.setter
+    def account_key_cert_field(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_cert_field", value)
+
+    @property
     @pulumi.getter(name="accountKeyFilter")
     def account_key_filter(self) -> Optional[pulumi.Input[str]]:
         """
@@ -827,6 +879,18 @@ class _LdapState:
     @account_key_processing.setter
     def account_key_processing(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "account_key_processing", value)
+
+    @property
+    @pulumi.getter(name="accountKeyUpnSan")
+    def account_key_upn_san(self) -> Optional[pulumi.Input[str]]:
+        """
+        Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+        """
+        return pulumi.get(self, "account_key_upn_san")
+
+    @account_key_upn_san.setter
+    def account_key_upn_san(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_upn_san", value)
 
     @property
     @pulumi.getter
@@ -1156,7 +1220,7 @@ class _LdapState:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -1278,8 +1342,10 @@ class Ldap(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
+                 account_key_upn_san: Optional[pulumi.Input[str]] = None,
                  antiphish: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  client_cert: Optional[pulumi.Input[str]] = None,
@@ -1368,8 +1434,10 @@ class Ldap(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
         :param pulumi.Input[str] account_key_filter: Account key filter, using the UPN as the search filter.
         :param pulumi.Input[str] account_key_processing: Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
+        :param pulumi.Input[str] account_key_upn_san: Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
         :param pulumi.Input[str] antiphish: Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ca_cert: CA certificate name.
         :param pulumi.Input[str] client_cert: Client certificate name.
@@ -1397,7 +1465,7 @@ class Ldap(pulumi.CustomResource):
         :param pulumi.Input[str] server_identity_check: Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP for communications to LDAP server.
         :param pulumi.Input[int] source_port: Source port to be used for communication with the LDAP server.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] tertiary_server: Tertiary LDAP server CN domain name or IP.
         :param pulumi.Input[str] two_factor: Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
         :param pulumi.Input[str] two_factor_authentication: Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
@@ -1477,8 +1545,10 @@ class Ldap(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
+                 account_key_upn_san: Optional[pulumi.Input[str]] = None,
                  antiphish: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  client_cert: Optional[pulumi.Input[str]] = None,
@@ -1525,8 +1595,10 @@ class Ldap(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LdapArgs.__new__(LdapArgs)
 
+            __props__.__dict__["account_key_cert_field"] = account_key_cert_field
             __props__.__dict__["account_key_filter"] = account_key_filter
             __props__.__dict__["account_key_processing"] = account_key_processing
+            __props__.__dict__["account_key_upn_san"] = account_key_upn_san
             __props__.__dict__["antiphish"] = antiphish
             __props__.__dict__["ca_cert"] = ca_cert
             __props__.__dict__["client_cert"] = client_cert
@@ -1580,8 +1652,10 @@ class Ldap(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            account_key_cert_field: Optional[pulumi.Input[str]] = None,
             account_key_filter: Optional[pulumi.Input[str]] = None,
             account_key_processing: Optional[pulumi.Input[str]] = None,
+            account_key_upn_san: Optional[pulumi.Input[str]] = None,
             antiphish: Optional[pulumi.Input[str]] = None,
             ca_cert: Optional[pulumi.Input[str]] = None,
             client_cert: Optional[pulumi.Input[str]] = None,
@@ -1626,8 +1700,10 @@ class Ldap(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
         :param pulumi.Input[str] account_key_filter: Account key filter, using the UPN as the search filter.
         :param pulumi.Input[str] account_key_processing: Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
+        :param pulumi.Input[str] account_key_upn_san: Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
         :param pulumi.Input[str] antiphish: Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ca_cert: CA certificate name.
         :param pulumi.Input[str] client_cert: Client certificate name.
@@ -1655,7 +1731,7 @@ class Ldap(pulumi.CustomResource):
         :param pulumi.Input[str] server_identity_check: Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP for communications to LDAP server.
         :param pulumi.Input[int] source_port: Source port to be used for communication with the LDAP server.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         :param pulumi.Input[str] tertiary_server: Tertiary LDAP server CN domain name or IP.
         :param pulumi.Input[str] two_factor: Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
         :param pulumi.Input[str] two_factor_authentication: Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
@@ -1670,8 +1746,10 @@ class Ldap(pulumi.CustomResource):
 
         __props__ = _LdapState.__new__(_LdapState)
 
+        __props__.__dict__["account_key_cert_field"] = account_key_cert_field
         __props__.__dict__["account_key_filter"] = account_key_filter
         __props__.__dict__["account_key_processing"] = account_key_processing
+        __props__.__dict__["account_key_upn_san"] = account_key_upn_san
         __props__.__dict__["antiphish"] = antiphish
         __props__.__dict__["ca_cert"] = ca_cert
         __props__.__dict__["client_cert"] = client_cert
@@ -1712,6 +1790,14 @@ class Ldap(pulumi.CustomResource):
         return Ldap(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="accountKeyCertField")
+    def account_key_cert_field(self) -> pulumi.Output[str]:
+        """
+        Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        """
+        return pulumi.get(self, "account_key_cert_field")
+
+    @property
     @pulumi.getter(name="accountKeyFilter")
     def account_key_filter(self) -> pulumi.Output[str]:
         """
@@ -1726,6 +1812,14 @@ class Ldap(pulumi.CustomResource):
         Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
         """
         return pulumi.get(self, "account_key_processing")
+
+    @property
+    @pulumi.getter(name="accountKeyUpnSan")
+    def account_key_upn_san(self) -> pulumi.Output[str]:
+        """
+        Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+        """
+        return pulumi.get(self, "account_key_upn_san")
 
     @property
     @pulumi.getter
@@ -1947,7 +2041,7 @@ class Ldap(pulumi.CustomResource):
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> pulumi.Output[str]:
         """
-        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 

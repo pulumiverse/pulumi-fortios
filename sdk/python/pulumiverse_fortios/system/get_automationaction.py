@@ -22,7 +22,7 @@ class GetAutomationactionResult:
     """
     A collection of values returned by getAutomationaction.
     """
-    def __init__(__self__, accprofile=None, action_type=None, alicloud_access_key_id=None, alicloud_access_key_secret=None, alicloud_account_id=None, alicloud_function=None, alicloud_function_authorization=None, alicloud_function_domain=None, alicloud_region=None, alicloud_service=None, alicloud_version=None, aws_api_id=None, aws_api_key=None, aws_api_path=None, aws_api_stage=None, aws_domain=None, aws_region=None, azure_api_key=None, azure_app=None, azure_domain=None, azure_function=None, azure_function_authorization=None, delay=None, description=None, email_body=None, email_from=None, email_subject=None, email_tos=None, execute_security_fabric=None, gcp_function=None, gcp_function_domain=None, gcp_function_region=None, gcp_project=None, headers=None, http_body=None, http_headers=None, id=None, message=None, message_type=None, method=None, minimum_interval=None, name=None, output_size=None, port=None, protocol=None, replacement_message=None, replacemsg_group=None, required=None, script=None, sdn_connectors=None, security_tag=None, system_action=None, timeout=None, tls_certificate=None, uri=None, vdomparam=None, verify_host_cert=None):
+    def __init__(__self__, accprofile=None, action_type=None, alicloud_access_key_id=None, alicloud_access_key_secret=None, alicloud_account_id=None, alicloud_function=None, alicloud_function_authorization=None, alicloud_function_domain=None, alicloud_region=None, alicloud_service=None, alicloud_version=None, aws_api_id=None, aws_api_key=None, aws_api_path=None, aws_api_stage=None, aws_domain=None, aws_region=None, azure_api_key=None, azure_app=None, azure_domain=None, azure_function=None, azure_function_authorization=None, delay=None, description=None, email_body=None, email_from=None, email_subject=None, email_tos=None, execute_security_fabric=None, forticare_email=None, gcp_function=None, gcp_function_domain=None, gcp_function_region=None, gcp_project=None, headers=None, http_body=None, http_headers=None, id=None, message=None, message_type=None, method=None, minimum_interval=None, name=None, output_size=None, port=None, protocol=None, replacement_message=None, replacemsg_group=None, required=None, script=None, sdn_connectors=None, security_tag=None, system_action=None, timeout=None, tls_certificate=None, uri=None, vdomparam=None, verify_host_cert=None):
         if accprofile and not isinstance(accprofile, str):
             raise TypeError("Expected argument 'accprofile' to be a str")
         pulumi.set(__self__, "accprofile", accprofile)
@@ -110,6 +110,9 @@ class GetAutomationactionResult:
         if execute_security_fabric and not isinstance(execute_security_fabric, str):
             raise TypeError("Expected argument 'execute_security_fabric' to be a str")
         pulumi.set(__self__, "execute_security_fabric", execute_security_fabric)
+        if forticare_email and not isinstance(forticare_email, str):
+            raise TypeError("Expected argument 'forticare_email' to be a str")
+        pulumi.set(__self__, "forticare_email", forticare_email)
         if gcp_function and not isinstance(gcp_function, str):
             raise TypeError("Expected argument 'gcp_function' to be a str")
         pulumi.set(__self__, "gcp_function", gcp_function)
@@ -428,6 +431,14 @@ class GetAutomationactionResult:
         return pulumi.get(self, "execute_security_fabric")
 
     @property
+    @pulumi.getter(name="forticareEmail")
+    def forticare_email(self) -> str:
+        """
+        Enable/disable use of your FortiCare email address as the email-to address.
+        """
+        return pulumi.get(self, "forticare_email")
+
+    @property
     @pulumi.getter(name="gcpFunction")
     def gcp_function(self) -> str:
         """
@@ -684,6 +695,7 @@ class AwaitableGetAutomationactionResult(GetAutomationactionResult):
             email_subject=self.email_subject,
             email_tos=self.email_tos,
             execute_security_fabric=self.execute_security_fabric,
+            forticare_email=self.forticare_email,
             gcp_function=self.gcp_function,
             gcp_function_domain=self.gcp_function_domain,
             gcp_function_region=self.gcp_function_region,
@@ -760,6 +772,7 @@ def get_automationaction(name: Optional[str] = None,
         email_subject=pulumi.get(__ret__, 'email_subject'),
         email_tos=pulumi.get(__ret__, 'email_tos'),
         execute_security_fabric=pulumi.get(__ret__, 'execute_security_fabric'),
+        forticare_email=pulumi.get(__ret__, 'forticare_email'),
         gcp_function=pulumi.get(__ret__, 'gcp_function'),
         gcp_function_domain=pulumi.get(__ret__, 'gcp_function_domain'),
         gcp_function_region=pulumi.get(__ret__, 'gcp_function_region'),

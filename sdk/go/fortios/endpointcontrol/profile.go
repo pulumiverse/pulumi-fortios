@@ -127,6 +127,8 @@ type Profile struct {
 	ForticlientIosSettings ProfileForticlientIosSettingsOutput `pulumi:"forticlientIosSettings"`
 	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
 	ForticlientWinmacSettings ProfileForticlientWinmacSettingsOutput `pulumi:"forticlientWinmacSettings"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
 	OnNetAddrs ProfileOnNetAddrArrayOutput `pulumi:"onNetAddrs"`
 	// Profile name.
@@ -185,6 +187,8 @@ type profileState struct {
 	ForticlientIosSettings *ProfileForticlientIosSettings `pulumi:"forticlientIosSettings"`
 	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
 	ForticlientWinmacSettings *ProfileForticlientWinmacSettings `pulumi:"forticlientWinmacSettings"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
 	OnNetAddrs []ProfileOnNetAddr `pulumi:"onNetAddrs"`
 	// Profile name.
@@ -214,6 +218,8 @@ type ProfileState struct {
 	ForticlientIosSettings ProfileForticlientIosSettingsPtrInput
 	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
 	ForticlientWinmacSettings ProfileForticlientWinmacSettingsPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
 	OnNetAddrs ProfileOnNetAddrArrayInput
 	// Profile name.
@@ -247,6 +253,8 @@ type profileArgs struct {
 	ForticlientIosSettings *ProfileForticlientIosSettings `pulumi:"forticlientIosSettings"`
 	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
 	ForticlientWinmacSettings *ProfileForticlientWinmacSettings `pulumi:"forticlientWinmacSettings"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
 	OnNetAddrs []ProfileOnNetAddr `pulumi:"onNetAddrs"`
 	// Profile name.
@@ -277,6 +285,8 @@ type ProfileArgs struct {
 	ForticlientIosSettings ProfileForticlientIosSettingsPtrInput
 	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
 	ForticlientWinmacSettings ProfileForticlientWinmacSettingsPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
 	OnNetAddrs ProfileOnNetAddrArrayInput
 	// Profile name.
@@ -408,6 +418,11 @@ func (o ProfileOutput) ForticlientIosSettings() ProfileForticlientIosSettingsOut
 // FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
 func (o ProfileOutput) ForticlientWinmacSettings() ProfileForticlientWinmacSettingsOutput {
 	return o.ApplyT(func(v *Profile) ProfileForticlientWinmacSettingsOutput { return v.ForticlientWinmacSettings }).(ProfileForticlientWinmacSettingsOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Addresses for on-net detection. The structure of `onNetAddr` block is documented below.

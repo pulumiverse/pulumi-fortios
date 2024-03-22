@@ -28,6 +28,8 @@ class WidsprofileArgs:
                  ap_bgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_fgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_scan: Optional[pulumi.Input[str]] = None,
+                 ap_scan_channel_list2g5gs: Optional[pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList2g5gArgs']]]] = None,
+                 ap_scan_channel_list6gs: Optional[pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList6gArgs']]]] = None,
                  ap_scan_passive: Optional[pulumi.Input[str]] = None,
                  ap_scan_threshold: Optional[pulumi.Input[str]] = None,
                  asleap_attack: Optional[pulumi.Input[str]] = None,
@@ -59,6 +61,7 @@ class WidsprofileArgs:
                  eapol_succ_flood: Optional[pulumi.Input[str]] = None,
                  eapol_succ_intv: Optional[pulumi.Input[int]] = None,
                  eapol_succ_thresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  invalid_mac_oui: Optional[pulumi.Input[str]] = None,
                  long_duration_attack: Optional[pulumi.Input[str]] = None,
                  long_duration_thresh: Optional[pulumi.Input[int]] = None,
@@ -83,6 +86,8 @@ class WidsprofileArgs:
         :param pulumi.Input[int] ap_bgscan_report_intv: Period of time between background scan reports (15 - 600 sec, default = 30).
         :param pulumi.Input[int] ap_fgscan_report_intv: Period of time between foreground scan reports (15 - 600 sec, default = 15).
         :param pulumi.Input[str] ap_scan: Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
+        :param pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList2g5gArgs']]] ap_scan_channel_list2g5gs: Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList6gArgs']]] ap_scan_channel_list6gs: Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
         :param pulumi.Input[str] ap_scan_passive: Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_scan_threshold: Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
         :param pulumi.Input[str] asleap_attack: Enable/disable asleap attack detection (default = disable). Valid values: `enable`, `disable`.
@@ -114,6 +119,7 @@ class WidsprofileArgs:
         :param pulumi.Input[str] eapol_succ_flood: Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] eapol_succ_intv: The detection interval for EAPOL-Success flooding (1 - 3600 sec).
         :param pulumi.Input[int] eapol_succ_thresh: The threshold value for EAPOL-Success flooding in specified interval.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] invalid_mac_oui: Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] long_duration_attack: Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] long_duration_thresh: Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
@@ -122,6 +128,8 @@ class WidsprofileArgs:
         :param pulumi.Input[str] sensor_mode: Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         :param pulumi.Input[str] spoofed_deauth: Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+               
+               The `ap_scan_channel_list_2g_5g` block supports:
         :param pulumi.Input[str] weak_wep_iv: Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wireless_bridge: Enable/disable wireless bridge detection (default = disable). Valid values: `enable`, `disable`.
         """
@@ -149,6 +157,10 @@ class WidsprofileArgs:
             pulumi.set(__self__, "ap_fgscan_report_intv", ap_fgscan_report_intv)
         if ap_scan is not None:
             pulumi.set(__self__, "ap_scan", ap_scan)
+        if ap_scan_channel_list2g5gs is not None:
+            pulumi.set(__self__, "ap_scan_channel_list2g5gs", ap_scan_channel_list2g5gs)
+        if ap_scan_channel_list6gs is not None:
+            pulumi.set(__self__, "ap_scan_channel_list6gs", ap_scan_channel_list6gs)
         if ap_scan_passive is not None:
             pulumi.set(__self__, "ap_scan_passive", ap_scan_passive)
         if ap_scan_threshold is not None:
@@ -211,6 +223,8 @@ class WidsprofileArgs:
             pulumi.set(__self__, "eapol_succ_intv", eapol_succ_intv)
         if eapol_succ_thresh is not None:
             pulumi.set(__self__, "eapol_succ_thresh", eapol_succ_thresh)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if invalid_mac_oui is not None:
             pulumi.set(__self__, "invalid_mac_oui", invalid_mac_oui)
         if long_duration_attack is not None:
@@ -375,6 +389,30 @@ class WidsprofileArgs:
     @ap_scan.setter
     def ap_scan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ap_scan", value)
+
+    @property
+    @pulumi.getter(name="apScanChannelList2g5gs")
+    def ap_scan_channel_list2g5gs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList2g5gArgs']]]]:
+        """
+        Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
+        """
+        return pulumi.get(self, "ap_scan_channel_list2g5gs")
+
+    @ap_scan_channel_list2g5gs.setter
+    def ap_scan_channel_list2g5gs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList2g5gArgs']]]]):
+        pulumi.set(self, "ap_scan_channel_list2g5gs", value)
+
+    @property
+    @pulumi.getter(name="apScanChannelList6gs")
+    def ap_scan_channel_list6gs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList6gArgs']]]]:
+        """
+        Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
+        """
+        return pulumi.get(self, "ap_scan_channel_list6gs")
+
+    @ap_scan_channel_list6gs.setter
+    def ap_scan_channel_list6gs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList6gArgs']]]]):
+        pulumi.set(self, "ap_scan_channel_list6gs", value)
 
     @property
     @pulumi.getter(name="apScanPassive")
@@ -749,6 +787,18 @@ class WidsprofileArgs:
         pulumi.set(self, "eapol_succ_thresh", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="invalidMacOui")
     def invalid_mac_oui(self) -> Optional[pulumi.Input[str]]:
         """
@@ -837,6 +887,8 @@ class WidsprofileArgs:
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+
+        The `ap_scan_channel_list_2g_5g` block supports:
         """
         return pulumi.get(self, "vdomparam")
 
@@ -884,6 +936,8 @@ class _WidsprofileState:
                  ap_bgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_fgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_scan: Optional[pulumi.Input[str]] = None,
+                 ap_scan_channel_list2g5gs: Optional[pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList2g5gArgs']]]] = None,
+                 ap_scan_channel_list6gs: Optional[pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList6gArgs']]]] = None,
                  ap_scan_passive: Optional[pulumi.Input[str]] = None,
                  ap_scan_threshold: Optional[pulumi.Input[str]] = None,
                  asleap_attack: Optional[pulumi.Input[str]] = None,
@@ -915,6 +969,7 @@ class _WidsprofileState:
                  eapol_succ_flood: Optional[pulumi.Input[str]] = None,
                  eapol_succ_intv: Optional[pulumi.Input[int]] = None,
                  eapol_succ_thresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  invalid_mac_oui: Optional[pulumi.Input[str]] = None,
                  long_duration_attack: Optional[pulumi.Input[str]] = None,
                  long_duration_thresh: Optional[pulumi.Input[int]] = None,
@@ -939,6 +994,8 @@ class _WidsprofileState:
         :param pulumi.Input[int] ap_bgscan_report_intv: Period of time between background scan reports (15 - 600 sec, default = 30).
         :param pulumi.Input[int] ap_fgscan_report_intv: Period of time between foreground scan reports (15 - 600 sec, default = 15).
         :param pulumi.Input[str] ap_scan: Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
+        :param pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList2g5gArgs']]] ap_scan_channel_list2g5gs: Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList6gArgs']]] ap_scan_channel_list6gs: Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
         :param pulumi.Input[str] ap_scan_passive: Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_scan_threshold: Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
         :param pulumi.Input[str] asleap_attack: Enable/disable asleap attack detection (default = disable). Valid values: `enable`, `disable`.
@@ -970,6 +1027,7 @@ class _WidsprofileState:
         :param pulumi.Input[str] eapol_succ_flood: Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] eapol_succ_intv: The detection interval for EAPOL-Success flooding (1 - 3600 sec).
         :param pulumi.Input[int] eapol_succ_thresh: The threshold value for EAPOL-Success flooding in specified interval.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] invalid_mac_oui: Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] long_duration_attack: Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] long_duration_thresh: Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
@@ -978,6 +1036,8 @@ class _WidsprofileState:
         :param pulumi.Input[str] sensor_mode: Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         :param pulumi.Input[str] spoofed_deauth: Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+               
+               The `ap_scan_channel_list_2g_5g` block supports:
         :param pulumi.Input[str] weak_wep_iv: Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wireless_bridge: Enable/disable wireless bridge detection (default = disable). Valid values: `enable`, `disable`.
         """
@@ -1005,6 +1065,10 @@ class _WidsprofileState:
             pulumi.set(__self__, "ap_fgscan_report_intv", ap_fgscan_report_intv)
         if ap_scan is not None:
             pulumi.set(__self__, "ap_scan", ap_scan)
+        if ap_scan_channel_list2g5gs is not None:
+            pulumi.set(__self__, "ap_scan_channel_list2g5gs", ap_scan_channel_list2g5gs)
+        if ap_scan_channel_list6gs is not None:
+            pulumi.set(__self__, "ap_scan_channel_list6gs", ap_scan_channel_list6gs)
         if ap_scan_passive is not None:
             pulumi.set(__self__, "ap_scan_passive", ap_scan_passive)
         if ap_scan_threshold is not None:
@@ -1067,6 +1131,8 @@ class _WidsprofileState:
             pulumi.set(__self__, "eapol_succ_intv", eapol_succ_intv)
         if eapol_succ_thresh is not None:
             pulumi.set(__self__, "eapol_succ_thresh", eapol_succ_thresh)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if invalid_mac_oui is not None:
             pulumi.set(__self__, "invalid_mac_oui", invalid_mac_oui)
         if long_duration_attack is not None:
@@ -1231,6 +1297,30 @@ class _WidsprofileState:
     @ap_scan.setter
     def ap_scan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ap_scan", value)
+
+    @property
+    @pulumi.getter(name="apScanChannelList2g5gs")
+    def ap_scan_channel_list2g5gs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList2g5gArgs']]]]:
+        """
+        Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
+        """
+        return pulumi.get(self, "ap_scan_channel_list2g5gs")
+
+    @ap_scan_channel_list2g5gs.setter
+    def ap_scan_channel_list2g5gs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList2g5gArgs']]]]):
+        pulumi.set(self, "ap_scan_channel_list2g5gs", value)
+
+    @property
+    @pulumi.getter(name="apScanChannelList6gs")
+    def ap_scan_channel_list6gs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList6gArgs']]]]:
+        """
+        Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
+        """
+        return pulumi.get(self, "ap_scan_channel_list6gs")
+
+    @ap_scan_channel_list6gs.setter
+    def ap_scan_channel_list6gs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList6gArgs']]]]):
+        pulumi.set(self, "ap_scan_channel_list6gs", value)
 
     @property
     @pulumi.getter(name="apScanPassive")
@@ -1605,6 +1695,18 @@ class _WidsprofileState:
         pulumi.set(self, "eapol_succ_thresh", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="invalidMacOui")
     def invalid_mac_oui(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1693,6 +1795,8 @@ class _WidsprofileState:
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+
+        The `ap_scan_channel_list_2g_5g` block supports:
         """
         return pulumi.get(self, "vdomparam")
 
@@ -1742,6 +1846,8 @@ class Widsprofile(pulumi.CustomResource):
                  ap_bgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_fgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_scan: Optional[pulumi.Input[str]] = None,
+                 ap_scan_channel_list2g5gs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList2g5gArgs']]]]] = None,
+                 ap_scan_channel_list6gs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList6gArgs']]]]] = None,
                  ap_scan_passive: Optional[pulumi.Input[str]] = None,
                  ap_scan_threshold: Optional[pulumi.Input[str]] = None,
                  asleap_attack: Optional[pulumi.Input[str]] = None,
@@ -1773,6 +1879,7 @@ class Widsprofile(pulumi.CustomResource):
                  eapol_succ_flood: Optional[pulumi.Input[str]] = None,
                  eapol_succ_intv: Optional[pulumi.Input[int]] = None,
                  eapol_succ_thresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  invalid_mac_oui: Optional[pulumi.Input[str]] = None,
                  long_duration_attack: Optional[pulumi.Input[str]] = None,
                  long_duration_thresh: Optional[pulumi.Input[int]] = None,
@@ -1819,6 +1926,8 @@ class Widsprofile(pulumi.CustomResource):
         :param pulumi.Input[int] ap_bgscan_report_intv: Period of time between background scan reports (15 - 600 sec, default = 30).
         :param pulumi.Input[int] ap_fgscan_report_intv: Period of time between foreground scan reports (15 - 600 sec, default = 15).
         :param pulumi.Input[str] ap_scan: Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList2g5gArgs']]]] ap_scan_channel_list2g5gs: Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList6gArgs']]]] ap_scan_channel_list6gs: Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
         :param pulumi.Input[str] ap_scan_passive: Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_scan_threshold: Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
         :param pulumi.Input[str] asleap_attack: Enable/disable asleap attack detection (default = disable). Valid values: `enable`, `disable`.
@@ -1850,6 +1959,7 @@ class Widsprofile(pulumi.CustomResource):
         :param pulumi.Input[str] eapol_succ_flood: Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] eapol_succ_intv: The detection interval for EAPOL-Success flooding (1 - 3600 sec).
         :param pulumi.Input[int] eapol_succ_thresh: The threshold value for EAPOL-Success flooding in specified interval.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] invalid_mac_oui: Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] long_duration_attack: Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] long_duration_thresh: Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
@@ -1858,6 +1968,8 @@ class Widsprofile(pulumi.CustomResource):
         :param pulumi.Input[str] sensor_mode: Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         :param pulumi.Input[str] spoofed_deauth: Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+               
+               The `ap_scan_channel_list_2g_5g` block supports:
         :param pulumi.Input[str] weak_wep_iv: Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wireless_bridge: Enable/disable wireless bridge detection (default = disable). Valid values: `enable`, `disable`.
         """
@@ -1915,6 +2027,8 @@ class Widsprofile(pulumi.CustomResource):
                  ap_bgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_fgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_scan: Optional[pulumi.Input[str]] = None,
+                 ap_scan_channel_list2g5gs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList2g5gArgs']]]]] = None,
+                 ap_scan_channel_list6gs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList6gArgs']]]]] = None,
                  ap_scan_passive: Optional[pulumi.Input[str]] = None,
                  ap_scan_threshold: Optional[pulumi.Input[str]] = None,
                  asleap_attack: Optional[pulumi.Input[str]] = None,
@@ -1946,6 +2060,7 @@ class Widsprofile(pulumi.CustomResource):
                  eapol_succ_flood: Optional[pulumi.Input[str]] = None,
                  eapol_succ_intv: Optional[pulumi.Input[int]] = None,
                  eapol_succ_thresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  invalid_mac_oui: Optional[pulumi.Input[str]] = None,
                  long_duration_attack: Optional[pulumi.Input[str]] = None,
                  long_duration_thresh: Optional[pulumi.Input[int]] = None,
@@ -1977,6 +2092,8 @@ class Widsprofile(pulumi.CustomResource):
             __props__.__dict__["ap_bgscan_report_intv"] = ap_bgscan_report_intv
             __props__.__dict__["ap_fgscan_report_intv"] = ap_fgscan_report_intv
             __props__.__dict__["ap_scan"] = ap_scan
+            __props__.__dict__["ap_scan_channel_list2g5gs"] = ap_scan_channel_list2g5gs
+            __props__.__dict__["ap_scan_channel_list6gs"] = ap_scan_channel_list6gs
             __props__.__dict__["ap_scan_passive"] = ap_scan_passive
             __props__.__dict__["ap_scan_threshold"] = ap_scan_threshold
             __props__.__dict__["asleap_attack"] = asleap_attack
@@ -2008,6 +2125,7 @@ class Widsprofile(pulumi.CustomResource):
             __props__.__dict__["eapol_succ_flood"] = eapol_succ_flood
             __props__.__dict__["eapol_succ_intv"] = eapol_succ_intv
             __props__.__dict__["eapol_succ_thresh"] = eapol_succ_thresh
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["invalid_mac_oui"] = invalid_mac_oui
             __props__.__dict__["long_duration_attack"] = long_duration_attack
             __props__.__dict__["long_duration_thresh"] = long_duration_thresh
@@ -2040,6 +2158,8 @@ class Widsprofile(pulumi.CustomResource):
             ap_bgscan_report_intv: Optional[pulumi.Input[int]] = None,
             ap_fgscan_report_intv: Optional[pulumi.Input[int]] = None,
             ap_scan: Optional[pulumi.Input[str]] = None,
+            ap_scan_channel_list2g5gs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList2g5gArgs']]]]] = None,
+            ap_scan_channel_list6gs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList6gArgs']]]]] = None,
             ap_scan_passive: Optional[pulumi.Input[str]] = None,
             ap_scan_threshold: Optional[pulumi.Input[str]] = None,
             asleap_attack: Optional[pulumi.Input[str]] = None,
@@ -2071,6 +2191,7 @@ class Widsprofile(pulumi.CustomResource):
             eapol_succ_flood: Optional[pulumi.Input[str]] = None,
             eapol_succ_intv: Optional[pulumi.Input[int]] = None,
             eapol_succ_thresh: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             invalid_mac_oui: Optional[pulumi.Input[str]] = None,
             long_duration_attack: Optional[pulumi.Input[str]] = None,
             long_duration_thresh: Optional[pulumi.Input[int]] = None,
@@ -2100,6 +2221,8 @@ class Widsprofile(pulumi.CustomResource):
         :param pulumi.Input[int] ap_bgscan_report_intv: Period of time between background scan reports (15 - 600 sec, default = 30).
         :param pulumi.Input[int] ap_fgscan_report_intv: Period of time between foreground scan reports (15 - 600 sec, default = 15).
         :param pulumi.Input[str] ap_scan: Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList2g5gArgs']]]] ap_scan_channel_list2g5gs: Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList6gArgs']]]] ap_scan_channel_list6gs: Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
         :param pulumi.Input[str] ap_scan_passive: Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_scan_threshold: Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).
         :param pulumi.Input[str] asleap_attack: Enable/disable asleap attack detection (default = disable). Valid values: `enable`, `disable`.
@@ -2131,6 +2254,7 @@ class Widsprofile(pulumi.CustomResource):
         :param pulumi.Input[str] eapol_succ_flood: Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] eapol_succ_intv: The detection interval for EAPOL-Success flooding (1 - 3600 sec).
         :param pulumi.Input[int] eapol_succ_thresh: The threshold value for EAPOL-Success flooding in specified interval.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] invalid_mac_oui: Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] long_duration_attack: Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] long_duration_thresh: Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
@@ -2139,6 +2263,8 @@ class Widsprofile(pulumi.CustomResource):
         :param pulumi.Input[str] sensor_mode: Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         :param pulumi.Input[str] spoofed_deauth: Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+               
+               The `ap_scan_channel_list_2g_5g` block supports:
         :param pulumi.Input[str] weak_wep_iv: Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wireless_bridge: Enable/disable wireless bridge detection (default = disable). Valid values: `enable`, `disable`.
         """
@@ -2158,6 +2284,8 @@ class Widsprofile(pulumi.CustomResource):
         __props__.__dict__["ap_bgscan_report_intv"] = ap_bgscan_report_intv
         __props__.__dict__["ap_fgscan_report_intv"] = ap_fgscan_report_intv
         __props__.__dict__["ap_scan"] = ap_scan
+        __props__.__dict__["ap_scan_channel_list2g5gs"] = ap_scan_channel_list2g5gs
+        __props__.__dict__["ap_scan_channel_list6gs"] = ap_scan_channel_list6gs
         __props__.__dict__["ap_scan_passive"] = ap_scan_passive
         __props__.__dict__["ap_scan_threshold"] = ap_scan_threshold
         __props__.__dict__["asleap_attack"] = asleap_attack
@@ -2189,6 +2317,7 @@ class Widsprofile(pulumi.CustomResource):
         __props__.__dict__["eapol_succ_flood"] = eapol_succ_flood
         __props__.__dict__["eapol_succ_intv"] = eapol_succ_intv
         __props__.__dict__["eapol_succ_thresh"] = eapol_succ_thresh
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["invalid_mac_oui"] = invalid_mac_oui
         __props__.__dict__["long_duration_attack"] = long_duration_attack
         __props__.__dict__["long_duration_thresh"] = long_duration_thresh
@@ -2296,6 +2425,22 @@ class Widsprofile(pulumi.CustomResource):
         Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "ap_scan")
+
+    @property
+    @pulumi.getter(name="apScanChannelList2g5gs")
+    def ap_scan_channel_list2g5gs(self) -> pulumi.Output[Optional[Sequence['outputs.WidsprofileApScanChannelList2g5g']]]:
+        """
+        Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
+        """
+        return pulumi.get(self, "ap_scan_channel_list2g5gs")
+
+    @property
+    @pulumi.getter(name="apScanChannelList6gs")
+    def ap_scan_channel_list6gs(self) -> pulumi.Output[Optional[Sequence['outputs.WidsprofileApScanChannelList6g']]]:
+        """
+        Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
+        """
+        return pulumi.get(self, "ap_scan_channel_list6gs")
 
     @property
     @pulumi.getter(name="apScanPassive")
@@ -2546,6 +2691,14 @@ class Widsprofile(pulumi.CustomResource):
         return pulumi.get(self, "eapol_succ_thresh")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="invalidMacOui")
     def invalid_mac_oui(self) -> pulumi.Output[str]:
         """
@@ -2606,6 +2759,8 @@ class Widsprofile(pulumi.CustomResource):
     def vdomparam(self) -> pulumi.Output[Optional[str]]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+
+        The `ap_scan_channel_list_2g_5g` block supports:
         """
         return pulumi.get(self, "vdomparam")
 

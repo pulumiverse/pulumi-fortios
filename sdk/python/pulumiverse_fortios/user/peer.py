@@ -22,6 +22,10 @@ class PeerArgs:
                  ldap_server: Optional[pulumi.Input[str]] = None,
                  ldap_username: Optional[pulumi.Input[str]] = None,
                  mandatory_ca_verify: Optional[pulumi.Input[str]] = None,
+                 mfa_mode: Optional[pulumi.Input[str]] = None,
+                 mfa_password: Optional[pulumi.Input[str]] = None,
+                 mfa_server: Optional[pulumi.Input[str]] = None,
+                 mfa_username: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  ocsp_override_server: Optional[pulumi.Input[str]] = None,
                  passwd: Optional[pulumi.Input[str]] = None,
@@ -38,6 +42,10 @@ class PeerArgs:
         :param pulumi.Input[str] ldap_server: Name of an LDAP server defined under the user ldap command. Performs client access rights check.
         :param pulumi.Input[str] ldap_username: Username for LDAP server bind.
         :param pulumi.Input[str] mandatory_ca_verify: Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] mfa_mode: MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+        :param pulumi.Input[str] mfa_password: Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+        :param pulumi.Input[str] mfa_server: Name of a remote authenticator. Performs client access right check.
+        :param pulumi.Input[str] mfa_username: Unified username for remote authentication.
         :param pulumi.Input[str] name: Peer name.
         :param pulumi.Input[str] ocsp_override_server: Online Certificate Status Protocol (OCSP) server for certificate retrieval.
         :param pulumi.Input[str] passwd: Peer's password used for two-factor authentication.
@@ -61,6 +69,14 @@ class PeerArgs:
             pulumi.set(__self__, "ldap_username", ldap_username)
         if mandatory_ca_verify is not None:
             pulumi.set(__self__, "mandatory_ca_verify", mandatory_ca_verify)
+        if mfa_mode is not None:
+            pulumi.set(__self__, "mfa_mode", mfa_mode)
+        if mfa_password is not None:
+            pulumi.set(__self__, "mfa_password", mfa_password)
+        if mfa_server is not None:
+            pulumi.set(__self__, "mfa_server", mfa_server)
+        if mfa_username is not None:
+            pulumi.set(__self__, "mfa_username", mfa_username)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if ocsp_override_server is not None:
@@ -169,6 +185,54 @@ class PeerArgs:
     @mandatory_ca_verify.setter
     def mandatory_ca_verify(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mandatory_ca_verify", value)
+
+    @property
+    @pulumi.getter(name="mfaMode")
+    def mfa_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+        """
+        return pulumi.get(self, "mfa_mode")
+
+    @mfa_mode.setter
+    def mfa_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mfa_mode", value)
+
+    @property
+    @pulumi.getter(name="mfaPassword")
+    def mfa_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+        """
+        return pulumi.get(self, "mfa_password")
+
+    @mfa_password.setter
+    def mfa_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mfa_password", value)
+
+    @property
+    @pulumi.getter(name="mfaServer")
+    def mfa_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of a remote authenticator. Performs client access right check.
+        """
+        return pulumi.get(self, "mfa_server")
+
+    @mfa_server.setter
+    def mfa_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mfa_server", value)
+
+    @property
+    @pulumi.getter(name="mfaUsername")
+    def mfa_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unified username for remote authentication.
+        """
+        return pulumi.get(self, "mfa_username")
+
+    @mfa_username.setter
+    def mfa_username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mfa_username", value)
 
     @property
     @pulumi.getter
@@ -254,6 +318,10 @@ class _PeerState:
                  ldap_server: Optional[pulumi.Input[str]] = None,
                  ldap_username: Optional[pulumi.Input[str]] = None,
                  mandatory_ca_verify: Optional[pulumi.Input[str]] = None,
+                 mfa_mode: Optional[pulumi.Input[str]] = None,
+                 mfa_password: Optional[pulumi.Input[str]] = None,
+                 mfa_server: Optional[pulumi.Input[str]] = None,
+                 mfa_username: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  ocsp_override_server: Optional[pulumi.Input[str]] = None,
                  passwd: Optional[pulumi.Input[str]] = None,
@@ -270,6 +338,10 @@ class _PeerState:
         :param pulumi.Input[str] ldap_server: Name of an LDAP server defined under the user ldap command. Performs client access rights check.
         :param pulumi.Input[str] ldap_username: Username for LDAP server bind.
         :param pulumi.Input[str] mandatory_ca_verify: Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] mfa_mode: MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+        :param pulumi.Input[str] mfa_password: Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+        :param pulumi.Input[str] mfa_server: Name of a remote authenticator. Performs client access right check.
+        :param pulumi.Input[str] mfa_username: Unified username for remote authentication.
         :param pulumi.Input[str] name: Peer name.
         :param pulumi.Input[str] ocsp_override_server: Online Certificate Status Protocol (OCSP) server for certificate retrieval.
         :param pulumi.Input[str] passwd: Peer's password used for two-factor authentication.
@@ -293,6 +365,14 @@ class _PeerState:
             pulumi.set(__self__, "ldap_username", ldap_username)
         if mandatory_ca_verify is not None:
             pulumi.set(__self__, "mandatory_ca_verify", mandatory_ca_verify)
+        if mfa_mode is not None:
+            pulumi.set(__self__, "mfa_mode", mfa_mode)
+        if mfa_password is not None:
+            pulumi.set(__self__, "mfa_password", mfa_password)
+        if mfa_server is not None:
+            pulumi.set(__self__, "mfa_server", mfa_server)
+        if mfa_username is not None:
+            pulumi.set(__self__, "mfa_username", mfa_username)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if ocsp_override_server is not None:
@@ -401,6 +481,54 @@ class _PeerState:
     @mandatory_ca_verify.setter
     def mandatory_ca_verify(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mandatory_ca_verify", value)
+
+    @property
+    @pulumi.getter(name="mfaMode")
+    def mfa_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+        """
+        return pulumi.get(self, "mfa_mode")
+
+    @mfa_mode.setter
+    def mfa_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mfa_mode", value)
+
+    @property
+    @pulumi.getter(name="mfaPassword")
+    def mfa_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+        """
+        return pulumi.get(self, "mfa_password")
+
+    @mfa_password.setter
+    def mfa_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mfa_password", value)
+
+    @property
+    @pulumi.getter(name="mfaServer")
+    def mfa_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of a remote authenticator. Performs client access right check.
+        """
+        return pulumi.get(self, "mfa_server")
+
+    @mfa_server.setter
+    def mfa_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mfa_server", value)
+
+    @property
+    @pulumi.getter(name="mfaUsername")
+    def mfa_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unified username for remote authentication.
+        """
+        return pulumi.get(self, "mfa_username")
+
+    @mfa_username.setter
+    def mfa_username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mfa_username", value)
 
     @property
     @pulumi.getter
@@ -488,6 +616,10 @@ class Peer(pulumi.CustomResource):
                  ldap_server: Optional[pulumi.Input[str]] = None,
                  ldap_username: Optional[pulumi.Input[str]] = None,
                  mandatory_ca_verify: Optional[pulumi.Input[str]] = None,
+                 mfa_mode: Optional[pulumi.Input[str]] = None,
+                 mfa_password: Optional[pulumi.Input[str]] = None,
+                 mfa_server: Optional[pulumi.Input[str]] = None,
+                 mfa_username: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  ocsp_override_server: Optional[pulumi.Input[str]] = None,
                  passwd: Optional[pulumi.Input[str]] = None,
@@ -542,6 +674,10 @@ class Peer(pulumi.CustomResource):
         :param pulumi.Input[str] ldap_server: Name of an LDAP server defined under the user ldap command. Performs client access rights check.
         :param pulumi.Input[str] ldap_username: Username for LDAP server bind.
         :param pulumi.Input[str] mandatory_ca_verify: Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] mfa_mode: MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+        :param pulumi.Input[str] mfa_password: Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+        :param pulumi.Input[str] mfa_server: Name of a remote authenticator. Performs client access right check.
+        :param pulumi.Input[str] mfa_username: Unified username for remote authentication.
         :param pulumi.Input[str] name: Peer name.
         :param pulumi.Input[str] ocsp_override_server: Online Certificate Status Protocol (OCSP) server for certificate retrieval.
         :param pulumi.Input[str] passwd: Peer's password used for two-factor authentication.
@@ -615,6 +751,10 @@ class Peer(pulumi.CustomResource):
                  ldap_server: Optional[pulumi.Input[str]] = None,
                  ldap_username: Optional[pulumi.Input[str]] = None,
                  mandatory_ca_verify: Optional[pulumi.Input[str]] = None,
+                 mfa_mode: Optional[pulumi.Input[str]] = None,
+                 mfa_password: Optional[pulumi.Input[str]] = None,
+                 mfa_server: Optional[pulumi.Input[str]] = None,
+                 mfa_username: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  ocsp_override_server: Optional[pulumi.Input[str]] = None,
                  passwd: Optional[pulumi.Input[str]] = None,
@@ -638,6 +778,10 @@ class Peer(pulumi.CustomResource):
             __props__.__dict__["ldap_server"] = ldap_server
             __props__.__dict__["ldap_username"] = ldap_username
             __props__.__dict__["mandatory_ca_verify"] = mandatory_ca_verify
+            __props__.__dict__["mfa_mode"] = mfa_mode
+            __props__.__dict__["mfa_password"] = mfa_password
+            __props__.__dict__["mfa_server"] = mfa_server
+            __props__.__dict__["mfa_username"] = mfa_username
             __props__.__dict__["name"] = name
             __props__.__dict__["ocsp_override_server"] = ocsp_override_server
             __props__.__dict__["passwd"] = None if passwd is None else pulumi.Output.secret(passwd)
@@ -664,6 +808,10 @@ class Peer(pulumi.CustomResource):
             ldap_server: Optional[pulumi.Input[str]] = None,
             ldap_username: Optional[pulumi.Input[str]] = None,
             mandatory_ca_verify: Optional[pulumi.Input[str]] = None,
+            mfa_mode: Optional[pulumi.Input[str]] = None,
+            mfa_password: Optional[pulumi.Input[str]] = None,
+            mfa_server: Optional[pulumi.Input[str]] = None,
+            mfa_username: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             ocsp_override_server: Optional[pulumi.Input[str]] = None,
             passwd: Optional[pulumi.Input[str]] = None,
@@ -685,6 +833,10 @@ class Peer(pulumi.CustomResource):
         :param pulumi.Input[str] ldap_server: Name of an LDAP server defined under the user ldap command. Performs client access rights check.
         :param pulumi.Input[str] ldap_username: Username for LDAP server bind.
         :param pulumi.Input[str] mandatory_ca_verify: Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] mfa_mode: MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+        :param pulumi.Input[str] mfa_password: Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+        :param pulumi.Input[str] mfa_server: Name of a remote authenticator. Performs client access right check.
+        :param pulumi.Input[str] mfa_username: Unified username for remote authentication.
         :param pulumi.Input[str] name: Peer name.
         :param pulumi.Input[str] ocsp_override_server: Online Certificate Status Protocol (OCSP) server for certificate retrieval.
         :param pulumi.Input[str] passwd: Peer's password used for two-factor authentication.
@@ -704,6 +856,10 @@ class Peer(pulumi.CustomResource):
         __props__.__dict__["ldap_server"] = ldap_server
         __props__.__dict__["ldap_username"] = ldap_username
         __props__.__dict__["mandatory_ca_verify"] = mandatory_ca_verify
+        __props__.__dict__["mfa_mode"] = mfa_mode
+        __props__.__dict__["mfa_password"] = mfa_password
+        __props__.__dict__["mfa_server"] = mfa_server
+        __props__.__dict__["mfa_username"] = mfa_username
         __props__.__dict__["name"] = name
         __props__.__dict__["ocsp_override_server"] = ocsp_override_server
         __props__.__dict__["passwd"] = passwd
@@ -775,6 +931,38 @@ class Peer(pulumi.CustomResource):
         Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "mandatory_ca_verify")
+
+    @property
+    @pulumi.getter(name="mfaMode")
+    def mfa_mode(self) -> pulumi.Output[str]:
+        """
+        MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+        """
+        return pulumi.get(self, "mfa_mode")
+
+    @property
+    @pulumi.getter(name="mfaPassword")
+    def mfa_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+        """
+        return pulumi.get(self, "mfa_password")
+
+    @property
+    @pulumi.getter(name="mfaServer")
+    def mfa_server(self) -> pulumi.Output[str]:
+        """
+        Name of a remote authenticator. Performs client access right check.
+        """
+        return pulumi.get(self, "mfa_server")
+
+    @property
+    @pulumi.getter(name="mfaUsername")
+    def mfa_username(self) -> pulumi.Output[str]:
+        """
+        Unified username for remote authentication.
+        """
+        return pulumi.get(self, "mfa_username")
 
     @property
     @pulumi.getter

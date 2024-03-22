@@ -96,13 +96,17 @@ type Static struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Gateway IP for this route.
 	Gateway pulumi.StringOutput `pulumi:"gateway"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Application ID in the Internet service database.
 	InternetService pulumi.IntOutput `pulumi:"internetService"`
 	// Application name in the Internet service custom database.
 	InternetServiceCustom pulumi.StringOutput `pulumi:"internetServiceCustom"`
 	// Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt pulumi.StringOutput `pulumi:"linkMonitorExempt"`
-	// Administrative priority (0 - 4294967295).
+	// Preferred source IP for this route.
+	PreferredSource pulumi.StringOutput `pulumi:"preferredSource"`
+	// Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority pulumi.IntOutput `pulumi:"priority"`
 	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringOutput `pulumi:"sdwan"`
@@ -114,6 +118,8 @@ type Static struct {
 	Src pulumi.StringOutput `pulumi:"src"`
 	// Enable/disable this static route. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Route tag.
+	Tag pulumi.IntOutput `pulumi:"tag"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
@@ -174,13 +180,17 @@ type staticState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Gateway IP for this route.
 	Gateway *string `pulumi:"gateway"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Application ID in the Internet service database.
 	InternetService *int `pulumi:"internetService"`
 	// Application name in the Internet service custom database.
 	InternetServiceCustom *string `pulumi:"internetServiceCustom"`
 	// Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt *string `pulumi:"linkMonitorExempt"`
-	// Administrative priority (0 - 4294967295).
+	// Preferred source IP for this route.
+	PreferredSource *string `pulumi:"preferredSource"`
+	// Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority *int `pulumi:"priority"`
 	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan *string `pulumi:"sdwan"`
@@ -192,6 +202,8 @@ type staticState struct {
 	Src *string `pulumi:"src"`
 	// Enable/disable this static route. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
+	// Route tag.
+	Tag *int `pulumi:"tag"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
@@ -223,13 +235,17 @@ type StaticState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Gateway IP for this route.
 	Gateway pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Application ID in the Internet service database.
 	InternetService pulumi.IntPtrInput
 	// Application name in the Internet service custom database.
 	InternetServiceCustom pulumi.StringPtrInput
 	// Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt pulumi.StringPtrInput
-	// Administrative priority (0 - 4294967295).
+	// Preferred source IP for this route.
+	PreferredSource pulumi.StringPtrInput
+	// Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority pulumi.IntPtrInput
 	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringPtrInput
@@ -241,6 +257,8 @@ type StaticState struct {
 	Src pulumi.StringPtrInput
 	// Enable/disable this static route. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
+	// Route tag.
+	Tag pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
@@ -276,13 +294,17 @@ type staticArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Gateway IP for this route.
 	Gateway *string `pulumi:"gateway"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Application ID in the Internet service database.
 	InternetService *int `pulumi:"internetService"`
 	// Application name in the Internet service custom database.
 	InternetServiceCustom *string `pulumi:"internetServiceCustom"`
 	// Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt *string `pulumi:"linkMonitorExempt"`
-	// Administrative priority (0 - 4294967295).
+	// Preferred source IP for this route.
+	PreferredSource *string `pulumi:"preferredSource"`
+	// Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority *int `pulumi:"priority"`
 	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan *string `pulumi:"sdwan"`
@@ -294,6 +316,8 @@ type staticArgs struct {
 	Src *string `pulumi:"src"`
 	// Enable/disable this static route. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
+	// Route tag.
+	Tag *int `pulumi:"tag"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
@@ -326,13 +350,17 @@ type StaticArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Gateway IP for this route.
 	Gateway pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Application ID in the Internet service database.
 	InternetService pulumi.IntPtrInput
 	// Application name in the Internet service custom database.
 	InternetServiceCustom pulumi.StringPtrInput
 	// Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt pulumi.StringPtrInput
-	// Administrative priority (0 - 4294967295).
+	// Preferred source IP for this route.
+	PreferredSource pulumi.StringPtrInput
+	// Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority pulumi.IntPtrInput
 	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringPtrInput
@@ -344,6 +372,8 @@ type StaticArgs struct {
 	Src pulumi.StringPtrInput
 	// Enable/disable this static route. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
+	// Route tag.
+	Tag pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
@@ -491,6 +521,11 @@ func (o StaticOutput) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *Static) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o StaticOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Static) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Application ID in the Internet service database.
 func (o StaticOutput) InternetService() pulumi.IntOutput {
 	return o.ApplyT(func(v *Static) pulumi.IntOutput { return v.InternetService }).(pulumi.IntOutput)
@@ -506,7 +541,12 @@ func (o StaticOutput) LinkMonitorExempt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Static) pulumi.StringOutput { return v.LinkMonitorExempt }).(pulumi.StringOutput)
 }
 
-// Administrative priority (0 - 4294967295).
+// Preferred source IP for this route.
+func (o StaticOutput) PreferredSource() pulumi.StringOutput {
+	return o.ApplyT(func(v *Static) pulumi.StringOutput { return v.PreferredSource }).(pulumi.StringOutput)
+}
+
+// Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
 func (o StaticOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v *Static) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
 }
@@ -534,6 +574,11 @@ func (o StaticOutput) Src() pulumi.StringOutput {
 // Enable/disable this static route. Valid values: `enable`, `disable`.
 func (o StaticOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Static) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Route tag.
+func (o StaticOutput) Tag() pulumi.IntOutput {
+	return o.ApplyT(func(v *Static) pulumi.IntOutput { return v.Tag }).(pulumi.IntOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

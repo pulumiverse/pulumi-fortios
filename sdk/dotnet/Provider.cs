@@ -80,6 +80,12 @@ namespace Pulumiverse.Fortios
         public Output<string?> HttpProxy { get; private set; } = null!;
 
         /// <summary>
+        /// The password of the user.
+        /// </summary>
+        [Output("password")]
+        public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable peer authentication, can be 'enable' or 'disable'
         /// </summary>
         [Output("peerauth")]
@@ -87,6 +93,12 @@ namespace Pulumiverse.Fortios
 
         [Output("token")]
         public Output<string?> Token { get; private set; } = null!;
+
+        /// <summary>
+        /// The username of the user.
+        /// </summary>
+        [Output("username")]
+        public Output<string?> Username { get; private set; } = null!;
 
         [Output("vdom")]
         public Output<string?> Vdom { get; private set; } = null!;
@@ -212,6 +224,12 @@ namespace Pulumiverse.Fortios
         public Input<bool>? Insecure { get; set; }
 
         /// <summary>
+        /// The password of the user.
+        /// </summary>
+        [Input("password")]
+        public Input<string>? Password { get; set; }
+
+        /// <summary>
         /// Enable/disable peer authentication, can be 'enable' or 'disable'
         /// </summary>
         [Input("peerauth")]
@@ -228,6 +246,12 @@ namespace Pulumiverse.Fortios
                 _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The username of the user.
+        /// </summary>
+        [Input("username")]
+        public Input<string>? Username { get; set; }
 
         [Input("vdom")]
         public Input<string>? Vdom { get; set; }

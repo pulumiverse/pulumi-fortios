@@ -19,6 +19,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? AddrMode;
         /// <summary>
+        /// Set/unset the service as agent use exclusively. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? AgentExclusive;
+        /// <summary>
         /// Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.
         /// </summary>
         public readonly int? BandwidthWeight;
@@ -58,6 +62,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// End destination port number.
         /// </summary>
         public readonly int? EndPort;
+        /// <summary>
+        /// End source port number.
+        /// </summary>
+        public readonly int? EndSrcPort;
         /// <summary>
         /// Enable/disable SD-WAN service gateway. Valid values: `enable`, `disable`.
         /// </summary>
@@ -143,11 +151,15 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly int? LinkCostThreshold;
         /// <summary>
+        /// Enable/disable load-balance. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? LoadBalance;
+        /// <summary>
         /// Minimum number of members which meet SLA.
         /// </summary>
         public readonly int? MinimumSlaMeetMembers;
         /// <summary>
-        /// Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
+        /// Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN.
         /// </summary>
         public readonly string? Mode;
         /// <summary>
@@ -187,9 +199,25 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly int? RouteTag;
         /// <summary>
+        /// Enable/disable shortcut for this service. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? Shortcut;
+        /// <summary>
+        /// High priority of ADVPN shortcut for this service. Valid values: `enable`, `disable`, `auto`.
+        /// </summary>
+        public readonly string? ShortcutPriority;
+        /// <summary>
+        /// Enable/disable shortcut-stickiness of ADVPN. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? ShortcutStickiness;
+        /// <summary>
         /// Method to compare SLA value for SLA mode. Valid values: `order`, `number`.
         /// </summary>
         public readonly string? SlaCompareMethod;
+        /// <summary>
+        /// Enable/disable SLA stickiness (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? SlaStickiness;
         /// <summary>
         /// Service level agreement (SLA). The structure of `sla` block is documented below.
         /// </summary>
@@ -215,6 +243,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly int? StartPort;
         /// <summary>
+        /// Start source port number.
+        /// </summary>
+        public readonly int? StartSrcPort;
+        /// <summary>
         /// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
         /// </summary>
         public readonly string? Status;
@@ -238,10 +270,16 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// User name. The structure of `users` block is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.SdwanServiceUser> Users;
+        /// <summary>
+        /// Enable/disable zone mode. Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? ZoneMode;
 
         [OutputConstructor]
         private SdwanService(
             string? addrMode,
+
+            string? agentExclusive,
 
             int? bandwidthWeight,
 
@@ -262,6 +300,8 @@ namespace Pulumiverse.Fortios.System.Outputs
             ImmutableArray<Outputs.SdwanServiceDst> dsts,
 
             int? endPort,
+
+            int? endSrcPort,
 
             string? gateway,
 
@@ -305,6 +345,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             int? linkCostThreshold,
 
+            string? loadBalance,
+
             int? minimumSlaMeetMembers,
 
             string? mode,
@@ -327,7 +369,15 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             int? routeTag,
 
+            string? shortcut,
+
+            string? shortcutPriority,
+
+            string? shortcutStickiness,
+
             string? slaCompareMethod,
+
+            string? slaStickiness,
 
             ImmutableArray<Outputs.SdwanServiceSla> slas,
 
@@ -341,6 +391,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             int? startPort,
 
+            int? startSrcPort,
+
             string? status,
 
             string? tieBreak,
@@ -351,9 +403,12 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             string? useShortcutSla,
 
-            ImmutableArray<Outputs.SdwanServiceUser> users)
+            ImmutableArray<Outputs.SdwanServiceUser> users,
+
+            string? zoneMode)
         {
             AddrMode = addrMode;
+            AgentExclusive = agentExclusive;
             BandwidthWeight = bandwidthWeight;
             Default = @default;
             DscpForward = dscpForward;
@@ -364,6 +419,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             DstNegate = dstNegate;
             Dsts = dsts;
             EndPort = endPort;
+            EndSrcPort = endSrcPort;
             Gateway = gateway;
             Groups = groups;
             HashMode = hashMode;
@@ -385,6 +441,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             LatencyWeight = latencyWeight;
             LinkCostFactor = linkCostFactor;
             LinkCostThreshold = linkCostThreshold;
+            LoadBalance = loadBalance;
             MinimumSlaMeetMembers = minimumSlaMeetMembers;
             Mode = mode;
             Name = name;
@@ -396,19 +453,25 @@ namespace Pulumiverse.Fortios.System.Outputs
             QualityLink = qualityLink;
             Role = role;
             RouteTag = routeTag;
+            Shortcut = shortcut;
+            ShortcutPriority = shortcutPriority;
+            ShortcutStickiness = shortcutStickiness;
             SlaCompareMethod = slaCompareMethod;
+            SlaStickiness = slaStickiness;
             Slas = slas;
             Src6s = src6s;
             SrcNegate = srcNegate;
             Srcs = srcs;
             StandaloneAction = standaloneAction;
             StartPort = startPort;
+            StartSrcPort = startSrcPort;
             Status = status;
             TieBreak = tieBreak;
             Tos = tos;
             TosMask = tosMask;
             UseShortcutSla = useShortcutSla;
             Users = users;
+            ZoneMode = zoneMode;
         }
     }
 }

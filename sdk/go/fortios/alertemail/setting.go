@@ -92,7 +92,7 @@ type Setting struct {
 	EmergencyInterval pulumi.IntOutput `pulumi:"emergencyInterval"`
 	// Error alert interval in minutes.
 	ErrorInterval pulumi.IntOutput `pulumi:"errorInterval"`
-	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
 	FdsLicenseExpiringDays pulumi.IntOutput `pulumi:"fdsLicenseExpiringDays"`
 	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning pulumi.StringOutput `pulumi:"fdsLicenseExpiringWarning"`
@@ -120,11 +120,11 @@ type Setting struct {
 	LocalDiskUsage pulumi.IntOutput `pulumi:"localDiskUsage"`
 	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
 	LogDiskUsageWarning pulumi.StringOutput `pulumi:"logDiskUsageWarning"`
-	// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+	// Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto1 pulumi.StringOutput `pulumi:"mailto1"`
-	// Optional second email address to send alert email to (max. 64 characters).
+	// Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto2 pulumi.StringOutput `pulumi:"mailto2"`
-	// Optional third email address to send alert email to (max. 64 characters).
+	// Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto3 pulumi.StringOutput `pulumi:"mailto3"`
 	// Notification alert interval in minutes.
 	NotificationInterval pulumi.IntOutput `pulumi:"notificationInterval"`
@@ -136,7 +136,7 @@ type Setting struct {
 	SshLogs pulumi.StringOutput `pulumi:"sshLogs"`
 	// Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
 	SslvpnAuthenticationErrorsLogs pulumi.StringOutput `pulumi:"sslvpnAuthenticationErrorsLogs"`
-	// Name that appears in the From: field of alert emails (max. 36 characters).
+	// Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Username pulumi.StringOutput `pulumi:"username"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
@@ -198,7 +198,7 @@ type settingState struct {
 	EmergencyInterval *int `pulumi:"emergencyInterval"`
 	// Error alert interval in minutes.
 	ErrorInterval *int `pulumi:"errorInterval"`
-	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
 	FdsLicenseExpiringDays *int `pulumi:"fdsLicenseExpiringDays"`
 	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning *string `pulumi:"fdsLicenseExpiringWarning"`
@@ -226,11 +226,11 @@ type settingState struct {
 	LocalDiskUsage *int `pulumi:"localDiskUsage"`
 	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
 	LogDiskUsageWarning *string `pulumi:"logDiskUsageWarning"`
-	// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+	// Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto1 *string `pulumi:"mailto1"`
-	// Optional second email address to send alert email to (max. 64 characters).
+	// Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto2 *string `pulumi:"mailto2"`
-	// Optional third email address to send alert email to (max. 64 characters).
+	// Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto3 *string `pulumi:"mailto3"`
 	// Notification alert interval in minutes.
 	NotificationInterval *int `pulumi:"notificationInterval"`
@@ -242,7 +242,7 @@ type settingState struct {
 	SshLogs *string `pulumi:"sshLogs"`
 	// Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
 	SslvpnAuthenticationErrorsLogs *string `pulumi:"sslvpnAuthenticationErrorsLogs"`
-	// Name that appears in the From: field of alert emails (max. 36 characters).
+	// Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Username *string `pulumi:"username"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -275,7 +275,7 @@ type SettingState struct {
 	EmergencyInterval pulumi.IntPtrInput
 	// Error alert interval in minutes.
 	ErrorInterval pulumi.IntPtrInput
-	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
 	FdsLicenseExpiringDays pulumi.IntPtrInput
 	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning pulumi.StringPtrInput
@@ -303,11 +303,11 @@ type SettingState struct {
 	LocalDiskUsage pulumi.IntPtrInput
 	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
 	LogDiskUsageWarning pulumi.StringPtrInput
-	// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+	// Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto1 pulumi.StringPtrInput
-	// Optional second email address to send alert email to (max. 64 characters).
+	// Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto2 pulumi.StringPtrInput
-	// Optional third email address to send alert email to (max. 64 characters).
+	// Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto3 pulumi.StringPtrInput
 	// Notification alert interval in minutes.
 	NotificationInterval pulumi.IntPtrInput
@@ -319,7 +319,7 @@ type SettingState struct {
 	SshLogs pulumi.StringPtrInput
 	// Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
 	SslvpnAuthenticationErrorsLogs pulumi.StringPtrInput
-	// Name that appears in the From: field of alert emails (max. 36 characters).
+	// Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Username pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -356,7 +356,7 @@ type settingArgs struct {
 	EmergencyInterval *int `pulumi:"emergencyInterval"`
 	// Error alert interval in minutes.
 	ErrorInterval *int `pulumi:"errorInterval"`
-	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
 	FdsLicenseExpiringDays *int `pulumi:"fdsLicenseExpiringDays"`
 	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning *string `pulumi:"fdsLicenseExpiringWarning"`
@@ -384,11 +384,11 @@ type settingArgs struct {
 	LocalDiskUsage *int `pulumi:"localDiskUsage"`
 	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
 	LogDiskUsageWarning *string `pulumi:"logDiskUsageWarning"`
-	// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+	// Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto1 *string `pulumi:"mailto1"`
-	// Optional second email address to send alert email to (max. 64 characters).
+	// Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto2 *string `pulumi:"mailto2"`
-	// Optional third email address to send alert email to (max. 64 characters).
+	// Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto3 *string `pulumi:"mailto3"`
 	// Notification alert interval in minutes.
 	NotificationInterval *int `pulumi:"notificationInterval"`
@@ -400,7 +400,7 @@ type settingArgs struct {
 	SshLogs *string `pulumi:"sshLogs"`
 	// Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
 	SslvpnAuthenticationErrorsLogs *string `pulumi:"sslvpnAuthenticationErrorsLogs"`
-	// Name that appears in the From: field of alert emails (max. 36 characters).
+	// Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Username *string `pulumi:"username"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -434,7 +434,7 @@ type SettingArgs struct {
 	EmergencyInterval pulumi.IntPtrInput
 	// Error alert interval in minutes.
 	ErrorInterval pulumi.IntPtrInput
-	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
 	FdsLicenseExpiringDays pulumi.IntPtrInput
 	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning pulumi.StringPtrInput
@@ -462,11 +462,11 @@ type SettingArgs struct {
 	LocalDiskUsage pulumi.IntPtrInput
 	// Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
 	LogDiskUsageWarning pulumi.StringPtrInput
-	// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+	// Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto1 pulumi.StringPtrInput
-	// Optional second email address to send alert email to (max. 64 characters).
+	// Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto2 pulumi.StringPtrInput
-	// Optional third email address to send alert email to (max. 64 characters).
+	// Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Mailto3 pulumi.StringPtrInput
 	// Notification alert interval in minutes.
 	NotificationInterval pulumi.IntPtrInput
@@ -478,7 +478,7 @@ type SettingArgs struct {
 	SshLogs pulumi.StringPtrInput
 	// Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
 	SslvpnAuthenticationErrorsLogs pulumi.StringPtrInput
-	// Name that appears in the From: field of alert emails (max. 36 characters).
+	// Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Username pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -627,7 +627,7 @@ func (o SettingOutput) ErrorInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Setting) pulumi.IntOutput { return v.ErrorInterval }).(pulumi.IntOutput)
 }
 
-// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
 func (o SettingOutput) FdsLicenseExpiringDays() pulumi.IntOutput {
 	return o.ApplyT(func(v *Setting) pulumi.IntOutput { return v.FdsLicenseExpiringDays }).(pulumi.IntOutput)
 }
@@ -697,17 +697,17 @@ func (o SettingOutput) LogDiskUsageWarning() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.LogDiskUsageWarning }).(pulumi.StringOutput)
 }
 
-// Email address to send alert email to (usually a system administrator) (max. 64 characters).
+// Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 func (o SettingOutput) Mailto1() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Mailto1 }).(pulumi.StringOutput)
 }
 
-// Optional second email address to send alert email to (max. 64 characters).
+// Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 func (o SettingOutput) Mailto2() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Mailto2 }).(pulumi.StringOutput)
 }
 
-// Optional third email address to send alert email to (max. 64 characters).
+// Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 func (o SettingOutput) Mailto3() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Mailto3 }).(pulumi.StringOutput)
 }
@@ -737,7 +737,7 @@ func (o SettingOutput) SslvpnAuthenticationErrorsLogs() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.SslvpnAuthenticationErrorsLogs }).(pulumi.StringOutput)
 }
 
-// Name that appears in the From: field of alert emails (max. 36 characters).
+// Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 func (o SettingOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }

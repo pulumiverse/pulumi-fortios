@@ -17,6 +17,7 @@ class UrlmatchArgs:
                  url_pattern: pulumi.Input[str],
                  cache_exemption: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 fast_fallback: Optional[pulumi.Input[str]] = None,
                  forward_server: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -26,6 +27,7 @@ class UrlmatchArgs:
         :param pulumi.Input[str] url_pattern: URL pattern to be exempted from web proxy forwarding and caching.
         :param pulumi.Input[str] cache_exemption: Enable/disable exempting this URL pattern from caching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] fast_fallback: Fast fallback configuration entry name.
         :param pulumi.Input[str] forward_server: Forward server name.
         :param pulumi.Input[str] name: Configure a name for the URL to be exempted.
         :param pulumi.Input[str] status: Enable/disable exempting the URLs matching the URL pattern from web proxy forwarding and caching. Valid values: `enable`, `disable`.
@@ -36,6 +38,8 @@ class UrlmatchArgs:
             pulumi.set(__self__, "cache_exemption", cache_exemption)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if fast_fallback is not None:
+            pulumi.set(__self__, "fast_fallback", fast_fallback)
         if forward_server is not None:
             pulumi.set(__self__, "forward_server", forward_server)
         if name is not None:
@@ -80,6 +84,18 @@ class UrlmatchArgs:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter(name="fastFallback")
+    def fast_fallback(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fast fallback configuration entry name.
+        """
+        return pulumi.get(self, "fast_fallback")
+
+    @fast_fallback.setter
+    def fast_fallback(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fast_fallback", value)
 
     @property
     @pulumi.getter(name="forwardServer")
@@ -135,6 +151,7 @@ class _UrlmatchState:
     def __init__(__self__, *,
                  cache_exemption: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 fast_fallback: Optional[pulumi.Input[str]] = None,
                  forward_server: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -144,6 +161,7 @@ class _UrlmatchState:
         Input properties used for looking up and filtering Urlmatch resources.
         :param pulumi.Input[str] cache_exemption: Enable/disable exempting this URL pattern from caching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] fast_fallback: Fast fallback configuration entry name.
         :param pulumi.Input[str] forward_server: Forward server name.
         :param pulumi.Input[str] name: Configure a name for the URL to be exempted.
         :param pulumi.Input[str] status: Enable/disable exempting the URLs matching the URL pattern from web proxy forwarding and caching. Valid values: `enable`, `disable`.
@@ -154,6 +172,8 @@ class _UrlmatchState:
             pulumi.set(__self__, "cache_exemption", cache_exemption)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if fast_fallback is not None:
+            pulumi.set(__self__, "fast_fallback", fast_fallback)
         if forward_server is not None:
             pulumi.set(__self__, "forward_server", forward_server)
         if name is not None:
@@ -188,6 +208,18 @@ class _UrlmatchState:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter(name="fastFallback")
+    def fast_fallback(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fast fallback configuration entry name.
+        """
+        return pulumi.get(self, "fast_fallback")
+
+    @fast_fallback.setter
+    def fast_fallback(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fast_fallback", value)
 
     @property
     @pulumi.getter(name="forwardServer")
@@ -257,6 +289,7 @@ class Urlmatch(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cache_exemption: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 fast_fallback: Optional[pulumi.Input[str]] = None,
                  forward_server: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -310,6 +343,7 @@ class Urlmatch(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cache_exemption: Enable/disable exempting this URL pattern from caching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] fast_fallback: Fast fallback configuration entry name.
         :param pulumi.Input[str] forward_server: Forward server name.
         :param pulumi.Input[str] name: Configure a name for the URL to be exempted.
         :param pulumi.Input[str] status: Enable/disable exempting the URLs matching the URL pattern from web proxy forwarding and caching. Valid values: `enable`, `disable`.
@@ -382,6 +416,7 @@ class Urlmatch(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cache_exemption: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 fast_fallback: Optional[pulumi.Input[str]] = None,
                  forward_server: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -398,6 +433,7 @@ class Urlmatch(pulumi.CustomResource):
 
             __props__.__dict__["cache_exemption"] = cache_exemption
             __props__.__dict__["comment"] = comment
+            __props__.__dict__["fast_fallback"] = fast_fallback
             __props__.__dict__["forward_server"] = forward_server
             __props__.__dict__["name"] = name
             __props__.__dict__["status"] = status
@@ -417,6 +453,7 @@ class Urlmatch(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cache_exemption: Optional[pulumi.Input[str]] = None,
             comment: Optional[pulumi.Input[str]] = None,
+            fast_fallback: Optional[pulumi.Input[str]] = None,
             forward_server: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -431,6 +468,7 @@ class Urlmatch(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cache_exemption: Enable/disable exempting this URL pattern from caching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] fast_fallback: Fast fallback configuration entry name.
         :param pulumi.Input[str] forward_server: Forward server name.
         :param pulumi.Input[str] name: Configure a name for the URL to be exempted.
         :param pulumi.Input[str] status: Enable/disable exempting the URLs matching the URL pattern from web proxy forwarding and caching. Valid values: `enable`, `disable`.
@@ -443,6 +481,7 @@ class Urlmatch(pulumi.CustomResource):
 
         __props__.__dict__["cache_exemption"] = cache_exemption
         __props__.__dict__["comment"] = comment
+        __props__.__dict__["fast_fallback"] = fast_fallback
         __props__.__dict__["forward_server"] = forward_server
         __props__.__dict__["name"] = name
         __props__.__dict__["status"] = status
@@ -465,6 +504,14 @@ class Urlmatch(pulumi.CustomResource):
         Comment.
         """
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter(name="fastFallback")
+    def fast_fallback(self) -> pulumi.Output[str]:
+        """
+        Fast fallback configuration entry name.
+        """
+        return pulumi.get(self, "fast_fallback")
 
     @property
     @pulumi.getter(name="forwardServer")

@@ -106,6 +106,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<ImmutableArray<Outputs.CentralsnatmapDstAddr>> DstAddrs { get; private set; } = null!;
 
         /// <summary>
+        /// Destination port or port range (1 to 65535, 0 means any port).
+        /// </summary>
+        [Output("dstPort")]
+        public Output<string> DstPort { get; private set; } = null!;
+
+        /// <summary>
         /// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
         /// </summary>
         [Output("dstintfs")]
@@ -116,6 +122,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("dynamicSortSubtable")]
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable source NAT. Valid values: `disable`, `enable`.
@@ -148,7 +160,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<ImmutableArray<Outputs.CentralsnatmapNatIppool>> NatIppools { get; private set; } = null!;
 
         /// <summary>
-        /// Translated port or port range (0 to 65535).
+        /// Translated port or port range (0 to 65535, 0 means any port).
         /// </summary>
         [Output("natPort")]
         public Output<string> NatPort { get; private set; } = null!;
@@ -166,7 +178,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<ImmutableArray<Outputs.CentralsnatmapOrigAddr>> OrigAddrs { get; private set; } = null!;
 
         /// <summary>
-        /// Original TCP port (0 to 65535).
+        /// Original TCP port (1 to 65535, 0 means any port).
         /// </summary>
         [Output("origPort")]
         public Output<string> OrigPort { get; private set; } = null!;
@@ -290,6 +302,12 @@ namespace Pulumiverse.Fortios.Firewall
             set => _dstAddrs = value;
         }
 
+        /// <summary>
+        /// Destination port or port range (1 to 65535, 0 means any port).
+        /// </summary>
+        [Input("dstPort")]
+        public Input<string>? DstPort { get; set; }
+
         [Input("dstintfs", required: true)]
         private InputList<Inputs.CentralsnatmapDstintfArgs>? _dstintfs;
 
@@ -307,6 +325,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable source NAT. Valid values: `disable`, `enable`.
@@ -351,7 +375,7 @@ namespace Pulumiverse.Fortios.Firewall
         }
 
         /// <summary>
-        /// Translated port or port range (0 to 65535).
+        /// Translated port or port range (0 to 65535, 0 means any port).
         /// </summary>
         [Input("natPort")]
         public Input<string>? NatPort { get; set; }
@@ -381,7 +405,7 @@ namespace Pulumiverse.Fortios.Firewall
         }
 
         /// <summary>
-        /// Original TCP port (0 to 65535).
+        /// Original TCP port (1 to 65535, 0 means any port).
         /// </summary>
         [Input("origPort", required: true)]
         public Input<string> OrigPort { get; set; } = null!;
@@ -472,6 +496,12 @@ namespace Pulumiverse.Fortios.Firewall
             set => _dstAddrs = value;
         }
 
+        /// <summary>
+        /// Destination port or port range (1 to 65535, 0 means any port).
+        /// </summary>
+        [Input("dstPort")]
+        public Input<string>? DstPort { get; set; }
+
         [Input("dstintfs")]
         private InputList<Inputs.CentralsnatmapDstintfGetArgs>? _dstintfs;
 
@@ -489,6 +519,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable source NAT. Valid values: `disable`, `enable`.
@@ -533,7 +569,7 @@ namespace Pulumiverse.Fortios.Firewall
         }
 
         /// <summary>
-        /// Translated port or port range (0 to 65535).
+        /// Translated port or port range (0 to 65535, 0 means any port).
         /// </summary>
         [Input("natPort")]
         public Input<string>? NatPort { get; set; }
@@ -563,7 +599,7 @@ namespace Pulumiverse.Fortios.Firewall
         }
 
         /// <summary>
-        /// Original TCP port (0 to 65535).
+        /// Original TCP port (1 to 65535, 0 means any port).
         /// </summary>
         [Input("origPort")]
         public Input<string>? OrigPort { get; set; }

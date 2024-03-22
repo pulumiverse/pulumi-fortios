@@ -147,6 +147,12 @@ namespace Pulumiverse.Fortios.User
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("reauth")]
+        public Output<string> Reauth { get; private set; } = null!;
+
+        /// <summary>
         /// SP single logout URL.
         /// </summary>
         [Output("singleLogoutUrl")]
@@ -308,6 +314,12 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("reauth")]
+        public Input<string>? Reauth { get; set; }
+
+        /// <summary>
         /// SP single logout URL.
         /// </summary>
         [Input("singleLogoutUrl")]
@@ -428,6 +440,12 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("reauth")]
+        public Input<string>? Reauth { get; set; }
 
         /// <summary>
         /// SP single logout URL.

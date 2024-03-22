@@ -99,6 +99,10 @@ namespace Pulumiverse.Fortios.Voip.Outputs
         /// </summary>
         public readonly string? ByeRateTrack;
         /// <summary>
+        /// Validate PCRE regular expression for Call-Id header value.
+        /// </summary>
+        public readonly string? CallIdRegex;
+        /// <summary>
         /// Continue tracking calls with no RTP for this many minutes.
         /// </summary>
         public readonly int? CallKeepalive;
@@ -114,6 +118,10 @@ namespace Pulumiverse.Fortios.Voip.Outputs
         /// Fixup contact anyway even if contact's IP:port doesn't match session's IP:port. Valid values: `disable`, `enable`.
         /// </summary>
         public readonly string? ContactFixup;
+        /// <summary>
+        /// Validate PCRE regular expression for Content-Type header value.
+        /// </summary>
+        public readonly string? ContentTypeRegex;
         /// <summary>
         /// Enable/disable restrict RTP source IP to be the same as SIP source IP when HNT is enabled. Valid values: `disable`, `enable`.
         /// </summary>
@@ -511,6 +519,8 @@ namespace Pulumiverse.Fortios.Voip.Outputs
 
             string? byeRateTrack,
 
+            string? callIdRegex,
+
             int? callKeepalive,
 
             int? cancelRate,
@@ -518,6 +528,8 @@ namespace Pulumiverse.Fortios.Voip.Outputs
             string? cancelRateTrack,
 
             string? contactFixup,
+
+            string? contentTypeRegex,
 
             string? hntRestrictSourceIp,
 
@@ -716,10 +728,12 @@ namespace Pulumiverse.Fortios.Voip.Outputs
             BlockUpdate = blockUpdate;
             ByeRate = byeRate;
             ByeRateTrack = byeRateTrack;
+            CallIdRegex = callIdRegex;
             CallKeepalive = callKeepalive;
             CancelRate = cancelRate;
             CancelRateTrack = cancelRateTrack;
             ContactFixup = contactFixup;
+            ContentTypeRegex = contentTypeRegex;
             HntRestrictSourceIp = hntRestrictSourceIp;
             HostedNatTraversal = hostedNatTraversal;
             InfoRate = infoRate;

@@ -70,6 +70,10 @@ export class Ca extends pulumi.CustomResource {
      */
     public readonly caIdentifier!: pulumi.Output<string>;
     /**
+     * URL of the EST server.
+     */
+    public readonly estUrl!: pulumi.Output<string>;
+    /**
      * Time at which CA was last updated.
      */
     public readonly lastUpdated!: pulumi.Output<number>;
@@ -127,6 +131,7 @@ export class Ca extends pulumi.CustomResource {
             resourceInputs["autoUpdateDaysWarning"] = state ? state.autoUpdateDaysWarning : undefined;
             resourceInputs["ca"] = state ? state.ca : undefined;
             resourceInputs["caIdentifier"] = state ? state.caIdentifier : undefined;
+            resourceInputs["estUrl"] = state ? state.estUrl : undefined;
             resourceInputs["lastUpdated"] = state ? state.lastUpdated : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["obsolete"] = state ? state.obsolete : undefined;
@@ -144,8 +149,9 @@ export class Ca extends pulumi.CustomResource {
             }
             resourceInputs["autoUpdateDays"] = args ? args.autoUpdateDays : undefined;
             resourceInputs["autoUpdateDaysWarning"] = args ? args.autoUpdateDaysWarning : undefined;
-            resourceInputs["ca"] = args ? args.ca : undefined;
+            resourceInputs["ca"] = args?.ca ? pulumi.secret(args.ca) : undefined;
             resourceInputs["caIdentifier"] = args ? args.caIdentifier : undefined;
+            resourceInputs["estUrl"] = args ? args.estUrl : undefined;
             resourceInputs["lastUpdated"] = args ? args.lastUpdated : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["obsolete"] = args ? args.obsolete : undefined;
@@ -158,6 +164,8 @@ export class Ca extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["ca"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Ca.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -182,6 +190,10 @@ export interface CaState {
      * CA identifier of the SCEP server.
      */
     caIdentifier?: pulumi.Input<string>;
+    /**
+     * URL of the EST server.
+     */
+    estUrl?: pulumi.Input<string>;
     /**
      * Time at which CA was last updated.
      */
@@ -244,6 +256,10 @@ export interface CaArgs {
      * CA identifier of the SCEP server.
      */
     caIdentifier?: pulumi.Input<string>;
+    /**
+     * URL of the EST server.
+     */
+    estUrl?: pulumi.Input<string>;
     /**
      * Time at which CA was last updated.
      */

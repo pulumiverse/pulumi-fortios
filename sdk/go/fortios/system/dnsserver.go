@@ -66,6 +66,10 @@ type Dnsserver struct {
 	DnsfilterProfile pulumi.StringOutput `pulumi:"dnsfilterProfile"`
 	// DNS over HTTPS. Valid values: `enable`, `disable`.
 	Doh pulumi.StringOutput `pulumi:"doh"`
+	// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+	Doh3 pulumi.StringOutput `pulumi:"doh3"`
+	// Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+	Doq pulumi.StringOutput `pulumi:"doq"`
 	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
 	Mode pulumi.StringOutput `pulumi:"mode"`
 	// DNS server name.
@@ -108,6 +112,10 @@ type dnsserverState struct {
 	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
 	// DNS over HTTPS. Valid values: `enable`, `disable`.
 	Doh *string `pulumi:"doh"`
+	// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+	Doh3 *string `pulumi:"doh3"`
+	// Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+	Doq *string `pulumi:"doq"`
 	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
 	Mode *string `pulumi:"mode"`
 	// DNS server name.
@@ -121,6 +129,10 @@ type DnsserverState struct {
 	DnsfilterProfile pulumi.StringPtrInput
 	// DNS over HTTPS. Valid values: `enable`, `disable`.
 	Doh pulumi.StringPtrInput
+	// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+	Doh3 pulumi.StringPtrInput
+	// Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+	Doq pulumi.StringPtrInput
 	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
 	Mode pulumi.StringPtrInput
 	// DNS server name.
@@ -138,6 +150,10 @@ type dnsserverArgs struct {
 	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
 	// DNS over HTTPS. Valid values: `enable`, `disable`.
 	Doh *string `pulumi:"doh"`
+	// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+	Doh3 *string `pulumi:"doh3"`
+	// Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+	Doq *string `pulumi:"doq"`
 	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
 	Mode *string `pulumi:"mode"`
 	// DNS server name.
@@ -152,6 +168,10 @@ type DnsserverArgs struct {
 	DnsfilterProfile pulumi.StringPtrInput
 	// DNS over HTTPS. Valid values: `enable`, `disable`.
 	Doh pulumi.StringPtrInput
+	// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+	Doh3 pulumi.StringPtrInput
+	// Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+	Doq pulumi.StringPtrInput
 	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
 	Mode pulumi.StringPtrInput
 	// DNS server name.
@@ -255,6 +275,16 @@ func (o DnsserverOutput) DnsfilterProfile() pulumi.StringOutput {
 // DNS over HTTPS. Valid values: `enable`, `disable`.
 func (o DnsserverOutput) Doh() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dnsserver) pulumi.StringOutput { return v.Doh }).(pulumi.StringOutput)
+}
+
+// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+func (o DnsserverOutput) Doh3() pulumi.StringOutput {
+	return o.ApplyT(func(v *Dnsserver) pulumi.StringOutput { return v.Doh3 }).(pulumi.StringOutput)
+}
+
+// Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+func (o DnsserverOutput) Doq() pulumi.StringOutput {
+	return o.ApplyT(func(v *Dnsserver) pulumi.StringOutput { return v.Doq }).(pulumi.StringOutput)
 }
 
 // DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.

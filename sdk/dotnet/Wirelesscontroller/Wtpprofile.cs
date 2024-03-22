@@ -65,6 +65,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> BleProfile { get; private set; } = null!;
 
         /// <summary>
+        /// Bonjour profile name.
+        /// </summary>
+        [Output("bonjourProfile")]
+        public Output<string> BonjourProfile { get; private set; } = null!;
+
+        /// <summary>
         /// Comment.
         /// </summary>
         [Output("comment")]
@@ -95,7 +101,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> DtlsInKernel { get; private set; } = null!;
 
         /// <summary>
-        /// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+        /// WTP data channel DTLS policy (default = clear-text).
         /// </summary>
         [Output("dtlsPolicy")]
         public Output<string> DtlsPolicy { get; private set; } = null!;
@@ -129,6 +135,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("frequencyHandoff")]
         public Output<string> FrequencyHandoff { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
@@ -287,6 +299,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> TunMtuUplink { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("unii45ghzBand")]
+        public Output<string> Unii45ghzBand { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
@@ -297,6 +315,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("wanPortAuth")]
         public Output<string> WanPortAuth { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("wanPortAuthMacsec")]
+        public Output<string> WanPortAuthMacsec { get; private set; } = null!;
 
         /// <summary>
         /// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
@@ -404,6 +428,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? BleProfile { get; set; }
 
         /// <summary>
+        /// Bonjour profile name.
+        /// </summary>
+        [Input("bonjourProfile")]
+        public Input<string>? BonjourProfile { get; set; }
+
+        /// <summary>
         /// Comment.
         /// </summary>
         [Input("comment")]
@@ -440,7 +470,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? DtlsInKernel { get; set; }
 
         /// <summary>
-        /// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+        /// WTP data channel DTLS policy (default = clear-text).
         /// </summary>
         [Input("dtlsPolicy")]
         public Input<string>? DtlsPolicy { get; set; }
@@ -474,6 +504,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("frequencyHandoff")]
         public Input<string>? FrequencyHandoff { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
@@ -654,6 +690,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? TunMtuUplink { get; set; }
 
         /// <summary>
+        /// Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("unii45ghzBand")]
+        public Input<string>? Unii45ghzBand { get; set; }
+
+        /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Input("vdomparam")]
@@ -664,6 +706,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("wanPortAuth")]
         public Input<string>? WanPortAuth { get; set; }
+
+        /// <summary>
+        /// Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("wanPortAuthMacsec")]
+        public Input<string>? WanPortAuthMacsec { get; set; }
 
         /// <summary>
         /// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
@@ -728,6 +776,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? BleProfile { get; set; }
 
         /// <summary>
+        /// Bonjour profile name.
+        /// </summary>
+        [Input("bonjourProfile")]
+        public Input<string>? BonjourProfile { get; set; }
+
+        /// <summary>
         /// Comment.
         /// </summary>
         [Input("comment")]
@@ -764,7 +818,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? DtlsInKernel { get; set; }
 
         /// <summary>
-        /// WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+        /// WTP data channel DTLS policy (default = clear-text).
         /// </summary>
         [Input("dtlsPolicy")]
         public Input<string>? DtlsPolicy { get; set; }
@@ -798,6 +852,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("frequencyHandoff")]
         public Input<string>? FrequencyHandoff { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
@@ -978,6 +1038,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? TunMtuUplink { get; set; }
 
         /// <summary>
+        /// Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("unii45ghzBand")]
+        public Input<string>? Unii45ghzBand { get; set; }
+
+        /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Input("vdomparam")]
@@ -988,6 +1054,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("wanPortAuth")]
         public Input<string>? WanPortAuth { get; set; }
+
+        /// <summary>
+        /// Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("wanPortAuthMacsec")]
+        public Input<string>? WanPortAuthMacsec { get; set; }
 
         /// <summary>
         /// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.

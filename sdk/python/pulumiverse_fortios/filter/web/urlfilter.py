@@ -20,6 +20,8 @@ class UrlfilterArgs:
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['UrlfilterEntryArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ip4_mapped_ip6: Optional[pulumi.Input[str]] = None,
                  ip_addr_block: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  one_arm_ips_urlfilter: Optional[pulumi.Input[str]] = None,
@@ -30,6 +32,8 @@ class UrlfilterArgs:
         :param pulumi.Input[str] comment: Optional comments.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input['UrlfilterEntryArgs']]] entries: URL filter entries. The structure of `entries` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] ip4_mapped_ip6: Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ip_addr_block: Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Name of URL filter list.
         :param pulumi.Input[str] one_arm_ips_urlfilter: Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `enable`, `disable`.
@@ -42,6 +46,10 @@ class UrlfilterArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if entries is not None:
             pulumi.set(__self__, "entries", entries)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if ip4_mapped_ip6 is not None:
+            pulumi.set(__self__, "ip4_mapped_ip6", ip4_mapped_ip6)
         if ip_addr_block is not None:
             pulumi.set(__self__, "ip_addr_block", ip_addr_block)
         if name is not None:
@@ -100,6 +108,30 @@ class UrlfilterArgs:
         pulumi.set(self, "entries", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="ip4MappedIp6")
+    def ip4_mapped_ip6(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ip4_mapped_ip6")
+
+    @ip4_mapped_ip6.setter
+    def ip4_mapped_ip6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip4_mapped_ip6", value)
+
+    @property
     @pulumi.getter(name="ipAddrBlock")
     def ip_addr_block(self) -> Optional[pulumi.Input[str]]:
         """
@@ -155,6 +187,8 @@ class _UrlfilterState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['UrlfilterEntryArgs']]]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ip4_mapped_ip6: Optional[pulumi.Input[str]] = None,
                  ip_addr_block: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  one_arm_ips_urlfilter: Optional[pulumi.Input[str]] = None,
@@ -165,6 +199,8 @@ class _UrlfilterState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input['UrlfilterEntryArgs']]] entries: URL filter entries. The structure of `entries` block is documented below.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] ip4_mapped_ip6: Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ip_addr_block: Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Name of URL filter list.
         :param pulumi.Input[str] one_arm_ips_urlfilter: Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `enable`, `disable`.
@@ -178,6 +214,10 @@ class _UrlfilterState:
             pulumi.set(__self__, "entries", entries)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if ip4_mapped_ip6 is not None:
+            pulumi.set(__self__, "ip4_mapped_ip6", ip4_mapped_ip6)
         if ip_addr_block is not None:
             pulumi.set(__self__, "ip_addr_block", ip_addr_block)
         if name is not None:
@@ -234,6 +274,30 @@ class _UrlfilterState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="ip4MappedIp6")
+    def ip4_mapped_ip6(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ip4_mapped_ip6")
+
+    @ip4_mapped_ip6.setter
+    def ip4_mapped_ip6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip4_mapped_ip6", value)
 
     @property
     @pulumi.getter(name="ipAddrBlock")
@@ -293,6 +357,8 @@ class Urlfilter(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UrlfilterEntryArgs']]]]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ip4_mapped_ip6: Optional[pulumi.Input[str]] = None,
                  ip_addr_block: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  one_arm_ips_urlfilter: Optional[pulumi.Input[str]] = None,
@@ -339,6 +405,8 @@ class Urlfilter(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UrlfilterEntryArgs']]]] entries: URL filter entries. The structure of `entries` block is documented below.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] ip4_mapped_ip6: Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ip_addr_block: Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Name of URL filter list.
         :param pulumi.Input[str] one_arm_ips_urlfilter: Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `enable`, `disable`.
@@ -404,6 +472,8 @@ class Urlfilter(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UrlfilterEntryArgs']]]]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ip4_mapped_ip6: Optional[pulumi.Input[str]] = None,
                  ip_addr_block: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  one_arm_ips_urlfilter: Optional[pulumi.Input[str]] = None,
@@ -423,6 +493,8 @@ class Urlfilter(pulumi.CustomResource):
             if fosid is None and not opts.urn:
                 raise TypeError("Missing required property 'fosid'")
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["ip4_mapped_ip6"] = ip4_mapped_ip6
             __props__.__dict__["ip_addr_block"] = ip_addr_block
             __props__.__dict__["name"] = name
             __props__.__dict__["one_arm_ips_urlfilter"] = one_arm_ips_urlfilter
@@ -441,6 +513,8 @@ class Urlfilter(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UrlfilterEntryArgs']]]]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            ip4_mapped_ip6: Optional[pulumi.Input[str]] = None,
             ip_addr_block: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             one_arm_ips_urlfilter: Optional[pulumi.Input[str]] = None,
@@ -456,6 +530,8 @@ class Urlfilter(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UrlfilterEntryArgs']]]] entries: URL filter entries. The structure of `entries` block is documented below.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] ip4_mapped_ip6: Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ip_addr_block: Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Name of URL filter list.
         :param pulumi.Input[str] one_arm_ips_urlfilter: Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `enable`, `disable`.
@@ -469,6 +545,8 @@ class Urlfilter(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["entries"] = entries
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["ip4_mapped_ip6"] = ip4_mapped_ip6
         __props__.__dict__["ip_addr_block"] = ip_addr_block
         __props__.__dict__["name"] = name
         __props__.__dict__["one_arm_ips_urlfilter"] = one_arm_ips_urlfilter
@@ -506,6 +584,22 @@ class Urlfilter(pulumi.CustomResource):
         ID.
         """
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="ip4MappedIp6")
+    def ip4_mapped_ip6(self) -> pulumi.Output[str]:
+        """
+        Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ip4_mapped_ip6")
 
     @property
     @pulumi.getter(name="ipAddrBlock")

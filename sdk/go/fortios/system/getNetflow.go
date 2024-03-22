@@ -36,6 +36,8 @@ type LookupNetflowResult struct {
 	CollectorIp string `pulumi:"collectorIp"`
 	// NetFlow collector port number.
 	CollectorPort int `pulumi:"collectorPort"`
+	// Netflow collectors. The structure of `collectors` block is documented below.
+	Collectors []GetNetflowCollector `pulumi:"collectors"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
@@ -104,6 +106,11 @@ func (o LookupNetflowResultOutput) CollectorIp() pulumi.StringOutput {
 // NetFlow collector port number.
 func (o LookupNetflowResultOutput) CollectorPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNetflowResult) int { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+// Netflow collectors. The structure of `collectors` block is documented below.
+func (o LookupNetflowResultOutput) Collectors() GetNetflowCollectorArrayOutput {
+	return o.ApplyT(func(v LookupNetflowResult) []GetNetflowCollector { return v.Collectors }).(GetNetflowCollectorArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

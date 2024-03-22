@@ -161,6 +161,10 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly denyTcpWithIcmp!: pulumi.Output<string>;
     /**
+     * Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+     */
+    public readonly detectUnknownEsp!: pulumi.Output<string>;
+    /**
      * Interface to use for management access for NAT mode.
      */
     public readonly device!: pulumi.Output<string>;
@@ -229,6 +233,10 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly gateway6!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
      */
     public readonly guiAdvancedPolicy!: pulumi.Output<string>;
@@ -253,6 +261,10 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly guiApplicationControl!: pulumi.Output<string>;
     /**
+     * Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+     */
+    public readonly guiCasb!: pulumi.Output<string>;
+    /**
      * Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
      */
     public readonly guiDefaultPolicyColumns!: pulumi.Output<outputs.system.SettingsGuiDefaultPolicyColumn[] | undefined>;
@@ -264,6 +276,10 @@ export class Settings extends pulumi.CustomResource {
      * Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
      */
     public readonly guiDlp!: pulumi.Output<string>;
+    /**
+     * Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+     */
+    public readonly guiDlpProfile!: pulumi.Output<string>;
     /**
      * Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
      */
@@ -280,6 +296,10 @@ export class Settings extends pulumi.CustomResource {
      * Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
      */
     public readonly guiDosPolicy!: pulumi.Output<string>;
+    /**
+     * Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+     */
+    public readonly guiDynamicDeviceOsId!: pulumi.Output<string>;
     /**
      * Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
      */
@@ -385,9 +405,17 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly guiPolicyLearning!: pulumi.Output<string>;
     /**
+     * Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+     */
+    public readonly guiProxyInspection!: pulumi.Output<string>;
+    /**
      * Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
      */
     public readonly guiReplacementMessageGroups!: pulumi.Output<string>;
+    /**
+     * Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+     */
+    public readonly guiRouteTagAddressCreation!: pulumi.Output<string>;
     /**
      * Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
      */
@@ -396,6 +424,10 @@ export class Settings extends pulumi.CustomResource {
      * Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
      */
     public readonly guiSpamfilter!: pulumi.Output<string>;
+    /**
+     * Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+     */
+    public readonly guiSslvpn!: pulumi.Output<string>;
     /**
      * Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
      */
@@ -420,6 +452,10 @@ export class Settings extends pulumi.CustomResource {
      * Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
      */
     public readonly guiVideofilter!: pulumi.Output<string>;
+    /**
+     * Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+     */
+    public readonly guiVirtualPatchProfile!: pulumi.Output<string>;
     /**
      * Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
      */
@@ -489,6 +525,10 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly ikeSessionResume!: pulumi.Output<string>;
     /**
+     * TCP port for IKE/IPsec traffic (default 4500).
+     */
+    public readonly ikeTcpPort!: pulumi.Output<number>;
+    /**
      * Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
      */
     public readonly implicitAllowDns!: pulumi.Output<string>;
@@ -496,6 +536,10 @@ export class Settings extends pulumi.CustomResource {
      * Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
      */
     public readonly inspectionMode!: pulumi.Output<string>;
+    /**
+     * Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+     */
+    public readonly internetServiceDatabaseCache!: pulumi.Output<string>;
     /**
      * IP address and netmask.
      */
@@ -692,6 +736,7 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["defaultPolicyExpiryDays"] = state ? state.defaultPolicyExpiryDays : undefined;
             resourceInputs["defaultVoipAlgMode"] = state ? state.defaultVoipAlgMode : undefined;
             resourceInputs["denyTcpWithIcmp"] = state ? state.denyTcpWithIcmp : undefined;
+            resourceInputs["detectUnknownEsp"] = state ? state.detectUnknownEsp : undefined;
             resourceInputs["device"] = state ? state.device : undefined;
             resourceInputs["dhcp6ServerIp"] = state ? state.dhcp6ServerIp : undefined;
             resourceInputs["dhcpProxy"] = state ? state.dhcpProxy : undefined;
@@ -709,19 +754,23 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["fwSessionHairpin"] = state ? state.fwSessionHairpin : undefined;
             resourceInputs["gateway"] = state ? state.gateway : undefined;
             resourceInputs["gateway6"] = state ? state.gateway6 : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["guiAdvancedPolicy"] = state ? state.guiAdvancedPolicy : undefined;
             resourceInputs["guiAdvancedWirelessFeatures"] = state ? state.guiAdvancedWirelessFeatures : undefined;
             resourceInputs["guiAllowUnnamedPolicy"] = state ? state.guiAllowUnnamedPolicy : undefined;
             resourceInputs["guiAntivirus"] = state ? state.guiAntivirus : undefined;
             resourceInputs["guiApProfile"] = state ? state.guiApProfile : undefined;
             resourceInputs["guiApplicationControl"] = state ? state.guiApplicationControl : undefined;
+            resourceInputs["guiCasb"] = state ? state.guiCasb : undefined;
             resourceInputs["guiDefaultPolicyColumns"] = state ? state.guiDefaultPolicyColumns : undefined;
             resourceInputs["guiDhcpAdvanced"] = state ? state.guiDhcpAdvanced : undefined;
             resourceInputs["guiDlp"] = state ? state.guiDlp : undefined;
+            resourceInputs["guiDlpProfile"] = state ? state.guiDlpProfile : undefined;
             resourceInputs["guiDnsDatabase"] = state ? state.guiDnsDatabase : undefined;
             resourceInputs["guiDnsfilter"] = state ? state.guiDnsfilter : undefined;
             resourceInputs["guiDomainIpReputation"] = state ? state.guiDomainIpReputation : undefined;
             resourceInputs["guiDosPolicy"] = state ? state.guiDosPolicy : undefined;
+            resourceInputs["guiDynamicDeviceOsId"] = state ? state.guiDynamicDeviceOsId : undefined;
             resourceInputs["guiDynamicProfileDisplay"] = state ? state.guiDynamicProfileDisplay : undefined;
             resourceInputs["guiDynamicRouting"] = state ? state.guiDynamicRouting : undefined;
             resourceInputs["guiEmailCollection"] = state ? state.guiEmailCollection : undefined;
@@ -748,15 +797,19 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["guiPolicyBasedIpsec"] = state ? state.guiPolicyBasedIpsec : undefined;
             resourceInputs["guiPolicyDisclaimer"] = state ? state.guiPolicyDisclaimer : undefined;
             resourceInputs["guiPolicyLearning"] = state ? state.guiPolicyLearning : undefined;
+            resourceInputs["guiProxyInspection"] = state ? state.guiProxyInspection : undefined;
             resourceInputs["guiReplacementMessageGroups"] = state ? state.guiReplacementMessageGroups : undefined;
+            resourceInputs["guiRouteTagAddressCreation"] = state ? state.guiRouteTagAddressCreation : undefined;
             resourceInputs["guiSecurityProfileGroup"] = state ? state.guiSecurityProfileGroup : undefined;
             resourceInputs["guiSpamfilter"] = state ? state.guiSpamfilter : undefined;
+            resourceInputs["guiSslvpn"] = state ? state.guiSslvpn : undefined;
             resourceInputs["guiSslvpnPersonalBookmarks"] = state ? state.guiSslvpnPersonalBookmarks : undefined;
             resourceInputs["guiSslvpnRealms"] = state ? state.guiSslvpnRealms : undefined;
             resourceInputs["guiSwitchController"] = state ? state.guiSwitchController : undefined;
             resourceInputs["guiThreatWeight"] = state ? state.guiThreatWeight : undefined;
             resourceInputs["guiTrafficShaping"] = state ? state.guiTrafficShaping : undefined;
             resourceInputs["guiVideofilter"] = state ? state.guiVideofilter : undefined;
+            resourceInputs["guiVirtualPatchProfile"] = state ? state.guiVirtualPatchProfile : undefined;
             resourceInputs["guiVoipProfile"] = state ? state.guiVoipProfile : undefined;
             resourceInputs["guiVpn"] = state ? state.guiVpn : undefined;
             resourceInputs["guiWafProfile"] = state ? state.guiWafProfile : undefined;
@@ -774,8 +827,10 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["ikePort"] = state ? state.ikePort : undefined;
             resourceInputs["ikeQuickCrashDetect"] = state ? state.ikeQuickCrashDetect : undefined;
             resourceInputs["ikeSessionResume"] = state ? state.ikeSessionResume : undefined;
+            resourceInputs["ikeTcpPort"] = state ? state.ikeTcpPort : undefined;
             resourceInputs["implicitAllowDns"] = state ? state.implicitAllowDns : undefined;
             resourceInputs["inspectionMode"] = state ? state.inspectionMode : undefined;
+            resourceInputs["internetServiceDatabaseCache"] = state ? state.internetServiceDatabaseCache : undefined;
             resourceInputs["ip"] = state ? state.ip : undefined;
             resourceInputs["ip6"] = state ? state.ip6 : undefined;
             resourceInputs["lanExtensionControllerAddr"] = state ? state.lanExtensionControllerAddr : undefined;
@@ -840,6 +895,7 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["defaultPolicyExpiryDays"] = args ? args.defaultPolicyExpiryDays : undefined;
             resourceInputs["defaultVoipAlgMode"] = args ? args.defaultVoipAlgMode : undefined;
             resourceInputs["denyTcpWithIcmp"] = args ? args.denyTcpWithIcmp : undefined;
+            resourceInputs["detectUnknownEsp"] = args ? args.detectUnknownEsp : undefined;
             resourceInputs["device"] = args ? args.device : undefined;
             resourceInputs["dhcp6ServerIp"] = args ? args.dhcp6ServerIp : undefined;
             resourceInputs["dhcpProxy"] = args ? args.dhcpProxy : undefined;
@@ -857,19 +913,23 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["fwSessionHairpin"] = args ? args.fwSessionHairpin : undefined;
             resourceInputs["gateway"] = args ? args.gateway : undefined;
             resourceInputs["gateway6"] = args ? args.gateway6 : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["guiAdvancedPolicy"] = args ? args.guiAdvancedPolicy : undefined;
             resourceInputs["guiAdvancedWirelessFeatures"] = args ? args.guiAdvancedWirelessFeatures : undefined;
             resourceInputs["guiAllowUnnamedPolicy"] = args ? args.guiAllowUnnamedPolicy : undefined;
             resourceInputs["guiAntivirus"] = args ? args.guiAntivirus : undefined;
             resourceInputs["guiApProfile"] = args ? args.guiApProfile : undefined;
             resourceInputs["guiApplicationControl"] = args ? args.guiApplicationControl : undefined;
+            resourceInputs["guiCasb"] = args ? args.guiCasb : undefined;
             resourceInputs["guiDefaultPolicyColumns"] = args ? args.guiDefaultPolicyColumns : undefined;
             resourceInputs["guiDhcpAdvanced"] = args ? args.guiDhcpAdvanced : undefined;
             resourceInputs["guiDlp"] = args ? args.guiDlp : undefined;
+            resourceInputs["guiDlpProfile"] = args ? args.guiDlpProfile : undefined;
             resourceInputs["guiDnsDatabase"] = args ? args.guiDnsDatabase : undefined;
             resourceInputs["guiDnsfilter"] = args ? args.guiDnsfilter : undefined;
             resourceInputs["guiDomainIpReputation"] = args ? args.guiDomainIpReputation : undefined;
             resourceInputs["guiDosPolicy"] = args ? args.guiDosPolicy : undefined;
+            resourceInputs["guiDynamicDeviceOsId"] = args ? args.guiDynamicDeviceOsId : undefined;
             resourceInputs["guiDynamicProfileDisplay"] = args ? args.guiDynamicProfileDisplay : undefined;
             resourceInputs["guiDynamicRouting"] = args ? args.guiDynamicRouting : undefined;
             resourceInputs["guiEmailCollection"] = args ? args.guiEmailCollection : undefined;
@@ -896,15 +956,19 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["guiPolicyBasedIpsec"] = args ? args.guiPolicyBasedIpsec : undefined;
             resourceInputs["guiPolicyDisclaimer"] = args ? args.guiPolicyDisclaimer : undefined;
             resourceInputs["guiPolicyLearning"] = args ? args.guiPolicyLearning : undefined;
+            resourceInputs["guiProxyInspection"] = args ? args.guiProxyInspection : undefined;
             resourceInputs["guiReplacementMessageGroups"] = args ? args.guiReplacementMessageGroups : undefined;
+            resourceInputs["guiRouteTagAddressCreation"] = args ? args.guiRouteTagAddressCreation : undefined;
             resourceInputs["guiSecurityProfileGroup"] = args ? args.guiSecurityProfileGroup : undefined;
             resourceInputs["guiSpamfilter"] = args ? args.guiSpamfilter : undefined;
+            resourceInputs["guiSslvpn"] = args ? args.guiSslvpn : undefined;
             resourceInputs["guiSslvpnPersonalBookmarks"] = args ? args.guiSslvpnPersonalBookmarks : undefined;
             resourceInputs["guiSslvpnRealms"] = args ? args.guiSslvpnRealms : undefined;
             resourceInputs["guiSwitchController"] = args ? args.guiSwitchController : undefined;
             resourceInputs["guiThreatWeight"] = args ? args.guiThreatWeight : undefined;
             resourceInputs["guiTrafficShaping"] = args ? args.guiTrafficShaping : undefined;
             resourceInputs["guiVideofilter"] = args ? args.guiVideofilter : undefined;
+            resourceInputs["guiVirtualPatchProfile"] = args ? args.guiVirtualPatchProfile : undefined;
             resourceInputs["guiVoipProfile"] = args ? args.guiVoipProfile : undefined;
             resourceInputs["guiVpn"] = args ? args.guiVpn : undefined;
             resourceInputs["guiWafProfile"] = args ? args.guiWafProfile : undefined;
@@ -922,8 +986,10 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["ikePort"] = args ? args.ikePort : undefined;
             resourceInputs["ikeQuickCrashDetect"] = args ? args.ikeQuickCrashDetect : undefined;
             resourceInputs["ikeSessionResume"] = args ? args.ikeSessionResume : undefined;
+            resourceInputs["ikeTcpPort"] = args ? args.ikeTcpPort : undefined;
             resourceInputs["implicitAllowDns"] = args ? args.implicitAllowDns : undefined;
             resourceInputs["inspectionMode"] = args ? args.inspectionMode : undefined;
+            resourceInputs["internetServiceDatabaseCache"] = args ? args.internetServiceDatabaseCache : undefined;
             resourceInputs["ip"] = args ? args.ip : undefined;
             resourceInputs["ip6"] = args ? args.ip6 : undefined;
             resourceInputs["lanExtensionControllerAddr"] = args ? args.lanExtensionControllerAddr : undefined;
@@ -1063,6 +1129,10 @@ export interface SettingsState {
      */
     denyTcpWithIcmp?: pulumi.Input<string>;
     /**
+     * Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+     */
+    detectUnknownEsp?: pulumi.Input<string>;
+    /**
      * Interface to use for management access for NAT mode.
      */
     device?: pulumi.Input<string>;
@@ -1131,6 +1201,10 @@ export interface SettingsState {
      */
     gateway6?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
      */
     guiAdvancedPolicy?: pulumi.Input<string>;
@@ -1155,6 +1229,10 @@ export interface SettingsState {
      */
     guiApplicationControl?: pulumi.Input<string>;
     /**
+     * Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiCasb?: pulumi.Input<string>;
+    /**
      * Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
      */
     guiDefaultPolicyColumns?: pulumi.Input<pulumi.Input<inputs.system.SettingsGuiDefaultPolicyColumn>[]>;
@@ -1166,6 +1244,10 @@ export interface SettingsState {
      * Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
      */
     guiDlp?: pulumi.Input<string>;
+    /**
+     * Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiDlpProfile?: pulumi.Input<string>;
     /**
      * Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
      */
@@ -1182,6 +1264,10 @@ export interface SettingsState {
      * Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
      */
     guiDosPolicy?: pulumi.Input<string>;
+    /**
+     * Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+     */
+    guiDynamicDeviceOsId?: pulumi.Input<string>;
     /**
      * Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
      */
@@ -1287,9 +1373,17 @@ export interface SettingsState {
      */
     guiPolicyLearning?: pulumi.Input<string>;
     /**
+     * Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiProxyInspection?: pulumi.Input<string>;
+    /**
      * Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
      */
     guiReplacementMessageGroups?: pulumi.Input<string>;
+    /**
+     * Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiRouteTagAddressCreation?: pulumi.Input<string>;
     /**
      * Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
      */
@@ -1298,6 +1392,10 @@ export interface SettingsState {
      * Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
      */
     guiSpamfilter?: pulumi.Input<string>;
+    /**
+     * Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiSslvpn?: pulumi.Input<string>;
     /**
      * Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
      */
@@ -1322,6 +1420,10 @@ export interface SettingsState {
      * Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
      */
     guiVideofilter?: pulumi.Input<string>;
+    /**
+     * Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiVirtualPatchProfile?: pulumi.Input<string>;
     /**
      * Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
      */
@@ -1391,6 +1493,10 @@ export interface SettingsState {
      */
     ikeSessionResume?: pulumi.Input<string>;
     /**
+     * TCP port for IKE/IPsec traffic (default 4500).
+     */
+    ikeTcpPort?: pulumi.Input<number>;
+    /**
      * Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
      */
     implicitAllowDns?: pulumi.Input<string>;
@@ -1398,6 +1504,10 @@ export interface SettingsState {
      * Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
      */
     inspectionMode?: pulumi.Input<string>;
+    /**
+     * Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+     */
+    internetServiceDatabaseCache?: pulumi.Input<string>;
     /**
      * IP address and netmask.
      */
@@ -1653,6 +1763,10 @@ export interface SettingsArgs {
      */
     denyTcpWithIcmp?: pulumi.Input<string>;
     /**
+     * Enable/disable detection of unknown ESP packets (default = enable). Valid values: `enable`, `disable`.
+     */
+    detectUnknownEsp?: pulumi.Input<string>;
+    /**
      * Interface to use for management access for NAT mode.
      */
     device?: pulumi.Input<string>;
@@ -1721,6 +1835,10 @@ export interface SettingsArgs {
      */
     gateway6?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
      */
     guiAdvancedPolicy?: pulumi.Input<string>;
@@ -1745,6 +1863,10 @@ export interface SettingsArgs {
      */
     guiApplicationControl?: pulumi.Input<string>;
     /**
+     * Enable/disable Inline-CASB on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiCasb?: pulumi.Input<string>;
+    /**
      * Default columns to display for policy lists on GUI. The structure of `guiDefaultPolicyColumns` block is documented below.
      */
     guiDefaultPolicyColumns?: pulumi.Input<pulumi.Input<inputs.system.SettingsGuiDefaultPolicyColumn>[]>;
@@ -1756,6 +1878,10 @@ export interface SettingsArgs {
      * Enable/disable DLP on the GUI. Valid values: `enable`, `disable`.
      */
     guiDlp?: pulumi.Input<string>;
+    /**
+     * Enable/disable Data Leak Prevention on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiDlpProfile?: pulumi.Input<string>;
     /**
      * Enable/disable DNS database settings on the GUI. Valid values: `enable`, `disable`.
      */
@@ -1772,6 +1898,10 @@ export interface SettingsArgs {
      * Enable/disable DoS policies on the GUI. Valid values: `enable`, `disable`.
      */
     guiDosPolicy?: pulumi.Input<string>;
+    /**
+     * Enable/disable Create dynamic addresses to manage known devices. Valid values: `enable`, `disable`.
+     */
+    guiDynamicDeviceOsId?: pulumi.Input<string>;
     /**
      * Enable/disable RADIUS Single Sign On (RSSO) on the GUI. Valid values: `enable`, `disable`.
      */
@@ -1877,9 +2007,17 @@ export interface SettingsArgs {
      */
     guiPolicyLearning?: pulumi.Input<string>;
     /**
+     * Enable/disable the proxy features on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiProxyInspection?: pulumi.Input<string>;
+    /**
      * Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
      */
     guiReplacementMessageGroups?: pulumi.Input<string>;
+    /**
+     * Enable/disable route-tag addresses on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiRouteTagAddressCreation?: pulumi.Input<string>;
     /**
      * Enable/disable Security Profile Groups on the GUI. Valid values: `enable`, `disable`.
      */
@@ -1888,6 +2026,10 @@ export interface SettingsArgs {
      * Enable/disable Antispam on the GUI. Valid values: `enable`, `disable`.
      */
     guiSpamfilter?: pulumi.Input<string>;
+    /**
+     * Enable/disable SSL-VPN settings pages on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiSslvpn?: pulumi.Input<string>;
     /**
      * Enable/disable SSL-VPN personal bookmark management on the GUI. Valid values: `enable`, `disable`.
      */
@@ -1912,6 +2054,10 @@ export interface SettingsArgs {
      * Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
      */
     guiVideofilter?: pulumi.Input<string>;
+    /**
+     * Enable/disable Virtual Patching on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiVirtualPatchProfile?: pulumi.Input<string>;
     /**
      * Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
      */
@@ -1981,6 +2127,10 @@ export interface SettingsArgs {
      */
     ikeSessionResume?: pulumi.Input<string>;
     /**
+     * TCP port for IKE/IPsec traffic (default 4500).
+     */
+    ikeTcpPort?: pulumi.Input<number>;
+    /**
      * Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
      */
     implicitAllowDns?: pulumi.Input<string>;
@@ -1988,6 +2138,10 @@ export interface SettingsArgs {
      * Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
      */
     inspectionMode?: pulumi.Input<string>;
+    /**
+     * Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
+     */
+    internetServiceDatabaseCache?: pulumi.Input<string>;
     /**
      * IP address and netmask.
      */

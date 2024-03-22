@@ -19,12 +19,16 @@ class PortalArgs:
                  allow_user_access: Optional[pulumi.Input[str]] = None,
                  auto_connect: Optional[pulumi.Input[str]] = None,
                  bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input['PortalBookmarkGroupArgs']]]] = None,
+                 client_src_range: Optional[pulumi.Input[str]] = None,
                  clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
+                 default_protocol: Optional[pulumi.Input[str]] = None,
                  default_window_height: Optional[pulumi.Input[int]] = None,
                  default_window_width: Optional[pulumi.Input[int]] = None,
+                 dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ip_overlap: Optional[pulumi.Input[str]] = None,
+                 dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  display_bookmark: Optional[pulumi.Input[str]] = None,
                  display_connection_tools: Optional[pulumi.Input[str]] = None,
                  display_history: Optional[pulumi.Input[str]] = None,
@@ -34,8 +38,10 @@ class PortalArgs:
                  dns_suffix: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  exclusive_routing: Optional[pulumi.Input[str]] = None,
+                 focus_bookmark: Optional[pulumi.Input[str]] = None,
                  forticlient_download: Optional[pulumi.Input[str]] = None,
                  forticlient_download_method: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  heading: Optional[pulumi.Input[str]] = None,
                  hide_sso_credential: Optional[pulumi.Input[str]] = None,
                  host_check: Optional[pulumi.Input[str]] = None,
@@ -55,6 +61,8 @@ class PortalArgs:
                  ipv6_wins_server1: Optional[pulumi.Input[str]] = None,
                  ipv6_wins_server2: Optional[pulumi.Input[str]] = None,
                  keep_alive: Optional[pulumi.Input[str]] = None,
+                 landing_page: Optional[pulumi.Input['PortalLandingPageArgs']] = None,
+                 landing_page_mode: Optional[pulumi.Input[str]] = None,
                  limit_user_logins: Optional[pulumi.Input[str]] = None,
                  mac_addr_action: Optional[pulumi.Input[str]] = None,
                  mac_addr_check: Optional[pulumi.Input[str]] = None,
@@ -94,12 +102,16 @@ class PortalArgs:
         :param pulumi.Input[str] allow_user_access: Allow user access to SSL-VPN applications.
         :param pulumi.Input[str] auto_connect: Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['PortalBookmarkGroupArgs']]] bookmark_groups: Portal bookmark group. The structure of `bookmark_group` block is documented below.
+        :param pulumi.Input[str] client_src_range: Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] clipboard: Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] custom_lang: Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
         :param pulumi.Input[str] customize_forticlient_download_url: Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] default_protocol: Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
         :param pulumi.Input[int] default_window_height: Screen height (range from 0 - 65535, default = 768).
         :param pulumi.Input[int] default_window_width: Screen width (range from 0 - 65535, default = 1024).
+        :param pulumi.Input[str] dhcp6_ra_linkaddr: Relay agent IPv6 link address to use in DHCP6 requests.
         :param pulumi.Input[str] dhcp_ip_overlap: Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
+        :param pulumi.Input[str] dhcp_ra_giaddr: Relay agent gateway IP address to use in the giaddr field of DHCP requests.
         :param pulumi.Input[str] display_bookmark: Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] display_connection_tools: Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] display_history: Enable to display the web portal user login history widget. Valid values: `enable`, `disable`.
@@ -109,8 +121,10 @@ class PortalArgs:
         :param pulumi.Input[str] dns_suffix: DNS suffix.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] exclusive_routing: Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] focus_bookmark: Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download: Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download_method: FortiClient download method. Valid values: `direct`, `ssl-vpn`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] heading: Web portal heading message.
         :param pulumi.Input[str] hide_sso_credential: Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] host_check: Type of host checking performed on endpoints. Valid values: `none`, `av`, `fw`, `av-fw`, `custom`.
@@ -130,6 +144,8 @@ class PortalArgs:
         :param pulumi.Input[str] ipv6_wins_server1: IPv6 WINS server 1.
         :param pulumi.Input[str] ipv6_wins_server2: IPv6 WINS server 2.
         :param pulumi.Input[str] keep_alive: Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
+        :param pulumi.Input['PortalLandingPageArgs'] landing_page: Landing page options. The structure of `landing_page` block is documented below.
+        :param pulumi.Input[str] landing_page_mode: Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] limit_user_logins: Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mac_addr_action: Client MAC address action. Valid values: `allow`, `deny`.
         :param pulumi.Input[str] mac_addr_check: Enable/disable MAC address host checking. Valid values: `enable`, `disable`.
@@ -171,18 +187,26 @@ class PortalArgs:
             pulumi.set(__self__, "auto_connect", auto_connect)
         if bookmark_groups is not None:
             pulumi.set(__self__, "bookmark_groups", bookmark_groups)
+        if client_src_range is not None:
+            pulumi.set(__self__, "client_src_range", client_src_range)
         if clipboard is not None:
             pulumi.set(__self__, "clipboard", clipboard)
         if custom_lang is not None:
             pulumi.set(__self__, "custom_lang", custom_lang)
         if customize_forticlient_download_url is not None:
             pulumi.set(__self__, "customize_forticlient_download_url", customize_forticlient_download_url)
+        if default_protocol is not None:
+            pulumi.set(__self__, "default_protocol", default_protocol)
         if default_window_height is not None:
             pulumi.set(__self__, "default_window_height", default_window_height)
         if default_window_width is not None:
             pulumi.set(__self__, "default_window_width", default_window_width)
+        if dhcp6_ra_linkaddr is not None:
+            pulumi.set(__self__, "dhcp6_ra_linkaddr", dhcp6_ra_linkaddr)
         if dhcp_ip_overlap is not None:
             pulumi.set(__self__, "dhcp_ip_overlap", dhcp_ip_overlap)
+        if dhcp_ra_giaddr is not None:
+            pulumi.set(__self__, "dhcp_ra_giaddr", dhcp_ra_giaddr)
         if display_bookmark is not None:
             pulumi.set(__self__, "display_bookmark", display_bookmark)
         if display_connection_tools is not None:
@@ -201,10 +225,14 @@ class PortalArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if exclusive_routing is not None:
             pulumi.set(__self__, "exclusive_routing", exclusive_routing)
+        if focus_bookmark is not None:
+            pulumi.set(__self__, "focus_bookmark", focus_bookmark)
         if forticlient_download is not None:
             pulumi.set(__self__, "forticlient_download", forticlient_download)
         if forticlient_download_method is not None:
             pulumi.set(__self__, "forticlient_download_method", forticlient_download_method)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if heading is not None:
             pulumi.set(__self__, "heading", heading)
         if hide_sso_credential is not None:
@@ -243,6 +271,10 @@ class PortalArgs:
             pulumi.set(__self__, "ipv6_wins_server2", ipv6_wins_server2)
         if keep_alive is not None:
             pulumi.set(__self__, "keep_alive", keep_alive)
+        if landing_page is not None:
+            pulumi.set(__self__, "landing_page", landing_page)
+        if landing_page_mode is not None:
+            pulumi.set(__self__, "landing_page_mode", landing_page_mode)
         if limit_user_logins is not None:
             pulumi.set(__self__, "limit_user_logins", limit_user_logins)
         if mac_addr_action is not None:
@@ -349,6 +381,18 @@ class PortalArgs:
         pulumi.set(self, "bookmark_groups", value)
 
     @property
+    @pulumi.getter(name="clientSrcRange")
+    def client_src_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "client_src_range")
+
+    @client_src_range.setter
+    def client_src_range(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_src_range", value)
+
+    @property
     @pulumi.getter
     def clipboard(self) -> Optional[pulumi.Input[str]]:
         """
@@ -385,6 +429,18 @@ class PortalArgs:
         pulumi.set(self, "customize_forticlient_download_url", value)
 
     @property
+    @pulumi.getter(name="defaultProtocol")
+    def default_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+        """
+        return pulumi.get(self, "default_protocol")
+
+    @default_protocol.setter
+    def default_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_protocol", value)
+
+    @property
     @pulumi.getter(name="defaultWindowHeight")
     def default_window_height(self) -> Optional[pulumi.Input[int]]:
         """
@@ -409,6 +465,18 @@ class PortalArgs:
         pulumi.set(self, "default_window_width", value)
 
     @property
+    @pulumi.getter(name="dhcp6RaLinkaddr")
+    def dhcp6_ra_linkaddr(self) -> Optional[pulumi.Input[str]]:
+        """
+        Relay agent IPv6 link address to use in DHCP6 requests.
+        """
+        return pulumi.get(self, "dhcp6_ra_linkaddr")
+
+    @dhcp6_ra_linkaddr.setter
+    def dhcp6_ra_linkaddr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp6_ra_linkaddr", value)
+
+    @property
     @pulumi.getter(name="dhcpIpOverlap")
     def dhcp_ip_overlap(self) -> Optional[pulumi.Input[str]]:
         """
@@ -419,6 +487,18 @@ class PortalArgs:
     @dhcp_ip_overlap.setter
     def dhcp_ip_overlap(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_ip_overlap", value)
+
+    @property
+    @pulumi.getter(name="dhcpRaGiaddr")
+    def dhcp_ra_giaddr(self) -> Optional[pulumi.Input[str]]:
+        """
+        Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+        """
+        return pulumi.get(self, "dhcp_ra_giaddr")
+
+    @dhcp_ra_giaddr.setter
+    def dhcp_ra_giaddr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_ra_giaddr", value)
 
     @property
     @pulumi.getter(name="displayBookmark")
@@ -529,6 +609,18 @@ class PortalArgs:
         pulumi.set(self, "exclusive_routing", value)
 
     @property
+    @pulumi.getter(name="focusBookmark")
+    def focus_bookmark(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "focus_bookmark")
+
+    @focus_bookmark.setter
+    def focus_bookmark(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "focus_bookmark", value)
+
+    @property
     @pulumi.getter(name="forticlientDownload")
     def forticlient_download(self) -> Optional[pulumi.Input[str]]:
         """
@@ -551,6 +643,18 @@ class PortalArgs:
     @forticlient_download_method.setter
     def forticlient_download_method(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "forticlient_download_method", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -779,6 +883,30 @@ class PortalArgs:
     @keep_alive.setter
     def keep_alive(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "keep_alive", value)
+
+    @property
+    @pulumi.getter(name="landingPage")
+    def landing_page(self) -> Optional[pulumi.Input['PortalLandingPageArgs']]:
+        """
+        Landing page options. The structure of `landing_page` block is documented below.
+        """
+        return pulumi.get(self, "landing_page")
+
+    @landing_page.setter
+    def landing_page(self, value: Optional[pulumi.Input['PortalLandingPageArgs']]):
+        pulumi.set(self, "landing_page", value)
+
+    @property
+    @pulumi.getter(name="landingPageMode")
+    def landing_page_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "landing_page_mode")
+
+    @landing_page_mode.setter
+    def landing_page_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "landing_page_mode", value)
 
     @property
     @pulumi.getter(name="limitUserLogins")
@@ -1195,12 +1323,16 @@ class _PortalState:
                  allow_user_access: Optional[pulumi.Input[str]] = None,
                  auto_connect: Optional[pulumi.Input[str]] = None,
                  bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input['PortalBookmarkGroupArgs']]]] = None,
+                 client_src_range: Optional[pulumi.Input[str]] = None,
                  clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
+                 default_protocol: Optional[pulumi.Input[str]] = None,
                  default_window_height: Optional[pulumi.Input[int]] = None,
                  default_window_width: Optional[pulumi.Input[int]] = None,
+                 dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ip_overlap: Optional[pulumi.Input[str]] = None,
+                 dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  display_bookmark: Optional[pulumi.Input[str]] = None,
                  display_connection_tools: Optional[pulumi.Input[str]] = None,
                  display_history: Optional[pulumi.Input[str]] = None,
@@ -1210,8 +1342,10 @@ class _PortalState:
                  dns_suffix: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  exclusive_routing: Optional[pulumi.Input[str]] = None,
+                 focus_bookmark: Optional[pulumi.Input[str]] = None,
                  forticlient_download: Optional[pulumi.Input[str]] = None,
                  forticlient_download_method: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  heading: Optional[pulumi.Input[str]] = None,
                  hide_sso_credential: Optional[pulumi.Input[str]] = None,
                  host_check: Optional[pulumi.Input[str]] = None,
@@ -1231,6 +1365,8 @@ class _PortalState:
                  ipv6_wins_server1: Optional[pulumi.Input[str]] = None,
                  ipv6_wins_server2: Optional[pulumi.Input[str]] = None,
                  keep_alive: Optional[pulumi.Input[str]] = None,
+                 landing_page: Optional[pulumi.Input['PortalLandingPageArgs']] = None,
+                 landing_page_mode: Optional[pulumi.Input[str]] = None,
                  limit_user_logins: Optional[pulumi.Input[str]] = None,
                  mac_addr_action: Optional[pulumi.Input[str]] = None,
                  mac_addr_check: Optional[pulumi.Input[str]] = None,
@@ -1270,12 +1406,16 @@ class _PortalState:
         :param pulumi.Input[str] allow_user_access: Allow user access to SSL-VPN applications.
         :param pulumi.Input[str] auto_connect: Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['PortalBookmarkGroupArgs']]] bookmark_groups: Portal bookmark group. The structure of `bookmark_group` block is documented below.
+        :param pulumi.Input[str] client_src_range: Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] clipboard: Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] custom_lang: Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
         :param pulumi.Input[str] customize_forticlient_download_url: Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] default_protocol: Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
         :param pulumi.Input[int] default_window_height: Screen height (range from 0 - 65535, default = 768).
         :param pulumi.Input[int] default_window_width: Screen width (range from 0 - 65535, default = 1024).
+        :param pulumi.Input[str] dhcp6_ra_linkaddr: Relay agent IPv6 link address to use in DHCP6 requests.
         :param pulumi.Input[str] dhcp_ip_overlap: Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
+        :param pulumi.Input[str] dhcp_ra_giaddr: Relay agent gateway IP address to use in the giaddr field of DHCP requests.
         :param pulumi.Input[str] display_bookmark: Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] display_connection_tools: Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] display_history: Enable to display the web portal user login history widget. Valid values: `enable`, `disable`.
@@ -1285,8 +1425,10 @@ class _PortalState:
         :param pulumi.Input[str] dns_suffix: DNS suffix.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] exclusive_routing: Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] focus_bookmark: Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download: Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download_method: FortiClient download method. Valid values: `direct`, `ssl-vpn`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] heading: Web portal heading message.
         :param pulumi.Input[str] hide_sso_credential: Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] host_check: Type of host checking performed on endpoints. Valid values: `none`, `av`, `fw`, `av-fw`, `custom`.
@@ -1306,6 +1448,8 @@ class _PortalState:
         :param pulumi.Input[str] ipv6_wins_server1: IPv6 WINS server 1.
         :param pulumi.Input[str] ipv6_wins_server2: IPv6 WINS server 2.
         :param pulumi.Input[str] keep_alive: Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
+        :param pulumi.Input['PortalLandingPageArgs'] landing_page: Landing page options. The structure of `landing_page` block is documented below.
+        :param pulumi.Input[str] landing_page_mode: Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] limit_user_logins: Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mac_addr_action: Client MAC address action. Valid values: `allow`, `deny`.
         :param pulumi.Input[str] mac_addr_check: Enable/disable MAC address host checking. Valid values: `enable`, `disable`.
@@ -1347,18 +1491,26 @@ class _PortalState:
             pulumi.set(__self__, "auto_connect", auto_connect)
         if bookmark_groups is not None:
             pulumi.set(__self__, "bookmark_groups", bookmark_groups)
+        if client_src_range is not None:
+            pulumi.set(__self__, "client_src_range", client_src_range)
         if clipboard is not None:
             pulumi.set(__self__, "clipboard", clipboard)
         if custom_lang is not None:
             pulumi.set(__self__, "custom_lang", custom_lang)
         if customize_forticlient_download_url is not None:
             pulumi.set(__self__, "customize_forticlient_download_url", customize_forticlient_download_url)
+        if default_protocol is not None:
+            pulumi.set(__self__, "default_protocol", default_protocol)
         if default_window_height is not None:
             pulumi.set(__self__, "default_window_height", default_window_height)
         if default_window_width is not None:
             pulumi.set(__self__, "default_window_width", default_window_width)
+        if dhcp6_ra_linkaddr is not None:
+            pulumi.set(__self__, "dhcp6_ra_linkaddr", dhcp6_ra_linkaddr)
         if dhcp_ip_overlap is not None:
             pulumi.set(__self__, "dhcp_ip_overlap", dhcp_ip_overlap)
+        if dhcp_ra_giaddr is not None:
+            pulumi.set(__self__, "dhcp_ra_giaddr", dhcp_ra_giaddr)
         if display_bookmark is not None:
             pulumi.set(__self__, "display_bookmark", display_bookmark)
         if display_connection_tools is not None:
@@ -1377,10 +1529,14 @@ class _PortalState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if exclusive_routing is not None:
             pulumi.set(__self__, "exclusive_routing", exclusive_routing)
+        if focus_bookmark is not None:
+            pulumi.set(__self__, "focus_bookmark", focus_bookmark)
         if forticlient_download is not None:
             pulumi.set(__self__, "forticlient_download", forticlient_download)
         if forticlient_download_method is not None:
             pulumi.set(__self__, "forticlient_download_method", forticlient_download_method)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if heading is not None:
             pulumi.set(__self__, "heading", heading)
         if hide_sso_credential is not None:
@@ -1419,6 +1575,10 @@ class _PortalState:
             pulumi.set(__self__, "ipv6_wins_server2", ipv6_wins_server2)
         if keep_alive is not None:
             pulumi.set(__self__, "keep_alive", keep_alive)
+        if landing_page is not None:
+            pulumi.set(__self__, "landing_page", landing_page)
+        if landing_page_mode is not None:
+            pulumi.set(__self__, "landing_page_mode", landing_page_mode)
         if limit_user_logins is not None:
             pulumi.set(__self__, "limit_user_logins", limit_user_logins)
         if mac_addr_action is not None:
@@ -1525,6 +1685,18 @@ class _PortalState:
         pulumi.set(self, "bookmark_groups", value)
 
     @property
+    @pulumi.getter(name="clientSrcRange")
+    def client_src_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "client_src_range")
+
+    @client_src_range.setter
+    def client_src_range(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_src_range", value)
+
+    @property
     @pulumi.getter
     def clipboard(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1561,6 +1733,18 @@ class _PortalState:
         pulumi.set(self, "customize_forticlient_download_url", value)
 
     @property
+    @pulumi.getter(name="defaultProtocol")
+    def default_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+        """
+        return pulumi.get(self, "default_protocol")
+
+    @default_protocol.setter
+    def default_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_protocol", value)
+
+    @property
     @pulumi.getter(name="defaultWindowHeight")
     def default_window_height(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1585,6 +1769,18 @@ class _PortalState:
         pulumi.set(self, "default_window_width", value)
 
     @property
+    @pulumi.getter(name="dhcp6RaLinkaddr")
+    def dhcp6_ra_linkaddr(self) -> Optional[pulumi.Input[str]]:
+        """
+        Relay agent IPv6 link address to use in DHCP6 requests.
+        """
+        return pulumi.get(self, "dhcp6_ra_linkaddr")
+
+    @dhcp6_ra_linkaddr.setter
+    def dhcp6_ra_linkaddr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp6_ra_linkaddr", value)
+
+    @property
     @pulumi.getter(name="dhcpIpOverlap")
     def dhcp_ip_overlap(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1595,6 +1791,18 @@ class _PortalState:
     @dhcp_ip_overlap.setter
     def dhcp_ip_overlap(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_ip_overlap", value)
+
+    @property
+    @pulumi.getter(name="dhcpRaGiaddr")
+    def dhcp_ra_giaddr(self) -> Optional[pulumi.Input[str]]:
+        """
+        Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+        """
+        return pulumi.get(self, "dhcp_ra_giaddr")
+
+    @dhcp_ra_giaddr.setter
+    def dhcp_ra_giaddr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_ra_giaddr", value)
 
     @property
     @pulumi.getter(name="displayBookmark")
@@ -1705,6 +1913,18 @@ class _PortalState:
         pulumi.set(self, "exclusive_routing", value)
 
     @property
+    @pulumi.getter(name="focusBookmark")
+    def focus_bookmark(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "focus_bookmark")
+
+    @focus_bookmark.setter
+    def focus_bookmark(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "focus_bookmark", value)
+
+    @property
     @pulumi.getter(name="forticlientDownload")
     def forticlient_download(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1727,6 +1947,18 @@ class _PortalState:
     @forticlient_download_method.setter
     def forticlient_download_method(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "forticlient_download_method", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1955,6 +2187,30 @@ class _PortalState:
     @keep_alive.setter
     def keep_alive(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "keep_alive", value)
+
+    @property
+    @pulumi.getter(name="landingPage")
+    def landing_page(self) -> Optional[pulumi.Input['PortalLandingPageArgs']]:
+        """
+        Landing page options. The structure of `landing_page` block is documented below.
+        """
+        return pulumi.get(self, "landing_page")
+
+    @landing_page.setter
+    def landing_page(self, value: Optional[pulumi.Input['PortalLandingPageArgs']]):
+        pulumi.set(self, "landing_page", value)
+
+    @property
+    @pulumi.getter(name="landingPageMode")
+    def landing_page_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "landing_page_mode")
+
+    @landing_page_mode.setter
+    def landing_page_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "landing_page_mode", value)
 
     @property
     @pulumi.getter(name="limitUserLogins")
@@ -2373,12 +2629,16 @@ class Portal(pulumi.CustomResource):
                  allow_user_access: Optional[pulumi.Input[str]] = None,
                  auto_connect: Optional[pulumi.Input[str]] = None,
                  bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PortalBookmarkGroupArgs']]]]] = None,
+                 client_src_range: Optional[pulumi.Input[str]] = None,
                  clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
+                 default_protocol: Optional[pulumi.Input[str]] = None,
                  default_window_height: Optional[pulumi.Input[int]] = None,
                  default_window_width: Optional[pulumi.Input[int]] = None,
+                 dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ip_overlap: Optional[pulumi.Input[str]] = None,
+                 dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  display_bookmark: Optional[pulumi.Input[str]] = None,
                  display_connection_tools: Optional[pulumi.Input[str]] = None,
                  display_history: Optional[pulumi.Input[str]] = None,
@@ -2388,8 +2648,10 @@ class Portal(pulumi.CustomResource):
                  dns_suffix: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  exclusive_routing: Optional[pulumi.Input[str]] = None,
+                 focus_bookmark: Optional[pulumi.Input[str]] = None,
                  forticlient_download: Optional[pulumi.Input[str]] = None,
                  forticlient_download_method: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  heading: Optional[pulumi.Input[str]] = None,
                  hide_sso_credential: Optional[pulumi.Input[str]] = None,
                  host_check: Optional[pulumi.Input[str]] = None,
@@ -2409,6 +2671,8 @@ class Portal(pulumi.CustomResource):
                  ipv6_wins_server1: Optional[pulumi.Input[str]] = None,
                  ipv6_wins_server2: Optional[pulumi.Input[str]] = None,
                  keep_alive: Optional[pulumi.Input[str]] = None,
+                 landing_page: Optional[pulumi.Input[pulumi.InputType['PortalLandingPageArgs']]] = None,
+                 landing_page_mode: Optional[pulumi.Input[str]] = None,
                  limit_user_logins: Optional[pulumi.Input[str]] = None,
                  mac_addr_action: Optional[pulumi.Input[str]] = None,
                  mac_addr_check: Optional[pulumi.Input[str]] = None,
@@ -2530,12 +2794,16 @@ class Portal(pulumi.CustomResource):
         :param pulumi.Input[str] allow_user_access: Allow user access to SSL-VPN applications.
         :param pulumi.Input[str] auto_connect: Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PortalBookmarkGroupArgs']]]] bookmark_groups: Portal bookmark group. The structure of `bookmark_group` block is documented below.
+        :param pulumi.Input[str] client_src_range: Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] clipboard: Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] custom_lang: Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
         :param pulumi.Input[str] customize_forticlient_download_url: Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] default_protocol: Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
         :param pulumi.Input[int] default_window_height: Screen height (range from 0 - 65535, default = 768).
         :param pulumi.Input[int] default_window_width: Screen width (range from 0 - 65535, default = 1024).
+        :param pulumi.Input[str] dhcp6_ra_linkaddr: Relay agent IPv6 link address to use in DHCP6 requests.
         :param pulumi.Input[str] dhcp_ip_overlap: Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
+        :param pulumi.Input[str] dhcp_ra_giaddr: Relay agent gateway IP address to use in the giaddr field of DHCP requests.
         :param pulumi.Input[str] display_bookmark: Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] display_connection_tools: Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] display_history: Enable to display the web portal user login history widget. Valid values: `enable`, `disable`.
@@ -2545,8 +2813,10 @@ class Portal(pulumi.CustomResource):
         :param pulumi.Input[str] dns_suffix: DNS suffix.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] exclusive_routing: Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] focus_bookmark: Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download: Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download_method: FortiClient download method. Valid values: `direct`, `ssl-vpn`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] heading: Web portal heading message.
         :param pulumi.Input[str] hide_sso_credential: Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] host_check: Type of host checking performed on endpoints. Valid values: `none`, `av`, `fw`, `av-fw`, `custom`.
@@ -2566,6 +2836,8 @@ class Portal(pulumi.CustomResource):
         :param pulumi.Input[str] ipv6_wins_server1: IPv6 WINS server 1.
         :param pulumi.Input[str] ipv6_wins_server2: IPv6 WINS server 2.
         :param pulumi.Input[str] keep_alive: Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
+        :param pulumi.Input[pulumi.InputType['PortalLandingPageArgs']] landing_page: Landing page options. The structure of `landing_page` block is documented below.
+        :param pulumi.Input[str] landing_page_mode: Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] limit_user_logins: Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mac_addr_action: Client MAC address action. Valid values: `allow`, `deny`.
         :param pulumi.Input[str] mac_addr_check: Enable/disable MAC address host checking. Valid values: `enable`, `disable`.
@@ -2706,12 +2978,16 @@ class Portal(pulumi.CustomResource):
                  allow_user_access: Optional[pulumi.Input[str]] = None,
                  auto_connect: Optional[pulumi.Input[str]] = None,
                  bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PortalBookmarkGroupArgs']]]]] = None,
+                 client_src_range: Optional[pulumi.Input[str]] = None,
                  clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
+                 default_protocol: Optional[pulumi.Input[str]] = None,
                  default_window_height: Optional[pulumi.Input[int]] = None,
                  default_window_width: Optional[pulumi.Input[int]] = None,
+                 dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ip_overlap: Optional[pulumi.Input[str]] = None,
+                 dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  display_bookmark: Optional[pulumi.Input[str]] = None,
                  display_connection_tools: Optional[pulumi.Input[str]] = None,
                  display_history: Optional[pulumi.Input[str]] = None,
@@ -2721,8 +2997,10 @@ class Portal(pulumi.CustomResource):
                  dns_suffix: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  exclusive_routing: Optional[pulumi.Input[str]] = None,
+                 focus_bookmark: Optional[pulumi.Input[str]] = None,
                  forticlient_download: Optional[pulumi.Input[str]] = None,
                  forticlient_download_method: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  heading: Optional[pulumi.Input[str]] = None,
                  hide_sso_credential: Optional[pulumi.Input[str]] = None,
                  host_check: Optional[pulumi.Input[str]] = None,
@@ -2742,6 +3020,8 @@ class Portal(pulumi.CustomResource):
                  ipv6_wins_server1: Optional[pulumi.Input[str]] = None,
                  ipv6_wins_server2: Optional[pulumi.Input[str]] = None,
                  keep_alive: Optional[pulumi.Input[str]] = None,
+                 landing_page: Optional[pulumi.Input[pulumi.InputType['PortalLandingPageArgs']]] = None,
+                 landing_page_mode: Optional[pulumi.Input[str]] = None,
                  limit_user_logins: Optional[pulumi.Input[str]] = None,
                  mac_addr_action: Optional[pulumi.Input[str]] = None,
                  mac_addr_check: Optional[pulumi.Input[str]] = None,
@@ -2788,12 +3068,16 @@ class Portal(pulumi.CustomResource):
             __props__.__dict__["allow_user_access"] = allow_user_access
             __props__.__dict__["auto_connect"] = auto_connect
             __props__.__dict__["bookmark_groups"] = bookmark_groups
+            __props__.__dict__["client_src_range"] = client_src_range
             __props__.__dict__["clipboard"] = clipboard
             __props__.__dict__["custom_lang"] = custom_lang
             __props__.__dict__["customize_forticlient_download_url"] = customize_forticlient_download_url
+            __props__.__dict__["default_protocol"] = default_protocol
             __props__.__dict__["default_window_height"] = default_window_height
             __props__.__dict__["default_window_width"] = default_window_width
+            __props__.__dict__["dhcp6_ra_linkaddr"] = dhcp6_ra_linkaddr
             __props__.__dict__["dhcp_ip_overlap"] = dhcp_ip_overlap
+            __props__.__dict__["dhcp_ra_giaddr"] = dhcp_ra_giaddr
             __props__.__dict__["display_bookmark"] = display_bookmark
             __props__.__dict__["display_connection_tools"] = display_connection_tools
             __props__.__dict__["display_history"] = display_history
@@ -2803,8 +3087,10 @@ class Portal(pulumi.CustomResource):
             __props__.__dict__["dns_suffix"] = dns_suffix
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["exclusive_routing"] = exclusive_routing
+            __props__.__dict__["focus_bookmark"] = focus_bookmark
             __props__.__dict__["forticlient_download"] = forticlient_download
             __props__.__dict__["forticlient_download_method"] = forticlient_download_method
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["heading"] = heading
             __props__.__dict__["hide_sso_credential"] = hide_sso_credential
             __props__.__dict__["host_check"] = host_check
@@ -2824,6 +3110,8 @@ class Portal(pulumi.CustomResource):
             __props__.__dict__["ipv6_wins_server1"] = ipv6_wins_server1
             __props__.__dict__["ipv6_wins_server2"] = ipv6_wins_server2
             __props__.__dict__["keep_alive"] = keep_alive
+            __props__.__dict__["landing_page"] = landing_page
+            __props__.__dict__["landing_page_mode"] = landing_page_mode
             __props__.__dict__["limit_user_logins"] = limit_user_logins
             __props__.__dict__["mac_addr_action"] = mac_addr_action
             __props__.__dict__["mac_addr_check"] = mac_addr_check
@@ -2871,12 +3159,16 @@ class Portal(pulumi.CustomResource):
             allow_user_access: Optional[pulumi.Input[str]] = None,
             auto_connect: Optional[pulumi.Input[str]] = None,
             bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PortalBookmarkGroupArgs']]]]] = None,
+            client_src_range: Optional[pulumi.Input[str]] = None,
             clipboard: Optional[pulumi.Input[str]] = None,
             custom_lang: Optional[pulumi.Input[str]] = None,
             customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
+            default_protocol: Optional[pulumi.Input[str]] = None,
             default_window_height: Optional[pulumi.Input[int]] = None,
             default_window_width: Optional[pulumi.Input[int]] = None,
+            dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
             dhcp_ip_overlap: Optional[pulumi.Input[str]] = None,
+            dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
             display_bookmark: Optional[pulumi.Input[str]] = None,
             display_connection_tools: Optional[pulumi.Input[str]] = None,
             display_history: Optional[pulumi.Input[str]] = None,
@@ -2886,8 +3178,10 @@ class Portal(pulumi.CustomResource):
             dns_suffix: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             exclusive_routing: Optional[pulumi.Input[str]] = None,
+            focus_bookmark: Optional[pulumi.Input[str]] = None,
             forticlient_download: Optional[pulumi.Input[str]] = None,
             forticlient_download_method: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             heading: Optional[pulumi.Input[str]] = None,
             hide_sso_credential: Optional[pulumi.Input[str]] = None,
             host_check: Optional[pulumi.Input[str]] = None,
@@ -2907,6 +3201,8 @@ class Portal(pulumi.CustomResource):
             ipv6_wins_server1: Optional[pulumi.Input[str]] = None,
             ipv6_wins_server2: Optional[pulumi.Input[str]] = None,
             keep_alive: Optional[pulumi.Input[str]] = None,
+            landing_page: Optional[pulumi.Input[pulumi.InputType['PortalLandingPageArgs']]] = None,
+            landing_page_mode: Optional[pulumi.Input[str]] = None,
             limit_user_logins: Optional[pulumi.Input[str]] = None,
             mac_addr_action: Optional[pulumi.Input[str]] = None,
             mac_addr_check: Optional[pulumi.Input[str]] = None,
@@ -2951,12 +3247,16 @@ class Portal(pulumi.CustomResource):
         :param pulumi.Input[str] allow_user_access: Allow user access to SSL-VPN applications.
         :param pulumi.Input[str] auto_connect: Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PortalBookmarkGroupArgs']]]] bookmark_groups: Portal bookmark group. The structure of `bookmark_group` block is documented below.
+        :param pulumi.Input[str] client_src_range: Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] clipboard: Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] custom_lang: Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
         :param pulumi.Input[str] customize_forticlient_download_url: Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] default_protocol: Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
         :param pulumi.Input[int] default_window_height: Screen height (range from 0 - 65535, default = 768).
         :param pulumi.Input[int] default_window_width: Screen width (range from 0 - 65535, default = 1024).
+        :param pulumi.Input[str] dhcp6_ra_linkaddr: Relay agent IPv6 link address to use in DHCP6 requests.
         :param pulumi.Input[str] dhcp_ip_overlap: Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
+        :param pulumi.Input[str] dhcp_ra_giaddr: Relay agent gateway IP address to use in the giaddr field of DHCP requests.
         :param pulumi.Input[str] display_bookmark: Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] display_connection_tools: Enable to display the web portal connection tools widget. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] display_history: Enable to display the web portal user login history widget. Valid values: `enable`, `disable`.
@@ -2966,8 +3266,10 @@ class Portal(pulumi.CustomResource):
         :param pulumi.Input[str] dns_suffix: DNS suffix.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] exclusive_routing: Enable/disable all traffic go through tunnel only. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] focus_bookmark: Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download: Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download_method: FortiClient download method. Valid values: `direct`, `ssl-vpn`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] heading: Web portal heading message.
         :param pulumi.Input[str] hide_sso_credential: Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] host_check: Type of host checking performed on endpoints. Valid values: `none`, `av`, `fw`, `av-fw`, `custom`.
@@ -2987,6 +3289,8 @@ class Portal(pulumi.CustomResource):
         :param pulumi.Input[str] ipv6_wins_server1: IPv6 WINS server 1.
         :param pulumi.Input[str] ipv6_wins_server2: IPv6 WINS server 2.
         :param pulumi.Input[str] keep_alive: Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
+        :param pulumi.Input[pulumi.InputType['PortalLandingPageArgs']] landing_page: Landing page options. The structure of `landing_page` block is documented below.
+        :param pulumi.Input[str] landing_page_mode: Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] limit_user_logins: Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mac_addr_action: Client MAC address action. Valid values: `allow`, `deny`.
         :param pulumi.Input[str] mac_addr_check: Enable/disable MAC address host checking. Valid values: `enable`, `disable`.
@@ -3029,12 +3333,16 @@ class Portal(pulumi.CustomResource):
         __props__.__dict__["allow_user_access"] = allow_user_access
         __props__.__dict__["auto_connect"] = auto_connect
         __props__.__dict__["bookmark_groups"] = bookmark_groups
+        __props__.__dict__["client_src_range"] = client_src_range
         __props__.__dict__["clipboard"] = clipboard
         __props__.__dict__["custom_lang"] = custom_lang
         __props__.__dict__["customize_forticlient_download_url"] = customize_forticlient_download_url
+        __props__.__dict__["default_protocol"] = default_protocol
         __props__.__dict__["default_window_height"] = default_window_height
         __props__.__dict__["default_window_width"] = default_window_width
+        __props__.__dict__["dhcp6_ra_linkaddr"] = dhcp6_ra_linkaddr
         __props__.__dict__["dhcp_ip_overlap"] = dhcp_ip_overlap
+        __props__.__dict__["dhcp_ra_giaddr"] = dhcp_ra_giaddr
         __props__.__dict__["display_bookmark"] = display_bookmark
         __props__.__dict__["display_connection_tools"] = display_connection_tools
         __props__.__dict__["display_history"] = display_history
@@ -3044,8 +3352,10 @@ class Portal(pulumi.CustomResource):
         __props__.__dict__["dns_suffix"] = dns_suffix
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["exclusive_routing"] = exclusive_routing
+        __props__.__dict__["focus_bookmark"] = focus_bookmark
         __props__.__dict__["forticlient_download"] = forticlient_download
         __props__.__dict__["forticlient_download_method"] = forticlient_download_method
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["heading"] = heading
         __props__.__dict__["hide_sso_credential"] = hide_sso_credential
         __props__.__dict__["host_check"] = host_check
@@ -3065,6 +3375,8 @@ class Portal(pulumi.CustomResource):
         __props__.__dict__["ipv6_wins_server1"] = ipv6_wins_server1
         __props__.__dict__["ipv6_wins_server2"] = ipv6_wins_server2
         __props__.__dict__["keep_alive"] = keep_alive
+        __props__.__dict__["landing_page"] = landing_page
+        __props__.__dict__["landing_page_mode"] = landing_page_mode
         __props__.__dict__["limit_user_logins"] = limit_user_logins
         __props__.__dict__["mac_addr_action"] = mac_addr_action
         __props__.__dict__["mac_addr_check"] = mac_addr_check
@@ -3126,6 +3438,14 @@ class Portal(pulumi.CustomResource):
         return pulumi.get(self, "bookmark_groups")
 
     @property
+    @pulumi.getter(name="clientSrcRange")
+    def client_src_range(self) -> pulumi.Output[str]:
+        """
+        Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "client_src_range")
+
+    @property
     @pulumi.getter
     def clipboard(self) -> pulumi.Output[str]:
         """
@@ -3150,6 +3470,14 @@ class Portal(pulumi.CustomResource):
         return pulumi.get(self, "customize_forticlient_download_url")
 
     @property
+    @pulumi.getter(name="defaultProtocol")
+    def default_protocol(self) -> pulumi.Output[str]:
+        """
+        Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+        """
+        return pulumi.get(self, "default_protocol")
+
+    @property
     @pulumi.getter(name="defaultWindowHeight")
     def default_window_height(self) -> pulumi.Output[int]:
         """
@@ -3166,12 +3494,28 @@ class Portal(pulumi.CustomResource):
         return pulumi.get(self, "default_window_width")
 
     @property
+    @pulumi.getter(name="dhcp6RaLinkaddr")
+    def dhcp6_ra_linkaddr(self) -> pulumi.Output[str]:
+        """
+        Relay agent IPv6 link address to use in DHCP6 requests.
+        """
+        return pulumi.get(self, "dhcp6_ra_linkaddr")
+
+    @property
     @pulumi.getter(name="dhcpIpOverlap")
     def dhcp_ip_overlap(self) -> pulumi.Output[str]:
         """
         Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
         """
         return pulumi.get(self, "dhcp_ip_overlap")
+
+    @property
+    @pulumi.getter(name="dhcpRaGiaddr")
+    def dhcp_ra_giaddr(self) -> pulumi.Output[str]:
+        """
+        Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+        """
+        return pulumi.get(self, "dhcp_ra_giaddr")
 
     @property
     @pulumi.getter(name="displayBookmark")
@@ -3246,6 +3590,14 @@ class Portal(pulumi.CustomResource):
         return pulumi.get(self, "exclusive_routing")
 
     @property
+    @pulumi.getter(name="focusBookmark")
+    def focus_bookmark(self) -> pulumi.Output[str]:
+        """
+        Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "focus_bookmark")
+
+    @property
     @pulumi.getter(name="forticlientDownload")
     def forticlient_download(self) -> pulumi.Output[str]:
         """
@@ -3260,6 +3612,14 @@ class Portal(pulumi.CustomResource):
         FortiClient download method. Valid values: `direct`, `ssl-vpn`.
         """
         return pulumi.get(self, "forticlient_download_method")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -3412,6 +3772,22 @@ class Portal(pulumi.CustomResource):
         Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "keep_alive")
+
+    @property
+    @pulumi.getter(name="landingPage")
+    def landing_page(self) -> pulumi.Output['outputs.PortalLandingPage']:
+        """
+        Landing page options. The structure of `landing_page` block is documented below.
+        """
+        return pulumi.get(self, "landing_page")
+
+    @property
+    @pulumi.getter(name="landingPageMode")
+    def landing_page_mode(self) -> pulumi.Output[str]:
+        """
+        Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "landing_page_mode")
 
     @property
     @pulumi.getter(name="limitUserLogins")

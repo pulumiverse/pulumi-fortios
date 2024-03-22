@@ -133,6 +133,12 @@ namespace Pulumiverse.Fortios.Report
         public Output<string> Favorite { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
         /// </summary>
         [Output("graphType")]
@@ -342,6 +348,12 @@ namespace Pulumiverse.Fortios.Report
         public Input<string>? Favorite { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
         /// </summary>
         [Input("graphType")]
@@ -510,6 +522,12 @@ namespace Pulumiverse.Fortios.Report
         /// </summary>
         [Input("favorite")]
         public Input<string>? Favorite { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.

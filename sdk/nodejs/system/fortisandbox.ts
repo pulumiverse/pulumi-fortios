@@ -101,7 +101,7 @@ export class Fortisandbox extends pulumi.CustomResource {
      */
     public readonly sourceIp!: pulumi.Output<string>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     public readonly sslMinProtoVersion!: pulumi.Output<string>;
     /**
@@ -193,7 +193,7 @@ export interface FortisandboxState {
      */
     sourceIp?: pulumi.Input<string>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     sslMinProtoVersion?: pulumi.Input<string>;
     /**
@@ -243,7 +243,7 @@ export interface FortisandboxArgs {
      */
     sourceIp?: pulumi.Input<string>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     sslMinProtoVersion?: pulumi.Input<string>;
     /**

@@ -16,12 +16,16 @@ __all__ = ['SpeedtestscheduleArgs', 'Speedtestschedule']
 @pulumi.input_type
 class SpeedtestscheduleArgs:
     def __init__(__self__, *,
+                 ctrl_port: Optional[pulumi.Input[int]] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
                  dynamic_server: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input['SpeedtestscheduleScheduleArgs']]]] = None,
                  server_name: Optional[pulumi.Input[str]] = None,
+                 server_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  update_inbandwidth: Optional[pulumi.Input[str]] = None,
                  update_inbandwidth_maximum: Optional[pulumi.Input[int]] = None,
@@ -29,15 +33,20 @@ class SpeedtestscheduleArgs:
                  update_outbandwidth: Optional[pulumi.Input[str]] = None,
                  update_outbandwidth_maximum: Optional[pulumi.Input[int]] = None,
                  update_outbandwidth_minimum: Optional[pulumi.Input[int]] = None,
+                 update_shaper: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Speedtestschedule resource.
+        :param pulumi.Input[int] ctrl_port: Port of the controller to get access token.
         :param pulumi.Input[str] diffserv: DSCP used for speed test.
         :param pulumi.Input[str] dynamic_server: Enable/disable dynamic server option. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Interface name.
+        :param pulumi.Input[str] mode: Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
         :param pulumi.Input[Sequence[pulumi.Input['SpeedtestscheduleScheduleArgs']]] schedules: Schedules for the interface. The structure of `schedules` block is documented below.
         :param pulumi.Input[str] server_name: Speed test server name.
+        :param pulumi.Input[int] server_port: Port of the server to run speed test.
         :param pulumi.Input[str] status: Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] update_inbandwidth: Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] update_inbandwidth_maximum: Maximum downloading bandwidth (kbps) to be used in a speed test.
@@ -45,20 +54,29 @@ class SpeedtestscheduleArgs:
         :param pulumi.Input[str] update_outbandwidth: Enable/disable bypassing interface's outbound bandwidth setting. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] update_outbandwidth_maximum: Maximum uploading bandwidth (kbps) to be used in a speed test.
         :param pulumi.Input[int] update_outbandwidth_minimum: Minimum uploading bandwidth (kbps) to be considered effective.
+        :param pulumi.Input[str] update_shaper: Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if ctrl_port is not None:
+            pulumi.set(__self__, "ctrl_port", ctrl_port)
         if diffserv is not None:
             pulumi.set(__self__, "diffserv", diffserv)
         if dynamic_server is not None:
             pulumi.set(__self__, "dynamic_server", dynamic_server)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
         if schedules is not None:
             pulumi.set(__self__, "schedules", schedules)
         if server_name is not None:
             pulumi.set(__self__, "server_name", server_name)
+        if server_port is not None:
+            pulumi.set(__self__, "server_port", server_port)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if update_inbandwidth is not None:
@@ -73,8 +91,22 @@ class SpeedtestscheduleArgs:
             pulumi.set(__self__, "update_outbandwidth_maximum", update_outbandwidth_maximum)
         if update_outbandwidth_minimum is not None:
             pulumi.set(__self__, "update_outbandwidth_minimum", update_outbandwidth_minimum)
+        if update_shaper is not None:
+            pulumi.set(__self__, "update_shaper", update_shaper)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="ctrlPort")
+    def ctrl_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port of the controller to get access token.
+        """
+        return pulumi.get(self, "ctrl_port")
+
+    @ctrl_port.setter
+    def ctrl_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ctrl_port", value)
 
     @property
     @pulumi.getter
@@ -113,6 +145,18 @@ class SpeedtestscheduleArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         """
@@ -123,6 +167,18 @@ class SpeedtestscheduleArgs:
     @interface.setter
     def interface(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
 
     @property
     @pulumi.getter
@@ -147,6 +203,18 @@ class SpeedtestscheduleArgs:
     @server_name.setter
     def server_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_name", value)
+
+    @property
+    @pulumi.getter(name="serverPort")
+    def server_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port of the server to run speed test.
+        """
+        return pulumi.get(self, "server_port")
+
+    @server_port.setter
+    def server_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "server_port", value)
 
     @property
     @pulumi.getter
@@ -231,6 +299,18 @@ class SpeedtestscheduleArgs:
     @update_outbandwidth_minimum.setter
     def update_outbandwidth_minimum(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "update_outbandwidth_minimum", value)
+
+    @property
+    @pulumi.getter(name="updateShaper")
+    def update_shaper(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+        """
+        return pulumi.get(self, "update_shaper")
+
+    @update_shaper.setter
+    def update_shaper(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_shaper", value)
 
     @property
     @pulumi.getter
@@ -248,12 +328,16 @@ class SpeedtestscheduleArgs:
 @pulumi.input_type
 class _SpeedtestscheduleState:
     def __init__(__self__, *,
+                 ctrl_port: Optional[pulumi.Input[int]] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
                  dynamic_server: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input['SpeedtestscheduleScheduleArgs']]]] = None,
                  server_name: Optional[pulumi.Input[str]] = None,
+                 server_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  update_inbandwidth: Optional[pulumi.Input[str]] = None,
                  update_inbandwidth_maximum: Optional[pulumi.Input[int]] = None,
@@ -261,15 +345,20 @@ class _SpeedtestscheduleState:
                  update_outbandwidth: Optional[pulumi.Input[str]] = None,
                  update_outbandwidth_maximum: Optional[pulumi.Input[int]] = None,
                  update_outbandwidth_minimum: Optional[pulumi.Input[int]] = None,
+                 update_shaper: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Speedtestschedule resources.
+        :param pulumi.Input[int] ctrl_port: Port of the controller to get access token.
         :param pulumi.Input[str] diffserv: DSCP used for speed test.
         :param pulumi.Input[str] dynamic_server: Enable/disable dynamic server option. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Interface name.
+        :param pulumi.Input[str] mode: Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
         :param pulumi.Input[Sequence[pulumi.Input['SpeedtestscheduleScheduleArgs']]] schedules: Schedules for the interface. The structure of `schedules` block is documented below.
         :param pulumi.Input[str] server_name: Speed test server name.
+        :param pulumi.Input[int] server_port: Port of the server to run speed test.
         :param pulumi.Input[str] status: Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] update_inbandwidth: Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] update_inbandwidth_maximum: Maximum downloading bandwidth (kbps) to be used in a speed test.
@@ -277,20 +366,29 @@ class _SpeedtestscheduleState:
         :param pulumi.Input[str] update_outbandwidth: Enable/disable bypassing interface's outbound bandwidth setting. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] update_outbandwidth_maximum: Maximum uploading bandwidth (kbps) to be used in a speed test.
         :param pulumi.Input[int] update_outbandwidth_minimum: Minimum uploading bandwidth (kbps) to be considered effective.
+        :param pulumi.Input[str] update_shaper: Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if ctrl_port is not None:
+            pulumi.set(__self__, "ctrl_port", ctrl_port)
         if diffserv is not None:
             pulumi.set(__self__, "diffserv", diffserv)
         if dynamic_server is not None:
             pulumi.set(__self__, "dynamic_server", dynamic_server)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
         if schedules is not None:
             pulumi.set(__self__, "schedules", schedules)
         if server_name is not None:
             pulumi.set(__self__, "server_name", server_name)
+        if server_port is not None:
+            pulumi.set(__self__, "server_port", server_port)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if update_inbandwidth is not None:
@@ -305,8 +403,22 @@ class _SpeedtestscheduleState:
             pulumi.set(__self__, "update_outbandwidth_maximum", update_outbandwidth_maximum)
         if update_outbandwidth_minimum is not None:
             pulumi.set(__self__, "update_outbandwidth_minimum", update_outbandwidth_minimum)
+        if update_shaper is not None:
+            pulumi.set(__self__, "update_shaper", update_shaper)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="ctrlPort")
+    def ctrl_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port of the controller to get access token.
+        """
+        return pulumi.get(self, "ctrl_port")
+
+    @ctrl_port.setter
+    def ctrl_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ctrl_port", value)
 
     @property
     @pulumi.getter
@@ -345,6 +457,18 @@ class _SpeedtestscheduleState:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         """
@@ -355,6 +479,18 @@ class _SpeedtestscheduleState:
     @interface.setter
     def interface(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
 
     @property
     @pulumi.getter
@@ -379,6 +515,18 @@ class _SpeedtestscheduleState:
     @server_name.setter
     def server_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_name", value)
+
+    @property
+    @pulumi.getter(name="serverPort")
+    def server_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port of the server to run speed test.
+        """
+        return pulumi.get(self, "server_port")
+
+    @server_port.setter
+    def server_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "server_port", value)
 
     @property
     @pulumi.getter
@@ -463,6 +611,18 @@ class _SpeedtestscheduleState:
     @update_outbandwidth_minimum.setter
     def update_outbandwidth_minimum(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "update_outbandwidth_minimum", value)
+
+    @property
+    @pulumi.getter(name="updateShaper")
+    def update_shaper(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+        """
+        return pulumi.get(self, "update_shaper")
+
+    @update_shaper.setter
+    def update_shaper(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_shaper", value)
 
     @property
     @pulumi.getter
@@ -482,12 +642,16 @@ class Speedtestschedule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 ctrl_port: Optional[pulumi.Input[int]] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
                  dynamic_server: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SpeedtestscheduleScheduleArgs']]]]] = None,
                  server_name: Optional[pulumi.Input[str]] = None,
+                 server_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  update_inbandwidth: Optional[pulumi.Input[str]] = None,
                  update_inbandwidth_maximum: Optional[pulumi.Input[int]] = None,
@@ -495,6 +659,7 @@ class Speedtestschedule(pulumi.CustomResource):
                  update_outbandwidth: Optional[pulumi.Input[str]] = None,
                  update_outbandwidth_maximum: Optional[pulumi.Input[int]] = None,
                  update_outbandwidth_minimum: Optional[pulumi.Input[int]] = None,
+                 update_shaper: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -520,12 +685,16 @@ class Speedtestschedule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] ctrl_port: Port of the controller to get access token.
         :param pulumi.Input[str] diffserv: DSCP used for speed test.
         :param pulumi.Input[str] dynamic_server: Enable/disable dynamic server option. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Interface name.
+        :param pulumi.Input[str] mode: Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SpeedtestscheduleScheduleArgs']]]] schedules: Schedules for the interface. The structure of `schedules` block is documented below.
         :param pulumi.Input[str] server_name: Speed test server name.
+        :param pulumi.Input[int] server_port: Port of the server to run speed test.
         :param pulumi.Input[str] status: Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] update_inbandwidth: Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] update_inbandwidth_maximum: Maximum downloading bandwidth (kbps) to be used in a speed test.
@@ -533,6 +702,7 @@ class Speedtestschedule(pulumi.CustomResource):
         :param pulumi.Input[str] update_outbandwidth: Enable/disable bypassing interface's outbound bandwidth setting. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] update_outbandwidth_maximum: Maximum uploading bandwidth (kbps) to be used in a speed test.
         :param pulumi.Input[int] update_outbandwidth_minimum: Minimum uploading bandwidth (kbps) to be considered effective.
+        :param pulumi.Input[str] update_shaper: Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -577,12 +747,16 @@ class Speedtestschedule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 ctrl_port: Optional[pulumi.Input[int]] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
                  dynamic_server: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SpeedtestscheduleScheduleArgs']]]]] = None,
                  server_name: Optional[pulumi.Input[str]] = None,
+                 server_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  update_inbandwidth: Optional[pulumi.Input[str]] = None,
                  update_inbandwidth_maximum: Optional[pulumi.Input[int]] = None,
@@ -590,6 +764,7 @@ class Speedtestschedule(pulumi.CustomResource):
                  update_outbandwidth: Optional[pulumi.Input[str]] = None,
                  update_outbandwidth_maximum: Optional[pulumi.Input[int]] = None,
                  update_outbandwidth_minimum: Optional[pulumi.Input[int]] = None,
+                 update_shaper: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -600,12 +775,16 @@ class Speedtestschedule(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SpeedtestscheduleArgs.__new__(SpeedtestscheduleArgs)
 
+            __props__.__dict__["ctrl_port"] = ctrl_port
             __props__.__dict__["diffserv"] = diffserv
             __props__.__dict__["dynamic_server"] = dynamic_server
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interface"] = interface
+            __props__.__dict__["mode"] = mode
             __props__.__dict__["schedules"] = schedules
             __props__.__dict__["server_name"] = server_name
+            __props__.__dict__["server_port"] = server_port
             __props__.__dict__["status"] = status
             __props__.__dict__["update_inbandwidth"] = update_inbandwidth
             __props__.__dict__["update_inbandwidth_maximum"] = update_inbandwidth_maximum
@@ -613,6 +792,7 @@ class Speedtestschedule(pulumi.CustomResource):
             __props__.__dict__["update_outbandwidth"] = update_outbandwidth
             __props__.__dict__["update_outbandwidth_maximum"] = update_outbandwidth_maximum
             __props__.__dict__["update_outbandwidth_minimum"] = update_outbandwidth_minimum
+            __props__.__dict__["update_shaper"] = update_shaper
             __props__.__dict__["vdomparam"] = vdomparam
         super(Speedtestschedule, __self__).__init__(
             'fortios:system/speedtestschedule:Speedtestschedule',
@@ -624,12 +804,16 @@ class Speedtestschedule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            ctrl_port: Optional[pulumi.Input[int]] = None,
             diffserv: Optional[pulumi.Input[str]] = None,
             dynamic_server: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
+            mode: Optional[pulumi.Input[str]] = None,
             schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SpeedtestscheduleScheduleArgs']]]]] = None,
             server_name: Optional[pulumi.Input[str]] = None,
+            server_port: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
             update_inbandwidth: Optional[pulumi.Input[str]] = None,
             update_inbandwidth_maximum: Optional[pulumi.Input[int]] = None,
@@ -637,6 +821,7 @@ class Speedtestschedule(pulumi.CustomResource):
             update_outbandwidth: Optional[pulumi.Input[str]] = None,
             update_outbandwidth_maximum: Optional[pulumi.Input[int]] = None,
             update_outbandwidth_minimum: Optional[pulumi.Input[int]] = None,
+            update_shaper: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Speedtestschedule':
         """
         Get an existing Speedtestschedule resource's state with the given name, id, and optional extra
@@ -645,12 +830,16 @@ class Speedtestschedule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] ctrl_port: Port of the controller to get access token.
         :param pulumi.Input[str] diffserv: DSCP used for speed test.
         :param pulumi.Input[str] dynamic_server: Enable/disable dynamic server option. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Interface name.
+        :param pulumi.Input[str] mode: Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SpeedtestscheduleScheduleArgs']]]] schedules: Schedules for the interface. The structure of `schedules` block is documented below.
         :param pulumi.Input[str] server_name: Speed test server name.
+        :param pulumi.Input[int] server_port: Port of the server to run speed test.
         :param pulumi.Input[str] status: Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] update_inbandwidth: Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] update_inbandwidth_maximum: Maximum downloading bandwidth (kbps) to be used in a speed test.
@@ -658,18 +847,23 @@ class Speedtestschedule(pulumi.CustomResource):
         :param pulumi.Input[str] update_outbandwidth: Enable/disable bypassing interface's outbound bandwidth setting. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] update_outbandwidth_maximum: Maximum uploading bandwidth (kbps) to be used in a speed test.
         :param pulumi.Input[int] update_outbandwidth_minimum: Minimum uploading bandwidth (kbps) to be considered effective.
+        :param pulumi.Input[str] update_shaper: Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _SpeedtestscheduleState.__new__(_SpeedtestscheduleState)
 
+        __props__.__dict__["ctrl_port"] = ctrl_port
         __props__.__dict__["diffserv"] = diffserv
         __props__.__dict__["dynamic_server"] = dynamic_server
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
+        __props__.__dict__["mode"] = mode
         __props__.__dict__["schedules"] = schedules
         __props__.__dict__["server_name"] = server_name
+        __props__.__dict__["server_port"] = server_port
         __props__.__dict__["status"] = status
         __props__.__dict__["update_inbandwidth"] = update_inbandwidth
         __props__.__dict__["update_inbandwidth_maximum"] = update_inbandwidth_maximum
@@ -677,8 +871,17 @@ class Speedtestschedule(pulumi.CustomResource):
         __props__.__dict__["update_outbandwidth"] = update_outbandwidth
         __props__.__dict__["update_outbandwidth_maximum"] = update_outbandwidth_maximum
         __props__.__dict__["update_outbandwidth_minimum"] = update_outbandwidth_minimum
+        __props__.__dict__["update_shaper"] = update_shaper
         __props__.__dict__["vdomparam"] = vdomparam
         return Speedtestschedule(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="ctrlPort")
+    def ctrl_port(self) -> pulumi.Output[int]:
+        """
+        Port of the controller to get access token.
+        """
+        return pulumi.get(self, "ctrl_port")
 
     @property
     @pulumi.getter
@@ -705,12 +908,28 @@ class Speedtestschedule(pulumi.CustomResource):
         return pulumi.get(self, "dynamic_sort_subtable")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def interface(self) -> pulumi.Output[str]:
         """
         Interface name.
         """
         return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> pulumi.Output[str]:
+        """
+        Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+        """
+        return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
@@ -727,6 +946,14 @@ class Speedtestschedule(pulumi.CustomResource):
         Speed test server name.
         """
         return pulumi.get(self, "server_name")
+
+    @property
+    @pulumi.getter(name="serverPort")
+    def server_port(self) -> pulumi.Output[int]:
+        """
+        Port of the server to run speed test.
+        """
+        return pulumi.get(self, "server_port")
 
     @property
     @pulumi.getter
@@ -783,6 +1010,14 @@ class Speedtestschedule(pulumi.CustomResource):
         Minimum uploading bandwidth (kbps) to be considered effective.
         """
         return pulumi.get(self, "update_outbandwidth_minimum")
+
+    @property
+    @pulumi.getter(name="updateShaper")
+    def update_shaper(self) -> pulumi.Output[str]:
+        """
+        Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+        """
+        return pulumi.get(self, "update_shaper")
 
     @property
     @pulumi.getter

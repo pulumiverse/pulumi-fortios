@@ -40,6 +40,8 @@ type LookupHaResult struct {
 	CpuThreshold string `pulumi:"cpuThreshold"`
 	// Enable/disable heartbeat message encryption.
 	Encryption string `pulumi:"encryption"`
+	// HA EVPN FDB TTL on primary box (5 - 3600 sec).
+	EvpnTtl int `pulumi:"evpnTtl"`
 	// Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
 	FailoverHoldTime int `pulumi:"failoverHoldTime"`
 	// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
@@ -80,6 +82,8 @@ type LookupHaResult struct {
 	ImapProxyThreshold string `pulumi:"imapProxyThreshold"`
 	// Enable/disable synchronization of sessions among HA clusters.
 	InterClusterSessionSync string `pulumi:"interClusterSessionSync"`
+	// IPsec phase2 proposal.
+	IpsecPhase2Proposal string `pulumi:"ipsecPhase2Proposal"`
 	// key
 	Key string `pulumi:"key"`
 	// Telnet session HA heartbeat packet Ethertype (4-digit hex).
@@ -182,6 +186,8 @@ type LookupHaResult struct {
 	UninterruptiblePrimaryWait int `pulumi:"uninterruptiblePrimaryWait"`
 	// Enable to upgrade a cluster without blocking network traffic.
 	UninterruptibleUpgrade string `pulumi:"uninterruptibleUpgrade"`
+	// The mode to upgrade a cluster.
+	UpgradeMode string `pulumi:"upgradeMode"`
 	// Enable/disable virtual cluster 2 for virtual clustering.
 	Vcluster2 string `pulumi:"vcluster2"`
 	// Cluster ID.
@@ -258,6 +264,11 @@ func (o LookupHaResultOutput) CpuThreshold() pulumi.StringOutput {
 // Enable/disable heartbeat message encryption.
 func (o LookupHaResultOutput) Encryption() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHaResult) string { return v.Encryption }).(pulumi.StringOutput)
+}
+
+// HA EVPN FDB TTL on primary box (5 - 3600 sec).
+func (o LookupHaResultOutput) EvpnTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupHaResult) int { return v.EvpnTtl }).(pulumi.IntOutput)
 }
 
 // Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
@@ -358,6 +369,11 @@ func (o LookupHaResultOutput) ImapProxyThreshold() pulumi.StringOutput {
 // Enable/disable synchronization of sessions among HA clusters.
 func (o LookupHaResultOutput) InterClusterSessionSync() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHaResult) string { return v.InterClusterSessionSync }).(pulumi.StringOutput)
+}
+
+// IPsec phase2 proposal.
+func (o LookupHaResultOutput) IpsecPhase2Proposal() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupHaResult) string { return v.IpsecPhase2Proposal }).(pulumi.StringOutput)
 }
 
 // key
@@ -613,6 +629,11 @@ func (o LookupHaResultOutput) UninterruptiblePrimaryWait() pulumi.IntOutput {
 // Enable to upgrade a cluster without blocking network traffic.
 func (o LookupHaResultOutput) UninterruptibleUpgrade() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHaResult) string { return v.UninterruptibleUpgrade }).(pulumi.StringOutput)
+}
+
+// The mode to upgrade a cluster.
+func (o LookupHaResultOutput) UpgradeMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupHaResult) string { return v.UpgradeMode }).(pulumi.StringOutput)
 }
 
 // Enable/disable virtual cluster 2 for virtual clustering.

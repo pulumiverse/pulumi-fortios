@@ -53,6 +53,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Interface { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("roundRobin")]
+        public Output<string> RoundRobin { get; private set; } = null!;
+
+        /// <summary>
         /// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
         /// </summary>
         [Output("rxqid")]
@@ -130,6 +136,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string> Interface { get; set; } = null!;
 
         /// <summary>
+        /// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("roundRobin")]
+        public Input<string>? RoundRobin { get; set; }
+
+        /// <summary>
         /// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
         /// </summary>
         [Input("rxqid", required: true)]
@@ -166,6 +178,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("interface")]
         public Input<string>? Interface { get; set; }
+
+        /// <summary>
+        /// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("roundRobin")]
+        public Input<string>? RoundRobin { get; set; }
 
         /// <summary>
         /// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.

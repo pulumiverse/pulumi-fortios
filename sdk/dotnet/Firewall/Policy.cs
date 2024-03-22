@@ -150,7 +150,7 @@ namespace Pulumiverse.Fortios.Firewall
     public partial class Policy : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+        /// Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions &gt;= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
         /// </summary>
         [Output("action")]
         public Output<string> Action { get; private set; } = null!;
@@ -234,6 +234,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> CapturePacket { get; private set; } = null!;
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Output("casbProfile")]
+        public Output<string?> CasbProfile { get; private set; } = null!;
+
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         [Output("cifsProfile")]
@@ -268,6 +274,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("devices")]
         public Output<ImmutableArray<Outputs.PolicyDevice>> Devices { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        [Output("diameterFilterProfile")]
+        public Output<string?> DiameterFilterProfile { get; private set; } = null!;
 
         /// <summary>
         /// Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
@@ -436,6 +448,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("geoipMatch")]
         public Output<string> GeoipMatch { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Label for the policy that appears when the GUI is in Global View mode.
@@ -648,6 +666,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> IpsSensor { get; private set; } = null!;
 
         /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        [Output("ipsVoipFilter")]
+        public Output<string?> IpsVoipFilter { get; private set; } = null!;
+
+        /// <summary>
         /// Label for the policy that appears when the GUI is in Section View mode.
         /// </summary>
         [Output("label")]
@@ -774,6 +798,24 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> PassiveWanHealthMeasurement { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("pcpInbound")]
+        public Output<string> PcpInbound { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("pcpOutbound")]
+        public Output<string> PcpOutbound { get; private set; } = null!;
+
+        /// <summary>
+        /// PCP pool names. The structure of `pcp_poolname` block is documented below.
+        /// </summary>
+        [Output("pcpPoolnames")]
+        public Output<ImmutableArray<Outputs.PolicyPcpPoolname>> PcpPoolnames { get; private set; } = null!;
+
+        /// <summary>
         /// Per-IP traffic shaper.
         /// </summary>
         [Output("perIpShaper")]
@@ -802,6 +844,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("policyExpiryDate")]
         public Output<string> PolicyExpiryDate { get; private set; } = null!;
+
+        /// <summary>
+        /// Policy expiry date and time, in epoch format.
+        /// </summary>
+        [Output("policyExpiryDateUtc")]
+        public Output<string?> PolicyExpiryDateUtc { get; private set; } = null!;
 
         /// <summary>
         /// Policy ID.
@@ -1128,6 +1176,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> VideofilterProfile { get; private set; } = null!;
 
         /// <summary>
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        [Output("virtualPatchProfile")]
+        public Output<string?> VirtualPatchProfile { get; private set; } = null!;
+
+        /// <summary>
         /// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
         /// </summary>
         [Output("vlanCosFwd")]
@@ -1146,7 +1200,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> VlanFilter { get; private set; } = null!;
 
         /// <summary>
-        /// Name of an existing VoIP profile.
+        /// Name of an existing VoIP (voipd) profile.
         /// </summary>
         [Output("voipProfile")]
         public Output<string?> VoipProfile { get; private set; } = null!;
@@ -1236,6 +1290,18 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> Wsso { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("ztnaDeviceOwnership")]
+        public Output<string> ZtnaDeviceOwnership { get; private set; } = null!;
+
+        /// <summary>
+        /// Source ztna-ems-tag-secondary names. The structure of `ztna_ems_tag_secondary` block is documented below.
+        /// </summary>
+        [Output("ztnaEmsTagSecondaries")]
+        public Output<ImmutableArray<Outputs.PolicyZtnaEmsTagSecondary>> ZtnaEmsTagSecondaries { get; private set; } = null!;
+
+        /// <summary>
         /// Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
         /// </summary>
         [Output("ztnaEmsTags")]
@@ -1248,10 +1314,22 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<ImmutableArray<Outputs.PolicyZtnaGeoTag>> ZtnaGeoTags { get; private set; } = null!;
 
         /// <summary>
+        /// Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("ztnaPolicyRedirect")]
+        public Output<string> ZtnaPolicyRedirect { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable zero trust access. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("ztnaStatus")]
         public Output<string> ZtnaStatus { get; private set; } = null!;
+
+        /// <summary>
+        /// ZTNA tag matching logic. Valid values: `or`, `and`.
+        /// </summary>
+        [Output("ztnaTagsMatchLogic")]
+        public Output<string> ZtnaTagsMatchLogic { get; private set; } = null!;
 
 
         /// <summary>
@@ -1301,7 +1379,7 @@ namespace Pulumiverse.Fortios.Firewall
     public sealed class PolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+        /// Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions &gt;= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
@@ -1403,6 +1481,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? CapturePacket { get; set; }
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Input("casbProfile")]
+        public Input<string>? CasbProfile { get; set; }
+
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         [Input("cifsProfile")]
@@ -1449,6 +1533,12 @@ namespace Pulumiverse.Fortios.Firewall
             get => _devices ?? (_devices = new InputList<Inputs.PolicyDeviceArgs>());
             set => _devices = value;
         }
+
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        [Input("diameterFilterProfile")]
+        public Input<string>? DiameterFilterProfile { get; set; }
 
         /// <summary>
         /// Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
@@ -1641,6 +1731,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("geoipMatch")]
         public Input<string>? GeoipMatch { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Label for the policy that appears when the GUI is in Global View mode.
@@ -1967,6 +2063,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? IpsSensor { get; set; }
 
         /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        [Input("ipsVoipFilter")]
+        public Input<string>? IpsVoipFilter { get; set; }
+
+        /// <summary>
         /// Label for the policy that appears when the GUI is in Section View mode.
         /// </summary>
         [Input("label")]
@@ -2111,6 +2213,30 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? PassiveWanHealthMeasurement { get; set; }
 
         /// <summary>
+        /// Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("pcpInbound")]
+        public Input<string>? PcpInbound { get; set; }
+
+        /// <summary>
+        /// Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("pcpOutbound")]
+        public Input<string>? PcpOutbound { get; set; }
+
+        [Input("pcpPoolnames")]
+        private InputList<Inputs.PolicyPcpPoolnameArgs>? _pcpPoolnames;
+
+        /// <summary>
+        /// PCP pool names. The structure of `pcp_poolname` block is documented below.
+        /// </summary>
+        public InputList<Inputs.PolicyPcpPoolnameArgs> PcpPoolnames
+        {
+            get => _pcpPoolnames ?? (_pcpPoolnames = new InputList<Inputs.PolicyPcpPoolnameArgs>());
+            set => _pcpPoolnames = value;
+        }
+
+        /// <summary>
         /// Per-IP traffic shaper.
         /// </summary>
         [Input("perIpShaper")]
@@ -2139,6 +2265,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("policyExpiryDate")]
         public Input<string>? PolicyExpiryDate { get; set; }
+
+        /// <summary>
+        /// Policy expiry date and time, in epoch format.
+        /// </summary>
+        [Input("policyExpiryDateUtc")]
+        public Input<string>? PolicyExpiryDateUtc { get; set; }
 
         /// <summary>
         /// Policy ID.
@@ -2537,6 +2669,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? VideofilterProfile { get; set; }
 
         /// <summary>
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        [Input("virtualPatchProfile")]
+        public Input<string>? VirtualPatchProfile { get; set; }
+
+        /// <summary>
         /// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
         /// </summary>
         [Input("vlanCosFwd")]
@@ -2555,7 +2693,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? VlanFilter { get; set; }
 
         /// <summary>
-        /// Name of an existing VoIP profile.
+        /// Name of an existing VoIP (voipd) profile.
         /// </summary>
         [Input("voipProfile")]
         public Input<string>? VoipProfile { get; set; }
@@ -2644,6 +2782,24 @@ namespace Pulumiverse.Fortios.Firewall
         [Input("wsso")]
         public Input<string>? Wsso { get; set; }
 
+        /// <summary>
+        /// Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("ztnaDeviceOwnership")]
+        public Input<string>? ZtnaDeviceOwnership { get; set; }
+
+        [Input("ztnaEmsTagSecondaries")]
+        private InputList<Inputs.PolicyZtnaEmsTagSecondaryArgs>? _ztnaEmsTagSecondaries;
+
+        /// <summary>
+        /// Source ztna-ems-tag-secondary names. The structure of `ztna_ems_tag_secondary` block is documented below.
+        /// </summary>
+        public InputList<Inputs.PolicyZtnaEmsTagSecondaryArgs> ZtnaEmsTagSecondaries
+        {
+            get => _ztnaEmsTagSecondaries ?? (_ztnaEmsTagSecondaries = new InputList<Inputs.PolicyZtnaEmsTagSecondaryArgs>());
+            set => _ztnaEmsTagSecondaries = value;
+        }
+
         [Input("ztnaEmsTags")]
         private InputList<Inputs.PolicyZtnaEmsTagArgs>? _ztnaEmsTags;
 
@@ -2669,10 +2825,22 @@ namespace Pulumiverse.Fortios.Firewall
         }
 
         /// <summary>
+        /// Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("ztnaPolicyRedirect")]
+        public Input<string>? ZtnaPolicyRedirect { get; set; }
+
+        /// <summary>
         /// Enable/disable zero trust access. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("ztnaStatus")]
         public Input<string>? ZtnaStatus { get; set; }
+
+        /// <summary>
+        /// ZTNA tag matching logic. Valid values: `or`, `and`.
+        /// </summary>
+        [Input("ztnaTagsMatchLogic")]
+        public Input<string>? ZtnaTagsMatchLogic { get; set; }
 
         public PolicyArgs()
         {
@@ -2683,7 +2851,7 @@ namespace Pulumiverse.Fortios.Firewall
     public sealed class PolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
+        /// Policy action. On FortiOS versions 6.2.0-6.4.0: allow/deny/ipsec. On FortiOS versions &gt;= 6.4.1: accept/deny/ipsec. Valid values: `accept`, `deny`, `ipsec`.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
@@ -2785,6 +2953,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? CapturePacket { get; set; }
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Input("casbProfile")]
+        public Input<string>? CasbProfile { get; set; }
+
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         [Input("cifsProfile")]
@@ -2831,6 +3005,12 @@ namespace Pulumiverse.Fortios.Firewall
             get => _devices ?? (_devices = new InputList<Inputs.PolicyDeviceGetArgs>());
             set => _devices = value;
         }
+
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        [Input("diameterFilterProfile")]
+        public Input<string>? DiameterFilterProfile { get; set; }
 
         /// <summary>
         /// Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `enable`, `disable`.
@@ -3023,6 +3203,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("geoipMatch")]
         public Input<string>? GeoipMatch { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Label for the policy that appears when the GUI is in Global View mode.
@@ -3349,6 +3535,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? IpsSensor { get; set; }
 
         /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        [Input("ipsVoipFilter")]
+        public Input<string>? IpsVoipFilter { get; set; }
+
+        /// <summary>
         /// Label for the policy that appears when the GUI is in Section View mode.
         /// </summary>
         [Input("label")]
@@ -3493,6 +3685,30 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? PassiveWanHealthMeasurement { get; set; }
 
         /// <summary>
+        /// Enable/disable PCP inbound DNAT. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("pcpInbound")]
+        public Input<string>? PcpInbound { get; set; }
+
+        /// <summary>
+        /// Enable/disable PCP outbound SNAT. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("pcpOutbound")]
+        public Input<string>? PcpOutbound { get; set; }
+
+        [Input("pcpPoolnames")]
+        private InputList<Inputs.PolicyPcpPoolnameGetArgs>? _pcpPoolnames;
+
+        /// <summary>
+        /// PCP pool names. The structure of `pcp_poolname` block is documented below.
+        /// </summary>
+        public InputList<Inputs.PolicyPcpPoolnameGetArgs> PcpPoolnames
+        {
+            get => _pcpPoolnames ?? (_pcpPoolnames = new InputList<Inputs.PolicyPcpPoolnameGetArgs>());
+            set => _pcpPoolnames = value;
+        }
+
+        /// <summary>
         /// Per-IP traffic shaper.
         /// </summary>
         [Input("perIpShaper")]
@@ -3521,6 +3737,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("policyExpiryDate")]
         public Input<string>? PolicyExpiryDate { get; set; }
+
+        /// <summary>
+        /// Policy expiry date and time, in epoch format.
+        /// </summary>
+        [Input("policyExpiryDateUtc")]
+        public Input<string>? PolicyExpiryDateUtc { get; set; }
 
         /// <summary>
         /// Policy ID.
@@ -3919,6 +4141,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? VideofilterProfile { get; set; }
 
         /// <summary>
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        [Input("virtualPatchProfile")]
+        public Input<string>? VirtualPatchProfile { get; set; }
+
+        /// <summary>
         /// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
         /// </summary>
         [Input("vlanCosFwd")]
@@ -3937,7 +4165,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? VlanFilter { get; set; }
 
         /// <summary>
-        /// Name of an existing VoIP profile.
+        /// Name of an existing VoIP (voipd) profile.
         /// </summary>
         [Input("voipProfile")]
         public Input<string>? VoipProfile { get; set; }
@@ -4026,6 +4254,24 @@ namespace Pulumiverse.Fortios.Firewall
         [Input("wsso")]
         public Input<string>? Wsso { get; set; }
 
+        /// <summary>
+        /// Enable/disable zero trust device ownership. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("ztnaDeviceOwnership")]
+        public Input<string>? ZtnaDeviceOwnership { get; set; }
+
+        [Input("ztnaEmsTagSecondaries")]
+        private InputList<Inputs.PolicyZtnaEmsTagSecondaryGetArgs>? _ztnaEmsTagSecondaries;
+
+        /// <summary>
+        /// Source ztna-ems-tag-secondary names. The structure of `ztna_ems_tag_secondary` block is documented below.
+        /// </summary>
+        public InputList<Inputs.PolicyZtnaEmsTagSecondaryGetArgs> ZtnaEmsTagSecondaries
+        {
+            get => _ztnaEmsTagSecondaries ?? (_ztnaEmsTagSecondaries = new InputList<Inputs.PolicyZtnaEmsTagSecondaryGetArgs>());
+            set => _ztnaEmsTagSecondaries = value;
+        }
+
         [Input("ztnaEmsTags")]
         private InputList<Inputs.PolicyZtnaEmsTagGetArgs>? _ztnaEmsTags;
 
@@ -4051,10 +4297,22 @@ namespace Pulumiverse.Fortios.Firewall
         }
 
         /// <summary>
+        /// Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("ztnaPolicyRedirect")]
+        public Input<string>? ZtnaPolicyRedirect { get; set; }
+
+        /// <summary>
         /// Enable/disable zero trust access. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("ztnaStatus")]
         public Input<string>? ZtnaStatus { get; set; }
+
+        /// <summary>
+        /// ZTNA tag matching logic. Valid values: `or`, `and`.
+        /// </summary>
+        [Input("ztnaTagsMatchLogic")]
+        public Input<string>? ZtnaTagsMatchLogic { get; set; }
 
         public PolicyState()
         {

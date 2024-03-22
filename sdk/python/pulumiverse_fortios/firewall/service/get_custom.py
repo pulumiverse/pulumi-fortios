@@ -22,7 +22,7 @@ class GetCustomResult:
     """
     A collection of values returned by getCustom.
     """
-    def __init__(__self__, app_categories=None, app_service_type=None, applications=None, category=None, check_reset_range=None, color=None, comment=None, fabric_object=None, fqdn=None, helper=None, icmpcode=None, icmptype=None, id=None, iprange=None, name=None, protocol=None, protocol_number=None, proxy=None, sctp_portrange=None, session_ttl=None, tcp_halfclose_timer=None, tcp_halfopen_timer=None, tcp_portrange=None, tcp_rst_timer=None, tcp_timewait_timer=None, udp_idle_timer=None, udp_portrange=None, vdomparam=None, visibility=None):
+    def __init__(__self__, app_categories=None, app_service_type=None, applications=None, category=None, check_reset_range=None, color=None, comment=None, fabric_object=None, fqdn=None, helper=None, icmpcode=None, icmptype=None, id=None, iprange=None, name=None, protocol=None, protocol_number=None, proxy=None, sctp_portrange=None, session_ttl=None, tcp_halfclose_timer=None, tcp_halfopen_timer=None, tcp_portrange=None, tcp_rst_timer=None, tcp_timewait_timer=None, udp_idle_timer=None, udp_portrange=None, uuid=None, vdomparam=None, visibility=None):
         if app_categories and not isinstance(app_categories, list):
             raise TypeError("Expected argument 'app_categories' to be a list")
         pulumi.set(__self__, "app_categories", app_categories)
@@ -104,6 +104,9 @@ class GetCustomResult:
         if udp_portrange and not isinstance(udp_portrange, str):
             raise TypeError("Expected argument 'udp_portrange' to be a str")
         pulumi.set(__self__, "udp_portrange", udp_portrange)
+        if uuid and not isinstance(uuid, str):
+            raise TypeError("Expected argument 'uuid' to be a str")
+        pulumi.set(__self__, "uuid", uuid)
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
@@ -329,6 +332,14 @@ class GetCustomResult:
 
     @property
     @pulumi.getter
+    def uuid(self) -> str:
+        """
+        Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        """
+        return pulumi.get(self, "uuid")
+
+    @property
+    @pulumi.getter
     def vdomparam(self) -> Optional[str]:
         return pulumi.get(self, "vdomparam")
 
@@ -374,6 +385,7 @@ class AwaitableGetCustomResult(GetCustomResult):
             tcp_timewait_timer=self.tcp_timewait_timer,
             udp_idle_timer=self.udp_idle_timer,
             udp_portrange=self.udp_portrange,
+            uuid=self.uuid,
             vdomparam=self.vdomparam,
             visibility=self.visibility)
 
@@ -422,6 +434,7 @@ def get_custom(name: Optional[str] = None,
         tcp_timewait_timer=pulumi.get(__ret__, 'tcp_timewait_timer'),
         udp_idle_timer=pulumi.get(__ret__, 'udp_idle_timer'),
         udp_portrange=pulumi.get(__ret__, 'udp_portrange'),
+        uuid=pulumi.get(__ret__, 'uuid'),
         vdomparam=pulumi.get(__ret__, 'vdomparam'),
         visibility=pulumi.get(__ret__, 'visibility'))
 

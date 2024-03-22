@@ -80,6 +80,10 @@ export class Exchange extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
      */
     public readonly httpAuthType!: pulumi.Output<string>;
@@ -104,7 +108,7 @@ export class Exchange extends pulumi.CustomResource {
      */
     public readonly serverName!: pulumi.Output<string>;
     /**
-     * Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
      */
     public readonly sslMinProtoVersion!: pulumi.Output<string>;
     /**
@@ -135,6 +139,7 @@ export class Exchange extends pulumi.CustomResource {
             resourceInputs["connectProtocol"] = state ? state.connectProtocol : undefined;
             resourceInputs["domainName"] = state ? state.domainName : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["httpAuthType"] = state ? state.httpAuthType : undefined;
             resourceInputs["ip"] = state ? state.ip : undefined;
             resourceInputs["kdcIps"] = state ? state.kdcIps : undefined;
@@ -152,6 +157,7 @@ export class Exchange extends pulumi.CustomResource {
             resourceInputs["connectProtocol"] = args ? args.connectProtocol : undefined;
             resourceInputs["domainName"] = args ? args.domainName : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["httpAuthType"] = args ? args.httpAuthType : undefined;
             resourceInputs["ip"] = args ? args.ip : undefined;
             resourceInputs["kdcIps"] = args ? args.kdcIps : undefined;
@@ -198,6 +204,10 @@ export interface ExchangeState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
      */
     httpAuthType?: pulumi.Input<string>;
@@ -222,7 +232,7 @@ export interface ExchangeState {
      */
     serverName?: pulumi.Input<string>;
     /**
-     * Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
      */
     sslMinProtoVersion?: pulumi.Input<string>;
     /**
@@ -264,6 +274,10 @@ export interface ExchangeArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
      */
     httpAuthType?: pulumi.Input<string>;
@@ -288,7 +302,7 @@ export interface ExchangeArgs {
      */
     serverName?: pulumi.Input<string>;
     /**
-     * Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
      */
     sslMinProtoVersion?: pulumi.Input<string>;
     /**

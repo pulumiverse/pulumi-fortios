@@ -41,6 +41,10 @@ export interface GetSdnconnectorResult {
      */
     readonly accessKey: string;
     /**
+     * Enable/disable AWS alternative resource IP.
+     */
+    readonly altResourceIp: string;
+    /**
      * IBM cloud API key or service ID API key.
      */
     readonly apiKey: string;
@@ -57,9 +61,13 @@ export interface GetSdnconnectorResult {
      */
     readonly clientSecret: string;
     /**
-     * Compartment ID.
+     * OCI compartment ID.
      */
     readonly compartmentId: string;
+    /**
+     * Configure OCI compartment list. The structure of `compartmentList` block is documented below.
+     */
+    readonly compartmentLists: outputs.system.GetSdnconnectorCompartmentList[];
     /**
      * Compute generation for IBM cloud infrastructure.
      */
@@ -141,6 +149,10 @@ export interface GetSdnconnectorResult {
      */
     readonly ociRegion: string;
     /**
+     * Configure OCI region list. The structure of `ociRegionList` block is documented below.
+     */
+    readonly ociRegionLists: outputs.system.GetSdnconnectorOciRegionList[];
+    /**
      * OCI region type.
      */
     readonly ociRegionType: string;
@@ -153,7 +165,11 @@ export interface GetSdnconnectorResult {
      */
     readonly privateKey: string;
     /**
-     * AWS region name.
+     * SDN proxy.
+     */
+    readonly proxy: string;
+    /**
+     * OCI region.
      */
     readonly region: string;
     /**
@@ -184,6 +200,14 @@ export interface GetSdnconnectorResult {
      * Server address of the remote SDN connector.
      */
     readonly server: string;
+    /**
+     * Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+     */
+    readonly serverCaCert: string;
+    /**
+     * Trust servers that contain this certificate only.
+     */
+    readonly serverCert: string;
     /**
      * Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
      */

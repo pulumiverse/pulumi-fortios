@@ -25,6 +25,7 @@ class GroupArgs:
                  expire: Optional[pulumi.Input[int]] = None,
                  expire_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  guests: Optional[pulumi.Input[Sequence[pulumi.Input['GroupGuestArgs']]]] = None,
                  http_digest_realm: Optional[pulumi.Input[str]] = None,
@@ -53,6 +54,7 @@ class GroupArgs:
         :param pulumi.Input[int] expire: Time in seconds before guest user accounts expire. (1 - 31536000 sec)
         :param pulumi.Input[str] expire_type: Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
         :param pulumi.Input[int] fosid: Group ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
         :param pulumi.Input[Sequence[pulumi.Input['GroupGuestArgs']]] guests: Guest User. The structure of `guest` block is documented below.
         :param pulumi.Input[str] http_digest_realm: Realm attribute for MD5-digest authentication.
@@ -89,6 +91,8 @@ class GroupArgs:
             pulumi.set(__self__, "expire_type", expire_type)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_type is not None:
             pulumi.set(__self__, "group_type", group_type)
         if guests is not None:
@@ -231,6 +235,18 @@ class GroupArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupType")
@@ -449,6 +465,7 @@ class _GroupState:
                  expire: Optional[pulumi.Input[int]] = None,
                  expire_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  guests: Optional[pulumi.Input[Sequence[pulumi.Input['GroupGuestArgs']]]] = None,
                  http_digest_realm: Optional[pulumi.Input[str]] = None,
@@ -477,6 +494,7 @@ class _GroupState:
         :param pulumi.Input[int] expire: Time in seconds before guest user accounts expire. (1 - 31536000 sec)
         :param pulumi.Input[str] expire_type: Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
         :param pulumi.Input[int] fosid: Group ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
         :param pulumi.Input[Sequence[pulumi.Input['GroupGuestArgs']]] guests: Guest User. The structure of `guest` block is documented below.
         :param pulumi.Input[str] http_digest_realm: Realm attribute for MD5-digest authentication.
@@ -513,6 +531,8 @@ class _GroupState:
             pulumi.set(__self__, "expire_type", expire_type)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_type is not None:
             pulumi.set(__self__, "group_type", group_type)
         if guests is not None:
@@ -655,6 +675,18 @@ class _GroupState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupType")
@@ -875,6 +907,7 @@ class Group(pulumi.CustomResource):
                  expire: Optional[pulumi.Input[int]] = None,
                  expire_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  guests: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupGuestArgs']]]]] = None,
                  http_digest_realm: Optional[pulumi.Input[str]] = None,
@@ -947,6 +980,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[int] expire: Time in seconds before guest user accounts expire. (1 - 31536000 sec)
         :param pulumi.Input[str] expire_type: Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
         :param pulumi.Input[int] fosid: Group ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupGuestArgs']]]] guests: Guest User. The structure of `guest` block is documented below.
         :param pulumi.Input[str] http_digest_realm: Realm attribute for MD5-digest authentication.
@@ -1038,6 +1072,7 @@ class Group(pulumi.CustomResource):
                  expire: Optional[pulumi.Input[int]] = None,
                  expire_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  guests: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupGuestArgs']]]]] = None,
                  http_digest_realm: Optional[pulumi.Input[str]] = None,
@@ -1073,6 +1108,7 @@ class Group(pulumi.CustomResource):
             __props__.__dict__["expire"] = expire
             __props__.__dict__["expire_type"] = expire_type
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_type"] = group_type
             __props__.__dict__["guests"] = guests
             __props__.__dict__["http_digest_realm"] = http_digest_realm
@@ -1109,6 +1145,7 @@ class Group(pulumi.CustomResource):
             expire: Optional[pulumi.Input[int]] = None,
             expire_type: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_type: Optional[pulumi.Input[str]] = None,
             guests: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupGuestArgs']]]]] = None,
             http_digest_realm: Optional[pulumi.Input[str]] = None,
@@ -1142,6 +1179,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[int] expire: Time in seconds before guest user accounts expire. (1 - 31536000 sec)
         :param pulumi.Input[str] expire_type: Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
         :param pulumi.Input[int] fosid: Group ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupGuestArgs']]]] guests: Guest User. The structure of `guest` block is documented below.
         :param pulumi.Input[str] http_digest_realm: Realm attribute for MD5-digest authentication.
@@ -1173,6 +1211,7 @@ class Group(pulumi.CustomResource):
         __props__.__dict__["expire"] = expire
         __props__.__dict__["expire_type"] = expire_type
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_type"] = group_type
         __props__.__dict__["guests"] = guests
         __props__.__dict__["http_digest_realm"] = http_digest_realm
@@ -1263,6 +1302,14 @@ class Group(pulumi.CustomResource):
         Group ID.
         """
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupType")

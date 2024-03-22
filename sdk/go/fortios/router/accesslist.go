@@ -111,6 +111,7 @@ type Accesslist struct {
 	// Comment.
 	Comments            pulumi.StringOutput    `pulumi:"comments"`
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Rule. The structure of `rule` block is documented below.
@@ -151,6 +152,7 @@ type accesslistState struct {
 	// Comment.
 	Comments            *string `pulumi:"comments"`
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string `pulumi:"getAllTables"`
 	// Name.
 	Name *string `pulumi:"name"`
 	// Rule. The structure of `rule` block is documented below.
@@ -162,6 +164,7 @@ type AccesslistState struct {
 	// Comment.
 	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	// Name.
 	Name pulumi.StringPtrInput
 	// Rule. The structure of `rule` block is documented below.
@@ -177,6 +180,7 @@ type accesslistArgs struct {
 	// Comment.
 	Comments            *string `pulumi:"comments"`
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string `pulumi:"getAllTables"`
 	// Name.
 	Name *string `pulumi:"name"`
 	// Rule. The structure of `rule` block is documented below.
@@ -189,6 +193,7 @@ type AccesslistArgs struct {
 	// Comment.
 	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	// Name.
 	Name pulumi.StringPtrInput
 	// Rule. The structure of `rule` block is documented below.
@@ -290,6 +295,10 @@ func (o AccesslistOutput) Comments() pulumi.StringOutput {
 
 func (o AccesslistOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Accesslist) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o AccesslistOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Accesslist) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Name.

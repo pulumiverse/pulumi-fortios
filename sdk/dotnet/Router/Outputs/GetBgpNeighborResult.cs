@@ -23,9 +23,17 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string Activate6;
         /// <summary>
+        /// Enable/disable address family L2VPN EVPN for this neighbor.
+        /// </summary>
+        public readonly string ActivateEvpn;
+        /// <summary>
         /// Enable/disable address family VPNv4 for this neighbor.
         /// </summary>
         public readonly string ActivateVpnv4;
+        /// <summary>
+        /// Enable/disable address family VPNv6 for this neighbor.
+        /// </summary>
+        public readonly string ActivateVpnv6;
         /// <summary>
         /// Enable/disable IPv4 additional-path capability.
         /// </summary>
@@ -39,6 +47,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string AdditionalPathVpnv4;
         /// <summary>
+        /// Enable/disable VPNv6 additional-path capability.
+        /// </summary>
+        public readonly string AdditionalPathVpnv6;
+        /// <summary>
         /// Number of IPv4 additional paths that can be advertised to this neighbor.
         /// </summary>
         public readonly int AdvAdditionalPath;
@@ -50,6 +62,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// Number of VPNv4 additional paths that can be advertised to this neighbor.
         /// </summary>
         public readonly int AdvAdditionalPathVpnv4;
+        /// <summary>
+        /// Number of VPNv6 additional paths that can be advertised to this neighbor.
+        /// </summary>
+        public readonly int AdvAdditionalPathVpnv6;
         /// <summary>
         /// Minimum interval (sec) between sending updates.
         /// </summary>
@@ -71,9 +87,29 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string AllowasInEnable6;
         /// <summary>
+        /// Enable/disable to allow my AS in AS path for L2VPN EVPN route.
+        /// </summary>
+        public readonly string AllowasInEnableEvpn;
+        /// <summary>
+        /// Enable/disable to allow my AS in AS path for VPNv4 route.
+        /// </summary>
+        public readonly string AllowasInEnableVpnv4;
+        /// <summary>
+        /// Enable/disable use of my AS in AS path for VPNv6 route.
+        /// </summary>
+        public readonly string AllowasInEnableVpnv6;
+        /// <summary>
+        /// The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+        /// </summary>
+        public readonly int AllowasInEvpn;
+        /// <summary>
         /// The maximum number of occurrence of my AS number allowed for VPNv4 route.
         /// </summary>
         public readonly int AllowasInVpnv4;
+        /// <summary>
+        /// The maximum number of occurrence of my AS number allowed for VPNv6 route.
+        /// </summary>
+        public readonly int AllowasInVpnv6;
         /// <summary>
         /// Enable/disable replace peer AS with own AS for IPv4.
         /// </summary>
@@ -94,6 +130,14 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// List of attributes that should be unchanged for VPNv4 route.
         /// </summary>
         public readonly string AttributeUnchangedVpnv4;
+        /// <summary>
+        /// List of attributes that should not be changed for VPNv6 route.
+        /// </summary>
+        public readonly string AttributeUnchangedVpnv6;
+        /// <summary>
+        /// Key-chain name for TCP authentication options.
+        /// </summary>
+        public readonly string AuthOptions;
         /// <summary>
         /// Enable/disable BFD for this neighbor.
         /// </summary>
@@ -119,9 +163,17 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string CapabilityGracefulRestart6;
         /// <summary>
+        /// Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor.
+        /// </summary>
+        public readonly string CapabilityGracefulRestartEvpn;
+        /// <summary>
         /// Enable/disable advertise VPNv4 graceful restart capability to this neighbor.
         /// </summary>
         public readonly string CapabilityGracefulRestartVpnv4;
+        /// <summary>
+        /// Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor.
+        /// </summary>
+        public readonly string CapabilityGracefulRestartVpnv6;
         /// <summary>
         /// Accept/Send IPv4 ORF lists to/from this neighbor.
         /// </summary>
@@ -171,6 +223,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string DistributeListInVpnv4;
         /// <summary>
+        /// Filter for VPNv6 updates from this neighbor.
+        /// </summary>
+        public readonly string DistributeListInVpnv6;
+        /// <summary>
         /// Filter for IPv4 updates to this neighbor.
         /// </summary>
         public readonly string DistributeListOut;
@@ -182,6 +238,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// Filter for VPNv4 updates to this neighbor.
         /// </summary>
         public readonly string DistributeListOutVpnv4;
+        /// <summary>
+        /// Filter for VPNv6 updates to this neighbor.
+        /// </summary>
+        public readonly string DistributeListOutVpnv6;
         /// <summary>
         /// Don't negotiate capabilities with this neighbor
         /// </summary>
@@ -203,6 +263,14 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string FilterListIn6;
         /// <summary>
+        /// BGP filter for VPNv4 inbound routes.
+        /// </summary>
+        public readonly string FilterListInVpnv4;
+        /// <summary>
+        /// BGP filter for VPNv6 inbound routes.
+        /// </summary>
+        public readonly string FilterListInVpnv6;
+        /// <summary>
         /// BGP filter for IPv4 outbound routes.
         /// </summary>
         public readonly string FilterListOut;
@@ -210,6 +278,14 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// BGP filter for IPv6 outbound routes.
         /// </summary>
         public readonly string FilterListOut6;
+        /// <summary>
+        /// BGP filter for VPNv4 outbound routes.
+        /// </summary>
+        public readonly string FilterListOutVpnv4;
+        /// <summary>
+        /// BGP filter for VPNv6 outbound routes.
+        /// </summary>
+        public readonly string FilterListOutVpnv6;
         /// <summary>
         /// Interval (sec) before peer considered dead.
         /// </summary>
@@ -251,6 +327,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly int MaximumPrefix6;
         /// <summary>
+        /// Maximum number of L2VPN EVPN prefixes to accept from this peer.
+        /// </summary>
+        public readonly int MaximumPrefixEvpn;
+        /// <summary>
         /// Maximum IPv4 prefix threshold value (1 - 100 percent).
         /// </summary>
         public readonly int MaximumPrefixThreshold;
@@ -259,13 +339,25 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly int MaximumPrefixThreshold6;
         /// <summary>
+        /// Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+        /// </summary>
+        public readonly int MaximumPrefixThresholdEvpn;
+        /// <summary>
         /// Maximum VPNv4 prefix threshold value (1 - 100 percent).
         /// </summary>
         public readonly int MaximumPrefixThresholdVpnv4;
         /// <summary>
+        /// Maximum VPNv6 prefix threshold value (1 - 100 percent).
+        /// </summary>
+        public readonly int MaximumPrefixThresholdVpnv6;
+        /// <summary>
         /// Maximum number of VPNv4 prefixes to accept from this peer.
         /// </summary>
         public readonly int MaximumPrefixVpnv4;
+        /// <summary>
+        /// Maximum number of VPNv6 prefixes to accept from this peer.
+        /// </summary>
+        public readonly int MaximumPrefixVpnv6;
         /// <summary>
         /// Enable/disable IPv4 Only give warning message when limit is exceeded.
         /// </summary>
@@ -275,9 +367,17 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string MaximumPrefixWarningOnly6;
         /// <summary>
+        /// Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes.
+        /// </summary>
+        public readonly string MaximumPrefixWarningOnlyEvpn;
+        /// <summary>
         /// Enable/disable only giving warning message when limit is exceeded for VPNv4 routes.
         /// </summary>
         public readonly string MaximumPrefixWarningOnlyVpnv4;
+        /// <summary>
+        /// Enable/disable warning message when limit is exceeded for VPNv6 routes.
+        /// </summary>
+        public readonly string MaximumPrefixWarningOnlyVpnv6;
         /// <summary>
         /// Enable/disable IPv4 next-hop calculation for this neighbor.
         /// </summary>
@@ -298,6 +398,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// Enable/disable setting VPNv4 next-hop to interface's IP address for this neighbor.
         /// </summary>
         public readonly string NextHopSelfVpnv4;
+        /// <summary>
+        /// Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor.
+        /// </summary>
+        public readonly string NextHopSelfVpnv6;
         /// <summary>
         /// Enable/disable override result of capability negotiation.
         /// </summary>
@@ -323,6 +427,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string PrefixListInVpnv4;
         /// <summary>
+        /// Inbound filter for VPNv6 updates from this neighbor.
+        /// </summary>
+        public readonly string PrefixListInVpnv6;
+        /// <summary>
         /// IPv4 Outbound filter for updates to this neighbor.
         /// </summary>
         public readonly string PrefixListOut;
@@ -334,6 +442,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// Outbound filter for VPNv4 updates to this neighbor.
         /// </summary>
         public readonly string PrefixListOutVpnv4;
+        /// <summary>
+        /// Outbound filter for VPNv6 updates to this neighbor.
+        /// </summary>
+        public readonly string PrefixListOutVpnv6;
         /// <summary>
         /// AS number of neighbor.
         /// </summary>
@@ -347,9 +459,17 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string RemovePrivateAs6;
         /// <summary>
+        /// Enable/disable removing private AS number from L2VPN EVPN outbound updates.
+        /// </summary>
+        public readonly string RemovePrivateAsEvpn;
+        /// <summary>
         /// Enable/disable remove private AS number from VPNv4 outbound updates.
         /// </summary>
         public readonly string RemovePrivateAsVpnv4;
+        /// <summary>
+        /// Enable/disable to remove private AS number from VPNv6 outbound updates.
+        /// </summary>
+        public readonly string RemovePrivateAsVpnv6;
         /// <summary>
         /// Graceful restart delay time (sec, 0 = global default).
         /// </summary>
@@ -367,9 +487,17 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string RouteMapIn6;
         /// <summary>
+        /// L2VPN EVPN inbound route map filter.
+        /// </summary>
+        public readonly string RouteMapInEvpn;
+        /// <summary>
         /// VPNv4 inbound route map filter.
         /// </summary>
         public readonly string RouteMapInVpnv4;
+        /// <summary>
+        /// VPNv6 inbound route map filter.
+        /// </summary>
+        public readonly string RouteMapInVpnv6;
         /// <summary>
         /// IPv4 Outbound route map filter.
         /// </summary>
@@ -383,6 +511,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string RouteMapOut6Preferable;
         /// <summary>
+        /// L2VPN EVPN outbound route map filter.
+        /// </summary>
+        public readonly string RouteMapOutEvpn;
+        /// <summary>
         /// IPv4 outbound route map filter if the peer is preferred.
         /// </summary>
         public readonly string RouteMapOutPreferable;
@@ -395,6 +527,14 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string RouteMapOutVpnv4Preferable;
         /// <summary>
+        /// VPNv6 outbound route map filter.
+        /// </summary>
+        public readonly string RouteMapOutVpnv6;
+        /// <summary>
+        /// VPNv6 outbound route map filter if this neighbor is preferred.
+        /// </summary>
+        public readonly string RouteMapOutVpnv6Preferable;
+        /// <summary>
         /// Enable/disable IPv4 AS route reflector client.
         /// </summary>
         public readonly string RouteReflectorClient;
@@ -403,9 +543,17 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string RouteReflectorClient6;
         /// <summary>
+        /// Enable/disable L2VPN EVPN AS route reflector client for this neighbor.
+        /// </summary>
+        public readonly string RouteReflectorClientEvpn;
+        /// <summary>
         /// Enable/disable VPNv4 AS route reflector client for this neighbor.
         /// </summary>
         public readonly string RouteReflectorClientVpnv4;
+        /// <summary>
+        /// Enable/disable VPNv6 AS route reflector client for this neighbor.
+        /// </summary>
+        public readonly string RouteReflectorClientVpnv6;
         /// <summary>
         /// Enable/disable IPv4 AS route server client.
         /// </summary>
@@ -415,9 +563,17 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string RouteServerClient6;
         /// <summary>
+        /// Enable/disable L2VPN EVPN AS route server client for this neighbor.
+        /// </summary>
+        public readonly string RouteServerClientEvpn;
+        /// <summary>
         /// Enable/disable VPNv4 AS route server client for this neighbor.
         /// </summary>
         public readonly string RouteServerClientVpnv4;
+        /// <summary>
+        /// Enable/disable VPNv6 AS route server client for this neighbor.
+        /// </summary>
+        public readonly string RouteServerClientVpnv6;
         /// <summary>
         /// IPv4 Send community attribute to neighbor.
         /// </summary>
@@ -427,9 +583,17 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string SendCommunity6;
         /// <summary>
+        /// Enable/disable sending community attribute to neighbor for L2VPN EVPN address family.
+        /// </summary>
+        public readonly string SendCommunityEvpn;
+        /// <summary>
         /// Send community attribute to neighbor for VPNv4 address family.
         /// </summary>
         public readonly string SendCommunityVpnv4;
+        /// <summary>
+        /// Enable/disable sending community attribute to this neighbor for VPNv6 address family.
+        /// </summary>
+        public readonly string SendCommunityVpnv6;
         /// <summary>
         /// Enable/disable shutdown this neighbor.
         /// </summary>
@@ -443,9 +607,17 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly string SoftReconfiguration6;
         /// <summary>
+        /// Enable/disable L2VPN EVPN inbound soft reconfiguration.
+        /// </summary>
+        public readonly string SoftReconfigurationEvpn;
+        /// <summary>
         /// Enable/disable allow VPNv4 inbound soft reconfiguration.
         /// </summary>
         public readonly string SoftReconfigurationVpnv4;
+        /// <summary>
+        /// Enable/disable VPNv6 inbound soft reconfiguration.
+        /// </summary>
+        public readonly string SoftReconfigurationVpnv6;
         /// <summary>
         /// Enable/disable stale route after neighbor down.
         /// </summary>
@@ -477,7 +649,11 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             string activate6,
 
+            string activateEvpn,
+
             string activateVpnv4,
+
+            string activateVpnv6,
 
             string additionalPath,
 
@@ -485,11 +661,15 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             string additionalPathVpnv4,
 
+            string additionalPathVpnv6,
+
             int advAdditionalPath,
 
             int advAdditionalPath6,
 
             int advAdditionalPathVpnv4,
+
+            int advAdditionalPathVpnv6,
 
             int advertisementInterval,
 
@@ -501,7 +681,17 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             string allowasInEnable6,
 
+            string allowasInEnableEvpn,
+
+            string allowasInEnableVpnv4,
+
+            string allowasInEnableVpnv6,
+
+            int allowasInEvpn,
+
             int allowasInVpnv4,
+
+            int allowasInVpnv6,
 
             string asOverride,
 
@@ -512,6 +702,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
             string attributeUnchanged6,
 
             string attributeUnchangedVpnv4,
+
+            string attributeUnchangedVpnv6,
+
+            string authOptions,
 
             string bfd,
 
@@ -525,7 +719,11 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             string capabilityGracefulRestart6,
 
+            string capabilityGracefulRestartEvpn,
+
             string capabilityGracefulRestartVpnv4,
+
+            string capabilityGracefulRestartVpnv6,
 
             string capabilityOrf,
 
@@ -551,11 +749,15 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             string distributeListInVpnv4,
 
+            string distributeListInVpnv6,
+
             string distributeListOut,
 
             string distributeListOut6,
 
             string distributeListOutVpnv4,
+
+            string distributeListOutVpnv6,
 
             string dontCapabilityNegotiate,
 
@@ -567,9 +769,17 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             string filterListIn6,
 
+            string filterListInVpnv4,
+
+            string filterListInVpnv6,
+
             string filterListOut,
 
             string filterListOut6,
+
+            string filterListOutVpnv4,
+
+            string filterListOutVpnv6,
 
             int holdtimeTimer,
 
@@ -591,19 +801,31 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             int maximumPrefix6,
 
+            int maximumPrefixEvpn,
+
             int maximumPrefixThreshold,
 
             int maximumPrefixThreshold6,
 
+            int maximumPrefixThresholdEvpn,
+
             int maximumPrefixThresholdVpnv4,
 
+            int maximumPrefixThresholdVpnv6,
+
             int maximumPrefixVpnv4,
+
+            int maximumPrefixVpnv6,
 
             string maximumPrefixWarningOnly,
 
             string maximumPrefixWarningOnly6,
 
+            string maximumPrefixWarningOnlyEvpn,
+
             string maximumPrefixWarningOnlyVpnv4,
+
+            string maximumPrefixWarningOnlyVpnv6,
 
             string nextHopSelf,
 
@@ -614,6 +836,8 @@ namespace Pulumiverse.Fortios.Router.Outputs
             string nextHopSelfRr6,
 
             string nextHopSelfVpnv4,
+
+            string nextHopSelfVpnv6,
 
             string overrideCapability,
 
@@ -627,11 +851,15 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             string prefixListInVpnv4,
 
+            string prefixListInVpnv6,
+
             string prefixListOut,
 
             string prefixListOut6,
 
             string prefixListOutVpnv4,
+
+            string prefixListOutVpnv6,
 
             int remoteAs,
 
@@ -639,7 +867,11 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             string removePrivateAs6,
 
+            string removePrivateAsEvpn,
+
             string removePrivateAsVpnv4,
+
+            string removePrivateAsVpnv6,
 
             int restartTime,
 
@@ -649,7 +881,11 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             string routeMapIn6,
 
+            string routeMapInEvpn,
+
             string routeMapInVpnv4,
+
+            string routeMapInVpnv6,
 
             string routeMapOut,
 
@@ -657,29 +893,47 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             string routeMapOut6Preferable,
 
+            string routeMapOutEvpn,
+
             string routeMapOutPreferable,
 
             string routeMapOutVpnv4,
 
             string routeMapOutVpnv4Preferable,
 
+            string routeMapOutVpnv6,
+
+            string routeMapOutVpnv6Preferable,
+
             string routeReflectorClient,
 
             string routeReflectorClient6,
 
+            string routeReflectorClientEvpn,
+
             string routeReflectorClientVpnv4,
+
+            string routeReflectorClientVpnv6,
 
             string routeServerClient,
 
             string routeServerClient6,
 
+            string routeServerClientEvpn,
+
             string routeServerClientVpnv4,
+
+            string routeServerClientVpnv6,
 
             string sendCommunity,
 
             string sendCommunity6,
 
+            string sendCommunityEvpn,
+
             string sendCommunityVpnv4,
+
+            string sendCommunityVpnv6,
 
             string shutdown,
 
@@ -687,7 +941,11 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             string softReconfiguration6,
 
+            string softReconfigurationEvpn,
+
             string softReconfigurationVpnv4,
+
+            string softReconfigurationVpnv6,
 
             string staleRoute,
 
@@ -703,31 +961,44 @@ namespace Pulumiverse.Fortios.Router.Outputs
         {
             Activate = activate;
             Activate6 = activate6;
+            ActivateEvpn = activateEvpn;
             ActivateVpnv4 = activateVpnv4;
+            ActivateVpnv6 = activateVpnv6;
             AdditionalPath = additionalPath;
             AdditionalPath6 = additionalPath6;
             AdditionalPathVpnv4 = additionalPathVpnv4;
+            AdditionalPathVpnv6 = additionalPathVpnv6;
             AdvAdditionalPath = advAdditionalPath;
             AdvAdditionalPath6 = advAdditionalPath6;
             AdvAdditionalPathVpnv4 = advAdditionalPathVpnv4;
+            AdvAdditionalPathVpnv6 = advAdditionalPathVpnv6;
             AdvertisementInterval = advertisementInterval;
             AllowasIn = allowasIn;
             AllowasIn6 = allowasIn6;
             AllowasInEnable = allowasInEnable;
             AllowasInEnable6 = allowasInEnable6;
+            AllowasInEnableEvpn = allowasInEnableEvpn;
+            AllowasInEnableVpnv4 = allowasInEnableVpnv4;
+            AllowasInEnableVpnv6 = allowasInEnableVpnv6;
+            AllowasInEvpn = allowasInEvpn;
             AllowasInVpnv4 = allowasInVpnv4;
+            AllowasInVpnv6 = allowasInVpnv6;
             AsOverride = asOverride;
             AsOverride6 = asOverride6;
             AttributeUnchanged = attributeUnchanged;
             AttributeUnchanged6 = attributeUnchanged6;
             AttributeUnchangedVpnv4 = attributeUnchangedVpnv4;
+            AttributeUnchangedVpnv6 = attributeUnchangedVpnv6;
+            AuthOptions = authOptions;
             Bfd = bfd;
             CapabilityDefaultOriginate = capabilityDefaultOriginate;
             CapabilityDefaultOriginate6 = capabilityDefaultOriginate6;
             CapabilityDynamic = capabilityDynamic;
             CapabilityGracefulRestart = capabilityGracefulRestart;
             CapabilityGracefulRestart6 = capabilityGracefulRestart6;
+            CapabilityGracefulRestartEvpn = capabilityGracefulRestartEvpn;
             CapabilityGracefulRestartVpnv4 = capabilityGracefulRestartVpnv4;
+            CapabilityGracefulRestartVpnv6 = capabilityGracefulRestartVpnv6;
             CapabilityOrf = capabilityOrf;
             CapabilityOrf6 = capabilityOrf6;
             CapabilityRouteRefresh = capabilityRouteRefresh;
@@ -740,16 +1011,22 @@ namespace Pulumiverse.Fortios.Router.Outputs
             DistributeListIn = distributeListIn;
             DistributeListIn6 = distributeListIn6;
             DistributeListInVpnv4 = distributeListInVpnv4;
+            DistributeListInVpnv6 = distributeListInVpnv6;
             DistributeListOut = distributeListOut;
             DistributeListOut6 = distributeListOut6;
             DistributeListOutVpnv4 = distributeListOutVpnv4;
+            DistributeListOutVpnv6 = distributeListOutVpnv6;
             DontCapabilityNegotiate = dontCapabilityNegotiate;
             EbgpEnforceMultihop = ebgpEnforceMultihop;
             EbgpMultihopTtl = ebgpMultihopTtl;
             FilterListIn = filterListIn;
             FilterListIn6 = filterListIn6;
+            FilterListInVpnv4 = filterListInVpnv4;
+            FilterListInVpnv6 = filterListInVpnv6;
             FilterListOut = filterListOut;
             FilterListOut6 = filterListOut6;
+            FilterListOutVpnv4 = filterListOutVpnv4;
+            FilterListOutVpnv6 = filterListOutVpnv6;
             HoldtimeTimer = holdtimeTimer;
             Interface = @interface;
             Ip = ip;
@@ -760,55 +1037,79 @@ namespace Pulumiverse.Fortios.Router.Outputs
             LocalAsReplaceAs = localAsReplaceAs;
             MaximumPrefix = maximumPrefix;
             MaximumPrefix6 = maximumPrefix6;
+            MaximumPrefixEvpn = maximumPrefixEvpn;
             MaximumPrefixThreshold = maximumPrefixThreshold;
             MaximumPrefixThreshold6 = maximumPrefixThreshold6;
+            MaximumPrefixThresholdEvpn = maximumPrefixThresholdEvpn;
             MaximumPrefixThresholdVpnv4 = maximumPrefixThresholdVpnv4;
+            MaximumPrefixThresholdVpnv6 = maximumPrefixThresholdVpnv6;
             MaximumPrefixVpnv4 = maximumPrefixVpnv4;
+            MaximumPrefixVpnv6 = maximumPrefixVpnv6;
             MaximumPrefixWarningOnly = maximumPrefixWarningOnly;
             MaximumPrefixWarningOnly6 = maximumPrefixWarningOnly6;
+            MaximumPrefixWarningOnlyEvpn = maximumPrefixWarningOnlyEvpn;
             MaximumPrefixWarningOnlyVpnv4 = maximumPrefixWarningOnlyVpnv4;
+            MaximumPrefixWarningOnlyVpnv6 = maximumPrefixWarningOnlyVpnv6;
             NextHopSelf = nextHopSelf;
             NextHopSelf6 = nextHopSelf6;
             NextHopSelfRr = nextHopSelfRr;
             NextHopSelfRr6 = nextHopSelfRr6;
             NextHopSelfVpnv4 = nextHopSelfVpnv4;
+            NextHopSelfVpnv6 = nextHopSelfVpnv6;
             OverrideCapability = overrideCapability;
             Passive = passive;
             Password = password;
             PrefixListIn = prefixListIn;
             PrefixListIn6 = prefixListIn6;
             PrefixListInVpnv4 = prefixListInVpnv4;
+            PrefixListInVpnv6 = prefixListInVpnv6;
             PrefixListOut = prefixListOut;
             PrefixListOut6 = prefixListOut6;
             PrefixListOutVpnv4 = prefixListOutVpnv4;
+            PrefixListOutVpnv6 = prefixListOutVpnv6;
             RemoteAs = remoteAs;
             RemovePrivateAs = removePrivateAs;
             RemovePrivateAs6 = removePrivateAs6;
+            RemovePrivateAsEvpn = removePrivateAsEvpn;
             RemovePrivateAsVpnv4 = removePrivateAsVpnv4;
+            RemovePrivateAsVpnv6 = removePrivateAsVpnv6;
             RestartTime = restartTime;
             RetainStaleTime = retainStaleTime;
             RouteMapIn = routeMapIn;
             RouteMapIn6 = routeMapIn6;
+            RouteMapInEvpn = routeMapInEvpn;
             RouteMapInVpnv4 = routeMapInVpnv4;
+            RouteMapInVpnv6 = routeMapInVpnv6;
             RouteMapOut = routeMapOut;
             RouteMapOut6 = routeMapOut6;
             RouteMapOut6Preferable = routeMapOut6Preferable;
+            RouteMapOutEvpn = routeMapOutEvpn;
             RouteMapOutPreferable = routeMapOutPreferable;
             RouteMapOutVpnv4 = routeMapOutVpnv4;
             RouteMapOutVpnv4Preferable = routeMapOutVpnv4Preferable;
+            RouteMapOutVpnv6 = routeMapOutVpnv6;
+            RouteMapOutVpnv6Preferable = routeMapOutVpnv6Preferable;
             RouteReflectorClient = routeReflectorClient;
             RouteReflectorClient6 = routeReflectorClient6;
+            RouteReflectorClientEvpn = routeReflectorClientEvpn;
             RouteReflectorClientVpnv4 = routeReflectorClientVpnv4;
+            RouteReflectorClientVpnv6 = routeReflectorClientVpnv6;
             RouteServerClient = routeServerClient;
             RouteServerClient6 = routeServerClient6;
+            RouteServerClientEvpn = routeServerClientEvpn;
             RouteServerClientVpnv4 = routeServerClientVpnv4;
+            RouteServerClientVpnv6 = routeServerClientVpnv6;
             SendCommunity = sendCommunity;
             SendCommunity6 = sendCommunity6;
+            SendCommunityEvpn = sendCommunityEvpn;
             SendCommunityVpnv4 = sendCommunityVpnv4;
+            SendCommunityVpnv6 = sendCommunityVpnv6;
             Shutdown = shutdown;
             SoftReconfiguration = softReconfiguration;
             SoftReconfiguration6 = softReconfiguration6;
+            SoftReconfigurationEvpn = softReconfigurationEvpn;
             SoftReconfigurationVpnv4 = softReconfigurationVpnv4;
+            SoftReconfigurationVpnv6 = softReconfigurationVpnv6;
             StaleRoute = staleRoute;
             StrictCapabilityMatch = strictCapabilityMatch;
             UnsuppressMap = unsuppressMap;

@@ -35,6 +35,24 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
     public partial class Timers : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Time in minutes to wait before AP reboots when there is no controller detected (5 - 65535, default = 0, 0 for no reboot).
+        /// </summary>
+        [Output("apRebootWaitInterval1")]
+        public Output<int> ApRebootWaitInterval1 { get; private set; } = null!;
+
+        /// <summary>
+        /// Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
+        /// </summary>
+        [Output("apRebootWaitInterval2")]
+        public Output<int> ApRebootWaitInterval2 { get; private set; } = null!;
+
+        /// <summary>
+        /// Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
+        /// </summary>
+        [Output("apRebootWaitTime")]
+        public Output<string> ApRebootWaitTime { get; private set; } = null!;
+
+        /// <summary>
         /// Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
         /// </summary>
         [Output("authTimeout")]
@@ -107,10 +125,22 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> FakeApLog { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
         /// </summary>
         [Output("ipsecIntfCleanup")]
         public Output<int> IpsecIntfCleanup { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
+        /// </summary>
+        [Output("natSessionKeepAlive")]
+        public Output<int> NatSessionKeepAlive { get; private set; } = null!;
 
         /// <summary>
         /// Time between running radio reports (1 - 255 sec, default = 15).
@@ -208,6 +238,24 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
     public sealed class TimersArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Time in minutes to wait before AP reboots when there is no controller detected (5 - 65535, default = 0, 0 for no reboot).
+        /// </summary>
+        [Input("apRebootWaitInterval1")]
+        public Input<int>? ApRebootWaitInterval1 { get; set; }
+
+        /// <summary>
+        /// Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
+        /// </summary>
+        [Input("apRebootWaitInterval2")]
+        public Input<int>? ApRebootWaitInterval2 { get; set; }
+
+        /// <summary>
+        /// Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
+        /// </summary>
+        [Input("apRebootWaitTime")]
+        public Input<string>? ApRebootWaitTime { get; set; }
+
+        /// <summary>
         /// Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
         /// </summary>
         [Input("authTimeout")]
@@ -286,10 +334,22 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? FakeApLog { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
         /// </summary>
         [Input("ipsecIntfCleanup")]
         public Input<int>? IpsecIntfCleanup { get; set; }
+
+        /// <summary>
+        /// Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
+        /// </summary>
+        [Input("natSessionKeepAlive")]
+        public Input<int>? NatSessionKeepAlive { get; set; }
 
         /// <summary>
         /// Time between running radio reports (1 - 255 sec, default = 15).
@@ -347,6 +407,24 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
 
     public sealed class TimersState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Time in minutes to wait before AP reboots when there is no controller detected (5 - 65535, default = 0, 0 for no reboot).
+        /// </summary>
+        [Input("apRebootWaitInterval1")]
+        public Input<int>? ApRebootWaitInterval1 { get; set; }
+
+        /// <summary>
+        /// Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
+        /// </summary>
+        [Input("apRebootWaitInterval2")]
+        public Input<int>? ApRebootWaitInterval2 { get; set; }
+
+        /// <summary>
+        /// Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
+        /// </summary>
+        [Input("apRebootWaitTime")]
+        public Input<string>? ApRebootWaitTime { get; set; }
+
         /// <summary>
         /// Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
         /// </summary>
@@ -426,10 +504,22 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? FakeApLog { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
         /// </summary>
         [Input("ipsecIntfCleanup")]
         public Input<int>? IpsecIntfCleanup { get; set; }
+
+        /// <summary>
+        /// Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
+        /// </summary>
+        [Input("natSessionKeepAlive")]
+        public Input<int>? NatSessionKeepAlive { get; set; }
 
         /// <summary>
         /// Time between running radio reports (1 - 255 sec, default = 15).

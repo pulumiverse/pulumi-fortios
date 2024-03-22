@@ -80,6 +80,12 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? Status { get; set; }
 
         /// <summary>
+        /// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("translateHost")]
+        public Input<string>? TranslateHost { get; set; }
+
+        /// <summary>
         /// Type of address. Valid values: `ip`, `address`.
         /// </summary>
         [Input("type")]

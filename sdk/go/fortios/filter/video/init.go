@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "fortios:filter/video/keyword:Keyword":
+		r = &Keyword{}
 	case "fortios:filter/video/profile:Profile":
 		r = &Profile{}
 	case "fortios:filter/video/youtubechannelfilter:Youtubechannelfilter":
@@ -40,6 +42,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"filter/video/keyword",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"filter/video/profile",

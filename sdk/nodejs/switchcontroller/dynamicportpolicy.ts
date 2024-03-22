@@ -68,6 +68,10 @@ export class Dynamicportpolicy extends pulumi.CustomResource {
      */
     public readonly fortilink!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Dynamic port policy name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -96,6 +100,7 @@ export class Dynamicportpolicy extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fortilink"] = state ? state.fortilink : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["policies"] = state ? state.policies : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -104,6 +109,7 @@ export class Dynamicportpolicy extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fortilink"] = args ? args.fortilink : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["policies"] = args ? args.policies : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -129,6 +135,10 @@ export interface DynamicportpolicyState {
      * FortiLink interface for which this Dynamic port policy belongs to.
      */
     fortilink?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Dynamic port policy name.
      */
@@ -159,6 +169,10 @@ export interface DynamicportpolicyArgs {
      * FortiLink interface for which this Dynamic port policy belongs to.
      */
     fortilink?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Dynamic port policy name.
      */

@@ -58,6 +58,10 @@ export class Affinityinterrupt extends pulumi.CustomResource {
      */
     public readonly affinityCpumask!: pulumi.Output<string>;
     /**
+     * Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+     */
+    public readonly defaultAffinityCpumask!: pulumi.Output<string>;
+    /**
      * ID of the interrupt affinity setting.
      */
     public readonly fosid!: pulumi.Output<number>;
@@ -84,6 +88,7 @@ export class Affinityinterrupt extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AffinityinterruptState | undefined;
             resourceInputs["affinityCpumask"] = state ? state.affinityCpumask : undefined;
+            resourceInputs["defaultAffinityCpumask"] = state ? state.defaultAffinityCpumask : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
             resourceInputs["interrupt"] = state ? state.interrupt : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -99,6 +104,7 @@ export class Affinityinterrupt extends pulumi.CustomResource {
                 throw new Error("Missing required property 'interrupt'");
             }
             resourceInputs["affinityCpumask"] = args ? args.affinityCpumask : undefined;
+            resourceInputs["defaultAffinityCpumask"] = args ? args.defaultAffinityCpumask : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
             resourceInputs["interrupt"] = args ? args.interrupt : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -116,6 +122,10 @@ export interface AffinityinterruptState {
      * Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
      */
     affinityCpumask?: pulumi.Input<string>;
+    /**
+     * Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+     */
+    defaultAffinityCpumask?: pulumi.Input<string>;
     /**
      * ID of the interrupt affinity setting.
      */
@@ -138,6 +148,10 @@ export interface AffinityinterruptArgs {
      * Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
      */
     affinityCpumask: pulumi.Input<string>;
+    /**
+     * Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+     */
+    defaultAffinityCpumask?: pulumi.Input<string>;
     /**
      * ID of the interrupt affinity setting.
      */

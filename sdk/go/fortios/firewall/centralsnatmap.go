@@ -93,10 +93,14 @@ type Centralsnatmap struct {
 	DstAddr6s CentralsnatmapDstAddr6ArrayOutput `pulumi:"dstAddr6s"`
 	// Destination address name from available addresses. The structure of `dstAddr` block is documented below.
 	DstAddrs CentralsnatmapDstAddrArrayOutput `pulumi:"dstAddrs"`
+	// Destination port or port range (1 to 65535, 0 means any port).
+	DstPort pulumi.StringOutput `pulumi:"dstPort"`
 	// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
 	Dstintfs CentralsnatmapDstintfArrayOutput `pulumi:"dstintfs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat pulumi.StringOutput `pulumi:"nat"`
 	// Enable/disable NAT46. Valid values: `enable`, `disable`.
@@ -107,13 +111,13 @@ type Centralsnatmap struct {
 	NatIppool6s CentralsnatmapNatIppool6ArrayOutput `pulumi:"natIppool6s"`
 	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
 	NatIppools CentralsnatmapNatIppoolArrayOutput `pulumi:"natIppools"`
-	// Translated port or port range (0 to 65535).
+	// Translated port or port range (0 to 65535, 0 means any port).
 	NatPort pulumi.StringOutput `pulumi:"natPort"`
 	// IPv6 Original address. The structure of `origAddr6` block is documented below.
 	OrigAddr6s CentralsnatmapOrigAddr6ArrayOutput `pulumi:"origAddr6s"`
 	// Original address. The structure of `origAddr` block is documented below.
 	OrigAddrs CentralsnatmapOrigAddrArrayOutput `pulumi:"origAddrs"`
-	// Original TCP port (0 to 65535).
+	// Original TCP port (1 to 65535, 0 means any port).
 	OrigPort pulumi.StringOutput `pulumi:"origPort"`
 	// Policy ID.
 	Policyid pulumi.IntOutput `pulumi:"policyid"`
@@ -188,10 +192,14 @@ type centralsnatmapState struct {
 	DstAddr6s []CentralsnatmapDstAddr6 `pulumi:"dstAddr6s"`
 	// Destination address name from available addresses. The structure of `dstAddr` block is documented below.
 	DstAddrs []CentralsnatmapDstAddr `pulumi:"dstAddrs"`
+	// Destination port or port range (1 to 65535, 0 means any port).
+	DstPort *string `pulumi:"dstPort"`
 	// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
 	Dstintfs []CentralsnatmapDstintf `pulumi:"dstintfs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat *string `pulumi:"nat"`
 	// Enable/disable NAT46. Valid values: `enable`, `disable`.
@@ -202,13 +210,13 @@ type centralsnatmapState struct {
 	NatIppool6s []CentralsnatmapNatIppool6 `pulumi:"natIppool6s"`
 	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
 	NatIppools []CentralsnatmapNatIppool `pulumi:"natIppools"`
-	// Translated port or port range (0 to 65535).
+	// Translated port or port range (0 to 65535, 0 means any port).
 	NatPort *string `pulumi:"natPort"`
 	// IPv6 Original address. The structure of `origAddr6` block is documented below.
 	OrigAddr6s []CentralsnatmapOrigAddr6 `pulumi:"origAddr6s"`
 	// Original address. The structure of `origAddr` block is documented below.
 	OrigAddrs []CentralsnatmapOrigAddr `pulumi:"origAddrs"`
-	// Original TCP port (0 to 65535).
+	// Original TCP port (1 to 65535, 0 means any port).
 	OrigPort *string `pulumi:"origPort"`
 	// Policy ID.
 	Policyid *int `pulumi:"policyid"`
@@ -233,10 +241,14 @@ type CentralsnatmapState struct {
 	DstAddr6s CentralsnatmapDstAddr6ArrayInput
 	// Destination address name from available addresses. The structure of `dstAddr` block is documented below.
 	DstAddrs CentralsnatmapDstAddrArrayInput
+	// Destination port or port range (1 to 65535, 0 means any port).
+	DstPort pulumi.StringPtrInput
 	// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
 	Dstintfs CentralsnatmapDstintfArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat pulumi.StringPtrInput
 	// Enable/disable NAT46. Valid values: `enable`, `disable`.
@@ -247,13 +259,13 @@ type CentralsnatmapState struct {
 	NatIppool6s CentralsnatmapNatIppool6ArrayInput
 	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
 	NatIppools CentralsnatmapNatIppoolArrayInput
-	// Translated port or port range (0 to 65535).
+	// Translated port or port range (0 to 65535, 0 means any port).
 	NatPort pulumi.StringPtrInput
 	// IPv6 Original address. The structure of `origAddr6` block is documented below.
 	OrigAddr6s CentralsnatmapOrigAddr6ArrayInput
 	// Original address. The structure of `origAddr` block is documented below.
 	OrigAddrs CentralsnatmapOrigAddrArrayInput
-	// Original TCP port (0 to 65535).
+	// Original TCP port (1 to 65535, 0 means any port).
 	OrigPort pulumi.StringPtrInput
 	// Policy ID.
 	Policyid pulumi.IntPtrInput
@@ -282,10 +294,14 @@ type centralsnatmapArgs struct {
 	DstAddr6s []CentralsnatmapDstAddr6 `pulumi:"dstAddr6s"`
 	// Destination address name from available addresses. The structure of `dstAddr` block is documented below.
 	DstAddrs []CentralsnatmapDstAddr `pulumi:"dstAddrs"`
+	// Destination port or port range (1 to 65535, 0 means any port).
+	DstPort *string `pulumi:"dstPort"`
 	// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
 	Dstintfs []CentralsnatmapDstintf `pulumi:"dstintfs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat string `pulumi:"nat"`
 	// Enable/disable NAT46. Valid values: `enable`, `disable`.
@@ -296,13 +312,13 @@ type centralsnatmapArgs struct {
 	NatIppool6s []CentralsnatmapNatIppool6 `pulumi:"natIppool6s"`
 	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
 	NatIppools []CentralsnatmapNatIppool `pulumi:"natIppools"`
-	// Translated port or port range (0 to 65535).
+	// Translated port or port range (0 to 65535, 0 means any port).
 	NatPort *string `pulumi:"natPort"`
 	// IPv6 Original address. The structure of `origAddr6` block is documented below.
 	OrigAddr6s []CentralsnatmapOrigAddr6 `pulumi:"origAddr6s"`
 	// Original address. The structure of `origAddr` block is documented below.
 	OrigAddrs []CentralsnatmapOrigAddr `pulumi:"origAddrs"`
-	// Original TCP port (0 to 65535).
+	// Original TCP port (1 to 65535, 0 means any port).
 	OrigPort string `pulumi:"origPort"`
 	// Policy ID.
 	Policyid *int `pulumi:"policyid"`
@@ -328,10 +344,14 @@ type CentralsnatmapArgs struct {
 	DstAddr6s CentralsnatmapDstAddr6ArrayInput
 	// Destination address name from available addresses. The structure of `dstAddr` block is documented below.
 	DstAddrs CentralsnatmapDstAddrArrayInput
+	// Destination port or port range (1 to 65535, 0 means any port).
+	DstPort pulumi.StringPtrInput
 	// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
 	Dstintfs CentralsnatmapDstintfArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat pulumi.StringInput
 	// Enable/disable NAT46. Valid values: `enable`, `disable`.
@@ -342,13 +362,13 @@ type CentralsnatmapArgs struct {
 	NatIppool6s CentralsnatmapNatIppool6ArrayInput
 	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
 	NatIppools CentralsnatmapNatIppoolArrayInput
-	// Translated port or port range (0 to 65535).
+	// Translated port or port range (0 to 65535, 0 means any port).
 	NatPort pulumi.StringPtrInput
 	// IPv6 Original address. The structure of `origAddr6` block is documented below.
 	OrigAddr6s CentralsnatmapOrigAddr6ArrayInput
 	// Original address. The structure of `origAddr` block is documented below.
 	OrigAddrs CentralsnatmapOrigAddrArrayInput
-	// Original TCP port (0 to 65535).
+	// Original TCP port (1 to 65535, 0 means any port).
 	OrigPort pulumi.StringInput
 	// Policy ID.
 	Policyid pulumi.IntPtrInput
@@ -468,6 +488,11 @@ func (o CentralsnatmapOutput) DstAddrs() CentralsnatmapDstAddrArrayOutput {
 	return o.ApplyT(func(v *Centralsnatmap) CentralsnatmapDstAddrArrayOutput { return v.DstAddrs }).(CentralsnatmapDstAddrArrayOutput)
 }
 
+// Destination port or port range (1 to 65535, 0 means any port).
+func (o CentralsnatmapOutput) DstPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *Centralsnatmap) pulumi.StringOutput { return v.DstPort }).(pulumi.StringOutput)
+}
+
 // Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
 func (o CentralsnatmapOutput) Dstintfs() CentralsnatmapDstintfArrayOutput {
 	return o.ApplyT(func(v *Centralsnatmap) CentralsnatmapDstintfArrayOutput { return v.Dstintfs }).(CentralsnatmapDstintfArrayOutput)
@@ -476,6 +501,11 @@ func (o CentralsnatmapOutput) Dstintfs() CentralsnatmapDstintfArrayOutput {
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o CentralsnatmapOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Centralsnatmap) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o CentralsnatmapOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Centralsnatmap) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable source NAT. Valid values: `disable`, `enable`.
@@ -503,7 +533,7 @@ func (o CentralsnatmapOutput) NatIppools() CentralsnatmapNatIppoolArrayOutput {
 	return o.ApplyT(func(v *Centralsnatmap) CentralsnatmapNatIppoolArrayOutput { return v.NatIppools }).(CentralsnatmapNatIppoolArrayOutput)
 }
 
-// Translated port or port range (0 to 65535).
+// Translated port or port range (0 to 65535, 0 means any port).
 func (o CentralsnatmapOutput) NatPort() pulumi.StringOutput {
 	return o.ApplyT(func(v *Centralsnatmap) pulumi.StringOutput { return v.NatPort }).(pulumi.StringOutput)
 }
@@ -518,7 +548,7 @@ func (o CentralsnatmapOutput) OrigAddrs() CentralsnatmapOrigAddrArrayOutput {
 	return o.ApplyT(func(v *Centralsnatmap) CentralsnatmapOrigAddrArrayOutput { return v.OrigAddrs }).(CentralsnatmapOrigAddrArrayOutput)
 }
 
-// Original TCP port (0 to 65535).
+// Original TCP port (1 to 65535, 0 means any port).
 func (o CentralsnatmapOutput) OrigPort() pulumi.StringOutput {
 	return o.ApplyT(func(v *Centralsnatmap) pulumi.StringOutput { return v.OrigPort }).(pulumi.StringOutput)
 }

@@ -16,7 +16,9 @@ class ProfilegroupArgs:
     def __init__(__self__, *,
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -24,6 +26,7 @@ class ProfilegroupArgs:
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  sctp_filter_profile: Optional[pulumi.Input[str]] = None,
@@ -32,6 +35,7 @@ class ProfilegroupArgs:
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None):
@@ -39,7 +43,9 @@ class ProfilegroupArgs:
         The set of arguments for constructing a Profilegroup resource.
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
         :param pulumi.Input[str] dnsfilter_profile: Name of an existing DNS filter profile.
@@ -47,6 +53,7 @@ class ProfilegroupArgs:
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] name: Profile group name.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
@@ -55,7 +62,8 @@ class ProfilegroupArgs:
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
-        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP (voipd) profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         """
@@ -63,8 +71,12 @@ class ProfilegroupArgs:
             pulumi.set(__self__, "application_list", application_list)
         if av_profile is not None:
             pulumi.set(__self__, "av_profile", av_profile)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
+        if diameter_filter_profile is not None:
+            pulumi.set(__self__, "diameter_filter_profile", diameter_filter_profile)
         if dlp_profile is not None:
             pulumi.set(__self__, "dlp_profile", dlp_profile)
         if dlp_sensor is not None:
@@ -79,6 +91,8 @@ class ProfilegroupArgs:
             pulumi.set(__self__, "icap_profile", icap_profile)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if profile_protocol_options is not None:
@@ -95,6 +109,8 @@ class ProfilegroupArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if waf_profile is not None:
@@ -127,6 +143,18 @@ class ProfilegroupArgs:
         pulumi.set(self, "av_profile", value)
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -137,6 +165,18 @@ class ProfilegroupArgs:
     @cifs_profile.setter
     def cifs_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cifs_profile", value)
+
+    @property
+    @pulumi.getter(name="diameterFilterProfile")
+    def diameter_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing Diameter filter profile.
+        """
+        return pulumi.get(self, "diameter_filter_profile")
+
+    @diameter_filter_profile.setter
+    def diameter_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "diameter_filter_profile", value)
 
     @property
     @pulumi.getter(name="dlpProfile")
@@ -221,6 +261,18 @@ class ProfilegroupArgs:
     @ips_sensor.setter
     def ips_sensor(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ips_sensor", value)
+
+    @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VoIP (ips) profile.
+        """
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
 
     @property
     @pulumi.getter
@@ -319,10 +371,22 @@ class ProfilegroupArgs:
         pulumi.set(self, "videofilter_profile", value)
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing virtual-patch profile.
+        """
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
+
+    @property
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of an existing VoIP profile.
+        Name of an existing VoIP (voipd) profile.
         """
         return pulumi.get(self, "voip_profile")
 
@@ -360,7 +424,9 @@ class _ProfilegroupState:
     def __init__(__self__, *,
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -368,6 +434,7 @@ class _ProfilegroupState:
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  sctp_filter_profile: Optional[pulumi.Input[str]] = None,
@@ -376,6 +443,7 @@ class _ProfilegroupState:
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None):
@@ -383,7 +451,9 @@ class _ProfilegroupState:
         Input properties used for looking up and filtering Profilegroup resources.
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
         :param pulumi.Input[str] dnsfilter_profile: Name of an existing DNS filter profile.
@@ -391,6 +461,7 @@ class _ProfilegroupState:
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] name: Profile group name.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
@@ -399,7 +470,8 @@ class _ProfilegroupState:
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
-        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP (voipd) profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         """
@@ -407,8 +479,12 @@ class _ProfilegroupState:
             pulumi.set(__self__, "application_list", application_list)
         if av_profile is not None:
             pulumi.set(__self__, "av_profile", av_profile)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
+        if diameter_filter_profile is not None:
+            pulumi.set(__self__, "diameter_filter_profile", diameter_filter_profile)
         if dlp_profile is not None:
             pulumi.set(__self__, "dlp_profile", dlp_profile)
         if dlp_sensor is not None:
@@ -423,6 +499,8 @@ class _ProfilegroupState:
             pulumi.set(__self__, "icap_profile", icap_profile)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if profile_protocol_options is not None:
@@ -439,6 +517,8 @@ class _ProfilegroupState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if waf_profile is not None:
@@ -471,6 +551,18 @@ class _ProfilegroupState:
         pulumi.set(self, "av_profile", value)
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -481,6 +573,18 @@ class _ProfilegroupState:
     @cifs_profile.setter
     def cifs_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cifs_profile", value)
+
+    @property
+    @pulumi.getter(name="diameterFilterProfile")
+    def diameter_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing Diameter filter profile.
+        """
+        return pulumi.get(self, "diameter_filter_profile")
+
+    @diameter_filter_profile.setter
+    def diameter_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "diameter_filter_profile", value)
 
     @property
     @pulumi.getter(name="dlpProfile")
@@ -565,6 +669,18 @@ class _ProfilegroupState:
     @ips_sensor.setter
     def ips_sensor(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ips_sensor", value)
+
+    @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VoIP (ips) profile.
+        """
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
 
     @property
     @pulumi.getter
@@ -663,10 +779,22 @@ class _ProfilegroupState:
         pulumi.set(self, "videofilter_profile", value)
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing virtual-patch profile.
+        """
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
+
+    @property
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of an existing VoIP profile.
+        Name of an existing VoIP (voipd) profile.
         """
         return pulumi.get(self, "voip_profile")
 
@@ -706,7 +834,9 @@ class Profilegroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -714,6 +844,7 @@ class Profilegroup(pulumi.CustomResource):
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  sctp_filter_profile: Optional[pulumi.Input[str]] = None,
@@ -722,6 +853,7 @@ class Profilegroup(pulumi.CustomResource):
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -764,7 +896,9 @@ class Profilegroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
         :param pulumi.Input[str] dnsfilter_profile: Name of an existing DNS filter profile.
@@ -772,6 +906,7 @@ class Profilegroup(pulumi.CustomResource):
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] name: Profile group name.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
@@ -780,7 +915,8 @@ class Profilegroup(pulumi.CustomResource):
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
-        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP (voipd) profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         """
@@ -841,7 +977,9 @@ class Profilegroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -849,6 +987,7 @@ class Profilegroup(pulumi.CustomResource):
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  sctp_filter_profile: Optional[pulumi.Input[str]] = None,
@@ -857,6 +996,7 @@ class Profilegroup(pulumi.CustomResource):
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -871,7 +1011,9 @@ class Profilegroup(pulumi.CustomResource):
 
             __props__.__dict__["application_list"] = application_list
             __props__.__dict__["av_profile"] = av_profile
+            __props__.__dict__["casb_profile"] = casb_profile
             __props__.__dict__["cifs_profile"] = cifs_profile
+            __props__.__dict__["diameter_filter_profile"] = diameter_filter_profile
             __props__.__dict__["dlp_profile"] = dlp_profile
             __props__.__dict__["dlp_sensor"] = dlp_sensor
             __props__.__dict__["dnsfilter_profile"] = dnsfilter_profile
@@ -879,6 +1021,7 @@ class Profilegroup(pulumi.CustomResource):
             __props__.__dict__["file_filter_profile"] = file_filter_profile
             __props__.__dict__["icap_profile"] = icap_profile
             __props__.__dict__["ips_sensor"] = ips_sensor
+            __props__.__dict__["ips_voip_filter"] = ips_voip_filter
             __props__.__dict__["name"] = name
             __props__.__dict__["profile_protocol_options"] = profile_protocol_options
             __props__.__dict__["sctp_filter_profile"] = sctp_filter_profile
@@ -887,6 +1030,7 @@ class Profilegroup(pulumi.CustomResource):
             __props__.__dict__["ssl_ssh_profile"] = ssl_ssh_profile
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["videofilter_profile"] = videofilter_profile
+            __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
             __props__.__dict__["voip_profile"] = voip_profile
             __props__.__dict__["waf_profile"] = waf_profile
             __props__.__dict__["webfilter_profile"] = webfilter_profile
@@ -902,7 +1046,9 @@ class Profilegroup(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             application_list: Optional[pulumi.Input[str]] = None,
             av_profile: Optional[pulumi.Input[str]] = None,
+            casb_profile: Optional[pulumi.Input[str]] = None,
             cifs_profile: Optional[pulumi.Input[str]] = None,
+            diameter_filter_profile: Optional[pulumi.Input[str]] = None,
             dlp_profile: Optional[pulumi.Input[str]] = None,
             dlp_sensor: Optional[pulumi.Input[str]] = None,
             dnsfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -910,6 +1056,7 @@ class Profilegroup(pulumi.CustomResource):
             file_filter_profile: Optional[pulumi.Input[str]] = None,
             icap_profile: Optional[pulumi.Input[str]] = None,
             ips_sensor: Optional[pulumi.Input[str]] = None,
+            ips_voip_filter: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             profile_protocol_options: Optional[pulumi.Input[str]] = None,
             sctp_filter_profile: Optional[pulumi.Input[str]] = None,
@@ -918,6 +1065,7 @@ class Profilegroup(pulumi.CustomResource):
             ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             videofilter_profile: Optional[pulumi.Input[str]] = None,
+            virtual_patch_profile: Optional[pulumi.Input[str]] = None,
             voip_profile: Optional[pulumi.Input[str]] = None,
             waf_profile: Optional[pulumi.Input[str]] = None,
             webfilter_profile: Optional[pulumi.Input[str]] = None) -> 'Profilegroup':
@@ -930,7 +1078,9 @@ class Profilegroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
         :param pulumi.Input[str] dnsfilter_profile: Name of an existing DNS filter profile.
@@ -938,6 +1088,7 @@ class Profilegroup(pulumi.CustomResource):
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] name: Profile group name.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
@@ -946,7 +1097,8 @@ class Profilegroup(pulumi.CustomResource):
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
-        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP (voipd) profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         """
@@ -956,7 +1108,9 @@ class Profilegroup(pulumi.CustomResource):
 
         __props__.__dict__["application_list"] = application_list
         __props__.__dict__["av_profile"] = av_profile
+        __props__.__dict__["casb_profile"] = casb_profile
         __props__.__dict__["cifs_profile"] = cifs_profile
+        __props__.__dict__["diameter_filter_profile"] = diameter_filter_profile
         __props__.__dict__["dlp_profile"] = dlp_profile
         __props__.__dict__["dlp_sensor"] = dlp_sensor
         __props__.__dict__["dnsfilter_profile"] = dnsfilter_profile
@@ -964,6 +1118,7 @@ class Profilegroup(pulumi.CustomResource):
         __props__.__dict__["file_filter_profile"] = file_filter_profile
         __props__.__dict__["icap_profile"] = icap_profile
         __props__.__dict__["ips_sensor"] = ips_sensor
+        __props__.__dict__["ips_voip_filter"] = ips_voip_filter
         __props__.__dict__["name"] = name
         __props__.__dict__["profile_protocol_options"] = profile_protocol_options
         __props__.__dict__["sctp_filter_profile"] = sctp_filter_profile
@@ -972,6 +1127,7 @@ class Profilegroup(pulumi.CustomResource):
         __props__.__dict__["ssl_ssh_profile"] = ssl_ssh_profile
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["videofilter_profile"] = videofilter_profile
+        __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
         __props__.__dict__["voip_profile"] = voip_profile
         __props__.__dict__["waf_profile"] = waf_profile
         __props__.__dict__["webfilter_profile"] = webfilter_profile
@@ -994,12 +1150,28 @@ class Profilegroup(pulumi.CustomResource):
         return pulumi.get(self, "av_profile")
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> pulumi.Output[str]:
         """
         Name of an existing CIFS profile.
         """
         return pulumi.get(self, "cifs_profile")
+
+    @property
+    @pulumi.getter(name="diameterFilterProfile")
+    def diameter_filter_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing Diameter filter profile.
+        """
+        return pulumi.get(self, "diameter_filter_profile")
 
     @property
     @pulumi.getter(name="dlpProfile")
@@ -1056,6 +1228,14 @@ class Profilegroup(pulumi.CustomResource):
         Name of an existing IPS sensor.
         """
         return pulumi.get(self, "ips_sensor")
+
+    @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> pulumi.Output[str]:
+        """
+        Name of an existing VoIP (ips) profile.
+        """
+        return pulumi.get(self, "ips_voip_filter")
 
     @property
     @pulumi.getter
@@ -1122,10 +1302,18 @@ class Profilegroup(pulumi.CustomResource):
         return pulumi.get(self, "videofilter_profile")
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing virtual-patch profile.
+        """
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @property
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> pulumi.Output[str]:
         """
-        Name of an existing VoIP profile.
+        Name of an existing VoIP (voipd) profile.
         """
         return pulumi.get(self, "voip_profile")
 

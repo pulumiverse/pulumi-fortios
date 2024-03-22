@@ -35,6 +35,10 @@ export interface GetFtmpushResult {
      */
     readonly id: string;
     /**
+     * Enable/disable communication to the proxy server in FortiGuard configuration.
+     */
+    readonly proxy: string;
+    /**
      * IPv4 address or domain name of FortiToken Mobile push services server.
      */
     readonly server: string;

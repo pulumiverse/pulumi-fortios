@@ -76,6 +76,14 @@ export class Dnsserver extends pulumi.CustomResource {
      */
     public readonly doh!: pulumi.Output<string>;
     /**
+     * Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly doh3!: pulumi.Output<string>;
+    /**
+     * Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly doq!: pulumi.Output<string>;
+    /**
      * DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
      */
     public readonly mode!: pulumi.Output<string>;
@@ -103,6 +111,8 @@ export class Dnsserver extends pulumi.CustomResource {
             const state = argsOrState as DnsserverState | undefined;
             resourceInputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
             resourceInputs["doh"] = state ? state.doh : undefined;
+            resourceInputs["doh3"] = state ? state.doh3 : undefined;
+            resourceInputs["doq"] = state ? state.doq : undefined;
             resourceInputs["mode"] = state ? state.mode : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -110,6 +120,8 @@ export class Dnsserver extends pulumi.CustomResource {
             const args = argsOrState as DnsserverArgs | undefined;
             resourceInputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
             resourceInputs["doh"] = args ? args.doh : undefined;
+            resourceInputs["doh3"] = args ? args.doh3 : undefined;
+            resourceInputs["doq"] = args ? args.doq : undefined;
             resourceInputs["mode"] = args ? args.mode : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -131,6 +143,14 @@ export interface DnsserverState {
      * DNS over HTTPS. Valid values: `enable`, `disable`.
      */
     doh?: pulumi.Input<string>;
+    /**
+     * Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+     */
+    doh3?: pulumi.Input<string>;
+    /**
+     * Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+     */
+    doq?: pulumi.Input<string>;
     /**
      * DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
      */
@@ -157,6 +177,14 @@ export interface DnsserverArgs {
      * DNS over HTTPS. Valid values: `enable`, `disable`.
      */
     doh?: pulumi.Input<string>;
+    /**
+     * Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
+     */
+    doh3?: pulumi.Input<string>;
+    /**
+     * Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
+     */
+    doq?: pulumi.Input<string>;
     /**
      * DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
      */

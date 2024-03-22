@@ -71,6 +71,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Ddns{}
 	case "fortios:system/dedicatedmgmt:Dedicatedmgmt":
 		r = &Dedicatedmgmt{}
+	case "fortios:system/deviceupgrade:Deviceupgrade":
+		r = &Deviceupgrade{}
 	case "fortios:system/dns64:Dns64":
 		r = &Dns64{}
 	case "fortios:system/dns:Dns":
@@ -83,8 +85,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Dscpbasedpriority{}
 	case "fortios:system/emailserver:Emailserver":
 		r = &Emailserver{}
+	case "fortios:system/evpn:Evpn":
+		r = &Evpn{}
 	case "fortios:system/externalresource:Externalresource":
 		r = &Externalresource{}
+	case "fortios:system/fabricvpn:Fabricvpn":
+		r = &Fabricvpn{}
 	case "fortios:system/federatedupgrade:Federatedupgrade":
 		r = &Federatedupgrade{}
 	case "fortios:system/fipscc:Fipscc":
@@ -175,6 +181,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Passwordpolicy{}
 	case "fortios:system/passwordpolicyguestadmin:Passwordpolicyguestadmin":
 		r = &Passwordpolicyguestadmin{}
+	case "fortios:system/pcpserver:Pcpserver":
+		r = &Pcpserver{}
 	case "fortios:system/physicalswitch:Physicalswitch":
 		r = &Physicalswitch{}
 	case "fortios:system/pppoeinterface:Pppoeinterface":
@@ -195,6 +203,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Saml{}
 	case "fortios:system/sdnconnector:Sdnconnector":
 		r = &Sdnconnector{}
+	case "fortios:system/sdnproxy:Sdnproxy":
+		r = &Sdnproxy{}
 	case "fortios:system/sdwan:Sdwan":
 		r = &Sdwan{}
 	case "fortios:system/sessionhelper:Sessionhelper":
@@ -219,10 +229,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Speedtestschedule{}
 	case "fortios:system/speedtestserver:Speedtestserver":
 		r = &Speedtestserver{}
+	case "fortios:system/speedtestsetting:Speedtestsetting":
+		r = &Speedtestsetting{}
 	case "fortios:system/ssoadmin:Ssoadmin":
 		r = &Ssoadmin{}
 	case "fortios:system/ssoforticloudadmin:Ssoforticloudadmin":
 		r = &Ssoforticloudadmin{}
+	case "fortios:system/ssofortigatecloudadmin:Ssofortigatecloudadmin":
+		r = &Ssofortigatecloudadmin{}
 	case "fortios:system/standalonecluster:Standalonecluster":
 		r = &Standalonecluster{}
 	case "fortios:system/storage:Storage":
@@ -405,6 +419,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"system/deviceupgrade",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"system/dns",
 		&module{version},
 	)
@@ -435,7 +454,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"system/evpn",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"system/externalresource",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"system/fabricvpn",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -665,6 +694,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"system/pcpserver",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"system/physicalswitch",
 		&module{version},
 	)
@@ -711,6 +745,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"system/sdnconnector",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"system/sdnproxy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -775,12 +814,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"system/speedtestsetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"system/ssoadmin",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"system/ssoforticloudadmin",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"system/ssofortigatecloudadmin",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

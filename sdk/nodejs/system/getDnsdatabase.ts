@@ -63,6 +63,10 @@ export interface GetDnsdatabaseResult {
      */
     readonly forwarder: string;
     /**
+     * Forwarder IPv6 address.
+     */
+    readonly forwarder6: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
@@ -90,6 +94,10 @@ export interface GetDnsdatabaseResult {
      * Source IP for forwarding to DNS server.
      */
     readonly sourceIp: string;
+    /**
+     * IPv6 source IP address for forwarding to DNS server.
+     */
+    readonly sourceIp6: string;
     /**
      * Enable/disable resource record status.
      */

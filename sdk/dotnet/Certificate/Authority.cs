@@ -59,6 +59,12 @@ namespace Pulumiverse.Fortios.Certificate
         public Output<string> CaIdentifier { get; private set; } = null!;
 
         /// <summary>
+        /// URL of the EST server.
+        /// </summary>
+        [Output("estUrl")]
+        public Output<string> EstUrl { get; private set; } = null!;
+
+        /// <summary>
         /// Time at which CA was last updated.
         /// </summary>
         [Output("lastUpdated")]
@@ -142,6 +148,10 @@ namespace Pulumiverse.Fortios.Certificate
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse/pulumi-fortios",
+                AdditionalSecretOutputs =
+                {
+                    "ca",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -177,17 +187,33 @@ namespace Pulumiverse.Fortios.Certificate
         [Input("autoUpdateDaysWarning")]
         public Input<int>? AutoUpdateDaysWarning { get; set; }
 
+        [Input("ca", required: true)]
+        private Input<string>? _ca;
+
         /// <summary>
         /// CA certificate as a PEM file.
         /// </summary>
-        [Input("ca", required: true)]
-        public Input<string> Certificate { get; set; } = null!;
+        public Input<string>? Certificate
+        {
+            get => _ca;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _ca = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// CA identifier of the SCEP server.
         /// </summary>
         [Input("caIdentifier")]
         public Input<string>? CaIdentifier { get; set; }
+
+        /// <summary>
+        /// URL of the EST server.
+        /// </summary>
+        [Input("estUrl")]
+        public Input<string>? EstUrl { get; set; }
 
         /// <summary>
         /// Time at which CA was last updated.
@@ -269,17 +295,33 @@ namespace Pulumiverse.Fortios.Certificate
         [Input("autoUpdateDaysWarning")]
         public Input<int>? AutoUpdateDaysWarning { get; set; }
 
+        [Input("ca")]
+        private Input<string>? _ca;
+
         /// <summary>
         /// CA certificate as a PEM file.
         /// </summary>
-        [Input("ca")]
-        public Input<string>? Certificate { get; set; }
+        public Input<string>? Certificate
+        {
+            get => _ca;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _ca = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// CA identifier of the SCEP server.
         /// </summary>
         [Input("caIdentifier")]
         public Input<string>? CaIdentifier { get; set; }
+
+        /// <summary>
+        /// URL of the EST server.
+        /// </summary>
+        [Input("estUrl")]
+        public Input<string>? EstUrl { get; set; }
 
         /// <summary>
         /// Time at which CA was last updated.

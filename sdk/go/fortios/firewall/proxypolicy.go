@@ -119,14 +119,20 @@ type Proxypolicy struct {
 	AvProfile pulumi.StringOutput `pulumi:"avProfile"`
 	// Enable/disable block notification. Valid values: `enable`, `disable`.
 	BlockNotification pulumi.StringOutput `pulumi:"blockNotification"`
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringOutput `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringOutput `pulumi:"cifsProfile"`
 	// Optional comments.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
 	// Decrypted traffic mirror.
 	DecryptedTrafficMirror pulumi.StringOutput `pulumi:"decryptedTrafficMirror"`
+	// Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+	DetectHttpsInHttpRequest pulumi.StringOutput `pulumi:"detectHttpsInHttpRequest"`
 	// When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
 	DeviceOwnership pulumi.StringOutput `pulumi:"deviceOwnership"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile pulumi.StringOutput `pulumi:"diameterFilterProfile"`
 	// Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 	Disclaimer pulumi.StringOutput `pulumi:"disclaimer"`
 	// Name of an existing DLP profile.
@@ -147,6 +153,8 @@ type Proxypolicy struct {
 	EmailfilterProfile pulumi.StringOutput `pulumi:"emailfilterProfile"`
 	// Name of an existing file-filter profile.
 	FileFilterProfile pulumi.StringOutput `pulumi:"fileFilterProfile"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Global web-based manager visible label.
 	GlobalLabel pulumi.StringOutput `pulumi:"globalLabel"`
 	// Names of group objects. The structure of `groups` block is documented below.
@@ -157,6 +165,18 @@ type Proxypolicy struct {
 	IcapProfile pulumi.StringOutput `pulumi:"icapProfile"`
 	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
 	InternetService pulumi.StringOutput `pulumi:"internetService"`
+	// Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+	InternetService6 pulumi.StringOutput `pulumi:"internetService6"`
+	// Custom Internet Service IPv6 group name. The structure of `internetService6CustomGroup` block is documented below.
+	InternetService6CustomGroups ProxypolicyInternetService6CustomGroupArrayOutput `pulumi:"internetService6CustomGroups"`
+	// Custom Internet Service IPv6 name. The structure of `internetService6Custom` block is documented below.
+	InternetService6Customs ProxypolicyInternetService6CustomArrayOutput `pulumi:"internetService6Customs"`
+	// Internet Service IPv6 group name. The structure of `internetService6Group` block is documented below.
+	InternetService6Groups ProxypolicyInternetService6GroupArrayOutput `pulumi:"internetService6Groups"`
+	// Internet Service IPv6 name. The structure of `internetService6Name` block is documented below.
+	InternetService6Names ProxypolicyInternetService6NameArrayOutput `pulumi:"internetService6Names"`
+	// When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+	InternetService6Negate pulumi.StringOutput `pulumi:"internetService6Negate"`
 	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
 	InternetServiceCustomGroups ProxypolicyInternetServiceCustomGroupArrayOutput `pulumi:"internetServiceCustomGroups"`
 	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
@@ -171,6 +191,8 @@ type Proxypolicy struct {
 	InternetServiceNegate pulumi.StringOutput `pulumi:"internetServiceNegate"`
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter pulumi.StringOutput `pulumi:"ipsVoipFilter"`
 	// VDOM-specific GUI visible label.
 	Label pulumi.StringOutput `pulumi:"label"`
 	// Enable/disable logging traffic through the policy. Valid values: `all`, `utm`, `disable`.
@@ -237,6 +259,8 @@ type Proxypolicy struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringOutput `pulumi:"videofilterProfile"`
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile pulumi.StringOutput `pulumi:"virtualPatchProfile"`
 	// Name of an existing VoIP profile.
 	VoipProfile pulumi.StringOutput `pulumi:"voipProfile"`
 	// Name of an existing Web application firewall profile.
@@ -308,14 +332,20 @@ type proxypolicyState struct {
 	AvProfile *string `pulumi:"avProfile"`
 	// Enable/disable block notification. Valid values: `enable`, `disable`.
 	BlockNotification *string `pulumi:"blockNotification"`
+	// Name of an existing CASB profile.
+	CasbProfile *string `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile *string `pulumi:"cifsProfile"`
 	// Optional comments.
 	Comments *string `pulumi:"comments"`
 	// Decrypted traffic mirror.
 	DecryptedTrafficMirror *string `pulumi:"decryptedTrafficMirror"`
+	// Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+	DetectHttpsInHttpRequest *string `pulumi:"detectHttpsInHttpRequest"`
 	// When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
 	DeviceOwnership *string `pulumi:"deviceOwnership"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile *string `pulumi:"diameterFilterProfile"`
 	// Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 	Disclaimer *string `pulumi:"disclaimer"`
 	// Name of an existing DLP profile.
@@ -336,6 +366,8 @@ type proxypolicyState struct {
 	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
 	// Name of an existing file-filter profile.
 	FileFilterProfile *string `pulumi:"fileFilterProfile"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Global web-based manager visible label.
 	GlobalLabel *string `pulumi:"globalLabel"`
 	// Names of group objects. The structure of `groups` block is documented below.
@@ -346,6 +378,18 @@ type proxypolicyState struct {
 	IcapProfile *string `pulumi:"icapProfile"`
 	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
 	InternetService *string `pulumi:"internetService"`
+	// Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+	InternetService6 *string `pulumi:"internetService6"`
+	// Custom Internet Service IPv6 group name. The structure of `internetService6CustomGroup` block is documented below.
+	InternetService6CustomGroups []ProxypolicyInternetService6CustomGroup `pulumi:"internetService6CustomGroups"`
+	// Custom Internet Service IPv6 name. The structure of `internetService6Custom` block is documented below.
+	InternetService6Customs []ProxypolicyInternetService6Custom `pulumi:"internetService6Customs"`
+	// Internet Service IPv6 group name. The structure of `internetService6Group` block is documented below.
+	InternetService6Groups []ProxypolicyInternetService6Group `pulumi:"internetService6Groups"`
+	// Internet Service IPv6 name. The structure of `internetService6Name` block is documented below.
+	InternetService6Names []ProxypolicyInternetService6Name `pulumi:"internetService6Names"`
+	// When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+	InternetService6Negate *string `pulumi:"internetService6Negate"`
 	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
 	InternetServiceCustomGroups []ProxypolicyInternetServiceCustomGroup `pulumi:"internetServiceCustomGroups"`
 	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
@@ -360,6 +404,8 @@ type proxypolicyState struct {
 	InternetServiceNegate *string `pulumi:"internetServiceNegate"`
 	// Name of an existing IPS sensor.
 	IpsSensor *string `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter *string `pulumi:"ipsVoipFilter"`
 	// VDOM-specific GUI visible label.
 	Label *string `pulumi:"label"`
 	// Enable/disable logging traffic through the policy. Valid values: `all`, `utm`, `disable`.
@@ -426,6 +472,8 @@ type proxypolicyState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile *string `pulumi:"videofilterProfile"`
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile *string `pulumi:"virtualPatchProfile"`
 	// Name of an existing VoIP profile.
 	VoipProfile *string `pulumi:"voipProfile"`
 	// Name of an existing Web application firewall profile.
@@ -459,14 +507,20 @@ type ProxypolicyState struct {
 	AvProfile pulumi.StringPtrInput
 	// Enable/disable block notification. Valid values: `enable`, `disable`.
 	BlockNotification pulumi.StringPtrInput
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringPtrInput
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringPtrInput
 	// Optional comments.
 	Comments pulumi.StringPtrInput
 	// Decrypted traffic mirror.
 	DecryptedTrafficMirror pulumi.StringPtrInput
+	// Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+	DetectHttpsInHttpRequest pulumi.StringPtrInput
 	// When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
 	DeviceOwnership pulumi.StringPtrInput
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile pulumi.StringPtrInput
 	// Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 	Disclaimer pulumi.StringPtrInput
 	// Name of an existing DLP profile.
@@ -487,6 +541,8 @@ type ProxypolicyState struct {
 	EmailfilterProfile pulumi.StringPtrInput
 	// Name of an existing file-filter profile.
 	FileFilterProfile pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Global web-based manager visible label.
 	GlobalLabel pulumi.StringPtrInput
 	// Names of group objects. The structure of `groups` block is documented below.
@@ -497,6 +553,18 @@ type ProxypolicyState struct {
 	IcapProfile pulumi.StringPtrInput
 	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
 	InternetService pulumi.StringPtrInput
+	// Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+	InternetService6 pulumi.StringPtrInput
+	// Custom Internet Service IPv6 group name. The structure of `internetService6CustomGroup` block is documented below.
+	InternetService6CustomGroups ProxypolicyInternetService6CustomGroupArrayInput
+	// Custom Internet Service IPv6 name. The structure of `internetService6Custom` block is documented below.
+	InternetService6Customs ProxypolicyInternetService6CustomArrayInput
+	// Internet Service IPv6 group name. The structure of `internetService6Group` block is documented below.
+	InternetService6Groups ProxypolicyInternetService6GroupArrayInput
+	// Internet Service IPv6 name. The structure of `internetService6Name` block is documented below.
+	InternetService6Names ProxypolicyInternetService6NameArrayInput
+	// When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+	InternetService6Negate pulumi.StringPtrInput
 	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
 	InternetServiceCustomGroups ProxypolicyInternetServiceCustomGroupArrayInput
 	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
@@ -511,6 +579,8 @@ type ProxypolicyState struct {
 	InternetServiceNegate pulumi.StringPtrInput
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringPtrInput
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter pulumi.StringPtrInput
 	// VDOM-specific GUI visible label.
 	Label pulumi.StringPtrInput
 	// Enable/disable logging traffic through the policy. Valid values: `all`, `utm`, `disable`.
@@ -577,6 +647,8 @@ type ProxypolicyState struct {
 	Vdomparam pulumi.StringPtrInput
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringPtrInput
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile pulumi.StringPtrInput
 	// Name of an existing VoIP profile.
 	VoipProfile pulumi.StringPtrInput
 	// Name of an existing Web application firewall profile.
@@ -614,14 +686,20 @@ type proxypolicyArgs struct {
 	AvProfile *string `pulumi:"avProfile"`
 	// Enable/disable block notification. Valid values: `enable`, `disable`.
 	BlockNotification *string `pulumi:"blockNotification"`
+	// Name of an existing CASB profile.
+	CasbProfile *string `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile *string `pulumi:"cifsProfile"`
 	// Optional comments.
 	Comments *string `pulumi:"comments"`
 	// Decrypted traffic mirror.
 	DecryptedTrafficMirror *string `pulumi:"decryptedTrafficMirror"`
+	// Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+	DetectHttpsInHttpRequest *string `pulumi:"detectHttpsInHttpRequest"`
 	// When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
 	DeviceOwnership *string `pulumi:"deviceOwnership"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile *string `pulumi:"diameterFilterProfile"`
 	// Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 	Disclaimer *string `pulumi:"disclaimer"`
 	// Name of an existing DLP profile.
@@ -642,6 +720,8 @@ type proxypolicyArgs struct {
 	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
 	// Name of an existing file-filter profile.
 	FileFilterProfile *string `pulumi:"fileFilterProfile"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Global web-based manager visible label.
 	GlobalLabel *string `pulumi:"globalLabel"`
 	// Names of group objects. The structure of `groups` block is documented below.
@@ -652,6 +732,18 @@ type proxypolicyArgs struct {
 	IcapProfile *string `pulumi:"icapProfile"`
 	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
 	InternetService *string `pulumi:"internetService"`
+	// Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+	InternetService6 *string `pulumi:"internetService6"`
+	// Custom Internet Service IPv6 group name. The structure of `internetService6CustomGroup` block is documented below.
+	InternetService6CustomGroups []ProxypolicyInternetService6CustomGroup `pulumi:"internetService6CustomGroups"`
+	// Custom Internet Service IPv6 name. The structure of `internetService6Custom` block is documented below.
+	InternetService6Customs []ProxypolicyInternetService6Custom `pulumi:"internetService6Customs"`
+	// Internet Service IPv6 group name. The structure of `internetService6Group` block is documented below.
+	InternetService6Groups []ProxypolicyInternetService6Group `pulumi:"internetService6Groups"`
+	// Internet Service IPv6 name. The structure of `internetService6Name` block is documented below.
+	InternetService6Names []ProxypolicyInternetService6Name `pulumi:"internetService6Names"`
+	// When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+	InternetService6Negate *string `pulumi:"internetService6Negate"`
 	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
 	InternetServiceCustomGroups []ProxypolicyInternetServiceCustomGroup `pulumi:"internetServiceCustomGroups"`
 	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
@@ -666,6 +758,8 @@ type proxypolicyArgs struct {
 	InternetServiceNegate *string `pulumi:"internetServiceNegate"`
 	// Name of an existing IPS sensor.
 	IpsSensor *string `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter *string `pulumi:"ipsVoipFilter"`
 	// VDOM-specific GUI visible label.
 	Label *string `pulumi:"label"`
 	// Enable/disable logging traffic through the policy. Valid values: `all`, `utm`, `disable`.
@@ -732,6 +826,8 @@ type proxypolicyArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile *string `pulumi:"videofilterProfile"`
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile *string `pulumi:"virtualPatchProfile"`
 	// Name of an existing VoIP profile.
 	VoipProfile *string `pulumi:"voipProfile"`
 	// Name of an existing Web application firewall profile.
@@ -766,14 +862,20 @@ type ProxypolicyArgs struct {
 	AvProfile pulumi.StringPtrInput
 	// Enable/disable block notification. Valid values: `enable`, `disable`.
 	BlockNotification pulumi.StringPtrInput
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringPtrInput
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringPtrInput
 	// Optional comments.
 	Comments pulumi.StringPtrInput
 	// Decrypted traffic mirror.
 	DecryptedTrafficMirror pulumi.StringPtrInput
+	// Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+	DetectHttpsInHttpRequest pulumi.StringPtrInput
 	// When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
 	DeviceOwnership pulumi.StringPtrInput
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile pulumi.StringPtrInput
 	// Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 	Disclaimer pulumi.StringPtrInput
 	// Name of an existing DLP profile.
@@ -794,6 +896,8 @@ type ProxypolicyArgs struct {
 	EmailfilterProfile pulumi.StringPtrInput
 	// Name of an existing file-filter profile.
 	FileFilterProfile pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Global web-based manager visible label.
 	GlobalLabel pulumi.StringPtrInput
 	// Names of group objects. The structure of `groups` block is documented below.
@@ -804,6 +908,18 @@ type ProxypolicyArgs struct {
 	IcapProfile pulumi.StringPtrInput
 	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
 	InternetService pulumi.StringPtrInput
+	// Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+	InternetService6 pulumi.StringPtrInput
+	// Custom Internet Service IPv6 group name. The structure of `internetService6CustomGroup` block is documented below.
+	InternetService6CustomGroups ProxypolicyInternetService6CustomGroupArrayInput
+	// Custom Internet Service IPv6 name. The structure of `internetService6Custom` block is documented below.
+	InternetService6Customs ProxypolicyInternetService6CustomArrayInput
+	// Internet Service IPv6 group name. The structure of `internetService6Group` block is documented below.
+	InternetService6Groups ProxypolicyInternetService6GroupArrayInput
+	// Internet Service IPv6 name. The structure of `internetService6Name` block is documented below.
+	InternetService6Names ProxypolicyInternetService6NameArrayInput
+	// When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+	InternetService6Negate pulumi.StringPtrInput
 	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
 	InternetServiceCustomGroups ProxypolicyInternetServiceCustomGroupArrayInput
 	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
@@ -818,6 +934,8 @@ type ProxypolicyArgs struct {
 	InternetServiceNegate pulumi.StringPtrInput
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringPtrInput
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter pulumi.StringPtrInput
 	// VDOM-specific GUI visible label.
 	Label pulumi.StringPtrInput
 	// Enable/disable logging traffic through the policy. Valid values: `all`, `utm`, `disable`.
@@ -884,6 +1002,8 @@ type ProxypolicyArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringPtrInput
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile pulumi.StringPtrInput
 	// Name of an existing VoIP profile.
 	VoipProfile pulumi.StringPtrInput
 	// Name of an existing Web application firewall profile.
@@ -1021,6 +1141,11 @@ func (o ProxypolicyOutput) BlockNotification() pulumi.StringOutput {
 	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.BlockNotification }).(pulumi.StringOutput)
 }
 
+// Name of an existing CASB profile.
+func (o ProxypolicyOutput) CasbProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.CasbProfile }).(pulumi.StringOutput)
+}
+
 // Name of an existing CIFS profile.
 func (o ProxypolicyOutput) CifsProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.CifsProfile }).(pulumi.StringOutput)
@@ -1036,9 +1161,19 @@ func (o ProxypolicyOutput) DecryptedTrafficMirror() pulumi.StringOutput {
 	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.DecryptedTrafficMirror }).(pulumi.StringOutput)
 }
 
+// Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+func (o ProxypolicyOutput) DetectHttpsInHttpRequest() pulumi.StringOutput {
+	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.DetectHttpsInHttpRequest }).(pulumi.StringOutput)
+}
+
 // When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
 func (o ProxypolicyOutput) DeviceOwnership() pulumi.StringOutput {
 	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.DeviceOwnership }).(pulumi.StringOutput)
+}
+
+// Name of an existing Diameter filter profile.
+func (o ProxypolicyOutput) DiameterFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.DiameterFilterProfile }).(pulumi.StringOutput)
 }
 
 // Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
@@ -1091,6 +1226,11 @@ func (o ProxypolicyOutput) FileFilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.FileFilterProfile }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProxypolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Proxypolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Global web-based manager visible label.
 func (o ProxypolicyOutput) GlobalLabel() pulumi.StringOutput {
 	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.GlobalLabel }).(pulumi.StringOutput)
@@ -1114,6 +1254,38 @@ func (o ProxypolicyOutput) IcapProfile() pulumi.StringOutput {
 // Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
 func (o ProxypolicyOutput) InternetService() pulumi.StringOutput {
 	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.InternetService }).(pulumi.StringOutput)
+}
+
+// Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+func (o ProxypolicyOutput) InternetService6() pulumi.StringOutput {
+	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.InternetService6 }).(pulumi.StringOutput)
+}
+
+// Custom Internet Service IPv6 group name. The structure of `internetService6CustomGroup` block is documented below.
+func (o ProxypolicyOutput) InternetService6CustomGroups() ProxypolicyInternetService6CustomGroupArrayOutput {
+	return o.ApplyT(func(v *Proxypolicy) ProxypolicyInternetService6CustomGroupArrayOutput {
+		return v.InternetService6CustomGroups
+	}).(ProxypolicyInternetService6CustomGroupArrayOutput)
+}
+
+// Custom Internet Service IPv6 name. The structure of `internetService6Custom` block is documented below.
+func (o ProxypolicyOutput) InternetService6Customs() ProxypolicyInternetService6CustomArrayOutput {
+	return o.ApplyT(func(v *Proxypolicy) ProxypolicyInternetService6CustomArrayOutput { return v.InternetService6Customs }).(ProxypolicyInternetService6CustomArrayOutput)
+}
+
+// Internet Service IPv6 group name. The structure of `internetService6Group` block is documented below.
+func (o ProxypolicyOutput) InternetService6Groups() ProxypolicyInternetService6GroupArrayOutput {
+	return o.ApplyT(func(v *Proxypolicy) ProxypolicyInternetService6GroupArrayOutput { return v.InternetService6Groups }).(ProxypolicyInternetService6GroupArrayOutput)
+}
+
+// Internet Service IPv6 name. The structure of `internetService6Name` block is documented below.
+func (o ProxypolicyOutput) InternetService6Names() ProxypolicyInternetService6NameArrayOutput {
+	return o.ApplyT(func(v *Proxypolicy) ProxypolicyInternetService6NameArrayOutput { return v.InternetService6Names }).(ProxypolicyInternetService6NameArrayOutput)
+}
+
+// When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+func (o ProxypolicyOutput) InternetService6Negate() pulumi.StringOutput {
+	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.InternetService6Negate }).(pulumi.StringOutput)
 }
 
 // Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
@@ -1151,6 +1323,11 @@ func (o ProxypolicyOutput) InternetServiceNegate() pulumi.StringOutput {
 // Name of an existing IPS sensor.
 func (o ProxypolicyOutput) IpsSensor() pulumi.StringOutput {
 	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+// Name of an existing VoIP (ips) profile.
+func (o ProxypolicyOutput) IpsVoipFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.IpsVoipFilter }).(pulumi.StringOutput)
 }
 
 // VDOM-specific GUI visible label.
@@ -1316,6 +1493,11 @@ func (o ProxypolicyOutput) Vdomparam() pulumi.StringPtrOutput {
 // Name of an existing VideoFilter profile.
 func (o ProxypolicyOutput) VideofilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.VideofilterProfile }).(pulumi.StringOutput)
+}
+
+// Name of an existing virtual-patch profile.
+func (o ProxypolicyOutput) VirtualPatchProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Proxypolicy) pulumi.StringOutput { return v.VirtualPatchProfile }).(pulumi.StringOutput)
 }
 
 // Name of an existing VoIP profile.

@@ -103,7 +103,7 @@ type Setting struct {
 	AuthSslAllowRenegotiation pulumi.StringOutput `pulumi:"authSslAllowRenegotiation"`
 	// Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
 	AuthSslMaxProtoVersion pulumi.StringOutput `pulumi:"authSslMaxProtoVersion"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	AuthSslMinProtoVersion pulumi.StringOutput `pulumi:"authSslMinProtoVersion"`
 	// Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
 	AuthSslSigalgs pulumi.StringOutput `pulumi:"authSslSigalgs"`
@@ -113,8 +113,12 @@ type Setting struct {
 	AuthTimeoutType pulumi.StringOutput `pulumi:"authTimeoutType"`
 	// Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
 	AuthType pulumi.StringOutput `pulumi:"authType"`
+	// Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+	DefaultUserPasswordPolicy pulumi.StringOutput `pulumi:"defaultUserPasswordPolicy"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
 	PerPolicyDisclaimer pulumi.StringOutput `pulumi:"perPolicyDisclaimer"`
 	// Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server session timeouts. Valid values: `hard-timeout`, `ignore-timeout`.
@@ -181,7 +185,7 @@ type settingState struct {
 	AuthSslAllowRenegotiation *string `pulumi:"authSslAllowRenegotiation"`
 	// Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
 	AuthSslMaxProtoVersion *string `pulumi:"authSslMaxProtoVersion"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	AuthSslMinProtoVersion *string `pulumi:"authSslMinProtoVersion"`
 	// Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
 	AuthSslSigalgs *string `pulumi:"authSslSigalgs"`
@@ -191,8 +195,12 @@ type settingState struct {
 	AuthTimeoutType *string `pulumi:"authTimeoutType"`
 	// Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
 	AuthType *string `pulumi:"authType"`
+	// Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+	DefaultUserPasswordPolicy *string `pulumi:"defaultUserPasswordPolicy"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
 	PerPolicyDisclaimer *string `pulumi:"perPolicyDisclaimer"`
 	// Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server session timeouts. Valid values: `hard-timeout`, `ignore-timeout`.
@@ -230,7 +238,7 @@ type SettingState struct {
 	AuthSslAllowRenegotiation pulumi.StringPtrInput
 	// Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
 	AuthSslMaxProtoVersion pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	AuthSslMinProtoVersion pulumi.StringPtrInput
 	// Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
 	AuthSslSigalgs pulumi.StringPtrInput
@@ -240,8 +248,12 @@ type SettingState struct {
 	AuthTimeoutType pulumi.StringPtrInput
 	// Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
 	AuthType pulumi.StringPtrInput
+	// Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+	DefaultUserPasswordPolicy pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
 	PerPolicyDisclaimer pulumi.StringPtrInput
 	// Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server session timeouts. Valid values: `hard-timeout`, `ignore-timeout`.
@@ -283,7 +295,7 @@ type settingArgs struct {
 	AuthSslAllowRenegotiation *string `pulumi:"authSslAllowRenegotiation"`
 	// Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
 	AuthSslMaxProtoVersion *string `pulumi:"authSslMaxProtoVersion"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	AuthSslMinProtoVersion *string `pulumi:"authSslMinProtoVersion"`
 	// Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
 	AuthSslSigalgs *string `pulumi:"authSslSigalgs"`
@@ -293,8 +305,12 @@ type settingArgs struct {
 	AuthTimeoutType *string `pulumi:"authTimeoutType"`
 	// Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
 	AuthType *string `pulumi:"authType"`
+	// Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+	DefaultUserPasswordPolicy *string `pulumi:"defaultUserPasswordPolicy"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
 	PerPolicyDisclaimer *string `pulumi:"perPolicyDisclaimer"`
 	// Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server session timeouts. Valid values: `hard-timeout`, `ignore-timeout`.
@@ -333,7 +349,7 @@ type SettingArgs struct {
 	AuthSslAllowRenegotiation pulumi.StringPtrInput
 	// Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
 	AuthSslMaxProtoVersion pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	AuthSslMinProtoVersion pulumi.StringPtrInput
 	// Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
 	AuthSslSigalgs pulumi.StringPtrInput
@@ -343,8 +359,12 @@ type SettingArgs struct {
 	AuthTimeoutType pulumi.StringPtrInput
 	// Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
 	AuthType pulumi.StringPtrInput
+	// Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+	DefaultUserPasswordPolicy pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
 	PerPolicyDisclaimer pulumi.StringPtrInput
 	// Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server session timeouts. Valid values: `hard-timeout`, `ignore-timeout`.
@@ -510,7 +530,7 @@ func (o SettingOutput) AuthSslMaxProtoVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.AuthSslMaxProtoVersion }).(pulumi.StringOutput)
 }
 
-// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 func (o SettingOutput) AuthSslMinProtoVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.AuthSslMinProtoVersion }).(pulumi.StringOutput)
 }
@@ -535,9 +555,19 @@ func (o SettingOutput) AuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.AuthType }).(pulumi.StringOutput)
 }
 
+// Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+func (o SettingOutput) DefaultUserPasswordPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.DefaultUserPasswordPolicy }).(pulumi.StringOutput)
+}
+
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o SettingOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.

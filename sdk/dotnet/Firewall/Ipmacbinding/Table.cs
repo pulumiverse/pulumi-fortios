@@ -64,7 +64,7 @@ namespace Pulumiverse.Fortios.Firewall.Ipmacbinding
         public Output<string> Ip { get; private set; } = null!;
 
         /// <summary>
-        /// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+        /// MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
         /// </summary>
         [Output("mac")]
         public Output<string> Mac { get; private set; } = null!;
@@ -147,7 +147,7 @@ namespace Pulumiverse.Fortios.Firewall.Ipmacbinding
         public Input<string> Ip { get; set; } = null!;
 
         /// <summary>
-        /// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+        /// MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
         /// </summary>
         [Input("mac")]
         public Input<string>? Mac { get; set; }
@@ -191,7 +191,7 @@ namespace Pulumiverse.Fortios.Firewall.Ipmacbinding
         public Input<string>? Ip { get; set; }
 
         /// <summary>
-        /// MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+        /// MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
         /// </summary>
         [Input("mac")]
         public Input<string>? Mac { get; set; }

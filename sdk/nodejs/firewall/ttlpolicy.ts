@@ -92,6 +92,10 @@ export class Ttlpolicy extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Schedule object from available options.
      */
     public readonly schedule!: pulumi.Output<string>;
@@ -136,6 +140,7 @@ export class Ttlpolicy extends pulumi.CustomResource {
             resourceInputs["action"] = state ? state.action : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["schedule"] = state ? state.schedule : undefined;
             resourceInputs["services"] = state ? state.services : undefined;
             resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
@@ -166,6 +171,7 @@ export class Ttlpolicy extends pulumi.CustomResource {
             resourceInputs["action"] = args ? args.action : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["schedule"] = args ? args.schedule : undefined;
             resourceInputs["services"] = args ? args.services : undefined;
             resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
@@ -195,6 +201,10 @@ export interface TtlpolicyState {
      * ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Schedule object from available options.
      */
@@ -241,6 +251,10 @@ export interface TtlpolicyArgs {
      * ID.
      */
     fosid: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Schedule object from available options.
      */

@@ -95,6 +95,10 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         public readonly int EndPort;
         /// <summary>
+        /// End source port number (1 - 65535).
+        /// </summary>
+        public readonly int EndSourcePort;
+        /// <summary>
         /// IPv6 address of the gateway.
         /// </summary>
         public readonly string Gateway;
@@ -147,6 +151,10 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         public readonly int StartPort;
         /// <summary>
+        /// Start source port number (1 - 65535).
+        /// </summary>
+        public readonly int StartSourcePort;
+        /// <summary>
         /// Enable/disable this policy route.
         /// </summary>
         public readonly string Status;
@@ -174,6 +182,8 @@ namespace Pulumiverse.Fortios.Router
 
             int endPort,
 
+            int endSourcePort,
+
             string gateway,
 
             string id,
@@ -200,6 +210,8 @@ namespace Pulumiverse.Fortios.Router
 
             int startPort,
 
+            int startSourcePort,
+
             string status,
 
             string tos,
@@ -214,6 +226,7 @@ namespace Pulumiverse.Fortios.Router
             DstNegate = dstNegate;
             Dstaddrs = dstaddrs;
             EndPort = endPort;
+            EndSourcePort = endSourcePort;
             Gateway = gateway;
             Id = id;
             InputDevice = inputDevice;
@@ -227,6 +240,7 @@ namespace Pulumiverse.Fortios.Router
             SrcNegate = srcNegate;
             Srcaddrs = srcaddrs;
             StartPort = startPort;
+            StartSourcePort = startSourcePort;
             Status = status;
             Tos = tos;
             TosMask = tosMask;

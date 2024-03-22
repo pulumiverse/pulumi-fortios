@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Fortios.Filter.Email
 {
     /// <summary>
-    /// Configure anti-spam black/white list. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1,6.4.2,6.4.10`.
+    /// Configure anti-spam black/white list. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14`.
     /// 
     /// ## Import
     /// 
@@ -57,6 +57,12 @@ namespace Pulumiverse.Fortios.Filter.Email
         /// </summary>
         [Output("fosid")]
         public Output<int> Fosid { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Name of table.
@@ -148,6 +154,12 @@ namespace Pulumiverse.Fortios.Filter.Email
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Name of table.
         /// </summary>
         [Input("name")]
@@ -196,6 +208,12 @@ namespace Pulumiverse.Fortios.Filter.Email
         /// </summary>
         [Input("fosid")]
         public Input<int>? Fosid { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Name of table.

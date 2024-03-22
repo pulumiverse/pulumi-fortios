@@ -108,11 +108,19 @@ export class Policy6 extends pulumi.CustomResource {
      */
     public readonly endPort!: pulumi.Output<number>;
     /**
+     * End source port number (1 - 65535).
+     */
+    public readonly endSourcePort!: pulumi.Output<number>;
+    /**
      * IPv6 address of the gateway.
      */
     public readonly gateway!: pulumi.Output<string>;
     /**
-     * Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * Incoming interface name.
      */
     public readonly inputDevice!: pulumi.Output<string>;
     /**
@@ -156,6 +164,10 @@ export class Policy6 extends pulumi.CustomResource {
      */
     public readonly startPort!: pulumi.Output<number>;
     /**
+     * Start source port number (1 - 65535).
+     */
+    public readonly startSourcePort!: pulumi.Output<number>;
+    /**
      * Enable/disable this policy route. Valid values: `enable`, `disable`.
      */
     public readonly status!: pulumi.Output<string>;
@@ -192,7 +204,9 @@ export class Policy6 extends pulumi.CustomResource {
             resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["endPort"] = state ? state.endPort : undefined;
+            resourceInputs["endSourcePort"] = state ? state.endSourcePort : undefined;
             resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["inputDevice"] = state ? state.inputDevice : undefined;
             resourceInputs["inputDeviceNegate"] = state ? state.inputDeviceNegate : undefined;
             resourceInputs["internetServiceCustoms"] = state ? state.internetServiceCustoms : undefined;
@@ -204,6 +218,7 @@ export class Policy6 extends pulumi.CustomResource {
             resourceInputs["srcNegate"] = state ? state.srcNegate : undefined;
             resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
             resourceInputs["startPort"] = state ? state.startPort : undefined;
+            resourceInputs["startSourcePort"] = state ? state.startSourcePort : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tos"] = state ? state.tos : undefined;
             resourceInputs["tosMask"] = state ? state.tosMask : undefined;
@@ -220,7 +235,9 @@ export class Policy6 extends pulumi.CustomResource {
             resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["endPort"] = args ? args.endPort : undefined;
+            resourceInputs["endSourcePort"] = args ? args.endSourcePort : undefined;
             resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["inputDevice"] = args ? args.inputDevice : undefined;
             resourceInputs["inputDeviceNegate"] = args ? args.inputDeviceNegate : undefined;
             resourceInputs["internetServiceCustoms"] = args ? args.internetServiceCustoms : undefined;
@@ -232,6 +249,7 @@ export class Policy6 extends pulumi.CustomResource {
             resourceInputs["srcNegate"] = args ? args.srcNegate : undefined;
             resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
             resourceInputs["startPort"] = args ? args.startPort : undefined;
+            resourceInputs["startSourcePort"] = args ? args.startSourcePort : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["tos"] = args ? args.tos : undefined;
             resourceInputs["tosMask"] = args ? args.tosMask : undefined;
@@ -275,11 +293,19 @@ export interface Policy6State {
      */
     endPort?: pulumi.Input<number>;
     /**
+     * End source port number (1 - 65535).
+     */
+    endSourcePort?: pulumi.Input<number>;
+    /**
      * IPv6 address of the gateway.
      */
     gateway?: pulumi.Input<string>;
     /**
-     * Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Incoming interface name.
      */
     inputDevice?: pulumi.Input<string>;
     /**
@@ -322,6 +348,10 @@ export interface Policy6State {
      * Start destination port number (1 - 65535).
      */
     startPort?: pulumi.Input<number>;
+    /**
+     * Start source port number (1 - 65535).
+     */
+    startSourcePort?: pulumi.Input<number>;
     /**
      * Enable/disable this policy route. Valid values: `enable`, `disable`.
      */
@@ -373,11 +403,19 @@ export interface Policy6Args {
      */
     endPort?: pulumi.Input<number>;
     /**
+     * End source port number (1 - 65535).
+     */
+    endSourcePort?: pulumi.Input<number>;
+    /**
      * IPv6 address of the gateway.
      */
     gateway?: pulumi.Input<string>;
     /**
-     * Incoming interface name. Configuration examples: for FortiOS Version <= "6.2.4": `inputDevice  = "port2"`, for FortiOS Version >= "6.2.4": `inputDevice  = "\"fortilink\" \"port1\""`.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Incoming interface name.
      */
     inputDevice: pulumi.Input<string>;
     /**
@@ -420,6 +458,10 @@ export interface Policy6Args {
      * Start destination port number (1 - 65535).
      */
     startPort?: pulumi.Input<number>;
+    /**
+     * Start source port number (1 - 65535).
+     */
+    startSourcePort?: pulumi.Input<number>;
     /**
      * Enable/disable this policy route. Valid values: `enable`, `disable`.
      */

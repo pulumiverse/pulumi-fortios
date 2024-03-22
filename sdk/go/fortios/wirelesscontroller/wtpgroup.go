@@ -33,8 +33,12 @@ import (
 type Wtpgroup struct {
 	pulumi.CustomResourceState
 
+	// Override BLE Major ID.
+	BleMajorId pulumi.IntOutput `pulumi:"bleMajorId"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// WTP group name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// FortiAP models to define the WTP group platform type.
@@ -75,8 +79,12 @@ func GetWtpgroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Wtpgroup resources.
 type wtpgroupState struct {
+	// Override BLE Major ID.
+	BleMajorId *int `pulumi:"bleMajorId"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// WTP group name.
 	Name *string `pulumi:"name"`
 	// FortiAP models to define the WTP group platform type.
@@ -88,8 +96,12 @@ type wtpgroupState struct {
 }
 
 type WtpgroupState struct {
+	// Override BLE Major ID.
+	BleMajorId pulumi.IntPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// WTP group name.
 	Name pulumi.StringPtrInput
 	// FortiAP models to define the WTP group platform type.
@@ -105,8 +117,12 @@ func (WtpgroupState) ElementType() reflect.Type {
 }
 
 type wtpgroupArgs struct {
+	// Override BLE Major ID.
+	BleMajorId *int `pulumi:"bleMajorId"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// WTP group name.
 	Name *string `pulumi:"name"`
 	// FortiAP models to define the WTP group platform type.
@@ -119,8 +135,12 @@ type wtpgroupArgs struct {
 
 // The set of arguments for constructing a Wtpgroup resource.
 type WtpgroupArgs struct {
+	// Override BLE Major ID.
+	BleMajorId pulumi.IntPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// WTP group name.
 	Name pulumi.StringPtrInput
 	// FortiAP models to define the WTP group platform type.
@@ -218,9 +238,19 @@ func (o WtpgroupOutput) ToWtpgroupOutputWithContext(ctx context.Context) Wtpgrou
 	return o
 }
 
+// Override BLE Major ID.
+func (o WtpgroupOutput) BleMajorId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Wtpgroup) pulumi.IntOutput { return v.BleMajorId }).(pulumi.IntOutput)
+}
+
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o WtpgroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Wtpgroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o WtpgroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Wtpgroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // WTP group name.

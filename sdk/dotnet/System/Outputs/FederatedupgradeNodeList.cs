@@ -23,6 +23,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? DeviceType;
         /// <summary>
+        /// Maximum number of minutes to allow for immediate upgrade preparation.
+        /// </summary>
+        public readonly int? MaximumMinutes;
+        /// <summary>
         /// Serial number of the node to include.
         /// </summary>
         public readonly string? Serial;
@@ -49,6 +53,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             string? deviceType,
 
+            int? maximumMinutes,
+
             string? serial,
 
             string? setupTime,
@@ -61,6 +67,7 @@ namespace Pulumiverse.Fortios.System.Outputs
         {
             CoordinatingFortigate = coordinatingFortigate;
             DeviceType = deviceType;
+            MaximumMinutes = maximumMinutes;
             Serial = serial;
             SetupTime = setupTime;
             Time = time;

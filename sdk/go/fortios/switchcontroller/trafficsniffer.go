@@ -37,6 +37,8 @@ type Trafficsniffer struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Configure ERSPAN collector IP address.
 	ErspanIp pulumi.StringOutput `pulumi:"erspanIp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
 	Mode pulumi.StringOutput `pulumi:"mode"`
 	// Sniffer IPs to filter. The structure of `targetIp` block is documented below.
@@ -83,6 +85,8 @@ type trafficsnifferState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure ERSPAN collector IP address.
 	ErspanIp *string `pulumi:"erspanIp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
 	Mode *string `pulumi:"mode"`
 	// Sniffer IPs to filter. The structure of `targetIp` block is documented below.
@@ -100,6 +104,8 @@ type TrafficsnifferState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure ERSPAN collector IP address.
 	ErspanIp pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
 	Mode pulumi.StringPtrInput
 	// Sniffer IPs to filter. The structure of `targetIp` block is documented below.
@@ -121,6 +127,8 @@ type trafficsnifferArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure ERSPAN collector IP address.
 	ErspanIp *string `pulumi:"erspanIp"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
 	Mode *string `pulumi:"mode"`
 	// Sniffer IPs to filter. The structure of `targetIp` block is documented below.
@@ -139,6 +147,8 @@ type TrafficsnifferArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure ERSPAN collector IP address.
 	ErspanIp pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.
 	Mode pulumi.StringPtrInput
 	// Sniffer IPs to filter. The structure of `targetIp` block is documented below.
@@ -246,6 +256,11 @@ func (o TrafficsnifferOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Configure ERSPAN collector IP address.
 func (o TrafficsnifferOutput) ErspanIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Trafficsniffer) pulumi.StringOutput { return v.ErspanIp }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o TrafficsnifferOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Trafficsniffer) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Configure traffic sniffer mode. Valid values: `erspan-auto`, `rspan`, `none`.

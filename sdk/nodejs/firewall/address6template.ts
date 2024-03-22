@@ -92,6 +92,10 @@ export class Address6template extends pulumi.CustomResource {
      */
     public readonly fabricObject!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * IPv6 address prefix.
      */
     public readonly ip6!: pulumi.Output<string>;
@@ -127,6 +131,7 @@ export class Address6template extends pulumi.CustomResource {
             const state = argsOrState as Address6templateState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ip6"] = state ? state.ip6 : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["subnetSegmentCount"] = state ? state.subnetSegmentCount : undefined;
@@ -142,6 +147,7 @@ export class Address6template extends pulumi.CustomResource {
             }
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ip6"] = args ? args.ip6 : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["subnetSegmentCount"] = args ? args.subnetSegmentCount : undefined;
@@ -165,6 +171,10 @@ export interface Address6templateState {
      * Security Fabric global object setting. Valid values: `enable`, `disable`.
      */
     fabricObject?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * IPv6 address prefix.
      */
@@ -199,6 +209,10 @@ export interface Address6templateArgs {
      * Security Fabric global object setting. Valid values: `enable`, `disable`.
      */
     fabricObject?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * IPv6 address prefix.
      */

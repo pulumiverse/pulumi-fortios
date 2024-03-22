@@ -131,6 +131,10 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// Enable/disable signalling of IDP to force user re-authentication (default = disable).
+        /// </summary>
+        public readonly string Reauth;
+        /// <summary>
         /// SP single logout URL.
         /// </summary>
         public readonly string SingleLogoutUrl;
@@ -180,6 +184,8 @@ namespace Pulumiverse.Fortios.User
 
             string name,
 
+            string reauth,
+
             string singleLogoutUrl,
 
             string singleSignOnUrl,
@@ -205,6 +211,7 @@ namespace Pulumiverse.Fortios.User
             IdpSingleSignOnUrl = idpSingleSignOnUrl;
             LimitRelaystate = limitRelaystate;
             Name = name;
+            Reauth = reauth;
             SingleLogoutUrl = singleLogoutUrl;
             SingleSignOnUrl = singleSignOnUrl;
             UserClaimType = userClaimType;

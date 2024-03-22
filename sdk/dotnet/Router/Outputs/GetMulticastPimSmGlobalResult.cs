@@ -71,6 +71,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly int NullRegisterRetries;
         /// <summary>
+        /// Enable/disable use of SDWAN when checking RPF neighbor and sending of REG packet.
+        /// </summary>
+        public readonly string PimUseSdwan;
+        /// <summary>
         /// Limit of packets/sec per source registered through this RP (0 - 65535, default = 0 which means unlimited).
         /// </summary>
         public readonly int RegisterRateLimit;
@@ -149,6 +153,8 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             int nullRegisterRetries,
 
+            string pimUseSdwan,
+
             int registerRateLimit,
 
             string registerRpReachability,
@@ -187,6 +193,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
             JoinPruneHoldtime = joinPruneHoldtime;
             MessageInterval = messageInterval;
             NullRegisterRetries = nullRegisterRetries;
+            PimUseSdwan = pimUseSdwan;
             RegisterRateLimit = registerRateLimit;
             RegisterRpReachability = registerRpReachability;
             RegisterSource = registerSource;

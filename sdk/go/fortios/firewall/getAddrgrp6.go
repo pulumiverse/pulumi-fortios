@@ -36,6 +36,10 @@ type LookupAddrgrp6Result struct {
 	Color int `pulumi:"color"`
 	// Comment.
 	Comment string `pulumi:"comment"`
+	// Enable/disable address6 exclusion.
+	Exclude string `pulumi:"exclude"`
+	// Address6 exclusion member. The structure of `excludeMember` block is documented below.
+	ExcludeMembers []GetAddrgrp6ExcludeMember `pulumi:"excludeMembers"`
 	// Security Fabric global object setting.
 	FabricObject string `pulumi:"fabricObject"`
 	// The provider-assigned unique ID for this managed resource.
@@ -101,6 +105,16 @@ func (o LookupAddrgrp6ResultOutput) Color() pulumi.IntOutput {
 // Comment.
 func (o LookupAddrgrp6ResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAddrgrp6Result) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// Enable/disable address6 exclusion.
+func (o LookupAddrgrp6ResultOutput) Exclude() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAddrgrp6Result) string { return v.Exclude }).(pulumi.StringOutput)
+}
+
+// Address6 exclusion member. The structure of `excludeMember` block is documented below.
+func (o LookupAddrgrp6ResultOutput) ExcludeMembers() GetAddrgrp6ExcludeMemberArrayOutput {
+	return o.ApplyT(func(v LookupAddrgrp6Result) []GetAddrgrp6ExcludeMember { return v.ExcludeMembers }).(GetAddrgrp6ExcludeMemberArrayOutput)
 }
 
 // Security Fabric global object setting.

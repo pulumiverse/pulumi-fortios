@@ -23,6 +23,7 @@ class FssopollingArgs:
                  default_domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  logon_history: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  polling_frequency: Optional[pulumi.Input[int]] = None,
@@ -40,6 +41,7 @@ class FssopollingArgs:
         :param pulumi.Input[str] default_domain: Default domain managed by this Active Directory server.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: Active Directory server ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] logon_history: Number of hours of logon history to keep, 0 means keep all history.
         :param pulumi.Input[str] password: Password required to log into this Active Directory server
         :param pulumi.Input[int] polling_frequency: Polling frequency (every 1 to 30 seconds).
@@ -60,6 +62,8 @@ class FssopollingArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if logon_history is not None:
             pulumi.set(__self__, "logon_history", logon_history)
         if password is not None:
@@ -160,6 +164,18 @@ class FssopollingArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="logonHistory")
@@ -265,6 +281,7 @@ class _FssopollingState:
                  default_domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldap_server: Optional[pulumi.Input[str]] = None,
                  logon_history: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -282,6 +299,7 @@ class _FssopollingState:
         :param pulumi.Input[str] default_domain: Default domain managed by this Active Directory server.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: Active Directory server ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldap_server: LDAP server name used in LDAP connection strings.
         :param pulumi.Input[int] logon_history: Number of hours of logon history to keep, 0 means keep all history.
         :param pulumi.Input[str] password: Password required to log into this Active Directory server
@@ -302,6 +320,8 @@ class _FssopollingState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ldap_server is not None:
             pulumi.set(__self__, "ldap_server", ldap_server)
         if logon_history is not None:
@@ -372,6 +392,18 @@ class _FssopollingState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ldapServer")
@@ -515,6 +547,7 @@ class Fssopolling(pulumi.CustomResource):
                  default_domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldap_server: Optional[pulumi.Input[str]] = None,
                  logon_history: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -554,6 +587,7 @@ class Fssopolling(pulumi.CustomResource):
         :param pulumi.Input[str] default_domain: Default domain managed by this Active Directory server.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: Active Directory server ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldap_server: LDAP server name used in LDAP connection strings.
         :param pulumi.Input[int] logon_history: Number of hours of logon history to keep, 0 means keep all history.
         :param pulumi.Input[str] password: Password required to log into this Active Directory server
@@ -612,6 +646,7 @@ class Fssopolling(pulumi.CustomResource):
                  default_domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldap_server: Optional[pulumi.Input[str]] = None,
                  logon_history: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -636,6 +671,7 @@ class Fssopolling(pulumi.CustomResource):
             __props__.__dict__["default_domain"] = default_domain
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if ldap_server is None and not opts.urn:
                 raise TypeError("Missing required property 'ldap_server'")
             __props__.__dict__["ldap_server"] = ldap_server
@@ -669,6 +705,7 @@ class Fssopolling(pulumi.CustomResource):
             default_domain: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ldap_server: Optional[pulumi.Input[str]] = None,
             logon_history: Optional[pulumi.Input[int]] = None,
             password: Optional[pulumi.Input[str]] = None,
@@ -691,6 +728,7 @@ class Fssopolling(pulumi.CustomResource):
         :param pulumi.Input[str] default_domain: Default domain managed by this Active Directory server.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fosid: Active Directory server ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldap_server: LDAP server name used in LDAP connection strings.
         :param pulumi.Input[int] logon_history: Number of hours of logon history to keep, 0 means keep all history.
         :param pulumi.Input[str] password: Password required to log into this Active Directory server
@@ -711,6 +749,7 @@ class Fssopolling(pulumi.CustomResource):
         __props__.__dict__["default_domain"] = default_domain
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ldap_server"] = ldap_server
         __props__.__dict__["logon_history"] = logon_history
         __props__.__dict__["password"] = password
@@ -755,6 +794,14 @@ class Fssopolling(pulumi.CustomResource):
         Active Directory server ID.
         """
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ldapServer")

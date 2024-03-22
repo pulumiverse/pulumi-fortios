@@ -36,6 +36,10 @@ type LookupDnsserverResult struct {
 	DnsfilterProfile string `pulumi:"dnsfilterProfile"`
 	// DNS over HTTPS.
 	Doh string `pulumi:"doh"`
+	// Enable/disable DNS over QUIC/HTTP3/443 (default = disable).
+	Doh3 string `pulumi:"doh3"`
+	// Enable/disable DNS over QUIC/853 (default = disable).
+	Doq string `pulumi:"doq"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// DNS server mode.
@@ -93,6 +97,16 @@ func (o LookupDnsserverResultOutput) DnsfilterProfile() pulumi.StringOutput {
 // DNS over HTTPS.
 func (o LookupDnsserverResultOutput) Doh() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDnsserverResult) string { return v.Doh }).(pulumi.StringOutput)
+}
+
+// Enable/disable DNS over QUIC/HTTP3/443 (default = disable).
+func (o LookupDnsserverResultOutput) Doh3() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDnsserverResult) string { return v.Doh3 }).(pulumi.StringOutput)
+}
+
+// Enable/disable DNS over QUIC/853 (default = disable).
+func (o LookupDnsserverResultOutput) Doq() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDnsserverResult) string { return v.Doq }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -8,8 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Extender controller configuration.
- *
- * > The resource applies to FortiOS Version >= 6.4.2. For FortiOS Version < 6.4.2, see `fortios.extendercontroller.Extender`.
+ * This resource will be deprecated. For FortiOS Version >= 7.2.1, using `fortios.extensioncontroller.Extender`. For FortiOS version < 7.2.1, see `fortios.extendercontroller.Extender`
  *
  * ## Example Usage
  *
@@ -136,6 +135,10 @@ export class Extender1 extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * FortiExtender login password.
      */
     public readonly loginPassword!: pulumi.Output<string | undefined>;
@@ -178,6 +181,7 @@ export class Extender1 extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["extName"] = state ? state.extName : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["loginPassword"] = state ? state.loginPassword : undefined;
             resourceInputs["modem1"] = state ? state.modem1 : undefined;
             resourceInputs["modem2"] = state ? state.modem2 : undefined;
@@ -194,6 +198,7 @@ export class Extender1 extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["extName"] = args ? args.extName : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["loginPassword"] = args?.loginPassword ? pulumi.secret(args.loginPassword) : undefined;
             resourceInputs["modem1"] = args ? args.modem1 : undefined;
             resourceInputs["modem2"] = args ? args.modem2 : undefined;
@@ -232,6 +237,10 @@ export interface Extender1State {
      * FortiExtender serial number.
      */
     fosid?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * FortiExtender login password.
      */
@@ -282,6 +291,10 @@ export interface Extender1Args {
      * FortiExtender serial number.
      */
     fosid?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * FortiExtender login password.
      */

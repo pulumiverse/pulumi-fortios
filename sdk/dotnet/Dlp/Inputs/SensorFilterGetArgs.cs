@@ -32,7 +32,7 @@ namespace Pulumiverse.Fortios.Dlp.Inputs
         public Input<string>? CompanyIdentifier { get; set; }
 
         /// <summary>
-        /// Quarantine duration in days, hours, minutes format (dddhhmm).
+        /// Quarantine duration in days, hours, minutes (format = dddhhmm).
         /// </summary>
         [Input("expiry")]
         public Input<string>? Expiry { get; set; }

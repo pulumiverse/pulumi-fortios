@@ -109,6 +109,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly int AdminConsoleTimeout;
         /// <summary>
+        /// Override access profile.
+        /// </summary>
+        public readonly string AdminForticloudSsoDefaultProfile;
+        /// <summary>
         /// Enable/disable FortiCloud admin login via SSO.
         /// </summary>
         public readonly string AdminForticloudSsoLogin;
@@ -273,6 +277,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string BatchCmdb;
         /// <summary>
+        /// Affinity setting for BFD daemon (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        /// </summary>
+        public readonly string BfdAffinity;
+        /// <summary>
         /// Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
         /// </summary>
         public readonly int BlockSessionTimer;
@@ -405,6 +413,14 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string FgdAlertSubscription;
         /// <summary>
+        /// Enable/disable config upload to FortiConverter.
+        /// </summary>
+        public readonly string ForticonverterConfigUpload;
+        /// <summary>
+        /// Enable/disable FortiConverter integration service.
+        /// </summary>
+        public readonly string ForticonverterIntegration;
+        /// <summary>
         /// Enable/disable FortiExtender.
         /// </summary>
         public readonly string Fortiextender;
@@ -425,6 +441,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string FortiextenderVlanMode;
         /// <summary>
+        /// Enable/disable integration with the FortiGSLB cloud service.
+        /// </summary>
+        public readonly string FortigslbIntegration;
+        /// <summary>
         /// Enable/disable integration with the FortiIPAM cloud service.
         /// </summary>
         public readonly string FortiipamIntegration;
@@ -437,13 +457,33 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string FortitokenCloud;
         /// <summary>
+        /// Enable/disable FTM push service of FortiToken Cloud.
+        /// </summary>
+        public readonly string FortitokenCloudPushStatus;
+        /// <summary>
+        /// Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
+        /// </summary>
+        public readonly int FortitokenCloudSyncInterval;
+        /// <summary>
         /// Enable/disable the GUI warning about using a default hostname
         /// </summary>
         public readonly string GuiAllowDefaultHostname;
         /// <summary>
+        /// Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error.
+        /// </summary>
+        public readonly string GuiAllowIncompatibleFabricFgt;
+        /// <summary>
         /// Enable/disable Allow app-detection based SD-WAN.
         /// </summary>
         public readonly string GuiAppDetectionSdwan;
+        /// <summary>
+        /// Enable/disable the automatic patch upgrade setup prompt on the GUI.
+        /// </summary>
+        public readonly string GuiAutoUpgradeSetupWarning;
+        /// <summary>
+        /// Domain of CDN server.
+        /// </summary>
+        public readonly string GuiCdnDomainOverride;
         /// <summary>
         /// Enable/disable Load GUI static files from a CDN.
         /// </summary>
@@ -557,13 +597,25 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly int IkeEmbryonicLimit;
         /// <summary>
+        /// Enable/disable allowing use of interface-subnet setting in firewall addresses (default = enable).
+        /// </summary>
+        public readonly string InterfaceSubnetUsage;
+        /// <summary>
         /// Configure which Internet Service database size to download from FortiGuard and use.
         /// </summary>
         public readonly string InternetServiceDatabase;
         /// <summary>
+        /// Configure which on-demand Internet Service IDs are to be downloaded. The structure of `internet_service_download_list` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetGlobalInternetServiceDownloadListResult> InternetServiceDownloadLists;
+        /// <summary>
         /// Dead gateway detection interval.
         /// </summary>
         public readonly int Interval;
+        /// <summary>
+        /// Maximum memory (MB) used to reassemble IPv4/IPv6 fragments.
+        /// </summary>
+        public readonly int IpFragmentMemThresholds;
         /// <summary>
         /// IP source port range used for traffic originating from the FortiGate unit.
         /// </summary>
@@ -632,6 +684,10 @@ namespace Pulumiverse.Fortios.System
         /// Enable/disable Link Layer Discovery Protocol (LLDP) transmission.
         /// </summary>
         public readonly string LldpTransmission;
+        /// <summary>
+        /// Enable/disable logging the event of a single CPU core reaching CPU usage threshold.
+        /// </summary>
+        public readonly string LogSingleCpuHigh;
         /// <summary>
         /// Enable/disable logging of SSL connection events.
         /// </summary>
@@ -765,6 +821,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string ProxyHardwareAcceleration;
         /// <summary>
+        /// Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was authenticated.
+        /// </summary>
+        public readonly string ProxyKeepAliveMode;
+        /// <summary>
         /// Enable/disable using the content processor to accelerate KXP traffic.
         /// </summary>
         public readonly string ProxyKxpHardwareAcceleration;
@@ -773,6 +833,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string ProxyReAuthenticationMode;
         /// <summary>
+        /// The time limit that users must re-authenticate if proxy-keep-alive-mode is set to re-authenticate (1  - 86400 sec, default=30s.
+        /// </summary>
+        public readonly int ProxyReAuthenticationTime;
+        /// <summary>
         /// Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources.
         /// </summary>
         public readonly string ProxyResourceMode;
@@ -780,6 +844,34 @@ namespace Pulumiverse.Fortios.System
         /// Proxy worker count.
         /// </summary>
         public readonly int ProxyWorkerCount;
+        /// <summary>
+        /// Purdue Level of this FortiGate.
+        /// </summary>
+        public readonly string PurdueLevel;
+        /// <summary>
+        /// Maximum number of unacknowledged packets before sending ACK (2 - 5, default = 3).
+        /// </summary>
+        public readonly int QuicAckThresold;
+        /// <summary>
+        /// QUIC congestion control algorithm (default = cubic).
+        /// </summary>
+        public readonly string QuicCongestionControlAlgo;
+        /// <summary>
+        /// Maximum transmit datagram size (1200 - 1500, default = 1500).
+        /// </summary>
+        public readonly int QuicMaxDatagramSize;
+        /// <summary>
+        /// Enable/disable path MTU discovery (default = enable).
+        /// </summary>
+        public readonly string QuicPmtud;
+        /// <summary>
+        /// Time-to-live (TTL) for TLS handshake in seconds (1 - 60, default = 5).
+        /// </summary>
+        public readonly int QuicTlsHandshakeTimeout;
+        /// <summary>
+        /// Enable/disable UDP payload size shaping per connection ID (default = enable).
+        /// </summary>
+        public readonly string QuicUdpPayloadSizeShapingPerCid;
         /// <summary>
         /// RADIUS service port number.
         /// </summary>
@@ -829,6 +921,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string SendPmtuIcmp;
         /// <summary>
+        /// Maximum number of sflowd child processes allowed to run.
+        /// </summary>
+        public readonly int SflowdMaxChildrenNum;
+        /// <summary>
         /// Enable/disable the ability to change the static NAT route.
         /// </summary>
         public readonly string SnatRouteChange;
@@ -840,6 +936,14 @@ namespace Pulumiverse.Fortios.System
         /// Enable/disable speed test server.
         /// </summary>
         public readonly string SpeedtestServer;
+        /// <summary>
+        /// Speedtest server controller port number.
+        /// </summary>
+        public readonly int SpeedtestdCtrlPort;
+        /// <summary>
+        /// Speedtest server port number.
+        /// </summary>
+        public readonly int SpeedtestdServerPort;
         /// <summary>
         /// Split port(s) to multiple 10Gbps ports.
         /// </summary>
@@ -876,6 +980,22 @@ namespace Pulumiverse.Fortios.System
         /// Enable/disable HMAC-MD5 for SSH access.
         /// </summary>
         public readonly string SshHmacMd5;
+        /// <summary>
+        /// Config SSH host key.
+        /// </summary>
+        public readonly string SshHostkey;
+        /// <summary>
+        /// Select one or more SSH hostkey algorithms.
+        /// </summary>
+        public readonly string SshHostkeyAlgo;
+        /// <summary>
+        /// Enable/disable SSH host key override in SSH daemon.
+        /// </summary>
+        public readonly string SshHostkeyOverride;
+        /// <summary>
+        /// Password for ssh-hostkey.
+        /// </summary>
+        public readonly string SshHostkeyPassword;
         /// <summary>
         /// Select one or more SSH kex algorithms.
         /// </summary>
@@ -921,6 +1041,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string SslvpnPluginVersionCheck;
         /// <summary>
+        /// Enable/disable SSL-VPN web mode.
+        /// </summary>
+        public readonly string SslvpnWebMode;
+        /// <summary>
         /// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session.
         /// </summary>
         public readonly string StrictDirtySessionCheck;
@@ -940,6 +1064,10 @@ namespace Pulumiverse.Fortios.System
         /// Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
         /// </summary>
         public readonly int SysPerfLogInterval;
+        /// <summary>
+        /// Affinity setting for syslog (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        /// </summary>
+        public readonly string SyslogAffinity;
         /// <summary>
         /// Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
         /// </summary>
@@ -1054,6 +1182,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string VirtualSwitchVlan;
         /// <summary>
+        /// Enable/disable verification of EMS serial number in SSL-VPN and IPsec VPN connection.
+        /// </summary>
+        public readonly string VpnEmsSnCheck;
+        /// <summary>
         /// Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         /// </summary>
         public readonly string WadAffinity;
@@ -1069,6 +1201,18 @@ namespace Pulumiverse.Fortios.System
         /// Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection.
         /// </summary>
         public readonly int WadMemoryChangeGranularity;
+        /// <summary>
+        /// WAD workers daily restart end time (hh:mm).
+        /// </summary>
+        public readonly string WadRestartEndTime;
+        /// <summary>
+        /// WAD worker restart mode (default = none).
+        /// </summary>
+        public readonly string WadRestartMode;
+        /// <summary>
+        /// WAD workers daily restart time (hh:mm).
+        /// </summary>
+        public readonly string WadRestartStartTime;
         /// <summary>
         /// Enable/disable dispatching traffic to WAD workers based on source affinity.
         /// </summary>
@@ -1103,6 +1247,8 @@ namespace Pulumiverse.Fortios.System
             string adminConcurrent,
 
             int adminConsoleTimeout,
+
+            string adminForticloudSsoDefaultProfile,
 
             string adminForticloudSsoLogin,
 
@@ -1186,6 +1332,8 @@ namespace Pulumiverse.Fortios.System
 
             string batchCmdb,
 
+            string bfdAffinity,
+
             int blockSessionTimer,
 
             int brFdbMaxEntry,
@@ -1252,6 +1400,10 @@ namespace Pulumiverse.Fortios.System
 
             string fgdAlertSubscription,
 
+            string forticonverterConfigUpload,
+
+            string forticonverterIntegration,
+
             string fortiextender,
 
             int fortiextenderDataPort,
@@ -1262,15 +1414,27 @@ namespace Pulumiverse.Fortios.System
 
             string fortiextenderVlanMode,
 
+            string fortigslbIntegration,
+
             string fortiipamIntegration,
 
             int fortiservicePort,
 
             string fortitokenCloud,
 
+            string fortitokenCloudPushStatus,
+
+            int fortitokenCloudSyncInterval,
+
             string guiAllowDefaultHostname,
 
+            string guiAllowIncompatibleFabricFgt,
+
             string guiAppDetectionSdwan,
+
+            string guiAutoUpgradeSetupWarning,
+
+            string guiCdnDomainOverride,
 
             string guiCdnUsage,
 
@@ -1328,9 +1492,15 @@ namespace Pulumiverse.Fortios.System
 
             int ikeEmbryonicLimit,
 
+            string interfaceSubnetUsage,
+
             string internetServiceDatabase,
 
+            ImmutableArray<Outputs.GetGlobalInternetServiceDownloadListResult> internetServiceDownloadLists,
+
             int interval,
+
+            int ipFragmentMemThresholds,
 
             string ipSrcPortRange,
 
@@ -1365,6 +1535,8 @@ namespace Pulumiverse.Fortios.System
             string lldpReception,
 
             string lldpTransmission,
+
+            string logSingleCpuHigh,
 
             string logSslConnection,
 
@@ -1432,13 +1604,31 @@ namespace Pulumiverse.Fortios.System
 
             string proxyHardwareAcceleration,
 
+            string proxyKeepAliveMode,
+
             string proxyKxpHardwareAcceleration,
 
             string proxyReAuthenticationMode,
 
+            int proxyReAuthenticationTime,
+
             string proxyResourceMode,
 
             int proxyWorkerCount,
+
+            string purdueLevel,
+
+            int quicAckThresold,
+
+            string quicCongestionControlAlgo,
+
+            int quicMaxDatagramSize,
+
+            string quicPmtud,
+
+            int quicTlsHandshakeTimeout,
+
+            string quicUdpPayloadSizeShapingPerCid,
 
             int radiusPort,
 
@@ -1464,11 +1654,17 @@ namespace Pulumiverse.Fortios.System
 
             string sendPmtuIcmp,
 
+            int sflowdMaxChildrenNum,
+
             string snatRouteChange,
 
             string specialFile23Support,
 
             string speedtestServer,
+
+            int speedtestdCtrlPort,
+
+            int speedtestdServerPort,
 
             string splitPort,
 
@@ -1487,6 +1683,14 @@ namespace Pulumiverse.Fortios.System
             string sshEncAlgo,
 
             string sshHmacMd5,
+
+            string sshHostkey,
+
+            string sshHostkeyAlgo,
+
+            string sshHostkeyOverride,
+
+            string sshHostkeyPassword,
 
             string sshKexAlgo,
 
@@ -1510,6 +1714,8 @@ namespace Pulumiverse.Fortios.System
 
             string sslvpnPluginVersionCheck,
 
+            string sslvpnWebMode,
+
             string strictDirtySessionCheck,
 
             string strongCrypto,
@@ -1519,6 +1725,8 @@ namespace Pulumiverse.Fortios.System
             string switchControllerReservedNetwork,
 
             int sysPerfLogInterval,
+
+            string syslogAffinity,
 
             int tcpHalfcloseTimer,
 
@@ -1578,6 +1786,8 @@ namespace Pulumiverse.Fortios.System
 
             string virtualSwitchVlan,
 
+            string vpnEmsSnCheck,
+
             string wadAffinity,
 
             int wadCsvcCsCount,
@@ -1585,6 +1795,12 @@ namespace Pulumiverse.Fortios.System
             int wadCsvcDbCount,
 
             int wadMemoryChangeGranularity,
+
+            string wadRestartEndTime,
+
+            string wadRestartMode,
+
+            string wadRestartStartTime,
 
             string wadSourceAffinity,
 
@@ -1602,6 +1818,7 @@ namespace Pulumiverse.Fortios.System
         {
             AdminConcurrent = adminConcurrent;
             AdminConsoleTimeout = adminConsoleTimeout;
+            AdminForticloudSsoDefaultProfile = adminForticloudSsoDefaultProfile;
             AdminForticloudSsoLogin = adminForticloudSsoLogin;
             AdminHost = adminHost;
             AdminHstsMaxAge = adminHstsMaxAge;
@@ -1643,6 +1860,7 @@ namespace Pulumiverse.Fortios.System
             AvFailopen = avFailopen;
             AvFailopenSession = avFailopenSession;
             BatchCmdb = batchCmdb;
+            BfdAffinity = bfdAffinity;
             BlockSessionTimer = blockSessionTimer;
             BrFdbMaxEntry = brFdbMaxEntry;
             CertChainMax = certChainMax;
@@ -1676,16 +1894,24 @@ namespace Pulumiverse.Fortios.System
             FdsStatisticsPeriod = fdsStatisticsPeriod;
             FecPort = fecPort;
             FgdAlertSubscription = fgdAlertSubscription;
+            ForticonverterConfigUpload = forticonverterConfigUpload;
+            ForticonverterIntegration = forticonverterIntegration;
             Fortiextender = fortiextender;
             FortiextenderDataPort = fortiextenderDataPort;
             FortiextenderDiscoveryLockdown = fortiextenderDiscoveryLockdown;
             FortiextenderProvisionOnAuthorization = fortiextenderProvisionOnAuthorization;
             FortiextenderVlanMode = fortiextenderVlanMode;
+            FortigslbIntegration = fortigslbIntegration;
             FortiipamIntegration = fortiipamIntegration;
             FortiservicePort = fortiservicePort;
             FortitokenCloud = fortitokenCloud;
+            FortitokenCloudPushStatus = fortitokenCloudPushStatus;
+            FortitokenCloudSyncInterval = fortitokenCloudSyncInterval;
             GuiAllowDefaultHostname = guiAllowDefaultHostname;
+            GuiAllowIncompatibleFabricFgt = guiAllowIncompatibleFabricFgt;
             GuiAppDetectionSdwan = guiAppDetectionSdwan;
+            GuiAutoUpgradeSetupWarning = guiAutoUpgradeSetupWarning;
+            GuiCdnDomainOverride = guiCdnDomainOverride;
             GuiCdnUsage = guiCdnUsage;
             GuiCertificates = guiCertificates;
             GuiCustomLanguage = guiCustomLanguage;
@@ -1714,8 +1940,11 @@ namespace Pulumiverse.Fortios.System
             Id = id;
             IgmpStateLimit = igmpStateLimit;
             IkeEmbryonicLimit = ikeEmbryonicLimit;
+            InterfaceSubnetUsage = interfaceSubnetUsage;
             InternetServiceDatabase = internetServiceDatabase;
+            InternetServiceDownloadLists = internetServiceDownloadLists;
             Interval = interval;
+            IpFragmentMemThresholds = ipFragmentMemThresholds;
             IpSrcPortRange = ipSrcPortRange;
             IpsAffinity = ipsAffinity;
             IpsecAsicOffload = ipsecAsicOffload;
@@ -1733,6 +1962,7 @@ namespace Pulumiverse.Fortios.System
             Ldapconntimeout = ldapconntimeout;
             LldpReception = lldpReception;
             LldpTransmission = lldpTransmission;
+            LogSingleCpuHigh = logSingleCpuHigh;
             LogSslConnection = logSslConnection;
             LogUuidAddress = logUuidAddress;
             LogUuidPolicy = logUuidPolicy;
@@ -1766,10 +1996,19 @@ namespace Pulumiverse.Fortios.System
             ProxyCertUseMgmtVdom = proxyCertUseMgmtVdom;
             ProxyCipherHardwareAcceleration = proxyCipherHardwareAcceleration;
             ProxyHardwareAcceleration = proxyHardwareAcceleration;
+            ProxyKeepAliveMode = proxyKeepAliveMode;
             ProxyKxpHardwareAcceleration = proxyKxpHardwareAcceleration;
             ProxyReAuthenticationMode = proxyReAuthenticationMode;
+            ProxyReAuthenticationTime = proxyReAuthenticationTime;
             ProxyResourceMode = proxyResourceMode;
             ProxyWorkerCount = proxyWorkerCount;
+            PurdueLevel = purdueLevel;
+            QuicAckThresold = quicAckThresold;
+            QuicCongestionControlAlgo = quicCongestionControlAlgo;
+            QuicMaxDatagramSize = quicMaxDatagramSize;
+            QuicPmtud = quicPmtud;
+            QuicTlsHandshakeTimeout = quicTlsHandshakeTimeout;
+            QuicUdpPayloadSizeShapingPerCid = quicUdpPayloadSizeShapingPerCid;
             RadiusPort = radiusPort;
             RebootUponConfigRestore = rebootUponConfigRestore;
             Refresh = refresh;
@@ -1782,9 +2021,12 @@ namespace Pulumiverse.Fortios.System
             SecurityRatingResultSubmission = securityRatingResultSubmission;
             SecurityRatingRunOnSchedule = securityRatingRunOnSchedule;
             SendPmtuIcmp = sendPmtuIcmp;
+            SflowdMaxChildrenNum = sflowdMaxChildrenNum;
             SnatRouteChange = snatRouteChange;
             SpecialFile23Support = specialFile23Support;
             SpeedtestServer = speedtestServer;
+            SpeedtestdCtrlPort = speedtestdCtrlPort;
+            SpeedtestdServerPort = speedtestdServerPort;
             SplitPort = splitPort;
             SsdTrimDate = ssdTrimDate;
             SsdTrimFreq = ssdTrimFreq;
@@ -1794,6 +2036,10 @@ namespace Pulumiverse.Fortios.System
             SshCbcCipher = sshCbcCipher;
             SshEncAlgo = sshEncAlgo;
             SshHmacMd5 = sshHmacMd5;
+            SshHostkey = sshHostkey;
+            SshHostkeyAlgo = sshHostkeyAlgo;
+            SshHostkeyOverride = sshHostkeyOverride;
+            SshHostkeyPassword = sshHostkeyPassword;
             SshKexAlgo = sshKexAlgo;
             SshKexSha1 = sshKexSha1;
             SshMacAlgo = sshMacAlgo;
@@ -1805,11 +2051,13 @@ namespace Pulumiverse.Fortios.System
             SslvpnKxpHardwareAcceleration = sslvpnKxpHardwareAcceleration;
             SslvpnMaxWorkerCount = sslvpnMaxWorkerCount;
             SslvpnPluginVersionCheck = sslvpnPluginVersionCheck;
+            SslvpnWebMode = sslvpnWebMode;
             StrictDirtySessionCheck = strictDirtySessionCheck;
             StrongCrypto = strongCrypto;
             SwitchController = switchController;
             SwitchControllerReservedNetwork = switchControllerReservedNetwork;
             SysPerfLogInterval = sysPerfLogInterval;
+            SyslogAffinity = syslogAffinity;
             TcpHalfcloseTimer = tcpHalfcloseTimer;
             TcpHalfopenTimer = tcpHalfopenTimer;
             TcpOption = tcpOption;
@@ -1839,10 +2087,14 @@ namespace Pulumiverse.Fortios.System
             VirtualServerCount = virtualServerCount;
             VirtualServerHardwareAcceleration = virtualServerHardwareAcceleration;
             VirtualSwitchVlan = virtualSwitchVlan;
+            VpnEmsSnCheck = vpnEmsSnCheck;
             WadAffinity = wadAffinity;
             WadCsvcCsCount = wadCsvcCsCount;
             WadCsvcDbCount = wadCsvcDbCount;
             WadMemoryChangeGranularity = wadMemoryChangeGranularity;
+            WadRestartEndTime = wadRestartEndTime;
+            WadRestartMode = wadRestartMode;
+            WadRestartStartTime = wadRestartStartTime;
             WadSourceAffinity = wadSourceAffinity;
             WadWorkerCount = wadWorkerCount;
             WifiCaCertificate = wifiCaCertificate;

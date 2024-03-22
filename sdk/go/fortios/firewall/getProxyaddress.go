@@ -70,6 +70,10 @@ type LookupProxyaddressResult struct {
 	Type string `pulumi:"type"`
 	// Names of browsers to be used as user agent.
 	Ua string `pulumi:"ua"`
+	// Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+	UaMaxVer string `pulumi:"uaMaxVer"`
+	// Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+	UaMinVer string `pulumi:"uaMinVer"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid      string  `pulumi:"uuid"`
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -210,6 +214,16 @@ func (o LookupProxyaddressResultOutput) Type() pulumi.StringOutput {
 // Names of browsers to be used as user agent.
 func (o LookupProxyaddressResultOutput) Ua() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProxyaddressResult) string { return v.Ua }).(pulumi.StringOutput)
+}
+
+// Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+func (o LookupProxyaddressResultOutput) UaMaxVer() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProxyaddressResult) string { return v.UaMaxVer }).(pulumi.StringOutput)
+}
+
+// Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+func (o LookupProxyaddressResultOutput) UaMinVer() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProxyaddressResult) string { return v.UaMinVer }).(pulumi.StringOutput)
 }
 
 // Universally Unique Identifier (UUID; automatically assigned but can be manually reset).

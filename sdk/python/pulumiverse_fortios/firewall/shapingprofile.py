@@ -20,6 +20,7 @@ class ShapingprofileArgs:
                  profile_name: pulumi.Input[str],
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  shaping_entries: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingprofileShapingEntryArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -29,6 +30,7 @@ class ShapingprofileArgs:
         :param pulumi.Input[str] profile_name: Shaping profile name.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingprofileShapingEntryArgs']]] shaping_entries: Define shaping entries of this shaping profile. The structure of `shaping_entries` block is documented below.
         :param pulumi.Input[str] type: Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -39,6 +41,8 @@ class ShapingprofileArgs:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if shaping_entries is not None:
             pulumi.set(__self__, "shaping_entries", shaping_entries)
         if type is not None:
@@ -95,6 +99,18 @@ class ShapingprofileArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="shapingEntries")
     def shaping_entries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ShapingprofileShapingEntryArgs']]]]:
         """
@@ -137,6 +153,7 @@ class _ShapingprofileState:
                  comment: Optional[pulumi.Input[str]] = None,
                  default_class_id: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  shaping_entries: Optional[pulumi.Input[Sequence[pulumi.Input['ShapingprofileShapingEntryArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -146,6 +163,7 @@ class _ShapingprofileState:
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[int] default_class_id: Default class ID to handle unclassified packets (including all local traffic).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] profile_name: Shaping profile name.
         :param pulumi.Input[Sequence[pulumi.Input['ShapingprofileShapingEntryArgs']]] shaping_entries: Define shaping entries of this shaping profile. The structure of `shaping_entries` block is documented below.
         :param pulumi.Input[str] type: Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.
@@ -157,6 +175,8 @@ class _ShapingprofileState:
             pulumi.set(__self__, "default_class_id", default_class_id)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if profile_name is not None:
             pulumi.set(__self__, "profile_name", profile_name)
         if shaping_entries is not None:
@@ -201,6 +221,18 @@ class _ShapingprofileState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="profileName")
@@ -259,6 +291,7 @@ class Shapingprofile(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  default_class_id: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  shaping_entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingprofileShapingEntryArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -310,6 +343,7 @@ class Shapingprofile(pulumi.CustomResource):
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[int] default_class_id: Default class ID to handle unclassified packets (including all local traffic).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] profile_name: Shaping profile name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingprofileShapingEntryArgs']]]] shaping_entries: Define shaping entries of this shaping profile. The structure of `shaping_entries` block is documented below.
         :param pulumi.Input[str] type: Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.
@@ -380,6 +414,7 @@ class Shapingprofile(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  default_class_id: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  shaping_entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingprofileShapingEntryArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -398,6 +433,7 @@ class Shapingprofile(pulumi.CustomResource):
                 raise TypeError("Missing required property 'default_class_id'")
             __props__.__dict__["default_class_id"] = default_class_id
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if profile_name is None and not opts.urn:
                 raise TypeError("Missing required property 'profile_name'")
             __props__.__dict__["profile_name"] = profile_name
@@ -417,6 +453,7 @@ class Shapingprofile(pulumi.CustomResource):
             comment: Optional[pulumi.Input[str]] = None,
             default_class_id: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             profile_name: Optional[pulumi.Input[str]] = None,
             shaping_entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingprofileShapingEntryArgs']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
@@ -431,6 +468,7 @@ class Shapingprofile(pulumi.CustomResource):
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[int] default_class_id: Default class ID to handle unclassified packets (including all local traffic).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] profile_name: Shaping profile name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShapingprofileShapingEntryArgs']]]] shaping_entries: Define shaping entries of this shaping profile. The structure of `shaping_entries` block is documented below.
         :param pulumi.Input[str] type: Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.
@@ -443,6 +481,7 @@ class Shapingprofile(pulumi.CustomResource):
         __props__.__dict__["comment"] = comment
         __props__.__dict__["default_class_id"] = default_class_id
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["profile_name"] = profile_name
         __props__.__dict__["shaping_entries"] = shaping_entries
         __props__.__dict__["type"] = type
@@ -472,6 +511,14 @@ class Shapingprofile(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="profileName")

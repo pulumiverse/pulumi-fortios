@@ -107,7 +107,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> AtfWeight { get; private set; } = null!;
 
         /// <summary>
-        /// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        /// Authentication protocol.
         /// </summary>
         [Output("auth")]
         public Output<string> Auth { get; private set; } = null!;
@@ -177,6 +177,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("captivePortalAuthTimeout")]
         public Output<int> CaptivePortalAuthTimeout { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("captivePortalFwAccounting")]
+        public Output<string> CaptivePortalFwAccounting { get; private set; } = null!;
 
         /// <summary>
         /// Secret key to access the macauth RADIUS server.
@@ -345,6 +351,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("gasFragmentationLimit")]
         public Output<int> GasFragmentationLimit { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
@@ -605,6 +617,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> MulticastRate { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("n80211k")]
+        public Output<string> N80211k { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("n80211v")]
+        public Output<string> N80211v { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable network access control. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("nac")]
@@ -785,6 +809,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> RadiusMacAuth { get; private set; } = null!;
 
         /// <summary>
+        /// Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+        /// </summary>
+        [Output("radiusMacAuthBlockInterval")]
+        public Output<int> RadiusMacAuthBlockInterval { get; private set; } = null!;
+
+        /// <summary>
         /// RADIUS-based MAC authentication server.
         /// </summary>
         [Output("radiusMacAuthServer")]
@@ -815,7 +845,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> RadiusServer { get; private set; } = null!;
 
         /// <summary>
-        /// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        /// Allowed data rates for 802.11a.
         /// </summary>
         [Output("rates11a")]
         public Output<string> Rates11a { get; private set; } = null!;
@@ -857,7 +887,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> Rates11axSs34 { get; private set; } = null!;
 
         /// <summary>
-        /// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        /// Allowed data rates for 802.11b/g.
         /// </summary>
         [Output("rates11bg")]
         public Output<string> Rates11bg { get; private set; } = null!;
@@ -875,6 +905,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> Rates11nSs34 { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("roamingAcctInterimUpdate")]
+        public Output<string> RoamingAcctInterimUpdate { get; private set; } = null!;
+
+        /// <summary>
         /// SAE-Groups. Valid values: `19`, `20`, `21`.
         /// </summary>
         [Output("saeGroups")]
@@ -885,6 +921,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("saeH2eOnly")]
         public Output<string> SaeH2eOnly { get; private set; } = null!;
+
+        /// <summary>
+        /// Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("saeHnpOnly")]
+        public Output<string> SaeHnpOnly { get; private set; } = null!;
 
         /// <summary>
         /// WPA3 SAE password to be used to authenticate WiFi users.
@@ -1212,7 +1254,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? AtfWeight { get; set; }
 
         /// <summary>
-        /// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        /// Authentication protocol.
         /// </summary>
         [Input("auth")]
         public Input<string>? Auth { get; set; }
@@ -1282,6 +1324,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("captivePortalAuthTimeout")]
         public Input<int>? CaptivePortalAuthTimeout { get; set; }
+
+        /// <summary>
+        /// Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("captivePortalFwAccounting")]
+        public Input<string>? CaptivePortalFwAccounting { get; set; }
 
         [Input("captivePortalMacauthRadiusSecret")]
         private Input<string>? _captivePortalMacauthRadiusSecret;
@@ -1470,6 +1518,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("gasFragmentationLimit")]
         public Input<int>? GasFragmentationLimit { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
@@ -1752,6 +1806,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? MulticastRate { get; set; }
 
         /// <summary>
+        /// Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("n80211k")]
+        public Input<string>? N80211k { get; set; }
+
+        /// <summary>
+        /// Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("n80211v")]
+        public Input<string>? N80211v { get; set; }
+
+        /// <summary>
         /// Enable/disable network access control. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("nac")]
@@ -1942,6 +2008,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? RadiusMacAuth { get; set; }
 
         /// <summary>
+        /// Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+        /// </summary>
+        [Input("radiusMacAuthBlockInterval")]
+        public Input<int>? RadiusMacAuthBlockInterval { get; set; }
+
+        /// <summary>
         /// RADIUS-based MAC authentication server.
         /// </summary>
         [Input("radiusMacAuthServer")]
@@ -1978,7 +2050,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? RadiusServer { get; set; }
 
         /// <summary>
-        /// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        /// Allowed data rates for 802.11a.
         /// </summary>
         [Input("rates11a")]
         public Input<string>? Rates11a { get; set; }
@@ -2020,7 +2092,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? Rates11axSs34 { get; set; }
 
         /// <summary>
-        /// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        /// Allowed data rates for 802.11b/g.
         /// </summary>
         [Input("rates11bg")]
         public Input<string>? Rates11bg { get; set; }
@@ -2038,6 +2110,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? Rates11nSs34 { get; set; }
 
         /// <summary>
+        /// Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("roamingAcctInterimUpdate")]
+        public Input<string>? RoamingAcctInterimUpdate { get; set; }
+
+        /// <summary>
         /// SAE-Groups. Valid values: `19`, `20`, `21`.
         /// </summary>
         [Input("saeGroups")]
@@ -2048,6 +2126,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("saeH2eOnly")]
         public Input<string>? SaeH2eOnly { get; set; }
+
+        /// <summary>
+        /// Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("saeHnpOnly")]
+        public Input<string>? SaeHnpOnly { get; set; }
 
         [Input("saePassword")]
         private Input<string>? _saePassword;
@@ -2362,7 +2446,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? AtfWeight { get; set; }
 
         /// <summary>
-        /// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        /// Authentication protocol.
         /// </summary>
         [Input("auth")]
         public Input<string>? Auth { get; set; }
@@ -2432,6 +2516,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("captivePortalAuthTimeout")]
         public Input<int>? CaptivePortalAuthTimeout { get; set; }
+
+        /// <summary>
+        /// Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("captivePortalFwAccounting")]
+        public Input<string>? CaptivePortalFwAccounting { get; set; }
 
         [Input("captivePortalMacauthRadiusSecret")]
         private Input<string>? _captivePortalMacauthRadiusSecret;
@@ -2620,6 +2710,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("gasFragmentationLimit")]
         public Input<int>? GasFragmentationLimit { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
@@ -2902,6 +2998,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? MulticastRate { get; set; }
 
         /// <summary>
+        /// Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("n80211k")]
+        public Input<string>? N80211k { get; set; }
+
+        /// <summary>
+        /// Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("n80211v")]
+        public Input<string>? N80211v { get; set; }
+
+        /// <summary>
         /// Enable/disable network access control. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("nac")]
@@ -3092,6 +3200,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? RadiusMacAuth { get; set; }
 
         /// <summary>
+        /// Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+        /// </summary>
+        [Input("radiusMacAuthBlockInterval")]
+        public Input<int>? RadiusMacAuthBlockInterval { get; set; }
+
+        /// <summary>
         /// RADIUS-based MAC authentication server.
         /// </summary>
         [Input("radiusMacAuthServer")]
@@ -3128,7 +3242,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? RadiusServer { get; set; }
 
         /// <summary>
-        /// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        /// Allowed data rates for 802.11a.
         /// </summary>
         [Input("rates11a")]
         public Input<string>? Rates11a { get; set; }
@@ -3170,7 +3284,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? Rates11axSs34 { get; set; }
 
         /// <summary>
-        /// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+        /// Allowed data rates for 802.11b/g.
         /// </summary>
         [Input("rates11bg")]
         public Input<string>? Rates11bg { get; set; }
@@ -3188,6 +3302,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? Rates11nSs34 { get; set; }
 
         /// <summary>
+        /// Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("roamingAcctInterimUpdate")]
+        public Input<string>? RoamingAcctInterimUpdate { get; set; }
+
+        /// <summary>
         /// SAE-Groups. Valid values: `19`, `20`, `21`.
         /// </summary>
         [Input("saeGroups")]
@@ -3198,6 +3318,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("saeH2eOnly")]
         public Input<string>? SaeH2eOnly { get; set; }
+
+        /// <summary>
+        /// Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("saeHnpOnly")]
+        public Input<string>? SaeHnpOnly { get; set; }
 
         [Input("saePassword")]
         private Input<string>? _saePassword;

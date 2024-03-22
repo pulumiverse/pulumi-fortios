@@ -102,6 +102,30 @@ export class Bleprofile extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Scan Interval (default = 50 msec).
+     */
+    public readonly scanInterval!: pulumi.Output<number>;
+    /**
+     * Scan Period (default = 4000 msec).
+     */
+    public readonly scanPeriod!: pulumi.Output<number>;
+    /**
+     * Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+     */
+    public readonly scanThreshold!: pulumi.Output<string>;
+    /**
+     * Scan Time (default = 1000 msec).
+     */
+    public readonly scanTime!: pulumi.Output<number>;
+    /**
+     * Scan Type (default = active). Valid values: `active`, `passive`.
+     */
+    public readonly scanType!: pulumi.Output<string>;
+    /**
+     * Scan Windows (default = 50 msec).
+     */
+    public readonly scanWindow!: pulumi.Output<number>;
+    /**
      * Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
      */
     public readonly txpower!: pulumi.Output<string>;
@@ -135,6 +159,12 @@ export class Bleprofile extends pulumi.CustomResource {
             resourceInputs["majorId"] = state ? state.majorId : undefined;
             resourceInputs["minorId"] = state ? state.minorId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["scanInterval"] = state ? state.scanInterval : undefined;
+            resourceInputs["scanPeriod"] = state ? state.scanPeriod : undefined;
+            resourceInputs["scanThreshold"] = state ? state.scanThreshold : undefined;
+            resourceInputs["scanTime"] = state ? state.scanTime : undefined;
+            resourceInputs["scanType"] = state ? state.scanType : undefined;
+            resourceInputs["scanWindow"] = state ? state.scanWindow : undefined;
             resourceInputs["txpower"] = state ? state.txpower : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -151,6 +181,12 @@ export class Bleprofile extends pulumi.CustomResource {
             resourceInputs["majorId"] = args ? args.majorId : undefined;
             resourceInputs["minorId"] = args ? args.minorId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["scanInterval"] = args ? args.scanInterval : undefined;
+            resourceInputs["scanPeriod"] = args ? args.scanPeriod : undefined;
+            resourceInputs["scanThreshold"] = args ? args.scanThreshold : undefined;
+            resourceInputs["scanTime"] = args ? args.scanTime : undefined;
+            resourceInputs["scanType"] = args ? args.scanType : undefined;
+            resourceInputs["scanWindow"] = args ? args.scanWindow : undefined;
             resourceInputs["txpower"] = args ? args.txpower : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -211,6 +247,30 @@ export interface BleprofileState {
      * Bluetooth Low Energy profile name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Scan Interval (default = 50 msec).
+     */
+    scanInterval?: pulumi.Input<number>;
+    /**
+     * Scan Period (default = 4000 msec).
+     */
+    scanPeriod?: pulumi.Input<number>;
+    /**
+     * Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+     */
+    scanThreshold?: pulumi.Input<string>;
+    /**
+     * Scan Time (default = 1000 msec).
+     */
+    scanTime?: pulumi.Input<number>;
+    /**
+     * Scan Type (default = active). Valid values: `active`, `passive`.
+     */
+    scanType?: pulumi.Input<string>;
+    /**
+     * Scan Windows (default = 50 msec).
+     */
+    scanWindow?: pulumi.Input<number>;
     /**
      * Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
      */
@@ -273,6 +333,30 @@ export interface BleprofileArgs {
      * Bluetooth Low Energy profile name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Scan Interval (default = 50 msec).
+     */
+    scanInterval?: pulumi.Input<number>;
+    /**
+     * Scan Period (default = 4000 msec).
+     */
+    scanPeriod?: pulumi.Input<number>;
+    /**
+     * Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+     */
+    scanThreshold?: pulumi.Input<string>;
+    /**
+     * Scan Time (default = 1000 msec).
+     */
+    scanTime?: pulumi.Input<number>;
+    /**
+     * Scan Type (default = active). Valid values: `active`, `passive`.
+     */
+    scanType?: pulumi.Input<string>;
+    /**
+     * Scan Windows (default = 50 msec).
+     */
+    scanWindow?: pulumi.Input<number>;
     /**
      * Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
      */

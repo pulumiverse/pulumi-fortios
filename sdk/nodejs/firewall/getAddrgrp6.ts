@@ -45,6 +45,14 @@ export interface GetAddrgrp6Result {
      */
     readonly comment: string;
     /**
+     * Enable/disable address6 exclusion.
+     */
+    readonly exclude: string;
+    /**
+     * Address6 exclusion member. The structure of `excludeMember` block is documented below.
+     */
+    readonly excludeMembers: outputs.firewall.GetAddrgrp6ExcludeMember[];
+    /**
      * Security Fabric global object setting.
      */
     readonly fabricObject: string;

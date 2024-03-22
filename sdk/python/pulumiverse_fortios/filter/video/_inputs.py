@@ -10,10 +10,218 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from ... import _utilities
 
 __all__ = [
+    'KeywordWordArgs',
+    'ProfileFilterArgs',
     'ProfileFortiguardCategoryArgs',
     'ProfileFortiguardCategoryFilterArgs',
     'YoutubechannelfilterEntryArgs',
 ]
+
+@pulumi.input_type
+class KeywordWordArgs:
+    def __init__(__self__, *,
+                 comment: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 pattern_type: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] name: Name.
+        :param pulumi.Input[str] pattern_type: Pattern type. Valid values: `wildcard`, `regex`.
+        :param pulumi.Input[str] status: Enable(consider)/disable(ignore) this keyword. Valid values: `enable`, `disable`.
+        """
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if pattern_type is not None:
+            pulumi.set(__self__, "pattern_type", pattern_type)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comment")
+
+    @comment.setter
+    def comment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="patternType")
+    def pattern_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Pattern type. Valid values: `wildcard`, `regex`.
+        """
+        return pulumi.get(self, "pattern_type")
+
+    @pattern_type.setter
+    def pattern_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pattern_type", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable(consider)/disable(ignore) this keyword. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+
+@pulumi.input_type
+class ProfileFilterArgs:
+    def __init__(__self__, *,
+                 action: Optional[pulumi.Input[str]] = None,
+                 category: Optional[pulumi.Input[str]] = None,
+                 channel: Optional[pulumi.Input[str]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[int]] = None,
+                 keyword: Optional[pulumi.Input[int]] = None,
+                 log: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] action: VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+        :param pulumi.Input[str] category: FortiGuard category ID.
+        :param pulumi.Input[str] channel: Channel ID.
+        :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[int] id: ID.
+        :param pulumi.Input[int] keyword: Video filter keyword ID.
+        :param pulumi.Input[str] log: Enable/disable logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] type: Filter type. Valid values: `category`, `channel`, `title`, `description`.
+        """
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if category is not None:
+            pulumi.set(__self__, "category", category)
+        if channel is not None:
+            pulumi.set(__self__, "channel", channel)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if keyword is not None:
+            pulumi.set(__self__, "keyword", keyword)
+        if log is not None:
+            pulumi.set(__self__, "log", log)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[pulumi.Input[str]]:
+        """
+        VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+        """
+        return pulumi.get(self, "action")
+
+    @action.setter
+    def action(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "action", value)
+
+    @property
+    @pulumi.getter
+    def category(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiGuard category ID.
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "category", value)
+
+    @property
+    @pulumi.getter
+    def channel(self) -> Optional[pulumi.Input[str]]:
+        """
+        Channel ID.
+        """
+        return pulumi.get(self, "channel")
+
+    @channel.setter
+    def channel(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "channel", value)
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comment")
+
+    @comment.setter
+    def comment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[int]]:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def keyword(self) -> Optional[pulumi.Input[int]]:
+        """
+        Video filter keyword ID.
+        """
+        return pulumi.get(self, "keyword")
+
+    @keyword.setter
+    def keyword(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "keyword", value)
+
+    @property
+    @pulumi.getter
+    def log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "log")
+
+    @log.setter
+    def log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Filter type. Valid values: `category`, `channel`, `title`, `description`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
 
 @pulumi.input_type
 class ProfileFortiguardCategoryArgs:

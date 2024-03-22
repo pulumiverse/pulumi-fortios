@@ -11,7 +11,8 @@ import (
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
-// Extender controller configuration. Applies to FortiOS Version `>= 7.2.1`.
+// Extender controller configuration.
+// The resource applies to FortiOS Version >= 7.2.1. For FortiOS version < 7.2.1, see `extendercontroller.Extender`
 //
 // ## Import
 //
@@ -35,7 +36,7 @@ type Extender struct {
 
 	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
 	Allowaccess pulumi.StringOutput `pulumi:"allowaccess"`
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+	// FortiExtender Administration (enable or disable).
 	Authorized pulumi.StringOutput `pulumi:"authorized"`
 	// FortiExtender LAN extension bandwidth limit (Mbps).
 	BandwidthLimit pulumi.IntOutput `pulumi:"bandwidthLimit"`
@@ -53,6 +54,8 @@ type Extender struct {
 	FirmwareProvisionLatest pulumi.StringOutput `pulumi:"firmwareProvisionLatest"`
 	// FortiExtender serial number.
 	Fosid pulumi.StringOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Set the managed extender's administrator password.
 	LoginPassword pulumi.StringPtrOutput `pulumi:"loginPassword"`
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
@@ -107,7 +110,7 @@ func GetExtender(ctx *pulumi.Context,
 type extenderState struct {
 	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
 	Allowaccess *string `pulumi:"allowaccess"`
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+	// FortiExtender Administration (enable or disable).
 	Authorized *string `pulumi:"authorized"`
 	// FortiExtender LAN extension bandwidth limit (Mbps).
 	BandwidthLimit *int `pulumi:"bandwidthLimit"`
@@ -125,6 +128,8 @@ type extenderState struct {
 	FirmwareProvisionLatest *string `pulumi:"firmwareProvisionLatest"`
 	// FortiExtender serial number.
 	Fosid *string `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Set the managed extender's administrator password.
 	LoginPassword *string `pulumi:"loginPassword"`
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
@@ -150,7 +155,7 @@ type extenderState struct {
 type ExtenderState struct {
 	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
 	Allowaccess pulumi.StringPtrInput
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+	// FortiExtender Administration (enable or disable).
 	Authorized pulumi.StringPtrInput
 	// FortiExtender LAN extension bandwidth limit (Mbps).
 	BandwidthLimit pulumi.IntPtrInput
@@ -168,6 +173,8 @@ type ExtenderState struct {
 	FirmwareProvisionLatest pulumi.StringPtrInput
 	// FortiExtender serial number.
 	Fosid pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Set the managed extender's administrator password.
 	LoginPassword pulumi.StringPtrInput
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
@@ -197,7 +204,7 @@ func (ExtenderState) ElementType() reflect.Type {
 type extenderArgs struct {
 	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
 	Allowaccess *string `pulumi:"allowaccess"`
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+	// FortiExtender Administration (enable or disable).
 	Authorized *string `pulumi:"authorized"`
 	// FortiExtender LAN extension bandwidth limit (Mbps).
 	BandwidthLimit *int `pulumi:"bandwidthLimit"`
@@ -215,6 +222,8 @@ type extenderArgs struct {
 	FirmwareProvisionLatest *string `pulumi:"firmwareProvisionLatest"`
 	// FortiExtender serial number.
 	Fosid *string `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Set the managed extender's administrator password.
 	LoginPassword *string `pulumi:"loginPassword"`
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
@@ -241,7 +250,7 @@ type extenderArgs struct {
 type ExtenderArgs struct {
 	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
 	Allowaccess pulumi.StringPtrInput
-	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+	// FortiExtender Administration (enable or disable).
 	Authorized pulumi.StringPtrInput
 	// FortiExtender LAN extension bandwidth limit (Mbps).
 	BandwidthLimit pulumi.IntPtrInput
@@ -259,6 +268,8 @@ type ExtenderArgs struct {
 	FirmwareProvisionLatest pulumi.StringPtrInput
 	// FortiExtender serial number.
 	Fosid pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Set the managed extender's administrator password.
 	LoginPassword pulumi.StringPtrInput
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
@@ -373,7 +384,7 @@ func (o ExtenderOutput) Allowaccess() pulumi.StringOutput {
 	return o.ApplyT(func(v *Extender) pulumi.StringOutput { return v.Allowaccess }).(pulumi.StringOutput)
 }
 
-// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+// FortiExtender Administration (enable or disable).
 func (o ExtenderOutput) Authorized() pulumi.StringOutput {
 	return o.ApplyT(func(v *Extender) pulumi.StringOutput { return v.Authorized }).(pulumi.StringOutput)
 }
@@ -416,6 +427,11 @@ func (o ExtenderOutput) FirmwareProvisionLatest() pulumi.StringOutput {
 // FortiExtender serial number.
 func (o ExtenderOutput) Fosid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Extender) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ExtenderOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Extender) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Set the managed extender's administrator password.

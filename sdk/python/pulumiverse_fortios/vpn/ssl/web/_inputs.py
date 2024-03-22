@@ -19,6 +19,8 @@ __all__ = [
     'PortalIpPoolArgs',
     'PortalIpv6PoolArgs',
     'PortalIpv6SplitTunnelingRoutingAddressArgs',
+    'PortalLandingPageArgs',
+    'PortalLandingPageFormDataArgs',
     'PortalMacAddrCheckRuleArgs',
     'PortalMacAddrCheckRuleMacAddrListArgs',
     'PortalOsCheckListArgs',
@@ -232,6 +234,7 @@ class PortalBookmarkGroupBookmarkArgs:
                  sso_password: Optional[pulumi.Input[str]] = None,
                  sso_username: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
+                 vnc_keyboard_layout: Optional[pulumi.Input[str]] = None,
                  width: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] additional_params: Additional parameters.
@@ -264,6 +267,7 @@ class PortalBookmarkGroupBookmarkArgs:
         :param pulumi.Input[str] sso_password: SSO password.
         :param pulumi.Input[str] sso_username: SSO user name.
         :param pulumi.Input[str] url: URL parameter.
+        :param pulumi.Input[str] vnc_keyboard_layout: Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
         :param pulumi.Input[int] width: Screen width (range from 640 - 65535, default = 1024).
         """
         if additional_params is not None:
@@ -326,6 +330,8 @@ class PortalBookmarkGroupBookmarkArgs:
             pulumi.set(__self__, "sso_username", sso_username)
         if url is not None:
             pulumi.set(__self__, "url", url)
+        if vnc_keyboard_layout is not None:
+            pulumi.set(__self__, "vnc_keyboard_layout", vnc_keyboard_layout)
         if width is not None:
             pulumi.set(__self__, "width", width)
 
@@ -690,6 +696,18 @@ class PortalBookmarkGroupBookmarkArgs:
         pulumi.set(self, "url", value)
 
     @property
+    @pulumi.getter(name="vncKeyboardLayout")
+    def vnc_keyboard_layout(self) -> Optional[pulumi.Input[str]]:
+        """
+        Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+        """
+        return pulumi.get(self, "vnc_keyboard_layout")
+
+    @vnc_keyboard_layout.setter
+    def vnc_keyboard_layout(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vnc_keyboard_layout", value)
+
+    @property
     @pulumi.getter
     def width(self) -> Optional[pulumi.Input[int]]:
         """
@@ -831,6 +849,164 @@ class PortalIpv6SplitTunnelingRoutingAddressArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class PortalLandingPageArgs:
+    def __init__(__self__, *,
+                 form_datas: Optional[pulumi.Input[Sequence[pulumi.Input['PortalLandingPageFormDataArgs']]]] = None,
+                 logout_url: Optional[pulumi.Input[str]] = None,
+                 sso: Optional[pulumi.Input[str]] = None,
+                 sso_credential: Optional[pulumi.Input[str]] = None,
+                 sso_password: Optional[pulumi.Input[str]] = None,
+                 sso_username: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['PortalLandingPageFormDataArgs']]] form_datas: Form data. The structure of `form_data` block is documented below.
+        :param pulumi.Input[str] logout_url: Landing page log out URL.
+        :param pulumi.Input[str] sso: Single sign-on. Valid values: `disable`, `static`, `auto`.
+        :param pulumi.Input[str] sso_credential: Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+        :param pulumi.Input[str] sso_password: SSO password.
+        :param pulumi.Input[str] sso_username: SSO user name.
+        :param pulumi.Input[str] url: Landing page URL.
+        """
+        if form_datas is not None:
+            pulumi.set(__self__, "form_datas", form_datas)
+        if logout_url is not None:
+            pulumi.set(__self__, "logout_url", logout_url)
+        if sso is not None:
+            pulumi.set(__self__, "sso", sso)
+        if sso_credential is not None:
+            pulumi.set(__self__, "sso_credential", sso_credential)
+        if sso_password is not None:
+            pulumi.set(__self__, "sso_password", sso_password)
+        if sso_username is not None:
+            pulumi.set(__self__, "sso_username", sso_username)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="formDatas")
+    def form_datas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PortalLandingPageFormDataArgs']]]]:
+        """
+        Form data. The structure of `form_data` block is documented below.
+        """
+        return pulumi.get(self, "form_datas")
+
+    @form_datas.setter
+    def form_datas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PortalLandingPageFormDataArgs']]]]):
+        pulumi.set(self, "form_datas", value)
+
+    @property
+    @pulumi.getter(name="logoutUrl")
+    def logout_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Landing page log out URL.
+        """
+        return pulumi.get(self, "logout_url")
+
+    @logout_url.setter
+    def logout_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "logout_url", value)
+
+    @property
+    @pulumi.getter
+    def sso(self) -> Optional[pulumi.Input[str]]:
+        """
+        Single sign-on. Valid values: `disable`, `static`, `auto`.
+        """
+        return pulumi.get(self, "sso")
+
+    @sso.setter
+    def sso(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sso", value)
+
+    @property
+    @pulumi.getter(name="ssoCredential")
+    def sso_credential(self) -> Optional[pulumi.Input[str]]:
+        """
+        Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+        """
+        return pulumi.get(self, "sso_credential")
+
+    @sso_credential.setter
+    def sso_credential(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sso_credential", value)
+
+    @property
+    @pulumi.getter(name="ssoPassword")
+    def sso_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        SSO password.
+        """
+        return pulumi.get(self, "sso_password")
+
+    @sso_password.setter
+    def sso_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sso_password", value)
+
+    @property
+    @pulumi.getter(name="ssoUsername")
+    def sso_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        SSO user name.
+        """
+        return pulumi.get(self, "sso_username")
+
+    @sso_username.setter
+    def sso_username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sso_username", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Landing page URL.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url", value)
+
+
+@pulumi.input_type
+class PortalLandingPageFormDataArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Name.
+        :param pulumi.Input[str] value: Value.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -1141,6 +1317,7 @@ class UserbookmarkBookmarkArgs:
                  sso_password: Optional[pulumi.Input[str]] = None,
                  sso_username: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
+                 vnc_keyboard_layout: Optional[pulumi.Input[str]] = None,
                  width: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] additional_params: Additional parameters.
@@ -1173,6 +1350,7 @@ class UserbookmarkBookmarkArgs:
         :param pulumi.Input[str] sso_password: SSO password.
         :param pulumi.Input[str] sso_username: SSO user name.
         :param pulumi.Input[str] url: URL parameter.
+        :param pulumi.Input[str] vnc_keyboard_layout: Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
         :param pulumi.Input[int] width: Screen width (range from 640 - 65535, default = 1024).
         """
         if additional_params is not None:
@@ -1235,6 +1413,8 @@ class UserbookmarkBookmarkArgs:
             pulumi.set(__self__, "sso_username", sso_username)
         if url is not None:
             pulumi.set(__self__, "url", url)
+        if vnc_keyboard_layout is not None:
+            pulumi.set(__self__, "vnc_keyboard_layout", vnc_keyboard_layout)
         if width is not None:
             pulumi.set(__self__, "width", width)
 
@@ -1599,6 +1779,18 @@ class UserbookmarkBookmarkArgs:
         pulumi.set(self, "url", value)
 
     @property
+    @pulumi.getter(name="vncKeyboardLayout")
+    def vnc_keyboard_layout(self) -> Optional[pulumi.Input[str]]:
+        """
+        Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+        """
+        return pulumi.get(self, "vnc_keyboard_layout")
+
+    @vnc_keyboard_layout.setter
+    def vnc_keyboard_layout(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vnc_keyboard_layout", value)
+
+    @property
     @pulumi.getter
     def width(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1683,6 +1875,7 @@ class UsergroupbookmarkBookmarkArgs:
                  sso_password: Optional[pulumi.Input[str]] = None,
                  sso_username: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
+                 vnc_keyboard_layout: Optional[pulumi.Input[str]] = None,
                  width: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] additional_params: Additional parameters.
@@ -1715,6 +1908,7 @@ class UsergroupbookmarkBookmarkArgs:
         :param pulumi.Input[str] sso_password: SSO password.
         :param pulumi.Input[str] sso_username: SSO user name.
         :param pulumi.Input[str] url: URL parameter.
+        :param pulumi.Input[str] vnc_keyboard_layout: Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
         :param pulumi.Input[int] width: Screen width (range from 640 - 65535, default = 1024).
         """
         if additional_params is not None:
@@ -1777,6 +1971,8 @@ class UsergroupbookmarkBookmarkArgs:
             pulumi.set(__self__, "sso_username", sso_username)
         if url is not None:
             pulumi.set(__self__, "url", url)
+        if vnc_keyboard_layout is not None:
+            pulumi.set(__self__, "vnc_keyboard_layout", vnc_keyboard_layout)
         if width is not None:
             pulumi.set(__self__, "width", width)
 
@@ -2139,6 +2335,18 @@ class UsergroupbookmarkBookmarkArgs:
     @url.setter
     def url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "url", value)
+
+    @property
+    @pulumi.getter(name="vncKeyboardLayout")
+    def vnc_keyboard_layout(self) -> Optional[pulumi.Input[str]]:
+        """
+        Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
+        """
+        return pulumi.get(self, "vnc_keyboard_layout")
+
+    @vnc_keyboard_layout.setter
+    def vnc_keyboard_layout(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vnc_keyboard_layout", value)
 
     @property
     @pulumi.getter

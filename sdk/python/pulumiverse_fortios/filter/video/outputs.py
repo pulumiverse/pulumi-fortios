@@ -11,10 +11,187 @@ from ... import _utilities
 from . import outputs
 
 __all__ = [
+    'KeywordWord',
+    'ProfileFilter',
     'ProfileFortiguardCategory',
     'ProfileFortiguardCategoryFilter',
     'YoutubechannelfilterEntry',
 ]
+
+@pulumi.output_type
+class KeywordWord(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "patternType":
+            suggest = "pattern_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KeywordWord. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KeywordWord.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KeywordWord.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 comment: Optional[str] = None,
+                 name: Optional[str] = None,
+                 pattern_type: Optional[str] = None,
+                 status: Optional[str] = None):
+        """
+        :param str comment: Comment.
+        :param str name: Name.
+        :param str pattern_type: Pattern type. Valid values: `wildcard`, `regex`.
+        :param str status: Enable(consider)/disable(ignore) this keyword. Valid values: `enable`, `disable`.
+        """
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if pattern_type is not None:
+            pulumi.set(__self__, "pattern_type", pattern_type)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[str]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="patternType")
+    def pattern_type(self) -> Optional[str]:
+        """
+        Pattern type. Valid values: `wildcard`, `regex`.
+        """
+        return pulumi.get(self, "pattern_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        Enable(consider)/disable(ignore) this keyword. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class ProfileFilter(dict):
+    def __init__(__self__, *,
+                 action: Optional[str] = None,
+                 category: Optional[str] = None,
+                 channel: Optional[str] = None,
+                 comment: Optional[str] = None,
+                 id: Optional[int] = None,
+                 keyword: Optional[int] = None,
+                 log: Optional[str] = None,
+                 type: Optional[str] = None):
+        """
+        :param str action: VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+        :param str category: FortiGuard category ID.
+        :param str channel: Channel ID.
+        :param str comment: Comment.
+        :param int id: ID.
+        :param int keyword: Video filter keyword ID.
+        :param str log: Enable/disable logging. Valid values: `enable`, `disable`.
+        :param str type: Filter type. Valid values: `category`, `channel`, `title`, `description`.
+        """
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if category is not None:
+            pulumi.set(__self__, "category", category)
+        if channel is not None:
+            pulumi.set(__self__, "channel", channel)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if keyword is not None:
+            pulumi.set(__self__, "keyword", keyword)
+        if log is not None:
+            pulumi.set(__self__, "log", log)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        """
+        VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+        """
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter
+    def category(self) -> Optional[str]:
+        """
+        FortiGuard category ID.
+        """
+        return pulumi.get(self, "category")
+
+    @property
+    @pulumi.getter
+    def channel(self) -> Optional[str]:
+        """
+        Channel ID.
+        """
+        return pulumi.get(self, "channel")
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[str]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def keyword(self) -> Optional[int]:
+        """
+        Video filter keyword ID.
+        """
+        return pulumi.get(self, "keyword")
+
+    @property
+    @pulumi.getter
+    def log(self) -> Optional[str]:
+        """
+        Enable/disable logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "log")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Filter type. Valid values: `category`, `channel`, `title`, `description`.
+        """
+        return pulumi.get(self, "type")
+
 
 @pulumi.output_type
 class ProfileFortiguardCategory(dict):

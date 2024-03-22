@@ -79,7 +79,7 @@ type Fortisandbox struct {
 	Server pulumi.StringOutput `pulumi:"server"`
 	// Source IP address for communications to FortiSandbox.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
 	// Enable/disable FortiSandbox. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -133,7 +133,7 @@ type fortisandboxState struct {
 	Server *string `pulumi:"server"`
 	// Source IP address for communications to FortiSandbox.
 	SourceIp *string `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Enable/disable FortiSandbox. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
@@ -158,7 +158,7 @@ type FortisandboxState struct {
 	Server pulumi.StringPtrInput
 	// Source IP address for communications to FortiSandbox.
 	SourceIp pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Enable/disable FortiSandbox. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
@@ -187,7 +187,7 @@ type fortisandboxArgs struct {
 	Server *string `pulumi:"server"`
 	// Source IP address for communications to FortiSandbox.
 	SourceIp *string `pulumi:"sourceIp"`
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Enable/disable FortiSandbox. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
@@ -213,7 +213,7 @@ type FortisandboxArgs struct {
 	Server pulumi.StringPtrInput
 	// Source IP address for communications to FortiSandbox.
 	SourceIp pulumi.StringPtrInput
-	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Enable/disable FortiSandbox. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
@@ -348,7 +348,7 @@ func (o FortisandboxOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortisandbox) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
 }
 
-// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 func (o FortisandboxOutput) SslMinProtoVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortisandbox) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
 }

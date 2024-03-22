@@ -199,7 +199,7 @@ class Fortiai(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure FortiAI. Applies to FortiOS Version `7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6`.
+        Configure FortiAI. Applies to FortiOS Version `7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7`.
 
         ## Import
 
@@ -234,7 +234,7 @@ class Fortiai(pulumi.CustomResource):
                  args: Optional[FortiaiArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure FortiAI. Applies to FortiOS Version `7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6`.
+        Configure FortiAI. Applies to FortiOS Version `7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7`.
 
         ## Import
 

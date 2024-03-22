@@ -82,6 +82,10 @@ export class Multicastflow extends pulumi.CustomResource {
      */
     public readonly flows!: pulumi.Output<outputs.router.MulticastflowFlow[] | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -106,6 +110,7 @@ export class Multicastflow extends pulumi.CustomResource {
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["flows"] = state ? state.flows : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -113,6 +118,7 @@ export class Multicastflow extends pulumi.CustomResource {
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["flows"] = args ? args.flows : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -137,6 +143,10 @@ export interface MulticastflowState {
      * Multicast-flow entries. The structure of `flows` block is documented below.
      */
     flows?: pulumi.Input<pulumi.Input<inputs.router.MulticastflowFlow>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Name.
      */
@@ -163,6 +173,10 @@ export interface MulticastflowArgs {
      * Multicast-flow entries. The structure of `flows` block is documented below.
      */
     flows?: pulumi.Input<pulumi.Input<inputs.router.MulticastflowFlow>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Name.
      */

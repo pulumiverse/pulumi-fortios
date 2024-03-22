@@ -21,6 +21,7 @@ class WtpprofileArgs:
                  ap_handoff: Optional[pulumi.Input[str]] = None,
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
                  ble_profile: Optional[pulumi.Input[str]] = None,
+                 bonjour_profile: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  console_login: Optional[pulumi.Input[str]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
@@ -32,6 +33,7 @@ class WtpprofileArgs:
                  esl_ses_dongle: Optional[pulumi.Input['WtpprofileEslSesDongleArgs']] = None,
                  ext_info_enable: Optional[pulumi.Input[str]] = None,
                  frequency_handoff: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  handoff_roaming: Optional[pulumi.Input[str]] = None,
                  handoff_rssi: Optional[pulumi.Input[int]] = None,
                  handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
@@ -58,8 +60,10 @@ class WtpprofileArgs:
                  syslog_profile: Optional[pulumi.Input[str]] = None,
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
+                 unii45ghz_band: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_port_auth: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_macsec: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_password: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_usrname: Optional[pulumi.Input[str]] = None,
@@ -71,17 +75,19 @@ class WtpprofileArgs:
         :param pulumi.Input[str] ap_handoff: Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] apcfg_profile: AP local configuration profile name.
         :param pulumi.Input[str] ble_profile: Bluetooth Low Energy profile name.
+        :param pulumi.Input[str] bonjour_profile: Bonjour profile name.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] console_login: Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] control_message_offload: Enable/disable CAPWAP control message data channel offload.
         :param pulumi.Input[Sequence[pulumi.Input['WtpprofileDenyMacListArgs']]] deny_mac_lists: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `deny_mac_list` block is documented below.
         :param pulumi.Input[str] dtls_in_kernel: Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] dtls_policy: WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+        :param pulumi.Input[str] dtls_policy: WTP data channel DTLS policy (default = clear-text).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] energy_efficient_ethernet: Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
         :param pulumi.Input['WtpprofileEslSesDongleArgs'] esl_ses_dongle: ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
         :param pulumi.Input[str] ext_info_enable: Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
         :param pulumi.Input[int] handoff_sta_thresh: Threshold value for AP handoff.
@@ -108,8 +114,10 @@ class WtpprofileArgs:
         :param pulumi.Input[str] syslog_profile: System log server configuration profile name.
         :param pulumi.Input[int] tun_mtu_downlink: Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
         :param pulumi.Input[int] tun_mtu_uplink: Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        :param pulumi.Input[str] unii45ghz_band: Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wan_port_auth: Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+        :param pulumi.Input[str] wan_port_auth_macsec: Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wan_port_auth_methods: WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
         :param pulumi.Input[str] wan_port_auth_password: Set WAN port 802.1x supplicant password.
         :param pulumi.Input[str] wan_port_auth_usrname: Set WAN port 802.1x supplicant user name.
@@ -125,6 +133,8 @@ class WtpprofileArgs:
             pulumi.set(__self__, "apcfg_profile", apcfg_profile)
         if ble_profile is not None:
             pulumi.set(__self__, "ble_profile", ble_profile)
+        if bonjour_profile is not None:
+            pulumi.set(__self__, "bonjour_profile", bonjour_profile)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
         if console_login is not None:
@@ -147,6 +157,8 @@ class WtpprofileArgs:
             pulumi.set(__self__, "ext_info_enable", ext_info_enable)
         if frequency_handoff is not None:
             pulumi.set(__self__, "frequency_handoff", frequency_handoff)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if handoff_roaming is not None:
             pulumi.set(__self__, "handoff_roaming", handoff_roaming)
         if handoff_rssi is not None:
@@ -199,10 +211,14 @@ class WtpprofileArgs:
             pulumi.set(__self__, "tun_mtu_downlink", tun_mtu_downlink)
         if tun_mtu_uplink is not None:
             pulumi.set(__self__, "tun_mtu_uplink", tun_mtu_uplink)
+        if unii45ghz_band is not None:
+            pulumi.set(__self__, "unii45ghz_band", unii45ghz_band)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if wan_port_auth is not None:
             pulumi.set(__self__, "wan_port_auth", wan_port_auth)
+        if wan_port_auth_macsec is not None:
+            pulumi.set(__self__, "wan_port_auth_macsec", wan_port_auth_macsec)
         if wan_port_auth_methods is not None:
             pulumi.set(__self__, "wan_port_auth_methods", wan_port_auth_methods)
         if wan_port_auth_password is not None:
@@ -273,6 +289,18 @@ class WtpprofileArgs:
         pulumi.set(self, "ble_profile", value)
 
     @property
+    @pulumi.getter(name="bonjourProfile")
+    def bonjour_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bonjour profile name.
+        """
+        return pulumi.get(self, "bonjour_profile")
+
+    @bonjour_profile.setter
+    def bonjour_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bonjour_profile", value)
+
+    @property
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[str]]:
         """
@@ -336,7 +364,7 @@ class WtpprofileArgs:
     @pulumi.getter(name="dtlsPolicy")
     def dtls_policy(self) -> Optional[pulumi.Input[str]]:
         """
-        WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+        WTP data channel DTLS policy (default = clear-text).
         """
         return pulumi.get(self, "dtls_policy")
 
@@ -403,6 +431,18 @@ class WtpprofileArgs:
     @frequency_handoff.setter
     def frequency_handoff(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "frequency_handoff", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="handoffRoaming")
@@ -717,6 +757,18 @@ class WtpprofileArgs:
         pulumi.set(self, "tun_mtu_uplink", value)
 
     @property
+    @pulumi.getter(name="unii45ghzBand")
+    def unii45ghz_band(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "unii45ghz_band")
+
+    @unii45ghz_band.setter
+    def unii45ghz_band(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "unii45ghz_band", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -739,6 +791,18 @@ class WtpprofileArgs:
     @wan_port_auth.setter
     def wan_port_auth(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "wan_port_auth", value)
+
+    @property
+    @pulumi.getter(name="wanPortAuthMacsec")
+    def wan_port_auth_macsec(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "wan_port_auth_macsec")
+
+    @wan_port_auth_macsec.setter
+    def wan_port_auth_macsec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wan_port_auth_macsec", value)
 
     @property
     @pulumi.getter(name="wanPortAuthMethods")
@@ -797,6 +861,7 @@ class _WtpprofileState:
                  ap_handoff: Optional[pulumi.Input[str]] = None,
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
                  ble_profile: Optional[pulumi.Input[str]] = None,
+                 bonjour_profile: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  console_login: Optional[pulumi.Input[str]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
@@ -808,6 +873,7 @@ class _WtpprofileState:
                  esl_ses_dongle: Optional[pulumi.Input['WtpprofileEslSesDongleArgs']] = None,
                  ext_info_enable: Optional[pulumi.Input[str]] = None,
                  frequency_handoff: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  handoff_roaming: Optional[pulumi.Input[str]] = None,
                  handoff_rssi: Optional[pulumi.Input[int]] = None,
                  handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
@@ -834,8 +900,10 @@ class _WtpprofileState:
                  syslog_profile: Optional[pulumi.Input[str]] = None,
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
+                 unii45ghz_band: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_port_auth: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_macsec: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_password: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_usrname: Optional[pulumi.Input[str]] = None,
@@ -847,17 +915,19 @@ class _WtpprofileState:
         :param pulumi.Input[str] ap_handoff: Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] apcfg_profile: AP local configuration profile name.
         :param pulumi.Input[str] ble_profile: Bluetooth Low Energy profile name.
+        :param pulumi.Input[str] bonjour_profile: Bonjour profile name.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] console_login: Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] control_message_offload: Enable/disable CAPWAP control message data channel offload.
         :param pulumi.Input[Sequence[pulumi.Input['WtpprofileDenyMacListArgs']]] deny_mac_lists: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `deny_mac_list` block is documented below.
         :param pulumi.Input[str] dtls_in_kernel: Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] dtls_policy: WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+        :param pulumi.Input[str] dtls_policy: WTP data channel DTLS policy (default = clear-text).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] energy_efficient_ethernet: Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
         :param pulumi.Input['WtpprofileEslSesDongleArgs'] esl_ses_dongle: ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
         :param pulumi.Input[str] ext_info_enable: Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
         :param pulumi.Input[int] handoff_sta_thresh: Threshold value for AP handoff.
@@ -884,8 +954,10 @@ class _WtpprofileState:
         :param pulumi.Input[str] syslog_profile: System log server configuration profile name.
         :param pulumi.Input[int] tun_mtu_downlink: Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
         :param pulumi.Input[int] tun_mtu_uplink: Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        :param pulumi.Input[str] unii45ghz_band: Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wan_port_auth: Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+        :param pulumi.Input[str] wan_port_auth_macsec: Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wan_port_auth_methods: WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
         :param pulumi.Input[str] wan_port_auth_password: Set WAN port 802.1x supplicant password.
         :param pulumi.Input[str] wan_port_auth_usrname: Set WAN port 802.1x supplicant user name.
@@ -901,6 +973,8 @@ class _WtpprofileState:
             pulumi.set(__self__, "apcfg_profile", apcfg_profile)
         if ble_profile is not None:
             pulumi.set(__self__, "ble_profile", ble_profile)
+        if bonjour_profile is not None:
+            pulumi.set(__self__, "bonjour_profile", bonjour_profile)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
         if console_login is not None:
@@ -923,6 +997,8 @@ class _WtpprofileState:
             pulumi.set(__self__, "ext_info_enable", ext_info_enable)
         if frequency_handoff is not None:
             pulumi.set(__self__, "frequency_handoff", frequency_handoff)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if handoff_roaming is not None:
             pulumi.set(__self__, "handoff_roaming", handoff_roaming)
         if handoff_rssi is not None:
@@ -975,10 +1051,14 @@ class _WtpprofileState:
             pulumi.set(__self__, "tun_mtu_downlink", tun_mtu_downlink)
         if tun_mtu_uplink is not None:
             pulumi.set(__self__, "tun_mtu_uplink", tun_mtu_uplink)
+        if unii45ghz_band is not None:
+            pulumi.set(__self__, "unii45ghz_band", unii45ghz_band)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if wan_port_auth is not None:
             pulumi.set(__self__, "wan_port_auth", wan_port_auth)
+        if wan_port_auth_macsec is not None:
+            pulumi.set(__self__, "wan_port_auth_macsec", wan_port_auth_macsec)
         if wan_port_auth_methods is not None:
             pulumi.set(__self__, "wan_port_auth_methods", wan_port_auth_methods)
         if wan_port_auth_password is not None:
@@ -1049,6 +1129,18 @@ class _WtpprofileState:
         pulumi.set(self, "ble_profile", value)
 
     @property
+    @pulumi.getter(name="bonjourProfile")
+    def bonjour_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Bonjour profile name.
+        """
+        return pulumi.get(self, "bonjour_profile")
+
+    @bonjour_profile.setter
+    def bonjour_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bonjour_profile", value)
+
+    @property
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1112,7 +1204,7 @@ class _WtpprofileState:
     @pulumi.getter(name="dtlsPolicy")
     def dtls_policy(self) -> Optional[pulumi.Input[str]]:
         """
-        WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+        WTP data channel DTLS policy (default = clear-text).
         """
         return pulumi.get(self, "dtls_policy")
 
@@ -1179,6 +1271,18 @@ class _WtpprofileState:
     @frequency_handoff.setter
     def frequency_handoff(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "frequency_handoff", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="handoffRoaming")
@@ -1493,6 +1597,18 @@ class _WtpprofileState:
         pulumi.set(self, "tun_mtu_uplink", value)
 
     @property
+    @pulumi.getter(name="unii45ghzBand")
+    def unii45ghz_band(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "unii45ghz_band")
+
+    @unii45ghz_band.setter
+    def unii45ghz_band(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "unii45ghz_band", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1515,6 +1631,18 @@ class _WtpprofileState:
     @wan_port_auth.setter
     def wan_port_auth(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "wan_port_auth", value)
+
+    @property
+    @pulumi.getter(name="wanPortAuthMacsec")
+    def wan_port_auth_macsec(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "wan_port_auth_macsec")
+
+    @wan_port_auth_macsec.setter
+    def wan_port_auth_macsec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wan_port_auth_macsec", value)
 
     @property
     @pulumi.getter(name="wanPortAuthMethods")
@@ -1575,6 +1703,7 @@ class Wtpprofile(pulumi.CustomResource):
                  ap_handoff: Optional[pulumi.Input[str]] = None,
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
                  ble_profile: Optional[pulumi.Input[str]] = None,
+                 bonjour_profile: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  console_login: Optional[pulumi.Input[str]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
@@ -1586,6 +1715,7 @@ class Wtpprofile(pulumi.CustomResource):
                  esl_ses_dongle: Optional[pulumi.Input[pulumi.InputType['WtpprofileEslSesDongleArgs']]] = None,
                  ext_info_enable: Optional[pulumi.Input[str]] = None,
                  frequency_handoff: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  handoff_roaming: Optional[pulumi.Input[str]] = None,
                  handoff_rssi: Optional[pulumi.Input[int]] = None,
                  handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
@@ -1612,8 +1742,10 @@ class Wtpprofile(pulumi.CustomResource):
                  syslog_profile: Optional[pulumi.Input[str]] = None,
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
+                 unii45ghz_band: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_port_auth: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_macsec: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_password: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_usrname: Optional[pulumi.Input[str]] = None,
@@ -1647,17 +1779,19 @@ class Wtpprofile(pulumi.CustomResource):
         :param pulumi.Input[str] ap_handoff: Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] apcfg_profile: AP local configuration profile name.
         :param pulumi.Input[str] ble_profile: Bluetooth Low Energy profile name.
+        :param pulumi.Input[str] bonjour_profile: Bonjour profile name.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] console_login: Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] control_message_offload: Enable/disable CAPWAP control message data channel offload.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WtpprofileDenyMacListArgs']]]] deny_mac_lists: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `deny_mac_list` block is documented below.
         :param pulumi.Input[str] dtls_in_kernel: Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] dtls_policy: WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+        :param pulumi.Input[str] dtls_policy: WTP data channel DTLS policy (default = clear-text).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] energy_efficient_ethernet: Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
         :param pulumi.Input[pulumi.InputType['WtpprofileEslSesDongleArgs']] esl_ses_dongle: ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
         :param pulumi.Input[str] ext_info_enable: Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
         :param pulumi.Input[int] handoff_sta_thresh: Threshold value for AP handoff.
@@ -1684,8 +1818,10 @@ class Wtpprofile(pulumi.CustomResource):
         :param pulumi.Input[str] syslog_profile: System log server configuration profile name.
         :param pulumi.Input[int] tun_mtu_downlink: Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
         :param pulumi.Input[int] tun_mtu_uplink: Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        :param pulumi.Input[str] unii45ghz_band: Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wan_port_auth: Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+        :param pulumi.Input[str] wan_port_auth_macsec: Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wan_port_auth_methods: WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
         :param pulumi.Input[str] wan_port_auth_password: Set WAN port 802.1x supplicant password.
         :param pulumi.Input[str] wan_port_auth_usrname: Set WAN port 802.1x supplicant user name.
@@ -1738,6 +1874,7 @@ class Wtpprofile(pulumi.CustomResource):
                  ap_handoff: Optional[pulumi.Input[str]] = None,
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
                  ble_profile: Optional[pulumi.Input[str]] = None,
+                 bonjour_profile: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  console_login: Optional[pulumi.Input[str]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
@@ -1749,6 +1886,7 @@ class Wtpprofile(pulumi.CustomResource):
                  esl_ses_dongle: Optional[pulumi.Input[pulumi.InputType['WtpprofileEslSesDongleArgs']]] = None,
                  ext_info_enable: Optional[pulumi.Input[str]] = None,
                  frequency_handoff: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  handoff_roaming: Optional[pulumi.Input[str]] = None,
                  handoff_rssi: Optional[pulumi.Input[int]] = None,
                  handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
@@ -1775,8 +1913,10 @@ class Wtpprofile(pulumi.CustomResource):
                  syslog_profile: Optional[pulumi.Input[str]] = None,
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
+                 unii45ghz_band: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_port_auth: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_macsec: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_password: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_usrname: Optional[pulumi.Input[str]] = None,
@@ -1795,6 +1935,7 @@ class Wtpprofile(pulumi.CustomResource):
             __props__.__dict__["ap_handoff"] = ap_handoff
             __props__.__dict__["apcfg_profile"] = apcfg_profile
             __props__.__dict__["ble_profile"] = ble_profile
+            __props__.__dict__["bonjour_profile"] = bonjour_profile
             __props__.__dict__["comment"] = comment
             __props__.__dict__["console_login"] = console_login
             __props__.__dict__["control_message_offload"] = control_message_offload
@@ -1806,6 +1947,7 @@ class Wtpprofile(pulumi.CustomResource):
             __props__.__dict__["esl_ses_dongle"] = esl_ses_dongle
             __props__.__dict__["ext_info_enable"] = ext_info_enable
             __props__.__dict__["frequency_handoff"] = frequency_handoff
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["handoff_roaming"] = handoff_roaming
             __props__.__dict__["handoff_rssi"] = handoff_rssi
             __props__.__dict__["handoff_sta_thresh"] = handoff_sta_thresh
@@ -1832,8 +1974,10 @@ class Wtpprofile(pulumi.CustomResource):
             __props__.__dict__["syslog_profile"] = syslog_profile
             __props__.__dict__["tun_mtu_downlink"] = tun_mtu_downlink
             __props__.__dict__["tun_mtu_uplink"] = tun_mtu_uplink
+            __props__.__dict__["unii45ghz_band"] = unii45ghz_band
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["wan_port_auth"] = wan_port_auth
+            __props__.__dict__["wan_port_auth_macsec"] = wan_port_auth_macsec
             __props__.__dict__["wan_port_auth_methods"] = wan_port_auth_methods
             __props__.__dict__["wan_port_auth_password"] = wan_port_auth_password
             __props__.__dict__["wan_port_auth_usrname"] = wan_port_auth_usrname
@@ -1855,6 +1999,7 @@ class Wtpprofile(pulumi.CustomResource):
             ap_handoff: Optional[pulumi.Input[str]] = None,
             apcfg_profile: Optional[pulumi.Input[str]] = None,
             ble_profile: Optional[pulumi.Input[str]] = None,
+            bonjour_profile: Optional[pulumi.Input[str]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             console_login: Optional[pulumi.Input[str]] = None,
             control_message_offload: Optional[pulumi.Input[str]] = None,
@@ -1866,6 +2011,7 @@ class Wtpprofile(pulumi.CustomResource):
             esl_ses_dongle: Optional[pulumi.Input[pulumi.InputType['WtpprofileEslSesDongleArgs']]] = None,
             ext_info_enable: Optional[pulumi.Input[str]] = None,
             frequency_handoff: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             handoff_roaming: Optional[pulumi.Input[str]] = None,
             handoff_rssi: Optional[pulumi.Input[int]] = None,
             handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
@@ -1892,8 +2038,10 @@ class Wtpprofile(pulumi.CustomResource):
             syslog_profile: Optional[pulumi.Input[str]] = None,
             tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
             tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
+            unii45ghz_band: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             wan_port_auth: Optional[pulumi.Input[str]] = None,
+            wan_port_auth_macsec: Optional[pulumi.Input[str]] = None,
             wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
             wan_port_auth_password: Optional[pulumi.Input[str]] = None,
             wan_port_auth_usrname: Optional[pulumi.Input[str]] = None,
@@ -1910,17 +2058,19 @@ class Wtpprofile(pulumi.CustomResource):
         :param pulumi.Input[str] ap_handoff: Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] apcfg_profile: AP local configuration profile name.
         :param pulumi.Input[str] ble_profile: Bluetooth Low Energy profile name.
+        :param pulumi.Input[str] bonjour_profile: Bonjour profile name.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] console_login: Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] control_message_offload: Enable/disable CAPWAP control message data channel offload.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WtpprofileDenyMacListArgs']]]] deny_mac_lists: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `deny_mac_list` block is documented below.
         :param pulumi.Input[str] dtls_in_kernel: Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] dtls_policy: WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+        :param pulumi.Input[str] dtls_policy: WTP data channel DTLS policy (default = clear-text).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] energy_efficient_ethernet: Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
         :param pulumi.Input[pulumi.InputType['WtpprofileEslSesDongleArgs']] esl_ses_dongle: ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
         :param pulumi.Input[str] ext_info_enable: Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
         :param pulumi.Input[int] handoff_sta_thresh: Threshold value for AP handoff.
@@ -1947,8 +2097,10 @@ class Wtpprofile(pulumi.CustomResource):
         :param pulumi.Input[str] syslog_profile: System log server configuration profile name.
         :param pulumi.Input[int] tun_mtu_downlink: Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
         :param pulumi.Input[int] tun_mtu_uplink: Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        :param pulumi.Input[str] unii45ghz_band: Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wan_port_auth: Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+        :param pulumi.Input[str] wan_port_auth_macsec: Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wan_port_auth_methods: WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
         :param pulumi.Input[str] wan_port_auth_password: Set WAN port 802.1x supplicant password.
         :param pulumi.Input[str] wan_port_auth_usrname: Set WAN port 802.1x supplicant user name.
@@ -1963,6 +2115,7 @@ class Wtpprofile(pulumi.CustomResource):
         __props__.__dict__["ap_handoff"] = ap_handoff
         __props__.__dict__["apcfg_profile"] = apcfg_profile
         __props__.__dict__["ble_profile"] = ble_profile
+        __props__.__dict__["bonjour_profile"] = bonjour_profile
         __props__.__dict__["comment"] = comment
         __props__.__dict__["console_login"] = console_login
         __props__.__dict__["control_message_offload"] = control_message_offload
@@ -1974,6 +2127,7 @@ class Wtpprofile(pulumi.CustomResource):
         __props__.__dict__["esl_ses_dongle"] = esl_ses_dongle
         __props__.__dict__["ext_info_enable"] = ext_info_enable
         __props__.__dict__["frequency_handoff"] = frequency_handoff
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["handoff_roaming"] = handoff_roaming
         __props__.__dict__["handoff_rssi"] = handoff_rssi
         __props__.__dict__["handoff_sta_thresh"] = handoff_sta_thresh
@@ -2000,8 +2154,10 @@ class Wtpprofile(pulumi.CustomResource):
         __props__.__dict__["syslog_profile"] = syslog_profile
         __props__.__dict__["tun_mtu_downlink"] = tun_mtu_downlink
         __props__.__dict__["tun_mtu_uplink"] = tun_mtu_uplink
+        __props__.__dict__["unii45ghz_band"] = unii45ghz_band
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["wan_port_auth"] = wan_port_auth
+        __props__.__dict__["wan_port_auth_macsec"] = wan_port_auth_macsec
         __props__.__dict__["wan_port_auth_methods"] = wan_port_auth_methods
         __props__.__dict__["wan_port_auth_password"] = wan_port_auth_password
         __props__.__dict__["wan_port_auth_usrname"] = wan_port_auth_usrname
@@ -2049,6 +2205,14 @@ class Wtpprofile(pulumi.CustomResource):
         return pulumi.get(self, "ble_profile")
 
     @property
+    @pulumi.getter(name="bonjourProfile")
+    def bonjour_profile(self) -> pulumi.Output[str]:
+        """
+        Bonjour profile name.
+        """
+        return pulumi.get(self, "bonjour_profile")
+
+    @property
     @pulumi.getter
     def comment(self) -> pulumi.Output[Optional[str]]:
         """
@@ -2092,7 +2256,7 @@ class Wtpprofile(pulumi.CustomResource):
     @pulumi.getter(name="dtlsPolicy")
     def dtls_policy(self) -> pulumi.Output[str]:
         """
-        WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
+        WTP data channel DTLS policy (default = clear-text).
         """
         return pulumi.get(self, "dtls_policy")
 
@@ -2135,6 +2299,14 @@ class Wtpprofile(pulumi.CustomResource):
         Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "frequency_handoff")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="handoffRoaming")
@@ -2345,6 +2517,14 @@ class Wtpprofile(pulumi.CustomResource):
         return pulumi.get(self, "tun_mtu_uplink")
 
     @property
+    @pulumi.getter(name="unii45ghzBand")
+    def unii45ghz_band(self) -> pulumi.Output[str]:
+        """
+        Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "unii45ghz_band")
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> pulumi.Output[Optional[str]]:
         """
@@ -2359,6 +2539,14 @@ class Wtpprofile(pulumi.CustomResource):
         Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
         """
         return pulumi.get(self, "wan_port_auth")
+
+    @property
+    @pulumi.getter(name="wanPortAuthMacsec")
+    def wan_port_auth_macsec(self) -> pulumi.Output[str]:
+        """
+        Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "wan_port_auth_macsec")
 
     @property
     @pulumi.getter(name="wanPortAuthMethods")

@@ -79,6 +79,8 @@ type Setting struct {
 	__changeIp pulumi.IntOutput `pulumi:"__changeIp"`
 	// Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
 	AccessConfig pulumi.StringOutput `pulumi:"accessConfig"`
+	// Alternate FortiAnalyzer.
+	AltServer pulumi.StringOutput `pulumi:"altServer"`
 	// Certificate used to communicate with FortiAnalyzer.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
@@ -89,9 +91,13 @@ type Setting struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable sending FortiAnalyzer log data with SSL encryption. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm pulumi.StringOutput `pulumi:"encAlgorithm"`
+	// Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+	FallbackToPrimary pulumi.StringOutput `pulumi:"fallbackToPrimary"`
 	// Hidden setting index of FortiAnalyzer.
 	FazType pulumi.IntOutput `pulumi:"fazType"`
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm pulumi.StringOutput `pulumi:"hmacAlgorithm"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
@@ -117,6 +123,8 @@ type Setting struct {
 	Serials SettingSerialArrayOutput `pulumi:"serials"`
 	// The remote FortiAnalyzer.
 	Server pulumi.StringOutput `pulumi:"server"`
+	// Mandatory CA on FortiGate in certificate chain of server.
+	ServerCertCa pulumi.StringOutput `pulumi:"serverCertCa"`
 	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
@@ -169,6 +177,8 @@ type settingState struct {
 	__changeIp *int `pulumi:"__changeIp"`
 	// Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
 	AccessConfig *string `pulumi:"accessConfig"`
+	// Alternate FortiAnalyzer.
+	AltServer *string `pulumi:"altServer"`
 	// Certificate used to communicate with FortiAnalyzer.
 	Certificate *string `pulumi:"certificate"`
 	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
@@ -179,9 +189,13 @@ type settingState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable sending FortiAnalyzer log data with SSL encryption. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm *string `pulumi:"encAlgorithm"`
+	// Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+	FallbackToPrimary *string `pulumi:"fallbackToPrimary"`
 	// Hidden setting index of FortiAnalyzer.
 	FazType *int `pulumi:"fazType"`
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm *string `pulumi:"hmacAlgorithm"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -207,6 +221,8 @@ type settingState struct {
 	Serials []SettingSerial `pulumi:"serials"`
 	// The remote FortiAnalyzer.
 	Server *string `pulumi:"server"`
+	// Mandatory CA on FortiGate in certificate chain of server.
+	ServerCertCa *string `pulumi:"serverCertCa"`
 	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
@@ -230,6 +246,8 @@ type SettingState struct {
 	__changeIp pulumi.IntPtrInput
 	// Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
 	AccessConfig pulumi.StringPtrInput
+	// Alternate FortiAnalyzer.
+	AltServer pulumi.StringPtrInput
 	// Certificate used to communicate with FortiAnalyzer.
 	Certificate pulumi.StringPtrInput
 	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
@@ -240,9 +258,13 @@ type SettingState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable sending FortiAnalyzer log data with SSL encryption. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm pulumi.StringPtrInput
+	// Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+	FallbackToPrimary pulumi.StringPtrInput
 	// Hidden setting index of FortiAnalyzer.
 	FazType pulumi.IntPtrInput
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -268,6 +290,8 @@ type SettingState struct {
 	Serials SettingSerialArrayInput
 	// The remote FortiAnalyzer.
 	Server pulumi.StringPtrInput
+	// Mandatory CA on FortiGate in certificate chain of server.
+	ServerCertCa pulumi.StringPtrInput
 	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
 	SourceIp pulumi.StringPtrInput
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
@@ -295,6 +319,8 @@ type settingArgs struct {
 	__changeIp *int `pulumi:"__changeIp"`
 	// Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
 	AccessConfig *string `pulumi:"accessConfig"`
+	// Alternate FortiAnalyzer.
+	AltServer *string `pulumi:"altServer"`
 	// Certificate used to communicate with FortiAnalyzer.
 	Certificate *string `pulumi:"certificate"`
 	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
@@ -305,9 +331,13 @@ type settingArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable sending FortiAnalyzer log data with SSL encryption. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm *string `pulumi:"encAlgorithm"`
+	// Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+	FallbackToPrimary *string `pulumi:"fallbackToPrimary"`
 	// Hidden setting index of FortiAnalyzer.
 	FazType *int `pulumi:"fazType"`
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm *string `pulumi:"hmacAlgorithm"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -333,6 +363,8 @@ type settingArgs struct {
 	Serials []SettingSerial `pulumi:"serials"`
 	// The remote FortiAnalyzer.
 	Server *string `pulumi:"server"`
+	// Mandatory CA on FortiGate in certificate chain of server.
+	ServerCertCa *string `pulumi:"serverCertCa"`
 	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
@@ -357,6 +389,8 @@ type SettingArgs struct {
 	__changeIp pulumi.IntPtrInput
 	// Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
 	AccessConfig pulumi.StringPtrInput
+	// Alternate FortiAnalyzer.
+	AltServer pulumi.StringPtrInput
 	// Certificate used to communicate with FortiAnalyzer.
 	Certificate pulumi.StringPtrInput
 	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
@@ -367,9 +401,13 @@ type SettingArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable sending FortiAnalyzer log data with SSL encryption. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm pulumi.StringPtrInput
+	// Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+	FallbackToPrimary pulumi.StringPtrInput
 	// Hidden setting index of FortiAnalyzer.
 	FazType pulumi.IntPtrInput
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -395,6 +433,8 @@ type SettingArgs struct {
 	Serials SettingSerialArrayInput
 	// The remote FortiAnalyzer.
 	Server pulumi.StringPtrInput
+	// Mandatory CA on FortiGate in certificate chain of server.
+	ServerCertCa pulumi.StringPtrInput
 	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
 	SourceIp pulumi.StringPtrInput
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
@@ -510,6 +550,11 @@ func (o SettingOutput) AccessConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.AccessConfig }).(pulumi.StringOutput)
 }
 
+// Alternate FortiAnalyzer.
+func (o SettingOutput) AltServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.AltServer }).(pulumi.StringOutput)
+}
+
 // Certificate used to communicate with FortiAnalyzer.
 func (o SettingOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
@@ -535,12 +580,22 @@ func (o SettingOutput) EncAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.EncAlgorithm }).(pulumi.StringOutput)
 }
 
+// Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+func (o SettingOutput) FallbackToPrimary() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.FallbackToPrimary }).(pulumi.StringOutput)
+}
+
 // Hidden setting index of FortiAnalyzer.
 func (o SettingOutput) FazType() pulumi.IntOutput {
 	return o.ApplyT(func(v *Setting) pulumi.IntOutput { return v.FazType }).(pulumi.IntOutput)
 }
 
-// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// FortiAnalyzer IPsec tunnel HMAC algorithm.
 func (o SettingOutput) HmacAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.HmacAlgorithm }).(pulumi.StringOutput)
 }
@@ -603,6 +658,11 @@ func (o SettingOutput) Serials() SettingSerialArrayOutput {
 // The remote FortiAnalyzer.
 func (o SettingOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+// Mandatory CA on FortiGate in certificate chain of server.
+func (o SettingOutput) ServerCertCa() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.ServerCertCa }).(pulumi.StringOutput)
 }
 
 // Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.

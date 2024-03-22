@@ -107,6 +107,8 @@ type Ripng struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Garbage timer.
 	GarbageTimer pulumi.IntOutput `pulumi:"garbageTimer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// RIPng interface configuration. The structure of `interface` block is documented below.
 	Interfaces RipngInterfaceArrayOutput `pulumi:"interfaces"`
 	// Maximum metric allowed to output(0 means 'not set').
@@ -173,6 +175,8 @@ type ripngState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Garbage timer.
 	GarbageTimer *int `pulumi:"garbageTimer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// RIPng interface configuration. The structure of `interface` block is documented below.
 	Interfaces []RipngInterface `pulumi:"interfaces"`
 	// Maximum metric allowed to output(0 means 'not set').
@@ -210,6 +214,8 @@ type RipngState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Garbage timer.
 	GarbageTimer pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// RIPng interface configuration. The structure of `interface` block is documented below.
 	Interfaces RipngInterfaceArrayInput
 	// Maximum metric allowed to output(0 means 'not set').
@@ -251,6 +257,8 @@ type ripngArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Garbage timer.
 	GarbageTimer *int `pulumi:"garbageTimer"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// RIPng interface configuration. The structure of `interface` block is documented below.
 	Interfaces []RipngInterface `pulumi:"interfaces"`
 	// Maximum metric allowed to output(0 means 'not set').
@@ -289,6 +297,8 @@ type RipngArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Garbage timer.
 	GarbageTimer pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// RIPng interface configuration. The structure of `interface` block is documented below.
 	Interfaces RipngInterfaceArrayInput
 	// Maximum metric allowed to output(0 means 'not set').
@@ -431,6 +441,11 @@ func (o RipngOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Garbage timer.
 func (o RipngOutput) GarbageTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ripng) pulumi.IntOutput { return v.GarbageTimer }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o RipngOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Ripng) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // RIPng interface configuration. The structure of `interface` block is documented below.

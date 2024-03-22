@@ -50,6 +50,8 @@ type LookupCentralmanagementResult struct {
 	FmgSourceIp6 string `pulumi:"fmgSourceIp6"`
 	// Port used to communicate with FortiManager that is acting as a FortiGuard update server.
 	FmgUpdatePort string `pulumi:"fmgUpdatePort"`
+	// Override access profile.
+	FortigateCloudSsoDefaultProfile string `pulumi:"fortigateCloudSsoDefaultProfile"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Enable/disable inclusion of public FortiGuard servers in the override server list.
@@ -163,6 +165,11 @@ func (o LookupCentralmanagementResultOutput) FmgSourceIp6() pulumi.StringOutput 
 // Port used to communicate with FortiManager that is acting as a FortiGuard update server.
 func (o LookupCentralmanagementResultOutput) FmgUpdatePort() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCentralmanagementResult) string { return v.FmgUpdatePort }).(pulumi.StringOutput)
+}
+
+// Override access profile.
+func (o LookupCentralmanagementResultOutput) FortigateCloudSsoDefaultProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCentralmanagementResult) string { return v.FortigateCloudSsoDefaultProfile }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

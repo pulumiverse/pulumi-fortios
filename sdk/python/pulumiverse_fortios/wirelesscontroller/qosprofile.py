@@ -30,6 +30,7 @@ class QosprofileArgs:
                  dscp_wmm_vis: Optional[pulumi.Input[Sequence[pulumi.Input['QosprofileDscpWmmViArgs']]]] = None,
                  dscp_wmm_vos: Optional[pulumi.Input[Sequence[pulumi.Input['QosprofileDscpWmmVoArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  uplink: Optional[pulumi.Input[int]] = None,
                  uplink_sta: Optional[pulumi.Input[int]] = None,
@@ -57,6 +58,7 @@ class QosprofileArgs:
         :param pulumi.Input[Sequence[pulumi.Input['QosprofileDscpWmmViArgs']]] dscp_wmm_vis: DSCP mapping for video access (default = 32 40). The structure of `dscp_wmm_vi` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['QosprofileDscpWmmVoArgs']]] dscp_wmm_vos: DSCP mapping for voice access (default = 48 56). The structure of `dscp_wmm_vo` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: WiFi QoS profile name.
         :param pulumi.Input[int] uplink: Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
         :param pulumi.Input[int] uplink_sta: Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
@@ -97,6 +99,8 @@ class QosprofileArgs:
             pulumi.set(__self__, "dscp_wmm_vos", dscp_wmm_vos)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if uplink is not None:
@@ -287,6 +291,18 @@ class QosprofileArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -438,6 +454,7 @@ class _QosprofileState:
                  dscp_wmm_vis: Optional[pulumi.Input[Sequence[pulumi.Input['QosprofileDscpWmmViArgs']]]] = None,
                  dscp_wmm_vos: Optional[pulumi.Input[Sequence[pulumi.Input['QosprofileDscpWmmVoArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  uplink: Optional[pulumi.Input[int]] = None,
                  uplink_sta: Optional[pulumi.Input[int]] = None,
@@ -465,6 +482,7 @@ class _QosprofileState:
         :param pulumi.Input[Sequence[pulumi.Input['QosprofileDscpWmmViArgs']]] dscp_wmm_vis: DSCP mapping for video access (default = 32 40). The structure of `dscp_wmm_vi` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['QosprofileDscpWmmVoArgs']]] dscp_wmm_vos: DSCP mapping for voice access (default = 48 56). The structure of `dscp_wmm_vo` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: WiFi QoS profile name.
         :param pulumi.Input[int] uplink: Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
         :param pulumi.Input[int] uplink_sta: Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
@@ -505,6 +523,8 @@ class _QosprofileState:
             pulumi.set(__self__, "dscp_wmm_vos", dscp_wmm_vos)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if uplink is not None:
@@ -695,6 +715,18 @@ class _QosprofileState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -848,6 +880,7 @@ class Qosprofile(pulumi.CustomResource):
                  dscp_wmm_vis: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QosprofileDscpWmmViArgs']]]]] = None,
                  dscp_wmm_vos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QosprofileDscpWmmVoArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  uplink: Optional[pulumi.Input[int]] = None,
                  uplink_sta: Optional[pulumi.Input[int]] = None,
@@ -897,6 +930,7 @@ class Qosprofile(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QosprofileDscpWmmViArgs']]]] dscp_wmm_vis: DSCP mapping for video access (default = 32 40). The structure of `dscp_wmm_vi` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QosprofileDscpWmmVoArgs']]]] dscp_wmm_vos: DSCP mapping for voice access (default = 48 56). The structure of `dscp_wmm_vo` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: WiFi QoS profile name.
         :param pulumi.Input[int] uplink: Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
         :param pulumi.Input[int] uplink_sta: Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
@@ -965,6 +999,7 @@ class Qosprofile(pulumi.CustomResource):
                  dscp_wmm_vis: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QosprofileDscpWmmViArgs']]]]] = None,
                  dscp_wmm_vos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QosprofileDscpWmmVoArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  uplink: Optional[pulumi.Input[int]] = None,
                  uplink_sta: Optional[pulumi.Input[int]] = None,
@@ -999,6 +1034,7 @@ class Qosprofile(pulumi.CustomResource):
             __props__.__dict__["dscp_wmm_vis"] = dscp_wmm_vis
             __props__.__dict__["dscp_wmm_vos"] = dscp_wmm_vos
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["uplink"] = uplink
             __props__.__dict__["uplink_sta"] = uplink_sta
@@ -1034,6 +1070,7 @@ class Qosprofile(pulumi.CustomResource):
             dscp_wmm_vis: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QosprofileDscpWmmViArgs']]]]] = None,
             dscp_wmm_vos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QosprofileDscpWmmVoArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             uplink: Optional[pulumi.Input[int]] = None,
             uplink_sta: Optional[pulumi.Input[int]] = None,
@@ -1066,6 +1103,7 @@ class Qosprofile(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QosprofileDscpWmmViArgs']]]] dscp_wmm_vis: DSCP mapping for video access (default = 32 40). The structure of `dscp_wmm_vi` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QosprofileDscpWmmVoArgs']]]] dscp_wmm_vos: DSCP mapping for voice access (default = 48 56). The structure of `dscp_wmm_vo` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: WiFi QoS profile name.
         :param pulumi.Input[int] uplink: Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
         :param pulumi.Input[int] uplink_sta: Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit).
@@ -1096,6 +1134,7 @@ class Qosprofile(pulumi.CustomResource):
         __props__.__dict__["dscp_wmm_vis"] = dscp_wmm_vis
         __props__.__dict__["dscp_wmm_vos"] = dscp_wmm_vos
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["uplink"] = uplink
         __props__.__dict__["uplink_sta"] = uplink_sta
@@ -1220,6 +1259,14 @@ class Qosprofile(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

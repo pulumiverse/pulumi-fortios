@@ -28,6 +28,7 @@ class ReplacemsggroupArgs:
                  ecs: Optional[pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupEcArgs']]]] = None,
                  fortiguard_wfs: Optional[pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupFortiguardWfArgs']]]] = None,
                  ftps: Optional[pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupFtpArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupHttpArgs']]]] = None,
                  icaps: Optional[pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupIcapArgs']]]] = None,
                  mails: Optional[pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupMailArgs']]]] = None,
@@ -54,6 +55,7 @@ class ReplacemsggroupArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupEcArgs']]] ecs: Replacement message table entries. The structure of `ec` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupFortiguardWfArgs']]] fortiguard_wfs: Replacement message table entries. The structure of `fortiguard_wf` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupFtpArgs']]] ftps: Replacement message table entries. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupHttpArgs']]] https: Replacement message table entries. The structure of `http` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupIcapArgs']]] icaps: Replacement message table entries. The structure of `icap` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupMailArgs']]] mails: Replacement message table entries. The structure of `mail` block is documented below.
@@ -90,6 +92,8 @@ class ReplacemsggroupArgs:
             pulumi.set(__self__, "fortiguard_wfs", fortiguard_wfs)
         if ftps is not None:
             pulumi.set(__self__, "ftps", ftps)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https is not None:
             pulumi.set(__self__, "https", https)
         if icaps is not None:
@@ -260,6 +264,18 @@ class ReplacemsggroupArgs:
         pulumi.set(self, "ftps", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def https(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupHttpArgs']]]]:
         """
@@ -418,6 +434,7 @@ class _ReplacemsggroupState:
                  ecs: Optional[pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupEcArgs']]]] = None,
                  fortiguard_wfs: Optional[pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupFortiguardWfArgs']]]] = None,
                  ftps: Optional[pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupFtpArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupHttpArgs']]]] = None,
                  icaps: Optional[pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupIcapArgs']]]] = None,
@@ -444,6 +461,7 @@ class _ReplacemsggroupState:
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupEcArgs']]] ecs: Replacement message table entries. The structure of `ec` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupFortiguardWfArgs']]] fortiguard_wfs: Replacement message table entries. The structure of `fortiguard_wf` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupFtpArgs']]] ftps: Replacement message table entries. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Group type.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupHttpArgs']]] https: Replacement message table entries. The structure of `http` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupIcapArgs']]] icaps: Replacement message table entries. The structure of `icap` block is documented below.
@@ -480,6 +498,8 @@ class _ReplacemsggroupState:
             pulumi.set(__self__, "fortiguard_wfs", fortiguard_wfs)
         if ftps is not None:
             pulumi.set(__self__, "ftps", ftps)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_type is not None:
             pulumi.set(__self__, "group_type", group_type)
         if https is not None:
@@ -638,6 +658,18 @@ class _ReplacemsggroupState:
     @ftps.setter
     def ftps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupFtpArgs']]]]):
         pulumi.set(self, "ftps", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupType")
@@ -812,6 +844,7 @@ class Replacemsggroup(pulumi.CustomResource):
                  ecs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupEcArgs']]]]] = None,
                  fortiguard_wfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFortiguardWfArgs']]]]] = None,
                  ftps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFtpArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupHttpArgs']]]]] = None,
                  icaps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupIcapArgs']]]]] = None,
@@ -873,6 +906,7 @@ class Replacemsggroup(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupEcArgs']]]] ecs: Replacement message table entries. The structure of `ec` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFortiguardWfArgs']]]] fortiguard_wfs: Replacement message table entries. The structure of `fortiguard_wf` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFtpArgs']]]] ftps: Replacement message table entries. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Group type.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupHttpArgs']]]] https: Replacement message table entries. The structure of `http` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupIcapArgs']]]] icaps: Replacement message table entries. The structure of `icap` block is documented below.
@@ -953,6 +987,7 @@ class Replacemsggroup(pulumi.CustomResource):
                  ecs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupEcArgs']]]]] = None,
                  fortiguard_wfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFortiguardWfArgs']]]]] = None,
                  ftps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFtpArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupHttpArgs']]]]] = None,
                  icaps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupIcapArgs']]]]] = None,
@@ -986,6 +1021,7 @@ class Replacemsggroup(pulumi.CustomResource):
             __props__.__dict__["ecs"] = ecs
             __props__.__dict__["fortiguard_wfs"] = fortiguard_wfs
             __props__.__dict__["ftps"] = ftps
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if group_type is None and not opts.urn:
                 raise TypeError("Missing required property 'group_type'")
             __props__.__dict__["group_type"] = group_type
@@ -1022,6 +1058,7 @@ class Replacemsggroup(pulumi.CustomResource):
             ecs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupEcArgs']]]]] = None,
             fortiguard_wfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFortiguardWfArgs']]]]] = None,
             ftps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFtpArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_type: Optional[pulumi.Input[str]] = None,
             https: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupHttpArgs']]]]] = None,
             icaps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupIcapArgs']]]]] = None,
@@ -1053,6 +1090,7 @@ class Replacemsggroup(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupEcArgs']]]] ecs: Replacement message table entries. The structure of `ec` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFortiguardWfArgs']]]] fortiguard_wfs: Replacement message table entries. The structure of `fortiguard_wf` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFtpArgs']]]] ftps: Replacement message table entries. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Group type.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupHttpArgs']]]] https: Replacement message table entries. The structure of `http` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupIcapArgs']]]] icaps: Replacement message table entries. The structure of `icap` block is documented below.
@@ -1082,6 +1120,7 @@ class Replacemsggroup(pulumi.CustomResource):
         __props__.__dict__["ecs"] = ecs
         __props__.__dict__["fortiguard_wfs"] = fortiguard_wfs
         __props__.__dict__["ftps"] = ftps
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_type"] = group_type
         __props__.__dict__["https"] = https
         __props__.__dict__["icaps"] = icaps
@@ -1184,6 +1223,14 @@ class Replacemsggroup(pulumi.CustomResource):
         Replacement message table entries. The structure of `ftp` block is documented below.
         """
         return pulumi.get(self, "ftps")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupType")

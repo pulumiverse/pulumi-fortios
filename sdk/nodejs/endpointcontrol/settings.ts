@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Configure endpoint control settings. Applies to FortiOS Version `<= 6.2.6`.
+ * Configure endpoint control settings. Applies to FortiOS Version `6.2.0,6.2.4,6.2.6,7.4.0,7.4.1,7.4.2`.
  *
  * ## Example Usage
  *
@@ -138,6 +138,10 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly forticlientWarningInterval!: pulumi.Output<number>;
     /**
+     * Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+     */
+    public readonly override!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -170,6 +174,7 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["forticlientSysUpdateInterval"] = state ? state.forticlientSysUpdateInterval : undefined;
             resourceInputs["forticlientUserAvatar"] = state ? state.forticlientUserAvatar : undefined;
             resourceInputs["forticlientWarningInterval"] = state ? state.forticlientWarningInterval : undefined;
+            resourceInputs["override"] = state ? state.override : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SettingsArgs | undefined;
@@ -188,6 +193,7 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["forticlientSysUpdateInterval"] = args ? args.forticlientSysUpdateInterval : undefined;
             resourceInputs["forticlientUserAvatar"] = args ? args.forticlientUserAvatar : undefined;
             resourceInputs["forticlientWarningInterval"] = args ? args.forticlientWarningInterval : undefined;
+            resourceInputs["override"] = args ? args.override : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -262,6 +268,10 @@ export interface SettingsState {
      */
     forticlientWarningInterval?: pulumi.Input<number>;
     /**
+     * Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+     */
+    override?: pulumi.Input<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
@@ -331,6 +341,10 @@ export interface SettingsArgs {
      * Period of time between FortiClient portal warnings (0 - 24 hours, default = 1).
      */
     forticlientWarningInterval?: pulumi.Input<number>;
+    /**
+     * Override global EMS table for this VDOM. Valid values: `enable`, `disable`.
+     */
+    override?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

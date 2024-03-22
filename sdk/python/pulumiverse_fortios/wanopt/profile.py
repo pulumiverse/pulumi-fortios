@@ -20,6 +20,7 @@ class ProfileArgs:
                  cifs: Optional[pulumi.Input['ProfileCifsArgs']] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input['ProfileFtpArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input['ProfileHttpArgs']] = None,
                  mapi: Optional[pulumi.Input['ProfileMapiArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -32,6 +33,7 @@ class ProfileArgs:
         :param pulumi.Input['ProfileCifsArgs'] cifs: Enable/disable CIFS (Windows sharing) WAN Optimization and configure CIFS WAN Optimization features. The structure of `cifs` block is documented below.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input['ProfileFtpArgs'] ftp: Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileHttpArgs'] http: Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
         :param pulumi.Input['ProfileMapiArgs'] mapi: Enable/disable MAPI email WAN Optimization and configure MAPI WAN Optimization features. The structure of `mapi` block is documented below.
         :param pulumi.Input[str] name: Profile name.
@@ -47,6 +49,8 @@ class ProfileArgs:
             pulumi.set(__self__, "comments", comments)
         if ftp is not None:
             pulumi.set(__self__, "ftp", ftp)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http is not None:
             pulumi.set(__self__, "http", http)
         if mapi is not None:
@@ -107,6 +111,18 @@ class ProfileArgs:
     @ftp.setter
     def ftp(self, value: Optional[pulumi.Input['ProfileFtpArgs']]):
         pulumi.set(self, "ftp", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -188,6 +204,7 @@ class _ProfileState:
                  cifs: Optional[pulumi.Input['ProfileCifsArgs']] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input['ProfileFtpArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input['ProfileHttpArgs']] = None,
                  mapi: Optional[pulumi.Input['ProfileMapiArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -200,6 +217,7 @@ class _ProfileState:
         :param pulumi.Input['ProfileCifsArgs'] cifs: Enable/disable CIFS (Windows sharing) WAN Optimization and configure CIFS WAN Optimization features. The structure of `cifs` block is documented below.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input['ProfileFtpArgs'] ftp: Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileHttpArgs'] http: Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
         :param pulumi.Input['ProfileMapiArgs'] mapi: Enable/disable MAPI email WAN Optimization and configure MAPI WAN Optimization features. The structure of `mapi` block is documented below.
         :param pulumi.Input[str] name: Profile name.
@@ -215,6 +233,8 @@ class _ProfileState:
             pulumi.set(__self__, "comments", comments)
         if ftp is not None:
             pulumi.set(__self__, "ftp", ftp)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http is not None:
             pulumi.set(__self__, "http", http)
         if mapi is not None:
@@ -275,6 +295,18 @@ class _ProfileState:
     @ftp.setter
     def ftp(self, value: Optional[pulumi.Input['ProfileFtpArgs']]):
         pulumi.set(self, "ftp", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -358,6 +390,7 @@ class Profile(pulumi.CustomResource):
                  cifs: Optional[pulumi.Input[pulumi.InputType['ProfileCifsArgs']]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input[pulumi.InputType['ProfileFtpArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input[pulumi.InputType['ProfileHttpArgs']]] = None,
                  mapi: Optional[pulumi.Input[pulumi.InputType['ProfileMapiArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -455,6 +488,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ProfileCifsArgs']] cifs: Enable/disable CIFS (Windows sharing) WAN Optimization and configure CIFS WAN Optimization features. The structure of `cifs` block is documented below.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[pulumi.InputType['ProfileFtpArgs']] ftp: Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileHttpArgs']] http: Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileMapiArgs']] mapi: Enable/disable MAPI email WAN Optimization and configure MAPI WAN Optimization features. The structure of `mapi` block is documented below.
         :param pulumi.Input[str] name: Profile name.
@@ -571,6 +605,7 @@ class Profile(pulumi.CustomResource):
                  cifs: Optional[pulumi.Input[pulumi.InputType['ProfileCifsArgs']]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input[pulumi.InputType['ProfileFtpArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input[pulumi.InputType['ProfileHttpArgs']]] = None,
                  mapi: Optional[pulumi.Input[pulumi.InputType['ProfileMapiArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -590,6 +625,7 @@ class Profile(pulumi.CustomResource):
             __props__.__dict__["cifs"] = cifs
             __props__.__dict__["comments"] = comments
             __props__.__dict__["ftp"] = ftp
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["http"] = http
             __props__.__dict__["mapi"] = mapi
             __props__.__dict__["name"] = name
@@ -610,6 +646,7 @@ class Profile(pulumi.CustomResource):
             cifs: Optional[pulumi.Input[pulumi.InputType['ProfileCifsArgs']]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             ftp: Optional[pulumi.Input[pulumi.InputType['ProfileFtpArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             http: Optional[pulumi.Input[pulumi.InputType['ProfileHttpArgs']]] = None,
             mapi: Optional[pulumi.Input[pulumi.InputType['ProfileMapiArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -627,6 +664,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ProfileCifsArgs']] cifs: Enable/disable CIFS (Windows sharing) WAN Optimization and configure CIFS WAN Optimization features. The structure of `cifs` block is documented below.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[pulumi.InputType['ProfileFtpArgs']] ftp: Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileHttpArgs']] http: Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileMapiArgs']] mapi: Enable/disable MAPI email WAN Optimization and configure MAPI WAN Optimization features. The structure of `mapi` block is documented below.
         :param pulumi.Input[str] name: Profile name.
@@ -642,6 +680,7 @@ class Profile(pulumi.CustomResource):
         __props__.__dict__["cifs"] = cifs
         __props__.__dict__["comments"] = comments
         __props__.__dict__["ftp"] = ftp
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["http"] = http
         __props__.__dict__["mapi"] = mapi
         __props__.__dict__["name"] = name
@@ -681,6 +720,14 @@ class Profile(pulumi.CustomResource):
         Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
         """
         return pulumi.get(self, "ftp")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

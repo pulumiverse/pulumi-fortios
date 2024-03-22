@@ -39,6 +39,10 @@ type Dictionary struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// DLP dictionary entries. The structure of `entries` block is documented below.
 	Entries DictionaryEntryArrayOutput `pulumi:"entries"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// Enable/disable match-around support. Valid values: `enable`, `disable`.
+	MatchAround pulumi.StringOutput `pulumi:"matchAround"`
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`.
 	MatchType pulumi.StringOutput `pulumi:"matchType"`
 	// Name of table containing the dictionary.
@@ -85,6 +89,10 @@ type dictionaryState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// DLP dictionary entries. The structure of `entries` block is documented below.
 	Entries []DictionaryEntry `pulumi:"entries"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Enable/disable match-around support. Valid values: `enable`, `disable`.
+	MatchAround *string `pulumi:"matchAround"`
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`.
 	MatchType *string `pulumi:"matchType"`
 	// Name of table containing the dictionary.
@@ -102,6 +110,10 @@ type DictionaryState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// DLP dictionary entries. The structure of `entries` block is documented below.
 	Entries DictionaryEntryArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Enable/disable match-around support. Valid values: `enable`, `disable`.
+	MatchAround pulumi.StringPtrInput
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`.
 	MatchType pulumi.StringPtrInput
 	// Name of table containing the dictionary.
@@ -123,6 +135,10 @@ type dictionaryArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// DLP dictionary entries. The structure of `entries` block is documented below.
 	Entries []DictionaryEntry `pulumi:"entries"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Enable/disable match-around support. Valid values: `enable`, `disable`.
+	MatchAround *string `pulumi:"matchAround"`
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`.
 	MatchType *string `pulumi:"matchType"`
 	// Name of table containing the dictionary.
@@ -141,6 +157,10 @@ type DictionaryArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// DLP dictionary entries. The structure of `entries` block is documented below.
 	Entries DictionaryEntryArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Enable/disable match-around support. Valid values: `enable`, `disable`.
+	MatchAround pulumi.StringPtrInput
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`.
 	MatchType pulumi.StringPtrInput
 	// Name of table containing the dictionary.
@@ -251,6 +271,16 @@ func (o DictionaryOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // DLP dictionary entries. The structure of `entries` block is documented below.
 func (o DictionaryOutput) Entries() DictionaryEntryArrayOutput {
 	return o.ApplyT(func(v *Dictionary) DictionaryEntryArrayOutput { return v.Entries }).(DictionaryEntryArrayOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o DictionaryOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Dictionary) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable match-around support. Valid values: `enable`, `disable`.
+func (o DictionaryOutput) MatchAround() pulumi.StringOutput {
+	return o.ApplyT(func(v *Dictionary) pulumi.StringOutput { return v.MatchAround }).(pulumi.StringOutput)
 }
 
 // Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`.

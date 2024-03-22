@@ -21,12 +21,16 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "fortios:vpn/kmipserver:Kmipserver":
+		r = &Kmipserver{}
 	case "fortios:vpn/l2tp:L2tp":
 		r = &L2tp{}
 	case "fortios:vpn/ocvpn:Ocvpn":
 		r = &Ocvpn{}
 	case "fortios:vpn/pptp:Pptp":
 		r = &Pptp{}
+	case "fortios:vpn/qkd:Qkd":
+		r = &Qkd{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -42,6 +46,11 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"vpn/kmipserver",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"vpn/l2tp",
 		&module{version},
 	)
@@ -53,6 +62,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"vpn/pptp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"vpn/qkd",
 		&module{version},
 	)
 }

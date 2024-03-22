@@ -83,6 +83,26 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string Authgrp;
         /// <summary>
+        /// Enable/disable permission to run config commands.
+        /// </summary>
+        public readonly string CliConfig;
+        /// <summary>
+        /// Enable/disable permission to run diagnostic commands.
+        /// </summary>
+        public readonly string CliDiagnose;
+        /// <summary>
+        /// Enable/disable permission to run execute commands.
+        /// </summary>
+        public readonly string CliExec;
+        /// <summary>
+        /// Enable/disable permission to run get commands.
+        /// </summary>
+        public readonly string CliGet;
+        /// <summary>
+        /// Enable/disable permission to run show commands.
+        /// </summary>
+        public readonly string CliShow;
+        /// <summary>
         /// Comment.
         /// </summary>
         public readonly string Comments;
@@ -180,6 +200,16 @@ namespace Pulumiverse.Fortios.System
 
             string authgrp,
 
+            string cliConfig,
+
+            string cliDiagnose,
+
+            string cliExec,
+
+            string cliGet,
+
+            string cliShow,
+
             string comments,
 
             string ftviewgrp,
@@ -229,6 +259,11 @@ namespace Pulumiverse.Fortios.System
             Admintimeout = admintimeout;
             AdmintimeoutOverride = admintimeoutOverride;
             Authgrp = authgrp;
+            CliConfig = cliConfig;
+            CliDiagnose = cliDiagnose;
+            CliExec = cliExec;
+            CliGet = cliGet;
+            CliShow = cliShow;
             Comments = comments;
             Ftviewgrp = ftviewgrp;
             Fwgrp = fwgrp;

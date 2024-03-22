@@ -174,10 +174,22 @@ namespace Pulumiverse.Fortios.Router
         public Output<int> AdditionalPathSelectVpnv4 { get; private set; } = null!;
 
         /// <summary>
+        /// Number of additional paths to be selected for each VPNv6 NLRI.
+        /// </summary>
+        [Output("additionalPathSelectVpnv6")]
+        public Output<int> AdditionalPathSelectVpnv6 { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("additionalPathVpnv4")]
         public Output<string> AdditionalPathVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("additionalPathVpnv6")]
+        public Output<string> AdditionalPathVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// Administrative distance modifications. The structure of `admin_distance` block is documented below.
@@ -208,6 +220,12 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         [Output("as")]
         public Output<int> As { get; private set; } = null!;
+
+        /// <summary>
+        /// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        /// </summary>
+        [Output("asString")]
+        public Output<string> AsString { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable ignore AS path. Valid values: `enable`, `disable`.
@@ -262,6 +280,12 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         [Output("confederationPeers")]
         public Output<ImmutableArray<Outputs.BgpConfederationPeer>> ConfederationPeers { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("crossFamilyConditionalAdv")]
+        public Output<string> CrossFamilyConditionalAdv { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
@@ -358,6 +382,12 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         [Output("fastExternalFailover")]
         public Output<string> FastExternalFailover { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
@@ -623,10 +653,22 @@ namespace Pulumiverse.Fortios.Router
         public Input<int>? AdditionalPathSelectVpnv4 { get; set; }
 
         /// <summary>
+        /// Number of additional paths to be selected for each VPNv6 NLRI.
+        /// </summary>
+        [Input("additionalPathSelectVpnv6")]
+        public Input<int>? AdditionalPathSelectVpnv6 { get; set; }
+
+        /// <summary>
         /// Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("additionalPathVpnv4")]
         public Input<string>? AdditionalPathVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("additionalPathVpnv6")]
+        public Input<string>? AdditionalPathVpnv6 { get; set; }
 
         [Input("adminDistances")]
         private InputList<Inputs.BgpAdminDistanceArgs>? _adminDistances;
@@ -675,6 +717,12 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         [Input("as", required: true)]
         public Input<int> As { get; set; } = null!;
+
+        /// <summary>
+        /// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        /// </summary>
+        [Input("asString")]
+        public Input<string>? AsString { get; set; }
 
         /// <summary>
         /// Enable/disable ignore AS path. Valid values: `enable`, `disable`.
@@ -735,6 +783,12 @@ namespace Pulumiverse.Fortios.Router
             get => _confederationPeers ?? (_confederationPeers = new InputList<Inputs.BgpConfederationPeerArgs>());
             set => _confederationPeers = value;
         }
+
+        /// <summary>
+        /// Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("crossFamilyConditionalAdv")]
+        public Input<string>? CrossFamilyConditionalAdv { get; set; }
 
         /// <summary>
         /// Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
@@ -831,6 +885,12 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         [Input("fastExternalFailover")]
         public Input<string>? FastExternalFailover { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
@@ -1129,10 +1189,22 @@ namespace Pulumiverse.Fortios.Router
         public Input<int>? AdditionalPathSelectVpnv4 { get; set; }
 
         /// <summary>
+        /// Number of additional paths to be selected for each VPNv6 NLRI.
+        /// </summary>
+        [Input("additionalPathSelectVpnv6")]
+        public Input<int>? AdditionalPathSelectVpnv6 { get; set; }
+
+        /// <summary>
         /// Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("additionalPathVpnv4")]
         public Input<string>? AdditionalPathVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("additionalPathVpnv6")]
+        public Input<string>? AdditionalPathVpnv6 { get; set; }
 
         [Input("adminDistances")]
         private InputList<Inputs.BgpAdminDistanceGetArgs>? _adminDistances;
@@ -1181,6 +1253,12 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         [Input("as")]
         public Input<int>? As { get; set; }
+
+        /// <summary>
+        /// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        /// </summary>
+        [Input("asString")]
+        public Input<string>? AsString { get; set; }
 
         /// <summary>
         /// Enable/disable ignore AS path. Valid values: `enable`, `disable`.
@@ -1241,6 +1319,12 @@ namespace Pulumiverse.Fortios.Router
             get => _confederationPeers ?? (_confederationPeers = new InputList<Inputs.BgpConfederationPeerGetArgs>());
             set => _confederationPeers = value;
         }
+
+        /// <summary>
+        /// Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("crossFamilyConditionalAdv")]
+        public Input<string>? CrossFamilyConditionalAdv { get; set; }
 
         /// <summary>
         /// Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
@@ -1337,6 +1421,12 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         [Input("fastExternalFailover")]
         public Input<string>? FastExternalFailover { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.

@@ -22,6 +22,7 @@ class ExchangeArgs:
                  connect_protocol: Optional[pulumi.Input[str]] = None,
                  domain_name: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http_auth_type: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  kdc_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ExchangeKdcIpArgs']]]] = None,
@@ -39,13 +40,14 @@ class ExchangeArgs:
         :param pulumi.Input[str] connect_protocol: Connection protocol used to connect to MS Exchange service. Valid values: `rpc-over-tcp`, `rpc-over-http`, `rpc-over-https`.
         :param pulumi.Input[str] domain_name: MS Exchange server fully qualified domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] http_auth_type: Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
         :param pulumi.Input[str] ip: Server IPv4 address.
         :param pulumi.Input[Sequence[pulumi.Input['ExchangeKdcIpArgs']]] kdc_ips: KDC IPv4 addresses for Kerberos authentication. The structure of `kdc_ip` block is documented below.
         :param pulumi.Input[str] name: MS Exchange server entry name.
         :param pulumi.Input[str] password: Password for the specified username.
         :param pulumi.Input[str] server_name: MS Exchange server hostname.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
         :param pulumi.Input[str] username: User name used to sign in to the server. Must have proper permissions for service.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -61,6 +63,8 @@ class ExchangeArgs:
             pulumi.set(__self__, "domain_name", domain_name)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http_auth_type is not None:
             pulumi.set(__self__, "http_auth_type", http_auth_type)
         if ip is not None:
@@ -153,6 +157,18 @@ class ExchangeArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="httpAuthType")
     def http_auth_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -228,7 +244,7 @@ class ExchangeArgs:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -270,6 +286,7 @@ class _ExchangeState:
                  connect_protocol: Optional[pulumi.Input[str]] = None,
                  domain_name: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http_auth_type: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  kdc_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ExchangeKdcIpArgs']]]] = None,
@@ -287,13 +304,14 @@ class _ExchangeState:
         :param pulumi.Input[str] connect_protocol: Connection protocol used to connect to MS Exchange service. Valid values: `rpc-over-tcp`, `rpc-over-http`, `rpc-over-https`.
         :param pulumi.Input[str] domain_name: MS Exchange server fully qualified domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] http_auth_type: Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
         :param pulumi.Input[str] ip: Server IPv4 address.
         :param pulumi.Input[Sequence[pulumi.Input['ExchangeKdcIpArgs']]] kdc_ips: KDC IPv4 addresses for Kerberos authentication. The structure of `kdc_ip` block is documented below.
         :param pulumi.Input[str] name: MS Exchange server entry name.
         :param pulumi.Input[str] password: Password for the specified username.
         :param pulumi.Input[str] server_name: MS Exchange server hostname.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
         :param pulumi.Input[str] username: User name used to sign in to the server. Must have proper permissions for service.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -309,6 +327,8 @@ class _ExchangeState:
             pulumi.set(__self__, "domain_name", domain_name)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http_auth_type is not None:
             pulumi.set(__self__, "http_auth_type", http_auth_type)
         if ip is not None:
@@ -401,6 +421,18 @@ class _ExchangeState:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="httpAuthType")
     def http_auth_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -476,7 +508,7 @@ class _ExchangeState:
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 
@@ -520,6 +552,7 @@ class Exchange(pulumi.CustomResource):
                  connect_protocol: Optional[pulumi.Input[str]] = None,
                  domain_name: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http_auth_type: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  kdc_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExchangeKdcIpArgs']]]]] = None,
@@ -559,13 +592,14 @@ class Exchange(pulumi.CustomResource):
         :param pulumi.Input[str] connect_protocol: Connection protocol used to connect to MS Exchange service. Valid values: `rpc-over-tcp`, `rpc-over-http`, `rpc-over-https`.
         :param pulumi.Input[str] domain_name: MS Exchange server fully qualified domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] http_auth_type: Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
         :param pulumi.Input[str] ip: Server IPv4 address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExchangeKdcIpArgs']]]] kdc_ips: KDC IPv4 addresses for Kerberos authentication. The structure of `kdc_ip` block is documented below.
         :param pulumi.Input[str] name: MS Exchange server entry name.
         :param pulumi.Input[str] password: Password for the specified username.
         :param pulumi.Input[str] server_name: MS Exchange server hostname.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
         :param pulumi.Input[str] username: User name used to sign in to the server. Must have proper permissions for service.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -617,6 +651,7 @@ class Exchange(pulumi.CustomResource):
                  connect_protocol: Optional[pulumi.Input[str]] = None,
                  domain_name: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http_auth_type: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  kdc_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExchangeKdcIpArgs']]]]] = None,
@@ -641,6 +676,7 @@ class Exchange(pulumi.CustomResource):
             __props__.__dict__["connect_protocol"] = connect_protocol
             __props__.__dict__["domain_name"] = domain_name
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["http_auth_type"] = http_auth_type
             __props__.__dict__["ip"] = ip
             __props__.__dict__["kdc_ips"] = kdc_ips
@@ -668,6 +704,7 @@ class Exchange(pulumi.CustomResource):
             connect_protocol: Optional[pulumi.Input[str]] = None,
             domain_name: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             http_auth_type: Optional[pulumi.Input[str]] = None,
             ip: Optional[pulumi.Input[str]] = None,
             kdc_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExchangeKdcIpArgs']]]]] = None,
@@ -690,13 +727,14 @@ class Exchange(pulumi.CustomResource):
         :param pulumi.Input[str] connect_protocol: Connection protocol used to connect to MS Exchange service. Valid values: `rpc-over-tcp`, `rpc-over-http`, `rpc-over-https`.
         :param pulumi.Input[str] domain_name: MS Exchange server fully qualified domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] http_auth_type: Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
         :param pulumi.Input[str] ip: Server IPv4 address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExchangeKdcIpArgs']]]] kdc_ips: KDC IPv4 addresses for Kerberos authentication. The structure of `kdc_ip` block is documented below.
         :param pulumi.Input[str] name: MS Exchange server entry name.
         :param pulumi.Input[str] password: Password for the specified username.
         :param pulumi.Input[str] server_name: MS Exchange server hostname.
-        :param pulumi.Input[str] ssl_min_proto_version: Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] ssl_min_proto_version: Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
         :param pulumi.Input[str] username: User name used to sign in to the server. Must have proper permissions for service.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -710,6 +748,7 @@ class Exchange(pulumi.CustomResource):
         __props__.__dict__["connect_protocol"] = connect_protocol
         __props__.__dict__["domain_name"] = domain_name
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["http_auth_type"] = http_auth_type
         __props__.__dict__["ip"] = ip
         __props__.__dict__["kdc_ips"] = kdc_ips
@@ -770,6 +809,14 @@ class Exchange(pulumi.CustomResource):
         return pulumi.get(self, "dynamic_sort_subtable")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="httpAuthType")
     def http_auth_type(self) -> pulumi.Output[str]:
         """
@@ -821,7 +868,7 @@ class Exchange(pulumi.CustomResource):
     @pulumi.getter(name="sslMinProtoVersion")
     def ssl_min_proto_version(self) -> pulumi.Output[str]:
         """
-        Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
         """
         return pulumi.get(self, "ssl_min_proto_version")
 

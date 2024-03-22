@@ -137,6 +137,14 @@ export class Centralmanagement extends pulumi.CustomResource {
      */
     public readonly fmgUpdatePort!: pulumi.Output<string>;
     /**
+     * Override access profile.
+     */
+    public readonly fortigateCloudSsoDefaultProfile!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
      */
     public readonly includeDefaultServers!: pulumi.Output<string>;
@@ -209,6 +217,8 @@ export class Centralmanagement extends pulumi.CustomResource {
             resourceInputs["fmgSourceIp"] = state ? state.fmgSourceIp : undefined;
             resourceInputs["fmgSourceIp6"] = state ? state.fmgSourceIp6 : undefined;
             resourceInputs["fmgUpdatePort"] = state ? state.fmgUpdatePort : undefined;
+            resourceInputs["fortigateCloudSsoDefaultProfile"] = state ? state.fortigateCloudSsoDefaultProfile : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["includeDefaultServers"] = state ? state.includeDefaultServers : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
@@ -234,6 +244,8 @@ export class Centralmanagement extends pulumi.CustomResource {
             resourceInputs["fmgSourceIp"] = args ? args.fmgSourceIp : undefined;
             resourceInputs["fmgSourceIp6"] = args ? args.fmgSourceIp6 : undefined;
             resourceInputs["fmgUpdatePort"] = args ? args.fmgUpdatePort : undefined;
+            resourceInputs["fortigateCloudSsoDefaultProfile"] = args ? args.fortigateCloudSsoDefaultProfile : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["includeDefaultServers"] = args ? args.includeDefaultServers : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
@@ -300,6 +312,14 @@ export interface CentralmanagementState {
      * Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
      */
     fmgUpdatePort?: pulumi.Input<string>;
+    /**
+     * Override access profile.
+     */
+    fortigateCloudSsoDefaultProfile?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
      */
@@ -398,6 +418,14 @@ export interface CentralmanagementArgs {
      * Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
      */
     fmgUpdatePort?: pulumi.Input<string>;
+    /**
+     * Override access profile.
+     */
+    fortigateCloudSsoDefaultProfile?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
      */

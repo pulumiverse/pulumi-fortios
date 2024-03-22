@@ -77,6 +77,8 @@ type Proxyaddress struct {
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// HTTP header name as a regular expression.
 	Header pulumi.StringOutput `pulumi:"header"`
 	// HTTP header group. The structure of `headerGroup` block is documented below.
@@ -101,8 +103,12 @@ type Proxyaddress struct {
 	Taggings ProxyaddressTaggingArrayOutput `pulumi:"taggings"`
 	// Proxy address type.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
+	// Names of browsers to be used as user agent.
 	Ua pulumi.StringOutput `pulumi:"ua"`
+	// Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+	UaMaxVer pulumi.StringOutput `pulumi:"uaMaxVer"`
+	// Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+	UaMinVer pulumi.StringOutput `pulumi:"uaMinVer"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -153,6 +159,8 @@ type proxyaddressState struct {
 	Comment *string `pulumi:"comment"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// HTTP header name as a regular expression.
 	Header *string `pulumi:"header"`
 	// HTTP header group. The structure of `headerGroup` block is documented below.
@@ -177,8 +185,12 @@ type proxyaddressState struct {
 	Taggings []ProxyaddressTagging `pulumi:"taggings"`
 	// Proxy address type.
 	Type *string `pulumi:"type"`
-	// Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
+	// Names of browsers to be used as user agent.
 	Ua *string `pulumi:"ua"`
+	// Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+	UaMaxVer *string `pulumi:"uaMaxVer"`
+	// Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+	UaMinVer *string `pulumi:"uaMinVer"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -200,6 +212,8 @@ type ProxyaddressState struct {
 	Comment pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// HTTP header name as a regular expression.
 	Header pulumi.StringPtrInput
 	// HTTP header group. The structure of `headerGroup` block is documented below.
@@ -224,8 +238,12 @@ type ProxyaddressState struct {
 	Taggings ProxyaddressTaggingArrayInput
 	// Proxy address type.
 	Type pulumi.StringPtrInput
-	// Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
+	// Names of browsers to be used as user agent.
 	Ua pulumi.StringPtrInput
+	// Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+	UaMaxVer pulumi.StringPtrInput
+	// Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+	UaMinVer pulumi.StringPtrInput
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -251,6 +269,8 @@ type proxyaddressArgs struct {
 	Comment *string `pulumi:"comment"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// HTTP header name as a regular expression.
 	Header *string `pulumi:"header"`
 	// HTTP header group. The structure of `headerGroup` block is documented below.
@@ -275,8 +295,12 @@ type proxyaddressArgs struct {
 	Taggings []ProxyaddressTagging `pulumi:"taggings"`
 	// Proxy address type.
 	Type *string `pulumi:"type"`
-	// Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
+	// Names of browsers to be used as user agent.
 	Ua *string `pulumi:"ua"`
+	// Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+	UaMaxVer *string `pulumi:"uaMaxVer"`
+	// Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+	UaMinVer *string `pulumi:"uaMinVer"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -299,6 +323,8 @@ type ProxyaddressArgs struct {
 	Comment pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// HTTP header name as a regular expression.
 	Header pulumi.StringPtrInput
 	// HTTP header group. The structure of `headerGroup` block is documented below.
@@ -323,8 +349,12 @@ type ProxyaddressArgs struct {
 	Taggings ProxyaddressTaggingArrayInput
 	// Proxy address type.
 	Type pulumi.StringPtrInput
-	// Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
+	// Names of browsers to be used as user agent.
 	Ua pulumi.StringPtrInput
+	// Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+	UaMaxVer pulumi.StringPtrInput
+	// Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+	UaMinVer pulumi.StringPtrInput
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -450,6 +480,11 @@ func (o ProxyaddressOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Proxyaddress) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProxyaddressOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Proxyaddress) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // HTTP header name as a regular expression.
 func (o ProxyaddressOutput) Header() pulumi.StringOutput {
 	return o.ApplyT(func(v *Proxyaddress) pulumi.StringOutput { return v.Header }).(pulumi.StringOutput)
@@ -510,9 +545,19 @@ func (o ProxyaddressOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Proxyaddress) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
+// Names of browsers to be used as user agent.
 func (o ProxyaddressOutput) Ua() pulumi.StringOutput {
 	return o.ApplyT(func(v *Proxyaddress) pulumi.StringOutput { return v.Ua }).(pulumi.StringOutput)
+}
+
+// Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+func (o ProxyaddressOutput) UaMaxVer() pulumi.StringOutput {
+	return o.ApplyT(func(v *Proxyaddress) pulumi.StringOutput { return v.UaMaxVer }).(pulumi.StringOutput)
+}
+
+// Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
+func (o ProxyaddressOutput) UaMinVer() pulumi.StringOutput {
+	return o.ApplyT(func(v *Proxyaddress) pulumi.StringOutput { return v.UaMinVer }).(pulumi.StringOutput)
 }
 
 // Universally Unique Identifier (UUID; automatically assigned but can be manually reset).

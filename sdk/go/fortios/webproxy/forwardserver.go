@@ -66,7 +66,7 @@ import (
 type Forwardserver struct {
 	pulumi.CustomResourceState
 
-	// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+	// Address type of the forwarding proxy server: IP or FQDN.
 	AddrType pulumi.StringOutput `pulumi:"addrType"`
 	// Comment.
 	Comment pulumi.StringOutput `pulumi:"comment"`
@@ -76,6 +76,10 @@ type Forwardserver struct {
 	Healthcheck pulumi.StringOutput `pulumi:"healthcheck"`
 	// Forward proxy server IP address.
 	Ip pulumi.StringOutput `pulumi:"ip"`
+	// Forward proxy server IPv6 address.
+	Ipv6 pulumi.StringOutput `pulumi:"ipv6"`
+	// Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+	Masquerade pulumi.StringOutput `pulumi:"masquerade"`
 	// URL for forward server health check monitoring (default = http://www.google.com).
 	Monitor pulumi.StringOutput `pulumi:"monitor"`
 	// Server name.
@@ -129,7 +133,7 @@ func GetForwardserver(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Forwardserver resources.
 type forwardserverState struct {
-	// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+	// Address type of the forwarding proxy server: IP or FQDN.
 	AddrType *string `pulumi:"addrType"`
 	// Comment.
 	Comment *string `pulumi:"comment"`
@@ -139,6 +143,10 @@ type forwardserverState struct {
 	Healthcheck *string `pulumi:"healthcheck"`
 	// Forward proxy server IP address.
 	Ip *string `pulumi:"ip"`
+	// Forward proxy server IPv6 address.
+	Ipv6 *string `pulumi:"ipv6"`
+	// Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+	Masquerade *string `pulumi:"masquerade"`
 	// URL for forward server health check monitoring (default = http://www.google.com).
 	Monitor *string `pulumi:"monitor"`
 	// Server name.
@@ -156,7 +164,7 @@ type forwardserverState struct {
 }
 
 type ForwardserverState struct {
-	// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+	// Address type of the forwarding proxy server: IP or FQDN.
 	AddrType pulumi.StringPtrInput
 	// Comment.
 	Comment pulumi.StringPtrInput
@@ -166,6 +174,10 @@ type ForwardserverState struct {
 	Healthcheck pulumi.StringPtrInput
 	// Forward proxy server IP address.
 	Ip pulumi.StringPtrInput
+	// Forward proxy server IPv6 address.
+	Ipv6 pulumi.StringPtrInput
+	// Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+	Masquerade pulumi.StringPtrInput
 	// URL for forward server health check monitoring (default = http://www.google.com).
 	Monitor pulumi.StringPtrInput
 	// Server name.
@@ -187,7 +199,7 @@ func (ForwardserverState) ElementType() reflect.Type {
 }
 
 type forwardserverArgs struct {
-	// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+	// Address type of the forwarding proxy server: IP or FQDN.
 	AddrType *string `pulumi:"addrType"`
 	// Comment.
 	Comment *string `pulumi:"comment"`
@@ -197,6 +209,10 @@ type forwardserverArgs struct {
 	Healthcheck *string `pulumi:"healthcheck"`
 	// Forward proxy server IP address.
 	Ip *string `pulumi:"ip"`
+	// Forward proxy server IPv6 address.
+	Ipv6 *string `pulumi:"ipv6"`
+	// Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+	Masquerade *string `pulumi:"masquerade"`
 	// URL for forward server health check monitoring (default = http://www.google.com).
 	Monitor *string `pulumi:"monitor"`
 	// Server name.
@@ -215,7 +231,7 @@ type forwardserverArgs struct {
 
 // The set of arguments for constructing a Forwardserver resource.
 type ForwardserverArgs struct {
-	// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+	// Address type of the forwarding proxy server: IP or FQDN.
 	AddrType pulumi.StringPtrInput
 	// Comment.
 	Comment pulumi.StringPtrInput
@@ -225,6 +241,10 @@ type ForwardserverArgs struct {
 	Healthcheck pulumi.StringPtrInput
 	// Forward proxy server IP address.
 	Ip pulumi.StringPtrInput
+	// Forward proxy server IPv6 address.
+	Ipv6 pulumi.StringPtrInput
+	// Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+	Masquerade pulumi.StringPtrInput
 	// URL for forward server health check monitoring (default = http://www.google.com).
 	Monitor pulumi.StringPtrInput
 	// Server name.
@@ -328,7 +348,7 @@ func (o ForwardserverOutput) ToForwardserverOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Address type of the forwarding proxy server: IP or FQDN. Valid values: `ip`, `fqdn`.
+// Address type of the forwarding proxy server: IP or FQDN.
 func (o ForwardserverOutput) AddrType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Forwardserver) pulumi.StringOutput { return v.AddrType }).(pulumi.StringOutput)
 }
@@ -351,6 +371,16 @@ func (o ForwardserverOutput) Healthcheck() pulumi.StringOutput {
 // Forward proxy server IP address.
 func (o ForwardserverOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v *Forwardserver) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+// Forward proxy server IPv6 address.
+func (o ForwardserverOutput) Ipv6() pulumi.StringOutput {
+	return o.ApplyT(func(v *Forwardserver) pulumi.StringOutput { return v.Ipv6 }).(pulumi.StringOutput)
+}
+
+// Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `enable`, `disable`.
+func (o ForwardserverOutput) Masquerade() pulumi.StringOutput {
+	return o.ApplyT(func(v *Forwardserver) pulumi.StringOutput { return v.Masquerade }).(pulumi.StringOutput)
 }
 
 // URL for forward server health check monitoring (default = http://www.google.com).

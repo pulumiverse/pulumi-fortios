@@ -5,10 +5,20 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../../utilities";
 
 // Export members:
+export { InterfacepolicyArgs, InterfacepolicyState } from "./interfacepolicy";
+export type Interfacepolicy = import("./interfacepolicy").Interfacepolicy;
+export const Interfacepolicy: typeof import("./interfacepolicy").Interfacepolicy = null as any;
+utilities.lazyLoad(exports, ["Interfacepolicy"], () => require("./interfacepolicy"));
+
 export { PolicyArgs, PolicyState } from "./policy";
 export type Policy = import("./policy").Policy;
 export const Policy: typeof import("./policy").Policy = null as any;
 utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
+
+export { ProfileArgs, ProfileState } from "./profile";
+export type Profile = import("./profile").Profile;
+export const Profile: typeof import("./profile").Profile = null as any;
+utilities.lazyLoad(exports, ["Profile"], () => require("./profile"));
 
 export { SettingsArgs, SettingsState } from "./settings";
 export type Settings = import("./settings").Settings;
@@ -20,8 +30,12 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "fortios:switchcontroller/ptp/interfacepolicy:Interfacepolicy":
+                return new Interfacepolicy(name, <any>undefined, { urn })
             case "fortios:switchcontroller/ptp/policy:Policy":
                 return new Policy(name, <any>undefined, { urn })
+            case "fortios:switchcontroller/ptp/profile:Profile":
+                return new Profile(name, <any>undefined, { urn })
             case "fortios:switchcontroller/ptp/settings:Settings":
                 return new Settings(name, <any>undefined, { urn })
             default:
@@ -29,5 +43,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("fortios", "switchcontroller/ptp/interfacepolicy", _module)
 pulumi.runtime.registerResourceModule("fortios", "switchcontroller/ptp/policy", _module)
+pulumi.runtime.registerResourceModule("fortios", "switchcontroller/ptp/profile", _module)
 pulumi.runtime.registerResourceModule("fortios", "switchcontroller/ptp/settings", _module)

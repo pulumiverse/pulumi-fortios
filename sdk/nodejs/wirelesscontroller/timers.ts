@@ -56,6 +56,18 @@ export class Timers extends pulumi.CustomResource {
     }
 
     /**
+     * Time in minutes to wait before AP reboots when there is no controller detected (5 - 65535, default = 0, 0 for no reboot).
+     */
+    public readonly apRebootWaitInterval1!: pulumi.Output<number>;
+    /**
+     * Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
+     */
+    public readonly apRebootWaitInterval2!: pulumi.Output<number>;
+    /**
+     * Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
+     */
+    public readonly apRebootWaitTime!: pulumi.Output<string>;
+    /**
      * Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
      */
     public readonly authTimeout!: pulumi.Output<number>;
@@ -104,9 +116,17 @@ export class Timers extends pulumi.CustomResource {
      */
     public readonly fakeApLog!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
      */
     public readonly ipsecIntfCleanup!: pulumi.Output<number>;
+    /**
+     * Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
+     */
+    public readonly natSessionKeepAlive!: pulumi.Output<number>;
     /**
      * Time between running radio reports (1 - 255 sec, default = 15).
      */
@@ -153,6 +173,9 @@ export class Timers extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TimersState | undefined;
+            resourceInputs["apRebootWaitInterval1"] = state ? state.apRebootWaitInterval1 : undefined;
+            resourceInputs["apRebootWaitInterval2"] = state ? state.apRebootWaitInterval2 : undefined;
+            resourceInputs["apRebootWaitTime"] = state ? state.apRebootWaitTime : undefined;
             resourceInputs["authTimeout"] = state ? state.authTimeout : undefined;
             resourceInputs["bleScanReportIntv"] = state ? state.bleScanReportIntv : undefined;
             resourceInputs["clientIdleRehomeTimeout"] = state ? state.clientIdleRehomeTimeout : undefined;
@@ -165,7 +188,9 @@ export class Timers extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["echoInterval"] = state ? state.echoInterval : undefined;
             resourceInputs["fakeApLog"] = state ? state.fakeApLog : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ipsecIntfCleanup"] = state ? state.ipsecIntfCleanup : undefined;
+            resourceInputs["natSessionKeepAlive"] = state ? state.natSessionKeepAlive : undefined;
             resourceInputs["radioStatsInterval"] = state ? state.radioStatsInterval : undefined;
             resourceInputs["rogueApCleanup"] = state ? state.rogueApCleanup : undefined;
             resourceInputs["rogueApLog"] = state ? state.rogueApLog : undefined;
@@ -176,6 +201,9 @@ export class Timers extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as TimersArgs | undefined;
+            resourceInputs["apRebootWaitInterval1"] = args ? args.apRebootWaitInterval1 : undefined;
+            resourceInputs["apRebootWaitInterval2"] = args ? args.apRebootWaitInterval2 : undefined;
+            resourceInputs["apRebootWaitTime"] = args ? args.apRebootWaitTime : undefined;
             resourceInputs["authTimeout"] = args ? args.authTimeout : undefined;
             resourceInputs["bleScanReportIntv"] = args ? args.bleScanReportIntv : undefined;
             resourceInputs["clientIdleRehomeTimeout"] = args ? args.clientIdleRehomeTimeout : undefined;
@@ -188,7 +216,9 @@ export class Timers extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["echoInterval"] = args ? args.echoInterval : undefined;
             resourceInputs["fakeApLog"] = args ? args.fakeApLog : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ipsecIntfCleanup"] = args ? args.ipsecIntfCleanup : undefined;
+            resourceInputs["natSessionKeepAlive"] = args ? args.natSessionKeepAlive : undefined;
             resourceInputs["radioStatsInterval"] = args ? args.radioStatsInterval : undefined;
             resourceInputs["rogueApCleanup"] = args ? args.rogueApCleanup : undefined;
             resourceInputs["rogueApLog"] = args ? args.rogueApLog : undefined;
@@ -207,6 +237,18 @@ export class Timers extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Timers resources.
  */
 export interface TimersState {
+    /**
+     * Time in minutes to wait before AP reboots when there is no controller detected (5 - 65535, default = 0, 0 for no reboot).
+     */
+    apRebootWaitInterval1?: pulumi.Input<number>;
+    /**
+     * Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
+     */
+    apRebootWaitInterval2?: pulumi.Input<number>;
+    /**
+     * Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
+     */
+    apRebootWaitTime?: pulumi.Input<string>;
     /**
      * Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
      */
@@ -256,9 +298,17 @@ export interface TimersState {
      */
     fakeApLog?: pulumi.Input<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
      */
     ipsecIntfCleanup?: pulumi.Input<number>;
+    /**
+     * Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
+     */
+    natSessionKeepAlive?: pulumi.Input<number>;
     /**
      * Time between running radio reports (1 - 255 sec, default = 15).
      */
@@ -298,6 +348,18 @@ export interface TimersState {
  */
 export interface TimersArgs {
     /**
+     * Time in minutes to wait before AP reboots when there is no controller detected (5 - 65535, default = 0, 0 for no reboot).
+     */
+    apRebootWaitInterval1?: pulumi.Input<number>;
+    /**
+     * Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
+     */
+    apRebootWaitInterval2?: pulumi.Input<number>;
+    /**
+     * Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
+     */
+    apRebootWaitTime?: pulumi.Input<string>;
+    /**
      * Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
      */
     authTimeout?: pulumi.Input<number>;
@@ -346,9 +408,17 @@ export interface TimersArgs {
      */
     fakeApLog?: pulumi.Input<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
      */
     ipsecIntfCleanup?: pulumi.Input<number>;
+    /**
+     * Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
+     */
+    natSessionKeepAlive?: pulumi.Input<number>;
     /**
      * Time between running radio reports (1 - 255 sec, default = 15).
      */

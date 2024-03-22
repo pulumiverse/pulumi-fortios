@@ -74,8 +74,20 @@ type Global struct {
 	CustomCommands GlobalCustomCommandArrayOutput `pulumi:"customCommands"`
 	// Default VLAN for ports when added to the virtual-switch.
 	DefaultVirtualSwitchVlan pulumi.StringOutput `pulumi:"defaultVirtualSwitchVlan"`
+	// List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+	DhcpOption82CircuitId pulumi.StringOutput `pulumi:"dhcpOption82CircuitId"`
+	// DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+	DhcpOption82Format pulumi.StringOutput `pulumi:"dhcpOption82Format"`
+	// List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+	DhcpOption82RemoteId pulumi.StringOutput `pulumi:"dhcpOption82RemoteId"`
 	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
 	DhcpServerAccessList pulumi.StringOutput `pulumi:"dhcpServerAccessList"`
+	// Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+	DhcpSnoopClientDbExp pulumi.IntOutput `pulumi:"dhcpSnoopClientDbExp"`
+	// Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+	DhcpSnoopClientReq pulumi.StringOutput `pulumi:"dhcpSnoopClientReq"`
+	// Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+	DhcpSnoopDbPerPortLearnLimit pulumi.IntOutput `pulumi:"dhcpSnoopDbPerPortLearnLimit"`
 	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
 	DisableDiscoveries GlobalDisableDiscoveryArrayOutput `pulumi:"disableDiscoveries"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -84,6 +96,8 @@ type Global struct {
 	FipsEnforce pulumi.StringOutput `pulumi:"fipsEnforce"`
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization pulumi.StringOutput `pulumi:"firmwareProvisionOnAuthorization"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush pulumi.StringOutput `pulumi:"httpsImagePush"`
 	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
@@ -106,6 +120,8 @@ type Global struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
 	VlanAllMode pulumi.StringOutput `pulumi:"vlanAllMode"`
+	// Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+	VlanIdentity pulumi.StringOutput `pulumi:"vlanIdentity"`
 	// FortiLink VLAN optimization. Valid values: `enable`, `disable`.
 	VlanOptimization pulumi.StringOutput `pulumi:"vlanOptimization"`
 }
@@ -148,8 +164,20 @@ type globalState struct {
 	CustomCommands []GlobalCustomCommand `pulumi:"customCommands"`
 	// Default VLAN for ports when added to the virtual-switch.
 	DefaultVirtualSwitchVlan *string `pulumi:"defaultVirtualSwitchVlan"`
+	// List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+	DhcpOption82CircuitId *string `pulumi:"dhcpOption82CircuitId"`
+	// DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+	DhcpOption82Format *string `pulumi:"dhcpOption82Format"`
+	// List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+	DhcpOption82RemoteId *string `pulumi:"dhcpOption82RemoteId"`
 	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
 	DhcpServerAccessList *string `pulumi:"dhcpServerAccessList"`
+	// Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+	DhcpSnoopClientDbExp *int `pulumi:"dhcpSnoopClientDbExp"`
+	// Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+	DhcpSnoopClientReq *string `pulumi:"dhcpSnoopClientReq"`
+	// Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+	DhcpSnoopDbPerPortLearnLimit *int `pulumi:"dhcpSnoopDbPerPortLearnLimit"`
 	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
 	DisableDiscoveries []GlobalDisableDiscovery `pulumi:"disableDiscoveries"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -158,6 +186,8 @@ type globalState struct {
 	FipsEnforce *string `pulumi:"fipsEnforce"`
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush *string `pulumi:"httpsImagePush"`
 	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
@@ -180,6 +210,8 @@ type globalState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
 	VlanAllMode *string `pulumi:"vlanAllMode"`
+	// Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+	VlanIdentity *string `pulumi:"vlanIdentity"`
 	// FortiLink VLAN optimization. Valid values: `enable`, `disable`.
 	VlanOptimization *string `pulumi:"vlanOptimization"`
 }
@@ -193,8 +225,20 @@ type GlobalState struct {
 	CustomCommands GlobalCustomCommandArrayInput
 	// Default VLAN for ports when added to the virtual-switch.
 	DefaultVirtualSwitchVlan pulumi.StringPtrInput
+	// List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+	DhcpOption82CircuitId pulumi.StringPtrInput
+	// DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+	DhcpOption82Format pulumi.StringPtrInput
+	// List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+	DhcpOption82RemoteId pulumi.StringPtrInput
 	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
 	DhcpServerAccessList pulumi.StringPtrInput
+	// Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+	DhcpSnoopClientDbExp pulumi.IntPtrInput
+	// Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+	DhcpSnoopClientReq pulumi.StringPtrInput
+	// Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+	DhcpSnoopDbPerPortLearnLimit pulumi.IntPtrInput
 	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
 	DisableDiscoveries GlobalDisableDiscoveryArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -203,6 +247,8 @@ type GlobalState struct {
 	FipsEnforce pulumi.StringPtrInput
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush pulumi.StringPtrInput
 	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
@@ -225,6 +271,8 @@ type GlobalState struct {
 	Vdomparam pulumi.StringPtrInput
 	// VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
 	VlanAllMode pulumi.StringPtrInput
+	// Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+	VlanIdentity pulumi.StringPtrInput
 	// FortiLink VLAN optimization. Valid values: `enable`, `disable`.
 	VlanOptimization pulumi.StringPtrInput
 }
@@ -242,8 +290,20 @@ type globalArgs struct {
 	CustomCommands []GlobalCustomCommand `pulumi:"customCommands"`
 	// Default VLAN for ports when added to the virtual-switch.
 	DefaultVirtualSwitchVlan *string `pulumi:"defaultVirtualSwitchVlan"`
+	// List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+	DhcpOption82CircuitId *string `pulumi:"dhcpOption82CircuitId"`
+	// DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+	DhcpOption82Format *string `pulumi:"dhcpOption82Format"`
+	// List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+	DhcpOption82RemoteId *string `pulumi:"dhcpOption82RemoteId"`
 	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
 	DhcpServerAccessList *string `pulumi:"dhcpServerAccessList"`
+	// Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+	DhcpSnoopClientDbExp *int `pulumi:"dhcpSnoopClientDbExp"`
+	// Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+	DhcpSnoopClientReq *string `pulumi:"dhcpSnoopClientReq"`
+	// Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+	DhcpSnoopDbPerPortLearnLimit *int `pulumi:"dhcpSnoopDbPerPortLearnLimit"`
 	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
 	DisableDiscoveries []GlobalDisableDiscovery `pulumi:"disableDiscoveries"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -252,6 +312,8 @@ type globalArgs struct {
 	FipsEnforce *string `pulumi:"fipsEnforce"`
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush *string `pulumi:"httpsImagePush"`
 	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
@@ -274,6 +336,8 @@ type globalArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
 	VlanAllMode *string `pulumi:"vlanAllMode"`
+	// Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+	VlanIdentity *string `pulumi:"vlanIdentity"`
 	// FortiLink VLAN optimization. Valid values: `enable`, `disable`.
 	VlanOptimization *string `pulumi:"vlanOptimization"`
 }
@@ -288,8 +352,20 @@ type GlobalArgs struct {
 	CustomCommands GlobalCustomCommandArrayInput
 	// Default VLAN for ports when added to the virtual-switch.
 	DefaultVirtualSwitchVlan pulumi.StringPtrInput
+	// List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+	DhcpOption82CircuitId pulumi.StringPtrInput
+	// DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+	DhcpOption82Format pulumi.StringPtrInput
+	// List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+	DhcpOption82RemoteId pulumi.StringPtrInput
 	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
 	DhcpServerAccessList pulumi.StringPtrInput
+	// Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+	DhcpSnoopClientDbExp pulumi.IntPtrInput
+	// Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+	DhcpSnoopClientReq pulumi.StringPtrInput
+	// Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+	DhcpSnoopDbPerPortLearnLimit pulumi.IntPtrInput
 	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
 	DisableDiscoveries GlobalDisableDiscoveryArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -298,6 +374,8 @@ type GlobalArgs struct {
 	FipsEnforce pulumi.StringPtrInput
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush pulumi.StringPtrInput
 	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
@@ -320,6 +398,8 @@ type GlobalArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
 	VlanAllMode pulumi.StringPtrInput
+	// Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+	VlanIdentity pulumi.StringPtrInput
 	// FortiLink VLAN optimization. Valid values: `enable`, `disable`.
 	VlanOptimization pulumi.StringPtrInput
 }
@@ -431,9 +511,39 @@ func (o GlobalOutput) DefaultVirtualSwitchVlan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.DefaultVirtualSwitchVlan }).(pulumi.StringOutput)
 }
 
+// List the parameters to be included to inform about client identification. Valid values: `intfname`, `vlan`, `hostname`, `mode`, `description`.
+func (o GlobalOutput) DhcpOption82CircuitId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.DhcpOption82CircuitId }).(pulumi.StringOutput)
+}
+
+// DHCP option-82 format string. Valid values: `ascii`, `legacy`.
+func (o GlobalOutput) DhcpOption82Format() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.DhcpOption82Format }).(pulumi.StringOutput)
+}
+
+// List the parameters to be included to inform about client identification. Valid values: `mac`, `hostname`, `ip`.
+func (o GlobalOutput) DhcpOption82RemoteId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.DhcpOption82RemoteId }).(pulumi.StringOutput)
+}
+
 // Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
 func (o GlobalOutput) DhcpServerAccessList() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.DhcpServerAccessList }).(pulumi.StringOutput)
+}
+
+// Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec).
+func (o GlobalOutput) DhcpSnoopClientDbExp() pulumi.IntOutput {
+	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.DhcpSnoopClientDbExp }).(pulumi.IntOutput)
+}
+
+// Client DHCP packet broadcast mode. Valid values: `drop-untrusted`, `forward-untrusted`.
+func (o GlobalOutput) DhcpSnoopClientReq() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.DhcpSnoopClientReq }).(pulumi.StringOutput)
+}
+
+// Per Interface dhcp-server entries learn limit (0 - 1024, default = 64).
+func (o GlobalOutput) DhcpSnoopDbPerPortLearnLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.DhcpSnoopDbPerPortLearnLimit }).(pulumi.IntOutput)
 }
 
 // Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
@@ -454,6 +564,11 @@ func (o GlobalOutput) FipsEnforce() pulumi.StringOutput {
 // Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 func (o GlobalOutput) FirmwareProvisionOnAuthorization() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.FirmwareProvisionOnAuthorization }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o GlobalOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
@@ -509,6 +624,11 @@ func (o GlobalOutput) Vdomparam() pulumi.StringPtrOutput {
 // VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
 func (o GlobalOutput) VlanAllMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.VlanAllMode }).(pulumi.StringOutput)
+}
+
+// Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
+func (o GlobalOutput) VlanIdentity() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.VlanIdentity }).(pulumi.StringOutput)
 }
 
 // FortiLink VLAN optimization. Valid values: `enable`, `disable`.

@@ -96,7 +96,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<int> HttpMaxRedirects { get; private set; } = null!;
 
         /// <summary>
-        /// Time between health checks (5 - 65635 sec, default = 10).
+        /// Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions &gt;= 7.2.0: 5 - 65535 sec.
         /// </summary>
         [Output("interval")]
         public Output<int> Interval { get; private set; } = null!;
@@ -108,7 +108,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
+        /// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions &gt;= 7.2.0: 0 - 65535.
         /// </summary>
         [Output("port")]
         public Output<int> Port { get; private set; } = null!;
@@ -132,7 +132,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<int> Timeout { get; private set; } = null!;
 
         /// <summary>
-        /// Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
+        /// Select the Monitor type used by the health check monitor to check the health of the server. On FortiOS versions 6.2.0: PING | TCP | HTTP. On FortiOS versions 6.2.4-7.0.0: PING | TCP | HTTP | HTTPS. On FortiOS versions &gt;= 7.0.1: PING | TCP | HTTP | HTTPS | DNS.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -227,7 +227,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? HttpMaxRedirects { get; set; }
 
         /// <summary>
-        /// Time between health checks (5 - 65635 sec, default = 10).
+        /// Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions &gt;= 7.2.0: 5 - 65535 sec.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
@@ -239,7 +239,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
+        /// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions &gt;= 7.2.0: 0 - 65535.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
@@ -263,7 +263,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? Timeout { get; set; }
 
         /// <summary>
-        /// Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
+        /// Select the Monitor type used by the health check monitor to check the health of the server. On FortiOS versions 6.2.0: PING | TCP | HTTP. On FortiOS versions 6.2.4-7.0.0: PING | TCP | HTTP | HTTPS. On FortiOS versions &gt;= 7.0.1: PING | TCP | HTTP | HTTPS | DNS.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -319,7 +319,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? HttpMaxRedirects { get; set; }
 
         /// <summary>
-        /// Time between health checks (5 - 65635 sec, default = 10).
+        /// Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions &gt;= 7.2.0: 5 - 65535 sec.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
@@ -331,7 +331,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (0 - 65635, default = 0).
+        /// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions &gt;= 7.2.0: 0 - 65535.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
@@ -355,7 +355,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? Timeout { get; set; }
 
         /// <summary>
-        /// Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
+        /// Select the Monitor type used by the health check monitor to check the health of the server. On FortiOS versions 6.2.0: PING | TCP | HTTP. On FortiOS versions 6.2.4-7.0.0: PING | TCP | HTTP | HTTPS. On FortiOS versions &gt;= 7.0.1: PING | TCP | HTTP | HTTPS | DNS.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

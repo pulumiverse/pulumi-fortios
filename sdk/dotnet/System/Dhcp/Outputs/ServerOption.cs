@@ -31,6 +31,14 @@ namespace Pulumiverse.Fortios.System.Dhcp.Outputs
         /// </summary>
         public readonly string? Type;
         /// <summary>
+        /// Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this option. Valid values: `disable`, `enable`.
+        /// </summary>
+        public readonly string? UciMatch;
+        /// <summary>
+        /// One or more UCI strings in quotes separated by spaces. The structure of `uci_string` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ServerOptionUciString> UciStrings;
+        /// <summary>
         /// DHCP option value.
         /// </summary>
         public readonly string? Value;
@@ -53,6 +61,10 @@ namespace Pulumiverse.Fortios.System.Dhcp.Outputs
 
             string? type,
 
+            string? uciMatch,
+
+            ImmutableArray<Outputs.ServerOptionUciString> uciStrings,
+
             string? value,
 
             string? vciMatch,
@@ -63,6 +75,8 @@ namespace Pulumiverse.Fortios.System.Dhcp.Outputs
             Id = id;
             Ip = ip;
             Type = type;
+            UciMatch = uciMatch;
+            UciStrings = uciStrings;
             Value = value;
             VciMatch = vciMatch;
             VciStrings = vciStrings;

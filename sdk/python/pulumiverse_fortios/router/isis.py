@@ -32,6 +32,7 @@ class IsisArgs:
                  default_originate6: Optional[pulumi.Input[str]] = None,
                  dynamic_hostname: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ignore_lsp_errors: Optional[pulumi.Input[str]] = None,
                  is_type: Optional[pulumi.Input[str]] = None,
                  isis_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['IsisIsisInterfaceArgs']]]] = None,
@@ -77,6 +78,7 @@ class IsisArgs:
         :param pulumi.Input[str] default_originate6: Enable/disable distribution of default IPv6 route information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_hostname: Enable/disable dynamic hostname. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ignore_lsp_errors: Enable/disable ignoring of LSP errors with bad checksums. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] is_type: IS type. Valid values: `level-1-2`, `level-1`, `level-2-only`.
         :param pulumi.Input[Sequence[pulumi.Input['IsisIsisInterfaceArgs']]] isis_interfaces: IS-IS interface configuration. The structure of `isis_interface` block is documented below.
@@ -137,6 +139,8 @@ class IsisArgs:
             pulumi.set(__self__, "dynamic_hostname", dynamic_hostname)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ignore_lsp_errors is not None:
             pulumi.set(__self__, "ignore_lsp_errors", ignore_lsp_errors)
         if is_type is not None:
@@ -383,6 +387,18 @@ class IsisArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ignoreLspErrors")
@@ -728,6 +744,7 @@ class _IsisState:
                  default_originate6: Optional[pulumi.Input[str]] = None,
                  dynamic_hostname: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ignore_lsp_errors: Optional[pulumi.Input[str]] = None,
                  is_type: Optional[pulumi.Input[str]] = None,
                  isis_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['IsisIsisInterfaceArgs']]]] = None,
@@ -773,6 +790,7 @@ class _IsisState:
         :param pulumi.Input[str] default_originate6: Enable/disable distribution of default IPv6 route information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_hostname: Enable/disable dynamic hostname. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ignore_lsp_errors: Enable/disable ignoring of LSP errors with bad checksums. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] is_type: IS type. Valid values: `level-1-2`, `level-1`, `level-2-only`.
         :param pulumi.Input[Sequence[pulumi.Input['IsisIsisInterfaceArgs']]] isis_interfaces: IS-IS interface configuration. The structure of `isis_interface` block is documented below.
@@ -833,6 +851,8 @@ class _IsisState:
             pulumi.set(__self__, "dynamic_hostname", dynamic_hostname)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ignore_lsp_errors is not None:
             pulumi.set(__self__, "ignore_lsp_errors", ignore_lsp_errors)
         if is_type is not None:
@@ -1079,6 +1099,18 @@ class _IsisState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ignoreLspErrors")
@@ -1426,6 +1458,7 @@ class Isis(pulumi.CustomResource):
                  default_originate6: Optional[pulumi.Input[str]] = None,
                  dynamic_hostname: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ignore_lsp_errors: Optional[pulumi.Input[str]] = None,
                  is_type: Optional[pulumi.Input[str]] = None,
                  isis_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IsisIsisInterfaceArgs']]]]] = None,
@@ -1529,6 +1562,7 @@ class Isis(pulumi.CustomResource):
         :param pulumi.Input[str] default_originate6: Enable/disable distribution of default IPv6 route information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_hostname: Enable/disable dynamic hostname. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ignore_lsp_errors: Enable/disable ignoring of LSP errors with bad checksums. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] is_type: IS type. Valid values: `level-1-2`, `level-1`, `level-2-only`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IsisIsisInterfaceArgs']]]] isis_interfaces: IS-IS interface configuration. The structure of `isis_interface` block is documented below.
@@ -1651,6 +1685,7 @@ class Isis(pulumi.CustomResource):
                  default_originate6: Optional[pulumi.Input[str]] = None,
                  dynamic_hostname: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ignore_lsp_errors: Optional[pulumi.Input[str]] = None,
                  is_type: Optional[pulumi.Input[str]] = None,
                  isis_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IsisIsisInterfaceArgs']]]]] = None,
@@ -1703,6 +1738,7 @@ class Isis(pulumi.CustomResource):
             __props__.__dict__["default_originate6"] = default_originate6
             __props__.__dict__["dynamic_hostname"] = dynamic_hostname
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ignore_lsp_errors"] = ignore_lsp_errors
             __props__.__dict__["is_type"] = is_type
             __props__.__dict__["isis_interfaces"] = isis_interfaces
@@ -1758,6 +1794,7 @@ class Isis(pulumi.CustomResource):
             default_originate6: Optional[pulumi.Input[str]] = None,
             dynamic_hostname: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ignore_lsp_errors: Optional[pulumi.Input[str]] = None,
             is_type: Optional[pulumi.Input[str]] = None,
             isis_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IsisIsisInterfaceArgs']]]]] = None,
@@ -1808,6 +1845,7 @@ class Isis(pulumi.CustomResource):
         :param pulumi.Input[str] default_originate6: Enable/disable distribution of default IPv6 route information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_hostname: Enable/disable dynamic hostname. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ignore_lsp_errors: Enable/disable ignoring of LSP errors with bad checksums. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] is_type: IS type. Valid values: `level-1-2`, `level-1`, `level-2-only`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IsisIsisInterfaceArgs']]]] isis_interfaces: IS-IS interface configuration. The structure of `isis_interface` block is documented below.
@@ -1856,6 +1894,7 @@ class Isis(pulumi.CustomResource):
         __props__.__dict__["default_originate6"] = default_originate6
         __props__.__dict__["dynamic_hostname"] = dynamic_hostname
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ignore_lsp_errors"] = ignore_lsp_errors
         __props__.__dict__["is_type"] = is_type
         __props__.__dict__["isis_interfaces"] = isis_interfaces
@@ -2012,6 +2051,14 @@ class Isis(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ignoreLspErrors")

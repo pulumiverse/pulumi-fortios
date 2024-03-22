@@ -63,6 +63,8 @@ import (
 type Ftmpush struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+	Proxy pulumi.StringOutput `pulumi:"proxy"`
 	// IPv4 address or domain name of FortiToken Mobile push services server.
 	Server pulumi.StringOutput `pulumi:"server"`
 	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
@@ -107,6 +109,8 @@ func GetFtmpush(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Ftmpush resources.
 type ftmpushState struct {
+	// Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+	Proxy *string `pulumi:"proxy"`
 	// IPv4 address or domain name of FortiToken Mobile push services server.
 	Server *string `pulumi:"server"`
 	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
@@ -122,6 +126,8 @@ type ftmpushState struct {
 }
 
 type FtmpushState struct {
+	// Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+	Proxy pulumi.StringPtrInput
 	// IPv4 address or domain name of FortiToken Mobile push services server.
 	Server pulumi.StringPtrInput
 	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
@@ -141,6 +147,8 @@ func (FtmpushState) ElementType() reflect.Type {
 }
 
 type ftmpushArgs struct {
+	// Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+	Proxy *string `pulumi:"proxy"`
 	// IPv4 address or domain name of FortiToken Mobile push services server.
 	Server *string `pulumi:"server"`
 	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
@@ -157,6 +165,8 @@ type ftmpushArgs struct {
 
 // The set of arguments for constructing a Ftmpush resource.
 type FtmpushArgs struct {
+	// Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+	Proxy pulumi.StringPtrInput
 	// IPv4 address or domain name of FortiToken Mobile push services server.
 	Server pulumi.StringPtrInput
 	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
@@ -256,6 +266,11 @@ func (o FtmpushOutput) ToFtmpushOutput() FtmpushOutput {
 
 func (o FtmpushOutput) ToFtmpushOutputWithContext(ctx context.Context) FtmpushOutput {
 	return o
+}
+
+// Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
+func (o FtmpushOutput) Proxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ftmpush) pulumi.StringOutput { return v.Proxy }).(pulumi.StringOutput)
 }
 
 // IPv4 address or domain name of FortiToken Mobile push services server.

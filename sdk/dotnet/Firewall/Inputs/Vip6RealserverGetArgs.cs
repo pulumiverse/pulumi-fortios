@@ -74,6 +74,12 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? Status { get; set; }
 
         /// <summary>
+        /// Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("translateHost")]
+        public Input<string>? TranslateHost { get; set; }
+
+        /// <summary>
         /// Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
         /// </summary>
         [Input("weight")]

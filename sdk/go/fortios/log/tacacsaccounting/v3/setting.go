@@ -33,10 +33,16 @@ import (
 type Setting struct {
 	pulumi.CustomResourceState
 
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringOutput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
 	// Address of TACACS+ server.
 	Server pulumi.StringOutput `pulumi:"server"`
 	// Key to access the TACACS+ server.
 	ServerKey pulumi.StringPtrOutput `pulumi:"serverKey"`
+	// Source IP address for communication to TACACS+ server.
+	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -73,10 +79,16 @@ func GetSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Setting resources.
 type settingState struct {
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
 	// Address of TACACS+ server.
 	Server *string `pulumi:"server"`
 	// Key to access the TACACS+ server.
 	ServerKey *string `pulumi:"serverKey"`
+	// Source IP address for communication to TACACS+ server.
+	SourceIp *string `pulumi:"sourceIp"`
 	// Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -84,10 +96,16 @@ type settingState struct {
 }
 
 type SettingState struct {
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput
 	// Address of TACACS+ server.
 	Server pulumi.StringPtrInput
 	// Key to access the TACACS+ server.
 	ServerKey pulumi.StringPtrInput
+	// Source IP address for communication to TACACS+ server.
+	SourceIp pulumi.StringPtrInput
 	// Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -99,10 +117,16 @@ func (SettingState) ElementType() reflect.Type {
 }
 
 type settingArgs struct {
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
 	// Address of TACACS+ server.
 	Server *string `pulumi:"server"`
 	// Key to access the TACACS+ server.
 	ServerKey *string `pulumi:"serverKey"`
+	// Source IP address for communication to TACACS+ server.
+	SourceIp *string `pulumi:"sourceIp"`
 	// Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -111,10 +135,16 @@ type settingArgs struct {
 
 // The set of arguments for constructing a Setting resource.
 type SettingArgs struct {
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput
 	// Address of TACACS+ server.
 	Server pulumi.StringPtrInput
 	// Key to access the TACACS+ server.
 	ServerKey pulumi.StringPtrInput
+	// Source IP address for communication to TACACS+ server.
+	SourceIp pulumi.StringPtrInput
 	// Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -208,6 +238,16 @@ func (o SettingOutput) ToSettingOutputWithContext(ctx context.Context) SettingOu
 	return o
 }
 
+// Specify outgoing interface to reach server.
+func (o SettingOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+func (o SettingOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
 // Address of TACACS+ server.
 func (o SettingOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
@@ -216,6 +256,11 @@ func (o SettingOutput) Server() pulumi.StringOutput {
 // Key to access the TACACS+ server.
 func (o SettingOutput) ServerKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.ServerKey }).(pulumi.StringPtrOutput)
+}
+
+// Source IP address for communication to TACACS+ server.
+func (o SettingOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
 }
 
 // Enable/disable TACACS+ accounting. Valid values: `enable`, `disable`.

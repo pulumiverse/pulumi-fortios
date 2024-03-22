@@ -24,6 +24,7 @@ class AdminArgs:
                  email_to: Optional[pulumi.Input[str]] = None,
                  force_password_change: Optional[pulumi.Input[str]] = None,
                  fortitoken: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest_auth: Optional[pulumi.Input[str]] = None,
                  guest_lang: Optional[pulumi.Input[str]] = None,
                  guest_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input['AdminGuestUsergroupArgs']]]] = None,
@@ -88,6 +89,7 @@ class AdminArgs:
         :param pulumi.Input[str] email_to: This administrator's email address.
         :param pulumi.Input[str] force_password_change: Enable/disable force password change on next login. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortitoken: This administrator's FortiToken serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] guest_auth: Enable/disable guest authentication. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] guest_lang: Guest management portal language.
         :param pulumi.Input[Sequence[pulumi.Input['AdminGuestUsergroupArgs']]] guest_usergroups: Select guest user groups. The structure of `guest_usergroups` block is documented below.
@@ -110,7 +112,7 @@ class AdminArgs:
         :param pulumi.Input[str] ip6_trusthost9: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
         :param pulumi.Input[Sequence[pulumi.Input['AdminLoginTimeArgs']]] login_times: Record user login time. The structure of `login_time` block is documented below.
         :param pulumi.Input[str] name: User name.
-        :param pulumi.Input[str] password: Admin user password.
+        :param pulumi.Input[str] password: Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
         :param pulumi.Input[str] password_expire: Password expire time.
         :param pulumi.Input[str] peer_auth: Set to enable peer certificate authentication (for HTTPS admin access). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] peer_group: Name of peer group defined under config user group which has PKI members. Used for peer certificate authentication (for HTTPS admin access).
@@ -159,6 +161,8 @@ class AdminArgs:
             pulumi.set(__self__, "force_password_change", force_password_change)
         if fortitoken is not None:
             pulumi.set(__self__, "fortitoken", fortitoken)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if guest_auth is not None:
             pulumi.set(__self__, "guest_auth", guest_auth)
         if guest_lang is not None:
@@ -363,6 +367,18 @@ class AdminArgs:
     @fortitoken.setter
     def fortitoken(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortitoken", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="guestAuth")
@@ -632,7 +648,7 @@ class AdminArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        Admin user password.
+        Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
         """
         return pulumi.get(self, "password")
 
@@ -1024,6 +1040,7 @@ class _AdminState:
                  email_to: Optional[pulumi.Input[str]] = None,
                  force_password_change: Optional[pulumi.Input[str]] = None,
                  fortitoken: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest_auth: Optional[pulumi.Input[str]] = None,
                  guest_lang: Optional[pulumi.Input[str]] = None,
                  guest_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input['AdminGuestUsergroupArgs']]]] = None,
@@ -1088,6 +1105,7 @@ class _AdminState:
         :param pulumi.Input[str] email_to: This administrator's email address.
         :param pulumi.Input[str] force_password_change: Enable/disable force password change on next login. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortitoken: This administrator's FortiToken serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] guest_auth: Enable/disable guest authentication. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] guest_lang: Guest management portal language.
         :param pulumi.Input[Sequence[pulumi.Input['AdminGuestUsergroupArgs']]] guest_usergroups: Select guest user groups. The structure of `guest_usergroups` block is documented below.
@@ -1110,7 +1128,7 @@ class _AdminState:
         :param pulumi.Input[str] ip6_trusthost9: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
         :param pulumi.Input[Sequence[pulumi.Input['AdminLoginTimeArgs']]] login_times: Record user login time. The structure of `login_time` block is documented below.
         :param pulumi.Input[str] name: User name.
-        :param pulumi.Input[str] password: Admin user password.
+        :param pulumi.Input[str] password: Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
         :param pulumi.Input[str] password_expire: Password expire time.
         :param pulumi.Input[str] peer_auth: Set to enable peer certificate authentication (for HTTPS admin access). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] peer_group: Name of peer group defined under config user group which has PKI members. Used for peer certificate authentication (for HTTPS admin access).
@@ -1159,6 +1177,8 @@ class _AdminState:
             pulumi.set(__self__, "force_password_change", force_password_change)
         if fortitoken is not None:
             pulumi.set(__self__, "fortitoken", fortitoken)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if guest_auth is not None:
             pulumi.set(__self__, "guest_auth", guest_auth)
         if guest_lang is not None:
@@ -1363,6 +1383,18 @@ class _AdminState:
     @fortitoken.setter
     def fortitoken(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortitoken", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="guestAuth")
@@ -1632,7 +1664,7 @@ class _AdminState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        Admin user password.
+        Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
         """
         return pulumi.get(self, "password")
 
@@ -2026,6 +2058,7 @@ class Admin(pulumi.CustomResource):
                  email_to: Optional[pulumi.Input[str]] = None,
                  force_password_change: Optional[pulumi.Input[str]] = None,
                  fortitoken: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest_auth: Optional[pulumi.Input[str]] = None,
                  guest_lang: Optional[pulumi.Input[str]] = None,
                  guest_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdminGuestUsergroupArgs']]]]] = None,
@@ -2139,6 +2172,7 @@ class Admin(pulumi.CustomResource):
         :param pulumi.Input[str] email_to: This administrator's email address.
         :param pulumi.Input[str] force_password_change: Enable/disable force password change on next login. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortitoken: This administrator's FortiToken serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] guest_auth: Enable/disable guest authentication. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] guest_lang: Guest management portal language.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdminGuestUsergroupArgs']]]] guest_usergroups: Select guest user groups. The structure of `guest_usergroups` block is documented below.
@@ -2161,7 +2195,7 @@ class Admin(pulumi.CustomResource):
         :param pulumi.Input[str] ip6_trusthost9: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdminLoginTimeArgs']]]] login_times: Record user login time. The structure of `login_time` block is documented below.
         :param pulumi.Input[str] name: User name.
-        :param pulumi.Input[str] password: Admin user password.
+        :param pulumi.Input[str] password: Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
         :param pulumi.Input[str] password_expire: Password expire time.
         :param pulumi.Input[str] peer_auth: Set to enable peer certificate authentication (for HTTPS admin access). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] peer_group: Name of peer group defined under config user group which has PKI members. Used for peer certificate authentication (for HTTPS admin access).
@@ -2271,6 +2305,7 @@ class Admin(pulumi.CustomResource):
                  email_to: Optional[pulumi.Input[str]] = None,
                  force_password_change: Optional[pulumi.Input[str]] = None,
                  fortitoken: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest_auth: Optional[pulumi.Input[str]] = None,
                  guest_lang: Optional[pulumi.Input[str]] = None,
                  guest_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdminGuestUsergroupArgs']]]]] = None,
@@ -2342,6 +2377,7 @@ class Admin(pulumi.CustomResource):
             __props__.__dict__["email_to"] = email_to
             __props__.__dict__["force_password_change"] = force_password_change
             __props__.__dict__["fortitoken"] = fortitoken
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["guest_auth"] = guest_auth
             __props__.__dict__["guest_lang"] = guest_lang
             __props__.__dict__["guest_usergroups"] = guest_usergroups
@@ -2416,6 +2452,7 @@ class Admin(pulumi.CustomResource):
             email_to: Optional[pulumi.Input[str]] = None,
             force_password_change: Optional[pulumi.Input[str]] = None,
             fortitoken: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             guest_auth: Optional[pulumi.Input[str]] = None,
             guest_lang: Optional[pulumi.Input[str]] = None,
             guest_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdminGuestUsergroupArgs']]]]] = None,
@@ -2485,6 +2522,7 @@ class Admin(pulumi.CustomResource):
         :param pulumi.Input[str] email_to: This administrator's email address.
         :param pulumi.Input[str] force_password_change: Enable/disable force password change on next login. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortitoken: This administrator's FortiToken serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] guest_auth: Enable/disable guest authentication. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] guest_lang: Guest management portal language.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdminGuestUsergroupArgs']]]] guest_usergroups: Select guest user groups. The structure of `guest_usergroups` block is documented below.
@@ -2507,7 +2545,7 @@ class Admin(pulumi.CustomResource):
         :param pulumi.Input[str] ip6_trusthost9: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdminLoginTimeArgs']]]] login_times: Record user login time. The structure of `login_time` block is documented below.
         :param pulumi.Input[str] name: User name.
-        :param pulumi.Input[str] password: Admin user password.
+        :param pulumi.Input[str] password: Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
         :param pulumi.Input[str] password_expire: Password expire time.
         :param pulumi.Input[str] peer_auth: Set to enable peer certificate authentication (for HTTPS admin access). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] peer_group: Name of peer group defined under config user group which has PKI members. Used for peer certificate authentication (for HTTPS admin access).
@@ -2552,6 +2590,7 @@ class Admin(pulumi.CustomResource):
         __props__.__dict__["email_to"] = email_to
         __props__.__dict__["force_password_change"] = force_password_change
         __props__.__dict__["fortitoken"] = fortitoken
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["guest_auth"] = guest_auth
         __props__.__dict__["guest_lang"] = guest_lang
         __props__.__dict__["guest_usergroups"] = guest_usergroups
@@ -2671,6 +2710,14 @@ class Admin(pulumi.CustomResource):
         This administrator's FortiToken serial number.
         """
         return pulumi.get(self, "fortitoken")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="guestAuth")
@@ -2852,7 +2899,7 @@ class Admin(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[str]]:
         """
-        Admin user password.
+        Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
         """
         return pulumi.get(self, "password")
 

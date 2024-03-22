@@ -14,13 +14,13 @@ namespace Pulumiverse.Fortios.Router.Inputs
     public sealed class Multicast6InterfaceGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Time before old neighbour information expires (1 - 65535 sec, default = 105).
+        /// Time before old neighbor information expires in seconds (1 - 65535, default = 105).
         /// </summary>
         [Input("helloHoldtime")]
         public Input<int>? HelloHoldtime { get; set; }
 
         /// <summary>
-        /// Interval between sending PIM hello messages  (1 - 65535 sec, default = 30)..
+        /// Interval between sending PIM hello messages in seconds (1 - 65535, default = 30).
         /// </summary>
         [Input("helloInterval")]
         public Input<int>? HelloInterval { get; set; }

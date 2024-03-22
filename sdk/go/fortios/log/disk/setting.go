@@ -110,7 +110,7 @@ type Setting struct {
 	MaxPolicyPacketCaptureSize pulumi.IntOutput `pulumi:"maxPolicyPacketCaptureSize"`
 	// Delete log files older than (days).
 	MaximumLogAge pulumi.IntOutput `pulumi:"maximumLogAge"`
-	// Report quota (MB).
+	// Report db quota (MB).
 	ReportQuota pulumi.IntOutput `pulumi:"reportQuota"`
 	// Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	RollDay pulumi.StringOutput `pulumi:"rollDay"`
@@ -214,7 +214,7 @@ type settingState struct {
 	MaxPolicyPacketCaptureSize *int `pulumi:"maxPolicyPacketCaptureSize"`
 	// Delete log files older than (days).
 	MaximumLogAge *int `pulumi:"maximumLogAge"`
-	// Report quota (MB).
+	// Report db quota (MB).
 	ReportQuota *int `pulumi:"reportQuota"`
 	// Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	RollDay *string `pulumi:"rollDay"`
@@ -279,7 +279,7 @@ type SettingState struct {
 	MaxPolicyPacketCaptureSize pulumi.IntPtrInput
 	// Delete log files older than (days).
 	MaximumLogAge pulumi.IntPtrInput
-	// Report quota (MB).
+	// Report db quota (MB).
 	ReportQuota pulumi.IntPtrInput
 	// Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	RollDay pulumi.StringPtrInput
@@ -348,7 +348,7 @@ type settingArgs struct {
 	MaxPolicyPacketCaptureSize *int `pulumi:"maxPolicyPacketCaptureSize"`
 	// Delete log files older than (days).
 	MaximumLogAge *int `pulumi:"maximumLogAge"`
-	// Report quota (MB).
+	// Report db quota (MB).
 	ReportQuota *int `pulumi:"reportQuota"`
 	// Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	RollDay *string `pulumi:"rollDay"`
@@ -414,7 +414,7 @@ type SettingArgs struct {
 	MaxPolicyPacketCaptureSize pulumi.IntPtrInput
 	// Delete log files older than (days).
 	MaximumLogAge pulumi.IntPtrInput
-	// Report quota (MB).
+	// Report db quota (MB).
 	ReportQuota pulumi.IntPtrInput
 	// Day of week on which to roll log file. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	RollDay pulumi.StringPtrInput
@@ -601,7 +601,7 @@ func (o SettingOutput) MaximumLogAge() pulumi.IntOutput {
 	return o.ApplyT(func(v *Setting) pulumi.IntOutput { return v.MaximumLogAge }).(pulumi.IntOutput)
 }
 
-// Report quota (MB).
+// Report db quota (MB).
 func (o SettingOutput) ReportQuota() pulumi.IntOutput {
 	return o.ApplyT(func(v *Setting) pulumi.IntOutput { return v.ReportQuota }).(pulumi.IntOutput)
 }

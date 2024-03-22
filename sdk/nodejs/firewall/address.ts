@@ -136,6 +136,18 @@ export class Address extends pulumi.CustomResource {
      */
     public readonly fssoGroups!: pulumi.Output<outputs.firewall.AddressFssoGroup[] | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * Dynamic address matching hardware model.
+     */
+    public readonly hwModel!: pulumi.Output<string | undefined>;
+    /**
+     * Dynamic address matching hardware vendor.
+     */
+    public readonly hwVendor!: pulumi.Output<string | undefined>;
+    /**
      * Name of interface whose IP address is to be used.
      */
     public readonly interface!: pulumi.Output<string | undefined>;
@@ -172,9 +184,17 @@ export class Address extends pulumi.CustomResource {
      */
     public readonly organization!: pulumi.Output<string | undefined>;
     /**
+     * Dynamic address matching operating system.
+     */
+    public readonly os!: pulumi.Output<string | undefined>;
+    /**
      * Policy group name.
      */
     public readonly policyGroup!: pulumi.Output<string | undefined>;
+    /**
+     * route-tag address.
+     */
+    public readonly routeTag!: pulumi.Output<number | undefined>;
     /**
      * SDN.
      */
@@ -207,6 +227,10 @@ export class Address extends pulumi.CustomResource {
      * Subnet name.
      */
     public readonly subnetName!: pulumi.Output<string | undefined>;
+    /**
+     * Dynamic address matching software version.
+     */
+    public readonly swVersion!: pulumi.Output<string | undefined>;
     /**
      * Tag detection level of dynamic address object.
      */
@@ -276,6 +300,9 @@ export class Address extends pulumi.CustomResource {
             resourceInputs["filter"] = state ? state.filter : undefined;
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
             resourceInputs["fssoGroups"] = state ? state.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["hwModel"] = state ? state.hwModel : undefined;
+            resourceInputs["hwVendor"] = state ? state.hwVendor : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["lists"] = state ? state.lists : undefined;
             resourceInputs["macaddrs"] = state ? state.macaddrs : undefined;
@@ -285,7 +312,9 @@ export class Address extends pulumi.CustomResource {
             resourceInputs["objTag"] = state ? state.objTag : undefined;
             resourceInputs["objType"] = state ? state.objType : undefined;
             resourceInputs["organization"] = state ? state.organization : undefined;
+            resourceInputs["os"] = state ? state.os : undefined;
             resourceInputs["policyGroup"] = state ? state.policyGroup : undefined;
+            resourceInputs["routeTag"] = state ? state.routeTag : undefined;
             resourceInputs["sdn"] = state ? state.sdn : undefined;
             resourceInputs["sdnAddrType"] = state ? state.sdnAddrType : undefined;
             resourceInputs["sdnTag"] = state ? state.sdnTag : undefined;
@@ -294,6 +323,7 @@ export class Address extends pulumi.CustomResource {
             resourceInputs["subType"] = state ? state.subType : undefined;
             resourceInputs["subnet"] = state ? state.subnet : undefined;
             resourceInputs["subnetName"] = state ? state.subnetName : undefined;
+            resourceInputs["swVersion"] = state ? state.swVersion : undefined;
             resourceInputs["tagDetectionLevel"] = state ? state.tagDetectionLevel : undefined;
             resourceInputs["tagType"] = state ? state.tagType : undefined;
             resourceInputs["taggings"] = state ? state.taggings : undefined;
@@ -321,6 +351,9 @@ export class Address extends pulumi.CustomResource {
             resourceInputs["filter"] = args ? args.filter : undefined;
             resourceInputs["fqdn"] = args ? args.fqdn : undefined;
             resourceInputs["fssoGroups"] = args ? args.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["hwModel"] = args ? args.hwModel : undefined;
+            resourceInputs["hwVendor"] = args ? args.hwVendor : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["lists"] = args ? args.lists : undefined;
             resourceInputs["macaddrs"] = args ? args.macaddrs : undefined;
@@ -330,7 +363,9 @@ export class Address extends pulumi.CustomResource {
             resourceInputs["objTag"] = args ? args.objTag : undefined;
             resourceInputs["objType"] = args ? args.objType : undefined;
             resourceInputs["organization"] = args ? args.organization : undefined;
+            resourceInputs["os"] = args ? args.os : undefined;
             resourceInputs["policyGroup"] = args ? args.policyGroup : undefined;
+            resourceInputs["routeTag"] = args ? args.routeTag : undefined;
             resourceInputs["sdn"] = args ? args.sdn : undefined;
             resourceInputs["sdnAddrType"] = args ? args.sdnAddrType : undefined;
             resourceInputs["sdnTag"] = args ? args.sdnTag : undefined;
@@ -339,6 +374,7 @@ export class Address extends pulumi.CustomResource {
             resourceInputs["subType"] = args ? args.subType : undefined;
             resourceInputs["subnet"] = args ? args.subnet : undefined;
             resourceInputs["subnetName"] = args ? args.subnetName : undefined;
+            resourceInputs["swVersion"] = args ? args.swVersion : undefined;
             resourceInputs["tagDetectionLevel"] = args ? args.tagDetectionLevel : undefined;
             resourceInputs["tagType"] = args ? args.tagType : undefined;
             resourceInputs["taggings"] = args ? args.taggings : undefined;
@@ -420,6 +456,18 @@ export interface AddressState {
      */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.firewall.AddressFssoGroup>[]>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Dynamic address matching hardware model.
+     */
+    hwModel?: pulumi.Input<string>;
+    /**
+     * Dynamic address matching hardware vendor.
+     */
+    hwVendor?: pulumi.Input<string>;
+    /**
      * Name of interface whose IP address is to be used.
      */
     interface?: pulumi.Input<string>;
@@ -456,9 +504,17 @@ export interface AddressState {
      */
     organization?: pulumi.Input<string>;
     /**
+     * Dynamic address matching operating system.
+     */
+    os?: pulumi.Input<string>;
+    /**
      * Policy group name.
      */
     policyGroup?: pulumi.Input<string>;
+    /**
+     * route-tag address.
+     */
+    routeTag?: pulumi.Input<number>;
     /**
      * SDN.
      */
@@ -491,6 +547,10 @@ export interface AddressState {
      * Subnet name.
      */
     subnetName?: pulumi.Input<string>;
+    /**
+     * Dynamic address matching software version.
+     */
+    swVersion?: pulumi.Input<string>;
     /**
      * Tag detection level of dynamic address object.
      */
@@ -598,6 +658,18 @@ export interface AddressArgs {
      */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.firewall.AddressFssoGroup>[]>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Dynamic address matching hardware model.
+     */
+    hwModel?: pulumi.Input<string>;
+    /**
+     * Dynamic address matching hardware vendor.
+     */
+    hwVendor?: pulumi.Input<string>;
+    /**
      * Name of interface whose IP address is to be used.
      */
     interface?: pulumi.Input<string>;
@@ -634,9 +706,17 @@ export interface AddressArgs {
      */
     organization?: pulumi.Input<string>;
     /**
+     * Dynamic address matching operating system.
+     */
+    os?: pulumi.Input<string>;
+    /**
      * Policy group name.
      */
     policyGroup?: pulumi.Input<string>;
+    /**
+     * route-tag address.
+     */
+    routeTag?: pulumi.Input<number>;
     /**
      * SDN.
      */
@@ -669,6 +749,10 @@ export interface AddressArgs {
      * Subnet name.
      */
     subnetName?: pulumi.Input<string>;
+    /**
+     * Dynamic address matching software version.
+     */
+    swVersion?: pulumi.Input<string>;
     /**
      * Tag detection level of dynamic address object.
      */

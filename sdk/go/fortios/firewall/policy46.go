@@ -116,6 +116,8 @@ type Policy46 struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
 	Fixedport pulumi.StringOutput `pulumi:"fixedport"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
 	Ippool pulumi.StringOutput `pulumi:"ippool"`
 	// Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
@@ -213,6 +215,8 @@ type policy46State struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
 	Fixedport *string `pulumi:"fixedport"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
 	Ippool *string `pulumi:"ippool"`
 	// Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
@@ -266,6 +270,8 @@ type Policy46State struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
 	Fixedport pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
 	Ippool pulumi.StringPtrInput
 	// Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
@@ -323,6 +329,8 @@ type policy46Args struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
 	Fixedport *string `pulumi:"fixedport"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
 	Ippool *string `pulumi:"ippool"`
 	// Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
@@ -377,6 +385,8 @@ type Policy46Args struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
 	Fixedport pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
 	Ippool pulumi.StringPtrInput
 	// Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
@@ -532,6 +542,11 @@ func (o Policy46Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
 func (o Policy46Output) Fixedport() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy46) pulumi.StringOutput { return v.Fixedport }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Policy46Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Policy46) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.

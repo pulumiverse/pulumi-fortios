@@ -22,6 +22,7 @@ class SamlArgs:
                  default_profile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  idp_cert: Optional[pulumi.Input[str]] = None,
                  idp_entity_id: Optional[pulumi.Input[str]] = None,
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
@@ -44,6 +45,7 @@ class SamlArgs:
         :param pulumi.Input[str] default_profile: Default profile for new SSO admin.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] entity_id: SP entity ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] idp_cert: IDP certificate name.
         :param pulumi.Input[str] idp_entity_id: IDP entity ID.
         :param pulumi.Input[str] idp_single_logout_url: IDP single logout URL.
@@ -71,6 +73,8 @@ class SamlArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if entity_id is not None:
             pulumi.set(__self__, "entity_id", entity_id)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if idp_cert is not None:
             pulumi.set(__self__, "idp_cert", idp_cert)
         if idp_entity_id is not None:
@@ -171,6 +175,18 @@ class SamlArgs:
     @entity_id.setter
     def entity_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "entity_id", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="idpCert")
@@ -350,6 +366,7 @@ class _SamlState:
                  default_profile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  idp_cert: Optional[pulumi.Input[str]] = None,
                  idp_entity_id: Optional[pulumi.Input[str]] = None,
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
@@ -372,6 +389,7 @@ class _SamlState:
         :param pulumi.Input[str] default_profile: Default profile for new SSO admin.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] entity_id: SP entity ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] idp_cert: IDP certificate name.
         :param pulumi.Input[str] idp_entity_id: IDP entity ID.
         :param pulumi.Input[str] idp_single_logout_url: IDP single logout URL.
@@ -399,6 +417,8 @@ class _SamlState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if entity_id is not None:
             pulumi.set(__self__, "entity_id", entity_id)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if idp_cert is not None:
             pulumi.set(__self__, "idp_cert", idp_cert)
         if idp_entity_id is not None:
@@ -499,6 +519,18 @@ class _SamlState:
     @entity_id.setter
     def entity_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "entity_id", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="idpCert")
@@ -680,6 +712,7 @@ class Saml(pulumi.CustomResource):
                  default_profile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  idp_cert: Optional[pulumi.Input[str]] = None,
                  idp_entity_id: Optional[pulumi.Input[str]] = None,
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
@@ -741,6 +774,7 @@ class Saml(pulumi.CustomResource):
         :param pulumi.Input[str] default_profile: Default profile for new SSO admin.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] entity_id: SP entity ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] idp_cert: IDP certificate name.
         :param pulumi.Input[str] idp_entity_id: IDP entity ID.
         :param pulumi.Input[str] idp_single_logout_url: IDP single logout URL.
@@ -821,6 +855,7 @@ class Saml(pulumi.CustomResource):
                  default_profile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  idp_cert: Optional[pulumi.Input[str]] = None,
                  idp_entity_id: Optional[pulumi.Input[str]] = None,
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
@@ -850,6 +885,7 @@ class Saml(pulumi.CustomResource):
             __props__.__dict__["default_profile"] = default_profile
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["entity_id"] = entity_id
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["idp_cert"] = idp_cert
             __props__.__dict__["idp_entity_id"] = idp_entity_id
             __props__.__dict__["idp_single_logout_url"] = idp_single_logout_url
@@ -880,6 +916,7 @@ class Saml(pulumi.CustomResource):
             default_profile: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             entity_id: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             idp_cert: Optional[pulumi.Input[str]] = None,
             idp_entity_id: Optional[pulumi.Input[str]] = None,
             idp_single_logout_url: Optional[pulumi.Input[str]] = None,
@@ -907,6 +944,7 @@ class Saml(pulumi.CustomResource):
         :param pulumi.Input[str] default_profile: Default profile for new SSO admin.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] entity_id: SP entity ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] idp_cert: IDP certificate name.
         :param pulumi.Input[str] idp_entity_id: IDP entity ID.
         :param pulumi.Input[str] idp_single_logout_url: IDP single logout URL.
@@ -932,6 +970,7 @@ class Saml(pulumi.CustomResource):
         __props__.__dict__["default_profile"] = default_profile
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["entity_id"] = entity_id
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["idp_cert"] = idp_cert
         __props__.__dict__["idp_entity_id"] = idp_entity_id
         __props__.__dict__["idp_single_logout_url"] = idp_single_logout_url
@@ -995,6 +1034,14 @@ class Saml(pulumi.CustomResource):
         SP entity ID.
         """
         return pulumi.get(self, "entity_id")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="idpCert")

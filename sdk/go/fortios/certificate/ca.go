@@ -42,6 +42,8 @@ type Ca struct {
 	Ca pulumi.StringOutput `pulumi:"ca"`
 	// CA identifier of the SCEP server.
 	CaIdentifier pulumi.StringOutput `pulumi:"caIdentifier"`
+	// URL of the EST server.
+	EstUrl pulumi.StringOutput `pulumi:"estUrl"`
 	// Time at which CA was last updated.
 	LastUpdated pulumi.IntOutput `pulumi:"lastUpdated"`
 	// Name.
@@ -74,6 +76,13 @@ func NewCa(ctx *pulumi.Context,
 	if args.Ca == nil {
 		return nil, errors.New("invalid value for required argument 'Ca'")
 	}
+	if args.Ca != nil {
+		args.Ca = pulumi.ToSecret(args.Ca).(pulumi.StringInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"ca",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Ca
 	err := ctx.RegisterResource("fortios:certificate/ca:Ca", name, args, &resource, opts...)
@@ -105,6 +114,8 @@ type caState struct {
 	Ca *string `pulumi:"ca"`
 	// CA identifier of the SCEP server.
 	CaIdentifier *string `pulumi:"caIdentifier"`
+	// URL of the EST server.
+	EstUrl *string `pulumi:"estUrl"`
 	// Time at which CA was last updated.
 	LastUpdated *int `pulumi:"lastUpdated"`
 	// Name.
@@ -136,6 +147,8 @@ type CaState struct {
 	Ca pulumi.StringPtrInput
 	// CA identifier of the SCEP server.
 	CaIdentifier pulumi.StringPtrInput
+	// URL of the EST server.
+	EstUrl pulumi.StringPtrInput
 	// Time at which CA was last updated.
 	LastUpdated pulumi.IntPtrInput
 	// Name.
@@ -171,6 +184,8 @@ type caArgs struct {
 	Ca string `pulumi:"ca"`
 	// CA identifier of the SCEP server.
 	CaIdentifier *string `pulumi:"caIdentifier"`
+	// URL of the EST server.
+	EstUrl *string `pulumi:"estUrl"`
 	// Time at which CA was last updated.
 	LastUpdated *int `pulumi:"lastUpdated"`
 	// Name.
@@ -203,6 +218,8 @@ type CaArgs struct {
 	Ca pulumi.StringInput
 	// CA identifier of the SCEP server.
 	CaIdentifier pulumi.StringPtrInput
+	// URL of the EST server.
+	EstUrl pulumi.StringPtrInput
 	// Time at which CA was last updated.
 	LastUpdated pulumi.IntPtrInput
 	// Name.
@@ -330,6 +347,11 @@ func (o CaOutput) Ca() pulumi.StringOutput {
 // CA identifier of the SCEP server.
 func (o CaOutput) CaIdentifier() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ca) pulumi.StringOutput { return v.CaIdentifier }).(pulumi.StringOutput)
+}
+
+// URL of the EST server.
+func (o CaOutput) EstUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ca) pulumi.StringOutput { return v.EstUrl }).(pulumi.StringOutput)
 }
 
 // Time at which CA was last updated.

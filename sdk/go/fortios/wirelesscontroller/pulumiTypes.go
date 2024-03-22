@@ -667,7 +667,7 @@ type BonjourprofilePolicyList struct {
 	FromVlan *string `pulumi:"fromVlan"`
 	// Policy ID.
 	PolicyId *int `pulumi:"policyId"`
-	// Bonjour services for the VLAN connecting to the Bonjour network. Valid values: `all`, `airplay`, `afp`, `bit-torrent`, `ftp`, `ichat`, `itunes`, `printers`, `samba`, `scanners`, `ssh`, `chromecast`.
+	// Bonjour services for the VLAN connecting to the Bonjour network.
 	Services *string `pulumi:"services"`
 	// VLAN ID to which the Bonjour service is made available (0 - 4094, default = all).
 	ToVlan *string `pulumi:"toVlan"`
@@ -691,7 +691,7 @@ type BonjourprofilePolicyListArgs struct {
 	FromVlan pulumi.StringPtrInput `pulumi:"fromVlan"`
 	// Policy ID.
 	PolicyId pulumi.IntPtrInput `pulumi:"policyId"`
-	// Bonjour services for the VLAN connecting to the Bonjour network. Valid values: `all`, `airplay`, `afp`, `bit-torrent`, `ftp`, `ichat`, `itunes`, `printers`, `samba`, `scanners`, `ssh`, `chromecast`.
+	// Bonjour services for the VLAN connecting to the Bonjour network.
 	Services pulumi.StringPtrInput `pulumi:"services"`
 	// VLAN ID to which the Bonjour service is made available (0 - 4094, default = all).
 	ToVlan pulumi.StringPtrInput `pulumi:"toVlan"`
@@ -763,7 +763,7 @@ func (o BonjourprofilePolicyListOutput) PolicyId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v BonjourprofilePolicyList) *int { return v.PolicyId }).(pulumi.IntPtrOutput)
 }
 
-// Bonjour services for the VLAN connecting to the Bonjour network. Valid values: `all`, `airplay`, `afp`, `bit-torrent`, `ftp`, `ichat`, `itunes`, `printers`, `samba`, `scanners`, `ssh`, `chromecast`.
+// Bonjour services for the VLAN connecting to the Bonjour network.
 func (o BonjourprofilePolicyListOutput) Services() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BonjourprofilePolicyList) *string { return v.Services }).(pulumi.StringPtrOutput)
 }
@@ -3664,6 +3664,200 @@ func (o WidsprofileApBgscanDisableScheduleArrayOutput) Index(i pulumi.IntInput) 
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WidsprofileApBgscanDisableSchedule {
 		return vs[0].([]WidsprofileApBgscanDisableSchedule)[vs[1].(int)]
 	}).(WidsprofileApBgscanDisableScheduleOutput)
+}
+
+type WidsprofileApScanChannelList2g5g struct {
+	// Channel 6g number.
+	Chan *string `pulumi:"chan"`
+}
+
+// WidsprofileApScanChannelList2g5gInput is an input type that accepts WidsprofileApScanChannelList2g5gArgs and WidsprofileApScanChannelList2g5gOutput values.
+// You can construct a concrete instance of `WidsprofileApScanChannelList2g5gInput` via:
+//
+//	WidsprofileApScanChannelList2g5gArgs{...}
+type WidsprofileApScanChannelList2g5gInput interface {
+	pulumi.Input
+
+	ToWidsprofileApScanChannelList2g5gOutput() WidsprofileApScanChannelList2g5gOutput
+	ToWidsprofileApScanChannelList2g5gOutputWithContext(context.Context) WidsprofileApScanChannelList2g5gOutput
+}
+
+type WidsprofileApScanChannelList2g5gArgs struct {
+	// Channel 6g number.
+	Chan pulumi.StringPtrInput `pulumi:"chan"`
+}
+
+func (WidsprofileApScanChannelList2g5gArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WidsprofileApScanChannelList2g5g)(nil)).Elem()
+}
+
+func (i WidsprofileApScanChannelList2g5gArgs) ToWidsprofileApScanChannelList2g5gOutput() WidsprofileApScanChannelList2g5gOutput {
+	return i.ToWidsprofileApScanChannelList2g5gOutputWithContext(context.Background())
+}
+
+func (i WidsprofileApScanChannelList2g5gArgs) ToWidsprofileApScanChannelList2g5gOutputWithContext(ctx context.Context) WidsprofileApScanChannelList2g5gOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WidsprofileApScanChannelList2g5gOutput)
+}
+
+// WidsprofileApScanChannelList2g5gArrayInput is an input type that accepts WidsprofileApScanChannelList2g5gArray and WidsprofileApScanChannelList2g5gArrayOutput values.
+// You can construct a concrete instance of `WidsprofileApScanChannelList2g5gArrayInput` via:
+//
+//	WidsprofileApScanChannelList2g5gArray{ WidsprofileApScanChannelList2g5gArgs{...} }
+type WidsprofileApScanChannelList2g5gArrayInput interface {
+	pulumi.Input
+
+	ToWidsprofileApScanChannelList2g5gArrayOutput() WidsprofileApScanChannelList2g5gArrayOutput
+	ToWidsprofileApScanChannelList2g5gArrayOutputWithContext(context.Context) WidsprofileApScanChannelList2g5gArrayOutput
+}
+
+type WidsprofileApScanChannelList2g5gArray []WidsprofileApScanChannelList2g5gInput
+
+func (WidsprofileApScanChannelList2g5gArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WidsprofileApScanChannelList2g5g)(nil)).Elem()
+}
+
+func (i WidsprofileApScanChannelList2g5gArray) ToWidsprofileApScanChannelList2g5gArrayOutput() WidsprofileApScanChannelList2g5gArrayOutput {
+	return i.ToWidsprofileApScanChannelList2g5gArrayOutputWithContext(context.Background())
+}
+
+func (i WidsprofileApScanChannelList2g5gArray) ToWidsprofileApScanChannelList2g5gArrayOutputWithContext(ctx context.Context) WidsprofileApScanChannelList2g5gArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WidsprofileApScanChannelList2g5gArrayOutput)
+}
+
+type WidsprofileApScanChannelList2g5gOutput struct{ *pulumi.OutputState }
+
+func (WidsprofileApScanChannelList2g5gOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WidsprofileApScanChannelList2g5g)(nil)).Elem()
+}
+
+func (o WidsprofileApScanChannelList2g5gOutput) ToWidsprofileApScanChannelList2g5gOutput() WidsprofileApScanChannelList2g5gOutput {
+	return o
+}
+
+func (o WidsprofileApScanChannelList2g5gOutput) ToWidsprofileApScanChannelList2g5gOutputWithContext(ctx context.Context) WidsprofileApScanChannelList2g5gOutput {
+	return o
+}
+
+// Channel 6g number.
+func (o WidsprofileApScanChannelList2g5gOutput) Chan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WidsprofileApScanChannelList2g5g) *string { return v.Chan }).(pulumi.StringPtrOutput)
+}
+
+type WidsprofileApScanChannelList2g5gArrayOutput struct{ *pulumi.OutputState }
+
+func (WidsprofileApScanChannelList2g5gArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WidsprofileApScanChannelList2g5g)(nil)).Elem()
+}
+
+func (o WidsprofileApScanChannelList2g5gArrayOutput) ToWidsprofileApScanChannelList2g5gArrayOutput() WidsprofileApScanChannelList2g5gArrayOutput {
+	return o
+}
+
+func (o WidsprofileApScanChannelList2g5gArrayOutput) ToWidsprofileApScanChannelList2g5gArrayOutputWithContext(ctx context.Context) WidsprofileApScanChannelList2g5gArrayOutput {
+	return o
+}
+
+func (o WidsprofileApScanChannelList2g5gArrayOutput) Index(i pulumi.IntInput) WidsprofileApScanChannelList2g5gOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WidsprofileApScanChannelList2g5g {
+		return vs[0].([]WidsprofileApScanChannelList2g5g)[vs[1].(int)]
+	}).(WidsprofileApScanChannelList2g5gOutput)
+}
+
+type WidsprofileApScanChannelList6g struct {
+	// Channel 6g number.
+	Chan *string `pulumi:"chan"`
+}
+
+// WidsprofileApScanChannelList6gInput is an input type that accepts WidsprofileApScanChannelList6gArgs and WidsprofileApScanChannelList6gOutput values.
+// You can construct a concrete instance of `WidsprofileApScanChannelList6gInput` via:
+//
+//	WidsprofileApScanChannelList6gArgs{...}
+type WidsprofileApScanChannelList6gInput interface {
+	pulumi.Input
+
+	ToWidsprofileApScanChannelList6gOutput() WidsprofileApScanChannelList6gOutput
+	ToWidsprofileApScanChannelList6gOutputWithContext(context.Context) WidsprofileApScanChannelList6gOutput
+}
+
+type WidsprofileApScanChannelList6gArgs struct {
+	// Channel 6g number.
+	Chan pulumi.StringPtrInput `pulumi:"chan"`
+}
+
+func (WidsprofileApScanChannelList6gArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WidsprofileApScanChannelList6g)(nil)).Elem()
+}
+
+func (i WidsprofileApScanChannelList6gArgs) ToWidsprofileApScanChannelList6gOutput() WidsprofileApScanChannelList6gOutput {
+	return i.ToWidsprofileApScanChannelList6gOutputWithContext(context.Background())
+}
+
+func (i WidsprofileApScanChannelList6gArgs) ToWidsprofileApScanChannelList6gOutputWithContext(ctx context.Context) WidsprofileApScanChannelList6gOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WidsprofileApScanChannelList6gOutput)
+}
+
+// WidsprofileApScanChannelList6gArrayInput is an input type that accepts WidsprofileApScanChannelList6gArray and WidsprofileApScanChannelList6gArrayOutput values.
+// You can construct a concrete instance of `WidsprofileApScanChannelList6gArrayInput` via:
+//
+//	WidsprofileApScanChannelList6gArray{ WidsprofileApScanChannelList6gArgs{...} }
+type WidsprofileApScanChannelList6gArrayInput interface {
+	pulumi.Input
+
+	ToWidsprofileApScanChannelList6gArrayOutput() WidsprofileApScanChannelList6gArrayOutput
+	ToWidsprofileApScanChannelList6gArrayOutputWithContext(context.Context) WidsprofileApScanChannelList6gArrayOutput
+}
+
+type WidsprofileApScanChannelList6gArray []WidsprofileApScanChannelList6gInput
+
+func (WidsprofileApScanChannelList6gArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WidsprofileApScanChannelList6g)(nil)).Elem()
+}
+
+func (i WidsprofileApScanChannelList6gArray) ToWidsprofileApScanChannelList6gArrayOutput() WidsprofileApScanChannelList6gArrayOutput {
+	return i.ToWidsprofileApScanChannelList6gArrayOutputWithContext(context.Background())
+}
+
+func (i WidsprofileApScanChannelList6gArray) ToWidsprofileApScanChannelList6gArrayOutputWithContext(ctx context.Context) WidsprofileApScanChannelList6gArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WidsprofileApScanChannelList6gArrayOutput)
+}
+
+type WidsprofileApScanChannelList6gOutput struct{ *pulumi.OutputState }
+
+func (WidsprofileApScanChannelList6gOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WidsprofileApScanChannelList6g)(nil)).Elem()
+}
+
+func (o WidsprofileApScanChannelList6gOutput) ToWidsprofileApScanChannelList6gOutput() WidsprofileApScanChannelList6gOutput {
+	return o
+}
+
+func (o WidsprofileApScanChannelList6gOutput) ToWidsprofileApScanChannelList6gOutputWithContext(ctx context.Context) WidsprofileApScanChannelList6gOutput {
+	return o
+}
+
+// Channel 6g number.
+func (o WidsprofileApScanChannelList6gOutput) Chan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WidsprofileApScanChannelList6g) *string { return v.Chan }).(pulumi.StringPtrOutput)
+}
+
+type WidsprofileApScanChannelList6gArrayOutput struct{ *pulumi.OutputState }
+
+func (WidsprofileApScanChannelList6gArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WidsprofileApScanChannelList6g)(nil)).Elem()
+}
+
+func (o WidsprofileApScanChannelList6gArrayOutput) ToWidsprofileApScanChannelList6gArrayOutput() WidsprofileApScanChannelList6gArrayOutput {
+	return o
+}
+
+func (o WidsprofileApScanChannelList6gArrayOutput) ToWidsprofileApScanChannelList6gArrayOutputWithContext(ctx context.Context) WidsprofileApScanChannelList6gArrayOutput {
+	return o
+}
+
+func (o WidsprofileApScanChannelList6gArrayOutput) Index(i pulumi.IntInput) WidsprofileApScanChannelList6gOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WidsprofileApScanChannelList6g {
+		return vs[0].([]WidsprofileApScanChannelList6g)[vs[1].(int)]
+	}).(WidsprofileApScanChannelList6gOutput)
 }
 
 type WtpLan struct {
@@ -8007,6 +8201,32 @@ type WtpprofileLbs struct {
 	FortipresenceServerFqdn *string `pulumi:"fortipresenceServerFqdn"`
 	// Enable/disable FortiPresence finding and reporting unassociated stations. Valid values: `enable`, `disable`.
 	FortipresenceUnassoc *string `pulumi:"fortipresenceUnassoc"`
+	// Enable/disable PoleStar BLE NAO Track Real Time Location Service (RTLS) support (default = disable). Valid values: `enable`, `disable`.
+	Polestar *string `pulumi:"polestar"`
+	// Time that measurements should be accumulated in seconds (default = 2).
+	PolestarAccumulationInterval *int `pulumi:"polestarAccumulationInterval"`
+	// Tags and asset addrgrp list to be reported.
+	PolestarAssetAddrgrpList *string `pulumi:"polestarAssetAddrgrpList"`
+	// Tags and asset UUID list 1 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+	PolestarAssetUuidList1 *string `pulumi:"polestarAssetUuidList1"`
+	// Tags and asset UUID list 2 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+	PolestarAssetUuidList2 *string `pulumi:"polestarAssetUuidList2"`
+	// Tags and asset UUID list 3 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+	PolestarAssetUuidList3 *string `pulumi:"polestarAssetUuidList3"`
+	// Tags and asset UUID list 4 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+	PolestarAssetUuidList4 *string `pulumi:"polestarAssetUuidList4"`
+	// Select the protocol to report Measurements, Advertising Data, or Location Data to NAO Cloud. (default = WSS). Valid values: `WSS`.
+	PolestarProtocol *string `pulumi:"polestarProtocol"`
+	// Time between reporting accumulated measurements in seconds (default = 2).
+	PolestarReportingInterval *int `pulumi:"polestarReportingInterval"`
+	// FQDN of PoleStar Nao Track Server (default = ws.nao-cloud.com).
+	PolestarServerFqdn *string `pulumi:"polestarServerFqdn"`
+	// Path of PoleStar Nao Track Server (default = /v1/token/<access_token>/pst-v2).
+	PolestarServerPath *string `pulumi:"polestarServerPath"`
+	// Port of PoleStar Nao Track Server (default = 443).
+	PolestarServerPort *int `pulumi:"polestarServerPort"`
+	// Access Token of PoleStar Nao Track Server.
+	PolestarServerToken *string `pulumi:"polestarServerToken"`
 	// Enable/disable client station locating services for all clients, whether associated or not (default = disable). Valid values: `enable`, `disable`.
 	StationLocate *string `pulumi:"stationLocate"`
 }
@@ -8069,6 +8289,32 @@ type WtpprofileLbsArgs struct {
 	FortipresenceServerFqdn pulumi.StringPtrInput `pulumi:"fortipresenceServerFqdn"`
 	// Enable/disable FortiPresence finding and reporting unassociated stations. Valid values: `enable`, `disable`.
 	FortipresenceUnassoc pulumi.StringPtrInput `pulumi:"fortipresenceUnassoc"`
+	// Enable/disable PoleStar BLE NAO Track Real Time Location Service (RTLS) support (default = disable). Valid values: `enable`, `disable`.
+	Polestar pulumi.StringPtrInput `pulumi:"polestar"`
+	// Time that measurements should be accumulated in seconds (default = 2).
+	PolestarAccumulationInterval pulumi.IntPtrInput `pulumi:"polestarAccumulationInterval"`
+	// Tags and asset addrgrp list to be reported.
+	PolestarAssetAddrgrpList pulumi.StringPtrInput `pulumi:"polestarAssetAddrgrpList"`
+	// Tags and asset UUID list 1 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+	PolestarAssetUuidList1 pulumi.StringPtrInput `pulumi:"polestarAssetUuidList1"`
+	// Tags and asset UUID list 2 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+	PolestarAssetUuidList2 pulumi.StringPtrInput `pulumi:"polestarAssetUuidList2"`
+	// Tags and asset UUID list 3 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+	PolestarAssetUuidList3 pulumi.StringPtrInput `pulumi:"polestarAssetUuidList3"`
+	// Tags and asset UUID list 4 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+	PolestarAssetUuidList4 pulumi.StringPtrInput `pulumi:"polestarAssetUuidList4"`
+	// Select the protocol to report Measurements, Advertising Data, or Location Data to NAO Cloud. (default = WSS). Valid values: `WSS`.
+	PolestarProtocol pulumi.StringPtrInput `pulumi:"polestarProtocol"`
+	// Time between reporting accumulated measurements in seconds (default = 2).
+	PolestarReportingInterval pulumi.IntPtrInput `pulumi:"polestarReportingInterval"`
+	// FQDN of PoleStar Nao Track Server (default = ws.nao-cloud.com).
+	PolestarServerFqdn pulumi.StringPtrInput `pulumi:"polestarServerFqdn"`
+	// Path of PoleStar Nao Track Server (default = /v1/token/<access_token>/pst-v2).
+	PolestarServerPath pulumi.StringPtrInput `pulumi:"polestarServerPath"`
+	// Port of PoleStar Nao Track Server (default = 443).
+	PolestarServerPort pulumi.IntPtrInput `pulumi:"polestarServerPort"`
+	// Access Token of PoleStar Nao Track Server.
+	PolestarServerToken pulumi.StringPtrInput `pulumi:"polestarServerToken"`
 	// Enable/disable client station locating services for all clients, whether associated or not (default = disable). Valid values: `enable`, `disable`.
 	StationLocate pulumi.StringPtrInput `pulumi:"stationLocate"`
 }
@@ -8263,6 +8509,71 @@ func (o WtpprofileLbsOutput) FortipresenceServerFqdn() pulumi.StringPtrOutput {
 // Enable/disable FortiPresence finding and reporting unassociated stations. Valid values: `enable`, `disable`.
 func (o WtpprofileLbsOutput) FortipresenceUnassoc() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.FortipresenceUnassoc }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable PoleStar BLE NAO Track Real Time Location Service (RTLS) support (default = disable). Valid values: `enable`, `disable`.
+func (o WtpprofileLbsOutput) Polestar() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileLbs) *string { return v.Polestar }).(pulumi.StringPtrOutput)
+}
+
+// Time that measurements should be accumulated in seconds (default = 2).
+func (o WtpprofileLbsOutput) PolestarAccumulationInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v WtpprofileLbs) *int { return v.PolestarAccumulationInterval }).(pulumi.IntPtrOutput)
+}
+
+// Tags and asset addrgrp list to be reported.
+func (o WtpprofileLbsOutput) PolestarAssetAddrgrpList() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileLbs) *string { return v.PolestarAssetAddrgrpList }).(pulumi.StringPtrOutput)
+}
+
+// Tags and asset UUID list 1 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+func (o WtpprofileLbsOutput) PolestarAssetUuidList1() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileLbs) *string { return v.PolestarAssetUuidList1 }).(pulumi.StringPtrOutput)
+}
+
+// Tags and asset UUID list 2 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+func (o WtpprofileLbsOutput) PolestarAssetUuidList2() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileLbs) *string { return v.PolestarAssetUuidList2 }).(pulumi.StringPtrOutput)
+}
+
+// Tags and asset UUID list 3 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+func (o WtpprofileLbsOutput) PolestarAssetUuidList3() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileLbs) *string { return v.PolestarAssetUuidList3 }).(pulumi.StringPtrOutput)
+}
+
+// Tags and asset UUID list 4 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+func (o WtpprofileLbsOutput) PolestarAssetUuidList4() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileLbs) *string { return v.PolestarAssetUuidList4 }).(pulumi.StringPtrOutput)
+}
+
+// Select the protocol to report Measurements, Advertising Data, or Location Data to NAO Cloud. (default = WSS). Valid values: `WSS`.
+func (o WtpprofileLbsOutput) PolestarProtocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileLbs) *string { return v.PolestarProtocol }).(pulumi.StringPtrOutput)
+}
+
+// Time between reporting accumulated measurements in seconds (default = 2).
+func (o WtpprofileLbsOutput) PolestarReportingInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v WtpprofileLbs) *int { return v.PolestarReportingInterval }).(pulumi.IntPtrOutput)
+}
+
+// FQDN of PoleStar Nao Track Server (default = ws.nao-cloud.com).
+func (o WtpprofileLbsOutput) PolestarServerFqdn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileLbs) *string { return v.PolestarServerFqdn }).(pulumi.StringPtrOutput)
+}
+
+// Path of PoleStar Nao Track Server (default = /v1/token/<access_token>/pst-v2).
+func (o WtpprofileLbsOutput) PolestarServerPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileLbs) *string { return v.PolestarServerPath }).(pulumi.StringPtrOutput)
+}
+
+// Port of PoleStar Nao Track Server (default = 443).
+func (o WtpprofileLbsOutput) PolestarServerPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v WtpprofileLbs) *int { return v.PolestarServerPort }).(pulumi.IntPtrOutput)
+}
+
+// Access Token of PoleStar Nao Track Server.
+func (o WtpprofileLbsOutput) PolestarServerToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileLbs) *string { return v.PolestarServerToken }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable client station locating services for all clients, whether associated or not (default = disable). Valid values: `enable`, `disable`.
@@ -8521,6 +8832,136 @@ func (o WtpprofileLbsPtrOutput) FortipresenceUnassoc() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.FortipresenceUnassoc
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable PoleStar BLE NAO Track Real Time Location Service (RTLS) support (default = disable). Valid values: `enable`, `disable`.
+func (o WtpprofileLbsPtrOutput) Polestar() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Polestar
+	}).(pulumi.StringPtrOutput)
+}
+
+// Time that measurements should be accumulated in seconds (default = 2).
+func (o WtpprofileLbsPtrOutput) PolestarAccumulationInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WtpprofileLbs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarAccumulationInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+// Tags and asset addrgrp list to be reported.
+func (o WtpprofileLbsPtrOutput) PolestarAssetAddrgrpList() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarAssetAddrgrpList
+	}).(pulumi.StringPtrOutput)
+}
+
+// Tags and asset UUID list 1 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+func (o WtpprofileLbsPtrOutput) PolestarAssetUuidList1() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarAssetUuidList1
+	}).(pulumi.StringPtrOutput)
+}
+
+// Tags and asset UUID list 2 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+func (o WtpprofileLbsPtrOutput) PolestarAssetUuidList2() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarAssetUuidList2
+	}).(pulumi.StringPtrOutput)
+}
+
+// Tags and asset UUID list 3 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+func (o WtpprofileLbsPtrOutput) PolestarAssetUuidList3() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarAssetUuidList3
+	}).(pulumi.StringPtrOutput)
+}
+
+// Tags and asset UUID list 4 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+func (o WtpprofileLbsPtrOutput) PolestarAssetUuidList4() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarAssetUuidList4
+	}).(pulumi.StringPtrOutput)
+}
+
+// Select the protocol to report Measurements, Advertising Data, or Location Data to NAO Cloud. (default = WSS). Valid values: `WSS`.
+func (o WtpprofileLbsPtrOutput) PolestarProtocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarProtocol
+	}).(pulumi.StringPtrOutput)
+}
+
+// Time between reporting accumulated measurements in seconds (default = 2).
+func (o WtpprofileLbsPtrOutput) PolestarReportingInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WtpprofileLbs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarReportingInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+// FQDN of PoleStar Nao Track Server (default = ws.nao-cloud.com).
+func (o WtpprofileLbsPtrOutput) PolestarServerFqdn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarServerFqdn
+	}).(pulumi.StringPtrOutput)
+}
+
+// Path of PoleStar Nao Track Server (default = /v1/token/<access_token>/pst-v2).
+func (o WtpprofileLbsPtrOutput) PolestarServerPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarServerPath
+	}).(pulumi.StringPtrOutput)
+}
+
+// Port of PoleStar Nao Track Server (default = 443).
+func (o WtpprofileLbsPtrOutput) PolestarServerPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WtpprofileLbs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarServerPort
+	}).(pulumi.IntPtrOutput)
+}
+
+// Access Token of PoleStar Nao Track Server.
+func (o WtpprofileLbsPtrOutput) PolestarServerToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarServerToken
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -8885,10 +9326,16 @@ type WtpprofileRadio1 struct {
 	MaxClients *int `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance *int `pulumi:"maxDistance"`
+	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+	MimoMode *string `pulumi:"mimoMode"`
 	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode *string `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d *string `pulumi:"n80211d"`
+	// Optional antenna used on FAP (default = none).
+	OptionalAntenna *string `pulumi:"optionalAntenna"`
+	// Optional antenna gain in dBi (0 to 20, default = 0).
+	OptionalAntennaGain *string `pulumi:"optionalAntennaGain"`
 	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 	PowerLevel *int `pulumi:"powerLevel"`
 	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
@@ -8905,8 +9352,12 @@ type WtpprofileRadio1 struct {
 	RtsThreshold *int `pulumi:"rtsThreshold"`
 	// BSSID for WiFi network.
 	SamBssid *string `pulumi:"samBssid"`
+	// CA certificate for WPA2/WPA3-ENTERPRISE.
+	SamCaCertificate *string `pulumi:"samCaCertificate"`
 	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 	SamCaptivePortal *string `pulumi:"samCaptivePortal"`
+	// Client certificate for WPA2/WPA3-ENTERPRISE.
+	SamClientCertificate *string `pulumi:"samClientCertificate"`
 	// Failure identification on the page after an incorrect login.
 	SamCwpFailureString *string `pulumi:"samCwpFailureString"`
 	// Identification string from the captive portal login form.
@@ -8919,11 +9370,17 @@ type WtpprofileRadio1 struct {
 	SamCwpTestUrl *string `pulumi:"samCwpTestUrl"`
 	// Username for captive portal authentication.
 	SamCwpUsername *string `pulumi:"samCwpUsername"`
+	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+	SamEapMethod *string `pulumi:"samEapMethod"`
 	// Passphrase for WiFi network connection.
 	SamPassword *string `pulumi:"samPassword"`
+	// Private key for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKey *string `pulumi:"samPrivateKey"`
+	// Password for private key file for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKeyPassword *string `pulumi:"samPrivateKeyPassword"`
 	// SAM report interval (sec), 0 for a one-time report.
 	SamReportIntv *int `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+	// Select WiFi network security type (default = "wpa-personal").
 	SamSecurityType *string `pulumi:"samSecurityType"`
 	// SAM test server domain name.
 	SamServerFqdn *string `pulumi:"samServerFqdn"`
@@ -9043,10 +9500,16 @@ type WtpprofileRadio1Args struct {
 	MaxClients pulumi.IntPtrInput `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance pulumi.IntPtrInput `pulumi:"maxDistance"`
+	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+	MimoMode pulumi.StringPtrInput `pulumi:"mimoMode"`
 	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d pulumi.StringPtrInput `pulumi:"n80211d"`
+	// Optional antenna used on FAP (default = none).
+	OptionalAntenna pulumi.StringPtrInput `pulumi:"optionalAntenna"`
+	// Optional antenna gain in dBi (0 to 20, default = 0).
+	OptionalAntennaGain pulumi.StringPtrInput `pulumi:"optionalAntennaGain"`
 	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 	PowerLevel pulumi.IntPtrInput `pulumi:"powerLevel"`
 	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
@@ -9063,8 +9526,12 @@ type WtpprofileRadio1Args struct {
 	RtsThreshold pulumi.IntPtrInput `pulumi:"rtsThreshold"`
 	// BSSID for WiFi network.
 	SamBssid pulumi.StringPtrInput `pulumi:"samBssid"`
+	// CA certificate for WPA2/WPA3-ENTERPRISE.
+	SamCaCertificate pulumi.StringPtrInput `pulumi:"samCaCertificate"`
 	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 	SamCaptivePortal pulumi.StringPtrInput `pulumi:"samCaptivePortal"`
+	// Client certificate for WPA2/WPA3-ENTERPRISE.
+	SamClientCertificate pulumi.StringPtrInput `pulumi:"samClientCertificate"`
 	// Failure identification on the page after an incorrect login.
 	SamCwpFailureString pulumi.StringPtrInput `pulumi:"samCwpFailureString"`
 	// Identification string from the captive portal login form.
@@ -9077,11 +9544,17 @@ type WtpprofileRadio1Args struct {
 	SamCwpTestUrl pulumi.StringPtrInput `pulumi:"samCwpTestUrl"`
 	// Username for captive portal authentication.
 	SamCwpUsername pulumi.StringPtrInput `pulumi:"samCwpUsername"`
+	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+	SamEapMethod pulumi.StringPtrInput `pulumi:"samEapMethod"`
 	// Passphrase for WiFi network connection.
 	SamPassword pulumi.StringPtrInput `pulumi:"samPassword"`
+	// Private key for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKey pulumi.StringPtrInput `pulumi:"samPrivateKey"`
+	// Password for private key file for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKeyPassword pulumi.StringPtrInput `pulumi:"samPrivateKeyPassword"`
 	// SAM report interval (sec), 0 for a one-time report.
 	SamReportIntv pulumi.IntPtrInput `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+	// Select WiFi network security type (default = "wpa-personal").
 	SamSecurityType pulumi.StringPtrInput `pulumi:"samSecurityType"`
 	// SAM test server domain name.
 	SamServerFqdn pulumi.StringPtrInput `pulumi:"samServerFqdn"`
@@ -9383,6 +9856,11 @@ func (o WtpprofileRadio1Output) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
+// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+func (o WtpprofileRadio1Output) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.MimoMode }).(pulumi.StringPtrOutput)
+}
+
 // Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio1Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.Mode }).(pulumi.StringPtrOutput)
@@ -9391,6 +9869,16 @@ func (o WtpprofileRadio1Output) Mode() pulumi.StringPtrOutput {
 // Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.N80211d }).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna used on FAP (default = none).
+func (o WtpprofileRadio1Output) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.OptionalAntenna }).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna gain in dBi (0 to 20, default = 0).
+func (o WtpprofileRadio1Output) OptionalAntennaGain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.OptionalAntennaGain }).(pulumi.StringPtrOutput)
 }
 
 // Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
@@ -9433,9 +9921,19 @@ func (o WtpprofileRadio1Output) SamBssid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamBssid }).(pulumi.StringPtrOutput)
 }
 
+// CA certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio1Output) SamCaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamCaCertificate }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamCaptivePortal }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio1Output) SamClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamClientCertificate }).(pulumi.StringPtrOutput)
 }
 
 // Failure identification on the page after an incorrect login.
@@ -9468,9 +9966,24 @@ func (o WtpprofileRadio1Output) SamCwpUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamCwpUsername }).(pulumi.StringPtrOutput)
 }
 
+// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+func (o WtpprofileRadio1Output) SamEapMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamEapMethod }).(pulumi.StringPtrOutput)
+}
+
 // Passphrase for WiFi network connection.
 func (o WtpprofileRadio1Output) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamPassword }).(pulumi.StringPtrOutput)
+}
+
+// Private key for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio1Output) SamPrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamPrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// Password for private key file for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio1Output) SamPrivateKeyPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamPrivateKeyPassword }).(pulumi.StringPtrOutput)
 }
 
 // SAM report interval (sec), 0 for a one-time report.
@@ -9478,7 +9991,7 @@ func (o WtpprofileRadio1Output) SamReportIntv() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.SamReportIntv }).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio1Output) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamSecurityType }).(pulumi.StringPtrOutput)
 }
@@ -9962,6 +10475,16 @@ func (o WtpprofileRadio1PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+func (o WtpprofileRadio1PtrOutput) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MimoMode
+	}).(pulumi.StringPtrOutput)
+}
+
 // Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio1PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
@@ -9979,6 +10502,26 @@ func (o WtpprofileRadio1PtrOutput) N80211d() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.N80211d
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna used on FAP (default = none).
+func (o WtpprofileRadio1PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptionalAntenna
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna gain in dBi (0 to 20, default = 0).
+func (o WtpprofileRadio1PtrOutput) OptionalAntennaGain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptionalAntennaGain
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -10062,6 +10605,16 @@ func (o WtpprofileRadio1PtrOutput) SamBssid() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// CA certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio1PtrOutput) SamCaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamCaCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
@@ -10069,6 +10622,16 @@ func (o WtpprofileRadio1PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.SamCaptivePortal
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio1PtrOutput) SamClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamClientCertificate
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -10132,6 +10695,16 @@ func (o WtpprofileRadio1PtrOutput) SamCwpUsername() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+func (o WtpprofileRadio1PtrOutput) SamEapMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamEapMethod
+	}).(pulumi.StringPtrOutput)
+}
+
 // Passphrase for WiFi network connection.
 func (o WtpprofileRadio1PtrOutput) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
@@ -10139,6 +10712,26 @@ func (o WtpprofileRadio1PtrOutput) SamPassword() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.SamPassword
+	}).(pulumi.StringPtrOutput)
+}
+
+// Private key for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio1PtrOutput) SamPrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamPrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Password for private key file for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio1PtrOutput) SamPrivateKeyPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamPrivateKeyPassword
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -10152,7 +10745,7 @@ func (o WtpprofileRadio1PtrOutput) SamReportIntv() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio1PtrOutput) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10565,10 +11158,16 @@ type WtpprofileRadio2 struct {
 	MaxClients *int `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance *int `pulumi:"maxDistance"`
+	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+	MimoMode *string `pulumi:"mimoMode"`
 	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode *string `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d *string `pulumi:"n80211d"`
+	// Optional antenna used on FAP (default = none).
+	OptionalAntenna *string `pulumi:"optionalAntenna"`
+	// Optional antenna gain in dBi (0 to 20, default = 0).
+	OptionalAntennaGain *string `pulumi:"optionalAntennaGain"`
 	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 	PowerLevel *int `pulumi:"powerLevel"`
 	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
@@ -10585,8 +11184,12 @@ type WtpprofileRadio2 struct {
 	RtsThreshold *int `pulumi:"rtsThreshold"`
 	// BSSID for WiFi network.
 	SamBssid *string `pulumi:"samBssid"`
+	// CA certificate for WPA2/WPA3-ENTERPRISE.
+	SamCaCertificate *string `pulumi:"samCaCertificate"`
 	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 	SamCaptivePortal *string `pulumi:"samCaptivePortal"`
+	// Client certificate for WPA2/WPA3-ENTERPRISE.
+	SamClientCertificate *string `pulumi:"samClientCertificate"`
 	// Failure identification on the page after an incorrect login.
 	SamCwpFailureString *string `pulumi:"samCwpFailureString"`
 	// Identification string from the captive portal login form.
@@ -10599,11 +11202,17 @@ type WtpprofileRadio2 struct {
 	SamCwpTestUrl *string `pulumi:"samCwpTestUrl"`
 	// Username for captive portal authentication.
 	SamCwpUsername *string `pulumi:"samCwpUsername"`
+	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+	SamEapMethod *string `pulumi:"samEapMethod"`
 	// Passphrase for WiFi network connection.
 	SamPassword *string `pulumi:"samPassword"`
+	// Private key for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKey *string `pulumi:"samPrivateKey"`
+	// Password for private key file for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKeyPassword *string `pulumi:"samPrivateKeyPassword"`
 	// SAM report interval (sec), 0 for a one-time report.
 	SamReportIntv *int `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+	// Select WiFi network security type (default = "wpa-personal").
 	SamSecurityType *string `pulumi:"samSecurityType"`
 	// SAM test server domain name.
 	SamServerFqdn *string `pulumi:"samServerFqdn"`
@@ -10723,10 +11332,16 @@ type WtpprofileRadio2Args struct {
 	MaxClients pulumi.IntPtrInput `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance pulumi.IntPtrInput `pulumi:"maxDistance"`
+	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+	MimoMode pulumi.StringPtrInput `pulumi:"mimoMode"`
 	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d pulumi.StringPtrInput `pulumi:"n80211d"`
+	// Optional antenna used on FAP (default = none).
+	OptionalAntenna pulumi.StringPtrInput `pulumi:"optionalAntenna"`
+	// Optional antenna gain in dBi (0 to 20, default = 0).
+	OptionalAntennaGain pulumi.StringPtrInput `pulumi:"optionalAntennaGain"`
 	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 	PowerLevel pulumi.IntPtrInput `pulumi:"powerLevel"`
 	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
@@ -10743,8 +11358,12 @@ type WtpprofileRadio2Args struct {
 	RtsThreshold pulumi.IntPtrInput `pulumi:"rtsThreshold"`
 	// BSSID for WiFi network.
 	SamBssid pulumi.StringPtrInput `pulumi:"samBssid"`
+	// CA certificate for WPA2/WPA3-ENTERPRISE.
+	SamCaCertificate pulumi.StringPtrInput `pulumi:"samCaCertificate"`
 	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 	SamCaptivePortal pulumi.StringPtrInput `pulumi:"samCaptivePortal"`
+	// Client certificate for WPA2/WPA3-ENTERPRISE.
+	SamClientCertificate pulumi.StringPtrInput `pulumi:"samClientCertificate"`
 	// Failure identification on the page after an incorrect login.
 	SamCwpFailureString pulumi.StringPtrInput `pulumi:"samCwpFailureString"`
 	// Identification string from the captive portal login form.
@@ -10757,11 +11376,17 @@ type WtpprofileRadio2Args struct {
 	SamCwpTestUrl pulumi.StringPtrInput `pulumi:"samCwpTestUrl"`
 	// Username for captive portal authentication.
 	SamCwpUsername pulumi.StringPtrInput `pulumi:"samCwpUsername"`
+	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+	SamEapMethod pulumi.StringPtrInput `pulumi:"samEapMethod"`
 	// Passphrase for WiFi network connection.
 	SamPassword pulumi.StringPtrInput `pulumi:"samPassword"`
+	// Private key for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKey pulumi.StringPtrInput `pulumi:"samPrivateKey"`
+	// Password for private key file for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKeyPassword pulumi.StringPtrInput `pulumi:"samPrivateKeyPassword"`
 	// SAM report interval (sec), 0 for a one-time report.
 	SamReportIntv pulumi.IntPtrInput `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+	// Select WiFi network security type (default = "wpa-personal").
 	SamSecurityType pulumi.StringPtrInput `pulumi:"samSecurityType"`
 	// SAM test server domain name.
 	SamServerFqdn pulumi.StringPtrInput `pulumi:"samServerFqdn"`
@@ -11063,6 +11688,11 @@ func (o WtpprofileRadio2Output) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
+// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+func (o WtpprofileRadio2Output) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.MimoMode }).(pulumi.StringPtrOutput)
+}
+
 // Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio2Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.Mode }).(pulumi.StringPtrOutput)
@@ -11071,6 +11701,16 @@ func (o WtpprofileRadio2Output) Mode() pulumi.StringPtrOutput {
 // Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.N80211d }).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna used on FAP (default = none).
+func (o WtpprofileRadio2Output) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.OptionalAntenna }).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna gain in dBi (0 to 20, default = 0).
+func (o WtpprofileRadio2Output) OptionalAntennaGain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.OptionalAntennaGain }).(pulumi.StringPtrOutput)
 }
 
 // Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
@@ -11113,9 +11753,19 @@ func (o WtpprofileRadio2Output) SamBssid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamBssid }).(pulumi.StringPtrOutput)
 }
 
+// CA certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio2Output) SamCaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamCaCertificate }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamCaptivePortal }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio2Output) SamClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamClientCertificate }).(pulumi.StringPtrOutput)
 }
 
 // Failure identification on the page after an incorrect login.
@@ -11148,9 +11798,24 @@ func (o WtpprofileRadio2Output) SamCwpUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamCwpUsername }).(pulumi.StringPtrOutput)
 }
 
+// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+func (o WtpprofileRadio2Output) SamEapMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamEapMethod }).(pulumi.StringPtrOutput)
+}
+
 // Passphrase for WiFi network connection.
 func (o WtpprofileRadio2Output) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamPassword }).(pulumi.StringPtrOutput)
+}
+
+// Private key for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio2Output) SamPrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamPrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// Password for private key file for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio2Output) SamPrivateKeyPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamPrivateKeyPassword }).(pulumi.StringPtrOutput)
 }
 
 // SAM report interval (sec), 0 for a one-time report.
@@ -11158,7 +11823,7 @@ func (o WtpprofileRadio2Output) SamReportIntv() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.SamReportIntv }).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio2Output) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamSecurityType }).(pulumi.StringPtrOutput)
 }
@@ -11642,6 +12307,16 @@ func (o WtpprofileRadio2PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+func (o WtpprofileRadio2PtrOutput) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MimoMode
+	}).(pulumi.StringPtrOutput)
+}
+
 // Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio2PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
@@ -11659,6 +12334,26 @@ func (o WtpprofileRadio2PtrOutput) N80211d() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.N80211d
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna used on FAP (default = none).
+func (o WtpprofileRadio2PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptionalAntenna
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna gain in dBi (0 to 20, default = 0).
+func (o WtpprofileRadio2PtrOutput) OptionalAntennaGain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptionalAntennaGain
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -11742,6 +12437,16 @@ func (o WtpprofileRadio2PtrOutput) SamBssid() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// CA certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio2PtrOutput) SamCaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamCaCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
@@ -11749,6 +12454,16 @@ func (o WtpprofileRadio2PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.SamCaptivePortal
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio2PtrOutput) SamClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamClientCertificate
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -11812,6 +12527,16 @@ func (o WtpprofileRadio2PtrOutput) SamCwpUsername() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+func (o WtpprofileRadio2PtrOutput) SamEapMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamEapMethod
+	}).(pulumi.StringPtrOutput)
+}
+
 // Passphrase for WiFi network connection.
 func (o WtpprofileRadio2PtrOutput) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
@@ -11819,6 +12544,26 @@ func (o WtpprofileRadio2PtrOutput) SamPassword() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.SamPassword
+	}).(pulumi.StringPtrOutput)
+}
+
+// Private key for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio2PtrOutput) SamPrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamPrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Password for private key file for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio2PtrOutput) SamPrivateKeyPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamPrivateKeyPassword
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -11832,7 +12577,7 @@ func (o WtpprofileRadio2PtrOutput) SamReportIntv() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio2PtrOutput) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12245,10 +12990,16 @@ type WtpprofileRadio3 struct {
 	MaxClients *int `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance *int `pulumi:"maxDistance"`
+	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+	MimoMode *string `pulumi:"mimoMode"`
 	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode *string `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d *string `pulumi:"n80211d"`
+	// Optional antenna used on FAP (default = none).
+	OptionalAntenna *string `pulumi:"optionalAntenna"`
+	// Optional antenna gain in dBi (0 to 20, default = 0).
+	OptionalAntennaGain *string `pulumi:"optionalAntennaGain"`
 	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 	PowerLevel *int `pulumi:"powerLevel"`
 	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
@@ -12263,8 +13014,12 @@ type WtpprofileRadio3 struct {
 	RtsThreshold *int `pulumi:"rtsThreshold"`
 	// BSSID for WiFi network.
 	SamBssid *string `pulumi:"samBssid"`
+	// CA certificate for WPA2/WPA3-ENTERPRISE.
+	SamCaCertificate *string `pulumi:"samCaCertificate"`
 	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 	SamCaptivePortal *string `pulumi:"samCaptivePortal"`
+	// Client certificate for WPA2/WPA3-ENTERPRISE.
+	SamClientCertificate *string `pulumi:"samClientCertificate"`
 	// Failure identification on the page after an incorrect login.
 	SamCwpFailureString *string `pulumi:"samCwpFailureString"`
 	// Identification string from the captive portal login form.
@@ -12277,11 +13032,17 @@ type WtpprofileRadio3 struct {
 	SamCwpTestUrl *string `pulumi:"samCwpTestUrl"`
 	// Username for captive portal authentication.
 	SamCwpUsername *string `pulumi:"samCwpUsername"`
+	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+	SamEapMethod *string `pulumi:"samEapMethod"`
 	// Passphrase for WiFi network connection.
 	SamPassword *string `pulumi:"samPassword"`
+	// Private key for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKey *string `pulumi:"samPrivateKey"`
+	// Password for private key file for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKeyPassword *string `pulumi:"samPrivateKeyPassword"`
 	// SAM report interval (sec), 0 for a one-time report.
 	SamReportIntv *int `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+	// Select WiFi network security type (default = "wpa-personal").
 	SamSecurityType *string `pulumi:"samSecurityType"`
 	// SAM test server domain name.
 	SamServerFqdn *string `pulumi:"samServerFqdn"`
@@ -12401,10 +13162,16 @@ type WtpprofileRadio3Args struct {
 	MaxClients pulumi.IntPtrInput `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance pulumi.IntPtrInput `pulumi:"maxDistance"`
+	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+	MimoMode pulumi.StringPtrInput `pulumi:"mimoMode"`
 	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d pulumi.StringPtrInput `pulumi:"n80211d"`
+	// Optional antenna used on FAP (default = none).
+	OptionalAntenna pulumi.StringPtrInput `pulumi:"optionalAntenna"`
+	// Optional antenna gain in dBi (0 to 20, default = 0).
+	OptionalAntennaGain pulumi.StringPtrInput `pulumi:"optionalAntennaGain"`
 	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 	PowerLevel pulumi.IntPtrInput `pulumi:"powerLevel"`
 	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
@@ -12419,8 +13186,12 @@ type WtpprofileRadio3Args struct {
 	RtsThreshold pulumi.IntPtrInput `pulumi:"rtsThreshold"`
 	// BSSID for WiFi network.
 	SamBssid pulumi.StringPtrInput `pulumi:"samBssid"`
+	// CA certificate for WPA2/WPA3-ENTERPRISE.
+	SamCaCertificate pulumi.StringPtrInput `pulumi:"samCaCertificate"`
 	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 	SamCaptivePortal pulumi.StringPtrInput `pulumi:"samCaptivePortal"`
+	// Client certificate for WPA2/WPA3-ENTERPRISE.
+	SamClientCertificate pulumi.StringPtrInput `pulumi:"samClientCertificate"`
 	// Failure identification on the page after an incorrect login.
 	SamCwpFailureString pulumi.StringPtrInput `pulumi:"samCwpFailureString"`
 	// Identification string from the captive portal login form.
@@ -12433,11 +13204,17 @@ type WtpprofileRadio3Args struct {
 	SamCwpTestUrl pulumi.StringPtrInput `pulumi:"samCwpTestUrl"`
 	// Username for captive portal authentication.
 	SamCwpUsername pulumi.StringPtrInput `pulumi:"samCwpUsername"`
+	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+	SamEapMethod pulumi.StringPtrInput `pulumi:"samEapMethod"`
 	// Passphrase for WiFi network connection.
 	SamPassword pulumi.StringPtrInput `pulumi:"samPassword"`
+	// Private key for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKey pulumi.StringPtrInput `pulumi:"samPrivateKey"`
+	// Password for private key file for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKeyPassword pulumi.StringPtrInput `pulumi:"samPrivateKeyPassword"`
 	// SAM report interval (sec), 0 for a one-time report.
 	SamReportIntv pulumi.IntPtrInput `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+	// Select WiFi network security type (default = "wpa-personal").
 	SamSecurityType pulumi.StringPtrInput `pulumi:"samSecurityType"`
 	// SAM test server domain name.
 	SamServerFqdn pulumi.StringPtrInput `pulumi:"samServerFqdn"`
@@ -12739,6 +13516,11 @@ func (o WtpprofileRadio3Output) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
+// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+func (o WtpprofileRadio3Output) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.MimoMode }).(pulumi.StringPtrOutput)
+}
+
 // Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio3Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.Mode }).(pulumi.StringPtrOutput)
@@ -12747,6 +13529,16 @@ func (o WtpprofileRadio3Output) Mode() pulumi.StringPtrOutput {
 // Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.N80211d }).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna used on FAP (default = none).
+func (o WtpprofileRadio3Output) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.OptionalAntenna }).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna gain in dBi (0 to 20, default = 0).
+func (o WtpprofileRadio3Output) OptionalAntennaGain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.OptionalAntennaGain }).(pulumi.StringPtrOutput)
 }
 
 // Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
@@ -12784,9 +13576,19 @@ func (o WtpprofileRadio3Output) SamBssid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamBssid }).(pulumi.StringPtrOutput)
 }
 
+// CA certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio3Output) SamCaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamCaCertificate }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamCaptivePortal }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio3Output) SamClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamClientCertificate }).(pulumi.StringPtrOutput)
 }
 
 // Failure identification on the page after an incorrect login.
@@ -12819,9 +13621,24 @@ func (o WtpprofileRadio3Output) SamCwpUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamCwpUsername }).(pulumi.StringPtrOutput)
 }
 
+// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+func (o WtpprofileRadio3Output) SamEapMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamEapMethod }).(pulumi.StringPtrOutput)
+}
+
 // Passphrase for WiFi network connection.
 func (o WtpprofileRadio3Output) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamPassword }).(pulumi.StringPtrOutput)
+}
+
+// Private key for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio3Output) SamPrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamPrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// Password for private key file for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio3Output) SamPrivateKeyPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamPrivateKeyPassword }).(pulumi.StringPtrOutput)
 }
 
 // SAM report interval (sec), 0 for a one-time report.
@@ -12829,7 +13646,7 @@ func (o WtpprofileRadio3Output) SamReportIntv() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.SamReportIntv }).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio3Output) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamSecurityType }).(pulumi.StringPtrOutput)
 }
@@ -13313,6 +14130,16 @@ func (o WtpprofileRadio3PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+func (o WtpprofileRadio3PtrOutput) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MimoMode
+	}).(pulumi.StringPtrOutput)
+}
+
 // Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio3PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
@@ -13330,6 +14157,26 @@ func (o WtpprofileRadio3PtrOutput) N80211d() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.N80211d
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna used on FAP (default = none).
+func (o WtpprofileRadio3PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptionalAntenna
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna gain in dBi (0 to 20, default = 0).
+func (o WtpprofileRadio3PtrOutput) OptionalAntennaGain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptionalAntennaGain
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -13403,6 +14250,16 @@ func (o WtpprofileRadio3PtrOutput) SamBssid() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// CA certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio3PtrOutput) SamCaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamCaCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
@@ -13410,6 +14267,16 @@ func (o WtpprofileRadio3PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.SamCaptivePortal
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio3PtrOutput) SamClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamClientCertificate
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -13473,6 +14340,16 @@ func (o WtpprofileRadio3PtrOutput) SamCwpUsername() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+func (o WtpprofileRadio3PtrOutput) SamEapMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamEapMethod
+	}).(pulumi.StringPtrOutput)
+}
+
 // Passphrase for WiFi network connection.
 func (o WtpprofileRadio3PtrOutput) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
@@ -13480,6 +14357,26 @@ func (o WtpprofileRadio3PtrOutput) SamPassword() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.SamPassword
+	}).(pulumi.StringPtrOutput)
+}
+
+// Private key for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio3PtrOutput) SamPrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamPrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Password for private key file for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio3PtrOutput) SamPrivateKeyPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamPrivateKeyPassword
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -13493,7 +14390,7 @@ func (o WtpprofileRadio3PtrOutput) SamReportIntv() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio3PtrOutput) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13906,10 +14803,16 @@ type WtpprofileRadio4 struct {
 	MaxClients *int `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance *int `pulumi:"maxDistance"`
+	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+	MimoMode *string `pulumi:"mimoMode"`
 	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode *string `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d *string `pulumi:"n80211d"`
+	// Optional antenna used on FAP (default = none).
+	OptionalAntenna *string `pulumi:"optionalAntenna"`
+	// Optional antenna gain in dBi (0 to 20, default = 0).
+	OptionalAntennaGain *string `pulumi:"optionalAntennaGain"`
 	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 	PowerLevel *int `pulumi:"powerLevel"`
 	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
@@ -13924,8 +14827,12 @@ type WtpprofileRadio4 struct {
 	RtsThreshold *int `pulumi:"rtsThreshold"`
 	// BSSID for WiFi network.
 	SamBssid *string `pulumi:"samBssid"`
+	// CA certificate for WPA2/WPA3-ENTERPRISE.
+	SamCaCertificate *string `pulumi:"samCaCertificate"`
 	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 	SamCaptivePortal *string `pulumi:"samCaptivePortal"`
+	// Client certificate for WPA2/WPA3-ENTERPRISE.
+	SamClientCertificate *string `pulumi:"samClientCertificate"`
 	// Failure identification on the page after an incorrect login.
 	SamCwpFailureString *string `pulumi:"samCwpFailureString"`
 	// Identification string from the captive portal login form.
@@ -13938,11 +14845,17 @@ type WtpprofileRadio4 struct {
 	SamCwpTestUrl *string `pulumi:"samCwpTestUrl"`
 	// Username for captive portal authentication.
 	SamCwpUsername *string `pulumi:"samCwpUsername"`
+	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+	SamEapMethod *string `pulumi:"samEapMethod"`
 	// Passphrase for WiFi network connection.
 	SamPassword *string `pulumi:"samPassword"`
+	// Private key for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKey *string `pulumi:"samPrivateKey"`
+	// Password for private key file for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKeyPassword *string `pulumi:"samPrivateKeyPassword"`
 	// SAM report interval (sec), 0 for a one-time report.
 	SamReportIntv *int `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+	// Select WiFi network security type (default = "wpa-personal").
 	SamSecurityType *string `pulumi:"samSecurityType"`
 	// SAM test server domain name.
 	SamServerFqdn *string `pulumi:"samServerFqdn"`
@@ -14062,10 +14975,16 @@ type WtpprofileRadio4Args struct {
 	MaxClients pulumi.IntPtrInput `pulumi:"maxClients"`
 	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 	MaxDistance pulumi.IntPtrInput `pulumi:"maxDistance"`
+	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+	MimoMode pulumi.StringPtrInput `pulumi:"mimoMode"`
 	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
 	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 	N80211d pulumi.StringPtrInput `pulumi:"n80211d"`
+	// Optional antenna used on FAP (default = none).
+	OptionalAntenna pulumi.StringPtrInput `pulumi:"optionalAntenna"`
+	// Optional antenna gain in dBi (0 to 20, default = 0).
+	OptionalAntennaGain pulumi.StringPtrInput `pulumi:"optionalAntennaGain"`
 	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 	PowerLevel pulumi.IntPtrInput `pulumi:"powerLevel"`
 	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
@@ -14080,8 +14999,12 @@ type WtpprofileRadio4Args struct {
 	RtsThreshold pulumi.IntPtrInput `pulumi:"rtsThreshold"`
 	// BSSID for WiFi network.
 	SamBssid pulumi.StringPtrInput `pulumi:"samBssid"`
+	// CA certificate for WPA2/WPA3-ENTERPRISE.
+	SamCaCertificate pulumi.StringPtrInput `pulumi:"samCaCertificate"`
 	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 	SamCaptivePortal pulumi.StringPtrInput `pulumi:"samCaptivePortal"`
+	// Client certificate for WPA2/WPA3-ENTERPRISE.
+	SamClientCertificate pulumi.StringPtrInput `pulumi:"samClientCertificate"`
 	// Failure identification on the page after an incorrect login.
 	SamCwpFailureString pulumi.StringPtrInput `pulumi:"samCwpFailureString"`
 	// Identification string from the captive portal login form.
@@ -14094,11 +15017,17 @@ type WtpprofileRadio4Args struct {
 	SamCwpTestUrl pulumi.StringPtrInput `pulumi:"samCwpTestUrl"`
 	// Username for captive portal authentication.
 	SamCwpUsername pulumi.StringPtrInput `pulumi:"samCwpUsername"`
+	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+	SamEapMethod pulumi.StringPtrInput `pulumi:"samEapMethod"`
 	// Passphrase for WiFi network connection.
 	SamPassword pulumi.StringPtrInput `pulumi:"samPassword"`
+	// Private key for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKey pulumi.StringPtrInput `pulumi:"samPrivateKey"`
+	// Password for private key file for WPA2/WPA3-ENTERPRISE.
+	SamPrivateKeyPassword pulumi.StringPtrInput `pulumi:"samPrivateKeyPassword"`
 	// SAM report interval (sec), 0 for a one-time report.
 	SamReportIntv pulumi.IntPtrInput `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+	// Select WiFi network security type (default = "wpa-personal").
 	SamSecurityType pulumi.StringPtrInput `pulumi:"samSecurityType"`
 	// SAM test server domain name.
 	SamServerFqdn pulumi.StringPtrInput `pulumi:"samServerFqdn"`
@@ -14400,6 +15329,11 @@ func (o WtpprofileRadio4Output) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
+// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+func (o WtpprofileRadio4Output) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.MimoMode }).(pulumi.StringPtrOutput)
+}
+
 // Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio4Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.Mode }).(pulumi.StringPtrOutput)
@@ -14408,6 +15342,16 @@ func (o WtpprofileRadio4Output) Mode() pulumi.StringPtrOutput {
 // Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.N80211d }).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna used on FAP (default = none).
+func (o WtpprofileRadio4Output) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.OptionalAntenna }).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna gain in dBi (0 to 20, default = 0).
+func (o WtpprofileRadio4Output) OptionalAntennaGain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.OptionalAntennaGain }).(pulumi.StringPtrOutput)
 }
 
 // Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
@@ -14445,9 +15389,19 @@ func (o WtpprofileRadio4Output) SamBssid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamBssid }).(pulumi.StringPtrOutput)
 }
 
+// CA certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio4Output) SamCaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamCaCertificate }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamCaptivePortal }).(pulumi.StringPtrOutput)
+}
+
+// Client certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio4Output) SamClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamClientCertificate }).(pulumi.StringPtrOutput)
 }
 
 // Failure identification on the page after an incorrect login.
@@ -14480,9 +15434,24 @@ func (o WtpprofileRadio4Output) SamCwpUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamCwpUsername }).(pulumi.StringPtrOutput)
 }
 
+// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+func (o WtpprofileRadio4Output) SamEapMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamEapMethod }).(pulumi.StringPtrOutput)
+}
+
 // Passphrase for WiFi network connection.
 func (o WtpprofileRadio4Output) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamPassword }).(pulumi.StringPtrOutput)
+}
+
+// Private key for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio4Output) SamPrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamPrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// Password for private key file for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio4Output) SamPrivateKeyPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamPrivateKeyPassword }).(pulumi.StringPtrOutput)
 }
 
 // SAM report interval (sec), 0 for a one-time report.
@@ -14490,7 +15459,7 @@ func (o WtpprofileRadio4Output) SamReportIntv() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.SamReportIntv }).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio4Output) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamSecurityType }).(pulumi.StringPtrOutput)
 }
@@ -14974,6 +15943,16 @@ func (o WtpprofileRadio4PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+func (o WtpprofileRadio4PtrOutput) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio4) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MimoMode
+	}).(pulumi.StringPtrOutput)
+}
+
 // Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio4PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
@@ -14991,6 +15970,26 @@ func (o WtpprofileRadio4PtrOutput) N80211d() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.N80211d
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna used on FAP (default = none).
+func (o WtpprofileRadio4PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio4) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptionalAntenna
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional antenna gain in dBi (0 to 20, default = 0).
+func (o WtpprofileRadio4PtrOutput) OptionalAntennaGain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio4) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptionalAntennaGain
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -15064,6 +16063,16 @@ func (o WtpprofileRadio4PtrOutput) SamBssid() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// CA certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio4PtrOutput) SamCaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio4) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamCaCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
@@ -15071,6 +16080,16 @@ func (o WtpprofileRadio4PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.SamCaptivePortal
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client certificate for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio4PtrOutput) SamClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio4) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamClientCertificate
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -15134,6 +16153,16 @@ func (o WtpprofileRadio4PtrOutput) SamCwpUsername() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+func (o WtpprofileRadio4PtrOutput) SamEapMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio4) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamEapMethod
+	}).(pulumi.StringPtrOutput)
+}
+
 // Passphrase for WiFi network connection.
 func (o WtpprofileRadio4PtrOutput) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
@@ -15141,6 +16170,26 @@ func (o WtpprofileRadio4PtrOutput) SamPassword() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.SamPassword
+	}).(pulumi.StringPtrOutput)
+}
+
+// Private key for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio4PtrOutput) SamPrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio4) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamPrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Password for private key file for WPA2/WPA3-ENTERPRISE.
+func (o WtpprofileRadio4PtrOutput) SamPrivateKeyPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio4) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SamPrivateKeyPassword
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -15154,7 +16203,7 @@ func (o WtpprofileRadio4PtrOutput) SamReportIntv() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio4PtrOutput) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15663,6 +16712,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VapgroupVapArrayInput)(nil)).Elem(), VapgroupVapArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WidsprofileApBgscanDisableScheduleInput)(nil)).Elem(), WidsprofileApBgscanDisableScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WidsprofileApBgscanDisableScheduleArrayInput)(nil)).Elem(), WidsprofileApBgscanDisableScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WidsprofileApScanChannelList2g5gInput)(nil)).Elem(), WidsprofileApScanChannelList2g5gArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WidsprofileApScanChannelList2g5gArrayInput)(nil)).Elem(), WidsprofileApScanChannelList2g5gArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WidsprofileApScanChannelList6gInput)(nil)).Elem(), WidsprofileApScanChannelList6gArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WidsprofileApScanChannelList6gArrayInput)(nil)).Elem(), WidsprofileApScanChannelList6gArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WtpLanInput)(nil)).Elem(), WtpLanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WtpLanPtrInput)(nil)).Elem(), WtpLanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WtpRadio1Input)(nil)).Elem(), WtpRadio1Args{})
@@ -15793,6 +16846,10 @@ func init() {
 	pulumi.RegisterOutputType(VapgroupVapArrayOutput{})
 	pulumi.RegisterOutputType(WidsprofileApBgscanDisableScheduleOutput{})
 	pulumi.RegisterOutputType(WidsprofileApBgscanDisableScheduleArrayOutput{})
+	pulumi.RegisterOutputType(WidsprofileApScanChannelList2g5gOutput{})
+	pulumi.RegisterOutputType(WidsprofileApScanChannelList2g5gArrayOutput{})
+	pulumi.RegisterOutputType(WidsprofileApScanChannelList6gOutput{})
+	pulumi.RegisterOutputType(WidsprofileApScanChannelList6gArrayOutput{})
 	pulumi.RegisterOutputType(WtpLanOutput{})
 	pulumi.RegisterOutputType(WtpLanPtrOutput{})
 	pulumi.RegisterOutputType(WtpRadio1Output{})

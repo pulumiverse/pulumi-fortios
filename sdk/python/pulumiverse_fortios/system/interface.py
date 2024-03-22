@@ -42,6 +42,7 @@ class InterfaceArgs:
                  client_options: Optional[pulumi.Input[Sequence[pulumi.Input['InterfaceClientOptionArgs']]]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  dedicated_to: Optional[pulumi.Input[str]] = None,
+                 default_purdue_level: Optional[pulumi.Input[str]] = None,
                  defaultgw: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  detected_peer_mtu: Optional[pulumi.Input[int]] = None,
@@ -53,17 +54,21 @@ class InterfaceArgs:
                  device_netscan: Optional[pulumi.Input[str]] = None,
                  device_user_identification: Optional[pulumi.Input[str]] = None,
                  devindex: Optional[pulumi.Input[int]] = None,
+                 dhcp_broadcast_flag: Optional[pulumi.Input[str]] = None,
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_link_selection: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_request_all_server: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_service: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_source_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_type: Optional[pulumi.Input[str]] = None,
                  dhcp_renew_time: Optional[pulumi.Input[int]] = None,
+                 dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
                  dhcp_snooping_server_lists: Optional[pulumi.Input[Sequence[pulumi.Input['InterfaceDhcpSnoopingServerListArgs']]]] = None,
                  disc_retry_timeout: Optional[pulumi.Input[int]] = None,
                  disconnect_threshold: Optional[pulumi.Input[int]] = None,
@@ -99,6 +104,7 @@ class InterfaceArgs:
                  fortilink_stacking: Optional[pulumi.Input[str]] = None,
                  forward_domain: Optional[pulumi.Input[int]] = None,
                  forward_error_correction: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gwdetect: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  icmp_accept_redirect: Optional[pulumi.Input[str]] = None,
@@ -212,6 +218,9 @@ class InterfaceArgs:
                  switch_controller_mgmt_vlan: Optional[pulumi.Input[int]] = None,
                  switch_controller_nac: Optional[pulumi.Input[str]] = None,
                  switch_controller_netflow_collect: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_gw: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_rspan_mode: Optional[pulumi.Input[str]] = None,
                  switch_controller_source_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -267,6 +276,7 @@ class InterfaceArgs:
         :param pulumi.Input[Sequence[pulumi.Input['InterfaceClientOptionArgs']]] client_options: DHCP client options. The structure of `client_options` block is documented below.
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] dedicated_to: Configure interface for single purpose. Valid values: `none`, `management`.
+        :param pulumi.Input[str] default_purdue_level: default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
         :param pulumi.Input[str] defaultgw: Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[int] detected_peer_mtu: MTU of detected peer (0 - 4294967295).
@@ -278,17 +288,21 @@ class InterfaceArgs:
         :param pulumi.Input[str] device_netscan: Enable/disable inclusion of devices detected on this interface in network vulnerability scans. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] device_user_identification: Enable/disable passive gathering of user identity information about users on this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] devindex: Device Index.
+        :param pulumi.Input[str] dhcp_broadcast_flag: Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp_classless_route_addition: Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dhcp_client_identifier: DHCP client identifier.
         :param pulumi.Input[str] dhcp_relay_agent_option: Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dhcp_relay_circuit_id: DHCP relay circuit ID.
         :param pulumi.Input[str] dhcp_relay_interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] dhcp_relay_interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] dhcp_relay_ip: DHCP relay IP address.
         :param pulumi.Input[str] dhcp_relay_link_selection: DHCP relay link selection.
         :param pulumi.Input[str] dhcp_relay_request_all_server: Enable/disable sending DHCP request to all servers. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp_relay_service: Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] dhcp_relay_source_ip: IP address used by the DHCP relay as its source IP.
         :param pulumi.Input[str] dhcp_relay_type: DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
         :param pulumi.Input[int] dhcp_renew_time: DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
+        :param pulumi.Input[str] dhcp_smart_relay: Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['InterfaceDhcpSnoopingServerListArgs']]] dhcp_snooping_server_lists: Configure DHCP server access list. The structure of `dhcp_snooping_server_list` block is documented below.
         :param pulumi.Input[int] disc_retry_timeout: Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
         :param pulumi.Input[int] disconnect_threshold: Time in milliseconds to wait before sending a notification that this interface is down or disconnected.
@@ -324,6 +338,7 @@ class InterfaceArgs:
         :param pulumi.Input[str] fortilink_stacking: Enable/disable FortiLink switch-stacking on this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_domain: Transparent mode forward domain.
         :param pulumi.Input[str] forward_error_correction: Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gwdetect: Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ha_priority: HA election priority for the PING server.
         :param pulumi.Input[str] icmp_accept_redirect: Enable/disable ICMP accept redirect. Valid values: `enable`, `disable`.
@@ -337,7 +352,7 @@ class InterfaceArgs:
         :param pulumi.Input[str] interface: Interface name.
         :param pulumi.Input[int] internal: Implicitly created.
         :param pulumi.Input[str] ip: Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
-        :param pulumi.Input[str] ip_managed_by_fortiipam: Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ip_managed_by_fortiipam: Enable/disable automatic IP address assignment of this interface by FortiIPAM.
         :param pulumi.Input[str] ipmac: Enable/disable IP/MAC binding. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sniffer_mode: Enable/disable the use of this interface as a one-armed sniffer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipunnumbered: Unnumbered IP used for PPPoE interfaces for which no unique local address is provided.
@@ -437,6 +452,9 @@ class InterfaceArgs:
         :param pulumi.Input[int] switch_controller_mgmt_vlan: VLAN to use for FortiLink management purposes.
         :param pulumi.Input[str] switch_controller_nac: Integrated NAC settings for managed FortiSwitch.
         :param pulumi.Input[str] switch_controller_netflow_collect: NetFlow collection and processing. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] switch_controller_offload: Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] switch_controller_offload_gw: Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] switch_controller_offload_ip: IP for routing offload on FortiSwitch.
         :param pulumi.Input[str] switch_controller_rspan_mode: Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] switch_controller_source_ip: Source IP address used in FortiLink over L3 connections. Valid values: `outbound`, `fixed`.
         :param pulumi.Input[str] switch_controller_traffic_policy: Switch controller traffic policy for the VLAN.
@@ -516,6 +534,8 @@ class InterfaceArgs:
             pulumi.set(__self__, "color", color)
         if dedicated_to is not None:
             pulumi.set(__self__, "dedicated_to", dedicated_to)
+        if default_purdue_level is not None:
+            pulumi.set(__self__, "default_purdue_level", default_purdue_level)
         if defaultgw is not None:
             pulumi.set(__self__, "defaultgw", defaultgw)
         if description is not None:
@@ -538,12 +558,16 @@ class InterfaceArgs:
             pulumi.set(__self__, "device_user_identification", device_user_identification)
         if devindex is not None:
             pulumi.set(__self__, "devindex", devindex)
+        if dhcp_broadcast_flag is not None:
+            pulumi.set(__self__, "dhcp_broadcast_flag", dhcp_broadcast_flag)
         if dhcp_classless_route_addition is not None:
             pulumi.set(__self__, "dhcp_classless_route_addition", dhcp_classless_route_addition)
         if dhcp_client_identifier is not None:
             pulumi.set(__self__, "dhcp_client_identifier", dhcp_client_identifier)
         if dhcp_relay_agent_option is not None:
             pulumi.set(__self__, "dhcp_relay_agent_option", dhcp_relay_agent_option)
+        if dhcp_relay_circuit_id is not None:
+            pulumi.set(__self__, "dhcp_relay_circuit_id", dhcp_relay_circuit_id)
         if dhcp_relay_interface is not None:
             pulumi.set(__self__, "dhcp_relay_interface", dhcp_relay_interface)
         if dhcp_relay_interface_select_method is not None:
@@ -556,10 +580,14 @@ class InterfaceArgs:
             pulumi.set(__self__, "dhcp_relay_request_all_server", dhcp_relay_request_all_server)
         if dhcp_relay_service is not None:
             pulumi.set(__self__, "dhcp_relay_service", dhcp_relay_service)
+        if dhcp_relay_source_ip is not None:
+            pulumi.set(__self__, "dhcp_relay_source_ip", dhcp_relay_source_ip)
         if dhcp_relay_type is not None:
             pulumi.set(__self__, "dhcp_relay_type", dhcp_relay_type)
         if dhcp_renew_time is not None:
             pulumi.set(__self__, "dhcp_renew_time", dhcp_renew_time)
+        if dhcp_smart_relay is not None:
+            pulumi.set(__self__, "dhcp_smart_relay", dhcp_smart_relay)
         if dhcp_snooping_server_lists is not None:
             pulumi.set(__self__, "dhcp_snooping_server_lists", dhcp_snooping_server_lists)
         if disc_retry_timeout is not None:
@@ -630,6 +658,8 @@ class InterfaceArgs:
             pulumi.set(__self__, "forward_domain", forward_domain)
         if forward_error_correction is not None:
             pulumi.set(__self__, "forward_error_correction", forward_error_correction)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gwdetect is not None:
             pulumi.set(__self__, "gwdetect", gwdetect)
         if ha_priority is not None:
@@ -856,6 +886,12 @@ class InterfaceArgs:
             pulumi.set(__self__, "switch_controller_nac", switch_controller_nac)
         if switch_controller_netflow_collect is not None:
             pulumi.set(__self__, "switch_controller_netflow_collect", switch_controller_netflow_collect)
+        if switch_controller_offload is not None:
+            pulumi.set(__self__, "switch_controller_offload", switch_controller_offload)
+        if switch_controller_offload_gw is not None:
+            pulumi.set(__self__, "switch_controller_offload_gw", switch_controller_offload_gw)
+        if switch_controller_offload_ip is not None:
+            pulumi.set(__self__, "switch_controller_offload_ip", switch_controller_offload_ip)
         if switch_controller_rspan_mode is not None:
             pulumi.set(__self__, "switch_controller_rspan_mode", switch_controller_rspan_mode)
         if switch_controller_source_ip is not None:
@@ -1224,6 +1260,18 @@ class InterfaceArgs:
         pulumi.set(self, "dedicated_to", value)
 
     @property
+    @pulumi.getter(name="defaultPurdueLevel")
+    def default_purdue_level(self) -> Optional[pulumi.Input[str]]:
+        """
+        default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        """
+        return pulumi.get(self, "default_purdue_level")
+
+    @default_purdue_level.setter
+    def default_purdue_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_purdue_level", value)
+
+    @property
     @pulumi.getter
     def defaultgw(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1356,6 +1404,18 @@ class InterfaceArgs:
         pulumi.set(self, "devindex", value)
 
     @property
+    @pulumi.getter(name="dhcpBroadcastFlag")
+    def dhcp_broadcast_flag(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dhcp_broadcast_flag")
+
+    @dhcp_broadcast_flag.setter
+    def dhcp_broadcast_flag(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_broadcast_flag", value)
+
+    @property
     @pulumi.getter(name="dhcpClasslessRouteAddition")
     def dhcp_classless_route_addition(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1390,6 +1450,18 @@ class InterfaceArgs:
     @dhcp_relay_agent_option.setter
     def dhcp_relay_agent_option(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_relay_agent_option", value)
+
+    @property
+    @pulumi.getter(name="dhcpRelayCircuitId")
+    def dhcp_relay_circuit_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        DHCP relay circuit ID.
+        """
+        return pulumi.get(self, "dhcp_relay_circuit_id")
+
+    @dhcp_relay_circuit_id.setter
+    def dhcp_relay_circuit_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_relay_circuit_id", value)
 
     @property
     @pulumi.getter(name="dhcpRelayInterface")
@@ -1464,6 +1536,18 @@ class InterfaceArgs:
         pulumi.set(self, "dhcp_relay_service", value)
 
     @property
+    @pulumi.getter(name="dhcpRelaySourceIp")
+    def dhcp_relay_source_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        IP address used by the DHCP relay as its source IP.
+        """
+        return pulumi.get(self, "dhcp_relay_source_ip")
+
+    @dhcp_relay_source_ip.setter
+    def dhcp_relay_source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_relay_source_ip", value)
+
+    @property
     @pulumi.getter(name="dhcpRelayType")
     def dhcp_relay_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1486,6 +1570,18 @@ class InterfaceArgs:
     @dhcp_renew_time.setter
     def dhcp_renew_time(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "dhcp_renew_time", value)
+
+    @property
+    @pulumi.getter(name="dhcpSmartRelay")
+    def dhcp_smart_relay(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dhcp_smart_relay")
+
+    @dhcp_smart_relay.setter
+    def dhcp_smart_relay(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_smart_relay", value)
 
     @property
     @pulumi.getter(name="dhcpSnoopingServerLists")
@@ -1908,6 +2004,18 @@ class InterfaceArgs:
         pulumi.set(self, "forward_error_correction", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def gwdetect(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2067,7 +2175,7 @@ class InterfaceArgs:
     @pulumi.getter(name="ipManagedByFortiipam")
     def ip_managed_by_fortiipam(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+        Enable/disable automatic IP address assignment of this interface by FortiIPAM.
         """
         return pulumi.get(self, "ip_managed_by_fortiipam")
 
@@ -3264,6 +3372,42 @@ class InterfaceArgs:
         pulumi.set(self, "switch_controller_netflow_collect", value)
 
     @property
+    @pulumi.getter(name="switchControllerOffload")
+    def switch_controller_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "switch_controller_offload")
+
+    @switch_controller_offload.setter
+    def switch_controller_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_offload", value)
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadGw")
+    def switch_controller_offload_gw(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "switch_controller_offload_gw")
+
+    @switch_controller_offload_gw.setter
+    def switch_controller_offload_gw(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_offload_gw", value)
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadIp")
+    def switch_controller_offload_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        IP for routing offload on FortiSwitch.
+        """
+        return pulumi.get(self, "switch_controller_offload_ip")
+
+    @switch_controller_offload_ip.setter
+    def switch_controller_offload_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_offload_ip", value)
+
+    @property
     @pulumi.getter(name="switchControllerRspanMode")
     def switch_controller_rspan_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3616,6 +3760,7 @@ class _InterfaceState:
                  client_options: Optional[pulumi.Input[Sequence[pulumi.Input['InterfaceClientOptionArgs']]]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  dedicated_to: Optional[pulumi.Input[str]] = None,
+                 default_purdue_level: Optional[pulumi.Input[str]] = None,
                  defaultgw: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  detected_peer_mtu: Optional[pulumi.Input[int]] = None,
@@ -3627,17 +3772,21 @@ class _InterfaceState:
                  device_netscan: Optional[pulumi.Input[str]] = None,
                  device_user_identification: Optional[pulumi.Input[str]] = None,
                  devindex: Optional[pulumi.Input[int]] = None,
+                 dhcp_broadcast_flag: Optional[pulumi.Input[str]] = None,
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_link_selection: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_request_all_server: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_service: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_source_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_type: Optional[pulumi.Input[str]] = None,
                  dhcp_renew_time: Optional[pulumi.Input[int]] = None,
+                 dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
                  dhcp_snooping_server_lists: Optional[pulumi.Input[Sequence[pulumi.Input['InterfaceDhcpSnoopingServerListArgs']]]] = None,
                  disc_retry_timeout: Optional[pulumi.Input[int]] = None,
                  disconnect_threshold: Optional[pulumi.Input[int]] = None,
@@ -3673,6 +3822,7 @@ class _InterfaceState:
                  fortilink_stacking: Optional[pulumi.Input[str]] = None,
                  forward_domain: Optional[pulumi.Input[int]] = None,
                  forward_error_correction: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gwdetect: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  icmp_accept_redirect: Optional[pulumi.Input[str]] = None,
@@ -3786,6 +3936,9 @@ class _InterfaceState:
                  switch_controller_mgmt_vlan: Optional[pulumi.Input[int]] = None,
                  switch_controller_nac: Optional[pulumi.Input[str]] = None,
                  switch_controller_netflow_collect: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_gw: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_rspan_mode: Optional[pulumi.Input[str]] = None,
                  switch_controller_source_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -3841,6 +3994,7 @@ class _InterfaceState:
         :param pulumi.Input[Sequence[pulumi.Input['InterfaceClientOptionArgs']]] client_options: DHCP client options. The structure of `client_options` block is documented below.
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] dedicated_to: Configure interface for single purpose. Valid values: `none`, `management`.
+        :param pulumi.Input[str] default_purdue_level: default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
         :param pulumi.Input[str] defaultgw: Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[int] detected_peer_mtu: MTU of detected peer (0 - 4294967295).
@@ -3852,17 +4006,21 @@ class _InterfaceState:
         :param pulumi.Input[str] device_netscan: Enable/disable inclusion of devices detected on this interface in network vulnerability scans. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] device_user_identification: Enable/disable passive gathering of user identity information about users on this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] devindex: Device Index.
+        :param pulumi.Input[str] dhcp_broadcast_flag: Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp_classless_route_addition: Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dhcp_client_identifier: DHCP client identifier.
         :param pulumi.Input[str] dhcp_relay_agent_option: Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dhcp_relay_circuit_id: DHCP relay circuit ID.
         :param pulumi.Input[str] dhcp_relay_interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] dhcp_relay_interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] dhcp_relay_ip: DHCP relay IP address.
         :param pulumi.Input[str] dhcp_relay_link_selection: DHCP relay link selection.
         :param pulumi.Input[str] dhcp_relay_request_all_server: Enable/disable sending DHCP request to all servers. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp_relay_service: Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] dhcp_relay_source_ip: IP address used by the DHCP relay as its source IP.
         :param pulumi.Input[str] dhcp_relay_type: DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
         :param pulumi.Input[int] dhcp_renew_time: DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
+        :param pulumi.Input[str] dhcp_smart_relay: Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['InterfaceDhcpSnoopingServerListArgs']]] dhcp_snooping_server_lists: Configure DHCP server access list. The structure of `dhcp_snooping_server_list` block is documented below.
         :param pulumi.Input[int] disc_retry_timeout: Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
         :param pulumi.Input[int] disconnect_threshold: Time in milliseconds to wait before sending a notification that this interface is down or disconnected.
@@ -3898,6 +4056,7 @@ class _InterfaceState:
         :param pulumi.Input[str] fortilink_stacking: Enable/disable FortiLink switch-stacking on this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_domain: Transparent mode forward domain.
         :param pulumi.Input[str] forward_error_correction: Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gwdetect: Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ha_priority: HA election priority for the PING server.
         :param pulumi.Input[str] icmp_accept_redirect: Enable/disable ICMP accept redirect. Valid values: `enable`, `disable`.
@@ -3911,7 +4070,7 @@ class _InterfaceState:
         :param pulumi.Input[str] interface: Interface name.
         :param pulumi.Input[int] internal: Implicitly created.
         :param pulumi.Input[str] ip: Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
-        :param pulumi.Input[str] ip_managed_by_fortiipam: Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ip_managed_by_fortiipam: Enable/disable automatic IP address assignment of this interface by FortiIPAM.
         :param pulumi.Input[str] ipmac: Enable/disable IP/MAC binding. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sniffer_mode: Enable/disable the use of this interface as a one-armed sniffer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipunnumbered: Unnumbered IP used for PPPoE interfaces for which no unique local address is provided.
@@ -4011,6 +4170,9 @@ class _InterfaceState:
         :param pulumi.Input[int] switch_controller_mgmt_vlan: VLAN to use for FortiLink management purposes.
         :param pulumi.Input[str] switch_controller_nac: Integrated NAC settings for managed FortiSwitch.
         :param pulumi.Input[str] switch_controller_netflow_collect: NetFlow collection and processing. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] switch_controller_offload: Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] switch_controller_offload_gw: Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] switch_controller_offload_ip: IP for routing offload on FortiSwitch.
         :param pulumi.Input[str] switch_controller_rspan_mode: Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] switch_controller_source_ip: Source IP address used in FortiLink over L3 connections. Valid values: `outbound`, `fixed`.
         :param pulumi.Input[str] switch_controller_traffic_policy: Switch controller traffic policy for the VLAN.
@@ -4090,6 +4252,8 @@ class _InterfaceState:
             pulumi.set(__self__, "color", color)
         if dedicated_to is not None:
             pulumi.set(__self__, "dedicated_to", dedicated_to)
+        if default_purdue_level is not None:
+            pulumi.set(__self__, "default_purdue_level", default_purdue_level)
         if defaultgw is not None:
             pulumi.set(__self__, "defaultgw", defaultgw)
         if description is not None:
@@ -4112,12 +4276,16 @@ class _InterfaceState:
             pulumi.set(__self__, "device_user_identification", device_user_identification)
         if devindex is not None:
             pulumi.set(__self__, "devindex", devindex)
+        if dhcp_broadcast_flag is not None:
+            pulumi.set(__self__, "dhcp_broadcast_flag", dhcp_broadcast_flag)
         if dhcp_classless_route_addition is not None:
             pulumi.set(__self__, "dhcp_classless_route_addition", dhcp_classless_route_addition)
         if dhcp_client_identifier is not None:
             pulumi.set(__self__, "dhcp_client_identifier", dhcp_client_identifier)
         if dhcp_relay_agent_option is not None:
             pulumi.set(__self__, "dhcp_relay_agent_option", dhcp_relay_agent_option)
+        if dhcp_relay_circuit_id is not None:
+            pulumi.set(__self__, "dhcp_relay_circuit_id", dhcp_relay_circuit_id)
         if dhcp_relay_interface is not None:
             pulumi.set(__self__, "dhcp_relay_interface", dhcp_relay_interface)
         if dhcp_relay_interface_select_method is not None:
@@ -4130,10 +4298,14 @@ class _InterfaceState:
             pulumi.set(__self__, "dhcp_relay_request_all_server", dhcp_relay_request_all_server)
         if dhcp_relay_service is not None:
             pulumi.set(__self__, "dhcp_relay_service", dhcp_relay_service)
+        if dhcp_relay_source_ip is not None:
+            pulumi.set(__self__, "dhcp_relay_source_ip", dhcp_relay_source_ip)
         if dhcp_relay_type is not None:
             pulumi.set(__self__, "dhcp_relay_type", dhcp_relay_type)
         if dhcp_renew_time is not None:
             pulumi.set(__self__, "dhcp_renew_time", dhcp_renew_time)
+        if dhcp_smart_relay is not None:
+            pulumi.set(__self__, "dhcp_smart_relay", dhcp_smart_relay)
         if dhcp_snooping_server_lists is not None:
             pulumi.set(__self__, "dhcp_snooping_server_lists", dhcp_snooping_server_lists)
         if disc_retry_timeout is not None:
@@ -4204,6 +4376,8 @@ class _InterfaceState:
             pulumi.set(__self__, "forward_domain", forward_domain)
         if forward_error_correction is not None:
             pulumi.set(__self__, "forward_error_correction", forward_error_correction)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gwdetect is not None:
             pulumi.set(__self__, "gwdetect", gwdetect)
         if ha_priority is not None:
@@ -4430,6 +4604,12 @@ class _InterfaceState:
             pulumi.set(__self__, "switch_controller_nac", switch_controller_nac)
         if switch_controller_netflow_collect is not None:
             pulumi.set(__self__, "switch_controller_netflow_collect", switch_controller_netflow_collect)
+        if switch_controller_offload is not None:
+            pulumi.set(__self__, "switch_controller_offload", switch_controller_offload)
+        if switch_controller_offload_gw is not None:
+            pulumi.set(__self__, "switch_controller_offload_gw", switch_controller_offload_gw)
+        if switch_controller_offload_ip is not None:
+            pulumi.set(__self__, "switch_controller_offload_ip", switch_controller_offload_ip)
         if switch_controller_rspan_mode is not None:
             pulumi.set(__self__, "switch_controller_rspan_mode", switch_controller_rspan_mode)
         if switch_controller_source_ip is not None:
@@ -4788,6 +4968,18 @@ class _InterfaceState:
         pulumi.set(self, "dedicated_to", value)
 
     @property
+    @pulumi.getter(name="defaultPurdueLevel")
+    def default_purdue_level(self) -> Optional[pulumi.Input[str]]:
+        """
+        default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        """
+        return pulumi.get(self, "default_purdue_level")
+
+    @default_purdue_level.setter
+    def default_purdue_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_purdue_level", value)
+
+    @property
     @pulumi.getter
     def defaultgw(self) -> Optional[pulumi.Input[str]]:
         """
@@ -4920,6 +5112,18 @@ class _InterfaceState:
         pulumi.set(self, "devindex", value)
 
     @property
+    @pulumi.getter(name="dhcpBroadcastFlag")
+    def dhcp_broadcast_flag(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dhcp_broadcast_flag")
+
+    @dhcp_broadcast_flag.setter
+    def dhcp_broadcast_flag(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_broadcast_flag", value)
+
+    @property
     @pulumi.getter(name="dhcpClasslessRouteAddition")
     def dhcp_classless_route_addition(self) -> Optional[pulumi.Input[str]]:
         """
@@ -4954,6 +5158,18 @@ class _InterfaceState:
     @dhcp_relay_agent_option.setter
     def dhcp_relay_agent_option(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_relay_agent_option", value)
+
+    @property
+    @pulumi.getter(name="dhcpRelayCircuitId")
+    def dhcp_relay_circuit_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        DHCP relay circuit ID.
+        """
+        return pulumi.get(self, "dhcp_relay_circuit_id")
+
+    @dhcp_relay_circuit_id.setter
+    def dhcp_relay_circuit_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_relay_circuit_id", value)
 
     @property
     @pulumi.getter(name="dhcpRelayInterface")
@@ -5028,6 +5244,18 @@ class _InterfaceState:
         pulumi.set(self, "dhcp_relay_service", value)
 
     @property
+    @pulumi.getter(name="dhcpRelaySourceIp")
+    def dhcp_relay_source_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        IP address used by the DHCP relay as its source IP.
+        """
+        return pulumi.get(self, "dhcp_relay_source_ip")
+
+    @dhcp_relay_source_ip.setter
+    def dhcp_relay_source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_relay_source_ip", value)
+
+    @property
     @pulumi.getter(name="dhcpRelayType")
     def dhcp_relay_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5050,6 +5278,18 @@ class _InterfaceState:
     @dhcp_renew_time.setter
     def dhcp_renew_time(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "dhcp_renew_time", value)
+
+    @property
+    @pulumi.getter(name="dhcpSmartRelay")
+    def dhcp_smart_relay(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dhcp_smart_relay")
+
+    @dhcp_smart_relay.setter
+    def dhcp_smart_relay(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_smart_relay", value)
 
     @property
     @pulumi.getter(name="dhcpSnoopingServerLists")
@@ -5472,6 +5712,18 @@ class _InterfaceState:
         pulumi.set(self, "forward_error_correction", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def gwdetect(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5631,7 +5883,7 @@ class _InterfaceState:
     @pulumi.getter(name="ipManagedByFortiipam")
     def ip_managed_by_fortiipam(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+        Enable/disable automatic IP address assignment of this interface by FortiIPAM.
         """
         return pulumi.get(self, "ip_managed_by_fortiipam")
 
@@ -6826,6 +7078,42 @@ class _InterfaceState:
     @switch_controller_netflow_collect.setter
     def switch_controller_netflow_collect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "switch_controller_netflow_collect", value)
+
+    @property
+    @pulumi.getter(name="switchControllerOffload")
+    def switch_controller_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "switch_controller_offload")
+
+    @switch_controller_offload.setter
+    def switch_controller_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_offload", value)
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadGw")
+    def switch_controller_offload_gw(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "switch_controller_offload_gw")
+
+    @switch_controller_offload_gw.setter
+    def switch_controller_offload_gw(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_offload_gw", value)
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadIp")
+    def switch_controller_offload_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        IP for routing offload on FortiSwitch.
+        """
+        return pulumi.get(self, "switch_controller_offload_ip")
+
+    @switch_controller_offload_ip.setter
+    def switch_controller_offload_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_offload_ip", value)
 
     @property
     @pulumi.getter(name="switchControllerRspanMode")
@@ -7194,6 +7482,7 @@ class Interface(pulumi.CustomResource):
                  client_options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfaceClientOptionArgs']]]]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  dedicated_to: Optional[pulumi.Input[str]] = None,
+                 default_purdue_level: Optional[pulumi.Input[str]] = None,
                  defaultgw: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  detected_peer_mtu: Optional[pulumi.Input[int]] = None,
@@ -7205,17 +7494,21 @@ class Interface(pulumi.CustomResource):
                  device_netscan: Optional[pulumi.Input[str]] = None,
                  device_user_identification: Optional[pulumi.Input[str]] = None,
                  devindex: Optional[pulumi.Input[int]] = None,
+                 dhcp_broadcast_flag: Optional[pulumi.Input[str]] = None,
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_link_selection: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_request_all_server: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_service: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_source_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_type: Optional[pulumi.Input[str]] = None,
                  dhcp_renew_time: Optional[pulumi.Input[int]] = None,
+                 dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
                  dhcp_snooping_server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfaceDhcpSnoopingServerListArgs']]]]] = None,
                  disc_retry_timeout: Optional[pulumi.Input[int]] = None,
                  disconnect_threshold: Optional[pulumi.Input[int]] = None,
@@ -7251,6 +7544,7 @@ class Interface(pulumi.CustomResource):
                  fortilink_stacking: Optional[pulumi.Input[str]] = None,
                  forward_domain: Optional[pulumi.Input[int]] = None,
                  forward_error_correction: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gwdetect: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  icmp_accept_redirect: Optional[pulumi.Input[str]] = None,
@@ -7364,6 +7658,9 @@ class Interface(pulumi.CustomResource):
                  switch_controller_mgmt_vlan: Optional[pulumi.Input[int]] = None,
                  switch_controller_nac: Optional[pulumi.Input[str]] = None,
                  switch_controller_netflow_collect: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_gw: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_rspan_mode: Optional[pulumi.Input[str]] = None,
                  switch_controller_source_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -7466,6 +7763,7 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfaceClientOptionArgs']]]] client_options: DHCP client options. The structure of `client_options` block is documented below.
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] dedicated_to: Configure interface for single purpose. Valid values: `none`, `management`.
+        :param pulumi.Input[str] default_purdue_level: default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
         :param pulumi.Input[str] defaultgw: Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[int] detected_peer_mtu: MTU of detected peer (0 - 4294967295).
@@ -7477,17 +7775,21 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] device_netscan: Enable/disable inclusion of devices detected on this interface in network vulnerability scans. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] device_user_identification: Enable/disable passive gathering of user identity information about users on this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] devindex: Device Index.
+        :param pulumi.Input[str] dhcp_broadcast_flag: Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp_classless_route_addition: Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dhcp_client_identifier: DHCP client identifier.
         :param pulumi.Input[str] dhcp_relay_agent_option: Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dhcp_relay_circuit_id: DHCP relay circuit ID.
         :param pulumi.Input[str] dhcp_relay_interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] dhcp_relay_interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] dhcp_relay_ip: DHCP relay IP address.
         :param pulumi.Input[str] dhcp_relay_link_selection: DHCP relay link selection.
         :param pulumi.Input[str] dhcp_relay_request_all_server: Enable/disable sending DHCP request to all servers. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp_relay_service: Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] dhcp_relay_source_ip: IP address used by the DHCP relay as its source IP.
         :param pulumi.Input[str] dhcp_relay_type: DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
         :param pulumi.Input[int] dhcp_renew_time: DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
+        :param pulumi.Input[str] dhcp_smart_relay: Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfaceDhcpSnoopingServerListArgs']]]] dhcp_snooping_server_lists: Configure DHCP server access list. The structure of `dhcp_snooping_server_list` block is documented below.
         :param pulumi.Input[int] disc_retry_timeout: Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
         :param pulumi.Input[int] disconnect_threshold: Time in milliseconds to wait before sending a notification that this interface is down or disconnected.
@@ -7523,6 +7825,7 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] fortilink_stacking: Enable/disable FortiLink switch-stacking on this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_domain: Transparent mode forward domain.
         :param pulumi.Input[str] forward_error_correction: Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gwdetect: Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ha_priority: HA election priority for the PING server.
         :param pulumi.Input[str] icmp_accept_redirect: Enable/disable ICMP accept redirect. Valid values: `enable`, `disable`.
@@ -7536,7 +7839,7 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] interface: Interface name.
         :param pulumi.Input[int] internal: Implicitly created.
         :param pulumi.Input[str] ip: Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
-        :param pulumi.Input[str] ip_managed_by_fortiipam: Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ip_managed_by_fortiipam: Enable/disable automatic IP address assignment of this interface by FortiIPAM.
         :param pulumi.Input[str] ipmac: Enable/disable IP/MAC binding. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sniffer_mode: Enable/disable the use of this interface as a one-armed sniffer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipunnumbered: Unnumbered IP used for PPPoE interfaces for which no unique local address is provided.
@@ -7636,6 +7939,9 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[int] switch_controller_mgmt_vlan: VLAN to use for FortiLink management purposes.
         :param pulumi.Input[str] switch_controller_nac: Integrated NAC settings for managed FortiSwitch.
         :param pulumi.Input[str] switch_controller_netflow_collect: NetFlow collection and processing. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] switch_controller_offload: Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] switch_controller_offload_gw: Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] switch_controller_offload_ip: IP for routing offload on FortiSwitch.
         :param pulumi.Input[str] switch_controller_rspan_mode: Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] switch_controller_source_ip: Source IP address used in FortiLink over L3 connections. Valid values: `outbound`, `fixed`.
         :param pulumi.Input[str] switch_controller_traffic_policy: Switch controller traffic policy for the VLAN.
@@ -7757,6 +8063,7 @@ class Interface(pulumi.CustomResource):
                  client_options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfaceClientOptionArgs']]]]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  dedicated_to: Optional[pulumi.Input[str]] = None,
+                 default_purdue_level: Optional[pulumi.Input[str]] = None,
                  defaultgw: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  detected_peer_mtu: Optional[pulumi.Input[int]] = None,
@@ -7768,17 +8075,21 @@ class Interface(pulumi.CustomResource):
                  device_netscan: Optional[pulumi.Input[str]] = None,
                  device_user_identification: Optional[pulumi.Input[str]] = None,
                  devindex: Optional[pulumi.Input[int]] = None,
+                 dhcp_broadcast_flag: Optional[pulumi.Input[str]] = None,
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_link_selection: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_request_all_server: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_service: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_source_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_type: Optional[pulumi.Input[str]] = None,
                  dhcp_renew_time: Optional[pulumi.Input[int]] = None,
+                 dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
                  dhcp_snooping_server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfaceDhcpSnoopingServerListArgs']]]]] = None,
                  disc_retry_timeout: Optional[pulumi.Input[int]] = None,
                  disconnect_threshold: Optional[pulumi.Input[int]] = None,
@@ -7814,6 +8125,7 @@ class Interface(pulumi.CustomResource):
                  fortilink_stacking: Optional[pulumi.Input[str]] = None,
                  forward_domain: Optional[pulumi.Input[int]] = None,
                  forward_error_correction: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gwdetect: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  icmp_accept_redirect: Optional[pulumi.Input[str]] = None,
@@ -7927,6 +8239,9 @@ class Interface(pulumi.CustomResource):
                  switch_controller_mgmt_vlan: Optional[pulumi.Input[int]] = None,
                  switch_controller_nac: Optional[pulumi.Input[str]] = None,
                  switch_controller_netflow_collect: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_gw: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_rspan_mode: Optional[pulumi.Input[str]] = None,
                  switch_controller_source_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -7989,6 +8304,7 @@ class Interface(pulumi.CustomResource):
             __props__.__dict__["client_options"] = client_options
             __props__.__dict__["color"] = color
             __props__.__dict__["dedicated_to"] = dedicated_to
+            __props__.__dict__["default_purdue_level"] = default_purdue_level
             __props__.__dict__["defaultgw"] = defaultgw
             __props__.__dict__["description"] = description
             __props__.__dict__["detected_peer_mtu"] = detected_peer_mtu
@@ -8000,17 +8316,21 @@ class Interface(pulumi.CustomResource):
             __props__.__dict__["device_netscan"] = device_netscan
             __props__.__dict__["device_user_identification"] = device_user_identification
             __props__.__dict__["devindex"] = devindex
+            __props__.__dict__["dhcp_broadcast_flag"] = dhcp_broadcast_flag
             __props__.__dict__["dhcp_classless_route_addition"] = dhcp_classless_route_addition
             __props__.__dict__["dhcp_client_identifier"] = dhcp_client_identifier
             __props__.__dict__["dhcp_relay_agent_option"] = dhcp_relay_agent_option
+            __props__.__dict__["dhcp_relay_circuit_id"] = dhcp_relay_circuit_id
             __props__.__dict__["dhcp_relay_interface"] = dhcp_relay_interface
             __props__.__dict__["dhcp_relay_interface_select_method"] = dhcp_relay_interface_select_method
             __props__.__dict__["dhcp_relay_ip"] = dhcp_relay_ip
             __props__.__dict__["dhcp_relay_link_selection"] = dhcp_relay_link_selection
             __props__.__dict__["dhcp_relay_request_all_server"] = dhcp_relay_request_all_server
             __props__.__dict__["dhcp_relay_service"] = dhcp_relay_service
+            __props__.__dict__["dhcp_relay_source_ip"] = dhcp_relay_source_ip
             __props__.__dict__["dhcp_relay_type"] = dhcp_relay_type
             __props__.__dict__["dhcp_renew_time"] = dhcp_renew_time
+            __props__.__dict__["dhcp_smart_relay"] = dhcp_smart_relay
             __props__.__dict__["dhcp_snooping_server_lists"] = dhcp_snooping_server_lists
             __props__.__dict__["disc_retry_timeout"] = disc_retry_timeout
             __props__.__dict__["disconnect_threshold"] = disconnect_threshold
@@ -8046,6 +8366,7 @@ class Interface(pulumi.CustomResource):
             __props__.__dict__["fortilink_stacking"] = fortilink_stacking
             __props__.__dict__["forward_domain"] = forward_domain
             __props__.__dict__["forward_error_correction"] = forward_error_correction
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gwdetect"] = gwdetect
             __props__.__dict__["ha_priority"] = ha_priority
             __props__.__dict__["icmp_accept_redirect"] = icmp_accept_redirect
@@ -8159,6 +8480,9 @@ class Interface(pulumi.CustomResource):
             __props__.__dict__["switch_controller_mgmt_vlan"] = switch_controller_mgmt_vlan
             __props__.__dict__["switch_controller_nac"] = switch_controller_nac
             __props__.__dict__["switch_controller_netflow_collect"] = switch_controller_netflow_collect
+            __props__.__dict__["switch_controller_offload"] = switch_controller_offload
+            __props__.__dict__["switch_controller_offload_gw"] = switch_controller_offload_gw
+            __props__.__dict__["switch_controller_offload_ip"] = switch_controller_offload_ip
             __props__.__dict__["switch_controller_rspan_mode"] = switch_controller_rspan_mode
             __props__.__dict__["switch_controller_source_ip"] = switch_controller_source_ip
             __props__.__dict__["switch_controller_traffic_policy"] = switch_controller_traffic_policy
@@ -8226,6 +8550,7 @@ class Interface(pulumi.CustomResource):
             client_options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfaceClientOptionArgs']]]]] = None,
             color: Optional[pulumi.Input[int]] = None,
             dedicated_to: Optional[pulumi.Input[str]] = None,
+            default_purdue_level: Optional[pulumi.Input[str]] = None,
             defaultgw: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             detected_peer_mtu: Optional[pulumi.Input[int]] = None,
@@ -8237,17 +8562,21 @@ class Interface(pulumi.CustomResource):
             device_netscan: Optional[pulumi.Input[str]] = None,
             device_user_identification: Optional[pulumi.Input[str]] = None,
             devindex: Optional[pulumi.Input[int]] = None,
+            dhcp_broadcast_flag: Optional[pulumi.Input[str]] = None,
             dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
             dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
             dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+            dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
             dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
             dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
             dhcp_relay_ip: Optional[pulumi.Input[str]] = None,
             dhcp_relay_link_selection: Optional[pulumi.Input[str]] = None,
             dhcp_relay_request_all_server: Optional[pulumi.Input[str]] = None,
             dhcp_relay_service: Optional[pulumi.Input[str]] = None,
+            dhcp_relay_source_ip: Optional[pulumi.Input[str]] = None,
             dhcp_relay_type: Optional[pulumi.Input[str]] = None,
             dhcp_renew_time: Optional[pulumi.Input[int]] = None,
+            dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
             dhcp_snooping_server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfaceDhcpSnoopingServerListArgs']]]]] = None,
             disc_retry_timeout: Optional[pulumi.Input[int]] = None,
             disconnect_threshold: Optional[pulumi.Input[int]] = None,
@@ -8283,6 +8612,7 @@ class Interface(pulumi.CustomResource):
             fortilink_stacking: Optional[pulumi.Input[str]] = None,
             forward_domain: Optional[pulumi.Input[int]] = None,
             forward_error_correction: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gwdetect: Optional[pulumi.Input[str]] = None,
             ha_priority: Optional[pulumi.Input[int]] = None,
             icmp_accept_redirect: Optional[pulumi.Input[str]] = None,
@@ -8396,6 +8726,9 @@ class Interface(pulumi.CustomResource):
             switch_controller_mgmt_vlan: Optional[pulumi.Input[int]] = None,
             switch_controller_nac: Optional[pulumi.Input[str]] = None,
             switch_controller_netflow_collect: Optional[pulumi.Input[str]] = None,
+            switch_controller_offload: Optional[pulumi.Input[str]] = None,
+            switch_controller_offload_gw: Optional[pulumi.Input[str]] = None,
+            switch_controller_offload_ip: Optional[pulumi.Input[str]] = None,
             switch_controller_rspan_mode: Optional[pulumi.Input[str]] = None,
             switch_controller_source_ip: Optional[pulumi.Input[str]] = None,
             switch_controller_traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -8456,6 +8789,7 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfaceClientOptionArgs']]]] client_options: DHCP client options. The structure of `client_options` block is documented below.
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] dedicated_to: Configure interface for single purpose. Valid values: `none`, `management`.
+        :param pulumi.Input[str] default_purdue_level: default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
         :param pulumi.Input[str] defaultgw: Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[int] detected_peer_mtu: MTU of detected peer (0 - 4294967295).
@@ -8467,17 +8801,21 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] device_netscan: Enable/disable inclusion of devices detected on this interface in network vulnerability scans. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] device_user_identification: Enable/disable passive gathering of user identity information about users on this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] devindex: Device Index.
+        :param pulumi.Input[str] dhcp_broadcast_flag: Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp_classless_route_addition: Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dhcp_client_identifier: DHCP client identifier.
         :param pulumi.Input[str] dhcp_relay_agent_option: Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dhcp_relay_circuit_id: DHCP relay circuit ID.
         :param pulumi.Input[str] dhcp_relay_interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] dhcp_relay_interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] dhcp_relay_ip: DHCP relay IP address.
         :param pulumi.Input[str] dhcp_relay_link_selection: DHCP relay link selection.
         :param pulumi.Input[str] dhcp_relay_request_all_server: Enable/disable sending DHCP request to all servers. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp_relay_service: Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] dhcp_relay_source_ip: IP address used by the DHCP relay as its source IP.
         :param pulumi.Input[str] dhcp_relay_type: DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
         :param pulumi.Input[int] dhcp_renew_time: DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
+        :param pulumi.Input[str] dhcp_smart_relay: Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfaceDhcpSnoopingServerListArgs']]]] dhcp_snooping_server_lists: Configure DHCP server access list. The structure of `dhcp_snooping_server_list` block is documented below.
         :param pulumi.Input[int] disc_retry_timeout: Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
         :param pulumi.Input[int] disconnect_threshold: Time in milliseconds to wait before sending a notification that this interface is down or disconnected.
@@ -8513,6 +8851,7 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] fortilink_stacking: Enable/disable FortiLink switch-stacking on this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_domain: Transparent mode forward domain.
         :param pulumi.Input[str] forward_error_correction: Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gwdetect: Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ha_priority: HA election priority for the PING server.
         :param pulumi.Input[str] icmp_accept_redirect: Enable/disable ICMP accept redirect. Valid values: `enable`, `disable`.
@@ -8526,7 +8865,7 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] interface: Interface name.
         :param pulumi.Input[int] internal: Implicitly created.
         :param pulumi.Input[str] ip: Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
-        :param pulumi.Input[str] ip_managed_by_fortiipam: Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ip_managed_by_fortiipam: Enable/disable automatic IP address assignment of this interface by FortiIPAM.
         :param pulumi.Input[str] ipmac: Enable/disable IP/MAC binding. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sniffer_mode: Enable/disable the use of this interface as a one-armed sniffer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipunnumbered: Unnumbered IP used for PPPoE interfaces for which no unique local address is provided.
@@ -8626,6 +8965,9 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[int] switch_controller_mgmt_vlan: VLAN to use for FortiLink management purposes.
         :param pulumi.Input[str] switch_controller_nac: Integrated NAC settings for managed FortiSwitch.
         :param pulumi.Input[str] switch_controller_netflow_collect: NetFlow collection and processing. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] switch_controller_offload: Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] switch_controller_offload_gw: Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] switch_controller_offload_ip: IP for routing offload on FortiSwitch.
         :param pulumi.Input[str] switch_controller_rspan_mode: Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] switch_controller_source_ip: Source IP address used in FortiLink over L3 connections. Valid values: `outbound`, `fixed`.
         :param pulumi.Input[str] switch_controller_traffic_policy: Switch controller traffic policy for the VLAN.
@@ -8684,6 +9026,7 @@ class Interface(pulumi.CustomResource):
         __props__.__dict__["client_options"] = client_options
         __props__.__dict__["color"] = color
         __props__.__dict__["dedicated_to"] = dedicated_to
+        __props__.__dict__["default_purdue_level"] = default_purdue_level
         __props__.__dict__["defaultgw"] = defaultgw
         __props__.__dict__["description"] = description
         __props__.__dict__["detected_peer_mtu"] = detected_peer_mtu
@@ -8695,17 +9038,21 @@ class Interface(pulumi.CustomResource):
         __props__.__dict__["device_netscan"] = device_netscan
         __props__.__dict__["device_user_identification"] = device_user_identification
         __props__.__dict__["devindex"] = devindex
+        __props__.__dict__["dhcp_broadcast_flag"] = dhcp_broadcast_flag
         __props__.__dict__["dhcp_classless_route_addition"] = dhcp_classless_route_addition
         __props__.__dict__["dhcp_client_identifier"] = dhcp_client_identifier
         __props__.__dict__["dhcp_relay_agent_option"] = dhcp_relay_agent_option
+        __props__.__dict__["dhcp_relay_circuit_id"] = dhcp_relay_circuit_id
         __props__.__dict__["dhcp_relay_interface"] = dhcp_relay_interface
         __props__.__dict__["dhcp_relay_interface_select_method"] = dhcp_relay_interface_select_method
         __props__.__dict__["dhcp_relay_ip"] = dhcp_relay_ip
         __props__.__dict__["dhcp_relay_link_selection"] = dhcp_relay_link_selection
         __props__.__dict__["dhcp_relay_request_all_server"] = dhcp_relay_request_all_server
         __props__.__dict__["dhcp_relay_service"] = dhcp_relay_service
+        __props__.__dict__["dhcp_relay_source_ip"] = dhcp_relay_source_ip
         __props__.__dict__["dhcp_relay_type"] = dhcp_relay_type
         __props__.__dict__["dhcp_renew_time"] = dhcp_renew_time
+        __props__.__dict__["dhcp_smart_relay"] = dhcp_smart_relay
         __props__.__dict__["dhcp_snooping_server_lists"] = dhcp_snooping_server_lists
         __props__.__dict__["disc_retry_timeout"] = disc_retry_timeout
         __props__.__dict__["disconnect_threshold"] = disconnect_threshold
@@ -8741,6 +9088,7 @@ class Interface(pulumi.CustomResource):
         __props__.__dict__["fortilink_stacking"] = fortilink_stacking
         __props__.__dict__["forward_domain"] = forward_domain
         __props__.__dict__["forward_error_correction"] = forward_error_correction
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gwdetect"] = gwdetect
         __props__.__dict__["ha_priority"] = ha_priority
         __props__.__dict__["icmp_accept_redirect"] = icmp_accept_redirect
@@ -8854,6 +9202,9 @@ class Interface(pulumi.CustomResource):
         __props__.__dict__["switch_controller_mgmt_vlan"] = switch_controller_mgmt_vlan
         __props__.__dict__["switch_controller_nac"] = switch_controller_nac
         __props__.__dict__["switch_controller_netflow_collect"] = switch_controller_netflow_collect
+        __props__.__dict__["switch_controller_offload"] = switch_controller_offload
+        __props__.__dict__["switch_controller_offload_gw"] = switch_controller_offload_gw
+        __props__.__dict__["switch_controller_offload_ip"] = switch_controller_offload_ip
         __props__.__dict__["switch_controller_rspan_mode"] = switch_controller_rspan_mode
         __props__.__dict__["switch_controller_source_ip"] = switch_controller_source_ip
         __props__.__dict__["switch_controller_traffic_policy"] = switch_controller_traffic_policy
@@ -9085,6 +9436,14 @@ class Interface(pulumi.CustomResource):
         return pulumi.get(self, "dedicated_to")
 
     @property
+    @pulumi.getter(name="defaultPurdueLevel")
+    def default_purdue_level(self) -> pulumi.Output[str]:
+        """
+        default purdue level of device detected on this interface. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        """
+        return pulumi.get(self, "default_purdue_level")
+
+    @property
     @pulumi.getter
     def defaultgw(self) -> pulumi.Output[str]:
         """
@@ -9173,6 +9532,14 @@ class Interface(pulumi.CustomResource):
         return pulumi.get(self, "devindex")
 
     @property
+    @pulumi.getter(name="dhcpBroadcastFlag")
+    def dhcp_broadcast_flag(self) -> pulumi.Output[str]:
+        """
+        Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dhcp_broadcast_flag")
+
+    @property
     @pulumi.getter(name="dhcpClasslessRouteAddition")
     def dhcp_classless_route_addition(self) -> pulumi.Output[str]:
         """
@@ -9195,6 +9562,14 @@ class Interface(pulumi.CustomResource):
         Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "dhcp_relay_agent_option")
+
+    @property
+    @pulumi.getter(name="dhcpRelayCircuitId")
+    def dhcp_relay_circuit_id(self) -> pulumi.Output[str]:
+        """
+        DHCP relay circuit ID.
+        """
+        return pulumi.get(self, "dhcp_relay_circuit_id")
 
     @property
     @pulumi.getter(name="dhcpRelayInterface")
@@ -9245,6 +9620,14 @@ class Interface(pulumi.CustomResource):
         return pulumi.get(self, "dhcp_relay_service")
 
     @property
+    @pulumi.getter(name="dhcpRelaySourceIp")
+    def dhcp_relay_source_ip(self) -> pulumi.Output[str]:
+        """
+        IP address used by the DHCP relay as its source IP.
+        """
+        return pulumi.get(self, "dhcp_relay_source_ip")
+
+    @property
     @pulumi.getter(name="dhcpRelayType")
     def dhcp_relay_type(self) -> pulumi.Output[str]:
         """
@@ -9259,6 +9642,14 @@ class Interface(pulumi.CustomResource):
         DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
         """
         return pulumi.get(self, "dhcp_renew_time")
+
+    @property
+    @pulumi.getter(name="dhcpSmartRelay")
+    def dhcp_smart_relay(self) -> pulumi.Output[str]:
+        """
+        Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dhcp_smart_relay")
 
     @property
     @pulumi.getter(name="dhcpSnoopingServerLists")
@@ -9541,6 +9932,14 @@ class Interface(pulumi.CustomResource):
         return pulumi.get(self, "forward_error_correction")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def gwdetect(self) -> pulumi.Output[str]:
         """
@@ -9648,7 +10047,7 @@ class Interface(pulumi.CustomResource):
     @pulumi.getter(name="ipManagedByFortiipam")
     def ip_managed_by_fortiipam(self) -> pulumi.Output[str]:
         """
-        Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `enable`, `disable`.
+        Enable/disable automatic IP address assignment of this interface by FortiIPAM.
         """
         return pulumi.get(self, "ip_managed_by_fortiipam")
 
@@ -10443,6 +10842,30 @@ class Interface(pulumi.CustomResource):
         NetFlow collection and processing. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "switch_controller_netflow_collect")
+
+    @property
+    @pulumi.getter(name="switchControllerOffload")
+    def switch_controller_offload(self) -> pulumi.Output[str]:
+        """
+        Enable/disable managed FortiSwitch routing offload. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "switch_controller_offload")
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadGw")
+    def switch_controller_offload_gw(self) -> pulumi.Output[str]:
+        """
+        Enable/disable managed FortiSwitch routing offload gateway. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "switch_controller_offload_gw")
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadIp")
+    def switch_controller_offload_ip(self) -> pulumi.Output[str]:
+        """
+        IP for routing offload on FortiSwitch.
+        """
+        return pulumi.get(self, "switch_controller_offload_ip")
 
     @property
     @pulumi.getter(name="switchControllerRspanMode")

@@ -92,6 +92,14 @@ export class Accessproxy6 extends pulumi.CustomResource {
      */
     public readonly emptyCertAction!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+     */
+    public readonly httpSupportedMaxVersion!: pulumi.Output<string>;
+    /**
      * Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
      */
     public readonly logBlockedTraffic!: pulumi.Output<string>;
@@ -99,6 +107,22 @@ export class Accessproxy6 extends pulumi.CustomResource {
      * Access Proxy name.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+     */
+    public readonly svrPoolMultiplex!: pulumi.Output<string>;
+    /**
+     * Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+     */
+    public readonly svrPoolServerMaxConcurrentRequest!: pulumi.Output<number>;
+    /**
+     * Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+     */
+    public readonly svrPoolServerMaxRequest!: pulumi.Output<number>;
+    /**
+     * Time-to-live in the server pool for idle connections to servers.
+     */
+    public readonly svrPoolTtl!: pulumi.Output<number>;
     /**
      * Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
      */
@@ -134,8 +158,14 @@ export class Accessproxy6 extends pulumi.CustomResource {
             resourceInputs["decryptedTrafficMirror"] = state ? state.decryptedTrafficMirror : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["emptyCertAction"] = state ? state.emptyCertAction : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["httpSupportedMaxVersion"] = state ? state.httpSupportedMaxVersion : undefined;
             resourceInputs["logBlockedTraffic"] = state ? state.logBlockedTraffic : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["svrPoolMultiplex"] = state ? state.svrPoolMultiplex : undefined;
+            resourceInputs["svrPoolServerMaxConcurrentRequest"] = state ? state.svrPoolServerMaxConcurrentRequest : undefined;
+            resourceInputs["svrPoolServerMaxRequest"] = state ? state.svrPoolServerMaxRequest : undefined;
+            resourceInputs["svrPoolTtl"] = state ? state.svrPoolTtl : undefined;
             resourceInputs["userAgentDetect"] = state ? state.userAgentDetect : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["vip"] = state ? state.vip : undefined;
@@ -150,8 +180,14 @@ export class Accessproxy6 extends pulumi.CustomResource {
             resourceInputs["decryptedTrafficMirror"] = args ? args.decryptedTrafficMirror : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["emptyCertAction"] = args ? args.emptyCertAction : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["httpSupportedMaxVersion"] = args ? args.httpSupportedMaxVersion : undefined;
             resourceInputs["logBlockedTraffic"] = args ? args.logBlockedTraffic : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["svrPoolMultiplex"] = args ? args.svrPoolMultiplex : undefined;
+            resourceInputs["svrPoolServerMaxConcurrentRequest"] = args ? args.svrPoolServerMaxConcurrentRequest : undefined;
+            resourceInputs["svrPoolServerMaxRequest"] = args ? args.svrPoolServerMaxRequest : undefined;
+            resourceInputs["svrPoolTtl"] = args ? args.svrPoolTtl : undefined;
             resourceInputs["userAgentDetect"] = args ? args.userAgentDetect : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["vip"] = args ? args.vip : undefined;
@@ -202,6 +238,14 @@ export interface Accessproxy6State {
      */
     emptyCertAction?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+     */
+    httpSupportedMaxVersion?: pulumi.Input<string>;
+    /**
      * Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
      */
     logBlockedTraffic?: pulumi.Input<string>;
@@ -209,6 +253,22 @@ export interface Accessproxy6State {
      * Access Proxy name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+     */
+    svrPoolMultiplex?: pulumi.Input<string>;
+    /**
+     * Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+     */
+    svrPoolServerMaxConcurrentRequest?: pulumi.Input<number>;
+    /**
+     * Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+     */
+    svrPoolServerMaxRequest?: pulumi.Input<number>;
+    /**
+     * Time-to-live in the server pool for idle connections to servers.
+     */
+    svrPoolTtl?: pulumi.Input<number>;
     /**
      * Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
      */
@@ -264,6 +324,14 @@ export interface Accessproxy6Args {
      */
     emptyCertAction?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+     */
+    httpSupportedMaxVersion?: pulumi.Input<string>;
+    /**
      * Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
      */
     logBlockedTraffic?: pulumi.Input<string>;
@@ -271,6 +339,22 @@ export interface Accessproxy6Args {
      * Access Proxy name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+     */
+    svrPoolMultiplex?: pulumi.Input<string>;
+    /**
+     * Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+     */
+    svrPoolServerMaxConcurrentRequest?: pulumi.Input<number>;
+    /**
+     * Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+     */
+    svrPoolServerMaxRequest?: pulumi.Input<number>;
+    /**
+     * Time-to-live in the server pool for idle connections to servers.
+     */
+    svrPoolTtl?: pulumi.Input<number>;
     /**
      * Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
      */

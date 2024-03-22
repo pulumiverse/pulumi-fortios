@@ -126,6 +126,10 @@ export class Sslsshprofile extends pulumi.CustomResource {
      */
     public readonly ftps!: pulumi.Output<outputs.firewall.SslsshprofileFtps>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Configure HTTPS options. The structure of `https` block is documented below.
      */
     public readonly https!: pulumi.Output<outputs.firewall.SslsshprofileHttps>;
@@ -251,6 +255,7 @@ export class Sslsshprofile extends pulumi.CustomResource {
             resourceInputs["dot"] = state ? state.dot : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["ftps"] = state ? state.ftps : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["https"] = state ? state.https : undefined;
             resourceInputs["imaps"] = state ? state.imaps : undefined;
             resourceInputs["mapiOverHttps"] = state ? state.mapiOverHttps : undefined;
@@ -287,6 +292,7 @@ export class Sslsshprofile extends pulumi.CustomResource {
             resourceInputs["dot"] = args ? args.dot : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["ftps"] = args ? args.ftps : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["https"] = args ? args.https : undefined;
             resourceInputs["imaps"] = args ? args.imaps : undefined;
             resourceInputs["mapiOverHttps"] = args ? args.mapiOverHttps : undefined;
@@ -355,6 +361,10 @@ export interface SslsshprofileState {
      * Configure FTPS options. The structure of `ftps` block is documented below.
      */
     ftps?: pulumi.Input<inputs.firewall.SslsshprofileFtps>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Configure HTTPS options. The structure of `https` block is documented below.
      */
@@ -497,6 +507,10 @@ export interface SslsshprofileArgs {
      * Configure FTPS options. The structure of `ftps` block is documented below.
      */
     ftps?: pulumi.Input<inputs.firewall.SslsshprofileFtps>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Configure HTTPS options. The structure of `https` block is documented below.
      */

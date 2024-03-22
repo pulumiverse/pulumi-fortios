@@ -22,7 +22,7 @@ class GetBgpResult:
     """
     A collection of values returned by getBgp.
     """
-    def __init__(__self__, additional_path=None, additional_path6=None, additional_path_select=None, additional_path_select6=None, additional_path_select_vpnv4=None, additional_path_vpnv4=None, admin_distances=None, aggregate_address6s=None, aggregate_addresses=None, always_compare_med=None, as_=None, bestpath_as_path_ignore=None, bestpath_cmp_confed_aspath=None, bestpath_cmp_routerid=None, bestpath_med_confed=None, bestpath_med_missing_as_worst=None, client_to_client_reflection=None, cluster_id=None, confederation_identifier=None, confederation_peers=None, dampening=None, dampening_max_suppress_time=None, dampening_reachability_half_life=None, dampening_reuse=None, dampening_route_map=None, dampening_suppress=None, dampening_unreachability_half_life=None, default_local_preference=None, deterministic_med=None, distance_external=None, distance_internal=None, distance_local=None, ebgp_multipath=None, enforce_first_as=None, fast_external_failover=None, graceful_end_on_timer=None, graceful_restart=None, graceful_restart_time=None, graceful_stalepath_time=None, graceful_update_delay=None, holdtime_timer=None, ibgp_multipath=None, id=None, ignore_optional_capability=None, keepalive_timer=None, log_neighbour_changes=None, multipath_recursive_distance=None, neighbor_groups=None, neighbor_range6s=None, neighbor_ranges=None, neighbors=None, network6s=None, network_import_check=None, networks=None, recursive_inherit_priority=None, recursive_next_hop=None, redistribute6s=None, redistributes=None, router_id=None, scan_time=None, synchronization=None, tag_resolve_mode=None, vdomparam=None, vrf6s=None, vrf_leak6s=None, vrf_leaks=None, vrves=None):
+    def __init__(__self__, additional_path=None, additional_path6=None, additional_path_select=None, additional_path_select6=None, additional_path_select_vpnv4=None, additional_path_select_vpnv6=None, additional_path_vpnv4=None, additional_path_vpnv6=None, admin_distances=None, aggregate_address6s=None, aggregate_addresses=None, always_compare_med=None, as_=None, as_string=None, bestpath_as_path_ignore=None, bestpath_cmp_confed_aspath=None, bestpath_cmp_routerid=None, bestpath_med_confed=None, bestpath_med_missing_as_worst=None, client_to_client_reflection=None, cluster_id=None, confederation_identifier=None, confederation_peers=None, cross_family_conditional_adv=None, dampening=None, dampening_max_suppress_time=None, dampening_reachability_half_life=None, dampening_reuse=None, dampening_route_map=None, dampening_suppress=None, dampening_unreachability_half_life=None, default_local_preference=None, deterministic_med=None, distance_external=None, distance_internal=None, distance_local=None, ebgp_multipath=None, enforce_first_as=None, fast_external_failover=None, graceful_end_on_timer=None, graceful_restart=None, graceful_restart_time=None, graceful_stalepath_time=None, graceful_update_delay=None, holdtime_timer=None, ibgp_multipath=None, id=None, ignore_optional_capability=None, keepalive_timer=None, log_neighbour_changes=None, multipath_recursive_distance=None, neighbor_groups=None, neighbor_range6s=None, neighbor_ranges=None, neighbors=None, network6s=None, network_import_check=None, networks=None, recursive_inherit_priority=None, recursive_next_hop=None, redistribute6s=None, redistributes=None, router_id=None, scan_time=None, synchronization=None, tag_resolve_mode=None, vdomparam=None, vrf6s=None, vrf_leak6s=None, vrf_leaks=None, vrves=None):
         if additional_path and not isinstance(additional_path, str):
             raise TypeError("Expected argument 'additional_path' to be a str")
         pulumi.set(__self__, "additional_path", additional_path)
@@ -38,9 +38,15 @@ class GetBgpResult:
         if additional_path_select_vpnv4 and not isinstance(additional_path_select_vpnv4, int):
             raise TypeError("Expected argument 'additional_path_select_vpnv4' to be a int")
         pulumi.set(__self__, "additional_path_select_vpnv4", additional_path_select_vpnv4)
+        if additional_path_select_vpnv6 and not isinstance(additional_path_select_vpnv6, int):
+            raise TypeError("Expected argument 'additional_path_select_vpnv6' to be a int")
+        pulumi.set(__self__, "additional_path_select_vpnv6", additional_path_select_vpnv6)
         if additional_path_vpnv4 and not isinstance(additional_path_vpnv4, str):
             raise TypeError("Expected argument 'additional_path_vpnv4' to be a str")
         pulumi.set(__self__, "additional_path_vpnv4", additional_path_vpnv4)
+        if additional_path_vpnv6 and not isinstance(additional_path_vpnv6, str):
+            raise TypeError("Expected argument 'additional_path_vpnv6' to be a str")
+        pulumi.set(__self__, "additional_path_vpnv6", additional_path_vpnv6)
         if admin_distances and not isinstance(admin_distances, list):
             raise TypeError("Expected argument 'admin_distances' to be a list")
         pulumi.set(__self__, "admin_distances", admin_distances)
@@ -56,6 +62,9 @@ class GetBgpResult:
         if as_ and not isinstance(as_, int):
             raise TypeError("Expected argument 'as_' to be a int")
         pulumi.set(__self__, "as_", as_)
+        if as_string and not isinstance(as_string, str):
+            raise TypeError("Expected argument 'as_string' to be a str")
+        pulumi.set(__self__, "as_string", as_string)
         if bestpath_as_path_ignore and not isinstance(bestpath_as_path_ignore, str):
             raise TypeError("Expected argument 'bestpath_as_path_ignore' to be a str")
         pulumi.set(__self__, "bestpath_as_path_ignore", bestpath_as_path_ignore)
@@ -83,6 +92,9 @@ class GetBgpResult:
         if confederation_peers and not isinstance(confederation_peers, list):
             raise TypeError("Expected argument 'confederation_peers' to be a list")
         pulumi.set(__self__, "confederation_peers", confederation_peers)
+        if cross_family_conditional_adv and not isinstance(cross_family_conditional_adv, str):
+            raise TypeError("Expected argument 'cross_family_conditional_adv' to be a str")
+        pulumi.set(__self__, "cross_family_conditional_adv", cross_family_conditional_adv)
         if dampening and not isinstance(dampening, str):
             raise TypeError("Expected argument 'dampening' to be a str")
         pulumi.set(__self__, "dampening", dampening)
@@ -266,12 +278,28 @@ class GetBgpResult:
         return pulumi.get(self, "additional_path_select_vpnv4")
 
     @property
+    @pulumi.getter(name="additionalPathSelectVpnv6")
+    def additional_path_select_vpnv6(self) -> int:
+        """
+        Number of additional paths to be selected for each VPNv6 NLRI.
+        """
+        return pulumi.get(self, "additional_path_select_vpnv6")
+
+    @property
     @pulumi.getter(name="additionalPathVpnv4")
     def additional_path_vpnv4(self) -> str:
         """
         Enable/disable VPNv4 additional-path capability.
         """
         return pulumi.get(self, "additional_path_vpnv4")
+
+    @property
+    @pulumi.getter(name="additionalPathVpnv6")
+    def additional_path_vpnv6(self) -> str:
+        """
+        Enable/disable VPNv6 additional-path capability.
+        """
+        return pulumi.get(self, "additional_path_vpnv6")
 
     @property
     @pulumi.getter(name="adminDistances")
@@ -312,6 +340,14 @@ class GetBgpResult:
         Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
         """
         return pulumi.get(self, "as_")
+
+    @property
+    @pulumi.getter(name="asString")
+    def as_string(self) -> str:
+        """
+        Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        """
+        return pulumi.get(self, "as_string")
 
     @property
     @pulumi.getter(name="bestpathAsPathIgnore")
@@ -384,6 +420,14 @@ class GetBgpResult:
         Confederation peers. The structure of `confederation_peers` block is documented below.
         """
         return pulumi.get(self, "confederation_peers")
+
+    @property
+    @pulumi.getter(name="crossFamilyConditionalAdv")
+    def cross_family_conditional_adv(self) -> str:
+        """
+        Enable/disable cross address family conditional advertisement.
+        """
+        return pulumi.get(self, "cross_family_conditional_adv")
 
     @property
     @pulumi.getter
@@ -770,12 +814,15 @@ class AwaitableGetBgpResult(GetBgpResult):
             additional_path_select=self.additional_path_select,
             additional_path_select6=self.additional_path_select6,
             additional_path_select_vpnv4=self.additional_path_select_vpnv4,
+            additional_path_select_vpnv6=self.additional_path_select_vpnv6,
             additional_path_vpnv4=self.additional_path_vpnv4,
+            additional_path_vpnv6=self.additional_path_vpnv6,
             admin_distances=self.admin_distances,
             aggregate_address6s=self.aggregate_address6s,
             aggregate_addresses=self.aggregate_addresses,
             always_compare_med=self.always_compare_med,
             as_=self.as_,
+            as_string=self.as_string,
             bestpath_as_path_ignore=self.bestpath_as_path_ignore,
             bestpath_cmp_confed_aspath=self.bestpath_cmp_confed_aspath,
             bestpath_cmp_routerid=self.bestpath_cmp_routerid,
@@ -785,6 +832,7 @@ class AwaitableGetBgpResult(GetBgpResult):
             cluster_id=self.cluster_id,
             confederation_identifier=self.confederation_identifier,
             confederation_peers=self.confederation_peers,
+            cross_family_conditional_adv=self.cross_family_conditional_adv,
             dampening=self.dampening,
             dampening_max_suppress_time=self.dampening_max_suppress_time,
             dampening_reachability_half_life=self.dampening_reachability_half_life,
@@ -865,12 +913,15 @@ def get_bgp(vdomparam: Optional[str] = None,
         additional_path_select=pulumi.get(__ret__, 'additional_path_select'),
         additional_path_select6=pulumi.get(__ret__, 'additional_path_select6'),
         additional_path_select_vpnv4=pulumi.get(__ret__, 'additional_path_select_vpnv4'),
+        additional_path_select_vpnv6=pulumi.get(__ret__, 'additional_path_select_vpnv6'),
         additional_path_vpnv4=pulumi.get(__ret__, 'additional_path_vpnv4'),
+        additional_path_vpnv6=pulumi.get(__ret__, 'additional_path_vpnv6'),
         admin_distances=pulumi.get(__ret__, 'admin_distances'),
         aggregate_address6s=pulumi.get(__ret__, 'aggregate_address6s'),
         aggregate_addresses=pulumi.get(__ret__, 'aggregate_addresses'),
         always_compare_med=pulumi.get(__ret__, 'always_compare_med'),
         as_=pulumi.get(__ret__, 'as_'),
+        as_string=pulumi.get(__ret__, 'as_string'),
         bestpath_as_path_ignore=pulumi.get(__ret__, 'bestpath_as_path_ignore'),
         bestpath_cmp_confed_aspath=pulumi.get(__ret__, 'bestpath_cmp_confed_aspath'),
         bestpath_cmp_routerid=pulumi.get(__ret__, 'bestpath_cmp_routerid'),
@@ -880,6 +931,7 @@ def get_bgp(vdomparam: Optional[str] = None,
         cluster_id=pulumi.get(__ret__, 'cluster_id'),
         confederation_identifier=pulumi.get(__ret__, 'confederation_identifier'),
         confederation_peers=pulumi.get(__ret__, 'confederation_peers'),
+        cross_family_conditional_adv=pulumi.get(__ret__, 'cross_family_conditional_adv'),
         dampening=pulumi.get(__ret__, 'dampening'),
         dampening_max_suppress_time=pulumi.get(__ret__, 'dampening_max_suppress_time'),
         dampening_reachability_half_life=pulumi.get(__ret__, 'dampening_reachability_half_life'),

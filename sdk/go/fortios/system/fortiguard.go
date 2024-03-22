@@ -95,6 +95,8 @@ type Fortiguard struct {
 	AntispamCache pulumi.StringOutput `pulumi:"antispamCache"`
 	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
 	AntispamCacheMpercent pulumi.IntOutput `pulumi:"antispamCacheMpercent"`
+	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+	AntispamCacheMpermille pulumi.IntOutput `pulumi:"antispamCacheMpermille"`
 	// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
 	AntispamCacheTtl pulumi.IntOutput `pulumi:"antispamCacheTtl"`
 	// Expiration date of the FortiGuard antispam contract.
@@ -113,6 +115,8 @@ type Fortiguard struct {
 	AutoFirmwareUpgrade pulumi.StringOutput `pulumi:"autoFirmwareUpgrade"`
 	// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	AutoFirmwareUpgradeDay pulumi.StringOutput `pulumi:"autoFirmwareUpgradeDay"`
+	// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+	AutoFirmwareUpgradeDelay pulumi.IntOutput `pulumi:"autoFirmwareUpgradeDelay"`
 	// End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
 	AutoFirmwareUpgradeEndHour pulumi.IntOutput `pulumi:"autoFirmwareUpgradeEndHour"`
 	// Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
@@ -125,10 +129,14 @@ type Fortiguard struct {
 	DdnsServerIp6 pulumi.StringOutput `pulumi:"ddnsServerIp6"`
 	// Port used to communicate with FortiDDNS servers.
 	DdnsServerPort pulumi.IntOutput `pulumi:"ddnsServerPort"`
+	// Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+	FdsLicenseExpiringDays pulumi.IntOutput `pulumi:"fdsLicenseExpiringDays"`
 	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
 	FortiguardAnycast pulumi.StringOutput `pulumi:"fortiguardAnycast"`
 	// Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
 	FortiguardAnycastSource pulumi.StringOutput `pulumi:"fortiguardAnycastSource"`
+	// Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+	GuiPromptAutoUpgrade pulumi.StringOutput `pulumi:"guiPromptAutoUpgrade"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -139,6 +147,8 @@ type Fortiguard struct {
 	OutbreakPreventionCache pulumi.StringOutput `pulumi:"outbreakPreventionCache"`
 	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
 	OutbreakPreventionCacheMpercent pulumi.IntOutput `pulumi:"outbreakPreventionCacheMpercent"`
+	// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+	OutbreakPreventionCacheMpermille pulumi.IntOutput `pulumi:"outbreakPreventionCacheMpermille"`
 	// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
 	OutbreakPreventionCacheTtl pulumi.IntOutput `pulumi:"outbreakPreventionCacheTtl"`
 	// Expiration date of FortiGuard Virus Outbreak Prevention contract.
@@ -181,6 +191,8 @@ type Fortiguard struct {
 	SourceIp6 pulumi.StringOutput `pulumi:"sourceIp6"`
 	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
 	UpdateBuildProxy pulumi.StringOutput `pulumi:"updateBuildProxy"`
+	// Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+	UpdateDldb pulumi.StringOutput `pulumi:"updateDldb"`
 	// Enable/disable external resource update. Valid values: `enable`, `disable`.
 	UpdateExtdb pulumi.StringOutput `pulumi:"updateExtdb"`
 	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
@@ -261,6 +273,8 @@ type fortiguardState struct {
 	AntispamCache *string `pulumi:"antispamCache"`
 	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
 	AntispamCacheMpercent *int `pulumi:"antispamCacheMpercent"`
+	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+	AntispamCacheMpermille *int `pulumi:"antispamCacheMpermille"`
 	// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
 	AntispamCacheTtl *int `pulumi:"antispamCacheTtl"`
 	// Expiration date of the FortiGuard antispam contract.
@@ -279,6 +293,8 @@ type fortiguardState struct {
 	AutoFirmwareUpgrade *string `pulumi:"autoFirmwareUpgrade"`
 	// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	AutoFirmwareUpgradeDay *string `pulumi:"autoFirmwareUpgradeDay"`
+	// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+	AutoFirmwareUpgradeDelay *int `pulumi:"autoFirmwareUpgradeDelay"`
 	// End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
 	AutoFirmwareUpgradeEndHour *int `pulumi:"autoFirmwareUpgradeEndHour"`
 	// Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
@@ -291,10 +307,14 @@ type fortiguardState struct {
 	DdnsServerIp6 *string `pulumi:"ddnsServerIp6"`
 	// Port used to communicate with FortiDDNS servers.
 	DdnsServerPort *int `pulumi:"ddnsServerPort"`
+	// Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+	FdsLicenseExpiringDays *int `pulumi:"fdsLicenseExpiringDays"`
 	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
 	FortiguardAnycast *string `pulumi:"fortiguardAnycast"`
 	// Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
 	FortiguardAnycastSource *string `pulumi:"fortiguardAnycastSource"`
+	// Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+	GuiPromptAutoUpgrade *string `pulumi:"guiPromptAutoUpgrade"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -305,6 +325,8 @@ type fortiguardState struct {
 	OutbreakPreventionCache *string `pulumi:"outbreakPreventionCache"`
 	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
 	OutbreakPreventionCacheMpercent *int `pulumi:"outbreakPreventionCacheMpercent"`
+	// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+	OutbreakPreventionCacheMpermille *int `pulumi:"outbreakPreventionCacheMpermille"`
 	// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
 	OutbreakPreventionCacheTtl *int `pulumi:"outbreakPreventionCacheTtl"`
 	// Expiration date of FortiGuard Virus Outbreak Prevention contract.
@@ -347,6 +369,8 @@ type fortiguardState struct {
 	SourceIp6 *string `pulumi:"sourceIp6"`
 	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
 	UpdateBuildProxy *string `pulumi:"updateBuildProxy"`
+	// Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+	UpdateDldb *string `pulumi:"updateDldb"`
 	// Enable/disable external resource update. Valid values: `enable`, `disable`.
 	UpdateExtdb *string `pulumi:"updateExtdb"`
 	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
@@ -382,6 +406,8 @@ type FortiguardState struct {
 	AntispamCache pulumi.StringPtrInput
 	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
 	AntispamCacheMpercent pulumi.IntPtrInput
+	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+	AntispamCacheMpermille pulumi.IntPtrInput
 	// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
 	AntispamCacheTtl pulumi.IntPtrInput
 	// Expiration date of the FortiGuard antispam contract.
@@ -400,6 +426,8 @@ type FortiguardState struct {
 	AutoFirmwareUpgrade pulumi.StringPtrInput
 	// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	AutoFirmwareUpgradeDay pulumi.StringPtrInput
+	// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+	AutoFirmwareUpgradeDelay pulumi.IntPtrInput
 	// End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
 	AutoFirmwareUpgradeEndHour pulumi.IntPtrInput
 	// Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
@@ -412,10 +440,14 @@ type FortiguardState struct {
 	DdnsServerIp6 pulumi.StringPtrInput
 	// Port used to communicate with FortiDDNS servers.
 	DdnsServerPort pulumi.IntPtrInput
+	// Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+	FdsLicenseExpiringDays pulumi.IntPtrInput
 	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
 	FortiguardAnycast pulumi.StringPtrInput
 	// Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
 	FortiguardAnycastSource pulumi.StringPtrInput
+	// Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+	GuiPromptAutoUpgrade pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -426,6 +458,8 @@ type FortiguardState struct {
 	OutbreakPreventionCache pulumi.StringPtrInput
 	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
 	OutbreakPreventionCacheMpercent pulumi.IntPtrInput
+	// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+	OutbreakPreventionCacheMpermille pulumi.IntPtrInput
 	// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
 	OutbreakPreventionCacheTtl pulumi.IntPtrInput
 	// Expiration date of FortiGuard Virus Outbreak Prevention contract.
@@ -468,6 +502,8 @@ type FortiguardState struct {
 	SourceIp6 pulumi.StringPtrInput
 	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
 	UpdateBuildProxy pulumi.StringPtrInput
+	// Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+	UpdateDldb pulumi.StringPtrInput
 	// Enable/disable external resource update. Valid values: `enable`, `disable`.
 	UpdateExtdb pulumi.StringPtrInput
 	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
@@ -507,6 +543,8 @@ type fortiguardArgs struct {
 	AntispamCache *string `pulumi:"antispamCache"`
 	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
 	AntispamCacheMpercent *int `pulumi:"antispamCacheMpercent"`
+	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+	AntispamCacheMpermille *int `pulumi:"antispamCacheMpermille"`
 	// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
 	AntispamCacheTtl *int `pulumi:"antispamCacheTtl"`
 	// Expiration date of the FortiGuard antispam contract.
@@ -525,6 +563,8 @@ type fortiguardArgs struct {
 	AutoFirmwareUpgrade *string `pulumi:"autoFirmwareUpgrade"`
 	// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	AutoFirmwareUpgradeDay *string `pulumi:"autoFirmwareUpgradeDay"`
+	// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+	AutoFirmwareUpgradeDelay *int `pulumi:"autoFirmwareUpgradeDelay"`
 	// End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
 	AutoFirmwareUpgradeEndHour *int `pulumi:"autoFirmwareUpgradeEndHour"`
 	// Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
@@ -537,10 +577,14 @@ type fortiguardArgs struct {
 	DdnsServerIp6 *string `pulumi:"ddnsServerIp6"`
 	// Port used to communicate with FortiDDNS servers.
 	DdnsServerPort *int `pulumi:"ddnsServerPort"`
+	// Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+	FdsLicenseExpiringDays *int `pulumi:"fdsLicenseExpiringDays"`
 	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
 	FortiguardAnycast *string `pulumi:"fortiguardAnycast"`
 	// Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
 	FortiguardAnycastSource *string `pulumi:"fortiguardAnycastSource"`
+	// Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+	GuiPromptAutoUpgrade *string `pulumi:"guiPromptAutoUpgrade"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -551,6 +595,8 @@ type fortiguardArgs struct {
 	OutbreakPreventionCache *string `pulumi:"outbreakPreventionCache"`
 	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
 	OutbreakPreventionCacheMpercent *int `pulumi:"outbreakPreventionCacheMpercent"`
+	// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+	OutbreakPreventionCacheMpermille *int `pulumi:"outbreakPreventionCacheMpermille"`
 	// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
 	OutbreakPreventionCacheTtl *int `pulumi:"outbreakPreventionCacheTtl"`
 	// Expiration date of FortiGuard Virus Outbreak Prevention contract.
@@ -593,6 +639,8 @@ type fortiguardArgs struct {
 	SourceIp6 *string `pulumi:"sourceIp6"`
 	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
 	UpdateBuildProxy *string `pulumi:"updateBuildProxy"`
+	// Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+	UpdateDldb *string `pulumi:"updateDldb"`
 	// Enable/disable external resource update. Valid values: `enable`, `disable`.
 	UpdateExtdb *string `pulumi:"updateExtdb"`
 	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
@@ -629,6 +677,8 @@ type FortiguardArgs struct {
 	AntispamCache pulumi.StringPtrInput
 	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
 	AntispamCacheMpercent pulumi.IntPtrInput
+	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+	AntispamCacheMpermille pulumi.IntPtrInput
 	// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
 	AntispamCacheTtl pulumi.IntPtrInput
 	// Expiration date of the FortiGuard antispam contract.
@@ -647,6 +697,8 @@ type FortiguardArgs struct {
 	AutoFirmwareUpgrade pulumi.StringPtrInput
 	// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	AutoFirmwareUpgradeDay pulumi.StringPtrInput
+	// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+	AutoFirmwareUpgradeDelay pulumi.IntPtrInput
 	// End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
 	AutoFirmwareUpgradeEndHour pulumi.IntPtrInput
 	// Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
@@ -659,10 +711,14 @@ type FortiguardArgs struct {
 	DdnsServerIp6 pulumi.StringPtrInput
 	// Port used to communicate with FortiDDNS servers.
 	DdnsServerPort pulumi.IntPtrInput
+	// Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+	FdsLicenseExpiringDays pulumi.IntPtrInput
 	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
 	FortiguardAnycast pulumi.StringPtrInput
 	// Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
 	FortiguardAnycastSource pulumi.StringPtrInput
+	// Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+	GuiPromptAutoUpgrade pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -673,6 +729,8 @@ type FortiguardArgs struct {
 	OutbreakPreventionCache pulumi.StringPtrInput
 	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
 	OutbreakPreventionCacheMpercent pulumi.IntPtrInput
+	// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+	OutbreakPreventionCacheMpermille pulumi.IntPtrInput
 	// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
 	OutbreakPreventionCacheTtl pulumi.IntPtrInput
 	// Expiration date of FortiGuard Virus Outbreak Prevention contract.
@@ -715,6 +773,8 @@ type FortiguardArgs struct {
 	SourceIp6 pulumi.StringPtrInput
 	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
 	UpdateBuildProxy pulumi.StringPtrInput
+	// Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+	UpdateDldb pulumi.StringPtrInput
 	// Enable/disable external resource update. Valid values: `enable`, `disable`.
 	UpdateExtdb pulumi.StringPtrInput
 	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
@@ -842,6 +902,11 @@ func (o FortiguardOutput) AntispamCacheMpercent() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.AntispamCacheMpercent }).(pulumi.IntOutput)
 }
 
+// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+func (o FortiguardOutput) AntispamCacheMpermille() pulumi.IntOutput {
+	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.AntispamCacheMpermille }).(pulumi.IntOutput)
+}
+
 // Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
 func (o FortiguardOutput) AntispamCacheTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.AntispamCacheTtl }).(pulumi.IntOutput)
@@ -887,6 +952,11 @@ func (o FortiguardOutput) AutoFirmwareUpgradeDay() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.AutoFirmwareUpgradeDay }).(pulumi.StringOutput)
 }
 
+// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+func (o FortiguardOutput) AutoFirmwareUpgradeDelay() pulumi.IntOutput {
+	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.AutoFirmwareUpgradeDelay }).(pulumi.IntOutput)
+}
+
 // End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
 func (o FortiguardOutput) AutoFirmwareUpgradeEndHour() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.AutoFirmwareUpgradeEndHour }).(pulumi.IntOutput)
@@ -917,6 +987,11 @@ func (o FortiguardOutput) DdnsServerPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.DdnsServerPort }).(pulumi.IntOutput)
 }
 
+// Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+func (o FortiguardOutput) FdsLicenseExpiringDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.FdsLicenseExpiringDays }).(pulumi.IntOutput)
+}
+
 // Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
 func (o FortiguardOutput) FortiguardAnycast() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.FortiguardAnycast }).(pulumi.StringOutput)
@@ -925,6 +1000,11 @@ func (o FortiguardOutput) FortiguardAnycast() pulumi.StringOutput {
 // Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
 func (o FortiguardOutput) FortiguardAnycastSource() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.FortiguardAnycastSource }).(pulumi.StringOutput)
+}
+
+// Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `enable`, `disable`.
+func (o FortiguardOutput) GuiPromptAutoUpgrade() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.GuiPromptAutoUpgrade }).(pulumi.StringOutput)
 }
 
 // Specify outgoing interface to reach server.
@@ -950,6 +1030,11 @@ func (o FortiguardOutput) OutbreakPreventionCache() pulumi.StringOutput {
 // Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
 func (o FortiguardOutput) OutbreakPreventionCacheMpercent() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.OutbreakPreventionCacheMpercent }).(pulumi.IntOutput)
+}
+
+// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+func (o FortiguardOutput) OutbreakPreventionCacheMpermille() pulumi.IntOutput {
+	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.OutbreakPreventionCacheMpermille }).(pulumi.IntOutput)
 }
 
 // Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
@@ -1055,6 +1140,11 @@ func (o FortiguardOutput) SourceIp6() pulumi.StringOutput {
 // Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
 func (o FortiguardOutput) UpdateBuildProxy() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.UpdateBuildProxy }).(pulumi.StringOutput)
+}
+
+// Enable/disable DLP signature update. Valid values: `enable`, `disable`.
+func (o FortiguardOutput) UpdateDldb() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.UpdateDldb }).(pulumi.StringOutput)
 }
 
 // Enable/disable external resource update. Valid values: `enable`, `disable`.

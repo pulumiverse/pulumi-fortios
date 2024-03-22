@@ -25,6 +25,7 @@ class AutomationtriggerArgs:
                  faz_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_tags: Optional[pulumi.Input[str]] = None,
                  fields: Optional[pulumi.Input[Sequence[pulumi.Input['AutomationtriggerFieldArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ioc_level: Optional[pulumi.Input[str]] = None,
                  license_type: Optional[pulumi.Input[str]] = None,
                  logid: Optional[pulumi.Input[int]] = None,
@@ -52,10 +53,11 @@ class AutomationtriggerArgs:
         :param pulumi.Input[str] faz_event_severity: FortiAnalyzer event severity.
         :param pulumi.Input[str] faz_event_tags: FortiAnalyzer event tags.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationtriggerFieldArgs']]] fields: Customized trigger field settings. The structure of `fields` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ioc_level: IOC threat level. Valid values: `medium`, `high`.
         :param pulumi.Input[str] license_type: License type.
         :param pulumi.Input[int] logid: Log ID to trigger event.
-        :param pulumi.Input[Sequence[pulumi.Input['AutomationtriggerLogidBlockArgs']]] logid_blocks: Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['AutomationtriggerLogidBlockArgs']]] logid_blocks: Log IDs to trigger event. The structure of `logid_block` block is documented below.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] report_type: Security Rating report.
         :param pulumi.Input[str] serial: Fabric connector serial number.
@@ -87,6 +89,8 @@ class AutomationtriggerArgs:
             pulumi.set(__self__, "faz_event_tags", faz_event_tags)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ioc_level is not None:
             pulumi.set(__self__, "ioc_level", ioc_level)
         if license_type is not None:
@@ -229,6 +233,18 @@ class AutomationtriggerArgs:
         pulumi.set(self, "fields", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="iocLevel")
     def ioc_level(self) -> Optional[pulumi.Input[str]]:
         """
@@ -268,7 +284,7 @@ class AutomationtriggerArgs:
     @pulumi.getter(name="logidBlocks")
     def logid_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AutomationtriggerLogidBlockArgs']]]]:
         """
-        Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
+        Log IDs to trigger event. The structure of `logid_block` block is documented below.
         """
         return pulumi.get(self, "logid_blocks")
 
@@ -433,6 +449,7 @@ class _AutomationtriggerState:
                  faz_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_tags: Optional[pulumi.Input[str]] = None,
                  fields: Optional[pulumi.Input[Sequence[pulumi.Input['AutomationtriggerFieldArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ioc_level: Optional[pulumi.Input[str]] = None,
                  license_type: Optional[pulumi.Input[str]] = None,
                  logid: Optional[pulumi.Input[int]] = None,
@@ -460,10 +477,11 @@ class _AutomationtriggerState:
         :param pulumi.Input[str] faz_event_severity: FortiAnalyzer event severity.
         :param pulumi.Input[str] faz_event_tags: FortiAnalyzer event tags.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationtriggerFieldArgs']]] fields: Customized trigger field settings. The structure of `fields` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ioc_level: IOC threat level. Valid values: `medium`, `high`.
         :param pulumi.Input[str] license_type: License type.
         :param pulumi.Input[int] logid: Log ID to trigger event.
-        :param pulumi.Input[Sequence[pulumi.Input['AutomationtriggerLogidBlockArgs']]] logid_blocks: Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['AutomationtriggerLogidBlockArgs']]] logid_blocks: Log IDs to trigger event. The structure of `logid_block` block is documented below.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] report_type: Security Rating report.
         :param pulumi.Input[str] serial: Fabric connector serial number.
@@ -495,6 +513,8 @@ class _AutomationtriggerState:
             pulumi.set(__self__, "faz_event_tags", faz_event_tags)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ioc_level is not None:
             pulumi.set(__self__, "ioc_level", ioc_level)
         if license_type is not None:
@@ -637,6 +657,18 @@ class _AutomationtriggerState:
         pulumi.set(self, "fields", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="iocLevel")
     def ioc_level(self) -> Optional[pulumi.Input[str]]:
         """
@@ -676,7 +708,7 @@ class _AutomationtriggerState:
     @pulumi.getter(name="logidBlocks")
     def logid_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AutomationtriggerLogidBlockArgs']]]]:
         """
-        Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
+        Log IDs to trigger event. The structure of `logid_block` block is documented below.
         """
         return pulumi.get(self, "logid_blocks")
 
@@ -843,6 +875,7 @@ class Automationtrigger(pulumi.CustomResource):
                  faz_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_tags: Optional[pulumi.Input[str]] = None,
                  fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerFieldArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ioc_level: Optional[pulumi.Input[str]] = None,
                  license_type: Optional[pulumi.Input[str]] = None,
                  logid: Optional[pulumi.Input[int]] = None,
@@ -910,10 +943,11 @@ class Automationtrigger(pulumi.CustomResource):
         :param pulumi.Input[str] faz_event_severity: FortiAnalyzer event severity.
         :param pulumi.Input[str] faz_event_tags: FortiAnalyzer event tags.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerFieldArgs']]]] fields: Customized trigger field settings. The structure of `fields` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ioc_level: IOC threat level. Valid values: `medium`, `high`.
         :param pulumi.Input[str] license_type: License type.
         :param pulumi.Input[int] logid: Log ID to trigger event.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerLogidBlockArgs']]]] logid_blocks: Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerLogidBlockArgs']]]] logid_blocks: Log IDs to trigger event. The structure of `logid_block` block is documented below.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] report_type: Security Rating report.
         :param pulumi.Input[str] serial: Fabric connector serial number.
@@ -996,6 +1030,7 @@ class Automationtrigger(pulumi.CustomResource):
                  faz_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_tags: Optional[pulumi.Input[str]] = None,
                  fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerFieldArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ioc_level: Optional[pulumi.Input[str]] = None,
                  license_type: Optional[pulumi.Input[str]] = None,
                  logid: Optional[pulumi.Input[int]] = None,
@@ -1030,6 +1065,7 @@ class Automationtrigger(pulumi.CustomResource):
             __props__.__dict__["faz_event_severity"] = faz_event_severity
             __props__.__dict__["faz_event_tags"] = faz_event_tags
             __props__.__dict__["fields"] = fields
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ioc_level"] = ioc_level
             __props__.__dict__["license_type"] = license_type
             __props__.__dict__["logid"] = logid
@@ -1065,6 +1101,7 @@ class Automationtrigger(pulumi.CustomResource):
             faz_event_severity: Optional[pulumi.Input[str]] = None,
             faz_event_tags: Optional[pulumi.Input[str]] = None,
             fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerFieldArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ioc_level: Optional[pulumi.Input[str]] = None,
             license_type: Optional[pulumi.Input[str]] = None,
             logid: Optional[pulumi.Input[int]] = None,
@@ -1097,10 +1134,11 @@ class Automationtrigger(pulumi.CustomResource):
         :param pulumi.Input[str] faz_event_severity: FortiAnalyzer event severity.
         :param pulumi.Input[str] faz_event_tags: FortiAnalyzer event tags.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerFieldArgs']]]] fields: Customized trigger field settings. The structure of `fields` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ioc_level: IOC threat level. Valid values: `medium`, `high`.
         :param pulumi.Input[str] license_type: License type.
         :param pulumi.Input[int] logid: Log ID to trigger event.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerLogidBlockArgs']]]] logid_blocks: Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerLogidBlockArgs']]]] logid_blocks: Log IDs to trigger event. The structure of `logid_block` block is documented below.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] report_type: Security Rating report.
         :param pulumi.Input[str] serial: Fabric connector serial number.
@@ -1127,6 +1165,7 @@ class Automationtrigger(pulumi.CustomResource):
         __props__.__dict__["faz_event_severity"] = faz_event_severity
         __props__.__dict__["faz_event_tags"] = faz_event_tags
         __props__.__dict__["fields"] = fields
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ioc_level"] = ioc_level
         __props__.__dict__["license_type"] = license_type
         __props__.__dict__["logid"] = logid
@@ -1218,6 +1257,14 @@ class Automationtrigger(pulumi.CustomResource):
         return pulumi.get(self, "fields")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="iocLevel")
     def ioc_level(self) -> pulumi.Output[str]:
         """
@@ -1245,7 +1292,7 @@ class Automationtrigger(pulumi.CustomResource):
     @pulumi.getter(name="logidBlocks")
     def logid_blocks(self) -> pulumi.Output[Optional[Sequence['outputs.AutomationtriggerLogidBlock']]]:
         """
-        Log ID to trigger event. Only applies on FortiOS v7.0.0+. The structure of `logid_block` block is documented below.
+        Log IDs to trigger event. The structure of `logid_block` block is documented below.
         """
         return pulumi.get(self, "logid_blocks")
 

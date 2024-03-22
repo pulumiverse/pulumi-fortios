@@ -77,7 +77,7 @@ namespace Pulumiverse.Fortios.Report
         public Output<string> CutoffOption { get; private set; } = null!;
 
         /// <summary>
-        /// Custom cutoff time to generate report [hh:mm].
+        /// Custom cutoff time to generate report (format = hh:mm).
         /// </summary>
         [Output("cutoffTime")]
         public Output<string> CutoffTime { get; private set; } = null!;
@@ -117,6 +117,12 @@ namespace Pulumiverse.Fortios.Report
         /// </summary>
         [Output("format")]
         public Output<string> Format { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
@@ -161,7 +167,7 @@ namespace Pulumiverse.Fortios.Report
         public Output<string> Subtitle { get; private set; } = null!;
 
         /// <summary>
-        /// Schedule time to generate report [hh:mm].
+        /// Schedule time to generate report (format = hh:mm).
         /// </summary>
         [Output("time")]
         public Output<string> Time { get; private set; } = null!;
@@ -244,7 +250,7 @@ namespace Pulumiverse.Fortios.Report
         public Input<string>? CutoffOption { get; set; }
 
         /// <summary>
-        /// Custom cutoff time to generate report [hh:mm].
+        /// Custom cutoff time to generate report (format = hh:mm).
         /// </summary>
         [Input("cutoffTime")]
         public Input<string>? CutoffTime { get; set; }
@@ -284,6 +290,12 @@ namespace Pulumiverse.Fortios.Report
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
@@ -328,7 +340,7 @@ namespace Pulumiverse.Fortios.Report
         public Input<string>? Subtitle { get; set; }
 
         /// <summary>
-        /// Schedule time to generate report [hh:mm].
+        /// Schedule time to generate report (format = hh:mm).
         /// </summary>
         [Input("time")]
         public Input<string>? Time { get; set; }
@@ -372,7 +384,7 @@ namespace Pulumiverse.Fortios.Report
         public Input<string>? CutoffOption { get; set; }
 
         /// <summary>
-        /// Custom cutoff time to generate report [hh:mm].
+        /// Custom cutoff time to generate report (format = hh:mm).
         /// </summary>
         [Input("cutoffTime")]
         public Input<string>? CutoffTime { get; set; }
@@ -412,6 +424,12 @@ namespace Pulumiverse.Fortios.Report
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
@@ -456,7 +474,7 @@ namespace Pulumiverse.Fortios.Report
         public Input<string>? Subtitle { get; set; }
 
         /// <summary>
-        /// Schedule time to generate report [hh:mm].
+        /// Schedule time to generate report (format = hh:mm).
         /// </summary>
         [Input("time")]
         public Input<string>? Time { get; set; }

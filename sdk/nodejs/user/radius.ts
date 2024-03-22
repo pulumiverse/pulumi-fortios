@@ -94,6 +94,14 @@ export class Radius extends pulumi.CustomResource {
     }
 
     /**
+     * Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+     */
+    public readonly accountKeyCertField!: pulumi.Output<string>;
+    /**
+     * Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+     */
+    public readonly accountKeyProcessing!: pulumi.Output<string>;
+    /**
      * Additional accounting servers. The structure of `accountingServer` block is documented below.
      */
     public readonly accountingServers!: pulumi.Output<outputs.user.RadiusAccountingServer[] | undefined>;
@@ -114,9 +122,21 @@ export class Radius extends pulumi.CustomResource {
      */
     public readonly authType!: pulumi.Output<string>;
     /**
+     * CA of server to trust under TLS.
+     */
+    public readonly caCert!: pulumi.Output<string>;
+    /**
+     * Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+     */
+    public readonly callStationIdType!: pulumi.Output<string>;
+    /**
      * Class attribute name(s). The structure of `class` block is documented below.
      */
     public readonly classes!: pulumi.Output<outputs.user.RadiusClass[] | undefined>;
+    /**
+     * Client certificate to use under TLS.
+     */
+    public readonly clientCert!: pulumi.Output<string>;
     /**
      * Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
      */
@@ -125,6 +145,10 @@ export class Radius extends pulumi.CustomResource {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
      */
@@ -157,6 +181,14 @@ export class Radius extends pulumi.CustomResource {
      * RADIUS server entry name.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Custom NAS identifier.
+     */
+    public readonly nasId!: pulumi.Output<string>;
+    /**
+     * NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+     */
+    public readonly nasIdType!: pulumi.Output<string>;
     /**
      * IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
      */
@@ -242,6 +274,10 @@ export class Radius extends pulumi.CustomResource {
      */
     public readonly server!: pulumi.Output<string>;
     /**
+     * Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+     */
+    public readonly serverIdentityCheck!: pulumi.Output<string>;
+    /**
      * Source IP address for communications to the RADIUS server.
      */
     public readonly sourceIp!: pulumi.Output<string>;
@@ -258,9 +294,17 @@ export class Radius extends pulumi.CustomResource {
      */
     public readonly ssoAttributeValueOverride!: pulumi.Output<string>;
     /**
+     * Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+     */
+    public readonly statusTtl!: pulumi.Output<number>;
+    /**
      * Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
      */
     public readonly switchControllerAcctFastFramedipDetect!: pulumi.Output<number>;
+    /**
+     * Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+     */
+    public readonly switchControllerNasIpDynamic!: pulumi.Output<string>;
     /**
      * RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
      */
@@ -277,6 +321,14 @@ export class Radius extends pulumi.CustomResource {
      * Time in seconds between re-sending authentication requests.
      */
     public readonly timeout!: pulumi.Output<number>;
+    /**
+     * Minimum supported protocol version for TLS connections (default is to follow system global setting).
+     */
+    public readonly tlsMinProtoVersion!: pulumi.Output<string>;
+    /**
+     * Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+     */
+    public readonly transportProtocol!: pulumi.Output<string>;
     /**
      * Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
      */
@@ -303,14 +355,20 @@ export class Radius extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RadiusState | undefined;
+            resourceInputs["accountKeyCertField"] = state ? state.accountKeyCertField : undefined;
+            resourceInputs["accountKeyProcessing"] = state ? state.accountKeyProcessing : undefined;
             resourceInputs["accountingServers"] = state ? state.accountingServers : undefined;
             resourceInputs["acctAllServers"] = state ? state.acctAllServers : undefined;
             resourceInputs["acctInterimInterval"] = state ? state.acctInterimInterval : undefined;
             resourceInputs["allUsergroup"] = state ? state.allUsergroup : undefined;
             resourceInputs["authType"] = state ? state.authType : undefined;
+            resourceInputs["caCert"] = state ? state.caCert : undefined;
+            resourceInputs["callStationIdType"] = state ? state.callStationIdType : undefined;
             resourceInputs["classes"] = state ? state.classes : undefined;
+            resourceInputs["clientCert"] = state ? state.clientCert : undefined;
             resourceInputs["delimiter"] = state ? state.delimiter : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupOverrideAttrType"] = state ? state.groupOverrideAttrType : undefined;
             resourceInputs["h3cCompatibility"] = state ? state.h3cCompatibility : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
@@ -319,6 +377,8 @@ export class Radius extends pulumi.CustomResource {
             resourceInputs["macPasswordDelimiter"] = state ? state.macPasswordDelimiter : undefined;
             resourceInputs["macUsernameDelimiter"] = state ? state.macUsernameDelimiter : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nasId"] = state ? state.nasId : undefined;
+            resourceInputs["nasIdType"] = state ? state.nasIdType : undefined;
             resourceInputs["nasIp"] = state ? state.nasIp : undefined;
             resourceInputs["passwordEncoding"] = state ? state.passwordEncoding : undefined;
             resourceInputs["passwordRenewal"] = state ? state.passwordRenewal : undefined;
@@ -340,28 +400,39 @@ export class Radius extends pulumi.CustomResource {
             resourceInputs["secondaryServer"] = state ? state.secondaryServer : undefined;
             resourceInputs["secret"] = state ? state.secret : undefined;
             resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["serverIdentityCheck"] = state ? state.serverIdentityCheck : undefined;
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["ssoAttribute"] = state ? state.ssoAttribute : undefined;
             resourceInputs["ssoAttributeKey"] = state ? state.ssoAttributeKey : undefined;
             resourceInputs["ssoAttributeValueOverride"] = state ? state.ssoAttributeValueOverride : undefined;
+            resourceInputs["statusTtl"] = state ? state.statusTtl : undefined;
             resourceInputs["switchControllerAcctFastFramedipDetect"] = state ? state.switchControllerAcctFastFramedipDetect : undefined;
+            resourceInputs["switchControllerNasIpDynamic"] = state ? state.switchControllerNasIpDynamic : undefined;
             resourceInputs["switchControllerServiceType"] = state ? state.switchControllerServiceType : undefined;
             resourceInputs["tertiarySecret"] = state ? state.tertiarySecret : undefined;
             resourceInputs["tertiaryServer"] = state ? state.tertiaryServer : undefined;
             resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["tlsMinProtoVersion"] = state ? state.tlsMinProtoVersion : undefined;
+            resourceInputs["transportProtocol"] = state ? state.transportProtocol : undefined;
             resourceInputs["useManagementVdom"] = state ? state.useManagementVdom : undefined;
             resourceInputs["usernameCaseSensitive"] = state ? state.usernameCaseSensitive : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RadiusArgs | undefined;
+            resourceInputs["accountKeyCertField"] = args ? args.accountKeyCertField : undefined;
+            resourceInputs["accountKeyProcessing"] = args ? args.accountKeyProcessing : undefined;
             resourceInputs["accountingServers"] = args ? args.accountingServers : undefined;
             resourceInputs["acctAllServers"] = args ? args.acctAllServers : undefined;
             resourceInputs["acctInterimInterval"] = args ? args.acctInterimInterval : undefined;
             resourceInputs["allUsergroup"] = args ? args.allUsergroup : undefined;
             resourceInputs["authType"] = args ? args.authType : undefined;
+            resourceInputs["caCert"] = args ? args.caCert : undefined;
+            resourceInputs["callStationIdType"] = args ? args.callStationIdType : undefined;
             resourceInputs["classes"] = args ? args.classes : undefined;
+            resourceInputs["clientCert"] = args ? args.clientCert : undefined;
             resourceInputs["delimiter"] = args ? args.delimiter : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupOverrideAttrType"] = args ? args.groupOverrideAttrType : undefined;
             resourceInputs["h3cCompatibility"] = args ? args.h3cCompatibility : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
@@ -370,6 +441,8 @@ export class Radius extends pulumi.CustomResource {
             resourceInputs["macPasswordDelimiter"] = args ? args.macPasswordDelimiter : undefined;
             resourceInputs["macUsernameDelimiter"] = args ? args.macUsernameDelimiter : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nasId"] = args ? args.nasId : undefined;
+            resourceInputs["nasIdType"] = args ? args.nasIdType : undefined;
             resourceInputs["nasIp"] = args ? args.nasIp : undefined;
             resourceInputs["passwordEncoding"] = args ? args.passwordEncoding : undefined;
             resourceInputs["passwordRenewal"] = args ? args.passwordRenewal : undefined;
@@ -391,15 +464,20 @@ export class Radius extends pulumi.CustomResource {
             resourceInputs["secondaryServer"] = args ? args.secondaryServer : undefined;
             resourceInputs["secret"] = args?.secret ? pulumi.secret(args.secret) : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["serverIdentityCheck"] = args ? args.serverIdentityCheck : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["ssoAttribute"] = args ? args.ssoAttribute : undefined;
             resourceInputs["ssoAttributeKey"] = args?.ssoAttributeKey ? pulumi.secret(args.ssoAttributeKey) : undefined;
             resourceInputs["ssoAttributeValueOverride"] = args ? args.ssoAttributeValueOverride : undefined;
+            resourceInputs["statusTtl"] = args ? args.statusTtl : undefined;
             resourceInputs["switchControllerAcctFastFramedipDetect"] = args ? args.switchControllerAcctFastFramedipDetect : undefined;
+            resourceInputs["switchControllerNasIpDynamic"] = args ? args.switchControllerNasIpDynamic : undefined;
             resourceInputs["switchControllerServiceType"] = args ? args.switchControllerServiceType : undefined;
             resourceInputs["tertiarySecret"] = args?.tertiarySecret ? pulumi.secret(args.tertiarySecret) : undefined;
             resourceInputs["tertiaryServer"] = args ? args.tertiaryServer : undefined;
             resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["tlsMinProtoVersion"] = args ? args.tlsMinProtoVersion : undefined;
+            resourceInputs["transportProtocol"] = args ? args.transportProtocol : undefined;
             resourceInputs["useManagementVdom"] = args ? args.useManagementVdom : undefined;
             resourceInputs["usernameCaseSensitive"] = args ? args.usernameCaseSensitive : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -415,6 +493,14 @@ export class Radius extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Radius resources.
  */
 export interface RadiusState {
+    /**
+     * Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+     */
+    accountKeyCertField?: pulumi.Input<string>;
+    /**
+     * Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+     */
+    accountKeyProcessing?: pulumi.Input<string>;
     /**
      * Additional accounting servers. The structure of `accountingServer` block is documented below.
      */
@@ -436,9 +522,21 @@ export interface RadiusState {
      */
     authType?: pulumi.Input<string>;
     /**
+     * CA of server to trust under TLS.
+     */
+    caCert?: pulumi.Input<string>;
+    /**
+     * Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+     */
+    callStationIdType?: pulumi.Input<string>;
+    /**
      * Class attribute name(s). The structure of `class` block is documented below.
      */
     classes?: pulumi.Input<pulumi.Input<inputs.user.RadiusClass>[]>;
+    /**
+     * Client certificate to use under TLS.
+     */
+    clientCert?: pulumi.Input<string>;
     /**
      * Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
      */
@@ -447,6 +545,10 @@ export interface RadiusState {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
      */
@@ -479,6 +581,14 @@ export interface RadiusState {
      * RADIUS server entry name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Custom NAS identifier.
+     */
+    nasId?: pulumi.Input<string>;
+    /**
+     * NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+     */
+    nasIdType?: pulumi.Input<string>;
     /**
      * IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
      */
@@ -564,6 +674,10 @@ export interface RadiusState {
      */
     server?: pulumi.Input<string>;
     /**
+     * Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+     */
+    serverIdentityCheck?: pulumi.Input<string>;
+    /**
      * Source IP address for communications to the RADIUS server.
      */
     sourceIp?: pulumi.Input<string>;
@@ -580,9 +694,17 @@ export interface RadiusState {
      */
     ssoAttributeValueOverride?: pulumi.Input<string>;
     /**
+     * Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+     */
+    statusTtl?: pulumi.Input<number>;
+    /**
      * Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
      */
     switchControllerAcctFastFramedipDetect?: pulumi.Input<number>;
+    /**
+     * Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+     */
+    switchControllerNasIpDynamic?: pulumi.Input<string>;
     /**
      * RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
      */
@@ -599,6 +721,14 @@ export interface RadiusState {
      * Time in seconds between re-sending authentication requests.
      */
     timeout?: pulumi.Input<number>;
+    /**
+     * Minimum supported protocol version for TLS connections (default is to follow system global setting).
+     */
+    tlsMinProtoVersion?: pulumi.Input<string>;
+    /**
+     * Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+     */
+    transportProtocol?: pulumi.Input<string>;
     /**
      * Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
      */
@@ -618,6 +748,14 @@ export interface RadiusState {
  */
 export interface RadiusArgs {
     /**
+     * Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+     */
+    accountKeyCertField?: pulumi.Input<string>;
+    /**
+     * Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+     */
+    accountKeyProcessing?: pulumi.Input<string>;
+    /**
      * Additional accounting servers. The structure of `accountingServer` block is documented below.
      */
     accountingServers?: pulumi.Input<pulumi.Input<inputs.user.RadiusAccountingServer>[]>;
@@ -638,9 +776,21 @@ export interface RadiusArgs {
      */
     authType?: pulumi.Input<string>;
     /**
+     * CA of server to trust under TLS.
+     */
+    caCert?: pulumi.Input<string>;
+    /**
+     * Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication.  Valid values: `legacy`, `IP`, `MAC`.
+     */
+    callStationIdType?: pulumi.Input<string>;
+    /**
      * Class attribute name(s). The structure of `class` block is documented below.
      */
     classes?: pulumi.Input<pulumi.Input<inputs.user.RadiusClass>[]>;
+    /**
+     * Client certificate to use under TLS.
+     */
+    clientCert?: pulumi.Input<string>;
     /**
      * Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
      */
@@ -649,6 +799,10 @@ export interface RadiusArgs {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
      */
@@ -681,6 +835,14 @@ export interface RadiusArgs {
      * RADIUS server entry name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Custom NAS identifier.
+     */
+    nasId?: pulumi.Input<string>;
+    /**
+     * NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+     */
+    nasIdType?: pulumi.Input<string>;
     /**
      * IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
      */
@@ -766,6 +928,10 @@ export interface RadiusArgs {
      */
     server?: pulumi.Input<string>;
     /**
+     * Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
+     */
+    serverIdentityCheck?: pulumi.Input<string>;
+    /**
      * Source IP address for communications to the RADIUS server.
      */
     sourceIp?: pulumi.Input<string>;
@@ -782,9 +948,17 @@ export interface RadiusArgs {
      */
     ssoAttributeValueOverride?: pulumi.Input<string>;
     /**
+     * Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+     */
+    statusTtl?: pulumi.Input<number>;
+    /**
      * Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
      */
     switchControllerAcctFastFramedipDetect?: pulumi.Input<number>;
+    /**
+     * Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `enable`, `disable`.
+     */
+    switchControllerNasIpDynamic?: pulumi.Input<string>;
     /**
      * RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
      */
@@ -801,6 +975,14 @@ export interface RadiusArgs {
      * Time in seconds between re-sending authentication requests.
      */
     timeout?: pulumi.Input<number>;
+    /**
+     * Minimum supported protocol version for TLS connections (default is to follow system global setting).
+     */
+    tlsMinProtoVersion?: pulumi.Input<string>;
+    /**
+     * Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+     */
+    transportProtocol?: pulumi.Input<string>;
     /**
      * Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
      */

@@ -26,6 +26,7 @@ class Address6Args:
                  epg_name: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_type: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
@@ -33,6 +34,7 @@ class Address6Args:
                  macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['Address6MacaddrArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obj_id: Optional[pulumi.Input[str]] = None,
+                 route_tag: Optional[pulumi.Input[int]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
                  sdn_tag: Optional[pulumi.Input[str]] = None,
                  start_ip: Optional[pulumi.Input[str]] = None,
@@ -57,6 +59,7 @@ class Address6Args:
         :param pulumi.Input[str] epg_name: Endpoint group name.
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: Host Address.
         :param pulumi.Input[str] host_type: Host type. Valid values: `any`, `specific`.
         :param pulumi.Input[str] ip6: IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
@@ -64,6 +67,7 @@ class Address6Args:
         :param pulumi.Input[Sequence[pulumi.Input['Address6MacaddrArgs']]] macaddrs: Multiple MAC address ranges. The structure of `macaddr` block is documented below.
         :param pulumi.Input[str] name: Address name.
         :param pulumi.Input[str] obj_id: Object ID for NSX.
+        :param pulumi.Input[int] route_tag: route-tag address.
         :param pulumi.Input[str] sdn: SDN.
         :param pulumi.Input[str] sdn_tag: SDN Tag.
         :param pulumi.Input[str] start_ip: First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
@@ -97,6 +101,8 @@ class Address6Args:
             pulumi.set(__self__, "fabric_object", fabric_object)
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if host_type is not None:
@@ -111,6 +117,8 @@ class Address6Args:
             pulumi.set(__self__, "name", name)
         if obj_id is not None:
             pulumi.set(__self__, "obj_id", obj_id)
+        if route_tag is not None:
+            pulumi.set(__self__, "route_tag", route_tag)
         if sdn is not None:
             pulumi.set(__self__, "sdn", sdn)
         if sdn_tag is not None:
@@ -257,6 +265,18 @@ class Address6Args:
         pulumi.set(self, "fqdn", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
         """
@@ -339,6 +359,18 @@ class Address6Args:
     @obj_id.setter
     def obj_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "obj_id", value)
+
+    @property
+    @pulumi.getter(name="routeTag")
+    def route_tag(self) -> Optional[pulumi.Input[int]]:
+        """
+        route-tag address.
+        """
+        return pulumi.get(self, "route_tag")
+
+    @route_tag.setter
+    def route_tag(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "route_tag", value)
 
     @property
     @pulumi.getter
@@ -498,6 +530,7 @@ class _Address6State:
                  epg_name: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_type: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
@@ -505,6 +538,7 @@ class _Address6State:
                  macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['Address6MacaddrArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obj_id: Optional[pulumi.Input[str]] = None,
+                 route_tag: Optional[pulumi.Input[int]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
                  sdn_tag: Optional[pulumi.Input[str]] = None,
                  start_ip: Optional[pulumi.Input[str]] = None,
@@ -529,6 +563,7 @@ class _Address6State:
         :param pulumi.Input[str] epg_name: Endpoint group name.
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: Host Address.
         :param pulumi.Input[str] host_type: Host type. Valid values: `any`, `specific`.
         :param pulumi.Input[str] ip6: IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
@@ -536,6 +571,7 @@ class _Address6State:
         :param pulumi.Input[Sequence[pulumi.Input['Address6MacaddrArgs']]] macaddrs: Multiple MAC address ranges. The structure of `macaddr` block is documented below.
         :param pulumi.Input[str] name: Address name.
         :param pulumi.Input[str] obj_id: Object ID for NSX.
+        :param pulumi.Input[int] route_tag: route-tag address.
         :param pulumi.Input[str] sdn: SDN.
         :param pulumi.Input[str] sdn_tag: SDN Tag.
         :param pulumi.Input[str] start_ip: First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
@@ -569,6 +605,8 @@ class _Address6State:
             pulumi.set(__self__, "fabric_object", fabric_object)
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if host_type is not None:
@@ -583,6 +621,8 @@ class _Address6State:
             pulumi.set(__self__, "name", name)
         if obj_id is not None:
             pulumi.set(__self__, "obj_id", obj_id)
+        if route_tag is not None:
+            pulumi.set(__self__, "route_tag", route_tag)
         if sdn is not None:
             pulumi.set(__self__, "sdn", sdn)
         if sdn_tag is not None:
@@ -729,6 +769,18 @@ class _Address6State:
         pulumi.set(self, "fqdn", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
         """
@@ -811,6 +863,18 @@ class _Address6State:
     @obj_id.setter
     def obj_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "obj_id", value)
+
+    @property
+    @pulumi.getter(name="routeTag")
+    def route_tag(self) -> Optional[pulumi.Input[int]]:
+        """
+        route-tag address.
+        """
+        return pulumi.get(self, "route_tag")
+
+    @route_tag.setter
+    def route_tag(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "route_tag", value)
 
     @property
     @pulumi.getter
@@ -972,6 +1036,7 @@ class Address6(pulumi.CustomResource):
                  epg_name: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_type: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
@@ -979,6 +1044,7 @@ class Address6(pulumi.CustomResource):
                  macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Address6MacaddrArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obj_id: Optional[pulumi.Input[str]] = None,
+                 route_tag: Optional[pulumi.Input[int]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
                  sdn_tag: Optional[pulumi.Input[str]] = None,
                  start_ip: Optional[pulumi.Input[str]] = None,
@@ -1045,6 +1111,7 @@ class Address6(pulumi.CustomResource):
         :param pulumi.Input[str] epg_name: Endpoint group name.
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: Host Address.
         :param pulumi.Input[str] host_type: Host type. Valid values: `any`, `specific`.
         :param pulumi.Input[str] ip6: IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
@@ -1052,6 +1119,7 @@ class Address6(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Address6MacaddrArgs']]]] macaddrs: Multiple MAC address ranges. The structure of `macaddr` block is documented below.
         :param pulumi.Input[str] name: Address name.
         :param pulumi.Input[str] obj_id: Object ID for NSX.
+        :param pulumi.Input[int] route_tag: route-tag address.
         :param pulumi.Input[str] sdn: SDN.
         :param pulumi.Input[str] sdn_tag: SDN Tag.
         :param pulumi.Input[str] start_ip: First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
@@ -1137,6 +1205,7 @@ class Address6(pulumi.CustomResource):
                  epg_name: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_type: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
@@ -1144,6 +1213,7 @@ class Address6(pulumi.CustomResource):
                  macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Address6MacaddrArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obj_id: Optional[pulumi.Input[str]] = None,
+                 route_tag: Optional[pulumi.Input[int]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
                  sdn_tag: Optional[pulumi.Input[str]] = None,
                  start_ip: Optional[pulumi.Input[str]] = None,
@@ -1175,6 +1245,7 @@ class Address6(pulumi.CustomResource):
             __props__.__dict__["epg_name"] = epg_name
             __props__.__dict__["fabric_object"] = fabric_object
             __props__.__dict__["fqdn"] = fqdn
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["host"] = host
             __props__.__dict__["host_type"] = host_type
             __props__.__dict__["ip6"] = ip6
@@ -1182,6 +1253,7 @@ class Address6(pulumi.CustomResource):
             __props__.__dict__["macaddrs"] = macaddrs
             __props__.__dict__["name"] = name
             __props__.__dict__["obj_id"] = obj_id
+            __props__.__dict__["route_tag"] = route_tag
             __props__.__dict__["sdn"] = sdn
             __props__.__dict__["sdn_tag"] = sdn_tag
             __props__.__dict__["start_ip"] = start_ip
@@ -1214,6 +1286,7 @@ class Address6(pulumi.CustomResource):
             epg_name: Optional[pulumi.Input[str]] = None,
             fabric_object: Optional[pulumi.Input[str]] = None,
             fqdn: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             host: Optional[pulumi.Input[str]] = None,
             host_type: Optional[pulumi.Input[str]] = None,
             ip6: Optional[pulumi.Input[str]] = None,
@@ -1221,6 +1294,7 @@ class Address6(pulumi.CustomResource):
             macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Address6MacaddrArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             obj_id: Optional[pulumi.Input[str]] = None,
+            route_tag: Optional[pulumi.Input[int]] = None,
             sdn: Optional[pulumi.Input[str]] = None,
             sdn_tag: Optional[pulumi.Input[str]] = None,
             start_ip: Optional[pulumi.Input[str]] = None,
@@ -1250,6 +1324,7 @@ class Address6(pulumi.CustomResource):
         :param pulumi.Input[str] epg_name: Endpoint group name.
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: Host Address.
         :param pulumi.Input[str] host_type: Host type. Valid values: `any`, `specific`.
         :param pulumi.Input[str] ip6: IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
@@ -1257,6 +1332,7 @@ class Address6(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Address6MacaddrArgs']]]] macaddrs: Multiple MAC address ranges. The structure of `macaddr` block is documented below.
         :param pulumi.Input[str] name: Address name.
         :param pulumi.Input[str] obj_id: Object ID for NSX.
+        :param pulumi.Input[int] route_tag: route-tag address.
         :param pulumi.Input[str] sdn: SDN.
         :param pulumi.Input[str] sdn_tag: SDN Tag.
         :param pulumi.Input[str] start_ip: First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
@@ -1284,6 +1360,7 @@ class Address6(pulumi.CustomResource):
         __props__.__dict__["epg_name"] = epg_name
         __props__.__dict__["fabric_object"] = fabric_object
         __props__.__dict__["fqdn"] = fqdn
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["host"] = host
         __props__.__dict__["host_type"] = host_type
         __props__.__dict__["ip6"] = ip6
@@ -1291,6 +1368,7 @@ class Address6(pulumi.CustomResource):
         __props__.__dict__["macaddrs"] = macaddrs
         __props__.__dict__["name"] = name
         __props__.__dict__["obj_id"] = obj_id
+        __props__.__dict__["route_tag"] = route_tag
         __props__.__dict__["sdn"] = sdn
         __props__.__dict__["sdn_tag"] = sdn_tag
         __props__.__dict__["start_ip"] = start_ip
@@ -1386,6 +1464,14 @@ class Address6(pulumi.CustomResource):
         return pulumi.get(self, "fqdn")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def host(self) -> pulumi.Output[str]:
         """
@@ -1440,6 +1526,14 @@ class Address6(pulumi.CustomResource):
         Object ID for NSX.
         """
         return pulumi.get(self, "obj_id")
+
+    @property
+    @pulumi.getter(name="routeTag")
+    def route_tag(self) -> pulumi.Output[int]:
+        """
+        route-tag address.
+        """
+        return pulumi.get(self, "route_tag")
 
     @property
     @pulumi.getter

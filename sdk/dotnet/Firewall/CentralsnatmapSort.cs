@@ -17,7 +17,10 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> Comment { get; private set; } = null!;
 
         [Output("forceRecreate")]
-        public Output<string?> ForceRecreate { get; private set; } = null!;
+        public Output<string> ForceRecreate { get; private set; } = null!;
+
+        [Output("manualOrders")]
+        public Output<ImmutableArray<string>> ManualOrders { get; private set; } = null!;
 
         [Output("sortby")]
         public Output<string> Sortby { get; private set; } = null!;
@@ -25,8 +28,11 @@ namespace Pulumiverse.Fortios.Firewall
         [Output("sortdirection")]
         public Output<string> Sortdirection { get; private set; } = null!;
 
+        [Output("statePolicyLists")]
+        public Output<ImmutableArray<Outputs.CentralsnatmapSortStatePolicyList>> StatePolicyLists { get; private set; } = null!;
+
         [Output("status")]
-        public Output<string?> Status { get; private set; } = null!;
+        public Output<string> Status { get; private set; } = null!;
 
         [Output("vdomparam")]
         public Output<string?> Vdomparam { get; private set; } = null!;
@@ -84,6 +90,14 @@ namespace Pulumiverse.Fortios.Firewall
         [Input("forceRecreate")]
         public Input<string>? ForceRecreate { get; set; }
 
+        [Input("manualOrders")]
+        private InputList<string>? _manualOrders;
+        public InputList<string> ManualOrders
+        {
+            get => _manualOrders ?? (_manualOrders = new InputList<string>());
+            set => _manualOrders = value;
+        }
+
         [Input("sortby", required: true)]
         public Input<string> Sortby { get; set; } = null!;
 
@@ -110,11 +124,27 @@ namespace Pulumiverse.Fortios.Firewall
         [Input("forceRecreate")]
         public Input<string>? ForceRecreate { get; set; }
 
+        [Input("manualOrders")]
+        private InputList<string>? _manualOrders;
+        public InputList<string> ManualOrders
+        {
+            get => _manualOrders ?? (_manualOrders = new InputList<string>());
+            set => _manualOrders = value;
+        }
+
         [Input("sortby")]
         public Input<string>? Sortby { get; set; }
 
         [Input("sortdirection")]
         public Input<string>? Sortdirection { get; set; }
+
+        [Input("statePolicyLists")]
+        private InputList<Inputs.CentralsnatmapSortStatePolicyListGetArgs>? _statePolicyLists;
+        public InputList<Inputs.CentralsnatmapSortStatePolicyListGetArgs> StatePolicyLists
+        {
+            get => _statePolicyLists ?? (_statePolicyLists = new InputList<Inputs.CentralsnatmapSortStatePolicyListGetArgs>());
+            set => _statePolicyLists = value;
+        }
 
         [Input("status")]
         public Input<string>? Status { get; set; }

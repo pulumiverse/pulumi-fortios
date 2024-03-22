@@ -23,6 +23,7 @@ class ManagedswitchArgs:
                  delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snooping_static_clients: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchDhcpSnoopingStaticClientArgs']]]] = None,
                  directly_connected: Optional[pulumi.Input[int]] = None,
                  dynamic_capability: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -34,11 +35,13 @@ class ManagedswitchArgs:
                  fsw_wan1_admin: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_admin: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_peer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  igmp_snooping: Optional[pulumi.Input['ManagedswitchIgmpSnoopingArgs']] = None,
                  ip_source_guards: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchIpSourceGuardArgs']]]] = None,
                  l3_discovered: Optional[pulumi.Input[int]] = None,
                  max_allowed_trunk_members: Optional[pulumi.Input[int]] = None,
                  mclag_igmp_snooping_aware: Optional[pulumi.Input[str]] = None,
+                 mgmt_mode: Optional[pulumi.Input[int]] = None,
                  mirrors: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchMirrorArgs']]]] = None,
                  n8021x_settings: Optional[pulumi.Input['ManagedswitchN8021xSettingsArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -52,9 +55,18 @@ class ManagedswitchArgs:
                  poe_pre_standard_detection: Optional[pulumi.Input[str]] = None,
                  ports: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortArgs']]]] = None,
                  pre_provisioned: Optional[pulumi.Input[int]] = None,
+                 ptp_profile: Optional[pulumi.Input[str]] = None,
+                 ptp_status: Optional[pulumi.Input[str]] = None,
+                 purdue_level: Optional[pulumi.Input[str]] = None,
                  qos_drop_policy: Optional[pulumi.Input[str]] = None,
                  qos_red_probability: Optional[pulumi.Input[int]] = None,
+                 radius_nas_ip: Optional[pulumi.Input[str]] = None,
+                 radius_nas_ip_override: Optional[pulumi.Input[str]] = None,
                  remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchRemoteLogArgs']]]] = None,
+                 route_offload: Optional[pulumi.Input[str]] = None,
+                 route_offload_mclag: Optional[pulumi.Input[str]] = None,
+                 route_offload_routers: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchRouteOffloadRouterArgs']]]] = None,
+                 sn: Optional[pulumi.Input[str]] = None,
                  snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchSnmpCommunityArgs']]]] = None,
                  snmp_sysinfo: Optional[pulumi.Input['ManagedswitchSnmpSysinfoArgs']] = None,
                  snmp_trap_threshold: Optional[pulumi.Input['ManagedswitchSnmpTrapThresholdArgs']] = None,
@@ -70,9 +82,11 @@ class ManagedswitchArgs:
                  switch_profile: Optional[pulumi.Input[str]] = None,
                  switch_stp_settings: Optional[pulumi.Input['ManagedswitchSwitchStpSettingsArgs']] = None,
                  tdr_supported: Optional[pulumi.Input[str]] = None,
+                 tunnel_discovered: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[int]] = None):
+                 version: Optional[pulumi.Input[int]] = None,
+                 vlans: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchVlanArgs']]]] = None):
         """
         The set of arguments for constructing a Managedswitch resource.
         :param pulumi.Input[str] fsw_wan1_peer: Fortiswitch WAN1 peer port.
@@ -82,6 +96,7 @@ class ManagedswitchArgs:
         :param pulumi.Input[int] delayed_restart_trigger: Delayed restart triggered for this FortiSwitch.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dhcp_server_access_list: DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchDhcpSnoopingStaticClientArgs']]] dhcp_snooping_static_clients: Configure FortiSwitch DHCP snooping static clients. The structure of `dhcp_snooping_static_client` block is documented below.
         :param pulumi.Input[int] directly_connected: Directly connected FortiSwitch.
         :param pulumi.Input[int] dynamic_capability: List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -93,11 +108,13 @@ class ManagedswitchArgs:
         :param pulumi.Input[str] fsw_wan1_admin: FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] fsw_wan2_admin: FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] fsw_wan2_peer: FortiSwitch WAN2 peer port.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ManagedswitchIgmpSnoopingArgs'] igmp_snooping: Configure FortiSwitch IGMP snooping global settings. The structure of `igmp_snooping` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchIpSourceGuardArgs']]] ip_source_guards: IP source guard. The structure of `ip_source_guard` block is documented below.
         :param pulumi.Input[int] l3_discovered: Layer 3 management discovered.
         :param pulumi.Input[int] max_allowed_trunk_members: FortiSwitch maximum allowed trunk members.
         :param pulumi.Input[str] mclag_igmp_snooping_aware: Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] mgmt_mode: FortiLink management mode.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchMirrorArgs']]] mirrors: Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
         :param pulumi.Input['ManagedswitchN8021xSettingsArgs'] n8021x_settings: Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n802_1x_settings` block is documented below.
         :param pulumi.Input[str] name: Managed-switch name.
@@ -111,9 +128,18 @@ class ManagedswitchArgs:
         :param pulumi.Input[str] poe_pre_standard_detection: Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortArgs']]] ports: Managed-switch port list. The structure of `ports` block is documented below.
         :param pulumi.Input[int] pre_provisioned: Pre-provisioned managed switch.
+        :param pulumi.Input[str] ptp_profile: PTP profile configuration.
+        :param pulumi.Input[str] ptp_status: Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] purdue_level: Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
         :param pulumi.Input[str] qos_drop_policy: Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
         :param pulumi.Input[int] qos_red_probability: Set QoS RED/WRED drop probability.
+        :param pulumi.Input[str] radius_nas_ip: NAS-IP address.
+        :param pulumi.Input[str] radius_nas_ip_override: Use locally defined NAS-IP. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchRemoteLogArgs']]] remote_logs: Configure logging by FortiSwitch device to a remote syslog server. The structure of `remote_log` block is documented below.
+        :param pulumi.Input[str] route_offload: Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] route_offload_mclag: Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+        :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchRouteOffloadRouterArgs']]] route_offload_routers: Configure route offload MCLAG IP address. The structure of `route_offload_router` block is documented below.
+        :param pulumi.Input[str] sn: Managed-switch serial number.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchSnmpCommunityArgs']]] snmp_communities: Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmp_community` block is documented below.
         :param pulumi.Input['ManagedswitchSnmpSysinfoArgs'] snmp_sysinfo: Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmp_sysinfo` block is documented below.
         :param pulumi.Input['ManagedswitchSnmpTrapThresholdArgs'] snmp_trap_threshold: Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. The structure of `snmp_trap_threshold` block is documented below.
@@ -129,9 +155,11 @@ class ManagedswitchArgs:
         :param pulumi.Input[str] switch_profile: FortiSwitch profile.
         :param pulumi.Input['ManagedswitchSwitchStpSettingsArgs'] switch_stp_settings: Configure spanning tree protocol (STP). The structure of `switch_stp_settings` block is documented below.
         :param pulumi.Input[str] tdr_supported: TDR supported.
+        :param pulumi.Input[int] tunnel_discovered: SOCKS tunnel management discovered.
         :param pulumi.Input[str] type: Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[int] version: FortiSwitch version.
+        :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchVlanArgs']]] vlans: Configure VLAN assignment priority. The structure of `vlan` block is documented below.
         """
         pulumi.set(__self__, "fsw_wan1_peer", fsw_wan1_peer)
         pulumi.set(__self__, "switch_id", switch_id)
@@ -145,6 +173,8 @@ class ManagedswitchArgs:
             pulumi.set(__self__, "description", description)
         if dhcp_server_access_list is not None:
             pulumi.set(__self__, "dhcp_server_access_list", dhcp_server_access_list)
+        if dhcp_snooping_static_clients is not None:
+            pulumi.set(__self__, "dhcp_snooping_static_clients", dhcp_snooping_static_clients)
         if directly_connected is not None:
             pulumi.set(__self__, "directly_connected", directly_connected)
         if dynamic_capability is not None:
@@ -167,6 +197,8 @@ class ManagedswitchArgs:
             pulumi.set(__self__, "fsw_wan2_admin", fsw_wan2_admin)
         if fsw_wan2_peer is not None:
             pulumi.set(__self__, "fsw_wan2_peer", fsw_wan2_peer)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if igmp_snooping is not None:
             pulumi.set(__self__, "igmp_snooping", igmp_snooping)
         if ip_source_guards is not None:
@@ -177,6 +209,8 @@ class ManagedswitchArgs:
             pulumi.set(__self__, "max_allowed_trunk_members", max_allowed_trunk_members)
         if mclag_igmp_snooping_aware is not None:
             pulumi.set(__self__, "mclag_igmp_snooping_aware", mclag_igmp_snooping_aware)
+        if mgmt_mode is not None:
+            pulumi.set(__self__, "mgmt_mode", mgmt_mode)
         if mirrors is not None:
             pulumi.set(__self__, "mirrors", mirrors)
         if n8021x_settings is not None:
@@ -203,12 +237,30 @@ class ManagedswitchArgs:
             pulumi.set(__self__, "ports", ports)
         if pre_provisioned is not None:
             pulumi.set(__self__, "pre_provisioned", pre_provisioned)
+        if ptp_profile is not None:
+            pulumi.set(__self__, "ptp_profile", ptp_profile)
+        if ptp_status is not None:
+            pulumi.set(__self__, "ptp_status", ptp_status)
+        if purdue_level is not None:
+            pulumi.set(__self__, "purdue_level", purdue_level)
         if qos_drop_policy is not None:
             pulumi.set(__self__, "qos_drop_policy", qos_drop_policy)
         if qos_red_probability is not None:
             pulumi.set(__self__, "qos_red_probability", qos_red_probability)
+        if radius_nas_ip is not None:
+            pulumi.set(__self__, "radius_nas_ip", radius_nas_ip)
+        if radius_nas_ip_override is not None:
+            pulumi.set(__self__, "radius_nas_ip_override", radius_nas_ip_override)
         if remote_logs is not None:
             pulumi.set(__self__, "remote_logs", remote_logs)
+        if route_offload is not None:
+            pulumi.set(__self__, "route_offload", route_offload)
+        if route_offload_mclag is not None:
+            pulumi.set(__self__, "route_offload_mclag", route_offload_mclag)
+        if route_offload_routers is not None:
+            pulumi.set(__self__, "route_offload_routers", route_offload_routers)
+        if sn is not None:
+            pulumi.set(__self__, "sn", sn)
         if snmp_communities is not None:
             pulumi.set(__self__, "snmp_communities", snmp_communities)
         if snmp_sysinfo is not None:
@@ -239,12 +291,16 @@ class ManagedswitchArgs:
             pulumi.set(__self__, "switch_stp_settings", switch_stp_settings)
         if tdr_supported is not None:
             pulumi.set(__self__, "tdr_supported", tdr_supported)
+        if tunnel_discovered is not None:
+            pulumi.set(__self__, "tunnel_discovered", tunnel_discovered)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if version is not None:
             pulumi.set(__self__, "version", version)
+        if vlans is not None:
+            pulumi.set(__self__, "vlans", vlans)
 
     @property
     @pulumi.getter(name="fswWan1Peer")
@@ -329,6 +385,18 @@ class ManagedswitchArgs:
     @dhcp_server_access_list.setter
     def dhcp_server_access_list(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_server_access_list", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopingStaticClients")
+    def dhcp_snooping_static_clients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchDhcpSnoopingStaticClientArgs']]]]:
+        """
+        Configure FortiSwitch DHCP snooping static clients. The structure of `dhcp_snooping_static_client` block is documented below.
+        """
+        return pulumi.get(self, "dhcp_snooping_static_clients")
+
+    @dhcp_snooping_static_clients.setter
+    def dhcp_snooping_static_clients(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchDhcpSnoopingStaticClientArgs']]]]):
+        pulumi.set(self, "dhcp_snooping_static_clients", value)
 
     @property
     @pulumi.getter(name="directlyConnected")
@@ -463,6 +531,18 @@ class ManagedswitchArgs:
         pulumi.set(self, "fsw_wan2_peer", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="igmpSnooping")
     def igmp_snooping(self) -> Optional[pulumi.Input['ManagedswitchIgmpSnoopingArgs']]:
         """
@@ -521,6 +601,18 @@ class ManagedswitchArgs:
     @mclag_igmp_snooping_aware.setter
     def mclag_igmp_snooping_aware(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mclag_igmp_snooping_aware", value)
+
+    @property
+    @pulumi.getter(name="mgmtMode")
+    def mgmt_mode(self) -> Optional[pulumi.Input[int]]:
+        """
+        FortiLink management mode.
+        """
+        return pulumi.get(self, "mgmt_mode")
+
+    @mgmt_mode.setter
+    def mgmt_mode(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "mgmt_mode", value)
 
     @property
     @pulumi.getter
@@ -679,6 +771,42 @@ class ManagedswitchArgs:
         pulumi.set(self, "pre_provisioned", value)
 
     @property
+    @pulumi.getter(name="ptpProfile")
+    def ptp_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        PTP profile configuration.
+        """
+        return pulumi.get(self, "ptp_profile")
+
+    @ptp_profile.setter
+    def ptp_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ptp_profile", value)
+
+    @property
+    @pulumi.getter(name="ptpStatus")
+    def ptp_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ptp_status")
+
+    @ptp_status.setter
+    def ptp_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ptp_status", value)
+
+    @property
+    @pulumi.getter(name="purdueLevel")
+    def purdue_level(self) -> Optional[pulumi.Input[str]]:
+        """
+        Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        """
+        return pulumi.get(self, "purdue_level")
+
+    @purdue_level.setter
+    def purdue_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "purdue_level", value)
+
+    @property
     @pulumi.getter(name="qosDropPolicy")
     def qos_drop_policy(self) -> Optional[pulumi.Input[str]]:
         """
@@ -703,6 +831,30 @@ class ManagedswitchArgs:
         pulumi.set(self, "qos_red_probability", value)
 
     @property
+    @pulumi.getter(name="radiusNasIp")
+    def radius_nas_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        NAS-IP address.
+        """
+        return pulumi.get(self, "radius_nas_ip")
+
+    @radius_nas_ip.setter
+    def radius_nas_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "radius_nas_ip", value)
+
+    @property
+    @pulumi.getter(name="radiusNasIpOverride")
+    def radius_nas_ip_override(self) -> Optional[pulumi.Input[str]]:
+        """
+        Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "radius_nas_ip_override")
+
+    @radius_nas_ip_override.setter
+    def radius_nas_ip_override(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "radius_nas_ip_override", value)
+
+    @property
     @pulumi.getter(name="remoteLogs")
     def remote_logs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchRemoteLogArgs']]]]:
         """
@@ -713,6 +865,54 @@ class ManagedswitchArgs:
     @remote_logs.setter
     def remote_logs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchRemoteLogArgs']]]]):
         pulumi.set(self, "remote_logs", value)
+
+    @property
+    @pulumi.getter(name="routeOffload")
+    def route_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "route_offload")
+
+    @route_offload.setter
+    def route_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_offload", value)
+
+    @property
+    @pulumi.getter(name="routeOffloadMclag")
+    def route_offload_mclag(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "route_offload_mclag")
+
+    @route_offload_mclag.setter
+    def route_offload_mclag(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_offload_mclag", value)
+
+    @property
+    @pulumi.getter(name="routeOffloadRouters")
+    def route_offload_routers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchRouteOffloadRouterArgs']]]]:
+        """
+        Configure route offload MCLAG IP address. The structure of `route_offload_router` block is documented below.
+        """
+        return pulumi.get(self, "route_offload_routers")
+
+    @route_offload_routers.setter
+    def route_offload_routers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchRouteOffloadRouterArgs']]]]):
+        pulumi.set(self, "route_offload_routers", value)
+
+    @property
+    @pulumi.getter
+    def sn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Managed-switch serial number.
+        """
+        return pulumi.get(self, "sn")
+
+    @sn.setter
+    def sn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sn", value)
 
     @property
     @pulumi.getter(name="snmpCommunities")
@@ -895,6 +1095,18 @@ class ManagedswitchArgs:
         pulumi.set(self, "tdr_supported", value)
 
     @property
+    @pulumi.getter(name="tunnelDiscovered")
+    def tunnel_discovered(self) -> Optional[pulumi.Input[int]]:
+        """
+        SOCKS tunnel management discovered.
+        """
+        return pulumi.get(self, "tunnel_discovered")
+
+    @tunnel_discovered.setter
+    def tunnel_discovered(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "tunnel_discovered", value)
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -930,6 +1142,18 @@ class ManagedswitchArgs:
     def version(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "version", value)
 
+    @property
+    @pulumi.getter
+    def vlans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchVlanArgs']]]]:
+        """
+        Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+        """
+        return pulumi.get(self, "vlans")
+
+    @vlans.setter
+    def vlans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchVlanArgs']]]]):
+        pulumi.set(self, "vlans", value)
+
 
 @pulumi.input_type
 class _ManagedswitchState:
@@ -939,6 +1163,7 @@ class _ManagedswitchState:
                  delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snooping_static_clients: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchDhcpSnoopingStaticClientArgs']]]] = None,
                  directly_connected: Optional[pulumi.Input[int]] = None,
                  dynamic_capability: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -951,11 +1176,13 @@ class _ManagedswitchState:
                  fsw_wan1_peer: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_admin: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_peer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  igmp_snooping: Optional[pulumi.Input['ManagedswitchIgmpSnoopingArgs']] = None,
                  ip_source_guards: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchIpSourceGuardArgs']]]] = None,
                  l3_discovered: Optional[pulumi.Input[int]] = None,
                  max_allowed_trunk_members: Optional[pulumi.Input[int]] = None,
                  mclag_igmp_snooping_aware: Optional[pulumi.Input[str]] = None,
+                 mgmt_mode: Optional[pulumi.Input[int]] = None,
                  mirrors: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchMirrorArgs']]]] = None,
                  n8021x_settings: Optional[pulumi.Input['ManagedswitchN8021xSettingsArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -969,9 +1196,18 @@ class _ManagedswitchState:
                  poe_pre_standard_detection: Optional[pulumi.Input[str]] = None,
                  ports: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortArgs']]]] = None,
                  pre_provisioned: Optional[pulumi.Input[int]] = None,
+                 ptp_profile: Optional[pulumi.Input[str]] = None,
+                 ptp_status: Optional[pulumi.Input[str]] = None,
+                 purdue_level: Optional[pulumi.Input[str]] = None,
                  qos_drop_policy: Optional[pulumi.Input[str]] = None,
                  qos_red_probability: Optional[pulumi.Input[int]] = None,
+                 radius_nas_ip: Optional[pulumi.Input[str]] = None,
+                 radius_nas_ip_override: Optional[pulumi.Input[str]] = None,
                  remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchRemoteLogArgs']]]] = None,
+                 route_offload: Optional[pulumi.Input[str]] = None,
+                 route_offload_mclag: Optional[pulumi.Input[str]] = None,
+                 route_offload_routers: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchRouteOffloadRouterArgs']]]] = None,
+                 sn: Optional[pulumi.Input[str]] = None,
                  snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchSnmpCommunityArgs']]]] = None,
                  snmp_sysinfo: Optional[pulumi.Input['ManagedswitchSnmpSysinfoArgs']] = None,
                  snmp_trap_threshold: Optional[pulumi.Input['ManagedswitchSnmpTrapThresholdArgs']] = None,
@@ -988,9 +1224,11 @@ class _ManagedswitchState:
                  switch_profile: Optional[pulumi.Input[str]] = None,
                  switch_stp_settings: Optional[pulumi.Input['ManagedswitchSwitchStpSettingsArgs']] = None,
                  tdr_supported: Optional[pulumi.Input[str]] = None,
+                 tunnel_discovered: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[int]] = None):
+                 version: Optional[pulumi.Input[int]] = None,
+                 vlans: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchVlanArgs']]]] = None):
         """
         Input properties used for looking up and filtering Managedswitch resources.
         :param pulumi.Input[str] access_profile: FortiSwitch access profile.
@@ -998,6 +1236,7 @@ class _ManagedswitchState:
         :param pulumi.Input[int] delayed_restart_trigger: Delayed restart triggered for this FortiSwitch.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dhcp_server_access_list: DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchDhcpSnoopingStaticClientArgs']]] dhcp_snooping_static_clients: Configure FortiSwitch DHCP snooping static clients. The structure of `dhcp_snooping_static_client` block is documented below.
         :param pulumi.Input[int] directly_connected: Directly connected FortiSwitch.
         :param pulumi.Input[int] dynamic_capability: List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -1010,11 +1249,13 @@ class _ManagedswitchState:
         :param pulumi.Input[str] fsw_wan1_peer: Fortiswitch WAN1 peer port.
         :param pulumi.Input[str] fsw_wan2_admin: FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] fsw_wan2_peer: FortiSwitch WAN2 peer port.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ManagedswitchIgmpSnoopingArgs'] igmp_snooping: Configure FortiSwitch IGMP snooping global settings. The structure of `igmp_snooping` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchIpSourceGuardArgs']]] ip_source_guards: IP source guard. The structure of `ip_source_guard` block is documented below.
         :param pulumi.Input[int] l3_discovered: Layer 3 management discovered.
         :param pulumi.Input[int] max_allowed_trunk_members: FortiSwitch maximum allowed trunk members.
         :param pulumi.Input[str] mclag_igmp_snooping_aware: Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] mgmt_mode: FortiLink management mode.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchMirrorArgs']]] mirrors: Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
         :param pulumi.Input['ManagedswitchN8021xSettingsArgs'] n8021x_settings: Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n802_1x_settings` block is documented below.
         :param pulumi.Input[str] name: Managed-switch name.
@@ -1028,9 +1269,18 @@ class _ManagedswitchState:
         :param pulumi.Input[str] poe_pre_standard_detection: Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchPortArgs']]] ports: Managed-switch port list. The structure of `ports` block is documented below.
         :param pulumi.Input[int] pre_provisioned: Pre-provisioned managed switch.
+        :param pulumi.Input[str] ptp_profile: PTP profile configuration.
+        :param pulumi.Input[str] ptp_status: Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] purdue_level: Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
         :param pulumi.Input[str] qos_drop_policy: Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
         :param pulumi.Input[int] qos_red_probability: Set QoS RED/WRED drop probability.
+        :param pulumi.Input[str] radius_nas_ip: NAS-IP address.
+        :param pulumi.Input[str] radius_nas_ip_override: Use locally defined NAS-IP. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchRemoteLogArgs']]] remote_logs: Configure logging by FortiSwitch device to a remote syslog server. The structure of `remote_log` block is documented below.
+        :param pulumi.Input[str] route_offload: Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] route_offload_mclag: Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+        :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchRouteOffloadRouterArgs']]] route_offload_routers: Configure route offload MCLAG IP address. The structure of `route_offload_router` block is documented below.
+        :param pulumi.Input[str] sn: Managed-switch serial number.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchSnmpCommunityArgs']]] snmp_communities: Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmp_community` block is documented below.
         :param pulumi.Input['ManagedswitchSnmpSysinfoArgs'] snmp_sysinfo: Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmp_sysinfo` block is documented below.
         :param pulumi.Input['ManagedswitchSnmpTrapThresholdArgs'] snmp_trap_threshold: Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. The structure of `snmp_trap_threshold` block is documented below.
@@ -1047,9 +1297,11 @@ class _ManagedswitchState:
         :param pulumi.Input[str] switch_profile: FortiSwitch profile.
         :param pulumi.Input['ManagedswitchSwitchStpSettingsArgs'] switch_stp_settings: Configure spanning tree protocol (STP). The structure of `switch_stp_settings` block is documented below.
         :param pulumi.Input[str] tdr_supported: TDR supported.
+        :param pulumi.Input[int] tunnel_discovered: SOCKS tunnel management discovered.
         :param pulumi.Input[str] type: Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[int] version: FortiSwitch version.
+        :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchVlanArgs']]] vlans: Configure VLAN assignment priority. The structure of `vlan` block is documented below.
         """
         if access_profile is not None:
             pulumi.set(__self__, "access_profile", access_profile)
@@ -1061,6 +1313,8 @@ class _ManagedswitchState:
             pulumi.set(__self__, "description", description)
         if dhcp_server_access_list is not None:
             pulumi.set(__self__, "dhcp_server_access_list", dhcp_server_access_list)
+        if dhcp_snooping_static_clients is not None:
+            pulumi.set(__self__, "dhcp_snooping_static_clients", dhcp_snooping_static_clients)
         if directly_connected is not None:
             pulumi.set(__self__, "directly_connected", directly_connected)
         if dynamic_capability is not None:
@@ -1085,6 +1339,8 @@ class _ManagedswitchState:
             pulumi.set(__self__, "fsw_wan2_admin", fsw_wan2_admin)
         if fsw_wan2_peer is not None:
             pulumi.set(__self__, "fsw_wan2_peer", fsw_wan2_peer)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if igmp_snooping is not None:
             pulumi.set(__self__, "igmp_snooping", igmp_snooping)
         if ip_source_guards is not None:
@@ -1095,6 +1351,8 @@ class _ManagedswitchState:
             pulumi.set(__self__, "max_allowed_trunk_members", max_allowed_trunk_members)
         if mclag_igmp_snooping_aware is not None:
             pulumi.set(__self__, "mclag_igmp_snooping_aware", mclag_igmp_snooping_aware)
+        if mgmt_mode is not None:
+            pulumi.set(__self__, "mgmt_mode", mgmt_mode)
         if mirrors is not None:
             pulumi.set(__self__, "mirrors", mirrors)
         if n8021x_settings is not None:
@@ -1121,12 +1379,30 @@ class _ManagedswitchState:
             pulumi.set(__self__, "ports", ports)
         if pre_provisioned is not None:
             pulumi.set(__self__, "pre_provisioned", pre_provisioned)
+        if ptp_profile is not None:
+            pulumi.set(__self__, "ptp_profile", ptp_profile)
+        if ptp_status is not None:
+            pulumi.set(__self__, "ptp_status", ptp_status)
+        if purdue_level is not None:
+            pulumi.set(__self__, "purdue_level", purdue_level)
         if qos_drop_policy is not None:
             pulumi.set(__self__, "qos_drop_policy", qos_drop_policy)
         if qos_red_probability is not None:
             pulumi.set(__self__, "qos_red_probability", qos_red_probability)
+        if radius_nas_ip is not None:
+            pulumi.set(__self__, "radius_nas_ip", radius_nas_ip)
+        if radius_nas_ip_override is not None:
+            pulumi.set(__self__, "radius_nas_ip_override", radius_nas_ip_override)
         if remote_logs is not None:
             pulumi.set(__self__, "remote_logs", remote_logs)
+        if route_offload is not None:
+            pulumi.set(__self__, "route_offload", route_offload)
+        if route_offload_mclag is not None:
+            pulumi.set(__self__, "route_offload_mclag", route_offload_mclag)
+        if route_offload_routers is not None:
+            pulumi.set(__self__, "route_offload_routers", route_offload_routers)
+        if sn is not None:
+            pulumi.set(__self__, "sn", sn)
         if snmp_communities is not None:
             pulumi.set(__self__, "snmp_communities", snmp_communities)
         if snmp_sysinfo is not None:
@@ -1159,12 +1435,16 @@ class _ManagedswitchState:
             pulumi.set(__self__, "switch_stp_settings", switch_stp_settings)
         if tdr_supported is not None:
             pulumi.set(__self__, "tdr_supported", tdr_supported)
+        if tunnel_discovered is not None:
+            pulumi.set(__self__, "tunnel_discovered", tunnel_discovered)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if version is not None:
             pulumi.set(__self__, "version", version)
+        if vlans is not None:
+            pulumi.set(__self__, "vlans", vlans)
 
     @property
     @pulumi.getter(name="accessProfile")
@@ -1225,6 +1505,18 @@ class _ManagedswitchState:
     @dhcp_server_access_list.setter
     def dhcp_server_access_list(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_server_access_list", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopingStaticClients")
+    def dhcp_snooping_static_clients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchDhcpSnoopingStaticClientArgs']]]]:
+        """
+        Configure FortiSwitch DHCP snooping static clients. The structure of `dhcp_snooping_static_client` block is documented below.
+        """
+        return pulumi.get(self, "dhcp_snooping_static_clients")
+
+    @dhcp_snooping_static_clients.setter
+    def dhcp_snooping_static_clients(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchDhcpSnoopingStaticClientArgs']]]]):
+        pulumi.set(self, "dhcp_snooping_static_clients", value)
 
     @property
     @pulumi.getter(name="directlyConnected")
@@ -1371,6 +1663,18 @@ class _ManagedswitchState:
         pulumi.set(self, "fsw_wan2_peer", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="igmpSnooping")
     def igmp_snooping(self) -> Optional[pulumi.Input['ManagedswitchIgmpSnoopingArgs']]:
         """
@@ -1429,6 +1733,18 @@ class _ManagedswitchState:
     @mclag_igmp_snooping_aware.setter
     def mclag_igmp_snooping_aware(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mclag_igmp_snooping_aware", value)
+
+    @property
+    @pulumi.getter(name="mgmtMode")
+    def mgmt_mode(self) -> Optional[pulumi.Input[int]]:
+        """
+        FortiLink management mode.
+        """
+        return pulumi.get(self, "mgmt_mode")
+
+    @mgmt_mode.setter
+    def mgmt_mode(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "mgmt_mode", value)
 
     @property
     @pulumi.getter
@@ -1587,6 +1903,42 @@ class _ManagedswitchState:
         pulumi.set(self, "pre_provisioned", value)
 
     @property
+    @pulumi.getter(name="ptpProfile")
+    def ptp_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        PTP profile configuration.
+        """
+        return pulumi.get(self, "ptp_profile")
+
+    @ptp_profile.setter
+    def ptp_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ptp_profile", value)
+
+    @property
+    @pulumi.getter(name="ptpStatus")
+    def ptp_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ptp_status")
+
+    @ptp_status.setter
+    def ptp_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ptp_status", value)
+
+    @property
+    @pulumi.getter(name="purdueLevel")
+    def purdue_level(self) -> Optional[pulumi.Input[str]]:
+        """
+        Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        """
+        return pulumi.get(self, "purdue_level")
+
+    @purdue_level.setter
+    def purdue_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "purdue_level", value)
+
+    @property
     @pulumi.getter(name="qosDropPolicy")
     def qos_drop_policy(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1611,6 +1963,30 @@ class _ManagedswitchState:
         pulumi.set(self, "qos_red_probability", value)
 
     @property
+    @pulumi.getter(name="radiusNasIp")
+    def radius_nas_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        NAS-IP address.
+        """
+        return pulumi.get(self, "radius_nas_ip")
+
+    @radius_nas_ip.setter
+    def radius_nas_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "radius_nas_ip", value)
+
+    @property
+    @pulumi.getter(name="radiusNasIpOverride")
+    def radius_nas_ip_override(self) -> Optional[pulumi.Input[str]]:
+        """
+        Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "radius_nas_ip_override")
+
+    @radius_nas_ip_override.setter
+    def radius_nas_ip_override(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "radius_nas_ip_override", value)
+
+    @property
     @pulumi.getter(name="remoteLogs")
     def remote_logs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchRemoteLogArgs']]]]:
         """
@@ -1621,6 +1997,54 @@ class _ManagedswitchState:
     @remote_logs.setter
     def remote_logs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchRemoteLogArgs']]]]):
         pulumi.set(self, "remote_logs", value)
+
+    @property
+    @pulumi.getter(name="routeOffload")
+    def route_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "route_offload")
+
+    @route_offload.setter
+    def route_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_offload", value)
+
+    @property
+    @pulumi.getter(name="routeOffloadMclag")
+    def route_offload_mclag(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "route_offload_mclag")
+
+    @route_offload_mclag.setter
+    def route_offload_mclag(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_offload_mclag", value)
+
+    @property
+    @pulumi.getter(name="routeOffloadRouters")
+    def route_offload_routers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchRouteOffloadRouterArgs']]]]:
+        """
+        Configure route offload MCLAG IP address. The structure of `route_offload_router` block is documented below.
+        """
+        return pulumi.get(self, "route_offload_routers")
+
+    @route_offload_routers.setter
+    def route_offload_routers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchRouteOffloadRouterArgs']]]]):
+        pulumi.set(self, "route_offload_routers", value)
+
+    @property
+    @pulumi.getter
+    def sn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Managed-switch serial number.
+        """
+        return pulumi.get(self, "sn")
+
+    @sn.setter
+    def sn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sn", value)
 
     @property
     @pulumi.getter(name="snmpCommunities")
@@ -1815,6 +2239,18 @@ class _ManagedswitchState:
         pulumi.set(self, "tdr_supported", value)
 
     @property
+    @pulumi.getter(name="tunnelDiscovered")
+    def tunnel_discovered(self) -> Optional[pulumi.Input[int]]:
+        """
+        SOCKS tunnel management discovered.
+        """
+        return pulumi.get(self, "tunnel_discovered")
+
+    @tunnel_discovered.setter
+    def tunnel_discovered(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "tunnel_discovered", value)
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1850,6 +2286,18 @@ class _ManagedswitchState:
     def version(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "version", value)
 
+    @property
+    @pulumi.getter
+    def vlans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchVlanArgs']]]]:
+        """
+        Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+        """
+        return pulumi.get(self, "vlans")
+
+    @vlans.setter
+    def vlans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ManagedswitchVlanArgs']]]]):
+        pulumi.set(self, "vlans", value)
+
 
 class Managedswitch(pulumi.CustomResource):
     @overload
@@ -1861,6 +2309,7 @@ class Managedswitch(pulumi.CustomResource):
                  delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snooping_static_clients: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchDhcpSnoopingStaticClientArgs']]]]] = None,
                  directly_connected: Optional[pulumi.Input[int]] = None,
                  dynamic_capability: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -1873,11 +2322,13 @@ class Managedswitch(pulumi.CustomResource):
                  fsw_wan1_peer: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_admin: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_peer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  igmp_snooping: Optional[pulumi.Input[pulumi.InputType['ManagedswitchIgmpSnoopingArgs']]] = None,
                  ip_source_guards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchIpSourceGuardArgs']]]]] = None,
                  l3_discovered: Optional[pulumi.Input[int]] = None,
                  max_allowed_trunk_members: Optional[pulumi.Input[int]] = None,
                  mclag_igmp_snooping_aware: Optional[pulumi.Input[str]] = None,
+                 mgmt_mode: Optional[pulumi.Input[int]] = None,
                  mirrors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchMirrorArgs']]]]] = None,
                  n8021x_settings: Optional[pulumi.Input[pulumi.InputType['ManagedswitchN8021xSettingsArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -1891,9 +2342,18 @@ class Managedswitch(pulumi.CustomResource):
                  poe_pre_standard_detection: Optional[pulumi.Input[str]] = None,
                  ports: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchPortArgs']]]]] = None,
                  pre_provisioned: Optional[pulumi.Input[int]] = None,
+                 ptp_profile: Optional[pulumi.Input[str]] = None,
+                 ptp_status: Optional[pulumi.Input[str]] = None,
+                 purdue_level: Optional[pulumi.Input[str]] = None,
                  qos_drop_policy: Optional[pulumi.Input[str]] = None,
                  qos_red_probability: Optional[pulumi.Input[int]] = None,
+                 radius_nas_ip: Optional[pulumi.Input[str]] = None,
+                 radius_nas_ip_override: Optional[pulumi.Input[str]] = None,
                  remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchRemoteLogArgs']]]]] = None,
+                 route_offload: Optional[pulumi.Input[str]] = None,
+                 route_offload_mclag: Optional[pulumi.Input[str]] = None,
+                 route_offload_routers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchRouteOffloadRouterArgs']]]]] = None,
+                 sn: Optional[pulumi.Input[str]] = None,
                  snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchSnmpCommunityArgs']]]]] = None,
                  snmp_sysinfo: Optional[pulumi.Input[pulumi.InputType['ManagedswitchSnmpSysinfoArgs']]] = None,
                  snmp_trap_threshold: Optional[pulumi.Input[pulumi.InputType['ManagedswitchSnmpTrapThresholdArgs']]] = None,
@@ -1910,9 +2370,11 @@ class Managedswitch(pulumi.CustomResource):
                  switch_profile: Optional[pulumi.Input[str]] = None,
                  switch_stp_settings: Optional[pulumi.Input[pulumi.InputType['ManagedswitchSwitchStpSettingsArgs']]] = None,
                  tdr_supported: Optional[pulumi.Input[str]] = None,
+                 tunnel_discovered: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[int]] = None,
+                 vlans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchVlanArgs']]]]] = None,
                  __props__=None):
         """
         Configure FortiSwitch devices that are managed by this FortiGate.
@@ -1942,6 +2404,7 @@ class Managedswitch(pulumi.CustomResource):
         :param pulumi.Input[int] delayed_restart_trigger: Delayed restart triggered for this FortiSwitch.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dhcp_server_access_list: DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchDhcpSnoopingStaticClientArgs']]]] dhcp_snooping_static_clients: Configure FortiSwitch DHCP snooping static clients. The structure of `dhcp_snooping_static_client` block is documented below.
         :param pulumi.Input[int] directly_connected: Directly connected FortiSwitch.
         :param pulumi.Input[int] dynamic_capability: List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -1954,11 +2417,13 @@ class Managedswitch(pulumi.CustomResource):
         :param pulumi.Input[str] fsw_wan1_peer: Fortiswitch WAN1 peer port.
         :param pulumi.Input[str] fsw_wan2_admin: FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] fsw_wan2_peer: FortiSwitch WAN2 peer port.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ManagedswitchIgmpSnoopingArgs']] igmp_snooping: Configure FortiSwitch IGMP snooping global settings. The structure of `igmp_snooping` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchIpSourceGuardArgs']]]] ip_source_guards: IP source guard. The structure of `ip_source_guard` block is documented below.
         :param pulumi.Input[int] l3_discovered: Layer 3 management discovered.
         :param pulumi.Input[int] max_allowed_trunk_members: FortiSwitch maximum allowed trunk members.
         :param pulumi.Input[str] mclag_igmp_snooping_aware: Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] mgmt_mode: FortiLink management mode.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchMirrorArgs']]]] mirrors: Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
         :param pulumi.Input[pulumi.InputType['ManagedswitchN8021xSettingsArgs']] n8021x_settings: Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n802_1x_settings` block is documented below.
         :param pulumi.Input[str] name: Managed-switch name.
@@ -1972,9 +2437,18 @@ class Managedswitch(pulumi.CustomResource):
         :param pulumi.Input[str] poe_pre_standard_detection: Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchPortArgs']]]] ports: Managed-switch port list. The structure of `ports` block is documented below.
         :param pulumi.Input[int] pre_provisioned: Pre-provisioned managed switch.
+        :param pulumi.Input[str] ptp_profile: PTP profile configuration.
+        :param pulumi.Input[str] ptp_status: Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] purdue_level: Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
         :param pulumi.Input[str] qos_drop_policy: Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
         :param pulumi.Input[int] qos_red_probability: Set QoS RED/WRED drop probability.
+        :param pulumi.Input[str] radius_nas_ip: NAS-IP address.
+        :param pulumi.Input[str] radius_nas_ip_override: Use locally defined NAS-IP. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchRemoteLogArgs']]]] remote_logs: Configure logging by FortiSwitch device to a remote syslog server. The structure of `remote_log` block is documented below.
+        :param pulumi.Input[str] route_offload: Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] route_offload_mclag: Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchRouteOffloadRouterArgs']]]] route_offload_routers: Configure route offload MCLAG IP address. The structure of `route_offload_router` block is documented below.
+        :param pulumi.Input[str] sn: Managed-switch serial number.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchSnmpCommunityArgs']]]] snmp_communities: Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmp_community` block is documented below.
         :param pulumi.Input[pulumi.InputType['ManagedswitchSnmpSysinfoArgs']] snmp_sysinfo: Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmp_sysinfo` block is documented below.
         :param pulumi.Input[pulumi.InputType['ManagedswitchSnmpTrapThresholdArgs']] snmp_trap_threshold: Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. The structure of `snmp_trap_threshold` block is documented below.
@@ -1991,9 +2465,11 @@ class Managedswitch(pulumi.CustomResource):
         :param pulumi.Input[str] switch_profile: FortiSwitch profile.
         :param pulumi.Input[pulumi.InputType['ManagedswitchSwitchStpSettingsArgs']] switch_stp_settings: Configure spanning tree protocol (STP). The structure of `switch_stp_settings` block is documented below.
         :param pulumi.Input[str] tdr_supported: TDR supported.
+        :param pulumi.Input[int] tunnel_discovered: SOCKS tunnel management discovered.
         :param pulumi.Input[str] type: Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[int] version: FortiSwitch version.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchVlanArgs']]]] vlans: Configure VLAN assignment priority. The structure of `vlan` block is documented below.
         """
         ...
     @overload
@@ -2042,6 +2518,7 @@ class Managedswitch(pulumi.CustomResource):
                  delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snooping_static_clients: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchDhcpSnoopingStaticClientArgs']]]]] = None,
                  directly_connected: Optional[pulumi.Input[int]] = None,
                  dynamic_capability: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -2054,11 +2531,13 @@ class Managedswitch(pulumi.CustomResource):
                  fsw_wan1_peer: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_admin: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_peer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  igmp_snooping: Optional[pulumi.Input[pulumi.InputType['ManagedswitchIgmpSnoopingArgs']]] = None,
                  ip_source_guards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchIpSourceGuardArgs']]]]] = None,
                  l3_discovered: Optional[pulumi.Input[int]] = None,
                  max_allowed_trunk_members: Optional[pulumi.Input[int]] = None,
                  mclag_igmp_snooping_aware: Optional[pulumi.Input[str]] = None,
+                 mgmt_mode: Optional[pulumi.Input[int]] = None,
                  mirrors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchMirrorArgs']]]]] = None,
                  n8021x_settings: Optional[pulumi.Input[pulumi.InputType['ManagedswitchN8021xSettingsArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -2072,9 +2551,18 @@ class Managedswitch(pulumi.CustomResource):
                  poe_pre_standard_detection: Optional[pulumi.Input[str]] = None,
                  ports: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchPortArgs']]]]] = None,
                  pre_provisioned: Optional[pulumi.Input[int]] = None,
+                 ptp_profile: Optional[pulumi.Input[str]] = None,
+                 ptp_status: Optional[pulumi.Input[str]] = None,
+                 purdue_level: Optional[pulumi.Input[str]] = None,
                  qos_drop_policy: Optional[pulumi.Input[str]] = None,
                  qos_red_probability: Optional[pulumi.Input[int]] = None,
+                 radius_nas_ip: Optional[pulumi.Input[str]] = None,
+                 radius_nas_ip_override: Optional[pulumi.Input[str]] = None,
                  remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchRemoteLogArgs']]]]] = None,
+                 route_offload: Optional[pulumi.Input[str]] = None,
+                 route_offload_mclag: Optional[pulumi.Input[str]] = None,
+                 route_offload_routers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchRouteOffloadRouterArgs']]]]] = None,
+                 sn: Optional[pulumi.Input[str]] = None,
                  snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchSnmpCommunityArgs']]]]] = None,
                  snmp_sysinfo: Optional[pulumi.Input[pulumi.InputType['ManagedswitchSnmpSysinfoArgs']]] = None,
                  snmp_trap_threshold: Optional[pulumi.Input[pulumi.InputType['ManagedswitchSnmpTrapThresholdArgs']]] = None,
@@ -2091,9 +2579,11 @@ class Managedswitch(pulumi.CustomResource):
                  switch_profile: Optional[pulumi.Input[str]] = None,
                  switch_stp_settings: Optional[pulumi.Input[pulumi.InputType['ManagedswitchSwitchStpSettingsArgs']]] = None,
                  tdr_supported: Optional[pulumi.Input[str]] = None,
+                 tunnel_discovered: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[int]] = None,
+                 vlans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchVlanArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -2108,6 +2598,7 @@ class Managedswitch(pulumi.CustomResource):
             __props__.__dict__["delayed_restart_trigger"] = delayed_restart_trigger
             __props__.__dict__["description"] = description
             __props__.__dict__["dhcp_server_access_list"] = dhcp_server_access_list
+            __props__.__dict__["dhcp_snooping_static_clients"] = dhcp_snooping_static_clients
             __props__.__dict__["directly_connected"] = directly_connected
             __props__.__dict__["dynamic_capability"] = dynamic_capability
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -2122,11 +2613,13 @@ class Managedswitch(pulumi.CustomResource):
             __props__.__dict__["fsw_wan1_peer"] = fsw_wan1_peer
             __props__.__dict__["fsw_wan2_admin"] = fsw_wan2_admin
             __props__.__dict__["fsw_wan2_peer"] = fsw_wan2_peer
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["igmp_snooping"] = igmp_snooping
             __props__.__dict__["ip_source_guards"] = ip_source_guards
             __props__.__dict__["l3_discovered"] = l3_discovered
             __props__.__dict__["max_allowed_trunk_members"] = max_allowed_trunk_members
             __props__.__dict__["mclag_igmp_snooping_aware"] = mclag_igmp_snooping_aware
+            __props__.__dict__["mgmt_mode"] = mgmt_mode
             __props__.__dict__["mirrors"] = mirrors
             __props__.__dict__["n8021x_settings"] = n8021x_settings
             __props__.__dict__["name"] = name
@@ -2140,9 +2633,18 @@ class Managedswitch(pulumi.CustomResource):
             __props__.__dict__["poe_pre_standard_detection"] = poe_pre_standard_detection
             __props__.__dict__["ports"] = ports
             __props__.__dict__["pre_provisioned"] = pre_provisioned
+            __props__.__dict__["ptp_profile"] = ptp_profile
+            __props__.__dict__["ptp_status"] = ptp_status
+            __props__.__dict__["purdue_level"] = purdue_level
             __props__.__dict__["qos_drop_policy"] = qos_drop_policy
             __props__.__dict__["qos_red_probability"] = qos_red_probability
+            __props__.__dict__["radius_nas_ip"] = radius_nas_ip
+            __props__.__dict__["radius_nas_ip_override"] = radius_nas_ip_override
             __props__.__dict__["remote_logs"] = remote_logs
+            __props__.__dict__["route_offload"] = route_offload
+            __props__.__dict__["route_offload_mclag"] = route_offload_mclag
+            __props__.__dict__["route_offload_routers"] = route_offload_routers
+            __props__.__dict__["sn"] = sn
             __props__.__dict__["snmp_communities"] = snmp_communities
             __props__.__dict__["snmp_sysinfo"] = snmp_sysinfo
             __props__.__dict__["snmp_trap_threshold"] = snmp_trap_threshold
@@ -2161,9 +2663,11 @@ class Managedswitch(pulumi.CustomResource):
             __props__.__dict__["switch_profile"] = switch_profile
             __props__.__dict__["switch_stp_settings"] = switch_stp_settings
             __props__.__dict__["tdr_supported"] = tdr_supported
+            __props__.__dict__["tunnel_discovered"] = tunnel_discovered
             __props__.__dict__["type"] = type
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["version"] = version
+            __props__.__dict__["vlans"] = vlans
         super(Managedswitch, __self__).__init__(
             'fortios:switchcontroller/managedswitch:Managedswitch',
             resource_name,
@@ -2179,6 +2683,7 @@ class Managedswitch(pulumi.CustomResource):
             delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
             dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+            dhcp_snooping_static_clients: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchDhcpSnoopingStaticClientArgs']]]]] = None,
             directly_connected: Optional[pulumi.Input[int]] = None,
             dynamic_capability: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -2191,11 +2696,13 @@ class Managedswitch(pulumi.CustomResource):
             fsw_wan1_peer: Optional[pulumi.Input[str]] = None,
             fsw_wan2_admin: Optional[pulumi.Input[str]] = None,
             fsw_wan2_peer: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             igmp_snooping: Optional[pulumi.Input[pulumi.InputType['ManagedswitchIgmpSnoopingArgs']]] = None,
             ip_source_guards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchIpSourceGuardArgs']]]]] = None,
             l3_discovered: Optional[pulumi.Input[int]] = None,
             max_allowed_trunk_members: Optional[pulumi.Input[int]] = None,
             mclag_igmp_snooping_aware: Optional[pulumi.Input[str]] = None,
+            mgmt_mode: Optional[pulumi.Input[int]] = None,
             mirrors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchMirrorArgs']]]]] = None,
             n8021x_settings: Optional[pulumi.Input[pulumi.InputType['ManagedswitchN8021xSettingsArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -2209,9 +2716,18 @@ class Managedswitch(pulumi.CustomResource):
             poe_pre_standard_detection: Optional[pulumi.Input[str]] = None,
             ports: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchPortArgs']]]]] = None,
             pre_provisioned: Optional[pulumi.Input[int]] = None,
+            ptp_profile: Optional[pulumi.Input[str]] = None,
+            ptp_status: Optional[pulumi.Input[str]] = None,
+            purdue_level: Optional[pulumi.Input[str]] = None,
             qos_drop_policy: Optional[pulumi.Input[str]] = None,
             qos_red_probability: Optional[pulumi.Input[int]] = None,
+            radius_nas_ip: Optional[pulumi.Input[str]] = None,
+            radius_nas_ip_override: Optional[pulumi.Input[str]] = None,
             remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchRemoteLogArgs']]]]] = None,
+            route_offload: Optional[pulumi.Input[str]] = None,
+            route_offload_mclag: Optional[pulumi.Input[str]] = None,
+            route_offload_routers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchRouteOffloadRouterArgs']]]]] = None,
+            sn: Optional[pulumi.Input[str]] = None,
             snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchSnmpCommunityArgs']]]]] = None,
             snmp_sysinfo: Optional[pulumi.Input[pulumi.InputType['ManagedswitchSnmpSysinfoArgs']]] = None,
             snmp_trap_threshold: Optional[pulumi.Input[pulumi.InputType['ManagedswitchSnmpTrapThresholdArgs']]] = None,
@@ -2228,9 +2744,11 @@ class Managedswitch(pulumi.CustomResource):
             switch_profile: Optional[pulumi.Input[str]] = None,
             switch_stp_settings: Optional[pulumi.Input[pulumi.InputType['ManagedswitchSwitchStpSettingsArgs']]] = None,
             tdr_supported: Optional[pulumi.Input[str]] = None,
+            tunnel_discovered: Optional[pulumi.Input[int]] = None,
             type: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
-            version: Optional[pulumi.Input[int]] = None) -> 'Managedswitch':
+            version: Optional[pulumi.Input[int]] = None,
+            vlans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchVlanArgs']]]]] = None) -> 'Managedswitch':
         """
         Get an existing Managedswitch resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -2243,6 +2761,7 @@ class Managedswitch(pulumi.CustomResource):
         :param pulumi.Input[int] delayed_restart_trigger: Delayed restart triggered for this FortiSwitch.
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dhcp_server_access_list: DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchDhcpSnoopingStaticClientArgs']]]] dhcp_snooping_static_clients: Configure FortiSwitch DHCP snooping static clients. The structure of `dhcp_snooping_static_client` block is documented below.
         :param pulumi.Input[int] directly_connected: Directly connected FortiSwitch.
         :param pulumi.Input[int] dynamic_capability: List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -2255,11 +2774,13 @@ class Managedswitch(pulumi.CustomResource):
         :param pulumi.Input[str] fsw_wan1_peer: Fortiswitch WAN1 peer port.
         :param pulumi.Input[str] fsw_wan2_admin: FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] fsw_wan2_peer: FortiSwitch WAN2 peer port.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ManagedswitchIgmpSnoopingArgs']] igmp_snooping: Configure FortiSwitch IGMP snooping global settings. The structure of `igmp_snooping` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchIpSourceGuardArgs']]]] ip_source_guards: IP source guard. The structure of `ip_source_guard` block is documented below.
         :param pulumi.Input[int] l3_discovered: Layer 3 management discovered.
         :param pulumi.Input[int] max_allowed_trunk_members: FortiSwitch maximum allowed trunk members.
         :param pulumi.Input[str] mclag_igmp_snooping_aware: Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] mgmt_mode: FortiLink management mode.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchMirrorArgs']]]] mirrors: Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
         :param pulumi.Input[pulumi.InputType['ManagedswitchN8021xSettingsArgs']] n8021x_settings: Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n802_1x_settings` block is documented below.
         :param pulumi.Input[str] name: Managed-switch name.
@@ -2273,9 +2794,18 @@ class Managedswitch(pulumi.CustomResource):
         :param pulumi.Input[str] poe_pre_standard_detection: Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchPortArgs']]]] ports: Managed-switch port list. The structure of `ports` block is documented below.
         :param pulumi.Input[int] pre_provisioned: Pre-provisioned managed switch.
+        :param pulumi.Input[str] ptp_profile: PTP profile configuration.
+        :param pulumi.Input[str] ptp_status: Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] purdue_level: Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
         :param pulumi.Input[str] qos_drop_policy: Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
         :param pulumi.Input[int] qos_red_probability: Set QoS RED/WRED drop probability.
+        :param pulumi.Input[str] radius_nas_ip: NAS-IP address.
+        :param pulumi.Input[str] radius_nas_ip_override: Use locally defined NAS-IP. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchRemoteLogArgs']]]] remote_logs: Configure logging by FortiSwitch device to a remote syslog server. The structure of `remote_log` block is documented below.
+        :param pulumi.Input[str] route_offload: Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] route_offload_mclag: Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchRouteOffloadRouterArgs']]]] route_offload_routers: Configure route offload MCLAG IP address. The structure of `route_offload_router` block is documented below.
+        :param pulumi.Input[str] sn: Managed-switch serial number.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchSnmpCommunityArgs']]]] snmp_communities: Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmp_community` block is documented below.
         :param pulumi.Input[pulumi.InputType['ManagedswitchSnmpSysinfoArgs']] snmp_sysinfo: Configuration method to edit Simple Network Management Protocol (SNMP) system info. The structure of `snmp_sysinfo` block is documented below.
         :param pulumi.Input[pulumi.InputType['ManagedswitchSnmpTrapThresholdArgs']] snmp_trap_threshold: Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. The structure of `snmp_trap_threshold` block is documented below.
@@ -2292,9 +2822,11 @@ class Managedswitch(pulumi.CustomResource):
         :param pulumi.Input[str] switch_profile: FortiSwitch profile.
         :param pulumi.Input[pulumi.InputType['ManagedswitchSwitchStpSettingsArgs']] switch_stp_settings: Configure spanning tree protocol (STP). The structure of `switch_stp_settings` block is documented below.
         :param pulumi.Input[str] tdr_supported: TDR supported.
+        :param pulumi.Input[int] tunnel_discovered: SOCKS tunnel management discovered.
         :param pulumi.Input[str] type: Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[int] version: FortiSwitch version.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchVlanArgs']]]] vlans: Configure VLAN assignment priority. The structure of `vlan` block is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -2305,6 +2837,7 @@ class Managedswitch(pulumi.CustomResource):
         __props__.__dict__["delayed_restart_trigger"] = delayed_restart_trigger
         __props__.__dict__["description"] = description
         __props__.__dict__["dhcp_server_access_list"] = dhcp_server_access_list
+        __props__.__dict__["dhcp_snooping_static_clients"] = dhcp_snooping_static_clients
         __props__.__dict__["directly_connected"] = directly_connected
         __props__.__dict__["dynamic_capability"] = dynamic_capability
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -2317,11 +2850,13 @@ class Managedswitch(pulumi.CustomResource):
         __props__.__dict__["fsw_wan1_peer"] = fsw_wan1_peer
         __props__.__dict__["fsw_wan2_admin"] = fsw_wan2_admin
         __props__.__dict__["fsw_wan2_peer"] = fsw_wan2_peer
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["igmp_snooping"] = igmp_snooping
         __props__.__dict__["ip_source_guards"] = ip_source_guards
         __props__.__dict__["l3_discovered"] = l3_discovered
         __props__.__dict__["max_allowed_trunk_members"] = max_allowed_trunk_members
         __props__.__dict__["mclag_igmp_snooping_aware"] = mclag_igmp_snooping_aware
+        __props__.__dict__["mgmt_mode"] = mgmt_mode
         __props__.__dict__["mirrors"] = mirrors
         __props__.__dict__["n8021x_settings"] = n8021x_settings
         __props__.__dict__["name"] = name
@@ -2335,9 +2870,18 @@ class Managedswitch(pulumi.CustomResource):
         __props__.__dict__["poe_pre_standard_detection"] = poe_pre_standard_detection
         __props__.__dict__["ports"] = ports
         __props__.__dict__["pre_provisioned"] = pre_provisioned
+        __props__.__dict__["ptp_profile"] = ptp_profile
+        __props__.__dict__["ptp_status"] = ptp_status
+        __props__.__dict__["purdue_level"] = purdue_level
         __props__.__dict__["qos_drop_policy"] = qos_drop_policy
         __props__.__dict__["qos_red_probability"] = qos_red_probability
+        __props__.__dict__["radius_nas_ip"] = radius_nas_ip
+        __props__.__dict__["radius_nas_ip_override"] = radius_nas_ip_override
         __props__.__dict__["remote_logs"] = remote_logs
+        __props__.__dict__["route_offload"] = route_offload
+        __props__.__dict__["route_offload_mclag"] = route_offload_mclag
+        __props__.__dict__["route_offload_routers"] = route_offload_routers
+        __props__.__dict__["sn"] = sn
         __props__.__dict__["snmp_communities"] = snmp_communities
         __props__.__dict__["snmp_sysinfo"] = snmp_sysinfo
         __props__.__dict__["snmp_trap_threshold"] = snmp_trap_threshold
@@ -2354,9 +2898,11 @@ class Managedswitch(pulumi.CustomResource):
         __props__.__dict__["switch_profile"] = switch_profile
         __props__.__dict__["switch_stp_settings"] = switch_stp_settings
         __props__.__dict__["tdr_supported"] = tdr_supported
+        __props__.__dict__["tunnel_discovered"] = tunnel_discovered
         __props__.__dict__["type"] = type
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["version"] = version
+        __props__.__dict__["vlans"] = vlans
         return Managedswitch(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -2398,6 +2944,14 @@ class Managedswitch(pulumi.CustomResource):
         DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
         """
         return pulumi.get(self, "dhcp_server_access_list")
+
+    @property
+    @pulumi.getter(name="dhcpSnoopingStaticClients")
+    def dhcp_snooping_static_clients(self) -> pulumi.Output[Optional[Sequence['outputs.ManagedswitchDhcpSnoopingStaticClient']]]:
+        """
+        Configure FortiSwitch DHCP snooping static clients. The structure of `dhcp_snooping_static_client` block is documented below.
+        """
+        return pulumi.get(self, "dhcp_snooping_static_clients")
 
     @property
     @pulumi.getter(name="directlyConnected")
@@ -2496,6 +3050,14 @@ class Managedswitch(pulumi.CustomResource):
         return pulumi.get(self, "fsw_wan2_peer")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="igmpSnooping")
     def igmp_snooping(self) -> pulumi.Output['outputs.ManagedswitchIgmpSnooping']:
         """
@@ -2534,6 +3096,14 @@ class Managedswitch(pulumi.CustomResource):
         Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "mclag_igmp_snooping_aware")
+
+    @property
+    @pulumi.getter(name="mgmtMode")
+    def mgmt_mode(self) -> pulumi.Output[int]:
+        """
+        FortiLink management mode.
+        """
+        return pulumi.get(self, "mgmt_mode")
 
     @property
     @pulumi.getter
@@ -2640,6 +3210,30 @@ class Managedswitch(pulumi.CustomResource):
         return pulumi.get(self, "pre_provisioned")
 
     @property
+    @pulumi.getter(name="ptpProfile")
+    def ptp_profile(self) -> pulumi.Output[str]:
+        """
+        PTP profile configuration.
+        """
+        return pulumi.get(self, "ptp_profile")
+
+    @property
+    @pulumi.getter(name="ptpStatus")
+    def ptp_status(self) -> pulumi.Output[str]:
+        """
+        Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ptp_status")
+
+    @property
+    @pulumi.getter(name="purdueLevel")
+    def purdue_level(self) -> pulumi.Output[str]:
+        """
+        Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+        """
+        return pulumi.get(self, "purdue_level")
+
+    @property
     @pulumi.getter(name="qosDropPolicy")
     def qos_drop_policy(self) -> pulumi.Output[str]:
         """
@@ -2656,12 +3250,60 @@ class Managedswitch(pulumi.CustomResource):
         return pulumi.get(self, "qos_red_probability")
 
     @property
+    @pulumi.getter(name="radiusNasIp")
+    def radius_nas_ip(self) -> pulumi.Output[str]:
+        """
+        NAS-IP address.
+        """
+        return pulumi.get(self, "radius_nas_ip")
+
+    @property
+    @pulumi.getter(name="radiusNasIpOverride")
+    def radius_nas_ip_override(self) -> pulumi.Output[str]:
+        """
+        Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "radius_nas_ip_override")
+
+    @property
     @pulumi.getter(name="remoteLogs")
     def remote_logs(self) -> pulumi.Output[Optional[Sequence['outputs.ManagedswitchRemoteLog']]]:
         """
         Configure logging by FortiSwitch device to a remote syslog server. The structure of `remote_log` block is documented below.
         """
         return pulumi.get(self, "remote_logs")
+
+    @property
+    @pulumi.getter(name="routeOffload")
+    def route_offload(self) -> pulumi.Output[str]:
+        """
+        Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "route_offload")
+
+    @property
+    @pulumi.getter(name="routeOffloadMclag")
+    def route_offload_mclag(self) -> pulumi.Output[str]:
+        """
+        Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "route_offload_mclag")
+
+    @property
+    @pulumi.getter(name="routeOffloadRouters")
+    def route_offload_routers(self) -> pulumi.Output[Optional[Sequence['outputs.ManagedswitchRouteOffloadRouter']]]:
+        """
+        Configure route offload MCLAG IP address. The structure of `route_offload_router` block is documented below.
+        """
+        return pulumi.get(self, "route_offload_routers")
+
+    @property
+    @pulumi.getter
+    def sn(self) -> pulumi.Output[str]:
+        """
+        Managed-switch serial number.
+        """
+        return pulumi.get(self, "sn")
 
     @property
     @pulumi.getter(name="snmpCommunities")
@@ -2792,6 +3434,14 @@ class Managedswitch(pulumi.CustomResource):
         return pulumi.get(self, "tdr_supported")
 
     @property
+    @pulumi.getter(name="tunnelDiscovered")
+    def tunnel_discovered(self) -> pulumi.Output[int]:
+        """
+        SOCKS tunnel management discovered.
+        """
+        return pulumi.get(self, "tunnel_discovered")
+
+    @property
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
@@ -2814,4 +3464,12 @@ class Managedswitch(pulumi.CustomResource):
         FortiSwitch version.
         """
         return pulumi.get(self, "version")
+
+    @property
+    @pulumi.getter
+    def vlans(self) -> pulumi.Output[Optional[Sequence['outputs.ManagedswitchVlan']]]:
+        """
+        Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+        """
+        return pulumi.get(self, "vlans")
 

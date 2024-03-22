@@ -68,6 +68,10 @@ export class Internetservicecustom extends pulumi.CustomResource {
      */
     public readonly entries!: pulumi.Output<outputs.firewall.InternetservicecustomEntry[] | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Internet Service name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -96,6 +100,7 @@ export class Internetservicecustom extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = state ? state.entries : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["reputation"] = state ? state.reputation : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -104,6 +109,7 @@ export class Internetservicecustom extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = args ? args.entries : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["reputation"] = args ? args.reputation : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -129,6 +135,10 @@ export interface InternetservicecustomState {
      * Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
      */
     entries?: pulumi.Input<pulumi.Input<inputs.firewall.InternetservicecustomEntry>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Internet Service name.
      */
@@ -159,6 +169,10 @@ export interface InternetservicecustomArgs {
      * Entries added to the Internet Service database and custom database. The structure of `entry` block is documented below.
      */
     entries?: pulumi.Input<pulumi.Input<inputs.firewall.InternetservicecustomEntry>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Internet Service name.
      */

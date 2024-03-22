@@ -119,6 +119,18 @@ export class Csf extends pulumi.CustomResource {
      */
     public readonly fabricWorkers!: pulumi.Output<number>;
     /**
+     * Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+     */
+    public readonly fileMgmt!: pulumi.Output<string>;
+    /**
+     * Maximum amount of memory that can be used by the daemon files (in bytes).
+     */
+    public readonly fileQuota!: pulumi.Output<number>;
+    /**
+     * Warn when the set percentage of quota has been used.
+     */
+    public readonly fileQuotaWarning!: pulumi.Output<number>;
+    /**
      * Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
      */
     public readonly fixedKey!: pulumi.Output<string | undefined>;
@@ -126,6 +138,10 @@ export class Csf extends pulumi.CustomResource {
      * Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
      */
     public readonly forticloudAccountEnforcement!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
      */
@@ -158,6 +174,10 @@ export class Csf extends pulumi.CustomResource {
      * Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
      */
     public readonly trustedLists!: pulumi.Output<outputs.system.CsfTrustedList[] | undefined>;
+    /**
+     * Unique ID of the current CSF node
+     */
+    public readonly uid!: pulumi.Output<string>;
     /**
      * IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
      */
@@ -199,8 +219,12 @@ export class Csf extends pulumi.CustomResource {
             resourceInputs["fabricDevices"] = state ? state.fabricDevices : undefined;
             resourceInputs["fabricObjectUnification"] = state ? state.fabricObjectUnification : undefined;
             resourceInputs["fabricWorkers"] = state ? state.fabricWorkers : undefined;
+            resourceInputs["fileMgmt"] = state ? state.fileMgmt : undefined;
+            resourceInputs["fileQuota"] = state ? state.fileQuota : undefined;
+            resourceInputs["fileQuotaWarning"] = state ? state.fileQuotaWarning : undefined;
             resourceInputs["fixedKey"] = state ? state.fixedKey : undefined;
             resourceInputs["forticloudAccountEnforcement"] = state ? state.forticloudAccountEnforcement : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupName"] = state ? state.groupName : undefined;
             resourceInputs["groupPassword"] = state ? state.groupPassword : undefined;
             resourceInputs["logUnification"] = state ? state.logUnification : undefined;
@@ -209,6 +233,7 @@ export class Csf extends pulumi.CustomResource {
             resourceInputs["samlConfigurationSync"] = state ? state.samlConfigurationSync : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["trustedLists"] = state ? state.trustedLists : undefined;
+            resourceInputs["uid"] = state ? state.uid : undefined;
             resourceInputs["upstream"] = state ? state.upstream : undefined;
             resourceInputs["upstreamIp"] = state ? state.upstreamIp : undefined;
             resourceInputs["upstreamPort"] = state ? state.upstreamPort : undefined;
@@ -229,8 +254,12 @@ export class Csf extends pulumi.CustomResource {
             resourceInputs["fabricDevices"] = args ? args.fabricDevices : undefined;
             resourceInputs["fabricObjectUnification"] = args ? args.fabricObjectUnification : undefined;
             resourceInputs["fabricWorkers"] = args ? args.fabricWorkers : undefined;
+            resourceInputs["fileMgmt"] = args ? args.fileMgmt : undefined;
+            resourceInputs["fileQuota"] = args ? args.fileQuota : undefined;
+            resourceInputs["fileQuotaWarning"] = args ? args.fileQuotaWarning : undefined;
             resourceInputs["fixedKey"] = args?.fixedKey ? pulumi.secret(args.fixedKey) : undefined;
             resourceInputs["forticloudAccountEnforcement"] = args ? args.forticloudAccountEnforcement : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupName"] = args ? args.groupName : undefined;
             resourceInputs["groupPassword"] = args?.groupPassword ? pulumi.secret(args.groupPassword) : undefined;
             resourceInputs["logUnification"] = args ? args.logUnification : undefined;
@@ -239,6 +268,7 @@ export class Csf extends pulumi.CustomResource {
             resourceInputs["samlConfigurationSync"] = args ? args.samlConfigurationSync : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["trustedLists"] = args ? args.trustedLists : undefined;
+            resourceInputs["uid"] = args ? args.uid : undefined;
             resourceInputs["upstream"] = args ? args.upstream : undefined;
             resourceInputs["upstreamIp"] = args ? args.upstreamIp : undefined;
             resourceInputs["upstreamPort"] = args ? args.upstreamPort : undefined;
@@ -300,6 +330,18 @@ export interface CsfState {
      */
     fabricWorkers?: pulumi.Input<number>;
     /**
+     * Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+     */
+    fileMgmt?: pulumi.Input<string>;
+    /**
+     * Maximum amount of memory that can be used by the daemon files (in bytes).
+     */
+    fileQuota?: pulumi.Input<number>;
+    /**
+     * Warn when the set percentage of quota has been used.
+     */
+    fileQuotaWarning?: pulumi.Input<number>;
+    /**
      * Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
      */
     fixedKey?: pulumi.Input<string>;
@@ -307,6 +349,10 @@ export interface CsfState {
      * Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
      */
     forticloudAccountEnforcement?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
      */
@@ -339,6 +385,10 @@ export interface CsfState {
      * Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
      */
     trustedLists?: pulumi.Input<pulumi.Input<inputs.system.CsfTrustedList>[]>;
+    /**
+     * Unique ID of the current CSF node
+     */
+    uid?: pulumi.Input<string>;
     /**
      * IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
      */
@@ -406,6 +456,18 @@ export interface CsfArgs {
      */
     fabricWorkers?: pulumi.Input<number>;
     /**
+     * Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+     */
+    fileMgmt?: pulumi.Input<string>;
+    /**
+     * Maximum amount of memory that can be used by the daemon files (in bytes).
+     */
+    fileQuota?: pulumi.Input<number>;
+    /**
+     * Warn when the set percentage of quota has been used.
+     */
+    fileQuotaWarning?: pulumi.Input<number>;
+    /**
      * Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
      */
     fixedKey?: pulumi.Input<string>;
@@ -413,6 +475,10 @@ export interface CsfArgs {
      * Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
      */
     forticloudAccountEnforcement?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
      */
@@ -445,6 +511,10 @@ export interface CsfArgs {
      * Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
      */
     trustedLists?: pulumi.Input<pulumi.Input<inputs.system.CsfTrustedList>[]>;
+    /**
+     * Unique ID of the current CSF node
+     */
+    uid?: pulumi.Input<string>;
     /**
      * IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
      */

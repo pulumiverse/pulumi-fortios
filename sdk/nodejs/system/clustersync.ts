@@ -82,6 +82,10 @@ export class Clustersync extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Heartbeat interval (1 - 10 sec).
      */
     public readonly hbInterval!: pulumi.Output<number>;
@@ -153,6 +157,7 @@ export class Clustersync extends pulumi.CustomResource {
             const state = argsOrState as ClustersyncState | undefined;
             resourceInputs["downIntfsBeforeSessSyncs"] = state ? state.downIntfsBeforeSessSyncs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hbInterval"] = state ? state.hbInterval : undefined;
             resourceInputs["hbLostThreshold"] = state ? state.hbLostThreshold : undefined;
             resourceInputs["ikeHeartbeatInterval"] = state ? state.ikeHeartbeatInterval : undefined;
@@ -171,6 +176,7 @@ export class Clustersync extends pulumi.CustomResource {
             const args = argsOrState as ClustersyncArgs | undefined;
             resourceInputs["downIntfsBeforeSessSyncs"] = args ? args.downIntfsBeforeSessSyncs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hbInterval"] = args ? args.hbInterval : undefined;
             resourceInputs["hbLostThreshold"] = args ? args.hbLostThreshold : undefined;
             resourceInputs["ikeHeartbeatInterval"] = args ? args.ikeHeartbeatInterval : undefined;
@@ -203,6 +209,10 @@ export interface ClustersyncState {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Heartbeat interval (1 - 10 sec).
      */
@@ -273,6 +283,10 @@ export interface ClustersyncArgs {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Heartbeat interval (1 - 10 sec).
      */

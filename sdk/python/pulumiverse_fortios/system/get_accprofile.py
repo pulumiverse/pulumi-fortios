@@ -22,7 +22,7 @@ class GetAccprofileResult:
     """
     A collection of values returned by getAccprofile.
     """
-    def __init__(__self__, admintimeout=None, admintimeout_override=None, authgrp=None, comments=None, ftviewgrp=None, fwgrp=None, fwgrp_permissions=None, id=None, loggrp=None, loggrp_permissions=None, name=None, netgrp=None, netgrp_permissions=None, scope=None, secfabgrp=None, sysgrp=None, sysgrp_permissions=None, system_diagnostics=None, system_execute_ssh=None, system_execute_telnet=None, utmgrp=None, utmgrp_permissions=None, vdomparam=None, vpngrp=None, wanoptgrp=None, wifi=None):
+    def __init__(__self__, admintimeout=None, admintimeout_override=None, authgrp=None, cli_config=None, cli_diagnose=None, cli_exec=None, cli_get=None, cli_show=None, comments=None, ftviewgrp=None, fwgrp=None, fwgrp_permissions=None, id=None, loggrp=None, loggrp_permissions=None, name=None, netgrp=None, netgrp_permissions=None, scope=None, secfabgrp=None, sysgrp=None, sysgrp_permissions=None, system_diagnostics=None, system_execute_ssh=None, system_execute_telnet=None, utmgrp=None, utmgrp_permissions=None, vdomparam=None, vpngrp=None, wanoptgrp=None, wifi=None):
         if admintimeout and not isinstance(admintimeout, int):
             raise TypeError("Expected argument 'admintimeout' to be a int")
         pulumi.set(__self__, "admintimeout", admintimeout)
@@ -32,6 +32,21 @@ class GetAccprofileResult:
         if authgrp and not isinstance(authgrp, str):
             raise TypeError("Expected argument 'authgrp' to be a str")
         pulumi.set(__self__, "authgrp", authgrp)
+        if cli_config and not isinstance(cli_config, str):
+            raise TypeError("Expected argument 'cli_config' to be a str")
+        pulumi.set(__self__, "cli_config", cli_config)
+        if cli_diagnose and not isinstance(cli_diagnose, str):
+            raise TypeError("Expected argument 'cli_diagnose' to be a str")
+        pulumi.set(__self__, "cli_diagnose", cli_diagnose)
+        if cli_exec and not isinstance(cli_exec, str):
+            raise TypeError("Expected argument 'cli_exec' to be a str")
+        pulumi.set(__self__, "cli_exec", cli_exec)
+        if cli_get and not isinstance(cli_get, str):
+            raise TypeError("Expected argument 'cli_get' to be a str")
+        pulumi.set(__self__, "cli_get", cli_get)
+        if cli_show and not isinstance(cli_show, str):
+            raise TypeError("Expected argument 'cli_show' to be a str")
+        pulumi.set(__self__, "cli_show", cli_show)
         if comments and not isinstance(comments, str):
             raise TypeError("Expected argument 'comments' to be a str")
         pulumi.set(__self__, "comments", comments)
@@ -125,6 +140,46 @@ class GetAccprofileResult:
         Administrator access to Users and Devices.
         """
         return pulumi.get(self, "authgrp")
+
+    @property
+    @pulumi.getter(name="cliConfig")
+    def cli_config(self) -> str:
+        """
+        Enable/disable permission to run config commands.
+        """
+        return pulumi.get(self, "cli_config")
+
+    @property
+    @pulumi.getter(name="cliDiagnose")
+    def cli_diagnose(self) -> str:
+        """
+        Enable/disable permission to run diagnostic commands.
+        """
+        return pulumi.get(self, "cli_diagnose")
+
+    @property
+    @pulumi.getter(name="cliExec")
+    def cli_exec(self) -> str:
+        """
+        Enable/disable permission to run execute commands.
+        """
+        return pulumi.get(self, "cli_exec")
+
+    @property
+    @pulumi.getter(name="cliGet")
+    def cli_get(self) -> str:
+        """
+        Enable/disable permission to run get commands.
+        """
+        return pulumi.get(self, "cli_get")
+
+    @property
+    @pulumi.getter(name="cliShow")
+    def cli_show(self) -> str:
+        """
+        Enable/disable permission to run show commands.
+        """
+        return pulumi.get(self, "cli_show")
 
     @property
     @pulumi.getter
@@ -317,6 +372,11 @@ class AwaitableGetAccprofileResult(GetAccprofileResult):
             admintimeout=self.admintimeout,
             admintimeout_override=self.admintimeout_override,
             authgrp=self.authgrp,
+            cli_config=self.cli_config,
+            cli_diagnose=self.cli_diagnose,
+            cli_exec=self.cli_exec,
+            cli_get=self.cli_get,
+            cli_show=self.cli_show,
             comments=self.comments,
             ftviewgrp=self.ftviewgrp,
             fwgrp=self.fwgrp,
@@ -362,6 +422,11 @@ def get_accprofile(name: Optional[str] = None,
         admintimeout=pulumi.get(__ret__, 'admintimeout'),
         admintimeout_override=pulumi.get(__ret__, 'admintimeout_override'),
         authgrp=pulumi.get(__ret__, 'authgrp'),
+        cli_config=pulumi.get(__ret__, 'cli_config'),
+        cli_diagnose=pulumi.get(__ret__, 'cli_diagnose'),
+        cli_exec=pulumi.get(__ret__, 'cli_exec'),
+        cli_get=pulumi.get(__ret__, 'cli_get'),
+        cli_show=pulumi.get(__ret__, 'cli_show'),
         comments=pulumi.get(__ret__, 'comments'),
         ftviewgrp=pulumi.get(__ret__, 'ftviewgrp'),
         fwgrp=pulumi.get(__ret__, 'fwgrp'),

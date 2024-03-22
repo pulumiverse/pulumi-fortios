@@ -76,6 +76,10 @@ export class Managedswitch extends pulumi.CustomResource {
      */
     public readonly dhcpServerAccessList!: pulumi.Output<string>;
     /**
+     * Configure FortiSwitch DHCP snooping static clients. The structure of `dhcpSnoopingStaticClient` block is documented below.
+     */
+    public readonly dhcpSnoopingStaticClients!: pulumi.Output<outputs.switchcontroller.ManagedswitchDhcpSnoopingStaticClient[] | undefined>;
+    /**
      * Directly connected FortiSwitch.
      */
     public readonly directlyConnected!: pulumi.Output<number>;
@@ -124,6 +128,10 @@ export class Managedswitch extends pulumi.CustomResource {
      */
     public readonly fswWan2Peer!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
      */
     public readonly igmpSnooping!: pulumi.Output<outputs.switchcontroller.ManagedswitchIgmpSnooping>;
@@ -143,6 +151,10 @@ export class Managedswitch extends pulumi.CustomResource {
      * Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
      */
     public readonly mclagIgmpSnoopingAware!: pulumi.Output<string>;
+    /**
+     * FortiLink management mode.
+     */
+    public readonly mgmtMode!: pulumi.Output<number>;
     /**
      * Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
      */
@@ -196,6 +208,18 @@ export class Managedswitch extends pulumi.CustomResource {
      */
     public readonly preProvisioned!: pulumi.Output<number>;
     /**
+     * PTP profile configuration.
+     */
+    public readonly ptpProfile!: pulumi.Output<string>;
+    /**
+     * Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+     */
+    public readonly ptpStatus!: pulumi.Output<string>;
+    /**
+     * Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+     */
+    public readonly purdueLevel!: pulumi.Output<string>;
+    /**
      * Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
      */
     public readonly qosDropPolicy!: pulumi.Output<string>;
@@ -204,9 +228,33 @@ export class Managedswitch extends pulumi.CustomResource {
      */
     public readonly qosRedProbability!: pulumi.Output<number>;
     /**
+     * NAS-IP address.
+     */
+    public readonly radiusNasIp!: pulumi.Output<string>;
+    /**
+     * Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+     */
+    public readonly radiusNasIpOverride!: pulumi.Output<string>;
+    /**
      * Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
      */
     public readonly remoteLogs!: pulumi.Output<outputs.switchcontroller.ManagedswitchRemoteLog[] | undefined>;
+    /**
+     * Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+     */
+    public readonly routeOffload!: pulumi.Output<string>;
+    /**
+     * Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+     */
+    public readonly routeOffloadMclag!: pulumi.Output<string>;
+    /**
+     * Configure route offload MCLAG IP address. The structure of `routeOffloadRouter` block is documented below.
+     */
+    public readonly routeOffloadRouters!: pulumi.Output<outputs.switchcontroller.ManagedswitchRouteOffloadRouter[] | undefined>;
+    /**
+     * Managed-switch serial number.
+     */
+    public readonly sn!: pulumi.Output<string>;
     /**
      * Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
      */
@@ -272,6 +320,10 @@ export class Managedswitch extends pulumi.CustomResource {
      */
     public readonly tdrSupported!: pulumi.Output<string>;
     /**
+     * SOCKS tunnel management discovered.
+     */
+    public readonly tunnelDiscovered!: pulumi.Output<number>;
+    /**
      * Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
      */
     public readonly type!: pulumi.Output<string>;
@@ -283,6 +335,10 @@ export class Managedswitch extends pulumi.CustomResource {
      * FortiSwitch version.
      */
     public readonly version!: pulumi.Output<number>;
+    /**
+     * Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+     */
+    public readonly vlans!: pulumi.Output<outputs.switchcontroller.ManagedswitchVlan[] | undefined>;
 
     /**
      * Create a Managedswitch resource with the given unique name, arguments, and options.
@@ -302,6 +358,7 @@ export class Managedswitch extends pulumi.CustomResource {
             resourceInputs["delayedRestartTrigger"] = state ? state.delayedRestartTrigger : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["dhcpServerAccessList"] = state ? state.dhcpServerAccessList : undefined;
+            resourceInputs["dhcpSnoopingStaticClients"] = state ? state.dhcpSnoopingStaticClients : undefined;
             resourceInputs["directlyConnected"] = state ? state.directlyConnected : undefined;
             resourceInputs["dynamicCapability"] = state ? state.dynamicCapability : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
@@ -314,11 +371,13 @@ export class Managedswitch extends pulumi.CustomResource {
             resourceInputs["fswWan1Peer"] = state ? state.fswWan1Peer : undefined;
             resourceInputs["fswWan2Admin"] = state ? state.fswWan2Admin : undefined;
             resourceInputs["fswWan2Peer"] = state ? state.fswWan2Peer : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["igmpSnooping"] = state ? state.igmpSnooping : undefined;
             resourceInputs["ipSourceGuards"] = state ? state.ipSourceGuards : undefined;
             resourceInputs["l3Discovered"] = state ? state.l3Discovered : undefined;
             resourceInputs["maxAllowedTrunkMembers"] = state ? state.maxAllowedTrunkMembers : undefined;
             resourceInputs["mclagIgmpSnoopingAware"] = state ? state.mclagIgmpSnoopingAware : undefined;
+            resourceInputs["mgmtMode"] = state ? state.mgmtMode : undefined;
             resourceInputs["mirrors"] = state ? state.mirrors : undefined;
             resourceInputs["n8021xSettings"] = state ? state.n8021xSettings : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -332,9 +391,18 @@ export class Managedswitch extends pulumi.CustomResource {
             resourceInputs["poePreStandardDetection"] = state ? state.poePreStandardDetection : undefined;
             resourceInputs["ports"] = state ? state.ports : undefined;
             resourceInputs["preProvisioned"] = state ? state.preProvisioned : undefined;
+            resourceInputs["ptpProfile"] = state ? state.ptpProfile : undefined;
+            resourceInputs["ptpStatus"] = state ? state.ptpStatus : undefined;
+            resourceInputs["purdueLevel"] = state ? state.purdueLevel : undefined;
             resourceInputs["qosDropPolicy"] = state ? state.qosDropPolicy : undefined;
             resourceInputs["qosRedProbability"] = state ? state.qosRedProbability : undefined;
+            resourceInputs["radiusNasIp"] = state ? state.radiusNasIp : undefined;
+            resourceInputs["radiusNasIpOverride"] = state ? state.radiusNasIpOverride : undefined;
             resourceInputs["remoteLogs"] = state ? state.remoteLogs : undefined;
+            resourceInputs["routeOffload"] = state ? state.routeOffload : undefined;
+            resourceInputs["routeOffloadMclag"] = state ? state.routeOffloadMclag : undefined;
+            resourceInputs["routeOffloadRouters"] = state ? state.routeOffloadRouters : undefined;
+            resourceInputs["sn"] = state ? state.sn : undefined;
             resourceInputs["snmpCommunities"] = state ? state.snmpCommunities : undefined;
             resourceInputs["snmpSysinfo"] = state ? state.snmpSysinfo : undefined;
             resourceInputs["snmpTrapThreshold"] = state ? state.snmpTrapThreshold : undefined;
@@ -351,9 +419,11 @@ export class Managedswitch extends pulumi.CustomResource {
             resourceInputs["switchProfile"] = state ? state.switchProfile : undefined;
             resourceInputs["switchStpSettings"] = state ? state.switchStpSettings : undefined;
             resourceInputs["tdrSupported"] = state ? state.tdrSupported : undefined;
+            resourceInputs["tunnelDiscovered"] = state ? state.tunnelDiscovered : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["vlans"] = state ? state.vlans : undefined;
         } else {
             const args = argsOrState as ManagedswitchArgs | undefined;
             if ((!args || args.fswWan1Peer === undefined) && !opts.urn) {
@@ -367,6 +437,7 @@ export class Managedswitch extends pulumi.CustomResource {
             resourceInputs["delayedRestartTrigger"] = args ? args.delayedRestartTrigger : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["dhcpServerAccessList"] = args ? args.dhcpServerAccessList : undefined;
+            resourceInputs["dhcpSnoopingStaticClients"] = args ? args.dhcpSnoopingStaticClients : undefined;
             resourceInputs["directlyConnected"] = args ? args.directlyConnected : undefined;
             resourceInputs["dynamicCapability"] = args ? args.dynamicCapability : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
@@ -379,11 +450,13 @@ export class Managedswitch extends pulumi.CustomResource {
             resourceInputs["fswWan1Peer"] = args ? args.fswWan1Peer : undefined;
             resourceInputs["fswWan2Admin"] = args ? args.fswWan2Admin : undefined;
             resourceInputs["fswWan2Peer"] = args ? args.fswWan2Peer : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["igmpSnooping"] = args ? args.igmpSnooping : undefined;
             resourceInputs["ipSourceGuards"] = args ? args.ipSourceGuards : undefined;
             resourceInputs["l3Discovered"] = args ? args.l3Discovered : undefined;
             resourceInputs["maxAllowedTrunkMembers"] = args ? args.maxAllowedTrunkMembers : undefined;
             resourceInputs["mclagIgmpSnoopingAware"] = args ? args.mclagIgmpSnoopingAware : undefined;
+            resourceInputs["mgmtMode"] = args ? args.mgmtMode : undefined;
             resourceInputs["mirrors"] = args ? args.mirrors : undefined;
             resourceInputs["n8021xSettings"] = args ? args.n8021xSettings : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -397,9 +470,18 @@ export class Managedswitch extends pulumi.CustomResource {
             resourceInputs["poePreStandardDetection"] = args ? args.poePreStandardDetection : undefined;
             resourceInputs["ports"] = args ? args.ports : undefined;
             resourceInputs["preProvisioned"] = args ? args.preProvisioned : undefined;
+            resourceInputs["ptpProfile"] = args ? args.ptpProfile : undefined;
+            resourceInputs["ptpStatus"] = args ? args.ptpStatus : undefined;
+            resourceInputs["purdueLevel"] = args ? args.purdueLevel : undefined;
             resourceInputs["qosDropPolicy"] = args ? args.qosDropPolicy : undefined;
             resourceInputs["qosRedProbability"] = args ? args.qosRedProbability : undefined;
+            resourceInputs["radiusNasIp"] = args ? args.radiusNasIp : undefined;
+            resourceInputs["radiusNasIpOverride"] = args ? args.radiusNasIpOverride : undefined;
             resourceInputs["remoteLogs"] = args ? args.remoteLogs : undefined;
+            resourceInputs["routeOffload"] = args ? args.routeOffload : undefined;
+            resourceInputs["routeOffloadMclag"] = args ? args.routeOffloadMclag : undefined;
+            resourceInputs["routeOffloadRouters"] = args ? args.routeOffloadRouters : undefined;
+            resourceInputs["sn"] = args ? args.sn : undefined;
             resourceInputs["snmpCommunities"] = args ? args.snmpCommunities : undefined;
             resourceInputs["snmpSysinfo"] = args ? args.snmpSysinfo : undefined;
             resourceInputs["snmpTrapThreshold"] = args ? args.snmpTrapThreshold : undefined;
@@ -416,9 +498,11 @@ export class Managedswitch extends pulumi.CustomResource {
             resourceInputs["switchProfile"] = args ? args.switchProfile : undefined;
             resourceInputs["switchStpSettings"] = args ? args.switchStpSettings : undefined;
             resourceInputs["tdrSupported"] = args ? args.tdrSupported : undefined;
+            resourceInputs["tunnelDiscovered"] = args ? args.tunnelDiscovered : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["vlans"] = args ? args.vlans : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Managedswitch.__pulumiType, name, resourceInputs, opts);
@@ -449,6 +533,10 @@ export interface ManagedswitchState {
      * DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
      */
     dhcpServerAccessList?: pulumi.Input<string>;
+    /**
+     * Configure FortiSwitch DHCP snooping static clients. The structure of `dhcpSnoopingStaticClient` block is documented below.
+     */
+    dhcpSnoopingStaticClients?: pulumi.Input<pulumi.Input<inputs.switchcontroller.ManagedswitchDhcpSnoopingStaticClient>[]>;
     /**
      * Directly connected FortiSwitch.
      */
@@ -498,6 +586,10 @@ export interface ManagedswitchState {
      */
     fswWan2Peer?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
      */
     igmpSnooping?: pulumi.Input<inputs.switchcontroller.ManagedswitchIgmpSnooping>;
@@ -517,6 +609,10 @@ export interface ManagedswitchState {
      * Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
      */
     mclagIgmpSnoopingAware?: pulumi.Input<string>;
+    /**
+     * FortiLink management mode.
+     */
+    mgmtMode?: pulumi.Input<number>;
     /**
      * Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
      */
@@ -570,6 +666,18 @@ export interface ManagedswitchState {
      */
     preProvisioned?: pulumi.Input<number>;
     /**
+     * PTP profile configuration.
+     */
+    ptpProfile?: pulumi.Input<string>;
+    /**
+     * Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+     */
+    ptpStatus?: pulumi.Input<string>;
+    /**
+     * Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+     */
+    purdueLevel?: pulumi.Input<string>;
+    /**
      * Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
      */
     qosDropPolicy?: pulumi.Input<string>;
@@ -578,9 +686,33 @@ export interface ManagedswitchState {
      */
     qosRedProbability?: pulumi.Input<number>;
     /**
+     * NAS-IP address.
+     */
+    radiusNasIp?: pulumi.Input<string>;
+    /**
+     * Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+     */
+    radiusNasIpOverride?: pulumi.Input<string>;
+    /**
      * Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
      */
     remoteLogs?: pulumi.Input<pulumi.Input<inputs.switchcontroller.ManagedswitchRemoteLog>[]>;
+    /**
+     * Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+     */
+    routeOffload?: pulumi.Input<string>;
+    /**
+     * Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+     */
+    routeOffloadMclag?: pulumi.Input<string>;
+    /**
+     * Configure route offload MCLAG IP address. The structure of `routeOffloadRouter` block is documented below.
+     */
+    routeOffloadRouters?: pulumi.Input<pulumi.Input<inputs.switchcontroller.ManagedswitchRouteOffloadRouter>[]>;
+    /**
+     * Managed-switch serial number.
+     */
+    sn?: pulumi.Input<string>;
     /**
      * Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
      */
@@ -646,6 +778,10 @@ export interface ManagedswitchState {
      */
     tdrSupported?: pulumi.Input<string>;
     /**
+     * SOCKS tunnel management discovered.
+     */
+    tunnelDiscovered?: pulumi.Input<number>;
+    /**
      * Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
      */
     type?: pulumi.Input<string>;
@@ -657,6 +793,10 @@ export interface ManagedswitchState {
      * FortiSwitch version.
      */
     version?: pulumi.Input<number>;
+    /**
+     * Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+     */
+    vlans?: pulumi.Input<pulumi.Input<inputs.switchcontroller.ManagedswitchVlan>[]>;
 }
 
 /**
@@ -683,6 +823,10 @@ export interface ManagedswitchArgs {
      * DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
      */
     dhcpServerAccessList?: pulumi.Input<string>;
+    /**
+     * Configure FortiSwitch DHCP snooping static clients. The structure of `dhcpSnoopingStaticClient` block is documented below.
+     */
+    dhcpSnoopingStaticClients?: pulumi.Input<pulumi.Input<inputs.switchcontroller.ManagedswitchDhcpSnoopingStaticClient>[]>;
     /**
      * Directly connected FortiSwitch.
      */
@@ -732,6 +876,10 @@ export interface ManagedswitchArgs {
      */
     fswWan2Peer?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
      */
     igmpSnooping?: pulumi.Input<inputs.switchcontroller.ManagedswitchIgmpSnooping>;
@@ -751,6 +899,10 @@ export interface ManagedswitchArgs {
      * Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
      */
     mclagIgmpSnoopingAware?: pulumi.Input<string>;
+    /**
+     * FortiLink management mode.
+     */
+    mgmtMode?: pulumi.Input<number>;
     /**
      * Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
      */
@@ -804,6 +956,18 @@ export interface ManagedswitchArgs {
      */
     preProvisioned?: pulumi.Input<number>;
     /**
+     * PTP profile configuration.
+     */
+    ptpProfile?: pulumi.Input<string>;
+    /**
+     * Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
+     */
+    ptpStatus?: pulumi.Input<string>;
+    /**
+     * Purdue Level of this FortiSwitch. Valid values: `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `5.5`.
+     */
+    purdueLevel?: pulumi.Input<string>;
+    /**
      * Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
      */
     qosDropPolicy?: pulumi.Input<string>;
@@ -812,9 +976,33 @@ export interface ManagedswitchArgs {
      */
     qosRedProbability?: pulumi.Input<number>;
     /**
+     * NAS-IP address.
+     */
+    radiusNasIp?: pulumi.Input<string>;
+    /**
+     * Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+     */
+    radiusNasIpOverride?: pulumi.Input<string>;
+    /**
      * Configure logging by FortiSwitch device to a remote syslog server. The structure of `remoteLog` block is documented below.
      */
     remoteLogs?: pulumi.Input<pulumi.Input<inputs.switchcontroller.ManagedswitchRemoteLog>[]>;
+    /**
+     * Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
+     */
+    routeOffload?: pulumi.Input<string>;
+    /**
+     * Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
+     */
+    routeOffloadMclag?: pulumi.Input<string>;
+    /**
+     * Configure route offload MCLAG IP address. The structure of `routeOffloadRouter` block is documented below.
+     */
+    routeOffloadRouters?: pulumi.Input<pulumi.Input<inputs.switchcontroller.ManagedswitchRouteOffloadRouter>[]>;
+    /**
+     * Managed-switch serial number.
+     */
+    sn?: pulumi.Input<string>;
     /**
      * Configuration method to edit Simple Network Management Protocol (SNMP) communities. The structure of `snmpCommunity` block is documented below.
      */
@@ -880,6 +1068,10 @@ export interface ManagedswitchArgs {
      */
     tdrSupported?: pulumi.Input<string>;
     /**
+     * SOCKS tunnel management discovered.
+     */
+    tunnelDiscovered?: pulumi.Input<number>;
+    /**
      * Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
      */
     type?: pulumi.Input<string>;
@@ -891,4 +1083,8 @@ export interface ManagedswitchArgs {
      * FortiSwitch version.
      */
     version?: pulumi.Input<number>;
+    /**
+     * Configure VLAN assignment priority. The structure of `vlan` block is documented below.
+     */
+    vlans?: pulumi.Input<pulumi.Input<inputs.switchcontroller.ManagedswitchVlan>[]>;
 }

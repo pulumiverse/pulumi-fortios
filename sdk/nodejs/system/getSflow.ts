@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -31,13 +33,17 @@ export interface GetSflowArgs {
  */
 export interface GetSflowResult {
     /**
-     * IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
+     * IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
      */
     readonly collectorIp: string;
     /**
      * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
      */
     readonly collectorPort: number;
+    /**
+     * sFlow collectors. The structure of `collectors` block is documented below.
+     */
+    readonly collectors: outputs.system.GetSflowCollector[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */

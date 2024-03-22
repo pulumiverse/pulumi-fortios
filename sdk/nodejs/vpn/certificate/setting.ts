@@ -156,6 +156,10 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly crlVerification!: pulumi.Output<outputs.vpn.certificate.SettingCrlVerification>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Specify outgoing interface to reach server.
      */
     public readonly interface!: pulumi.Output<string>;
@@ -172,11 +176,31 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly ocspOption!: pulumi.Output<string>;
     /**
-     * Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+     * Enable/disable receiving certificates using the OCSP.
      */
     public readonly ocspStatus!: pulumi.Output<string>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+     */
+    public readonly proxy!: pulumi.Output<string>;
+    /**
+     * Proxy server password.
+     */
+    public readonly proxyPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Proxy server port (1 - 65535, default = 8080).
+     */
+    public readonly proxyPort!: pulumi.Output<number>;
+    /**
+     * Proxy server user name.
+     */
+    public readonly proxyUsername!: pulumi.Output<string>;
+    /**
+     * Source IP address for dynamic AIA and OCSP queries.
+     */
+    public readonly sourceIp!: pulumi.Output<string>;
+    /**
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     public readonly sslMinProtoVersion!: pulumi.Output<string>;
     /**
@@ -235,11 +259,17 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["cnAllowMulti"] = state ? state.cnAllowMulti : undefined;
             resourceInputs["cnMatch"] = state ? state.cnMatch : undefined;
             resourceInputs["crlVerification"] = state ? state.crlVerification : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
             resourceInputs["ocspDefaultServer"] = state ? state.ocspDefaultServer : undefined;
             resourceInputs["ocspOption"] = state ? state.ocspOption : undefined;
             resourceInputs["ocspStatus"] = state ? state.ocspStatus : undefined;
+            resourceInputs["proxy"] = state ? state.proxy : undefined;
+            resourceInputs["proxyPassword"] = state ? state.proxyPassword : undefined;
+            resourceInputs["proxyPort"] = state ? state.proxyPort : undefined;
+            resourceInputs["proxyUsername"] = state ? state.proxyUsername : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
             resourceInputs["sslOcspSourceIp"] = state ? state.sslOcspSourceIp : undefined;
             resourceInputs["strictCrlCheck"] = state ? state.strictCrlCheck : undefined;
@@ -285,11 +315,17 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["cnAllowMulti"] = args ? args.cnAllowMulti : undefined;
             resourceInputs["cnMatch"] = args ? args.cnMatch : undefined;
             resourceInputs["crlVerification"] = args ? args.crlVerification : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
             resourceInputs["ocspDefaultServer"] = args ? args.ocspDefaultServer : undefined;
             resourceInputs["ocspOption"] = args ? args.ocspOption : undefined;
             resourceInputs["ocspStatus"] = args ? args.ocspStatus : undefined;
+            resourceInputs["proxy"] = args ? args.proxy : undefined;
+            resourceInputs["proxyPassword"] = args ? args.proxyPassword : undefined;
+            resourceInputs["proxyPort"] = args ? args.proxyPort : undefined;
+            resourceInputs["proxyUsername"] = args ? args.proxyUsername : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
             resourceInputs["sslOcspSourceIp"] = args ? args.sslOcspSourceIp : undefined;
             resourceInputs["strictCrlCheck"] = args ? args.strictCrlCheck : undefined;
@@ -380,6 +416,10 @@ export interface SettingState {
      */
     crlVerification?: pulumi.Input<inputs.vpn.certificate.SettingCrlVerification>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Specify outgoing interface to reach server.
      */
     interface?: pulumi.Input<string>;
@@ -396,11 +436,31 @@ export interface SettingState {
      */
     ocspOption?: pulumi.Input<string>;
     /**
-     * Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+     * Enable/disable receiving certificates using the OCSP.
      */
     ocspStatus?: pulumi.Input<string>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+     */
+    proxy?: pulumi.Input<string>;
+    /**
+     * Proxy server password.
+     */
+    proxyPassword?: pulumi.Input<string>;
+    /**
+     * Proxy server port (1 - 65535, default = 8080).
+     */
+    proxyPort?: pulumi.Input<number>;
+    /**
+     * Proxy server user name.
+     */
+    proxyUsername?: pulumi.Input<string>;
+    /**
+     * Source IP address for dynamic AIA and OCSP queries.
+     */
+    sourceIp?: pulumi.Input<string>;
+    /**
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     sslMinProtoVersion?: pulumi.Input<string>;
     /**
@@ -506,6 +566,10 @@ export interface SettingArgs {
      */
     crlVerification?: pulumi.Input<inputs.vpn.certificate.SettingCrlVerification>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Specify outgoing interface to reach server.
      */
     interface?: pulumi.Input<string>;
@@ -522,11 +586,31 @@ export interface SettingArgs {
      */
     ocspOption?: pulumi.Input<string>;
     /**
-     * Enable/disable receiving certificates using the OCSP. Valid values: `enable`, `disable`.
+     * Enable/disable receiving certificates using the OCSP.
      */
     ocspStatus?: pulumi.Input<string>;
     /**
-     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+     * Proxy server FQDN or IP for OCSP/CA queries during certificate verification.
+     */
+    proxy?: pulumi.Input<string>;
+    /**
+     * Proxy server password.
+     */
+    proxyPassword?: pulumi.Input<string>;
+    /**
+     * Proxy server port (1 - 65535, default = 8080).
+     */
+    proxyPort?: pulumi.Input<number>;
+    /**
+     * Proxy server user name.
+     */
+    proxyUsername?: pulumi.Input<string>;
+    /**
+     * Source IP address for dynamic AIA and OCSP queries.
+     */
+    sourceIp?: pulumi.Input<string>;
+    /**
+     * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     sslMinProtoVersion?: pulumi.Input<string>;
     /**

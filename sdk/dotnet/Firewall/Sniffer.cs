@@ -100,6 +100,18 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> AvProfileStatus { get; private set; } = null!;
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Output("casbProfile")]
+        public Output<string> CasbProfile { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable CASB profile. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("casbProfileStatus")]
+        public Output<string> CasbProfileStatus { get; private set; } = null!;
+
+        /// <summary>
         /// Name of an existing DLP profile.
         /// </summary>
         [Output("dlpProfile")]
@@ -166,6 +178,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<int> Fosid { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         /// </summary>
         [Output("host")]
@@ -220,7 +238,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> Logtraffic { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum packet count (1 - 1000000, default = 10000).
+        /// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
         /// </summary>
         [Output("maxPacketCount")]
         public Output<int> MaxPacketCount { get; private set; } = null!;
@@ -266,6 +284,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        /// </summary>
+        [Output("uuid")]
+        public Output<string> Uuid { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -375,6 +399,18 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? AvProfileStatus { get; set; }
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Input("casbProfile")]
+        public Input<string>? CasbProfile { get; set; }
+
+        /// <summary>
+        /// Enable/disable CASB profile. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("casbProfileStatus")]
+        public Input<string>? CasbProfileStatus { get; set; }
+
+        /// <summary>
         /// Name of an existing DLP profile.
         /// </summary>
         [Input("dlpProfile")]
@@ -441,6 +477,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         /// </summary>
         [Input("host")]
@@ -501,7 +543,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Logtraffic { get; set; }
 
         /// <summary>
-        /// Maximum packet count (1 - 1000000, default = 10000).
+        /// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
         /// </summary>
         [Input("maxPacketCount")]
         public Input<int>? MaxPacketCount { get; set; }
@@ -547,6 +589,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        /// </summary>
+        [Input("uuid")]
+        public Input<string>? Uuid { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -617,6 +665,18 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? AvProfileStatus { get; set; }
 
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        [Input("casbProfile")]
+        public Input<string>? CasbProfile { get; set; }
+
+        /// <summary>
+        /// Enable/disable CASB profile. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("casbProfileStatus")]
+        public Input<string>? CasbProfileStatus { get; set; }
+
+        /// <summary>
         /// Name of an existing DLP profile.
         /// </summary>
         [Input("dlpProfile")]
@@ -683,6 +743,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         /// </summary>
         [Input("host")]
@@ -743,7 +809,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Logtraffic { get; set; }
 
         /// <summary>
-        /// Maximum packet count (1 - 1000000, default = 10000).
+        /// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
         /// </summary>
         [Input("maxPacketCount")]
         public Input<int>? MaxPacketCount { get; set; }
@@ -789,6 +855,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        /// </summary>
+        [Input("uuid")]
+        public Input<string>? Uuid { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

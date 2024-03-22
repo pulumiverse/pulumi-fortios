@@ -98,6 +98,12 @@ namespace Pulumiverse.Fortios.Log.Syslogd.V3
         public Output<string> Format { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Specify outgoing interface to reach server.
         /// </summary>
         [Output("interface")]
@@ -146,7 +152,7 @@ namespace Pulumiverse.Fortios.Log.Syslogd.V3
         public Output<string> SourceIp { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Output("sslMinProtoVersion")]
         public Output<string> SslMinProtoVersion { get; private set; } = null!;
@@ -259,6 +265,12 @@ namespace Pulumiverse.Fortios.Log.Syslogd.V3
         public Input<string>? Format { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Specify outgoing interface to reach server.
         /// </summary>
         [Input("interface")]
@@ -307,7 +319,7 @@ namespace Pulumiverse.Fortios.Log.Syslogd.V3
         public Input<string>? SourceIp { get; set; }
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Input("sslMinProtoVersion")]
         public Input<string>? SslMinProtoVersion { get; set; }
@@ -381,6 +393,12 @@ namespace Pulumiverse.Fortios.Log.Syslogd.V3
         public Input<string>? Format { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Specify outgoing interface to reach server.
         /// </summary>
         [Input("interface")]
@@ -429,7 +447,7 @@ namespace Pulumiverse.Fortios.Log.Syslogd.V3
         public Input<string>? SourceIp { get; set; }
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Input("sslMinProtoVersion")]
         public Input<string>? SslMinProtoVersion { get; set; }

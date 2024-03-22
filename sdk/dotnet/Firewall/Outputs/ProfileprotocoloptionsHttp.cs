@@ -23,11 +23,11 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly int? BlockPageStatusCode;
         /// <summary>
-        /// Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+        /// Amount of data to send in a transmission for client comforting. On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
         /// </summary>
         public readonly int? ComfortAmount;
         /// <summary>
-        /// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+        /// Interval between successive transmissions of data for client comforting (seconds).
         /// </summary>
         public readonly int? ComfortInterval;
         /// <summary>
@@ -55,7 +55,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? Options;
         /// <summary>
-        /// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        /// Maximum in-memory file size that can be scanned (MB). On FortiOS versions 6.2.0-7.2.3: 1 - 383 MB, default = 10.
         /// </summary>
         public readonly int? OversizeLimit;
         /// <summary>
@@ -91,7 +91,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? Status;
         /// <summary>
-        /// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+        /// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
         /// </summary>
         public readonly int? StreamBasedUncompressedLimit;
         /// <summary>
@@ -107,15 +107,15 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? SwitchingProtocols;
         /// <summary>
-        /// Maximum dynamic TCP window size (default = 8MB).
+        /// Maximum dynamic TCP window size.
         /// </summary>
         public readonly int? TcpWindowMaximum;
         /// <summary>
-        /// Minimum dynamic TCP window size (default = 128KB).
+        /// Minimum dynamic TCP window size.
         /// </summary>
         public readonly int? TcpWindowMinimum;
         /// <summary>
-        /// Set TCP static window size (default = 256KB).
+        /// Set TCP static window size.
         /// </summary>
         public readonly int? TcpWindowSize;
         /// <summary>
@@ -131,9 +131,13 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly int? UncompressedNestLimit;
         /// <summary>
-        /// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        /// Maximum in-memory uncompressed file size that can be scanned (MB).
         /// </summary>
         public readonly int? UncompressedOversizeLimit;
+        /// <summary>
+        /// Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
+        /// </summary>
+        public readonly string? UnknownContentEncoding;
         /// <summary>
         /// How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: `reject`, `tunnel`, `best-effort`.
         /// </summary>
@@ -205,6 +209,8 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
 
             int? uncompressedOversizeLimit,
 
+            string? unknownContentEncoding,
+
             string? unknownHttpVersion,
 
             string? verifyDnsForPolicyMatching)
@@ -239,6 +245,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
             TunnelNonHttp = tunnelNonHttp;
             UncompressedNestLimit = uncompressedNestLimit;
             UncompressedOversizeLimit = uncompressedOversizeLimit;
+            UnknownContentEncoding = unknownContentEncoding;
             UnknownHttpVersion = unknownHttpVersion;
             VerifyDnsForPolicyMatching = verifyDnsForPolicyMatching;
         }

@@ -82,11 +82,13 @@ type Externalresource struct {
 	RefreshRate pulumi.IntOutput `pulumi:"refreshRate"`
 	// URI of external resource.
 	Resource pulumi.StringOutput `pulumi:"resource"`
+	// Certificate verification option. Valid values: `none`, `basic`, `full`.
+	ServerIdentityCheck pulumi.StringOutput `pulumi:"serverIdentityCheck"`
 	// Source IPv4 address used to communicate with server.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Enable/disable user resource. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+	// User resource type.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// External resource update method. Valid values: `feed`, `push`.
 	UpdateMethod pulumi.StringOutput `pulumi:"updateMethod"`
@@ -159,11 +161,13 @@ type externalresourceState struct {
 	RefreshRate *int `pulumi:"refreshRate"`
 	// URI of external resource.
 	Resource *string `pulumi:"resource"`
+	// Certificate verification option. Valid values: `none`, `basic`, `full`.
+	ServerIdentityCheck *string `pulumi:"serverIdentityCheck"`
 	// Source IPv4 address used to communicate with server.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Enable/disable user resource. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
-	// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+	// User resource type.
 	Type *string `pulumi:"type"`
 	// External resource update method. Valid values: `feed`, `push`.
 	UpdateMethod *string `pulumi:"updateMethod"`
@@ -194,11 +198,13 @@ type ExternalresourceState struct {
 	RefreshRate pulumi.IntPtrInput
 	// URI of external resource.
 	Resource pulumi.StringPtrInput
+	// Certificate verification option. Valid values: `none`, `basic`, `full`.
+	ServerIdentityCheck pulumi.StringPtrInput
 	// Source IPv4 address used to communicate with server.
 	SourceIp pulumi.StringPtrInput
 	// Enable/disable user resource. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
-	// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+	// User resource type.
 	Type pulumi.StringPtrInput
 	// External resource update method. Valid values: `feed`, `push`.
 	UpdateMethod pulumi.StringPtrInput
@@ -233,11 +239,13 @@ type externalresourceArgs struct {
 	RefreshRate int `pulumi:"refreshRate"`
 	// URI of external resource.
 	Resource string `pulumi:"resource"`
+	// Certificate verification option. Valid values: `none`, `basic`, `full`.
+	ServerIdentityCheck *string `pulumi:"serverIdentityCheck"`
 	// Source IPv4 address used to communicate with server.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Enable/disable user resource. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
-	// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+	// User resource type.
 	Type *string `pulumi:"type"`
 	// External resource update method. Valid values: `feed`, `push`.
 	UpdateMethod *string `pulumi:"updateMethod"`
@@ -269,11 +277,13 @@ type ExternalresourceArgs struct {
 	RefreshRate pulumi.IntInput
 	// URI of external resource.
 	Resource pulumi.StringInput
+	// Certificate verification option. Valid values: `none`, `basic`, `full`.
+	ServerIdentityCheck pulumi.StringPtrInput
 	// Source IPv4 address used to communicate with server.
 	SourceIp pulumi.StringPtrInput
 	// Enable/disable user resource. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
-	// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+	// User resource type.
 	Type pulumi.StringPtrInput
 	// External resource update method. Valid values: `feed`, `push`.
 	UpdateMethod pulumi.StringPtrInput
@@ -414,6 +424,11 @@ func (o ExternalresourceOutput) Resource() pulumi.StringOutput {
 	return o.ApplyT(func(v *Externalresource) pulumi.StringOutput { return v.Resource }).(pulumi.StringOutput)
 }
 
+// Certificate verification option. Valid values: `none`, `basic`, `full`.
+func (o ExternalresourceOutput) ServerIdentityCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *Externalresource) pulumi.StringOutput { return v.ServerIdentityCheck }).(pulumi.StringOutput)
+}
+
 // Source IPv4 address used to communicate with server.
 func (o ExternalresourceOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Externalresource) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
@@ -424,7 +439,7 @@ func (o ExternalresourceOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Externalresource) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+// User resource type.
 func (o ExternalresourceOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Externalresource) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

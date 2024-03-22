@@ -127,6 +127,10 @@ export class Rip extends pulumi.CustomResource {
      */
     public readonly garbageTimer!: pulumi.Output<number>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * RIP interface configuration. The structure of `interface` block is documented below.
      */
     public readonly interfaces!: pulumi.Output<outputs.router.RipInterface[] | undefined>;
@@ -194,6 +198,7 @@ export class Rip extends pulumi.CustomResource {
             resourceInputs["distributeLists"] = state ? state.distributeLists : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["garbageTimer"] = state ? state.garbageTimer : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interfaces"] = state ? state.interfaces : undefined;
             resourceInputs["maxOutMetric"] = state ? state.maxOutMetric : undefined;
             resourceInputs["neighbors"] = state ? state.neighbors : undefined;
@@ -214,6 +219,7 @@ export class Rip extends pulumi.CustomResource {
             resourceInputs["distributeLists"] = args ? args.distributeLists : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["garbageTimer"] = args ? args.garbageTimer : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interfaces"] = args ? args.interfaces : undefined;
             resourceInputs["maxOutMetric"] = args ? args.maxOutMetric : undefined;
             resourceInputs["neighbors"] = args ? args.neighbors : undefined;
@@ -260,6 +266,10 @@ export interface RipState {
      * Garbage timer in seconds.
      */
     garbageTimer?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * RIP interface configuration. The structure of `interface` block is documented below.
      */
@@ -338,6 +348,10 @@ export interface RipArgs {
      * Garbage timer in seconds.
      */
     garbageTimer?: pulumi.Input<number>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * RIP interface configuration. The structure of `interface` block is documented below.
      */

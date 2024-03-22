@@ -61,6 +61,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         [Input("pingServStatus")]
         public Input<int>? PingServStatus { get; set; }
 
+        /// <summary>
+        /// DHCP relay IP address.
+        /// </summary>
+        [Input("secipRelayIp")]
+        public Input<string>? SecipRelayIp { get; set; }
+
         public InterfaceSecondaryipArgs()
         {
         }

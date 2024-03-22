@@ -83,7 +83,7 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly reportSource!: pulumi.Output<string>;
     /**
-     * Number of items to populate (100 - 4000).
+     * Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
      */
     public readonly topN!: pulumi.Output<number>;
     /**
@@ -145,7 +145,7 @@ export interface SettingState {
      */
     reportSource?: pulumi.Input<string>;
     /**
-     * Number of items to populate (100 - 4000).
+     * Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
      */
     topN?: pulumi.Input<number>;
     /**
@@ -175,7 +175,7 @@ export interface SettingArgs {
      */
     reportSource?: pulumi.Input<string>;
     /**
-     * Number of items to populate (100 - 4000).
+     * Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
      */
     topN?: pulumi.Input<number>;
     /**

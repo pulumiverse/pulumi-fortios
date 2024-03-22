@@ -25,6 +25,7 @@ class Policy46Args:
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -52,6 +53,7 @@ class Policy46Args:
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fixedport: Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ippool: Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Record logs when a session starts and ends. Valid values: `enable`, `disable`.
@@ -82,6 +84,8 @@ class Policy46Args:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fixedport is not None:
             pulumi.set(__self__, "fixedport", fixedport)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ippool is not None:
             pulumi.set(__self__, "ippool", ippool)
         if logtraffic is not None:
@@ -222,6 +226,18 @@ class Policy46Args:
     @fixedport.setter
     def fixedport(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fixedport", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -425,6 +441,7 @@ class _Policy46State:
                  dstintf: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -452,6 +469,7 @@ class _Policy46State:
         :param pulumi.Input[str] dstintf: Destination interface name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fixedport: Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ippool: Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Record logs when a session starts and ends. Valid values: `enable`, `disable`.
@@ -484,6 +502,8 @@ class _Policy46State:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fixedport is not None:
             pulumi.set(__self__, "fixedport", fixedport)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ippool is not None:
             pulumi.set(__self__, "ippool", ippool)
         if logtraffic is not None:
@@ -594,6 +614,18 @@ class _Policy46State:
     @fixedport.setter
     def fixedport(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fixedport", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -835,6 +867,7 @@ class Policy46(pulumi.CustomResource):
                  dstintf: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -928,6 +961,7 @@ class Policy46(pulumi.CustomResource):
         :param pulumi.Input[str] dstintf: Destination interface name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fixedport: Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ippool: Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Record logs when a session starts and ends. Valid values: `enable`, `disable`.
@@ -1040,6 +1074,7 @@ class Policy46(pulumi.CustomResource):
                  dstintf: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -1078,6 +1113,7 @@ class Policy46(pulumi.CustomResource):
             __props__.__dict__["dstintf"] = dstintf
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fixedport"] = fixedport
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ippool"] = ippool
             __props__.__dict__["logtraffic"] = logtraffic
             __props__.__dict__["logtraffic_start"] = logtraffic_start
@@ -1119,6 +1155,7 @@ class Policy46(pulumi.CustomResource):
             dstintf: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fixedport: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ippool: Optional[pulumi.Input[str]] = None,
             logtraffic: Optional[pulumi.Input[str]] = None,
             logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -1151,6 +1188,7 @@ class Policy46(pulumi.CustomResource):
         :param pulumi.Input[str] dstintf: Destination interface name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fixedport: Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ippool: Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable/disable traffic logging for this policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Record logs when a session starts and ends. Valid values: `enable`, `disable`.
@@ -1181,6 +1219,7 @@ class Policy46(pulumi.CustomResource):
         __props__.__dict__["dstintf"] = dstintf
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fixedport"] = fixedport
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ippool"] = ippool
         __props__.__dict__["logtraffic"] = logtraffic
         __props__.__dict__["logtraffic_start"] = logtraffic_start
@@ -1249,6 +1288,14 @@ class Policy46(pulumi.CustomResource):
         Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "fixedport")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

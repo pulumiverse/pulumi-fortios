@@ -116,6 +116,10 @@ export class Admin extends pulumi.CustomResource {
      */
     public readonly fortitoken!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable guest authentication. Valid values: `disable`, `enable`.
      */
     public readonly guestAuth!: pulumi.Output<string>;
@@ -204,7 +208,7 @@ export class Admin extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Admin user password.
+     * Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
@@ -353,6 +357,7 @@ export class Admin extends pulumi.CustomResource {
             resourceInputs["emailTo"] = state ? state.emailTo : undefined;
             resourceInputs["forcePasswordChange"] = state ? state.forcePasswordChange : undefined;
             resourceInputs["fortitoken"] = state ? state.fortitoken : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["guestAuth"] = state ? state.guestAuth : undefined;
             resourceInputs["guestLang"] = state ? state.guestLang : undefined;
             resourceInputs["guestUsergroups"] = state ? state.guestUsergroups : undefined;
@@ -417,6 +422,7 @@ export class Admin extends pulumi.CustomResource {
             resourceInputs["emailTo"] = args ? args.emailTo : undefined;
             resourceInputs["forcePasswordChange"] = args ? args.forcePasswordChange : undefined;
             resourceInputs["fortitoken"] = args ? args.fortitoken : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["guestAuth"] = args ? args.guestAuth : undefined;
             resourceInputs["guestLang"] = args ? args.guestLang : undefined;
             resourceInputs["guestUsergroups"] = args ? args.guestUsergroups : undefined;
@@ -516,6 +522,10 @@ export interface AdminState {
      */
     fortitoken?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable guest authentication. Valid values: `disable`, `enable`.
      */
     guestAuth?: pulumi.Input<string>;
@@ -604,7 +614,7 @@ export interface AdminState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Admin user password.
+     * Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
      */
     password?: pulumi.Input<string>;
     /**
@@ -770,6 +780,10 @@ export interface AdminArgs {
      */
     fortitoken?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable guest authentication. Valid values: `disable`, `enable`.
      */
     guestAuth?: pulumi.Input<string>;
@@ -858,7 +872,7 @@ export interface AdminArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Admin user password.
+     * Admin user password. :warning: **Due security reason and API's design, you need to use Generic resource with the monitor API [/api/v2/monitor/system/change-password/select](https://fndn.fortinet.net/index.php?/fortiapi/1-fortios/2271/1/system) to update the password for existing admin user. `Create` and `Delete` operation will works using this resource.**
      */
     password?: pulumi.Input<string>;
     /**

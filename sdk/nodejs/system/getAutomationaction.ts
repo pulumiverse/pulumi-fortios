@@ -153,6 +153,10 @@ export interface GetAutomationactionResult {
      */
     readonly executeSecurityFabric: string;
     /**
+     * Enable/disable use of your FortiCare email address as the email-to address.
+     */
+    readonly forticareEmail: string;
+    /**
      * Google Cloud function name.
      */
     readonly gcpFunction: string;

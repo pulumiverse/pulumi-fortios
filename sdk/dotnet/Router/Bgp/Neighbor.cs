@@ -49,10 +49,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> Activate6 { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("activateEvpn")]
+        public Output<string> ActivateEvpn { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("activateVpnv4")]
         public Output<string> ActivateVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("activateVpnv6")]
+        public Output<string> ActivateVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
@@ -73,6 +85,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> AdditionalPathVpnv4 { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+        /// </summary>
+        [Output("additionalPathVpnv6")]
+        public Output<string> AdditionalPathVpnv6 { get; private set; } = null!;
+
+        /// <summary>
         /// Number of IPv4 additional paths that can be advertised to this neighbor.
         /// </summary>
         [Output("advAdditionalPath")]
@@ -89,6 +107,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Output("advAdditionalPathVpnv4")]
         public Output<int> AdvAdditionalPathVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Number of VPNv6 additional paths that can be advertised to this neighbor.
+        /// </summary>
+        [Output("advAdditionalPathVpnv6")]
+        public Output<int> AdvAdditionalPathVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// Minimum interval (sec) between sending updates.
@@ -121,10 +145,40 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> AllowasInEnable6 { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("allowasInEnableEvpn")]
+        public Output<string> AllowasInEnableEvpn { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("allowasInEnableVpnv4")]
+        public Output<string> AllowasInEnableVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("allowasInEnableVpnv6")]
+        public Output<string> AllowasInEnableVpnv6 { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+        /// </summary>
+        [Output("allowasInEvpn")]
+        public Output<int> AllowasInEvpn { get; private set; } = null!;
+
+        /// <summary>
         /// The maximum number of occurrence of my AS number allowed for VPNv4 route.
         /// </summary>
         [Output("allowasInVpnv4")]
         public Output<int> AllowasInVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum number of occurrence of my AS number allowed for VPNv6 route.
+        /// </summary>
+        [Output("allowasInVpnv6")]
+        public Output<int> AllowasInVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
@@ -155,6 +209,18 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Output("attributeUnchangedVpnv4")]
         public Output<string> AttributeUnchangedVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+        /// </summary>
+        [Output("attributeUnchangedVpnv6")]
+        public Output<string> AttributeUnchangedVpnv6 { get; private set; } = null!;
+
+        /// <summary>
+        /// Key-chain name for TCP authentication options.
+        /// </summary>
+        [Output("authOptions")]
+        public Output<string> AuthOptions { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
@@ -193,10 +259,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> CapabilityGracefulRestart6 { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("capabilityGracefulRestartEvpn")]
+        public Output<string> CapabilityGracefulRestartEvpn { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("capabilityGracefulRestartVpnv4")]
         public Output<string> CapabilityGracefulRestartVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("capabilityGracefulRestartVpnv6")]
+        public Output<string> CapabilityGracefulRestartVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
@@ -271,6 +349,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> DistributeListInVpnv4 { get; private set; } = null!;
 
         /// <summary>
+        /// Filter for VPNv6 updates from this neighbor.
+        /// </summary>
+        [Output("distributeListInVpnv6")]
+        public Output<string> DistributeListInVpnv6 { get; private set; } = null!;
+
+        /// <summary>
         /// Filter for IPv4 updates to this neighbor.
         /// </summary>
         [Output("distributeListOut")]
@@ -287,6 +371,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Output("distributeListOutVpnv4")]
         public Output<string> DistributeListOutVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Filter for VPNv6 updates to this neighbor.
+        /// </summary>
+        [Output("distributeListOutVpnv6")]
+        public Output<string> DistributeListOutVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
@@ -325,6 +415,18 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> FilterListIn6 { get; private set; } = null!;
 
         /// <summary>
+        /// BGP filter for VPNv4 inbound routes.
+        /// </summary>
+        [Output("filterListInVpnv4")]
+        public Output<string> FilterListInVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// BGP filter for VPNv6 inbound routes.
+        /// </summary>
+        [Output("filterListInVpnv6")]
+        public Output<string> FilterListInVpnv6 { get; private set; } = null!;
+
+        /// <summary>
         /// BGP filter for IPv4 outbound routes.
         /// </summary>
         [Output("filterListOut")]
@@ -335,6 +437,24 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Output("filterListOut6")]
         public Output<string> FilterListOut6 { get; private set; } = null!;
+
+        /// <summary>
+        /// BGP filter for VPNv4 outbound routes.
+        /// </summary>
+        [Output("filterListOutVpnv4")]
+        public Output<string> FilterListOutVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// BGP filter for VPNv6 outbound routes.
+        /// </summary>
+        [Output("filterListOutVpnv6")]
+        public Output<string> FilterListOutVpnv6 { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Interval (sec) before peer considered dead.
@@ -397,6 +517,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<int> MaximumPrefix6 { get; private set; } = null!;
 
         /// <summary>
+        /// Maximum number of L2VPN EVPN prefixes to accept from this peer.
+        /// </summary>
+        [Output("maximumPrefixEvpn")]
+        public Output<int> MaximumPrefixEvpn { get; private set; } = null!;
+
+        /// <summary>
         /// Maximum IPv4 prefix threshold value (1 - 100 percent).
         /// </summary>
         [Output("maximumPrefixThreshold")]
@@ -409,16 +535,34 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<int> MaximumPrefixThreshold6 { get; private set; } = null!;
 
         /// <summary>
+        /// Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+        /// </summary>
+        [Output("maximumPrefixThresholdEvpn")]
+        public Output<int> MaximumPrefixThresholdEvpn { get; private set; } = null!;
+
+        /// <summary>
         /// Maximum VPNv4 prefix threshold value (1 - 100 percent).
         /// </summary>
         [Output("maximumPrefixThresholdVpnv4")]
         public Output<int> MaximumPrefixThresholdVpnv4 { get; private set; } = null!;
 
         /// <summary>
+        /// Maximum VPNv6 prefix threshold value (1 - 100 percent).
+        /// </summary>
+        [Output("maximumPrefixThresholdVpnv6")]
+        public Output<int> MaximumPrefixThresholdVpnv6 { get; private set; } = null!;
+
+        /// <summary>
         /// Maximum number of VPNv4 prefixes to accept from this peer.
         /// </summary>
         [Output("maximumPrefixVpnv4")]
         public Output<int> MaximumPrefixVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum number of VPNv6 prefixes to accept from this peer.
+        /// </summary>
+        [Output("maximumPrefixVpnv6")]
+        public Output<int> MaximumPrefixVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
@@ -433,10 +577,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> MaximumPrefixWarningOnly6 { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("maximumPrefixWarningOnlyEvpn")]
+        public Output<string> MaximumPrefixWarningOnlyEvpn { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("maximumPrefixWarningOnlyVpnv4")]
         public Output<string> MaximumPrefixWarningOnlyVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("maximumPrefixWarningOnlyVpnv6")]
+        public Output<string> MaximumPrefixWarningOnlyVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
@@ -467,6 +623,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Output("nextHopSelfVpnv4")]
         public Output<string> NextHopSelfVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("nextHopSelfVpnv6")]
+        public Output<string> NextHopSelfVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
@@ -505,6 +667,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> PrefixListInVpnv4 { get; private set; } = null!;
 
         /// <summary>
+        /// Inbound filter for VPNv6 updates from this neighbor.
+        /// </summary>
+        [Output("prefixListInVpnv6")]
+        public Output<string> PrefixListInVpnv6 { get; private set; } = null!;
+
+        /// <summary>
         /// IPv4 Outbound filter for updates to this neighbor.
         /// </summary>
         [Output("prefixListOut")]
@@ -521,6 +689,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Output("prefixListOutVpnv4")]
         public Output<string> PrefixListOutVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Outbound filter for VPNv6 updates to this neighbor.
+        /// </summary>
+        [Output("prefixListOutVpnv6")]
+        public Output<string> PrefixListOutVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// AS number of neighbor.
@@ -541,10 +715,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> RemovePrivateAs6 { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("removePrivateAsEvpn")]
+        public Output<string> RemovePrivateAsEvpn { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("removePrivateAsVpnv4")]
         public Output<string> RemovePrivateAsVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("removePrivateAsVpnv6")]
+        public Output<string> RemovePrivateAsVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// Graceful restart delay time (sec, 0 = global default).
@@ -571,10 +757,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> RouteMapIn6 { get; private set; } = null!;
 
         /// <summary>
+        /// L2VPN EVPN inbound route map filter.
+        /// </summary>
+        [Output("routeMapInEvpn")]
+        public Output<string> RouteMapInEvpn { get; private set; } = null!;
+
+        /// <summary>
         /// VPNv4 inbound route map filter.
         /// </summary>
         [Output("routeMapInVpnv4")]
         public Output<string> RouteMapInVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// VPNv6 inbound route map filter.
+        /// </summary>
+        [Output("routeMapInVpnv6")]
+        public Output<string> RouteMapInVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// IPv4 Outbound route map filter.
@@ -595,6 +793,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> RouteMapOut6Preferable { get; private set; } = null!;
 
         /// <summary>
+        /// L2VPN EVPN outbound route map filter.
+        /// </summary>
+        [Output("routeMapOutEvpn")]
+        public Output<string> RouteMapOutEvpn { get; private set; } = null!;
+
+        /// <summary>
         /// IPv4 outbound route map filter if the peer is preferred.
         /// </summary>
         [Output("routeMapOutPreferable")]
@@ -613,6 +817,18 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> RouteMapOutVpnv4Preferable { get; private set; } = null!;
 
         /// <summary>
+        /// VPNv6 outbound route map filter.
+        /// </summary>
+        [Output("routeMapOutVpnv6")]
+        public Output<string> RouteMapOutVpnv6 { get; private set; } = null!;
+
+        /// <summary>
+        /// VPNv6 outbound route map filter if this neighbor is preferred.
+        /// </summary>
+        [Output("routeMapOutVpnv6Preferable")]
+        public Output<string> RouteMapOutVpnv6Preferable { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("routeReflectorClient")]
@@ -625,10 +841,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> RouteReflectorClient6 { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("routeReflectorClientEvpn")]
+        public Output<string> RouteReflectorClientEvpn { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("routeReflectorClientVpnv4")]
         public Output<string> RouteReflectorClientVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("routeReflectorClientVpnv6")]
+        public Output<string> RouteReflectorClientVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
@@ -643,10 +871,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> RouteServerClient6 { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("routeServerClientEvpn")]
+        public Output<string> RouteServerClientEvpn { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("routeServerClientVpnv4")]
         public Output<string> RouteServerClientVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("routeServerClientVpnv6")]
+        public Output<string> RouteServerClientVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
@@ -661,10 +901,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> SendCommunity6 { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
+        /// </summary>
+        [Output("sendCommunityEvpn")]
+        public Output<string> SendCommunityEvpn { get; private set; } = null!;
+
+        /// <summary>
         /// Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
         /// </summary>
         [Output("sendCommunityVpnv4")]
         public Output<string> SendCommunityVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+        /// </summary>
+        [Output("sendCommunityVpnv6")]
+        public Output<string> SendCommunityVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
@@ -685,10 +937,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Output<string> SoftReconfiguration6 { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("softReconfigurationEvpn")]
+        public Output<string> SoftReconfigurationEvpn { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("softReconfigurationVpnv4")]
         public Output<string> SoftReconfigurationVpnv4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("softReconfigurationVpnv6")]
+        public Output<string> SoftReconfigurationVpnv6 { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
@@ -796,10 +1060,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? Activate6 { get; set; }
 
         /// <summary>
+        /// Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("activateEvpn")]
+        public Input<string>? ActivateEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("activateVpnv4")]
         public Input<string>? ActivateVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("activateVpnv6")]
+        public Input<string>? ActivateVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
@@ -820,6 +1096,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? AdditionalPathVpnv4 { get; set; }
 
         /// <summary>
+        /// Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+        /// </summary>
+        [Input("additionalPathVpnv6")]
+        public Input<string>? AdditionalPathVpnv6 { get; set; }
+
+        /// <summary>
         /// Number of IPv4 additional paths that can be advertised to this neighbor.
         /// </summary>
         [Input("advAdditionalPath")]
@@ -836,6 +1118,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Input("advAdditionalPathVpnv4")]
         public Input<int>? AdvAdditionalPathVpnv4 { get; set; }
+
+        /// <summary>
+        /// Number of VPNv6 additional paths that can be advertised to this neighbor.
+        /// </summary>
+        [Input("advAdditionalPathVpnv6")]
+        public Input<int>? AdvAdditionalPathVpnv6 { get; set; }
 
         /// <summary>
         /// Minimum interval (sec) between sending updates.
@@ -868,10 +1156,40 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? AllowasInEnable6 { get; set; }
 
         /// <summary>
+        /// Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("allowasInEnableEvpn")]
+        public Input<string>? AllowasInEnableEvpn { get; set; }
+
+        /// <summary>
+        /// Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("allowasInEnableVpnv4")]
+        public Input<string>? AllowasInEnableVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("allowasInEnableVpnv6")]
+        public Input<string>? AllowasInEnableVpnv6 { get; set; }
+
+        /// <summary>
+        /// The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+        /// </summary>
+        [Input("allowasInEvpn")]
+        public Input<int>? AllowasInEvpn { get; set; }
+
+        /// <summary>
         /// The maximum number of occurrence of my AS number allowed for VPNv4 route.
         /// </summary>
         [Input("allowasInVpnv4")]
         public Input<int>? AllowasInVpnv4 { get; set; }
+
+        /// <summary>
+        /// The maximum number of occurrence of my AS number allowed for VPNv6 route.
+        /// </summary>
+        [Input("allowasInVpnv6")]
+        public Input<int>? AllowasInVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
@@ -902,6 +1220,18 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Input("attributeUnchangedVpnv4")]
         public Input<string>? AttributeUnchangedVpnv4 { get; set; }
+
+        /// <summary>
+        /// List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+        /// </summary>
+        [Input("attributeUnchangedVpnv6")]
+        public Input<string>? AttributeUnchangedVpnv6 { get; set; }
+
+        /// <summary>
+        /// Key-chain name for TCP authentication options.
+        /// </summary>
+        [Input("authOptions")]
+        public Input<string>? AuthOptions { get; set; }
 
         /// <summary>
         /// Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
@@ -940,10 +1270,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? CapabilityGracefulRestart6 { get; set; }
 
         /// <summary>
+        /// Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("capabilityGracefulRestartEvpn")]
+        public Input<string>? CapabilityGracefulRestartEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("capabilityGracefulRestartVpnv4")]
         public Input<string>? CapabilityGracefulRestartVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("capabilityGracefulRestartVpnv6")]
+        public Input<string>? CapabilityGracefulRestartVpnv6 { get; set; }
 
         /// <summary>
         /// Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
@@ -1030,6 +1372,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? DistributeListInVpnv4 { get; set; }
 
         /// <summary>
+        /// Filter for VPNv6 updates from this neighbor.
+        /// </summary>
+        [Input("distributeListInVpnv6")]
+        public Input<string>? DistributeListInVpnv6 { get; set; }
+
+        /// <summary>
         /// Filter for IPv4 updates to this neighbor.
         /// </summary>
         [Input("distributeListOut")]
@@ -1046,6 +1394,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Input("distributeListOutVpnv4")]
         public Input<string>? DistributeListOutVpnv4 { get; set; }
+
+        /// <summary>
+        /// Filter for VPNv6 updates to this neighbor.
+        /// </summary>
+        [Input("distributeListOutVpnv6")]
+        public Input<string>? DistributeListOutVpnv6 { get; set; }
 
         /// <summary>
         /// Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
@@ -1084,6 +1438,18 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? FilterListIn6 { get; set; }
 
         /// <summary>
+        /// BGP filter for VPNv4 inbound routes.
+        /// </summary>
+        [Input("filterListInVpnv4")]
+        public Input<string>? FilterListInVpnv4 { get; set; }
+
+        /// <summary>
+        /// BGP filter for VPNv6 inbound routes.
+        /// </summary>
+        [Input("filterListInVpnv6")]
+        public Input<string>? FilterListInVpnv6 { get; set; }
+
+        /// <summary>
         /// BGP filter for IPv4 outbound routes.
         /// </summary>
         [Input("filterListOut")]
@@ -1094,6 +1460,24 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Input("filterListOut6")]
         public Input<string>? FilterListOut6 { get; set; }
+
+        /// <summary>
+        /// BGP filter for VPNv4 outbound routes.
+        /// </summary>
+        [Input("filterListOutVpnv4")]
+        public Input<string>? FilterListOutVpnv4 { get; set; }
+
+        /// <summary>
+        /// BGP filter for VPNv6 outbound routes.
+        /// </summary>
+        [Input("filterListOutVpnv6")]
+        public Input<string>? FilterListOutVpnv6 { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Interval (sec) before peer considered dead.
@@ -1156,6 +1540,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<int>? MaximumPrefix6 { get; set; }
 
         /// <summary>
+        /// Maximum number of L2VPN EVPN prefixes to accept from this peer.
+        /// </summary>
+        [Input("maximumPrefixEvpn")]
+        public Input<int>? MaximumPrefixEvpn { get; set; }
+
+        /// <summary>
         /// Maximum IPv4 prefix threshold value (1 - 100 percent).
         /// </summary>
         [Input("maximumPrefixThreshold")]
@@ -1168,16 +1558,34 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<int>? MaximumPrefixThreshold6 { get; set; }
 
         /// <summary>
+        /// Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+        /// </summary>
+        [Input("maximumPrefixThresholdEvpn")]
+        public Input<int>? MaximumPrefixThresholdEvpn { get; set; }
+
+        /// <summary>
         /// Maximum VPNv4 prefix threshold value (1 - 100 percent).
         /// </summary>
         [Input("maximumPrefixThresholdVpnv4")]
         public Input<int>? MaximumPrefixThresholdVpnv4 { get; set; }
 
         /// <summary>
+        /// Maximum VPNv6 prefix threshold value (1 - 100 percent).
+        /// </summary>
+        [Input("maximumPrefixThresholdVpnv6")]
+        public Input<int>? MaximumPrefixThresholdVpnv6 { get; set; }
+
+        /// <summary>
         /// Maximum number of VPNv4 prefixes to accept from this peer.
         /// </summary>
         [Input("maximumPrefixVpnv4")]
         public Input<int>? MaximumPrefixVpnv4 { get; set; }
+
+        /// <summary>
+        /// Maximum number of VPNv6 prefixes to accept from this peer.
+        /// </summary>
+        [Input("maximumPrefixVpnv6")]
+        public Input<int>? MaximumPrefixVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
@@ -1192,10 +1600,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? MaximumPrefixWarningOnly6 { get; set; }
 
         /// <summary>
+        /// Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("maximumPrefixWarningOnlyEvpn")]
+        public Input<string>? MaximumPrefixWarningOnlyEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("maximumPrefixWarningOnlyVpnv4")]
         public Input<string>? MaximumPrefixWarningOnlyVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("maximumPrefixWarningOnlyVpnv6")]
+        public Input<string>? MaximumPrefixWarningOnlyVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
@@ -1226,6 +1646,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Input("nextHopSelfVpnv4")]
         public Input<string>? NextHopSelfVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("nextHopSelfVpnv6")]
+        public Input<string>? NextHopSelfVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
@@ -1274,6 +1700,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? PrefixListInVpnv4 { get; set; }
 
         /// <summary>
+        /// Inbound filter for VPNv6 updates from this neighbor.
+        /// </summary>
+        [Input("prefixListInVpnv6")]
+        public Input<string>? PrefixListInVpnv6 { get; set; }
+
+        /// <summary>
         /// IPv4 Outbound filter for updates to this neighbor.
         /// </summary>
         [Input("prefixListOut")]
@@ -1290,6 +1722,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Input("prefixListOutVpnv4")]
         public Input<string>? PrefixListOutVpnv4 { get; set; }
+
+        /// <summary>
+        /// Outbound filter for VPNv6 updates to this neighbor.
+        /// </summary>
+        [Input("prefixListOutVpnv6")]
+        public Input<string>? PrefixListOutVpnv6 { get; set; }
 
         /// <summary>
         /// AS number of neighbor.
@@ -1310,10 +1748,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? RemovePrivateAs6 { get; set; }
 
         /// <summary>
+        /// Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("removePrivateAsEvpn")]
+        public Input<string>? RemovePrivateAsEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("removePrivateAsVpnv4")]
         public Input<string>? RemovePrivateAsVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("removePrivateAsVpnv6")]
+        public Input<string>? RemovePrivateAsVpnv6 { get; set; }
 
         /// <summary>
         /// Graceful restart delay time (sec, 0 = global default).
@@ -1340,10 +1790,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? RouteMapIn6 { get; set; }
 
         /// <summary>
+        /// L2VPN EVPN inbound route map filter.
+        /// </summary>
+        [Input("routeMapInEvpn")]
+        public Input<string>? RouteMapInEvpn { get; set; }
+
+        /// <summary>
         /// VPNv4 inbound route map filter.
         /// </summary>
         [Input("routeMapInVpnv4")]
         public Input<string>? RouteMapInVpnv4 { get; set; }
+
+        /// <summary>
+        /// VPNv6 inbound route map filter.
+        /// </summary>
+        [Input("routeMapInVpnv6")]
+        public Input<string>? RouteMapInVpnv6 { get; set; }
 
         /// <summary>
         /// IPv4 Outbound route map filter.
@@ -1364,6 +1826,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? RouteMapOut6Preferable { get; set; }
 
         /// <summary>
+        /// L2VPN EVPN outbound route map filter.
+        /// </summary>
+        [Input("routeMapOutEvpn")]
+        public Input<string>? RouteMapOutEvpn { get; set; }
+
+        /// <summary>
         /// IPv4 outbound route map filter if the peer is preferred.
         /// </summary>
         [Input("routeMapOutPreferable")]
@@ -1382,6 +1850,18 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? RouteMapOutVpnv4Preferable { get; set; }
 
         /// <summary>
+        /// VPNv6 outbound route map filter.
+        /// </summary>
+        [Input("routeMapOutVpnv6")]
+        public Input<string>? RouteMapOutVpnv6 { get; set; }
+
+        /// <summary>
+        /// VPNv6 outbound route map filter if this neighbor is preferred.
+        /// </summary>
+        [Input("routeMapOutVpnv6Preferable")]
+        public Input<string>? RouteMapOutVpnv6Preferable { get; set; }
+
+        /// <summary>
         /// Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("routeReflectorClient")]
@@ -1394,10 +1874,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? RouteReflectorClient6 { get; set; }
 
         /// <summary>
+        /// Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("routeReflectorClientEvpn")]
+        public Input<string>? RouteReflectorClientEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("routeReflectorClientVpnv4")]
         public Input<string>? RouteReflectorClientVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("routeReflectorClientVpnv6")]
+        public Input<string>? RouteReflectorClientVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
@@ -1412,10 +1904,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? RouteServerClient6 { get; set; }
 
         /// <summary>
+        /// Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("routeServerClientEvpn")]
+        public Input<string>? RouteServerClientEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("routeServerClientVpnv4")]
         public Input<string>? RouteServerClientVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("routeServerClientVpnv6")]
+        public Input<string>? RouteServerClientVpnv6 { get; set; }
 
         /// <summary>
         /// IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
@@ -1430,10 +1934,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? SendCommunity6 { get; set; }
 
         /// <summary>
+        /// Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
+        /// </summary>
+        [Input("sendCommunityEvpn")]
+        public Input<string>? SendCommunityEvpn { get; set; }
+
+        /// <summary>
         /// Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
         /// </summary>
         [Input("sendCommunityVpnv4")]
         public Input<string>? SendCommunityVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+        /// </summary>
+        [Input("sendCommunityVpnv6")]
+        public Input<string>? SendCommunityVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
@@ -1454,10 +1970,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? SoftReconfiguration6 { get; set; }
 
         /// <summary>
+        /// Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("softReconfigurationEvpn")]
+        public Input<string>? SoftReconfigurationEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("softReconfigurationVpnv4")]
         public Input<string>? SoftReconfigurationVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("softReconfigurationVpnv6")]
+        public Input<string>? SoftReconfigurationVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.
@@ -1522,10 +2050,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? Activate6 { get; set; }
 
         /// <summary>
+        /// Enable/disable address family L2VPN EVPN for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("activateEvpn")]
+        public Input<string>? ActivateEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable address family VPNv4 for this neighbor. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("activateVpnv4")]
         public Input<string>? ActivateVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable address family VPNv6 for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("activateVpnv6")]
+        public Input<string>? ActivateVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable IPv4 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
@@ -1546,6 +2086,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? AdditionalPathVpnv4 { get; set; }
 
         /// <summary>
+        /// Enable/disable VPNv6 additional-path capability. Valid values: `send`, `receive`, `both`, `disable`.
+        /// </summary>
+        [Input("additionalPathVpnv6")]
+        public Input<string>? AdditionalPathVpnv6 { get; set; }
+
+        /// <summary>
         /// Number of IPv4 additional paths that can be advertised to this neighbor.
         /// </summary>
         [Input("advAdditionalPath")]
@@ -1562,6 +2108,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Input("advAdditionalPathVpnv4")]
         public Input<int>? AdvAdditionalPathVpnv4 { get; set; }
+
+        /// <summary>
+        /// Number of VPNv6 additional paths that can be advertised to this neighbor.
+        /// </summary>
+        [Input("advAdditionalPathVpnv6")]
+        public Input<int>? AdvAdditionalPathVpnv6 { get; set; }
 
         /// <summary>
         /// Minimum interval (sec) between sending updates.
@@ -1594,10 +2146,40 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? AllowasInEnable6 { get; set; }
 
         /// <summary>
+        /// Enable/disable to allow my AS in AS path for L2VPN EVPN route. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("allowasInEnableEvpn")]
+        public Input<string>? AllowasInEnableEvpn { get; set; }
+
+        /// <summary>
+        /// Enable/disable to allow my AS in AS path for VPNv4 route. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("allowasInEnableVpnv4")]
+        public Input<string>? AllowasInEnableVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable use of my AS in AS path for VPNv6 route. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("allowasInEnableVpnv6")]
+        public Input<string>? AllowasInEnableVpnv6 { get; set; }
+
+        /// <summary>
+        /// The maximum number of occurrence of my AS number allowed for L2VPN EVPN route.
+        /// </summary>
+        [Input("allowasInEvpn")]
+        public Input<int>? AllowasInEvpn { get; set; }
+
+        /// <summary>
         /// The maximum number of occurrence of my AS number allowed for VPNv4 route.
         /// </summary>
         [Input("allowasInVpnv4")]
         public Input<int>? AllowasInVpnv4 { get; set; }
+
+        /// <summary>
+        /// The maximum number of occurrence of my AS number allowed for VPNv6 route.
+        /// </summary>
+        [Input("allowasInVpnv6")]
+        public Input<int>? AllowasInVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable replace peer AS with own AS for IPv4. Valid values: `enable`, `disable`.
@@ -1628,6 +2210,18 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Input("attributeUnchangedVpnv4")]
         public Input<string>? AttributeUnchangedVpnv4 { get; set; }
+
+        /// <summary>
+        /// List of attributes that should not be changed for VPNv6 route. Valid values: `as-path`, `med`, `next-hop`.
+        /// </summary>
+        [Input("attributeUnchangedVpnv6")]
+        public Input<string>? AttributeUnchangedVpnv6 { get; set; }
+
+        /// <summary>
+        /// Key-chain name for TCP authentication options.
+        /// </summary>
+        [Input("authOptions")]
+        public Input<string>? AuthOptions { get; set; }
 
         /// <summary>
         /// Enable/disable BFD for this neighbor. Valid values: `enable`, `disable`.
@@ -1666,10 +2260,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? CapabilityGracefulRestart6 { get; set; }
 
         /// <summary>
+        /// Enable/disable advertisement of L2VPN EVPN graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("capabilityGracefulRestartEvpn")]
+        public Input<string>? CapabilityGracefulRestartEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable advertise VPNv4 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("capabilityGracefulRestartVpnv4")]
         public Input<string>? CapabilityGracefulRestartVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable advertisement of VPNv6 graceful restart capability to this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("capabilityGracefulRestartVpnv6")]
+        public Input<string>? CapabilityGracefulRestartVpnv6 { get; set; }
 
         /// <summary>
         /// Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
@@ -1756,6 +2362,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? DistributeListInVpnv4 { get; set; }
 
         /// <summary>
+        /// Filter for VPNv6 updates from this neighbor.
+        /// </summary>
+        [Input("distributeListInVpnv6")]
+        public Input<string>? DistributeListInVpnv6 { get; set; }
+
+        /// <summary>
         /// Filter for IPv4 updates to this neighbor.
         /// </summary>
         [Input("distributeListOut")]
@@ -1772,6 +2384,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Input("distributeListOutVpnv4")]
         public Input<string>? DistributeListOutVpnv4 { get; set; }
+
+        /// <summary>
+        /// Filter for VPNv6 updates to this neighbor.
+        /// </summary>
+        [Input("distributeListOutVpnv6")]
+        public Input<string>? DistributeListOutVpnv6 { get; set; }
 
         /// <summary>
         /// Don't negotiate capabilities with this neighbor Valid values: `enable`, `disable`.
@@ -1810,6 +2428,18 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? FilterListIn6 { get; set; }
 
         /// <summary>
+        /// BGP filter for VPNv4 inbound routes.
+        /// </summary>
+        [Input("filterListInVpnv4")]
+        public Input<string>? FilterListInVpnv4 { get; set; }
+
+        /// <summary>
+        /// BGP filter for VPNv6 inbound routes.
+        /// </summary>
+        [Input("filterListInVpnv6")]
+        public Input<string>? FilterListInVpnv6 { get; set; }
+
+        /// <summary>
         /// BGP filter for IPv4 outbound routes.
         /// </summary>
         [Input("filterListOut")]
@@ -1820,6 +2450,24 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Input("filterListOut6")]
         public Input<string>? FilterListOut6 { get; set; }
+
+        /// <summary>
+        /// BGP filter for VPNv4 outbound routes.
+        /// </summary>
+        [Input("filterListOutVpnv4")]
+        public Input<string>? FilterListOutVpnv4 { get; set; }
+
+        /// <summary>
+        /// BGP filter for VPNv6 outbound routes.
+        /// </summary>
+        [Input("filterListOutVpnv6")]
+        public Input<string>? FilterListOutVpnv6 { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Interval (sec) before peer considered dead.
@@ -1882,6 +2530,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<int>? MaximumPrefix6 { get; set; }
 
         /// <summary>
+        /// Maximum number of L2VPN EVPN prefixes to accept from this peer.
+        /// </summary>
+        [Input("maximumPrefixEvpn")]
+        public Input<int>? MaximumPrefixEvpn { get; set; }
+
+        /// <summary>
         /// Maximum IPv4 prefix threshold value (1 - 100 percent).
         /// </summary>
         [Input("maximumPrefixThreshold")]
@@ -1894,16 +2548,34 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<int>? MaximumPrefixThreshold6 { get; set; }
 
         /// <summary>
+        /// Maximum L2VPN EVPN prefix threshold value (1 - 100 percent).
+        /// </summary>
+        [Input("maximumPrefixThresholdEvpn")]
+        public Input<int>? MaximumPrefixThresholdEvpn { get; set; }
+
+        /// <summary>
         /// Maximum VPNv4 prefix threshold value (1 - 100 percent).
         /// </summary>
         [Input("maximumPrefixThresholdVpnv4")]
         public Input<int>? MaximumPrefixThresholdVpnv4 { get; set; }
 
         /// <summary>
+        /// Maximum VPNv6 prefix threshold value (1 - 100 percent).
+        /// </summary>
+        [Input("maximumPrefixThresholdVpnv6")]
+        public Input<int>? MaximumPrefixThresholdVpnv6 { get; set; }
+
+        /// <summary>
         /// Maximum number of VPNv4 prefixes to accept from this peer.
         /// </summary>
         [Input("maximumPrefixVpnv4")]
         public Input<int>? MaximumPrefixVpnv4 { get; set; }
+
+        /// <summary>
+        /// Maximum number of VPNv6 prefixes to accept from this peer.
+        /// </summary>
+        [Input("maximumPrefixVpnv6")]
+        public Input<int>? MaximumPrefixVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable IPv4 Only give warning message when limit is exceeded. Valid values: `enable`, `disable`.
@@ -1918,10 +2590,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? MaximumPrefixWarningOnly6 { get; set; }
 
         /// <summary>
+        /// Enable/disable only sending warning message when exceeding limit of L2VPN EVPN routes. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("maximumPrefixWarningOnlyEvpn")]
+        public Input<string>? MaximumPrefixWarningOnlyEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable only giving warning message when limit is exceeded for VPNv4 routes. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("maximumPrefixWarningOnlyVpnv4")]
         public Input<string>? MaximumPrefixWarningOnlyVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable warning message when limit is exceeded for VPNv6 routes. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("maximumPrefixWarningOnlyVpnv6")]
+        public Input<string>? MaximumPrefixWarningOnlyVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable IPv4 next-hop calculation for this neighbor. Valid values: `enable`, `disable`.
@@ -1952,6 +2636,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Input("nextHopSelfVpnv4")]
         public Input<string>? NextHopSelfVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable use of outgoing interface's IP address as VPNv6 next-hop for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("nextHopSelfVpnv6")]
+        public Input<string>? NextHopSelfVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable override result of capability negotiation. Valid values: `enable`, `disable`.
@@ -2000,6 +2690,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? PrefixListInVpnv4 { get; set; }
 
         /// <summary>
+        /// Inbound filter for VPNv6 updates from this neighbor.
+        /// </summary>
+        [Input("prefixListInVpnv6")]
+        public Input<string>? PrefixListInVpnv6 { get; set; }
+
+        /// <summary>
         /// IPv4 Outbound filter for updates to this neighbor.
         /// </summary>
         [Input("prefixListOut")]
@@ -2016,6 +2712,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// </summary>
         [Input("prefixListOutVpnv4")]
         public Input<string>? PrefixListOutVpnv4 { get; set; }
+
+        /// <summary>
+        /// Outbound filter for VPNv6 updates to this neighbor.
+        /// </summary>
+        [Input("prefixListOutVpnv6")]
+        public Input<string>? PrefixListOutVpnv6 { get; set; }
 
         /// <summary>
         /// AS number of neighbor.
@@ -2036,10 +2738,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? RemovePrivateAs6 { get; set; }
 
         /// <summary>
+        /// Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("removePrivateAsEvpn")]
+        public Input<string>? RemovePrivateAsEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable remove private AS number from VPNv4 outbound updates. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("removePrivateAsVpnv4")]
         public Input<string>? RemovePrivateAsVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable to remove private AS number from VPNv6 outbound updates. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("removePrivateAsVpnv6")]
+        public Input<string>? RemovePrivateAsVpnv6 { get; set; }
 
         /// <summary>
         /// Graceful restart delay time (sec, 0 = global default).
@@ -2066,10 +2780,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? RouteMapIn6 { get; set; }
 
         /// <summary>
+        /// L2VPN EVPN inbound route map filter.
+        /// </summary>
+        [Input("routeMapInEvpn")]
+        public Input<string>? RouteMapInEvpn { get; set; }
+
+        /// <summary>
         /// VPNv4 inbound route map filter.
         /// </summary>
         [Input("routeMapInVpnv4")]
         public Input<string>? RouteMapInVpnv4 { get; set; }
+
+        /// <summary>
+        /// VPNv6 inbound route map filter.
+        /// </summary>
+        [Input("routeMapInVpnv6")]
+        public Input<string>? RouteMapInVpnv6 { get; set; }
 
         /// <summary>
         /// IPv4 Outbound route map filter.
@@ -2090,6 +2816,12 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? RouteMapOut6Preferable { get; set; }
 
         /// <summary>
+        /// L2VPN EVPN outbound route map filter.
+        /// </summary>
+        [Input("routeMapOutEvpn")]
+        public Input<string>? RouteMapOutEvpn { get; set; }
+
+        /// <summary>
         /// IPv4 outbound route map filter if the peer is preferred.
         /// </summary>
         [Input("routeMapOutPreferable")]
@@ -2108,6 +2840,18 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? RouteMapOutVpnv4Preferable { get; set; }
 
         /// <summary>
+        /// VPNv6 outbound route map filter.
+        /// </summary>
+        [Input("routeMapOutVpnv6")]
+        public Input<string>? RouteMapOutVpnv6 { get; set; }
+
+        /// <summary>
+        /// VPNv6 outbound route map filter if this neighbor is preferred.
+        /// </summary>
+        [Input("routeMapOutVpnv6Preferable")]
+        public Input<string>? RouteMapOutVpnv6Preferable { get; set; }
+
+        /// <summary>
         /// Enable/disable IPv4 AS route reflector client. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("routeReflectorClient")]
@@ -2120,10 +2864,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? RouteReflectorClient6 { get; set; }
 
         /// <summary>
+        /// Enable/disable L2VPN EVPN AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("routeReflectorClientEvpn")]
+        public Input<string>? RouteReflectorClientEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable VPNv4 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("routeReflectorClientVpnv4")]
         public Input<string>? RouteReflectorClientVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable VPNv6 AS route reflector client for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("routeReflectorClientVpnv6")]
+        public Input<string>? RouteReflectorClientVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable IPv4 AS route server client. Valid values: `enable`, `disable`.
@@ -2138,10 +2894,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? RouteServerClient6 { get; set; }
 
         /// <summary>
+        /// Enable/disable L2VPN EVPN AS route server client for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("routeServerClientEvpn")]
+        public Input<string>? RouteServerClientEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable VPNv4 AS route server client for this neighbor. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("routeServerClientVpnv4")]
         public Input<string>? RouteServerClientVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable VPNv6 AS route server client for this neighbor. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("routeServerClientVpnv6")]
+        public Input<string>? RouteServerClientVpnv6 { get; set; }
 
         /// <summary>
         /// IPv4 Send community attribute to neighbor. Valid values: `standard`, `extended`, `both`, `disable`.
@@ -2156,10 +2924,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? SendCommunity6 { get; set; }
 
         /// <summary>
+        /// Enable/disable sending community attribute to neighbor for L2VPN EVPN address family. Valid values: `standard`, `extended`, `both`, `disable`.
+        /// </summary>
+        [Input("sendCommunityEvpn")]
+        public Input<string>? SendCommunityEvpn { get; set; }
+
+        /// <summary>
         /// Send community attribute to neighbor for VPNv4 address family. Valid values: `standard`, `extended`, `both`, `disable`.
         /// </summary>
         [Input("sendCommunityVpnv4")]
         public Input<string>? SendCommunityVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable sending community attribute to this neighbor for VPNv6 address family. Valid values: `standard`, `extended`, `both`, `disable`.
+        /// </summary>
+        [Input("sendCommunityVpnv6")]
+        public Input<string>? SendCommunityVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable shutdown this neighbor. Valid values: `enable`, `disable`.
@@ -2180,10 +2960,22 @@ namespace Pulumiverse.Fortios.Router.Bgp
         public Input<string>? SoftReconfiguration6 { get; set; }
 
         /// <summary>
+        /// Enable/disable L2VPN EVPN inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("softReconfigurationEvpn")]
+        public Input<string>? SoftReconfigurationEvpn { get; set; }
+
+        /// <summary>
         /// Enable/disable allow VPNv4 inbound soft reconfiguration. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("softReconfigurationVpnv4")]
         public Input<string>? SoftReconfigurationVpnv4 { get; set; }
+
+        /// <summary>
+        /// Enable/disable VPNv6 inbound soft reconfiguration. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("softReconfigurationVpnv6")]
+        public Input<string>? SoftReconfigurationVpnv6 { get; set; }
 
         /// <summary>
         /// Enable/disable stale route after neighbor down. Valid values: `enable`, `disable`.

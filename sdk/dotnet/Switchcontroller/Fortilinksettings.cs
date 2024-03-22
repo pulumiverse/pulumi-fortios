@@ -35,10 +35,22 @@ namespace Pulumiverse.Fortios.Switchcontroller
     public partial class Fortilinksettings : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+        /// </summary>
+        [Output("accessVlanMode")]
+        public Output<string> AccessVlanMode { get; private set; } = null!;
+
+        /// <summary>
         /// FortiLink interface to which this fortilink-setting belongs.
         /// </summary>
         [Output("fortilink")]
         public Output<string> Fortilink { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
@@ -118,10 +130,22 @@ namespace Pulumiverse.Fortios.Switchcontroller
     public sealed class FortilinksettingsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+        /// </summary>
+        [Input("accessVlanMode")]
+        public Input<string>? AccessVlanMode { get; set; }
+
+        /// <summary>
         /// FortiLink interface to which this fortilink-setting belongs.
         /// </summary>
         [Input("fortilink")]
         public Input<string>? Fortilink { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
@@ -162,10 +186,22 @@ namespace Pulumiverse.Fortios.Switchcontroller
     public sealed class FortilinksettingsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+        /// </summary>
+        [Input("accessVlanMode")]
+        public Input<string>? AccessVlanMode { get; set; }
+
+        /// <summary>
         /// FortiLink interface to which this fortilink-setting belongs.
         /// </summary>
         [Input("fortilink")]
         public Input<string>? Fortilink { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).

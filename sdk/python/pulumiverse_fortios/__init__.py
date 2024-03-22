@@ -19,6 +19,8 @@ if typing.TYPE_CHECKING:
     authentication = __authentication
     import pulumiverse_fortios.automation as __automation
     automation = __automation
+    import pulumiverse_fortios.casb as __casb
+    casb = __casb
     import pulumiverse_fortios.certificate as __certificate
     certificate = __certificate
     import pulumiverse_fortios.cifs as __cifs
@@ -27,6 +29,8 @@ if typing.TYPE_CHECKING:
     config = __config
     import pulumiverse_fortios.credentialstore as __credentialstore
     credentialstore = __credentialstore
+    import pulumiverse_fortios.diameterfilter as __diameterfilter
+    diameterfilter = __diameterfilter
     import pulumiverse_fortios.dlp as __dlp
     dlp = __dlp
     import pulumiverse_fortios.dpdk as __dpdk
@@ -63,12 +67,18 @@ if typing.TYPE_CHECKING:
     report = __report
     import pulumiverse_fortios.router as __router
     router = __router
+    import pulumiverse_fortios.rule as __rule
+    rule = __rule
     import pulumiverse_fortios.switchcontroller as __switchcontroller
     switchcontroller = __switchcontroller
+    import pulumiverse_fortios.switchcontrolleracl as __switchcontrolleracl
+    switchcontrolleracl = __switchcontrolleracl
     import pulumiverse_fortios.system as __system
     system = __system
     import pulumiverse_fortios.user as __user
     user = __user
+    import pulumiverse_fortios.virtualpatch as __virtualpatch
+    virtualpatch = __virtualpatch
     import pulumiverse_fortios.voip as __voip
     voip = __voip
     import pulumiverse_fortios.vpn as __vpn
@@ -87,10 +97,12 @@ else:
     application = _utilities.lazy_import('pulumiverse_fortios.application')
     authentication = _utilities.lazy_import('pulumiverse_fortios.authentication')
     automation = _utilities.lazy_import('pulumiverse_fortios.automation')
+    casb = _utilities.lazy_import('pulumiverse_fortios.casb')
     certificate = _utilities.lazy_import('pulumiverse_fortios.certificate')
     cifs = _utilities.lazy_import('pulumiverse_fortios.cifs')
     config = _utilities.lazy_import('pulumiverse_fortios.config')
     credentialstore = _utilities.lazy_import('pulumiverse_fortios.credentialstore')
+    diameterfilter = _utilities.lazy_import('pulumiverse_fortios.diameterfilter')
     dlp = _utilities.lazy_import('pulumiverse_fortios.dlp')
     dpdk = _utilities.lazy_import('pulumiverse_fortios.dpdk')
     endpointcontrol = _utilities.lazy_import('pulumiverse_fortios.endpointcontrol')
@@ -109,9 +121,12 @@ else:
     nsxt = _utilities.lazy_import('pulumiverse_fortios.nsxt')
     report = _utilities.lazy_import('pulumiverse_fortios.report')
     router = _utilities.lazy_import('pulumiverse_fortios.router')
+    rule = _utilities.lazy_import('pulumiverse_fortios.rule')
     switchcontroller = _utilities.lazy_import('pulumiverse_fortios.switchcontroller')
+    switchcontrolleracl = _utilities.lazy_import('pulumiverse_fortios.switchcontrolleracl')
     system = _utilities.lazy_import('pulumiverse_fortios.system')
     user = _utilities.lazy_import('pulumiverse_fortios.user')
+    virtualpatch = _utilities.lazy_import('pulumiverse_fortios.virtualpatch')
     voip = _utilities.lazy_import('pulumiverse_fortios.voip')
     vpn = _utilities.lazy_import('pulumiverse_fortios.vpn')
     waf = _utilities.lazy_import('pulumiverse_fortios.waf')
@@ -128,6 +143,14 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.alertemail",
   "classes": {
    "fortios:alertemail/setting:Setting": "Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "antivirus/exemptlist",
+  "fqn": "pulumiverse_fortios.antivirus",
+  "classes": {
+   "fortios:antivirus/exemptlist:Exemptlist": "Exemptlist"
   }
  },
  {
@@ -236,6 +259,30 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "casb/profile",
+  "fqn": "pulumiverse_fortios.casb",
+  "classes": {
+   "fortios:casb/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "casb/saasapplication",
+  "fqn": "pulumiverse_fortios.casb",
+  "classes": {
+   "fortios:casb/saasapplication:Saasapplication": "Saasapplication"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "casb/useractivity",
+  "fqn": "pulumiverse_fortios.casb",
+  "classes": {
+   "fortios:casb/useractivity:Useractivity": "Useractivity"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "certificate/ca",
   "fqn": "pulumiverse_fortios.certificate",
   "classes": {
@@ -292,6 +339,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "diameterfilter/profile",
+  "fqn": "pulumiverse_fortios.diameterfilter",
+  "classes": {
+   "fortios:diameterfilter/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "dlp/datatype",
   "fqn": "pulumiverse_fortios.dlp",
   "classes": {
@@ -304,6 +359,14 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.dlp",
   "classes": {
    "fortios:dlp/dictionary:Dictionary": "Dictionary"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "dlp/exactdatamatch",
+  "fqn": "pulumiverse_fortios.dlp",
+  "classes": {
+   "fortios:dlp/exactdatamatch:Exactdatamatch": "Exactdatamatch"
   }
  },
  {
@@ -392,6 +455,14 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.endpointcontrol",
   "classes": {
    "fortios:endpointcontrol/fctems:Fctems": "Fctems"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "endpointcontrol/fctemsoverride",
+  "fqn": "pulumiverse_fortios.endpointcontrol",
+  "classes": {
+   "fortios:endpointcontrol/fctemsoverride:Fctemsoverride": "Fctemsoverride"
   }
  },
  {
@@ -680,6 +751,14 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.filter.ssh",
   "classes": {
    "fortios:filter/ssh/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "filter/video/keyword",
+  "fqn": "pulumiverse_fortios.filter.video",
+  "classes": {
+   "fortios:filter/video/keyword:Keyword": "Keyword"
   }
  },
  {
@@ -1116,6 +1195,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "firewall/internetservicesubapp",
+  "fqn": "pulumiverse_fortios.firewall",
+  "classes": {
+   "fortios:firewall/internetservicesubapp:Internetservicesubapp": "Internetservicesubapp"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "firewall/ipmacbinding/setting",
   "fqn": "pulumiverse_fortios.firewall.ipmacbinding",
   "classes": {
@@ -1324,6 +1411,22 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "firewall/policyMove",
+  "fqn": "pulumiverse_fortios.firewall",
+  "classes": {
+   "fortios:firewall/policyMove:PolicyMove": "PolicyMove"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/policySort",
+  "fqn": "pulumiverse_fortios.firewall",
+  "classes": {
+   "fortios:firewall/policySort:PolicySort": "PolicySort"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "firewall/profilegroup",
   "fqn": "pulumiverse_fortios.firewall",
   "classes": {
@@ -1420,18 +1523,26 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
-  "mod": "firewall/securityPolicysort",
-  "fqn": "pulumiverse_fortios.firewall",
-  "classes": {
-   "fortios:firewall/securityPolicysort:SecurityPolicysort": "SecurityPolicysort"
-  }
- },
- {
-  "pkg": "fortios",
   "mod": "firewall/securitypolicy",
   "fqn": "pulumiverse_fortios.firewall",
   "classes": {
    "fortios:firewall/securitypolicy:Securitypolicy": "Securitypolicy"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/securitypolicyMove",
+  "fqn": "pulumiverse_fortios.firewall",
+  "classes": {
+   "fortios:firewall/securitypolicyMove:SecuritypolicyMove": "SecuritypolicyMove"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/securitypolicySort",
+  "fqn": "pulumiverse_fortios.firewall",
+  "classes": {
+   "fortios:firewall/securitypolicySort:SecuritypolicySort": "SecuritypolicySort"
   }
  },
  {
@@ -2588,6 +2699,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "router/extcommunitylist",
+  "fqn": "pulumiverse_fortios.router",
+  "classes": {
+   "fortios:router/extcommunitylist:Extcommunitylist": "Extcommunitylist"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "router/isis",
   "fqn": "pulumiverse_fortios.router",
   "classes": {
@@ -2756,6 +2875,30 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "rule/fmwp",
+  "fqn": "pulumiverse_fortios.rule",
+  "classes": {
+   "fortios:rule/fmwp:Fmwp": "Fmwp"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "rule/otdt",
+  "fqn": "pulumiverse_fortios.rule",
+  "classes": {
+   "fortios:rule/otdt:Otdt": "Otdt"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "rule/otvp",
+  "fqn": "pulumiverse_fortios.rule",
+  "classes": {
+   "fortios:rule/otvp:Otvp": "Otvp"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "switchcontroller/autoconfig/custom",
   "fqn": "pulumiverse_fortios.switchcontroller.autoconfig",
   "classes": {
@@ -2916,10 +3059,26 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "switchcontroller/ptp/interfacepolicy",
+  "fqn": "pulumiverse_fortios.switchcontroller.ptp",
+  "classes": {
+   "fortios:switchcontroller/ptp/interfacepolicy:Interfacepolicy": "Interfacepolicy"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "switchcontroller/ptp/policy",
   "fqn": "pulumiverse_fortios.switchcontroller.ptp",
   "classes": {
    "fortios:switchcontroller/ptp/policy:Policy": "Policy"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "switchcontroller/ptp/profile",
+  "fqn": "pulumiverse_fortios.switchcontroller.ptp",
+  "classes": {
+   "fortios:switchcontroller/ptp/profile:Profile": "Profile"
   }
  },
  {
@@ -3164,6 +3323,22 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "switchcontrolleracl/group",
+  "fqn": "pulumiverse_fortios.switchcontrolleracl",
+  "classes": {
+   "fortios:switchcontrolleracl/group:Group": "Group"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "switchcontrolleracl/ingress",
+  "fqn": "pulumiverse_fortios.switchcontrolleracl",
+  "classes": {
+   "fortios:switchcontrolleracl/ingress:Ingress": "Ingress"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "system/accprofile",
   "fqn": "pulumiverse_fortios.system",
   "classes": {
@@ -3388,6 +3563,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "system/deviceupgrade",
+  "fqn": "pulumiverse_fortios.system",
+  "classes": {
+   "fortios:system/deviceupgrade:Deviceupgrade": "Deviceupgrade"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "system/dhcp/server",
   "fqn": "pulumiverse_fortios.system.dhcp",
   "classes": {
@@ -3452,10 +3635,26 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "system/evpn",
+  "fqn": "pulumiverse_fortios.system",
+  "classes": {
+   "fortios:system/evpn:Evpn": "Evpn"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "system/externalresource",
   "fqn": "pulumiverse_fortios.system",
   "classes": {
    "fortios:system/externalresource:Externalresource": "Externalresource"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "system/fabricvpn",
+  "fqn": "pulumiverse_fortios.system",
+  "classes": {
+   "fortios:system/fabricvpn:Fabricvpn": "Fabricvpn"
   }
  },
  {
@@ -3836,6 +4035,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "system/pcpserver",
+  "fqn": "pulumiverse_fortios.system",
+  "classes": {
+   "fortios:system/pcpserver:Pcpserver": "Pcpserver"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "system/physicalswitch",
   "fqn": "pulumiverse_fortios.system",
   "classes": {
@@ -4060,6 +4267,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "system/sdnproxy",
+  "fqn": "pulumiverse_fortios.system",
+  "classes": {
+   "fortios:system/sdnproxy:Sdnproxy": "Sdnproxy"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "system/sdwan",
   "fqn": "pulumiverse_fortios.system",
   "classes": {
@@ -4188,6 +4403,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "system/speedtestsetting",
+  "fqn": "pulumiverse_fortios.system",
+  "classes": {
+   "fortios:system/speedtestsetting:Speedtestsetting": "Speedtestsetting"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "system/ssoadmin",
   "fqn": "pulumiverse_fortios.system",
   "classes": {
@@ -4200,6 +4423,14 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.system",
   "classes": {
    "fortios:system/ssoforticloudadmin:Ssoforticloudadmin": "Ssoforticloudadmin"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "system/ssofortigatecloudadmin",
+  "fqn": "pulumiverse_fortios.system",
+  "classes": {
+   "fortios:system/ssofortigatecloudadmin:Ssofortigatecloudadmin": "Ssofortigatecloudadmin"
   }
  },
  {
@@ -4436,6 +4667,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "user/externalidentityprovider",
+  "fqn": "pulumiverse_fortios.user",
+  "classes": {
+   "fortios:user/externalidentityprovider:Externalidentityprovider": "Externalidentityprovider"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "user/fortitoken",
   "fqn": "pulumiverse_fortios.user",
   "classes": {
@@ -4580,6 +4819,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "virtualpatch/profile",
+  "fqn": "pulumiverse_fortios.virtualpatch",
+  "classes": {
+   "fortios:virtualpatch/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "voip/profile",
   "fqn": "pulumiverse_fortios.voip",
   "classes": {
@@ -4708,6 +4955,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "vpn/kmipserver",
+  "fqn": "pulumiverse_fortios.vpn",
+  "classes": {
+   "fortios:vpn/kmipserver:Kmipserver": "Kmipserver"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "vpn/l2tp",
   "fqn": "pulumiverse_fortios.vpn",
   "classes": {
@@ -4728,6 +4983,14 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.vpn",
   "classes": {
    "fortios:vpn/pptp:Pptp": "Pptp"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "vpn/qkd",
+  "fqn": "pulumiverse_fortios.vpn",
+  "classes": {
+   "fortios:vpn/qkd:Qkd": "Qkd"
   }
  },
  {
@@ -4896,6 +5159,14 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.webproxy",
   "classes": {
    "fortios:webproxy/explicit:Explicit": "Explicit"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "webproxy/fastfallback",
+  "fqn": "pulumiverse_fortios.webproxy",
+  "classes": {
+   "fortios:webproxy/fastfallback:Fastfallback": "Fastfallback"
   }
  },
  {

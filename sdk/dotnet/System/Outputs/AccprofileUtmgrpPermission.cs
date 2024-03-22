@@ -23,6 +23,14 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? ApplicationControl;
         /// <summary>
+        /// Inline CASB filter profile and settings Valid values: `none`, `read`, `read-write`.
+        /// </summary>
+        public readonly string? Casb;
+        /// <summary>
+        /// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+        /// </summary>
+        public readonly string? DataLeakPrevention;
+        /// <summary>
         /// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
         /// </summary>
         public readonly string? DataLossPrevention;
@@ -59,6 +67,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? Videofilter;
         /// <summary>
+        /// Virtual patch profiles and settings. Valid values: `none`, `read`, `read-write`.
+        /// </summary>
+        public readonly string? VirtualPatch;
+        /// <summary>
         /// VoIP profiles and settings. Valid values: `none`, `read`, `read-write`.
         /// </summary>
         public readonly string? Voip;
@@ -76,6 +88,10 @@ namespace Pulumiverse.Fortios.System.Outputs
             string? antivirus,
 
             string? applicationControl,
+
+            string? casb,
+
+            string? dataLeakPrevention,
 
             string? dataLossPrevention,
 
@@ -95,6 +111,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             string? videofilter,
 
+            string? virtualPatch,
+
             string? voip,
 
             string? waf,
@@ -103,6 +121,8 @@ namespace Pulumiverse.Fortios.System.Outputs
         {
             Antivirus = antivirus;
             ApplicationControl = applicationControl;
+            Casb = casb;
+            DataLeakPrevention = dataLeakPrevention;
             DataLossPrevention = dataLossPrevention;
             Dnsfilter = dnsfilter;
             Emailfilter = emailfilter;
@@ -112,6 +132,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             Ips = ips;
             Spamfilter = spamfilter;
             Videofilter = videofilter;
+            VirtualPatch = virtualPatch;
             Voip = voip;
             Waf = waf;
             Webfilter = webfilter;

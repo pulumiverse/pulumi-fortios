@@ -86,6 +86,10 @@ export class Nat64 extends pulumi.CustomResource {
      */
     public readonly generateIpv6FragmentHeader!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
      */
     public readonly nat46ForceIpv4PacketForwarding!: pulumi.Output<string>;
@@ -126,6 +130,7 @@ export class Nat64 extends pulumi.CustomResource {
             resourceInputs["alwaysSynthesizeAaaaRecord"] = state ? state.alwaysSynthesizeAaaaRecord : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["generateIpv6FragmentHeader"] = state ? state.generateIpv6FragmentHeader : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["nat46ForceIpv4PacketForwarding"] = state ? state.nat46ForceIpv4PacketForwarding : undefined;
             resourceInputs["nat64Prefix"] = state ? state.nat64Prefix : undefined;
             resourceInputs["secondaryPrefixStatus"] = state ? state.secondaryPrefixStatus : undefined;
@@ -140,6 +145,7 @@ export class Nat64 extends pulumi.CustomResource {
             resourceInputs["alwaysSynthesizeAaaaRecord"] = args ? args.alwaysSynthesizeAaaaRecord : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["generateIpv6FragmentHeader"] = args ? args.generateIpv6FragmentHeader : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["nat46ForceIpv4PacketForwarding"] = args ? args.nat46ForceIpv4PacketForwarding : undefined;
             resourceInputs["nat64Prefix"] = args ? args.nat64Prefix : undefined;
             resourceInputs["secondaryPrefixStatus"] = args ? args.secondaryPrefixStatus : undefined;
@@ -168,6 +174,10 @@ export interface Nat64State {
      * Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
      */
     generateIpv6FragmentHeader?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
      */
@@ -210,6 +220,10 @@ export interface Nat64Args {
      * Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
      */
     generateIpv6FragmentHeader?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
      */

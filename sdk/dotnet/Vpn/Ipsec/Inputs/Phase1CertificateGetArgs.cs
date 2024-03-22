@@ -15,8 +15,6 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec.Inputs
     {
         /// <summary>
         /// Certificate name.
-        /// 
-        /// The `ipv4_exclude_range` block supports:
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

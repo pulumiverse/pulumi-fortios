@@ -57,7 +57,7 @@ type Vap struct {
 	ApplicationReportIntv pulumi.IntOutput `pulumi:"applicationReportIntv"`
 	// Airtime weight in percentage (default = 20).
 	AtfWeight pulumi.IntOutput `pulumi:"atfWeight"`
-	// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+	// Authentication protocol.
 	Auth pulumi.StringOutput `pulumi:"auth"`
 	// HTTPS server certificate.
 	AuthCert pulumi.StringOutput `pulumi:"authCert"`
@@ -81,6 +81,8 @@ type Vap struct {
 	CaptivePortalAcName pulumi.StringOutput `pulumi:"captivePortalAcName"`
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
 	CaptivePortalAuthTimeout pulumi.IntOutput `pulumi:"captivePortalAuthTimeout"`
+	// Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+	CaptivePortalFwAccounting pulumi.StringOutput `pulumi:"captivePortalFwAccounting"`
 	// Secret key to access the macauth RADIUS server.
 	CaptivePortalMacauthRadiusSecret pulumi.StringPtrOutput `pulumi:"captivePortalMacauthRadiusSecret"`
 	// Captive portal external RADIUS server domain name or IP address.
@@ -137,6 +139,8 @@ type Vap struct {
 	GasComebackDelay pulumi.IntOutput `pulumi:"gasComebackDelay"`
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit pulumi.IntOutput `pulumi:"gasFragmentationLimit"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey pulumi.StringOutput `pulumi:"gtkRekey"`
 	// GTK rekey interval (1800 - 864000 sec, default = 86400).
@@ -223,6 +227,10 @@ type Vap struct {
 	MulticastEnhance pulumi.StringOutput `pulumi:"multicastEnhance"`
 	// Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
 	MulticastRate pulumi.StringOutput `pulumi:"multicastRate"`
+	// Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+	N80211k pulumi.StringOutput `pulumi:"n80211k"`
+	// Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+	N80211v pulumi.StringOutput `pulumi:"n80211v"`
 	// Enable/disable network access control. Valid values: `enable`, `disable`.
 	Nac pulumi.StringOutput `pulumi:"nac"`
 	// NAC profile name.
@@ -283,6 +291,8 @@ type Vap struct {
 	RadioSensitivity pulumi.StringOutput `pulumi:"radioSensitivity"`
 	// Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
 	RadiusMacAuth pulumi.StringOutput `pulumi:"radiusMacAuth"`
+	// Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+	RadiusMacAuthBlockInterval pulumi.IntOutput `pulumi:"radiusMacAuthBlockInterval"`
 	// RADIUS-based MAC authentication server.
 	RadiusMacAuthServer pulumi.StringOutput `pulumi:"radiusMacAuthServer"`
 	// Selective user groups that are permitted for RADIUS mac authentication. The structure of `radiusMacAuthUsergroups` block is documented below.
@@ -293,7 +303,7 @@ type Vap struct {
 	RadiusMacMpskTimeout pulumi.IntOutput `pulumi:"radiusMacMpskTimeout"`
 	// RADIUS server to be used to authenticate WiFi users.
 	RadiusServer pulumi.StringOutput `pulumi:"radiusServer"`
-	// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+	// Allowed data rates for 802.11a.
 	Rates11a pulumi.StringOutput `pulumi:"rates11a"`
 	// Comma separated list of max supported VHT MCS for spatial streams 1 through 8.
 	Rates11acMcsMap pulumi.StringOutput `pulumi:"rates11acMcsMap"`
@@ -307,16 +317,20 @@ type Vap struct {
 	Rates11axSs12 pulumi.StringOutput `pulumi:"rates11axSs12"`
 	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11axSs34 pulumi.StringOutput `pulumi:"rates11axSs34"`
-	// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+	// Allowed data rates for 802.11b/g.
 	Rates11bg pulumi.StringOutput `pulumi:"rates11bg"`
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
 	Rates11nSs12 pulumi.StringOutput `pulumi:"rates11nSs12"`
 	// Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
 	Rates11nSs34 pulumi.StringOutput `pulumi:"rates11nSs34"`
+	// Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+	RoamingAcctInterimUpdate pulumi.StringOutput `pulumi:"roamingAcctInterimUpdate"`
 	// SAE-Groups. Valid values: `19`, `20`, `21`.
 	SaeGroups pulumi.StringOutput `pulumi:"saeGroups"`
 	// Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
 	SaeH2eOnly pulumi.StringOutput `pulumi:"saeH2eOnly"`
+	// Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+	SaeHnpOnly pulumi.StringOutput `pulumi:"saeHnpOnly"`
 	// WPA3 SAE password to be used to authenticate WiFi users.
 	SaePassword pulumi.StringPtrOutput `pulumi:"saePassword"`
 	// Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
@@ -462,7 +476,7 @@ type vapState struct {
 	ApplicationReportIntv *int `pulumi:"applicationReportIntv"`
 	// Airtime weight in percentage (default = 20).
 	AtfWeight *int `pulumi:"atfWeight"`
-	// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+	// Authentication protocol.
 	Auth *string `pulumi:"auth"`
 	// HTTPS server certificate.
 	AuthCert *string `pulumi:"authCert"`
@@ -486,6 +500,8 @@ type vapState struct {
 	CaptivePortalAcName *string `pulumi:"captivePortalAcName"`
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
 	CaptivePortalAuthTimeout *int `pulumi:"captivePortalAuthTimeout"`
+	// Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+	CaptivePortalFwAccounting *string `pulumi:"captivePortalFwAccounting"`
 	// Secret key to access the macauth RADIUS server.
 	CaptivePortalMacauthRadiusSecret *string `pulumi:"captivePortalMacauthRadiusSecret"`
 	// Captive portal external RADIUS server domain name or IP address.
@@ -542,6 +558,8 @@ type vapState struct {
 	GasComebackDelay *int `pulumi:"gasComebackDelay"`
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit *int `pulumi:"gasFragmentationLimit"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey *string `pulumi:"gtkRekey"`
 	// GTK rekey interval (1800 - 864000 sec, default = 86400).
@@ -628,6 +646,10 @@ type vapState struct {
 	MulticastEnhance *string `pulumi:"multicastEnhance"`
 	// Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
 	MulticastRate *string `pulumi:"multicastRate"`
+	// Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+	N80211k *string `pulumi:"n80211k"`
+	// Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+	N80211v *string `pulumi:"n80211v"`
 	// Enable/disable network access control. Valid values: `enable`, `disable`.
 	Nac *string `pulumi:"nac"`
 	// NAC profile name.
@@ -688,6 +710,8 @@ type vapState struct {
 	RadioSensitivity *string `pulumi:"radioSensitivity"`
 	// Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
 	RadiusMacAuth *string `pulumi:"radiusMacAuth"`
+	// Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+	RadiusMacAuthBlockInterval *int `pulumi:"radiusMacAuthBlockInterval"`
 	// RADIUS-based MAC authentication server.
 	RadiusMacAuthServer *string `pulumi:"radiusMacAuthServer"`
 	// Selective user groups that are permitted for RADIUS mac authentication. The structure of `radiusMacAuthUsergroups` block is documented below.
@@ -698,7 +722,7 @@ type vapState struct {
 	RadiusMacMpskTimeout *int `pulumi:"radiusMacMpskTimeout"`
 	// RADIUS server to be used to authenticate WiFi users.
 	RadiusServer *string `pulumi:"radiusServer"`
-	// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+	// Allowed data rates for 802.11a.
 	Rates11a *string `pulumi:"rates11a"`
 	// Comma separated list of max supported VHT MCS for spatial streams 1 through 8.
 	Rates11acMcsMap *string `pulumi:"rates11acMcsMap"`
@@ -712,16 +736,20 @@ type vapState struct {
 	Rates11axSs12 *string `pulumi:"rates11axSs12"`
 	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11axSs34 *string `pulumi:"rates11axSs34"`
-	// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+	// Allowed data rates for 802.11b/g.
 	Rates11bg *string `pulumi:"rates11bg"`
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
 	Rates11nSs12 *string `pulumi:"rates11nSs12"`
 	// Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
 	Rates11nSs34 *string `pulumi:"rates11nSs34"`
+	// Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+	RoamingAcctInterimUpdate *string `pulumi:"roamingAcctInterimUpdate"`
 	// SAE-Groups. Valid values: `19`, `20`, `21`.
 	SaeGroups *string `pulumi:"saeGroups"`
 	// Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
 	SaeH2eOnly *string `pulumi:"saeH2eOnly"`
+	// Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+	SaeHnpOnly *string `pulumi:"saeHnpOnly"`
 	// WPA3 SAE password to be used to authenticate WiFi users.
 	SaePassword *string `pulumi:"saePassword"`
 	// Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
@@ -815,7 +843,7 @@ type VapState struct {
 	ApplicationReportIntv pulumi.IntPtrInput
 	// Airtime weight in percentage (default = 20).
 	AtfWeight pulumi.IntPtrInput
-	// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+	// Authentication protocol.
 	Auth pulumi.StringPtrInput
 	// HTTPS server certificate.
 	AuthCert pulumi.StringPtrInput
@@ -839,6 +867,8 @@ type VapState struct {
 	CaptivePortalAcName pulumi.StringPtrInput
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
 	CaptivePortalAuthTimeout pulumi.IntPtrInput
+	// Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+	CaptivePortalFwAccounting pulumi.StringPtrInput
 	// Secret key to access the macauth RADIUS server.
 	CaptivePortalMacauthRadiusSecret pulumi.StringPtrInput
 	// Captive portal external RADIUS server domain name or IP address.
@@ -895,6 +925,8 @@ type VapState struct {
 	GasComebackDelay pulumi.IntPtrInput
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey pulumi.StringPtrInput
 	// GTK rekey interval (1800 - 864000 sec, default = 86400).
@@ -981,6 +1013,10 @@ type VapState struct {
 	MulticastEnhance pulumi.StringPtrInput
 	// Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
 	MulticastRate pulumi.StringPtrInput
+	// Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+	N80211k pulumi.StringPtrInput
+	// Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+	N80211v pulumi.StringPtrInput
 	// Enable/disable network access control. Valid values: `enable`, `disable`.
 	Nac pulumi.StringPtrInput
 	// NAC profile name.
@@ -1041,6 +1077,8 @@ type VapState struct {
 	RadioSensitivity pulumi.StringPtrInput
 	// Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
 	RadiusMacAuth pulumi.StringPtrInput
+	// Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+	RadiusMacAuthBlockInterval pulumi.IntPtrInput
 	// RADIUS-based MAC authentication server.
 	RadiusMacAuthServer pulumi.StringPtrInput
 	// Selective user groups that are permitted for RADIUS mac authentication. The structure of `radiusMacAuthUsergroups` block is documented below.
@@ -1051,7 +1089,7 @@ type VapState struct {
 	RadiusMacMpskTimeout pulumi.IntPtrInput
 	// RADIUS server to be used to authenticate WiFi users.
 	RadiusServer pulumi.StringPtrInput
-	// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+	// Allowed data rates for 802.11a.
 	Rates11a pulumi.StringPtrInput
 	// Comma separated list of max supported VHT MCS for spatial streams 1 through 8.
 	Rates11acMcsMap pulumi.StringPtrInput
@@ -1065,16 +1103,20 @@ type VapState struct {
 	Rates11axSs12 pulumi.StringPtrInput
 	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11axSs34 pulumi.StringPtrInput
-	// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+	// Allowed data rates for 802.11b/g.
 	Rates11bg pulumi.StringPtrInput
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
 	Rates11nSs12 pulumi.StringPtrInput
 	// Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
 	Rates11nSs34 pulumi.StringPtrInput
+	// Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+	RoamingAcctInterimUpdate pulumi.StringPtrInput
 	// SAE-Groups. Valid values: `19`, `20`, `21`.
 	SaeGroups pulumi.StringPtrInput
 	// Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
 	SaeH2eOnly pulumi.StringPtrInput
+	// Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+	SaeHnpOnly pulumi.StringPtrInput
 	// WPA3 SAE password to be used to authenticate WiFi users.
 	SaePassword pulumi.StringPtrInput
 	// Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
@@ -1172,7 +1214,7 @@ type vapArgs struct {
 	ApplicationReportIntv *int `pulumi:"applicationReportIntv"`
 	// Airtime weight in percentage (default = 20).
 	AtfWeight *int `pulumi:"atfWeight"`
-	// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+	// Authentication protocol.
 	Auth *string `pulumi:"auth"`
 	// HTTPS server certificate.
 	AuthCert *string `pulumi:"authCert"`
@@ -1196,6 +1238,8 @@ type vapArgs struct {
 	CaptivePortalAcName *string `pulumi:"captivePortalAcName"`
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
 	CaptivePortalAuthTimeout *int `pulumi:"captivePortalAuthTimeout"`
+	// Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+	CaptivePortalFwAccounting *string `pulumi:"captivePortalFwAccounting"`
 	// Secret key to access the macauth RADIUS server.
 	CaptivePortalMacauthRadiusSecret *string `pulumi:"captivePortalMacauthRadiusSecret"`
 	// Captive portal external RADIUS server domain name or IP address.
@@ -1252,6 +1296,8 @@ type vapArgs struct {
 	GasComebackDelay *int `pulumi:"gasComebackDelay"`
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit *int `pulumi:"gasFragmentationLimit"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey *string `pulumi:"gtkRekey"`
 	// GTK rekey interval (1800 - 864000 sec, default = 86400).
@@ -1338,6 +1384,10 @@ type vapArgs struct {
 	MulticastEnhance *string `pulumi:"multicastEnhance"`
 	// Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
 	MulticastRate *string `pulumi:"multicastRate"`
+	// Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+	N80211k *string `pulumi:"n80211k"`
+	// Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+	N80211v *string `pulumi:"n80211v"`
 	// Enable/disable network access control. Valid values: `enable`, `disable`.
 	Nac *string `pulumi:"nac"`
 	// NAC profile name.
@@ -1398,6 +1448,8 @@ type vapArgs struct {
 	RadioSensitivity *string `pulumi:"radioSensitivity"`
 	// Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
 	RadiusMacAuth *string `pulumi:"radiusMacAuth"`
+	// Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+	RadiusMacAuthBlockInterval *int `pulumi:"radiusMacAuthBlockInterval"`
 	// RADIUS-based MAC authentication server.
 	RadiusMacAuthServer *string `pulumi:"radiusMacAuthServer"`
 	// Selective user groups that are permitted for RADIUS mac authentication. The structure of `radiusMacAuthUsergroups` block is documented below.
@@ -1408,7 +1460,7 @@ type vapArgs struct {
 	RadiusMacMpskTimeout *int `pulumi:"radiusMacMpskTimeout"`
 	// RADIUS server to be used to authenticate WiFi users.
 	RadiusServer *string `pulumi:"radiusServer"`
-	// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+	// Allowed data rates for 802.11a.
 	Rates11a *string `pulumi:"rates11a"`
 	// Comma separated list of max supported VHT MCS for spatial streams 1 through 8.
 	Rates11acMcsMap *string `pulumi:"rates11acMcsMap"`
@@ -1422,16 +1474,20 @@ type vapArgs struct {
 	Rates11axSs12 *string `pulumi:"rates11axSs12"`
 	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11axSs34 *string `pulumi:"rates11axSs34"`
-	// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+	// Allowed data rates for 802.11b/g.
 	Rates11bg *string `pulumi:"rates11bg"`
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
 	Rates11nSs12 *string `pulumi:"rates11nSs12"`
 	// Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
 	Rates11nSs34 *string `pulumi:"rates11nSs34"`
+	// Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+	RoamingAcctInterimUpdate *string `pulumi:"roamingAcctInterimUpdate"`
 	// SAE-Groups. Valid values: `19`, `20`, `21`.
 	SaeGroups *string `pulumi:"saeGroups"`
 	// Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
 	SaeH2eOnly *string `pulumi:"saeH2eOnly"`
+	// Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+	SaeHnpOnly *string `pulumi:"saeHnpOnly"`
 	// WPA3 SAE password to be used to authenticate WiFi users.
 	SaePassword *string `pulumi:"saePassword"`
 	// Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
@@ -1526,7 +1582,7 @@ type VapArgs struct {
 	ApplicationReportIntv pulumi.IntPtrInput
 	// Airtime weight in percentage (default = 20).
 	AtfWeight pulumi.IntPtrInput
-	// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+	// Authentication protocol.
 	Auth pulumi.StringPtrInput
 	// HTTPS server certificate.
 	AuthCert pulumi.StringPtrInput
@@ -1550,6 +1606,8 @@ type VapArgs struct {
 	CaptivePortalAcName pulumi.StringPtrInput
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
 	CaptivePortalAuthTimeout pulumi.IntPtrInput
+	// Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+	CaptivePortalFwAccounting pulumi.StringPtrInput
 	// Secret key to access the macauth RADIUS server.
 	CaptivePortalMacauthRadiusSecret pulumi.StringPtrInput
 	// Captive portal external RADIUS server domain name or IP address.
@@ -1606,6 +1664,8 @@ type VapArgs struct {
 	GasComebackDelay pulumi.IntPtrInput
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey pulumi.StringPtrInput
 	// GTK rekey interval (1800 - 864000 sec, default = 86400).
@@ -1692,6 +1752,10 @@ type VapArgs struct {
 	MulticastEnhance pulumi.StringPtrInput
 	// Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
 	MulticastRate pulumi.StringPtrInput
+	// Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+	N80211k pulumi.StringPtrInput
+	// Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+	N80211v pulumi.StringPtrInput
 	// Enable/disable network access control. Valid values: `enable`, `disable`.
 	Nac pulumi.StringPtrInput
 	// NAC profile name.
@@ -1752,6 +1816,8 @@ type VapArgs struct {
 	RadioSensitivity pulumi.StringPtrInput
 	// Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
 	RadiusMacAuth pulumi.StringPtrInput
+	// Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+	RadiusMacAuthBlockInterval pulumi.IntPtrInput
 	// RADIUS-based MAC authentication server.
 	RadiusMacAuthServer pulumi.StringPtrInput
 	// Selective user groups that are permitted for RADIUS mac authentication. The structure of `radiusMacAuthUsergroups` block is documented below.
@@ -1762,7 +1828,7 @@ type VapArgs struct {
 	RadiusMacMpskTimeout pulumi.IntPtrInput
 	// RADIUS server to be used to authenticate WiFi users.
 	RadiusServer pulumi.StringPtrInput
-	// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+	// Allowed data rates for 802.11a.
 	Rates11a pulumi.StringPtrInput
 	// Comma separated list of max supported VHT MCS for spatial streams 1 through 8.
 	Rates11acMcsMap pulumi.StringPtrInput
@@ -1776,16 +1842,20 @@ type VapArgs struct {
 	Rates11axSs12 pulumi.StringPtrInput
 	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11axSs34 pulumi.StringPtrInput
-	// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+	// Allowed data rates for 802.11b/g.
 	Rates11bg pulumi.StringPtrInput
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
 	Rates11nSs12 pulumi.StringPtrInput
 	// Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
 	Rates11nSs34 pulumi.StringPtrInput
+	// Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+	RoamingAcctInterimUpdate pulumi.StringPtrInput
 	// SAE-Groups. Valid values: `19`, `20`, `21`.
 	SaeGroups pulumi.StringPtrInput
 	// Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
 	SaeH2eOnly pulumi.StringPtrInput
+	// Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+	SaeHnpOnly pulumi.StringPtrInput
 	// WPA3 SAE password to be used to authenticate WiFi users.
 	SaePassword pulumi.StringPtrInput
 	// Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
@@ -2001,7 +2071,7 @@ func (o VapOutput) AtfWeight() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vap) pulumi.IntOutput { return v.AtfWeight }).(pulumi.IntOutput)
 }
 
-// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+// Authentication protocol.
 func (o VapOutput) Auth() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.Auth }).(pulumi.StringOutput)
 }
@@ -2059,6 +2129,11 @@ func (o VapOutput) CaptivePortalAcName() pulumi.StringOutput {
 // Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
 func (o VapOutput) CaptivePortalAuthTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vap) pulumi.IntOutput { return v.CaptivePortalAuthTimeout }).(pulumi.IntOutput)
+}
+
+// Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
+func (o VapOutput) CaptivePortalFwAccounting() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.CaptivePortalFwAccounting }).(pulumi.StringOutput)
 }
 
 // Secret key to access the macauth RADIUS server.
@@ -2199,6 +2274,11 @@ func (o VapOutput) GasComebackDelay() pulumi.IntOutput {
 // GAS fragmentation limit (512 - 4096, default = 1024).
 func (o VapOutput) GasFragmentationLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vap) pulumi.IntOutput { return v.GasFragmentationLimit }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o VapOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
@@ -2416,6 +2496,16 @@ func (o VapOutput) MulticastRate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.MulticastRate }).(pulumi.StringOutput)
 }
 
+// Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+func (o VapOutput) N80211k() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.N80211k }).(pulumi.StringOutput)
+}
+
+// Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
+func (o VapOutput) N80211v() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.N80211v }).(pulumi.StringOutput)
+}
+
 // Enable/disable network access control. Valid values: `enable`, `disable`.
 func (o VapOutput) Nac() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.Nac }).(pulumi.StringOutput)
@@ -2566,6 +2656,11 @@ func (o VapOutput) RadiusMacAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.RadiusMacAuth }).(pulumi.StringOutput)
 }
 
+// Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+func (o VapOutput) RadiusMacAuthBlockInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *Vap) pulumi.IntOutput { return v.RadiusMacAuthBlockInterval }).(pulumi.IntOutput)
+}
+
 // RADIUS-based MAC authentication server.
 func (o VapOutput) RadiusMacAuthServer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.RadiusMacAuthServer }).(pulumi.StringOutput)
@@ -2591,7 +2686,7 @@ func (o VapOutput) RadiusServer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.RadiusServer }).(pulumi.StringOutput)
 }
 
-// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+// Allowed data rates for 802.11a.
 func (o VapOutput) Rates11a() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.Rates11a }).(pulumi.StringOutput)
 }
@@ -2626,7 +2721,7 @@ func (o VapOutput) Rates11axSs34() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.Rates11axSs34 }).(pulumi.StringOutput)
 }
 
-// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
+// Allowed data rates for 802.11b/g.
 func (o VapOutput) Rates11bg() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.Rates11bg }).(pulumi.StringOutput)
 }
@@ -2641,6 +2736,11 @@ func (o VapOutput) Rates11nSs34() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.Rates11nSs34 }).(pulumi.StringOutput)
 }
 
+// Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `enable`, `disable`.
+func (o VapOutput) RoamingAcctInterimUpdate() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.RoamingAcctInterimUpdate }).(pulumi.StringOutput)
+}
+
 // SAE-Groups. Valid values: `19`, `20`, `21`.
 func (o VapOutput) SaeGroups() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.SaeGroups }).(pulumi.StringOutput)
@@ -2649,6 +2749,11 @@ func (o VapOutput) SaeGroups() pulumi.StringOutput {
 // Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
 func (o VapOutput) SaeH2eOnly() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.SaeH2eOnly }).(pulumi.StringOutput)
+}
+
+// Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `enable`, `disable`.
+func (o VapOutput) SaeHnpOnly() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.SaeHnpOnly }).(pulumi.StringOutput)
 }
 
 // WPA3 SAE password to be used to authenticate WiFi users.

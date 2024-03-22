@@ -65,6 +65,18 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         public Output<string> Interface { get; private set; } = null!;
 
         /// <summary>
+        /// IPv4 subnets that the client is protecting.
+        /// </summary>
+        [Output("ipv4Subnets")]
+        public Output<string> Ipv4Subnets { get; private set; } = null!;
+
+        /// <summary>
+        /// IPv6 subnets that the client is protecting.
+        /// </summary>
+        [Output("ipv6Subnets")]
+        public Output<string> Ipv6Subnets { get; private set; } = null!;
+
+        /// <summary>
         /// SSL-VPN tunnel name.
         /// </summary>
         [Output("name")]
@@ -208,6 +220,18 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         public Input<string>? Interface { get; set; }
 
         /// <summary>
+        /// IPv4 subnets that the client is protecting.
+        /// </summary>
+        [Input("ipv4Subnets")]
+        public Input<string>? Ipv4Subnets { get; set; }
+
+        /// <summary>
+        /// IPv6 subnets that the client is protecting.
+        /// </summary>
+        [Input("ipv6Subnets")]
+        public Input<string>? Ipv6Subnets { get; set; }
+
+        /// <summary>
         /// SSL-VPN tunnel name.
         /// </summary>
         [Input("name")]
@@ -310,6 +334,18 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         /// </summary>
         [Input("interface")]
         public Input<string>? Interface { get; set; }
+
+        /// <summary>
+        /// IPv4 subnets that the client is protecting.
+        /// </summary>
+        [Input("ipv4Subnets")]
+        public Input<string>? Ipv4Subnets { get; set; }
+
+        /// <summary>
+        /// IPv6 subnets that the client is protecting.
+        /// </summary>
+        [Input("ipv6Subnets")]
+        public Input<string>? Ipv6Subnets { get; set; }
 
         /// <summary>
         /// SSL-VPN tunnel name.

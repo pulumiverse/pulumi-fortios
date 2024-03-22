@@ -16,6 +16,7 @@ __all__ = [
     'ProfileExternalIpBlocklistArgs',
     'ProfileFtgdDnsArgs',
     'ProfileFtgdDnsFilterArgs',
+    'ProfileTransparentDnsDatabaseArgs',
 ]
 
 @pulumi.input_type
@@ -410,5 +411,28 @@ class ProfileFtgdDnsFilterArgs:
     @log.setter
     def log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "log", value)
+
+
+@pulumi.input_type
+class ProfileTransparentDnsDatabaseArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: DNS database zone name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS database zone name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 

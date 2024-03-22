@@ -87,6 +87,14 @@ namespace Pulumiverse.Fortios.System.Snmp
         /// </summary>
         public readonly string Status;
         /// <summary>
+        /// Free memory usage when trap is sent.
+        /// </summary>
+        public readonly int TrapFreeMemoryThreshold;
+        /// <summary>
+        /// Freeable memory usage when trap is sent.
+        /// </summary>
+        public readonly int TrapFreeableMemoryThreshold;
+        /// <summary>
         /// CPU usage when trap is sent.
         /// </summary>
         public readonly int TrapHighCpuThreshold;
@@ -116,6 +124,10 @@ namespace Pulumiverse.Fortios.System.Snmp
 
             string status,
 
+            int trapFreeMemoryThreshold,
+
+            int trapFreeableMemoryThreshold,
+
             int trapHighCpuThreshold,
 
             int trapLogFullThreshold,
@@ -131,6 +143,8 @@ namespace Pulumiverse.Fortios.System.Snmp
             Id = id;
             Location = location;
             Status = status;
+            TrapFreeMemoryThreshold = trapFreeMemoryThreshold;
+            TrapFreeableMemoryThreshold = trapFreeableMemoryThreshold;
             TrapHighCpuThreshold = trapHighCpuThreshold;
             TrapLogFullThreshold = trapLogFullThreshold;
             TrapLowMemoryThreshold = trapLowMemoryThreshold;

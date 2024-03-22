@@ -26,12 +26,15 @@ class DnsdatabaseArgs:
                  dns_entries: Optional[pulumi.Input[Sequence[pulumi.Input['DnsdatabaseDnsEntryArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  forwarder: Optional[pulumi.Input[str]] = None,
+                 forwarder6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_master: Optional[pulumi.Input[str]] = None,
                  ip_primary: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  primary_name: Optional[pulumi.Input[str]] = None,
                  rr_max: Optional[pulumi.Input[int]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 source_ip6: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -48,12 +51,15 @@ class DnsdatabaseArgs:
         :param pulumi.Input[Sequence[pulumi.Input['DnsdatabaseDnsEntryArgs']]] dns_entries: DNS entry. The structure of `dns_entry` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] forwarder: DNS zone forwarder IP address list.
+        :param pulumi.Input[str] forwarder6: Forwarder IPv6 address.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_master: IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
         :param pulumi.Input[str] ip_primary: IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
         :param pulumi.Input[str] name: Zone name.
         :param pulumi.Input[str] primary_name: Domain name of the default DNS server for this zone.
         :param pulumi.Input[int] rr_max: Maximum number of resource records (10 - 65536, 0 means infinite).
         :param pulumi.Input[str] source_ip: Source IP for forwarding to DNS server.
+        :param pulumi.Input[str] source_ip6: IPv6 source IP address for forwarding to DNS server.
         :param pulumi.Input[str] status: Enable/disable this DNS zone. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -72,6 +78,10 @@ class DnsdatabaseArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if forwarder is not None:
             pulumi.set(__self__, "forwarder", forwarder)
+        if forwarder6 is not None:
+            pulumi.set(__self__, "forwarder6", forwarder6)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_master is not None:
             pulumi.set(__self__, "ip_master", ip_master)
         if ip_primary is not None:
@@ -84,6 +94,8 @@ class DnsdatabaseArgs:
             pulumi.set(__self__, "rr_max", rr_max)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
+        if source_ip6 is not None:
+            pulumi.set(__self__, "source_ip6", source_ip6)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
@@ -212,6 +224,30 @@ class DnsdatabaseArgs:
         pulumi.set(self, "forwarder", value)
 
     @property
+    @pulumi.getter
+    def forwarder6(self) -> Optional[pulumi.Input[str]]:
+        """
+        Forwarder IPv6 address.
+        """
+        return pulumi.get(self, "forwarder6")
+
+    @forwarder6.setter
+    def forwarder6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forwarder6", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="ipMaster")
     def ip_master(self) -> Optional[pulumi.Input[str]]:
         """
@@ -284,6 +320,18 @@ class DnsdatabaseArgs:
         pulumi.set(self, "source_ip", value)
 
     @property
+    @pulumi.getter(name="sourceIp6")
+    def source_ip6(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv6 source IP address for forwarding to DNS server.
+        """
+        return pulumi.get(self, "source_ip6")
+
+    @source_ip6.setter
+    def source_ip6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip6", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -318,12 +366,15 @@ class _DnsdatabaseState:
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  forwarder: Optional[pulumi.Input[str]] = None,
+                 forwarder6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_master: Optional[pulumi.Input[str]] = None,
                  ip_primary: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  primary_name: Optional[pulumi.Input[str]] = None,
                  rr_max: Optional[pulumi.Input[int]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 source_ip6: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -340,12 +391,15 @@ class _DnsdatabaseState:
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] forwarder: DNS zone forwarder IP address list.
+        :param pulumi.Input[str] forwarder6: Forwarder IPv6 address.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_master: IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
         :param pulumi.Input[str] ip_primary: IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
         :param pulumi.Input[str] name: Zone name.
         :param pulumi.Input[str] primary_name: Domain name of the default DNS server for this zone.
         :param pulumi.Input[int] rr_max: Maximum number of resource records (10 - 65536, 0 means infinite).
         :param pulumi.Input[str] source_ip: Source IP for forwarding to DNS server.
+        :param pulumi.Input[str] source_ip6: IPv6 source IP address for forwarding to DNS server.
         :param pulumi.Input[str] status: Enable/disable this DNS zone. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ttl: Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
         :param pulumi.Input[str] type: Zone type (master to manage entries directly, slave to import entries from other zones).
@@ -366,6 +420,10 @@ class _DnsdatabaseState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if forwarder is not None:
             pulumi.set(__self__, "forwarder", forwarder)
+        if forwarder6 is not None:
+            pulumi.set(__self__, "forwarder6", forwarder6)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_master is not None:
             pulumi.set(__self__, "ip_master", ip_master)
         if ip_primary is not None:
@@ -378,6 +436,8 @@ class _DnsdatabaseState:
             pulumi.set(__self__, "rr_max", rr_max)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
+        if source_ip6 is not None:
+            pulumi.set(__self__, "source_ip6", source_ip6)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if ttl is not None:
@@ -476,6 +536,30 @@ class _DnsdatabaseState:
         pulumi.set(self, "forwarder", value)
 
     @property
+    @pulumi.getter
+    def forwarder6(self) -> Optional[pulumi.Input[str]]:
+        """
+        Forwarder IPv6 address.
+        """
+        return pulumi.get(self, "forwarder6")
+
+    @forwarder6.setter
+    def forwarder6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forwarder6", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="ipMaster")
     def ip_master(self) -> Optional[pulumi.Input[str]]:
         """
@@ -546,6 +630,18 @@ class _DnsdatabaseState:
     @source_ip.setter
     def source_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "source_ip", value)
+
+    @property
+    @pulumi.getter(name="sourceIp6")
+    def source_ip6(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv6 source IP address for forwarding to DNS server.
+        """
+        return pulumi.get(self, "source_ip6")
+
+    @source_ip6.setter
+    def source_ip6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip6", value)
 
     @property
     @pulumi.getter
@@ -620,12 +716,15 @@ class Dnsdatabase(pulumi.CustomResource):
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  forwarder: Optional[pulumi.Input[str]] = None,
+                 forwarder6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_master: Optional[pulumi.Input[str]] = None,
                  ip_primary: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  primary_name: Optional[pulumi.Input[str]] = None,
                  rr_max: Optional[pulumi.Input[int]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 source_ip6: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -691,12 +790,15 @@ class Dnsdatabase(pulumi.CustomResource):
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] forwarder: DNS zone forwarder IP address list.
+        :param pulumi.Input[str] forwarder6: Forwarder IPv6 address.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_master: IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
         :param pulumi.Input[str] ip_primary: IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
         :param pulumi.Input[str] name: Zone name.
         :param pulumi.Input[str] primary_name: Domain name of the default DNS server for this zone.
         :param pulumi.Input[int] rr_max: Maximum number of resource records (10 - 65536, 0 means infinite).
         :param pulumi.Input[str] source_ip: Source IP for forwarding to DNS server.
+        :param pulumi.Input[str] source_ip6: IPv6 source IP address for forwarding to DNS server.
         :param pulumi.Input[str] status: Enable/disable this DNS zone. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ttl: Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
         :param pulumi.Input[str] type: Zone type (master to manage entries directly, slave to import entries from other zones).
@@ -779,12 +881,15 @@ class Dnsdatabase(pulumi.CustomResource):
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  forwarder: Optional[pulumi.Input[str]] = None,
+                 forwarder6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_master: Optional[pulumi.Input[str]] = None,
                  ip_primary: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  primary_name: Optional[pulumi.Input[str]] = None,
                  rr_max: Optional[pulumi.Input[int]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 source_ip6: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -810,12 +915,15 @@ class Dnsdatabase(pulumi.CustomResource):
             __props__.__dict__["domain"] = domain
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["forwarder"] = forwarder
+            __props__.__dict__["forwarder6"] = forwarder6
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ip_master"] = ip_master
             __props__.__dict__["ip_primary"] = ip_primary
             __props__.__dict__["name"] = name
             __props__.__dict__["primary_name"] = primary_name
             __props__.__dict__["rr_max"] = rr_max
             __props__.__dict__["source_ip"] = source_ip
+            __props__.__dict__["source_ip6"] = source_ip6
             __props__.__dict__["status"] = status
             if ttl is None and not opts.urn:
                 raise TypeError("Missing required property 'ttl'")
@@ -844,12 +952,15 @@ class Dnsdatabase(pulumi.CustomResource):
             domain: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             forwarder: Optional[pulumi.Input[str]] = None,
+            forwarder6: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ip_master: Optional[pulumi.Input[str]] = None,
             ip_primary: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             primary_name: Optional[pulumi.Input[str]] = None,
             rr_max: Optional[pulumi.Input[int]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
+            source_ip6: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[int]] = None,
             type: Optional[pulumi.Input[str]] = None,
@@ -871,12 +982,15 @@ class Dnsdatabase(pulumi.CustomResource):
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] forwarder: DNS zone forwarder IP address list.
+        :param pulumi.Input[str] forwarder6: Forwarder IPv6 address.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_master: IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
         :param pulumi.Input[str] ip_primary: IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
         :param pulumi.Input[str] name: Zone name.
         :param pulumi.Input[str] primary_name: Domain name of the default DNS server for this zone.
         :param pulumi.Input[int] rr_max: Maximum number of resource records (10 - 65536, 0 means infinite).
         :param pulumi.Input[str] source_ip: Source IP for forwarding to DNS server.
+        :param pulumi.Input[str] source_ip6: IPv6 source IP address for forwarding to DNS server.
         :param pulumi.Input[str] status: Enable/disable this DNS zone. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ttl: Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
         :param pulumi.Input[str] type: Zone type (master to manage entries directly, slave to import entries from other zones).
@@ -894,12 +1008,15 @@ class Dnsdatabase(pulumi.CustomResource):
         __props__.__dict__["domain"] = domain
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["forwarder"] = forwarder
+        __props__.__dict__["forwarder6"] = forwarder6
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ip_master"] = ip_master
         __props__.__dict__["ip_primary"] = ip_primary
         __props__.__dict__["name"] = name
         __props__.__dict__["primary_name"] = primary_name
         __props__.__dict__["rr_max"] = rr_max
         __props__.__dict__["source_ip"] = source_ip
+        __props__.__dict__["source_ip6"] = source_ip6
         __props__.__dict__["status"] = status
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["type"] = type
@@ -966,6 +1083,22 @@ class Dnsdatabase(pulumi.CustomResource):
         return pulumi.get(self, "forwarder")
 
     @property
+    @pulumi.getter
+    def forwarder6(self) -> pulumi.Output[str]:
+        """
+        Forwarder IPv6 address.
+        """
+        return pulumi.get(self, "forwarder6")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="ipMaster")
     def ip_master(self) -> pulumi.Output[str]:
         """
@@ -1012,6 +1145,14 @@ class Dnsdatabase(pulumi.CustomResource):
         Source IP for forwarding to DNS server.
         """
         return pulumi.get(self, "source_ip")
+
+    @property
+    @pulumi.getter(name="sourceIp6")
+    def source_ip6(self) -> pulumi.Output[str]:
+        """
+        IPv6 source IP address for forwarding to DNS server.
+        """
+        return pulumi.get(self, "source_ip6")
 
     @property
     @pulumi.getter

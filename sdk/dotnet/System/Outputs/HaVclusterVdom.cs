@@ -14,6 +14,9 @@ namespace Pulumiverse.Fortios.System.Outputs
     [OutputType]
     public sealed class HaVclusterVdom
     {
+        /// <summary>
+        /// Virtual domain name.
+        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

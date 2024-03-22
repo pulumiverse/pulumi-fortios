@@ -67,6 +67,24 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         public Output<string> BandwidthUnit { get; private set; } = null!;
 
         /// <summary>
+        /// VLAN CoS mark.
+        /// </summary>
+        [Output("cos")]
+        public Output<string> Cos { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("cosMarking")]
+        public Output<string> CosMarking { get; private set; } = null!;
+
+        /// <summary>
+        /// Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+        /// </summary>
+        [Output("cosMarkingMethod")]
+        public Output<string> CosMarkingMethod { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("diffserv")]
@@ -97,22 +115,34 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         public Output<int> ExceedClassId { get; private set; } = null!;
 
         /// <summary>
+        /// VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+        /// </summary>
+        [Output("exceedCos")]
+        public Output<string> ExceedCos { get; private set; } = null!;
+
+        /// <summary>
         /// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
         /// </summary>
         [Output("exceedDscp")]
         public Output<string> ExceedDscp { get; private set; } = null!;
 
         /// <summary>
-        /// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+        /// Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, &gt;= 7.2.1: 0 - 80000000.
         /// </summary>
         [Output("guaranteedBandwidth")]
         public Output<int> GuaranteedBandwidth { get; private set; } = null!;
 
         /// <summary>
-        /// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+        /// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, &gt;= 7.2.1: 0 - 80000000.
         /// </summary>
         [Output("maximumBandwidth")]
         public Output<int> MaximumBandwidth { get; private set; } = null!;
+
+        /// <summary>
+        /// VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+        /// </summary>
+        [Output("maximumCos")]
+        public Output<string> MaximumCos { get; private set; } = null!;
 
         /// <summary>
         /// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
@@ -204,6 +234,24 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         public Input<string>? BandwidthUnit { get; set; }
 
         /// <summary>
+        /// VLAN CoS mark.
+        /// </summary>
+        [Input("cos")]
+        public Input<string>? Cos { get; set; }
+
+        /// <summary>
+        /// Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("cosMarking")]
+        public Input<string>? CosMarking { get; set; }
+
+        /// <summary>
+        /// Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+        /// </summary>
+        [Input("cosMarkingMethod")]
+        public Input<string>? CosMarkingMethod { get; set; }
+
+        /// <summary>
         /// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("diffserv")]
@@ -234,22 +282,34 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         public Input<int>? ExceedClassId { get; set; }
 
         /// <summary>
+        /// VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+        /// </summary>
+        [Input("exceedCos")]
+        public Input<string>? ExceedCos { get; set; }
+
+        /// <summary>
         /// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
         /// </summary>
         [Input("exceedDscp")]
         public Input<string>? ExceedDscp { get; set; }
 
         /// <summary>
-        /// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+        /// Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, &gt;= 7.2.1: 0 - 80000000.
         /// </summary>
         [Input("guaranteedBandwidth")]
         public Input<int>? GuaranteedBandwidth { get; set; }
 
         /// <summary>
-        /// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+        /// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, &gt;= 7.2.1: 0 - 80000000.
         /// </summary>
         [Input("maximumBandwidth")]
         public Input<int>? MaximumBandwidth { get; set; }
+
+        /// <summary>
+        /// VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+        /// </summary>
+        [Input("maximumCos")]
+        public Input<string>? MaximumCos { get; set; }
 
         /// <summary>
         /// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
@@ -302,6 +362,24 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         public Input<string>? BandwidthUnit { get; set; }
 
         /// <summary>
+        /// VLAN CoS mark.
+        /// </summary>
+        [Input("cos")]
+        public Input<string>? Cos { get; set; }
+
+        /// <summary>
+        /// Enable/disable VLAN CoS marking. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("cosMarking")]
+        public Input<string>? CosMarking { get; set; }
+
+        /// <summary>
+        /// Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+        /// </summary>
+        [Input("cosMarkingMethod")]
+        public Input<string>? CosMarkingMethod { get; set; }
+
+        /// <summary>
         /// Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("diffserv")]
@@ -332,22 +410,34 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         public Input<int>? ExceedClassId { get; set; }
 
         /// <summary>
+        /// VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+        /// </summary>
+        [Input("exceedCos")]
+        public Input<string>? ExceedCos { get; set; }
+
+        /// <summary>
         /// DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
         /// </summary>
         [Input("exceedDscp")]
         public Input<string>? ExceedDscp { get; set; }
 
         /// <summary>
-        /// Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
+        /// Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, &gt;= 7.2.1: 0 - 80000000.
         /// </summary>
         [Input("guaranteedBandwidth")]
         public Input<int>? GuaranteedBandwidth { get; set; }
 
         /// <summary>
-        /// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+        /// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, &gt;= 7.2.1: 0 - 80000000.
         /// </summary>
         [Input("maximumBandwidth")]
         public Input<int>? MaximumBandwidth { get; set; }
+
+        /// <summary>
+        /// VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
+        /// </summary>
+        [Input("maximumCos")]
+        public Input<string>? MaximumCos { get; set; }
 
         /// <summary>
         /// DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].

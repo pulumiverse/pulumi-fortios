@@ -131,6 +131,12 @@ namespace Pulumiverse.Fortios.Router
         public Output<string> Gateway { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("linkMonitorExempt")]
@@ -304,6 +310,12 @@ namespace Pulumiverse.Fortios.Router
         public Input<string>? Gateway { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("linkMonitorExempt")]
@@ -442,6 +454,12 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         [Input("gateway")]
         public Input<string>? Gateway { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.

@@ -123,6 +123,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> Fqdn { get; private set; } = null!;
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// Host Address.
         /// </summary>
         [Output("host")]
@@ -163,6 +169,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("objId")]
         public Output<string?> ObjId { get; private set; } = null!;
+
+        /// <summary>
+        /// route-tag address.
+        /// </summary>
+        [Output("routeTag")]
+        public Output<int> RouteTag { get; private set; } = null!;
 
         /// <summary>
         /// SDN.
@@ -344,6 +356,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Fqdn { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Host Address.
         /// </summary>
         [Input("host")]
@@ -396,6 +414,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("objId")]
         public Input<string>? ObjId { get; set; }
+
+        /// <summary>
+        /// route-tag address.
+        /// </summary>
+        [Input("routeTag")]
+        public Input<int>? RouteTag { get; set; }
 
         /// <summary>
         /// SDN.
@@ -550,6 +574,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Fqdn { get; set; }
 
         /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// Host Address.
         /// </summary>
         [Input("host")]
@@ -602,6 +632,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("objId")]
         public Input<string>? ObjId { get; set; }
+
+        /// <summary>
+        /// route-tag address.
+        /// </summary>
+        [Input("routeTag")]
+        public Input<int>? RouteTag { get; set; }
 
         /// <summary>
         /// SDN.

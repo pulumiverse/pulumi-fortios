@@ -25,10 +25,13 @@ class ProxypolicyArgs:
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  block_notification: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+                 detect_https_in_http_request: Optional[pulumi.Input[str]] = None,
                  device_ownership: Optional[pulumi.Input[str]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  disclaimer: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -38,11 +41,18 @@ class ProxypolicyArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyGroupArgs']]]] = None,
                  http_tunnel_auth: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
+                 internet_service6: Optional[pulumi.Input[str]] = None,
+                 internet_service6_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomGroupArgs']]]] = None,
+                 internet_service6_customs: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomArgs']]]] = None,
+                 internet_service6_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6GroupArgs']]]] = None,
+                 internet_service6_names: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6NameArgs']]]] = None,
+                 internet_service6_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceCustomGroupArgs']]]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceCustomArgs']]]] = None,
                  internet_service_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceGroupArgs']]]] = None,
@@ -50,6 +60,7 @@ class ProxypolicyArgs:
                  internet_service_names: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceNameArgs']]]] = None,
                  internet_service_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -81,6 +92,7 @@ class ProxypolicyArgs:
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webcache: Optional[pulumi.Input[str]] = None,
@@ -101,10 +113,13 @@ class ProxypolicyArgs:
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
         :param pulumi.Input[str] block_notification: Enable/disable block notification. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Optional comments.
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
+        :param pulumi.Input[str] detect_https_in_http_request: Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] device_ownership: When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] disclaimer: Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
@@ -114,11 +129,18 @@ class ProxypolicyArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Global web-based manager visible label.
         :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyGroupArgs']]] groups: Names of group objects. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_tunnel_auth: Enable/disable HTTP tunnel authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] internet_service6: Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomGroupArgs']]] internet_service6_custom_groups: Custom Internet Service IPv6 group name. The structure of `internet_service6_custom_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomArgs']]] internet_service6_customs: Custom Internet Service IPv6 name. The structure of `internet_service6_custom` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6GroupArgs']]] internet_service6_groups: Internet Service IPv6 group name. The structure of `internet_service6_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6NameArgs']]] internet_service6_names: Internet Service IPv6 name. The structure of `internet_service6_name` block is documented below.
+        :param pulumi.Input[str] internet_service6_negate: When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceCustomGroupArgs']]] internet_service_custom_groups: Custom Internet Service group name. The structure of `internet_service_custom_group` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceCustomArgs']]] internet_service_customs: Custom Internet Service name. The structure of `internet_service_custom` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceGroupArgs']]] internet_service_groups: Internet Service group name. The structure of `internet_service_group` block is documented below.
@@ -126,6 +148,7 @@ class ProxypolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceNameArgs']]] internet_service_names: Internet Service name. The structure of `internet_service_name` block is documented below.
         :param pulumi.Input[str] internet_service_negate: When enabled, Internet Services match against any internet service EXCEPT the selected Internet Service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] label: VDOM-specific GUI visible label.
         :param pulumi.Input[str] logtraffic: Enable/disable logging traffic through the policy. Valid values: `all`, `utm`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Enable/disable policy log traffic start. Valid values: `enable`, `disable`.
@@ -157,6 +180,7 @@ class ProxypolicyArgs:
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
         :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webcache: Enable/disable web caching. Valid values: `enable`, `disable`.
@@ -182,14 +206,20 @@ class ProxypolicyArgs:
             pulumi.set(__self__, "av_profile", av_profile)
         if block_notification is not None:
             pulumi.set(__self__, "block_notification", block_notification)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if decrypted_traffic_mirror is not None:
             pulumi.set(__self__, "decrypted_traffic_mirror", decrypted_traffic_mirror)
+        if detect_https_in_http_request is not None:
+            pulumi.set(__self__, "detect_https_in_http_request", detect_https_in_http_request)
         if device_ownership is not None:
             pulumi.set(__self__, "device_ownership", device_ownership)
+        if diameter_filter_profile is not None:
+            pulumi.set(__self__, "diameter_filter_profile", diameter_filter_profile)
         if disclaimer is not None:
             pulumi.set(__self__, "disclaimer", disclaimer)
         if dlp_profile is not None:
@@ -208,6 +238,8 @@ class ProxypolicyArgs:
             pulumi.set(__self__, "emailfilter_profile", emailfilter_profile)
         if file_filter_profile is not None:
             pulumi.set(__self__, "file_filter_profile", file_filter_profile)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if global_label is not None:
             pulumi.set(__self__, "global_label", global_label)
         if groups is not None:
@@ -218,6 +250,18 @@ class ProxypolicyArgs:
             pulumi.set(__self__, "icap_profile", icap_profile)
         if internet_service is not None:
             pulumi.set(__self__, "internet_service", internet_service)
+        if internet_service6 is not None:
+            pulumi.set(__self__, "internet_service6", internet_service6)
+        if internet_service6_custom_groups is not None:
+            pulumi.set(__self__, "internet_service6_custom_groups", internet_service6_custom_groups)
+        if internet_service6_customs is not None:
+            pulumi.set(__self__, "internet_service6_customs", internet_service6_customs)
+        if internet_service6_groups is not None:
+            pulumi.set(__self__, "internet_service6_groups", internet_service6_groups)
+        if internet_service6_names is not None:
+            pulumi.set(__self__, "internet_service6_names", internet_service6_names)
+        if internet_service6_negate is not None:
+            pulumi.set(__self__, "internet_service6_negate", internet_service6_negate)
         if internet_service_custom_groups is not None:
             pulumi.set(__self__, "internet_service_custom_groups", internet_service_custom_groups)
         if internet_service_customs is not None:
@@ -232,6 +276,8 @@ class ProxypolicyArgs:
             pulumi.set(__self__, "internet_service_negate", internet_service_negate)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if label is not None:
             pulumi.set(__self__, "label", label)
         if logtraffic is not None:
@@ -294,6 +340,8 @@ class ProxypolicyArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if waf_profile is not None:
@@ -422,6 +470,18 @@ class ProxypolicyArgs:
         pulumi.set(self, "block_notification", value)
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -458,6 +518,18 @@ class ProxypolicyArgs:
         pulumi.set(self, "decrypted_traffic_mirror", value)
 
     @property
+    @pulumi.getter(name="detectHttpsInHttpRequest")
+    def detect_https_in_http_request(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "detect_https_in_http_request")
+
+    @detect_https_in_http_request.setter
+    def detect_https_in_http_request(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "detect_https_in_http_request", value)
+
+    @property
     @pulumi.getter(name="deviceOwnership")
     def device_ownership(self) -> Optional[pulumi.Input[str]]:
         """
@@ -468,6 +540,18 @@ class ProxypolicyArgs:
     @device_ownership.setter
     def device_ownership(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "device_ownership", value)
+
+    @property
+    @pulumi.getter(name="diameterFilterProfile")
+    def diameter_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing Diameter filter profile.
+        """
+        return pulumi.get(self, "diameter_filter_profile")
+
+    @diameter_filter_profile.setter
+    def diameter_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "diameter_filter_profile", value)
 
     @property
     @pulumi.getter
@@ -578,6 +662,18 @@ class ProxypolicyArgs:
         pulumi.set(self, "file_filter_profile", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="globalLabel")
     def global_label(self) -> Optional[pulumi.Input[str]]:
         """
@@ -636,6 +732,78 @@ class ProxypolicyArgs:
     @internet_service.setter
     def internet_service(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "internet_service", value)
+
+    @property
+    @pulumi.getter(name="internetService6")
+    def internet_service6(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "internet_service6")
+
+    @internet_service6.setter
+    def internet_service6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service6", value)
+
+    @property
+    @pulumi.getter(name="internetService6CustomGroups")
+    def internet_service6_custom_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomGroupArgs']]]]:
+        """
+        Custom Internet Service IPv6 group name. The structure of `internet_service6_custom_group` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_custom_groups")
+
+    @internet_service6_custom_groups.setter
+    def internet_service6_custom_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomGroupArgs']]]]):
+        pulumi.set(self, "internet_service6_custom_groups", value)
+
+    @property
+    @pulumi.getter(name="internetService6Customs")
+    def internet_service6_customs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomArgs']]]]:
+        """
+        Custom Internet Service IPv6 name. The structure of `internet_service6_custom` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_customs")
+
+    @internet_service6_customs.setter
+    def internet_service6_customs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomArgs']]]]):
+        pulumi.set(self, "internet_service6_customs", value)
+
+    @property
+    @pulumi.getter(name="internetService6Groups")
+    def internet_service6_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6GroupArgs']]]]:
+        """
+        Internet Service IPv6 group name. The structure of `internet_service6_group` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_groups")
+
+    @internet_service6_groups.setter
+    def internet_service6_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6GroupArgs']]]]):
+        pulumi.set(self, "internet_service6_groups", value)
+
+    @property
+    @pulumi.getter(name="internetService6Names")
+    def internet_service6_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6NameArgs']]]]:
+        """
+        Internet Service IPv6 name. The structure of `internet_service6_name` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_names")
+
+    @internet_service6_names.setter
+    def internet_service6_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6NameArgs']]]]):
+        pulumi.set(self, "internet_service6_names", value)
+
+    @property
+    @pulumi.getter(name="internetService6Negate")
+    def internet_service6_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "internet_service6_negate")
+
+    @internet_service6_negate.setter
+    def internet_service6_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service6_negate", value)
 
     @property
     @pulumi.getter(name="internetServiceCustomGroups")
@@ -720,6 +888,18 @@ class ProxypolicyArgs:
     @ips_sensor.setter
     def ips_sensor(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ips_sensor", value)
+
+    @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VoIP (ips) profile.
+        """
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
 
     @property
     @pulumi.getter
@@ -1094,6 +1274,18 @@ class ProxypolicyArgs:
         pulumi.set(self, "videofilter_profile", value)
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing virtual-patch profile.
+        """
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
+
+    @property
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1211,10 +1403,13 @@ class _ProxypolicyState:
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  block_notification: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+                 detect_https_in_http_request: Optional[pulumi.Input[str]] = None,
                  device_ownership: Optional[pulumi.Input[str]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  disclaimer: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -1225,11 +1420,18 @@ class _ProxypolicyState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyGroupArgs']]]] = None,
                  http_tunnel_auth: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
+                 internet_service6: Optional[pulumi.Input[str]] = None,
+                 internet_service6_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomGroupArgs']]]] = None,
+                 internet_service6_customs: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomArgs']]]] = None,
+                 internet_service6_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6GroupArgs']]]] = None,
+                 internet_service6_names: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6NameArgs']]]] = None,
+                 internet_service6_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceCustomGroupArgs']]]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceCustomArgs']]]] = None,
                  internet_service_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceGroupArgs']]]] = None,
@@ -1237,6 +1439,7 @@ class _ProxypolicyState:
                  internet_service_names: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceNameArgs']]]] = None,
                  internet_service_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -1270,6 +1473,7 @@ class _ProxypolicyState:
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webcache: Optional[pulumi.Input[str]] = None,
@@ -1287,10 +1491,13 @@ class _ProxypolicyState:
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
         :param pulumi.Input[str] block_notification: Enable/disable block notification. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Optional comments.
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
+        :param pulumi.Input[str] detect_https_in_http_request: Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] device_ownership: When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] disclaimer: Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
@@ -1301,11 +1508,18 @@ class _ProxypolicyState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Global web-based manager visible label.
         :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyGroupArgs']]] groups: Names of group objects. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_tunnel_auth: Enable/disable HTTP tunnel authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] internet_service6: Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomGroupArgs']]] internet_service6_custom_groups: Custom Internet Service IPv6 group name. The structure of `internet_service6_custom_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomArgs']]] internet_service6_customs: Custom Internet Service IPv6 name. The structure of `internet_service6_custom` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6GroupArgs']]] internet_service6_groups: Internet Service IPv6 group name. The structure of `internet_service6_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6NameArgs']]] internet_service6_names: Internet Service IPv6 name. The structure of `internet_service6_name` block is documented below.
+        :param pulumi.Input[str] internet_service6_negate: When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceCustomGroupArgs']]] internet_service_custom_groups: Custom Internet Service group name. The structure of `internet_service_custom_group` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceCustomArgs']]] internet_service_customs: Custom Internet Service name. The structure of `internet_service_custom` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceGroupArgs']]] internet_service_groups: Internet Service group name. The structure of `internet_service_group` block is documented below.
@@ -1313,6 +1527,7 @@ class _ProxypolicyState:
         :param pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetServiceNameArgs']]] internet_service_names: Internet Service name. The structure of `internet_service_name` block is documented below.
         :param pulumi.Input[str] internet_service_negate: When enabled, Internet Services match against any internet service EXCEPT the selected Internet Service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] label: VDOM-specific GUI visible label.
         :param pulumi.Input[str] logtraffic: Enable/disable logging traffic through the policy. Valid values: `all`, `utm`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Enable/disable policy log traffic start. Valid values: `enable`, `disable`.
@@ -1346,6 +1561,7 @@ class _ProxypolicyState:
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
         :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webcache: Enable/disable web caching. Valid values: `enable`, `disable`.
@@ -1368,14 +1584,20 @@ class _ProxypolicyState:
             pulumi.set(__self__, "av_profile", av_profile)
         if block_notification is not None:
             pulumi.set(__self__, "block_notification", block_notification)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if decrypted_traffic_mirror is not None:
             pulumi.set(__self__, "decrypted_traffic_mirror", decrypted_traffic_mirror)
+        if detect_https_in_http_request is not None:
+            pulumi.set(__self__, "detect_https_in_http_request", detect_https_in_http_request)
         if device_ownership is not None:
             pulumi.set(__self__, "device_ownership", device_ownership)
+        if diameter_filter_profile is not None:
+            pulumi.set(__self__, "diameter_filter_profile", diameter_filter_profile)
         if disclaimer is not None:
             pulumi.set(__self__, "disclaimer", disclaimer)
         if dlp_profile is not None:
@@ -1396,6 +1618,8 @@ class _ProxypolicyState:
             pulumi.set(__self__, "emailfilter_profile", emailfilter_profile)
         if file_filter_profile is not None:
             pulumi.set(__self__, "file_filter_profile", file_filter_profile)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if global_label is not None:
             pulumi.set(__self__, "global_label", global_label)
         if groups is not None:
@@ -1406,6 +1630,18 @@ class _ProxypolicyState:
             pulumi.set(__self__, "icap_profile", icap_profile)
         if internet_service is not None:
             pulumi.set(__self__, "internet_service", internet_service)
+        if internet_service6 is not None:
+            pulumi.set(__self__, "internet_service6", internet_service6)
+        if internet_service6_custom_groups is not None:
+            pulumi.set(__self__, "internet_service6_custom_groups", internet_service6_custom_groups)
+        if internet_service6_customs is not None:
+            pulumi.set(__self__, "internet_service6_customs", internet_service6_customs)
+        if internet_service6_groups is not None:
+            pulumi.set(__self__, "internet_service6_groups", internet_service6_groups)
+        if internet_service6_names is not None:
+            pulumi.set(__self__, "internet_service6_names", internet_service6_names)
+        if internet_service6_negate is not None:
+            pulumi.set(__self__, "internet_service6_negate", internet_service6_negate)
         if internet_service_custom_groups is not None:
             pulumi.set(__self__, "internet_service_custom_groups", internet_service_custom_groups)
         if internet_service_customs is not None:
@@ -1420,6 +1656,8 @@ class _ProxypolicyState:
             pulumi.set(__self__, "internet_service_negate", internet_service_negate)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if label is not None:
             pulumi.set(__self__, "label", label)
         if logtraffic is not None:
@@ -1486,6 +1724,8 @@ class _ProxypolicyState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if waf_profile is not None:
@@ -1578,6 +1818,18 @@ class _ProxypolicyState:
         pulumi.set(self, "block_notification", value)
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1614,6 +1866,18 @@ class _ProxypolicyState:
         pulumi.set(self, "decrypted_traffic_mirror", value)
 
     @property
+    @pulumi.getter(name="detectHttpsInHttpRequest")
+    def detect_https_in_http_request(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "detect_https_in_http_request")
+
+    @detect_https_in_http_request.setter
+    def detect_https_in_http_request(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "detect_https_in_http_request", value)
+
+    @property
     @pulumi.getter(name="deviceOwnership")
     def device_ownership(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1624,6 +1888,18 @@ class _ProxypolicyState:
     @device_ownership.setter
     def device_ownership(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "device_ownership", value)
+
+    @property
+    @pulumi.getter(name="diameterFilterProfile")
+    def diameter_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing Diameter filter profile.
+        """
+        return pulumi.get(self, "diameter_filter_profile")
+
+    @diameter_filter_profile.setter
+    def diameter_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "diameter_filter_profile", value)
 
     @property
     @pulumi.getter
@@ -1746,6 +2022,18 @@ class _ProxypolicyState:
         pulumi.set(self, "file_filter_profile", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="globalLabel")
     def global_label(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1804,6 +2092,78 @@ class _ProxypolicyState:
     @internet_service.setter
     def internet_service(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "internet_service", value)
+
+    @property
+    @pulumi.getter(name="internetService6")
+    def internet_service6(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "internet_service6")
+
+    @internet_service6.setter
+    def internet_service6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service6", value)
+
+    @property
+    @pulumi.getter(name="internetService6CustomGroups")
+    def internet_service6_custom_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomGroupArgs']]]]:
+        """
+        Custom Internet Service IPv6 group name. The structure of `internet_service6_custom_group` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_custom_groups")
+
+    @internet_service6_custom_groups.setter
+    def internet_service6_custom_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomGroupArgs']]]]):
+        pulumi.set(self, "internet_service6_custom_groups", value)
+
+    @property
+    @pulumi.getter(name="internetService6Customs")
+    def internet_service6_customs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomArgs']]]]:
+        """
+        Custom Internet Service IPv6 name. The structure of `internet_service6_custom` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_customs")
+
+    @internet_service6_customs.setter
+    def internet_service6_customs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6CustomArgs']]]]):
+        pulumi.set(self, "internet_service6_customs", value)
+
+    @property
+    @pulumi.getter(name="internetService6Groups")
+    def internet_service6_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6GroupArgs']]]]:
+        """
+        Internet Service IPv6 group name. The structure of `internet_service6_group` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_groups")
+
+    @internet_service6_groups.setter
+    def internet_service6_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6GroupArgs']]]]):
+        pulumi.set(self, "internet_service6_groups", value)
+
+    @property
+    @pulumi.getter(name="internetService6Names")
+    def internet_service6_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6NameArgs']]]]:
+        """
+        Internet Service IPv6 name. The structure of `internet_service6_name` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_names")
+
+    @internet_service6_names.setter
+    def internet_service6_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProxypolicyInternetService6NameArgs']]]]):
+        pulumi.set(self, "internet_service6_names", value)
+
+    @property
+    @pulumi.getter(name="internetService6Negate")
+    def internet_service6_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "internet_service6_negate")
+
+    @internet_service6_negate.setter
+    def internet_service6_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service6_negate", value)
 
     @property
     @pulumi.getter(name="internetServiceCustomGroups")
@@ -1888,6 +2248,18 @@ class _ProxypolicyState:
     @ips_sensor.setter
     def ips_sensor(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ips_sensor", value)
+
+    @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VoIP (ips) profile.
+        """
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
 
     @property
     @pulumi.getter
@@ -2286,6 +2658,18 @@ class _ProxypolicyState:
         pulumi.set(self, "videofilter_profile", value)
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing virtual-patch profile.
+        """
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
+
+    @property
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2405,10 +2789,13 @@ class Proxypolicy(pulumi.CustomResource):
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  block_notification: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+                 detect_https_in_http_request: Optional[pulumi.Input[str]] = None,
                  device_ownership: Optional[pulumi.Input[str]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  disclaimer: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -2419,11 +2806,18 @@ class Proxypolicy(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyGroupArgs']]]]] = None,
                  http_tunnel_auth: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
+                 internet_service6: Optional[pulumi.Input[str]] = None,
+                 internet_service6_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6CustomGroupArgs']]]]] = None,
+                 internet_service6_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6CustomArgs']]]]] = None,
+                 internet_service6_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6GroupArgs']]]]] = None,
+                 internet_service6_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6NameArgs']]]]] = None,
+                 internet_service6_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceCustomGroupArgs']]]]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceCustomArgs']]]]] = None,
                  internet_service_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceGroupArgs']]]]] = None,
@@ -2431,6 +2825,7 @@ class Proxypolicy(pulumi.CustomResource):
                  internet_service_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceNameArgs']]]]] = None,
                  internet_service_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -2464,6 +2859,7 @@ class Proxypolicy(pulumi.CustomResource):
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webcache: Optional[pulumi.Input[str]] = None,
@@ -2550,10 +2946,13 @@ class Proxypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
         :param pulumi.Input[str] block_notification: Enable/disable block notification. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Optional comments.
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
+        :param pulumi.Input[str] detect_https_in_http_request: Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] device_ownership: When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] disclaimer: Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
@@ -2564,11 +2963,18 @@ class Proxypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Global web-based manager visible label.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyGroupArgs']]]] groups: Names of group objects. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_tunnel_auth: Enable/disable HTTP tunnel authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] internet_service6: Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6CustomGroupArgs']]]] internet_service6_custom_groups: Custom Internet Service IPv6 group name. The structure of `internet_service6_custom_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6CustomArgs']]]] internet_service6_customs: Custom Internet Service IPv6 name. The structure of `internet_service6_custom` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6GroupArgs']]]] internet_service6_groups: Internet Service IPv6 group name. The structure of `internet_service6_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6NameArgs']]]] internet_service6_names: Internet Service IPv6 name. The structure of `internet_service6_name` block is documented below.
+        :param pulumi.Input[str] internet_service6_negate: When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceCustomGroupArgs']]]] internet_service_custom_groups: Custom Internet Service group name. The structure of `internet_service_custom_group` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceCustomArgs']]]] internet_service_customs: Custom Internet Service name. The structure of `internet_service_custom` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceGroupArgs']]]] internet_service_groups: Internet Service group name. The structure of `internet_service_group` block is documented below.
@@ -2576,6 +2982,7 @@ class Proxypolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceNameArgs']]]] internet_service_names: Internet Service name. The structure of `internet_service_name` block is documented below.
         :param pulumi.Input[str] internet_service_negate: When enabled, Internet Services match against any internet service EXCEPT the selected Internet Service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] label: VDOM-specific GUI visible label.
         :param pulumi.Input[str] logtraffic: Enable/disable logging traffic through the policy. Valid values: `all`, `utm`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Enable/disable policy log traffic start. Valid values: `enable`, `disable`.
@@ -2609,6 +3016,7 @@ class Proxypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
         :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webcache: Enable/disable web caching. Valid values: `enable`, `disable`.
@@ -2714,10 +3122,13 @@ class Proxypolicy(pulumi.CustomResource):
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  block_notification: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+                 detect_https_in_http_request: Optional[pulumi.Input[str]] = None,
                  device_ownership: Optional[pulumi.Input[str]] = None,
+                 diameter_filter_profile: Optional[pulumi.Input[str]] = None,
                  disclaimer: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -2728,11 +3139,18 @@ class Proxypolicy(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyGroupArgs']]]]] = None,
                  http_tunnel_auth: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
+                 internet_service6: Optional[pulumi.Input[str]] = None,
+                 internet_service6_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6CustomGroupArgs']]]]] = None,
+                 internet_service6_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6CustomArgs']]]]] = None,
+                 internet_service6_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6GroupArgs']]]]] = None,
+                 internet_service6_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6NameArgs']]]]] = None,
+                 internet_service6_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceCustomGroupArgs']]]]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceCustomArgs']]]]] = None,
                  internet_service_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceGroupArgs']]]]] = None,
@@ -2740,6 +3158,7 @@ class Proxypolicy(pulumi.CustomResource):
                  internet_service_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceNameArgs']]]]] = None,
                  internet_service_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -2773,6 +3192,7 @@ class Proxypolicy(pulumi.CustomResource):
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webcache: Optional[pulumi.Input[str]] = None,
@@ -2797,10 +3217,13 @@ class Proxypolicy(pulumi.CustomResource):
             __props__.__dict__["application_list"] = application_list
             __props__.__dict__["av_profile"] = av_profile
             __props__.__dict__["block_notification"] = block_notification
+            __props__.__dict__["casb_profile"] = casb_profile
             __props__.__dict__["cifs_profile"] = cifs_profile
             __props__.__dict__["comments"] = comments
             __props__.__dict__["decrypted_traffic_mirror"] = decrypted_traffic_mirror
+            __props__.__dict__["detect_https_in_http_request"] = detect_https_in_http_request
             __props__.__dict__["device_ownership"] = device_ownership
+            __props__.__dict__["diameter_filter_profile"] = diameter_filter_profile
             __props__.__dict__["disclaimer"] = disclaimer
             __props__.__dict__["dlp_profile"] = dlp_profile
             __props__.__dict__["dlp_sensor"] = dlp_sensor
@@ -2813,11 +3236,18 @@ class Proxypolicy(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["emailfilter_profile"] = emailfilter_profile
             __props__.__dict__["file_filter_profile"] = file_filter_profile
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["global_label"] = global_label
             __props__.__dict__["groups"] = groups
             __props__.__dict__["http_tunnel_auth"] = http_tunnel_auth
             __props__.__dict__["icap_profile"] = icap_profile
             __props__.__dict__["internet_service"] = internet_service
+            __props__.__dict__["internet_service6"] = internet_service6
+            __props__.__dict__["internet_service6_custom_groups"] = internet_service6_custom_groups
+            __props__.__dict__["internet_service6_customs"] = internet_service6_customs
+            __props__.__dict__["internet_service6_groups"] = internet_service6_groups
+            __props__.__dict__["internet_service6_names"] = internet_service6_names
+            __props__.__dict__["internet_service6_negate"] = internet_service6_negate
             __props__.__dict__["internet_service_custom_groups"] = internet_service_custom_groups
             __props__.__dict__["internet_service_customs"] = internet_service_customs
             __props__.__dict__["internet_service_groups"] = internet_service_groups
@@ -2825,6 +3255,7 @@ class Proxypolicy(pulumi.CustomResource):
             __props__.__dict__["internet_service_names"] = internet_service_names
             __props__.__dict__["internet_service_negate"] = internet_service_negate
             __props__.__dict__["ips_sensor"] = ips_sensor
+            __props__.__dict__["ips_voip_filter"] = ips_voip_filter
             __props__.__dict__["label"] = label
             __props__.__dict__["logtraffic"] = logtraffic
             __props__.__dict__["logtraffic_start"] = logtraffic_start
@@ -2862,6 +3293,7 @@ class Proxypolicy(pulumi.CustomResource):
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["videofilter_profile"] = videofilter_profile
+            __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
             __props__.__dict__["voip_profile"] = voip_profile
             __props__.__dict__["waf_profile"] = waf_profile
             __props__.__dict__["webcache"] = webcache
@@ -2887,10 +3319,13 @@ class Proxypolicy(pulumi.CustomResource):
             application_list: Optional[pulumi.Input[str]] = None,
             av_profile: Optional[pulumi.Input[str]] = None,
             block_notification: Optional[pulumi.Input[str]] = None,
+            casb_profile: Optional[pulumi.Input[str]] = None,
             cifs_profile: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+            detect_https_in_http_request: Optional[pulumi.Input[str]] = None,
             device_ownership: Optional[pulumi.Input[str]] = None,
+            diameter_filter_profile: Optional[pulumi.Input[str]] = None,
             disclaimer: Optional[pulumi.Input[str]] = None,
             dlp_profile: Optional[pulumi.Input[str]] = None,
             dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -2901,11 +3336,18 @@ class Proxypolicy(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             emailfilter_profile: Optional[pulumi.Input[str]] = None,
             file_filter_profile: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             global_label: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyGroupArgs']]]]] = None,
             http_tunnel_auth: Optional[pulumi.Input[str]] = None,
             icap_profile: Optional[pulumi.Input[str]] = None,
             internet_service: Optional[pulumi.Input[str]] = None,
+            internet_service6: Optional[pulumi.Input[str]] = None,
+            internet_service6_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6CustomGroupArgs']]]]] = None,
+            internet_service6_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6CustomArgs']]]]] = None,
+            internet_service6_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6GroupArgs']]]]] = None,
+            internet_service6_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6NameArgs']]]]] = None,
+            internet_service6_negate: Optional[pulumi.Input[str]] = None,
             internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceCustomGroupArgs']]]]] = None,
             internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceCustomArgs']]]]] = None,
             internet_service_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceGroupArgs']]]]] = None,
@@ -2913,6 +3355,7 @@ class Proxypolicy(pulumi.CustomResource):
             internet_service_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceNameArgs']]]]] = None,
             internet_service_negate: Optional[pulumi.Input[str]] = None,
             ips_sensor: Optional[pulumi.Input[str]] = None,
+            ips_voip_filter: Optional[pulumi.Input[str]] = None,
             label: Optional[pulumi.Input[str]] = None,
             logtraffic: Optional[pulumi.Input[str]] = None,
             logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -2946,6 +3389,7 @@ class Proxypolicy(pulumi.CustomResource):
             uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             videofilter_profile: Optional[pulumi.Input[str]] = None,
+            virtual_patch_profile: Optional[pulumi.Input[str]] = None,
             voip_profile: Optional[pulumi.Input[str]] = None,
             waf_profile: Optional[pulumi.Input[str]] = None,
             webcache: Optional[pulumi.Input[str]] = None,
@@ -2968,10 +3412,13 @@ class Proxypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
         :param pulumi.Input[str] block_notification: Enable/disable block notification. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Optional comments.
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
+        :param pulumi.Input[str] detect_https_in_http_request: Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] device_ownership: When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] diameter_filter_profile: Name of an existing Diameter filter profile.
         :param pulumi.Input[str] disclaimer: Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
@@ -2982,11 +3429,18 @@ class Proxypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Global web-based manager visible label.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyGroupArgs']]]] groups: Names of group objects. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_tunnel_auth: Enable/disable HTTP tunnel authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] internet_service6: Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6CustomGroupArgs']]]] internet_service6_custom_groups: Custom Internet Service IPv6 group name. The structure of `internet_service6_custom_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6CustomArgs']]]] internet_service6_customs: Custom Internet Service IPv6 name. The structure of `internet_service6_custom` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6GroupArgs']]]] internet_service6_groups: Internet Service IPv6 group name. The structure of `internet_service6_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetService6NameArgs']]]] internet_service6_names: Internet Service IPv6 name. The structure of `internet_service6_name` block is documented below.
+        :param pulumi.Input[str] internet_service6_negate: When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceCustomGroupArgs']]]] internet_service_custom_groups: Custom Internet Service group name. The structure of `internet_service_custom_group` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceCustomArgs']]]] internet_service_customs: Custom Internet Service name. The structure of `internet_service_custom` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceGroupArgs']]]] internet_service_groups: Internet Service group name. The structure of `internet_service_group` block is documented below.
@@ -2994,6 +3448,7 @@ class Proxypolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProxypolicyInternetServiceNameArgs']]]] internet_service_names: Internet Service name. The structure of `internet_service_name` block is documented below.
         :param pulumi.Input[str] internet_service_negate: When enabled, Internet Services match against any internet service EXCEPT the selected Internet Service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] ips_voip_filter: Name of an existing VoIP (ips) profile.
         :param pulumi.Input[str] label: VDOM-specific GUI visible label.
         :param pulumi.Input[str] logtraffic: Enable/disable logging traffic through the policy. Valid values: `all`, `utm`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Enable/disable policy log traffic start. Valid values: `enable`, `disable`.
@@ -3027,6 +3482,7 @@ class Proxypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
+        :param pulumi.Input[str] virtual_patch_profile: Name of an existing virtual-patch profile.
         :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webcache: Enable/disable web caching. Valid values: `enable`, `disable`.
@@ -3047,10 +3503,13 @@ class Proxypolicy(pulumi.CustomResource):
         __props__.__dict__["application_list"] = application_list
         __props__.__dict__["av_profile"] = av_profile
         __props__.__dict__["block_notification"] = block_notification
+        __props__.__dict__["casb_profile"] = casb_profile
         __props__.__dict__["cifs_profile"] = cifs_profile
         __props__.__dict__["comments"] = comments
         __props__.__dict__["decrypted_traffic_mirror"] = decrypted_traffic_mirror
+        __props__.__dict__["detect_https_in_http_request"] = detect_https_in_http_request
         __props__.__dict__["device_ownership"] = device_ownership
+        __props__.__dict__["diameter_filter_profile"] = diameter_filter_profile
         __props__.__dict__["disclaimer"] = disclaimer
         __props__.__dict__["dlp_profile"] = dlp_profile
         __props__.__dict__["dlp_sensor"] = dlp_sensor
@@ -3061,11 +3520,18 @@ class Proxypolicy(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["emailfilter_profile"] = emailfilter_profile
         __props__.__dict__["file_filter_profile"] = file_filter_profile
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["global_label"] = global_label
         __props__.__dict__["groups"] = groups
         __props__.__dict__["http_tunnel_auth"] = http_tunnel_auth
         __props__.__dict__["icap_profile"] = icap_profile
         __props__.__dict__["internet_service"] = internet_service
+        __props__.__dict__["internet_service6"] = internet_service6
+        __props__.__dict__["internet_service6_custom_groups"] = internet_service6_custom_groups
+        __props__.__dict__["internet_service6_customs"] = internet_service6_customs
+        __props__.__dict__["internet_service6_groups"] = internet_service6_groups
+        __props__.__dict__["internet_service6_names"] = internet_service6_names
+        __props__.__dict__["internet_service6_negate"] = internet_service6_negate
         __props__.__dict__["internet_service_custom_groups"] = internet_service_custom_groups
         __props__.__dict__["internet_service_customs"] = internet_service_customs
         __props__.__dict__["internet_service_groups"] = internet_service_groups
@@ -3073,6 +3539,7 @@ class Proxypolicy(pulumi.CustomResource):
         __props__.__dict__["internet_service_names"] = internet_service_names
         __props__.__dict__["internet_service_negate"] = internet_service_negate
         __props__.__dict__["ips_sensor"] = ips_sensor
+        __props__.__dict__["ips_voip_filter"] = ips_voip_filter
         __props__.__dict__["label"] = label
         __props__.__dict__["logtraffic"] = logtraffic
         __props__.__dict__["logtraffic_start"] = logtraffic_start
@@ -3106,6 +3573,7 @@ class Proxypolicy(pulumi.CustomResource):
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["videofilter_profile"] = videofilter_profile
+        __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
         __props__.__dict__["voip_profile"] = voip_profile
         __props__.__dict__["waf_profile"] = waf_profile
         __props__.__dict__["webcache"] = webcache
@@ -3166,6 +3634,14 @@ class Proxypolicy(pulumi.CustomResource):
         return pulumi.get(self, "block_notification")
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> pulumi.Output[str]:
         """
@@ -3190,12 +3666,28 @@ class Proxypolicy(pulumi.CustomResource):
         return pulumi.get(self, "decrypted_traffic_mirror")
 
     @property
+    @pulumi.getter(name="detectHttpsInHttpRequest")
+    def detect_https_in_http_request(self) -> pulumi.Output[str]:
+        """
+        Enable/disable detection of HTTPS in HTTP request. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "detect_https_in_http_request")
+
+    @property
     @pulumi.getter(name="deviceOwnership")
     def device_ownership(self) -> pulumi.Output[str]:
         """
         When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "device_ownership")
+
+    @property
+    @pulumi.getter(name="diameterFilterProfile")
+    def diameter_filter_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing Diameter filter profile.
+        """
+        return pulumi.get(self, "diameter_filter_profile")
 
     @property
     @pulumi.getter
@@ -3278,6 +3770,14 @@ class Proxypolicy(pulumi.CustomResource):
         return pulumi.get(self, "file_filter_profile")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="globalLabel")
     def global_label(self) -> pulumi.Output[str]:
         """
@@ -3316,6 +3816,54 @@ class Proxypolicy(pulumi.CustomResource):
         Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "internet_service")
+
+    @property
+    @pulumi.getter(name="internetService6")
+    def internet_service6(self) -> pulumi.Output[str]:
+        """
+        Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "internet_service6")
+
+    @property
+    @pulumi.getter(name="internetService6CustomGroups")
+    def internet_service6_custom_groups(self) -> pulumi.Output[Optional[Sequence['outputs.ProxypolicyInternetService6CustomGroup']]]:
+        """
+        Custom Internet Service IPv6 group name. The structure of `internet_service6_custom_group` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_custom_groups")
+
+    @property
+    @pulumi.getter(name="internetService6Customs")
+    def internet_service6_customs(self) -> pulumi.Output[Optional[Sequence['outputs.ProxypolicyInternetService6Custom']]]:
+        """
+        Custom Internet Service IPv6 name. The structure of `internet_service6_custom` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_customs")
+
+    @property
+    @pulumi.getter(name="internetService6Groups")
+    def internet_service6_groups(self) -> pulumi.Output[Optional[Sequence['outputs.ProxypolicyInternetService6Group']]]:
+        """
+        Internet Service IPv6 group name. The structure of `internet_service6_group` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_groups")
+
+    @property
+    @pulumi.getter(name="internetService6Names")
+    def internet_service6_names(self) -> pulumi.Output[Optional[Sequence['outputs.ProxypolicyInternetService6Name']]]:
+        """
+        Internet Service IPv6 name. The structure of `internet_service6_name` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_names")
+
+    @property
+    @pulumi.getter(name="internetService6Negate")
+    def internet_service6_negate(self) -> pulumi.Output[str]:
+        """
+        When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "internet_service6_negate")
 
     @property
     @pulumi.getter(name="internetServiceCustomGroups")
@@ -3372,6 +3920,14 @@ class Proxypolicy(pulumi.CustomResource):
         Name of an existing IPS sensor.
         """
         return pulumi.get(self, "ips_sensor")
+
+    @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> pulumi.Output[str]:
+        """
+        Name of an existing VoIP (ips) profile.
+        """
+        return pulumi.get(self, "ips_voip_filter")
 
     @property
     @pulumi.getter
@@ -3636,6 +4192,14 @@ class Proxypolicy(pulumi.CustomResource):
         Name of an existing VideoFilter profile.
         """
         return pulumi.get(self, "videofilter_profile")
+
+    @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing virtual-patch profile.
+        """
+        return pulumi.get(self, "virtual_patch_profile")
 
     @property
     @pulumi.getter(name="voipProfile")

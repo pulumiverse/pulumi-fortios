@@ -33,6 +33,7 @@ class SettingArgs:
                  cookie_refresh_div: Optional[pulumi.Input[int]] = None,
                  dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['SettingDevRangeArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_auth_cookie: Optional[pulumi.Input[str]] = None,
                  persistent_cookie: Optional[pulumi.Input[str]] = None,
                  sso_auth_scheme: Optional[pulumi.Input[str]] = None,
@@ -58,6 +59,7 @@ class SettingArgs:
         :param pulumi.Input[int] cookie_refresh_div: Refresh rate divider of persistent web portal cookie (default = 2). Refresh value = cookie-max-age/cookie-refresh-div.
         :param pulumi.Input[Sequence[pulumi.Input['SettingDevRangeArgs']]] dev_ranges: Address range for the IP based device query. The structure of `dev_range` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_auth_cookie: Enable/disable persistent cookie on IP based web portal authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] persistent_cookie: Enable/disable persistent cookie on web portal authentication (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sso_auth_scheme: Single-Sign-On authentication method (scheme name).
@@ -99,6 +101,8 @@ class SettingArgs:
             pulumi.set(__self__, "dev_ranges", dev_ranges)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_auth_cookie is not None:
             pulumi.set(__self__, "ip_auth_cookie", ip_auth_cookie)
         if persistent_cookie is not None:
@@ -315,6 +319,18 @@ class SettingArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipAuthCookie")
@@ -409,6 +425,7 @@ class _SettingState:
                  cookie_refresh_div: Optional[pulumi.Input[int]] = None,
                  dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['SettingDevRangeArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_auth_cookie: Optional[pulumi.Input[str]] = None,
                  persistent_cookie: Optional[pulumi.Input[str]] = None,
                  sso_auth_scheme: Optional[pulumi.Input[str]] = None,
@@ -434,6 +451,7 @@ class _SettingState:
         :param pulumi.Input[int] cookie_refresh_div: Refresh rate divider of persistent web portal cookie (default = 2). Refresh value = cookie-max-age/cookie-refresh-div.
         :param pulumi.Input[Sequence[pulumi.Input['SettingDevRangeArgs']]] dev_ranges: Address range for the IP based device query. The structure of `dev_range` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_auth_cookie: Enable/disable persistent cookie on IP based web portal authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] persistent_cookie: Enable/disable persistent cookie on web portal authentication (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sso_auth_scheme: Single-Sign-On authentication method (scheme name).
@@ -475,6 +493,8 @@ class _SettingState:
             pulumi.set(__self__, "dev_ranges", dev_ranges)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_auth_cookie is not None:
             pulumi.set(__self__, "ip_auth_cookie", ip_auth_cookie)
         if persistent_cookie is not None:
@@ -691,6 +711,18 @@ class _SettingState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipAuthCookie")
@@ -787,6 +819,7 @@ class Setting(pulumi.CustomResource):
                  cookie_refresh_div: Optional[pulumi.Input[int]] = None,
                  dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingDevRangeArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_auth_cookie: Optional[pulumi.Input[str]] = None,
                  persistent_cookie: Optional[pulumi.Input[str]] = None,
                  sso_auth_scheme: Optional[pulumi.Input[str]] = None,
@@ -851,6 +884,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[int] cookie_refresh_div: Refresh rate divider of persistent web portal cookie (default = 2). Refresh value = cookie-max-age/cookie-refresh-div.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingDevRangeArgs']]]] dev_ranges: Address range for the IP based device query. The structure of `dev_range` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_auth_cookie: Enable/disable persistent cookie on IP based web portal authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] persistent_cookie: Enable/disable persistent cookie on web portal authentication (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sso_auth_scheme: Single-Sign-On authentication method (scheme name).
@@ -934,6 +968,7 @@ class Setting(pulumi.CustomResource):
                  cookie_refresh_div: Optional[pulumi.Input[int]] = None,
                  dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingDevRangeArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_auth_cookie: Optional[pulumi.Input[str]] = None,
                  persistent_cookie: Optional[pulumi.Input[str]] = None,
                  sso_auth_scheme: Optional[pulumi.Input[str]] = None,
@@ -966,6 +1001,7 @@ class Setting(pulumi.CustomResource):
             __props__.__dict__["cookie_refresh_div"] = cookie_refresh_div
             __props__.__dict__["dev_ranges"] = dev_ranges
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ip_auth_cookie"] = ip_auth_cookie
             __props__.__dict__["persistent_cookie"] = persistent_cookie
             __props__.__dict__["sso_auth_scheme"] = sso_auth_scheme
@@ -999,6 +1035,7 @@ class Setting(pulumi.CustomResource):
             cookie_refresh_div: Optional[pulumi.Input[int]] = None,
             dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingDevRangeArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ip_auth_cookie: Optional[pulumi.Input[str]] = None,
             persistent_cookie: Optional[pulumi.Input[str]] = None,
             sso_auth_scheme: Optional[pulumi.Input[str]] = None,
@@ -1029,6 +1066,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[int] cookie_refresh_div: Refresh rate divider of persistent web portal cookie (default = 2). Refresh value = cookie-max-age/cookie-refresh-div.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingDevRangeArgs']]]] dev_ranges: Address range for the IP based device query. The structure of `dev_range` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_auth_cookie: Enable/disable persistent cookie on IP based web portal authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] persistent_cookie: Enable/disable persistent cookie on web portal authentication (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sso_auth_scheme: Single-Sign-On authentication method (scheme name).
@@ -1057,6 +1095,7 @@ class Setting(pulumi.CustomResource):
         __props__.__dict__["cookie_refresh_div"] = cookie_refresh_div
         __props__.__dict__["dev_ranges"] = dev_ranges
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ip_auth_cookie"] = ip_auth_cookie
         __props__.__dict__["persistent_cookie"] = persistent_cookie
         __props__.__dict__["sso_auth_scheme"] = sso_auth_scheme
@@ -1200,6 +1239,14 @@ class Setting(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ipAuthCookie")

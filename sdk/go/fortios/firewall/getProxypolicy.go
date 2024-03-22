@@ -44,14 +44,20 @@ type LookupProxypolicyResult struct {
 	AvProfile string `pulumi:"avProfile"`
 	// Enable/disable block notification.
 	BlockNotification string `pulumi:"blockNotification"`
+	// Name of an existing CASB profile.
+	CasbProfile string `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile string `pulumi:"cifsProfile"`
 	// Optional comments.
 	Comments string `pulumi:"comments"`
 	// Decrypted traffic mirror.
 	DecryptedTrafficMirror string `pulumi:"decryptedTrafficMirror"`
+	// Enable/disable detection of HTTPS in HTTP request.
+	DetectHttpsInHttpRequest string `pulumi:"detectHttpsInHttpRequest"`
 	// When enabled, the ownership enforcement will be done at policy level.
 	DeviceOwnership string `pulumi:"deviceOwnership"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile string `pulumi:"diameterFilterProfile"`
 	// Web proxy disclaimer setting: by domain, policy, or user.
 	Disclaimer string `pulumi:"disclaimer"`
 	// Name of an existing DLP profile.
@@ -82,6 +88,18 @@ type LookupProxypolicyResult struct {
 	Id string `pulumi:"id"`
 	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.
 	InternetService string `pulumi:"internetService"`
+	// Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used.
+	InternetService6 string `pulumi:"internetService6"`
+	// Custom Internet Service IPv6 group name. The structure of `internetService6CustomGroup` block is documented below.
+	InternetService6CustomGroups []GetProxypolicyInternetService6CustomGroup `pulumi:"internetService6CustomGroups"`
+	// Custom Internet Service IPv6 name. The structure of `internetService6Custom` block is documented below.
+	InternetService6Customs []GetProxypolicyInternetService6Custom `pulumi:"internetService6Customs"`
+	// Internet Service IPv6 group name. The structure of `internetService6Group` block is documented below.
+	InternetService6Groups []GetProxypolicyInternetService6Group `pulumi:"internetService6Groups"`
+	// Internet Service IPv6 name. The structure of `internetService6Name` block is documented below.
+	InternetService6Names []GetProxypolicyInternetService6Name `pulumi:"internetService6Names"`
+	// When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6.
+	InternetService6Negate string `pulumi:"internetService6Negate"`
 	// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
 	InternetServiceCustomGroups []GetProxypolicyInternetServiceCustomGroup `pulumi:"internetServiceCustomGroups"`
 	// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
@@ -96,6 +114,8 @@ type LookupProxypolicyResult struct {
 	InternetServiceNegate string `pulumi:"internetServiceNegate"`
 	// Name of an existing IPS sensor.
 	IpsSensor string `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter string `pulumi:"ipsVoipFilter"`
 	// VDOM-specific GUI visible label.
 	Label string `pulumi:"label"`
 	// Enable/disable logging traffic through the policy.
@@ -161,6 +181,8 @@ type LookupProxypolicyResult struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile string `pulumi:"videofilterProfile"`
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile string `pulumi:"virtualPatchProfile"`
 	// Name of an existing VoIP profile.
 	VoipProfile string `pulumi:"voipProfile"`
 	// Name of an existing Web application firewall profile.
@@ -251,6 +273,11 @@ func (o LookupProxypolicyResultOutput) BlockNotification() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.BlockNotification }).(pulumi.StringOutput)
 }
 
+// Name of an existing CASB profile.
+func (o LookupProxypolicyResultOutput) CasbProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.CasbProfile }).(pulumi.StringOutput)
+}
+
 // Name of an existing CIFS profile.
 func (o LookupProxypolicyResultOutput) CifsProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.CifsProfile }).(pulumi.StringOutput)
@@ -266,9 +293,19 @@ func (o LookupProxypolicyResultOutput) DecryptedTrafficMirror() pulumi.StringOut
 	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.DecryptedTrafficMirror }).(pulumi.StringOutput)
 }
 
+// Enable/disable detection of HTTPS in HTTP request.
+func (o LookupProxypolicyResultOutput) DetectHttpsInHttpRequest() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.DetectHttpsInHttpRequest }).(pulumi.StringOutput)
+}
+
 // When enabled, the ownership enforcement will be done at policy level.
 func (o LookupProxypolicyResultOutput) DeviceOwnership() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.DeviceOwnership }).(pulumi.StringOutput)
+}
+
+// Name of an existing Diameter filter profile.
+func (o LookupProxypolicyResultOutput) DiameterFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.DiameterFilterProfile }).(pulumi.StringOutput)
 }
 
 // Web proxy disclaimer setting: by domain, policy, or user.
@@ -346,6 +383,40 @@ func (o LookupProxypolicyResultOutput) InternetService() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.InternetService }).(pulumi.StringOutput)
 }
 
+// Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used.
+func (o LookupProxypolicyResultOutput) InternetService6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.InternetService6 }).(pulumi.StringOutput)
+}
+
+// Custom Internet Service IPv6 group name. The structure of `internetService6CustomGroup` block is documented below.
+func (o LookupProxypolicyResultOutput) InternetService6CustomGroups() GetProxypolicyInternetService6CustomGroupArrayOutput {
+	return o.ApplyT(func(v LookupProxypolicyResult) []GetProxypolicyInternetService6CustomGroup {
+		return v.InternetService6CustomGroups
+	}).(GetProxypolicyInternetService6CustomGroupArrayOutput)
+}
+
+// Custom Internet Service IPv6 name. The structure of `internetService6Custom` block is documented below.
+func (o LookupProxypolicyResultOutput) InternetService6Customs() GetProxypolicyInternetService6CustomArrayOutput {
+	return o.ApplyT(func(v LookupProxypolicyResult) []GetProxypolicyInternetService6Custom {
+		return v.InternetService6Customs
+	}).(GetProxypolicyInternetService6CustomArrayOutput)
+}
+
+// Internet Service IPv6 group name. The structure of `internetService6Group` block is documented below.
+func (o LookupProxypolicyResultOutput) InternetService6Groups() GetProxypolicyInternetService6GroupArrayOutput {
+	return o.ApplyT(func(v LookupProxypolicyResult) []GetProxypolicyInternetService6Group { return v.InternetService6Groups }).(GetProxypolicyInternetService6GroupArrayOutput)
+}
+
+// Internet Service IPv6 name. The structure of `internetService6Name` block is documented below.
+func (o LookupProxypolicyResultOutput) InternetService6Names() GetProxypolicyInternetService6NameArrayOutput {
+	return o.ApplyT(func(v LookupProxypolicyResult) []GetProxypolicyInternetService6Name { return v.InternetService6Names }).(GetProxypolicyInternetService6NameArrayOutput)
+}
+
+// When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6.
+func (o LookupProxypolicyResultOutput) InternetService6Negate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.InternetService6Negate }).(pulumi.StringOutput)
+}
+
 // Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
 func (o LookupProxypolicyResultOutput) InternetServiceCustomGroups() GetProxypolicyInternetServiceCustomGroupArrayOutput {
 	return o.ApplyT(func(v LookupProxypolicyResult) []GetProxypolicyInternetServiceCustomGroup {
@@ -381,6 +452,11 @@ func (o LookupProxypolicyResultOutput) InternetServiceNegate() pulumi.StringOutp
 // Name of an existing IPS sensor.
 func (o LookupProxypolicyResultOutput) IpsSensor() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+// Name of an existing VoIP (ips) profile.
+func (o LookupProxypolicyResultOutput) IpsVoipFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.IpsVoipFilter }).(pulumi.StringOutput)
 }
 
 // VDOM-specific GUI visible label.
@@ -545,6 +621,11 @@ func (o LookupProxypolicyResultOutput) Vdomparam() pulumi.StringPtrOutput {
 // Name of an existing VideoFilter profile.
 func (o LookupProxypolicyResultOutput) VideofilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.VideofilterProfile }).(pulumi.StringOutput)
+}
+
+// Name of an existing virtual-patch profile.
+func (o LookupProxypolicyResultOutput) VirtualPatchProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProxypolicyResult) string { return v.VirtualPatchProfile }).(pulumi.StringOutput)
 }
 
 // Name of an existing VoIP profile.

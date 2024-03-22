@@ -24,6 +24,7 @@ class SslsshprofileArgs:
                  dot: Optional[pulumi.Input['SslsshprofileDotArgs']] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftps: Optional[pulumi.Input['SslsshprofileFtpsArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input['SslsshprofileHttpsArgs']] = None,
                  imaps: Optional[pulumi.Input['SslsshprofileImapsArgs']] = None,
                  mapi_over_https: Optional[pulumi.Input[str]] = None,
@@ -60,6 +61,7 @@ class SslsshprofileArgs:
         :param pulumi.Input['SslsshprofileDotArgs'] dot: Configure DNS over TLS options. The structure of `dot` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input['SslsshprofileFtpsArgs'] ftps: Configure FTPS options. The structure of `ftps` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['SslsshprofileHttpsArgs'] https: Configure HTTPS options. The structure of `https` block is documented below.
         :param pulumi.Input['SslsshprofileImapsArgs'] imaps: Configure IMAPS options. The structure of `imaps` block is documented below.
         :param pulumi.Input[str] mapi_over_https: Enable/disable inspection of MAPI over HTTPS. Valid values: `enable`, `disable`.
@@ -103,6 +105,8 @@ class SslsshprofileArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if ftps is not None:
             pulumi.set(__self__, "ftps", ftps)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https is not None:
             pulumi.set(__self__, "https", https)
         if imaps is not None:
@@ -251,6 +255,18 @@ class SslsshprofileArgs:
     @ftps.setter
     def ftps(self, value: Optional[pulumi.Input['SslsshprofileFtpsArgs']]):
         pulumi.set(self, "ftps", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -576,6 +592,7 @@ class _SslsshprofileState:
                  dot: Optional[pulumi.Input['SslsshprofileDotArgs']] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftps: Optional[pulumi.Input['SslsshprofileFtpsArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input['SslsshprofileHttpsArgs']] = None,
                  imaps: Optional[pulumi.Input['SslsshprofileImapsArgs']] = None,
                  mapi_over_https: Optional[pulumi.Input[str]] = None,
@@ -612,6 +629,7 @@ class _SslsshprofileState:
         :param pulumi.Input['SslsshprofileDotArgs'] dot: Configure DNS over TLS options. The structure of `dot` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input['SslsshprofileFtpsArgs'] ftps: Configure FTPS options. The structure of `ftps` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['SslsshprofileHttpsArgs'] https: Configure HTTPS options. The structure of `https` block is documented below.
         :param pulumi.Input['SslsshprofileImapsArgs'] imaps: Configure IMAPS options. The structure of `imaps` block is documented below.
         :param pulumi.Input[str] mapi_over_https: Enable/disable inspection of MAPI over HTTPS. Valid values: `enable`, `disable`.
@@ -655,6 +673,8 @@ class _SslsshprofileState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if ftps is not None:
             pulumi.set(__self__, "ftps", ftps)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https is not None:
             pulumi.set(__self__, "https", https)
         if imaps is not None:
@@ -803,6 +823,18 @@ class _SslsshprofileState:
     @ftps.setter
     def ftps(self, value: Optional[pulumi.Input['SslsshprofileFtpsArgs']]):
         pulumi.set(self, "ftps", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1130,6 +1162,7 @@ class Sslsshprofile(pulumi.CustomResource):
                  dot: Optional[pulumi.Input[pulumi.InputType['SslsshprofileDotArgs']]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftps: Optional[pulumi.Input[pulumi.InputType['SslsshprofileFtpsArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input[pulumi.InputType['SslsshprofileHttpsArgs']]] = None,
                  imaps: Optional[pulumi.Input[pulumi.InputType['SslsshprofileImapsArgs']]] = None,
                  mapi_over_https: Optional[pulumi.Input[str]] = None,
@@ -1224,6 +1257,7 @@ class Sslsshprofile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SslsshprofileDotArgs']] dot: Configure DNS over TLS options. The structure of `dot` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[pulumi.InputType['SslsshprofileFtpsArgs']] ftps: Configure FTPS options. The structure of `ftps` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['SslsshprofileHttpsArgs']] https: Configure HTTPS options. The structure of `https` block is documented below.
         :param pulumi.Input[pulumi.InputType['SslsshprofileImapsArgs']] imaps: Configure IMAPS options. The structure of `imaps` block is documented below.
         :param pulumi.Input[str] mapi_over_https: Enable/disable inspection of MAPI over HTTPS. Valid values: `enable`, `disable`.
@@ -1337,6 +1371,7 @@ class Sslsshprofile(pulumi.CustomResource):
                  dot: Optional[pulumi.Input[pulumi.InputType['SslsshprofileDotArgs']]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftps: Optional[pulumi.Input[pulumi.InputType['SslsshprofileFtpsArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input[pulumi.InputType['SslsshprofileHttpsArgs']]] = None,
                  imaps: Optional[pulumi.Input[pulumi.InputType['SslsshprofileImapsArgs']]] = None,
                  mapi_over_https: Optional[pulumi.Input[str]] = None,
@@ -1380,6 +1415,7 @@ class Sslsshprofile(pulumi.CustomResource):
             __props__.__dict__["dot"] = dot
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["ftps"] = ftps
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["https"] = https
             __props__.__dict__["imaps"] = imaps
             __props__.__dict__["mapi_over_https"] = mapi_over_https
@@ -1424,6 +1460,7 @@ class Sslsshprofile(pulumi.CustomResource):
             dot: Optional[pulumi.Input[pulumi.InputType['SslsshprofileDotArgs']]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             ftps: Optional[pulumi.Input[pulumi.InputType['SslsshprofileFtpsArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             https: Optional[pulumi.Input[pulumi.InputType['SslsshprofileHttpsArgs']]] = None,
             imaps: Optional[pulumi.Input[pulumi.InputType['SslsshprofileImapsArgs']]] = None,
             mapi_over_https: Optional[pulumi.Input[str]] = None,
@@ -1465,6 +1502,7 @@ class Sslsshprofile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SslsshprofileDotArgs']] dot: Configure DNS over TLS options. The structure of `dot` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[pulumi.InputType['SslsshprofileFtpsArgs']] ftps: Configure FTPS options. The structure of `ftps` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['SslsshprofileHttpsArgs']] https: Configure HTTPS options. The structure of `https` block is documented below.
         :param pulumi.Input[pulumi.InputType['SslsshprofileImapsArgs']] imaps: Configure IMAPS options. The structure of `imaps` block is documented below.
         :param pulumi.Input[str] mapi_over_https: Enable/disable inspection of MAPI over HTTPS. Valid values: `enable`, `disable`.
@@ -1504,6 +1542,7 @@ class Sslsshprofile(pulumi.CustomResource):
         __props__.__dict__["dot"] = dot
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["ftps"] = ftps
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["https"] = https
         __props__.__dict__["imaps"] = imaps
         __props__.__dict__["mapi_over_https"] = mapi_over_https
@@ -1595,6 +1634,14 @@ class Sslsshprofile(pulumi.CustomResource):
         Configure FTPS options. The structure of `ftps` block is documented below.
         """
         return pulumi.get(self, "ftps")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

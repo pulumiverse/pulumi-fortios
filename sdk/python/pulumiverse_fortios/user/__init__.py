@@ -13,6 +13,7 @@ from .devicecategory import *
 from .devicegroup import *
 from .domaincontroller import *
 from .exchange import *
+from .externalidentityprovider import *
 from .fortitoken import *
 from .fsso import *
 from .fssopolling import *

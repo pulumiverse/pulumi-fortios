@@ -152,6 +152,10 @@ export class Ddns extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Monitored interface. The structure of `monitorInterface` block is documented below.
      */
     public readonly monitorInterfaces!: pulumi.Output<outputs.system.DdnsMonitorInterface[]>;
@@ -206,6 +210,7 @@ export class Ddns extends pulumi.CustomResource {
             resourceInputs["ddnsZone"] = state ? state.ddnsZone : undefined;
             resourceInputs["ddnsid"] = state ? state.ddnsid : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["monitorInterfaces"] = state ? state.monitorInterfaces : undefined;
             resourceInputs["serverType"] = state ? state.serverType : undefined;
             resourceInputs["sslCertificate"] = state ? state.sslCertificate : undefined;
@@ -237,6 +242,7 @@ export class Ddns extends pulumi.CustomResource {
             resourceInputs["ddnsZone"] = args ? args.ddnsZone : undefined;
             resourceInputs["ddnsid"] = args ? args.ddnsid : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["monitorInterfaces"] = args ? args.monitorInterfaces : undefined;
             resourceInputs["serverType"] = args ? args.serverType : undefined;
             resourceInputs["sslCertificate"] = args ? args.sslCertificate : undefined;
@@ -323,6 +329,10 @@ export interface DdnsState {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Monitored interface. The structure of `monitorInterface` block is documented below.
      */
@@ -421,6 +431,10 @@ export interface DdnsArgs {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Monitored interface. The structure of `monitorInterface` block is documented below.
      */

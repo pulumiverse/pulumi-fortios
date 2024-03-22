@@ -43,6 +43,10 @@ export interface GetOnetimeResult {
      */
     readonly end: string;
     /**
+     * Schedule end date and time, in epoch format.
+     */
+    readonly endUtc: string;
+    /**
      * Write an event log message this many days before the schedule expires.
      */
     readonly expirationDays: number;
@@ -62,6 +66,10 @@ export interface GetOnetimeResult {
      * Schedule start date and time, format hh:mm yyyy/mm/dd.
      */
     readonly start: string;
+    /**
+     * Schedule start date and time, in epoch format.
+     */
+    readonly startUtc: string;
     readonly vdomparam?: string;
 }
 /**

@@ -99,6 +99,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string FmgUpdatePort;
         /// <summary>
+        /// Override access profile.
+        /// </summary>
+        public readonly string FortigateCloudSsoDefaultProfile;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -170,6 +174,8 @@ namespace Pulumiverse.Fortios.System
 
             string fmgUpdatePort,
 
+            string fortigateCloudSsoDefaultProfile,
+
             string id,
 
             string includeDefaultServers,
@@ -206,6 +212,7 @@ namespace Pulumiverse.Fortios.System
             FmgSourceIp = fmgSourceIp;
             FmgSourceIp6 = fmgSourceIp6;
             FmgUpdatePort = fmgUpdatePort;
+            FortigateCloudSsoDefaultProfile = fortigateCloudSsoDefaultProfile;
             Id = id;
             IncludeDefaultServers = includeDefaultServers;
             Interface = @interface;

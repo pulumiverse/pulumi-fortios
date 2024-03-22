@@ -76,6 +76,10 @@ export class Overridefilter extends pulumi.CustomResource {
      */
     public readonly filterType!: pulumi.Output<string>;
     /**
+     * Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+     */
+    public readonly fortiSwitch!: pulumi.Output<string>;
+    /**
      * Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
      */
     public readonly forwardTraffic!: pulumi.Output<string>;
@@ -83,6 +87,10 @@ export class Overridefilter extends pulumi.CustomResource {
      * Free Style Filters The structure of `freeStyle` block is documented below.
      */
     public readonly freeStyles!: pulumi.Output<outputs.log.fortianalyzer.cloud.OverridefilterFreeStyle[] | undefined>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
      */
@@ -134,8 +142,10 @@ export class Overridefilter extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["filter"] = state ? state.filter : undefined;
             resourceInputs["filterType"] = state ? state.filterType : undefined;
+            resourceInputs["fortiSwitch"] = state ? state.fortiSwitch : undefined;
             resourceInputs["forwardTraffic"] = state ? state.forwardTraffic : undefined;
             resourceInputs["freeStyles"] = state ? state.freeStyles : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gtp"] = state ? state.gtp : undefined;
             resourceInputs["localTraffic"] = state ? state.localTraffic : undefined;
             resourceInputs["multicastTraffic"] = state ? state.multicastTraffic : undefined;
@@ -151,8 +161,10 @@ export class Overridefilter extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["filter"] = args ? args.filter : undefined;
             resourceInputs["filterType"] = args ? args.filterType : undefined;
+            resourceInputs["fortiSwitch"] = args ? args.fortiSwitch : undefined;
             resourceInputs["forwardTraffic"] = args ? args.forwardTraffic : undefined;
             resourceInputs["freeStyles"] = args ? args.freeStyles : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gtp"] = args ? args.gtp : undefined;
             resourceInputs["localTraffic"] = args ? args.localTraffic : undefined;
             resourceInputs["multicastTraffic"] = args ? args.multicastTraffic : undefined;
@@ -192,6 +204,10 @@ export interface OverridefilterState {
      */
     filterType?: pulumi.Input<string>;
     /**
+     * Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+     */
+    fortiSwitch?: pulumi.Input<string>;
+    /**
      * Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
      */
     forwardTraffic?: pulumi.Input<string>;
@@ -199,6 +215,10 @@ export interface OverridefilterState {
      * Free Style Filters The structure of `freeStyle` block is documented below.
      */
     freeStyles?: pulumi.Input<pulumi.Input<inputs.log.fortianalyzer.cloud.OverridefilterFreeStyle>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
      */
@@ -258,6 +278,10 @@ export interface OverridefilterArgs {
      */
     filterType?: pulumi.Input<string>;
     /**
+     * Enable/disable Forti-Switch logging. Valid values: `enable`, `disable`.
+     */
+    fortiSwitch?: pulumi.Input<string>;
+    /**
      * Enable/disable forward traffic logging. Valid values: `enable`, `disable`.
      */
     forwardTraffic?: pulumi.Input<string>;
@@ -265,6 +289,10 @@ export interface OverridefilterArgs {
      * Free Style Filters The structure of `freeStyle` block is documented below.
      */
     freeStyles?: pulumi.Input<pulumi.Input<inputs.log.fortianalyzer.cloud.OverridefilterFreeStyle>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
      */

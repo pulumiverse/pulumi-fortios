@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'GetSflowResult',
@@ -21,13 +22,16 @@ class GetSflowResult:
     """
     A collection of values returned by getSflow.
     """
-    def __init__(__self__, collector_ip=None, collector_port=None, id=None, interface=None, interface_select_method=None, source_ip=None, vdomparam=None):
+    def __init__(__self__, collector_ip=None, collector_port=None, collectors=None, id=None, interface=None, interface_select_method=None, source_ip=None, vdomparam=None):
         if collector_ip and not isinstance(collector_ip, str):
             raise TypeError("Expected argument 'collector_ip' to be a str")
         pulumi.set(__self__, "collector_ip", collector_ip)
         if collector_port and not isinstance(collector_port, int):
             raise TypeError("Expected argument 'collector_port' to be a int")
         pulumi.set(__self__, "collector_port", collector_port)
+        if collectors and not isinstance(collectors, list):
+            raise TypeError("Expected argument 'collectors' to be a list")
+        pulumi.set(__self__, "collectors", collectors)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -48,7 +52,7 @@ class GetSflowResult:
     @pulumi.getter(name="collectorIp")
     def collector_ip(self) -> str:
         """
-        IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
+        IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
         """
         return pulumi.get(self, "collector_ip")
 
@@ -59,6 +63,14 @@ class GetSflowResult:
         UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
         """
         return pulumi.get(self, "collector_port")
+
+    @property
+    @pulumi.getter
+    def collectors(self) -> Sequence['outputs.GetSflowCollectorResult']:
+        """
+        sFlow collectors. The structure of `collectors` block is documented below.
+        """
+        return pulumi.get(self, "collectors")
 
     @property
     @pulumi.getter
@@ -106,6 +118,7 @@ class AwaitableGetSflowResult(GetSflowResult):
         return GetSflowResult(
             collector_ip=self.collector_ip,
             collector_port=self.collector_port,
+            collectors=self.collectors,
             id=self.id,
             interface=self.interface,
             interface_select_method=self.interface_select_method,
@@ -129,6 +142,7 @@ def get_sflow(vdomparam: Optional[str] = None,
     return AwaitableGetSflowResult(
         collector_ip=pulumi.get(__ret__, 'collector_ip'),
         collector_port=pulumi.get(__ret__, 'collector_port'),
+        collectors=pulumi.get(__ret__, 'collectors'),
         id=pulumi.get(__ret__, 'id'),
         interface=pulumi.get(__ret__, 'interface'),
         interface_select_method=pulumi.get(__ret__, 'interface_select_method'),

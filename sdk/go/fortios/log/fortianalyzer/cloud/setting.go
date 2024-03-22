@@ -45,7 +45,9 @@ type Setting struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm pulumi.StringOutput `pulumi:"encAlgorithm"`
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm pulumi.StringOutput `pulumi:"hmacAlgorithm"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
@@ -125,7 +127,9 @@ type settingState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm *string `pulumi:"encAlgorithm"`
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm *string `pulumi:"hmacAlgorithm"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -176,7 +180,9 @@ type SettingState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm pulumi.StringPtrInput
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -231,7 +237,9 @@ type settingArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm *string `pulumi:"encAlgorithm"`
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm *string `pulumi:"hmacAlgorithm"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -283,7 +291,9 @@ type SettingArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm pulumi.StringPtrInput
-	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -438,7 +448,12 @@ func (o SettingOutput) EncAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.EncAlgorithm }).(pulumi.StringOutput)
 }
 
-// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// FortiAnalyzer IPsec tunnel HMAC algorithm.
 func (o SettingOutput) HmacAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.HmacAlgorithm }).(pulumi.StringOutput)
 }

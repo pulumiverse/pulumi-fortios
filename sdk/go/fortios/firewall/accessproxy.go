@@ -51,10 +51,22 @@ type Accessproxy struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Action of an empty client certificate.
 	EmptyCertAction pulumi.StringOutput `pulumi:"emptyCertAction"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+	HttpSupportedMaxVersion pulumi.StringOutput `pulumi:"httpSupportedMaxVersion"`
 	// Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
 	LogBlockedTraffic pulumi.StringOutput `pulumi:"logBlockedTraffic"`
 	// Access Proxy name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+	SvrPoolMultiplex pulumi.StringOutput `pulumi:"svrPoolMultiplex"`
+	// Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+	SvrPoolServerMaxConcurrentRequest pulumi.IntOutput `pulumi:"svrPoolServerMaxConcurrentRequest"`
+	// Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+	SvrPoolServerMaxRequest pulumi.IntOutput `pulumi:"svrPoolServerMaxRequest"`
+	// Time-to-live in the server pool for idle connections to servers.
+	SvrPoolTtl pulumi.IntOutput `pulumi:"svrPoolTtl"`
 	// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
 	UserAgentDetect pulumi.StringOutput `pulumi:"userAgentDetect"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -111,10 +123,22 @@ type accessproxyState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Action of an empty client certificate.
 	EmptyCertAction *string `pulumi:"emptyCertAction"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+	HttpSupportedMaxVersion *string `pulumi:"httpSupportedMaxVersion"`
 	// Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
 	LogBlockedTraffic *string `pulumi:"logBlockedTraffic"`
 	// Access Proxy name.
 	Name *string `pulumi:"name"`
+	// Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+	SvrPoolMultiplex *string `pulumi:"svrPoolMultiplex"`
+	// Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+	SvrPoolServerMaxConcurrentRequest *int `pulumi:"svrPoolServerMaxConcurrentRequest"`
+	// Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+	SvrPoolServerMaxRequest *int `pulumi:"svrPoolServerMaxRequest"`
+	// Time-to-live in the server pool for idle connections to servers.
+	SvrPoolTtl *int `pulumi:"svrPoolTtl"`
 	// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
 	UserAgentDetect *string `pulumi:"userAgentDetect"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -142,10 +166,22 @@ type AccessproxyState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Action of an empty client certificate.
 	EmptyCertAction pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+	HttpSupportedMaxVersion pulumi.StringPtrInput
 	// Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
 	LogBlockedTraffic pulumi.StringPtrInput
 	// Access Proxy name.
 	Name pulumi.StringPtrInput
+	// Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+	SvrPoolMultiplex pulumi.StringPtrInput
+	// Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+	SvrPoolServerMaxConcurrentRequest pulumi.IntPtrInput
+	// Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+	SvrPoolServerMaxRequest pulumi.IntPtrInput
+	// Time-to-live in the server pool for idle connections to servers.
+	SvrPoolTtl pulumi.IntPtrInput
 	// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
 	UserAgentDetect pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -177,10 +213,22 @@ type accessproxyArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Action of an empty client certificate.
 	EmptyCertAction *string `pulumi:"emptyCertAction"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+	HttpSupportedMaxVersion *string `pulumi:"httpSupportedMaxVersion"`
 	// Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
 	LogBlockedTraffic *string `pulumi:"logBlockedTraffic"`
 	// Access Proxy name.
 	Name *string `pulumi:"name"`
+	// Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+	SvrPoolMultiplex *string `pulumi:"svrPoolMultiplex"`
+	// Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+	SvrPoolServerMaxConcurrentRequest *int `pulumi:"svrPoolServerMaxConcurrentRequest"`
+	// Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+	SvrPoolServerMaxRequest *int `pulumi:"svrPoolServerMaxRequest"`
+	// Time-to-live in the server pool for idle connections to servers.
+	SvrPoolTtl *int `pulumi:"svrPoolTtl"`
 	// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
 	UserAgentDetect *string `pulumi:"userAgentDetect"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -209,10 +257,22 @@ type AccessproxyArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Action of an empty client certificate.
 	EmptyCertAction pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+	HttpSupportedMaxVersion pulumi.StringPtrInput
 	// Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
 	LogBlockedTraffic pulumi.StringPtrInput
 	// Access Proxy name.
 	Name pulumi.StringPtrInput
+	// Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+	SvrPoolMultiplex pulumi.StringPtrInput
+	// Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+	SvrPoolServerMaxConcurrentRequest pulumi.IntPtrInput
+	// Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+	SvrPoolServerMaxRequest pulumi.IntPtrInput
+	// Time-to-live in the server pool for idle connections to servers.
+	SvrPoolTtl pulumi.IntPtrInput
 	// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
 	UserAgentDetect pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -353,6 +413,16 @@ func (o AccessproxyOutput) EmptyCertAction() pulumi.StringOutput {
 	return o.ApplyT(func(v *Accessproxy) pulumi.StringOutput { return v.EmptyCertAction }).(pulumi.StringOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o AccessproxyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Accessproxy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+func (o AccessproxyOutput) HttpSupportedMaxVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Accessproxy) pulumi.StringOutput { return v.HttpSupportedMaxVersion }).(pulumi.StringOutput)
+}
+
 // Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
 func (o AccessproxyOutput) LogBlockedTraffic() pulumi.StringOutput {
 	return o.ApplyT(func(v *Accessproxy) pulumi.StringOutput { return v.LogBlockedTraffic }).(pulumi.StringOutput)
@@ -361,6 +431,26 @@ func (o AccessproxyOutput) LogBlockedTraffic() pulumi.StringOutput {
 // Access Proxy name.
 func (o AccessproxyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Accessproxy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+func (o AccessproxyOutput) SvrPoolMultiplex() pulumi.StringOutput {
+	return o.ApplyT(func(v *Accessproxy) pulumi.StringOutput { return v.SvrPoolMultiplex }).(pulumi.StringOutput)
+}
+
+// Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+func (o AccessproxyOutput) SvrPoolServerMaxConcurrentRequest() pulumi.IntOutput {
+	return o.ApplyT(func(v *Accessproxy) pulumi.IntOutput { return v.SvrPoolServerMaxConcurrentRequest }).(pulumi.IntOutput)
+}
+
+// Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+func (o AccessproxyOutput) SvrPoolServerMaxRequest() pulumi.IntOutput {
+	return o.ApplyT(func(v *Accessproxy) pulumi.IntOutput { return v.SvrPoolServerMaxRequest }).(pulumi.IntOutput)
+}
+
+// Time-to-live in the server pool for idle connections to servers.
+func (o AccessproxyOutput) SvrPoolTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *Accessproxy) pulumi.IntOutput { return v.SvrPoolTtl }).(pulumi.IntOutput)
 }
 
 // Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.

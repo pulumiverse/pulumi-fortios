@@ -99,6 +99,10 @@ export class Scheme extends pulumi.CustomResource {
      */
     public readonly fssoGuest!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Kerberos keytab setting.
      */
     public readonly kerberosKeytab!: pulumi.Output<string>;
@@ -160,6 +164,7 @@ export class Scheme extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fssoAgentForNtlm"] = state ? state.fssoAgentForNtlm : undefined;
             resourceInputs["fssoGuest"] = state ? state.fssoGuest : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["kerberosKeytab"] = state ? state.kerberosKeytab : undefined;
             resourceInputs["method"] = state ? state.method : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -180,6 +185,7 @@ export class Scheme extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fssoAgentForNtlm"] = args ? args.fssoAgentForNtlm : undefined;
             resourceInputs["fssoGuest"] = args ? args.fssoGuest : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["kerberosKeytab"] = args ? args.kerberosKeytab : undefined;
             resourceInputs["method"] = args ? args.method : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -217,6 +223,10 @@ export interface SchemeState {
      * Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
      */
     fssoGuest?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Kerberos keytab setting.
      */
@@ -283,6 +293,10 @@ export interface SchemeArgs {
      * Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
      */
     fssoGuest?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Kerberos keytab setting.
      */

@@ -20,7 +20,10 @@ class Addrgrp6Args:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 exclude: Optional[pulumi.Input[str]] = None,
+                 exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input['Addrgrp6ExcludeMemberArgs']]]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['Addrgrp6TaggingArgs']]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -32,7 +35,10 @@ class Addrgrp6Args:
         :param pulumi.Input[int] color: Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] exclude: Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['Addrgrp6ExcludeMemberArgs']]] exclude_members: Address6 exclusion member. The structure of `exclude_member` block is documented below.
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: IPv6 address group name.
         :param pulumi.Input[Sequence[pulumi.Input['Addrgrp6TaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -46,8 +52,14 @@ class Addrgrp6Args:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if exclude is not None:
+            pulumi.set(__self__, "exclude", exclude)
+        if exclude_members is not None:
+            pulumi.set(__self__, "exclude_members", exclude_members)
         if fabric_object is not None:
             pulumi.set(__self__, "fabric_object", fabric_object)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if taggings is not None:
@@ -108,6 +120,30 @@ class Addrgrp6Args:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter
+    def exclude(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "exclude")
+
+    @exclude.setter
+    def exclude(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exclude", value)
+
+    @property
+    @pulumi.getter(name="excludeMembers")
+    def exclude_members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Addrgrp6ExcludeMemberArgs']]]]:
+        """
+        Address6 exclusion member. The structure of `exclude_member` block is documented below.
+        """
+        return pulumi.get(self, "exclude_members")
+
+    @exclude_members.setter
+    def exclude_members(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Addrgrp6ExcludeMemberArgs']]]]):
+        pulumi.set(self, "exclude_members", value)
+
+    @property
     @pulumi.getter(name="fabricObject")
     def fabric_object(self) -> Optional[pulumi.Input[str]]:
         """
@@ -118,6 +154,18 @@ class Addrgrp6Args:
     @fabric_object.setter
     def fabric_object(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fabric_object", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -186,7 +234,10 @@ class _Addrgrp6State:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 exclude: Optional[pulumi.Input[str]] = None,
+                 exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input['Addrgrp6ExcludeMemberArgs']]]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['Addrgrp6MemberArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['Addrgrp6TaggingArgs']]]] = None,
@@ -198,7 +249,10 @@ class _Addrgrp6State:
         :param pulumi.Input[int] color: Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] exclude: Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['Addrgrp6ExcludeMemberArgs']]] exclude_members: Address6 exclusion member. The structure of `exclude_member` block is documented below.
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['Addrgrp6MemberArgs']]] members: Address objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: IPv6 address group name.
         :param pulumi.Input[Sequence[pulumi.Input['Addrgrp6TaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -212,8 +266,14 @@ class _Addrgrp6State:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if exclude is not None:
+            pulumi.set(__self__, "exclude", exclude)
+        if exclude_members is not None:
+            pulumi.set(__self__, "exclude_members", exclude_members)
         if fabric_object is not None:
             pulumi.set(__self__, "fabric_object", fabric_object)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if members is not None:
             pulumi.set(__self__, "members", members)
         if name is not None:
@@ -264,6 +324,30 @@ class _Addrgrp6State:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter
+    def exclude(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "exclude")
+
+    @exclude.setter
+    def exclude(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exclude", value)
+
+    @property
+    @pulumi.getter(name="excludeMembers")
+    def exclude_members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Addrgrp6ExcludeMemberArgs']]]]:
+        """
+        Address6 exclusion member. The structure of `exclude_member` block is documented below.
+        """
+        return pulumi.get(self, "exclude_members")
+
+    @exclude_members.setter
+    def exclude_members(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Addrgrp6ExcludeMemberArgs']]]]):
+        pulumi.set(self, "exclude_members", value)
+
+    @property
     @pulumi.getter(name="fabricObject")
     def fabric_object(self) -> Optional[pulumi.Input[str]]:
         """
@@ -274,6 +358,18 @@ class _Addrgrp6State:
     @fabric_object.setter
     def fabric_object(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fabric_object", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -356,7 +452,10 @@ class Addrgrp6(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 exclude: Optional[pulumi.Input[str]] = None,
+                 exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6ExcludeMemberArgs']]]]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6MemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6TaggingArgs']]]]] = None,
@@ -416,7 +515,10 @@ class Addrgrp6(pulumi.CustomResource):
         :param pulumi.Input[int] color: Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] exclude: Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6ExcludeMemberArgs']]]] exclude_members: Address6 exclusion member. The structure of `exclude_member` block is documented below.
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6MemberArgs']]]] members: Address objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: IPv6 address group name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6TaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -495,7 +597,10 @@ class Addrgrp6(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 exclude: Optional[pulumi.Input[str]] = None,
+                 exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6ExcludeMemberArgs']]]]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6MemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6TaggingArgs']]]]] = None,
@@ -514,7 +619,10 @@ class Addrgrp6(pulumi.CustomResource):
             __props__.__dict__["color"] = color
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["exclude"] = exclude
+            __props__.__dict__["exclude_members"] = exclude_members
             __props__.__dict__["fabric_object"] = fabric_object
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if members is None and not opts.urn:
                 raise TypeError("Missing required property 'members'")
             __props__.__dict__["members"] = members
@@ -536,7 +644,10 @@ class Addrgrp6(pulumi.CustomResource):
             color: Optional[pulumi.Input[int]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            exclude: Optional[pulumi.Input[str]] = None,
+            exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6ExcludeMemberArgs']]]]] = None,
             fabric_object: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6MemberArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6TaggingArgs']]]]] = None,
@@ -553,7 +664,10 @@ class Addrgrp6(pulumi.CustomResource):
         :param pulumi.Input[int] color: Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] exclude: Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6ExcludeMemberArgs']]]] exclude_members: Address6 exclusion member. The structure of `exclude_member` block is documented below.
         :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6MemberArgs']]]] members: Address objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: IPv6 address group name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Addrgrp6TaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -568,7 +682,10 @@ class Addrgrp6(pulumi.CustomResource):
         __props__.__dict__["color"] = color
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["exclude"] = exclude
+        __props__.__dict__["exclude_members"] = exclude_members
         __props__.__dict__["fabric_object"] = fabric_object
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["members"] = members
         __props__.__dict__["name"] = name
         __props__.__dict__["taggings"] = taggings
@@ -602,12 +719,36 @@ class Addrgrp6(pulumi.CustomResource):
         return pulumi.get(self, "dynamic_sort_subtable")
 
     @property
+    @pulumi.getter
+    def exclude(self) -> pulumi.Output[str]:
+        """
+        Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "exclude")
+
+    @property
+    @pulumi.getter(name="excludeMembers")
+    def exclude_members(self) -> pulumi.Output[Optional[Sequence['outputs.Addrgrp6ExcludeMember']]]:
+        """
+        Address6 exclusion member. The structure of `exclude_member` block is documented below.
+        """
+        return pulumi.get(self, "exclude_members")
+
+    @property
     @pulumi.getter(name="fabricObject")
     def fabric_object(self) -> pulumi.Output[str]:
         """
         Security Fabric global object setting. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "fabric_object")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

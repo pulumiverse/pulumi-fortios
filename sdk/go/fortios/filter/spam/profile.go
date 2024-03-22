@@ -111,6 +111,8 @@ type Profile struct {
 	External pulumi.StringOutput `pulumi:"external"`
 	// Enable/disable flow-based spam filtering. Valid values: `enable`, `disable`.
 	FlowBased pulumi.StringOutput `pulumi:"flowBased"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail ProfileGmailOutput `pulumi:"gmail"`
 	// IMAP. The structure of `imap` block is documented below.
@@ -189,6 +191,8 @@ type profileState struct {
 	External *string `pulumi:"external"`
 	// Enable/disable flow-based spam filtering. Valid values: `enable`, `disable`.
 	FlowBased *string `pulumi:"flowBased"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail *ProfileGmail `pulumi:"gmail"`
 	// IMAP. The structure of `imap` block is documented below.
@@ -238,6 +242,8 @@ type ProfileState struct {
 	External pulumi.StringPtrInput
 	// Enable/disable flow-based spam filtering. Valid values: `enable`, `disable`.
 	FlowBased pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail ProfileGmailPtrInput
 	// IMAP. The structure of `imap` block is documented below.
@@ -291,6 +297,8 @@ type profileArgs struct {
 	External *string `pulumi:"external"`
 	// Enable/disable flow-based spam filtering. Valid values: `enable`, `disable`.
 	FlowBased *string `pulumi:"flowBased"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail *ProfileGmail `pulumi:"gmail"`
 	// IMAP. The structure of `imap` block is documented below.
@@ -341,6 +349,8 @@ type ProfileArgs struct {
 	External pulumi.StringPtrInput
 	// Enable/disable flow-based spam filtering. Valid values: `enable`, `disable`.
 	FlowBased pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail ProfileGmailPtrInput
 	// IMAP. The structure of `imap` block is documented below.
@@ -483,6 +493,11 @@ func (o ProfileOutput) External() pulumi.StringOutput {
 // Enable/disable flow-based spam filtering. Valid values: `enable`, `disable`.
 func (o ProfileOutput) FlowBased() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.FlowBased }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Gmail. The structure of `gmail` block is documented below.

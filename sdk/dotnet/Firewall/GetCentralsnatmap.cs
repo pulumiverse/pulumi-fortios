@@ -83,6 +83,10 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCentralsnatmapDstAddrResult> DstAddrs;
         /// <summary>
+        /// Destination port or port range (1 to 65535, 0 means any port).
+        /// </summary>
+        public readonly string DstPort;
+        /// <summary>
         /// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCentralsnatmapDstintfResult> Dstintfs;
@@ -160,6 +164,8 @@ namespace Pulumiverse.Fortios.Firewall
 
             ImmutableArray<Outputs.GetCentralsnatmapDstAddrResult> dstAddrs,
 
+            string dstPort,
+
             ImmutableArray<Outputs.GetCentralsnatmapDstintfResult> dstintfs,
 
             string id,
@@ -199,6 +205,7 @@ namespace Pulumiverse.Fortios.Firewall
             Comments = comments;
             DstAddr6s = dstAddr6s;
             DstAddrs = dstAddrs;
+            DstPort = dstPort;
             Dstintfs = dstintfs;
             Id = id;
             Nat = nat;

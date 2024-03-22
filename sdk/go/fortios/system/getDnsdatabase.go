@@ -46,6 +46,8 @@ type LookupDnsdatabaseResult struct {
 	Domain string `pulumi:"domain"`
 	// DNS zone forwarder IP address list.
 	Forwarder string `pulumi:"forwarder"`
+	// Forwarder IPv6 address.
+	Forwarder6 string `pulumi:"forwarder6"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
@@ -60,6 +62,8 @@ type LookupDnsdatabaseResult struct {
 	RrMax int `pulumi:"rrMax"`
 	// Source IP for forwarding to DNS server.
 	SourceIp string `pulumi:"sourceIp"`
+	// IPv6 source IP address for forwarding to DNS server.
+	SourceIp6 string `pulumi:"sourceIp6"`
 	// Enable/disable resource record status.
 	Status string `pulumi:"status"`
 	// Time-to-live for this entry (0 to 2147483647 sec, default = 0).
@@ -143,6 +147,11 @@ func (o LookupDnsdatabaseResultOutput) Forwarder() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDnsdatabaseResult) string { return v.Forwarder }).(pulumi.StringOutput)
 }
 
+// Forwarder IPv6 address.
+func (o LookupDnsdatabaseResultOutput) Forwarder6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDnsdatabaseResult) string { return v.Forwarder6 }).(pulumi.StringOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupDnsdatabaseResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDnsdatabaseResult) string { return v.Id }).(pulumi.StringOutput)
@@ -176,6 +185,11 @@ func (o LookupDnsdatabaseResultOutput) RrMax() pulumi.IntOutput {
 // Source IP for forwarding to DNS server.
 func (o LookupDnsdatabaseResultOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDnsdatabaseResult) string { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+// IPv6 source IP address for forwarding to DNS server.
+func (o LookupDnsdatabaseResultOutput) SourceIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDnsdatabaseResult) string { return v.SourceIp6 }).(pulumi.StringOutput)
 }
 
 // Enable/disable resource record status.

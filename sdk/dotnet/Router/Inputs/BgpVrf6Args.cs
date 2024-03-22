@@ -13,6 +13,36 @@ namespace Pulumiverse.Fortios.Router.Inputs
 
     public sealed class BgpVrf6Args : global::Pulumi.ResourceArgs
     {
+        [Input("exportRts")]
+        private InputList<Inputs.BgpVrf6ExportRtArgs>? _exportRts;
+
+        /// <summary>
+        /// List of export route target. The structure of `export_rt` block is documented below.
+        /// </summary>
+        public InputList<Inputs.BgpVrf6ExportRtArgs> ExportRts
+        {
+            get => _exportRts ?? (_exportRts = new InputList<Inputs.BgpVrf6ExportRtArgs>());
+            set => _exportRts = value;
+        }
+
+        /// <summary>
+        /// Import route map.
+        /// </summary>
+        [Input("importRouteMap")]
+        public Input<string>? ImportRouteMap { get; set; }
+
+        [Input("importRts")]
+        private InputList<Inputs.BgpVrf6ImportRtArgs>? _importRts;
+
+        /// <summary>
+        /// List of import route target. The structure of `import_rt` block is documented below.
+        /// </summary>
+        public InputList<Inputs.BgpVrf6ImportRtArgs> ImportRts
+        {
+            get => _importRts ?? (_importRts = new InputList<Inputs.BgpVrf6ImportRtArgs>());
+            set => _importRts = value;
+        }
+
         [Input("leakTargets")]
         private InputList<Inputs.BgpVrf6LeakTargetArgs>? _leakTargets;
 
@@ -24,6 +54,18 @@ namespace Pulumiverse.Fortios.Router.Inputs
             get => _leakTargets ?? (_leakTargets = new InputList<Inputs.BgpVrf6LeakTargetArgs>());
             set => _leakTargets = value;
         }
+
+        /// <summary>
+        /// Route Distinguisher: AA:NN|A.B.C.D:NN.
+        /// </summary>
+        [Input("rd")]
+        public Input<string>? Rd { get; set; }
+
+        /// <summary>
+        /// VRF role. Valid values: `standalone`, `ce`, `pe`.
+        /// </summary>
+        [Input("role")]
+        public Input<string>? Role { get; set; }
 
         /// <summary>
         /// BGP VRF leaking table. The structure of `vrf` block is documented below.

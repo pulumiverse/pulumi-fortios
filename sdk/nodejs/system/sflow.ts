@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -77,6 +79,18 @@ export class Sflow extends pulumi.CustomResource {
      */
     public readonly collectorPort!: pulumi.Output<number>;
     /**
+     * sFlow collectors. The structure of `collectors` block is documented below.
+     */
+    public readonly collectors!: pulumi.Output<outputs.system.SflowCollector[] | undefined>;
+    /**
+     * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+     */
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Specify outgoing interface to reach server.
      */
     public readonly interface!: pulumi.Output<string>;
@@ -108,6 +122,9 @@ export class Sflow extends pulumi.CustomResource {
             const state = argsOrState as SflowState | undefined;
             resourceInputs["collectorIp"] = state ? state.collectorIp : undefined;
             resourceInputs["collectorPort"] = state ? state.collectorPort : undefined;
+            resourceInputs["collectors"] = state ? state.collectors : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
@@ -119,6 +136,9 @@ export class Sflow extends pulumi.CustomResource {
             }
             resourceInputs["collectorIp"] = args ? args.collectorIp : undefined;
             resourceInputs["collectorPort"] = args ? args.collectorPort : undefined;
+            resourceInputs["collectors"] = args ? args.collectors : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
@@ -141,6 +161,18 @@ export interface SflowState {
      * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
      */
     collectorPort?: pulumi.Input<number>;
+    /**
+     * sFlow collectors. The structure of `collectors` block is documented below.
+     */
+    collectors?: pulumi.Input<pulumi.Input<inputs.system.SflowCollector>[]>;
+    /**
+     * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Specify outgoing interface to reach server.
      */
@@ -171,6 +203,18 @@ export interface SflowArgs {
      * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
      */
     collectorPort?: pulumi.Input<number>;
+    /**
+     * sFlow collectors. The structure of `collectors` block is documented below.
+     */
+    collectors?: pulumi.Input<pulumi.Input<inputs.system.SflowCollector>[]>;
+    /**
+     * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Specify outgoing interface to reach server.
      */

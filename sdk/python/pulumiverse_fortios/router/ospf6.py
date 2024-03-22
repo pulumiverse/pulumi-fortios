@@ -27,6 +27,7 @@ class Ospf6Args:
                  default_information_route_map: Optional[pulumi.Input[str]] = None,
                  default_metric: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_neighbour_changes: Optional[pulumi.Input[str]] = None,
                  ospf6_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['Ospf6Ospf6InterfaceArgs']]]] = None,
                  passive_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['Ospf6PassiveInterfaceArgs']]]] = None,
@@ -50,6 +51,7 @@ class Ospf6Args:
         :param pulumi.Input[str] default_information_route_map: Default information route map.
         :param pulumi.Input[int] default_metric: Default metric of redistribute routes.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log_neighbour_changes: Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Ospf6Ospf6InterfaceArgs']]] ospf6_interfaces: OSPF6 interface configuration. The structure of `ospf6_interface` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['Ospf6PassiveInterfaceArgs']]] passive_interfaces: Passive interface configuration. The structure of `passive_interface` block is documented below.
@@ -82,6 +84,8 @@ class Ospf6Args:
             pulumi.set(__self__, "default_metric", default_metric)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log_neighbour_changes is not None:
             pulumi.set(__self__, "log_neighbour_changes", log_neighbour_changes)
         if ospf6_interfaces is not None:
@@ -236,6 +240,18 @@ class Ospf6Args:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="logNeighbourChanges")
     def log_neighbour_changes(self) -> Optional[pulumi.Input[str]]:
         """
@@ -369,6 +385,7 @@ class _Ospf6State:
                  default_information_route_map: Optional[pulumi.Input[str]] = None,
                  default_metric: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_neighbour_changes: Optional[pulumi.Input[str]] = None,
                  ospf6_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['Ospf6Ospf6InterfaceArgs']]]] = None,
                  passive_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['Ospf6PassiveInterfaceArgs']]]] = None,
@@ -392,6 +409,7 @@ class _Ospf6State:
         :param pulumi.Input[str] default_information_route_map: Default information route map.
         :param pulumi.Input[int] default_metric: Default metric of redistribute routes.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log_neighbour_changes: Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Ospf6Ospf6InterfaceArgs']]] ospf6_interfaces: OSPF6 interface configuration. The structure of `ospf6_interface` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['Ospf6PassiveInterfaceArgs']]] passive_interfaces: Passive interface configuration. The structure of `passive_interface` block is documented below.
@@ -424,6 +442,8 @@ class _Ospf6State:
             pulumi.set(__self__, "default_metric", default_metric)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log_neighbour_changes is not None:
             pulumi.set(__self__, "log_neighbour_changes", log_neighbour_changes)
         if ospf6_interfaces is not None:
@@ -566,6 +586,18 @@ class _Ospf6State:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="logNeighbourChanges")
@@ -715,6 +747,7 @@ class Ospf6(pulumi.CustomResource):
                  default_information_route_map: Optional[pulumi.Input[str]] = None,
                  default_metric: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_neighbour_changes: Optional[pulumi.Input[str]] = None,
                  ospf6_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ospf6Ospf6InterfaceArgs']]]]] = None,
                  passive_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ospf6PassiveInterfaceArgs']]]]] = None,
@@ -815,6 +848,7 @@ class Ospf6(pulumi.CustomResource):
         :param pulumi.Input[str] default_information_route_map: Default information route map.
         :param pulumi.Input[int] default_metric: Default metric of redistribute routes.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log_neighbour_changes: Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ospf6Ospf6InterfaceArgs']]]] ospf6_interfaces: OSPF6 interface configuration. The structure of `ospf6_interface` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ospf6PassiveInterfaceArgs']]]] passive_interfaces: Passive interface configuration. The structure of `passive_interface` block is documented below.
@@ -934,6 +968,7 @@ class Ospf6(pulumi.CustomResource):
                  default_information_route_map: Optional[pulumi.Input[str]] = None,
                  default_metric: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_neighbour_changes: Optional[pulumi.Input[str]] = None,
                  ospf6_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ospf6Ospf6InterfaceArgs']]]]] = None,
                  passive_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ospf6PassiveInterfaceArgs']]]]] = None,
@@ -964,6 +999,7 @@ class Ospf6(pulumi.CustomResource):
             __props__.__dict__["default_information_route_map"] = default_information_route_map
             __props__.__dict__["default_metric"] = default_metric
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["log_neighbour_changes"] = log_neighbour_changes
             __props__.__dict__["ospf6_interfaces"] = ospf6_interfaces
             __props__.__dict__["passive_interfaces"] = passive_interfaces
@@ -997,6 +1033,7 @@ class Ospf6(pulumi.CustomResource):
             default_information_route_map: Optional[pulumi.Input[str]] = None,
             default_metric: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             log_neighbour_changes: Optional[pulumi.Input[str]] = None,
             ospf6_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ospf6Ospf6InterfaceArgs']]]]] = None,
             passive_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ospf6PassiveInterfaceArgs']]]]] = None,
@@ -1025,6 +1062,7 @@ class Ospf6(pulumi.CustomResource):
         :param pulumi.Input[str] default_information_route_map: Default information route map.
         :param pulumi.Input[int] default_metric: Default metric of redistribute routes.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log_neighbour_changes: Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ospf6Ospf6InterfaceArgs']]]] ospf6_interfaces: OSPF6 interface configuration. The structure of `ospf6_interface` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Ospf6PassiveInterfaceArgs']]]] passive_interfaces: Passive interface configuration. The structure of `passive_interface` block is documented below.
@@ -1051,6 +1089,7 @@ class Ospf6(pulumi.CustomResource):
         __props__.__dict__["default_information_route_map"] = default_information_route_map
         __props__.__dict__["default_metric"] = default_metric
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["log_neighbour_changes"] = log_neighbour_changes
         __props__.__dict__["ospf6_interfaces"] = ospf6_interfaces
         __props__.__dict__["passive_interfaces"] = passive_interfaces
@@ -1143,6 +1182,14 @@ class Ospf6(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="logNeighbourChanges")

@@ -54,7 +54,7 @@ export class Fortigate extends pulumi.CustomResource {
     }
 
     /**
-     * Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+     * Enable/disable FortiGate administration.
      */
     public readonly authorized!: pulumi.Output<string>;
     /**
@@ -134,7 +134,7 @@ export class Fortigate extends pulumi.CustomResource {
  */
 export interface FortigateState {
     /**
-     * Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+     * Enable/disable FortiGate administration.
      */
     authorized?: pulumi.Input<string>;
     /**
@@ -176,7 +176,7 @@ export interface FortigateState {
  */
 export interface FortigateArgs {
     /**
-     * Enable/disable FortiGate administration. Valid values: `disable`, `enable`.
+     * Enable/disable FortiGate administration.
      */
     authorized?: pulumi.Input<string>;
     /**

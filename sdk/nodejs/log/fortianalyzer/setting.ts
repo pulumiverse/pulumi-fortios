@@ -91,6 +91,10 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly accessConfig!: pulumi.Output<string>;
     /**
+     * Alternate FortiAnalyzer.
+     */
+    public readonly altServer!: pulumi.Output<string>;
+    /**
      * Certificate used to communicate with FortiAnalyzer.
      */
     public readonly certificate!: pulumi.Output<string>;
@@ -111,11 +115,19 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly encAlgorithm!: pulumi.Output<string>;
     /**
+     * Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+     */
+    public readonly fallbackToPrimary!: pulumi.Output<string>;
+    /**
      * Hidden setting index of FortiAnalyzer.
      */
     public readonly fazType!: pulumi.Output<number>;
     /**
-     * FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
+     * FortiAnalyzer IPsec tunnel HMAC algorithm.
      */
     public readonly hmacAlgorithm!: pulumi.Output<string>;
     /**
@@ -167,6 +179,10 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly server!: pulumi.Output<string>;
     /**
+     * Mandatory CA on FortiGate in certificate chain of server.
+     */
+    public readonly serverCertCa!: pulumi.Output<string>;
+    /**
      * Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
      */
     public readonly sourceIp!: pulumi.Output<string>;
@@ -214,12 +230,15 @@ export class Setting extends pulumi.CustomResource {
             const state = argsOrState as SettingState | undefined;
             resourceInputs["__changeIp"] = state ? state.__changeIp : undefined;
             resourceInputs["accessConfig"] = state ? state.accessConfig : undefined;
+            resourceInputs["altServer"] = state ? state.altServer : undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
             resourceInputs["certificateVerification"] = state ? state.certificateVerification : undefined;
             resourceInputs["connTimeout"] = state ? state.connTimeout : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
+            resourceInputs["fallbackToPrimary"] = state ? state.fallbackToPrimary : undefined;
             resourceInputs["fazType"] = state ? state.fazType : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hmacAlgorithm"] = state ? state.hmacAlgorithm : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
@@ -233,6 +252,7 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["reliable"] = state ? state.reliable : undefined;
             resourceInputs["serials"] = state ? state.serials : undefined;
             resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["serverCertCa"] = state ? state.serverCertCa : undefined;
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -245,12 +265,15 @@ export class Setting extends pulumi.CustomResource {
             const args = argsOrState as SettingArgs | undefined;
             resourceInputs["__changeIp"] = args ? args.__changeIp : undefined;
             resourceInputs["accessConfig"] = args ? args.accessConfig : undefined;
+            resourceInputs["altServer"] = args ? args.altServer : undefined;
             resourceInputs["certificate"] = args ? args.certificate : undefined;
             resourceInputs["certificateVerification"] = args ? args.certificateVerification : undefined;
             resourceInputs["connTimeout"] = args ? args.connTimeout : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
+            resourceInputs["fallbackToPrimary"] = args ? args.fallbackToPrimary : undefined;
             resourceInputs["fazType"] = args ? args.fazType : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hmacAlgorithm"] = args ? args.hmacAlgorithm : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
@@ -264,6 +287,7 @@ export class Setting extends pulumi.CustomResource {
             resourceInputs["reliable"] = args ? args.reliable : undefined;
             resourceInputs["serials"] = args ? args.serials : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["serverCertCa"] = args ? args.serverCertCa : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
@@ -291,6 +315,10 @@ export interface SettingState {
      */
     accessConfig?: pulumi.Input<string>;
     /**
+     * Alternate FortiAnalyzer.
+     */
+    altServer?: pulumi.Input<string>;
+    /**
      * Certificate used to communicate with FortiAnalyzer.
      */
     certificate?: pulumi.Input<string>;
@@ -311,11 +339,19 @@ export interface SettingState {
      */
     encAlgorithm?: pulumi.Input<string>;
     /**
+     * Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+     */
+    fallbackToPrimary?: pulumi.Input<string>;
+    /**
      * Hidden setting index of FortiAnalyzer.
      */
     fazType?: pulumi.Input<number>;
     /**
-     * FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * FortiAnalyzer IPsec tunnel HMAC algorithm.
      */
     hmacAlgorithm?: pulumi.Input<string>;
     /**
@@ -366,6 +402,10 @@ export interface SettingState {
      * The remote FortiAnalyzer.
      */
     server?: pulumi.Input<string>;
+    /**
+     * Mandatory CA on FortiGate in certificate chain of server.
+     */
+    serverCertCa?: pulumi.Input<string>;
     /**
      * Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
      */
@@ -413,6 +453,10 @@ export interface SettingArgs {
      */
     accessConfig?: pulumi.Input<string>;
     /**
+     * Alternate FortiAnalyzer.
+     */
+    altServer?: pulumi.Input<string>;
+    /**
      * Certificate used to communicate with FortiAnalyzer.
      */
     certificate?: pulumi.Input<string>;
@@ -433,11 +477,19 @@ export interface SettingArgs {
      */
     encAlgorithm?: pulumi.Input<string>;
     /**
+     * Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. Valid values: `enable`, `disable`.
+     */
+    fallbackToPrimary?: pulumi.Input<string>;
+    /**
      * Hidden setting index of FortiAnalyzer.
      */
     fazType?: pulumi.Input<number>;
     /**
-     * FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
+     * FortiAnalyzer IPsec tunnel HMAC algorithm.
      */
     hmacAlgorithm?: pulumi.Input<string>;
     /**
@@ -488,6 +540,10 @@ export interface SettingArgs {
      * The remote FortiAnalyzer.
      */
     server?: pulumi.Input<string>;
+    /**
+     * Mandatory CA on FortiGate in certificate chain of server.
+     */
+    serverCertCa?: pulumi.Input<string>;
     /**
      * Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
      */

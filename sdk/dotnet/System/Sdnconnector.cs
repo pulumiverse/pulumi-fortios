@@ -70,6 +70,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> AccessKey { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("altResourceIp")]
+        public Output<string> AltResourceIp { get; private set; } = null!;
+
+        /// <summary>
         /// IBM cloud API key or service ID API key.
         /// </summary>
         [Output("apiKey")]
@@ -98,6 +104,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("compartmentId")]
         public Output<string> CompartmentId { get; private set; } = null!;
+
+        /// <summary>
+        /// Configure OCI compartment list. The structure of `compartment_list` block is documented below.
+        /// </summary>
+        [Output("compartmentLists")]
+        public Output<ImmutableArray<Outputs.SdnconnectorCompartmentList>> CompartmentLists { get; private set; } = null!;
 
         /// <summary>
         /// Compute generation for IBM cloud infrastructure.
@@ -146,6 +158,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("gcpProjectLists")]
         public Output<ImmutableArray<Outputs.SdnconnectorGcpProjectList>> GcpProjectLists { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Group name of computers.
@@ -220,6 +238,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> OciRegion { get; private set; } = null!;
 
         /// <summary>
+        /// Configure OCI region list. The structure of `oci_region_list` block is documented below.
+        /// </summary>
+        [Output("ociRegionLists")]
+        public Output<ImmutableArray<Outputs.SdnconnectorOciRegionList>> OciRegionLists { get; private set; } = null!;
+
+        /// <summary>
         /// OCI region type. Valid values: `commercial`, `government`.
         /// </summary>
         [Output("ociRegionType")]
@@ -236,6 +260,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
+
+        /// <summary>
+        /// SDN proxy.
+        /// </summary>
+        [Output("proxy")]
+        public Output<string> Proxy { get; private set; } = null!;
 
         /// <summary>
         /// AWS region name.
@@ -284,6 +314,18 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("server")]
         public Output<string> Server { get; private set; } = null!;
+
+        /// <summary>
+        /// Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+        /// </summary>
+        [Output("serverCaCert")]
+        public Output<string> ServerCaCert { get; private set; } = null!;
+
+        /// <summary>
+        /// Trust servers that contain this certificate only.
+        /// </summary>
+        [Output("serverCert")]
+        public Output<string> ServerCert { get; private set; } = null!;
 
         /// <summary>
         /// Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
@@ -462,6 +504,12 @@ namespace Pulumiverse.Fortios.System
             }
         }
 
+        /// <summary>
+        /// Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("altResourceIp")]
+        public Input<string>? AltResourceIp { get; set; }
+
         [Input("apiKey")]
         private Input<string>? _apiKey;
 
@@ -511,6 +559,18 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("compartmentId")]
         public Input<string>? CompartmentId { get; set; }
+
+        [Input("compartmentLists")]
+        private InputList<Inputs.SdnconnectorCompartmentListArgs>? _compartmentLists;
+
+        /// <summary>
+        /// Configure OCI compartment list. The structure of `compartment_list` block is documented below.
+        /// </summary>
+        public InputList<Inputs.SdnconnectorCompartmentListArgs> CompartmentLists
+        {
+            get => _compartmentLists ?? (_compartmentLists = new InputList<Inputs.SdnconnectorCompartmentListArgs>());
+            set => _compartmentLists = value;
+        }
 
         /// <summary>
         /// Compute generation for IBM cloud infrastructure.
@@ -583,6 +643,12 @@ namespace Pulumiverse.Fortios.System
             get => _gcpProjectLists ?? (_gcpProjectLists = new InputList<Inputs.SdnconnectorGcpProjectListArgs>());
             set => _gcpProjectLists = value;
         }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Group name of computers.
@@ -672,6 +738,18 @@ namespace Pulumiverse.Fortios.System
         [Input("ociRegion")]
         public Input<string>? OciRegion { get; set; }
 
+        [Input("ociRegionLists")]
+        private InputList<Inputs.SdnconnectorOciRegionListArgs>? _ociRegionLists;
+
+        /// <summary>
+        /// Configure OCI region list. The structure of `oci_region_list` block is documented below.
+        /// </summary>
+        public InputList<Inputs.SdnconnectorOciRegionListArgs> OciRegionLists
+        {
+            get => _ociRegionLists ?? (_ociRegionLists = new InputList<Inputs.SdnconnectorOciRegionListArgs>());
+            set => _ociRegionLists = value;
+        }
+
         /// <summary>
         /// OCI region type. Valid values: `commercial`, `government`.
         /// </summary>
@@ -709,6 +787,12 @@ namespace Pulumiverse.Fortios.System
                 _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// SDN proxy.
+        /// </summary>
+        [Input("proxy")]
+        public Input<string>? Proxy { get; set; }
 
         /// <summary>
         /// AWS region name.
@@ -789,6 +873,18 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("server")]
         public Input<string>? Server { get; set; }
+
+        /// <summary>
+        /// Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+        /// </summary>
+        [Input("serverCaCert")]
+        public Input<string>? ServerCaCert { get; set; }
+
+        /// <summary>
+        /// Trust servers that contain this certificate only.
+        /// </summary>
+        [Input("serverCert")]
+        public Input<string>? ServerCert { get; set; }
 
         [Input("serverLists")]
         private InputList<Inputs.SdnconnectorServerListArgs>? _serverLists;
@@ -932,6 +1028,12 @@ namespace Pulumiverse.Fortios.System
             }
         }
 
+        /// <summary>
+        /// Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("altResourceIp")]
+        public Input<string>? AltResourceIp { get; set; }
+
         [Input("apiKey")]
         private Input<string>? _apiKey;
 
@@ -981,6 +1083,18 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("compartmentId")]
         public Input<string>? CompartmentId { get; set; }
+
+        [Input("compartmentLists")]
+        private InputList<Inputs.SdnconnectorCompartmentListGetArgs>? _compartmentLists;
+
+        /// <summary>
+        /// Configure OCI compartment list. The structure of `compartment_list` block is documented below.
+        /// </summary>
+        public InputList<Inputs.SdnconnectorCompartmentListGetArgs> CompartmentLists
+        {
+            get => _compartmentLists ?? (_compartmentLists = new InputList<Inputs.SdnconnectorCompartmentListGetArgs>());
+            set => _compartmentLists = value;
+        }
 
         /// <summary>
         /// Compute generation for IBM cloud infrastructure.
@@ -1053,6 +1167,12 @@ namespace Pulumiverse.Fortios.System
             get => _gcpProjectLists ?? (_gcpProjectLists = new InputList<Inputs.SdnconnectorGcpProjectListGetArgs>());
             set => _gcpProjectLists = value;
         }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Group name of computers.
@@ -1142,6 +1262,18 @@ namespace Pulumiverse.Fortios.System
         [Input("ociRegion")]
         public Input<string>? OciRegion { get; set; }
 
+        [Input("ociRegionLists")]
+        private InputList<Inputs.SdnconnectorOciRegionListGetArgs>? _ociRegionLists;
+
+        /// <summary>
+        /// Configure OCI region list. The structure of `oci_region_list` block is documented below.
+        /// </summary>
+        public InputList<Inputs.SdnconnectorOciRegionListGetArgs> OciRegionLists
+        {
+            get => _ociRegionLists ?? (_ociRegionLists = new InputList<Inputs.SdnconnectorOciRegionListGetArgs>());
+            set => _ociRegionLists = value;
+        }
+
         /// <summary>
         /// OCI region type. Valid values: `commercial`, `government`.
         /// </summary>
@@ -1179,6 +1311,12 @@ namespace Pulumiverse.Fortios.System
                 _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// SDN proxy.
+        /// </summary>
+        [Input("proxy")]
+        public Input<string>? Proxy { get; set; }
 
         /// <summary>
         /// AWS region name.
@@ -1259,6 +1397,18 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("server")]
         public Input<string>? Server { get; set; }
+
+        /// <summary>
+        /// Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+        /// </summary>
+        [Input("serverCaCert")]
+        public Input<string>? ServerCaCert { get; set; }
+
+        /// <summary>
+        /// Trust servers that contain this certificate only.
+        /// </summary>
+        [Input("serverCert")]
+        public Input<string>? ServerCert { get; set; }
 
         [Input("serverLists")]
         private InputList<Inputs.SdnconnectorServerListGetArgs>? _serverLists;

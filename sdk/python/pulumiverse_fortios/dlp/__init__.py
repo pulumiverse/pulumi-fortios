@@ -7,6 +7,7 @@ import typing
 # Export this package's modules as members:
 from .datatype import *
 from .dictionary import *
+from .exactdatamatch import *
 from .filepattern import *
 from .fpdocsource import *
 from .fpsensitivity import *

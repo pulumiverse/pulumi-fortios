@@ -91,6 +91,8 @@ type Localinpolicy6 struct {
 	Dstaddrs Localinpolicy6DstaddrArrayOutput `pulumi:"dstaddrs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Incoming interface name from available options.
 	Intf pulumi.StringOutput `pulumi:"intf"`
 	// User defined local in policy ID.
@@ -111,6 +113,8 @@ type Localinpolicy6 struct {
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Enable/disable the virtual patching feature. Valid values: `enable`, `disable`.
+	VirtualPatch pulumi.StringOutput `pulumi:"virtualPatch"`
 }
 
 // NewLocalinpolicy6 registers a new resource with the given unique name, arguments, and options.
@@ -168,6 +172,8 @@ type localinpolicy6State struct {
 	Dstaddrs []Localinpolicy6Dstaddr `pulumi:"dstaddrs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Incoming interface name from available options.
 	Intf *string `pulumi:"intf"`
 	// User defined local in policy ID.
@@ -188,6 +194,8 @@ type localinpolicy6State struct {
 	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Enable/disable the virtual patching feature. Valid values: `enable`, `disable`.
+	VirtualPatch *string `pulumi:"virtualPatch"`
 }
 
 type Localinpolicy6State struct {
@@ -201,6 +209,8 @@ type Localinpolicy6State struct {
 	Dstaddrs Localinpolicy6DstaddrArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Incoming interface name from available options.
 	Intf pulumi.StringPtrInput
 	// User defined local in policy ID.
@@ -221,6 +231,8 @@ type Localinpolicy6State struct {
 	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Enable/disable the virtual patching feature. Valid values: `enable`, `disable`.
+	VirtualPatch pulumi.StringPtrInput
 }
 
 func (Localinpolicy6State) ElementType() reflect.Type {
@@ -238,6 +250,8 @@ type localinpolicy6Args struct {
 	Dstaddrs []Localinpolicy6Dstaddr `pulumi:"dstaddrs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Incoming interface name from available options.
 	Intf string `pulumi:"intf"`
 	// User defined local in policy ID.
@@ -258,6 +272,8 @@ type localinpolicy6Args struct {
 	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Enable/disable the virtual patching feature. Valid values: `enable`, `disable`.
+	VirtualPatch *string `pulumi:"virtualPatch"`
 }
 
 // The set of arguments for constructing a Localinpolicy6 resource.
@@ -272,6 +288,8 @@ type Localinpolicy6Args struct {
 	Dstaddrs Localinpolicy6DstaddrArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Incoming interface name from available options.
 	Intf pulumi.StringInput
 	// User defined local in policy ID.
@@ -292,6 +310,8 @@ type Localinpolicy6Args struct {
 	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Enable/disable the virtual patching feature. Valid values: `enable`, `disable`.
+	VirtualPatch pulumi.StringPtrInput
 }
 
 func (Localinpolicy6Args) ElementType() reflect.Type {
@@ -406,6 +426,11 @@ func (o Localinpolicy6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Localinpolicy6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Localinpolicy6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Localinpolicy6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Incoming interface name from available options.
 func (o Localinpolicy6Output) Intf() pulumi.StringOutput {
 	return o.ApplyT(func(v *Localinpolicy6) pulumi.StringOutput { return v.Intf }).(pulumi.StringOutput)
@@ -454,6 +479,11 @@ func (o Localinpolicy6Output) Uuid() pulumi.StringOutput {
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 func (o Localinpolicy6Output) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Localinpolicy6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable the virtual patching feature. Valid values: `enable`, `disable`.
+func (o Localinpolicy6Output) VirtualPatch() pulumi.StringOutput {
+	return o.ApplyT(func(v *Localinpolicy6) pulumi.StringOutput { return v.VirtualPatch }).(pulumi.StringOutput)
 }
 
 type Localinpolicy6ArrayOutput struct{ *pulumi.OutputState }

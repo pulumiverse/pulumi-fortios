@@ -16,25 +16,45 @@ __all__ = ['SsoforticloudadminArgs', 'Ssoforticloudadmin']
 @pulumi.input_type
 class SsoforticloudadminArgs:
     def __init__(__self__, *,
+                 accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vdoms: Optional[pulumi.Input[Sequence[pulumi.Input['SsoforticloudadminVdomArgs']]]] = None):
         """
         The set of arguments for constructing a Ssoforticloudadmin resource.
+        :param pulumi.Input[str] accprofile: FortiCloud SSO admin user access profile.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: FortiCloud SSO admin name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input['SsoforticloudadminVdomArgs']]] vdoms: Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
         """
+        if accprofile is not None:
+            pulumi.set(__self__, "accprofile", accprofile)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vdoms is not None:
             pulumi.set(__self__, "vdoms", vdoms)
+
+    @property
+    @pulumi.getter
+    def accprofile(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiCloud SSO admin user access profile.
+        """
+        return pulumi.get(self, "accprofile")
+
+    @accprofile.setter
+    def accprofile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accprofile", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -47,6 +67,18 @@ class SsoforticloudadminArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -88,25 +120,45 @@ class SsoforticloudadminArgs:
 @pulumi.input_type
 class _SsoforticloudadminState:
     def __init__(__self__, *,
+                 accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vdoms: Optional[pulumi.Input[Sequence[pulumi.Input['SsoforticloudadminVdomArgs']]]] = None):
         """
         Input properties used for looking up and filtering Ssoforticloudadmin resources.
+        :param pulumi.Input[str] accprofile: FortiCloud SSO admin user access profile.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: FortiCloud SSO admin name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input['SsoforticloudadminVdomArgs']]] vdoms: Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
         """
+        if accprofile is not None:
+            pulumi.set(__self__, "accprofile", accprofile)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vdoms is not None:
             pulumi.set(__self__, "vdoms", vdoms)
+
+    @property
+    @pulumi.getter
+    def accprofile(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiCloud SSO admin user access profile.
+        """
+        return pulumi.get(self, "accprofile")
+
+    @accprofile.setter
+    def accprofile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accprofile", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -119,6 +171,18 @@ class _SsoforticloudadminState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -162,7 +226,9 @@ class Ssoforticloudadmin(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vdoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SsoforticloudadminVdomArgs']]]]] = None,
@@ -190,7 +256,9 @@ class Ssoforticloudadmin(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] accprofile: FortiCloud SSO admin user access profile.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: FortiCloud SSO admin name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SsoforticloudadminVdomArgs']]]] vdoms: Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
@@ -237,7 +305,9 @@ class Ssoforticloudadmin(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vdoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SsoforticloudadminVdomArgs']]]]] = None,
@@ -250,7 +320,9 @@ class Ssoforticloudadmin(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SsoforticloudadminArgs.__new__(SsoforticloudadminArgs)
 
+            __props__.__dict__["accprofile"] = accprofile
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["vdoms"] = vdoms
@@ -264,7 +336,9 @@ class Ssoforticloudadmin(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            accprofile: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             vdoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SsoforticloudadminVdomArgs']]]]] = None) -> 'Ssoforticloudadmin':
@@ -275,7 +349,9 @@ class Ssoforticloudadmin(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] accprofile: FortiCloud SSO admin user access profile.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: FortiCloud SSO admin name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SsoforticloudadminVdomArgs']]]] vdoms: Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
@@ -284,11 +360,21 @@ class Ssoforticloudadmin(pulumi.CustomResource):
 
         __props__ = _SsoforticloudadminState.__new__(_SsoforticloudadminState)
 
+        __props__.__dict__["accprofile"] = accprofile
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["vdoms"] = vdoms
         return Ssoforticloudadmin(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def accprofile(self) -> pulumi.Output[str]:
+        """
+        FortiCloud SSO admin user access profile.
+        """
+        return pulumi.get(self, "accprofile")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -297,6 +383,14 @@ class Ssoforticloudadmin(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

@@ -196,6 +196,10 @@ export class Automationaction extends pulumi.CustomResource {
      */
     public readonly executeSecurityFabric!: pulumi.Output<string>;
     /**
+     * Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
+     */
+    public readonly forticareEmail!: pulumi.Output<string>;
+    /**
      * Google Cloud function name.
      */
     public readonly gcpFunction!: pulumi.Output<string>;
@@ -211,6 +215,10 @@ export class Automationaction extends pulumi.CustomResource {
      * Google Cloud Platform project name.
      */
     public readonly gcpProject!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Request headers. The structure of `headers` block is documented below.
      */
@@ -347,10 +355,12 @@ export class Automationaction extends pulumi.CustomResource {
             resourceInputs["emailSubject"] = state ? state.emailSubject : undefined;
             resourceInputs["emailTos"] = state ? state.emailTos : undefined;
             resourceInputs["executeSecurityFabric"] = state ? state.executeSecurityFabric : undefined;
+            resourceInputs["forticareEmail"] = state ? state.forticareEmail : undefined;
             resourceInputs["gcpFunction"] = state ? state.gcpFunction : undefined;
             resourceInputs["gcpFunctionDomain"] = state ? state.gcpFunctionDomain : undefined;
             resourceInputs["gcpFunctionRegion"] = state ? state.gcpFunctionRegion : undefined;
             resourceInputs["gcpProject"] = state ? state.gcpProject : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["headers"] = state ? state.headers : undefined;
             resourceInputs["httpBody"] = state ? state.httpBody : undefined;
             resourceInputs["httpHeaders"] = state ? state.httpHeaders : undefined;
@@ -406,10 +416,12 @@ export class Automationaction extends pulumi.CustomResource {
             resourceInputs["emailSubject"] = args ? args.emailSubject : undefined;
             resourceInputs["emailTos"] = args ? args.emailTos : undefined;
             resourceInputs["executeSecurityFabric"] = args ? args.executeSecurityFabric : undefined;
+            resourceInputs["forticareEmail"] = args ? args.forticareEmail : undefined;
             resourceInputs["gcpFunction"] = args ? args.gcpFunction : undefined;
             resourceInputs["gcpFunctionDomain"] = args ? args.gcpFunctionDomain : undefined;
             resourceInputs["gcpFunctionRegion"] = args ? args.gcpFunctionRegion : undefined;
             resourceInputs["gcpProject"] = args ? args.gcpProject : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["headers"] = args ? args.headers : undefined;
             resourceInputs["httpBody"] = args ? args.httpBody : undefined;
             resourceInputs["httpHeaders"] = args ? args.httpHeaders : undefined;
@@ -566,6 +578,10 @@ export interface AutomationactionState {
      */
     executeSecurityFabric?: pulumi.Input<string>;
     /**
+     * Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
+     */
+    forticareEmail?: pulumi.Input<string>;
+    /**
      * Google Cloud function name.
      */
     gcpFunction?: pulumi.Input<string>;
@@ -581,6 +597,10 @@ export interface AutomationactionState {
      * Google Cloud Platform project name.
      */
     gcpProject?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Request headers. The structure of `headers` block is documented below.
      */
@@ -800,6 +820,10 @@ export interface AutomationactionArgs {
      */
     executeSecurityFabric?: pulumi.Input<string>;
     /**
+     * Enable/disable use of your FortiCare email address as the email-to address. Valid values: `enable`, `disable`.
+     */
+    forticareEmail?: pulumi.Input<string>;
+    /**
      * Google Cloud function name.
      */
     gcpFunction?: pulumi.Input<string>;
@@ -815,6 +839,10 @@ export interface AutomationactionArgs {
      * Google Cloud Platform project name.
      */
     gcpProject?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Request headers. The structure of `headers` block is documented below.
      */

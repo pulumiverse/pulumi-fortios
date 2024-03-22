@@ -43,6 +43,14 @@ export interface GetDnsserverResult {
      */
     readonly doh: string;
     /**
+     * Enable/disable DNS over QUIC/HTTP3/443 (default = disable).
+     */
+    readonly doh3: string;
+    /**
+     * Enable/disable DNS over QUIC/853 (default = disable).
+     */
+    readonly doq: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;

@@ -30,10 +30,12 @@ type LookupSflowArgs struct {
 
 // A collection of values returned by getSflow.
 type LookupSflowResult struct {
-	// IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
+	// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
 	CollectorIp string `pulumi:"collectorIp"`
 	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
 	CollectorPort int `pulumi:"collectorPort"`
+	// sFlow collectors. The structure of `collectors` block is documented below.
+	Collectors []GetSflowCollector `pulumi:"collectors"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Specify outgoing interface to reach server.
@@ -83,7 +85,7 @@ func (o LookupSflowResultOutput) ToLookupSflowResultOutputWithContext(ctx contex
 	return o
 }
 
-// IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
+// IP addresses of the sFlow collectors that sFlow agents added to interfaces in this VDOM send sFlow datagrams to.
 func (o LookupSflowResultOutput) CollectorIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSflowResult) string { return v.CollectorIp }).(pulumi.StringOutput)
 }
@@ -91,6 +93,11 @@ func (o LookupSflowResultOutput) CollectorIp() pulumi.StringOutput {
 // UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
 func (o LookupSflowResultOutput) CollectorPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSflowResult) int { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+// sFlow collectors. The structure of `collectors` block is documented below.
+func (o LookupSflowResultOutput) Collectors() GetSflowCollectorArrayOutput {
+	return o.ApplyT(func(v LookupSflowResult) []GetSflowCollector { return v.Collectors }).(GetSflowCollectorArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

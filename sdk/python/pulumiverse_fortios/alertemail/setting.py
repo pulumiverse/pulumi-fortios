@@ -63,7 +63,7 @@ class SettingArgs:
         :param pulumi.Input[int] email_interval: Interval between sending alert emails (1 - 99999 min, default = 5).
         :param pulumi.Input[int] emergency_interval: Emergency alert interval in minutes.
         :param pulumi.Input[int] error_interval: Error alert interval in minutes.
-        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
         :param pulumi.Input[str] fds_license_expiring_warning: Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fds_update_logs: Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter_mode: How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
@@ -77,15 +77,15 @@ class SettingArgs:
         :param pulumi.Input[str] ipsec_errors_logs: Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] local_disk_usage: Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
         :param pulumi.Input[str] log_disk_usage_warning: Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] mailto1: Email address to send alert email to (usually a system administrator) (max. 64 characters).
-        :param pulumi.Input[str] mailto2: Optional second email address to send alert email to (max. 64 characters).
-        :param pulumi.Input[str] mailto3: Optional third email address to send alert email to (max. 64 characters).
+        :param pulumi.Input[str] mailto1: Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
+        :param pulumi.Input[str] mailto2: Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
+        :param pulumi.Input[str] mailto3: Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         :param pulumi.Input[int] notification_interval: Notification alert interval in minutes.
         :param pulumi.Input[str] ppp_errors_logs: Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] severity: Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         :param pulumi.Input[str] ssh_logs: Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sslvpn_authentication_errors_logs: Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] username: Name that appears in the From: field of alert emails (max. 36 characters).
+        :param pulumi.Input[str] username: Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] violation_traffic_logs: Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] warning_interval: Warning alert interval in minutes.
@@ -290,7 +290,7 @@ class SettingArgs:
     @pulumi.getter(name="fdsLicenseExpiringDays")
     def fds_license_expiring_days(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
         """
         return pulumi.get(self, "fds_license_expiring_days")
 
@@ -458,7 +458,7 @@ class SettingArgs:
     @pulumi.getter
     def mailto1(self) -> Optional[pulumi.Input[str]]:
         """
-        Email address to send alert email to (usually a system administrator) (max. 64 characters).
+        Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         """
         return pulumi.get(self, "mailto1")
 
@@ -470,7 +470,7 @@ class SettingArgs:
     @pulumi.getter
     def mailto2(self) -> Optional[pulumi.Input[str]]:
         """
-        Optional second email address to send alert email to (max. 64 characters).
+        Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         """
         return pulumi.get(self, "mailto2")
 
@@ -482,7 +482,7 @@ class SettingArgs:
     @pulumi.getter
     def mailto3(self) -> Optional[pulumi.Input[str]]:
         """
-        Optional third email address to send alert email to (max. 64 characters).
+        Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         """
         return pulumi.get(self, "mailto3")
 
@@ -554,7 +554,7 @@ class SettingArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        Name that appears in the From: field of alert emails (max. 36 characters).
+        Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         """
         return pulumi.get(self, "username")
 
@@ -663,7 +663,7 @@ class _SettingState:
         :param pulumi.Input[int] email_interval: Interval between sending alert emails (1 - 99999 min, default = 5).
         :param pulumi.Input[int] emergency_interval: Emergency alert interval in minutes.
         :param pulumi.Input[int] error_interval: Error alert interval in minutes.
-        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
         :param pulumi.Input[str] fds_license_expiring_warning: Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fds_update_logs: Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter_mode: How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
@@ -677,15 +677,15 @@ class _SettingState:
         :param pulumi.Input[str] ipsec_errors_logs: Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] local_disk_usage: Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
         :param pulumi.Input[str] log_disk_usage_warning: Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] mailto1: Email address to send alert email to (usually a system administrator) (max. 64 characters).
-        :param pulumi.Input[str] mailto2: Optional second email address to send alert email to (max. 64 characters).
-        :param pulumi.Input[str] mailto3: Optional third email address to send alert email to (max. 64 characters).
+        :param pulumi.Input[str] mailto1: Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
+        :param pulumi.Input[str] mailto2: Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
+        :param pulumi.Input[str] mailto3: Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         :param pulumi.Input[int] notification_interval: Notification alert interval in minutes.
         :param pulumi.Input[str] ppp_errors_logs: Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] severity: Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         :param pulumi.Input[str] ssh_logs: Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sslvpn_authentication_errors_logs: Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] username: Name that appears in the From: field of alert emails (max. 36 characters).
+        :param pulumi.Input[str] username: Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] violation_traffic_logs: Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] warning_interval: Warning alert interval in minutes.
@@ -890,7 +890,7 @@ class _SettingState:
     @pulumi.getter(name="fdsLicenseExpiringDays")
     def fds_license_expiring_days(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
         """
         return pulumi.get(self, "fds_license_expiring_days")
 
@@ -1058,7 +1058,7 @@ class _SettingState:
     @pulumi.getter
     def mailto1(self) -> Optional[pulumi.Input[str]]:
         """
-        Email address to send alert email to (usually a system administrator) (max. 64 characters).
+        Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         """
         return pulumi.get(self, "mailto1")
 
@@ -1070,7 +1070,7 @@ class _SettingState:
     @pulumi.getter
     def mailto2(self) -> Optional[pulumi.Input[str]]:
         """
-        Optional second email address to send alert email to (max. 64 characters).
+        Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         """
         return pulumi.get(self, "mailto2")
 
@@ -1082,7 +1082,7 @@ class _SettingState:
     @pulumi.getter
     def mailto3(self) -> Optional[pulumi.Input[str]]:
         """
-        Optional third email address to send alert email to (max. 64 characters).
+        Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         """
         return pulumi.get(self, "mailto3")
 
@@ -1154,7 +1154,7 @@ class _SettingState:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        Name that appears in the From: field of alert emails (max. 36 characters).
+        Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         """
         return pulumi.get(self, "username")
 
@@ -1310,7 +1310,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[int] email_interval: Interval between sending alert emails (1 - 99999 min, default = 5).
         :param pulumi.Input[int] emergency_interval: Emergency alert interval in minutes.
         :param pulumi.Input[int] error_interval: Error alert interval in minutes.
-        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
         :param pulumi.Input[str] fds_license_expiring_warning: Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fds_update_logs: Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter_mode: How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
@@ -1324,15 +1324,15 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] ipsec_errors_logs: Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] local_disk_usage: Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
         :param pulumi.Input[str] log_disk_usage_warning: Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] mailto1: Email address to send alert email to (usually a system administrator) (max. 64 characters).
-        :param pulumi.Input[str] mailto2: Optional second email address to send alert email to (max. 64 characters).
-        :param pulumi.Input[str] mailto3: Optional third email address to send alert email to (max. 64 characters).
+        :param pulumi.Input[str] mailto1: Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
+        :param pulumi.Input[str] mailto2: Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
+        :param pulumi.Input[str] mailto3: Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         :param pulumi.Input[int] notification_interval: Notification alert interval in minutes.
         :param pulumi.Input[str] ppp_errors_logs: Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] severity: Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         :param pulumi.Input[str] ssh_logs: Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sslvpn_authentication_errors_logs: Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] username: Name that appears in the From: field of alert emails (max. 36 characters).
+        :param pulumi.Input[str] username: Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] violation_traffic_logs: Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] warning_interval: Warning alert interval in minutes.
@@ -1550,7 +1550,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[int] email_interval: Interval between sending alert emails (1 - 99999 min, default = 5).
         :param pulumi.Input[int] emergency_interval: Emergency alert interval in minutes.
         :param pulumi.Input[int] error_interval: Error alert interval in minutes.
-        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
         :param pulumi.Input[str] fds_license_expiring_warning: Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fds_update_logs: Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter_mode: How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
@@ -1564,15 +1564,15 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] ipsec_errors_logs: Enable/disable IPsec error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] local_disk_usage: Disk usage percentage at which to send alert email (1 - 99 percent, default = 75).
         :param pulumi.Input[str] log_disk_usage_warning: Enable/disable disk usage warnings in alert email. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] mailto1: Email address to send alert email to (usually a system administrator) (max. 64 characters).
-        :param pulumi.Input[str] mailto2: Optional second email address to send alert email to (max. 64 characters).
-        :param pulumi.Input[str] mailto3: Optional third email address to send alert email to (max. 64 characters).
+        :param pulumi.Input[str] mailto1: Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
+        :param pulumi.Input[str] mailto2: Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
+        :param pulumi.Input[str] mailto3: Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         :param pulumi.Input[int] notification_interval: Notification alert interval in minutes.
         :param pulumi.Input[str] ppp_errors_logs: Enable/disable PPP error logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] severity: Lowest severity level to log. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         :param pulumi.Input[str] ssh_logs: Enable/disable SSH logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sslvpn_authentication_errors_logs: Enable/disable SSL-VPN authentication error logs in alert email. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] username: Name that appears in the From: field of alert emails (max. 36 characters).
+        :param pulumi.Input[str] username: Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] violation_traffic_logs: Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] warning_interval: Warning alert interval in minutes.
@@ -1705,7 +1705,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="fdsLicenseExpiringDays")
     def fds_license_expiring_days(self) -> pulumi.Output[int]:
         """
-        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days, default = 100).
+        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
         """
         return pulumi.get(self, "fds_license_expiring_days")
 
@@ -1817,7 +1817,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter
     def mailto1(self) -> pulumi.Output[str]:
         """
-        Email address to send alert email to (usually a system administrator) (max. 64 characters).
+        Email address to send alert email to (usually a system administrator). On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         """
         return pulumi.get(self, "mailto1")
 
@@ -1825,7 +1825,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter
     def mailto2(self) -> pulumi.Output[str]:
         """
-        Optional second email address to send alert email to (max. 64 characters).
+        Optional second email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         """
         return pulumi.get(self, "mailto2")
 
@@ -1833,7 +1833,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter
     def mailto3(self) -> pulumi.Output[str]:
         """
-        Optional third email address to send alert email to (max. 64 characters).
+        Optional third email address to send alert email to. On FortiOS versions 6.2.0-6.4.0: max. 64 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         """
         return pulumi.get(self, "mailto3")
 
@@ -1881,7 +1881,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter
     def username(self) -> pulumi.Output[str]:
         """
-        Name that appears in the From: field of alert emails (max. 36 characters).
+        Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
         """
         return pulumi.get(self, "username")
 

@@ -69,17 +69,23 @@ type Rule struct {
 	ActiveAuthMethod pulumi.StringOutput `pulumi:"activeAuthMethod"`
 	// Comment.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
+	// Depth to allow CORS access (default = 3).
+	CorsDepth pulumi.IntOutput `pulumi:"corsDepth"`
+	// Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
+	CorsStateful pulumi.StringOutput `pulumi:"corsStateful"`
 	// Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
 	Dstaddr6s RuleDstaddr6ArrayOutput `pulumi:"dstaddr6s"`
 	// Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
 	Dstaddrs RuleDstaddrArrayOutput `pulumi:"dstaddrs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
 	IpBased pulumi.StringOutput `pulumi:"ipBased"`
 	// Authentication rule name.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
+	// Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
 	// Select an IPv6 source address. Required for web proxy authentication. The structure of `srcaddr6` block is documented below.
 	Srcaddr6s RuleSrcaddr6ArrayOutput `pulumi:"srcaddr6s"`
@@ -135,17 +141,23 @@ type ruleState struct {
 	ActiveAuthMethod *string `pulumi:"activeAuthMethod"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
+	// Depth to allow CORS access (default = 3).
+	CorsDepth *int `pulumi:"corsDepth"`
+	// Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
+	CorsStateful *string `pulumi:"corsStateful"`
 	// Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
 	Dstaddr6s []RuleDstaddr6 `pulumi:"dstaddr6s"`
 	// Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
 	Dstaddrs []RuleDstaddr `pulumi:"dstaddrs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
 	IpBased *string `pulumi:"ipBased"`
 	// Authentication rule name.
 	Name *string `pulumi:"name"`
-	// Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
+	// Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
 	Protocol *string `pulumi:"protocol"`
 	// Select an IPv6 source address. Required for web proxy authentication. The structure of `srcaddr6` block is documented below.
 	Srcaddr6s []RuleSrcaddr6 `pulumi:"srcaddr6s"`
@@ -172,17 +184,23 @@ type RuleState struct {
 	ActiveAuthMethod pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
+	// Depth to allow CORS access (default = 3).
+	CorsDepth pulumi.IntPtrInput
+	// Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
+	CorsStateful pulumi.StringPtrInput
 	// Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
 	Dstaddr6s RuleDstaddr6ArrayInput
 	// Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
 	Dstaddrs RuleDstaddrArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
 	IpBased pulumi.StringPtrInput
 	// Authentication rule name.
 	Name pulumi.StringPtrInput
-	// Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
+	// Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
 	Protocol pulumi.StringPtrInput
 	// Select an IPv6 source address. Required for web proxy authentication. The structure of `srcaddr6` block is documented below.
 	Srcaddr6s RuleSrcaddr6ArrayInput
@@ -213,17 +231,23 @@ type ruleArgs struct {
 	ActiveAuthMethod *string `pulumi:"activeAuthMethod"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
+	// Depth to allow CORS access (default = 3).
+	CorsDepth *int `pulumi:"corsDepth"`
+	// Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
+	CorsStateful *string `pulumi:"corsStateful"`
 	// Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
 	Dstaddr6s []RuleDstaddr6 `pulumi:"dstaddr6s"`
 	// Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
 	Dstaddrs []RuleDstaddr `pulumi:"dstaddrs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
 	IpBased *string `pulumi:"ipBased"`
 	// Authentication rule name.
 	Name *string `pulumi:"name"`
-	// Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
+	// Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
 	Protocol *string `pulumi:"protocol"`
 	// Select an IPv6 source address. Required for web proxy authentication. The structure of `srcaddr6` block is documented below.
 	Srcaddr6s []RuleSrcaddr6 `pulumi:"srcaddr6s"`
@@ -251,17 +275,23 @@ type RuleArgs struct {
 	ActiveAuthMethod pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
+	// Depth to allow CORS access (default = 3).
+	CorsDepth pulumi.IntPtrInput
+	// Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
+	CorsStateful pulumi.StringPtrInput
 	// Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
 	Dstaddr6s RuleDstaddr6ArrayInput
 	// Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
 	Dstaddrs RuleDstaddrArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
 	IpBased pulumi.StringPtrInput
 	// Authentication rule name.
 	Name pulumi.StringPtrInput
-	// Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
+	// Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
 	Protocol pulumi.StringPtrInput
 	// Select an IPv6 source address. Required for web proxy authentication. The structure of `srcaddr6` block is documented below.
 	Srcaddr6s RuleSrcaddr6ArrayInput
@@ -380,6 +410,16 @@ func (o RuleOutput) Comments() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
 }
 
+// Depth to allow CORS access (default = 3).
+func (o RuleOutput) CorsDepth() pulumi.IntOutput {
+	return o.ApplyT(func(v *Rule) pulumi.IntOutput { return v.CorsDepth }).(pulumi.IntOutput)
+}
+
+// Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
+func (o RuleOutput) CorsStateful() pulumi.StringOutput {
+	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.CorsStateful }).(pulumi.StringOutput)
+}
+
 // Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
 func (o RuleOutput) Dstaddr6s() RuleDstaddr6ArrayOutput {
 	return o.ApplyT(func(v *Rule) RuleDstaddr6ArrayOutput { return v.Dstaddr6s }).(RuleDstaddr6ArrayOutput)
@@ -395,6 +435,11 @@ func (o RuleOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o RuleOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Rule) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
 func (o RuleOutput) IpBased() pulumi.StringOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.IpBased }).(pulumi.StringOutput)
@@ -405,7 +450,7 @@ func (o RuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
+// Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
 func (o RuleOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
 }

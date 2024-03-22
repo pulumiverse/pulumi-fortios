@@ -79,6 +79,14 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly string Comment;
         /// <summary>
+        /// Enable/disable address6 exclusion.
+        /// </summary>
+        public readonly string Exclude;
+        /// <summary>
+        /// Address6 exclusion member. The structure of `exclude_member` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAddrgrp6ExcludeMemberResult> ExcludeMembers;
+        /// <summary>
         /// Security Fabric global object setting.
         /// </summary>
         public readonly string FabricObject;
@@ -114,6 +122,10 @@ namespace Pulumiverse.Fortios.Firewall
 
             string comment,
 
+            string exclude,
+
+            ImmutableArray<Outputs.GetAddrgrp6ExcludeMemberResult> excludeMembers,
+
             string fabricObject,
 
             string id,
@@ -132,6 +144,8 @@ namespace Pulumiverse.Fortios.Firewall
         {
             Color = color;
             Comment = comment;
+            Exclude = exclude;
+            ExcludeMembers = excludeMembers;
             FabricObject = fabricObject;
             Id = id;
             Members = members;

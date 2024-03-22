@@ -25,6 +25,8 @@ class InterfacepolicyArgs:
                  application_list_status: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  av_profile_status: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile_status: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile_status: Optional[pulumi.Input[str]] = None,
@@ -34,6 +36,7 @@ class InterfacepolicyArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
                  ips_sensor_status: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
@@ -43,6 +46,7 @@ class InterfacepolicyArgs:
                  spamfilter_profile: Optional[pulumi.Input[str]] = None,
                  spamfilter_profile_status: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile_status: Optional[pulumi.Input[str]] = None):
@@ -57,6 +61,8 @@ class InterfacepolicyArgs:
         :param pulumi.Input[str] application_list_status: Enable/disable application control. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] av_profile: Antivirus profile.
         :param pulumi.Input[str] av_profile_status: Enable/disable antivirus. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: CASB profile.
+        :param pulumi.Input[str] casb_profile_status: Enable/disable CASB. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: Comments.
         :param pulumi.Input[str] dlp_profile: DLP profile name.
         :param pulumi.Input[str] dlp_profile_status: Enable/disable DLP. Valid values: `enable`, `disable`.
@@ -66,6 +72,7 @@ class InterfacepolicyArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] emailfilter_profile: Email filter profile.
         :param pulumi.Input[str] emailfilter_profile_status: Enable/disable email filter. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ips_sensor: IPS sensor name.
         :param pulumi.Input[str] ips_sensor_status: Enable/disable IPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] label: Label.
@@ -75,6 +82,7 @@ class InterfacepolicyArgs:
         :param pulumi.Input[str] spamfilter_profile: Antispam profile.
         :param pulumi.Input[str] spamfilter_profile_status: Enable/disable antispam. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] status: Enable/disable this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] webfilter_profile: Web filter profile.
         :param pulumi.Input[str] webfilter_profile_status: Enable/disable web filtering. Valid values: `enable`, `disable`.
@@ -93,6 +101,10 @@ class InterfacepolicyArgs:
             pulumi.set(__self__, "av_profile", av_profile)
         if av_profile_status is not None:
             pulumi.set(__self__, "av_profile_status", av_profile_status)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
+        if casb_profile_status is not None:
+            pulumi.set(__self__, "casb_profile_status", casb_profile_status)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if dlp_profile is not None:
@@ -111,6 +123,8 @@ class InterfacepolicyArgs:
             pulumi.set(__self__, "emailfilter_profile", emailfilter_profile)
         if emailfilter_profile_status is not None:
             pulumi.set(__self__, "emailfilter_profile_status", emailfilter_profile_status)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
         if ips_sensor_status is not None:
@@ -129,6 +143,8 @@ class InterfacepolicyArgs:
             pulumi.set(__self__, "spamfilter_profile_status", spamfilter_profile_status)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if webfilter_profile is not None:
@@ -245,6 +261,30 @@ class InterfacepolicyArgs:
         pulumi.set(self, "av_profile_status", value)
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
+    @pulumi.getter(name="casbProfileStatus")
+    def casb_profile_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable CASB. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "casb_profile_status")
+
+    @casb_profile_status.setter
+    def casb_profile_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile_status", value)
+
+    @property
     @pulumi.getter
     def comments(self) -> Optional[pulumi.Input[str]]:
         """
@@ -351,6 +391,18 @@ class InterfacepolicyArgs:
     @emailfilter_profile_status.setter
     def emailfilter_profile_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "emailfilter_profile_status", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipsSensor")
@@ -462,6 +514,18 @@ class InterfacepolicyArgs:
 
     @property
     @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uuid", value)
+
+    @property
+    @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -505,6 +569,8 @@ class _InterfacepolicyState:
                  application_list_status: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  av_profile_status: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile_status: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile_status: Optional[pulumi.Input[str]] = None,
@@ -515,6 +581,7 @@ class _InterfacepolicyState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
                  ips_sensor_status: Optional[pulumi.Input[str]] = None,
@@ -527,6 +594,7 @@ class _InterfacepolicyState:
                  spamfilter_profile_status: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['InterfacepolicySrcaddrArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile_status: Optional[pulumi.Input[str]] = None):
@@ -537,6 +605,8 @@ class _InterfacepolicyState:
         :param pulumi.Input[str] application_list_status: Enable/disable application control. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] av_profile: Antivirus profile.
         :param pulumi.Input[str] av_profile_status: Enable/disable antivirus. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: CASB profile.
+        :param pulumi.Input[str] casb_profile_status: Enable/disable CASB. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: Comments.
         :param pulumi.Input[str] dlp_profile: DLP profile name.
         :param pulumi.Input[str] dlp_profile_status: Enable/disable DLP. Valid values: `enable`, `disable`.
@@ -547,6 +617,7 @@ class _InterfacepolicyState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] emailfilter_profile: Email filter profile.
         :param pulumi.Input[str] emailfilter_profile_status: Enable/disable email filter. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Monitored interface name from available interfaces.
         :param pulumi.Input[str] ips_sensor: IPS sensor name.
         :param pulumi.Input[str] ips_sensor_status: Enable/disable IPS. Valid values: `enable`, `disable`.
@@ -559,6 +630,7 @@ class _InterfacepolicyState:
         :param pulumi.Input[str] spamfilter_profile_status: Enable/disable antispam. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['InterfacepolicySrcaddrArgs']]] srcaddrs: Address object to limit traffic monitoring to network traffic sent from the specified address or range. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[str] status: Enable/disable this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] webfilter_profile: Web filter profile.
         :param pulumi.Input[str] webfilter_profile_status: Enable/disable web filtering. Valid values: `enable`, `disable`.
@@ -573,6 +645,10 @@ class _InterfacepolicyState:
             pulumi.set(__self__, "av_profile", av_profile)
         if av_profile_status is not None:
             pulumi.set(__self__, "av_profile_status", av_profile_status)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
+        if casb_profile_status is not None:
+            pulumi.set(__self__, "casb_profile_status", casb_profile_status)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if dlp_profile is not None:
@@ -593,6 +669,8 @@ class _InterfacepolicyState:
             pulumi.set(__self__, "emailfilter_profile", emailfilter_profile)
         if emailfilter_profile_status is not None:
             pulumi.set(__self__, "emailfilter_profile_status", emailfilter_profile_status)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if ips_sensor is not None:
@@ -617,6 +695,8 @@ class _InterfacepolicyState:
             pulumi.set(__self__, "srcaddrs", srcaddrs)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if webfilter_profile is not None:
@@ -683,6 +763,30 @@ class _InterfacepolicyState:
     @av_profile_status.setter
     def av_profile_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "av_profile_status", value)
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
+    @pulumi.getter(name="casbProfileStatus")
+    def casb_profile_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable CASB. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "casb_profile_status")
+
+    @casb_profile_status.setter
+    def casb_profile_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile_status", value)
 
     @property
     @pulumi.getter
@@ -803,6 +907,18 @@ class _InterfacepolicyState:
     @emailfilter_profile_status.setter
     def emailfilter_profile_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "emailfilter_profile_status", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -950,6 +1066,18 @@ class _InterfacepolicyState:
 
     @property
     @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uuid", value)
+
+    @property
+    @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -995,6 +1123,8 @@ class Interfacepolicy(pulumi.CustomResource):
                  application_list_status: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  av_profile_status: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile_status: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile_status: Optional[pulumi.Input[str]] = None,
@@ -1005,6 +1135,7 @@ class Interfacepolicy(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
                  ips_sensor_status: Optional[pulumi.Input[str]] = None,
@@ -1017,6 +1148,7 @@ class Interfacepolicy(pulumi.CustomResource):
                  spamfilter_profile_status: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfacepolicySrcaddrArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile_status: Optional[pulumi.Input[str]] = None,
@@ -1082,6 +1214,8 @@ class Interfacepolicy(pulumi.CustomResource):
         :param pulumi.Input[str] application_list_status: Enable/disable application control. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] av_profile: Antivirus profile.
         :param pulumi.Input[str] av_profile_status: Enable/disable antivirus. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: CASB profile.
+        :param pulumi.Input[str] casb_profile_status: Enable/disable CASB. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: Comments.
         :param pulumi.Input[str] dlp_profile: DLP profile name.
         :param pulumi.Input[str] dlp_profile_status: Enable/disable DLP. Valid values: `enable`, `disable`.
@@ -1092,6 +1226,7 @@ class Interfacepolicy(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] emailfilter_profile: Email filter profile.
         :param pulumi.Input[str] emailfilter_profile_status: Enable/disable email filter. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Monitored interface name from available interfaces.
         :param pulumi.Input[str] ips_sensor: IPS sensor name.
         :param pulumi.Input[str] ips_sensor_status: Enable/disable IPS. Valid values: `enable`, `disable`.
@@ -1104,6 +1239,7 @@ class Interfacepolicy(pulumi.CustomResource):
         :param pulumi.Input[str] spamfilter_profile_status: Enable/disable antispam. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfacepolicySrcaddrArgs']]]] srcaddrs: Address object to limit traffic monitoring to network traffic sent from the specified address or range. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[str] status: Enable/disable this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] webfilter_profile: Web filter profile.
         :param pulumi.Input[str] webfilter_profile_status: Enable/disable web filtering. Valid values: `enable`, `disable`.
@@ -1188,6 +1324,8 @@ class Interfacepolicy(pulumi.CustomResource):
                  application_list_status: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  av_profile_status: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile_status: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile_status: Optional[pulumi.Input[str]] = None,
@@ -1198,6 +1336,7 @@ class Interfacepolicy(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
                  ips_sensor_status: Optional[pulumi.Input[str]] = None,
@@ -1210,6 +1349,7 @@ class Interfacepolicy(pulumi.CustomResource):
                  spamfilter_profile_status: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfacepolicySrcaddrArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile_status: Optional[pulumi.Input[str]] = None,
@@ -1227,6 +1367,8 @@ class Interfacepolicy(pulumi.CustomResource):
             __props__.__dict__["application_list_status"] = application_list_status
             __props__.__dict__["av_profile"] = av_profile
             __props__.__dict__["av_profile_status"] = av_profile_status
+            __props__.__dict__["casb_profile"] = casb_profile
+            __props__.__dict__["casb_profile_status"] = casb_profile_status
             __props__.__dict__["comments"] = comments
             __props__.__dict__["dlp_profile"] = dlp_profile
             __props__.__dict__["dlp_profile_status"] = dlp_profile_status
@@ -1239,6 +1381,7 @@ class Interfacepolicy(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["emailfilter_profile"] = emailfilter_profile
             __props__.__dict__["emailfilter_profile_status"] = emailfilter_profile_status
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
@@ -1257,6 +1400,7 @@ class Interfacepolicy(pulumi.CustomResource):
                 raise TypeError("Missing required property 'srcaddrs'")
             __props__.__dict__["srcaddrs"] = srcaddrs
             __props__.__dict__["status"] = status
+            __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["webfilter_profile"] = webfilter_profile
             __props__.__dict__["webfilter_profile_status"] = webfilter_profile_status
@@ -1275,6 +1419,8 @@ class Interfacepolicy(pulumi.CustomResource):
             application_list_status: Optional[pulumi.Input[str]] = None,
             av_profile: Optional[pulumi.Input[str]] = None,
             av_profile_status: Optional[pulumi.Input[str]] = None,
+            casb_profile: Optional[pulumi.Input[str]] = None,
+            casb_profile_status: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             dlp_profile: Optional[pulumi.Input[str]] = None,
             dlp_profile_status: Optional[pulumi.Input[str]] = None,
@@ -1285,6 +1431,7 @@ class Interfacepolicy(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             emailfilter_profile: Optional[pulumi.Input[str]] = None,
             emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ips_sensor: Optional[pulumi.Input[str]] = None,
             ips_sensor_status: Optional[pulumi.Input[str]] = None,
@@ -1297,6 +1444,7 @@ class Interfacepolicy(pulumi.CustomResource):
             spamfilter_profile_status: Optional[pulumi.Input[str]] = None,
             srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfacepolicySrcaddrArgs']]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             webfilter_profile: Optional[pulumi.Input[str]] = None,
             webfilter_profile_status: Optional[pulumi.Input[str]] = None) -> 'Interfacepolicy':
@@ -1312,6 +1460,8 @@ class Interfacepolicy(pulumi.CustomResource):
         :param pulumi.Input[str] application_list_status: Enable/disable application control. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] av_profile: Antivirus profile.
         :param pulumi.Input[str] av_profile_status: Enable/disable antivirus. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: CASB profile.
+        :param pulumi.Input[str] casb_profile_status: Enable/disable CASB. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: Comments.
         :param pulumi.Input[str] dlp_profile: DLP profile name.
         :param pulumi.Input[str] dlp_profile_status: Enable/disable DLP. Valid values: `enable`, `disable`.
@@ -1322,6 +1472,7 @@ class Interfacepolicy(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] emailfilter_profile: Email filter profile.
         :param pulumi.Input[str] emailfilter_profile_status: Enable/disable email filter. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Monitored interface name from available interfaces.
         :param pulumi.Input[str] ips_sensor: IPS sensor name.
         :param pulumi.Input[str] ips_sensor_status: Enable/disable IPS. Valid values: `enable`, `disable`.
@@ -1334,6 +1485,7 @@ class Interfacepolicy(pulumi.CustomResource):
         :param pulumi.Input[str] spamfilter_profile_status: Enable/disable antispam. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InterfacepolicySrcaddrArgs']]]] srcaddrs: Address object to limit traffic monitoring to network traffic sent from the specified address or range. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[str] status: Enable/disable this policy. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] webfilter_profile: Web filter profile.
         :param pulumi.Input[str] webfilter_profile_status: Enable/disable web filtering. Valid values: `enable`, `disable`.
@@ -1347,6 +1499,8 @@ class Interfacepolicy(pulumi.CustomResource):
         __props__.__dict__["application_list_status"] = application_list_status
         __props__.__dict__["av_profile"] = av_profile
         __props__.__dict__["av_profile_status"] = av_profile_status
+        __props__.__dict__["casb_profile"] = casb_profile
+        __props__.__dict__["casb_profile_status"] = casb_profile_status
         __props__.__dict__["comments"] = comments
         __props__.__dict__["dlp_profile"] = dlp_profile
         __props__.__dict__["dlp_profile_status"] = dlp_profile_status
@@ -1357,6 +1511,7 @@ class Interfacepolicy(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["emailfilter_profile"] = emailfilter_profile
         __props__.__dict__["emailfilter_profile_status"] = emailfilter_profile_status
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["ips_sensor"] = ips_sensor
         __props__.__dict__["ips_sensor_status"] = ips_sensor_status
@@ -1369,6 +1524,7 @@ class Interfacepolicy(pulumi.CustomResource):
         __props__.__dict__["spamfilter_profile_status"] = spamfilter_profile_status
         __props__.__dict__["srcaddrs"] = srcaddrs
         __props__.__dict__["status"] = status
+        __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["webfilter_profile"] = webfilter_profile
         __props__.__dict__["webfilter_profile_status"] = webfilter_profile_status
@@ -1413,6 +1569,22 @@ class Interfacepolicy(pulumi.CustomResource):
         Enable/disable antivirus. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "av_profile_status")
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> pulumi.Output[str]:
+        """
+        CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @property
+    @pulumi.getter(name="casbProfileStatus")
+    def casb_profile_status(self) -> pulumi.Output[str]:
+        """
+        Enable/disable CASB. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "casb_profile_status")
 
     @property
     @pulumi.getter
@@ -1493,6 +1665,14 @@ class Interfacepolicy(pulumi.CustomResource):
         Enable/disable email filter. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "emailfilter_profile_status")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -1589,6 +1769,14 @@ class Interfacepolicy(pulumi.CustomResource):
         Enable/disable this policy. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def uuid(self) -> pulumi.Output[str]:
+        """
+        Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        """
+        return pulumi.get(self, "uuid")
 
     @property
     @pulumi.getter

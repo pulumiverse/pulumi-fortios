@@ -56,9 +56,17 @@ export class Fortilinksettings extends pulumi.CustomResource {
     }
 
     /**
+     * Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+     */
+    public readonly accessVlanMode!: pulumi.Output<string>;
+    /**
      * FortiLink interface to which this fortilink-setting belongs.
      */
     public readonly fortilink!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
      */
@@ -93,7 +101,9 @@ export class Fortilinksettings extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortilinksettingsState | undefined;
+            resourceInputs["accessVlanMode"] = state ? state.accessVlanMode : undefined;
             resourceInputs["fortilink"] = state ? state.fortilink : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["inactiveTimer"] = state ? state.inactiveTimer : undefined;
             resourceInputs["linkDownFlush"] = state ? state.linkDownFlush : undefined;
             resourceInputs["nacPorts"] = state ? state.nacPorts : undefined;
@@ -101,7 +111,9 @@ export class Fortilinksettings extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FortilinksettingsArgs | undefined;
+            resourceInputs["accessVlanMode"] = args ? args.accessVlanMode : undefined;
             resourceInputs["fortilink"] = args ? args.fortilink : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["inactiveTimer"] = args ? args.inactiveTimer : undefined;
             resourceInputs["linkDownFlush"] = args ? args.linkDownFlush : undefined;
             resourceInputs["nacPorts"] = args ? args.nacPorts : undefined;
@@ -118,9 +130,17 @@ export class Fortilinksettings extends pulumi.CustomResource {
  */
 export interface FortilinksettingsState {
     /**
+     * Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+     */
+    accessVlanMode?: pulumi.Input<string>;
+    /**
      * FortiLink interface to which this fortilink-setting belongs.
      */
     fortilink?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
      */
@@ -148,9 +168,17 @@ export interface FortilinksettingsState {
  */
 export interface FortilinksettingsArgs {
     /**
+     * Intra VLAN traffic behavior with loss of connection to the FortiGate. Valid values: `legacy`, `fail-open`, `fail-close`.
+     */
+    accessVlanMode?: pulumi.Input<string>;
+    /**
      * FortiLink interface to which this fortilink-setting belongs.
      */
     fortilink?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
      */

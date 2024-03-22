@@ -28,8 +28,10 @@ class SettingArgs:
                  fake_ssid_action: Optional[pulumi.Input[str]] = None,
                  fapc_compatibility: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input['SettingOffendingSsidArgs']]]] = None,
                  phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
+                 rolling_wtp_upgrade: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wfa_compatibility: Optional[pulumi.Input[str]] = None):
         """
@@ -46,8 +48,10 @@ class SettingArgs:
         :param pulumi.Input[str] fake_ssid_action: Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
         :param pulumi.Input[str] fapc_compatibility: Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['SettingOffendingSsidArgs']]] offending_ssids: Configure offending SSID. The structure of `offending_ssid` block is documented below.
         :param pulumi.Input[str] phishing_ssid_detect: Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wfa_compatibility: Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
         """
@@ -75,10 +79,14 @@ class SettingArgs:
             pulumi.set(__self__, "fapc_compatibility", fapc_compatibility)
         if firmware_provision_on_authorization is not None:
             pulumi.set(__self__, "firmware_provision_on_authorization", firmware_provision_on_authorization)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if offending_ssids is not None:
             pulumi.set(__self__, "offending_ssids", offending_ssids)
         if phishing_ssid_detect is not None:
             pulumi.set(__self__, "phishing_ssid_detect", phishing_ssid_detect)
+        if rolling_wtp_upgrade is not None:
+            pulumi.set(__self__, "rolling_wtp_upgrade", rolling_wtp_upgrade)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if wfa_compatibility is not None:
@@ -229,6 +237,18 @@ class SettingArgs:
         pulumi.set(self, "firmware_provision_on_authorization", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="offendingSsids")
     def offending_ssids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SettingOffendingSsidArgs']]]]:
         """
@@ -251,6 +271,18 @@ class SettingArgs:
     @phishing_ssid_detect.setter
     def phishing_ssid_detect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "phishing_ssid_detect", value)
+
+    @property
+    @pulumi.getter(name="rollingWtpUpgrade")
+    def rolling_wtp_upgrade(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rolling_wtp_upgrade")
+
+    @rolling_wtp_upgrade.setter
+    def rolling_wtp_upgrade(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rolling_wtp_upgrade", value)
 
     @property
     @pulumi.getter
@@ -292,8 +324,10 @@ class _SettingState:
                  fake_ssid_action: Optional[pulumi.Input[str]] = None,
                  fapc_compatibility: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input['SettingOffendingSsidArgs']]]] = None,
                  phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
+                 rolling_wtp_upgrade: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wfa_compatibility: Optional[pulumi.Input[str]] = None):
         """
@@ -310,8 +344,10 @@ class _SettingState:
         :param pulumi.Input[str] fake_ssid_action: Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
         :param pulumi.Input[str] fapc_compatibility: Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['SettingOffendingSsidArgs']]] offending_ssids: Configure offending SSID. The structure of `offending_ssid` block is documented below.
         :param pulumi.Input[str] phishing_ssid_detect: Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wfa_compatibility: Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
         """
@@ -339,10 +375,14 @@ class _SettingState:
             pulumi.set(__self__, "fapc_compatibility", fapc_compatibility)
         if firmware_provision_on_authorization is not None:
             pulumi.set(__self__, "firmware_provision_on_authorization", firmware_provision_on_authorization)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if offending_ssids is not None:
             pulumi.set(__self__, "offending_ssids", offending_ssids)
         if phishing_ssid_detect is not None:
             pulumi.set(__self__, "phishing_ssid_detect", phishing_ssid_detect)
+        if rolling_wtp_upgrade is not None:
+            pulumi.set(__self__, "rolling_wtp_upgrade", rolling_wtp_upgrade)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if wfa_compatibility is not None:
@@ -493,6 +533,18 @@ class _SettingState:
         pulumi.set(self, "firmware_provision_on_authorization", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="offendingSsids")
     def offending_ssids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SettingOffendingSsidArgs']]]]:
         """
@@ -515,6 +567,18 @@ class _SettingState:
     @phishing_ssid_detect.setter
     def phishing_ssid_detect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "phishing_ssid_detect", value)
+
+    @property
+    @pulumi.getter(name="rollingWtpUpgrade")
+    def rolling_wtp_upgrade(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rolling_wtp_upgrade")
+
+    @rolling_wtp_upgrade.setter
+    def rolling_wtp_upgrade(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rolling_wtp_upgrade", value)
 
     @property
     @pulumi.getter
@@ -558,8 +622,10 @@ class Setting(pulumi.CustomResource):
                  fake_ssid_action: Optional[pulumi.Input[str]] = None,
                  fapc_compatibility: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingOffendingSsidArgs']]]]] = None,
                  phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
+                 rolling_wtp_upgrade: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wfa_compatibility: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -598,8 +664,10 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] fake_ssid_action: Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
         :param pulumi.Input[str] fapc_compatibility: Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingOffendingSsidArgs']]]] offending_ssids: Configure offending SSID. The structure of `offending_ssid` block is documented below.
         :param pulumi.Input[str] phishing_ssid_detect: Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wfa_compatibility: Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
         """
@@ -657,8 +725,10 @@ class Setting(pulumi.CustomResource):
                  fake_ssid_action: Optional[pulumi.Input[str]] = None,
                  fapc_compatibility: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingOffendingSsidArgs']]]]] = None,
                  phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
+                 rolling_wtp_upgrade: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wfa_compatibility: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -682,8 +752,10 @@ class Setting(pulumi.CustomResource):
             __props__.__dict__["fake_ssid_action"] = fake_ssid_action
             __props__.__dict__["fapc_compatibility"] = fapc_compatibility
             __props__.__dict__["firmware_provision_on_authorization"] = firmware_provision_on_authorization
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["offending_ssids"] = offending_ssids
             __props__.__dict__["phishing_ssid_detect"] = phishing_ssid_detect
+            __props__.__dict__["rolling_wtp_upgrade"] = rolling_wtp_upgrade
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["wfa_compatibility"] = wfa_compatibility
         super(Setting, __self__).__init__(
@@ -708,8 +780,10 @@ class Setting(pulumi.CustomResource):
             fake_ssid_action: Optional[pulumi.Input[str]] = None,
             fapc_compatibility: Optional[pulumi.Input[str]] = None,
             firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingOffendingSsidArgs']]]]] = None,
             phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
+            rolling_wtp_upgrade: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             wfa_compatibility: Optional[pulumi.Input[str]] = None) -> 'Setting':
         """
@@ -731,8 +805,10 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] fake_ssid_action: Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
         :param pulumi.Input[str] fapc_compatibility: Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingOffendingSsidArgs']]]] offending_ssids: Configure offending SSID. The structure of `offending_ssid` block is documented below.
         :param pulumi.Input[str] phishing_ssid_detect: Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wfa_compatibility: Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
         """
@@ -752,8 +828,10 @@ class Setting(pulumi.CustomResource):
         __props__.__dict__["fake_ssid_action"] = fake_ssid_action
         __props__.__dict__["fapc_compatibility"] = fapc_compatibility
         __props__.__dict__["firmware_provision_on_authorization"] = firmware_provision_on_authorization
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["offending_ssids"] = offending_ssids
         __props__.__dict__["phishing_ssid_detect"] = phishing_ssid_detect
+        __props__.__dict__["rolling_wtp_upgrade"] = rolling_wtp_upgrade
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["wfa_compatibility"] = wfa_compatibility
         return Setting(resource_name, opts=opts, __props__=__props__)
@@ -855,6 +933,14 @@ class Setting(pulumi.CustomResource):
         return pulumi.get(self, "firmware_provision_on_authorization")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="offendingSsids")
     def offending_ssids(self) -> pulumi.Output[Optional[Sequence['outputs.SettingOffendingSsid']]]:
         """
@@ -869,6 +955,14 @@ class Setting(pulumi.CustomResource):
         Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "phishing_ssid_detect")
+
+    @property
+    @pulumi.getter(name="rollingWtpUpgrade")
+    def rolling_wtp_upgrade(self) -> pulumi.Output[str]:
+        """
+        Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rolling_wtp_upgrade")
 
     @property
     @pulumi.getter

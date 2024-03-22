@@ -22,7 +22,7 @@ class GetPolicy6Result:
     """
     A collection of values returned by getPolicy6.
     """
-    def __init__(__self__, action=None, comments=None, dst=None, dst_negate=None, dstaddrs=None, end_port=None, gateway=None, id=None, input_device=None, input_device_negate=None, internet_service_customs=None, internet_service_ids=None, output_device=None, protocol=None, seq_num=None, src=None, src_negate=None, srcaddrs=None, start_port=None, status=None, tos=None, tos_mask=None, vdomparam=None):
+    def __init__(__self__, action=None, comments=None, dst=None, dst_negate=None, dstaddrs=None, end_port=None, end_source_port=None, gateway=None, id=None, input_device=None, input_device_negate=None, internet_service_customs=None, internet_service_ids=None, output_device=None, protocol=None, seq_num=None, src=None, src_negate=None, srcaddrs=None, start_port=None, start_source_port=None, status=None, tos=None, tos_mask=None, vdomparam=None):
         if action and not isinstance(action, str):
             raise TypeError("Expected argument 'action' to be a str")
         pulumi.set(__self__, "action", action)
@@ -41,6 +41,9 @@ class GetPolicy6Result:
         if end_port and not isinstance(end_port, int):
             raise TypeError("Expected argument 'end_port' to be a int")
         pulumi.set(__self__, "end_port", end_port)
+        if end_source_port and not isinstance(end_source_port, int):
+            raise TypeError("Expected argument 'end_source_port' to be a int")
+        pulumi.set(__self__, "end_source_port", end_source_port)
         if gateway and not isinstance(gateway, str):
             raise TypeError("Expected argument 'gateway' to be a str")
         pulumi.set(__self__, "gateway", gateway)
@@ -80,6 +83,9 @@ class GetPolicy6Result:
         if start_port and not isinstance(start_port, int):
             raise TypeError("Expected argument 'start_port' to be a int")
         pulumi.set(__self__, "start_port", start_port)
+        if start_source_port and not isinstance(start_source_port, int):
+            raise TypeError("Expected argument 'start_source_port' to be a int")
+        pulumi.set(__self__, "start_source_port", start_source_port)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -140,6 +146,14 @@ class GetPolicy6Result:
         End destination port number (1 - 65535).
         """
         return pulumi.get(self, "end_port")
+
+    @property
+    @pulumi.getter(name="endSourcePort")
+    def end_source_port(self) -> int:
+        """
+        End source port number (1 - 65535).
+        """
+        return pulumi.get(self, "end_source_port")
 
     @property
     @pulumi.getter
@@ -246,6 +260,14 @@ class GetPolicy6Result:
         return pulumi.get(self, "start_port")
 
     @property
+    @pulumi.getter(name="startSourcePort")
+    def start_source_port(self) -> int:
+        """
+        Start source port number (1 - 65535).
+        """
+        return pulumi.get(self, "start_source_port")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
@@ -287,6 +309,7 @@ class AwaitableGetPolicy6Result(GetPolicy6Result):
             dst_negate=self.dst_negate,
             dstaddrs=self.dstaddrs,
             end_port=self.end_port,
+            end_source_port=self.end_source_port,
             gateway=self.gateway,
             id=self.id,
             input_device=self.input_device,
@@ -300,6 +323,7 @@ class AwaitableGetPolicy6Result(GetPolicy6Result):
             src_negate=self.src_negate,
             srcaddrs=self.srcaddrs,
             start_port=self.start_port,
+            start_source_port=self.start_source_port,
             status=self.status,
             tos=self.tos,
             tos_mask=self.tos_mask,
@@ -329,6 +353,7 @@ def get_policy6(seq_num: Optional[int] = None,
         dst_negate=pulumi.get(__ret__, 'dst_negate'),
         dstaddrs=pulumi.get(__ret__, 'dstaddrs'),
         end_port=pulumi.get(__ret__, 'end_port'),
+        end_source_port=pulumi.get(__ret__, 'end_source_port'),
         gateway=pulumi.get(__ret__, 'gateway'),
         id=pulumi.get(__ret__, 'id'),
         input_device=pulumi.get(__ret__, 'input_device'),
@@ -342,6 +367,7 @@ def get_policy6(seq_num: Optional[int] = None,
         src_negate=pulumi.get(__ret__, 'src_negate'),
         srcaddrs=pulumi.get(__ret__, 'srcaddrs'),
         start_port=pulumi.get(__ret__, 'start_port'),
+        start_source_port=pulumi.get(__ret__, 'start_source_port'),
         status=pulumi.get(__ret__, 'status'),
         tos=pulumi.get(__ret__, 'tos'),
         tos_mask=pulumi.get(__ret__, 'tos_mask'),

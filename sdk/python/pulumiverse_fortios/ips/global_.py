@@ -17,6 +17,7 @@ __all__ = ['GlobalArgs', 'Global']
 class GlobalArgs:
     def __init__(__self__, *,
                  anomaly_mode: Optional[pulumi.Input[str]] = None,
+                 av_mem_limit: Optional[pulumi.Input[int]] = None,
                  cp_accel_mode: Optional[pulumi.Input[str]] = None,
                  database: Optional[pulumi.Input[str]] = None,
                  deep_app_insp_db_limit: Optional[pulumi.Input[int]] = None,
@@ -24,6 +25,7 @@ class GlobalArgs:
                  engine_count: Optional[pulumi.Input[int]] = None,
                  exclude_signatures: Optional[pulumi.Input[str]] = None,
                  fail_open: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intelligent_mode: Optional[pulumi.Input[str]] = None,
                  ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
                  ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
@@ -39,13 +41,15 @@ class GlobalArgs:
         """
         The set of arguments for constructing a Global resource.
         :param pulumi.Input[str] anomaly_mode: Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
+        :param pulumi.Input[int] av_mem_limit: Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
         :param pulumi.Input[str] cp_accel_mode: IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
         :param pulumi.Input[str] database: Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
-        :param pulumi.Input[int] deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+        :param pulumi.Input[int] deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
         :param pulumi.Input[int] deep_app_insp_timeout: Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
         :param pulumi.Input[int] engine_count: Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
-        :param pulumi.Input[str] exclude_signatures: Excluded signatures. Valid values: `none`, `industrial`.
+        :param pulumi.Input[str] exclude_signatures: Excluded signatures.
         :param pulumi.Input[str] fail_open: Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] intelligent_mode: Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_reserve_cpu: Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
         :param pulumi.Input[int] ngfw_max_scan_range: NGFW policy-mode app detection threshold.
@@ -53,7 +57,7 @@ class GlobalArgs:
         :param pulumi.Input[int] packet_log_queue_depth: Packet/pcap log queue depth per IPS engine.
         :param pulumi.Input[str] session_limit_mode: Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
         :param pulumi.Input[str] skype_client_public_ipaddr: Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
-        :param pulumi.Input[int] socket_size: IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+        :param pulumi.Input[int] socket_size: IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
         :param pulumi.Input[str] sync_session_ttl: Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
         :param pulumi.Input['GlobalTlsActiveProbeArgs'] tls_active_probe: TLS active probe configuration. The structure of `tls_active_probe` block is documented below.
         :param pulumi.Input[str] traffic_submit: Enable/disable submitting attack data found by this FortiGate to FortiGuard. Valid values: `enable`, `disable`.
@@ -61,6 +65,8 @@ class GlobalArgs:
         """
         if anomaly_mode is not None:
             pulumi.set(__self__, "anomaly_mode", anomaly_mode)
+        if av_mem_limit is not None:
+            pulumi.set(__self__, "av_mem_limit", av_mem_limit)
         if cp_accel_mode is not None:
             pulumi.set(__self__, "cp_accel_mode", cp_accel_mode)
         if database is not None:
@@ -75,6 +81,8 @@ class GlobalArgs:
             pulumi.set(__self__, "exclude_signatures", exclude_signatures)
         if fail_open is not None:
             pulumi.set(__self__, "fail_open", fail_open)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if intelligent_mode is not None:
             pulumi.set(__self__, "intelligent_mode", intelligent_mode)
         if ips_reserve_cpu is not None:
@@ -113,6 +121,18 @@ class GlobalArgs:
         pulumi.set(self, "anomaly_mode", value)
 
     @property
+    @pulumi.getter(name="avMemLimit")
+    def av_mem_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+        """
+        return pulumi.get(self, "av_mem_limit")
+
+    @av_mem_limit.setter
+    def av_mem_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "av_mem_limit", value)
+
+    @property
     @pulumi.getter(name="cpAccelMode")
     def cp_accel_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -140,7 +160,7 @@ class GlobalArgs:
     @pulumi.getter(name="deepAppInspDbLimit")
     def deep_app_insp_db_limit(self) -> Optional[pulumi.Input[int]]:
         """
-        Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+        Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
         """
         return pulumi.get(self, "deep_app_insp_db_limit")
 
@@ -176,7 +196,7 @@ class GlobalArgs:
     @pulumi.getter(name="excludeSignatures")
     def exclude_signatures(self) -> Optional[pulumi.Input[str]]:
         """
-        Excluded signatures. Valid values: `none`, `industrial`.
+        Excluded signatures.
         """
         return pulumi.get(self, "exclude_signatures")
 
@@ -195,6 +215,18 @@ class GlobalArgs:
     @fail_open.setter
     def fail_open(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fail_open", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="intelligentMode")
@@ -284,7 +316,7 @@ class GlobalArgs:
     @pulumi.getter(name="socketSize")
     def socket_size(self) -> Optional[pulumi.Input[int]]:
         """
-        IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+        IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
         """
         return pulumi.get(self, "socket_size")
 
@@ -345,6 +377,7 @@ class GlobalArgs:
 class _GlobalState:
     def __init__(__self__, *,
                  anomaly_mode: Optional[pulumi.Input[str]] = None,
+                 av_mem_limit: Optional[pulumi.Input[int]] = None,
                  cp_accel_mode: Optional[pulumi.Input[str]] = None,
                  database: Optional[pulumi.Input[str]] = None,
                  deep_app_insp_db_limit: Optional[pulumi.Input[int]] = None,
@@ -352,6 +385,7 @@ class _GlobalState:
                  engine_count: Optional[pulumi.Input[int]] = None,
                  exclude_signatures: Optional[pulumi.Input[str]] = None,
                  fail_open: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intelligent_mode: Optional[pulumi.Input[str]] = None,
                  ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
                  ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
@@ -367,13 +401,15 @@ class _GlobalState:
         """
         Input properties used for looking up and filtering Global resources.
         :param pulumi.Input[str] anomaly_mode: Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
+        :param pulumi.Input[int] av_mem_limit: Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
         :param pulumi.Input[str] cp_accel_mode: IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
         :param pulumi.Input[str] database: Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
-        :param pulumi.Input[int] deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+        :param pulumi.Input[int] deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
         :param pulumi.Input[int] deep_app_insp_timeout: Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
         :param pulumi.Input[int] engine_count: Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
-        :param pulumi.Input[str] exclude_signatures: Excluded signatures. Valid values: `none`, `industrial`.
+        :param pulumi.Input[str] exclude_signatures: Excluded signatures.
         :param pulumi.Input[str] fail_open: Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] intelligent_mode: Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_reserve_cpu: Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
         :param pulumi.Input[int] ngfw_max_scan_range: NGFW policy-mode app detection threshold.
@@ -381,7 +417,7 @@ class _GlobalState:
         :param pulumi.Input[int] packet_log_queue_depth: Packet/pcap log queue depth per IPS engine.
         :param pulumi.Input[str] session_limit_mode: Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
         :param pulumi.Input[str] skype_client_public_ipaddr: Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
-        :param pulumi.Input[int] socket_size: IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+        :param pulumi.Input[int] socket_size: IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
         :param pulumi.Input[str] sync_session_ttl: Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
         :param pulumi.Input['GlobalTlsActiveProbeArgs'] tls_active_probe: TLS active probe configuration. The structure of `tls_active_probe` block is documented below.
         :param pulumi.Input[str] traffic_submit: Enable/disable submitting attack data found by this FortiGate to FortiGuard. Valid values: `enable`, `disable`.
@@ -389,6 +425,8 @@ class _GlobalState:
         """
         if anomaly_mode is not None:
             pulumi.set(__self__, "anomaly_mode", anomaly_mode)
+        if av_mem_limit is not None:
+            pulumi.set(__self__, "av_mem_limit", av_mem_limit)
         if cp_accel_mode is not None:
             pulumi.set(__self__, "cp_accel_mode", cp_accel_mode)
         if database is not None:
@@ -403,6 +441,8 @@ class _GlobalState:
             pulumi.set(__self__, "exclude_signatures", exclude_signatures)
         if fail_open is not None:
             pulumi.set(__self__, "fail_open", fail_open)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if intelligent_mode is not None:
             pulumi.set(__self__, "intelligent_mode", intelligent_mode)
         if ips_reserve_cpu is not None:
@@ -441,6 +481,18 @@ class _GlobalState:
         pulumi.set(self, "anomaly_mode", value)
 
     @property
+    @pulumi.getter(name="avMemLimit")
+    def av_mem_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+        """
+        return pulumi.get(self, "av_mem_limit")
+
+    @av_mem_limit.setter
+    def av_mem_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "av_mem_limit", value)
+
+    @property
     @pulumi.getter(name="cpAccelMode")
     def cp_accel_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -468,7 +520,7 @@ class _GlobalState:
     @pulumi.getter(name="deepAppInspDbLimit")
     def deep_app_insp_db_limit(self) -> Optional[pulumi.Input[int]]:
         """
-        Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+        Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
         """
         return pulumi.get(self, "deep_app_insp_db_limit")
 
@@ -504,7 +556,7 @@ class _GlobalState:
     @pulumi.getter(name="excludeSignatures")
     def exclude_signatures(self) -> Optional[pulumi.Input[str]]:
         """
-        Excluded signatures. Valid values: `none`, `industrial`.
+        Excluded signatures.
         """
         return pulumi.get(self, "exclude_signatures")
 
@@ -523,6 +575,18 @@ class _GlobalState:
     @fail_open.setter
     def fail_open(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fail_open", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="intelligentMode")
@@ -612,7 +676,7 @@ class _GlobalState:
     @pulumi.getter(name="socketSize")
     def socket_size(self) -> Optional[pulumi.Input[int]]:
         """
-        IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+        IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
         """
         return pulumi.get(self, "socket_size")
 
@@ -675,6 +739,7 @@ class Global(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  anomaly_mode: Optional[pulumi.Input[str]] = None,
+                 av_mem_limit: Optional[pulumi.Input[int]] = None,
                  cp_accel_mode: Optional[pulumi.Input[str]] = None,
                  database: Optional[pulumi.Input[str]] = None,
                  deep_app_insp_db_limit: Optional[pulumi.Input[int]] = None,
@@ -682,6 +747,7 @@ class Global(pulumi.CustomResource):
                  engine_count: Optional[pulumi.Input[int]] = None,
                  exclude_signatures: Optional[pulumi.Input[str]] = None,
                  fail_open: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intelligent_mode: Optional[pulumi.Input[str]] = None,
                  ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
                  ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
@@ -742,13 +808,15 @@ class Global(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] anomaly_mode: Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
+        :param pulumi.Input[int] av_mem_limit: Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
         :param pulumi.Input[str] cp_accel_mode: IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
         :param pulumi.Input[str] database: Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
-        :param pulumi.Input[int] deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+        :param pulumi.Input[int] deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
         :param pulumi.Input[int] deep_app_insp_timeout: Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
         :param pulumi.Input[int] engine_count: Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
-        :param pulumi.Input[str] exclude_signatures: Excluded signatures. Valid values: `none`, `industrial`.
+        :param pulumi.Input[str] exclude_signatures: Excluded signatures.
         :param pulumi.Input[str] fail_open: Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] intelligent_mode: Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_reserve_cpu: Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
         :param pulumi.Input[int] ngfw_max_scan_range: NGFW policy-mode app detection threshold.
@@ -756,7 +824,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[int] packet_log_queue_depth: Packet/pcap log queue depth per IPS engine.
         :param pulumi.Input[str] session_limit_mode: Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
         :param pulumi.Input[str] skype_client_public_ipaddr: Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
-        :param pulumi.Input[int] socket_size: IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+        :param pulumi.Input[int] socket_size: IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
         :param pulumi.Input[str] sync_session_ttl: Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
         :param pulumi.Input[pulumi.InputType['GlobalTlsActiveProbeArgs']] tls_active_probe: TLS active probe configuration. The structure of `tls_active_probe` block is documented below.
         :param pulumi.Input[str] traffic_submit: Enable/disable submitting attack data found by this FortiGate to FortiGuard. Valid values: `enable`, `disable`.
@@ -828,6 +896,7 @@ class Global(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  anomaly_mode: Optional[pulumi.Input[str]] = None,
+                 av_mem_limit: Optional[pulumi.Input[int]] = None,
                  cp_accel_mode: Optional[pulumi.Input[str]] = None,
                  database: Optional[pulumi.Input[str]] = None,
                  deep_app_insp_db_limit: Optional[pulumi.Input[int]] = None,
@@ -835,6 +904,7 @@ class Global(pulumi.CustomResource):
                  engine_count: Optional[pulumi.Input[int]] = None,
                  exclude_signatures: Optional[pulumi.Input[str]] = None,
                  fail_open: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intelligent_mode: Optional[pulumi.Input[str]] = None,
                  ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
                  ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
@@ -857,6 +927,7 @@ class Global(pulumi.CustomResource):
             __props__ = GlobalArgs.__new__(GlobalArgs)
 
             __props__.__dict__["anomaly_mode"] = anomaly_mode
+            __props__.__dict__["av_mem_limit"] = av_mem_limit
             __props__.__dict__["cp_accel_mode"] = cp_accel_mode
             __props__.__dict__["database"] = database
             __props__.__dict__["deep_app_insp_db_limit"] = deep_app_insp_db_limit
@@ -864,6 +935,7 @@ class Global(pulumi.CustomResource):
             __props__.__dict__["engine_count"] = engine_count
             __props__.__dict__["exclude_signatures"] = exclude_signatures
             __props__.__dict__["fail_open"] = fail_open
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["intelligent_mode"] = intelligent_mode
             __props__.__dict__["ips_reserve_cpu"] = ips_reserve_cpu
             __props__.__dict__["ngfw_max_scan_range"] = ngfw_max_scan_range
@@ -887,6 +959,7 @@ class Global(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             anomaly_mode: Optional[pulumi.Input[str]] = None,
+            av_mem_limit: Optional[pulumi.Input[int]] = None,
             cp_accel_mode: Optional[pulumi.Input[str]] = None,
             database: Optional[pulumi.Input[str]] = None,
             deep_app_insp_db_limit: Optional[pulumi.Input[int]] = None,
@@ -894,6 +967,7 @@ class Global(pulumi.CustomResource):
             engine_count: Optional[pulumi.Input[int]] = None,
             exclude_signatures: Optional[pulumi.Input[str]] = None,
             fail_open: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             intelligent_mode: Optional[pulumi.Input[str]] = None,
             ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
             ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
@@ -914,13 +988,15 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] anomaly_mode: Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
+        :param pulumi.Input[int] av_mem_limit: Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
         :param pulumi.Input[str] cp_accel_mode: IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
         :param pulumi.Input[str] database: Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
-        :param pulumi.Input[int] deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+        :param pulumi.Input[int] deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
         :param pulumi.Input[int] deep_app_insp_timeout: Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
         :param pulumi.Input[int] engine_count: Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores.
-        :param pulumi.Input[str] exclude_signatures: Excluded signatures. Valid values: `none`, `industrial`.
+        :param pulumi.Input[str] exclude_signatures: Excluded signatures.
         :param pulumi.Input[str] fail_open: Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] intelligent_mode: Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_reserve_cpu: Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
         :param pulumi.Input[int] ngfw_max_scan_range: NGFW policy-mode app detection threshold.
@@ -928,7 +1004,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[int] packet_log_queue_depth: Packet/pcap log queue depth per IPS engine.
         :param pulumi.Input[str] session_limit_mode: Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
         :param pulumi.Input[str] skype_client_public_ipaddr: Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
-        :param pulumi.Input[int] socket_size: IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+        :param pulumi.Input[int] socket_size: IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
         :param pulumi.Input[str] sync_session_ttl: Enable/disable use of kernel session TTL for IPS sessions. Valid values: `enable`, `disable`.
         :param pulumi.Input[pulumi.InputType['GlobalTlsActiveProbeArgs']] tls_active_probe: TLS active probe configuration. The structure of `tls_active_probe` block is documented below.
         :param pulumi.Input[str] traffic_submit: Enable/disable submitting attack data found by this FortiGate to FortiGuard. Valid values: `enable`, `disable`.
@@ -939,6 +1015,7 @@ class Global(pulumi.CustomResource):
         __props__ = _GlobalState.__new__(_GlobalState)
 
         __props__.__dict__["anomaly_mode"] = anomaly_mode
+        __props__.__dict__["av_mem_limit"] = av_mem_limit
         __props__.__dict__["cp_accel_mode"] = cp_accel_mode
         __props__.__dict__["database"] = database
         __props__.__dict__["deep_app_insp_db_limit"] = deep_app_insp_db_limit
@@ -946,6 +1023,7 @@ class Global(pulumi.CustomResource):
         __props__.__dict__["engine_count"] = engine_count
         __props__.__dict__["exclude_signatures"] = exclude_signatures
         __props__.__dict__["fail_open"] = fail_open
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["intelligent_mode"] = intelligent_mode
         __props__.__dict__["ips_reserve_cpu"] = ips_reserve_cpu
         __props__.__dict__["ngfw_max_scan_range"] = ngfw_max_scan_range
@@ -969,6 +1047,14 @@ class Global(pulumi.CustomResource):
         return pulumi.get(self, "anomaly_mode")
 
     @property
+    @pulumi.getter(name="avMemLimit")
+    def av_mem_limit(self) -> pulumi.Output[int]:
+        """
+        Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage.
+        """
+        return pulumi.get(self, "av_mem_limit")
+
+    @property
     @pulumi.getter(name="cpAccelMode")
     def cp_accel_mode(self) -> pulumi.Output[str]:
         """
@@ -988,7 +1074,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="deepAppInspDbLimit")
     def deep_app_insp_db_limit(self) -> pulumi.Output[int]:
         """
-        Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
+        Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0).
         """
         return pulumi.get(self, "deep_app_insp_db_limit")
 
@@ -1012,7 +1098,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="excludeSignatures")
     def exclude_signatures(self) -> pulumi.Output[str]:
         """
-        Excluded signatures. Valid values: `none`, `industrial`.
+        Excluded signatures.
         """
         return pulumi.get(self, "exclude_signatures")
 
@@ -1023,6 +1109,14 @@ class Global(pulumi.CustomResource):
         Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "fail_open")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="intelligentMode")
@@ -1084,7 +1178,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="socketSize")
     def socket_size(self) -> pulumi.Output[int]:
         """
-        IPS socket buffer size (0 - 256 MB). Default depends on available memory. Can be changed to tune performance.
+        IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance.
         """
         return pulumi.get(self, "socket_size")
 

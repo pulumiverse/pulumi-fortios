@@ -73,6 +73,10 @@ export interface GetCentralmanagementResult {
      */
     readonly fmgUpdatePort: string;
     /**
+     * Override access profile.
+     */
+    readonly fortigateCloudSsoDefaultProfile: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;

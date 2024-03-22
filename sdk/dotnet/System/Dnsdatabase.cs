@@ -118,6 +118,18 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Forwarder { get; private set; } = null!;
 
         /// <summary>
+        /// Forwarder IPv6 address.
+        /// </summary>
+        [Output("forwarder6")]
+        public Output<string> Forwarder6 { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
+
+        /// <summary>
         /// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
         /// </summary>
         [Output("ipMaster")]
@@ -152,6 +164,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("sourceIp")]
         public Output<string> SourceIp { get; private set; } = null!;
+
+        /// <summary>
+        /// IPv6 source IP address for forwarding to DNS server.
+        /// </summary>
+        [Output("sourceIp6")]
+        public Output<string> SourceIp6 { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable this DNS zone. Valid values: `enable`, `disable`.
@@ -281,6 +299,18 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Forwarder { get; set; }
 
         /// <summary>
+        /// Forwarder IPv6 address.
+        /// </summary>
+        [Input("forwarder6")]
+        public Input<string>? Forwarder6 { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
         /// </summary>
         [Input("ipMaster")]
@@ -315,6 +345,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("sourceIp")]
         public Input<string>? SourceIp { get; set; }
+
+        /// <summary>
+        /// IPv6 source IP address for forwarding to DNS server.
+        /// </summary>
+        [Input("sourceIp6")]
+        public Input<string>? SourceIp6 { get; set; }
 
         /// <summary>
         /// Enable/disable this DNS zone. Valid values: `enable`, `disable`.
@@ -405,6 +441,18 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Forwarder { get; set; }
 
         /// <summary>
+        /// Forwarder IPv6 address.
+        /// </summary>
+        [Input("forwarder6")]
+        public Input<string>? Forwarder6 { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
+
+        /// <summary>
         /// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
         /// </summary>
         [Input("ipMaster")]
@@ -439,6 +487,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("sourceIp")]
         public Input<string>? SourceIp { get; set; }
+
+        /// <summary>
+        /// IPv6 source IP address for forwarding to DNS server.
+        /// </summary>
+        [Input("sourceIp6")]
+        public Input<string>? SourceIp6 { get; set; }
 
         /// <summary>
         /// Enable/disable this DNS zone. Valid values: `enable`, `disable`.

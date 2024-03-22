@@ -101,7 +101,11 @@ type Multicastpolicy struct {
 	EndPort pulumi.IntOutput `pulumi:"endPort"`
 	// Policy ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	// Name of an existing IPS sensor.
+	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
+	// Enable/disable logging traffic accepted by this policy.
 	Logtraffic pulumi.StringOutput `pulumi:"logtraffic"`
 	// Policy name.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -121,6 +125,8 @@ type Multicastpolicy struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Traffic shaper to apply to traffic forwarded by the multicast policy.
 	TrafficShaper pulumi.StringOutput `pulumi:"trafficShaper"`
+	// Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+	UtmStatus pulumi.StringOutput `pulumi:"utmStatus"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -187,7 +193,11 @@ type multicastpolicyState struct {
 	EndPort *int `pulumi:"endPort"`
 	// Policy ID.
 	Fosid *int `pulumi:"fosid"`
-	// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Name of an existing IPS sensor.
+	IpsSensor *string `pulumi:"ipsSensor"`
+	// Enable/disable logging traffic accepted by this policy.
 	Logtraffic *string `pulumi:"logtraffic"`
 	// Policy name.
 	Name *string `pulumi:"name"`
@@ -207,6 +217,8 @@ type multicastpolicyState struct {
 	Status *string `pulumi:"status"`
 	// Traffic shaper to apply to traffic forwarded by the multicast policy.
 	TrafficShaper *string `pulumi:"trafficShaper"`
+	// Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+	UtmStatus *string `pulumi:"utmStatus"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -232,7 +244,11 @@ type MulticastpolicyState struct {
 	EndPort pulumi.IntPtrInput
 	// Policy ID.
 	Fosid pulumi.IntPtrInput
-	// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Name of an existing IPS sensor.
+	IpsSensor pulumi.StringPtrInput
+	// Enable/disable logging traffic accepted by this policy.
 	Logtraffic pulumi.StringPtrInput
 	// Policy name.
 	Name pulumi.StringPtrInput
@@ -252,6 +268,8 @@ type MulticastpolicyState struct {
 	Status pulumi.StringPtrInput
 	// Traffic shaper to apply to traffic forwarded by the multicast policy.
 	TrafficShaper pulumi.StringPtrInput
+	// Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+	UtmStatus pulumi.StringPtrInput
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -281,7 +299,11 @@ type multicastpolicyArgs struct {
 	EndPort *int `pulumi:"endPort"`
 	// Policy ID.
 	Fosid *int `pulumi:"fosid"`
-	// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
+	// Name of an existing IPS sensor.
+	IpsSensor *string `pulumi:"ipsSensor"`
+	// Enable/disable logging traffic accepted by this policy.
 	Logtraffic *string `pulumi:"logtraffic"`
 	// Policy name.
 	Name *string `pulumi:"name"`
@@ -301,6 +323,8 @@ type multicastpolicyArgs struct {
 	Status *string `pulumi:"status"`
 	// Traffic shaper to apply to traffic forwarded by the multicast policy.
 	TrafficShaper *string `pulumi:"trafficShaper"`
+	// Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+	UtmStatus *string `pulumi:"utmStatus"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -327,7 +351,11 @@ type MulticastpolicyArgs struct {
 	EndPort pulumi.IntPtrInput
 	// Policy ID.
 	Fosid pulumi.IntPtrInput
-	// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
+	// Name of an existing IPS sensor.
+	IpsSensor pulumi.StringPtrInput
+	// Enable/disable logging traffic accepted by this policy.
 	Logtraffic pulumi.StringPtrInput
 	// Policy name.
 	Name pulumi.StringPtrInput
@@ -347,6 +375,8 @@ type MulticastpolicyArgs struct {
 	Status pulumi.StringPtrInput
 	// Traffic shaper to apply to traffic forwarded by the multicast policy.
 	TrafficShaper pulumi.StringPtrInput
+	// Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+	UtmStatus pulumi.StringPtrInput
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -485,7 +515,17 @@ func (o MulticastpolicyOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Multicastpolicy) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Enable/disable logging traffic accepted by this policy. Valid values: `enable`, `disable`.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o MulticastpolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Multicastpolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+// Name of an existing IPS sensor.
+func (o MulticastpolicyOutput) IpsSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v *Multicastpolicy) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+// Enable/disable logging traffic accepted by this policy.
 func (o MulticastpolicyOutput) Logtraffic() pulumi.StringOutput {
 	return o.ApplyT(func(v *Multicastpolicy) pulumi.StringOutput { return v.Logtraffic }).(pulumi.StringOutput)
 }
@@ -533,6 +573,11 @@ func (o MulticastpolicyOutput) Status() pulumi.StringOutput {
 // Traffic shaper to apply to traffic forwarded by the multicast policy.
 func (o MulticastpolicyOutput) TrafficShaper() pulumi.StringOutput {
 	return o.ApplyT(func(v *Multicastpolicy) pulumi.StringOutput { return v.TrafficShaper }).(pulumi.StringOutput)
+}
+
+// Enable to add an IPS security profile to the policy. Valid values: `enable`, `disable`.
+func (o MulticastpolicyOutput) UtmStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Multicastpolicy) pulumi.StringOutput { return v.UtmStatus }).(pulumi.StringOutput)
 }
 
 // Universally Unique Identifier (UUID; automatically assigned but can be manually reset).

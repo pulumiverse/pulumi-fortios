@@ -22,7 +22,7 @@ class SettingsArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Settings resource.
-        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15).
         :param pulumi.Input[int] chunk_size: Maximum fingerprint chunk size.  **Changing will flush the entire database**.
         :param pulumi.Input[str] db_mode: Behaviour when the maximum size is reached. Valid values: `stop-adding`, `remove-modified-then-oldest`, `remove-oldest`.
         :param pulumi.Input[int] size: Maximum total size of files within the storage (MB).
@@ -46,7 +46,7 @@ class SettingsArgs:
     @pulumi.getter(name="cacheMemPercent")
     def cache_mem_percent(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        Maximum percentage of available memory allocated to caching (1 - 15).
         """
         return pulumi.get(self, "cache_mem_percent")
 
@@ -126,7 +126,7 @@ class _SettingsState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Settings resources.
-        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15).
         :param pulumi.Input[int] chunk_size: Maximum fingerprint chunk size.  **Changing will flush the entire database**.
         :param pulumi.Input[str] db_mode: Behaviour when the maximum size is reached. Valid values: `stop-adding`, `remove-modified-then-oldest`, `remove-oldest`.
         :param pulumi.Input[int] size: Maximum total size of files within the storage (MB).
@@ -150,7 +150,7 @@ class _SettingsState:
     @pulumi.getter(name="cacheMemPercent")
     def cache_mem_percent(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        Maximum percentage of available memory allocated to caching (1 - 15).
         """
         return pulumi.get(self, "cache_mem_percent")
 
@@ -269,7 +269,7 @@ class Settings(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15).
         :param pulumi.Input[int] chunk_size: Maximum fingerprint chunk size.  **Changing will flush the entire database**.
         :param pulumi.Input[str] db_mode: Behaviour when the maximum size is reached. Valid values: `stop-adding`, `remove-modified-then-oldest`, `remove-oldest`.
         :param pulumi.Input[int] size: Maximum total size of files within the storage (MB).
@@ -377,7 +377,7 @@ class Settings(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15).
         :param pulumi.Input[int] chunk_size: Maximum fingerprint chunk size.  **Changing will flush the entire database**.
         :param pulumi.Input[str] db_mode: Behaviour when the maximum size is reached. Valid values: `stop-adding`, `remove-modified-then-oldest`, `remove-oldest`.
         :param pulumi.Input[int] size: Maximum total size of files within the storage (MB).
@@ -400,7 +400,7 @@ class Settings(pulumi.CustomResource):
     @pulumi.getter(name="cacheMemPercent")
     def cache_mem_percent(self) -> pulumi.Output[int]:
         """
-        Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        Maximum percentage of available memory allocated to caching (1 - 15).
         """
         return pulumi.get(self, "cache_mem_percent")
 

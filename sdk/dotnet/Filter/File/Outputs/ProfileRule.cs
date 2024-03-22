@@ -23,7 +23,7 @@ namespace Pulumiverse.Fortios.Filter.File.Outputs
         /// </summary>
         public readonly string? Comment;
         /// <summary>
-        /// Traffic direction. (HTTP, FTP, SSH, CIFS only) Valid values: `incoming`, `outgoing`, `any`.
+        /// Traffic direction. On FortiOS versions 6.4.1-7.4.1: HTTP, FTP, SSH, CIFS only. On FortiOS versions &gt;= 7.4.2: HTTP, FTP, SSH, CIFS, and MAPI only. Valid values: `incoming`, `outgoing`, `any`.
         /// </summary>
         public readonly string? Direction;
         /// <summary>

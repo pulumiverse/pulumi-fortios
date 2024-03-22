@@ -104,6 +104,10 @@ type Shapingpolicy struct {
 	ClassId pulumi.IntOutput `pulumi:"classId"`
 	// Comments.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
+	// VLAN CoS bit pattern.
+	Cos pulumi.StringOutput `pulumi:"cos"`
+	// VLAN CoS evaluated bits.
+	CosMask pulumi.StringOutput `pulumi:"cosMask"`
 	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
 	DiffservForward pulumi.StringOutput `pulumi:"diffservForward"`
 	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
@@ -122,6 +126,8 @@ type Shapingpolicy struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Shaping policy ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
 	Groups ShapingpolicyGroupArrayOutput `pulumi:"groups"`
 	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
@@ -176,6 +182,8 @@ type Shapingpolicy struct {
 	TrafficShaper pulumi.StringOutput `pulumi:"trafficShaper"`
 	// Traffic shaper to apply to response traffic received by the firewall policy.
 	TrafficShaperReverse pulumi.StringOutput `pulumi:"trafficShaperReverse"`
+	// Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+	TrafficType pulumi.StringOutput `pulumi:"trafficType"`
 	// IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.
 	UrlCategories ShapingpolicyUrlCategoryArrayOutput `pulumi:"urlCategories"`
 	// Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
@@ -193,14 +201,8 @@ func NewShapingpolicy(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Dstaddrs == nil {
-		return nil, errors.New("invalid value for required argument 'Dstaddrs'")
-	}
 	if args.Dstintfs == nil {
 		return nil, errors.New("invalid value for required argument 'Dstintfs'")
-	}
-	if args.Services == nil {
-		return nil, errors.New("invalid value for required argument 'Services'")
 	}
 	if args.Srcaddrs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcaddrs'")
@@ -238,6 +240,10 @@ type shapingpolicyState struct {
 	ClassId *int `pulumi:"classId"`
 	// Comments.
 	Comment *string `pulumi:"comment"`
+	// VLAN CoS bit pattern.
+	Cos *string `pulumi:"cos"`
+	// VLAN CoS evaluated bits.
+	CosMask *string `pulumi:"cosMask"`
 	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
 	DiffservForward *string `pulumi:"diffservForward"`
 	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
@@ -256,6 +262,8 @@ type shapingpolicyState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Shaping policy ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
 	Groups []ShapingpolicyGroup `pulumi:"groups"`
 	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
@@ -310,6 +318,8 @@ type shapingpolicyState struct {
 	TrafficShaper *string `pulumi:"trafficShaper"`
 	// Traffic shaper to apply to response traffic received by the firewall policy.
 	TrafficShaperReverse *string `pulumi:"trafficShaperReverse"`
+	// Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+	TrafficType *string `pulumi:"trafficType"`
 	// IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.
 	UrlCategories []ShapingpolicyUrlCategory `pulumi:"urlCategories"`
 	// Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
@@ -331,6 +341,10 @@ type ShapingpolicyState struct {
 	ClassId pulumi.IntPtrInput
 	// Comments.
 	Comment pulumi.StringPtrInput
+	// VLAN CoS bit pattern.
+	Cos pulumi.StringPtrInput
+	// VLAN CoS evaluated bits.
+	CosMask pulumi.StringPtrInput
 	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
 	DiffservForward pulumi.StringPtrInput
 	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
@@ -349,6 +363,8 @@ type ShapingpolicyState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Shaping policy ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
 	Groups ShapingpolicyGroupArrayInput
 	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
@@ -403,6 +419,8 @@ type ShapingpolicyState struct {
 	TrafficShaper pulumi.StringPtrInput
 	// Traffic shaper to apply to response traffic received by the firewall policy.
 	TrafficShaperReverse pulumi.StringPtrInput
+	// Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+	TrafficType pulumi.StringPtrInput
 	// IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.
 	UrlCategories ShapingpolicyUrlCategoryArrayInput
 	// Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
@@ -428,6 +446,10 @@ type shapingpolicyArgs struct {
 	ClassId *int `pulumi:"classId"`
 	// Comments.
 	Comment *string `pulumi:"comment"`
+	// VLAN CoS bit pattern.
+	Cos *string `pulumi:"cos"`
+	// VLAN CoS evaluated bits.
+	CosMask *string `pulumi:"cosMask"`
 	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
 	DiffservForward *string `pulumi:"diffservForward"`
 	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
@@ -446,6 +468,8 @@ type shapingpolicyArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Shaping policy ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
 	Groups []ShapingpolicyGroup `pulumi:"groups"`
 	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
@@ -500,6 +524,8 @@ type shapingpolicyArgs struct {
 	TrafficShaper *string `pulumi:"trafficShaper"`
 	// Traffic shaper to apply to response traffic received by the firewall policy.
 	TrafficShaperReverse *string `pulumi:"trafficShaperReverse"`
+	// Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+	TrafficType *string `pulumi:"trafficType"`
 	// IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.
 	UrlCategories []ShapingpolicyUrlCategory `pulumi:"urlCategories"`
 	// Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
@@ -522,6 +548,10 @@ type ShapingpolicyArgs struct {
 	ClassId pulumi.IntPtrInput
 	// Comments.
 	Comment pulumi.StringPtrInput
+	// VLAN CoS bit pattern.
+	Cos pulumi.StringPtrInput
+	// VLAN CoS evaluated bits.
+	CosMask pulumi.StringPtrInput
 	// Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
 	DiffservForward pulumi.StringPtrInput
 	// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `enable`, `disable`.
@@ -540,6 +570,8 @@ type ShapingpolicyArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Shaping policy ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
 	Groups ShapingpolicyGroupArrayInput
 	// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.  Valid values: `enable`, `disable`.
@@ -594,6 +626,8 @@ type ShapingpolicyArgs struct {
 	TrafficShaper pulumi.StringPtrInput
 	// Traffic shaper to apply to response traffic received by the firewall policy.
 	TrafficShaperReverse pulumi.StringPtrInput
+	// Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+	TrafficType pulumi.StringPtrInput
 	// IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.
 	UrlCategories ShapingpolicyUrlCategoryArrayInput
 	// Apply this traffic shaping policy to individual users that have authenticated with the FortiGate. The structure of `users` block is documented below.
@@ -716,6 +750,16 @@ func (o ShapingpolicyOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Shapingpolicy) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
+// VLAN CoS bit pattern.
+func (o ShapingpolicyOutput) Cos() pulumi.StringOutput {
+	return o.ApplyT(func(v *Shapingpolicy) pulumi.StringOutput { return v.Cos }).(pulumi.StringOutput)
+}
+
+// VLAN CoS evaluated bits.
+func (o ShapingpolicyOutput) CosMask() pulumi.StringOutput {
+	return o.ApplyT(func(v *Shapingpolicy) pulumi.StringOutput { return v.CosMask }).(pulumi.StringOutput)
+}
+
 // Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `enable`, `disable`.
 func (o ShapingpolicyOutput) DiffservForward() pulumi.StringOutput {
 	return o.ApplyT(func(v *Shapingpolicy) pulumi.StringOutput { return v.DiffservForward }).(pulumi.StringOutput)
@@ -759,6 +803,11 @@ func (o ShapingpolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Shaping policy ID.
 func (o ShapingpolicyOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Shapingpolicy) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ShapingpolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Shapingpolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
@@ -904,6 +953,11 @@ func (o ShapingpolicyOutput) TrafficShaper() pulumi.StringOutput {
 // Traffic shaper to apply to response traffic received by the firewall policy.
 func (o ShapingpolicyOutput) TrafficShaperReverse() pulumi.StringOutput {
 	return o.ApplyT(func(v *Shapingpolicy) pulumi.StringOutput { return v.TrafficShaperReverse }).(pulumi.StringOutput)
+}
+
+// Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+func (o ShapingpolicyOutput) TrafficType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Shapingpolicy) pulumi.StringOutput { return v.TrafficType }).(pulumi.StringOutput)
 }
 
 // IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to. The structure of `urlCategory` block is documented below.

@@ -117,11 +117,15 @@ export class List extends pulumi.CustomResource {
      */
     public readonly forceInclusionSslDiSigs!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * List name.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+     * Basic application protocol signatures allowed by default.
      */
     public readonly options!: pulumi.Output<string>;
     /**
@@ -180,6 +184,7 @@ export class List extends pulumi.CustomResource {
             resourceInputs["entries"] = state ? state.entries : undefined;
             resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
             resourceInputs["forceInclusionSslDiSigs"] = state ? state.forceInclusionSslDiSigs : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
             resourceInputs["otherApplicationAction"] = state ? state.otherApplicationAction : undefined;
@@ -202,6 +207,7 @@ export class List extends pulumi.CustomResource {
             resourceInputs["entries"] = args ? args.entries : undefined;
             resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
             resourceInputs["forceInclusionSslDiSigs"] = args ? args.forceInclusionSslDiSigs : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
             resourceInputs["otherApplicationAction"] = args ? args.otherApplicationAction : undefined;
@@ -263,11 +269,15 @@ export interface ListState {
      */
     forceInclusionSslDiSigs?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * List name.
      */
     name?: pulumi.Input<string>;
     /**
-     * Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+     * Basic application protocol signatures allowed by default.
      */
     options?: pulumi.Input<string>;
     /**
@@ -349,11 +359,15 @@ export interface ListArgs {
      */
     forceInclusionSslDiSigs?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * List name.
      */
     name?: pulumi.Input<string>;
     /**
-     * Basic application protocol signatures allowed by default. Valid values: `allow-dns`, `allow-icmp`, `allow-http`, `allow-ssl`, `allow-quic`.
+     * Basic application protocol signatures allowed by default.
      */
     options?: pulumi.Input<string>;
     /**

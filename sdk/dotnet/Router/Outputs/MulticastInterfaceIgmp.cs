@@ -39,7 +39,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly int? QueryMaxResponseTime;
         /// <summary>
-        /// Timeout between queries before becoming querier for network (60 - 900, default = 255).
+        /// Timeout between queries before becoming querying unit for network (60 - 900, default = 255).
         /// </summary>
         public readonly int? QueryTimeout;
         /// <summary>

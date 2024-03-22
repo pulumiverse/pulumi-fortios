@@ -166,9 +166,17 @@ export class Bgp extends pulumi.CustomResource {
      */
     public readonly additionalPathSelectVpnv4!: pulumi.Output<number>;
     /**
+     * Number of additional paths to be selected for each VPNv6 NLRI.
+     */
+    public readonly additionalPathSelectVpnv6!: pulumi.Output<number>;
+    /**
      * Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
      */
     public readonly additionalPathVpnv4!: pulumi.Output<string>;
+    /**
+     * Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+     */
+    public readonly additionalPathVpnv6!: pulumi.Output<string>;
     /**
      * Administrative distance modifications. The structure of `adminDistance` block is documented below.
      */
@@ -189,6 +197,10 @@ export class Bgp extends pulumi.CustomResource {
      * Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
      */
     public readonly as!: pulumi.Output<number>;
+    /**
+     * Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+     */
+    public readonly asString!: pulumi.Output<string>;
     /**
      * Enable/disable ignore AS path. Valid values: `enable`, `disable`.
      */
@@ -225,6 +237,10 @@ export class Bgp extends pulumi.CustomResource {
      * Confederation peers. The structure of `confederationPeers` block is documented below.
      */
     public readonly confederationPeers!: pulumi.Output<outputs.router.BgpConfederationPeer[] | undefined>;
+    /**
+     * Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+     */
+    public readonly crossFamilyConditionalAdv!: pulumi.Output<string>;
     /**
      * Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
      */
@@ -290,6 +306,10 @@ export class Bgp extends pulumi.CustomResource {
      */
     public readonly fastExternalFailover!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
      */
     public readonly gracefulEndOnTimer!: pulumi.Output<string>;
@@ -336,7 +356,7 @@ export class Bgp extends pulumi.CustomResource {
     /**
      * BGP neighbor group table. The structure of `neighborGroup` block is documented below.
      */
-    public readonly neighborGroups!: pulumi.Output<outputs.router.BgpNeighborGroup[] | undefined>;
+    public readonly neighborGroups!: pulumi.Output<outputs.router.BgpNeighborGroup[]>;
     /**
      * BGP IPv6 neighbor range table. The structure of `neighborRange6` block is documented below.
      */
@@ -348,7 +368,7 @@ export class Bgp extends pulumi.CustomResource {
     /**
      * BGP neighbor table. The structure of `neighbor` block is documented below.
      */
-    public readonly neighbors!: pulumi.Output<outputs.router.BgpNeighbor[] | undefined>;
+    public readonly neighbors!: pulumi.Output<outputs.router.BgpNeighbor[]>;
     /**
      * BGP IPv6 network table. The structure of `network6` block is documented below.
      */
@@ -432,12 +452,15 @@ export class Bgp extends pulumi.CustomResource {
             resourceInputs["additionalPathSelect"] = state ? state.additionalPathSelect : undefined;
             resourceInputs["additionalPathSelect6"] = state ? state.additionalPathSelect6 : undefined;
             resourceInputs["additionalPathSelectVpnv4"] = state ? state.additionalPathSelectVpnv4 : undefined;
+            resourceInputs["additionalPathSelectVpnv6"] = state ? state.additionalPathSelectVpnv6 : undefined;
             resourceInputs["additionalPathVpnv4"] = state ? state.additionalPathVpnv4 : undefined;
+            resourceInputs["additionalPathVpnv6"] = state ? state.additionalPathVpnv6 : undefined;
             resourceInputs["adminDistances"] = state ? state.adminDistances : undefined;
             resourceInputs["aggregateAddress6s"] = state ? state.aggregateAddress6s : undefined;
             resourceInputs["aggregateAddresses"] = state ? state.aggregateAddresses : undefined;
             resourceInputs["alwaysCompareMed"] = state ? state.alwaysCompareMed : undefined;
             resourceInputs["as"] = state ? state.as : undefined;
+            resourceInputs["asString"] = state ? state.asString : undefined;
             resourceInputs["bestpathAsPathIgnore"] = state ? state.bestpathAsPathIgnore : undefined;
             resourceInputs["bestpathCmpConfedAspath"] = state ? state.bestpathCmpConfedAspath : undefined;
             resourceInputs["bestpathCmpRouterid"] = state ? state.bestpathCmpRouterid : undefined;
@@ -447,6 +470,7 @@ export class Bgp extends pulumi.CustomResource {
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["confederationIdentifier"] = state ? state.confederationIdentifier : undefined;
             resourceInputs["confederationPeers"] = state ? state.confederationPeers : undefined;
+            resourceInputs["crossFamilyConditionalAdv"] = state ? state.crossFamilyConditionalAdv : undefined;
             resourceInputs["dampening"] = state ? state.dampening : undefined;
             resourceInputs["dampeningMaxSuppressTime"] = state ? state.dampeningMaxSuppressTime : undefined;
             resourceInputs["dampeningReachabilityHalfLife"] = state ? state.dampeningReachabilityHalfLife : undefined;
@@ -463,6 +487,7 @@ export class Bgp extends pulumi.CustomResource {
             resourceInputs["ebgpMultipath"] = state ? state.ebgpMultipath : undefined;
             resourceInputs["enforceFirstAs"] = state ? state.enforceFirstAs : undefined;
             resourceInputs["fastExternalFailover"] = state ? state.fastExternalFailover : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gracefulEndOnTimer"] = state ? state.gracefulEndOnTimer : undefined;
             resourceInputs["gracefulRestart"] = state ? state.gracefulRestart : undefined;
             resourceInputs["gracefulRestartTime"] = state ? state.gracefulRestartTime : undefined;
@@ -504,12 +529,15 @@ export class Bgp extends pulumi.CustomResource {
             resourceInputs["additionalPathSelect"] = args ? args.additionalPathSelect : undefined;
             resourceInputs["additionalPathSelect6"] = args ? args.additionalPathSelect6 : undefined;
             resourceInputs["additionalPathSelectVpnv4"] = args ? args.additionalPathSelectVpnv4 : undefined;
+            resourceInputs["additionalPathSelectVpnv6"] = args ? args.additionalPathSelectVpnv6 : undefined;
             resourceInputs["additionalPathVpnv4"] = args ? args.additionalPathVpnv4 : undefined;
+            resourceInputs["additionalPathVpnv6"] = args ? args.additionalPathVpnv6 : undefined;
             resourceInputs["adminDistances"] = args ? args.adminDistances : undefined;
             resourceInputs["aggregateAddress6s"] = args ? args.aggregateAddress6s : undefined;
             resourceInputs["aggregateAddresses"] = args ? args.aggregateAddresses : undefined;
             resourceInputs["alwaysCompareMed"] = args ? args.alwaysCompareMed : undefined;
             resourceInputs["as"] = args ? args.as : undefined;
+            resourceInputs["asString"] = args ? args.asString : undefined;
             resourceInputs["bestpathAsPathIgnore"] = args ? args.bestpathAsPathIgnore : undefined;
             resourceInputs["bestpathCmpConfedAspath"] = args ? args.bestpathCmpConfedAspath : undefined;
             resourceInputs["bestpathCmpRouterid"] = args ? args.bestpathCmpRouterid : undefined;
@@ -519,6 +547,7 @@ export class Bgp extends pulumi.CustomResource {
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["confederationIdentifier"] = args ? args.confederationIdentifier : undefined;
             resourceInputs["confederationPeers"] = args ? args.confederationPeers : undefined;
+            resourceInputs["crossFamilyConditionalAdv"] = args ? args.crossFamilyConditionalAdv : undefined;
             resourceInputs["dampening"] = args ? args.dampening : undefined;
             resourceInputs["dampeningMaxSuppressTime"] = args ? args.dampeningMaxSuppressTime : undefined;
             resourceInputs["dampeningReachabilityHalfLife"] = args ? args.dampeningReachabilityHalfLife : undefined;
@@ -535,6 +564,7 @@ export class Bgp extends pulumi.CustomResource {
             resourceInputs["ebgpMultipath"] = args ? args.ebgpMultipath : undefined;
             resourceInputs["enforceFirstAs"] = args ? args.enforceFirstAs : undefined;
             resourceInputs["fastExternalFailover"] = args ? args.fastExternalFailover : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gracefulEndOnTimer"] = args ? args.gracefulEndOnTimer : undefined;
             resourceInputs["gracefulRestart"] = args ? args.gracefulRestart : undefined;
             resourceInputs["gracefulRestartTime"] = args ? args.gracefulRestartTime : undefined;
@@ -597,9 +627,17 @@ export interface BgpState {
      */
     additionalPathSelectVpnv4?: pulumi.Input<number>;
     /**
+     * Number of additional paths to be selected for each VPNv6 NLRI.
+     */
+    additionalPathSelectVpnv6?: pulumi.Input<number>;
+    /**
      * Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
      */
     additionalPathVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+     */
+    additionalPathVpnv6?: pulumi.Input<string>;
     /**
      * Administrative distance modifications. The structure of `adminDistance` block is documented below.
      */
@@ -620,6 +658,10 @@ export interface BgpState {
      * Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
      */
     as?: pulumi.Input<number>;
+    /**
+     * Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+     */
+    asString?: pulumi.Input<string>;
     /**
      * Enable/disable ignore AS path. Valid values: `enable`, `disable`.
      */
@@ -656,6 +698,10 @@ export interface BgpState {
      * Confederation peers. The structure of `confederationPeers` block is documented below.
      */
     confederationPeers?: pulumi.Input<pulumi.Input<inputs.router.BgpConfederationPeer>[]>;
+    /**
+     * Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+     */
+    crossFamilyConditionalAdv?: pulumi.Input<string>;
     /**
      * Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
      */
@@ -720,6 +766,10 @@ export interface BgpState {
      * Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
      */
     fastExternalFailover?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
      */
@@ -871,9 +921,17 @@ export interface BgpArgs {
      */
     additionalPathSelectVpnv4?: pulumi.Input<number>;
     /**
+     * Number of additional paths to be selected for each VPNv6 NLRI.
+     */
+    additionalPathSelectVpnv6?: pulumi.Input<number>;
+    /**
      * Enable/disable selection of BGP VPNv4 additional paths. Valid values: `enable`, `disable`.
      */
     additionalPathVpnv4?: pulumi.Input<string>;
+    /**
+     * Enable/disable selection of BGP VPNv6 additional paths. Valid values: `enable`, `disable`.
+     */
+    additionalPathVpnv6?: pulumi.Input<string>;
     /**
      * Administrative distance modifications. The structure of `adminDistance` block is documented below.
      */
@@ -894,6 +952,10 @@ export interface BgpArgs {
      * Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
      */
     as: pulumi.Input<number>;
+    /**
+     * Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+     */
+    asString?: pulumi.Input<string>;
     /**
      * Enable/disable ignore AS path. Valid values: `enable`, `disable`.
      */
@@ -930,6 +992,10 @@ export interface BgpArgs {
      * Confederation peers. The structure of `confederationPeers` block is documented below.
      */
     confederationPeers?: pulumi.Input<pulumi.Input<inputs.router.BgpConfederationPeer>[]>;
+    /**
+     * Enable/disable cross address family conditional advertisement. Valid values: `enable`, `disable`.
+     */
+    crossFamilyConditionalAdv?: pulumi.Input<string>;
     /**
      * Enable/disable route-flap dampening. Valid values: `enable`, `disable`.
      */
@@ -994,6 +1060,10 @@ export interface BgpArgs {
      * Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
      */
     fastExternalFailover?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
      */

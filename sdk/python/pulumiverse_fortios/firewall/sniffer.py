@@ -22,6 +22,8 @@ class SnifferArgs:
                  application_list_status: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  av_profile_status: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile_status: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile_status: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -33,6 +35,7 @@ class SnifferArgs:
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  ip_threatfeed_status: Optional[pulumi.Input[str]] = None,
                  ip_threatfeeds: Optional[pulumi.Input[Sequence[pulumi.Input['SnifferIpThreatfeedArgs']]]] = None,
@@ -49,6 +52,7 @@ class SnifferArgs:
                  spamfilter_profile: Optional[pulumi.Input[str]] = None,
                  spamfilter_profile_status: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -61,6 +65,8 @@ class SnifferArgs:
         :param pulumi.Input[str] application_list_status: Enable/disable application control profile. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] av_profile: Name of an existing antivirus profile.
         :param pulumi.Input[str] av_profile_status: Enable/disable antivirus profile. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
+        :param pulumi.Input[str] casb_profile_status: Enable/disable CASB profile. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_profile_status: Enable/disable DLP profile. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
@@ -72,6 +78,7 @@ class SnifferArgs:
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] file_filter_profile_status: Enable/disable file filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: Sniffer ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         :param pulumi.Input[str] ip_threatfeed_status: Enable/disable IP threat feed. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SnifferIpThreatfeedArgs']]] ip_threatfeeds: Name of an existing IP threat feed. The structure of `ip_threatfeed` block is documented below.
@@ -80,7 +87,7 @@ class SnifferArgs:
         :param pulumi.Input[str] ips_sensor_status: Enable/disable IPS sensor. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6: Enable/disable sniffing IPv6 packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
-        :param pulumi.Input[int] max_packet_count: Maximum packet count (1 - 1000000, default = 10000).
+        :param pulumi.Input[int] max_packet_count: Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
         :param pulumi.Input[str] non_ip: Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] port: Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
         :param pulumi.Input[str] protocol: Integer value for the protocol type as defined by IANA (0 - 255).
@@ -88,6 +95,7 @@ class SnifferArgs:
         :param pulumi.Input[str] spamfilter_profile: Name of an existing spam filter profile.
         :param pulumi.Input[str] spamfilter_profile_status: Enable/disable spam filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] status: Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vlan: List of VLANs to sniff.
         :param pulumi.Input[str] webfilter_profile: Name of an existing web filter profile.
@@ -104,6 +112,10 @@ class SnifferArgs:
             pulumi.set(__self__, "av_profile", av_profile)
         if av_profile_status is not None:
             pulumi.set(__self__, "av_profile_status", av_profile_status)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
+        if casb_profile_status is not None:
+            pulumi.set(__self__, "casb_profile_status", casb_profile_status)
         if dlp_profile is not None:
             pulumi.set(__self__, "dlp_profile", dlp_profile)
         if dlp_profile_status is not None:
@@ -126,6 +138,8 @@ class SnifferArgs:
             pulumi.set(__self__, "file_filter_profile_status", file_filter_profile_status)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if ip_threatfeed_status is not None:
@@ -158,6 +172,8 @@ class SnifferArgs:
             pulumi.set(__self__, "spamfilter_profile_status", spamfilter_profile_status)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vlan is not None:
@@ -238,6 +254,30 @@ class SnifferArgs:
     @av_profile_status.setter
     def av_profile_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "av_profile_status", value)
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
+    @pulumi.getter(name="casbProfileStatus")
+    def casb_profile_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable CASB profile. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "casb_profile_status")
+
+    @casb_profile_status.setter
+    def casb_profile_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile_status", value)
 
     @property
     @pulumi.getter(name="dlpProfile")
@@ -370,6 +410,18 @@ class SnifferArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -471,7 +523,7 @@ class SnifferArgs:
     @pulumi.getter(name="maxPacketCount")
     def max_packet_count(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum packet count (1 - 1000000, default = 10000).
+        Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
         """
         return pulumi.get(self, "max_packet_count")
 
@@ -565,6 +617,18 @@ class SnifferArgs:
 
     @property
     @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uuid", value)
+
+    @property
+    @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -620,6 +684,8 @@ class _SnifferState:
                  application_list_status: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  av_profile_status: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile_status: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile_status: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -631,6 +697,7 @@ class _SnifferState:
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_threatfeed_status: Optional[pulumi.Input[str]] = None,
@@ -648,6 +715,7 @@ class _SnifferState:
                  spamfilter_profile: Optional[pulumi.Input[str]] = None,
                  spamfilter_profile_status: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -659,6 +727,8 @@ class _SnifferState:
         :param pulumi.Input[str] application_list_status: Enable/disable application control profile. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] av_profile: Name of an existing antivirus profile.
         :param pulumi.Input[str] av_profile_status: Enable/disable antivirus profile. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
+        :param pulumi.Input[str] casb_profile_status: Enable/disable CASB profile. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_profile_status: Enable/disable DLP profile. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
@@ -670,6 +740,7 @@ class _SnifferState:
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] file_filter_profile_status: Enable/disable file filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: Sniffer ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         :param pulumi.Input[str] interface: Interface name that traffic sniffing will take place on.
         :param pulumi.Input[str] ip_threatfeed_status: Enable/disable IP threat feed. Valid values: `enable`, `disable`.
@@ -679,7 +750,7 @@ class _SnifferState:
         :param pulumi.Input[str] ips_sensor_status: Enable/disable IPS sensor. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6: Enable/disable sniffing IPv6 packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
-        :param pulumi.Input[int] max_packet_count: Maximum packet count (1 - 1000000, default = 10000).
+        :param pulumi.Input[int] max_packet_count: Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
         :param pulumi.Input[str] non_ip: Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] port: Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
         :param pulumi.Input[str] protocol: Integer value for the protocol type as defined by IANA (0 - 255).
@@ -687,6 +758,7 @@ class _SnifferState:
         :param pulumi.Input[str] spamfilter_profile: Name of an existing spam filter profile.
         :param pulumi.Input[str] spamfilter_profile_status: Enable/disable spam filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] status: Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vlan: List of VLANs to sniff.
         :param pulumi.Input[str] webfilter_profile: Name of an existing web filter profile.
@@ -702,6 +774,10 @@ class _SnifferState:
             pulumi.set(__self__, "av_profile", av_profile)
         if av_profile_status is not None:
             pulumi.set(__self__, "av_profile_status", av_profile_status)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
+        if casb_profile_status is not None:
+            pulumi.set(__self__, "casb_profile_status", casb_profile_status)
         if dlp_profile is not None:
             pulumi.set(__self__, "dlp_profile", dlp_profile)
         if dlp_profile_status is not None:
@@ -724,6 +800,8 @@ class _SnifferState:
             pulumi.set(__self__, "file_filter_profile_status", file_filter_profile_status)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if interface is not None:
@@ -758,6 +836,8 @@ class _SnifferState:
             pulumi.set(__self__, "spamfilter_profile_status", spamfilter_profile_status)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vlan is not None:
@@ -826,6 +906,30 @@ class _SnifferState:
     @av_profile_status.setter
     def av_profile_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "av_profile_status", value)
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
+    @pulumi.getter(name="casbProfileStatus")
+    def casb_profile_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable CASB profile. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "casb_profile_status")
+
+    @casb_profile_status.setter
+    def casb_profile_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile_status", value)
 
     @property
     @pulumi.getter(name="dlpProfile")
@@ -958,6 +1062,18 @@ class _SnifferState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1071,7 +1187,7 @@ class _SnifferState:
     @pulumi.getter(name="maxPacketCount")
     def max_packet_count(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum packet count (1 - 1000000, default = 10000).
+        Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
         """
         return pulumi.get(self, "max_packet_count")
 
@@ -1165,6 +1281,18 @@ class _SnifferState:
 
     @property
     @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "uuid", value)
+
+    @property
+    @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -1222,6 +1350,8 @@ class Sniffer(pulumi.CustomResource):
                  application_list_status: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  av_profile_status: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile_status: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile_status: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -1233,6 +1363,7 @@ class Sniffer(pulumi.CustomResource):
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_threatfeed_status: Optional[pulumi.Input[str]] = None,
@@ -1250,6 +1381,7 @@ class Sniffer(pulumi.CustomResource):
                  spamfilter_profile: Optional[pulumi.Input[str]] = None,
                  spamfilter_profile_status: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -1310,6 +1442,8 @@ class Sniffer(pulumi.CustomResource):
         :param pulumi.Input[str] application_list_status: Enable/disable application control profile. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] av_profile: Name of an existing antivirus profile.
         :param pulumi.Input[str] av_profile_status: Enable/disable antivirus profile. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
+        :param pulumi.Input[str] casb_profile_status: Enable/disable CASB profile. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_profile_status: Enable/disable DLP profile. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
@@ -1321,6 +1455,7 @@ class Sniffer(pulumi.CustomResource):
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] file_filter_profile_status: Enable/disable file filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: Sniffer ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         :param pulumi.Input[str] interface: Interface name that traffic sniffing will take place on.
         :param pulumi.Input[str] ip_threatfeed_status: Enable/disable IP threat feed. Valid values: `enable`, `disable`.
@@ -1330,7 +1465,7 @@ class Sniffer(pulumi.CustomResource):
         :param pulumi.Input[str] ips_sensor_status: Enable/disable IPS sensor. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6: Enable/disable sniffing IPv6 packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
-        :param pulumi.Input[int] max_packet_count: Maximum packet count (1 - 1000000, default = 10000).
+        :param pulumi.Input[int] max_packet_count: Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
         :param pulumi.Input[str] non_ip: Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] port: Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
         :param pulumi.Input[str] protocol: Integer value for the protocol type as defined by IANA (0 - 255).
@@ -1338,6 +1473,7 @@ class Sniffer(pulumi.CustomResource):
         :param pulumi.Input[str] spamfilter_profile: Name of an existing spam filter profile.
         :param pulumi.Input[str] spamfilter_profile_status: Enable/disable spam filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] status: Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vlan: List of VLANs to sniff.
         :param pulumi.Input[str] webfilter_profile: Name of an existing web filter profile.
@@ -1417,6 +1553,8 @@ class Sniffer(pulumi.CustomResource):
                  application_list_status: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  av_profile_status: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile_status: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile_status: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -1428,6 +1566,7 @@ class Sniffer(pulumi.CustomResource):
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_threatfeed_status: Optional[pulumi.Input[str]] = None,
@@ -1445,6 +1584,7 @@ class Sniffer(pulumi.CustomResource):
                  spamfilter_profile: Optional[pulumi.Input[str]] = None,
                  spamfilter_profile_status: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -1463,6 +1603,8 @@ class Sniffer(pulumi.CustomResource):
             __props__.__dict__["application_list_status"] = application_list_status
             __props__.__dict__["av_profile"] = av_profile
             __props__.__dict__["av_profile_status"] = av_profile_status
+            __props__.__dict__["casb_profile"] = casb_profile
+            __props__.__dict__["casb_profile_status"] = casb_profile_status
             __props__.__dict__["dlp_profile"] = dlp_profile
             __props__.__dict__["dlp_profile_status"] = dlp_profile_status
             __props__.__dict__["dlp_sensor"] = dlp_sensor
@@ -1474,6 +1616,7 @@ class Sniffer(pulumi.CustomResource):
             __props__.__dict__["file_filter_profile"] = file_filter_profile
             __props__.__dict__["file_filter_profile_status"] = file_filter_profile_status
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["host"] = host
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
@@ -1493,6 +1636,7 @@ class Sniffer(pulumi.CustomResource):
             __props__.__dict__["spamfilter_profile"] = spamfilter_profile
             __props__.__dict__["spamfilter_profile_status"] = spamfilter_profile_status
             __props__.__dict__["status"] = status
+            __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["vlan"] = vlan
             __props__.__dict__["webfilter_profile"] = webfilter_profile
@@ -1512,6 +1656,8 @@ class Sniffer(pulumi.CustomResource):
             application_list_status: Optional[pulumi.Input[str]] = None,
             av_profile: Optional[pulumi.Input[str]] = None,
             av_profile_status: Optional[pulumi.Input[str]] = None,
+            casb_profile: Optional[pulumi.Input[str]] = None,
+            casb_profile_status: Optional[pulumi.Input[str]] = None,
             dlp_profile: Optional[pulumi.Input[str]] = None,
             dlp_profile_status: Optional[pulumi.Input[str]] = None,
             dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -1523,6 +1669,7 @@ class Sniffer(pulumi.CustomResource):
             file_filter_profile: Optional[pulumi.Input[str]] = None,
             file_filter_profile_status: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             host: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ip_threatfeed_status: Optional[pulumi.Input[str]] = None,
@@ -1540,6 +1687,7 @@ class Sniffer(pulumi.CustomResource):
             spamfilter_profile: Optional[pulumi.Input[str]] = None,
             spamfilter_profile_status: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             vlan: Optional[pulumi.Input[str]] = None,
             webfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -1556,6 +1704,8 @@ class Sniffer(pulumi.CustomResource):
         :param pulumi.Input[str] application_list_status: Enable/disable application control profile. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] av_profile: Name of an existing antivirus profile.
         :param pulumi.Input[str] av_profile_status: Enable/disable antivirus profile. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] casb_profile: Name of an existing CASB profile.
+        :param pulumi.Input[str] casb_profile_status: Enable/disable CASB profile. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dlp_profile: Name of an existing DLP profile.
         :param pulumi.Input[str] dlp_profile_status: Enable/disable DLP profile. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
@@ -1567,6 +1717,7 @@ class Sniffer(pulumi.CustomResource):
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] file_filter_profile_status: Enable/disable file filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: Sniffer ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         :param pulumi.Input[str] interface: Interface name that traffic sniffing will take place on.
         :param pulumi.Input[str] ip_threatfeed_status: Enable/disable IP threat feed. Valid values: `enable`, `disable`.
@@ -1576,7 +1727,7 @@ class Sniffer(pulumi.CustomResource):
         :param pulumi.Input[str] ips_sensor_status: Enable/disable IPS sensor. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6: Enable/disable sniffing IPv6 packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
-        :param pulumi.Input[int] max_packet_count: Maximum packet count (1 - 1000000, default = 10000).
+        :param pulumi.Input[int] max_packet_count: Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
         :param pulumi.Input[str] non_ip: Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] port: Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
         :param pulumi.Input[str] protocol: Integer value for the protocol type as defined by IANA (0 - 255).
@@ -1584,6 +1735,7 @@ class Sniffer(pulumi.CustomResource):
         :param pulumi.Input[str] spamfilter_profile: Name of an existing spam filter profile.
         :param pulumi.Input[str] spamfilter_profile_status: Enable/disable spam filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] status: Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vlan: List of VLANs to sniff.
         :param pulumi.Input[str] webfilter_profile: Name of an existing web filter profile.
@@ -1598,6 +1750,8 @@ class Sniffer(pulumi.CustomResource):
         __props__.__dict__["application_list_status"] = application_list_status
         __props__.__dict__["av_profile"] = av_profile
         __props__.__dict__["av_profile_status"] = av_profile_status
+        __props__.__dict__["casb_profile"] = casb_profile
+        __props__.__dict__["casb_profile_status"] = casb_profile_status
         __props__.__dict__["dlp_profile"] = dlp_profile
         __props__.__dict__["dlp_profile_status"] = dlp_profile_status
         __props__.__dict__["dlp_sensor"] = dlp_sensor
@@ -1609,6 +1763,7 @@ class Sniffer(pulumi.CustomResource):
         __props__.__dict__["file_filter_profile"] = file_filter_profile
         __props__.__dict__["file_filter_profile_status"] = file_filter_profile_status
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["host"] = host
         __props__.__dict__["interface"] = interface
         __props__.__dict__["ip_threatfeed_status"] = ip_threatfeed_status
@@ -1626,6 +1781,7 @@ class Sniffer(pulumi.CustomResource):
         __props__.__dict__["spamfilter_profile"] = spamfilter_profile
         __props__.__dict__["spamfilter_profile_status"] = spamfilter_profile_status
         __props__.__dict__["status"] = status
+        __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["vlan"] = vlan
         __props__.__dict__["webfilter_profile"] = webfilter_profile
@@ -1671,6 +1827,22 @@ class Sniffer(pulumi.CustomResource):
         Enable/disable antivirus profile. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "av_profile_status")
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing CASB profile.
+        """
+        return pulumi.get(self, "casb_profile")
+
+    @property
+    @pulumi.getter(name="casbProfileStatus")
+    def casb_profile_status(self) -> pulumi.Output[str]:
+        """
+        Enable/disable CASB profile. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "casb_profile_status")
 
     @property
     @pulumi.getter(name="dlpProfile")
@@ -1761,6 +1933,14 @@ class Sniffer(pulumi.CustomResource):
         return pulumi.get(self, "fosid")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def host(self) -> pulumi.Output[str]:
         """
@@ -1836,7 +2016,7 @@ class Sniffer(pulumi.CustomResource):
     @pulumi.getter(name="maxPacketCount")
     def max_packet_count(self) -> pulumi.Output[int]:
         """
-        Maximum packet count (1 - 1000000, default = 10000).
+        Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
         """
         return pulumi.get(self, "max_packet_count")
 
@@ -1895,6 +2075,14 @@ class Sniffer(pulumi.CustomResource):
         Enable/disable the active status of the sniffer. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def uuid(self) -> pulumi.Output[str]:
+        """
+        Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        """
+        return pulumi.get(self, "uuid")
 
     @property
     @pulumi.getter

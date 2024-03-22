@@ -67,6 +67,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly int AntispamCacheMpercent;
         /// <summary>
+        /// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
+        /// </summary>
+        public readonly int AntispamCacheMpermille;
+        /// <summary>
         /// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         /// </summary>
         public readonly int AntispamCacheTtl;
@@ -103,6 +107,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string AutoFirmwareUpgradeDay;
         /// <summary>
+        /// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
+        /// </summary>
+        public readonly int AutoFirmwareUpgradeDelay;
+        /// <summary>
         /// End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
         /// </summary>
         public readonly int AutoFirmwareUpgradeEndHour;
@@ -127,6 +135,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly int DdnsServerPort;
         /// <summary>
+        /// Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
+        /// </summary>
+        public readonly int FdsLicenseExpiringDays;
+        /// <summary>
         /// Enable/disable use of FortiGuard's anycast network.
         /// </summary>
         public readonly string FortiguardAnycast;
@@ -134,6 +146,10 @@ namespace Pulumiverse.Fortios.System
         /// Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet.
         /// </summary>
         public readonly string FortiguardAnycastSource;
+        /// <summary>
+        /// Enable/disable prompting of automatic patch-level firmware upgrade recommendation.
+        /// </summary>
+        public readonly string GuiPromptAutoUpgrade;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -158,6 +174,10 @@ namespace Pulumiverse.Fortios.System
         /// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
         /// </summary>
         public readonly int OutbreakPreventionCacheMpercent;
+        /// <summary>
+        /// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
+        /// </summary>
+        public readonly int OutbreakPreventionCacheMpermille;
         /// <summary>
         /// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
         /// </summary>
@@ -243,6 +263,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string UpdateBuildProxy;
         /// <summary>
+        /// Enable/disable DLP signature update.
+        /// </summary>
+        public readonly string UpdateDldb;
+        /// <summary>
         /// Enable/disable external resource update.
         /// </summary>
         public readonly string UpdateExtdb;
@@ -302,6 +326,8 @@ namespace Pulumiverse.Fortios.System
 
             int antispamCacheMpercent,
 
+            int antispamCacheMpermille,
+
             int antispamCacheTtl,
 
             int antispamExpiration,
@@ -320,6 +346,8 @@ namespace Pulumiverse.Fortios.System
 
             string autoFirmwareUpgradeDay,
 
+            int autoFirmwareUpgradeDelay,
+
             int autoFirmwareUpgradeEndHour,
 
             int autoFirmwareUpgradeStartHour,
@@ -332,9 +360,13 @@ namespace Pulumiverse.Fortios.System
 
             int ddnsServerPort,
 
+            int fdsLicenseExpiringDays,
+
             string fortiguardAnycast,
 
             string fortiguardAnycastSource,
+
+            string guiPromptAutoUpgrade,
 
             string id,
 
@@ -347,6 +379,8 @@ namespace Pulumiverse.Fortios.System
             string outbreakPreventionCache,
 
             int outbreakPreventionCacheMpercent,
+
+            int outbreakPreventionCacheMpermille,
 
             int outbreakPreventionCacheTtl,
 
@@ -390,6 +424,8 @@ namespace Pulumiverse.Fortios.System
 
             string updateBuildProxy,
 
+            string updateDldb,
+
             string updateExtdb,
 
             string updateFfdb,
@@ -420,6 +456,7 @@ namespace Pulumiverse.Fortios.System
         {
             AntispamCache = antispamCache;
             AntispamCacheMpercent = antispamCacheMpercent;
+            AntispamCacheMpermille = antispamCacheMpermille;
             AntispamCacheTtl = antispamCacheTtl;
             AntispamExpiration = antispamExpiration;
             AntispamForceOff = antispamForceOff;
@@ -429,20 +466,24 @@ namespace Pulumiverse.Fortios.System
             AnycastSdnsServerPort = anycastSdnsServerPort;
             AutoFirmwareUpgrade = autoFirmwareUpgrade;
             AutoFirmwareUpgradeDay = autoFirmwareUpgradeDay;
+            AutoFirmwareUpgradeDelay = autoFirmwareUpgradeDelay;
             AutoFirmwareUpgradeEndHour = autoFirmwareUpgradeEndHour;
             AutoFirmwareUpgradeStartHour = autoFirmwareUpgradeStartHour;
             AutoJoinForticloud = autoJoinForticloud;
             DdnsServerIp = ddnsServerIp;
             DdnsServerIp6 = ddnsServerIp6;
             DdnsServerPort = ddnsServerPort;
+            FdsLicenseExpiringDays = fdsLicenseExpiringDays;
             FortiguardAnycast = fortiguardAnycast;
             FortiguardAnycastSource = fortiguardAnycastSource;
+            GuiPromptAutoUpgrade = guiPromptAutoUpgrade;
             Id = id;
             Interface = @interface;
             InterfaceSelectMethod = interfaceSelectMethod;
             LoadBalanceServers = loadBalanceServers;
             OutbreakPreventionCache = outbreakPreventionCache;
             OutbreakPreventionCacheMpercent = outbreakPreventionCacheMpercent;
+            OutbreakPreventionCacheMpermille = outbreakPreventionCacheMpermille;
             OutbreakPreventionCacheTtl = outbreakPreventionCacheTtl;
             OutbreakPreventionExpiration = outbreakPreventionExpiration;
             OutbreakPreventionForceOff = outbreakPreventionForceOff;
@@ -464,6 +505,7 @@ namespace Pulumiverse.Fortios.System
             SourceIp = sourceIp;
             SourceIp6 = sourceIp6;
             UpdateBuildProxy = updateBuildProxy;
+            UpdateDldb = updateDldb;
             UpdateExtdb = updateExtdb;
             UpdateFfdb = updateFfdb;
             UpdateServerLocation = updateServerLocation;

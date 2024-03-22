@@ -45,6 +45,8 @@ type Sensor struct {
 	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
 	// IPS sensor filter. The structure of `filter` block is documented below.
 	Filters SensorFilterArrayOutput `pulumi:"filters"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Sensor name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// IPS override rule. The structure of `override` block is documented below.
@@ -99,6 +101,8 @@ type sensorState struct {
 	ExtendedLog *string `pulumi:"extendedLog"`
 	// IPS sensor filter. The structure of `filter` block is documented below.
 	Filters []SensorFilter `pulumi:"filters"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Sensor name.
 	Name *string `pulumi:"name"`
 	// IPS override rule. The structure of `override` block is documented below.
@@ -124,6 +128,8 @@ type SensorState struct {
 	ExtendedLog pulumi.StringPtrInput
 	// IPS sensor filter. The structure of `filter` block is documented below.
 	Filters SensorFilterArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Sensor name.
 	Name pulumi.StringPtrInput
 	// IPS override rule. The structure of `override` block is documented below.
@@ -153,6 +159,8 @@ type sensorArgs struct {
 	ExtendedLog *string `pulumi:"extendedLog"`
 	// IPS sensor filter. The structure of `filter` block is documented below.
 	Filters []SensorFilter `pulumi:"filters"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Sensor name.
 	Name *string `pulumi:"name"`
 	// IPS override rule. The structure of `override` block is documented below.
@@ -179,6 +187,8 @@ type SensorArgs struct {
 	ExtendedLog pulumi.StringPtrInput
 	// IPS sensor filter. The structure of `filter` block is documented below.
 	Filters SensorFilterArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Sensor name.
 	Name pulumi.StringPtrInput
 	// IPS override rule. The structure of `override` block is documented below.
@@ -306,6 +316,11 @@ func (o SensorOutput) ExtendedLog() pulumi.StringOutput {
 // IPS sensor filter. The structure of `filter` block is documented below.
 func (o SensorOutput) Filters() SensorFilterArrayOutput {
 	return o.ApplyT(func(v *Sensor) SensorFilterArrayOutput { return v.Filters }).(SensorFilterArrayOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SensorOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Sensor) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Sensor name.

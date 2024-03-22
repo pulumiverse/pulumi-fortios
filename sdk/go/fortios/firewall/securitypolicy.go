@@ -99,10 +99,14 @@ type Securitypolicy struct {
 	Applications SecuritypolicyApplicationArrayOutput `pulumi:"applications"`
 	// Name of an existing Antivirus profile.
 	AvProfile pulumi.StringOutput `pulumi:"avProfile"`
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringOutput `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringOutput `pulumi:"cifsProfile"`
 	// Comment.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile pulumi.StringOutput `pulumi:"diameterFilterProfile"`
 	// Name of an existing DLP profile.
 	DlpProfile pulumi.StringOutput `pulumi:"dlpProfile"`
 	// Name of an existing DLP sensor.
@@ -111,6 +115,8 @@ type Securitypolicy struct {
 	DnsfilterProfile pulumi.StringOutput `pulumi:"dnsfilterProfile"`
 	// Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
 	Dstaddr4s SecuritypolicyDstaddr4ArrayOutput `pulumi:"dstaddr4s"`
+	// When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+	Dstaddr6Negate pulumi.StringOutput `pulumi:"dstaddr6Negate"`
 	// Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
 	Dstaddr6s SecuritypolicyDstaddr6ArrayOutput `pulumi:"dstaddr6s"`
 	// When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
@@ -129,6 +135,8 @@ type Securitypolicy struct {
 	FileFilterProfile pulumi.StringOutput `pulumi:"fileFilterProfile"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups SecuritypolicyFssoGroupArrayOutput `pulumi:"fssoGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups SecuritypolicyGroupArrayOutput `pulumi:"groups"`
 	// Name of an existing ICAP profile.
@@ -187,6 +195,8 @@ type Securitypolicy struct {
 	InternetServiceSrcNegate pulumi.StringOutput `pulumi:"internetServiceSrcNegate"`
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter pulumi.StringOutput `pulumi:"ipsVoipFilter"`
 	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
 	LearningMode pulumi.StringOutput `pulumi:"learningMode"`
 	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
@@ -219,6 +229,8 @@ type Securitypolicy struct {
 	Services SecuritypolicyServiceArrayOutput `pulumi:"services"`
 	// Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
 	Srcaddr4s SecuritypolicySrcaddr4ArrayOutput `pulumi:"srcaddr4s"`
+	// When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+	Srcaddr6Negate pulumi.StringOutput `pulumi:"srcaddr6Negate"`
 	// Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
 	Srcaddr6s SecuritypolicySrcaddr6ArrayOutput `pulumi:"srcaddr6s"`
 	// When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
@@ -235,6 +247,8 @@ type Securitypolicy struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// URL category ID list. The structure of `urlCategory` block is documented below.
 	UrlCategories SecuritypolicyUrlCategoryArrayOutput `pulumi:"urlCategories"`
+	// URL categories or groups.
+	UrlCategoryUnitary pulumi.StringOutput `pulumi:"urlCategoryUnitary"`
 	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
 	Users SecuritypolicyUserArrayOutput `pulumi:"users"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -243,7 +257,9 @@ type Securitypolicy struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringOutput `pulumi:"videofilterProfile"`
-	// Name of an existing VoIP profile.
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile pulumi.StringOutput `pulumi:"virtualPatchProfile"`
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile pulumi.StringOutput `pulumi:"voipProfile"`
 	// Name of an existing Web filter profile.
 	WebfilterProfile pulumi.StringOutput `pulumi:"webfilterProfile"`
@@ -291,10 +307,14 @@ type securitypolicyState struct {
 	Applications []SecuritypolicyApplication `pulumi:"applications"`
 	// Name of an existing Antivirus profile.
 	AvProfile *string `pulumi:"avProfile"`
+	// Name of an existing CASB profile.
+	CasbProfile *string `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile *string `pulumi:"cifsProfile"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile *string `pulumi:"diameterFilterProfile"`
 	// Name of an existing DLP profile.
 	DlpProfile *string `pulumi:"dlpProfile"`
 	// Name of an existing DLP sensor.
@@ -303,6 +323,8 @@ type securitypolicyState struct {
 	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
 	// Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
 	Dstaddr4s []SecuritypolicyDstaddr4 `pulumi:"dstaddr4s"`
+	// When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+	Dstaddr6Negate *string `pulumi:"dstaddr6Negate"`
 	// Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
 	Dstaddr6s []SecuritypolicyDstaddr6 `pulumi:"dstaddr6s"`
 	// When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
@@ -321,6 +343,8 @@ type securitypolicyState struct {
 	FileFilterProfile *string `pulumi:"fileFilterProfile"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups []SecuritypolicyFssoGroup `pulumi:"fssoGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups []SecuritypolicyGroup `pulumi:"groups"`
 	// Name of an existing ICAP profile.
@@ -379,6 +403,8 @@ type securitypolicyState struct {
 	InternetServiceSrcNegate *string `pulumi:"internetServiceSrcNegate"`
 	// Name of an existing IPS sensor.
 	IpsSensor *string `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter *string `pulumi:"ipsVoipFilter"`
 	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
 	LearningMode *string `pulumi:"learningMode"`
 	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
@@ -411,6 +437,8 @@ type securitypolicyState struct {
 	Services []SecuritypolicyService `pulumi:"services"`
 	// Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
 	Srcaddr4s []SecuritypolicySrcaddr4 `pulumi:"srcaddr4s"`
+	// When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+	Srcaddr6Negate *string `pulumi:"srcaddr6Negate"`
 	// Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
 	Srcaddr6s []SecuritypolicySrcaddr6 `pulumi:"srcaddr6s"`
 	// When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
@@ -427,6 +455,8 @@ type securitypolicyState struct {
 	Status *string `pulumi:"status"`
 	// URL category ID list. The structure of `urlCategory` block is documented below.
 	UrlCategories []SecuritypolicyUrlCategory `pulumi:"urlCategories"`
+	// URL categories or groups.
+	UrlCategoryUnitary *string `pulumi:"urlCategoryUnitary"`
 	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
 	Users []SecuritypolicyUser `pulumi:"users"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -435,7 +465,9 @@ type securitypolicyState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile *string `pulumi:"videofilterProfile"`
-	// Name of an existing VoIP profile.
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile *string `pulumi:"virtualPatchProfile"`
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile *string `pulumi:"voipProfile"`
 	// Name of an existing Web filter profile.
 	WebfilterProfile *string `pulumi:"webfilterProfile"`
@@ -454,10 +486,14 @@ type SecuritypolicyState struct {
 	Applications SecuritypolicyApplicationArrayInput
 	// Name of an existing Antivirus profile.
 	AvProfile pulumi.StringPtrInput
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringPtrInput
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile pulumi.StringPtrInput
 	// Name of an existing DLP profile.
 	DlpProfile pulumi.StringPtrInput
 	// Name of an existing DLP sensor.
@@ -466,6 +502,8 @@ type SecuritypolicyState struct {
 	DnsfilterProfile pulumi.StringPtrInput
 	// Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
 	Dstaddr4s SecuritypolicyDstaddr4ArrayInput
+	// When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+	Dstaddr6Negate pulumi.StringPtrInput
 	// Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
 	Dstaddr6s SecuritypolicyDstaddr6ArrayInput
 	// When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
@@ -484,6 +522,8 @@ type SecuritypolicyState struct {
 	FileFilterProfile pulumi.StringPtrInput
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups SecuritypolicyFssoGroupArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups SecuritypolicyGroupArrayInput
 	// Name of an existing ICAP profile.
@@ -542,6 +582,8 @@ type SecuritypolicyState struct {
 	InternetServiceSrcNegate pulumi.StringPtrInput
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringPtrInput
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter pulumi.StringPtrInput
 	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
 	LearningMode pulumi.StringPtrInput
 	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
@@ -574,6 +616,8 @@ type SecuritypolicyState struct {
 	Services SecuritypolicyServiceArrayInput
 	// Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
 	Srcaddr4s SecuritypolicySrcaddr4ArrayInput
+	// When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+	Srcaddr6Negate pulumi.StringPtrInput
 	// Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
 	Srcaddr6s SecuritypolicySrcaddr6ArrayInput
 	// When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
@@ -590,6 +634,8 @@ type SecuritypolicyState struct {
 	Status pulumi.StringPtrInput
 	// URL category ID list. The structure of `urlCategory` block is documented below.
 	UrlCategories SecuritypolicyUrlCategoryArrayInput
+	// URL categories or groups.
+	UrlCategoryUnitary pulumi.StringPtrInput
 	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
 	Users SecuritypolicyUserArrayInput
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -598,7 +644,9 @@ type SecuritypolicyState struct {
 	Vdomparam pulumi.StringPtrInput
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringPtrInput
-	// Name of an existing VoIP profile.
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile pulumi.StringPtrInput
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile pulumi.StringPtrInput
 	// Name of an existing Web filter profile.
 	WebfilterProfile pulumi.StringPtrInput
@@ -621,10 +669,14 @@ type securitypolicyArgs struct {
 	Applications []SecuritypolicyApplication `pulumi:"applications"`
 	// Name of an existing Antivirus profile.
 	AvProfile *string `pulumi:"avProfile"`
+	// Name of an existing CASB profile.
+	CasbProfile *string `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile *string `pulumi:"cifsProfile"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile *string `pulumi:"diameterFilterProfile"`
 	// Name of an existing DLP profile.
 	DlpProfile *string `pulumi:"dlpProfile"`
 	// Name of an existing DLP sensor.
@@ -633,6 +685,8 @@ type securitypolicyArgs struct {
 	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
 	// Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
 	Dstaddr4s []SecuritypolicyDstaddr4 `pulumi:"dstaddr4s"`
+	// When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+	Dstaddr6Negate *string `pulumi:"dstaddr6Negate"`
 	// Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
 	Dstaddr6s []SecuritypolicyDstaddr6 `pulumi:"dstaddr6s"`
 	// When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
@@ -651,6 +705,8 @@ type securitypolicyArgs struct {
 	FileFilterProfile *string `pulumi:"fileFilterProfile"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups []SecuritypolicyFssoGroup `pulumi:"fssoGroups"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups []SecuritypolicyGroup `pulumi:"groups"`
 	// Name of an existing ICAP profile.
@@ -709,6 +765,8 @@ type securitypolicyArgs struct {
 	InternetServiceSrcNegate *string `pulumi:"internetServiceSrcNegate"`
 	// Name of an existing IPS sensor.
 	IpsSensor *string `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter *string `pulumi:"ipsVoipFilter"`
 	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
 	LearningMode *string `pulumi:"learningMode"`
 	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
@@ -741,6 +799,8 @@ type securitypolicyArgs struct {
 	Services []SecuritypolicyService `pulumi:"services"`
 	// Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
 	Srcaddr4s []SecuritypolicySrcaddr4 `pulumi:"srcaddr4s"`
+	// When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+	Srcaddr6Negate *string `pulumi:"srcaddr6Negate"`
 	// Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
 	Srcaddr6s []SecuritypolicySrcaddr6 `pulumi:"srcaddr6s"`
 	// When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
@@ -757,6 +817,8 @@ type securitypolicyArgs struct {
 	Status *string `pulumi:"status"`
 	// URL category ID list. The structure of `urlCategory` block is documented below.
 	UrlCategories []SecuritypolicyUrlCategory `pulumi:"urlCategories"`
+	// URL categories or groups.
+	UrlCategoryUnitary *string `pulumi:"urlCategoryUnitary"`
 	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
 	Users []SecuritypolicyUser `pulumi:"users"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -765,7 +827,9 @@ type securitypolicyArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile *string `pulumi:"videofilterProfile"`
-	// Name of an existing VoIP profile.
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile *string `pulumi:"virtualPatchProfile"`
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile *string `pulumi:"voipProfile"`
 	// Name of an existing Web filter profile.
 	WebfilterProfile *string `pulumi:"webfilterProfile"`
@@ -785,10 +849,14 @@ type SecuritypolicyArgs struct {
 	Applications SecuritypolicyApplicationArrayInput
 	// Name of an existing Antivirus profile.
 	AvProfile pulumi.StringPtrInput
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringPtrInput
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile pulumi.StringPtrInput
 	// Name of an existing DLP profile.
 	DlpProfile pulumi.StringPtrInput
 	// Name of an existing DLP sensor.
@@ -797,6 +865,8 @@ type SecuritypolicyArgs struct {
 	DnsfilterProfile pulumi.StringPtrInput
 	// Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
 	Dstaddr4s SecuritypolicyDstaddr4ArrayInput
+	// When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+	Dstaddr6Negate pulumi.StringPtrInput
 	// Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
 	Dstaddr6s SecuritypolicyDstaddr6ArrayInput
 	// When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
@@ -815,6 +885,8 @@ type SecuritypolicyArgs struct {
 	FileFilterProfile pulumi.StringPtrInput
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups SecuritypolicyFssoGroupArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups SecuritypolicyGroupArrayInput
 	// Name of an existing ICAP profile.
@@ -873,6 +945,8 @@ type SecuritypolicyArgs struct {
 	InternetServiceSrcNegate pulumi.StringPtrInput
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringPtrInput
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter pulumi.StringPtrInput
 	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
 	LearningMode pulumi.StringPtrInput
 	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
@@ -905,6 +979,8 @@ type SecuritypolicyArgs struct {
 	Services SecuritypolicyServiceArrayInput
 	// Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
 	Srcaddr4s SecuritypolicySrcaddr4ArrayInput
+	// When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+	Srcaddr6Negate pulumi.StringPtrInput
 	// Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
 	Srcaddr6s SecuritypolicySrcaddr6ArrayInput
 	// When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
@@ -921,6 +997,8 @@ type SecuritypolicyArgs struct {
 	Status pulumi.StringPtrInput
 	// URL category ID list. The structure of `urlCategory` block is documented below.
 	UrlCategories SecuritypolicyUrlCategoryArrayInput
+	// URL categories or groups.
+	UrlCategoryUnitary pulumi.StringPtrInput
 	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
 	Users SecuritypolicyUserArrayInput
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -929,7 +1007,9 @@ type SecuritypolicyArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringPtrInput
-	// Name of an existing VoIP profile.
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile pulumi.StringPtrInput
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile pulumi.StringPtrInput
 	// Name of an existing Web filter profile.
 	WebfilterProfile pulumi.StringPtrInput
@@ -1052,6 +1132,11 @@ func (o SecuritypolicyOutput) AvProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.AvProfile }).(pulumi.StringOutput)
 }
 
+// Name of an existing CASB profile.
+func (o SecuritypolicyOutput) CasbProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.CasbProfile }).(pulumi.StringOutput)
+}
+
 // Name of an existing CIFS profile.
 func (o SecuritypolicyOutput) CifsProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.CifsProfile }).(pulumi.StringOutput)
@@ -1060,6 +1145,11 @@ func (o SecuritypolicyOutput) CifsProfile() pulumi.StringOutput {
 // Comment.
 func (o SecuritypolicyOutput) Comments() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Securitypolicy) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+// Name of an existing Diameter filter profile.
+func (o SecuritypolicyOutput) DiameterFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.DiameterFilterProfile }).(pulumi.StringOutput)
 }
 
 // Name of an existing DLP profile.
@@ -1080,6 +1170,11 @@ func (o SecuritypolicyOutput) DnsfilterProfile() pulumi.StringOutput {
 // Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
 func (o SecuritypolicyOutput) Dstaddr4s() SecuritypolicyDstaddr4ArrayOutput {
 	return o.ApplyT(func(v *Securitypolicy) SecuritypolicyDstaddr4ArrayOutput { return v.Dstaddr4s }).(SecuritypolicyDstaddr4ArrayOutput)
+}
+
+// When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+func (o SecuritypolicyOutput) Dstaddr6Negate() pulumi.StringOutput {
+	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.Dstaddr6Negate }).(pulumi.StringOutput)
 }
 
 // Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
@@ -1125,6 +1220,11 @@ func (o SecuritypolicyOutput) FileFilterProfile() pulumi.StringOutput {
 // Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 func (o SecuritypolicyOutput) FssoGroups() SecuritypolicyFssoGroupArrayOutput {
 	return o.ApplyT(func(v *Securitypolicy) SecuritypolicyFssoGroupArrayOutput { return v.FssoGroups }).(SecuritypolicyFssoGroupArrayOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SecuritypolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Securitypolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
@@ -1298,6 +1398,11 @@ func (o SecuritypolicyOutput) IpsSensor() pulumi.StringOutput {
 	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
 }
 
+// Name of an existing VoIP (ips) profile.
+func (o SecuritypolicyOutput) IpsVoipFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.IpsVoipFilter }).(pulumi.StringOutput)
+}
+
 // Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
 func (o SecuritypolicyOutput) LearningMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.LearningMode }).(pulumi.StringOutput)
@@ -1378,6 +1483,11 @@ func (o SecuritypolicyOutput) Srcaddr4s() SecuritypolicySrcaddr4ArrayOutput {
 	return o.ApplyT(func(v *Securitypolicy) SecuritypolicySrcaddr4ArrayOutput { return v.Srcaddr4s }).(SecuritypolicySrcaddr4ArrayOutput)
 }
 
+// When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+func (o SecuritypolicyOutput) Srcaddr6Negate() pulumi.StringOutput {
+	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.Srcaddr6Negate }).(pulumi.StringOutput)
+}
+
 // Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
 func (o SecuritypolicyOutput) Srcaddr6s() SecuritypolicySrcaddr6ArrayOutput {
 	return o.ApplyT(func(v *Securitypolicy) SecuritypolicySrcaddr6ArrayOutput { return v.Srcaddr6s }).(SecuritypolicySrcaddr6ArrayOutput)
@@ -1418,6 +1528,11 @@ func (o SecuritypolicyOutput) UrlCategories() SecuritypolicyUrlCategoryArrayOutp
 	return o.ApplyT(func(v *Securitypolicy) SecuritypolicyUrlCategoryArrayOutput { return v.UrlCategories }).(SecuritypolicyUrlCategoryArrayOutput)
 }
 
+// URL categories or groups.
+func (o SecuritypolicyOutput) UrlCategoryUnitary() pulumi.StringOutput {
+	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.UrlCategoryUnitary }).(pulumi.StringOutput)
+}
+
 // Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
 func (o SecuritypolicyOutput) Users() SecuritypolicyUserArrayOutput {
 	return o.ApplyT(func(v *Securitypolicy) SecuritypolicyUserArrayOutput { return v.Users }).(SecuritypolicyUserArrayOutput)
@@ -1438,7 +1553,12 @@ func (o SecuritypolicyOutput) VideofilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.VideofilterProfile }).(pulumi.StringOutput)
 }
 
-// Name of an existing VoIP profile.
+// Name of an existing virtual-patch profile.
+func (o SecuritypolicyOutput) VirtualPatchProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.VirtualPatchProfile }).(pulumi.StringOutput)
+}
+
+// Name of an existing VoIP (voipd) profile.
 func (o SecuritypolicyOutput) VoipProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.VoipProfile }).(pulumi.StringOutput)
 }

@@ -21,6 +21,7 @@ class ObjecttaggingArgs:
                  color: Optional[pulumi.Input[int]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  multiple: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['ObjecttaggingTagArgs']]]] = None,
@@ -32,6 +33,7 @@ class ObjecttaggingArgs:
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] device: Device. Valid values: `disable`, `mandatory`, `optional`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Interface. Valid values: `disable`, `mandatory`, `optional`.
         :param pulumi.Input[str] multiple: Allow multiple tag selection. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['ObjecttaggingTagArgs']]] tags: Tags. The structure of `tags` block is documented below.
@@ -47,6 +49,8 @@ class ObjecttaggingArgs:
             pulumi.set(__self__, "device", device)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if multiple is not None:
@@ -115,6 +119,18 @@ class ObjecttaggingArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -173,6 +189,7 @@ class _ObjecttaggingState:
                  color: Optional[pulumi.Input[int]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  multiple: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['ObjecttaggingTagArgs']]]] = None,
@@ -184,6 +201,7 @@ class _ObjecttaggingState:
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] device: Device. Valid values: `disable`, `mandatory`, `optional`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Interface. Valid values: `disable`, `mandatory`, `optional`.
         :param pulumi.Input[str] multiple: Allow multiple tag selection. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['ObjecttaggingTagArgs']]] tags: Tags. The structure of `tags` block is documented below.
@@ -199,6 +217,8 @@ class _ObjecttaggingState:
             pulumi.set(__self__, "device", device)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if multiple is not None:
@@ -267,6 +287,18 @@ class _ObjecttaggingState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -327,6 +359,7 @@ class Objecttagging(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  multiple: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjecttaggingTagArgs']]]]] = None,
@@ -377,6 +410,7 @@ class Objecttagging(pulumi.CustomResource):
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] device: Device. Valid values: `disable`, `mandatory`, `optional`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Interface. Valid values: `disable`, `mandatory`, `optional`.
         :param pulumi.Input[str] multiple: Allow multiple tag selection. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjecttaggingTagArgs']]]] tags: Tags. The structure of `tags` block is documented below.
@@ -446,6 +480,7 @@ class Objecttagging(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  multiple: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjecttaggingTagArgs']]]]] = None,
@@ -464,6 +499,7 @@ class Objecttagging(pulumi.CustomResource):
             __props__.__dict__["color"] = color
             __props__.__dict__["device"] = device
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interface"] = interface
             __props__.__dict__["multiple"] = multiple
             __props__.__dict__["tags"] = tags
@@ -483,6 +519,7 @@ class Objecttagging(pulumi.CustomResource):
             color: Optional[pulumi.Input[int]] = None,
             device: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             multiple: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjecttaggingTagArgs']]]]] = None,
@@ -499,6 +536,7 @@ class Objecttagging(pulumi.CustomResource):
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] device: Device. Valid values: `disable`, `mandatory`, `optional`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Interface. Valid values: `disable`, `mandatory`, `optional`.
         :param pulumi.Input[str] multiple: Allow multiple tag selection. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjecttaggingTagArgs']]]] tags: Tags. The structure of `tags` block is documented below.
@@ -513,6 +551,7 @@ class Objecttagging(pulumi.CustomResource):
         __props__.__dict__["color"] = color
         __props__.__dict__["device"] = device
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["multiple"] = multiple
         __props__.__dict__["tags"] = tags
@@ -558,6 +597,14 @@ class Objecttagging(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

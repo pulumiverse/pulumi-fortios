@@ -81,6 +81,8 @@ type Address6template struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// IPv6 address prefix.
 	Ip6 pulumi.StringOutput `pulumi:"ip6"`
 	// IPv6 address template name.
@@ -133,6 +135,8 @@ type address6templateState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// IPv6 address prefix.
 	Ip6 *string `pulumi:"ip6"`
 	// IPv6 address template name.
@@ -150,6 +154,8 @@ type Address6templateState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// IPv6 address prefix.
 	Ip6 pulumi.StringPtrInput
 	// IPv6 address template name.
@@ -171,6 +177,8 @@ type address6templateArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// IPv6 address prefix.
 	Ip6 string `pulumi:"ip6"`
 	// IPv6 address template name.
@@ -189,6 +197,8 @@ type Address6templateArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// IPv6 address prefix.
 	Ip6 pulumi.StringInput
 	// IPv6 address template name.
@@ -296,6 +306,11 @@ func (o Address6templateOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Security Fabric global object setting. Valid values: `enable`, `disable`.
 func (o Address6templateOutput) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address6template) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Address6templateOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Address6template) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // IPv6 address prefix.

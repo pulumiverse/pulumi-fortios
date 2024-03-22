@@ -25,8 +25,14 @@ class AccessproxyArgs:
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  empty_cert_action: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  log_blocked_traffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+                 svr_pool_server_max_concurrent_request: Optional[pulumi.Input[int]] = None,
+                 svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
+                 svr_pool_ttl: Optional[pulumi.Input[int]] = None,
                  user_agent_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vip: Optional[pulumi.Input[str]] = None):
@@ -41,8 +47,14 @@ class AccessproxyArgs:
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] empty_cert_action: Action of an empty client certificate.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] http_supported_max_version: Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
         :param pulumi.Input[str] log_blocked_traffic: Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Access Proxy name.
+        :param pulumi.Input[str] svr_pool_multiplex: Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] svr_pool_server_max_concurrent_request: Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+        :param pulumi.Input[int] svr_pool_server_max_request: Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+        :param pulumi.Input[int] svr_pool_ttl: Time-to-live in the server pool for idle connections to servers.
         :param pulumi.Input[str] user_agent_detect: Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vip: Virtual IP name.
@@ -65,10 +77,22 @@ class AccessproxyArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if empty_cert_action is not None:
             pulumi.set(__self__, "empty_cert_action", empty_cert_action)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if http_supported_max_version is not None:
+            pulumi.set(__self__, "http_supported_max_version", http_supported_max_version)
         if log_blocked_traffic is not None:
             pulumi.set(__self__, "log_blocked_traffic", log_blocked_traffic)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if svr_pool_multiplex is not None:
+            pulumi.set(__self__, "svr_pool_multiplex", svr_pool_multiplex)
+        if svr_pool_server_max_concurrent_request is not None:
+            pulumi.set(__self__, "svr_pool_server_max_concurrent_request", svr_pool_server_max_concurrent_request)
+        if svr_pool_server_max_request is not None:
+            pulumi.set(__self__, "svr_pool_server_max_request", svr_pool_server_max_request)
+        if svr_pool_ttl is not None:
+            pulumi.set(__self__, "svr_pool_ttl", svr_pool_ttl)
         if user_agent_detect is not None:
             pulumi.set(__self__, "user_agent_detect", user_agent_detect)
         if vdomparam is not None:
@@ -185,6 +209,30 @@ class AccessproxyArgs:
         pulumi.set(self, "empty_cert_action", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="httpSupportedMaxVersion")
+    def http_supported_max_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+        """
+        return pulumi.get(self, "http_supported_max_version")
+
+    @http_supported_max_version.setter
+    def http_supported_max_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_supported_max_version", value)
+
+    @property
     @pulumi.getter(name="logBlockedTraffic")
     def log_blocked_traffic(self) -> Optional[pulumi.Input[str]]:
         """
@@ -207,6 +255,54 @@ class AccessproxyArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="svrPoolMultiplex")
+    def svr_pool_multiplex(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "svr_pool_multiplex")
+
+    @svr_pool_multiplex.setter
+    def svr_pool_multiplex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "svr_pool_multiplex", value)
+
+    @property
+    @pulumi.getter(name="svrPoolServerMaxConcurrentRequest")
+    def svr_pool_server_max_concurrent_request(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+        """
+        return pulumi.get(self, "svr_pool_server_max_concurrent_request")
+
+    @svr_pool_server_max_concurrent_request.setter
+    def svr_pool_server_max_concurrent_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "svr_pool_server_max_concurrent_request", value)
+
+    @property
+    @pulumi.getter(name="svrPoolServerMaxRequest")
+    def svr_pool_server_max_request(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+        """
+        return pulumi.get(self, "svr_pool_server_max_request")
+
+    @svr_pool_server_max_request.setter
+    def svr_pool_server_max_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "svr_pool_server_max_request", value)
+
+    @property
+    @pulumi.getter(name="svrPoolTtl")
+    def svr_pool_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time-to-live in the server pool for idle connections to servers.
+        """
+        return pulumi.get(self, "svr_pool_ttl")
+
+    @svr_pool_ttl.setter
+    def svr_pool_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "svr_pool_ttl", value)
 
     @property
     @pulumi.getter(name="userAgentDetect")
@@ -257,8 +353,14 @@ class _AccessproxyState:
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  empty_cert_action: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  log_blocked_traffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+                 svr_pool_server_max_concurrent_request: Optional[pulumi.Input[int]] = None,
+                 svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
+                 svr_pool_ttl: Optional[pulumi.Input[int]] = None,
                  user_agent_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vip: Optional[pulumi.Input[str]] = None):
@@ -273,8 +375,14 @@ class _AccessproxyState:
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] empty_cert_action: Action of an empty client certificate.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] http_supported_max_version: Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
         :param pulumi.Input[str] log_blocked_traffic: Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Access Proxy name.
+        :param pulumi.Input[str] svr_pool_multiplex: Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] svr_pool_server_max_concurrent_request: Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+        :param pulumi.Input[int] svr_pool_server_max_request: Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+        :param pulumi.Input[int] svr_pool_ttl: Time-to-live in the server pool for idle connections to servers.
         :param pulumi.Input[str] user_agent_detect: Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vip: Virtual IP name.
@@ -297,10 +405,22 @@ class _AccessproxyState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if empty_cert_action is not None:
             pulumi.set(__self__, "empty_cert_action", empty_cert_action)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if http_supported_max_version is not None:
+            pulumi.set(__self__, "http_supported_max_version", http_supported_max_version)
         if log_blocked_traffic is not None:
             pulumi.set(__self__, "log_blocked_traffic", log_blocked_traffic)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if svr_pool_multiplex is not None:
+            pulumi.set(__self__, "svr_pool_multiplex", svr_pool_multiplex)
+        if svr_pool_server_max_concurrent_request is not None:
+            pulumi.set(__self__, "svr_pool_server_max_concurrent_request", svr_pool_server_max_concurrent_request)
+        if svr_pool_server_max_request is not None:
+            pulumi.set(__self__, "svr_pool_server_max_request", svr_pool_server_max_request)
+        if svr_pool_ttl is not None:
+            pulumi.set(__self__, "svr_pool_ttl", svr_pool_ttl)
         if user_agent_detect is not None:
             pulumi.set(__self__, "user_agent_detect", user_agent_detect)
         if vdomparam is not None:
@@ -417,6 +537,30 @@ class _AccessproxyState:
         pulumi.set(self, "empty_cert_action", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="httpSupportedMaxVersion")
+    def http_supported_max_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+        """
+        return pulumi.get(self, "http_supported_max_version")
+
+    @http_supported_max_version.setter
+    def http_supported_max_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_supported_max_version", value)
+
+    @property
     @pulumi.getter(name="logBlockedTraffic")
     def log_blocked_traffic(self) -> Optional[pulumi.Input[str]]:
         """
@@ -439,6 +583,54 @@ class _AccessproxyState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="svrPoolMultiplex")
+    def svr_pool_multiplex(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "svr_pool_multiplex")
+
+    @svr_pool_multiplex.setter
+    def svr_pool_multiplex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "svr_pool_multiplex", value)
+
+    @property
+    @pulumi.getter(name="svrPoolServerMaxConcurrentRequest")
+    def svr_pool_server_max_concurrent_request(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+        """
+        return pulumi.get(self, "svr_pool_server_max_concurrent_request")
+
+    @svr_pool_server_max_concurrent_request.setter
+    def svr_pool_server_max_concurrent_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "svr_pool_server_max_concurrent_request", value)
+
+    @property
+    @pulumi.getter(name="svrPoolServerMaxRequest")
+    def svr_pool_server_max_request(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+        """
+        return pulumi.get(self, "svr_pool_server_max_request")
+
+    @svr_pool_server_max_request.setter
+    def svr_pool_server_max_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "svr_pool_server_max_request", value)
+
+    @property
+    @pulumi.getter(name="svrPoolTtl")
+    def svr_pool_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time-to-live in the server pool for idle connections to servers.
+        """
+        return pulumi.get(self, "svr_pool_ttl")
+
+    @svr_pool_ttl.setter
+    def svr_pool_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "svr_pool_ttl", value)
 
     @property
     @pulumi.getter(name="userAgentDetect")
@@ -491,8 +683,14 @@ class Accessproxy(pulumi.CustomResource):
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  empty_cert_action: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  log_blocked_traffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+                 svr_pool_server_max_concurrent_request: Optional[pulumi.Input[int]] = None,
+                 svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
+                 svr_pool_ttl: Optional[pulumi.Input[int]] = None,
                  user_agent_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vip: Optional[pulumi.Input[str]] = None,
@@ -529,8 +727,14 @@ class Accessproxy(pulumi.CustomResource):
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] empty_cert_action: Action of an empty client certificate.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] http_supported_max_version: Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
         :param pulumi.Input[str] log_blocked_traffic: Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Access Proxy name.
+        :param pulumi.Input[str] svr_pool_multiplex: Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] svr_pool_server_max_concurrent_request: Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+        :param pulumi.Input[int] svr_pool_server_max_request: Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+        :param pulumi.Input[int] svr_pool_ttl: Time-to-live in the server pool for idle connections to servers.
         :param pulumi.Input[str] user_agent_detect: Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vip: Virtual IP name.
@@ -586,8 +790,14 @@ class Accessproxy(pulumi.CustomResource):
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  empty_cert_action: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  log_blocked_traffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+                 svr_pool_server_max_concurrent_request: Optional[pulumi.Input[int]] = None,
+                 svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
+                 svr_pool_ttl: Optional[pulumi.Input[int]] = None,
                  user_agent_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vip: Optional[pulumi.Input[str]] = None,
@@ -609,8 +819,14 @@ class Accessproxy(pulumi.CustomResource):
             __props__.__dict__["decrypted_traffic_mirror"] = decrypted_traffic_mirror
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["empty_cert_action"] = empty_cert_action
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["http_supported_max_version"] = http_supported_max_version
             __props__.__dict__["log_blocked_traffic"] = log_blocked_traffic
             __props__.__dict__["name"] = name
+            __props__.__dict__["svr_pool_multiplex"] = svr_pool_multiplex
+            __props__.__dict__["svr_pool_server_max_concurrent_request"] = svr_pool_server_max_concurrent_request
+            __props__.__dict__["svr_pool_server_max_request"] = svr_pool_server_max_request
+            __props__.__dict__["svr_pool_ttl"] = svr_pool_ttl
             __props__.__dict__["user_agent_detect"] = user_agent_detect
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["vip"] = vip
@@ -633,8 +849,14 @@ class Accessproxy(pulumi.CustomResource):
             decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             empty_cert_action: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            http_supported_max_version: Optional[pulumi.Input[str]] = None,
             log_blocked_traffic: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+            svr_pool_server_max_concurrent_request: Optional[pulumi.Input[int]] = None,
+            svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
+            svr_pool_ttl: Optional[pulumi.Input[int]] = None,
             user_agent_detect: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             vip: Optional[pulumi.Input[str]] = None) -> 'Accessproxy':
@@ -654,8 +876,14 @@ class Accessproxy(pulumi.CustomResource):
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] empty_cert_action: Action of an empty client certificate.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] http_supported_max_version: Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
         :param pulumi.Input[str] log_blocked_traffic: Enable/disable logging of blocked traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Access Proxy name.
+        :param pulumi.Input[str] svr_pool_multiplex: Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] svr_pool_server_max_concurrent_request: Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+        :param pulumi.Input[int] svr_pool_server_max_request: Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+        :param pulumi.Input[int] svr_pool_ttl: Time-to-live in the server pool for idle connections to servers.
         :param pulumi.Input[str] user_agent_detect: Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vip: Virtual IP name.
@@ -673,8 +901,14 @@ class Accessproxy(pulumi.CustomResource):
         __props__.__dict__["decrypted_traffic_mirror"] = decrypted_traffic_mirror
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["empty_cert_action"] = empty_cert_action
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["http_supported_max_version"] = http_supported_max_version
         __props__.__dict__["log_blocked_traffic"] = log_blocked_traffic
         __props__.__dict__["name"] = name
+        __props__.__dict__["svr_pool_multiplex"] = svr_pool_multiplex
+        __props__.__dict__["svr_pool_server_max_concurrent_request"] = svr_pool_server_max_concurrent_request
+        __props__.__dict__["svr_pool_server_max_request"] = svr_pool_server_max_request
+        __props__.__dict__["svr_pool_ttl"] = svr_pool_ttl
         __props__.__dict__["user_agent_detect"] = user_agent_detect
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["vip"] = vip
@@ -753,6 +987,22 @@ class Accessproxy(pulumi.CustomResource):
         return pulumi.get(self, "empty_cert_action")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="httpSupportedMaxVersion")
+    def http_supported_max_version(self) -> pulumi.Output[str]:
+        """
+        Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+        """
+        return pulumi.get(self, "http_supported_max_version")
+
+    @property
     @pulumi.getter(name="logBlockedTraffic")
     def log_blocked_traffic(self) -> pulumi.Output[str]:
         """
@@ -767,6 +1017,38 @@ class Accessproxy(pulumi.CustomResource):
         Access Proxy name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="svrPoolMultiplex")
+    def svr_pool_multiplex(self) -> pulumi.Output[str]:
+        """
+        Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "svr_pool_multiplex")
+
+    @property
+    @pulumi.getter(name="svrPoolServerMaxConcurrentRequest")
+    def svr_pool_server_max_concurrent_request(self) -> pulumi.Output[int]:
+        """
+        Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
+        """
+        return pulumi.get(self, "svr_pool_server_max_concurrent_request")
+
+    @property
+    @pulumi.getter(name="svrPoolServerMaxRequest")
+    def svr_pool_server_max_request(self) -> pulumi.Output[int]:
+        """
+        Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+        """
+        return pulumi.get(self, "svr_pool_server_max_request")
+
+    @property
+    @pulumi.getter(name="svrPoolTtl")
+    def svr_pool_ttl(self) -> pulumi.Output[int]:
+        """
+        Time-to-live in the server pool for idle connections to servers.
+        """
+        return pulumi.get(self, "svr_pool_ttl")
 
     @property
     @pulumi.getter(name="userAgentDetect")

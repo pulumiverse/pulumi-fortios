@@ -1201,6 +1201,1196 @@ func (o SettingsTunnelIpv6PoolArrayOutput) Index(i pulumi.IntInput) SettingsTunn
 	}).(SettingsTunnelIpv6PoolOutput)
 }
 
+type GetSettingsAuthenticationRule struct {
+	// SSL VPN authentication method restriction.
+	Auth string `pulumi:"auth"`
+	// SSL VPN cipher strength.
+	Cipher string `pulumi:"cipher"`
+	// Enable/disable SSL VPN client certificate restrictive.
+	ClientCert string `pulumi:"clientCert"`
+	// User groups. The structure of `groups` block is documented below.
+	Groups []GetSettingsAuthenticationRuleGroup `pulumi:"groups"`
+	// ID (0 - 4294967295).
+	Id int `pulumi:"id"`
+	// SSL VPN portal.
+	Portal string `pulumi:"portal"`
+	// SSL VPN realm.
+	Realm string `pulumi:"realm"`
+	// Enable/disable negated source IPv6 address match.
+	SourceAddress6Negate string `pulumi:"sourceAddress6Negate"`
+	// IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
+	SourceAddress6s []GetSettingsAuthenticationRuleSourceAddress6 `pulumi:"sourceAddress6s"`
+	// Enable/disable negated source address match.
+	SourceAddressNegate string `pulumi:"sourceAddressNegate"`
+	// Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
+	SourceAddresses []GetSettingsAuthenticationRuleSourceAddress `pulumi:"sourceAddresses"`
+	// SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
+	SourceInterfaces []GetSettingsAuthenticationRuleSourceInterface `pulumi:"sourceInterfaces"`
+	// Name of user peer.
+	UserPeer string `pulumi:"userPeer"`
+	// User name. The structure of `users` block is documented below.
+	Users []GetSettingsAuthenticationRuleUser `pulumi:"users"`
+}
+
+// GetSettingsAuthenticationRuleInput is an input type that accepts GetSettingsAuthenticationRuleArgs and GetSettingsAuthenticationRuleOutput values.
+// You can construct a concrete instance of `GetSettingsAuthenticationRuleInput` via:
+//
+//	GetSettingsAuthenticationRuleArgs{...}
+type GetSettingsAuthenticationRuleInput interface {
+	pulumi.Input
+
+	ToGetSettingsAuthenticationRuleOutput() GetSettingsAuthenticationRuleOutput
+	ToGetSettingsAuthenticationRuleOutputWithContext(context.Context) GetSettingsAuthenticationRuleOutput
+}
+
+type GetSettingsAuthenticationRuleArgs struct {
+	// SSL VPN authentication method restriction.
+	Auth pulumi.StringInput `pulumi:"auth"`
+	// SSL VPN cipher strength.
+	Cipher pulumi.StringInput `pulumi:"cipher"`
+	// Enable/disable SSL VPN client certificate restrictive.
+	ClientCert pulumi.StringInput `pulumi:"clientCert"`
+	// User groups. The structure of `groups` block is documented below.
+	Groups GetSettingsAuthenticationRuleGroupArrayInput `pulumi:"groups"`
+	// ID (0 - 4294967295).
+	Id pulumi.IntInput `pulumi:"id"`
+	// SSL VPN portal.
+	Portal pulumi.StringInput `pulumi:"portal"`
+	// SSL VPN realm.
+	Realm pulumi.StringInput `pulumi:"realm"`
+	// Enable/disable negated source IPv6 address match.
+	SourceAddress6Negate pulumi.StringInput `pulumi:"sourceAddress6Negate"`
+	// IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
+	SourceAddress6s GetSettingsAuthenticationRuleSourceAddress6ArrayInput `pulumi:"sourceAddress6s"`
+	// Enable/disable negated source address match.
+	SourceAddressNegate pulumi.StringInput `pulumi:"sourceAddressNegate"`
+	// Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
+	SourceAddresses GetSettingsAuthenticationRuleSourceAddressArrayInput `pulumi:"sourceAddresses"`
+	// SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
+	SourceInterfaces GetSettingsAuthenticationRuleSourceInterfaceArrayInput `pulumi:"sourceInterfaces"`
+	// Name of user peer.
+	UserPeer pulumi.StringInput `pulumi:"userPeer"`
+	// User name. The structure of `users` block is documented below.
+	Users GetSettingsAuthenticationRuleUserArrayInput `pulumi:"users"`
+}
+
+func (GetSettingsAuthenticationRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsAuthenticationRule)(nil)).Elem()
+}
+
+func (i GetSettingsAuthenticationRuleArgs) ToGetSettingsAuthenticationRuleOutput() GetSettingsAuthenticationRuleOutput {
+	return i.ToGetSettingsAuthenticationRuleOutputWithContext(context.Background())
+}
+
+func (i GetSettingsAuthenticationRuleArgs) ToGetSettingsAuthenticationRuleOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsAuthenticationRuleOutput)
+}
+
+// GetSettingsAuthenticationRuleArrayInput is an input type that accepts GetSettingsAuthenticationRuleArray and GetSettingsAuthenticationRuleArrayOutput values.
+// You can construct a concrete instance of `GetSettingsAuthenticationRuleArrayInput` via:
+//
+//	GetSettingsAuthenticationRuleArray{ GetSettingsAuthenticationRuleArgs{...} }
+type GetSettingsAuthenticationRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetSettingsAuthenticationRuleArrayOutput() GetSettingsAuthenticationRuleArrayOutput
+	ToGetSettingsAuthenticationRuleArrayOutputWithContext(context.Context) GetSettingsAuthenticationRuleArrayOutput
+}
+
+type GetSettingsAuthenticationRuleArray []GetSettingsAuthenticationRuleInput
+
+func (GetSettingsAuthenticationRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsAuthenticationRule)(nil)).Elem()
+}
+
+func (i GetSettingsAuthenticationRuleArray) ToGetSettingsAuthenticationRuleArrayOutput() GetSettingsAuthenticationRuleArrayOutput {
+	return i.ToGetSettingsAuthenticationRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetSettingsAuthenticationRuleArray) ToGetSettingsAuthenticationRuleArrayOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsAuthenticationRuleArrayOutput)
+}
+
+type GetSettingsAuthenticationRuleOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsAuthenticationRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsAuthenticationRule)(nil)).Elem()
+}
+
+func (o GetSettingsAuthenticationRuleOutput) ToGetSettingsAuthenticationRuleOutput() GetSettingsAuthenticationRuleOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleOutput) ToGetSettingsAuthenticationRuleOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleOutput {
+	return o
+}
+
+// SSL VPN authentication method restriction.
+func (o GetSettingsAuthenticationRuleOutput) Auth() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) string { return v.Auth }).(pulumi.StringOutput)
+}
+
+// SSL VPN cipher strength.
+func (o GetSettingsAuthenticationRuleOutput) Cipher() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) string { return v.Cipher }).(pulumi.StringOutput)
+}
+
+// Enable/disable SSL VPN client certificate restrictive.
+func (o GetSettingsAuthenticationRuleOutput) ClientCert() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) string { return v.ClientCert }).(pulumi.StringOutput)
+}
+
+// User groups. The structure of `groups` block is documented below.
+func (o GetSettingsAuthenticationRuleOutput) Groups() GetSettingsAuthenticationRuleGroupArrayOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) []GetSettingsAuthenticationRuleGroup { return v.Groups }).(GetSettingsAuthenticationRuleGroupArrayOutput)
+}
+
+// ID (0 - 4294967295).
+func (o GetSettingsAuthenticationRuleOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// SSL VPN portal.
+func (o GetSettingsAuthenticationRuleOutput) Portal() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) string { return v.Portal }).(pulumi.StringOutput)
+}
+
+// SSL VPN realm.
+func (o GetSettingsAuthenticationRuleOutput) Realm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) string { return v.Realm }).(pulumi.StringOutput)
+}
+
+// Enable/disable negated source IPv6 address match.
+func (o GetSettingsAuthenticationRuleOutput) SourceAddress6Negate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) string { return v.SourceAddress6Negate }).(pulumi.StringOutput)
+}
+
+// IPv6 source address of incoming traffic. The structure of `sourceAddress6` block is documented below.
+func (o GetSettingsAuthenticationRuleOutput) SourceAddress6s() GetSettingsAuthenticationRuleSourceAddress6ArrayOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) []GetSettingsAuthenticationRuleSourceAddress6 {
+		return v.SourceAddress6s
+	}).(GetSettingsAuthenticationRuleSourceAddress6ArrayOutput)
+}
+
+// Enable/disable negated source address match.
+func (o GetSettingsAuthenticationRuleOutput) SourceAddressNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) string { return v.SourceAddressNegate }).(pulumi.StringOutput)
+}
+
+// Source address of incoming traffic. The structure of `sourceAddress` block is documented below.
+func (o GetSettingsAuthenticationRuleOutput) SourceAddresses() GetSettingsAuthenticationRuleSourceAddressArrayOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) []GetSettingsAuthenticationRuleSourceAddress {
+		return v.SourceAddresses
+	}).(GetSettingsAuthenticationRuleSourceAddressArrayOutput)
+}
+
+// SSL VPN source interface of incoming traffic. The structure of `sourceInterface` block is documented below.
+func (o GetSettingsAuthenticationRuleOutput) SourceInterfaces() GetSettingsAuthenticationRuleSourceInterfaceArrayOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) []GetSettingsAuthenticationRuleSourceInterface {
+		return v.SourceInterfaces
+	}).(GetSettingsAuthenticationRuleSourceInterfaceArrayOutput)
+}
+
+// Name of user peer.
+func (o GetSettingsAuthenticationRuleOutput) UserPeer() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) string { return v.UserPeer }).(pulumi.StringOutput)
+}
+
+// User name. The structure of `users` block is documented below.
+func (o GetSettingsAuthenticationRuleOutput) Users() GetSettingsAuthenticationRuleUserArrayOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRule) []GetSettingsAuthenticationRuleUser { return v.Users }).(GetSettingsAuthenticationRuleUserArrayOutput)
+}
+
+type GetSettingsAuthenticationRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsAuthenticationRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsAuthenticationRule)(nil)).Elem()
+}
+
+func (o GetSettingsAuthenticationRuleArrayOutput) ToGetSettingsAuthenticationRuleArrayOutput() GetSettingsAuthenticationRuleArrayOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleArrayOutput) ToGetSettingsAuthenticationRuleArrayOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleArrayOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleArrayOutput) Index(i pulumi.IntInput) GetSettingsAuthenticationRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSettingsAuthenticationRule {
+		return vs[0].([]GetSettingsAuthenticationRule)[vs[1].(int)]
+	}).(GetSettingsAuthenticationRuleOutput)
+}
+
+type GetSettingsAuthenticationRuleGroup struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetSettingsAuthenticationRuleGroupInput is an input type that accepts GetSettingsAuthenticationRuleGroupArgs and GetSettingsAuthenticationRuleGroupOutput values.
+// You can construct a concrete instance of `GetSettingsAuthenticationRuleGroupInput` via:
+//
+//	GetSettingsAuthenticationRuleGroupArgs{...}
+type GetSettingsAuthenticationRuleGroupInput interface {
+	pulumi.Input
+
+	ToGetSettingsAuthenticationRuleGroupOutput() GetSettingsAuthenticationRuleGroupOutput
+	ToGetSettingsAuthenticationRuleGroupOutputWithContext(context.Context) GetSettingsAuthenticationRuleGroupOutput
+}
+
+type GetSettingsAuthenticationRuleGroupArgs struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetSettingsAuthenticationRuleGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsAuthenticationRuleGroup)(nil)).Elem()
+}
+
+func (i GetSettingsAuthenticationRuleGroupArgs) ToGetSettingsAuthenticationRuleGroupOutput() GetSettingsAuthenticationRuleGroupOutput {
+	return i.ToGetSettingsAuthenticationRuleGroupOutputWithContext(context.Background())
+}
+
+func (i GetSettingsAuthenticationRuleGroupArgs) ToGetSettingsAuthenticationRuleGroupOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsAuthenticationRuleGroupOutput)
+}
+
+// GetSettingsAuthenticationRuleGroupArrayInput is an input type that accepts GetSettingsAuthenticationRuleGroupArray and GetSettingsAuthenticationRuleGroupArrayOutput values.
+// You can construct a concrete instance of `GetSettingsAuthenticationRuleGroupArrayInput` via:
+//
+//	GetSettingsAuthenticationRuleGroupArray{ GetSettingsAuthenticationRuleGroupArgs{...} }
+type GetSettingsAuthenticationRuleGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetSettingsAuthenticationRuleGroupArrayOutput() GetSettingsAuthenticationRuleGroupArrayOutput
+	ToGetSettingsAuthenticationRuleGroupArrayOutputWithContext(context.Context) GetSettingsAuthenticationRuleGroupArrayOutput
+}
+
+type GetSettingsAuthenticationRuleGroupArray []GetSettingsAuthenticationRuleGroupInput
+
+func (GetSettingsAuthenticationRuleGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsAuthenticationRuleGroup)(nil)).Elem()
+}
+
+func (i GetSettingsAuthenticationRuleGroupArray) ToGetSettingsAuthenticationRuleGroupArrayOutput() GetSettingsAuthenticationRuleGroupArrayOutput {
+	return i.ToGetSettingsAuthenticationRuleGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetSettingsAuthenticationRuleGroupArray) ToGetSettingsAuthenticationRuleGroupArrayOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsAuthenticationRuleGroupArrayOutput)
+}
+
+type GetSettingsAuthenticationRuleGroupOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsAuthenticationRuleGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsAuthenticationRuleGroup)(nil)).Elem()
+}
+
+func (o GetSettingsAuthenticationRuleGroupOutput) ToGetSettingsAuthenticationRuleGroupOutput() GetSettingsAuthenticationRuleGroupOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleGroupOutput) ToGetSettingsAuthenticationRuleGroupOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleGroupOutput {
+	return o
+}
+
+// Group name.
+func (o GetSettingsAuthenticationRuleGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRuleGroup) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetSettingsAuthenticationRuleGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsAuthenticationRuleGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsAuthenticationRuleGroup)(nil)).Elem()
+}
+
+func (o GetSettingsAuthenticationRuleGroupArrayOutput) ToGetSettingsAuthenticationRuleGroupArrayOutput() GetSettingsAuthenticationRuleGroupArrayOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleGroupArrayOutput) ToGetSettingsAuthenticationRuleGroupArrayOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleGroupArrayOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleGroupArrayOutput) Index(i pulumi.IntInput) GetSettingsAuthenticationRuleGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSettingsAuthenticationRuleGroup {
+		return vs[0].([]GetSettingsAuthenticationRuleGroup)[vs[1].(int)]
+	}).(GetSettingsAuthenticationRuleGroupOutput)
+}
+
+type GetSettingsAuthenticationRuleSourceAddress6 struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetSettingsAuthenticationRuleSourceAddress6Input is an input type that accepts GetSettingsAuthenticationRuleSourceAddress6Args and GetSettingsAuthenticationRuleSourceAddress6Output values.
+// You can construct a concrete instance of `GetSettingsAuthenticationRuleSourceAddress6Input` via:
+//
+//	GetSettingsAuthenticationRuleSourceAddress6Args{...}
+type GetSettingsAuthenticationRuleSourceAddress6Input interface {
+	pulumi.Input
+
+	ToGetSettingsAuthenticationRuleSourceAddress6Output() GetSettingsAuthenticationRuleSourceAddress6Output
+	ToGetSettingsAuthenticationRuleSourceAddress6OutputWithContext(context.Context) GetSettingsAuthenticationRuleSourceAddress6Output
+}
+
+type GetSettingsAuthenticationRuleSourceAddress6Args struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetSettingsAuthenticationRuleSourceAddress6Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsAuthenticationRuleSourceAddress6)(nil)).Elem()
+}
+
+func (i GetSettingsAuthenticationRuleSourceAddress6Args) ToGetSettingsAuthenticationRuleSourceAddress6Output() GetSettingsAuthenticationRuleSourceAddress6Output {
+	return i.ToGetSettingsAuthenticationRuleSourceAddress6OutputWithContext(context.Background())
+}
+
+func (i GetSettingsAuthenticationRuleSourceAddress6Args) ToGetSettingsAuthenticationRuleSourceAddress6OutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleSourceAddress6Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsAuthenticationRuleSourceAddress6Output)
+}
+
+// GetSettingsAuthenticationRuleSourceAddress6ArrayInput is an input type that accepts GetSettingsAuthenticationRuleSourceAddress6Array and GetSettingsAuthenticationRuleSourceAddress6ArrayOutput values.
+// You can construct a concrete instance of `GetSettingsAuthenticationRuleSourceAddress6ArrayInput` via:
+//
+//	GetSettingsAuthenticationRuleSourceAddress6Array{ GetSettingsAuthenticationRuleSourceAddress6Args{...} }
+type GetSettingsAuthenticationRuleSourceAddress6ArrayInput interface {
+	pulumi.Input
+
+	ToGetSettingsAuthenticationRuleSourceAddress6ArrayOutput() GetSettingsAuthenticationRuleSourceAddress6ArrayOutput
+	ToGetSettingsAuthenticationRuleSourceAddress6ArrayOutputWithContext(context.Context) GetSettingsAuthenticationRuleSourceAddress6ArrayOutput
+}
+
+type GetSettingsAuthenticationRuleSourceAddress6Array []GetSettingsAuthenticationRuleSourceAddress6Input
+
+func (GetSettingsAuthenticationRuleSourceAddress6Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsAuthenticationRuleSourceAddress6)(nil)).Elem()
+}
+
+func (i GetSettingsAuthenticationRuleSourceAddress6Array) ToGetSettingsAuthenticationRuleSourceAddress6ArrayOutput() GetSettingsAuthenticationRuleSourceAddress6ArrayOutput {
+	return i.ToGetSettingsAuthenticationRuleSourceAddress6ArrayOutputWithContext(context.Background())
+}
+
+func (i GetSettingsAuthenticationRuleSourceAddress6Array) ToGetSettingsAuthenticationRuleSourceAddress6ArrayOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleSourceAddress6ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsAuthenticationRuleSourceAddress6ArrayOutput)
+}
+
+type GetSettingsAuthenticationRuleSourceAddress6Output struct{ *pulumi.OutputState }
+
+func (GetSettingsAuthenticationRuleSourceAddress6Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsAuthenticationRuleSourceAddress6)(nil)).Elem()
+}
+
+func (o GetSettingsAuthenticationRuleSourceAddress6Output) ToGetSettingsAuthenticationRuleSourceAddress6Output() GetSettingsAuthenticationRuleSourceAddress6Output {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleSourceAddress6Output) ToGetSettingsAuthenticationRuleSourceAddress6OutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleSourceAddress6Output {
+	return o
+}
+
+// Group name.
+func (o GetSettingsAuthenticationRuleSourceAddress6Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRuleSourceAddress6) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetSettingsAuthenticationRuleSourceAddress6ArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsAuthenticationRuleSourceAddress6ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsAuthenticationRuleSourceAddress6)(nil)).Elem()
+}
+
+func (o GetSettingsAuthenticationRuleSourceAddress6ArrayOutput) ToGetSettingsAuthenticationRuleSourceAddress6ArrayOutput() GetSettingsAuthenticationRuleSourceAddress6ArrayOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleSourceAddress6ArrayOutput) ToGetSettingsAuthenticationRuleSourceAddress6ArrayOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleSourceAddress6ArrayOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleSourceAddress6ArrayOutput) Index(i pulumi.IntInput) GetSettingsAuthenticationRuleSourceAddress6Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSettingsAuthenticationRuleSourceAddress6 {
+		return vs[0].([]GetSettingsAuthenticationRuleSourceAddress6)[vs[1].(int)]
+	}).(GetSettingsAuthenticationRuleSourceAddress6Output)
+}
+
+type GetSettingsAuthenticationRuleSourceAddress struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetSettingsAuthenticationRuleSourceAddressInput is an input type that accepts GetSettingsAuthenticationRuleSourceAddressArgs and GetSettingsAuthenticationRuleSourceAddressOutput values.
+// You can construct a concrete instance of `GetSettingsAuthenticationRuleSourceAddressInput` via:
+//
+//	GetSettingsAuthenticationRuleSourceAddressArgs{...}
+type GetSettingsAuthenticationRuleSourceAddressInput interface {
+	pulumi.Input
+
+	ToGetSettingsAuthenticationRuleSourceAddressOutput() GetSettingsAuthenticationRuleSourceAddressOutput
+	ToGetSettingsAuthenticationRuleSourceAddressOutputWithContext(context.Context) GetSettingsAuthenticationRuleSourceAddressOutput
+}
+
+type GetSettingsAuthenticationRuleSourceAddressArgs struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetSettingsAuthenticationRuleSourceAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsAuthenticationRuleSourceAddress)(nil)).Elem()
+}
+
+func (i GetSettingsAuthenticationRuleSourceAddressArgs) ToGetSettingsAuthenticationRuleSourceAddressOutput() GetSettingsAuthenticationRuleSourceAddressOutput {
+	return i.ToGetSettingsAuthenticationRuleSourceAddressOutputWithContext(context.Background())
+}
+
+func (i GetSettingsAuthenticationRuleSourceAddressArgs) ToGetSettingsAuthenticationRuleSourceAddressOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleSourceAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsAuthenticationRuleSourceAddressOutput)
+}
+
+// GetSettingsAuthenticationRuleSourceAddressArrayInput is an input type that accepts GetSettingsAuthenticationRuleSourceAddressArray and GetSettingsAuthenticationRuleSourceAddressArrayOutput values.
+// You can construct a concrete instance of `GetSettingsAuthenticationRuleSourceAddressArrayInput` via:
+//
+//	GetSettingsAuthenticationRuleSourceAddressArray{ GetSettingsAuthenticationRuleSourceAddressArgs{...} }
+type GetSettingsAuthenticationRuleSourceAddressArrayInput interface {
+	pulumi.Input
+
+	ToGetSettingsAuthenticationRuleSourceAddressArrayOutput() GetSettingsAuthenticationRuleSourceAddressArrayOutput
+	ToGetSettingsAuthenticationRuleSourceAddressArrayOutputWithContext(context.Context) GetSettingsAuthenticationRuleSourceAddressArrayOutput
+}
+
+type GetSettingsAuthenticationRuleSourceAddressArray []GetSettingsAuthenticationRuleSourceAddressInput
+
+func (GetSettingsAuthenticationRuleSourceAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsAuthenticationRuleSourceAddress)(nil)).Elem()
+}
+
+func (i GetSettingsAuthenticationRuleSourceAddressArray) ToGetSettingsAuthenticationRuleSourceAddressArrayOutput() GetSettingsAuthenticationRuleSourceAddressArrayOutput {
+	return i.ToGetSettingsAuthenticationRuleSourceAddressArrayOutputWithContext(context.Background())
+}
+
+func (i GetSettingsAuthenticationRuleSourceAddressArray) ToGetSettingsAuthenticationRuleSourceAddressArrayOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleSourceAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsAuthenticationRuleSourceAddressArrayOutput)
+}
+
+type GetSettingsAuthenticationRuleSourceAddressOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsAuthenticationRuleSourceAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsAuthenticationRuleSourceAddress)(nil)).Elem()
+}
+
+func (o GetSettingsAuthenticationRuleSourceAddressOutput) ToGetSettingsAuthenticationRuleSourceAddressOutput() GetSettingsAuthenticationRuleSourceAddressOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleSourceAddressOutput) ToGetSettingsAuthenticationRuleSourceAddressOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleSourceAddressOutput {
+	return o
+}
+
+// Group name.
+func (o GetSettingsAuthenticationRuleSourceAddressOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRuleSourceAddress) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetSettingsAuthenticationRuleSourceAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsAuthenticationRuleSourceAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsAuthenticationRuleSourceAddress)(nil)).Elem()
+}
+
+func (o GetSettingsAuthenticationRuleSourceAddressArrayOutput) ToGetSettingsAuthenticationRuleSourceAddressArrayOutput() GetSettingsAuthenticationRuleSourceAddressArrayOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleSourceAddressArrayOutput) ToGetSettingsAuthenticationRuleSourceAddressArrayOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleSourceAddressArrayOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleSourceAddressArrayOutput) Index(i pulumi.IntInput) GetSettingsAuthenticationRuleSourceAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSettingsAuthenticationRuleSourceAddress {
+		return vs[0].([]GetSettingsAuthenticationRuleSourceAddress)[vs[1].(int)]
+	}).(GetSettingsAuthenticationRuleSourceAddressOutput)
+}
+
+type GetSettingsAuthenticationRuleSourceInterface struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetSettingsAuthenticationRuleSourceInterfaceInput is an input type that accepts GetSettingsAuthenticationRuleSourceInterfaceArgs and GetSettingsAuthenticationRuleSourceInterfaceOutput values.
+// You can construct a concrete instance of `GetSettingsAuthenticationRuleSourceInterfaceInput` via:
+//
+//	GetSettingsAuthenticationRuleSourceInterfaceArgs{...}
+type GetSettingsAuthenticationRuleSourceInterfaceInput interface {
+	pulumi.Input
+
+	ToGetSettingsAuthenticationRuleSourceInterfaceOutput() GetSettingsAuthenticationRuleSourceInterfaceOutput
+	ToGetSettingsAuthenticationRuleSourceInterfaceOutputWithContext(context.Context) GetSettingsAuthenticationRuleSourceInterfaceOutput
+}
+
+type GetSettingsAuthenticationRuleSourceInterfaceArgs struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetSettingsAuthenticationRuleSourceInterfaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsAuthenticationRuleSourceInterface)(nil)).Elem()
+}
+
+func (i GetSettingsAuthenticationRuleSourceInterfaceArgs) ToGetSettingsAuthenticationRuleSourceInterfaceOutput() GetSettingsAuthenticationRuleSourceInterfaceOutput {
+	return i.ToGetSettingsAuthenticationRuleSourceInterfaceOutputWithContext(context.Background())
+}
+
+func (i GetSettingsAuthenticationRuleSourceInterfaceArgs) ToGetSettingsAuthenticationRuleSourceInterfaceOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleSourceInterfaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsAuthenticationRuleSourceInterfaceOutput)
+}
+
+// GetSettingsAuthenticationRuleSourceInterfaceArrayInput is an input type that accepts GetSettingsAuthenticationRuleSourceInterfaceArray and GetSettingsAuthenticationRuleSourceInterfaceArrayOutput values.
+// You can construct a concrete instance of `GetSettingsAuthenticationRuleSourceInterfaceArrayInput` via:
+//
+//	GetSettingsAuthenticationRuleSourceInterfaceArray{ GetSettingsAuthenticationRuleSourceInterfaceArgs{...} }
+type GetSettingsAuthenticationRuleSourceInterfaceArrayInput interface {
+	pulumi.Input
+
+	ToGetSettingsAuthenticationRuleSourceInterfaceArrayOutput() GetSettingsAuthenticationRuleSourceInterfaceArrayOutput
+	ToGetSettingsAuthenticationRuleSourceInterfaceArrayOutputWithContext(context.Context) GetSettingsAuthenticationRuleSourceInterfaceArrayOutput
+}
+
+type GetSettingsAuthenticationRuleSourceInterfaceArray []GetSettingsAuthenticationRuleSourceInterfaceInput
+
+func (GetSettingsAuthenticationRuleSourceInterfaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsAuthenticationRuleSourceInterface)(nil)).Elem()
+}
+
+func (i GetSettingsAuthenticationRuleSourceInterfaceArray) ToGetSettingsAuthenticationRuleSourceInterfaceArrayOutput() GetSettingsAuthenticationRuleSourceInterfaceArrayOutput {
+	return i.ToGetSettingsAuthenticationRuleSourceInterfaceArrayOutputWithContext(context.Background())
+}
+
+func (i GetSettingsAuthenticationRuleSourceInterfaceArray) ToGetSettingsAuthenticationRuleSourceInterfaceArrayOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleSourceInterfaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsAuthenticationRuleSourceInterfaceArrayOutput)
+}
+
+type GetSettingsAuthenticationRuleSourceInterfaceOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsAuthenticationRuleSourceInterfaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsAuthenticationRuleSourceInterface)(nil)).Elem()
+}
+
+func (o GetSettingsAuthenticationRuleSourceInterfaceOutput) ToGetSettingsAuthenticationRuleSourceInterfaceOutput() GetSettingsAuthenticationRuleSourceInterfaceOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleSourceInterfaceOutput) ToGetSettingsAuthenticationRuleSourceInterfaceOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleSourceInterfaceOutput {
+	return o
+}
+
+// Group name.
+func (o GetSettingsAuthenticationRuleSourceInterfaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRuleSourceInterface) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetSettingsAuthenticationRuleSourceInterfaceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsAuthenticationRuleSourceInterfaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsAuthenticationRuleSourceInterface)(nil)).Elem()
+}
+
+func (o GetSettingsAuthenticationRuleSourceInterfaceArrayOutput) ToGetSettingsAuthenticationRuleSourceInterfaceArrayOutput() GetSettingsAuthenticationRuleSourceInterfaceArrayOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleSourceInterfaceArrayOutput) ToGetSettingsAuthenticationRuleSourceInterfaceArrayOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleSourceInterfaceArrayOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleSourceInterfaceArrayOutput) Index(i pulumi.IntInput) GetSettingsAuthenticationRuleSourceInterfaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSettingsAuthenticationRuleSourceInterface {
+		return vs[0].([]GetSettingsAuthenticationRuleSourceInterface)[vs[1].(int)]
+	}).(GetSettingsAuthenticationRuleSourceInterfaceOutput)
+}
+
+type GetSettingsAuthenticationRuleUser struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetSettingsAuthenticationRuleUserInput is an input type that accepts GetSettingsAuthenticationRuleUserArgs and GetSettingsAuthenticationRuleUserOutput values.
+// You can construct a concrete instance of `GetSettingsAuthenticationRuleUserInput` via:
+//
+//	GetSettingsAuthenticationRuleUserArgs{...}
+type GetSettingsAuthenticationRuleUserInput interface {
+	pulumi.Input
+
+	ToGetSettingsAuthenticationRuleUserOutput() GetSettingsAuthenticationRuleUserOutput
+	ToGetSettingsAuthenticationRuleUserOutputWithContext(context.Context) GetSettingsAuthenticationRuleUserOutput
+}
+
+type GetSettingsAuthenticationRuleUserArgs struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetSettingsAuthenticationRuleUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsAuthenticationRuleUser)(nil)).Elem()
+}
+
+func (i GetSettingsAuthenticationRuleUserArgs) ToGetSettingsAuthenticationRuleUserOutput() GetSettingsAuthenticationRuleUserOutput {
+	return i.ToGetSettingsAuthenticationRuleUserOutputWithContext(context.Background())
+}
+
+func (i GetSettingsAuthenticationRuleUserArgs) ToGetSettingsAuthenticationRuleUserOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsAuthenticationRuleUserOutput)
+}
+
+// GetSettingsAuthenticationRuleUserArrayInput is an input type that accepts GetSettingsAuthenticationRuleUserArray and GetSettingsAuthenticationRuleUserArrayOutput values.
+// You can construct a concrete instance of `GetSettingsAuthenticationRuleUserArrayInput` via:
+//
+//	GetSettingsAuthenticationRuleUserArray{ GetSettingsAuthenticationRuleUserArgs{...} }
+type GetSettingsAuthenticationRuleUserArrayInput interface {
+	pulumi.Input
+
+	ToGetSettingsAuthenticationRuleUserArrayOutput() GetSettingsAuthenticationRuleUserArrayOutput
+	ToGetSettingsAuthenticationRuleUserArrayOutputWithContext(context.Context) GetSettingsAuthenticationRuleUserArrayOutput
+}
+
+type GetSettingsAuthenticationRuleUserArray []GetSettingsAuthenticationRuleUserInput
+
+func (GetSettingsAuthenticationRuleUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsAuthenticationRuleUser)(nil)).Elem()
+}
+
+func (i GetSettingsAuthenticationRuleUserArray) ToGetSettingsAuthenticationRuleUserArrayOutput() GetSettingsAuthenticationRuleUserArrayOutput {
+	return i.ToGetSettingsAuthenticationRuleUserArrayOutputWithContext(context.Background())
+}
+
+func (i GetSettingsAuthenticationRuleUserArray) ToGetSettingsAuthenticationRuleUserArrayOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsAuthenticationRuleUserArrayOutput)
+}
+
+type GetSettingsAuthenticationRuleUserOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsAuthenticationRuleUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsAuthenticationRuleUser)(nil)).Elem()
+}
+
+func (o GetSettingsAuthenticationRuleUserOutput) ToGetSettingsAuthenticationRuleUserOutput() GetSettingsAuthenticationRuleUserOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleUserOutput) ToGetSettingsAuthenticationRuleUserOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleUserOutput {
+	return o
+}
+
+// Group name.
+func (o GetSettingsAuthenticationRuleUserOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsAuthenticationRuleUser) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetSettingsAuthenticationRuleUserArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsAuthenticationRuleUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsAuthenticationRuleUser)(nil)).Elem()
+}
+
+func (o GetSettingsAuthenticationRuleUserArrayOutput) ToGetSettingsAuthenticationRuleUserArrayOutput() GetSettingsAuthenticationRuleUserArrayOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleUserArrayOutput) ToGetSettingsAuthenticationRuleUserArrayOutputWithContext(ctx context.Context) GetSettingsAuthenticationRuleUserArrayOutput {
+	return o
+}
+
+func (o GetSettingsAuthenticationRuleUserArrayOutput) Index(i pulumi.IntInput) GetSettingsAuthenticationRuleUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSettingsAuthenticationRuleUser {
+		return vs[0].([]GetSettingsAuthenticationRuleUser)[vs[1].(int)]
+	}).(GetSettingsAuthenticationRuleUserOutput)
+}
+
+type GetSettingsSourceAddress6 struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetSettingsSourceAddress6Input is an input type that accepts GetSettingsSourceAddress6Args and GetSettingsSourceAddress6Output values.
+// You can construct a concrete instance of `GetSettingsSourceAddress6Input` via:
+//
+//	GetSettingsSourceAddress6Args{...}
+type GetSettingsSourceAddress6Input interface {
+	pulumi.Input
+
+	ToGetSettingsSourceAddress6Output() GetSettingsSourceAddress6Output
+	ToGetSettingsSourceAddress6OutputWithContext(context.Context) GetSettingsSourceAddress6Output
+}
+
+type GetSettingsSourceAddress6Args struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetSettingsSourceAddress6Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsSourceAddress6)(nil)).Elem()
+}
+
+func (i GetSettingsSourceAddress6Args) ToGetSettingsSourceAddress6Output() GetSettingsSourceAddress6Output {
+	return i.ToGetSettingsSourceAddress6OutputWithContext(context.Background())
+}
+
+func (i GetSettingsSourceAddress6Args) ToGetSettingsSourceAddress6OutputWithContext(ctx context.Context) GetSettingsSourceAddress6Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsSourceAddress6Output)
+}
+
+// GetSettingsSourceAddress6ArrayInput is an input type that accepts GetSettingsSourceAddress6Array and GetSettingsSourceAddress6ArrayOutput values.
+// You can construct a concrete instance of `GetSettingsSourceAddress6ArrayInput` via:
+//
+//	GetSettingsSourceAddress6Array{ GetSettingsSourceAddress6Args{...} }
+type GetSettingsSourceAddress6ArrayInput interface {
+	pulumi.Input
+
+	ToGetSettingsSourceAddress6ArrayOutput() GetSettingsSourceAddress6ArrayOutput
+	ToGetSettingsSourceAddress6ArrayOutputWithContext(context.Context) GetSettingsSourceAddress6ArrayOutput
+}
+
+type GetSettingsSourceAddress6Array []GetSettingsSourceAddress6Input
+
+func (GetSettingsSourceAddress6Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsSourceAddress6)(nil)).Elem()
+}
+
+func (i GetSettingsSourceAddress6Array) ToGetSettingsSourceAddress6ArrayOutput() GetSettingsSourceAddress6ArrayOutput {
+	return i.ToGetSettingsSourceAddress6ArrayOutputWithContext(context.Background())
+}
+
+func (i GetSettingsSourceAddress6Array) ToGetSettingsSourceAddress6ArrayOutputWithContext(ctx context.Context) GetSettingsSourceAddress6ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsSourceAddress6ArrayOutput)
+}
+
+type GetSettingsSourceAddress6Output struct{ *pulumi.OutputState }
+
+func (GetSettingsSourceAddress6Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsSourceAddress6)(nil)).Elem()
+}
+
+func (o GetSettingsSourceAddress6Output) ToGetSettingsSourceAddress6Output() GetSettingsSourceAddress6Output {
+	return o
+}
+
+func (o GetSettingsSourceAddress6Output) ToGetSettingsSourceAddress6OutputWithContext(ctx context.Context) GetSettingsSourceAddress6Output {
+	return o
+}
+
+// Group name.
+func (o GetSettingsSourceAddress6Output) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsSourceAddress6) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetSettingsSourceAddress6ArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsSourceAddress6ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsSourceAddress6)(nil)).Elem()
+}
+
+func (o GetSettingsSourceAddress6ArrayOutput) ToGetSettingsSourceAddress6ArrayOutput() GetSettingsSourceAddress6ArrayOutput {
+	return o
+}
+
+func (o GetSettingsSourceAddress6ArrayOutput) ToGetSettingsSourceAddress6ArrayOutputWithContext(ctx context.Context) GetSettingsSourceAddress6ArrayOutput {
+	return o
+}
+
+func (o GetSettingsSourceAddress6ArrayOutput) Index(i pulumi.IntInput) GetSettingsSourceAddress6Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSettingsSourceAddress6 {
+		return vs[0].([]GetSettingsSourceAddress6)[vs[1].(int)]
+	}).(GetSettingsSourceAddress6Output)
+}
+
+type GetSettingsSourceAddress struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetSettingsSourceAddressInput is an input type that accepts GetSettingsSourceAddressArgs and GetSettingsSourceAddressOutput values.
+// You can construct a concrete instance of `GetSettingsSourceAddressInput` via:
+//
+//	GetSettingsSourceAddressArgs{...}
+type GetSettingsSourceAddressInput interface {
+	pulumi.Input
+
+	ToGetSettingsSourceAddressOutput() GetSettingsSourceAddressOutput
+	ToGetSettingsSourceAddressOutputWithContext(context.Context) GetSettingsSourceAddressOutput
+}
+
+type GetSettingsSourceAddressArgs struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetSettingsSourceAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsSourceAddress)(nil)).Elem()
+}
+
+func (i GetSettingsSourceAddressArgs) ToGetSettingsSourceAddressOutput() GetSettingsSourceAddressOutput {
+	return i.ToGetSettingsSourceAddressOutputWithContext(context.Background())
+}
+
+func (i GetSettingsSourceAddressArgs) ToGetSettingsSourceAddressOutputWithContext(ctx context.Context) GetSettingsSourceAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsSourceAddressOutput)
+}
+
+// GetSettingsSourceAddressArrayInput is an input type that accepts GetSettingsSourceAddressArray and GetSettingsSourceAddressArrayOutput values.
+// You can construct a concrete instance of `GetSettingsSourceAddressArrayInput` via:
+//
+//	GetSettingsSourceAddressArray{ GetSettingsSourceAddressArgs{...} }
+type GetSettingsSourceAddressArrayInput interface {
+	pulumi.Input
+
+	ToGetSettingsSourceAddressArrayOutput() GetSettingsSourceAddressArrayOutput
+	ToGetSettingsSourceAddressArrayOutputWithContext(context.Context) GetSettingsSourceAddressArrayOutput
+}
+
+type GetSettingsSourceAddressArray []GetSettingsSourceAddressInput
+
+func (GetSettingsSourceAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsSourceAddress)(nil)).Elem()
+}
+
+func (i GetSettingsSourceAddressArray) ToGetSettingsSourceAddressArrayOutput() GetSettingsSourceAddressArrayOutput {
+	return i.ToGetSettingsSourceAddressArrayOutputWithContext(context.Background())
+}
+
+func (i GetSettingsSourceAddressArray) ToGetSettingsSourceAddressArrayOutputWithContext(ctx context.Context) GetSettingsSourceAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsSourceAddressArrayOutput)
+}
+
+type GetSettingsSourceAddressOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsSourceAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsSourceAddress)(nil)).Elem()
+}
+
+func (o GetSettingsSourceAddressOutput) ToGetSettingsSourceAddressOutput() GetSettingsSourceAddressOutput {
+	return o
+}
+
+func (o GetSettingsSourceAddressOutput) ToGetSettingsSourceAddressOutputWithContext(ctx context.Context) GetSettingsSourceAddressOutput {
+	return o
+}
+
+// Group name.
+func (o GetSettingsSourceAddressOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsSourceAddress) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetSettingsSourceAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsSourceAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsSourceAddress)(nil)).Elem()
+}
+
+func (o GetSettingsSourceAddressArrayOutput) ToGetSettingsSourceAddressArrayOutput() GetSettingsSourceAddressArrayOutput {
+	return o
+}
+
+func (o GetSettingsSourceAddressArrayOutput) ToGetSettingsSourceAddressArrayOutputWithContext(ctx context.Context) GetSettingsSourceAddressArrayOutput {
+	return o
+}
+
+func (o GetSettingsSourceAddressArrayOutput) Index(i pulumi.IntInput) GetSettingsSourceAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSettingsSourceAddress {
+		return vs[0].([]GetSettingsSourceAddress)[vs[1].(int)]
+	}).(GetSettingsSourceAddressOutput)
+}
+
+type GetSettingsSourceInterface struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetSettingsSourceInterfaceInput is an input type that accepts GetSettingsSourceInterfaceArgs and GetSettingsSourceInterfaceOutput values.
+// You can construct a concrete instance of `GetSettingsSourceInterfaceInput` via:
+//
+//	GetSettingsSourceInterfaceArgs{...}
+type GetSettingsSourceInterfaceInput interface {
+	pulumi.Input
+
+	ToGetSettingsSourceInterfaceOutput() GetSettingsSourceInterfaceOutput
+	ToGetSettingsSourceInterfaceOutputWithContext(context.Context) GetSettingsSourceInterfaceOutput
+}
+
+type GetSettingsSourceInterfaceArgs struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetSettingsSourceInterfaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsSourceInterface)(nil)).Elem()
+}
+
+func (i GetSettingsSourceInterfaceArgs) ToGetSettingsSourceInterfaceOutput() GetSettingsSourceInterfaceOutput {
+	return i.ToGetSettingsSourceInterfaceOutputWithContext(context.Background())
+}
+
+func (i GetSettingsSourceInterfaceArgs) ToGetSettingsSourceInterfaceOutputWithContext(ctx context.Context) GetSettingsSourceInterfaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsSourceInterfaceOutput)
+}
+
+// GetSettingsSourceInterfaceArrayInput is an input type that accepts GetSettingsSourceInterfaceArray and GetSettingsSourceInterfaceArrayOutput values.
+// You can construct a concrete instance of `GetSettingsSourceInterfaceArrayInput` via:
+//
+//	GetSettingsSourceInterfaceArray{ GetSettingsSourceInterfaceArgs{...} }
+type GetSettingsSourceInterfaceArrayInput interface {
+	pulumi.Input
+
+	ToGetSettingsSourceInterfaceArrayOutput() GetSettingsSourceInterfaceArrayOutput
+	ToGetSettingsSourceInterfaceArrayOutputWithContext(context.Context) GetSettingsSourceInterfaceArrayOutput
+}
+
+type GetSettingsSourceInterfaceArray []GetSettingsSourceInterfaceInput
+
+func (GetSettingsSourceInterfaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsSourceInterface)(nil)).Elem()
+}
+
+func (i GetSettingsSourceInterfaceArray) ToGetSettingsSourceInterfaceArrayOutput() GetSettingsSourceInterfaceArrayOutput {
+	return i.ToGetSettingsSourceInterfaceArrayOutputWithContext(context.Background())
+}
+
+func (i GetSettingsSourceInterfaceArray) ToGetSettingsSourceInterfaceArrayOutputWithContext(ctx context.Context) GetSettingsSourceInterfaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsSourceInterfaceArrayOutput)
+}
+
+type GetSettingsSourceInterfaceOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsSourceInterfaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsSourceInterface)(nil)).Elem()
+}
+
+func (o GetSettingsSourceInterfaceOutput) ToGetSettingsSourceInterfaceOutput() GetSettingsSourceInterfaceOutput {
+	return o
+}
+
+func (o GetSettingsSourceInterfaceOutput) ToGetSettingsSourceInterfaceOutputWithContext(ctx context.Context) GetSettingsSourceInterfaceOutput {
+	return o
+}
+
+// Group name.
+func (o GetSettingsSourceInterfaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsSourceInterface) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetSettingsSourceInterfaceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsSourceInterfaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsSourceInterface)(nil)).Elem()
+}
+
+func (o GetSettingsSourceInterfaceArrayOutput) ToGetSettingsSourceInterfaceArrayOutput() GetSettingsSourceInterfaceArrayOutput {
+	return o
+}
+
+func (o GetSettingsSourceInterfaceArrayOutput) ToGetSettingsSourceInterfaceArrayOutputWithContext(ctx context.Context) GetSettingsSourceInterfaceArrayOutput {
+	return o
+}
+
+func (o GetSettingsSourceInterfaceArrayOutput) Index(i pulumi.IntInput) GetSettingsSourceInterfaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSettingsSourceInterface {
+		return vs[0].([]GetSettingsSourceInterface)[vs[1].(int)]
+	}).(GetSettingsSourceInterfaceOutput)
+}
+
+type GetSettingsTunnelIpPool struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetSettingsTunnelIpPoolInput is an input type that accepts GetSettingsTunnelIpPoolArgs and GetSettingsTunnelIpPoolOutput values.
+// You can construct a concrete instance of `GetSettingsTunnelIpPoolInput` via:
+//
+//	GetSettingsTunnelIpPoolArgs{...}
+type GetSettingsTunnelIpPoolInput interface {
+	pulumi.Input
+
+	ToGetSettingsTunnelIpPoolOutput() GetSettingsTunnelIpPoolOutput
+	ToGetSettingsTunnelIpPoolOutputWithContext(context.Context) GetSettingsTunnelIpPoolOutput
+}
+
+type GetSettingsTunnelIpPoolArgs struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetSettingsTunnelIpPoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsTunnelIpPool)(nil)).Elem()
+}
+
+func (i GetSettingsTunnelIpPoolArgs) ToGetSettingsTunnelIpPoolOutput() GetSettingsTunnelIpPoolOutput {
+	return i.ToGetSettingsTunnelIpPoolOutputWithContext(context.Background())
+}
+
+func (i GetSettingsTunnelIpPoolArgs) ToGetSettingsTunnelIpPoolOutputWithContext(ctx context.Context) GetSettingsTunnelIpPoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsTunnelIpPoolOutput)
+}
+
+// GetSettingsTunnelIpPoolArrayInput is an input type that accepts GetSettingsTunnelIpPoolArray and GetSettingsTunnelIpPoolArrayOutput values.
+// You can construct a concrete instance of `GetSettingsTunnelIpPoolArrayInput` via:
+//
+//	GetSettingsTunnelIpPoolArray{ GetSettingsTunnelIpPoolArgs{...} }
+type GetSettingsTunnelIpPoolArrayInput interface {
+	pulumi.Input
+
+	ToGetSettingsTunnelIpPoolArrayOutput() GetSettingsTunnelIpPoolArrayOutput
+	ToGetSettingsTunnelIpPoolArrayOutputWithContext(context.Context) GetSettingsTunnelIpPoolArrayOutput
+}
+
+type GetSettingsTunnelIpPoolArray []GetSettingsTunnelIpPoolInput
+
+func (GetSettingsTunnelIpPoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsTunnelIpPool)(nil)).Elem()
+}
+
+func (i GetSettingsTunnelIpPoolArray) ToGetSettingsTunnelIpPoolArrayOutput() GetSettingsTunnelIpPoolArrayOutput {
+	return i.ToGetSettingsTunnelIpPoolArrayOutputWithContext(context.Background())
+}
+
+func (i GetSettingsTunnelIpPoolArray) ToGetSettingsTunnelIpPoolArrayOutputWithContext(ctx context.Context) GetSettingsTunnelIpPoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsTunnelIpPoolArrayOutput)
+}
+
+type GetSettingsTunnelIpPoolOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsTunnelIpPoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsTunnelIpPool)(nil)).Elem()
+}
+
+func (o GetSettingsTunnelIpPoolOutput) ToGetSettingsTunnelIpPoolOutput() GetSettingsTunnelIpPoolOutput {
+	return o
+}
+
+func (o GetSettingsTunnelIpPoolOutput) ToGetSettingsTunnelIpPoolOutputWithContext(ctx context.Context) GetSettingsTunnelIpPoolOutput {
+	return o
+}
+
+// Group name.
+func (o GetSettingsTunnelIpPoolOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsTunnelIpPool) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetSettingsTunnelIpPoolArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsTunnelIpPoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsTunnelIpPool)(nil)).Elem()
+}
+
+func (o GetSettingsTunnelIpPoolArrayOutput) ToGetSettingsTunnelIpPoolArrayOutput() GetSettingsTunnelIpPoolArrayOutput {
+	return o
+}
+
+func (o GetSettingsTunnelIpPoolArrayOutput) ToGetSettingsTunnelIpPoolArrayOutputWithContext(ctx context.Context) GetSettingsTunnelIpPoolArrayOutput {
+	return o
+}
+
+func (o GetSettingsTunnelIpPoolArrayOutput) Index(i pulumi.IntInput) GetSettingsTunnelIpPoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSettingsTunnelIpPool {
+		return vs[0].([]GetSettingsTunnelIpPool)[vs[1].(int)]
+	}).(GetSettingsTunnelIpPoolOutput)
+}
+
+type GetSettingsTunnelIpv6Pool struct {
+	// Group name.
+	Name string `pulumi:"name"`
+}
+
+// GetSettingsTunnelIpv6PoolInput is an input type that accepts GetSettingsTunnelIpv6PoolArgs and GetSettingsTunnelIpv6PoolOutput values.
+// You can construct a concrete instance of `GetSettingsTunnelIpv6PoolInput` via:
+//
+//	GetSettingsTunnelIpv6PoolArgs{...}
+type GetSettingsTunnelIpv6PoolInput interface {
+	pulumi.Input
+
+	ToGetSettingsTunnelIpv6PoolOutput() GetSettingsTunnelIpv6PoolOutput
+	ToGetSettingsTunnelIpv6PoolOutputWithContext(context.Context) GetSettingsTunnelIpv6PoolOutput
+}
+
+type GetSettingsTunnelIpv6PoolArgs struct {
+	// Group name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetSettingsTunnelIpv6PoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsTunnelIpv6Pool)(nil)).Elem()
+}
+
+func (i GetSettingsTunnelIpv6PoolArgs) ToGetSettingsTunnelIpv6PoolOutput() GetSettingsTunnelIpv6PoolOutput {
+	return i.ToGetSettingsTunnelIpv6PoolOutputWithContext(context.Background())
+}
+
+func (i GetSettingsTunnelIpv6PoolArgs) ToGetSettingsTunnelIpv6PoolOutputWithContext(ctx context.Context) GetSettingsTunnelIpv6PoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsTunnelIpv6PoolOutput)
+}
+
+// GetSettingsTunnelIpv6PoolArrayInput is an input type that accepts GetSettingsTunnelIpv6PoolArray and GetSettingsTunnelIpv6PoolArrayOutput values.
+// You can construct a concrete instance of `GetSettingsTunnelIpv6PoolArrayInput` via:
+//
+//	GetSettingsTunnelIpv6PoolArray{ GetSettingsTunnelIpv6PoolArgs{...} }
+type GetSettingsTunnelIpv6PoolArrayInput interface {
+	pulumi.Input
+
+	ToGetSettingsTunnelIpv6PoolArrayOutput() GetSettingsTunnelIpv6PoolArrayOutput
+	ToGetSettingsTunnelIpv6PoolArrayOutputWithContext(context.Context) GetSettingsTunnelIpv6PoolArrayOutput
+}
+
+type GetSettingsTunnelIpv6PoolArray []GetSettingsTunnelIpv6PoolInput
+
+func (GetSettingsTunnelIpv6PoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsTunnelIpv6Pool)(nil)).Elem()
+}
+
+func (i GetSettingsTunnelIpv6PoolArray) ToGetSettingsTunnelIpv6PoolArrayOutput() GetSettingsTunnelIpv6PoolArrayOutput {
+	return i.ToGetSettingsTunnelIpv6PoolArrayOutputWithContext(context.Background())
+}
+
+func (i GetSettingsTunnelIpv6PoolArray) ToGetSettingsTunnelIpv6PoolArrayOutputWithContext(ctx context.Context) GetSettingsTunnelIpv6PoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSettingsTunnelIpv6PoolArrayOutput)
+}
+
+type GetSettingsTunnelIpv6PoolOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsTunnelIpv6PoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSettingsTunnelIpv6Pool)(nil)).Elem()
+}
+
+func (o GetSettingsTunnelIpv6PoolOutput) ToGetSettingsTunnelIpv6PoolOutput() GetSettingsTunnelIpv6PoolOutput {
+	return o
+}
+
+func (o GetSettingsTunnelIpv6PoolOutput) ToGetSettingsTunnelIpv6PoolOutputWithContext(ctx context.Context) GetSettingsTunnelIpv6PoolOutput {
+	return o
+}
+
+// Group name.
+func (o GetSettingsTunnelIpv6PoolOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSettingsTunnelIpv6Pool) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetSettingsTunnelIpv6PoolArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSettingsTunnelIpv6PoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSettingsTunnelIpv6Pool)(nil)).Elem()
+}
+
+func (o GetSettingsTunnelIpv6PoolArrayOutput) ToGetSettingsTunnelIpv6PoolArrayOutput() GetSettingsTunnelIpv6PoolArrayOutput {
+	return o
+}
+
+func (o GetSettingsTunnelIpv6PoolArrayOutput) ToGetSettingsTunnelIpv6PoolArrayOutputWithContext(ctx context.Context) GetSettingsTunnelIpv6PoolArrayOutput {
+	return o
+}
+
+func (o GetSettingsTunnelIpv6PoolArrayOutput) Index(i pulumi.IntInput) GetSettingsTunnelIpv6PoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSettingsTunnelIpv6Pool {
+		return vs[0].([]GetSettingsTunnelIpv6Pool)[vs[1].(int)]
+	}).(GetSettingsTunnelIpv6PoolOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SettingsAuthenticationRuleInput)(nil)).Elem(), SettingsAuthenticationRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SettingsAuthenticationRuleArrayInput)(nil)).Elem(), SettingsAuthenticationRuleArray{})
@@ -1224,6 +2414,28 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SettingsTunnelIpPoolArrayInput)(nil)).Elem(), SettingsTunnelIpPoolArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SettingsTunnelIpv6PoolInput)(nil)).Elem(), SettingsTunnelIpv6PoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SettingsTunnelIpv6PoolArrayInput)(nil)).Elem(), SettingsTunnelIpv6PoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsAuthenticationRuleInput)(nil)).Elem(), GetSettingsAuthenticationRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsAuthenticationRuleArrayInput)(nil)).Elem(), GetSettingsAuthenticationRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsAuthenticationRuleGroupInput)(nil)).Elem(), GetSettingsAuthenticationRuleGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsAuthenticationRuleGroupArrayInput)(nil)).Elem(), GetSettingsAuthenticationRuleGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsAuthenticationRuleSourceAddress6Input)(nil)).Elem(), GetSettingsAuthenticationRuleSourceAddress6Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsAuthenticationRuleSourceAddress6ArrayInput)(nil)).Elem(), GetSettingsAuthenticationRuleSourceAddress6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsAuthenticationRuleSourceAddressInput)(nil)).Elem(), GetSettingsAuthenticationRuleSourceAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsAuthenticationRuleSourceAddressArrayInput)(nil)).Elem(), GetSettingsAuthenticationRuleSourceAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsAuthenticationRuleSourceInterfaceInput)(nil)).Elem(), GetSettingsAuthenticationRuleSourceInterfaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsAuthenticationRuleSourceInterfaceArrayInput)(nil)).Elem(), GetSettingsAuthenticationRuleSourceInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsAuthenticationRuleUserInput)(nil)).Elem(), GetSettingsAuthenticationRuleUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsAuthenticationRuleUserArrayInput)(nil)).Elem(), GetSettingsAuthenticationRuleUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsSourceAddress6Input)(nil)).Elem(), GetSettingsSourceAddress6Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsSourceAddress6ArrayInput)(nil)).Elem(), GetSettingsSourceAddress6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsSourceAddressInput)(nil)).Elem(), GetSettingsSourceAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsSourceAddressArrayInput)(nil)).Elem(), GetSettingsSourceAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsSourceInterfaceInput)(nil)).Elem(), GetSettingsSourceInterfaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsSourceInterfaceArrayInput)(nil)).Elem(), GetSettingsSourceInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsTunnelIpPoolInput)(nil)).Elem(), GetSettingsTunnelIpPoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsTunnelIpPoolArrayInput)(nil)).Elem(), GetSettingsTunnelIpPoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsTunnelIpv6PoolInput)(nil)).Elem(), GetSettingsTunnelIpv6PoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSettingsTunnelIpv6PoolArrayInput)(nil)).Elem(), GetSettingsTunnelIpv6PoolArray{})
 	pulumi.RegisterOutputType(SettingsAuthenticationRuleOutput{})
 	pulumi.RegisterOutputType(SettingsAuthenticationRuleArrayOutput{})
 	pulumi.RegisterOutputType(SettingsAuthenticationRuleGroupOutput{})
@@ -1246,4 +2458,26 @@ func init() {
 	pulumi.RegisterOutputType(SettingsTunnelIpPoolArrayOutput{})
 	pulumi.RegisterOutputType(SettingsTunnelIpv6PoolOutput{})
 	pulumi.RegisterOutputType(SettingsTunnelIpv6PoolArrayOutput{})
+	pulumi.RegisterOutputType(GetSettingsAuthenticationRuleOutput{})
+	pulumi.RegisterOutputType(GetSettingsAuthenticationRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetSettingsAuthenticationRuleGroupOutput{})
+	pulumi.RegisterOutputType(GetSettingsAuthenticationRuleGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetSettingsAuthenticationRuleSourceAddress6Output{})
+	pulumi.RegisterOutputType(GetSettingsAuthenticationRuleSourceAddress6ArrayOutput{})
+	pulumi.RegisterOutputType(GetSettingsAuthenticationRuleSourceAddressOutput{})
+	pulumi.RegisterOutputType(GetSettingsAuthenticationRuleSourceAddressArrayOutput{})
+	pulumi.RegisterOutputType(GetSettingsAuthenticationRuleSourceInterfaceOutput{})
+	pulumi.RegisterOutputType(GetSettingsAuthenticationRuleSourceInterfaceArrayOutput{})
+	pulumi.RegisterOutputType(GetSettingsAuthenticationRuleUserOutput{})
+	pulumi.RegisterOutputType(GetSettingsAuthenticationRuleUserArrayOutput{})
+	pulumi.RegisterOutputType(GetSettingsSourceAddress6Output{})
+	pulumi.RegisterOutputType(GetSettingsSourceAddress6ArrayOutput{})
+	pulumi.RegisterOutputType(GetSettingsSourceAddressOutput{})
+	pulumi.RegisterOutputType(GetSettingsSourceAddressArrayOutput{})
+	pulumi.RegisterOutputType(GetSettingsSourceInterfaceOutput{})
+	pulumi.RegisterOutputType(GetSettingsSourceInterfaceArrayOutput{})
+	pulumi.RegisterOutputType(GetSettingsTunnelIpPoolOutput{})
+	pulumi.RegisterOutputType(GetSettingsTunnelIpPoolArrayOutput{})
+	pulumi.RegisterOutputType(GetSettingsTunnelIpv6PoolOutput{})
+	pulumi.RegisterOutputType(GetSettingsTunnelIpv6PoolArrayOutput{})
 }

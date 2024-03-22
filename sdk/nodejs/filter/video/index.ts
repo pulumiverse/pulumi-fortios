@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../../utilities";
 
 // Export members:
+export { KeywordArgs, KeywordState } from "./keyword";
+export type Keyword = import("./keyword").Keyword;
+export const Keyword: typeof import("./keyword").Keyword = null as any;
+utilities.lazyLoad(exports, ["Keyword"], () => require("./keyword"));
+
 export { ProfileArgs, ProfileState } from "./profile";
 export type Profile = import("./profile").Profile;
 export const Profile: typeof import("./profile").Profile = null as any;
@@ -25,6 +30,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "fortios:filter/video/keyword:Keyword":
+                return new Keyword(name, <any>undefined, { urn })
             case "fortios:filter/video/profile:Profile":
                 return new Profile(name, <any>undefined, { urn })
             case "fortios:filter/video/youtubechannelfilter:Youtubechannelfilter":
@@ -36,6 +43,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("fortios", "filter/video/keyword", _module)
 pulumi.runtime.registerResourceModule("fortios", "filter/video/profile", _module)
 pulumi.runtime.registerResourceModule("fortios", "filter/video/youtubechannelfilter", _module)
 pulumi.runtime.registerResourceModule("fortios", "filter/video/youtubekey", _module)

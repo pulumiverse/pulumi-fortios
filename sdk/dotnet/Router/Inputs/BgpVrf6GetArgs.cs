@@ -13,6 +13,36 @@ namespace Pulumiverse.Fortios.Router.Inputs
 
     public sealed class BgpVrf6GetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("exportRts")]
+        private InputList<Inputs.BgpVrf6ExportRtGetArgs>? _exportRts;
+
+        /// <summary>
+        /// List of export route target. The structure of `export_rt` block is documented below.
+        /// </summary>
+        public InputList<Inputs.BgpVrf6ExportRtGetArgs> ExportRts
+        {
+            get => _exportRts ?? (_exportRts = new InputList<Inputs.BgpVrf6ExportRtGetArgs>());
+            set => _exportRts = value;
+        }
+
+        /// <summary>
+        /// Import route map.
+        /// </summary>
+        [Input("importRouteMap")]
+        public Input<string>? ImportRouteMap { get; set; }
+
+        [Input("importRts")]
+        private InputList<Inputs.BgpVrf6ImportRtGetArgs>? _importRts;
+
+        /// <summary>
+        /// List of import route target. The structure of `import_rt` block is documented below.
+        /// </summary>
+        public InputList<Inputs.BgpVrf6ImportRtGetArgs> ImportRts
+        {
+            get => _importRts ?? (_importRts = new InputList<Inputs.BgpVrf6ImportRtGetArgs>());
+            set => _importRts = value;
+        }
+
         [Input("leakTargets")]
         private InputList<Inputs.BgpVrf6LeakTargetGetArgs>? _leakTargets;
 
@@ -24,6 +54,18 @@ namespace Pulumiverse.Fortios.Router.Inputs
             get => _leakTargets ?? (_leakTargets = new InputList<Inputs.BgpVrf6LeakTargetGetArgs>());
             set => _leakTargets = value;
         }
+
+        /// <summary>
+        /// Route Distinguisher: AA:NN|A.B.C.D:NN.
+        /// </summary>
+        [Input("rd")]
+        public Input<string>? Rd { get; set; }
+
+        /// <summary>
+        /// VRF role. Valid values: `standalone`, `ce`, `pe`.
+        /// </summary>
+        [Input("role")]
+        public Input<string>? Role { get; set; }
 
         /// <summary>
         /// BGP VRF leaking table. The structure of `vrf` block is documented below.

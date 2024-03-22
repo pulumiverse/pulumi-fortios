@@ -27,6 +27,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly int? Protocol;
         /// <summary>
+        /// Refresh direction: Both, outgoing, incoming Valid values: `both`, `outgoing`, `incoming`.
+        /// </summary>
+        public readonly string? RefreshDirection;
+        /// <summary>
         /// Start port number.
         /// </summary>
         public readonly int? StartPort;
@@ -43,6 +47,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             int? protocol,
 
+            string? refreshDirection,
+
             int? startPort,
 
             string? timeout)
@@ -50,6 +56,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             EndPort = endPort;
             Id = id;
             Protocol = protocol;
+            RefreshDirection = refreshDirection;
             StartPort = startPort;
             Timeout = timeout;
         }

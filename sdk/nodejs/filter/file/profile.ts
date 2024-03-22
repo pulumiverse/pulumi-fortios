@@ -72,6 +72,10 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly featureSet!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable file-filter logging. Valid values: `disable`, `enable`.
      */
     public readonly log!: pulumi.Output<string>;
@@ -88,7 +92,7 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly rules!: pulumi.Output<outputs.filter.file.ProfileRule[] | undefined>;
     /**
-     * Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+     * Enable/disable archive contents scan. Valid values: `disable`, `enable`.
      */
     public readonly scanArchiveContents!: pulumi.Output<string>;
     /**
@@ -113,6 +117,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["log"] = state ? state.log : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
@@ -125,6 +130,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["log"] = args ? args.log : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
@@ -158,6 +164,10 @@ export interface ProfileState {
      */
     featureSet?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable file-filter logging. Valid values: `disable`, `enable`.
      */
     log?: pulumi.Input<string>;
@@ -174,7 +184,7 @@ export interface ProfileState {
      */
     rules?: pulumi.Input<pulumi.Input<inputs.filter.file.ProfileRule>[]>;
     /**
-     * Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+     * Enable/disable archive contents scan. Valid values: `disable`, `enable`.
      */
     scanArchiveContents?: pulumi.Input<string>;
     /**
@@ -204,6 +214,10 @@ export interface ProfileArgs {
      */
     featureSet?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Enable/disable file-filter logging. Valid values: `disable`, `enable`.
      */
     log?: pulumi.Input<string>;
@@ -220,7 +234,7 @@ export interface ProfileArgs {
      */
     rules?: pulumi.Input<pulumi.Input<inputs.filter.file.ProfileRule>[]>;
     /**
-     * Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
+     * Enable/disable archive contents scan. Valid values: `disable`, `enable`.
      */
     scanArchiveContents?: pulumi.Input<string>;
     /**

@@ -71,6 +71,10 @@ export class Networkpolicy extends pulumi.CustomResource {
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Guest. The structure of `guest` block is documented below.
      */
     public readonly guest!: pulumi.Output<outputs.system.lldp.NetworkpolicyGuest>;
@@ -125,6 +129,7 @@ export class Networkpolicy extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as NetworkpolicyState | undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["guest"] = state ? state.guest : undefined;
             resourceInputs["guestVoiceSignaling"] = state ? state.guestVoiceSignaling : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -138,6 +143,7 @@ export class Networkpolicy extends pulumi.CustomResource {
         } else {
             const args = argsOrState as NetworkpolicyArgs | undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["guest"] = args ? args.guest : undefined;
             resourceInputs["guestVoiceSignaling"] = args ? args.guestVoiceSignaling : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -162,6 +168,10 @@ export interface NetworkpolicyState {
      * Comment.
      */
     comment?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Guest. The structure of `guest` block is documented below.
      */
@@ -212,6 +222,10 @@ export interface NetworkpolicyArgs {
      * Comment.
      */
     comment?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Guest. The structure of `guest` block is documented below.
      */

@@ -77,6 +77,26 @@ export class Settings8021X extends pulumi.CustomResource {
      */
     public readonly mabReauth!: pulumi.Output<string>;
     /**
+     * MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+     */
+    public readonly macCalledStationDelimiter!: pulumi.Output<string>;
+    /**
+     * MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+     */
+    public readonly macCallingStationDelimiter!: pulumi.Output<string>;
+    /**
+     * MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+     */
+    public readonly macCase!: pulumi.Output<string>;
+    /**
+     * MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+     */
+    public readonly macPasswordDelimiter!: pulumi.Output<string>;
+    /**
+     * MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+     */
+    public readonly macUsernameDelimiter!: pulumi.Output<string>;
+    /**
      * Maximum number of authentication attempts (0 - 15, default = 3).
      */
     public readonly maxReauthAttempt!: pulumi.Output<number>;
@@ -108,6 +128,11 @@ export class Settings8021X extends pulumi.CustomResource {
             const state = argsOrState as Settings8021XState | undefined;
             resourceInputs["linkDownAuth"] = state ? state.linkDownAuth : undefined;
             resourceInputs["mabReauth"] = state ? state.mabReauth : undefined;
+            resourceInputs["macCalledStationDelimiter"] = state ? state.macCalledStationDelimiter : undefined;
+            resourceInputs["macCallingStationDelimiter"] = state ? state.macCallingStationDelimiter : undefined;
+            resourceInputs["macCase"] = state ? state.macCase : undefined;
+            resourceInputs["macPasswordDelimiter"] = state ? state.macPasswordDelimiter : undefined;
+            resourceInputs["macUsernameDelimiter"] = state ? state.macUsernameDelimiter : undefined;
             resourceInputs["maxReauthAttempt"] = state ? state.maxReauthAttempt : undefined;
             resourceInputs["reauthPeriod"] = state ? state.reauthPeriod : undefined;
             resourceInputs["txPeriod"] = state ? state.txPeriod : undefined;
@@ -116,6 +141,11 @@ export class Settings8021X extends pulumi.CustomResource {
             const args = argsOrState as Settings8021XArgs | undefined;
             resourceInputs["linkDownAuth"] = args ? args.linkDownAuth : undefined;
             resourceInputs["mabReauth"] = args ? args.mabReauth : undefined;
+            resourceInputs["macCalledStationDelimiter"] = args ? args.macCalledStationDelimiter : undefined;
+            resourceInputs["macCallingStationDelimiter"] = args ? args.macCallingStationDelimiter : undefined;
+            resourceInputs["macCase"] = args ? args.macCase : undefined;
+            resourceInputs["macPasswordDelimiter"] = args ? args.macPasswordDelimiter : undefined;
+            resourceInputs["macUsernameDelimiter"] = args ? args.macUsernameDelimiter : undefined;
             resourceInputs["maxReauthAttempt"] = args ? args.maxReauthAttempt : undefined;
             resourceInputs["reauthPeriod"] = args ? args.reauthPeriod : undefined;
             resourceInputs["txPeriod"] = args ? args.txPeriod : undefined;
@@ -138,6 +168,26 @@ export interface Settings8021XState {
      * Enable/disable MAB re-authentication. Valid values: `disable`, `enable`.
      */
     mabReauth?: pulumi.Input<string>;
+    /**
+     * MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+     */
+    macCalledStationDelimiter?: pulumi.Input<string>;
+    /**
+     * MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+     */
+    macCallingStationDelimiter?: pulumi.Input<string>;
+    /**
+     * MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+     */
+    macCase?: pulumi.Input<string>;
+    /**
+     * MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+     */
+    macPasswordDelimiter?: pulumi.Input<string>;
+    /**
+     * MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+     */
+    macUsernameDelimiter?: pulumi.Input<string>;
     /**
      * Maximum number of authentication attempts (0 - 15, default = 3).
      */
@@ -168,6 +218,26 @@ export interface Settings8021XArgs {
      * Enable/disable MAB re-authentication. Valid values: `disable`, `enable`.
      */
     mabReauth?: pulumi.Input<string>;
+    /**
+     * MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+     */
+    macCalledStationDelimiter?: pulumi.Input<string>;
+    /**
+     * MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+     */
+    macCallingStationDelimiter?: pulumi.Input<string>;
+    /**
+     * MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+     */
+    macCase?: pulumi.Input<string>;
+    /**
+     * MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+     */
+    macPasswordDelimiter?: pulumi.Input<string>;
+    /**
+     * MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+     */
+    macUsernameDelimiter?: pulumi.Input<string>;
     /**
      * Maximum number of authentication attempts (0 - 15, default = 3).
      */

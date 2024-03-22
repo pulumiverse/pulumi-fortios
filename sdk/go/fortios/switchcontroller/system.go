@@ -33,6 +33,10 @@ import (
 type System struct {
 	pulumi.CustomResourceState
 
+	// Echo interval for the caputp echo requests from swtp.
+	CaputpEchoInterval pulumi.IntOutput `pulumi:"caputpEchoInterval"`
+	// Maximum retransmission count for the caputp tunnel packets.
+	CaputpMaxRetransmit pulumi.IntOutput `pulumi:"caputpMaxRetransmit"`
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval pulumi.IntOutput `pulumi:"dataSyncInterval"`
 	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
@@ -51,7 +55,7 @@ type System struct {
 	ParallelProcess pulumi.IntOutput `pulumi:"parallelProcess"`
 	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
 	ParallelProcessOverride pulumi.StringOutput `pulumi:"parallelProcessOverride"`
-	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	// Compatible/strict tunnel mode.
 	TunnelMode pulumi.StringOutput `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
@@ -87,6 +91,10 @@ func GetSystem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering System resources.
 type systemState struct {
+	// Echo interval for the caputp echo requests from swtp.
+	CaputpEchoInterval *int `pulumi:"caputpEchoInterval"`
+	// Maximum retransmission count for the caputp tunnel packets.
+	CaputpMaxRetransmit *int `pulumi:"caputpMaxRetransmit"`
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval *int `pulumi:"dataSyncInterval"`
 	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
@@ -105,13 +113,17 @@ type systemState struct {
 	ParallelProcess *int `pulumi:"parallelProcess"`
 	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
 	ParallelProcessOverride *string `pulumi:"parallelProcessOverride"`
-	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	// Compatible/strict tunnel mode.
 	TunnelMode *string `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemState struct {
+	// Echo interval for the caputp echo requests from swtp.
+	CaputpEchoInterval pulumi.IntPtrInput
+	// Maximum retransmission count for the caputp tunnel packets.
+	CaputpMaxRetransmit pulumi.IntPtrInput
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval pulumi.IntPtrInput
 	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
@@ -130,7 +142,7 @@ type SystemState struct {
 	ParallelProcess pulumi.IntPtrInput
 	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
 	ParallelProcessOverride pulumi.StringPtrInput
-	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	// Compatible/strict tunnel mode.
 	TunnelMode pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -141,6 +153,10 @@ func (SystemState) ElementType() reflect.Type {
 }
 
 type systemArgs struct {
+	// Echo interval for the caputp echo requests from swtp.
+	CaputpEchoInterval *int `pulumi:"caputpEchoInterval"`
+	// Maximum retransmission count for the caputp tunnel packets.
+	CaputpMaxRetransmit *int `pulumi:"caputpMaxRetransmit"`
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval *int `pulumi:"dataSyncInterval"`
 	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
@@ -159,7 +175,7 @@ type systemArgs struct {
 	ParallelProcess *int `pulumi:"parallelProcess"`
 	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
 	ParallelProcessOverride *string `pulumi:"parallelProcessOverride"`
-	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	// Compatible/strict tunnel mode.
 	TunnelMode *string `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -167,6 +183,10 @@ type systemArgs struct {
 
 // The set of arguments for constructing a System resource.
 type SystemArgs struct {
+	// Echo interval for the caputp echo requests from swtp.
+	CaputpEchoInterval pulumi.IntPtrInput
+	// Maximum retransmission count for the caputp tunnel packets.
+	CaputpMaxRetransmit pulumi.IntPtrInput
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval pulumi.IntPtrInput
 	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
@@ -185,7 +205,7 @@ type SystemArgs struct {
 	ParallelProcess pulumi.IntPtrInput
 	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
 	ParallelProcessOverride pulumi.StringPtrInput
-	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	// Compatible/strict tunnel mode.
 	TunnelMode pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -278,6 +298,16 @@ func (o SystemOutput) ToSystemOutputWithContext(ctx context.Context) SystemOutpu
 	return o
 }
 
+// Echo interval for the caputp echo requests from swtp.
+func (o SystemOutput) CaputpEchoInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *System) pulumi.IntOutput { return v.CaputpEchoInterval }).(pulumi.IntOutput)
+}
+
+// Maximum retransmission count for the caputp tunnel packets.
+func (o SystemOutput) CaputpMaxRetransmit() pulumi.IntOutput {
+	return o.ApplyT(func(v *System) pulumi.IntOutput { return v.CaputpMaxRetransmit }).(pulumi.IntOutput)
+}
+
 // Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 func (o SystemOutput) DataSyncInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *System) pulumi.IntOutput { return v.DataSyncInterval }).(pulumi.IntOutput)
@@ -323,7 +353,7 @@ func (o SystemOutput) ParallelProcessOverride() pulumi.StringOutput {
 	return o.ApplyT(func(v *System) pulumi.StringOutput { return v.ParallelProcessOverride }).(pulumi.StringOutput)
 }
 
-// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+// Compatible/strict tunnel mode.
 func (o SystemOutput) TunnelMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *System) pulumi.StringOutput { return v.TunnelMode }).(pulumi.StringOutput)
 }

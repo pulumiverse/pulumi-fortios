@@ -18,7 +18,7 @@ type ProfileRule struct {
 	Action *string `pulumi:"action"`
 	// Comment.
 	Comment *string `pulumi:"comment"`
-	// Traffic direction. (HTTP, FTP, SSH, CIFS only) Valid values: `incoming`, `outgoing`, `any`.
+	// Traffic direction. On FortiOS versions 6.4.1-7.4.1: HTTP, FTP, SSH, CIFS only. On FortiOS versions >= 7.4.2: HTTP, FTP, SSH, CIFS, and MAPI only. Valid values: `incoming`, `outgoing`, `any`.
 	Direction *string `pulumi:"direction"`
 	// Select file type. The structure of `fileType` block is documented below.
 	FileTypes []ProfileRuleFileType `pulumi:"fileTypes"`
@@ -46,7 +46,7 @@ type ProfileRuleArgs struct {
 	Action pulumi.StringPtrInput `pulumi:"action"`
 	// Comment.
 	Comment pulumi.StringPtrInput `pulumi:"comment"`
-	// Traffic direction. (HTTP, FTP, SSH, CIFS only) Valid values: `incoming`, `outgoing`, `any`.
+	// Traffic direction. On FortiOS versions 6.4.1-7.4.1: HTTP, FTP, SSH, CIFS only. On FortiOS versions >= 7.4.2: HTTP, FTP, SSH, CIFS, and MAPI only. Valid values: `incoming`, `outgoing`, `any`.
 	Direction pulumi.StringPtrInput `pulumi:"direction"`
 	// Select file type. The structure of `fileType` block is documented below.
 	FileTypes ProfileRuleFileTypeArrayInput `pulumi:"fileTypes"`
@@ -119,7 +119,7 @@ func (o ProfileRuleOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileRule) *string { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-// Traffic direction. (HTTP, FTP, SSH, CIFS only) Valid values: `incoming`, `outgoing`, `any`.
+// Traffic direction. On FortiOS versions 6.4.1-7.4.1: HTTP, FTP, SSH, CIFS only. On FortiOS versions >= 7.4.2: HTTP, FTP, SSH, CIFS, and MAPI only. Valid values: `incoming`, `outgoing`, `any`.
 func (o ProfileRuleOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileRule) *string { return v.Direction }).(pulumi.StringPtrOutput)
 }

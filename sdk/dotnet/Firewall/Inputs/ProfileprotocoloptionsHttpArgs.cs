@@ -26,13 +26,13 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<int>? BlockPageStatusCode { get; set; }
 
         /// <summary>
-        /// Amount of data to send in a transmission for client comforting (1 - 10240 bytes, default = 1).
+        /// Amount of data to send in a transmission for client comforting. On FortiOS versions 6.2.0: 1 - 10240 bytes, default = 1. On FortiOS versions 6.2.4-7.2.3: 1 - 65535 bytes, default = 1.
         /// </summary>
         [Input("comfortAmount")]
         public Input<int>? ComfortAmount { get; set; }
 
         /// <summary>
-        /// Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+        /// Interval between successive transmissions of data for client comforting (seconds).
         /// </summary>
         [Input("comfortInterval")]
         public Input<int>? ComfortInterval { get; set; }
@@ -74,7 +74,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? Options { get; set; }
 
         /// <summary>
-        /// Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
+        /// Maximum in-memory file size that can be scanned (MB). On FortiOS versions 6.2.0-7.2.3: 1 - 383 MB, default = 10.
         /// </summary>
         [Input("oversizeLimit")]
         public Input<int>? OversizeLimit { get; set; }
@@ -128,7 +128,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+        /// Maximum stream-based uncompressed data size that will be scanned in megabytes. Stream-based uncompression used only under certain conditions (unlimited = 0, default = 0).
         /// </summary>
         [Input("streamBasedUncompressedLimit")]
         public Input<int>? StreamBasedUncompressedLimit { get; set; }
@@ -152,19 +152,19 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? SwitchingProtocols { get; set; }
 
         /// <summary>
-        /// Maximum dynamic TCP window size (default = 8MB).
+        /// Maximum dynamic TCP window size.
         /// </summary>
         [Input("tcpWindowMaximum")]
         public Input<int>? TcpWindowMaximum { get; set; }
 
         /// <summary>
-        /// Minimum dynamic TCP window size (default = 128KB).
+        /// Minimum dynamic TCP window size.
         /// </summary>
         [Input("tcpWindowMinimum")]
         public Input<int>? TcpWindowMinimum { get; set; }
 
         /// <summary>
-        /// Set TCP static window size (default = 256KB).
+        /// Set TCP static window size.
         /// </summary>
         [Input("tcpWindowSize")]
         public Input<int>? TcpWindowSize { get; set; }
@@ -188,10 +188,16 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<int>? UncompressedNestLimit { get; set; }
 
         /// <summary>
-        /// Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+        /// Maximum in-memory uncompressed file size that can be scanned (MB).
         /// </summary>
         [Input("uncompressedOversizeLimit")]
         public Input<int>? UncompressedOversizeLimit { get; set; }
+
+        /// <summary>
+        /// Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: `block`, `inspect`, `bypass`.
+        /// </summary>
+        [Input("unknownContentEncoding")]
+        public Input<string>? UnknownContentEncoding { get; set; }
 
         /// <summary>
         /// How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: `reject`, `tunnel`, `best-effort`.

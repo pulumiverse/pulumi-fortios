@@ -37,6 +37,8 @@ type Country struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Country ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Country name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Region ID list. The structure of `region` block is documented below.
@@ -79,6 +81,8 @@ type countryState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Country ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Country name.
 	Name *string `pulumi:"name"`
 	// Region ID list. The structure of `region` block is documented below.
@@ -92,6 +96,8 @@ type CountryState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Country ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Country name.
 	Name pulumi.StringPtrInput
 	// Region ID list. The structure of `region` block is documented below.
@@ -109,6 +115,8 @@ type countryArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Country ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Country name.
 	Name *string `pulumi:"name"`
 	// Region ID list. The structure of `region` block is documented below.
@@ -123,6 +131,8 @@ type CountryArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Country ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Country name.
 	Name pulumi.StringPtrInput
 	// Region ID list. The structure of `region` block is documented below.
@@ -226,6 +236,11 @@ func (o CountryOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Country ID.
 func (o CountryOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Country) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o CountryOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Country) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Country name.

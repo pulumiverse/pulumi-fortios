@@ -64,6 +64,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly elasticbuffer!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Percentage of main memory allocated to hugepages, which are available for DPDK operation.
      */
     public readonly hugepagePercentage!: pulumi.Output<number>;
@@ -87,6 +91,10 @@ export class Global extends pulumi.CustomResource {
      * Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
      */
     public readonly perSessionAccounting!: pulumi.Output<string>;
+    /**
+     * Special arguments for device
+     */
+    public readonly protects!: pulumi.Output<string>;
     /**
      * Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
      */
@@ -115,12 +123,14 @@ export class Global extends pulumi.CustomResource {
             const state = argsOrState as GlobalState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["elasticbuffer"] = state ? state.elasticbuffer : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hugepagePercentage"] = state ? state.hugepagePercentage : undefined;
             resourceInputs["interfaces"] = state ? state.interfaces : undefined;
             resourceInputs["ipsecOffload"] = state ? state.ipsecOffload : undefined;
             resourceInputs["mbufpoolPercentage"] = state ? state.mbufpoolPercentage : undefined;
             resourceInputs["multiqueue"] = state ? state.multiqueue : undefined;
             resourceInputs["perSessionAccounting"] = state ? state.perSessionAccounting : undefined;
+            resourceInputs["protects"] = state ? state.protects : undefined;
             resourceInputs["sleepOnIdle"] = state ? state.sleepOnIdle : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -128,12 +138,14 @@ export class Global extends pulumi.CustomResource {
             const args = argsOrState as GlobalArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["elasticbuffer"] = args ? args.elasticbuffer : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hugepagePercentage"] = args ? args.hugepagePercentage : undefined;
             resourceInputs["interfaces"] = args ? args.interfaces : undefined;
             resourceInputs["ipsecOffload"] = args ? args.ipsecOffload : undefined;
             resourceInputs["mbufpoolPercentage"] = args ? args.mbufpoolPercentage : undefined;
             resourceInputs["multiqueue"] = args ? args.multiqueue : undefined;
             resourceInputs["perSessionAccounting"] = args ? args.perSessionAccounting : undefined;
+            resourceInputs["protects"] = args ? args.protects : undefined;
             resourceInputs["sleepOnIdle"] = args ? args.sleepOnIdle : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -155,6 +167,10 @@ export interface GlobalState {
      * Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
      */
     elasticbuffer?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Percentage of main memory allocated to hugepages, which are available for DPDK operation.
      */
@@ -179,6 +195,10 @@ export interface GlobalState {
      * Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
      */
     perSessionAccounting?: pulumi.Input<string>;
+    /**
+     * Special arguments for device
+     */
+    protects?: pulumi.Input<string>;
     /**
      * Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
      */
@@ -206,6 +226,10 @@ export interface GlobalArgs {
      */
     elasticbuffer?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Percentage of main memory allocated to hugepages, which are available for DPDK operation.
      */
     hugepagePercentage?: pulumi.Input<number>;
@@ -229,6 +253,10 @@ export interface GlobalArgs {
      * Enable/disable per-session accounting. Valid values: `disable`, `traffic-log-only`, `enable`.
      */
     perSessionAccounting?: pulumi.Input<string>;
+    /**
+     * Special arguments for device
+     */
+    protects?: pulumi.Input<string>;
     /**
      * Enable/disable sleep-on-idle support for all FDH engines. Valid values: `disable`, `enable`.
      */

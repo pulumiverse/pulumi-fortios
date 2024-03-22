@@ -45,6 +45,8 @@ type Cpus struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// CPUs enabled to run DPDK VNP engines.
 	VnpCpus pulumi.StringOutput `pulumi:"vnpCpus"`
+	// CPUs enabled to run DPDK VNP slow path.
+	VnpspCpus pulumi.StringOutput `pulumi:"vnpspCpus"`
 }
 
 // NewCpus registers a new resource with the given unique name, arguments, and options.
@@ -89,6 +91,8 @@ type cpusState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// CPUs enabled to run DPDK VNP engines.
 	VnpCpus *string `pulumi:"vnpCpus"`
+	// CPUs enabled to run DPDK VNP slow path.
+	VnpspCpus *string `pulumi:"vnpspCpus"`
 }
 
 type CpusState struct {
@@ -104,6 +108,8 @@ type CpusState struct {
 	Vdomparam pulumi.StringPtrInput
 	// CPUs enabled to run DPDK VNP engines.
 	VnpCpus pulumi.StringPtrInput
+	// CPUs enabled to run DPDK VNP slow path.
+	VnpspCpus pulumi.StringPtrInput
 }
 
 func (CpusState) ElementType() reflect.Type {
@@ -123,6 +129,8 @@ type cpusArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// CPUs enabled to run DPDK VNP engines.
 	VnpCpus *string `pulumi:"vnpCpus"`
+	// CPUs enabled to run DPDK VNP slow path.
+	VnpspCpus *string `pulumi:"vnpspCpus"`
 }
 
 // The set of arguments for constructing a Cpus resource.
@@ -139,6 +147,8 @@ type CpusArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// CPUs enabled to run DPDK VNP engines.
 	VnpCpus pulumi.StringPtrInput
+	// CPUs enabled to run DPDK VNP slow path.
+	VnpspCpus pulumi.StringPtrInput
 }
 
 func (CpusArgs) ElementType() reflect.Type {
@@ -256,6 +266,11 @@ func (o CpusOutput) Vdomparam() pulumi.StringPtrOutput {
 // CPUs enabled to run DPDK VNP engines.
 func (o CpusOutput) VnpCpus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cpus) pulumi.StringOutput { return v.VnpCpus }).(pulumi.StringOutput)
+}
+
+// CPUs enabled to run DPDK VNP slow path.
+func (o CpusOutput) VnpspCpus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cpus) pulumi.StringOutput { return v.VnpspCpus }).(pulumi.StringOutput)
 }
 
 type CpusArrayOutput struct{ *pulumi.OutputState }

@@ -21,6 +21,7 @@ class Extender1Args:
                  description: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  modem1: Optional[pulumi.Input['Extender1Modem1Args']] = None,
                  modem2: Optional[pulumi.Input['Extender1Modem2Args']] = None,
@@ -34,6 +35,7 @@ class Extender1Args:
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: FortiExtender login password.
         :param pulumi.Input['Extender1Modem1Args'] modem1: Configuration options for modem 1. The structure of `modem1` block is documented below.
         :param pulumi.Input['Extender1Modem2Args'] modem2: Configuration options for modem 2. The structure of `modem2` block is documented below.
@@ -50,6 +52,8 @@ class Extender1Args:
             pulumi.set(__self__, "ext_name", ext_name)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if login_password is not None:
             pulumi.set(__self__, "login_password", login_password)
         if modem1 is not None:
@@ -122,6 +126,18 @@ class Extender1Args:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="loginPassword")
@@ -204,6 +220,7 @@ class _Extender1State:
                  description: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  modem1: Optional[pulumi.Input['Extender1Modem1Args']] = None,
                  modem2: Optional[pulumi.Input['Extender1Modem2Args']] = None,
@@ -217,6 +234,7 @@ class _Extender1State:
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: FortiExtender login password.
         :param pulumi.Input['Extender1Modem1Args'] modem1: Configuration options for modem 1. The structure of `modem1` block is documented below.
         :param pulumi.Input['Extender1Modem2Args'] modem2: Configuration options for modem 2. The structure of `modem2` block is documented below.
@@ -234,6 +252,8 @@ class _Extender1State:
             pulumi.set(__self__, "ext_name", ext_name)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if login_password is not None:
             pulumi.set(__self__, "login_password", login_password)
         if modem1 is not None:
@@ -306,6 +326,18 @@ class _Extender1State:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="loginPassword")
@@ -390,6 +422,7 @@ class Extender1(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  modem1: Optional[pulumi.Input[pulumi.InputType['Extender1Modem1Args']]] = None,
                  modem2: Optional[pulumi.Input[pulumi.InputType['Extender1Modem2Args']]] = None,
@@ -399,8 +432,7 @@ class Extender1(pulumi.CustomResource):
                  __props__=None):
         """
         Extender controller configuration.
-
-        > The resource applies to FortiOS Version >= 6.4.2. For FortiOS Version < 6.4.2, see `extendercontroller.Extender`.
+        This resource will be deprecated. For FortiOS Version >= 7.2.1, using `extensioncontroller.Extender`. For FortiOS version < 7.2.1, see `extendercontroller.Extender`
 
         ## Example Usage
 
@@ -484,6 +516,7 @@ class Extender1(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: FortiExtender login password.
         :param pulumi.Input[pulumi.InputType['Extender1Modem1Args']] modem1: Configuration options for modem 1. The structure of `modem1` block is documented below.
         :param pulumi.Input[pulumi.InputType['Extender1Modem2Args']] modem2: Configuration options for modem 2. The structure of `modem2` block is documented below.
@@ -499,8 +532,7 @@ class Extender1(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Extender controller configuration.
-
-        > The resource applies to FortiOS Version >= 6.4.2. For FortiOS Version < 6.4.2, see `extendercontroller.Extender`.
+        This resource will be deprecated. For FortiOS Version >= 7.2.1, using `extensioncontroller.Extender`. For FortiOS version < 7.2.1, see `extendercontroller.Extender`
 
         ## Example Usage
 
@@ -597,6 +629,7 @@ class Extender1(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  modem1: Optional[pulumi.Input[pulumi.InputType['Extender1Modem1Args']]] = None,
                  modem2: Optional[pulumi.Input[pulumi.InputType['Extender1Modem2Args']]] = None,
@@ -619,6 +652,7 @@ class Extender1(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["ext_name"] = ext_name
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["login_password"] = None if login_password is None else pulumi.Output.secret(login_password)
             __props__.__dict__["modem1"] = modem1
             __props__.__dict__["modem2"] = modem2
@@ -642,6 +676,7 @@ class Extender1(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             ext_name: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             login_password: Optional[pulumi.Input[str]] = None,
             modem1: Optional[pulumi.Input[pulumi.InputType['Extender1Modem1Args']]] = None,
             modem2: Optional[pulumi.Input[pulumi.InputType['Extender1Modem2Args']]] = None,
@@ -660,6 +695,7 @@ class Extender1(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: FortiExtender login password.
         :param pulumi.Input[pulumi.InputType['Extender1Modem1Args']] modem1: Configuration options for modem 1. The structure of `modem1` block is documented below.
         :param pulumi.Input[pulumi.InputType['Extender1Modem2Args']] modem2: Configuration options for modem 2. The structure of `modem2` block is documented below.
@@ -676,6 +712,7 @@ class Extender1(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["ext_name"] = ext_name
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["login_password"] = login_password
         __props__.__dict__["modem1"] = modem1
         __props__.__dict__["modem2"] = modem2
@@ -723,6 +760,14 @@ class Extender1(pulumi.CustomResource):
         FortiExtender serial number.
         """
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="loginPassword")

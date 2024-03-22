@@ -22,6 +22,7 @@ class ProfileArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  external: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input['ProfileMethodArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  signature: Optional[pulumi.Input['ProfileSignatureArgs']] = None,
@@ -35,6 +36,7 @@ class ProfileArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] external: Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileMethodArgs'] method: Method restriction. The structure of `method` block is documented below.
         :param pulumi.Input[str] name: WAF Profile name.
         :param pulumi.Input['ProfileSignatureArgs'] signature: WAF signatures. The structure of `signature` block is documented below.
@@ -53,6 +55,8 @@ class ProfileArgs:
             pulumi.set(__self__, "extended_log", extended_log)
         if external is not None:
             pulumi.set(__self__, "external", external)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if method is not None:
             pulumi.set(__self__, "method", method)
         if name is not None:
@@ -135,6 +139,18 @@ class ProfileArgs:
     @external.setter
     def external(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "external", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -206,6 +222,7 @@ class _ProfileState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  external: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input['ProfileMethodArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  signature: Optional[pulumi.Input['ProfileSignatureArgs']] = None,
@@ -219,6 +236,7 @@ class _ProfileState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] external: Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileMethodArgs'] method: Method restriction. The structure of `method` block is documented below.
         :param pulumi.Input[str] name: WAF Profile name.
         :param pulumi.Input['ProfileSignatureArgs'] signature: WAF signatures. The structure of `signature` block is documented below.
@@ -237,6 +255,8 @@ class _ProfileState:
             pulumi.set(__self__, "extended_log", extended_log)
         if external is not None:
             pulumi.set(__self__, "external", external)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if method is not None:
             pulumi.set(__self__, "method", method)
         if name is not None:
@@ -319,6 +339,18 @@ class _ProfileState:
     @external.setter
     def external(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "external", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -392,6 +424,7 @@ class Profile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  external: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[pulumi.InputType['ProfileMethodArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  signature: Optional[pulumi.Input[pulumi.InputType['ProfileSignatureArgs']]] = None,
@@ -440,6 +473,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] external: Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileMethodArgs']] method: Method restriction. The structure of `method` block is documented below.
         :param pulumi.Input[str] name: WAF Profile name.
         :param pulumi.Input[pulumi.InputType['ProfileSignatureArgs']] signature: WAF signatures. The structure of `signature` block is documented below.
@@ -507,6 +541,7 @@ class Profile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  external: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[pulumi.InputType['ProfileMethodArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  signature: Optional[pulumi.Input[pulumi.InputType['ProfileSignatureArgs']]] = None,
@@ -527,6 +562,7 @@ class Profile(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["extended_log"] = extended_log
             __props__.__dict__["external"] = external
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["method"] = method
             __props__.__dict__["name"] = name
             __props__.__dict__["signature"] = signature
@@ -548,6 +584,7 @@ class Profile(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             extended_log: Optional[pulumi.Input[str]] = None,
             external: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             method: Optional[pulumi.Input[pulumi.InputType['ProfileMethodArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             signature: Optional[pulumi.Input[pulumi.InputType['ProfileSignatureArgs']]] = None,
@@ -566,6 +603,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] external: Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileMethodArgs']] method: Method restriction. The structure of `method` block is documented below.
         :param pulumi.Input[str] name: WAF Profile name.
         :param pulumi.Input[pulumi.InputType['ProfileSignatureArgs']] signature: WAF signatures. The structure of `signature` block is documented below.
@@ -582,6 +620,7 @@ class Profile(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["extended_log"] = extended_log
         __props__.__dict__["external"] = external
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["method"] = method
         __props__.__dict__["name"] = name
         __props__.__dict__["signature"] = signature
@@ -636,6 +675,14 @@ class Profile(pulumi.CustomResource):
         Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "external")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

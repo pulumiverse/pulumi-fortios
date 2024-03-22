@@ -68,6 +68,8 @@ type Authportal struct {
 
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
 	Groups AuthportalGroupArrayOutput `pulumi:"groups"`
 	// Name of the identity-based route that applies to this portal.
@@ -76,6 +78,8 @@ type Authportal struct {
 	PortalAddr pulumi.StringOutput `pulumi:"portalAddr"`
 	// IPv6 address (or FQDN) of authentication portal.
 	PortalAddr6 pulumi.StringOutput `pulumi:"portalAddr6"`
+	// Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+	ProxyAuth pulumi.StringOutput `pulumi:"proxyAuth"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -112,6 +116,8 @@ func GetAuthportal(ctx *pulumi.Context,
 type authportalState struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
 	Groups []AuthportalGroup `pulumi:"groups"`
 	// Name of the identity-based route that applies to this portal.
@@ -120,6 +126,8 @@ type authportalState struct {
 	PortalAddr *string `pulumi:"portalAddr"`
 	// IPv6 address (or FQDN) of authentication portal.
 	PortalAddr6 *string `pulumi:"portalAddr6"`
+	// Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+	ProxyAuth *string `pulumi:"proxyAuth"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -127,6 +135,8 @@ type authportalState struct {
 type AuthportalState struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
 	Groups AuthportalGroupArrayInput
 	// Name of the identity-based route that applies to this portal.
@@ -135,6 +145,8 @@ type AuthportalState struct {
 	PortalAddr pulumi.StringPtrInput
 	// IPv6 address (or FQDN) of authentication portal.
 	PortalAddr6 pulumi.StringPtrInput
+	// Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+	ProxyAuth pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -146,6 +158,8 @@ func (AuthportalState) ElementType() reflect.Type {
 type authportalArgs struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
 	Groups []AuthportalGroup `pulumi:"groups"`
 	// Name of the identity-based route that applies to this portal.
@@ -154,6 +168,8 @@ type authportalArgs struct {
 	PortalAddr *string `pulumi:"portalAddr"`
 	// IPv6 address (or FQDN) of authentication portal.
 	PortalAddr6 *string `pulumi:"portalAddr6"`
+	// Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+	ProxyAuth *string `pulumi:"proxyAuth"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -162,6 +178,8 @@ type authportalArgs struct {
 type AuthportalArgs struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
 	Groups AuthportalGroupArrayInput
 	// Name of the identity-based route that applies to this portal.
@@ -170,6 +188,8 @@ type AuthportalArgs struct {
 	PortalAddr pulumi.StringPtrInput
 	// IPv6 address (or FQDN) of authentication portal.
 	PortalAddr6 pulumi.StringPtrInput
+	// Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+	ProxyAuth pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -266,6 +286,11 @@ func (o AuthportalOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Authportal) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o AuthportalOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Authportal) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
 func (o AuthportalOutput) Groups() AuthportalGroupArrayOutput {
 	return o.ApplyT(func(v *Authportal) AuthportalGroupArrayOutput { return v.Groups }).(AuthportalGroupArrayOutput)
@@ -284,6 +309,11 @@ func (o AuthportalOutput) PortalAddr() pulumi.StringOutput {
 // IPv6 address (or FQDN) of authentication portal.
 func (o AuthportalOutput) PortalAddr6() pulumi.StringOutput {
 	return o.ApplyT(func(v *Authportal) pulumi.StringOutput { return v.PortalAddr6 }).(pulumi.StringOutput)
+}
+
+// Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+func (o AuthportalOutput) ProxyAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *Authportal) pulumi.StringOutput { return v.ProxyAuth }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

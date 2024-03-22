@@ -20,6 +20,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<string>? AddrMode { get; set; }
 
         /// <summary>
+        /// Set/unset the service as agent use exclusively. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("agentExclusive")]
+        public Input<string>? AgentExclusive { get; set; }
+
+        /// <summary>
         /// Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.
         /// </summary>
         [Input("bandwidthWeight")]
@@ -90,6 +96,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         /// </summary>
         [Input("endPort")]
         public Input<int>? EndPort { get; set; }
+
+        /// <summary>
+        /// End source port number.
+        /// </summary>
+        [Input("endSrcPort")]
+        public Input<int>? EndSrcPort { get; set; }
 
         /// <summary>
         /// Enable/disable SD-WAN service gateway. Valid values: `enable`, `disable`.
@@ -284,13 +296,19 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<int>? LinkCostThreshold { get; set; }
 
         /// <summary>
+        /// Enable/disable load-balance. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("loadBalance")]
+        public Input<string>? LoadBalance { get; set; }
+
+        /// <summary>
         /// Minimum number of members which meet SLA.
         /// </summary>
         [Input("minimumSlaMeetMembers")]
         public Input<int>? MinimumSlaMeetMembers { get; set; }
 
         /// <summary>
-        /// Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
+        /// Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN.
         /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
@@ -362,10 +380,34 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<int>? RouteTag { get; set; }
 
         /// <summary>
+        /// Enable/disable shortcut for this service. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("shortcut")]
+        public Input<string>? Shortcut { get; set; }
+
+        /// <summary>
+        /// High priority of ADVPN shortcut for this service. Valid values: `enable`, `disable`, `auto`.
+        /// </summary>
+        [Input("shortcutPriority")]
+        public Input<string>? ShortcutPriority { get; set; }
+
+        /// <summary>
+        /// Enable/disable shortcut-stickiness of ADVPN. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("shortcutStickiness")]
+        public Input<string>? ShortcutStickiness { get; set; }
+
+        /// <summary>
         /// Method to compare SLA value for SLA mode. Valid values: `order`, `number`.
         /// </summary>
         [Input("slaCompareMethod")]
         public Input<string>? SlaCompareMethod { get; set; }
+
+        /// <summary>
+        /// Enable/disable SLA stickiness (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("slaStickiness")]
+        public Input<string>? SlaStickiness { get; set; }
 
         [Input("slas")]
         private InputList<Inputs.SdwanServiceSlaGetArgs>? _slas;
@@ -422,6 +464,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<int>? StartPort { get; set; }
 
         /// <summary>
+        /// Start source port number.
+        /// </summary>
+        [Input("startSrcPort")]
+        public Input<int>? StartSrcPort { get; set; }
+
+        /// <summary>
         /// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("status")]
@@ -462,6 +510,12 @@ namespace Pulumiverse.Fortios.System.Inputs
             get => _users ?? (_users = new InputList<Inputs.SdwanServiceUserGetArgs>());
             set => _users = value;
         }
+
+        /// <summary>
+        /// Enable/disable zone mode. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("zoneMode")]
+        public Input<string>? ZoneMode { get; set; }
 
         public SdwanServiceGetArgs()
         {

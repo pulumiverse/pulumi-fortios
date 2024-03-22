@@ -254,6 +254,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Inputs
         public Input<int>? MaxDistance { get; set; }
 
         /// <summary>
+        /// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+        /// </summary>
+        [Input("mimoMode")]
+        public Input<string>? MimoMode { get; set; }
+
+        /// <summary>
         /// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         /// </summary>
         [Input("mode")]
@@ -264,6 +270,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Inputs
         /// </summary>
         [Input("n80211d")]
         public Input<string>? N80211d { get; set; }
+
+        /// <summary>
+        /// Optional antenna used on FAP (default = none).
+        /// </summary>
+        [Input("optionalAntenna")]
+        public Input<string>? OptionalAntenna { get; set; }
+
+        /// <summary>
+        /// Optional antenna gain in dBi (0 to 20, default = 0).
+        /// </summary>
+        [Input("optionalAntennaGain")]
+        public Input<string>? OptionalAntennaGain { get; set; }
 
         /// <summary>
         /// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
@@ -308,10 +326,22 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Inputs
         public Input<string>? SamBssid { get; set; }
 
         /// <summary>
+        /// CA certificate for WPA2/WPA3-ENTERPRISE.
+        /// </summary>
+        [Input("samCaCertificate")]
+        public Input<string>? SamCaCertificate { get; set; }
+
+        /// <summary>
         /// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("samCaptivePortal")]
         public Input<string>? SamCaptivePortal { get; set; }
+
+        /// <summary>
+        /// Client certificate for WPA2/WPA3-ENTERPRISE.
+        /// </summary>
+        [Input("samClientCertificate")]
+        public Input<string>? SamClientCertificate { get; set; }
 
         /// <summary>
         /// Failure identification on the page after an incorrect login.
@@ -350,10 +380,28 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Inputs
         public Input<string>? SamCwpUsername { get; set; }
 
         /// <summary>
+        /// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
+        /// </summary>
+        [Input("samEapMethod")]
+        public Input<string>? SamEapMethod { get; set; }
+
+        /// <summary>
         /// Passphrase for WiFi network connection.
         /// </summary>
         [Input("samPassword")]
         public Input<string>? SamPassword { get; set; }
+
+        /// <summary>
+        /// Private key for WPA2/WPA3-ENTERPRISE.
+        /// </summary>
+        [Input("samPrivateKey")]
+        public Input<string>? SamPrivateKey { get; set; }
+
+        /// <summary>
+        /// Password for private key file for WPA2/WPA3-ENTERPRISE.
+        /// </summary>
+        [Input("samPrivateKeyPassword")]
+        public Input<string>? SamPrivateKeyPassword { get; set; }
 
         /// <summary>
         /// SAM report interval (sec), 0 for a one-time report.
@@ -362,7 +410,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Inputs
         public Input<int>? SamReportIntv { get; set; }
 
         /// <summary>
-        /// Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        /// Select WiFi network security type (default = "wpa-personal").
         /// </summary>
         [Input("samSecurityType")]
         public Input<string>? SamSecurityType { get; set; }

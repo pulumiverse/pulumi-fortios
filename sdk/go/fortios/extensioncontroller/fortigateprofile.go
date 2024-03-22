@@ -37,6 +37,8 @@ type Fortigateprofile struct {
 	Extension pulumi.StringOutput `pulumi:"extension"`
 	// ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// FortiGate connector LAN extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension FortigateprofileLanExtensionOutput `pulumi:"lanExtension"`
 	// FortiGate connector profile name.
@@ -79,6 +81,8 @@ type fortigateprofileState struct {
 	Extension *string `pulumi:"extension"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiGate connector LAN extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension *FortigateprofileLanExtension `pulumi:"lanExtension"`
 	// FortiGate connector profile name.
@@ -92,6 +96,8 @@ type FortigateprofileState struct {
 	Extension pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// FortiGate connector LAN extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension FortigateprofileLanExtensionPtrInput
 	// FortiGate connector profile name.
@@ -109,6 +115,8 @@ type fortigateprofileArgs struct {
 	Extension *string `pulumi:"extension"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiGate connector LAN extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension *FortigateprofileLanExtension `pulumi:"lanExtension"`
 	// FortiGate connector profile name.
@@ -123,6 +131,8 @@ type FortigateprofileArgs struct {
 	Extension pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// FortiGate connector LAN extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension FortigateprofileLanExtensionPtrInput
 	// FortiGate connector profile name.
@@ -226,6 +236,11 @@ func (o FortigateprofileOutput) Extension() pulumi.StringOutput {
 // ID.
 func (o FortigateprofileOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fortigateprofile) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o FortigateprofileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Fortigateprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // FortiGate connector LAN extension configuration. The structure of `lanExtension` block is documented below.

@@ -44,6 +44,18 @@ namespace Pulumiverse.Fortios.Router.Inputs
         public Input<string>? MatchCommunityExact { get; set; }
 
         /// <summary>
+        /// Match BGP extended community list.
+        /// </summary>
+        [Input("matchExtcommunity")]
+        public Input<string>? MatchExtcommunity { get; set; }
+
+        /// <summary>
+        /// Enable/disable exact matching of extended communities. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("matchExtcommunityExact")]
+        public Input<string>? MatchExtcommunityExact { get; set; }
+
+        /// <summary>
         /// BGP flag value to match (0 - 65535)
         /// </summary>
         [Input("matchFlags")]
@@ -248,6 +260,12 @@ namespace Pulumiverse.Fortios.Router.Inputs
         public Input<string>? SetIpNexthop { get; set; }
 
         /// <summary>
+        /// IP address of preferred source.
+        /// </summary>
+        [Input("setIpPrefsrc")]
+        public Input<string>? SetIpPrefsrc { get; set; }
+
+        /// <summary>
         /// BGP local preference path attribute.
         /// </summary>
         [Input("setLocalPreference")]
@@ -294,6 +312,24 @@ namespace Pulumiverse.Fortios.Router.Inputs
         /// </summary>
         [Input("setTag")]
         public Input<int>? SetTag { get; set; }
+
+        /// <summary>
+        /// IP address of VPNv4 next-hop.
+        /// </summary>
+        [Input("setVpnv4Nexthop")]
+        public Input<string>? SetVpnv4Nexthop { get; set; }
+
+        /// <summary>
+        /// IPv6 global address of VPNv6 next-hop.
+        /// </summary>
+        [Input("setVpnv6Nexthop")]
+        public Input<string>? SetVpnv6Nexthop { get; set; }
+
+        /// <summary>
+        /// IPv6 link-local address of VPNv6 next-hop.
+        /// </summary>
+        [Input("setVpnv6NexthopLocal")]
+        public Input<string>? SetVpnv6NexthopLocal { get; set; }
 
         /// <summary>
         /// BGP weight for routing table.

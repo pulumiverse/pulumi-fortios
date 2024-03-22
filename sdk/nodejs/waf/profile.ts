@@ -94,6 +94,10 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly external!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Method restriction. The structure of `method` block is documented below.
      */
     public readonly method!: pulumi.Output<outputs.waf.ProfileMethod>;
@@ -133,6 +137,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
             resourceInputs["external"] = state ? state.external : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["method"] = state ? state.method : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["signature"] = state ? state.signature : undefined;
@@ -146,6 +151,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
             resourceInputs["external"] = args ? args.external : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["method"] = args ? args.method : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["signature"] = args ? args.signature : undefined;
@@ -185,6 +191,10 @@ export interface ProfileState {
      * Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
      */
     external?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Method restriction. The structure of `method` block is documented below.
      */
@@ -235,6 +245,10 @@ export interface ProfileArgs {
      * Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
      */
     external?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Method restriction. The structure of `method` block is documented below.
      */

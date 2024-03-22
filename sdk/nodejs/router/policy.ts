@@ -121,6 +121,10 @@ export class Policy extends pulumi.CustomResource {
      */
     public readonly gateway!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable negation of input device match. Valid values: `enable`, `disable`.
      */
     public readonly inputDeviceNegate!: pulumi.Output<string>;
@@ -207,6 +211,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["endPort"] = state ? state.endPort : undefined;
             resourceInputs["endSourcePort"] = state ? state.endSourcePort : undefined;
             resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["inputDeviceNegate"] = state ? state.inputDeviceNegate : undefined;
             resourceInputs["inputDevices"] = state ? state.inputDevices : undefined;
             resourceInputs["internetServiceCustoms"] = state ? state.internetServiceCustoms : undefined;
@@ -234,6 +239,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["endPort"] = args ? args.endPort : undefined;
             resourceInputs["endSourcePort"] = args ? args.endSourcePort : undefined;
             resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["inputDeviceNegate"] = args ? args.inputDeviceNegate : undefined;
             resourceInputs["inputDevices"] = args ? args.inputDevices : undefined;
             resourceInputs["internetServiceCustoms"] = args ? args.internetServiceCustoms : undefined;
@@ -296,6 +302,10 @@ export interface PolicyState {
      * IP address of the gateway.
      */
     gateway?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable negation of input device match. Valid values: `enable`, `disable`.
      */
@@ -402,6 +412,10 @@ export interface PolicyArgs {
      * IP address of the gateway.
      */
     gateway?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable negation of input device match. Valid values: `enable`, `disable`.
      */

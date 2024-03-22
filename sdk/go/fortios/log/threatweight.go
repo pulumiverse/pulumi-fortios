@@ -186,6 +186,8 @@ type Threatweight struct {
 	FailedConnection pulumi.StringOutput `pulumi:"failedConnection"`
 	// Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
 	Geolocations ThreatweightGeolocationArrayOutput `pulumi:"geolocations"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// IPS threat weight settings. The structure of `ips` block is documented below.
 	Ips ThreatweightIpsOutput `pulumi:"ips"`
 	// Score mapping for threat weight levels. The structure of `level` block is documented below.
@@ -244,6 +246,8 @@ type threatweightState struct {
 	FailedConnection *string `pulumi:"failedConnection"`
 	// Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
 	Geolocations []ThreatweightGeolocation `pulumi:"geolocations"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// IPS threat weight settings. The structure of `ips` block is documented below.
 	Ips *ThreatweightIps `pulumi:"ips"`
 	// Score mapping for threat weight levels. The structure of `level` block is documented below.
@@ -273,6 +277,8 @@ type ThreatweightState struct {
 	FailedConnection pulumi.StringPtrInput
 	// Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
 	Geolocations ThreatweightGeolocationArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// IPS threat weight settings. The structure of `ips` block is documented below.
 	Ips ThreatweightIpsPtrInput
 	// Score mapping for threat weight levels. The structure of `level` block is documented below.
@@ -306,6 +312,8 @@ type threatweightArgs struct {
 	FailedConnection *string `pulumi:"failedConnection"`
 	// Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
 	Geolocations []ThreatweightGeolocation `pulumi:"geolocations"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// IPS threat weight settings. The structure of `ips` block is documented below.
 	Ips *ThreatweightIps `pulumi:"ips"`
 	// Score mapping for threat weight levels. The structure of `level` block is documented below.
@@ -336,6 +344,8 @@ type ThreatweightArgs struct {
 	FailedConnection pulumi.StringPtrInput
 	// Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
 	Geolocations ThreatweightGeolocationArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// IPS threat weight settings. The structure of `ips` block is documented below.
 	Ips ThreatweightIpsPtrInput
 	// Score mapping for threat weight levels. The structure of `level` block is documented below.
@@ -467,6 +477,11 @@ func (o ThreatweightOutput) FailedConnection() pulumi.StringOutput {
 // Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
 func (o ThreatweightOutput) Geolocations() ThreatweightGeolocationArrayOutput {
 	return o.ApplyT(func(v *Threatweight) ThreatweightGeolocationArrayOutput { return v.Geolocations }).(ThreatweightGeolocationArrayOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ThreatweightOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Threatweight) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // IPS threat weight settings. The structure of `ips` block is documented below.

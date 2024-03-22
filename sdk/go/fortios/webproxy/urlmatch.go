@@ -80,6 +80,8 @@ type Urlmatch struct {
 	CacheExemption pulumi.StringOutput `pulumi:"cacheExemption"`
 	// Comment.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
+	// Fast fallback configuration entry name.
+	FastFallback pulumi.StringOutput `pulumi:"fastFallback"`
 	// Forward server name.
 	ForwardServer pulumi.StringOutput `pulumi:"forwardServer"`
 	// Configure a name for the URL to be exempted.
@@ -129,6 +131,8 @@ type urlmatchState struct {
 	CacheExemption *string `pulumi:"cacheExemption"`
 	// Comment.
 	Comment *string `pulumi:"comment"`
+	// Fast fallback configuration entry name.
+	FastFallback *string `pulumi:"fastFallback"`
 	// Forward server name.
 	ForwardServer *string `pulumi:"forwardServer"`
 	// Configure a name for the URL to be exempted.
@@ -146,6 +150,8 @@ type UrlmatchState struct {
 	CacheExemption pulumi.StringPtrInput
 	// Comment.
 	Comment pulumi.StringPtrInput
+	// Fast fallback configuration entry name.
+	FastFallback pulumi.StringPtrInput
 	// Forward server name.
 	ForwardServer pulumi.StringPtrInput
 	// Configure a name for the URL to be exempted.
@@ -167,6 +173,8 @@ type urlmatchArgs struct {
 	CacheExemption *string `pulumi:"cacheExemption"`
 	// Comment.
 	Comment *string `pulumi:"comment"`
+	// Fast fallback configuration entry name.
+	FastFallback *string `pulumi:"fastFallback"`
 	// Forward server name.
 	ForwardServer *string `pulumi:"forwardServer"`
 	// Configure a name for the URL to be exempted.
@@ -185,6 +193,8 @@ type UrlmatchArgs struct {
 	CacheExemption pulumi.StringPtrInput
 	// Comment.
 	Comment pulumi.StringPtrInput
+	// Fast fallback configuration entry name.
+	FastFallback pulumi.StringPtrInput
 	// Forward server name.
 	ForwardServer pulumi.StringPtrInput
 	// Configure a name for the URL to be exempted.
@@ -292,6 +302,11 @@ func (o UrlmatchOutput) CacheExemption() pulumi.StringOutput {
 // Comment.
 func (o UrlmatchOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Urlmatch) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+// Fast fallback configuration entry name.
+func (o UrlmatchOutput) FastFallback() pulumi.StringOutput {
+	return o.ApplyT(func(v *Urlmatch) pulumi.StringOutput { return v.FastFallback }).(pulumi.StringOutput)
 }
 
 // Forward server name.

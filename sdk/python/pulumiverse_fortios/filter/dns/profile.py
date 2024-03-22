@@ -24,6 +24,7 @@ class ProfileArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  external_ip_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input['ProfileExternalIpBlocklistArgs']]]] = None,
                  ftgd_dns: Optional[pulumi.Input['ProfileFtgdDnsArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_all_domain: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  redirect_portal: Optional[pulumi.Input[str]] = None,
@@ -31,6 +32,7 @@ class ProfileArgs:
                  safe_search: Optional[pulumi.Input[str]] = None,
                  sdns_domain_log: Optional[pulumi.Input[str]] = None,
                  sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+                 transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  youtube_restrict: Optional[pulumi.Input[str]] = None):
         """
@@ -43,6 +45,7 @@ class ProfileArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input['ProfileExternalIpBlocklistArgs']]] external_ip_blocklists: One or more external IP block lists. The structure of `external_ip_blocklist` block is documented below.
         :param pulumi.Input['ProfileFtgdDnsArgs'] ftgd_dns: FortiGuard DNS Filter settings. The structure of `ftgd_dns` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log_all_domain: Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[str] redirect_portal: IP address of the SDNS redirect portal.
@@ -50,6 +53,7 @@ class ProfileArgs:
         :param pulumi.Input[str] safe_search: Enable/disable Google, Bing, and YouTube safe search. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] sdns_domain_log: Enable/disable domain filtering and botnet domain logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sdns_ftgd_err_log: Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]] transparent_dns_databases: Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] youtube_restrict: Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
         """
@@ -69,6 +73,8 @@ class ProfileArgs:
             pulumi.set(__self__, "external_ip_blocklists", external_ip_blocklists)
         if ftgd_dns is not None:
             pulumi.set(__self__, "ftgd_dns", ftgd_dns)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log_all_domain is not None:
             pulumi.set(__self__, "log_all_domain", log_all_domain)
         if name is not None:
@@ -83,6 +89,8 @@ class ProfileArgs:
             pulumi.set(__self__, "sdns_domain_log", sdns_domain_log)
         if sdns_ftgd_err_log is not None:
             pulumi.set(__self__, "sdns_ftgd_err_log", sdns_ftgd_err_log)
+        if transparent_dns_databases is not None:
+            pulumi.set(__self__, "transparent_dns_databases", transparent_dns_databases)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if youtube_restrict is not None:
@@ -185,6 +193,18 @@ class ProfileArgs:
         pulumi.set(self, "ftgd_dns", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="logAllDomain")
     def log_all_domain(self) -> Optional[pulumi.Input[str]]:
         """
@@ -267,6 +287,18 @@ class ProfileArgs:
     @sdns_ftgd_err_log.setter
     def sdns_ftgd_err_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sdns_ftgd_err_log", value)
+
+    @property
+    @pulumi.getter(name="transparentDnsDatabases")
+    def transparent_dns_databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]]]:
+        """
+        Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
+        """
+        return pulumi.get(self, "transparent_dns_databases")
+
+    @transparent_dns_databases.setter
+    def transparent_dns_databases(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]]]):
+        pulumi.set(self, "transparent_dns_databases", value)
 
     @property
     @pulumi.getter
@@ -304,6 +336,7 @@ class _ProfileState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  external_ip_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input['ProfileExternalIpBlocklistArgs']]]] = None,
                  ftgd_dns: Optional[pulumi.Input['ProfileFtgdDnsArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_all_domain: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  redirect_portal: Optional[pulumi.Input[str]] = None,
@@ -311,6 +344,7 @@ class _ProfileState:
                  safe_search: Optional[pulumi.Input[str]] = None,
                  sdns_domain_log: Optional[pulumi.Input[str]] = None,
                  sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+                 transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  youtube_restrict: Optional[pulumi.Input[str]] = None):
         """
@@ -323,6 +357,7 @@ class _ProfileState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input['ProfileExternalIpBlocklistArgs']]] external_ip_blocklists: One or more external IP block lists. The structure of `external_ip_blocklist` block is documented below.
         :param pulumi.Input['ProfileFtgdDnsArgs'] ftgd_dns: FortiGuard DNS Filter settings. The structure of `ftgd_dns` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log_all_domain: Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[str] redirect_portal: IP address of the SDNS redirect portal.
@@ -330,6 +365,7 @@ class _ProfileState:
         :param pulumi.Input[str] safe_search: Enable/disable Google, Bing, and YouTube safe search. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] sdns_domain_log: Enable/disable domain filtering and botnet domain logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sdns_ftgd_err_log: Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]] transparent_dns_databases: Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] youtube_restrict: Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
         """
@@ -349,6 +385,8 @@ class _ProfileState:
             pulumi.set(__self__, "external_ip_blocklists", external_ip_blocklists)
         if ftgd_dns is not None:
             pulumi.set(__self__, "ftgd_dns", ftgd_dns)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log_all_domain is not None:
             pulumi.set(__self__, "log_all_domain", log_all_domain)
         if name is not None:
@@ -363,6 +401,8 @@ class _ProfileState:
             pulumi.set(__self__, "sdns_domain_log", sdns_domain_log)
         if sdns_ftgd_err_log is not None:
             pulumi.set(__self__, "sdns_ftgd_err_log", sdns_ftgd_err_log)
+        if transparent_dns_databases is not None:
+            pulumi.set(__self__, "transparent_dns_databases", transparent_dns_databases)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if youtube_restrict is not None:
@@ -465,6 +505,18 @@ class _ProfileState:
         pulumi.set(self, "ftgd_dns", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="logAllDomain")
     def log_all_domain(self) -> Optional[pulumi.Input[str]]:
         """
@@ -547,6 +599,18 @@ class _ProfileState:
     @sdns_ftgd_err_log.setter
     def sdns_ftgd_err_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sdns_ftgd_err_log", value)
+
+    @property
+    @pulumi.getter(name="transparentDnsDatabases")
+    def transparent_dns_databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]]]:
+        """
+        Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
+        """
+        return pulumi.get(self, "transparent_dns_databases")
+
+    @transparent_dns_databases.setter
+    def transparent_dns_databases(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]]]):
+        pulumi.set(self, "transparent_dns_databases", value)
 
     @property
     @pulumi.getter
@@ -586,6 +650,7 @@ class Profile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  external_ip_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileExternalIpBlocklistArgs']]]]] = None,
                  ftgd_dns: Optional[pulumi.Input[pulumi.InputType['ProfileFtgdDnsArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_all_domain: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  redirect_portal: Optional[pulumi.Input[str]] = None,
@@ -593,6 +658,7 @@ class Profile(pulumi.CustomResource):
                  safe_search: Optional[pulumi.Input[str]] = None,
                  sdns_domain_log: Optional[pulumi.Input[str]] = None,
                  sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+                 transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileTransparentDnsDatabaseArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  youtube_restrict: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -677,6 +743,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileExternalIpBlocklistArgs']]]] external_ip_blocklists: One or more external IP block lists. The structure of `external_ip_blocklist` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileFtgdDnsArgs']] ftgd_dns: FortiGuard DNS Filter settings. The structure of `ftgd_dns` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log_all_domain: Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[str] redirect_portal: IP address of the SDNS redirect portal.
@@ -684,6 +751,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] safe_search: Enable/disable Google, Bing, and YouTube safe search. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] sdns_domain_log: Enable/disable domain filtering and botnet domain logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sdns_ftgd_err_log: Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileTransparentDnsDatabaseArgs']]]] transparent_dns_databases: Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] youtube_restrict: Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
         """
@@ -787,6 +855,7 @@ class Profile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  external_ip_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileExternalIpBlocklistArgs']]]]] = None,
                  ftgd_dns: Optional[pulumi.Input[pulumi.InputType['ProfileFtgdDnsArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_all_domain: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  redirect_portal: Optional[pulumi.Input[str]] = None,
@@ -794,6 +863,7 @@ class Profile(pulumi.CustomResource):
                  safe_search: Optional[pulumi.Input[str]] = None,
                  sdns_domain_log: Optional[pulumi.Input[str]] = None,
                  sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+                 transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileTransparentDnsDatabaseArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  youtube_restrict: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -813,6 +883,7 @@ class Profile(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["external_ip_blocklists"] = external_ip_blocklists
             __props__.__dict__["ftgd_dns"] = ftgd_dns
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["log_all_domain"] = log_all_domain
             __props__.__dict__["name"] = name
             __props__.__dict__["redirect_portal"] = redirect_portal
@@ -820,6 +891,7 @@ class Profile(pulumi.CustomResource):
             __props__.__dict__["safe_search"] = safe_search
             __props__.__dict__["sdns_domain_log"] = sdns_domain_log
             __props__.__dict__["sdns_ftgd_err_log"] = sdns_ftgd_err_log
+            __props__.__dict__["transparent_dns_databases"] = transparent_dns_databases
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["youtube_restrict"] = youtube_restrict
         super(Profile, __self__).__init__(
@@ -840,6 +912,7 @@ class Profile(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             external_ip_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileExternalIpBlocklistArgs']]]]] = None,
             ftgd_dns: Optional[pulumi.Input[pulumi.InputType['ProfileFtgdDnsArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             log_all_domain: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             redirect_portal: Optional[pulumi.Input[str]] = None,
@@ -847,6 +920,7 @@ class Profile(pulumi.CustomResource):
             safe_search: Optional[pulumi.Input[str]] = None,
             sdns_domain_log: Optional[pulumi.Input[str]] = None,
             sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+            transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileTransparentDnsDatabaseArgs']]]]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             youtube_restrict: Optional[pulumi.Input[str]] = None) -> 'Profile':
         """
@@ -864,6 +938,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileExternalIpBlocklistArgs']]]] external_ip_blocklists: One or more external IP block lists. The structure of `external_ip_blocklist` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileFtgdDnsArgs']] ftgd_dns: FortiGuard DNS Filter settings. The structure of `ftgd_dns` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log_all_domain: Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[str] redirect_portal: IP address of the SDNS redirect portal.
@@ -871,6 +946,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] safe_search: Enable/disable Google, Bing, and YouTube safe search. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] sdns_domain_log: Enable/disable domain filtering and botnet domain logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sdns_ftgd_err_log: Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileTransparentDnsDatabaseArgs']]]] transparent_dns_databases: Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] youtube_restrict: Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
         """
@@ -886,6 +962,7 @@ class Profile(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["external_ip_blocklists"] = external_ip_blocklists
         __props__.__dict__["ftgd_dns"] = ftgd_dns
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["log_all_domain"] = log_all_domain
         __props__.__dict__["name"] = name
         __props__.__dict__["redirect_portal"] = redirect_portal
@@ -893,6 +970,7 @@ class Profile(pulumi.CustomResource):
         __props__.__dict__["safe_search"] = safe_search
         __props__.__dict__["sdns_domain_log"] = sdns_domain_log
         __props__.__dict__["sdns_ftgd_err_log"] = sdns_ftgd_err_log
+        __props__.__dict__["transparent_dns_databases"] = transparent_dns_databases
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["youtube_restrict"] = youtube_restrict
         return Profile(resource_name, opts=opts, __props__=__props__)
@@ -962,6 +1040,14 @@ class Profile(pulumi.CustomResource):
         return pulumi.get(self, "ftgd_dns")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="logAllDomain")
     def log_all_domain(self) -> pulumi.Output[str]:
         """
@@ -1016,6 +1102,14 @@ class Profile(pulumi.CustomResource):
         Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "sdns_ftgd_err_log")
+
+    @property
+    @pulumi.getter(name="transparentDnsDatabases")
+    def transparent_dns_databases(self) -> pulumi.Output[Optional[Sequence['outputs.ProfileTransparentDnsDatabase']]]:
+        """
+        Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
+        """
+        return pulumi.get(self, "transparent_dns_databases")
 
     @property
     @pulumi.getter

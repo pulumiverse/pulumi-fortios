@@ -113,6 +113,10 @@ export class Policy64 extends pulumi.CustomResource {
      */
     public readonly fixedport!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable policy64 IP pool. Valid values: `enable`, `disable`.
      */
     public readonly ippool!: pulumi.Output<string>;
@@ -208,6 +212,7 @@ export class Policy64 extends pulumi.CustomResource {
             resourceInputs["dstintf"] = state ? state.dstintf : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fixedport"] = state ? state.fixedport : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ippool"] = state ? state.ippool : undefined;
             resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
             resourceInputs["logtrafficStart"] = state ? state.logtrafficStart : undefined;
@@ -250,6 +255,7 @@ export class Policy64 extends pulumi.CustomResource {
             resourceInputs["dstintf"] = args ? args.dstintf : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fixedport"] = args ? args.fixedport : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ippool"] = args ? args.ippool : undefined;
             resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
             resourceInputs["logtrafficStart"] = args ? args.logtrafficStart : undefined;
@@ -303,6 +309,10 @@ export interface Policy64State {
      * Enable/disable policy fixed port. Valid values: `enable`, `disable`.
      */
     fixedport?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable policy64 IP pool. Valid values: `enable`, `disable`.
      */
@@ -409,6 +419,10 @@ export interface Policy64Args {
      * Enable/disable policy fixed port. Valid values: `enable`, `disable`.
      */
     fixedport?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable policy64 IP pool. Valid values: `enable`, `disable`.
      */

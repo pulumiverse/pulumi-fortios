@@ -70,6 +70,12 @@ namespace Pulumiverse.Fortios.Dpdk
         [Output("vnpCpus")]
         public Output<string> VnpCpus { get; private set; } = null!;
 
+        /// <summary>
+        /// CPUs enabled to run DPDK VNP slow path.
+        /// </summary>
+        [Output("vnpspCpus")]
+        public Output<string> VnpspCpus { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Cpus resource with the given unique name, arguments, and options.
@@ -153,6 +159,12 @@ namespace Pulumiverse.Fortios.Dpdk
         [Input("vnpCpus")]
         public Input<string>? VnpCpus { get; set; }
 
+        /// <summary>
+        /// CPUs enabled to run DPDK VNP slow path.
+        /// </summary>
+        [Input("vnpspCpus")]
+        public Input<string>? VnpspCpus { get; set; }
+
         public CpusArgs()
         {
         }
@@ -196,6 +208,12 @@ namespace Pulumiverse.Fortios.Dpdk
         /// </summary>
         [Input("vnpCpus")]
         public Input<string>? VnpCpus { get; set; }
+
+        /// <summary>
+        /// CPUs enabled to run DPDK VNP slow path.
+        /// </summary>
+        [Input("vnpspCpus")]
+        public Input<string>? VnpspCpus { get; set; }
 
         public CpusState()
         {

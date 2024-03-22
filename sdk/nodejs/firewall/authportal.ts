@@ -76,6 +76,10 @@ export class Authportal extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
      */
     public readonly groups!: pulumi.Output<outputs.firewall.AuthportalGroup[] | undefined>;
@@ -91,6 +95,10 @@ export class Authportal extends pulumi.CustomResource {
      * IPv6 address (or FQDN) of authentication portal.
      */
     public readonly portalAddr6!: pulumi.Output<string>;
+    /**
+     * Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly proxyAuth!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -110,18 +118,22 @@ export class Authportal extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AuthportalState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["identityBasedRoute"] = state ? state.identityBasedRoute : undefined;
             resourceInputs["portalAddr"] = state ? state.portalAddr : undefined;
             resourceInputs["portalAddr6"] = state ? state.portalAddr6 : undefined;
+            resourceInputs["proxyAuth"] = state ? state.proxyAuth : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as AuthportalArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["identityBasedRoute"] = args ? args.identityBasedRoute : undefined;
             resourceInputs["portalAddr"] = args ? args.portalAddr : undefined;
             resourceInputs["portalAddr6"] = args ? args.portalAddr6 : undefined;
+            resourceInputs["proxyAuth"] = args ? args.proxyAuth : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -138,6 +150,10 @@ export interface AuthportalState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
      */
     groups?: pulumi.Input<pulumi.Input<inputs.firewall.AuthportalGroup>[]>;
@@ -153,6 +169,10 @@ export interface AuthportalState {
      * IPv6 address (or FQDN) of authentication portal.
      */
     portalAddr6?: pulumi.Input<string>;
+    /**
+     * Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+     */
+    proxyAuth?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -168,6 +188,10 @@ export interface AuthportalArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Firewall user groups permitted to authenticate through this portal. Separate group names with spaces. The structure of `groups` block is documented below.
      */
     groups?: pulumi.Input<pulumi.Input<inputs.firewall.AuthportalGroup>[]>;
@@ -183,6 +207,10 @@ export interface AuthportalArgs {
      * IPv6 address (or FQDN) of authentication portal.
      */
     portalAddr6?: pulumi.Input<string>;
+    /**
+     * Enable/disable authentication by proxy daemon (default = disable). Valid values: `enable`, `disable`.
+     */
+    proxyAuth?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

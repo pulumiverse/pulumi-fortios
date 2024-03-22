@@ -82,6 +82,10 @@ export class Sdnconnector extends pulumi.CustomResource {
      */
     public readonly accessKey!: pulumi.Output<string>;
     /**
+     * Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+     */
+    public readonly altResourceIp!: pulumi.Output<string>;
+    /**
      * IBM cloud API key or service ID API key.
      */
     public readonly apiKey!: pulumi.Output<string | undefined>;
@@ -101,6 +105,10 @@ export class Sdnconnector extends pulumi.CustomResource {
      * Compartment ID.
      */
     public readonly compartmentId!: pulumi.Output<string>;
+    /**
+     * Configure OCI compartment list. The structure of `compartmentList` block is documented below.
+     */
+    public readonly compartmentLists!: pulumi.Output<outputs.system.SdnconnectorCompartmentList[] | undefined>;
     /**
      * Compute generation for IBM cloud infrastructure.
      */
@@ -133,6 +141,10 @@ export class Sdnconnector extends pulumi.CustomResource {
      * Configure GCP project list. The structure of `gcpProjectList` block is documented below.
      */
     public readonly gcpProjectLists!: pulumi.Output<outputs.system.SdnconnectorGcpProjectList[] | undefined>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Group name of computers.
      */
@@ -182,6 +194,10 @@ export class Sdnconnector extends pulumi.CustomResource {
      */
     public readonly ociRegion!: pulumi.Output<string>;
     /**
+     * Configure OCI region list. The structure of `ociRegionList` block is documented below.
+     */
+    public readonly ociRegionLists!: pulumi.Output<outputs.system.SdnconnectorOciRegionList[] | undefined>;
+    /**
      * OCI region type. Valid values: `commercial`, `government`.
      */
     public readonly ociRegionType!: pulumi.Output<string>;
@@ -193,6 +209,10 @@ export class Sdnconnector extends pulumi.CustomResource {
      * Private key of GCP service account.
      */
     public readonly privateKey!: pulumi.Output<string>;
+    /**
+     * SDN proxy.
+     */
+    public readonly proxy!: pulumi.Output<string>;
     /**
      * AWS region name.
      */
@@ -225,6 +245,14 @@ export class Sdnconnector extends pulumi.CustomResource {
      * Server address of the remote SDN connector.
      */
     public readonly server!: pulumi.Output<string>;
+    /**
+     * Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+     */
+    public readonly serverCaCert!: pulumi.Output<string>;
+    /**
+     * Trust servers that contain this certificate only.
+     */
+    public readonly serverCert!: pulumi.Output<string>;
     /**
      * Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
      */
@@ -308,11 +336,13 @@ export class Sdnconnector extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SdnconnectorState | undefined;
             resourceInputs["accessKey"] = state ? state.accessKey : undefined;
+            resourceInputs["altResourceIp"] = state ? state.altResourceIp : undefined;
             resourceInputs["apiKey"] = state ? state.apiKey : undefined;
             resourceInputs["azureRegion"] = state ? state.azureRegion : undefined;
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
             resourceInputs["compartmentId"] = state ? state.compartmentId : undefined;
+            resourceInputs["compartmentLists"] = state ? state.compartmentLists : undefined;
             resourceInputs["computeGeneration"] = state ? state.computeGeneration : undefined;
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
@@ -321,6 +351,7 @@ export class Sdnconnector extends pulumi.CustomResource {
             resourceInputs["forwardingRules"] = state ? state.forwardingRules : undefined;
             resourceInputs["gcpProject"] = state ? state.gcpProject : undefined;
             resourceInputs["gcpProjectLists"] = state ? state.gcpProjectLists : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupName"] = state ? state.groupName : undefined;
             resourceInputs["haStatus"] = state ? state.haStatus : undefined;
             resourceInputs["ibmRegion"] = state ? state.ibmRegion : undefined;
@@ -333,9 +364,11 @@ export class Sdnconnector extends pulumi.CustomResource {
             resourceInputs["ociCert"] = state ? state.ociCert : undefined;
             resourceInputs["ociFingerprint"] = state ? state.ociFingerprint : undefined;
             resourceInputs["ociRegion"] = state ? state.ociRegion : undefined;
+            resourceInputs["ociRegionLists"] = state ? state.ociRegionLists : undefined;
             resourceInputs["ociRegionType"] = state ? state.ociRegionType : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["proxy"] = state ? state.proxy : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["resourceGroup"] = state ? state.resourceGroup : undefined;
             resourceInputs["resourceUrl"] = state ? state.resourceUrl : undefined;
@@ -344,6 +377,8 @@ export class Sdnconnector extends pulumi.CustomResource {
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
             resourceInputs["secretToken"] = state ? state.secretToken : undefined;
             resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["serverCaCert"] = state ? state.serverCaCert : undefined;
+            resourceInputs["serverCert"] = state ? state.serverCert : undefined;
             resourceInputs["serverLists"] = state ? state.serverLists : undefined;
             resourceInputs["serverPort"] = state ? state.serverPort : undefined;
             resourceInputs["serviceAccount"] = state ? state.serviceAccount : undefined;
@@ -370,11 +405,13 @@ export class Sdnconnector extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["accessKey"] = args?.accessKey ? pulumi.secret(args.accessKey) : undefined;
+            resourceInputs["altResourceIp"] = args ? args.altResourceIp : undefined;
             resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
             resourceInputs["azureRegion"] = args ? args.azureRegion : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["compartmentId"] = args ? args.compartmentId : undefined;
+            resourceInputs["compartmentLists"] = args ? args.compartmentLists : undefined;
             resourceInputs["computeGeneration"] = args ? args.computeGeneration : undefined;
             resourceInputs["domain"] = args ? args.domain : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
@@ -383,6 +420,7 @@ export class Sdnconnector extends pulumi.CustomResource {
             resourceInputs["forwardingRules"] = args ? args.forwardingRules : undefined;
             resourceInputs["gcpProject"] = args ? args.gcpProject : undefined;
             resourceInputs["gcpProjectLists"] = args ? args.gcpProjectLists : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupName"] = args ? args.groupName : undefined;
             resourceInputs["haStatus"] = args ? args.haStatus : undefined;
             resourceInputs["ibmRegion"] = args ? args.ibmRegion : undefined;
@@ -395,9 +433,11 @@ export class Sdnconnector extends pulumi.CustomResource {
             resourceInputs["ociCert"] = args ? args.ociCert : undefined;
             resourceInputs["ociFingerprint"] = args ? args.ociFingerprint : undefined;
             resourceInputs["ociRegion"] = args ? args.ociRegion : undefined;
+            resourceInputs["ociRegionLists"] = args ? args.ociRegionLists : undefined;
             resourceInputs["ociRegionType"] = args ? args.ociRegionType : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
+            resourceInputs["proxy"] = args ? args.proxy : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["resourceGroup"] = args ? args.resourceGroup : undefined;
             resourceInputs["resourceUrl"] = args ? args.resourceUrl : undefined;
@@ -406,6 +446,8 @@ export class Sdnconnector extends pulumi.CustomResource {
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["secretToken"] = args?.secretToken ? pulumi.secret(args.secretToken) : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["serverCaCert"] = args ? args.serverCaCert : undefined;
+            resourceInputs["serverCert"] = args ? args.serverCert : undefined;
             resourceInputs["serverLists"] = args ? args.serverLists : undefined;
             resourceInputs["serverPort"] = args ? args.serverPort : undefined;
             resourceInputs["serviceAccount"] = args ? args.serviceAccount : undefined;
@@ -440,6 +482,10 @@ export interface SdnconnectorState {
      */
     accessKey?: pulumi.Input<string>;
     /**
+     * Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+     */
+    altResourceIp?: pulumi.Input<string>;
+    /**
      * IBM cloud API key or service ID API key.
      */
     apiKey?: pulumi.Input<string>;
@@ -459,6 +505,10 @@ export interface SdnconnectorState {
      * Compartment ID.
      */
     compartmentId?: pulumi.Input<string>;
+    /**
+     * Configure OCI compartment list. The structure of `compartmentList` block is documented below.
+     */
+    compartmentLists?: pulumi.Input<pulumi.Input<inputs.system.SdnconnectorCompartmentList>[]>;
     /**
      * Compute generation for IBM cloud infrastructure.
      */
@@ -491,6 +541,10 @@ export interface SdnconnectorState {
      * Configure GCP project list. The structure of `gcpProjectList` block is documented below.
      */
     gcpProjectLists?: pulumi.Input<pulumi.Input<inputs.system.SdnconnectorGcpProjectList>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Group name of computers.
      */
@@ -540,6 +594,10 @@ export interface SdnconnectorState {
      */
     ociRegion?: pulumi.Input<string>;
     /**
+     * Configure OCI region list. The structure of `ociRegionList` block is documented below.
+     */
+    ociRegionLists?: pulumi.Input<pulumi.Input<inputs.system.SdnconnectorOciRegionList>[]>;
+    /**
      * OCI region type. Valid values: `commercial`, `government`.
      */
     ociRegionType?: pulumi.Input<string>;
@@ -551,6 +609,10 @@ export interface SdnconnectorState {
      * Private key of GCP service account.
      */
     privateKey?: pulumi.Input<string>;
+    /**
+     * SDN proxy.
+     */
+    proxy?: pulumi.Input<string>;
     /**
      * AWS region name.
      */
@@ -583,6 +645,14 @@ export interface SdnconnectorState {
      * Server address of the remote SDN connector.
      */
     server?: pulumi.Input<string>;
+    /**
+     * Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+     */
+    serverCaCert?: pulumi.Input<string>;
+    /**
+     * Trust servers that contain this certificate only.
+     */
+    serverCert?: pulumi.Input<string>;
     /**
      * Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
      */
@@ -662,6 +732,10 @@ export interface SdnconnectorArgs {
      */
     accessKey?: pulumi.Input<string>;
     /**
+     * Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+     */
+    altResourceIp?: pulumi.Input<string>;
+    /**
      * IBM cloud API key or service ID API key.
      */
     apiKey?: pulumi.Input<string>;
@@ -681,6 +755,10 @@ export interface SdnconnectorArgs {
      * Compartment ID.
      */
     compartmentId?: pulumi.Input<string>;
+    /**
+     * Configure OCI compartment list. The structure of `compartmentList` block is documented below.
+     */
+    compartmentLists?: pulumi.Input<pulumi.Input<inputs.system.SdnconnectorCompartmentList>[]>;
     /**
      * Compute generation for IBM cloud infrastructure.
      */
@@ -713,6 +791,10 @@ export interface SdnconnectorArgs {
      * Configure GCP project list. The structure of `gcpProjectList` block is documented below.
      */
     gcpProjectLists?: pulumi.Input<pulumi.Input<inputs.system.SdnconnectorGcpProjectList>[]>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Group name of computers.
      */
@@ -762,6 +844,10 @@ export interface SdnconnectorArgs {
      */
     ociRegion?: pulumi.Input<string>;
     /**
+     * Configure OCI region list. The structure of `ociRegionList` block is documented below.
+     */
+    ociRegionLists?: pulumi.Input<pulumi.Input<inputs.system.SdnconnectorOciRegionList>[]>;
+    /**
      * OCI region type. Valid values: `commercial`, `government`.
      */
     ociRegionType?: pulumi.Input<string>;
@@ -773,6 +859,10 @@ export interface SdnconnectorArgs {
      * Private key of GCP service account.
      */
     privateKey?: pulumi.Input<string>;
+    /**
+     * SDN proxy.
+     */
+    proxy?: pulumi.Input<string>;
     /**
      * AWS region name.
      */
@@ -805,6 +895,14 @@ export interface SdnconnectorArgs {
      * Server address of the remote SDN connector.
      */
     server?: pulumi.Input<string>;
+    /**
+     * Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+     */
+    serverCaCert?: pulumi.Input<string>;
+    /**
+     * Trust servers that contain this certificate only.
+     */
+    serverCert?: pulumi.Input<string>;
     /**
      * Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
      */

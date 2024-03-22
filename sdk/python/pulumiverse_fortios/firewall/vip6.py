@@ -26,6 +26,9 @@ class Vip6Args:
                  embedded_ipv4_address: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 h2_support: Optional[pulumi.Input[str]] = None,
+                 h3_support: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -47,10 +50,12 @@ class Vip6Args:
                  nat64: Optional[pulumi.Input[str]] = None,
                  nat66: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
+                 ndp_reply: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
                  portforward: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 quic: Optional[pulumi.Input['Vip6QuicArgs']] = None,
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input['Vip6RealserverArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input['Vip6SrcFilterArgs']]]] = None,
@@ -85,6 +90,7 @@ class Vip6Args:
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input['Vip6SslServerCipherSuiteArgs']]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -105,6 +111,9 @@ class Vip6Args:
         :param pulumi.Input[str] embedded_ipv4_address: Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] h2_support: Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] h3_support: Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
         :param pulumi.Input[str] http_cookie_domain: Domain that HTTP cookie persistence should apply to.
         :param pulumi.Input[str] http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -126,10 +135,12 @@ class Vip6Args:
         :param pulumi.Input[str] nat64: Enable/disable DNAT64. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat66: Enable/disable DNAT66. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat_source_vip: Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ndp_reply: Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
         :param pulumi.Input[str] portforward: Enable port forwarding. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] protocol: Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
+        :param pulumi.Input['Vip6QuicArgs'] quic: QUIC setting. The structure of `quic` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['Vip6RealserverArgs']]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input['Vip6SrcFilterArgs']]] src_filters: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
@@ -164,6 +175,7 @@ class Vip6Args:
         :param pulumi.Input[Sequence[pulumi.Input['Vip6SslServerCipherSuiteArgs']]] ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_server_cipher_suites` block is documented below.
         :param pulumi.Input[str] ssl_server_max_version: Highest SSL/TLS version acceptable from a server. Use the client setting by default.
         :param pulumi.Input[str] ssl_server_min_version: Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
+        :param pulumi.Input[str] ssl_server_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep.
         :param pulumi.Input[int] ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state.
         :param pulumi.Input[str] ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
@@ -191,6 +203,12 @@ class Vip6Args:
             pulumi.set(__self__, "extport", extport)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if h2_support is not None:
+            pulumi.set(__self__, "h2_support", h2_support)
+        if h3_support is not None:
+            pulumi.set(__self__, "h3_support", h3_support)
         if http_cookie_age is not None:
             pulumi.set(__self__, "http_cookie_age", http_cookie_age)
         if http_cookie_domain is not None:
@@ -233,6 +251,8 @@ class Vip6Args:
             pulumi.set(__self__, "nat66", nat66)
         if nat_source_vip is not None:
             pulumi.set(__self__, "nat_source_vip", nat_source_vip)
+        if ndp_reply is not None:
+            pulumi.set(__self__, "ndp_reply", ndp_reply)
         if outlook_web_access is not None:
             pulumi.set(__self__, "outlook_web_access", outlook_web_access)
         if persistence is not None:
@@ -241,6 +261,8 @@ class Vip6Args:
             pulumi.set(__self__, "portforward", portforward)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if quic is not None:
+            pulumi.set(__self__, "quic", quic)
         if realservers is not None:
             pulumi.set(__self__, "realservers", realservers)
         if server_type is not None:
@@ -309,6 +331,8 @@ class Vip6Args:
             pulumi.set(__self__, "ssl_server_max_version", ssl_server_max_version)
         if ssl_server_min_version is not None:
             pulumi.set(__self__, "ssl_server_min_version", ssl_server_min_version)
+        if ssl_server_renegotiation is not None:
+            pulumi.set(__self__, "ssl_server_renegotiation", ssl_server_renegotiation)
         if ssl_server_session_state_max is not None:
             pulumi.set(__self__, "ssl_server_session_state_max", ssl_server_session_state_max)
         if ssl_server_session_state_timeout is not None:
@@ -445,6 +469,42 @@ class Vip6Args:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="h2Support")
+    def h2_support(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h2_support")
+
+    @h2_support.setter
+    def h2_support(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h2_support", value)
+
+    @property
+    @pulumi.getter(name="h3Support")
+    def h3_support(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h3_support")
+
+    @h3_support.setter
+    def h3_support(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h3_support", value)
 
     @property
     @pulumi.getter(name="httpCookieAge")
@@ -699,6 +759,18 @@ class Vip6Args:
         pulumi.set(self, "nat_source_vip", value)
 
     @property
+    @pulumi.getter(name="ndpReply")
+    def ndp_reply(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ndp_reply")
+
+    @ndp_reply.setter
+    def ndp_reply(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ndp_reply", value)
+
+    @property
     @pulumi.getter(name="outlookWebAccess")
     def outlook_web_access(self) -> Optional[pulumi.Input[str]]:
         """
@@ -745,6 +817,18 @@ class Vip6Args:
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter
+    def quic(self) -> Optional[pulumi.Input['Vip6QuicArgs']]:
+        """
+        QUIC setting. The structure of `quic` block is documented below.
+        """
+        return pulumi.get(self, "quic")
+
+    @quic.setter
+    def quic(self, value: Optional[pulumi.Input['Vip6QuicArgs']]):
+        pulumi.set(self, "quic", value)
 
     @property
     @pulumi.getter
@@ -1155,6 +1239,18 @@ class Vip6Args:
         pulumi.set(self, "ssl_server_min_version", value)
 
     @property
+    @pulumi.getter(name="sslServerRenegotiation")
+    def ssl_server_renegotiation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_server_renegotiation")
+
+    @ssl_server_renegotiation.setter
+    def ssl_server_renegotiation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_server_renegotiation", value)
+
+    @property
     @pulumi.getter(name="sslServerSessionStateMax")
     def ssl_server_session_state_max(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1263,6 +1359,9 @@ class _Vip6State:
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 h2_support: Optional[pulumi.Input[str]] = None,
+                 h3_support: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -1285,10 +1384,12 @@ class _Vip6State:
                  nat64: Optional[pulumi.Input[str]] = None,
                  nat66: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
+                 ndp_reply: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
                  portforward: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 quic: Optional[pulumi.Input['Vip6QuicArgs']] = None,
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input['Vip6RealserverArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input['Vip6SrcFilterArgs']]]] = None,
@@ -1323,6 +1424,7 @@ class _Vip6State:
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input['Vip6SslServerCipherSuiteArgs']]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -1342,6 +1444,9 @@ class _Vip6State:
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] h2_support: Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] h3_support: Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
         :param pulumi.Input[str] http_cookie_domain: Domain that HTTP cookie persistence should apply to.
         :param pulumi.Input[str] http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -1364,10 +1469,12 @@ class _Vip6State:
         :param pulumi.Input[str] nat64: Enable/disable DNAT64. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat66: Enable/disable DNAT66. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat_source_vip: Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ndp_reply: Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
         :param pulumi.Input[str] portforward: Enable port forwarding. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] protocol: Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
+        :param pulumi.Input['Vip6QuicArgs'] quic: QUIC setting. The structure of `quic` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['Vip6RealserverArgs']]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input['Vip6SrcFilterArgs']]] src_filters: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
@@ -1402,6 +1509,7 @@ class _Vip6State:
         :param pulumi.Input[Sequence[pulumi.Input['Vip6SslServerCipherSuiteArgs']]] ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_server_cipher_suites` block is documented below.
         :param pulumi.Input[str] ssl_server_max_version: Highest SSL/TLS version acceptable from a server. Use the client setting by default.
         :param pulumi.Input[str] ssl_server_min_version: Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
+        :param pulumi.Input[str] ssl_server_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep.
         :param pulumi.Input[int] ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state.
         :param pulumi.Input[str] ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
@@ -1429,6 +1537,12 @@ class _Vip6State:
             pulumi.set(__self__, "extport", extport)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if h2_support is not None:
+            pulumi.set(__self__, "h2_support", h2_support)
+        if h3_support is not None:
+            pulumi.set(__self__, "h3_support", h3_support)
         if http_cookie_age is not None:
             pulumi.set(__self__, "http_cookie_age", http_cookie_age)
         if http_cookie_domain is not None:
@@ -1473,6 +1587,8 @@ class _Vip6State:
             pulumi.set(__self__, "nat66", nat66)
         if nat_source_vip is not None:
             pulumi.set(__self__, "nat_source_vip", nat_source_vip)
+        if ndp_reply is not None:
+            pulumi.set(__self__, "ndp_reply", ndp_reply)
         if outlook_web_access is not None:
             pulumi.set(__self__, "outlook_web_access", outlook_web_access)
         if persistence is not None:
@@ -1481,6 +1597,8 @@ class _Vip6State:
             pulumi.set(__self__, "portforward", portforward)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if quic is not None:
+            pulumi.set(__self__, "quic", quic)
         if realservers is not None:
             pulumi.set(__self__, "realservers", realservers)
         if server_type is not None:
@@ -1549,6 +1667,8 @@ class _Vip6State:
             pulumi.set(__self__, "ssl_server_max_version", ssl_server_max_version)
         if ssl_server_min_version is not None:
             pulumi.set(__self__, "ssl_server_min_version", ssl_server_min_version)
+        if ssl_server_renegotiation is not None:
+            pulumi.set(__self__, "ssl_server_renegotiation", ssl_server_renegotiation)
         if ssl_server_session_state_max is not None:
             pulumi.set(__self__, "ssl_server_session_state_max", ssl_server_session_state_max)
         if ssl_server_session_state_timeout is not None:
@@ -1673,6 +1793,42 @@ class _Vip6State:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="h2Support")
+    def h2_support(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h2_support")
+
+    @h2_support.setter
+    def h2_support(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h2_support", value)
+
+    @property
+    @pulumi.getter(name="h3Support")
+    def h3_support(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h3_support")
+
+    @h3_support.setter
+    def h3_support(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h3_support", value)
 
     @property
     @pulumi.getter(name="httpCookieAge")
@@ -1939,6 +2095,18 @@ class _Vip6State:
         pulumi.set(self, "nat_source_vip", value)
 
     @property
+    @pulumi.getter(name="ndpReply")
+    def ndp_reply(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ndp_reply")
+
+    @ndp_reply.setter
+    def ndp_reply(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ndp_reply", value)
+
+    @property
     @pulumi.getter(name="outlookWebAccess")
     def outlook_web_access(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1985,6 +2153,18 @@ class _Vip6State:
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter
+    def quic(self) -> Optional[pulumi.Input['Vip6QuicArgs']]:
+        """
+        QUIC setting. The structure of `quic` block is documented below.
+        """
+        return pulumi.get(self, "quic")
+
+    @quic.setter
+    def quic(self, value: Optional[pulumi.Input['Vip6QuicArgs']]):
+        pulumi.set(self, "quic", value)
 
     @property
     @pulumi.getter
@@ -2395,6 +2575,18 @@ class _Vip6State:
         pulumi.set(self, "ssl_server_min_version", value)
 
     @property
+    @pulumi.getter(name="sslServerRenegotiation")
+    def ssl_server_renegotiation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_server_renegotiation")
+
+    @ssl_server_renegotiation.setter
+    def ssl_server_renegotiation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_server_renegotiation", value)
+
+    @property
     @pulumi.getter(name="sslServerSessionStateMax")
     def ssl_server_session_state_max(self) -> Optional[pulumi.Input[int]]:
         """
@@ -2505,6 +2697,9 @@ class Vip6(pulumi.CustomResource):
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 h2_support: Optional[pulumi.Input[str]] = None,
+                 h3_support: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -2527,10 +2722,12 @@ class Vip6(pulumi.CustomResource):
                  nat64: Optional[pulumi.Input[str]] = None,
                  nat66: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
+                 ndp_reply: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
                  portforward: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 quic: Optional[pulumi.Input[pulumi.InputType['Vip6QuicArgs']]] = None,
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6RealserverArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SrcFilterArgs']]]]] = None,
@@ -2565,6 +2762,7 @@ class Vip6(pulumi.CustomResource):
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SslServerCipherSuiteArgs']]]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -2666,6 +2864,9 @@ class Vip6(pulumi.CustomResource):
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] h2_support: Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] h3_support: Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
         :param pulumi.Input[str] http_cookie_domain: Domain that HTTP cookie persistence should apply to.
         :param pulumi.Input[str] http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -2688,10 +2889,12 @@ class Vip6(pulumi.CustomResource):
         :param pulumi.Input[str] nat64: Enable/disable DNAT64. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat66: Enable/disable DNAT66. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat_source_vip: Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ndp_reply: Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
         :param pulumi.Input[str] portforward: Enable port forwarding. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] protocol: Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
+        :param pulumi.Input[pulumi.InputType['Vip6QuicArgs']] quic: QUIC setting. The structure of `quic` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6RealserverArgs']]]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SrcFilterArgs']]]] src_filters: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
@@ -2726,6 +2929,7 @@ class Vip6(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SslServerCipherSuiteArgs']]]] ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_server_cipher_suites` block is documented below.
         :param pulumi.Input[str] ssl_server_max_version: Highest SSL/TLS version acceptable from a server. Use the client setting by default.
         :param pulumi.Input[str] ssl_server_min_version: Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
+        :param pulumi.Input[str] ssl_server_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep.
         :param pulumi.Input[int] ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state.
         :param pulumi.Input[str] ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
@@ -2846,6 +3050,9 @@ class Vip6(pulumi.CustomResource):
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 h2_support: Optional[pulumi.Input[str]] = None,
+                 h3_support: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -2868,10 +3075,12 @@ class Vip6(pulumi.CustomResource):
                  nat64: Optional[pulumi.Input[str]] = None,
                  nat66: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
+                 ndp_reply: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
                  portforward: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 quic: Optional[pulumi.Input[pulumi.InputType['Vip6QuicArgs']]] = None,
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6RealserverArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SrcFilterArgs']]]]] = None,
@@ -2906,6 +3115,7 @@ class Vip6(pulumi.CustomResource):
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SslServerCipherSuiteArgs']]]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -2934,6 +3144,9 @@ class Vip6(pulumi.CustomResource):
             __props__.__dict__["extip"] = extip
             __props__.__dict__["extport"] = extport
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["h2_support"] = h2_support
+            __props__.__dict__["h3_support"] = h3_support
             __props__.__dict__["http_cookie_age"] = http_cookie_age
             __props__.__dict__["http_cookie_domain"] = http_cookie_domain
             __props__.__dict__["http_cookie_domain_from_host"] = http_cookie_domain_from_host
@@ -2958,10 +3171,12 @@ class Vip6(pulumi.CustomResource):
             __props__.__dict__["nat64"] = nat64
             __props__.__dict__["nat66"] = nat66
             __props__.__dict__["nat_source_vip"] = nat_source_vip
+            __props__.__dict__["ndp_reply"] = ndp_reply
             __props__.__dict__["outlook_web_access"] = outlook_web_access
             __props__.__dict__["persistence"] = persistence
             __props__.__dict__["portforward"] = portforward
             __props__.__dict__["protocol"] = protocol
+            __props__.__dict__["quic"] = quic
             __props__.__dict__["realservers"] = realservers
             __props__.__dict__["server_type"] = server_type
             __props__.__dict__["src_filters"] = src_filters
@@ -2996,6 +3211,7 @@ class Vip6(pulumi.CustomResource):
             __props__.__dict__["ssl_server_cipher_suites"] = ssl_server_cipher_suites
             __props__.__dict__["ssl_server_max_version"] = ssl_server_max_version
             __props__.__dict__["ssl_server_min_version"] = ssl_server_min_version
+            __props__.__dict__["ssl_server_renegotiation"] = ssl_server_renegotiation
             __props__.__dict__["ssl_server_session_state_max"] = ssl_server_session_state_max
             __props__.__dict__["ssl_server_session_state_timeout"] = ssl_server_session_state_timeout
             __props__.__dict__["ssl_server_session_state_type"] = ssl_server_session_state_type
@@ -3023,6 +3239,9 @@ class Vip6(pulumi.CustomResource):
             extip: Optional[pulumi.Input[str]] = None,
             extport: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            h2_support: Optional[pulumi.Input[str]] = None,
+            h3_support: Optional[pulumi.Input[str]] = None,
             http_cookie_age: Optional[pulumi.Input[int]] = None,
             http_cookie_domain: Optional[pulumi.Input[str]] = None,
             http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -3045,10 +3264,12 @@ class Vip6(pulumi.CustomResource):
             nat64: Optional[pulumi.Input[str]] = None,
             nat66: Optional[pulumi.Input[str]] = None,
             nat_source_vip: Optional[pulumi.Input[str]] = None,
+            ndp_reply: Optional[pulumi.Input[str]] = None,
             outlook_web_access: Optional[pulumi.Input[str]] = None,
             persistence: Optional[pulumi.Input[str]] = None,
             portforward: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
+            quic: Optional[pulumi.Input[pulumi.InputType['Vip6QuicArgs']]] = None,
             realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6RealserverArgs']]]]] = None,
             server_type: Optional[pulumi.Input[str]] = None,
             src_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SrcFilterArgs']]]]] = None,
@@ -3083,6 +3304,7 @@ class Vip6(pulumi.CustomResource):
             ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SslServerCipherSuiteArgs']]]]] = None,
             ssl_server_max_version: Optional[pulumi.Input[str]] = None,
             ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+            ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
             ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
             ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
             ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -3107,6 +3329,9 @@ class Vip6(pulumi.CustomResource):
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] h2_support: Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] h3_support: Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
         :param pulumi.Input[str] http_cookie_domain: Domain that HTTP cookie persistence should apply to.
         :param pulumi.Input[str] http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -3129,10 +3354,12 @@ class Vip6(pulumi.CustomResource):
         :param pulumi.Input[str] nat64: Enable/disable DNAT64. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat66: Enable/disable DNAT66. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat_source_vip: Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ndp_reply: Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
         :param pulumi.Input[str] portforward: Enable port forwarding. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] protocol: Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
+        :param pulumi.Input[pulumi.InputType['Vip6QuicArgs']] quic: QUIC setting. The structure of `quic` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6RealserverArgs']]]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SrcFilterArgs']]]] src_filters: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
@@ -3167,6 +3394,7 @@ class Vip6(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SslServerCipherSuiteArgs']]]] ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_server_cipher_suites` block is documented below.
         :param pulumi.Input[str] ssl_server_max_version: Highest SSL/TLS version acceptable from a server. Use the client setting by default.
         :param pulumi.Input[str] ssl_server_min_version: Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
+        :param pulumi.Input[str] ssl_server_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep.
         :param pulumi.Input[int] ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state.
         :param pulumi.Input[str] ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
@@ -3189,6 +3417,9 @@ class Vip6(pulumi.CustomResource):
         __props__.__dict__["extip"] = extip
         __props__.__dict__["extport"] = extport
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["h2_support"] = h2_support
+        __props__.__dict__["h3_support"] = h3_support
         __props__.__dict__["http_cookie_age"] = http_cookie_age
         __props__.__dict__["http_cookie_domain"] = http_cookie_domain
         __props__.__dict__["http_cookie_domain_from_host"] = http_cookie_domain_from_host
@@ -3211,10 +3442,12 @@ class Vip6(pulumi.CustomResource):
         __props__.__dict__["nat64"] = nat64
         __props__.__dict__["nat66"] = nat66
         __props__.__dict__["nat_source_vip"] = nat_source_vip
+        __props__.__dict__["ndp_reply"] = ndp_reply
         __props__.__dict__["outlook_web_access"] = outlook_web_access
         __props__.__dict__["persistence"] = persistence
         __props__.__dict__["portforward"] = portforward
         __props__.__dict__["protocol"] = protocol
+        __props__.__dict__["quic"] = quic
         __props__.__dict__["realservers"] = realservers
         __props__.__dict__["server_type"] = server_type
         __props__.__dict__["src_filters"] = src_filters
@@ -3249,6 +3482,7 @@ class Vip6(pulumi.CustomResource):
         __props__.__dict__["ssl_server_cipher_suites"] = ssl_server_cipher_suites
         __props__.__dict__["ssl_server_max_version"] = ssl_server_max_version
         __props__.__dict__["ssl_server_min_version"] = ssl_server_min_version
+        __props__.__dict__["ssl_server_renegotiation"] = ssl_server_renegotiation
         __props__.__dict__["ssl_server_session_state_max"] = ssl_server_session_state_max
         __props__.__dict__["ssl_server_session_state_timeout"] = ssl_server_session_state_timeout
         __props__.__dict__["ssl_server_session_state_type"] = ssl_server_session_state_type
@@ -3330,6 +3564,30 @@ class Vip6(pulumi.CustomResource):
         Custom defined ID.
         """
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="h2Support")
+    def h2_support(self) -> pulumi.Output[str]:
+        """
+        Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h2_support")
+
+    @property
+    @pulumi.getter(name="h3Support")
+    def h3_support(self) -> pulumi.Output[str]:
+        """
+        Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "h3_support")
 
     @property
     @pulumi.getter(name="httpCookieAge")
@@ -3508,6 +3766,14 @@ class Vip6(pulumi.CustomResource):
         return pulumi.get(self, "nat_source_vip")
 
     @property
+    @pulumi.getter(name="ndpReply")
+    def ndp_reply(self) -> pulumi.Output[str]:
+        """
+        Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ndp_reply")
+
+    @property
     @pulumi.getter(name="outlookWebAccess")
     def outlook_web_access(self) -> pulumi.Output[str]:
         """
@@ -3538,6 +3804,14 @@ class Vip6(pulumi.CustomResource):
         Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
         """
         return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter
+    def quic(self) -> pulumi.Output['outputs.Vip6Quic']:
+        """
+        QUIC setting. The structure of `quic` block is documented below.
+        """
+        return pulumi.get(self, "quic")
 
     @property
     @pulumi.getter
@@ -3810,6 +4084,14 @@ class Vip6(pulumi.CustomResource):
         Lowest SSL/TLS version acceptable from a server. Use the client setting by default.
         """
         return pulumi.get(self, "ssl_server_min_version")
+
+    @property
+    @pulumi.getter(name="sslServerRenegotiation")
+    def ssl_server_renegotiation(self) -> pulumi.Output[str]:
+        """
+        Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_server_renegotiation")
 
     @property
     @pulumi.getter(name="sslServerSessionStateMax")

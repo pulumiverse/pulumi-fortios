@@ -67,6 +67,16 @@ type Settings8021X struct {
 	LinkDownAuth pulumi.StringOutput `pulumi:"linkDownAuth"`
 	// Enable/disable MAB re-authentication. Valid values: `disable`, `enable`.
 	MabReauth pulumi.StringOutput `pulumi:"mabReauth"`
+	// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCalledStationDelimiter pulumi.StringOutput `pulumi:"macCalledStationDelimiter"`
+	// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCallingStationDelimiter pulumi.StringOutput `pulumi:"macCallingStationDelimiter"`
+	// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+	MacCase pulumi.StringOutput `pulumi:"macCase"`
+	// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacPasswordDelimiter pulumi.StringOutput `pulumi:"macPasswordDelimiter"`
+	// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacUsernameDelimiter pulumi.StringOutput `pulumi:"macUsernameDelimiter"`
 	// Maximum number of authentication attempts (0 - 15, default = 3).
 	MaxReauthAttempt pulumi.IntOutput `pulumi:"maxReauthAttempt"`
 	// Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
@@ -111,6 +121,16 @@ type settings8021XState struct {
 	LinkDownAuth *string `pulumi:"linkDownAuth"`
 	// Enable/disable MAB re-authentication. Valid values: `disable`, `enable`.
 	MabReauth *string `pulumi:"mabReauth"`
+	// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCalledStationDelimiter *string `pulumi:"macCalledStationDelimiter"`
+	// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCallingStationDelimiter *string `pulumi:"macCallingStationDelimiter"`
+	// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+	MacCase *string `pulumi:"macCase"`
+	// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacPasswordDelimiter *string `pulumi:"macPasswordDelimiter"`
+	// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacUsernameDelimiter *string `pulumi:"macUsernameDelimiter"`
 	// Maximum number of authentication attempts (0 - 15, default = 3).
 	MaxReauthAttempt *int `pulumi:"maxReauthAttempt"`
 	// Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
@@ -126,6 +146,16 @@ type Settings8021XState struct {
 	LinkDownAuth pulumi.StringPtrInput
 	// Enable/disable MAB re-authentication. Valid values: `disable`, `enable`.
 	MabReauth pulumi.StringPtrInput
+	// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCalledStationDelimiter pulumi.StringPtrInput
+	// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCallingStationDelimiter pulumi.StringPtrInput
+	// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+	MacCase pulumi.StringPtrInput
+	// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacPasswordDelimiter pulumi.StringPtrInput
+	// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacUsernameDelimiter pulumi.StringPtrInput
 	// Maximum number of authentication attempts (0 - 15, default = 3).
 	MaxReauthAttempt pulumi.IntPtrInput
 	// Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
@@ -145,6 +175,16 @@ type settings8021XArgs struct {
 	LinkDownAuth *string `pulumi:"linkDownAuth"`
 	// Enable/disable MAB re-authentication. Valid values: `disable`, `enable`.
 	MabReauth *string `pulumi:"mabReauth"`
+	// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCalledStationDelimiter *string `pulumi:"macCalledStationDelimiter"`
+	// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCallingStationDelimiter *string `pulumi:"macCallingStationDelimiter"`
+	// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+	MacCase *string `pulumi:"macCase"`
+	// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacPasswordDelimiter *string `pulumi:"macPasswordDelimiter"`
+	// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacUsernameDelimiter *string `pulumi:"macUsernameDelimiter"`
 	// Maximum number of authentication attempts (0 - 15, default = 3).
 	MaxReauthAttempt *int `pulumi:"maxReauthAttempt"`
 	// Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
@@ -161,6 +201,16 @@ type Settings8021XArgs struct {
 	LinkDownAuth pulumi.StringPtrInput
 	// Enable/disable MAB re-authentication. Valid values: `disable`, `enable`.
 	MabReauth pulumi.StringPtrInput
+	// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCalledStationDelimiter pulumi.StringPtrInput
+	// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCallingStationDelimiter pulumi.StringPtrInput
+	// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+	MacCase pulumi.StringPtrInput
+	// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacPasswordDelimiter pulumi.StringPtrInput
+	// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacUsernameDelimiter pulumi.StringPtrInput
 	// Maximum number of authentication attempts (0 - 15, default = 3).
 	MaxReauthAttempt pulumi.IntPtrInput
 	// Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication).
@@ -266,6 +316,31 @@ func (o Settings8021XOutput) LinkDownAuth() pulumi.StringOutput {
 // Enable/disable MAB re-authentication. Valid values: `disable`, `enable`.
 func (o Settings8021XOutput) MabReauth() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings8021X) pulumi.StringOutput { return v.MabReauth }).(pulumi.StringOutput)
+}
+
+// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+func (o Settings8021XOutput) MacCalledStationDelimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings8021X) pulumi.StringOutput { return v.MacCalledStationDelimiter }).(pulumi.StringOutput)
+}
+
+// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+func (o Settings8021XOutput) MacCallingStationDelimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings8021X) pulumi.StringOutput { return v.MacCallingStationDelimiter }).(pulumi.StringOutput)
+}
+
+// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+func (o Settings8021XOutput) MacCase() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings8021X) pulumi.StringOutput { return v.MacCase }).(pulumi.StringOutput)
+}
+
+// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+func (o Settings8021XOutput) MacPasswordDelimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings8021X) pulumi.StringOutput { return v.MacPasswordDelimiter }).(pulumi.StringOutput)
+}
+
+// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+func (o Settings8021XOutput) MacUsernameDelimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings8021X) pulumi.StringOutput { return v.MacUsernameDelimiter }).(pulumi.StringOutput)
 }
 
 // Maximum number of authentication attempts (0 - 15, default = 3).

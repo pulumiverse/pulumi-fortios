@@ -19,6 +19,7 @@ class LocationArgs:
                  address_civic: Optional[pulumi.Input['LocationAddressCivicArgs']] = None,
                  coordinates: Optional[pulumi.Input['LocationCoordinatesArgs']] = None,
                  elin_number: Optional[pulumi.Input['LocationElinNumberArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -26,6 +27,7 @@ class LocationArgs:
         :param pulumi.Input['LocationAddressCivicArgs'] address_civic: Configure location civic address. The structure of `address_civic` block is documented below.
         :param pulumi.Input['LocationCoordinatesArgs'] coordinates: Configure location GPS coordinates. The structure of `coordinates` block is documented below.
         :param pulumi.Input['LocationElinNumberArgs'] elin_number: Configure location ELIN number. The structure of `elin_number` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Unique location item name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -35,6 +37,8 @@ class LocationArgs:
             pulumi.set(__self__, "coordinates", coordinates)
         if elin_number is not None:
             pulumi.set(__self__, "elin_number", elin_number)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -75,6 +79,18 @@ class LocationArgs:
     @elin_number.setter
     def elin_number(self, value: Optional[pulumi.Input['LocationElinNumberArgs']]):
         pulumi.set(self, "elin_number", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -107,6 +123,7 @@ class _LocationState:
                  address_civic: Optional[pulumi.Input['LocationAddressCivicArgs']] = None,
                  coordinates: Optional[pulumi.Input['LocationCoordinatesArgs']] = None,
                  elin_number: Optional[pulumi.Input['LocationElinNumberArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -114,6 +131,7 @@ class _LocationState:
         :param pulumi.Input['LocationAddressCivicArgs'] address_civic: Configure location civic address. The structure of `address_civic` block is documented below.
         :param pulumi.Input['LocationCoordinatesArgs'] coordinates: Configure location GPS coordinates. The structure of `coordinates` block is documented below.
         :param pulumi.Input['LocationElinNumberArgs'] elin_number: Configure location ELIN number. The structure of `elin_number` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Unique location item name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -123,6 +141,8 @@ class _LocationState:
             pulumi.set(__self__, "coordinates", coordinates)
         if elin_number is not None:
             pulumi.set(__self__, "elin_number", elin_number)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -163,6 +183,18 @@ class _LocationState:
     @elin_number.setter
     def elin_number(self, value: Optional[pulumi.Input['LocationElinNumberArgs']]):
         pulumi.set(self, "elin_number", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -197,6 +229,7 @@ class Location(pulumi.CustomResource):
                  address_civic: Optional[pulumi.Input[pulumi.InputType['LocationAddressCivicArgs']]] = None,
                  coordinates: Optional[pulumi.Input[pulumi.InputType['LocationCoordinatesArgs']]] = None,
                  elin_number: Optional[pulumi.Input[pulumi.InputType['LocationElinNumberArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -226,6 +259,7 @@ class Location(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['LocationAddressCivicArgs']] address_civic: Configure location civic address. The structure of `address_civic` block is documented below.
         :param pulumi.Input[pulumi.InputType['LocationCoordinatesArgs']] coordinates: Configure location GPS coordinates. The structure of `coordinates` block is documented below.
         :param pulumi.Input[pulumi.InputType['LocationElinNumberArgs']] elin_number: Configure location ELIN number. The structure of `elin_number` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Unique location item name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -274,6 +308,7 @@ class Location(pulumi.CustomResource):
                  address_civic: Optional[pulumi.Input[pulumi.InputType['LocationAddressCivicArgs']]] = None,
                  coordinates: Optional[pulumi.Input[pulumi.InputType['LocationCoordinatesArgs']]] = None,
                  elin_number: Optional[pulumi.Input[pulumi.InputType['LocationElinNumberArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -288,6 +323,7 @@ class Location(pulumi.CustomResource):
             __props__.__dict__["address_civic"] = address_civic
             __props__.__dict__["coordinates"] = coordinates
             __props__.__dict__["elin_number"] = elin_number
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
         super(Location, __self__).__init__(
@@ -303,6 +339,7 @@ class Location(pulumi.CustomResource):
             address_civic: Optional[pulumi.Input[pulumi.InputType['LocationAddressCivicArgs']]] = None,
             coordinates: Optional[pulumi.Input[pulumi.InputType['LocationCoordinatesArgs']]] = None,
             elin_number: Optional[pulumi.Input[pulumi.InputType['LocationElinNumberArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Location':
         """
@@ -315,6 +352,7 @@ class Location(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['LocationAddressCivicArgs']] address_civic: Configure location civic address. The structure of `address_civic` block is documented below.
         :param pulumi.Input[pulumi.InputType['LocationCoordinatesArgs']] coordinates: Configure location GPS coordinates. The structure of `coordinates` block is documented below.
         :param pulumi.Input[pulumi.InputType['LocationElinNumberArgs']] elin_number: Configure location ELIN number. The structure of `elin_number` block is documented below.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Unique location item name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -325,6 +363,7 @@ class Location(pulumi.CustomResource):
         __props__.__dict__["address_civic"] = address_civic
         __props__.__dict__["coordinates"] = coordinates
         __props__.__dict__["elin_number"] = elin_number
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
         return Location(resource_name, opts=opts, __props__=__props__)
@@ -352,6 +391,14 @@ class Location(pulumi.CustomResource):
         Configure location ELIN number. The structure of `elin_number` block is documented below.
         """
         return pulumi.get(self, "elin_number")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

@@ -118,6 +118,18 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> AvProfileStatus { get; private set; } = null!;
 
         /// <summary>
+        /// CASB profile.
+        /// </summary>
+        [Output("casbProfile")]
+        public Output<string> CasbProfile { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable CASB. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("casbProfileStatus")]
+        public Output<string> CasbProfileStatus { get; private set; } = null!;
+
+        /// <summary>
         /// Comments.
         /// </summary>
         [Output("comments")]
@@ -176,6 +188,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("emailfilterProfileStatus")]
         public Output<string> EmailfilterProfileStatus { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Monitored interface name from available interfaces.
@@ -248,6 +266,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        /// </summary>
+        [Output("uuid")]
+        public Output<string> Uuid { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -347,6 +371,18 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? AvProfileStatus { get; set; }
 
         /// <summary>
+        /// CASB profile.
+        /// </summary>
+        [Input("casbProfile")]
+        public Input<string>? CasbProfile { get; set; }
+
+        /// <summary>
+        /// Enable/disable CASB. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("casbProfileStatus")]
+        public Input<string>? CasbProfileStatus { get; set; }
+
+        /// <summary>
         /// Comments.
         /// </summary>
         [Input("comments")]
@@ -411,6 +447,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("emailfilterProfileStatus")]
         public Input<string>? EmailfilterProfileStatus { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Monitored interface name from available interfaces.
@@ -497,6 +539,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Status { get; set; }
 
         /// <summary>
+        /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        /// </summary>
+        [Input("uuid")]
+        public Input<string>? Uuid { get; set; }
+
+        /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// 
         /// The `srcaddr6` block supports:
@@ -553,6 +601,18 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("avProfileStatus")]
         public Input<string>? AvProfileStatus { get; set; }
+
+        /// <summary>
+        /// CASB profile.
+        /// </summary>
+        [Input("casbProfile")]
+        public Input<string>? CasbProfile { get; set; }
+
+        /// <summary>
+        /// Enable/disable CASB. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("casbProfileStatus")]
+        public Input<string>? CasbProfileStatus { get; set; }
 
         /// <summary>
         /// Comments.
@@ -619,6 +679,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("emailfilterProfileStatus")]
         public Input<string>? EmailfilterProfileStatus { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Monitored interface name from available interfaces.
@@ -703,6 +769,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+        /// </summary>
+        [Input("uuid")]
+        public Input<string>? Uuid { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

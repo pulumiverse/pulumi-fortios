@@ -124,6 +124,10 @@ export class Static extends pulumi.CustomResource {
      */
     public readonly gateway!: pulumi.Output<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Application ID in the Internet service database.
      */
     public readonly internetService!: pulumi.Output<number>;
@@ -136,7 +140,11 @@ export class Static extends pulumi.CustomResource {
      */
     public readonly linkMonitorExempt!: pulumi.Output<string>;
     /**
-     * Administrative priority (0 - 4294967295).
+     * Preferred source IP for this route.
+     */
+    public readonly preferredSource!: pulumi.Output<string>;
+    /**
+     * Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
      */
     public readonly priority!: pulumi.Output<number>;
     /**
@@ -159,6 +167,10 @@ export class Static extends pulumi.CustomResource {
      * Enable/disable this static route. Valid values: `enable`, `disable`.
      */
     public readonly status!: pulumi.Output<string>;
+    /**
+     * Route tag.
+     */
+    public readonly tag!: pulumi.Output<number>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -199,15 +211,18 @@ export class Static extends pulumi.CustomResource {
             resourceInputs["dynamicGateway"] = state ? state.dynamicGateway : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["internetService"] = state ? state.internetService : undefined;
             resourceInputs["internetServiceCustom"] = state ? state.internetServiceCustom : undefined;
             resourceInputs["linkMonitorExempt"] = state ? state.linkMonitorExempt : undefined;
+            resourceInputs["preferredSource"] = state ? state.preferredSource : undefined;
             resourceInputs["priority"] = state ? state.priority : undefined;
             resourceInputs["sdwan"] = state ? state.sdwan : undefined;
             resourceInputs["sdwanZones"] = state ? state.sdwanZones : undefined;
             resourceInputs["seqNum"] = state ? state.seqNum : undefined;
             resourceInputs["src"] = state ? state.src : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tag"] = state ? state.tag : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["virtualWanLink"] = state ? state.virtualWanLink : undefined;
             resourceInputs["vrf"] = state ? state.vrf : undefined;
@@ -224,15 +239,18 @@ export class Static extends pulumi.CustomResource {
             resourceInputs["dynamicGateway"] = args ? args.dynamicGateway : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["internetService"] = args ? args.internetService : undefined;
             resourceInputs["internetServiceCustom"] = args ? args.internetServiceCustom : undefined;
             resourceInputs["linkMonitorExempt"] = args ? args.linkMonitorExempt : undefined;
+            resourceInputs["preferredSource"] = args ? args.preferredSource : undefined;
             resourceInputs["priority"] = args ? args.priority : undefined;
             resourceInputs["sdwan"] = args ? args.sdwan : undefined;
             resourceInputs["sdwanZones"] = args ? args.sdwanZones : undefined;
             resourceInputs["seqNum"] = args ? args.seqNum : undefined;
             resourceInputs["src"] = args ? args.src : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["tag"] = args ? args.tag : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["virtualWanLink"] = args ? args.virtualWanLink : undefined;
             resourceInputs["vrf"] = args ? args.vrf : undefined;
@@ -288,6 +306,10 @@ export interface StaticState {
      */
     gateway?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Application ID in the Internet service database.
      */
     internetService?: pulumi.Input<number>;
@@ -300,7 +322,11 @@ export interface StaticState {
      */
     linkMonitorExempt?: pulumi.Input<string>;
     /**
-     * Administrative priority (0 - 4294967295).
+     * Preferred source IP for this route.
+     */
+    preferredSource?: pulumi.Input<string>;
+    /**
+     * Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
      */
     priority?: pulumi.Input<number>;
     /**
@@ -323,6 +349,10 @@ export interface StaticState {
      * Enable/disable this static route. Valid values: `enable`, `disable`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Route tag.
+     */
+    tag?: pulumi.Input<number>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -386,6 +416,10 @@ export interface StaticArgs {
      */
     gateway?: pulumi.Input<string>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
+    /**
      * Application ID in the Internet service database.
      */
     internetService?: pulumi.Input<number>;
@@ -398,7 +432,11 @@ export interface StaticArgs {
      */
     linkMonitorExempt?: pulumi.Input<string>;
     /**
-     * Administrative priority (0 - 4294967295).
+     * Preferred source IP for this route.
+     */
+    preferredSource?: pulumi.Input<string>;
+    /**
+     * Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions 6.4.2-7.0.3: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535.
      */
     priority?: pulumi.Input<number>;
     /**
@@ -421,6 +459,10 @@ export interface StaticArgs {
      * Enable/disable this static route. Valid values: `enable`, `disable`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Route tag.
+     */
+    tag?: pulumi.Input<number>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

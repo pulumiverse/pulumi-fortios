@@ -21,10 +21,13 @@ class GetFtmpushResult:
     """
     A collection of values returned by getFtmpush.
     """
-    def __init__(__self__, id=None, server=None, server_cert=None, server_ip=None, server_port=None, status=None, vdomparam=None):
+    def __init__(__self__, id=None, proxy=None, server=None, server_cert=None, server_ip=None, server_port=None, status=None, vdomparam=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if proxy and not isinstance(proxy, str):
+            raise TypeError("Expected argument 'proxy' to be a str")
+        pulumi.set(__self__, "proxy", proxy)
         if server and not isinstance(server, str):
             raise TypeError("Expected argument 'server' to be a str")
         pulumi.set(__self__, "server", server)
@@ -51,6 +54,14 @@ class GetFtmpushResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> str:
+        """
+        Enable/disable communication to the proxy server in FortiGuard configuration.
+        """
+        return pulumi.get(self, "proxy")
 
     @property
     @pulumi.getter
@@ -105,6 +116,7 @@ class AwaitableGetFtmpushResult(GetFtmpushResult):
             yield self
         return GetFtmpushResult(
             id=self.id,
+            proxy=self.proxy,
             server=self.server,
             server_cert=self.server_cert,
             server_ip=self.server_ip,
@@ -128,6 +140,7 @@ def get_ftmpush(vdomparam: Optional[str] = None,
 
     return AwaitableGetFtmpushResult(
         id=pulumi.get(__ret__, 'id'),
+        proxy=pulumi.get(__ret__, 'proxy'),
         server=pulumi.get(__ret__, 'server'),
         server_cert=pulumi.get(__ret__, 'server_cert'),
         server_ip=pulumi.get(__ret__, 'server_ip'),

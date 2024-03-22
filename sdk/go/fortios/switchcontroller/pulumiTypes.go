@@ -2762,6 +2762,139 @@ func (o ManagedswitchCustomCommandArrayOutput) Index(i pulumi.IntInput) Manageds
 	}).(ManagedswitchCustomCommandOutput)
 }
 
+type ManagedswitchDhcpSnoopingStaticClient struct {
+	// Client static IP address.
+	Ip *string `pulumi:"ip"`
+	// Client MAC address.
+	Mac *string `pulumi:"mac"`
+	// Client name.
+	Name *string `pulumi:"name"`
+	// Interface name.
+	Port *string `pulumi:"port"`
+	// VLAN name.
+	Vlan *string `pulumi:"vlan"`
+}
+
+// ManagedswitchDhcpSnoopingStaticClientInput is an input type that accepts ManagedswitchDhcpSnoopingStaticClientArgs and ManagedswitchDhcpSnoopingStaticClientOutput values.
+// You can construct a concrete instance of `ManagedswitchDhcpSnoopingStaticClientInput` via:
+//
+//	ManagedswitchDhcpSnoopingStaticClientArgs{...}
+type ManagedswitchDhcpSnoopingStaticClientInput interface {
+	pulumi.Input
+
+	ToManagedswitchDhcpSnoopingStaticClientOutput() ManagedswitchDhcpSnoopingStaticClientOutput
+	ToManagedswitchDhcpSnoopingStaticClientOutputWithContext(context.Context) ManagedswitchDhcpSnoopingStaticClientOutput
+}
+
+type ManagedswitchDhcpSnoopingStaticClientArgs struct {
+	// Client static IP address.
+	Ip pulumi.StringPtrInput `pulumi:"ip"`
+	// Client MAC address.
+	Mac pulumi.StringPtrInput `pulumi:"mac"`
+	// Client name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Interface name.
+	Port pulumi.StringPtrInput `pulumi:"port"`
+	// VLAN name.
+	Vlan pulumi.StringPtrInput `pulumi:"vlan"`
+}
+
+func (ManagedswitchDhcpSnoopingStaticClientArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedswitchDhcpSnoopingStaticClient)(nil)).Elem()
+}
+
+func (i ManagedswitchDhcpSnoopingStaticClientArgs) ToManagedswitchDhcpSnoopingStaticClientOutput() ManagedswitchDhcpSnoopingStaticClientOutput {
+	return i.ToManagedswitchDhcpSnoopingStaticClientOutputWithContext(context.Background())
+}
+
+func (i ManagedswitchDhcpSnoopingStaticClientArgs) ToManagedswitchDhcpSnoopingStaticClientOutputWithContext(ctx context.Context) ManagedswitchDhcpSnoopingStaticClientOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedswitchDhcpSnoopingStaticClientOutput)
+}
+
+// ManagedswitchDhcpSnoopingStaticClientArrayInput is an input type that accepts ManagedswitchDhcpSnoopingStaticClientArray and ManagedswitchDhcpSnoopingStaticClientArrayOutput values.
+// You can construct a concrete instance of `ManagedswitchDhcpSnoopingStaticClientArrayInput` via:
+//
+//	ManagedswitchDhcpSnoopingStaticClientArray{ ManagedswitchDhcpSnoopingStaticClientArgs{...} }
+type ManagedswitchDhcpSnoopingStaticClientArrayInput interface {
+	pulumi.Input
+
+	ToManagedswitchDhcpSnoopingStaticClientArrayOutput() ManagedswitchDhcpSnoopingStaticClientArrayOutput
+	ToManagedswitchDhcpSnoopingStaticClientArrayOutputWithContext(context.Context) ManagedswitchDhcpSnoopingStaticClientArrayOutput
+}
+
+type ManagedswitchDhcpSnoopingStaticClientArray []ManagedswitchDhcpSnoopingStaticClientInput
+
+func (ManagedswitchDhcpSnoopingStaticClientArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedswitchDhcpSnoopingStaticClient)(nil)).Elem()
+}
+
+func (i ManagedswitchDhcpSnoopingStaticClientArray) ToManagedswitchDhcpSnoopingStaticClientArrayOutput() ManagedswitchDhcpSnoopingStaticClientArrayOutput {
+	return i.ToManagedswitchDhcpSnoopingStaticClientArrayOutputWithContext(context.Background())
+}
+
+func (i ManagedswitchDhcpSnoopingStaticClientArray) ToManagedswitchDhcpSnoopingStaticClientArrayOutputWithContext(ctx context.Context) ManagedswitchDhcpSnoopingStaticClientArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedswitchDhcpSnoopingStaticClientArrayOutput)
+}
+
+type ManagedswitchDhcpSnoopingStaticClientOutput struct{ *pulumi.OutputState }
+
+func (ManagedswitchDhcpSnoopingStaticClientOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedswitchDhcpSnoopingStaticClient)(nil)).Elem()
+}
+
+func (o ManagedswitchDhcpSnoopingStaticClientOutput) ToManagedswitchDhcpSnoopingStaticClientOutput() ManagedswitchDhcpSnoopingStaticClientOutput {
+	return o
+}
+
+func (o ManagedswitchDhcpSnoopingStaticClientOutput) ToManagedswitchDhcpSnoopingStaticClientOutputWithContext(ctx context.Context) ManagedswitchDhcpSnoopingStaticClientOutput {
+	return o
+}
+
+// Client static IP address.
+func (o ManagedswitchDhcpSnoopingStaticClientOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchDhcpSnoopingStaticClient) *string { return v.Ip }).(pulumi.StringPtrOutput)
+}
+
+// Client MAC address.
+func (o ManagedswitchDhcpSnoopingStaticClientOutput) Mac() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchDhcpSnoopingStaticClient) *string { return v.Mac }).(pulumi.StringPtrOutput)
+}
+
+// Client name.
+func (o ManagedswitchDhcpSnoopingStaticClientOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchDhcpSnoopingStaticClient) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Interface name.
+func (o ManagedswitchDhcpSnoopingStaticClientOutput) Port() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchDhcpSnoopingStaticClient) *string { return v.Port }).(pulumi.StringPtrOutput)
+}
+
+// VLAN name.
+func (o ManagedswitchDhcpSnoopingStaticClientOutput) Vlan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchDhcpSnoopingStaticClient) *string { return v.Vlan }).(pulumi.StringPtrOutput)
+}
+
+type ManagedswitchDhcpSnoopingStaticClientArrayOutput struct{ *pulumi.OutputState }
+
+func (ManagedswitchDhcpSnoopingStaticClientArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedswitchDhcpSnoopingStaticClient)(nil)).Elem()
+}
+
+func (o ManagedswitchDhcpSnoopingStaticClientArrayOutput) ToManagedswitchDhcpSnoopingStaticClientArrayOutput() ManagedswitchDhcpSnoopingStaticClientArrayOutput {
+	return o
+}
+
+func (o ManagedswitchDhcpSnoopingStaticClientArrayOutput) ToManagedswitchDhcpSnoopingStaticClientArrayOutputWithContext(ctx context.Context) ManagedswitchDhcpSnoopingStaticClientArrayOutput {
+	return o
+}
+
+func (o ManagedswitchDhcpSnoopingStaticClientArrayOutput) Index(i pulumi.IntInput) ManagedswitchDhcpSnoopingStaticClientOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedswitchDhcpSnoopingStaticClient {
+		return vs[0].([]ManagedswitchDhcpSnoopingStaticClient)[vs[1].(int)]
+	}).(ManagedswitchDhcpSnoopingStaticClientOutput)
+}
+
 type ManagedswitchIgmpSnooping struct {
 	// Maximum time to retain a multicast snooping entry for which no packets have been seen (15 - 3600 sec, default = 300).
 	AgingTime *int `pulumi:"agingTime"`
@@ -3668,6 +3801,16 @@ type ManagedswitchN8021xSettings struct {
 	LocalOverride *string `pulumi:"localOverride"`
 	// Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
 	MabReauth *string `pulumi:"mabReauth"`
+	// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCalledStationDelimiter *string `pulumi:"macCalledStationDelimiter"`
+	// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCallingStationDelimiter *string `pulumi:"macCallingStationDelimiter"`
+	// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+	MacCase *string `pulumi:"macCase"`
+	// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacPasswordDelimiter *string `pulumi:"macPasswordDelimiter"`
+	// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacUsernameDelimiter *string `pulumi:"macUsernameDelimiter"`
 	// Maximum number of authentication attempts (0 - 15, default = 3).
 	MaxReauthAttempt *int `pulumi:"maxReauthAttempt"`
 	// Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
@@ -3694,6 +3837,16 @@ type ManagedswitchN8021xSettingsArgs struct {
 	LocalOverride pulumi.StringPtrInput `pulumi:"localOverride"`
 	// Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
 	MabReauth pulumi.StringPtrInput `pulumi:"mabReauth"`
+	// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCalledStationDelimiter pulumi.StringPtrInput `pulumi:"macCalledStationDelimiter"`
+	// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacCallingStationDelimiter pulumi.StringPtrInput `pulumi:"macCallingStationDelimiter"`
+	// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+	MacCase pulumi.StringPtrInput `pulumi:"macCase"`
+	// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacPasswordDelimiter pulumi.StringPtrInput `pulumi:"macPasswordDelimiter"`
+	// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	MacUsernameDelimiter pulumi.StringPtrInput `pulumi:"macUsernameDelimiter"`
 	// Maximum number of authentication attempts (0 - 15, default = 3).
 	MaxReauthAttempt pulumi.IntPtrInput `pulumi:"maxReauthAttempt"`
 	// Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
@@ -3794,6 +3947,31 @@ func (o ManagedswitchN8021xSettingsOutput) MabReauth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.MabReauth }).(pulumi.StringPtrOutput)
 }
 
+// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+func (o ManagedswitchN8021xSettingsOutput) MacCalledStationDelimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.MacCalledStationDelimiter }).(pulumi.StringPtrOutput)
+}
+
+// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+func (o ManagedswitchN8021xSettingsOutput) MacCallingStationDelimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.MacCallingStationDelimiter }).(pulumi.StringPtrOutput)
+}
+
+// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+func (o ManagedswitchN8021xSettingsOutput) MacCase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.MacCase }).(pulumi.StringPtrOutput)
+}
+
+// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+func (o ManagedswitchN8021xSettingsOutput) MacPasswordDelimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.MacPasswordDelimiter }).(pulumi.StringPtrOutput)
+}
+
+// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+func (o ManagedswitchN8021xSettingsOutput) MacUsernameDelimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.MacUsernameDelimiter }).(pulumi.StringPtrOutput)
+}
+
 // Maximum number of authentication attempts (0 - 15, default = 3).
 func (o ManagedswitchN8021xSettingsOutput) MaxReauthAttempt() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *int { return v.MaxReauthAttempt }).(pulumi.IntPtrOutput)
@@ -3863,6 +4041,56 @@ func (o ManagedswitchN8021xSettingsPtrOutput) MabReauth() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+func (o ManagedswitchN8021xSettingsPtrOutput) MacCalledStationDelimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MacCalledStationDelimiter
+	}).(pulumi.StringPtrOutput)
+}
+
+// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+func (o ManagedswitchN8021xSettingsPtrOutput) MacCallingStationDelimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MacCallingStationDelimiter
+	}).(pulumi.StringPtrOutput)
+}
+
+// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
+func (o ManagedswitchN8021xSettingsPtrOutput) MacCase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MacCase
+	}).(pulumi.StringPtrOutput)
+}
+
+// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+func (o ManagedswitchN8021xSettingsPtrOutput) MacPasswordDelimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MacPasswordDelimiter
+	}).(pulumi.StringPtrOutput)
+}
+
+// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+func (o ManagedswitchN8021xSettingsPtrOutput) MacUsernameDelimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MacUsernameDelimiter
+	}).(pulumi.StringPtrOutput)
+}
+
 // Maximum number of authentication attempts (0 - 15, default = 3).
 func (o ManagedswitchN8021xSettingsPtrOutput) MaxReauthAttempt() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *int {
@@ -3896,6 +4124,8 @@ func (o ManagedswitchN8021xSettingsPtrOutput) TxPeriod() pulumi.IntPtrOutput {
 type ManagedswitchPort struct {
 	// Access mode of the port.
 	AccessMode *string `pulumi:"accessMode"`
+	// ACL groups on this port. The structure of `aclGroup` block is documented below.
+	AclGroups []ManagedswitchPortAclGroup `pulumi:"aclGroups"`
 	// LACP member select mode. Valid values: `bandwidth`, `count`.
 	AggregatorMode *string `pulumi:"aggregatorMode"`
 	// Configure switch port tagged vlans The structure of `allowedVlans` block is documented below.
@@ -3904,10 +4134,14 @@ type ManagedswitchPort struct {
 	AllowedVlansAll *string `pulumi:"allowedVlansAll"`
 	// Trusted or untrusted dynamic ARP inspection. Valid values: `untrusted`, `trusted`.
 	ArpInspectionTrust *string `pulumi:"arpInspectionTrust"`
+	// Peer to Peer Authenticated port.
+	AuthenticatedPort *int `pulumi:"authenticatedPort"`
 	// Enable/disable Link Aggregation Group (LAG) bundling for non-FortiLink interfaces. Valid values: `enable`, `disable`.
 	Bundle *string `pulumi:"bundle"`
 	// Description for port.
 	Description *string `pulumi:"description"`
+	// Configure DHCP snooping option 82 override. The structure of `dhcpSnoopOption82Override` block is documented below.
+	DhcpSnoopOption82Overrides []ManagedswitchPortDhcpSnoopOption82Override `pulumi:"dhcpSnoopOption82Overrides"`
 	// Enable/disable allowance of DHCP with option-82 on untrusted interface. Valid values: `enable`, `disable`.
 	DhcpSnoopOption82Trust *string `pulumi:"dhcpSnoopOption82Trust"`
 	// Trusted or untrusted DHCP-snooping interface. Valid values: `untrusted`, `trusted`.
@@ -3916,6 +4150,8 @@ type ManagedswitchPort struct {
 	DiscardMode *string `pulumi:"discardMode"`
 	// Enable/disable this interface as an edge port, bridging connections between workstations and/or computers. Valid values: `enable`, `disable`.
 	EdgePort *string `pulumi:"edgePort"`
+	// Peer to Peer Encrypted port.
+	EncryptedPort *int `pulumi:"encryptedPort"`
 	// Switch controller export tag name. The structure of `exportTags` block is documented below.
 	ExportTags []ManagedswitchPortExportTag `pulumi:"exportTags"`
 	// Export managed-switch port to a tenant VDOM.
@@ -3926,7 +4162,7 @@ type ManagedswitchPort struct {
 	ExportToPoolFlag *int `pulumi:"exportToPoolFlag"`
 	// FEC capable.
 	FecCapable *int `pulumi:"fecCapable"`
-	// State of forward error correction. Valid values: `disabled`, `cl74`, `cl91`.
+	// State of forward error correction.
 	FecState *string `pulumi:"fecState"`
 	// FGT peer device name.
 	FgtPeerDeviceName *string `pulumi:"fgtPeerDeviceName"`
@@ -3948,6 +4184,8 @@ type ManagedswitchPort struct {
 	FlowControl *string `pulumi:"flowControl"`
 	// FortiLink uplink port.
 	FortilinkPort *int `pulumi:"fortilinkPort"`
+	// ACLs on this port. The structure of `fortiswitchAcls` block is documented below.
+	FortiswitchAcls []ManagedswitchPortFortiswitchAcl `pulumi:"fortiswitchAcls"`
 	// Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
 	IgmpSnooping *string `pulumi:"igmpSnooping"`
 	// Enable/disable flooding of IGMP reports to this interface when igmp-snooping enabled. Valid values: `enable`, `disable`.
@@ -3964,12 +4202,16 @@ type ManagedswitchPort struct {
 	IslLocalTrunkName *string `pulumi:"islLocalTrunkName"`
 	// ISL peer device name.
 	IslPeerDeviceName *string `pulumi:"islPeerDeviceName"`
+	// ISL peer device serial number.
+	IslPeerDeviceSn *string `pulumi:"islPeerDeviceSn"`
 	// ISL peer port name.
 	IslPeerPortName *string `pulumi:"islPeerPortName"`
 	// end Link Aggregation Control Protocol (LACP) messages every 30 seconds (slow) or every second (fast). Valid values: `slow`, `fast`.
 	LacpSpeed *string `pulumi:"lacpSpeed"`
 	// Limit the number of dynamic MAC addresses on this Port (1 - 128, 0 = no limit, default).
 	LearningLimit *int `pulumi:"learningLimit"`
+	// Port link status. Valid values: `up`, `down`.
+	LinkStatus *string `pulumi:"linkStatus"`
 	// LLDP port TLV profile.
 	LldpProfile *string `pulumi:"lldpProfile"`
 	// LLDP transmit and receive status. Valid values: `disable`, `rx-only`, `tx-only`, `tx-rx`.
@@ -4016,6 +4258,14 @@ type ManagedswitchPort struct {
 	PoeCapable *int `pulumi:"poeCapable"`
 	// PoE maximum power.
 	PoeMaxPower *string `pulumi:"poeMaxPower"`
+	// PoE mode IEEE 802.3BT capable.
+	PoeModeBtCabable *int `pulumi:"poeModeBtCabable"`
+	// Configure PoE port mode. Valid values: `ieee802-3af`, `ieee802-3at`, `ieee802-3bt`.
+	PoePortMode *string `pulumi:"poePortMode"`
+	// Configure PoE port power. Valid values: `normal`, `perpetual`, `perpetual-fast`.
+	PoePortPower *string `pulumi:"poePortPower"`
+	// Configure PoE port priority. Valid values: `critical-priority`, `high-priority`, `low-priority`, `medium-priority`.
+	PoePortPriority *string `pulumi:"poePortPriority"`
 	// Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
 	PoePreStandardDetection *string `pulumi:"poePreStandardDetection"`
 	// PoE standard supported.
@@ -4038,8 +4288,12 @@ type ManagedswitchPort struct {
 	PortSelectionCriteria *string `pulumi:"portSelectionCriteria"`
 	// PTP policy configuration.
 	PtpPolicy *string `pulumi:"ptpPolicy"`
+	// Enable/disable PTP policy on this FortiSwitch port. Valid values: `disable`, `enable`.
+	PtpStatus *string `pulumi:"ptpStatus"`
 	// Switch controller QoS policy from available options.
 	QosPolicy *string `pulumi:"qosPolicy"`
+	// Peer to Peer Restricted Authenticated port.
+	RestrictedAuthPort *int `pulumi:"restrictedAuthPort"`
 	// Enable/disable inter-operability with rapid PVST on this interface. Valid values: `disabled`, `enabled`.
 	RpvstPort *string `pulumi:"rpvstPort"`
 	// sFlow sample direction. Valid values: `tx`, `rx`, `both`.
@@ -4096,6 +4350,8 @@ type ManagedswitchPortInput interface {
 type ManagedswitchPortArgs struct {
 	// Access mode of the port.
 	AccessMode pulumi.StringPtrInput `pulumi:"accessMode"`
+	// ACL groups on this port. The structure of `aclGroup` block is documented below.
+	AclGroups ManagedswitchPortAclGroupArrayInput `pulumi:"aclGroups"`
 	// LACP member select mode. Valid values: `bandwidth`, `count`.
 	AggregatorMode pulumi.StringPtrInput `pulumi:"aggregatorMode"`
 	// Configure switch port tagged vlans The structure of `allowedVlans` block is documented below.
@@ -4104,10 +4360,14 @@ type ManagedswitchPortArgs struct {
 	AllowedVlansAll pulumi.StringPtrInput `pulumi:"allowedVlansAll"`
 	// Trusted or untrusted dynamic ARP inspection. Valid values: `untrusted`, `trusted`.
 	ArpInspectionTrust pulumi.StringPtrInput `pulumi:"arpInspectionTrust"`
+	// Peer to Peer Authenticated port.
+	AuthenticatedPort pulumi.IntPtrInput `pulumi:"authenticatedPort"`
 	// Enable/disable Link Aggregation Group (LAG) bundling for non-FortiLink interfaces. Valid values: `enable`, `disable`.
 	Bundle pulumi.StringPtrInput `pulumi:"bundle"`
 	// Description for port.
 	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Configure DHCP snooping option 82 override. The structure of `dhcpSnoopOption82Override` block is documented below.
+	DhcpSnoopOption82Overrides ManagedswitchPortDhcpSnoopOption82OverrideArrayInput `pulumi:"dhcpSnoopOption82Overrides"`
 	// Enable/disable allowance of DHCP with option-82 on untrusted interface. Valid values: `enable`, `disable`.
 	DhcpSnoopOption82Trust pulumi.StringPtrInput `pulumi:"dhcpSnoopOption82Trust"`
 	// Trusted or untrusted DHCP-snooping interface. Valid values: `untrusted`, `trusted`.
@@ -4116,6 +4376,8 @@ type ManagedswitchPortArgs struct {
 	DiscardMode pulumi.StringPtrInput `pulumi:"discardMode"`
 	// Enable/disable this interface as an edge port, bridging connections between workstations and/or computers. Valid values: `enable`, `disable`.
 	EdgePort pulumi.StringPtrInput `pulumi:"edgePort"`
+	// Peer to Peer Encrypted port.
+	EncryptedPort pulumi.IntPtrInput `pulumi:"encryptedPort"`
 	// Switch controller export tag name. The structure of `exportTags` block is documented below.
 	ExportTags ManagedswitchPortExportTagArrayInput `pulumi:"exportTags"`
 	// Export managed-switch port to a tenant VDOM.
@@ -4126,7 +4388,7 @@ type ManagedswitchPortArgs struct {
 	ExportToPoolFlag pulumi.IntPtrInput `pulumi:"exportToPoolFlag"`
 	// FEC capable.
 	FecCapable pulumi.IntPtrInput `pulumi:"fecCapable"`
-	// State of forward error correction. Valid values: `disabled`, `cl74`, `cl91`.
+	// State of forward error correction.
 	FecState pulumi.StringPtrInput `pulumi:"fecState"`
 	// FGT peer device name.
 	FgtPeerDeviceName pulumi.StringPtrInput `pulumi:"fgtPeerDeviceName"`
@@ -4148,6 +4410,8 @@ type ManagedswitchPortArgs struct {
 	FlowControl pulumi.StringPtrInput `pulumi:"flowControl"`
 	// FortiLink uplink port.
 	FortilinkPort pulumi.IntPtrInput `pulumi:"fortilinkPort"`
+	// ACLs on this port. The structure of `fortiswitchAcls` block is documented below.
+	FortiswitchAcls ManagedswitchPortFortiswitchAclArrayInput `pulumi:"fortiswitchAcls"`
 	// Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
 	IgmpSnooping pulumi.StringPtrInput `pulumi:"igmpSnooping"`
 	// Enable/disable flooding of IGMP reports to this interface when igmp-snooping enabled. Valid values: `enable`, `disable`.
@@ -4164,12 +4428,16 @@ type ManagedswitchPortArgs struct {
 	IslLocalTrunkName pulumi.StringPtrInput `pulumi:"islLocalTrunkName"`
 	// ISL peer device name.
 	IslPeerDeviceName pulumi.StringPtrInput `pulumi:"islPeerDeviceName"`
+	// ISL peer device serial number.
+	IslPeerDeviceSn pulumi.StringPtrInput `pulumi:"islPeerDeviceSn"`
 	// ISL peer port name.
 	IslPeerPortName pulumi.StringPtrInput `pulumi:"islPeerPortName"`
 	// end Link Aggregation Control Protocol (LACP) messages every 30 seconds (slow) or every second (fast). Valid values: `slow`, `fast`.
 	LacpSpeed pulumi.StringPtrInput `pulumi:"lacpSpeed"`
 	// Limit the number of dynamic MAC addresses on this Port (1 - 128, 0 = no limit, default).
 	LearningLimit pulumi.IntPtrInput `pulumi:"learningLimit"`
+	// Port link status. Valid values: `up`, `down`.
+	LinkStatus pulumi.StringPtrInput `pulumi:"linkStatus"`
 	// LLDP port TLV profile.
 	LldpProfile pulumi.StringPtrInput `pulumi:"lldpProfile"`
 	// LLDP transmit and receive status. Valid values: `disable`, `rx-only`, `tx-only`, `tx-rx`.
@@ -4216,6 +4484,14 @@ type ManagedswitchPortArgs struct {
 	PoeCapable pulumi.IntPtrInput `pulumi:"poeCapable"`
 	// PoE maximum power.
 	PoeMaxPower pulumi.StringPtrInput `pulumi:"poeMaxPower"`
+	// PoE mode IEEE 802.3BT capable.
+	PoeModeBtCabable pulumi.IntPtrInput `pulumi:"poeModeBtCabable"`
+	// Configure PoE port mode. Valid values: `ieee802-3af`, `ieee802-3at`, `ieee802-3bt`.
+	PoePortMode pulumi.StringPtrInput `pulumi:"poePortMode"`
+	// Configure PoE port power. Valid values: `normal`, `perpetual`, `perpetual-fast`.
+	PoePortPower pulumi.StringPtrInput `pulumi:"poePortPower"`
+	// Configure PoE port priority. Valid values: `critical-priority`, `high-priority`, `low-priority`, `medium-priority`.
+	PoePortPriority pulumi.StringPtrInput `pulumi:"poePortPriority"`
 	// Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
 	PoePreStandardDetection pulumi.StringPtrInput `pulumi:"poePreStandardDetection"`
 	// PoE standard supported.
@@ -4238,8 +4514,12 @@ type ManagedswitchPortArgs struct {
 	PortSelectionCriteria pulumi.StringPtrInput `pulumi:"portSelectionCriteria"`
 	// PTP policy configuration.
 	PtpPolicy pulumi.StringPtrInput `pulumi:"ptpPolicy"`
+	// Enable/disable PTP policy on this FortiSwitch port. Valid values: `disable`, `enable`.
+	PtpStatus pulumi.StringPtrInput `pulumi:"ptpStatus"`
 	// Switch controller QoS policy from available options.
 	QosPolicy pulumi.StringPtrInput `pulumi:"qosPolicy"`
+	// Peer to Peer Restricted Authenticated port.
+	RestrictedAuthPort pulumi.IntPtrInput `pulumi:"restrictedAuthPort"`
 	// Enable/disable inter-operability with rapid PVST on this interface. Valid values: `disabled`, `enabled`.
 	RpvstPort pulumi.StringPtrInput `pulumi:"rpvstPort"`
 	// sFlow sample direction. Valid values: `tx`, `rx`, `both`.
@@ -4338,6 +4618,11 @@ func (o ManagedswitchPortOutput) AccessMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.AccessMode }).(pulumi.StringPtrOutput)
 }
 
+// ACL groups on this port. The structure of `aclGroup` block is documented below.
+func (o ManagedswitchPortOutput) AclGroups() ManagedswitchPortAclGroupArrayOutput {
+	return o.ApplyT(func(v ManagedswitchPort) []ManagedswitchPortAclGroup { return v.AclGroups }).(ManagedswitchPortAclGroupArrayOutput)
+}
+
 // LACP member select mode. Valid values: `bandwidth`, `count`.
 func (o ManagedswitchPortOutput) AggregatorMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.AggregatorMode }).(pulumi.StringPtrOutput)
@@ -4358,6 +4643,11 @@ func (o ManagedswitchPortOutput) ArpInspectionTrust() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.ArpInspectionTrust }).(pulumi.StringPtrOutput)
 }
 
+// Peer to Peer Authenticated port.
+func (o ManagedswitchPortOutput) AuthenticatedPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPort) *int { return v.AuthenticatedPort }).(pulumi.IntPtrOutput)
+}
+
 // Enable/disable Link Aggregation Group (LAG) bundling for non-FortiLink interfaces. Valid values: `enable`, `disable`.
 func (o ManagedswitchPortOutput) Bundle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.Bundle }).(pulumi.StringPtrOutput)
@@ -4366,6 +4656,13 @@ func (o ManagedswitchPortOutput) Bundle() pulumi.StringPtrOutput {
 // Description for port.
 func (o ManagedswitchPortOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Configure DHCP snooping option 82 override. The structure of `dhcpSnoopOption82Override` block is documented below.
+func (o ManagedswitchPortOutput) DhcpSnoopOption82Overrides() ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput {
+	return o.ApplyT(func(v ManagedswitchPort) []ManagedswitchPortDhcpSnoopOption82Override {
+		return v.DhcpSnoopOption82Overrides
+	}).(ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput)
 }
 
 // Enable/disable allowance of DHCP with option-82 on untrusted interface. Valid values: `enable`, `disable`.
@@ -4386,6 +4683,11 @@ func (o ManagedswitchPortOutput) DiscardMode() pulumi.StringPtrOutput {
 // Enable/disable this interface as an edge port, bridging connections between workstations and/or computers. Valid values: `enable`, `disable`.
 func (o ManagedswitchPortOutput) EdgePort() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.EdgePort }).(pulumi.StringPtrOutput)
+}
+
+// Peer to Peer Encrypted port.
+func (o ManagedswitchPortOutput) EncryptedPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPort) *int { return v.EncryptedPort }).(pulumi.IntPtrOutput)
 }
 
 // Switch controller export tag name. The structure of `exportTags` block is documented below.
@@ -4413,7 +4715,7 @@ func (o ManagedswitchPortOutput) FecCapable() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *int { return v.FecCapable }).(pulumi.IntPtrOutput)
 }
 
-// State of forward error correction. Valid values: `disabled`, `cl74`, `cl91`.
+// State of forward error correction.
 func (o ManagedswitchPortOutput) FecState() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.FecState }).(pulumi.StringPtrOutput)
 }
@@ -4468,6 +4770,11 @@ func (o ManagedswitchPortOutput) FortilinkPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *int { return v.FortilinkPort }).(pulumi.IntPtrOutput)
 }
 
+// ACLs on this port. The structure of `fortiswitchAcls` block is documented below.
+func (o ManagedswitchPortOutput) FortiswitchAcls() ManagedswitchPortFortiswitchAclArrayOutput {
+	return o.ApplyT(func(v ManagedswitchPort) []ManagedswitchPortFortiswitchAcl { return v.FortiswitchAcls }).(ManagedswitchPortFortiswitchAclArrayOutput)
+}
+
 // Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
 func (o ManagedswitchPortOutput) IgmpSnooping() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.IgmpSnooping }).(pulumi.StringPtrOutput)
@@ -4508,6 +4815,11 @@ func (o ManagedswitchPortOutput) IslPeerDeviceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.IslPeerDeviceName }).(pulumi.StringPtrOutput)
 }
 
+// ISL peer device serial number.
+func (o ManagedswitchPortOutput) IslPeerDeviceSn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPort) *string { return v.IslPeerDeviceSn }).(pulumi.StringPtrOutput)
+}
+
 // ISL peer port name.
 func (o ManagedswitchPortOutput) IslPeerPortName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.IslPeerPortName }).(pulumi.StringPtrOutput)
@@ -4521,6 +4833,11 @@ func (o ManagedswitchPortOutput) LacpSpeed() pulumi.StringPtrOutput {
 // Limit the number of dynamic MAC addresses on this Port (1 - 128, 0 = no limit, default).
 func (o ManagedswitchPortOutput) LearningLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *int { return v.LearningLimit }).(pulumi.IntPtrOutput)
+}
+
+// Port link status. Valid values: `up`, `down`.
+func (o ManagedswitchPortOutput) LinkStatus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPort) *string { return v.LinkStatus }).(pulumi.StringPtrOutput)
 }
 
 // LLDP port TLV profile.
@@ -4638,6 +4955,26 @@ func (o ManagedswitchPortOutput) PoeMaxPower() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.PoeMaxPower }).(pulumi.StringPtrOutput)
 }
 
+// PoE mode IEEE 802.3BT capable.
+func (o ManagedswitchPortOutput) PoeModeBtCabable() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPort) *int { return v.PoeModeBtCabable }).(pulumi.IntPtrOutput)
+}
+
+// Configure PoE port mode. Valid values: `ieee802-3af`, `ieee802-3at`, `ieee802-3bt`.
+func (o ManagedswitchPortOutput) PoePortMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPort) *string { return v.PoePortMode }).(pulumi.StringPtrOutput)
+}
+
+// Configure PoE port power. Valid values: `normal`, `perpetual`, `perpetual-fast`.
+func (o ManagedswitchPortOutput) PoePortPower() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPort) *string { return v.PoePortPower }).(pulumi.StringPtrOutput)
+}
+
+// Configure PoE port priority. Valid values: `critical-priority`, `high-priority`, `low-priority`, `medium-priority`.
+func (o ManagedswitchPortOutput) PoePortPriority() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPort) *string { return v.PoePortPriority }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
 func (o ManagedswitchPortOutput) PoePreStandardDetection() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.PoePreStandardDetection }).(pulumi.StringPtrOutput)
@@ -4693,9 +5030,19 @@ func (o ManagedswitchPortOutput) PtpPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.PtpPolicy }).(pulumi.StringPtrOutput)
 }
 
+// Enable/disable PTP policy on this FortiSwitch port. Valid values: `disable`, `enable`.
+func (o ManagedswitchPortOutput) PtpStatus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPort) *string { return v.PtpStatus }).(pulumi.StringPtrOutput)
+}
+
 // Switch controller QoS policy from available options.
 func (o ManagedswitchPortOutput) QosPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.QosPolicy }).(pulumi.StringPtrOutput)
+}
+
+// Peer to Peer Restricted Authenticated port.
+func (o ManagedswitchPortOutput) RestrictedAuthPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPort) *int { return v.RestrictedAuthPort }).(pulumi.IntPtrOutput)
 }
 
 // Enable/disable inter-operability with rapid PVST on this interface. Valid values: `disabled`, `enabled`.
@@ -4818,6 +5165,103 @@ func (o ManagedswitchPortArrayOutput) Index(i pulumi.IntInput) ManagedswitchPort
 	}).(ManagedswitchPortOutput)
 }
 
+type ManagedswitchPortAclGroup struct {
+	// ACL group name.
+	Name *string `pulumi:"name"`
+}
+
+// ManagedswitchPortAclGroupInput is an input type that accepts ManagedswitchPortAclGroupArgs and ManagedswitchPortAclGroupOutput values.
+// You can construct a concrete instance of `ManagedswitchPortAclGroupInput` via:
+//
+//	ManagedswitchPortAclGroupArgs{...}
+type ManagedswitchPortAclGroupInput interface {
+	pulumi.Input
+
+	ToManagedswitchPortAclGroupOutput() ManagedswitchPortAclGroupOutput
+	ToManagedswitchPortAclGroupOutputWithContext(context.Context) ManagedswitchPortAclGroupOutput
+}
+
+type ManagedswitchPortAclGroupArgs struct {
+	// ACL group name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (ManagedswitchPortAclGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedswitchPortAclGroup)(nil)).Elem()
+}
+
+func (i ManagedswitchPortAclGroupArgs) ToManagedswitchPortAclGroupOutput() ManagedswitchPortAclGroupOutput {
+	return i.ToManagedswitchPortAclGroupOutputWithContext(context.Background())
+}
+
+func (i ManagedswitchPortAclGroupArgs) ToManagedswitchPortAclGroupOutputWithContext(ctx context.Context) ManagedswitchPortAclGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedswitchPortAclGroupOutput)
+}
+
+// ManagedswitchPortAclGroupArrayInput is an input type that accepts ManagedswitchPortAclGroupArray and ManagedswitchPortAclGroupArrayOutput values.
+// You can construct a concrete instance of `ManagedswitchPortAclGroupArrayInput` via:
+//
+//	ManagedswitchPortAclGroupArray{ ManagedswitchPortAclGroupArgs{...} }
+type ManagedswitchPortAclGroupArrayInput interface {
+	pulumi.Input
+
+	ToManagedswitchPortAclGroupArrayOutput() ManagedswitchPortAclGroupArrayOutput
+	ToManagedswitchPortAclGroupArrayOutputWithContext(context.Context) ManagedswitchPortAclGroupArrayOutput
+}
+
+type ManagedswitchPortAclGroupArray []ManagedswitchPortAclGroupInput
+
+func (ManagedswitchPortAclGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedswitchPortAclGroup)(nil)).Elem()
+}
+
+func (i ManagedswitchPortAclGroupArray) ToManagedswitchPortAclGroupArrayOutput() ManagedswitchPortAclGroupArrayOutput {
+	return i.ToManagedswitchPortAclGroupArrayOutputWithContext(context.Background())
+}
+
+func (i ManagedswitchPortAclGroupArray) ToManagedswitchPortAclGroupArrayOutputWithContext(ctx context.Context) ManagedswitchPortAclGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedswitchPortAclGroupArrayOutput)
+}
+
+type ManagedswitchPortAclGroupOutput struct{ *pulumi.OutputState }
+
+func (ManagedswitchPortAclGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedswitchPortAclGroup)(nil)).Elem()
+}
+
+func (o ManagedswitchPortAclGroupOutput) ToManagedswitchPortAclGroupOutput() ManagedswitchPortAclGroupOutput {
+	return o
+}
+
+func (o ManagedswitchPortAclGroupOutput) ToManagedswitchPortAclGroupOutputWithContext(ctx context.Context) ManagedswitchPortAclGroupOutput {
+	return o
+}
+
+// ACL group name.
+func (o ManagedswitchPortAclGroupOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPortAclGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ManagedswitchPortAclGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (ManagedswitchPortAclGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedswitchPortAclGroup)(nil)).Elem()
+}
+
+func (o ManagedswitchPortAclGroupArrayOutput) ToManagedswitchPortAclGroupArrayOutput() ManagedswitchPortAclGroupArrayOutput {
+	return o
+}
+
+func (o ManagedswitchPortAclGroupArrayOutput) ToManagedswitchPortAclGroupArrayOutputWithContext(ctx context.Context) ManagedswitchPortAclGroupArrayOutput {
+	return o
+}
+
+func (o ManagedswitchPortAclGroupArrayOutput) Index(i pulumi.IntInput) ManagedswitchPortAclGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedswitchPortAclGroup {
+		return vs[0].([]ManagedswitchPortAclGroup)[vs[1].(int)]
+	}).(ManagedswitchPortAclGroupOutput)
+}
+
 type ManagedswitchPortAllowedVlan struct {
 	// VLAN name.
 	VlanName *string `pulumi:"vlanName"`
@@ -4915,6 +5359,121 @@ func (o ManagedswitchPortAllowedVlanArrayOutput) Index(i pulumi.IntInput) Manage
 	}).(ManagedswitchPortAllowedVlanOutput)
 }
 
+type ManagedswitchPortDhcpSnoopOption82Override struct {
+	// Circuit ID string.
+	CircuitId *string `pulumi:"circuitId"`
+	// Remote ID string.
+	RemoteId *string `pulumi:"remoteId"`
+	// VLAN name.
+	VlanName *string `pulumi:"vlanName"`
+}
+
+// ManagedswitchPortDhcpSnoopOption82OverrideInput is an input type that accepts ManagedswitchPortDhcpSnoopOption82OverrideArgs and ManagedswitchPortDhcpSnoopOption82OverrideOutput values.
+// You can construct a concrete instance of `ManagedswitchPortDhcpSnoopOption82OverrideInput` via:
+//
+//	ManagedswitchPortDhcpSnoopOption82OverrideArgs{...}
+type ManagedswitchPortDhcpSnoopOption82OverrideInput interface {
+	pulumi.Input
+
+	ToManagedswitchPortDhcpSnoopOption82OverrideOutput() ManagedswitchPortDhcpSnoopOption82OverrideOutput
+	ToManagedswitchPortDhcpSnoopOption82OverrideOutputWithContext(context.Context) ManagedswitchPortDhcpSnoopOption82OverrideOutput
+}
+
+type ManagedswitchPortDhcpSnoopOption82OverrideArgs struct {
+	// Circuit ID string.
+	CircuitId pulumi.StringPtrInput `pulumi:"circuitId"`
+	// Remote ID string.
+	RemoteId pulumi.StringPtrInput `pulumi:"remoteId"`
+	// VLAN name.
+	VlanName pulumi.StringPtrInput `pulumi:"vlanName"`
+}
+
+func (ManagedswitchPortDhcpSnoopOption82OverrideArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedswitchPortDhcpSnoopOption82Override)(nil)).Elem()
+}
+
+func (i ManagedswitchPortDhcpSnoopOption82OverrideArgs) ToManagedswitchPortDhcpSnoopOption82OverrideOutput() ManagedswitchPortDhcpSnoopOption82OverrideOutput {
+	return i.ToManagedswitchPortDhcpSnoopOption82OverrideOutputWithContext(context.Background())
+}
+
+func (i ManagedswitchPortDhcpSnoopOption82OverrideArgs) ToManagedswitchPortDhcpSnoopOption82OverrideOutputWithContext(ctx context.Context) ManagedswitchPortDhcpSnoopOption82OverrideOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedswitchPortDhcpSnoopOption82OverrideOutput)
+}
+
+// ManagedswitchPortDhcpSnoopOption82OverrideArrayInput is an input type that accepts ManagedswitchPortDhcpSnoopOption82OverrideArray and ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput values.
+// You can construct a concrete instance of `ManagedswitchPortDhcpSnoopOption82OverrideArrayInput` via:
+//
+//	ManagedswitchPortDhcpSnoopOption82OverrideArray{ ManagedswitchPortDhcpSnoopOption82OverrideArgs{...} }
+type ManagedswitchPortDhcpSnoopOption82OverrideArrayInput interface {
+	pulumi.Input
+
+	ToManagedswitchPortDhcpSnoopOption82OverrideArrayOutput() ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput
+	ToManagedswitchPortDhcpSnoopOption82OverrideArrayOutputWithContext(context.Context) ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput
+}
+
+type ManagedswitchPortDhcpSnoopOption82OverrideArray []ManagedswitchPortDhcpSnoopOption82OverrideInput
+
+func (ManagedswitchPortDhcpSnoopOption82OverrideArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedswitchPortDhcpSnoopOption82Override)(nil)).Elem()
+}
+
+func (i ManagedswitchPortDhcpSnoopOption82OverrideArray) ToManagedswitchPortDhcpSnoopOption82OverrideArrayOutput() ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput {
+	return i.ToManagedswitchPortDhcpSnoopOption82OverrideArrayOutputWithContext(context.Background())
+}
+
+func (i ManagedswitchPortDhcpSnoopOption82OverrideArray) ToManagedswitchPortDhcpSnoopOption82OverrideArrayOutputWithContext(ctx context.Context) ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput)
+}
+
+type ManagedswitchPortDhcpSnoopOption82OverrideOutput struct{ *pulumi.OutputState }
+
+func (ManagedswitchPortDhcpSnoopOption82OverrideOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedswitchPortDhcpSnoopOption82Override)(nil)).Elem()
+}
+
+func (o ManagedswitchPortDhcpSnoopOption82OverrideOutput) ToManagedswitchPortDhcpSnoopOption82OverrideOutput() ManagedswitchPortDhcpSnoopOption82OverrideOutput {
+	return o
+}
+
+func (o ManagedswitchPortDhcpSnoopOption82OverrideOutput) ToManagedswitchPortDhcpSnoopOption82OverrideOutputWithContext(ctx context.Context) ManagedswitchPortDhcpSnoopOption82OverrideOutput {
+	return o
+}
+
+// Circuit ID string.
+func (o ManagedswitchPortDhcpSnoopOption82OverrideOutput) CircuitId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPortDhcpSnoopOption82Override) *string { return v.CircuitId }).(pulumi.StringPtrOutput)
+}
+
+// Remote ID string.
+func (o ManagedswitchPortDhcpSnoopOption82OverrideOutput) RemoteId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPortDhcpSnoopOption82Override) *string { return v.RemoteId }).(pulumi.StringPtrOutput)
+}
+
+// VLAN name.
+func (o ManagedswitchPortDhcpSnoopOption82OverrideOutput) VlanName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPortDhcpSnoopOption82Override) *string { return v.VlanName }).(pulumi.StringPtrOutput)
+}
+
+type ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput struct{ *pulumi.OutputState }
+
+func (ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedswitchPortDhcpSnoopOption82Override)(nil)).Elem()
+}
+
+func (o ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput) ToManagedswitchPortDhcpSnoopOption82OverrideArrayOutput() ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput {
+	return o
+}
+
+func (o ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput) ToManagedswitchPortDhcpSnoopOption82OverrideArrayOutputWithContext(ctx context.Context) ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput {
+	return o
+}
+
+func (o ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput) Index(i pulumi.IntInput) ManagedswitchPortDhcpSnoopOption82OverrideOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedswitchPortDhcpSnoopOption82Override {
+		return vs[0].([]ManagedswitchPortDhcpSnoopOption82Override)[vs[1].(int)]
+	}).(ManagedswitchPortDhcpSnoopOption82OverrideOutput)
+}
+
 type ManagedswitchPortExportTag struct {
 	// Switch tag name.
 	TagName *string `pulumi:"tagName"`
@@ -5010,6 +5569,109 @@ func (o ManagedswitchPortExportTagArrayOutput) Index(i pulumi.IntInput) Manageds
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedswitchPortExportTag {
 		return vs[0].([]ManagedswitchPortExportTag)[vs[1].(int)]
 	}).(ManagedswitchPortExportTagOutput)
+}
+
+type ManagedswitchPortFortiswitchAcl struct {
+	// ACL ID.
+	//
+	// The `dhcpSnoopOption82Override` block supports:
+	Id *int `pulumi:"id"`
+}
+
+// ManagedswitchPortFortiswitchAclInput is an input type that accepts ManagedswitchPortFortiswitchAclArgs and ManagedswitchPortFortiswitchAclOutput values.
+// You can construct a concrete instance of `ManagedswitchPortFortiswitchAclInput` via:
+//
+//	ManagedswitchPortFortiswitchAclArgs{...}
+type ManagedswitchPortFortiswitchAclInput interface {
+	pulumi.Input
+
+	ToManagedswitchPortFortiswitchAclOutput() ManagedswitchPortFortiswitchAclOutput
+	ToManagedswitchPortFortiswitchAclOutputWithContext(context.Context) ManagedswitchPortFortiswitchAclOutput
+}
+
+type ManagedswitchPortFortiswitchAclArgs struct {
+	// ACL ID.
+	//
+	// The `dhcpSnoopOption82Override` block supports:
+	Id pulumi.IntPtrInput `pulumi:"id"`
+}
+
+func (ManagedswitchPortFortiswitchAclArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedswitchPortFortiswitchAcl)(nil)).Elem()
+}
+
+func (i ManagedswitchPortFortiswitchAclArgs) ToManagedswitchPortFortiswitchAclOutput() ManagedswitchPortFortiswitchAclOutput {
+	return i.ToManagedswitchPortFortiswitchAclOutputWithContext(context.Background())
+}
+
+func (i ManagedswitchPortFortiswitchAclArgs) ToManagedswitchPortFortiswitchAclOutputWithContext(ctx context.Context) ManagedswitchPortFortiswitchAclOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedswitchPortFortiswitchAclOutput)
+}
+
+// ManagedswitchPortFortiswitchAclArrayInput is an input type that accepts ManagedswitchPortFortiswitchAclArray and ManagedswitchPortFortiswitchAclArrayOutput values.
+// You can construct a concrete instance of `ManagedswitchPortFortiswitchAclArrayInput` via:
+//
+//	ManagedswitchPortFortiswitchAclArray{ ManagedswitchPortFortiswitchAclArgs{...} }
+type ManagedswitchPortFortiswitchAclArrayInput interface {
+	pulumi.Input
+
+	ToManagedswitchPortFortiswitchAclArrayOutput() ManagedswitchPortFortiswitchAclArrayOutput
+	ToManagedswitchPortFortiswitchAclArrayOutputWithContext(context.Context) ManagedswitchPortFortiswitchAclArrayOutput
+}
+
+type ManagedswitchPortFortiswitchAclArray []ManagedswitchPortFortiswitchAclInput
+
+func (ManagedswitchPortFortiswitchAclArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedswitchPortFortiswitchAcl)(nil)).Elem()
+}
+
+func (i ManagedswitchPortFortiswitchAclArray) ToManagedswitchPortFortiswitchAclArrayOutput() ManagedswitchPortFortiswitchAclArrayOutput {
+	return i.ToManagedswitchPortFortiswitchAclArrayOutputWithContext(context.Background())
+}
+
+func (i ManagedswitchPortFortiswitchAclArray) ToManagedswitchPortFortiswitchAclArrayOutputWithContext(ctx context.Context) ManagedswitchPortFortiswitchAclArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedswitchPortFortiswitchAclArrayOutput)
+}
+
+type ManagedswitchPortFortiswitchAclOutput struct{ *pulumi.OutputState }
+
+func (ManagedswitchPortFortiswitchAclOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedswitchPortFortiswitchAcl)(nil)).Elem()
+}
+
+func (o ManagedswitchPortFortiswitchAclOutput) ToManagedswitchPortFortiswitchAclOutput() ManagedswitchPortFortiswitchAclOutput {
+	return o
+}
+
+func (o ManagedswitchPortFortiswitchAclOutput) ToManagedswitchPortFortiswitchAclOutputWithContext(ctx context.Context) ManagedswitchPortFortiswitchAclOutput {
+	return o
+}
+
+// ACL ID.
+//
+// The `dhcpSnoopOption82Override` block supports:
+func (o ManagedswitchPortFortiswitchAclOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPortFortiswitchAcl) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+type ManagedswitchPortFortiswitchAclArrayOutput struct{ *pulumi.OutputState }
+
+func (ManagedswitchPortFortiswitchAclArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedswitchPortFortiswitchAcl)(nil)).Elem()
+}
+
+func (o ManagedswitchPortFortiswitchAclArrayOutput) ToManagedswitchPortFortiswitchAclArrayOutput() ManagedswitchPortFortiswitchAclArrayOutput {
+	return o
+}
+
+func (o ManagedswitchPortFortiswitchAclArrayOutput) ToManagedswitchPortFortiswitchAclArrayOutputWithContext(ctx context.Context) ManagedswitchPortFortiswitchAclArrayOutput {
+	return o
+}
+
+func (o ManagedswitchPortFortiswitchAclArrayOutput) Index(i pulumi.IntInput) ManagedswitchPortFortiswitchAclOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedswitchPortFortiswitchAcl {
+		return vs[0].([]ManagedswitchPortFortiswitchAcl)[vs[1].(int)]
+	}).(ManagedswitchPortFortiswitchAclOutput)
 }
 
 type ManagedswitchPortInterfaceTag struct {
@@ -5452,6 +6114,112 @@ func (o ManagedswitchRemoteLogArrayOutput) Index(i pulumi.IntInput) Managedswitc
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedswitchRemoteLog {
 		return vs[0].([]ManagedswitchRemoteLog)[vs[1].(int)]
 	}).(ManagedswitchRemoteLogOutput)
+}
+
+type ManagedswitchRouteOffloadRouter struct {
+	// Router IP address.
+	RouterIp *string `pulumi:"routerIp"`
+	// VLAN name.
+	VlanName *string `pulumi:"vlanName"`
+}
+
+// ManagedswitchRouteOffloadRouterInput is an input type that accepts ManagedswitchRouteOffloadRouterArgs and ManagedswitchRouteOffloadRouterOutput values.
+// You can construct a concrete instance of `ManagedswitchRouteOffloadRouterInput` via:
+//
+//	ManagedswitchRouteOffloadRouterArgs{...}
+type ManagedswitchRouteOffloadRouterInput interface {
+	pulumi.Input
+
+	ToManagedswitchRouteOffloadRouterOutput() ManagedswitchRouteOffloadRouterOutput
+	ToManagedswitchRouteOffloadRouterOutputWithContext(context.Context) ManagedswitchRouteOffloadRouterOutput
+}
+
+type ManagedswitchRouteOffloadRouterArgs struct {
+	// Router IP address.
+	RouterIp pulumi.StringPtrInput `pulumi:"routerIp"`
+	// VLAN name.
+	VlanName pulumi.StringPtrInput `pulumi:"vlanName"`
+}
+
+func (ManagedswitchRouteOffloadRouterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedswitchRouteOffloadRouter)(nil)).Elem()
+}
+
+func (i ManagedswitchRouteOffloadRouterArgs) ToManagedswitchRouteOffloadRouterOutput() ManagedswitchRouteOffloadRouterOutput {
+	return i.ToManagedswitchRouteOffloadRouterOutputWithContext(context.Background())
+}
+
+func (i ManagedswitchRouteOffloadRouterArgs) ToManagedswitchRouteOffloadRouterOutputWithContext(ctx context.Context) ManagedswitchRouteOffloadRouterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedswitchRouteOffloadRouterOutput)
+}
+
+// ManagedswitchRouteOffloadRouterArrayInput is an input type that accepts ManagedswitchRouteOffloadRouterArray and ManagedswitchRouteOffloadRouterArrayOutput values.
+// You can construct a concrete instance of `ManagedswitchRouteOffloadRouterArrayInput` via:
+//
+//	ManagedswitchRouteOffloadRouterArray{ ManagedswitchRouteOffloadRouterArgs{...} }
+type ManagedswitchRouteOffloadRouterArrayInput interface {
+	pulumi.Input
+
+	ToManagedswitchRouteOffloadRouterArrayOutput() ManagedswitchRouteOffloadRouterArrayOutput
+	ToManagedswitchRouteOffloadRouterArrayOutputWithContext(context.Context) ManagedswitchRouteOffloadRouterArrayOutput
+}
+
+type ManagedswitchRouteOffloadRouterArray []ManagedswitchRouteOffloadRouterInput
+
+func (ManagedswitchRouteOffloadRouterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedswitchRouteOffloadRouter)(nil)).Elem()
+}
+
+func (i ManagedswitchRouteOffloadRouterArray) ToManagedswitchRouteOffloadRouterArrayOutput() ManagedswitchRouteOffloadRouterArrayOutput {
+	return i.ToManagedswitchRouteOffloadRouterArrayOutputWithContext(context.Background())
+}
+
+func (i ManagedswitchRouteOffloadRouterArray) ToManagedswitchRouteOffloadRouterArrayOutputWithContext(ctx context.Context) ManagedswitchRouteOffloadRouterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedswitchRouteOffloadRouterArrayOutput)
+}
+
+type ManagedswitchRouteOffloadRouterOutput struct{ *pulumi.OutputState }
+
+func (ManagedswitchRouteOffloadRouterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedswitchRouteOffloadRouter)(nil)).Elem()
+}
+
+func (o ManagedswitchRouteOffloadRouterOutput) ToManagedswitchRouteOffloadRouterOutput() ManagedswitchRouteOffloadRouterOutput {
+	return o
+}
+
+func (o ManagedswitchRouteOffloadRouterOutput) ToManagedswitchRouteOffloadRouterOutputWithContext(ctx context.Context) ManagedswitchRouteOffloadRouterOutput {
+	return o
+}
+
+// Router IP address.
+func (o ManagedswitchRouteOffloadRouterOutput) RouterIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchRouteOffloadRouter) *string { return v.RouterIp }).(pulumi.StringPtrOutput)
+}
+
+// VLAN name.
+func (o ManagedswitchRouteOffloadRouterOutput) VlanName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchRouteOffloadRouter) *string { return v.VlanName }).(pulumi.StringPtrOutput)
+}
+
+type ManagedswitchRouteOffloadRouterArrayOutput struct{ *pulumi.OutputState }
+
+func (ManagedswitchRouteOffloadRouterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedswitchRouteOffloadRouter)(nil)).Elem()
+}
+
+func (o ManagedswitchRouteOffloadRouterArrayOutput) ToManagedswitchRouteOffloadRouterArrayOutput() ManagedswitchRouteOffloadRouterArrayOutput {
+	return o
+}
+
+func (o ManagedswitchRouteOffloadRouterArrayOutput) ToManagedswitchRouteOffloadRouterArrayOutputWithContext(ctx context.Context) ManagedswitchRouteOffloadRouterArrayOutput {
+	return o
+}
+
+func (o ManagedswitchRouteOffloadRouterArrayOutput) Index(i pulumi.IntInput) ManagedswitchRouteOffloadRouterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedswitchRouteOffloadRouter {
+		return vs[0].([]ManagedswitchRouteOffloadRouter)[vs[1].(int)]
+	}).(ManagedswitchRouteOffloadRouterOutput)
 }
 
 type ManagedswitchSnmpCommunity struct {
@@ -7393,6 +8161,112 @@ func (o ManagedswitchSwitchStpSettingsPtrOutput) Status() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+type ManagedswitchVlan struct {
+	// 802.1x Radius (Tunnel-Private-Group-Id) VLANID assign-by-name priority. A smaller value has a higher priority.
+	AssignmentPriority *int `pulumi:"assignmentPriority"`
+	// VLAN name.
+	VlanName *string `pulumi:"vlanName"`
+}
+
+// ManagedswitchVlanInput is an input type that accepts ManagedswitchVlanArgs and ManagedswitchVlanOutput values.
+// You can construct a concrete instance of `ManagedswitchVlanInput` via:
+//
+//	ManagedswitchVlanArgs{...}
+type ManagedswitchVlanInput interface {
+	pulumi.Input
+
+	ToManagedswitchVlanOutput() ManagedswitchVlanOutput
+	ToManagedswitchVlanOutputWithContext(context.Context) ManagedswitchVlanOutput
+}
+
+type ManagedswitchVlanArgs struct {
+	// 802.1x Radius (Tunnel-Private-Group-Id) VLANID assign-by-name priority. A smaller value has a higher priority.
+	AssignmentPriority pulumi.IntPtrInput `pulumi:"assignmentPriority"`
+	// VLAN name.
+	VlanName pulumi.StringPtrInput `pulumi:"vlanName"`
+}
+
+func (ManagedswitchVlanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedswitchVlan)(nil)).Elem()
+}
+
+func (i ManagedswitchVlanArgs) ToManagedswitchVlanOutput() ManagedswitchVlanOutput {
+	return i.ToManagedswitchVlanOutputWithContext(context.Background())
+}
+
+func (i ManagedswitchVlanArgs) ToManagedswitchVlanOutputWithContext(ctx context.Context) ManagedswitchVlanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedswitchVlanOutput)
+}
+
+// ManagedswitchVlanArrayInput is an input type that accepts ManagedswitchVlanArray and ManagedswitchVlanArrayOutput values.
+// You can construct a concrete instance of `ManagedswitchVlanArrayInput` via:
+//
+//	ManagedswitchVlanArray{ ManagedswitchVlanArgs{...} }
+type ManagedswitchVlanArrayInput interface {
+	pulumi.Input
+
+	ToManagedswitchVlanArrayOutput() ManagedswitchVlanArrayOutput
+	ToManagedswitchVlanArrayOutputWithContext(context.Context) ManagedswitchVlanArrayOutput
+}
+
+type ManagedswitchVlanArray []ManagedswitchVlanInput
+
+func (ManagedswitchVlanArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedswitchVlan)(nil)).Elem()
+}
+
+func (i ManagedswitchVlanArray) ToManagedswitchVlanArrayOutput() ManagedswitchVlanArrayOutput {
+	return i.ToManagedswitchVlanArrayOutputWithContext(context.Background())
+}
+
+func (i ManagedswitchVlanArray) ToManagedswitchVlanArrayOutputWithContext(ctx context.Context) ManagedswitchVlanArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedswitchVlanArrayOutput)
+}
+
+type ManagedswitchVlanOutput struct{ *pulumi.OutputState }
+
+func (ManagedswitchVlanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ManagedswitchVlan)(nil)).Elem()
+}
+
+func (o ManagedswitchVlanOutput) ToManagedswitchVlanOutput() ManagedswitchVlanOutput {
+	return o
+}
+
+func (o ManagedswitchVlanOutput) ToManagedswitchVlanOutputWithContext(ctx context.Context) ManagedswitchVlanOutput {
+	return o
+}
+
+// 802.1x Radius (Tunnel-Private-Group-Id) VLANID assign-by-name priority. A smaller value has a higher priority.
+func (o ManagedswitchVlanOutput) AssignmentPriority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ManagedswitchVlan) *int { return v.AssignmentPriority }).(pulumi.IntPtrOutput)
+}
+
+// VLAN name.
+func (o ManagedswitchVlanOutput) VlanName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchVlan) *string { return v.VlanName }).(pulumi.StringPtrOutput)
+}
+
+type ManagedswitchVlanArrayOutput struct{ *pulumi.OutputState }
+
+func (ManagedswitchVlanArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ManagedswitchVlan)(nil)).Elem()
+}
+
+func (o ManagedswitchVlanArrayOutput) ToManagedswitchVlanArrayOutput() ManagedswitchVlanArrayOutput {
+	return o
+}
+
+func (o ManagedswitchVlanArrayOutput) ToManagedswitchVlanArrayOutputWithContext(ctx context.Context) ManagedswitchVlanArrayOutput {
+	return o
+}
+
+func (o ManagedswitchVlanArrayOutput) Index(i pulumi.IntInput) ManagedswitchVlanOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ManagedswitchVlan {
+		return vs[0].([]ManagedswitchVlan)[vs[1].(int)]
+	}).(ManagedswitchVlanOutput)
+}
+
 type QuarantineTarget struct {
 	// Description for the quarantine MAC.
 	Description *string `pulumi:"description"`
@@ -8969,6 +9843,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LocationElinNumberPtrInput)(nil)).Elem(), LocationElinNumberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchCustomCommandInput)(nil)).Elem(), ManagedswitchCustomCommandArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchCustomCommandArrayInput)(nil)).Elem(), ManagedswitchCustomCommandArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchDhcpSnoopingStaticClientInput)(nil)).Elem(), ManagedswitchDhcpSnoopingStaticClientArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchDhcpSnoopingStaticClientArrayInput)(nil)).Elem(), ManagedswitchDhcpSnoopingStaticClientArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchIgmpSnoopingInput)(nil)).Elem(), ManagedswitchIgmpSnoopingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchIgmpSnoopingPtrInput)(nil)).Elem(), ManagedswitchIgmpSnoopingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchIgmpSnoopingVlanInput)(nil)).Elem(), ManagedswitchIgmpSnoopingVlanArgs{})
@@ -8987,10 +9863,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchN8021xSettingsPtrInput)(nil)).Elem(), ManagedswitchN8021xSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortInput)(nil)).Elem(), ManagedswitchPortArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortArrayInput)(nil)).Elem(), ManagedswitchPortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortAclGroupInput)(nil)).Elem(), ManagedswitchPortAclGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortAclGroupArrayInput)(nil)).Elem(), ManagedswitchPortAclGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortAllowedVlanInput)(nil)).Elem(), ManagedswitchPortAllowedVlanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortAllowedVlanArrayInput)(nil)).Elem(), ManagedswitchPortAllowedVlanArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortDhcpSnoopOption82OverrideInput)(nil)).Elem(), ManagedswitchPortDhcpSnoopOption82OverrideArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortDhcpSnoopOption82OverrideArrayInput)(nil)).Elem(), ManagedswitchPortDhcpSnoopOption82OverrideArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortExportTagInput)(nil)).Elem(), ManagedswitchPortExportTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortExportTagArrayInput)(nil)).Elem(), ManagedswitchPortExportTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortFortiswitchAclInput)(nil)).Elem(), ManagedswitchPortFortiswitchAclArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortFortiswitchAclArrayInput)(nil)).Elem(), ManagedswitchPortFortiswitchAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortInterfaceTagInput)(nil)).Elem(), ManagedswitchPortInterfaceTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortInterfaceTagArrayInput)(nil)).Elem(), ManagedswitchPortInterfaceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortMemberInput)(nil)).Elem(), ManagedswitchPortMemberArgs{})
@@ -8999,6 +9881,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchPortUntaggedVlanArrayInput)(nil)).Elem(), ManagedswitchPortUntaggedVlanArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchRemoteLogInput)(nil)).Elem(), ManagedswitchRemoteLogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchRemoteLogArrayInput)(nil)).Elem(), ManagedswitchRemoteLogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchRouteOffloadRouterInput)(nil)).Elem(), ManagedswitchRouteOffloadRouterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchRouteOffloadRouterArrayInput)(nil)).Elem(), ManagedswitchRouteOffloadRouterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchSnmpCommunityInput)(nil)).Elem(), ManagedswitchSnmpCommunityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchSnmpCommunityArrayInput)(nil)).Elem(), ManagedswitchSnmpCommunityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchSnmpCommunityHostInput)(nil)).Elem(), ManagedswitchSnmpCommunityHostArgs{})
@@ -9021,6 +9905,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchSwitchLogPtrInput)(nil)).Elem(), ManagedswitchSwitchLogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchSwitchStpSettingsInput)(nil)).Elem(), ManagedswitchSwitchStpSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchSwitchStpSettingsPtrInput)(nil)).Elem(), ManagedswitchSwitchStpSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchVlanInput)(nil)).Elem(), ManagedswitchVlanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ManagedswitchVlanArrayInput)(nil)).Elem(), ManagedswitchVlanArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*QuarantineTargetInput)(nil)).Elem(), QuarantineTargetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*QuarantineTargetArrayInput)(nil)).Elem(), QuarantineTargetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*QuarantineTargetTagInput)(nil)).Elem(), QuarantineTargetTagArgs{})
@@ -9079,6 +9965,8 @@ func init() {
 	pulumi.RegisterOutputType(LocationElinNumberPtrOutput{})
 	pulumi.RegisterOutputType(ManagedswitchCustomCommandOutput{})
 	pulumi.RegisterOutputType(ManagedswitchCustomCommandArrayOutput{})
+	pulumi.RegisterOutputType(ManagedswitchDhcpSnoopingStaticClientOutput{})
+	pulumi.RegisterOutputType(ManagedswitchDhcpSnoopingStaticClientArrayOutput{})
 	pulumi.RegisterOutputType(ManagedswitchIgmpSnoopingOutput{})
 	pulumi.RegisterOutputType(ManagedswitchIgmpSnoopingPtrOutput{})
 	pulumi.RegisterOutputType(ManagedswitchIgmpSnoopingVlanOutput{})
@@ -9097,10 +9985,16 @@ func init() {
 	pulumi.RegisterOutputType(ManagedswitchN8021xSettingsPtrOutput{})
 	pulumi.RegisterOutputType(ManagedswitchPortOutput{})
 	pulumi.RegisterOutputType(ManagedswitchPortArrayOutput{})
+	pulumi.RegisterOutputType(ManagedswitchPortAclGroupOutput{})
+	pulumi.RegisterOutputType(ManagedswitchPortAclGroupArrayOutput{})
 	pulumi.RegisterOutputType(ManagedswitchPortAllowedVlanOutput{})
 	pulumi.RegisterOutputType(ManagedswitchPortAllowedVlanArrayOutput{})
+	pulumi.RegisterOutputType(ManagedswitchPortDhcpSnoopOption82OverrideOutput{})
+	pulumi.RegisterOutputType(ManagedswitchPortDhcpSnoopOption82OverrideArrayOutput{})
 	pulumi.RegisterOutputType(ManagedswitchPortExportTagOutput{})
 	pulumi.RegisterOutputType(ManagedswitchPortExportTagArrayOutput{})
+	pulumi.RegisterOutputType(ManagedswitchPortFortiswitchAclOutput{})
+	pulumi.RegisterOutputType(ManagedswitchPortFortiswitchAclArrayOutput{})
 	pulumi.RegisterOutputType(ManagedswitchPortInterfaceTagOutput{})
 	pulumi.RegisterOutputType(ManagedswitchPortInterfaceTagArrayOutput{})
 	pulumi.RegisterOutputType(ManagedswitchPortMemberOutput{})
@@ -9109,6 +10003,8 @@ func init() {
 	pulumi.RegisterOutputType(ManagedswitchPortUntaggedVlanArrayOutput{})
 	pulumi.RegisterOutputType(ManagedswitchRemoteLogOutput{})
 	pulumi.RegisterOutputType(ManagedswitchRemoteLogArrayOutput{})
+	pulumi.RegisterOutputType(ManagedswitchRouteOffloadRouterOutput{})
+	pulumi.RegisterOutputType(ManagedswitchRouteOffloadRouterArrayOutput{})
 	pulumi.RegisterOutputType(ManagedswitchSnmpCommunityOutput{})
 	pulumi.RegisterOutputType(ManagedswitchSnmpCommunityArrayOutput{})
 	pulumi.RegisterOutputType(ManagedswitchSnmpCommunityHostOutput{})
@@ -9131,6 +10027,8 @@ func init() {
 	pulumi.RegisterOutputType(ManagedswitchSwitchLogPtrOutput{})
 	pulumi.RegisterOutputType(ManagedswitchSwitchStpSettingsOutput{})
 	pulumi.RegisterOutputType(ManagedswitchSwitchStpSettingsPtrOutput{})
+	pulumi.RegisterOutputType(ManagedswitchVlanOutput{})
+	pulumi.RegisterOutputType(ManagedswitchVlanArrayOutput{})
 	pulumi.RegisterOutputType(QuarantineTargetOutput{})
 	pulumi.RegisterOutputType(QuarantineTargetArrayOutput{})
 	pulumi.RegisterOutputType(QuarantineTargetTagOutput{})

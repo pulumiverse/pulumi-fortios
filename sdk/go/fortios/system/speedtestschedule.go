@@ -33,18 +33,26 @@ import (
 type Speedtestschedule struct {
 	pulumi.CustomResourceState
 
+	// Port of the controller to get access token.
+	CtrlPort pulumi.IntOutput `pulumi:"ctrlPort"`
 	// DSCP used for speed test.
 	Diffserv pulumi.StringOutput `pulumi:"diffserv"`
 	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
 	DynamicServer pulumi.StringOutput `pulumi:"dynamicServer"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Interface name.
 	Interface pulumi.StringOutput `pulumi:"interface"`
+	// Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+	Mode pulumi.StringOutput `pulumi:"mode"`
 	// Schedules for the interface. The structure of `schedules` block is documented below.
 	Schedules SpeedtestscheduleScheduleArrayOutput `pulumi:"schedules"`
 	// Speed test server name.
 	ServerName pulumi.StringOutput `pulumi:"serverName"`
+	// Port of the server to run speed test.
+	ServerPort pulumi.IntOutput `pulumi:"serverPort"`
 	// Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
@@ -59,6 +67,8 @@ type Speedtestschedule struct {
 	UpdateOutbandwidthMaximum pulumi.IntOutput `pulumi:"updateOutbandwidthMaximum"`
 	// Minimum uploading bandwidth (kbps) to be considered effective.
 	UpdateOutbandwidthMinimum pulumi.IntOutput `pulumi:"updateOutbandwidthMinimum"`
+	// Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+	UpdateShaper pulumi.StringOutput `pulumi:"updateShaper"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -93,18 +103,26 @@ func GetSpeedtestschedule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Speedtestschedule resources.
 type speedtestscheduleState struct {
+	// Port of the controller to get access token.
+	CtrlPort *int `pulumi:"ctrlPort"`
 	// DSCP used for speed test.
 	Diffserv *string `pulumi:"diffserv"`
 	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
 	DynamicServer *string `pulumi:"dynamicServer"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Interface name.
 	Interface *string `pulumi:"interface"`
+	// Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+	Mode *string `pulumi:"mode"`
 	// Schedules for the interface. The structure of `schedules` block is documented below.
 	Schedules []SpeedtestscheduleSchedule `pulumi:"schedules"`
 	// Speed test server name.
 	ServerName *string `pulumi:"serverName"`
+	// Port of the server to run speed test.
+	ServerPort *int `pulumi:"serverPort"`
 	// Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
 	Status *string `pulumi:"status"`
 	// Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
@@ -119,23 +137,33 @@ type speedtestscheduleState struct {
 	UpdateOutbandwidthMaximum *int `pulumi:"updateOutbandwidthMaximum"`
 	// Minimum uploading bandwidth (kbps) to be considered effective.
 	UpdateOutbandwidthMinimum *int `pulumi:"updateOutbandwidthMinimum"`
+	// Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+	UpdateShaper *string `pulumi:"updateShaper"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SpeedtestscheduleState struct {
+	// Port of the controller to get access token.
+	CtrlPort pulumi.IntPtrInput
 	// DSCP used for speed test.
 	Diffserv pulumi.StringPtrInput
 	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
 	DynamicServer pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Interface name.
 	Interface pulumi.StringPtrInput
+	// Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+	Mode pulumi.StringPtrInput
 	// Schedules for the interface. The structure of `schedules` block is documented below.
 	Schedules SpeedtestscheduleScheduleArrayInput
 	// Speed test server name.
 	ServerName pulumi.StringPtrInput
+	// Port of the server to run speed test.
+	ServerPort pulumi.IntPtrInput
 	// Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
 	Status pulumi.StringPtrInput
 	// Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
@@ -150,6 +178,8 @@ type SpeedtestscheduleState struct {
 	UpdateOutbandwidthMaximum pulumi.IntPtrInput
 	// Minimum uploading bandwidth (kbps) to be considered effective.
 	UpdateOutbandwidthMinimum pulumi.IntPtrInput
+	// Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+	UpdateShaper pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -159,18 +189,26 @@ func (SpeedtestscheduleState) ElementType() reflect.Type {
 }
 
 type speedtestscheduleArgs struct {
+	// Port of the controller to get access token.
+	CtrlPort *int `pulumi:"ctrlPort"`
 	// DSCP used for speed test.
 	Diffserv *string `pulumi:"diffserv"`
 	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
 	DynamicServer *string `pulumi:"dynamicServer"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Interface name.
 	Interface *string `pulumi:"interface"`
+	// Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+	Mode *string `pulumi:"mode"`
 	// Schedules for the interface. The structure of `schedules` block is documented below.
 	Schedules []SpeedtestscheduleSchedule `pulumi:"schedules"`
 	// Speed test server name.
 	ServerName *string `pulumi:"serverName"`
+	// Port of the server to run speed test.
+	ServerPort *int `pulumi:"serverPort"`
 	// Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
 	Status *string `pulumi:"status"`
 	// Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
@@ -185,24 +223,34 @@ type speedtestscheduleArgs struct {
 	UpdateOutbandwidthMaximum *int `pulumi:"updateOutbandwidthMaximum"`
 	// Minimum uploading bandwidth (kbps) to be considered effective.
 	UpdateOutbandwidthMinimum *int `pulumi:"updateOutbandwidthMinimum"`
+	// Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+	UpdateShaper *string `pulumi:"updateShaper"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a Speedtestschedule resource.
 type SpeedtestscheduleArgs struct {
+	// Port of the controller to get access token.
+	CtrlPort pulumi.IntPtrInput
 	// DSCP used for speed test.
 	Diffserv pulumi.StringPtrInput
 	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
 	DynamicServer pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Interface name.
 	Interface pulumi.StringPtrInput
+	// Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+	Mode pulumi.StringPtrInput
 	// Schedules for the interface. The structure of `schedules` block is documented below.
 	Schedules SpeedtestscheduleScheduleArrayInput
 	// Speed test server name.
 	ServerName pulumi.StringPtrInput
+	// Port of the server to run speed test.
+	ServerPort pulumi.IntPtrInput
 	// Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
 	Status pulumi.StringPtrInput
 	// Enable/disable bypassing interface's inbound bandwidth setting. Valid values: `disable`, `enable`.
@@ -217,6 +265,8 @@ type SpeedtestscheduleArgs struct {
 	UpdateOutbandwidthMaximum pulumi.IntPtrInput
 	// Minimum uploading bandwidth (kbps) to be considered effective.
 	UpdateOutbandwidthMinimum pulumi.IntPtrInput
+	// Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+	UpdateShaper pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -308,6 +358,11 @@ func (o SpeedtestscheduleOutput) ToSpeedtestscheduleOutputWithContext(ctx contex
 	return o
 }
 
+// Port of the controller to get access token.
+func (o SpeedtestscheduleOutput) CtrlPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *Speedtestschedule) pulumi.IntOutput { return v.CtrlPort }).(pulumi.IntOutput)
+}
+
 // DSCP used for speed test.
 func (o SpeedtestscheduleOutput) Diffserv() pulumi.StringOutput {
 	return o.ApplyT(func(v *Speedtestschedule) pulumi.StringOutput { return v.Diffserv }).(pulumi.StringOutput)
@@ -323,9 +378,19 @@ func (o SpeedtestscheduleOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Speedtestschedule) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o SpeedtestscheduleOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Speedtestschedule) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Interface name.
 func (o SpeedtestscheduleOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *Speedtestschedule) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+// Protocol Auto(default), TCP or UDP used for speed test. Valid values: `UDP`, `TCP`, `Auto`.
+func (o SpeedtestscheduleOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *Speedtestschedule) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
 }
 
 // Schedules for the interface. The structure of `schedules` block is documented below.
@@ -336,6 +401,11 @@ func (o SpeedtestscheduleOutput) Schedules() SpeedtestscheduleScheduleArrayOutpu
 // Speed test server name.
 func (o SpeedtestscheduleOutput) ServerName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Speedtestschedule) pulumi.StringOutput { return v.ServerName }).(pulumi.StringOutput)
+}
+
+// Port of the server to run speed test.
+func (o SpeedtestscheduleOutput) ServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *Speedtestschedule) pulumi.IntOutput { return v.ServerPort }).(pulumi.IntOutput)
 }
 
 // Enable/disable scheduled speed test. Valid values: `disable`, `enable`.
@@ -371,6 +441,11 @@ func (o SpeedtestscheduleOutput) UpdateOutbandwidthMaximum() pulumi.IntOutput {
 // Minimum uploading bandwidth (kbps) to be considered effective.
 func (o SpeedtestscheduleOutput) UpdateOutbandwidthMinimum() pulumi.IntOutput {
 	return o.ApplyT(func(v *Speedtestschedule) pulumi.IntOutput { return v.UpdateOutbandwidthMinimum }).(pulumi.IntOutput)
+}
+
+// Set egress shaper based on the test result. Valid values: `disable`, `local`, `remote`, `both`.
+func (o SpeedtestscheduleOutput) UpdateShaper() pulumi.StringOutput {
+	return o.ApplyT(func(v *Speedtestschedule) pulumi.StringOutput { return v.UpdateShaper }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

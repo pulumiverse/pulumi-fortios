@@ -129,6 +129,10 @@ export class Portal extends pulumi.CustomResource {
      */
     public readonly bookmarkGroups!: pulumi.Output<outputs.vpn.ssl.web.PortalBookmarkGroup[] | undefined>;
     /**
+     * Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+     */
+    public readonly clientSrcRange!: pulumi.Output<string>;
+    /**
      * Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
      */
     public readonly clipboard!: pulumi.Output<string>;
@@ -141,6 +145,10 @@ export class Portal extends pulumi.CustomResource {
      */
     public readonly customizeForticlientDownloadUrl!: pulumi.Output<string>;
     /**
+     * Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+     */
+    public readonly defaultProtocol!: pulumi.Output<string>;
+    /**
      * Screen height (range from 0 - 65535, default = 768).
      */
     public readonly defaultWindowHeight!: pulumi.Output<number>;
@@ -149,9 +157,17 @@ export class Portal extends pulumi.CustomResource {
      */
     public readonly defaultWindowWidth!: pulumi.Output<number>;
     /**
+     * Relay agent IPv6 link address to use in DHCP6 requests.
+     */
+    public readonly dhcp6RaLinkaddr!: pulumi.Output<string>;
+    /**
      * Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
      */
     public readonly dhcpIpOverlap!: pulumi.Output<string>;
+    /**
+     * Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+     */
+    public readonly dhcpRaGiaddr!: pulumi.Output<string>;
     /**
      * Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
      */
@@ -189,6 +205,10 @@ export class Portal extends pulumi.CustomResource {
      */
     public readonly exclusiveRouting!: pulumi.Output<string>;
     /**
+     * Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+     */
+    public readonly focusBookmark!: pulumi.Output<string>;
+    /**
      * Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
      */
     public readonly forticlientDownload!: pulumi.Output<string>;
@@ -196,6 +216,10 @@ export class Portal extends pulumi.CustomResource {
      * FortiClient download method. Valid values: `direct`, `ssl-vpn`.
      */
     public readonly forticlientDownloadMethod!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
      * Web portal heading message.
      */
@@ -272,6 +296,14 @@ export class Portal extends pulumi.CustomResource {
      * Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
      */
     public readonly keepAlive!: pulumi.Output<string>;
+    /**
+     * Landing page options. The structure of `landingPage` block is documented below.
+     */
+    public readonly landingPage!: pulumi.Output<outputs.vpn.ssl.web.PortalLandingPage>;
+    /**
+     * Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+     */
+    public readonly landingPageMode!: pulumi.Output<string>;
     /**
      * Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
      */
@@ -425,12 +457,16 @@ export class Portal extends pulumi.CustomResource {
             resourceInputs["allowUserAccess"] = state ? state.allowUserAccess : undefined;
             resourceInputs["autoConnect"] = state ? state.autoConnect : undefined;
             resourceInputs["bookmarkGroups"] = state ? state.bookmarkGroups : undefined;
+            resourceInputs["clientSrcRange"] = state ? state.clientSrcRange : undefined;
             resourceInputs["clipboard"] = state ? state.clipboard : undefined;
             resourceInputs["customLang"] = state ? state.customLang : undefined;
             resourceInputs["customizeForticlientDownloadUrl"] = state ? state.customizeForticlientDownloadUrl : undefined;
+            resourceInputs["defaultProtocol"] = state ? state.defaultProtocol : undefined;
             resourceInputs["defaultWindowHeight"] = state ? state.defaultWindowHeight : undefined;
             resourceInputs["defaultWindowWidth"] = state ? state.defaultWindowWidth : undefined;
+            resourceInputs["dhcp6RaLinkaddr"] = state ? state.dhcp6RaLinkaddr : undefined;
             resourceInputs["dhcpIpOverlap"] = state ? state.dhcpIpOverlap : undefined;
+            resourceInputs["dhcpRaGiaddr"] = state ? state.dhcpRaGiaddr : undefined;
             resourceInputs["displayBookmark"] = state ? state.displayBookmark : undefined;
             resourceInputs["displayConnectionTools"] = state ? state.displayConnectionTools : undefined;
             resourceInputs["displayHistory"] = state ? state.displayHistory : undefined;
@@ -440,8 +476,10 @@ export class Portal extends pulumi.CustomResource {
             resourceInputs["dnsSuffix"] = state ? state.dnsSuffix : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["exclusiveRouting"] = state ? state.exclusiveRouting : undefined;
+            resourceInputs["focusBookmark"] = state ? state.focusBookmark : undefined;
             resourceInputs["forticlientDownload"] = state ? state.forticlientDownload : undefined;
             resourceInputs["forticlientDownloadMethod"] = state ? state.forticlientDownloadMethod : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["heading"] = state ? state.heading : undefined;
             resourceInputs["hideSsoCredential"] = state ? state.hideSsoCredential : undefined;
             resourceInputs["hostCheck"] = state ? state.hostCheck : undefined;
@@ -461,6 +499,8 @@ export class Portal extends pulumi.CustomResource {
             resourceInputs["ipv6WinsServer1"] = state ? state.ipv6WinsServer1 : undefined;
             resourceInputs["ipv6WinsServer2"] = state ? state.ipv6WinsServer2 : undefined;
             resourceInputs["keepAlive"] = state ? state.keepAlive : undefined;
+            resourceInputs["landingPage"] = state ? state.landingPage : undefined;
+            resourceInputs["landingPageMode"] = state ? state.landingPageMode : undefined;
             resourceInputs["limitUserLogins"] = state ? state.limitUserLogins : undefined;
             resourceInputs["macAddrAction"] = state ? state.macAddrAction : undefined;
             resourceInputs["macAddrCheck"] = state ? state.macAddrCheck : undefined;
@@ -500,12 +540,16 @@ export class Portal extends pulumi.CustomResource {
             resourceInputs["allowUserAccess"] = args ? args.allowUserAccess : undefined;
             resourceInputs["autoConnect"] = args ? args.autoConnect : undefined;
             resourceInputs["bookmarkGroups"] = args ? args.bookmarkGroups : undefined;
+            resourceInputs["clientSrcRange"] = args ? args.clientSrcRange : undefined;
             resourceInputs["clipboard"] = args ? args.clipboard : undefined;
             resourceInputs["customLang"] = args ? args.customLang : undefined;
             resourceInputs["customizeForticlientDownloadUrl"] = args ? args.customizeForticlientDownloadUrl : undefined;
+            resourceInputs["defaultProtocol"] = args ? args.defaultProtocol : undefined;
             resourceInputs["defaultWindowHeight"] = args ? args.defaultWindowHeight : undefined;
             resourceInputs["defaultWindowWidth"] = args ? args.defaultWindowWidth : undefined;
+            resourceInputs["dhcp6RaLinkaddr"] = args ? args.dhcp6RaLinkaddr : undefined;
             resourceInputs["dhcpIpOverlap"] = args ? args.dhcpIpOverlap : undefined;
+            resourceInputs["dhcpRaGiaddr"] = args ? args.dhcpRaGiaddr : undefined;
             resourceInputs["displayBookmark"] = args ? args.displayBookmark : undefined;
             resourceInputs["displayConnectionTools"] = args ? args.displayConnectionTools : undefined;
             resourceInputs["displayHistory"] = args ? args.displayHistory : undefined;
@@ -515,8 +559,10 @@ export class Portal extends pulumi.CustomResource {
             resourceInputs["dnsSuffix"] = args ? args.dnsSuffix : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["exclusiveRouting"] = args ? args.exclusiveRouting : undefined;
+            resourceInputs["focusBookmark"] = args ? args.focusBookmark : undefined;
             resourceInputs["forticlientDownload"] = args ? args.forticlientDownload : undefined;
             resourceInputs["forticlientDownloadMethod"] = args ? args.forticlientDownloadMethod : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["heading"] = args ? args.heading : undefined;
             resourceInputs["hideSsoCredential"] = args ? args.hideSsoCredential : undefined;
             resourceInputs["hostCheck"] = args ? args.hostCheck : undefined;
@@ -536,6 +582,8 @@ export class Portal extends pulumi.CustomResource {
             resourceInputs["ipv6WinsServer1"] = args ? args.ipv6WinsServer1 : undefined;
             resourceInputs["ipv6WinsServer2"] = args ? args.ipv6WinsServer2 : undefined;
             resourceInputs["keepAlive"] = args ? args.keepAlive : undefined;
+            resourceInputs["landingPage"] = args ? args.landingPage : undefined;
+            resourceInputs["landingPageMode"] = args ? args.landingPageMode : undefined;
             resourceInputs["limitUserLogins"] = args ? args.limitUserLogins : undefined;
             resourceInputs["macAddrAction"] = args ? args.macAddrAction : undefined;
             resourceInputs["macAddrCheck"] = args ? args.macAddrCheck : undefined;
@@ -593,6 +641,10 @@ export interface PortalState {
      */
     bookmarkGroups?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.web.PortalBookmarkGroup>[]>;
     /**
+     * Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+     */
+    clientSrcRange?: pulumi.Input<string>;
+    /**
      * Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
      */
     clipboard?: pulumi.Input<string>;
@@ -605,6 +657,10 @@ export interface PortalState {
      */
     customizeForticlientDownloadUrl?: pulumi.Input<string>;
     /**
+     * Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+     */
+    defaultProtocol?: pulumi.Input<string>;
+    /**
      * Screen height (range from 0 - 65535, default = 768).
      */
     defaultWindowHeight?: pulumi.Input<number>;
@@ -613,9 +669,17 @@ export interface PortalState {
      */
     defaultWindowWidth?: pulumi.Input<number>;
     /**
+     * Relay agent IPv6 link address to use in DHCP6 requests.
+     */
+    dhcp6RaLinkaddr?: pulumi.Input<string>;
+    /**
      * Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
      */
     dhcpIpOverlap?: pulumi.Input<string>;
+    /**
+     * Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+     */
+    dhcpRaGiaddr?: pulumi.Input<string>;
     /**
      * Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
      */
@@ -653,6 +717,10 @@ export interface PortalState {
      */
     exclusiveRouting?: pulumi.Input<string>;
     /**
+     * Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+     */
+    focusBookmark?: pulumi.Input<string>;
+    /**
      * Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
      */
     forticlientDownload?: pulumi.Input<string>;
@@ -660,6 +728,10 @@ export interface PortalState {
      * FortiClient download method. Valid values: `direct`, `ssl-vpn`.
      */
     forticlientDownloadMethod?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Web portal heading message.
      */
@@ -736,6 +808,14 @@ export interface PortalState {
      * Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
      */
     keepAlive?: pulumi.Input<string>;
+    /**
+     * Landing page options. The structure of `landingPage` block is documented below.
+     */
+    landingPage?: pulumi.Input<inputs.vpn.ssl.web.PortalLandingPage>;
+    /**
+     * Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+     */
+    landingPageMode?: pulumi.Input<string>;
     /**
      * Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
      */
@@ -891,6 +971,10 @@ export interface PortalArgs {
      */
     bookmarkGroups?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.web.PortalBookmarkGroup>[]>;
     /**
+     * Allow client to add source range for the tunnel traffic. Valid values: `enable`, `disable`.
+     */
+    clientSrcRange?: pulumi.Input<string>;
+    /**
      * Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
      */
     clipboard?: pulumi.Input<string>;
@@ -903,6 +987,10 @@ export interface PortalArgs {
      */
     customizeForticlientDownloadUrl?: pulumi.Input<string>;
     /**
+     * Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+     */
+    defaultProtocol?: pulumi.Input<string>;
+    /**
      * Screen height (range from 0 - 65535, default = 768).
      */
     defaultWindowHeight?: pulumi.Input<number>;
@@ -911,9 +999,17 @@ export interface PortalArgs {
      */
     defaultWindowWidth?: pulumi.Input<number>;
     /**
+     * Relay agent IPv6 link address to use in DHCP6 requests.
+     */
+    dhcp6RaLinkaddr?: pulumi.Input<string>;
+    /**
      * Configure overlapping DHCP IP allocation assignment. Valid values: `use-new`, `use-old`.
      */
     dhcpIpOverlap?: pulumi.Input<string>;
+    /**
+     * Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+     */
+    dhcpRaGiaddr?: pulumi.Input<string>;
     /**
      * Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
      */
@@ -951,6 +1047,10 @@ export interface PortalArgs {
      */
     exclusiveRouting?: pulumi.Input<string>;
     /**
+     * Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
+     */
+    focusBookmark?: pulumi.Input<string>;
+    /**
      * Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
      */
     forticlientDownload?: pulumi.Input<string>;
@@ -958,6 +1058,10 @@ export interface PortalArgs {
      * FortiClient download method. Valid values: `direct`, `ssl-vpn`.
      */
     forticlientDownloadMethod?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Web portal heading message.
      */
@@ -1034,6 +1138,14 @@ export interface PortalArgs {
      * Enable/disable automatic reconnect for FortiClient connections. Valid values: `enable`, `disable`.
      */
     keepAlive?: pulumi.Input<string>;
+    /**
+     * Landing page options. The structure of `landingPage` block is documented below.
+     */
+    landingPage?: pulumi.Input<inputs.vpn.ssl.web.PortalLandingPage>;
+    /**
+     * Enable/disable SSL-VPN landing page mode. Valid values: `enable`, `disable`.
+     */
+    landingPageMode?: pulumi.Input<string>;
     /**
      * Enable to limit each user to one SSL-VPN session at a time. Valid values: `enable`, `disable`.
      */

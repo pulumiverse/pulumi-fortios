@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Fortios.Extendercontroller
 {
     /// <summary>
-    /// FortiExtender dataplan configuration. Applies to FortiOS Version `6.4.2,6.4.10,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.2.0`.
+    /// FortiExtender dataplan configuration. Applies to FortiOS Version `6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7,7.0.8,7.0.9,7.0.10,7.0.11,7.0.12,7.0.13,7.2.0`.
     /// 
     /// ## Import
     /// 
@@ -107,7 +107,7 @@ namespace Pulumiverse.Fortios.Extendercontroller
         public Output<string> Pdn { get; private set; } = null!;
 
         /// <summary>
-        /// Preferred subnet mask (8 - 32).
+        /// Preferred subnet mask. On FortiOS versions 6.4.2-7.0.1: 8 - 32. On FortiOS versions 7.0.2-7.2.0: 0 - 32.
         /// </summary>
         [Output("preferredSubnet")]
         public Output<int> PreferredSubnet { get; private set; } = null!;
@@ -288,7 +288,7 @@ namespace Pulumiverse.Fortios.Extendercontroller
         public Input<string>? Pdn { get; set; }
 
         /// <summary>
-        /// Preferred subnet mask (8 - 32).
+        /// Preferred subnet mask. On FortiOS versions 6.4.2-7.0.1: 8 - 32. On FortiOS versions 7.0.2-7.2.0: 0 - 32.
         /// </summary>
         [Input("preferredSubnet")]
         public Input<int>? PreferredSubnet { get; set; }
@@ -426,7 +426,7 @@ namespace Pulumiverse.Fortios.Extendercontroller
         public Input<string>? Pdn { get; set; }
 
         /// <summary>
-        /// Preferred subnet mask (8 - 32).
+        /// Preferred subnet mask. On FortiOS versions 6.4.2-7.0.1: 8 - 32. On FortiOS versions 7.0.2-7.2.0: 0 - 32.
         /// </summary>
         [Input("preferredSubnet")]
         public Input<int>? PreferredSubnet { get; set; }

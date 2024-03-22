@@ -45,6 +45,8 @@ type Exchange struct {
 	DomainName pulumi.StringOutput `pulumi:"domainName"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
 	HttpAuthType pulumi.StringOutput `pulumi:"httpAuthType"`
 	// Server IPv4 address.
@@ -57,7 +59,7 @@ type Exchange struct {
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// MS Exchange server hostname.
 	ServerName pulumi.StringOutput `pulumi:"serverName"`
-	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
 	// User name used to sign in to the server. Must have proper permissions for service.
 	Username pulumi.StringOutput `pulumi:"username"`
@@ -114,6 +116,8 @@ type exchangeState struct {
 	DomainName *string `pulumi:"domainName"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
 	HttpAuthType *string `pulumi:"httpAuthType"`
 	// Server IPv4 address.
@@ -126,7 +130,7 @@ type exchangeState struct {
 	Password *string `pulumi:"password"`
 	// MS Exchange server hostname.
 	ServerName *string `pulumi:"serverName"`
-	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// User name used to sign in to the server. Must have proper permissions for service.
 	Username *string `pulumi:"username"`
@@ -147,6 +151,8 @@ type ExchangeState struct {
 	DomainName pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
 	HttpAuthType pulumi.StringPtrInput
 	// Server IPv4 address.
@@ -159,7 +165,7 @@ type ExchangeState struct {
 	Password pulumi.StringPtrInput
 	// MS Exchange server hostname.
 	ServerName pulumi.StringPtrInput
-	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// User name used to sign in to the server. Must have proper permissions for service.
 	Username pulumi.StringPtrInput
@@ -184,6 +190,8 @@ type exchangeArgs struct {
 	DomainName *string `pulumi:"domainName"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
 	HttpAuthType *string `pulumi:"httpAuthType"`
 	// Server IPv4 address.
@@ -196,7 +204,7 @@ type exchangeArgs struct {
 	Password *string `pulumi:"password"`
 	// MS Exchange server hostname.
 	ServerName *string `pulumi:"serverName"`
-	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// User name used to sign in to the server. Must have proper permissions for service.
 	Username *string `pulumi:"username"`
@@ -218,6 +226,8 @@ type ExchangeArgs struct {
 	DomainName pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
 	HttpAuthType pulumi.StringPtrInput
 	// Server IPv4 address.
@@ -230,7 +240,7 @@ type ExchangeArgs struct {
 	Password pulumi.StringPtrInput
 	// MS Exchange server hostname.
 	ServerName pulumi.StringPtrInput
-	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+	// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
 	// User name used to sign in to the server. Must have proper permissions for service.
 	Username pulumi.StringPtrInput
@@ -355,6 +365,11 @@ func (o ExchangeOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Exchange) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o ExchangeOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Exchange) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 // Authentication security type used for the HTTP transport. Valid values: `basic`, `ntlm`.
 func (o ExchangeOutput) HttpAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Exchange) pulumi.StringOutput { return v.HttpAuthType }).(pulumi.StringOutput)
@@ -385,7 +400,7 @@ func (o ExchangeOutput) ServerName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Exchange) pulumi.StringOutput { return v.ServerName }).(pulumi.StringOutput)
 }
 
-// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+// Minimum SSL/TLS protocol version for HTTPS transport (default is to follow system global setting).
 func (o ExchangeOutput) SslMinProtoVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Exchange) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
 }

@@ -92,7 +92,7 @@ export class Ippool extends pulumi.CustomResource {
      */
     public readonly associatedInterface!: pulumi.Output<string>;
     /**
-     * Number of addresses in a block (64 to 4096, default = 128).
+     * Number of addresses in a block (64 - 4096, default = 128).
      */
     public readonly blockSize!: pulumi.Output<number>;
     /**
@@ -128,7 +128,7 @@ export class Ippool extends pulumi.CustomResource {
      */
     public readonly permitAnyHost!: pulumi.Output<string>;
     /**
-     * Number of port for each user (32 to 60416, default = 0, auto).
+     * Number of port for each user (32 - 60416, default = 0, which is auto).
      */
     public readonly portPerUser!: pulumi.Output<number>;
     /**
@@ -148,7 +148,11 @@ export class Ippool extends pulumi.CustomResource {
      */
     public readonly startport!: pulumi.Output<number>;
     /**
-     * IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+     * Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+     */
+    public readonly subnetBroadcastInIppool!: pulumi.Output<string>;
+    /**
+     * IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -187,6 +191,7 @@ export class Ippool extends pulumi.CustomResource {
             resourceInputs["sourceStartip"] = state ? state.sourceStartip : undefined;
             resourceInputs["startip"] = state ? state.startip : undefined;
             resourceInputs["startport"] = state ? state.startport : undefined;
+            resourceInputs["subnetBroadcastInIppool"] = state ? state.subnetBroadcastInIppool : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -215,6 +220,7 @@ export class Ippool extends pulumi.CustomResource {
             resourceInputs["sourceStartip"] = args ? args.sourceStartip : undefined;
             resourceInputs["startip"] = args ? args.startip : undefined;
             resourceInputs["startport"] = args ? args.startport : undefined;
+            resourceInputs["subnetBroadcastInIppool"] = args ? args.subnetBroadcastInIppool : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -244,7 +250,7 @@ export interface IppoolState {
      */
     associatedInterface?: pulumi.Input<string>;
     /**
-     * Number of addresses in a block (64 to 4096, default = 128).
+     * Number of addresses in a block (64 - 4096, default = 128).
      */
     blockSize?: pulumi.Input<number>;
     /**
@@ -280,7 +286,7 @@ export interface IppoolState {
      */
     permitAnyHost?: pulumi.Input<string>;
     /**
-     * Number of port for each user (32 to 60416, default = 0, auto).
+     * Number of port for each user (32 - 60416, default = 0, which is auto).
      */
     portPerUser?: pulumi.Input<number>;
     /**
@@ -300,7 +306,11 @@ export interface IppoolState {
      */
     startport?: pulumi.Input<number>;
     /**
-     * IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+     * Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+     */
+    subnetBroadcastInIppool?: pulumi.Input<string>;
+    /**
+     * IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
      */
     type?: pulumi.Input<string>;
     /**
@@ -330,7 +340,7 @@ export interface IppoolArgs {
      */
     associatedInterface?: pulumi.Input<string>;
     /**
-     * Number of addresses in a block (64 to 4096, default = 128).
+     * Number of addresses in a block (64 - 4096, default = 128).
      */
     blockSize?: pulumi.Input<number>;
     /**
@@ -366,7 +376,7 @@ export interface IppoolArgs {
      */
     permitAnyHost?: pulumi.Input<string>;
     /**
-     * Number of port for each user (32 to 60416, default = 0, auto).
+     * Number of port for each user (32 - 60416, default = 0, which is auto).
      */
     portPerUser?: pulumi.Input<number>;
     /**
@@ -386,7 +396,11 @@ export interface IppoolArgs {
      */
     startport?: pulumi.Input<number>;
     /**
-     * IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+     * Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+     */
+    subnetBroadcastInIppool?: pulumi.Input<string>;
+    /**
+     * IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
      */
     type?: pulumi.Input<string>;
     /**

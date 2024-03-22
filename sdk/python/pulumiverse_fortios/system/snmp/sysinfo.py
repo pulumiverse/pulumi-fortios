@@ -20,6 +20,8 @@ class SysinfoArgs:
                  engine_id_type: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 trap_free_memory_threshold: Optional[pulumi.Input[int]] = None,
+                 trap_freeable_memory_threshold: Optional[pulumi.Input[int]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
                  trap_log_full_threshold: Optional[pulumi.Input[int]] = None,
                  trap_low_memory_threshold: Optional[pulumi.Input[int]] = None,
@@ -32,6 +34,8 @@ class SysinfoArgs:
         :param pulumi.Input[str] engine_id_type: Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
         :param pulumi.Input[str] location: System location.
         :param pulumi.Input[str] status: Enable/disable SNMP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] trap_free_memory_threshold: Free memory usage when trap is sent.
+        :param pulumi.Input[int] trap_freeable_memory_threshold: Freeable memory usage when trap is sent.
         :param pulumi.Input[int] trap_high_cpu_threshold: CPU usage when trap is sent.
         :param pulumi.Input[int] trap_log_full_threshold: Log disk usage when trap is sent.
         :param pulumi.Input[int] trap_low_memory_threshold: Memory usage when trap is sent.
@@ -49,6 +53,10 @@ class SysinfoArgs:
             pulumi.set(__self__, "location", location)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if trap_free_memory_threshold is not None:
+            pulumi.set(__self__, "trap_free_memory_threshold", trap_free_memory_threshold)
+        if trap_freeable_memory_threshold is not None:
+            pulumi.set(__self__, "trap_freeable_memory_threshold", trap_freeable_memory_threshold)
         if trap_high_cpu_threshold is not None:
             pulumi.set(__self__, "trap_high_cpu_threshold", trap_high_cpu_threshold)
         if trap_log_full_threshold is not None:
@@ -129,6 +137,30 @@ class SysinfoArgs:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="trapFreeMemoryThreshold")
+    def trap_free_memory_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Free memory usage when trap is sent.
+        """
+        return pulumi.get(self, "trap_free_memory_threshold")
+
+    @trap_free_memory_threshold.setter
+    def trap_free_memory_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "trap_free_memory_threshold", value)
+
+    @property
+    @pulumi.getter(name="trapFreeableMemoryThreshold")
+    def trap_freeable_memory_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Freeable memory usage when trap is sent.
+        """
+        return pulumi.get(self, "trap_freeable_memory_threshold")
+
+    @trap_freeable_memory_threshold.setter
+    def trap_freeable_memory_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "trap_freeable_memory_threshold", value)
 
     @property
     @pulumi.getter(name="trapHighCpuThreshold")
@@ -188,6 +220,8 @@ class _SysinfoState:
                  engine_id_type: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 trap_free_memory_threshold: Optional[pulumi.Input[int]] = None,
+                 trap_freeable_memory_threshold: Optional[pulumi.Input[int]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
                  trap_log_full_threshold: Optional[pulumi.Input[int]] = None,
                  trap_low_memory_threshold: Optional[pulumi.Input[int]] = None,
@@ -200,6 +234,8 @@ class _SysinfoState:
         :param pulumi.Input[str] engine_id_type: Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
         :param pulumi.Input[str] location: System location.
         :param pulumi.Input[str] status: Enable/disable SNMP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] trap_free_memory_threshold: Free memory usage when trap is sent.
+        :param pulumi.Input[int] trap_freeable_memory_threshold: Freeable memory usage when trap is sent.
         :param pulumi.Input[int] trap_high_cpu_threshold: CPU usage when trap is sent.
         :param pulumi.Input[int] trap_log_full_threshold: Log disk usage when trap is sent.
         :param pulumi.Input[int] trap_low_memory_threshold: Memory usage when trap is sent.
@@ -217,6 +253,10 @@ class _SysinfoState:
             pulumi.set(__self__, "location", location)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if trap_free_memory_threshold is not None:
+            pulumi.set(__self__, "trap_free_memory_threshold", trap_free_memory_threshold)
+        if trap_freeable_memory_threshold is not None:
+            pulumi.set(__self__, "trap_freeable_memory_threshold", trap_freeable_memory_threshold)
         if trap_high_cpu_threshold is not None:
             pulumi.set(__self__, "trap_high_cpu_threshold", trap_high_cpu_threshold)
         if trap_log_full_threshold is not None:
@@ -297,6 +337,30 @@ class _SysinfoState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="trapFreeMemoryThreshold")
+    def trap_free_memory_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Free memory usage when trap is sent.
+        """
+        return pulumi.get(self, "trap_free_memory_threshold")
+
+    @trap_free_memory_threshold.setter
+    def trap_free_memory_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "trap_free_memory_threshold", value)
+
+    @property
+    @pulumi.getter(name="trapFreeableMemoryThreshold")
+    def trap_freeable_memory_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Freeable memory usage when trap is sent.
+        """
+        return pulumi.get(self, "trap_freeable_memory_threshold")
+
+    @trap_freeable_memory_threshold.setter
+    def trap_freeable_memory_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "trap_freeable_memory_threshold", value)
 
     @property
     @pulumi.getter(name="trapHighCpuThreshold")
@@ -358,6 +422,8 @@ class Sysinfo(pulumi.CustomResource):
                  engine_id_type: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 trap_free_memory_threshold: Optional[pulumi.Input[int]] = None,
+                 trap_freeable_memory_threshold: Optional[pulumi.Input[int]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
                  trap_log_full_threshold: Optional[pulumi.Input[int]] = None,
                  trap_low_memory_threshold: Optional[pulumi.Input[int]] = None,
@@ -407,6 +473,8 @@ class Sysinfo(pulumi.CustomResource):
         :param pulumi.Input[str] engine_id_type: Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
         :param pulumi.Input[str] location: System location.
         :param pulumi.Input[str] status: Enable/disable SNMP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] trap_free_memory_threshold: Free memory usage when trap is sent.
+        :param pulumi.Input[int] trap_freeable_memory_threshold: Freeable memory usage when trap is sent.
         :param pulumi.Input[int] trap_high_cpu_threshold: CPU usage when trap is sent.
         :param pulumi.Input[int] trap_log_full_threshold: Log disk usage when trap is sent.
         :param pulumi.Input[int] trap_low_memory_threshold: Memory usage when trap is sent.
@@ -475,6 +543,8 @@ class Sysinfo(pulumi.CustomResource):
                  engine_id_type: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 trap_free_memory_threshold: Optional[pulumi.Input[int]] = None,
+                 trap_freeable_memory_threshold: Optional[pulumi.Input[int]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
                  trap_log_full_threshold: Optional[pulumi.Input[int]] = None,
                  trap_low_memory_threshold: Optional[pulumi.Input[int]] = None,
@@ -494,6 +564,8 @@ class Sysinfo(pulumi.CustomResource):
             __props__.__dict__["engine_id_type"] = engine_id_type
             __props__.__dict__["location"] = location
             __props__.__dict__["status"] = status
+            __props__.__dict__["trap_free_memory_threshold"] = trap_free_memory_threshold
+            __props__.__dict__["trap_freeable_memory_threshold"] = trap_freeable_memory_threshold
             __props__.__dict__["trap_high_cpu_threshold"] = trap_high_cpu_threshold
             __props__.__dict__["trap_log_full_threshold"] = trap_log_full_threshold
             __props__.__dict__["trap_low_memory_threshold"] = trap_low_memory_threshold
@@ -514,6 +586,8 @@ class Sysinfo(pulumi.CustomResource):
             engine_id_type: Optional[pulumi.Input[str]] = None,
             location: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            trap_free_memory_threshold: Optional[pulumi.Input[int]] = None,
+            trap_freeable_memory_threshold: Optional[pulumi.Input[int]] = None,
             trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
             trap_log_full_threshold: Optional[pulumi.Input[int]] = None,
             trap_low_memory_threshold: Optional[pulumi.Input[int]] = None,
@@ -531,6 +605,8 @@ class Sysinfo(pulumi.CustomResource):
         :param pulumi.Input[str] engine_id_type: Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
         :param pulumi.Input[str] location: System location.
         :param pulumi.Input[str] status: Enable/disable SNMP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] trap_free_memory_threshold: Free memory usage when trap is sent.
+        :param pulumi.Input[int] trap_freeable_memory_threshold: Freeable memory usage when trap is sent.
         :param pulumi.Input[int] trap_high_cpu_threshold: CPU usage when trap is sent.
         :param pulumi.Input[int] trap_log_full_threshold: Log disk usage when trap is sent.
         :param pulumi.Input[int] trap_low_memory_threshold: Memory usage when trap is sent.
@@ -546,6 +622,8 @@ class Sysinfo(pulumi.CustomResource):
         __props__.__dict__["engine_id_type"] = engine_id_type
         __props__.__dict__["location"] = location
         __props__.__dict__["status"] = status
+        __props__.__dict__["trap_free_memory_threshold"] = trap_free_memory_threshold
+        __props__.__dict__["trap_freeable_memory_threshold"] = trap_freeable_memory_threshold
         __props__.__dict__["trap_high_cpu_threshold"] = trap_high_cpu_threshold
         __props__.__dict__["trap_log_full_threshold"] = trap_log_full_threshold
         __props__.__dict__["trap_low_memory_threshold"] = trap_low_memory_threshold
@@ -599,6 +677,22 @@ class Sysinfo(pulumi.CustomResource):
         Enable/disable SNMP. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="trapFreeMemoryThreshold")
+    def trap_free_memory_threshold(self) -> pulumi.Output[int]:
+        """
+        Free memory usage when trap is sent.
+        """
+        return pulumi.get(self, "trap_free_memory_threshold")
+
+    @property
+    @pulumi.getter(name="trapFreeableMemoryThreshold")
+    def trap_freeable_memory_threshold(self) -> pulumi.Output[int]:
+        """
+        Freeable memory usage when trap is sent.
+        """
+        return pulumi.get(self, "trap_freeable_memory_threshold")
 
     @property
     @pulumi.getter(name="trapHighCpuThreshold")

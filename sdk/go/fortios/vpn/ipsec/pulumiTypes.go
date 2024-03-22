@@ -369,8 +369,6 @@ func (o Phase1BackupGatewayArrayOutput) Index(i pulumi.IntInput) Phase1BackupGat
 
 type Phase1Certificate struct {
 	// Certificate name.
-	//
-	// The `ipv4ExcludeRange` block supports:
 	Name *string `pulumi:"name"`
 }
 
@@ -387,8 +385,6 @@ type Phase1CertificateInput interface {
 
 type Phase1CertificateArgs struct {
 	// Certificate name.
-	//
-	// The `ipv4ExcludeRange` block supports:
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -444,8 +440,6 @@ func (o Phase1CertificateOutput) ToPhase1CertificateOutputWithContext(ctx contex
 }
 
 // Certificate name.
-//
-// The `ipv4ExcludeRange` block supports:
 func (o Phase1CertificateOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Phase1Certificate) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -468,6 +462,109 @@ func (o Phase1CertificateArrayOutput) Index(i pulumi.IntInput) Phase1Certificate
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Phase1Certificate {
 		return vs[0].([]Phase1Certificate)[vs[1].(int)]
 	}).(Phase1CertificateOutput)
+}
+
+type Phase1InternalDomainList struct {
+	// Domain name.
+	//
+	// The `ipv4ExcludeRange` block supports:
+	DomainName *string `pulumi:"domainName"`
+}
+
+// Phase1InternalDomainListInput is an input type that accepts Phase1InternalDomainListArgs and Phase1InternalDomainListOutput values.
+// You can construct a concrete instance of `Phase1InternalDomainListInput` via:
+//
+//	Phase1InternalDomainListArgs{...}
+type Phase1InternalDomainListInput interface {
+	pulumi.Input
+
+	ToPhase1InternalDomainListOutput() Phase1InternalDomainListOutput
+	ToPhase1InternalDomainListOutputWithContext(context.Context) Phase1InternalDomainListOutput
+}
+
+type Phase1InternalDomainListArgs struct {
+	// Domain name.
+	//
+	// The `ipv4ExcludeRange` block supports:
+	DomainName pulumi.StringPtrInput `pulumi:"domainName"`
+}
+
+func (Phase1InternalDomainListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Phase1InternalDomainList)(nil)).Elem()
+}
+
+func (i Phase1InternalDomainListArgs) ToPhase1InternalDomainListOutput() Phase1InternalDomainListOutput {
+	return i.ToPhase1InternalDomainListOutputWithContext(context.Background())
+}
+
+func (i Phase1InternalDomainListArgs) ToPhase1InternalDomainListOutputWithContext(ctx context.Context) Phase1InternalDomainListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Phase1InternalDomainListOutput)
+}
+
+// Phase1InternalDomainListArrayInput is an input type that accepts Phase1InternalDomainListArray and Phase1InternalDomainListArrayOutput values.
+// You can construct a concrete instance of `Phase1InternalDomainListArrayInput` via:
+//
+//	Phase1InternalDomainListArray{ Phase1InternalDomainListArgs{...} }
+type Phase1InternalDomainListArrayInput interface {
+	pulumi.Input
+
+	ToPhase1InternalDomainListArrayOutput() Phase1InternalDomainListArrayOutput
+	ToPhase1InternalDomainListArrayOutputWithContext(context.Context) Phase1InternalDomainListArrayOutput
+}
+
+type Phase1InternalDomainListArray []Phase1InternalDomainListInput
+
+func (Phase1InternalDomainListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Phase1InternalDomainList)(nil)).Elem()
+}
+
+func (i Phase1InternalDomainListArray) ToPhase1InternalDomainListArrayOutput() Phase1InternalDomainListArrayOutput {
+	return i.ToPhase1InternalDomainListArrayOutputWithContext(context.Background())
+}
+
+func (i Phase1InternalDomainListArray) ToPhase1InternalDomainListArrayOutputWithContext(ctx context.Context) Phase1InternalDomainListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Phase1InternalDomainListArrayOutput)
+}
+
+type Phase1InternalDomainListOutput struct{ *pulumi.OutputState }
+
+func (Phase1InternalDomainListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Phase1InternalDomainList)(nil)).Elem()
+}
+
+func (o Phase1InternalDomainListOutput) ToPhase1InternalDomainListOutput() Phase1InternalDomainListOutput {
+	return o
+}
+
+func (o Phase1InternalDomainListOutput) ToPhase1InternalDomainListOutputWithContext(ctx context.Context) Phase1InternalDomainListOutput {
+	return o
+}
+
+// Domain name.
+//
+// The `ipv4ExcludeRange` block supports:
+func (o Phase1InternalDomainListOutput) DomainName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Phase1InternalDomainList) *string { return v.DomainName }).(pulumi.StringPtrOutput)
+}
+
+type Phase1InternalDomainListArrayOutput struct{ *pulumi.OutputState }
+
+func (Phase1InternalDomainListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Phase1InternalDomainList)(nil)).Elem()
+}
+
+func (o Phase1InternalDomainListArrayOutput) ToPhase1InternalDomainListArrayOutput() Phase1InternalDomainListArrayOutput {
+	return o
+}
+
+func (o Phase1InternalDomainListArrayOutput) ToPhase1InternalDomainListArrayOutputWithContext(ctx context.Context) Phase1InternalDomainListArrayOutput {
+	return o
+}
+
+func (o Phase1InternalDomainListArrayOutput) Index(i pulumi.IntInput) Phase1InternalDomainListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Phase1InternalDomainList {
+		return vs[0].([]Phase1InternalDomainList)[vs[1].(int)]
+	}).(Phase1InternalDomainListOutput)
 }
 
 type Phase1Ipv4ExcludeRange struct {
@@ -799,8 +896,6 @@ func (o Phase1interfaceBackupGatewayArrayOutput) Index(i pulumi.IntInput) Phase1
 
 type Phase1interfaceCertificate struct {
 	// Certificate name.
-	//
-	// The `ipv4ExcludeRange` block supports:
 	Name *string `pulumi:"name"`
 }
 
@@ -817,8 +912,6 @@ type Phase1interfaceCertificateInput interface {
 
 type Phase1interfaceCertificateArgs struct {
 	// Certificate name.
-	//
-	// The `ipv4ExcludeRange` block supports:
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -874,8 +967,6 @@ func (o Phase1interfaceCertificateOutput) ToPhase1interfaceCertificateOutputWith
 }
 
 // Certificate name.
-//
-// The `ipv4ExcludeRange` block supports:
 func (o Phase1interfaceCertificateOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Phase1interfaceCertificate) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -898,6 +989,109 @@ func (o Phase1interfaceCertificateArrayOutput) Index(i pulumi.IntInput) Phase1in
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Phase1interfaceCertificate {
 		return vs[0].([]Phase1interfaceCertificate)[vs[1].(int)]
 	}).(Phase1interfaceCertificateOutput)
+}
+
+type Phase1interfaceInternalDomainList struct {
+	// Domain name.
+	//
+	// The `ipv4ExcludeRange` block supports:
+	DomainName *string `pulumi:"domainName"`
+}
+
+// Phase1interfaceInternalDomainListInput is an input type that accepts Phase1interfaceInternalDomainListArgs and Phase1interfaceInternalDomainListOutput values.
+// You can construct a concrete instance of `Phase1interfaceInternalDomainListInput` via:
+//
+//	Phase1interfaceInternalDomainListArgs{...}
+type Phase1interfaceInternalDomainListInput interface {
+	pulumi.Input
+
+	ToPhase1interfaceInternalDomainListOutput() Phase1interfaceInternalDomainListOutput
+	ToPhase1interfaceInternalDomainListOutputWithContext(context.Context) Phase1interfaceInternalDomainListOutput
+}
+
+type Phase1interfaceInternalDomainListArgs struct {
+	// Domain name.
+	//
+	// The `ipv4ExcludeRange` block supports:
+	DomainName pulumi.StringPtrInput `pulumi:"domainName"`
+}
+
+func (Phase1interfaceInternalDomainListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Phase1interfaceInternalDomainList)(nil)).Elem()
+}
+
+func (i Phase1interfaceInternalDomainListArgs) ToPhase1interfaceInternalDomainListOutput() Phase1interfaceInternalDomainListOutput {
+	return i.ToPhase1interfaceInternalDomainListOutputWithContext(context.Background())
+}
+
+func (i Phase1interfaceInternalDomainListArgs) ToPhase1interfaceInternalDomainListOutputWithContext(ctx context.Context) Phase1interfaceInternalDomainListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Phase1interfaceInternalDomainListOutput)
+}
+
+// Phase1interfaceInternalDomainListArrayInput is an input type that accepts Phase1interfaceInternalDomainListArray and Phase1interfaceInternalDomainListArrayOutput values.
+// You can construct a concrete instance of `Phase1interfaceInternalDomainListArrayInput` via:
+//
+//	Phase1interfaceInternalDomainListArray{ Phase1interfaceInternalDomainListArgs{...} }
+type Phase1interfaceInternalDomainListArrayInput interface {
+	pulumi.Input
+
+	ToPhase1interfaceInternalDomainListArrayOutput() Phase1interfaceInternalDomainListArrayOutput
+	ToPhase1interfaceInternalDomainListArrayOutputWithContext(context.Context) Phase1interfaceInternalDomainListArrayOutput
+}
+
+type Phase1interfaceInternalDomainListArray []Phase1interfaceInternalDomainListInput
+
+func (Phase1interfaceInternalDomainListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Phase1interfaceInternalDomainList)(nil)).Elem()
+}
+
+func (i Phase1interfaceInternalDomainListArray) ToPhase1interfaceInternalDomainListArrayOutput() Phase1interfaceInternalDomainListArrayOutput {
+	return i.ToPhase1interfaceInternalDomainListArrayOutputWithContext(context.Background())
+}
+
+func (i Phase1interfaceInternalDomainListArray) ToPhase1interfaceInternalDomainListArrayOutputWithContext(ctx context.Context) Phase1interfaceInternalDomainListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Phase1interfaceInternalDomainListArrayOutput)
+}
+
+type Phase1interfaceInternalDomainListOutput struct{ *pulumi.OutputState }
+
+func (Phase1interfaceInternalDomainListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Phase1interfaceInternalDomainList)(nil)).Elem()
+}
+
+func (o Phase1interfaceInternalDomainListOutput) ToPhase1interfaceInternalDomainListOutput() Phase1interfaceInternalDomainListOutput {
+	return o
+}
+
+func (o Phase1interfaceInternalDomainListOutput) ToPhase1interfaceInternalDomainListOutputWithContext(ctx context.Context) Phase1interfaceInternalDomainListOutput {
+	return o
+}
+
+// Domain name.
+//
+// The `ipv4ExcludeRange` block supports:
+func (o Phase1interfaceInternalDomainListOutput) DomainName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Phase1interfaceInternalDomainList) *string { return v.DomainName }).(pulumi.StringPtrOutput)
+}
+
+type Phase1interfaceInternalDomainListArrayOutput struct{ *pulumi.OutputState }
+
+func (Phase1interfaceInternalDomainListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Phase1interfaceInternalDomainList)(nil)).Elem()
+}
+
+func (o Phase1interfaceInternalDomainListArrayOutput) ToPhase1interfaceInternalDomainListArrayOutput() Phase1interfaceInternalDomainListArrayOutput {
+	return o
+}
+
+func (o Phase1interfaceInternalDomainListArrayOutput) ToPhase1interfaceInternalDomainListArrayOutputWithContext(ctx context.Context) Phase1interfaceInternalDomainListArrayOutput {
+	return o
+}
+
+func (o Phase1interfaceInternalDomainListArrayOutput) Index(i pulumi.IntInput) Phase1interfaceInternalDomainListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Phase1interfaceInternalDomainList {
+		return vs[0].([]Phase1interfaceInternalDomainList)[vs[1].(int)]
+	}).(Phase1interfaceInternalDomainListOutput)
 }
 
 type Phase1interfaceIpv4ExcludeRange struct {
@@ -1139,6 +1333,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*Phase1BackupGatewayArrayInput)(nil)).Elem(), Phase1BackupGatewayArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Phase1CertificateInput)(nil)).Elem(), Phase1CertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Phase1CertificateArrayInput)(nil)).Elem(), Phase1CertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Phase1InternalDomainListInput)(nil)).Elem(), Phase1InternalDomainListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Phase1InternalDomainListArrayInput)(nil)).Elem(), Phase1InternalDomainListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Phase1Ipv4ExcludeRangeInput)(nil)).Elem(), Phase1Ipv4ExcludeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Phase1Ipv4ExcludeRangeArrayInput)(nil)).Elem(), Phase1Ipv4ExcludeRangeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Phase1Ipv6ExcludeRangeInput)(nil)).Elem(), Phase1Ipv6ExcludeRangeArgs{})
@@ -1147,6 +1343,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*Phase1interfaceBackupGatewayArrayInput)(nil)).Elem(), Phase1interfaceBackupGatewayArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Phase1interfaceCertificateInput)(nil)).Elem(), Phase1interfaceCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Phase1interfaceCertificateArrayInput)(nil)).Elem(), Phase1interfaceCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Phase1interfaceInternalDomainListInput)(nil)).Elem(), Phase1interfaceInternalDomainListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Phase1interfaceInternalDomainListArrayInput)(nil)).Elem(), Phase1interfaceInternalDomainListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Phase1interfaceIpv4ExcludeRangeInput)(nil)).Elem(), Phase1interfaceIpv4ExcludeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Phase1interfaceIpv4ExcludeRangeArrayInput)(nil)).Elem(), Phase1interfaceIpv4ExcludeRangeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Phase1interfaceIpv6ExcludeRangeInput)(nil)).Elem(), Phase1interfaceIpv6ExcludeRangeArgs{})
@@ -1159,6 +1357,8 @@ func init() {
 	pulumi.RegisterOutputType(Phase1BackupGatewayArrayOutput{})
 	pulumi.RegisterOutputType(Phase1CertificateOutput{})
 	pulumi.RegisterOutputType(Phase1CertificateArrayOutput{})
+	pulumi.RegisterOutputType(Phase1InternalDomainListOutput{})
+	pulumi.RegisterOutputType(Phase1InternalDomainListArrayOutput{})
 	pulumi.RegisterOutputType(Phase1Ipv4ExcludeRangeOutput{})
 	pulumi.RegisterOutputType(Phase1Ipv4ExcludeRangeArrayOutput{})
 	pulumi.RegisterOutputType(Phase1Ipv6ExcludeRangeOutput{})
@@ -1167,6 +1367,8 @@ func init() {
 	pulumi.RegisterOutputType(Phase1interfaceBackupGatewayArrayOutput{})
 	pulumi.RegisterOutputType(Phase1interfaceCertificateOutput{})
 	pulumi.RegisterOutputType(Phase1interfaceCertificateArrayOutput{})
+	pulumi.RegisterOutputType(Phase1interfaceInternalDomainListOutput{})
+	pulumi.RegisterOutputType(Phase1interfaceInternalDomainListArrayOutput{})
 	pulumi.RegisterOutputType(Phase1interfaceIpv4ExcludeRangeOutput{})
 	pulumi.RegisterOutputType(Phase1interfaceIpv4ExcludeRangeArrayOutput{})
 	pulumi.RegisterOutputType(Phase1interfaceIpv6ExcludeRangeOutput{})

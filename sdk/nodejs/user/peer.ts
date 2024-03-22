@@ -103,6 +103,22 @@ export class Peer extends pulumi.CustomResource {
      */
     public readonly mandatoryCaVerify!: pulumi.Output<string>;
     /**
+     * MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+     */
+    public readonly mfaMode!: pulumi.Output<string>;
+    /**
+     * Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+     */
+    public readonly mfaPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Name of a remote authenticator. Performs client access right check.
+     */
+    public readonly mfaServer!: pulumi.Output<string>;
+    /**
+     * Unified username for remote authentication.
+     */
+    public readonly mfaUsername!: pulumi.Output<string>;
+    /**
      * Peer name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -148,6 +164,10 @@ export class Peer extends pulumi.CustomResource {
             resourceInputs["ldapServer"] = state ? state.ldapServer : undefined;
             resourceInputs["ldapUsername"] = state ? state.ldapUsername : undefined;
             resourceInputs["mandatoryCaVerify"] = state ? state.mandatoryCaVerify : undefined;
+            resourceInputs["mfaMode"] = state ? state.mfaMode : undefined;
+            resourceInputs["mfaPassword"] = state ? state.mfaPassword : undefined;
+            resourceInputs["mfaServer"] = state ? state.mfaServer : undefined;
+            resourceInputs["mfaUsername"] = state ? state.mfaUsername : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["ocspOverrideServer"] = state ? state.ocspOverrideServer : undefined;
             resourceInputs["passwd"] = state ? state.passwd : undefined;
@@ -164,6 +184,10 @@ export class Peer extends pulumi.CustomResource {
             resourceInputs["ldapServer"] = args ? args.ldapServer : undefined;
             resourceInputs["ldapUsername"] = args ? args.ldapUsername : undefined;
             resourceInputs["mandatoryCaVerify"] = args ? args.mandatoryCaVerify : undefined;
+            resourceInputs["mfaMode"] = args ? args.mfaMode : undefined;
+            resourceInputs["mfaPassword"] = args ? args.mfaPassword : undefined;
+            resourceInputs["mfaServer"] = args ? args.mfaServer : undefined;
+            resourceInputs["mfaUsername"] = args ? args.mfaUsername : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["ocspOverrideServer"] = args ? args.ocspOverrideServer : undefined;
             resourceInputs["passwd"] = args?.passwd ? pulumi.secret(args.passwd) : undefined;
@@ -214,6 +238,22 @@ export interface PeerState {
      * Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
      */
     mandatoryCaVerify?: pulumi.Input<string>;
+    /**
+     * MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+     */
+    mfaMode?: pulumi.Input<string>;
+    /**
+     * Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+     */
+    mfaPassword?: pulumi.Input<string>;
+    /**
+     * Name of a remote authenticator. Performs client access right check.
+     */
+    mfaServer?: pulumi.Input<string>;
+    /**
+     * Unified username for remote authentication.
+     */
+    mfaUsername?: pulumi.Input<string>;
     /**
      * Peer name.
      */
@@ -276,6 +316,22 @@ export interface PeerArgs {
      * Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `enable`, `disable`.
      */
     mandatoryCaVerify?: pulumi.Input<string>;
+    /**
+     * MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+     */
+    mfaMode?: pulumi.Input<string>;
+    /**
+     * Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+     */
+    mfaPassword?: pulumi.Input<string>;
+    /**
+     * Name of a remote authenticator. Performs client access right check.
+     */
+    mfaServer?: pulumi.Input<string>;
+    /**
+     * Unified username for remote authentication.
+     */
+    mfaUsername?: pulumi.Input<string>;
     /**
      * Peer name.
      */

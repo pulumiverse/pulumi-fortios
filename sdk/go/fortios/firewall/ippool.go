@@ -79,7 +79,7 @@ type Ippool struct {
 	ArpReply pulumi.StringOutput `pulumi:"arpReply"`
 	// Associated interface name.
 	AssociatedInterface pulumi.StringOutput `pulumi:"associatedInterface"`
-	// Number of addresses in a block (64 to 4096, default = 128).
+	// Number of addresses in a block (64 - 4096, default = 128).
 	BlockSize pulumi.IntOutput `pulumi:"blockSize"`
 	// Comment.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
@@ -97,7 +97,7 @@ type Ippool struct {
 	PbaTimeout pulumi.IntOutput `pulumi:"pbaTimeout"`
 	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
 	PermitAnyHost pulumi.StringOutput `pulumi:"permitAnyHost"`
-	// Number of port for each user (32 to 60416, default = 0, auto).
+	// Number of port for each user (32 - 60416, default = 0, which is auto).
 	PortPerUser pulumi.IntOutput `pulumi:"portPerUser"`
 	// Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
 	SourceEndip pulumi.StringOutput `pulumi:"sourceEndip"`
@@ -107,7 +107,9 @@ type Ippool struct {
 	Startip pulumi.StringOutput `pulumi:"startip"`
 	// First port number (inclusive) in the range for the address pool (Default: 5117).
 	Startport pulumi.IntOutput `pulumi:"startport"`
-	// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+	// Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+	SubnetBroadcastInIppool pulumi.StringOutput `pulumi:"subnetBroadcastInIppool"`
+	// IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
@@ -157,7 +159,7 @@ type ippoolState struct {
 	ArpReply *string `pulumi:"arpReply"`
 	// Associated interface name.
 	AssociatedInterface *string `pulumi:"associatedInterface"`
-	// Number of addresses in a block (64 to 4096, default = 128).
+	// Number of addresses in a block (64 - 4096, default = 128).
 	BlockSize *int `pulumi:"blockSize"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
@@ -175,7 +177,7 @@ type ippoolState struct {
 	PbaTimeout *int `pulumi:"pbaTimeout"`
 	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
 	PermitAnyHost *string `pulumi:"permitAnyHost"`
-	// Number of port for each user (32 to 60416, default = 0, auto).
+	// Number of port for each user (32 - 60416, default = 0, which is auto).
 	PortPerUser *int `pulumi:"portPerUser"`
 	// Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
 	SourceEndip *string `pulumi:"sourceEndip"`
@@ -185,7 +187,9 @@ type ippoolState struct {
 	Startip *string `pulumi:"startip"`
 	// First port number (inclusive) in the range for the address pool (Default: 5117).
 	Startport *int `pulumi:"startport"`
-	// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+	// Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+	SubnetBroadcastInIppool *string `pulumi:"subnetBroadcastInIppool"`
+	// IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
 	Type *string `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -200,7 +204,7 @@ type IppoolState struct {
 	ArpReply pulumi.StringPtrInput
 	// Associated interface name.
 	AssociatedInterface pulumi.StringPtrInput
-	// Number of addresses in a block (64 to 4096, default = 128).
+	// Number of addresses in a block (64 - 4096, default = 128).
 	BlockSize pulumi.IntPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
@@ -218,7 +222,7 @@ type IppoolState struct {
 	PbaTimeout pulumi.IntPtrInput
 	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
 	PermitAnyHost pulumi.StringPtrInput
-	// Number of port for each user (32 to 60416, default = 0, auto).
+	// Number of port for each user (32 - 60416, default = 0, which is auto).
 	PortPerUser pulumi.IntPtrInput
 	// Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
 	SourceEndip pulumi.StringPtrInput
@@ -228,7 +232,9 @@ type IppoolState struct {
 	Startip pulumi.StringPtrInput
 	// First port number (inclusive) in the range for the address pool (Default: 5117).
 	Startport pulumi.IntPtrInput
-	// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+	// Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+	SubnetBroadcastInIppool pulumi.StringPtrInput
+	// IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
 	Type pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -247,7 +253,7 @@ type ippoolArgs struct {
 	ArpReply *string `pulumi:"arpReply"`
 	// Associated interface name.
 	AssociatedInterface *string `pulumi:"associatedInterface"`
-	// Number of addresses in a block (64 to 4096, default = 128).
+	// Number of addresses in a block (64 - 4096, default = 128).
 	BlockSize *int `pulumi:"blockSize"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
@@ -265,7 +271,7 @@ type ippoolArgs struct {
 	PbaTimeout *int `pulumi:"pbaTimeout"`
 	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
 	PermitAnyHost *string `pulumi:"permitAnyHost"`
-	// Number of port for each user (32 to 60416, default = 0, auto).
+	// Number of port for each user (32 - 60416, default = 0, which is auto).
 	PortPerUser *int `pulumi:"portPerUser"`
 	// Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
 	SourceEndip *string `pulumi:"sourceEndip"`
@@ -275,7 +281,9 @@ type ippoolArgs struct {
 	Startip string `pulumi:"startip"`
 	// First port number (inclusive) in the range for the address pool (Default: 5117).
 	Startport *int `pulumi:"startport"`
-	// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+	// Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+	SubnetBroadcastInIppool *string `pulumi:"subnetBroadcastInIppool"`
+	// IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
 	Type *string `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -291,7 +299,7 @@ type IppoolArgs struct {
 	ArpReply pulumi.StringPtrInput
 	// Associated interface name.
 	AssociatedInterface pulumi.StringPtrInput
-	// Number of addresses in a block (64 to 4096, default = 128).
+	// Number of addresses in a block (64 - 4096, default = 128).
 	BlockSize pulumi.IntPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
@@ -309,7 +317,7 @@ type IppoolArgs struct {
 	PbaTimeout pulumi.IntPtrInput
 	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
 	PermitAnyHost pulumi.StringPtrInput
-	// Number of port for each user (32 to 60416, default = 0, auto).
+	// Number of port for each user (32 - 60416, default = 0, which is auto).
 	PortPerUser pulumi.IntPtrInput
 	// Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
 	SourceEndip pulumi.StringPtrInput
@@ -319,7 +327,9 @@ type IppoolArgs struct {
 	Startip pulumi.StringInput
 	// First port number (inclusive) in the range for the address pool (Default: 5117).
 	Startport pulumi.IntPtrInput
-	// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+	// Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+	SubnetBroadcastInIppool pulumi.StringPtrInput
+	// IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
 	Type pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -432,7 +442,7 @@ func (o IppoolOutput) AssociatedInterface() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ippool) pulumi.StringOutput { return v.AssociatedInterface }).(pulumi.StringOutput)
 }
 
-// Number of addresses in a block (64 to 4096, default = 128).
+// Number of addresses in a block (64 - 4096, default = 128).
 func (o IppoolOutput) BlockSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ippool) pulumi.IntOutput { return v.BlockSize }).(pulumi.IntOutput)
 }
@@ -477,7 +487,7 @@ func (o IppoolOutput) PermitAnyHost() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ippool) pulumi.StringOutput { return v.PermitAnyHost }).(pulumi.StringOutput)
 }
 
-// Number of port for each user (32 to 60416, default = 0, auto).
+// Number of port for each user (32 - 60416, default = 0, which is auto).
 func (o IppoolOutput) PortPerUser() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ippool) pulumi.IntOutput { return v.PortPerUser }).(pulumi.IntOutput)
 }
@@ -502,7 +512,12 @@ func (o IppoolOutput) Startport() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ippool) pulumi.IntOutput { return v.Startport }).(pulumi.IntOutput)
 }
 
-// IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
+// Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: `disable`, `enable`.
+func (o IppoolOutput) SubnetBroadcastInIppool() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ippool) pulumi.StringOutput { return v.SubnetBroadcastInIppool }).(pulumi.StringOutput)
+}
+
+// IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
 func (o IppoolOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ippool) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

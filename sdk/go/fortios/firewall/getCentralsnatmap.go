@@ -38,6 +38,8 @@ type LookupCentralsnatmapResult struct {
 	DstAddr6s []GetCentralsnatmapDstAddr6 `pulumi:"dstAddr6s"`
 	// Destination address name from available addresses. The structure of `dstAddr` block is documented below.
 	DstAddrs []GetCentralsnatmapDstAddr `pulumi:"dstAddrs"`
+	// Destination port or port range (1 to 65535, 0 means any port).
+	DstPort string `pulumi:"dstPort"`
 	// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
 	Dstintfs []GetCentralsnatmapDstintf `pulumi:"dstintfs"`
 	// The provider-assigned unique ID for this managed resource.
@@ -128,6 +130,11 @@ func (o LookupCentralsnatmapResultOutput) DstAddr6s() GetCentralsnatmapDstAddr6A
 // Destination address name from available addresses. The structure of `dstAddr` block is documented below.
 func (o LookupCentralsnatmapResultOutput) DstAddrs() GetCentralsnatmapDstAddrArrayOutput {
 	return o.ApplyT(func(v LookupCentralsnatmapResult) []GetCentralsnatmapDstAddr { return v.DstAddrs }).(GetCentralsnatmapDstAddrArrayOutput)
+}
+
+// Destination port or port range (1 to 65535, 0 means any port).
+func (o LookupCentralsnatmapResultOutput) DstPort() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCentralsnatmapResult) string { return v.DstPort }).(pulumi.StringOutput)
 }
 
 // Destination interface name from available interfaces. The structure of `dstintf` block is documented below.

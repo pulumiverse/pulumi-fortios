@@ -42,6 +42,8 @@ type Fssopolling struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Active Directory server ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// LDAP server name used in LDAP connection strings.
 	LdapServer pulumi.StringOutput `pulumi:"ldapServer"`
 	// Number of hours of logon history to keep, 0 means keep all history.
@@ -120,6 +122,8 @@ type fssopollingState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Active Directory server ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// LDAP server name used in LDAP connection strings.
 	LdapServer *string `pulumi:"ldapServer"`
 	// Number of hours of logon history to keep, 0 means keep all history.
@@ -153,6 +157,8 @@ type FssopollingState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Active Directory server ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// LDAP server name used in LDAP connection strings.
 	LdapServer pulumi.StringPtrInput
 	// Number of hours of logon history to keep, 0 means keep all history.
@@ -190,6 +196,8 @@ type fssopollingArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Active Directory server ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// LDAP server name used in LDAP connection strings.
 	LdapServer string `pulumi:"ldapServer"`
 	// Number of hours of logon history to keep, 0 means keep all history.
@@ -224,6 +232,8 @@ type FssopollingArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Active Directory server ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// LDAP server name used in LDAP connection strings.
 	LdapServer pulumi.StringInput
 	// Number of hours of logon history to keep, 0 means keep all history.
@@ -353,6 +363,11 @@ func (o FssopollingOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Active Directory server ID.
 func (o FssopollingOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fssopolling) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o FssopollingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Fssopolling) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // LDAP server name used in LDAP connection strings.

@@ -58,7 +58,7 @@ namespace Pulumiverse.Fortios.Dlp
     public partial class Settings : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        /// Maximum percentage of available memory allocated to caching (1 - 15).
         /// </summary>
         [Output("cacheMemPercent")]
         public Output<int> CacheMemPercent { get; private set; } = null!;
@@ -141,7 +141,7 @@ namespace Pulumiverse.Fortios.Dlp
     public sealed class SettingsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        /// Maximum percentage of available memory allocated to caching (1 - 15).
         /// </summary>
         [Input("cacheMemPercent")]
         public Input<int>? CacheMemPercent { get; set; }
@@ -185,7 +185,7 @@ namespace Pulumiverse.Fortios.Dlp
     public sealed class SettingsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        /// Maximum percentage of available memory allocated to caching (1 - 15).
         /// </summary>
         [Input("cacheMemPercent")]
         public Input<int>? CacheMemPercent { get; set; }

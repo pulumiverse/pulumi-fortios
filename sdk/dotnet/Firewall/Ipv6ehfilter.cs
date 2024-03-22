@@ -78,7 +78,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> Fragment { get; private set; } = null!;
 
         /// <summary>
-        /// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+        /// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
         /// </summary>
         [Output("hdoptType")]
         public Output<int> HdoptType { get; private set; } = null!;
@@ -179,7 +179,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Fragment { get; set; }
 
         /// <summary>
-        /// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+        /// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
         /// </summary>
         [Input("hdoptType")]
         public Input<int>? HdoptType { get; set; }
@@ -241,7 +241,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Fragment { get; set; }
 
         /// <summary>
-        /// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255, default = 0).
+        /// Block specific Hop-by-Hop and/or Destination Option types (max. 7 types, each between 0 and 255).
         /// </summary>
         [Input("hdoptType")]
         public Input<int>? HdoptType { get; set; }

@@ -95,6 +95,10 @@ export interface GetSamlResult {
      */
     readonly name: string;
     /**
+     * Enable/disable signalling of IDP to force user re-authentication (default = disable).
+     */
+    readonly reauth: string;
+    /**
      * SP single logout URL.
      */
     readonly singleLogoutUrl: string;

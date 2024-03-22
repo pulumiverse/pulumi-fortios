@@ -14,10 +14,12 @@ __all__ = [
     'FecMapping',
     'Phase1BackupGateway',
     'Phase1Certificate',
+    'Phase1InternalDomainList',
     'Phase1Ipv4ExcludeRange',
     'Phase1Ipv6ExcludeRange',
     'Phase1interfaceBackupGateway',
     'Phase1interfaceCertificate',
+    'Phase1interfaceInternalDomainList',
     'Phase1interfaceIpv4ExcludeRange',
     'Phase1interfaceIpv6ExcludeRange',
 ]
@@ -194,8 +196,6 @@ class Phase1Certificate(dict):
                  name: Optional[str] = None):
         """
         :param str name: Certificate name.
-               
-               The `ipv4_exclude_range` block supports:
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -205,10 +205,48 @@ class Phase1Certificate(dict):
     def name(self) -> Optional[str]:
         """
         Certificate name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class Phase1InternalDomainList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "domainName":
+            suggest = "domain_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Phase1InternalDomainList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Phase1InternalDomainList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Phase1InternalDomainList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 domain_name: Optional[str] = None):
+        """
+        :param str domain_name: Domain name.
+               
+               The `ipv4_exclude_range` block supports:
+        """
+        if domain_name is not None:
+            pulumi.set(__self__, "domain_name", domain_name)
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> Optional[str]:
+        """
+        Domain name.
 
         The `ipv4_exclude_range` block supports:
         """
-        return pulumi.get(self, "name")
+        return pulumi.get(self, "domain_name")
 
 
 @pulumi.output_type
@@ -360,8 +398,6 @@ class Phase1interfaceCertificate(dict):
                  name: Optional[str] = None):
         """
         :param str name: Certificate name.
-               
-               The `ipv4_exclude_range` block supports:
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -371,10 +407,48 @@ class Phase1interfaceCertificate(dict):
     def name(self) -> Optional[str]:
         """
         Certificate name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class Phase1interfaceInternalDomainList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "domainName":
+            suggest = "domain_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in Phase1interfaceInternalDomainList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        Phase1interfaceInternalDomainList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        Phase1interfaceInternalDomainList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 domain_name: Optional[str] = None):
+        """
+        :param str domain_name: Domain name.
+               
+               The `ipv4_exclude_range` block supports:
+        """
+        if domain_name is not None:
+            pulumi.set(__self__, "domain_name", domain_name)
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> Optional[str]:
+        """
+        Domain name.
 
         The `ipv4_exclude_range` block supports:
         """
-        return pulumi.get(self, "name")
+        return pulumi.get(self, "domain_name")
 
 
 @pulumi.output_type

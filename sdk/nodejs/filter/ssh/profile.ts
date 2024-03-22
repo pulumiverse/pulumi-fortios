@@ -87,6 +87,10 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly fileFilter!: pulumi.Output<outputs.filter.ssh.ProfileFileFilter>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * SSH logging options.
      */
     public readonly log!: pulumi.Output<string>;
@@ -120,6 +124,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["defaultCommandLog"] = state ? state.defaultCommandLog : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fileFilter"] = state ? state.fileFilter : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["log"] = state ? state.log : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["shellCommands"] = state ? state.shellCommands : undefined;
@@ -130,6 +135,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["defaultCommandLog"] = args ? args.defaultCommandLog : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fileFilter"] = args ? args.fileFilter : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["log"] = args ? args.log : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["shellCommands"] = args ? args.shellCommands : undefined;
@@ -160,6 +166,10 @@ export interface ProfileState {
      * File filter. The structure of `fileFilter` block is documented below.
      */
     fileFilter?: pulumi.Input<inputs.filter.ssh.ProfileFileFilter>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * SSH logging options.
      */
@@ -198,6 +208,10 @@ export interface ProfileArgs {
      * File filter. The structure of `fileFilter` block is documented below.
      */
     fileFilter?: pulumi.Input<inputs.filter.ssh.ProfileFileFilter>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * SSH logging options.
      */

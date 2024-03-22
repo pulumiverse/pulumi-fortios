@@ -127,6 +127,24 @@ namespace Pulumiverse.Fortios.System
         public Output<int> FabricWorkers { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("fileMgmt")]
+        public Output<string> FileMgmt { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum amount of memory that can be used by the daemon files (in bytes).
+        /// </summary>
+        [Output("fileQuota")]
+        public Output<int> FileQuota { get; private set; } = null!;
+
+        /// <summary>
+        /// Warn when the set percentage of quota has been used.
+        /// </summary>
+        [Output("fileQuotaWarning")]
+        public Output<int> FileQuotaWarning { get; private set; } = null!;
+
+        /// <summary>
         /// Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
         /// </summary>
         [Output("fixedKey")]
@@ -137,6 +155,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("forticloudAccountEnforcement")]
         public Output<string> ForticloudAccountEnforcement { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
@@ -185,6 +209,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("trustedLists")]
         public Output<ImmutableArray<Outputs.CsfTrustedList>> TrustedLists { get; private set; } = null!;
+
+        /// <summary>
+        /// Unique ID of the current CSF node
+        /// </summary>
+        [Output("uid")]
+        public Output<string> Uid { get; private set; } = null!;
 
         /// <summary>
         /// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
@@ -340,6 +370,24 @@ namespace Pulumiverse.Fortios.System
         [Input("fabricWorkers")]
         public Input<int>? FabricWorkers { get; set; }
 
+        /// <summary>
+        /// Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("fileMgmt")]
+        public Input<string>? FileMgmt { get; set; }
+
+        /// <summary>
+        /// Maximum amount of memory that can be used by the daemon files (in bytes).
+        /// </summary>
+        [Input("fileQuota")]
+        public Input<int>? FileQuota { get; set; }
+
+        /// <summary>
+        /// Warn when the set percentage of quota has been used.
+        /// </summary>
+        [Input("fileQuotaWarning")]
+        public Input<int>? FileQuotaWarning { get; set; }
+
         [Input("fixedKey")]
         private Input<string>? _fixedKey;
 
@@ -361,6 +409,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("forticloudAccountEnforcement")]
         public Input<string>? ForticloudAccountEnforcement { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
@@ -425,6 +479,12 @@ namespace Pulumiverse.Fortios.System
             get => _trustedLists ?? (_trustedLists = new InputList<Inputs.CsfTrustedListArgs>());
             set => _trustedLists = value;
         }
+
+        /// <summary>
+        /// Unique ID of the current CSF node
+        /// </summary>
+        [Input("uid")]
+        public Input<string>? Uid { get; set; }
 
         /// <summary>
         /// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
@@ -536,6 +596,24 @@ namespace Pulumiverse.Fortios.System
         [Input("fabricWorkers")]
         public Input<int>? FabricWorkers { get; set; }
 
+        /// <summary>
+        /// Enable/disable Security Fabric daemon file management. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("fileMgmt")]
+        public Input<string>? FileMgmt { get; set; }
+
+        /// <summary>
+        /// Maximum amount of memory that can be used by the daemon files (in bytes).
+        /// </summary>
+        [Input("fileQuota")]
+        public Input<int>? FileQuota { get; set; }
+
+        /// <summary>
+        /// Warn when the set percentage of quota has been used.
+        /// </summary>
+        [Input("fileQuotaWarning")]
+        public Input<int>? FileQuotaWarning { get; set; }
+
         [Input("fixedKey")]
         private Input<string>? _fixedKey;
 
@@ -557,6 +635,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("forticloudAccountEnforcement")]
         public Input<string>? ForticloudAccountEnforcement { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
@@ -621,6 +705,12 @@ namespace Pulumiverse.Fortios.System
             get => _trustedLists ?? (_trustedLists = new InputList<Inputs.CsfTrustedListGetArgs>());
             set => _trustedLists = value;
         }
+
+        /// <summary>
+        /// Unique ID of the current CSF node
+        /// </summary>
+        [Input("uid")]
+        public Input<string>? Uid { get; set; }
 
         /// <summary>
         /// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.

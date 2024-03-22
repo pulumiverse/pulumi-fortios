@@ -136,6 +136,10 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly ftp!: pulumi.Output<outputs.wanopt.ProfileFtp>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
      */
     public readonly http!: pulumi.Output<outputs.wanopt.ProfileHttp>;
@@ -177,6 +181,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["cifs"] = state ? state.cifs : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["ftp"] = state ? state.ftp : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["http"] = state ? state.http : undefined;
             resourceInputs["mapi"] = state ? state.mapi : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -189,6 +194,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["cifs"] = args ? args.cifs : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["ftp"] = args ? args.ftp : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["http"] = args ? args.http : undefined;
             resourceInputs["mapi"] = args ? args.mapi : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -221,6 +227,10 @@ export interface ProfileState {
      * Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
      */
     ftp?: pulumi.Input<inputs.wanopt.ProfileFtp>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
      */
@@ -267,6 +277,10 @@ export interface ProfileArgs {
      * Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features. The structure of `ftp` block is documented below.
      */
     ftp?: pulumi.Input<inputs.wanopt.ProfileFtp>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features. The structure of `http` block is documented below.
      */

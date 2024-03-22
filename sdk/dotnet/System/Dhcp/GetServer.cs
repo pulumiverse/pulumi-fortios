@@ -183,7 +183,7 @@ namespace Pulumiverse.Fortios.System.Dhcp
         /// </summary>
         public readonly int IpsecLeaseHold;
         /// <summary>
-        /// Lease time in seconds, 0 means unlimited.
+        /// Lease time in seconds, 0 means default lease time.
         /// </summary>
         public readonly int LeaseTime;
         /// <summary>
@@ -219,6 +219,10 @@ namespace Pulumiverse.Fortios.System.Dhcp
         /// </summary>
         public readonly ImmutableArray<Outputs.GetServerOptionResult> Options;
         /// <summary>
+        /// Relay agent IP.
+        /// </summary>
+        public readonly string RelayAgent;
+        /// <summary>
         /// Options for the DHCP server to assign IP settings to specific MAC addresses. The structure of `reserved_address` block is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetServerReservedAddressResult> ReservedAddresses;
@@ -226,6 +230,10 @@ namespace Pulumiverse.Fortios.System.Dhcp
         /// DHCP server can be a normal DHCP server or an IPsec DHCP server.
         /// </summary>
         public readonly string ServerType;
+        /// <summary>
+        /// Enable/disable shared subnet.
+        /// </summary>
+        public readonly string SharedSubnet;
         /// <summary>
         /// Enable/disable this DHCP configuration.
         /// </summary>
@@ -352,9 +360,13 @@ namespace Pulumiverse.Fortios.System.Dhcp
 
             ImmutableArray<Outputs.GetServerOptionResult> options,
 
+            string relayAgent,
+
             ImmutableArray<Outputs.GetServerReservedAddressResult> reservedAddresses,
 
             string serverType,
+
+            string sharedSubnet,
 
             string status,
 
@@ -419,8 +431,10 @@ namespace Pulumiverse.Fortios.System.Dhcp
             NtpServer3 = ntpServer3;
             NtpService = ntpService;
             Options = options;
+            RelayAgent = relayAgent;
             ReservedAddresses = reservedAddresses;
             ServerType = serverType;
+            SharedSubnet = sharedSubnet;
             Status = status;
             TftpServers = tftpServers;
             Timezone = timezone;

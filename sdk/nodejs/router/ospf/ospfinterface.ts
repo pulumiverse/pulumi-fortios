@@ -90,6 +90,10 @@ export class Ospfinterface extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Hello interval.
      */
     public readonly helloInterval!: pulumi.Output<number>;
@@ -189,6 +193,7 @@ export class Ospfinterface extends pulumi.CustomResource {
             resourceInputs["databaseFilterOut"] = state ? state.databaseFilterOut : undefined;
             resourceInputs["deadInterval"] = state ? state.deadInterval : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["helloInterval"] = state ? state.helloInterval : undefined;
             resourceInputs["helloMultiplier"] = state ? state.helloMultiplier : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
@@ -218,6 +223,7 @@ export class Ospfinterface extends pulumi.CustomResource {
             resourceInputs["databaseFilterOut"] = args ? args.databaseFilterOut : undefined;
             resourceInputs["deadInterval"] = args ? args.deadInterval : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["helloInterval"] = args ? args.helloInterval : undefined;
             resourceInputs["helloMultiplier"] = args ? args.helloMultiplier : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
@@ -279,6 +285,10 @@ export interface OspfinterfaceState {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Hello interval.
      */
@@ -395,6 +405,10 @@ export interface OspfinterfaceArgs {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Hello interval.
      */

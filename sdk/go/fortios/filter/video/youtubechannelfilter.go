@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
-// Configure YouTube channel filter. Applies to FortiOS Version `>= 7.0.1`.
+// Configure YouTube channel filter. Applies to FortiOS Version `7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7,7.0.8,7.0.9,7.0.10,7.0.11,7.0.12,7.0.13,7.2.0,7.2.1,7.2.2,7.2.3,7.2.4,7.2.6,7.4.0,7.4.1`.
 //
 // ## Import
 //
@@ -43,6 +43,8 @@ type Youtubechannelfilter struct {
 	Entries YoutubechannelfilterEntryArrayOutput `pulumi:"entries"`
 	// ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Eanble/disable logging. Valid values: `enable`, `disable`.
 	Log pulumi.StringOutput `pulumi:"log"`
 	// Name.
@@ -93,6 +95,8 @@ type youtubechannelfilterState struct {
 	Entries []YoutubechannelfilterEntry `pulumi:"entries"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Eanble/disable logging. Valid values: `enable`, `disable`.
 	Log *string `pulumi:"log"`
 	// Name.
@@ -114,6 +118,8 @@ type YoutubechannelfilterState struct {
 	Entries YoutubechannelfilterEntryArrayInput
 	// ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Eanble/disable logging. Valid values: `enable`, `disable`.
 	Log pulumi.StringPtrInput
 	// Name.
@@ -139,6 +145,8 @@ type youtubechannelfilterArgs struct {
 	Entries []YoutubechannelfilterEntry `pulumi:"entries"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Eanble/disable logging. Valid values: `enable`, `disable`.
 	Log *string `pulumi:"log"`
 	// Name.
@@ -161,6 +169,8 @@ type YoutubechannelfilterArgs struct {
 	Entries YoutubechannelfilterEntryArrayInput
 	// ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Eanble/disable logging. Valid values: `enable`, `disable`.
 	Log pulumi.StringPtrInput
 	// Name.
@@ -281,6 +291,11 @@ func (o YoutubechannelfilterOutput) Entries() YoutubechannelfilterEntryArrayOutp
 // ID.
 func (o YoutubechannelfilterOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Youtubechannelfilter) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o YoutubechannelfilterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Youtubechannelfilter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Eanble/disable logging. Valid values: `enable`, `disable`.

@@ -83,6 +83,8 @@ type Ttlpolicy struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Schedule object from available options.
 	Schedule pulumi.StringOutput `pulumi:"schedule"`
 	// Service object(s) from available options. Separate multiple names with a space. The structure of `service` block is documented below.
@@ -153,6 +155,8 @@ type ttlpolicyState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Schedule object from available options.
 	Schedule *string `pulumi:"schedule"`
 	// Service object(s) from available options. Separate multiple names with a space. The structure of `service` block is documented below.
@@ -176,6 +180,8 @@ type TtlpolicyState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Schedule object from available options.
 	Schedule pulumi.StringPtrInput
 	// Service object(s) from available options. Separate multiple names with a space. The structure of `service` block is documented below.
@@ -203,6 +209,8 @@ type ttlpolicyArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// ID.
 	Fosid int `pulumi:"fosid"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Schedule object from available options.
 	Schedule string `pulumi:"schedule"`
 	// Service object(s) from available options. Separate multiple names with a space. The structure of `service` block is documented below.
@@ -227,6 +235,8 @@ type TtlpolicyArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Schedule object from available options.
 	Schedule pulumi.StringInput
 	// Service object(s) from available options. Separate multiple names with a space. The structure of `service` block is documented below.
@@ -343,6 +353,11 @@ func (o TtlpolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // ID.
 func (o TtlpolicyOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ttlpolicy) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o TtlpolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Ttlpolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Schedule object from available options.

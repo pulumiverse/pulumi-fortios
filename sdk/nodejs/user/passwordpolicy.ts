@@ -72,13 +72,45 @@ export class Passwordpolicy extends pulumi.CustomResource {
      */
     public readonly expireDays!: pulumi.Output<number>;
     /**
+     * Enable/disable password expiration. Valid values: `enable`, `disable`.
+     */
+    public readonly expireStatus!: pulumi.Output<string>;
+    /**
      * Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
      */
     public readonly expiredPasswordRenewal!: pulumi.Output<string>;
     /**
+     * Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
+     */
+    public readonly minChangeCharacters!: pulumi.Output<number>;
+    /**
+     * Minimum number of lowercase characters in password (0 - 128, default = 0).
+     */
+    public readonly minLowerCaseLetter!: pulumi.Output<number>;
+    /**
+     * Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
+     */
+    public readonly minNonAlphanumeric!: pulumi.Output<number>;
+    /**
+     * Minimum number of numeric characters in password (0 - 128, default = 0).
+     */
+    public readonly minNumber!: pulumi.Output<number>;
+    /**
+     * Minimum number of uppercase characters in password (0 - 128, default = 0).
+     */
+    public readonly minUpperCaseLetter!: pulumi.Output<number>;
+    /**
+     * Minimum password length (8 - 128, default = 8).
+     */
+    public readonly minimumLength!: pulumi.Output<number>;
+    /**
      * Password policy name.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `enable`, `disable`.
+     */
+    public readonly reusePassword!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -102,15 +134,31 @@ export class Passwordpolicy extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as PasswordpolicyState | undefined;
             resourceInputs["expireDays"] = state ? state.expireDays : undefined;
+            resourceInputs["expireStatus"] = state ? state.expireStatus : undefined;
             resourceInputs["expiredPasswordRenewal"] = state ? state.expiredPasswordRenewal : undefined;
+            resourceInputs["minChangeCharacters"] = state ? state.minChangeCharacters : undefined;
+            resourceInputs["minLowerCaseLetter"] = state ? state.minLowerCaseLetter : undefined;
+            resourceInputs["minNonAlphanumeric"] = state ? state.minNonAlphanumeric : undefined;
+            resourceInputs["minNumber"] = state ? state.minNumber : undefined;
+            resourceInputs["minUpperCaseLetter"] = state ? state.minUpperCaseLetter : undefined;
+            resourceInputs["minimumLength"] = state ? state.minimumLength : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["reusePassword"] = state ? state.reusePassword : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["warnDays"] = state ? state.warnDays : undefined;
         } else {
             const args = argsOrState as PasswordpolicyArgs | undefined;
             resourceInputs["expireDays"] = args ? args.expireDays : undefined;
+            resourceInputs["expireStatus"] = args ? args.expireStatus : undefined;
             resourceInputs["expiredPasswordRenewal"] = args ? args.expiredPasswordRenewal : undefined;
+            resourceInputs["minChangeCharacters"] = args ? args.minChangeCharacters : undefined;
+            resourceInputs["minLowerCaseLetter"] = args ? args.minLowerCaseLetter : undefined;
+            resourceInputs["minNonAlphanumeric"] = args ? args.minNonAlphanumeric : undefined;
+            resourceInputs["minNumber"] = args ? args.minNumber : undefined;
+            resourceInputs["minUpperCaseLetter"] = args ? args.minUpperCaseLetter : undefined;
+            resourceInputs["minimumLength"] = args ? args.minimumLength : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["reusePassword"] = args ? args.reusePassword : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["warnDays"] = args ? args.warnDays : undefined;
         }
@@ -128,13 +176,45 @@ export interface PasswordpolicyState {
      */
     expireDays?: pulumi.Input<number>;
     /**
+     * Enable/disable password expiration. Valid values: `enable`, `disable`.
+     */
+    expireStatus?: pulumi.Input<string>;
+    /**
      * Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
      */
     expiredPasswordRenewal?: pulumi.Input<string>;
     /**
+     * Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
+     */
+    minChangeCharacters?: pulumi.Input<number>;
+    /**
+     * Minimum number of lowercase characters in password (0 - 128, default = 0).
+     */
+    minLowerCaseLetter?: pulumi.Input<number>;
+    /**
+     * Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
+     */
+    minNonAlphanumeric?: pulumi.Input<number>;
+    /**
+     * Minimum number of numeric characters in password (0 - 128, default = 0).
+     */
+    minNumber?: pulumi.Input<number>;
+    /**
+     * Minimum number of uppercase characters in password (0 - 128, default = 0).
+     */
+    minUpperCaseLetter?: pulumi.Input<number>;
+    /**
+     * Minimum password length (8 - 128, default = 8).
+     */
+    minimumLength?: pulumi.Input<number>;
+    /**
      * Password policy name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `enable`, `disable`.
+     */
+    reusePassword?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -154,13 +234,45 @@ export interface PasswordpolicyArgs {
      */
     expireDays?: pulumi.Input<number>;
     /**
+     * Enable/disable password expiration. Valid values: `enable`, `disable`.
+     */
+    expireStatus?: pulumi.Input<string>;
+    /**
      * Enable/disable renewal of a password that already is expired. Valid values: `enable`, `disable`.
      */
     expiredPasswordRenewal?: pulumi.Input<string>;
     /**
+     * Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
+     */
+    minChangeCharacters?: pulumi.Input<number>;
+    /**
+     * Minimum number of lowercase characters in password (0 - 128, default = 0).
+     */
+    minLowerCaseLetter?: pulumi.Input<number>;
+    /**
+     * Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
+     */
+    minNonAlphanumeric?: pulumi.Input<number>;
+    /**
+     * Minimum number of numeric characters in password (0 - 128, default = 0).
+     */
+    minNumber?: pulumi.Input<number>;
+    /**
+     * Minimum number of uppercase characters in password (0 - 128, default = 0).
+     */
+    minUpperCaseLetter?: pulumi.Input<number>;
+    /**
+     * Minimum password length (8 - 128, default = 8).
+     */
+    minimumLength?: pulumi.Input<number>;
+    /**
      * Password policy name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `enable`, `disable`.
+     */
+    reusePassword?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

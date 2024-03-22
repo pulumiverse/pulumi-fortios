@@ -22,7 +22,7 @@ class GetDnsdatabaseResult:
     """
     A collection of values returned by getDnsdatabase.
     """
-    def __init__(__self__, allow_transfer=None, authoritative=None, contact=None, dns_entries=None, domain=None, forwarder=None, id=None, ip_master=None, ip_primary=None, name=None, primary_name=None, rr_max=None, source_ip=None, status=None, ttl=None, type=None, vdomparam=None, view=None):
+    def __init__(__self__, allow_transfer=None, authoritative=None, contact=None, dns_entries=None, domain=None, forwarder=None, forwarder6=None, id=None, ip_master=None, ip_primary=None, name=None, primary_name=None, rr_max=None, source_ip=None, source_ip6=None, status=None, ttl=None, type=None, vdomparam=None, view=None):
         if allow_transfer and not isinstance(allow_transfer, str):
             raise TypeError("Expected argument 'allow_transfer' to be a str")
         pulumi.set(__self__, "allow_transfer", allow_transfer)
@@ -41,6 +41,9 @@ class GetDnsdatabaseResult:
         if forwarder and not isinstance(forwarder, str):
             raise TypeError("Expected argument 'forwarder' to be a str")
         pulumi.set(__self__, "forwarder", forwarder)
+        if forwarder6 and not isinstance(forwarder6, str):
+            raise TypeError("Expected argument 'forwarder6' to be a str")
+        pulumi.set(__self__, "forwarder6", forwarder6)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -62,6 +65,9 @@ class GetDnsdatabaseResult:
         if source_ip and not isinstance(source_ip, str):
             raise TypeError("Expected argument 'source_ip' to be a str")
         pulumi.set(__self__, "source_ip", source_ip)
+        if source_ip6 and not isinstance(source_ip6, str):
+            raise TypeError("Expected argument 'source_ip6' to be a str")
+        pulumi.set(__self__, "source_ip6", source_ip6)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -130,6 +136,14 @@ class GetDnsdatabaseResult:
 
     @property
     @pulumi.getter
+    def forwarder6(self) -> str:
+        """
+        Forwarder IPv6 address.
+        """
+        return pulumi.get(self, "forwarder6")
+
+    @property
+    @pulumi.getter
     def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
@@ -185,6 +199,14 @@ class GetDnsdatabaseResult:
         return pulumi.get(self, "source_ip")
 
     @property
+    @pulumi.getter(name="sourceIp6")
+    def source_ip6(self) -> str:
+        """
+        IPv6 source IP address for forwarding to DNS server.
+        """
+        return pulumi.get(self, "source_ip6")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
@@ -234,6 +256,7 @@ class AwaitableGetDnsdatabaseResult(GetDnsdatabaseResult):
             dns_entries=self.dns_entries,
             domain=self.domain,
             forwarder=self.forwarder,
+            forwarder6=self.forwarder6,
             id=self.id,
             ip_master=self.ip_master,
             ip_primary=self.ip_primary,
@@ -241,6 +264,7 @@ class AwaitableGetDnsdatabaseResult(GetDnsdatabaseResult):
             primary_name=self.primary_name,
             rr_max=self.rr_max,
             source_ip=self.source_ip,
+            source_ip6=self.source_ip6,
             status=self.status,
             ttl=self.ttl,
             type=self.type,
@@ -271,6 +295,7 @@ def get_dnsdatabase(name: Optional[str] = None,
         dns_entries=pulumi.get(__ret__, 'dns_entries'),
         domain=pulumi.get(__ret__, 'domain'),
         forwarder=pulumi.get(__ret__, 'forwarder'),
+        forwarder6=pulumi.get(__ret__, 'forwarder6'),
         id=pulumi.get(__ret__, 'id'),
         ip_master=pulumi.get(__ret__, 'ip_master'),
         ip_primary=pulumi.get(__ret__, 'ip_primary'),
@@ -278,6 +303,7 @@ def get_dnsdatabase(name: Optional[str] = None,
         primary_name=pulumi.get(__ret__, 'primary_name'),
         rr_max=pulumi.get(__ret__, 'rr_max'),
         source_ip=pulumi.get(__ret__, 'source_ip'),
+        source_ip6=pulumi.get(__ret__, 'source_ip6'),
         status=pulumi.get(__ret__, 'status'),
         ttl=pulumi.get(__ret__, 'ttl'),
         type=pulumi.get(__ret__, 'type'),

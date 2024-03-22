@@ -86,6 +86,10 @@ export class Urlmatch extends pulumi.CustomResource {
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     /**
+     * Fast fallback configuration entry name.
+     */
+    public readonly fastFallback!: pulumi.Output<string>;
+    /**
      * Forward server name.
      */
     public readonly forwardServer!: pulumi.Output<string>;
@@ -121,6 +125,7 @@ export class Urlmatch extends pulumi.CustomResource {
             const state = argsOrState as UrlmatchState | undefined;
             resourceInputs["cacheExemption"] = state ? state.cacheExemption : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["fastFallback"] = state ? state.fastFallback : undefined;
             resourceInputs["forwardServer"] = state ? state.forwardServer : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -133,6 +138,7 @@ export class Urlmatch extends pulumi.CustomResource {
             }
             resourceInputs["cacheExemption"] = args ? args.cacheExemption : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["fastFallback"] = args ? args.fastFallback : undefined;
             resourceInputs["forwardServer"] = args ? args.forwardServer : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
@@ -156,6 +162,10 @@ export interface UrlmatchState {
      * Comment.
      */
     comment?: pulumi.Input<string>;
+    /**
+     * Fast fallback configuration entry name.
+     */
+    fastFallback?: pulumi.Input<string>;
     /**
      * Forward server name.
      */
@@ -190,6 +200,10 @@ export interface UrlmatchArgs {
      * Comment.
      */
     comment?: pulumi.Input<string>;
+    /**
+     * Fast fallback configuration entry name.
+     */
+    fastFallback?: pulumi.Input<string>;
     /**
      * Forward server name.
      */

@@ -82,6 +82,12 @@ namespace Pulumiverse.Fortios.Ips
         public Output<int> PacketLogPostAttack { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("proxyInlineIps")]
+        public Output<string> ProxyInlineIps { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
@@ -159,6 +165,12 @@ namespace Pulumiverse.Fortios.Ips
         public Input<int>? PacketLogPostAttack { get; set; }
 
         /// <summary>
+        /// Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("proxyInlineIps")]
+        public Input<string>? ProxyInlineIps { get; set; }
+
+        /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Input("vdomparam")]
@@ -195,6 +207,12 @@ namespace Pulumiverse.Fortios.Ips
         /// </summary>
         [Input("packetLogPostAttack")]
         public Input<int>? PacketLogPostAttack { get; set; }
+
+        /// <summary>
+        /// Enable/disable proxy-mode policy inline IPS support. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("proxyInlineIps")]
+        public Input<string>? ProxyInlineIps { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

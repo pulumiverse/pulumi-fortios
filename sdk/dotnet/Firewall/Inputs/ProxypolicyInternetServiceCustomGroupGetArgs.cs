@@ -14,7 +14,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
     public sealed class ProxypolicyInternetServiceCustomGroupGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Custom Internet Service group name.
+        /// Custom Internet Service IPv6 group name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

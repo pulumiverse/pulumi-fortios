@@ -14,11 +14,13 @@ __all__ = ['GlobalArgs', 'Global']
 @pulumi.input_type
 class GlobalArgs:
     def __init__(__self__, *,
+                 acd_process_count: Optional[pulumi.Input[int]] = None,
                  ap_log_server: Optional[pulumi.Input[str]] = None,
                  ap_log_server_ip: Optional[pulumi.Input[str]] = None,
                  ap_log_server_port: Optional[pulumi.Input[int]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
                  data_ethernet_ii: Optional[pulumi.Input[str]] = None,
+                 dfs_lab_test: Optional[pulumi.Input[str]] = None,
                  discovery_mc_addr: Optional[pulumi.Input[str]] = None,
                  fiapp_eth_type: Optional[pulumi.Input[int]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
@@ -31,16 +33,21 @@ class GlobalArgs:
                  nac_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
+                 rolling_wtp_upgrade: Optional[pulumi.Input[str]] = None,
+                 rolling_wtp_upgrade_threshold: Optional[pulumi.Input[str]] = None,
                  tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wpad_process_count: Optional[pulumi.Input[int]] = None,
                  wtp_share: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Global resource.
+        :param pulumi.Input[int] acd_process_count: Configure the number cw_acd daemons for multi-core CPU support (default = 0).
         :param pulumi.Input[str] ap_log_server: Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_log_server_ip: IP address that APs or FortiAPs send log messages to.
         :param pulumi.Input[int] ap_log_server_port: Port that APs or FortiAPs send log messages to.
         :param pulumi.Input[str] control_message_offload: Configure CAPWAP control message data channel offload.
         :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dfs_lab_test: Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] discovery_mc_addr: Multicast IP address for AP discovery (default = 244.0.1.140).
         :param pulumi.Input[int] fiapp_eth_type: Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
         :param pulumi.Input[str] image_download: Enable/disable WTP image download at join time. Valid values: `enable`, `disable`.
@@ -53,10 +60,15 @@ class GlobalArgs:
         :param pulumi.Input[int] nac_interval: Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
         :param pulumi.Input[str] name: Name of the wireless controller.
         :param pulumi.Input[int] rogue_scan_mac_adjacency: Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
+        :param pulumi.Input[str] rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rolling_wtp_upgrade_threshold: Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
         :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[int] wpad_process_count: Wpad daemon process count for multi-core CPU support.
         :param pulumi.Input[str] wtp_share: Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
         """
+        if acd_process_count is not None:
+            pulumi.set(__self__, "acd_process_count", acd_process_count)
         if ap_log_server is not None:
             pulumi.set(__self__, "ap_log_server", ap_log_server)
         if ap_log_server_ip is not None:
@@ -67,6 +79,8 @@ class GlobalArgs:
             pulumi.set(__self__, "control_message_offload", control_message_offload)
         if data_ethernet_ii is not None:
             pulumi.set(__self__, "data_ethernet_ii", data_ethernet_ii)
+        if dfs_lab_test is not None:
+            pulumi.set(__self__, "dfs_lab_test", dfs_lab_test)
         if discovery_mc_addr is not None:
             pulumi.set(__self__, "discovery_mc_addr", discovery_mc_addr)
         if fiapp_eth_type is not None:
@@ -91,12 +105,30 @@ class GlobalArgs:
             pulumi.set(__self__, "name", name)
         if rogue_scan_mac_adjacency is not None:
             pulumi.set(__self__, "rogue_scan_mac_adjacency", rogue_scan_mac_adjacency)
+        if rolling_wtp_upgrade is not None:
+            pulumi.set(__self__, "rolling_wtp_upgrade", rolling_wtp_upgrade)
+        if rolling_wtp_upgrade_threshold is not None:
+            pulumi.set(__self__, "rolling_wtp_upgrade_threshold", rolling_wtp_upgrade_threshold)
         if tunnel_mode is not None:
             pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if wpad_process_count is not None:
+            pulumi.set(__self__, "wpad_process_count", wpad_process_count)
         if wtp_share is not None:
             pulumi.set(__self__, "wtp_share", wtp_share)
+
+    @property
+    @pulumi.getter(name="acdProcessCount")
+    def acd_process_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configure the number cw_acd daemons for multi-core CPU support (default = 0).
+        """
+        return pulumi.get(self, "acd_process_count")
+
+    @acd_process_count.setter
+    def acd_process_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "acd_process_count", value)
 
     @property
     @pulumi.getter(name="apLogServer")
@@ -157,6 +189,18 @@ class GlobalArgs:
     @data_ethernet_ii.setter
     def data_ethernet_ii(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "data_ethernet_ii", value)
+
+    @property
+    @pulumi.getter(name="dfsLabTest")
+    def dfs_lab_test(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dfs_lab_test")
+
+    @dfs_lab_test.setter
+    def dfs_lab_test(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dfs_lab_test", value)
 
     @property
     @pulumi.getter(name="discoveryMcAddr")
@@ -303,6 +347,30 @@ class GlobalArgs:
         pulumi.set(self, "rogue_scan_mac_adjacency", value)
 
     @property
+    @pulumi.getter(name="rollingWtpUpgrade")
+    def rolling_wtp_upgrade(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rolling_wtp_upgrade")
+
+    @rolling_wtp_upgrade.setter
+    def rolling_wtp_upgrade(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rolling_wtp_upgrade", value)
+
+    @property
+    @pulumi.getter(name="rollingWtpUpgradeThreshold")
+    def rolling_wtp_upgrade_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+        """
+        return pulumi.get(self, "rolling_wtp_upgrade_threshold")
+
+    @rolling_wtp_upgrade_threshold.setter
+    def rolling_wtp_upgrade_threshold(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rolling_wtp_upgrade_threshold", value)
+
+    @property
     @pulumi.getter(name="tunnelMode")
     def tunnel_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -325,6 +393,18 @@ class GlobalArgs:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="wpadProcessCount")
+    def wpad_process_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        Wpad daemon process count for multi-core CPU support.
+        """
+        return pulumi.get(self, "wpad_process_count")
+
+    @wpad_process_count.setter
+    def wpad_process_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "wpad_process_count", value)
 
     @property
     @pulumi.getter(name="wtpShare")
@@ -342,11 +422,13 @@ class GlobalArgs:
 @pulumi.input_type
 class _GlobalState:
     def __init__(__self__, *,
+                 acd_process_count: Optional[pulumi.Input[int]] = None,
                  ap_log_server: Optional[pulumi.Input[str]] = None,
                  ap_log_server_ip: Optional[pulumi.Input[str]] = None,
                  ap_log_server_port: Optional[pulumi.Input[int]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
                  data_ethernet_ii: Optional[pulumi.Input[str]] = None,
+                 dfs_lab_test: Optional[pulumi.Input[str]] = None,
                  discovery_mc_addr: Optional[pulumi.Input[str]] = None,
                  fiapp_eth_type: Optional[pulumi.Input[int]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
@@ -359,16 +441,21 @@ class _GlobalState:
                  nac_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
+                 rolling_wtp_upgrade: Optional[pulumi.Input[str]] = None,
+                 rolling_wtp_upgrade_threshold: Optional[pulumi.Input[str]] = None,
                  tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wpad_process_count: Optional[pulumi.Input[int]] = None,
                  wtp_share: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Global resources.
+        :param pulumi.Input[int] acd_process_count: Configure the number cw_acd daemons for multi-core CPU support (default = 0).
         :param pulumi.Input[str] ap_log_server: Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_log_server_ip: IP address that APs or FortiAPs send log messages to.
         :param pulumi.Input[int] ap_log_server_port: Port that APs or FortiAPs send log messages to.
         :param pulumi.Input[str] control_message_offload: Configure CAPWAP control message data channel offload.
         :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dfs_lab_test: Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] discovery_mc_addr: Multicast IP address for AP discovery (default = 244.0.1.140).
         :param pulumi.Input[int] fiapp_eth_type: Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
         :param pulumi.Input[str] image_download: Enable/disable WTP image download at join time. Valid values: `enable`, `disable`.
@@ -381,10 +468,15 @@ class _GlobalState:
         :param pulumi.Input[int] nac_interval: Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
         :param pulumi.Input[str] name: Name of the wireless controller.
         :param pulumi.Input[int] rogue_scan_mac_adjacency: Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
+        :param pulumi.Input[str] rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rolling_wtp_upgrade_threshold: Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
         :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[int] wpad_process_count: Wpad daemon process count for multi-core CPU support.
         :param pulumi.Input[str] wtp_share: Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
         """
+        if acd_process_count is not None:
+            pulumi.set(__self__, "acd_process_count", acd_process_count)
         if ap_log_server is not None:
             pulumi.set(__self__, "ap_log_server", ap_log_server)
         if ap_log_server_ip is not None:
@@ -395,6 +487,8 @@ class _GlobalState:
             pulumi.set(__self__, "control_message_offload", control_message_offload)
         if data_ethernet_ii is not None:
             pulumi.set(__self__, "data_ethernet_ii", data_ethernet_ii)
+        if dfs_lab_test is not None:
+            pulumi.set(__self__, "dfs_lab_test", dfs_lab_test)
         if discovery_mc_addr is not None:
             pulumi.set(__self__, "discovery_mc_addr", discovery_mc_addr)
         if fiapp_eth_type is not None:
@@ -419,12 +513,30 @@ class _GlobalState:
             pulumi.set(__self__, "name", name)
         if rogue_scan_mac_adjacency is not None:
             pulumi.set(__self__, "rogue_scan_mac_adjacency", rogue_scan_mac_adjacency)
+        if rolling_wtp_upgrade is not None:
+            pulumi.set(__self__, "rolling_wtp_upgrade", rolling_wtp_upgrade)
+        if rolling_wtp_upgrade_threshold is not None:
+            pulumi.set(__self__, "rolling_wtp_upgrade_threshold", rolling_wtp_upgrade_threshold)
         if tunnel_mode is not None:
             pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if wpad_process_count is not None:
+            pulumi.set(__self__, "wpad_process_count", wpad_process_count)
         if wtp_share is not None:
             pulumi.set(__self__, "wtp_share", wtp_share)
+
+    @property
+    @pulumi.getter(name="acdProcessCount")
+    def acd_process_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        Configure the number cw_acd daemons for multi-core CPU support (default = 0).
+        """
+        return pulumi.get(self, "acd_process_count")
+
+    @acd_process_count.setter
+    def acd_process_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "acd_process_count", value)
 
     @property
     @pulumi.getter(name="apLogServer")
@@ -485,6 +597,18 @@ class _GlobalState:
     @data_ethernet_ii.setter
     def data_ethernet_ii(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "data_ethernet_ii", value)
+
+    @property
+    @pulumi.getter(name="dfsLabTest")
+    def dfs_lab_test(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dfs_lab_test")
+
+    @dfs_lab_test.setter
+    def dfs_lab_test(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dfs_lab_test", value)
 
     @property
     @pulumi.getter(name="discoveryMcAddr")
@@ -631,6 +755,30 @@ class _GlobalState:
         pulumi.set(self, "rogue_scan_mac_adjacency", value)
 
     @property
+    @pulumi.getter(name="rollingWtpUpgrade")
+    def rolling_wtp_upgrade(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rolling_wtp_upgrade")
+
+    @rolling_wtp_upgrade.setter
+    def rolling_wtp_upgrade(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rolling_wtp_upgrade", value)
+
+    @property
+    @pulumi.getter(name="rollingWtpUpgradeThreshold")
+    def rolling_wtp_upgrade_threshold(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+        """
+        return pulumi.get(self, "rolling_wtp_upgrade_threshold")
+
+    @rolling_wtp_upgrade_threshold.setter
+    def rolling_wtp_upgrade_threshold(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rolling_wtp_upgrade_threshold", value)
+
+    @property
     @pulumi.getter(name="tunnelMode")
     def tunnel_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -653,6 +801,18 @@ class _GlobalState:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="wpadProcessCount")
+    def wpad_process_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        Wpad daemon process count for multi-core CPU support.
+        """
+        return pulumi.get(self, "wpad_process_count")
+
+    @wpad_process_count.setter
+    def wpad_process_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "wpad_process_count", value)
 
     @property
     @pulumi.getter(name="wtpShare")
@@ -672,11 +832,13 @@ class Global(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 acd_process_count: Optional[pulumi.Input[int]] = None,
                  ap_log_server: Optional[pulumi.Input[str]] = None,
                  ap_log_server_ip: Optional[pulumi.Input[str]] = None,
                  ap_log_server_port: Optional[pulumi.Input[int]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
                  data_ethernet_ii: Optional[pulumi.Input[str]] = None,
+                 dfs_lab_test: Optional[pulumi.Input[str]] = None,
                  discovery_mc_addr: Optional[pulumi.Input[str]] = None,
                  fiapp_eth_type: Optional[pulumi.Input[int]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
@@ -689,8 +851,11 @@ class Global(pulumi.CustomResource):
                  nac_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
+                 rolling_wtp_upgrade: Optional[pulumi.Input[str]] = None,
+                 rolling_wtp_upgrade_threshold: Optional[pulumi.Input[str]] = None,
                  tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wpad_process_count: Optional[pulumi.Input[int]] = None,
                  wtp_share: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -742,11 +907,13 @@ class Global(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] acd_process_count: Configure the number cw_acd daemons for multi-core CPU support (default = 0).
         :param pulumi.Input[str] ap_log_server: Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_log_server_ip: IP address that APs or FortiAPs send log messages to.
         :param pulumi.Input[int] ap_log_server_port: Port that APs or FortiAPs send log messages to.
         :param pulumi.Input[str] control_message_offload: Configure CAPWAP control message data channel offload.
         :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dfs_lab_test: Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] discovery_mc_addr: Multicast IP address for AP discovery (default = 244.0.1.140).
         :param pulumi.Input[int] fiapp_eth_type: Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
         :param pulumi.Input[str] image_download: Enable/disable WTP image download at join time. Valid values: `enable`, `disable`.
@@ -759,8 +926,11 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[int] nac_interval: Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
         :param pulumi.Input[str] name: Name of the wireless controller.
         :param pulumi.Input[int] rogue_scan_mac_adjacency: Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
+        :param pulumi.Input[str] rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rolling_wtp_upgrade_threshold: Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
         :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[int] wpad_process_count: Wpad daemon process count for multi-core CPU support.
         :param pulumi.Input[str] wtp_share: Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
         """
         ...
@@ -831,11 +1001,13 @@ class Global(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 acd_process_count: Optional[pulumi.Input[int]] = None,
                  ap_log_server: Optional[pulumi.Input[str]] = None,
                  ap_log_server_ip: Optional[pulumi.Input[str]] = None,
                  ap_log_server_port: Optional[pulumi.Input[int]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
                  data_ethernet_ii: Optional[pulumi.Input[str]] = None,
+                 dfs_lab_test: Optional[pulumi.Input[str]] = None,
                  discovery_mc_addr: Optional[pulumi.Input[str]] = None,
                  fiapp_eth_type: Optional[pulumi.Input[int]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
@@ -848,8 +1020,11 @@ class Global(pulumi.CustomResource):
                  nac_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
+                 rolling_wtp_upgrade: Optional[pulumi.Input[str]] = None,
+                 rolling_wtp_upgrade_threshold: Optional[pulumi.Input[str]] = None,
                  tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wpad_process_count: Optional[pulumi.Input[int]] = None,
                  wtp_share: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -860,11 +1035,13 @@ class Global(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = GlobalArgs.__new__(GlobalArgs)
 
+            __props__.__dict__["acd_process_count"] = acd_process_count
             __props__.__dict__["ap_log_server"] = ap_log_server
             __props__.__dict__["ap_log_server_ip"] = ap_log_server_ip
             __props__.__dict__["ap_log_server_port"] = ap_log_server_port
             __props__.__dict__["control_message_offload"] = control_message_offload
             __props__.__dict__["data_ethernet_ii"] = data_ethernet_ii
+            __props__.__dict__["dfs_lab_test"] = dfs_lab_test
             __props__.__dict__["discovery_mc_addr"] = discovery_mc_addr
             __props__.__dict__["fiapp_eth_type"] = fiapp_eth_type
             __props__.__dict__["image_download"] = image_download
@@ -877,8 +1054,11 @@ class Global(pulumi.CustomResource):
             __props__.__dict__["nac_interval"] = nac_interval
             __props__.__dict__["name"] = name
             __props__.__dict__["rogue_scan_mac_adjacency"] = rogue_scan_mac_adjacency
+            __props__.__dict__["rolling_wtp_upgrade"] = rolling_wtp_upgrade
+            __props__.__dict__["rolling_wtp_upgrade_threshold"] = rolling_wtp_upgrade_threshold
             __props__.__dict__["tunnel_mode"] = tunnel_mode
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["wpad_process_count"] = wpad_process_count
             __props__.__dict__["wtp_share"] = wtp_share
         super(Global, __self__).__init__(
             'fortios:wirelesscontroller/global:Global',
@@ -890,11 +1070,13 @@ class Global(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            acd_process_count: Optional[pulumi.Input[int]] = None,
             ap_log_server: Optional[pulumi.Input[str]] = None,
             ap_log_server_ip: Optional[pulumi.Input[str]] = None,
             ap_log_server_port: Optional[pulumi.Input[int]] = None,
             control_message_offload: Optional[pulumi.Input[str]] = None,
             data_ethernet_ii: Optional[pulumi.Input[str]] = None,
+            dfs_lab_test: Optional[pulumi.Input[str]] = None,
             discovery_mc_addr: Optional[pulumi.Input[str]] = None,
             fiapp_eth_type: Optional[pulumi.Input[int]] = None,
             image_download: Optional[pulumi.Input[str]] = None,
@@ -907,8 +1089,11 @@ class Global(pulumi.CustomResource):
             nac_interval: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
+            rolling_wtp_upgrade: Optional[pulumi.Input[str]] = None,
+            rolling_wtp_upgrade_threshold: Optional[pulumi.Input[str]] = None,
             tunnel_mode: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
+            wpad_process_count: Optional[pulumi.Input[int]] = None,
             wtp_share: Optional[pulumi.Input[str]] = None) -> 'Global':
         """
         Get an existing Global resource's state with the given name, id, and optional extra
@@ -917,11 +1102,13 @@ class Global(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] acd_process_count: Configure the number cw_acd daemons for multi-core CPU support (default = 0).
         :param pulumi.Input[str] ap_log_server: Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_log_server_ip: IP address that APs or FortiAPs send log messages to.
         :param pulumi.Input[int] ap_log_server_port: Port that APs or FortiAPs send log messages to.
         :param pulumi.Input[str] control_message_offload: Configure CAPWAP control message data channel offload.
         :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dfs_lab_test: Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] discovery_mc_addr: Multicast IP address for AP discovery (default = 244.0.1.140).
         :param pulumi.Input[int] fiapp_eth_type: Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
         :param pulumi.Input[str] image_download: Enable/disable WTP image download at join time. Valid values: `enable`, `disable`.
@@ -934,19 +1121,24 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[int] nac_interval: Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
         :param pulumi.Input[str] name: Name of the wireless controller.
         :param pulumi.Input[int] rogue_scan_mac_adjacency: Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
+        :param pulumi.Input[str] rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rolling_wtp_upgrade_threshold: Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
         :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[int] wpad_process_count: Wpad daemon process count for multi-core CPU support.
         :param pulumi.Input[str] wtp_share: Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _GlobalState.__new__(_GlobalState)
 
+        __props__.__dict__["acd_process_count"] = acd_process_count
         __props__.__dict__["ap_log_server"] = ap_log_server
         __props__.__dict__["ap_log_server_ip"] = ap_log_server_ip
         __props__.__dict__["ap_log_server_port"] = ap_log_server_port
         __props__.__dict__["control_message_offload"] = control_message_offload
         __props__.__dict__["data_ethernet_ii"] = data_ethernet_ii
+        __props__.__dict__["dfs_lab_test"] = dfs_lab_test
         __props__.__dict__["discovery_mc_addr"] = discovery_mc_addr
         __props__.__dict__["fiapp_eth_type"] = fiapp_eth_type
         __props__.__dict__["image_download"] = image_download
@@ -959,10 +1151,21 @@ class Global(pulumi.CustomResource):
         __props__.__dict__["nac_interval"] = nac_interval
         __props__.__dict__["name"] = name
         __props__.__dict__["rogue_scan_mac_adjacency"] = rogue_scan_mac_adjacency
+        __props__.__dict__["rolling_wtp_upgrade"] = rolling_wtp_upgrade
+        __props__.__dict__["rolling_wtp_upgrade_threshold"] = rolling_wtp_upgrade_threshold
         __props__.__dict__["tunnel_mode"] = tunnel_mode
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["wpad_process_count"] = wpad_process_count
         __props__.__dict__["wtp_share"] = wtp_share
         return Global(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="acdProcessCount")
+    def acd_process_count(self) -> pulumi.Output[int]:
+        """
+        Configure the number cw_acd daemons for multi-core CPU support (default = 0).
+        """
+        return pulumi.get(self, "acd_process_count")
 
     @property
     @pulumi.getter(name="apLogServer")
@@ -1003,6 +1206,14 @@ class Global(pulumi.CustomResource):
         Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "data_ethernet_ii")
+
+    @property
+    @pulumi.getter(name="dfsLabTest")
+    def dfs_lab_test(self) -> pulumi.Output[str]:
+        """
+        Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dfs_lab_test")
 
     @property
     @pulumi.getter(name="discoveryMcAddr")
@@ -1101,6 +1312,22 @@ class Global(pulumi.CustomResource):
         return pulumi.get(self, "rogue_scan_mac_adjacency")
 
     @property
+    @pulumi.getter(name="rollingWtpUpgrade")
+    def rolling_wtp_upgrade(self) -> pulumi.Output[str]:
+        """
+        Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rolling_wtp_upgrade")
+
+    @property
+    @pulumi.getter(name="rollingWtpUpgradeThreshold")
+    def rolling_wtp_upgrade_threshold(self) -> pulumi.Output[str]:
+        """
+        Minimum signal level/threshold in dBm required for the managed WTP to be included in rolling WTP upgrade (-95 to -20, default = -80).
+        """
+        return pulumi.get(self, "rolling_wtp_upgrade_threshold")
+
+    @property
     @pulumi.getter(name="tunnelMode")
     def tunnel_mode(self) -> pulumi.Output[str]:
         """
@@ -1115,6 +1342,14 @@ class Global(pulumi.CustomResource):
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="wpadProcessCount")
+    def wpad_process_count(self) -> pulumi.Output[int]:
+        """
+        Wpad daemon process count for multi-core CPU support.
+        """
+        return pulumi.get(self, "wpad_process_count")
 
     @property
     @pulumi.getter(name="wtpShare")

@@ -15,7 +15,7 @@ namespace Pulumiverse.Fortios.Webproxy.Outputs
     public sealed class ProfileHeader
     {
         /// <summary>
-        /// Action when the HTTP header is forwarded. Valid values: `add-to-request`, `add-to-response`, `remove-from-request`, `remove-from-response`.
+        /// Action when the HTTP header is forwarded.
         /// </summary>
         public readonly string? Action;
         /// <summary>

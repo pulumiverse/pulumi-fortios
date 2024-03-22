@@ -13,6 +13,290 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type KeywordWord struct {
+	// Comment.
+	Comment *string `pulumi:"comment"`
+	// Name.
+	Name *string `pulumi:"name"`
+	// Pattern type. Valid values: `wildcard`, `regex`.
+	PatternType *string `pulumi:"patternType"`
+	// Enable(consider)/disable(ignore) this keyword. Valid values: `enable`, `disable`.
+	Status *string `pulumi:"status"`
+}
+
+// KeywordWordInput is an input type that accepts KeywordWordArgs and KeywordWordOutput values.
+// You can construct a concrete instance of `KeywordWordInput` via:
+//
+//	KeywordWordArgs{...}
+type KeywordWordInput interface {
+	pulumi.Input
+
+	ToKeywordWordOutput() KeywordWordOutput
+	ToKeywordWordOutputWithContext(context.Context) KeywordWordOutput
+}
+
+type KeywordWordArgs struct {
+	// Comment.
+	Comment pulumi.StringPtrInput `pulumi:"comment"`
+	// Name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Pattern type. Valid values: `wildcard`, `regex`.
+	PatternType pulumi.StringPtrInput `pulumi:"patternType"`
+	// Enable(consider)/disable(ignore) this keyword. Valid values: `enable`, `disable`.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (KeywordWordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeywordWord)(nil)).Elem()
+}
+
+func (i KeywordWordArgs) ToKeywordWordOutput() KeywordWordOutput {
+	return i.ToKeywordWordOutputWithContext(context.Background())
+}
+
+func (i KeywordWordArgs) ToKeywordWordOutputWithContext(ctx context.Context) KeywordWordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeywordWordOutput)
+}
+
+// KeywordWordArrayInput is an input type that accepts KeywordWordArray and KeywordWordArrayOutput values.
+// You can construct a concrete instance of `KeywordWordArrayInput` via:
+//
+//	KeywordWordArray{ KeywordWordArgs{...} }
+type KeywordWordArrayInput interface {
+	pulumi.Input
+
+	ToKeywordWordArrayOutput() KeywordWordArrayOutput
+	ToKeywordWordArrayOutputWithContext(context.Context) KeywordWordArrayOutput
+}
+
+type KeywordWordArray []KeywordWordInput
+
+func (KeywordWordArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeywordWord)(nil)).Elem()
+}
+
+func (i KeywordWordArray) ToKeywordWordArrayOutput() KeywordWordArrayOutput {
+	return i.ToKeywordWordArrayOutputWithContext(context.Background())
+}
+
+func (i KeywordWordArray) ToKeywordWordArrayOutputWithContext(ctx context.Context) KeywordWordArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeywordWordArrayOutput)
+}
+
+type KeywordWordOutput struct{ *pulumi.OutputState }
+
+func (KeywordWordOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeywordWord)(nil)).Elem()
+}
+
+func (o KeywordWordOutput) ToKeywordWordOutput() KeywordWordOutput {
+	return o
+}
+
+func (o KeywordWordOutput) ToKeywordWordOutputWithContext(ctx context.Context) KeywordWordOutput {
+	return o
+}
+
+// Comment.
+func (o KeywordWordOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KeywordWord) *string { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+// Name.
+func (o KeywordWordOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KeywordWord) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Pattern type. Valid values: `wildcard`, `regex`.
+func (o KeywordWordOutput) PatternType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KeywordWord) *string { return v.PatternType }).(pulumi.StringPtrOutput)
+}
+
+// Enable(consider)/disable(ignore) this keyword. Valid values: `enable`, `disable`.
+func (o KeywordWordOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KeywordWord) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type KeywordWordArrayOutput struct{ *pulumi.OutputState }
+
+func (KeywordWordArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeywordWord)(nil)).Elem()
+}
+
+func (o KeywordWordArrayOutput) ToKeywordWordArrayOutput() KeywordWordArrayOutput {
+	return o
+}
+
+func (o KeywordWordArrayOutput) ToKeywordWordArrayOutputWithContext(ctx context.Context) KeywordWordArrayOutput {
+	return o
+}
+
+func (o KeywordWordArrayOutput) Index(i pulumi.IntInput) KeywordWordOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KeywordWord {
+		return vs[0].([]KeywordWord)[vs[1].(int)]
+	}).(KeywordWordOutput)
+}
+
+type ProfileFilter struct {
+	// VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+	Action *string `pulumi:"action"`
+	// FortiGuard category ID.
+	Category *string `pulumi:"category"`
+	// Channel ID.
+	Channel *string `pulumi:"channel"`
+	// Comment.
+	Comment *string `pulumi:"comment"`
+	// ID.
+	Id *int `pulumi:"id"`
+	// Video filter keyword ID.
+	Keyword *int `pulumi:"keyword"`
+	// Enable/disable logging. Valid values: `enable`, `disable`.
+	Log *string `pulumi:"log"`
+	// Filter type. Valid values: `category`, `channel`, `title`, `description`.
+	Type *string `pulumi:"type"`
+}
+
+// ProfileFilterInput is an input type that accepts ProfileFilterArgs and ProfileFilterOutput values.
+// You can construct a concrete instance of `ProfileFilterInput` via:
+//
+//	ProfileFilterArgs{...}
+type ProfileFilterInput interface {
+	pulumi.Input
+
+	ToProfileFilterOutput() ProfileFilterOutput
+	ToProfileFilterOutputWithContext(context.Context) ProfileFilterOutput
+}
+
+type ProfileFilterArgs struct {
+	// VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+	Action pulumi.StringPtrInput `pulumi:"action"`
+	// FortiGuard category ID.
+	Category pulumi.StringPtrInput `pulumi:"category"`
+	// Channel ID.
+	Channel pulumi.StringPtrInput `pulumi:"channel"`
+	// Comment.
+	Comment pulumi.StringPtrInput `pulumi:"comment"`
+	// ID.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Video filter keyword ID.
+	Keyword pulumi.IntPtrInput `pulumi:"keyword"`
+	// Enable/disable logging. Valid values: `enable`, `disable`.
+	Log pulumi.StringPtrInput `pulumi:"log"`
+	// Filter type. Valid values: `category`, `channel`, `title`, `description`.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (ProfileFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileFilter)(nil)).Elem()
+}
+
+func (i ProfileFilterArgs) ToProfileFilterOutput() ProfileFilterOutput {
+	return i.ToProfileFilterOutputWithContext(context.Background())
+}
+
+func (i ProfileFilterArgs) ToProfileFilterOutputWithContext(ctx context.Context) ProfileFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileFilterOutput)
+}
+
+// ProfileFilterArrayInput is an input type that accepts ProfileFilterArray and ProfileFilterArrayOutput values.
+// You can construct a concrete instance of `ProfileFilterArrayInput` via:
+//
+//	ProfileFilterArray{ ProfileFilterArgs{...} }
+type ProfileFilterArrayInput interface {
+	pulumi.Input
+
+	ToProfileFilterArrayOutput() ProfileFilterArrayOutput
+	ToProfileFilterArrayOutputWithContext(context.Context) ProfileFilterArrayOutput
+}
+
+type ProfileFilterArray []ProfileFilterInput
+
+func (ProfileFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProfileFilter)(nil)).Elem()
+}
+
+func (i ProfileFilterArray) ToProfileFilterArrayOutput() ProfileFilterArrayOutput {
+	return i.ToProfileFilterArrayOutputWithContext(context.Background())
+}
+
+func (i ProfileFilterArray) ToProfileFilterArrayOutputWithContext(ctx context.Context) ProfileFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProfileFilterArrayOutput)
+}
+
+type ProfileFilterOutput struct{ *pulumi.OutputState }
+
+func (ProfileFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProfileFilter)(nil)).Elem()
+}
+
+func (o ProfileFilterOutput) ToProfileFilterOutput() ProfileFilterOutput {
+	return o
+}
+
+func (o ProfileFilterOutput) ToProfileFilterOutputWithContext(ctx context.Context) ProfileFilterOutput {
+	return o
+}
+
+// VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+func (o ProfileFilterOutput) Action() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFilter) *string { return v.Action }).(pulumi.StringPtrOutput)
+}
+
+// FortiGuard category ID.
+func (o ProfileFilterOutput) Category() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFilter) *string { return v.Category }).(pulumi.StringPtrOutput)
+}
+
+// Channel ID.
+func (o ProfileFilterOutput) Channel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFilter) *string { return v.Channel }).(pulumi.StringPtrOutput)
+}
+
+// Comment.
+func (o ProfileFilterOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFilter) *string { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+// ID.
+func (o ProfileFilterOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ProfileFilter) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+// Video filter keyword ID.
+func (o ProfileFilterOutput) Keyword() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ProfileFilter) *int { return v.Keyword }).(pulumi.IntPtrOutput)
+}
+
+// Enable/disable logging. Valid values: `enable`, `disable`.
+func (o ProfileFilterOutput) Log() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFilter) *string { return v.Log }).(pulumi.StringPtrOutput)
+}
+
+// Filter type. Valid values: `category`, `channel`, `title`, `description`.
+func (o ProfileFilterOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProfileFilter) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type ProfileFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (ProfileFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProfileFilter)(nil)).Elem()
+}
+
+func (o ProfileFilterArrayOutput) ToProfileFilterArrayOutput() ProfileFilterArrayOutput {
+	return o
+}
+
+func (o ProfileFilterArrayOutput) ToProfileFilterArrayOutputWithContext(ctx context.Context) ProfileFilterArrayOutput {
+	return o
+}
+
+func (o ProfileFilterArrayOutput) Index(i pulumi.IntInput) ProfileFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProfileFilter {
+		return vs[0].([]ProfileFilter)[vs[1].(int)]
+	}).(ProfileFilterOutput)
+}
+
 type ProfileFortiguardCategory struct {
 	// Configure VideoFilter FortiGuard category. The structure of `filters` block is documented below.
 	Filters []ProfileFortiguardCategoryFilter `pulumi:"filters"`
@@ -399,12 +683,20 @@ func (o YoutubechannelfilterEntryArrayOutput) Index(i pulumi.IntInput) Youtubech
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*KeywordWordInput)(nil)).Elem(), KeywordWordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeywordWordArrayInput)(nil)).Elem(), KeywordWordArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileFilterInput)(nil)).Elem(), ProfileFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProfileFilterArrayInput)(nil)).Elem(), ProfileFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProfileFortiguardCategoryInput)(nil)).Elem(), ProfileFortiguardCategoryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProfileFortiguardCategoryPtrInput)(nil)).Elem(), ProfileFortiguardCategoryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProfileFortiguardCategoryFilterInput)(nil)).Elem(), ProfileFortiguardCategoryFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProfileFortiguardCategoryFilterArrayInput)(nil)).Elem(), ProfileFortiguardCategoryFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*YoutubechannelfilterEntryInput)(nil)).Elem(), YoutubechannelfilterEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*YoutubechannelfilterEntryArrayInput)(nil)).Elem(), YoutubechannelfilterEntryArray{})
+	pulumi.RegisterOutputType(KeywordWordOutput{})
+	pulumi.RegisterOutputType(KeywordWordArrayOutput{})
+	pulumi.RegisterOutputType(ProfileFilterOutput{})
+	pulumi.RegisterOutputType(ProfileFilterArrayOutput{})
 	pulumi.RegisterOutputType(ProfileFortiguardCategoryOutput{})
 	pulumi.RegisterOutputType(ProfileFortiguardCategoryPtrOutput{})
 	pulumi.RegisterOutputType(ProfileFortiguardCategoryFilterOutput{})

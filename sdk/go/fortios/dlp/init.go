@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Datatype{}
 	case "fortios:dlp/dictionary:Dictionary":
 		r = &Dictionary{}
+	case "fortios:dlp/exactdatamatch:Exactdatamatch":
+		r = &Exactdatamatch{}
 	case "fortios:dlp/filepattern:Filepattern":
 		r = &Filepattern{}
 	case "fortios:dlp/fpdocsource:Fpdocsource":
@@ -60,6 +62,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"dlp/dictionary",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"dlp/exactdatamatch",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

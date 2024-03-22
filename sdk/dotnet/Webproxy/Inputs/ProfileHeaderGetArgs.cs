@@ -14,7 +14,7 @@ namespace Pulumiverse.Fortios.Webproxy.Inputs
     public sealed class ProfileHeaderGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Action when the HTTP header is forwarded. Valid values: `add-to-request`, `add-to-response`, `remove-from-request`, `remove-from-response`.
+        /// Action when the HTTP header is forwarded.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }

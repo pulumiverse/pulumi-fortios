@@ -21,6 +21,7 @@ class SchemeArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fsso_agent_for_ntlm: Optional[pulumi.Input[str]] = None,
                  fsso_guest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  kerberos_keytab: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  negotiate_ntlm: Optional[pulumi.Input[str]] = None,
@@ -38,6 +39,7 @@ class SchemeArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication.
         :param pulumi.Input[str] fsso_guest: Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] kerberos_keytab: Kerberos keytab setting.
         :param pulumi.Input[str] name: Authentication scheme name.
         :param pulumi.Input[str] negotiate_ntlm: Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `enable`, `disable`.
@@ -58,6 +60,8 @@ class SchemeArgs:
             pulumi.set(__self__, "fsso_agent_for_ntlm", fsso_agent_for_ntlm)
         if fsso_guest is not None:
             pulumi.set(__self__, "fsso_guest", fsso_guest)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if kerberos_keytab is not None:
             pulumi.set(__self__, "kerberos_keytab", kerberos_keytab)
         if name is not None:
@@ -138,6 +142,18 @@ class SchemeArgs:
     @fsso_guest.setter
     def fsso_guest(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fsso_guest", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="kerberosKeytab")
@@ -267,6 +283,7 @@ class _SchemeState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fsso_agent_for_ntlm: Optional[pulumi.Input[str]] = None,
                  fsso_guest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  kerberos_keytab: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -284,6 +301,7 @@ class _SchemeState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication.
         :param pulumi.Input[str] fsso_guest: Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] kerberos_keytab: Kerberos keytab setting.
         :param pulumi.Input[str] method: Authentication methods (default = basic).
         :param pulumi.Input[str] name: Authentication scheme name.
@@ -304,6 +322,8 @@ class _SchemeState:
             pulumi.set(__self__, "fsso_agent_for_ntlm", fsso_agent_for_ntlm)
         if fsso_guest is not None:
             pulumi.set(__self__, "fsso_guest", fsso_guest)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if kerberos_keytab is not None:
             pulumi.set(__self__, "kerberos_keytab", kerberos_keytab)
         if method is not None:
@@ -374,6 +394,18 @@ class _SchemeState:
     @fsso_guest.setter
     def fsso_guest(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fsso_guest", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="kerberosKeytab")
@@ -517,6 +549,7 @@ class Scheme(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fsso_agent_for_ntlm: Optional[pulumi.Input[str]] = None,
                  fsso_guest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  kerberos_keytab: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -581,6 +614,7 @@ class Scheme(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication.
         :param pulumi.Input[str] fsso_guest: Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] kerberos_keytab: Kerberos keytab setting.
         :param pulumi.Input[str] method: Authentication methods (default = basic).
         :param pulumi.Input[str] name: Authentication scheme name.
@@ -664,6 +698,7 @@ class Scheme(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fsso_agent_for_ntlm: Optional[pulumi.Input[str]] = None,
                  fsso_guest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  kerberos_keytab: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -688,6 +723,7 @@ class Scheme(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fsso_agent_for_ntlm"] = fsso_agent_for_ntlm
             __props__.__dict__["fsso_guest"] = fsso_guest
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["kerberos_keytab"] = kerberos_keytab
             if method is None and not opts.urn:
                 raise TypeError("Missing required property 'method'")
@@ -715,6 +751,7 @@ class Scheme(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fsso_agent_for_ntlm: Optional[pulumi.Input[str]] = None,
             fsso_guest: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             kerberos_keytab: Optional[pulumi.Input[str]] = None,
             method: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -737,6 +774,7 @@ class Scheme(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication.
         :param pulumi.Input[str] fsso_guest: Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] kerberos_keytab: Kerberos keytab setting.
         :param pulumi.Input[str] method: Authentication methods (default = basic).
         :param pulumi.Input[str] name: Authentication scheme name.
@@ -757,6 +795,7 @@ class Scheme(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fsso_agent_for_ntlm"] = fsso_agent_for_ntlm
         __props__.__dict__["fsso_guest"] = fsso_guest
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["kerberos_keytab"] = kerberos_keytab
         __props__.__dict__["method"] = method
         __props__.__dict__["name"] = name
@@ -801,6 +840,14 @@ class Scheme(pulumi.CustomResource):
         Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "fsso_guest")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        """
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        """
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="kerberosKeytab")

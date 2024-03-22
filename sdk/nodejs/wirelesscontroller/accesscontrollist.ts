@@ -64,6 +64,10 @@ export class Accesscontrollist extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * AP ACL layer3 ipv4 rule list. The structure of `layer3Ipv4Rules` block is documented below.
      */
     public readonly layer3Ipv4Rules!: pulumi.Output<outputs.wirelesscontroller.AccesscontrollistLayer3Ipv4Rule[] | undefined>;
@@ -97,6 +101,7 @@ export class Accesscontrollist extends pulumi.CustomResource {
             const state = argsOrState as AccesscontrollistState | undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["layer3Ipv4Rules"] = state ? state.layer3Ipv4Rules : undefined;
             resourceInputs["layer3Ipv6Rules"] = state ? state.layer3Ipv6Rules : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -105,6 +110,7 @@ export class Accesscontrollist extends pulumi.CustomResource {
             const args = argsOrState as AccesscontrollistArgs | undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["layer3Ipv4Rules"] = args ? args.layer3Ipv4Rules : undefined;
             resourceInputs["layer3Ipv6Rules"] = args ? args.layer3Ipv6Rules : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -127,6 +133,10 @@ export interface AccesscontrollistState {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * AP ACL layer3 ipv4 rule list. The structure of `layer3Ipv4Rules` block is documented below.
      */
@@ -159,6 +169,10 @@ export interface AccesscontrollistArgs {
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * AP ACL layer3 ipv4 rule list. The structure of `layer3Ipv4Rules` block is documented below.
      */

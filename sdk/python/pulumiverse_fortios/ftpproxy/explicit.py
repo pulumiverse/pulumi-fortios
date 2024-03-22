@@ -18,6 +18,7 @@ class ExplicitArgs:
                  incoming_port: Optional[pulumi.Input[str]] = None,
                  outgoing_ip: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 server_data_mode: Optional[pulumi.Input[str]] = None,
                  ssl: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_cert: Optional[pulumi.Input[str]] = None,
@@ -30,9 +31,10 @@ class ExplicitArgs:
         :param pulumi.Input[str] incoming_port: Accept incoming FTP requests on one or more ports.
         :param pulumi.Input[str] outgoing_ip: Outgoing FTP requests will leave from this IP address. An interface must have this IP address.
         :param pulumi.Input[str] sec_default_action: Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
+        :param pulumi.Input[str] server_data_mode: Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
         :param pulumi.Input[str] ssl: Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-        :param pulumi.Input[str] ssl_cert: Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+        :param pulumi.Input[str] ssl_cert: Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
         :param pulumi.Input[str] ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
         :param pulumi.Input[str] status: Enable/disable the explicit FTP proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -45,6 +47,8 @@ class ExplicitArgs:
             pulumi.set(__self__, "outgoing_ip", outgoing_ip)
         if sec_default_action is not None:
             pulumi.set(__self__, "sec_default_action", sec_default_action)
+        if server_data_mode is not None:
+            pulumi.set(__self__, "server_data_mode", server_data_mode)
         if ssl is not None:
             pulumi.set(__self__, "ssl", ssl)
         if ssl_algorithm is not None:
@@ -107,6 +111,18 @@ class ExplicitArgs:
         pulumi.set(self, "sec_default_action", value)
 
     @property
+    @pulumi.getter(name="serverDataMode")
+    def server_data_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+        """
+        return pulumi.get(self, "server_data_mode")
+
+    @server_data_mode.setter
+    def server_data_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_data_mode", value)
+
+    @property
     @pulumi.getter
     def ssl(self) -> Optional[pulumi.Input[str]]:
         """
@@ -134,7 +150,7 @@ class ExplicitArgs:
     @pulumi.getter(name="sslCert")
     def ssl_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+        Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
         """
         return pulumi.get(self, "ssl_cert")
 
@@ -186,6 +202,7 @@ class _ExplicitState:
                  incoming_port: Optional[pulumi.Input[str]] = None,
                  outgoing_ip: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 server_data_mode: Optional[pulumi.Input[str]] = None,
                  ssl: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_cert: Optional[pulumi.Input[str]] = None,
@@ -198,9 +215,10 @@ class _ExplicitState:
         :param pulumi.Input[str] incoming_port: Accept incoming FTP requests on one or more ports.
         :param pulumi.Input[str] outgoing_ip: Outgoing FTP requests will leave from this IP address. An interface must have this IP address.
         :param pulumi.Input[str] sec_default_action: Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
+        :param pulumi.Input[str] server_data_mode: Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
         :param pulumi.Input[str] ssl: Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-        :param pulumi.Input[str] ssl_cert: Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+        :param pulumi.Input[str] ssl_cert: Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
         :param pulumi.Input[str] ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
         :param pulumi.Input[str] status: Enable/disable the explicit FTP proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -213,6 +231,8 @@ class _ExplicitState:
             pulumi.set(__self__, "outgoing_ip", outgoing_ip)
         if sec_default_action is not None:
             pulumi.set(__self__, "sec_default_action", sec_default_action)
+        if server_data_mode is not None:
+            pulumi.set(__self__, "server_data_mode", server_data_mode)
         if ssl is not None:
             pulumi.set(__self__, "ssl", ssl)
         if ssl_algorithm is not None:
@@ -275,6 +295,18 @@ class _ExplicitState:
         pulumi.set(self, "sec_default_action", value)
 
     @property
+    @pulumi.getter(name="serverDataMode")
+    def server_data_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+        """
+        return pulumi.get(self, "server_data_mode")
+
+    @server_data_mode.setter
+    def server_data_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_data_mode", value)
+
+    @property
     @pulumi.getter
     def ssl(self) -> Optional[pulumi.Input[str]]:
         """
@@ -302,7 +334,7 @@ class _ExplicitState:
     @pulumi.getter(name="sslCert")
     def ssl_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+        Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
         """
         return pulumi.get(self, "ssl_cert")
 
@@ -356,6 +388,7 @@ class Explicit(pulumi.CustomResource):
                  incoming_port: Optional[pulumi.Input[str]] = None,
                  outgoing_ip: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 server_data_mode: Optional[pulumi.Input[str]] = None,
                  ssl: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_cert: Optional[pulumi.Input[str]] = None,
@@ -404,9 +437,10 @@ class Explicit(pulumi.CustomResource):
         :param pulumi.Input[str] incoming_port: Accept incoming FTP requests on one or more ports.
         :param pulumi.Input[str] outgoing_ip: Outgoing FTP requests will leave from this IP address. An interface must have this IP address.
         :param pulumi.Input[str] sec_default_action: Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
+        :param pulumi.Input[str] server_data_mode: Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
         :param pulumi.Input[str] ssl: Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-        :param pulumi.Input[str] ssl_cert: Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+        :param pulumi.Input[str] ssl_cert: Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
         :param pulumi.Input[str] ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
         :param pulumi.Input[str] status: Enable/disable the explicit FTP proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -471,6 +505,7 @@ class Explicit(pulumi.CustomResource):
                  incoming_port: Optional[pulumi.Input[str]] = None,
                  outgoing_ip: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 server_data_mode: Optional[pulumi.Input[str]] = None,
                  ssl: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_cert: Optional[pulumi.Input[str]] = None,
@@ -490,6 +525,7 @@ class Explicit(pulumi.CustomResource):
             __props__.__dict__["incoming_port"] = incoming_port
             __props__.__dict__["outgoing_ip"] = outgoing_ip
             __props__.__dict__["sec_default_action"] = sec_default_action
+            __props__.__dict__["server_data_mode"] = server_data_mode
             __props__.__dict__["ssl"] = ssl
             __props__.__dict__["ssl_algorithm"] = ssl_algorithm
             __props__.__dict__["ssl_cert"] = ssl_cert
@@ -510,6 +546,7 @@ class Explicit(pulumi.CustomResource):
             incoming_port: Optional[pulumi.Input[str]] = None,
             outgoing_ip: Optional[pulumi.Input[str]] = None,
             sec_default_action: Optional[pulumi.Input[str]] = None,
+            server_data_mode: Optional[pulumi.Input[str]] = None,
             ssl: Optional[pulumi.Input[str]] = None,
             ssl_algorithm: Optional[pulumi.Input[str]] = None,
             ssl_cert: Optional[pulumi.Input[str]] = None,
@@ -527,9 +564,10 @@ class Explicit(pulumi.CustomResource):
         :param pulumi.Input[str] incoming_port: Accept incoming FTP requests on one or more ports.
         :param pulumi.Input[str] outgoing_ip: Outgoing FTP requests will leave from this IP address. An interface must have this IP address.
         :param pulumi.Input[str] sec_default_action: Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. Valid values: `accept`, `deny`.
+        :param pulumi.Input[str] server_data_mode: Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
         :param pulumi.Input[str] ssl: Enable/disable the explicit FTPS proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
-        :param pulumi.Input[str] ssl_cert: Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+        :param pulumi.Input[str] ssl_cert: Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
         :param pulumi.Input[str] ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
         :param pulumi.Input[str] status: Enable/disable the explicit FTP proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -542,6 +580,7 @@ class Explicit(pulumi.CustomResource):
         __props__.__dict__["incoming_port"] = incoming_port
         __props__.__dict__["outgoing_ip"] = outgoing_ip
         __props__.__dict__["sec_default_action"] = sec_default_action
+        __props__.__dict__["server_data_mode"] = server_data_mode
         __props__.__dict__["ssl"] = ssl
         __props__.__dict__["ssl_algorithm"] = ssl_algorithm
         __props__.__dict__["ssl_cert"] = ssl_cert
@@ -583,6 +622,14 @@ class Explicit(pulumi.CustomResource):
         return pulumi.get(self, "sec_default_action")
 
     @property
+    @pulumi.getter(name="serverDataMode")
+    def server_data_mode(self) -> pulumi.Output[str]:
+        """
+        Determine mode of data session on FTP server side. Valid values: `client`, `passive`.
+        """
+        return pulumi.get(self, "server_data_mode")
+
+    @property
     @pulumi.getter
     def ssl(self) -> pulumi.Output[str]:
         """
@@ -602,7 +649,7 @@ class Explicit(pulumi.CustomResource):
     @pulumi.getter(name="sslCert")
     def ssl_cert(self) -> pulumi.Output[str]:
         """
-        Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
+        Name of certificate for SSL connections to this server. On FortiOS versions 6.2.4-7.4.0: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.1: default = "Fortinet_SSL".
         """
         return pulumi.get(self, "ssl_cert")
 

@@ -121,9 +121,17 @@ namespace Pulumiverse.Fortios.Router
         /// </summary>
         public readonly int AdditionalPathSelectVpnv4;
         /// <summary>
+        /// Number of additional paths to be selected for each VPNv6 NLRI.
+        /// </summary>
+        public readonly int AdditionalPathSelectVpnv6;
+        /// <summary>
         /// Enable/disable VPNv4 additional-path capability.
         /// </summary>
         public readonly string AdditionalPathVpnv4;
+        /// <summary>
+        /// Enable/disable VPNv6 additional-path capability.
+        /// </summary>
+        public readonly string AdditionalPathVpnv6;
         /// <summary>
         /// Administrative distance modifications. The structure of `admin_distance` block is documented below.
         /// </summary>
@@ -144,6 +152,10 @@ namespace Pulumiverse.Fortios.Router
         /// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
         /// </summary>
         public readonly int As;
+        /// <summary>
+        /// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        /// </summary>
+        public readonly string AsString;
         /// <summary>
         /// Enable/disable ignore AS path.
         /// </summary>
@@ -180,6 +192,10 @@ namespace Pulumiverse.Fortios.Router
         /// Confederation peers. The structure of `confederation_peers` block is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetBgpConfederationPeerResult> ConfederationPeers;
+        /// <summary>
+        /// Enable/disable cross address family conditional advertisement.
+        /// </summary>
+        public readonly string CrossFamilyConditionalAdv;
         /// <summary>
         /// Enable/disable route-flap dampening.
         /// </summary>
@@ -378,7 +394,11 @@ namespace Pulumiverse.Fortios.Router
 
             int additionalPathSelectVpnv4,
 
+            int additionalPathSelectVpnv6,
+
             string additionalPathVpnv4,
+
+            string additionalPathVpnv6,
 
             ImmutableArray<Outputs.GetBgpAdminDistanceResult> adminDistances,
 
@@ -389,6 +409,8 @@ namespace Pulumiverse.Fortios.Router
             string alwaysCompareMed,
 
             int @as,
+
+            string asString,
 
             string bestpathAsPathIgnore,
 
@@ -407,6 +429,8 @@ namespace Pulumiverse.Fortios.Router
             int confederationIdentifier,
 
             ImmutableArray<Outputs.GetBgpConfederationPeerResult> confederationPeers,
+
+            string crossFamilyConditionalAdv,
 
             string dampening,
 
@@ -507,12 +531,15 @@ namespace Pulumiverse.Fortios.Router
             AdditionalPathSelect = additionalPathSelect;
             AdditionalPathSelect6 = additionalPathSelect6;
             AdditionalPathSelectVpnv4 = additionalPathSelectVpnv4;
+            AdditionalPathSelectVpnv6 = additionalPathSelectVpnv6;
             AdditionalPathVpnv4 = additionalPathVpnv4;
+            AdditionalPathVpnv6 = additionalPathVpnv6;
             AdminDistances = adminDistances;
             AggregateAddress6s = aggregateAddress6s;
             AggregateAddresses = aggregateAddresses;
             AlwaysCompareMed = alwaysCompareMed;
             As = @as;
+            AsString = asString;
             BestpathAsPathIgnore = bestpathAsPathIgnore;
             BestpathCmpConfedAspath = bestpathCmpConfedAspath;
             BestpathCmpRouterid = bestpathCmpRouterid;
@@ -522,6 +549,7 @@ namespace Pulumiverse.Fortios.Router
             ClusterId = clusterId;
             ConfederationIdentifier = confederationIdentifier;
             ConfederationPeers = confederationPeers;
+            CrossFamilyConditionalAdv = crossFamilyConditionalAdv;
             Dampening = dampening;
             DampeningMaxSuppressTime = dampeningMaxSuppressTime;
             DampeningReachabilityHalfLife = dampeningReachabilityHalfLife;

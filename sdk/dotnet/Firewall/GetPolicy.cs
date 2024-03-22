@@ -127,6 +127,10 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly string CapturePacket;
         /// <summary>
+        /// Name of an existing CASB profile.
+        /// </summary>
+        public readonly string CasbProfile;
+        /// <summary>
         /// Name of an existing CIFS profile.
         /// </summary>
         public readonly string CifsProfile;
@@ -150,6 +154,10 @@ namespace Pulumiverse.Fortios.Firewall
         /// Names of devices or device groups that can be matched by the policy. The structure of `devices` block is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPolicyDeviceResult> Devices;
+        /// <summary>
+        /// Name of an existing Diameter filter profile.
+        /// </summary>
+        public readonly string DiameterFilterProfile;
         /// <summary>
         /// Enable to copy packet's DiffServ values from session's original direction to its reply direction.
         /// </summary>
@@ -403,6 +411,10 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly string IpsSensor;
         /// <summary>
+        /// Name of an existing VoIP (ips) profile.
+        /// </summary>
+        public readonly string IpsVoipFilter;
+        /// <summary>
         /// Label for the policy that appears when the GUI is in Section View mode.
         /// </summary>
         public readonly string Label;
@@ -487,6 +499,18 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly string PassiveWanHealthMeasurement;
         /// <summary>
+        /// Enable/disable PCP inbound DNAT.
+        /// </summary>
+        public readonly string PcpInbound;
+        /// <summary>
+        /// Enable/disable PCP outbound SNAT.
+        /// </summary>
+        public readonly string PcpOutbound;
+        /// <summary>
+        /// PCP pool names. The structure of `pcp_poolname` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetPolicyPcpPoolnameResult> PcpPoolnames;
+        /// <summary>
         /// Per-IP traffic shaper.
         /// </summary>
         public readonly string PerIpShaper;
@@ -506,6 +530,10 @@ namespace Pulumiverse.Fortios.Firewall
         /// Policy expiry date (YYYY-MM-DD HH:MM:SS).
         /// </summary>
         public readonly string PolicyExpiryDate;
+        /// <summary>
+        /// Policy expiry date and time, in epoch format.
+        /// </summary>
+        public readonly string PolicyExpiryDateUtc;
         /// <summary>
         /// Policy ID.
         /// </summary>
@@ -720,6 +748,10 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly string VideofilterProfile;
         /// <summary>
+        /// Name of an existing virtual-patch profile.
+        /// </summary>
+        public readonly string VirtualPatchProfile;
+        /// <summary>
         /// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
         /// </summary>
         public readonly int VlanCosFwd;
@@ -792,6 +824,14 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly string Wsso;
         /// <summary>
+        /// Enable/disable zero trust device ownership.
+        /// </summary>
+        public readonly string ZtnaDeviceOwnership;
+        /// <summary>
+        /// Source ztna-ems-tag-secondary names. The structure of `ztna_ems_tag_secondary` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetPolicyZtnaEmsTagSecondaryResult> ZtnaEmsTagSecondaries;
+        /// <summary>
         /// Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPolicyZtnaEmsTagResult> ZtnaEmsTags;
@@ -800,9 +840,17 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPolicyZtnaGeoTagResult> ZtnaGeoTags;
         /// <summary>
+        /// Redirect ZTNA traffic to matching Access-Proxy proxy-policy.
+        /// </summary>
+        public readonly string ZtnaPolicyRedirect;
+        /// <summary>
         /// Enable/disable zero trust access.
         /// </summary>
         public readonly string ZtnaStatus;
+        /// <summary>
+        /// ZTNA tag matching logic.
+        /// </summary>
+        public readonly string ZtnaTagsMatchLogic;
 
         [OutputConstructor]
         private GetPolicyResult(
@@ -834,6 +882,8 @@ namespace Pulumiverse.Fortios.Firewall
 
             string capturePacket,
 
+            string casbProfile,
+
             string cifsProfile,
 
             string comments,
@@ -845,6 +895,8 @@ namespace Pulumiverse.Fortios.Firewall
             string delayTcpNpuSession,
 
             ImmutableArray<Outputs.GetPolicyDeviceResult> devices,
+
+            string diameterFilterProfile,
 
             string diffservCopy,
 
@@ -972,6 +1024,8 @@ namespace Pulumiverse.Fortios.Firewall
 
             string ipsSensor,
 
+            string ipsVoipFilter,
+
             string label,
 
             string learningMode,
@@ -1014,6 +1068,12 @@ namespace Pulumiverse.Fortios.Firewall
 
             string passiveWanHealthMeasurement,
 
+            string pcpInbound,
+
+            string pcpOutbound,
+
+            ImmutableArray<Outputs.GetPolicyPcpPoolnameResult> pcpPoolnames,
+
             string perIpShaper,
 
             string permitAnyHost,
@@ -1023,6 +1083,8 @@ namespace Pulumiverse.Fortios.Firewall
             string policyExpiry,
 
             string policyExpiryDate,
+
+            string policyExpiryDateUtc,
 
             int policyid,
 
@@ -1132,6 +1194,8 @@ namespace Pulumiverse.Fortios.Firewall
 
             string videofilterProfile,
 
+            string virtualPatchProfile,
+
             int vlanCosFwd,
 
             int vlanCosRev,
@@ -1168,11 +1232,19 @@ namespace Pulumiverse.Fortios.Firewall
 
             string wsso,
 
+            string ztnaDeviceOwnership,
+
+            ImmutableArray<Outputs.GetPolicyZtnaEmsTagSecondaryResult> ztnaEmsTagSecondaries,
+
             ImmutableArray<Outputs.GetPolicyZtnaEmsTagResult> ztnaEmsTags,
 
             ImmutableArray<Outputs.GetPolicyZtnaGeoTagResult> ztnaGeoTags,
 
-            string ztnaStatus)
+            string ztnaPolicyRedirect,
+
+            string ztnaStatus,
+
+            string ztnaTagsMatchLogic)
         {
             Action = action;
             AntiReplay = antiReplay;
@@ -1188,12 +1260,14 @@ namespace Pulumiverse.Fortios.Firewall
             BlockNotification = blockNotification;
             CaptivePortalExempt = captivePortalExempt;
             CapturePacket = capturePacket;
+            CasbProfile = casbProfile;
             CifsProfile = cifsProfile;
             Comments = comments;
             CustomLogFields = customLogFields;
             DecryptedTrafficMirror = decryptedTrafficMirror;
             DelayTcpNpuSession = delayTcpNpuSession;
             Devices = devices;
+            DiameterFilterProfile = diameterFilterProfile;
             DiffservCopy = diffservCopy;
             DiffservForward = diffservForward;
             DiffservReverse = diffservReverse;
@@ -1257,6 +1331,7 @@ namespace Pulumiverse.Fortios.Firewall
             InternetServiceSrcNegate = internetServiceSrcNegate;
             Ippool = ippool;
             IpsSensor = ipsSensor;
+            IpsVoipFilter = ipsVoipFilter;
             Label = label;
             LearningMode = learningMode;
             Logtraffic = logtraffic;
@@ -1278,11 +1353,15 @@ namespace Pulumiverse.Fortios.Firewall
             NtlmGuest = ntlmGuest;
             Outbound = outbound;
             PassiveWanHealthMeasurement = passiveWanHealthMeasurement;
+            PcpInbound = pcpInbound;
+            PcpOutbound = pcpOutbound;
+            PcpPoolnames = pcpPoolnames;
             PerIpShaper = perIpShaper;
             PermitAnyHost = permitAnyHost;
             PermitStunHost = permitStunHost;
             PolicyExpiry = policyExpiry;
             PolicyExpiryDate = policyExpiryDate;
+            PolicyExpiryDateUtc = policyExpiryDateUtc;
             Policyid = policyid;
             Poolname6s = poolname6s;
             Poolnames = poolnames;
@@ -1337,6 +1416,7 @@ namespace Pulumiverse.Fortios.Firewall
             Uuid = uuid;
             Vdomparam = vdomparam;
             VideofilterProfile = videofilterProfile;
+            VirtualPatchProfile = virtualPatchProfile;
             VlanCosFwd = vlanCosFwd;
             VlanCosRev = vlanCosRev;
             VlanFilter = vlanFilter;
@@ -1355,9 +1435,13 @@ namespace Pulumiverse.Fortios.Firewall
             WebproxyForwardServer = webproxyForwardServer;
             WebproxyProfile = webproxyProfile;
             Wsso = wsso;
+            ZtnaDeviceOwnership = ztnaDeviceOwnership;
+            ZtnaEmsTagSecondaries = ztnaEmsTagSecondaries;
             ZtnaEmsTags = ztnaEmsTags;
             ZtnaGeoTags = ztnaGeoTags;
+            ZtnaPolicyRedirect = ztnaPolicyRedirect;
             ZtnaStatus = ztnaStatus;
+            ZtnaTagsMatchLogic = ztnaTagsMatchLogic;
         }
     }
 }

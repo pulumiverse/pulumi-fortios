@@ -66,8 +66,12 @@ type Profilegroup struct {
 	ApplicationList pulumi.StringOutput `pulumi:"applicationList"`
 	// Name of an existing Antivirus profile.
 	AvProfile pulumi.StringOutput `pulumi:"avProfile"`
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringOutput `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringOutput `pulumi:"cifsProfile"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile pulumi.StringOutput `pulumi:"diameterFilterProfile"`
 	// Name of an existing DLP profile.
 	DlpProfile pulumi.StringOutput `pulumi:"dlpProfile"`
 	// Name of an existing DLP sensor.
@@ -82,6 +86,8 @@ type Profilegroup struct {
 	IcapProfile pulumi.StringOutput `pulumi:"icapProfile"`
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter pulumi.StringOutput `pulumi:"ipsVoipFilter"`
 	// Profile group name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Name of an existing Protocol options profile.
@@ -98,7 +104,9 @@ type Profilegroup struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringOutput `pulumi:"videofilterProfile"`
-	// Name of an existing VoIP profile.
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile pulumi.StringOutput `pulumi:"virtualPatchProfile"`
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile pulumi.StringOutput `pulumi:"voipProfile"`
 	// Name of an existing Web application firewall profile.
 	WafProfile pulumi.StringOutput `pulumi:"wafProfile"`
@@ -140,8 +148,12 @@ type profilegroupState struct {
 	ApplicationList *string `pulumi:"applicationList"`
 	// Name of an existing Antivirus profile.
 	AvProfile *string `pulumi:"avProfile"`
+	// Name of an existing CASB profile.
+	CasbProfile *string `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile *string `pulumi:"cifsProfile"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile *string `pulumi:"diameterFilterProfile"`
 	// Name of an existing DLP profile.
 	DlpProfile *string `pulumi:"dlpProfile"`
 	// Name of an existing DLP sensor.
@@ -156,6 +168,8 @@ type profilegroupState struct {
 	IcapProfile *string `pulumi:"icapProfile"`
 	// Name of an existing IPS sensor.
 	IpsSensor *string `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter *string `pulumi:"ipsVoipFilter"`
 	// Profile group name.
 	Name *string `pulumi:"name"`
 	// Name of an existing Protocol options profile.
@@ -172,7 +186,9 @@ type profilegroupState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile *string `pulumi:"videofilterProfile"`
-	// Name of an existing VoIP profile.
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile *string `pulumi:"virtualPatchProfile"`
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile *string `pulumi:"voipProfile"`
 	// Name of an existing Web application firewall profile.
 	WafProfile *string `pulumi:"wafProfile"`
@@ -185,8 +201,12 @@ type ProfilegroupState struct {
 	ApplicationList pulumi.StringPtrInput
 	// Name of an existing Antivirus profile.
 	AvProfile pulumi.StringPtrInput
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringPtrInput
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringPtrInput
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile pulumi.StringPtrInput
 	// Name of an existing DLP profile.
 	DlpProfile pulumi.StringPtrInput
 	// Name of an existing DLP sensor.
@@ -201,6 +221,8 @@ type ProfilegroupState struct {
 	IcapProfile pulumi.StringPtrInput
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringPtrInput
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter pulumi.StringPtrInput
 	// Profile group name.
 	Name pulumi.StringPtrInput
 	// Name of an existing Protocol options profile.
@@ -217,7 +239,9 @@ type ProfilegroupState struct {
 	Vdomparam pulumi.StringPtrInput
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringPtrInput
-	// Name of an existing VoIP profile.
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile pulumi.StringPtrInput
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile pulumi.StringPtrInput
 	// Name of an existing Web application firewall profile.
 	WafProfile pulumi.StringPtrInput
@@ -234,8 +258,12 @@ type profilegroupArgs struct {
 	ApplicationList *string `pulumi:"applicationList"`
 	// Name of an existing Antivirus profile.
 	AvProfile *string `pulumi:"avProfile"`
+	// Name of an existing CASB profile.
+	CasbProfile *string `pulumi:"casbProfile"`
 	// Name of an existing CIFS profile.
 	CifsProfile *string `pulumi:"cifsProfile"`
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile *string `pulumi:"diameterFilterProfile"`
 	// Name of an existing DLP profile.
 	DlpProfile *string `pulumi:"dlpProfile"`
 	// Name of an existing DLP sensor.
@@ -250,6 +278,8 @@ type profilegroupArgs struct {
 	IcapProfile *string `pulumi:"icapProfile"`
 	// Name of an existing IPS sensor.
 	IpsSensor *string `pulumi:"ipsSensor"`
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter *string `pulumi:"ipsVoipFilter"`
 	// Profile group name.
 	Name *string `pulumi:"name"`
 	// Name of an existing Protocol options profile.
@@ -266,7 +296,9 @@ type profilegroupArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile *string `pulumi:"videofilterProfile"`
-	// Name of an existing VoIP profile.
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile *string `pulumi:"virtualPatchProfile"`
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile *string `pulumi:"voipProfile"`
 	// Name of an existing Web application firewall profile.
 	WafProfile *string `pulumi:"wafProfile"`
@@ -280,8 +312,12 @@ type ProfilegroupArgs struct {
 	ApplicationList pulumi.StringPtrInput
 	// Name of an existing Antivirus profile.
 	AvProfile pulumi.StringPtrInput
+	// Name of an existing CASB profile.
+	CasbProfile pulumi.StringPtrInput
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringPtrInput
+	// Name of an existing Diameter filter profile.
+	DiameterFilterProfile pulumi.StringPtrInput
 	// Name of an existing DLP profile.
 	DlpProfile pulumi.StringPtrInput
 	// Name of an existing DLP sensor.
@@ -296,6 +332,8 @@ type ProfilegroupArgs struct {
 	IcapProfile pulumi.StringPtrInput
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringPtrInput
+	// Name of an existing VoIP (ips) profile.
+	IpsVoipFilter pulumi.StringPtrInput
 	// Profile group name.
 	Name pulumi.StringPtrInput
 	// Name of an existing Protocol options profile.
@@ -312,7 +350,9 @@ type ProfilegroupArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringPtrInput
-	// Name of an existing VoIP profile.
+	// Name of an existing virtual-patch profile.
+	VirtualPatchProfile pulumi.StringPtrInput
+	// Name of an existing VoIP (voipd) profile.
 	VoipProfile pulumi.StringPtrInput
 	// Name of an existing Web application firewall profile.
 	WafProfile pulumi.StringPtrInput
@@ -417,9 +457,19 @@ func (o ProfilegroupOutput) AvProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profilegroup) pulumi.StringOutput { return v.AvProfile }).(pulumi.StringOutput)
 }
 
+// Name of an existing CASB profile.
+func (o ProfilegroupOutput) CasbProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profilegroup) pulumi.StringOutput { return v.CasbProfile }).(pulumi.StringOutput)
+}
+
 // Name of an existing CIFS profile.
 func (o ProfilegroupOutput) CifsProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profilegroup) pulumi.StringOutput { return v.CifsProfile }).(pulumi.StringOutput)
+}
+
+// Name of an existing Diameter filter profile.
+func (o ProfilegroupOutput) DiameterFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profilegroup) pulumi.StringOutput { return v.DiameterFilterProfile }).(pulumi.StringOutput)
 }
 
 // Name of an existing DLP profile.
@@ -455,6 +505,11 @@ func (o ProfilegroupOutput) IcapProfile() pulumi.StringOutput {
 // Name of an existing IPS sensor.
 func (o ProfilegroupOutput) IpsSensor() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profilegroup) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+// Name of an existing VoIP (ips) profile.
+func (o ProfilegroupOutput) IpsVoipFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profilegroup) pulumi.StringOutput { return v.IpsVoipFilter }).(pulumi.StringOutput)
 }
 
 // Profile group name.
@@ -497,7 +552,12 @@ func (o ProfilegroupOutput) VideofilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profilegroup) pulumi.StringOutput { return v.VideofilterProfile }).(pulumi.StringOutput)
 }
 
-// Name of an existing VoIP profile.
+// Name of an existing virtual-patch profile.
+func (o ProfilegroupOutput) VirtualPatchProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profilegroup) pulumi.StringOutput { return v.VirtualPatchProfile }).(pulumi.StringOutput)
+}
+
+// Name of an existing VoIP (voipd) profile.
 func (o ProfilegroupOutput) VoipProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profilegroup) pulumi.StringOutput { return v.VoipProfile }).(pulumi.StringOutput)
 }

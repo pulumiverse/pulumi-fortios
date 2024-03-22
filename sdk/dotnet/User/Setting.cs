@@ -153,7 +153,7 @@ namespace Pulumiverse.Fortios.User
         public Output<string> AuthSslMaxProtoVersion { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Output("authSslMinProtoVersion")]
         public Output<string> AuthSslMinProtoVersion { get; private set; } = null!;
@@ -183,10 +183,22 @@ namespace Pulumiverse.Fortios.User
         public Output<string> AuthType { get; private set; } = null!;
 
         /// <summary>
+        /// Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+        /// </summary>
+        [Output("defaultUserPasswordPolicy")]
+        public Output<string> DefaultUserPasswordPolicy { get; private set; } = null!;
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Output("dynamicSortSubtable")]
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Output("getAllTables")]
+        public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
@@ -344,7 +356,7 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? AuthSslMaxProtoVersion { get; set; }
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Input("authSslMinProtoVersion")]
         public Input<string>? AuthSslMinProtoVersion { get; set; }
@@ -374,10 +386,22 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? AuthType { get; set; }
 
         /// <summary>
+        /// Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+        /// </summary>
+        [Input("defaultUserPasswordPolicy")]
+        public Input<string>? DefaultUserPasswordPolicy { get; set; }
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.
@@ -496,7 +520,7 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? AuthSslMaxProtoVersion { get; set; }
 
         /// <summary>
-        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        /// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
         /// </summary>
         [Input("authSslMinProtoVersion")]
         public Input<string>? AuthSslMinProtoVersion { get; set; }
@@ -526,10 +550,22 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? AuthType { get; set; }
 
         /// <summary>
+        /// Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy.
+        /// </summary>
+        [Input("defaultUserPasswordPolicy")]
+        public Input<string>? DefaultUserPasswordPolicy { get; set; }
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// </summary>
+        [Input("getAllTables")]
+        public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
         /// Enable/disable per policy disclaimer. Valid values: `enable`, `disable`.

@@ -76,6 +76,10 @@ type Sysinfo struct {
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// Enable/disable SNMP. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Free memory usage when trap is sent.
+	TrapFreeMemoryThreshold pulumi.IntOutput `pulumi:"trapFreeMemoryThreshold"`
+	// Freeable memory usage when trap is sent.
+	TrapFreeableMemoryThreshold pulumi.IntOutput `pulumi:"trapFreeableMemoryThreshold"`
 	// CPU usage when trap is sent.
 	TrapHighCpuThreshold pulumi.IntOutput `pulumi:"trapHighCpuThreshold"`
 	// Log disk usage when trap is sent.
@@ -128,6 +132,10 @@ type sysinfoState struct {
 	Location *string `pulumi:"location"`
 	// Enable/disable SNMP. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
+	// Free memory usage when trap is sent.
+	TrapFreeMemoryThreshold *int `pulumi:"trapFreeMemoryThreshold"`
+	// Freeable memory usage when trap is sent.
+	TrapFreeableMemoryThreshold *int `pulumi:"trapFreeableMemoryThreshold"`
 	// CPU usage when trap is sent.
 	TrapHighCpuThreshold *int `pulumi:"trapHighCpuThreshold"`
 	// Log disk usage when trap is sent.
@@ -151,6 +159,10 @@ type SysinfoState struct {
 	Location pulumi.StringPtrInput
 	// Enable/disable SNMP. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
+	// Free memory usage when trap is sent.
+	TrapFreeMemoryThreshold pulumi.IntPtrInput
+	// Freeable memory usage when trap is sent.
+	TrapFreeableMemoryThreshold pulumi.IntPtrInput
 	// CPU usage when trap is sent.
 	TrapHighCpuThreshold pulumi.IntPtrInput
 	// Log disk usage when trap is sent.
@@ -178,6 +190,10 @@ type sysinfoArgs struct {
 	Location *string `pulumi:"location"`
 	// Enable/disable SNMP. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
+	// Free memory usage when trap is sent.
+	TrapFreeMemoryThreshold *int `pulumi:"trapFreeMemoryThreshold"`
+	// Freeable memory usage when trap is sent.
+	TrapFreeableMemoryThreshold *int `pulumi:"trapFreeableMemoryThreshold"`
 	// CPU usage when trap is sent.
 	TrapHighCpuThreshold *int `pulumi:"trapHighCpuThreshold"`
 	// Log disk usage when trap is sent.
@@ -202,6 +218,10 @@ type SysinfoArgs struct {
 	Location pulumi.StringPtrInput
 	// Enable/disable SNMP. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
+	// Free memory usage when trap is sent.
+	TrapFreeMemoryThreshold pulumi.IntPtrInput
+	// Freeable memory usage when trap is sent.
+	TrapFreeableMemoryThreshold pulumi.IntPtrInput
 	// CPU usage when trap is sent.
 	TrapHighCpuThreshold pulumi.IntPtrInput
 	// Log disk usage when trap is sent.
@@ -327,6 +347,16 @@ func (o SysinfoOutput) Location() pulumi.StringPtrOutput {
 // Enable/disable SNMP. Valid values: `enable`, `disable`.
 func (o SysinfoOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sysinfo) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Free memory usage when trap is sent.
+func (o SysinfoOutput) TrapFreeMemoryThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *Sysinfo) pulumi.IntOutput { return v.TrapFreeMemoryThreshold }).(pulumi.IntOutput)
+}
+
+// Freeable memory usage when trap is sent.
+func (o SysinfoOutput) TrapFreeableMemoryThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v *Sysinfo) pulumi.IntOutput { return v.TrapFreeableMemoryThreshold }).(pulumi.IntOutput)
 }
 
 // CPU usage when trap is sent.

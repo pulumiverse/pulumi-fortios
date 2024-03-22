@@ -68,6 +68,10 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly fileFilter!: pulumi.Output<outputs.cifs.ProfileFileFilter>;
     /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    /**
      * Profile name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -100,6 +104,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["domainController"] = state ? state.domainController : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fileFilter"] = state ? state.fileFilter : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["serverCredentialType"] = state ? state.serverCredentialType : undefined;
             resourceInputs["serverKeytabs"] = state ? state.serverKeytabs : undefined;
@@ -109,6 +114,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["domainController"] = args ? args.domainController : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fileFilter"] = args ? args.fileFilter : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["serverCredentialType"] = args ? args.serverCredentialType : undefined;
             resourceInputs["serverKeytabs"] = args ? args.serverKeytabs : undefined;
@@ -135,6 +141,10 @@ export interface ProfileState {
      * File filter. The structure of `fileFilter` block is documented below.
      */
     fileFilter?: pulumi.Input<inputs.cifs.ProfileFileFilter>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Profile name.
      */
@@ -169,6 +179,10 @@ export interface ProfileArgs {
      * File filter. The structure of `fileFilter` block is documented below.
      */
     fileFilter?: pulumi.Input<inputs.cifs.ProfileFileFilter>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     */
+    getAllTables?: pulumi.Input<string>;
     /**
      * Profile name.
      */

@@ -107,6 +107,42 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// Scan Interval (default = 50 msec).
+        /// </summary>
+        [Output("scanInterval")]
+        public Output<int> ScanInterval { get; private set; } = null!;
+
+        /// <summary>
+        /// Scan Period (default = 4000 msec).
+        /// </summary>
+        [Output("scanPeriod")]
+        public Output<int> ScanPeriod { get; private set; } = null!;
+
+        /// <summary>
+        /// Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+        /// </summary>
+        [Output("scanThreshold")]
+        public Output<string> ScanThreshold { get; private set; } = null!;
+
+        /// <summary>
+        /// Scan Time (default = 1000 msec).
+        /// </summary>
+        [Output("scanTime")]
+        public Output<int> ScanTime { get; private set; } = null!;
+
+        /// <summary>
+        /// Scan Type (default = active). Valid values: `active`, `passive`.
+        /// </summary>
+        [Output("scanType")]
+        public Output<string> ScanType { get; private set; } = null!;
+
+        /// <summary>
+        /// Scan Windows (default = 50 msec).
+        /// </summary>
+        [Output("scanWindow")]
+        public Output<int> ScanWindow { get; private set; } = null!;
+
+        /// <summary>
         /// Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
         /// </summary>
         [Output("txpower")]
@@ -238,6 +274,42 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// Scan Interval (default = 50 msec).
+        /// </summary>
+        [Input("scanInterval")]
+        public Input<int>? ScanInterval { get; set; }
+
+        /// <summary>
+        /// Scan Period (default = 4000 msec).
+        /// </summary>
+        [Input("scanPeriod")]
+        public Input<int>? ScanPeriod { get; set; }
+
+        /// <summary>
+        /// Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+        /// </summary>
+        [Input("scanThreshold")]
+        public Input<string>? ScanThreshold { get; set; }
+
+        /// <summary>
+        /// Scan Time (default = 1000 msec).
+        /// </summary>
+        [Input("scanTime")]
+        public Input<int>? ScanTime { get; set; }
+
+        /// <summary>
+        /// Scan Type (default = active). Valid values: `active`, `passive`.
+        /// </summary>
+        [Input("scanType")]
+        public Input<string>? ScanType { get; set; }
+
+        /// <summary>
+        /// Scan Windows (default = 50 msec).
+        /// </summary>
+        [Input("scanWindow")]
+        public Input<int>? ScanWindow { get; set; }
+
+        /// <summary>
         /// Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
         /// </summary>
         [Input("txpower")]
@@ -328,6 +400,42 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Scan Interval (default = 50 msec).
+        /// </summary>
+        [Input("scanInterval")]
+        public Input<int>? ScanInterval { get; set; }
+
+        /// <summary>
+        /// Scan Period (default = 4000 msec).
+        /// </summary>
+        [Input("scanPeriod")]
+        public Input<int>? ScanPeriod { get; set; }
+
+        /// <summary>
+        /// Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+        /// </summary>
+        [Input("scanThreshold")]
+        public Input<string>? ScanThreshold { get; set; }
+
+        /// <summary>
+        /// Scan Time (default = 1000 msec).
+        /// </summary>
+        [Input("scanTime")]
+        public Input<int>? ScanTime { get; set; }
+
+        /// <summary>
+        /// Scan Type (default = active). Valid values: `active`, `passive`.
+        /// </summary>
+        [Input("scanType")]
+        public Input<string>? ScanType { get; set; }
+
+        /// <summary>
+        /// Scan Windows (default = 50 msec).
+        /// </summary>
+        [Input("scanWindow")]
+        public Input<int>? ScanWindow { get; set; }
 
         /// <summary>
         /// Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.

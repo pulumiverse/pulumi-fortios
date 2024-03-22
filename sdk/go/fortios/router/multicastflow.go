@@ -72,6 +72,8 @@ type Multicastflow struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Multicast-flow entries. The structure of `flows` block is documented below.
 	Flows MulticastflowFlowArrayOutput `pulumi:"flows"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -114,6 +116,8 @@ type multicastflowState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Multicast-flow entries. The structure of `flows` block is documented below.
 	Flows []MulticastflowFlow `pulumi:"flows"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Name.
 	Name *string `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -127,6 +131,8 @@ type MulticastflowState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Multicast-flow entries. The structure of `flows` block is documented below.
 	Flows MulticastflowFlowArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Name.
 	Name pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -144,6 +150,8 @@ type multicastflowArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Multicast-flow entries. The structure of `flows` block is documented below.
 	Flows []MulticastflowFlow `pulumi:"flows"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Name.
 	Name *string `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -158,6 +166,8 @@ type MulticastflowArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Multicast-flow entries. The structure of `flows` block is documented below.
 	Flows MulticastflowFlowArrayInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Name.
 	Name pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -264,6 +274,11 @@ func (o MulticastflowOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 // Multicast-flow entries. The structure of `flows` block is documented below.
 func (o MulticastflowOutput) Flows() MulticastflowFlowArrayOutput {
 	return o.ApplyT(func(v *Multicastflow) MulticastflowFlowArrayOutput { return v.Flows }).(MulticastflowFlowArrayOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o MulticastflowOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Multicastflow) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Name.

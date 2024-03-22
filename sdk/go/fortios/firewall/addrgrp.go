@@ -100,6 +100,8 @@ type Addrgrp struct {
 	ExcludeMembers AddrgrpExcludeMemberArrayOutput `pulumi:"excludeMembers"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members AddrgrpMemberArrayOutput `pulumi:"members"`
 	// Address group name.
@@ -165,6 +167,8 @@ type addrgrpState struct {
 	ExcludeMembers []AddrgrpExcludeMember `pulumi:"excludeMembers"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members []AddrgrpMember `pulumi:"members"`
 	// Address group name.
@@ -198,6 +202,8 @@ type AddrgrpState struct {
 	ExcludeMembers AddrgrpExcludeMemberArrayInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members AddrgrpMemberArrayInput
 	// Address group name.
@@ -235,6 +241,8 @@ type addrgrpArgs struct {
 	ExcludeMembers []AddrgrpExcludeMember `pulumi:"excludeMembers"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members []AddrgrpMember `pulumi:"members"`
 	// Address group name.
@@ -269,6 +277,8 @@ type AddrgrpArgs struct {
 	ExcludeMembers AddrgrpExcludeMemberArrayInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members AddrgrpMemberArrayInput
 	// Address group name.
@@ -410,6 +420,11 @@ func (o AddrgrpOutput) ExcludeMembers() AddrgrpExcludeMemberArrayOutput {
 // Security Fabric global object setting. Valid values: `enable`, `disable`.
 func (o AddrgrpOutput) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v *Addrgrp) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o AddrgrpOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Addrgrp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Address objects contained within the group. The structure of `member` block is documented below.

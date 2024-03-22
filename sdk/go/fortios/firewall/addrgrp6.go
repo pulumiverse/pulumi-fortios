@@ -88,8 +88,14 @@ type Addrgrp6 struct {
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+	Exclude pulumi.StringOutput `pulumi:"exclude"`
+	// Address6 exclusion member. The structure of `excludeMember` block is documented below.
+	ExcludeMembers Addrgrp6ExcludeMemberArrayOutput `pulumi:"excludeMembers"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members Addrgrp6MemberArrayOutput `pulumi:"members"`
 	// IPv6 address group name.
@@ -143,8 +149,14 @@ type addrgrp6State struct {
 	Comment *string `pulumi:"comment"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+	Exclude *string `pulumi:"exclude"`
+	// Address6 exclusion member. The structure of `excludeMember` block is documented below.
+	ExcludeMembers []Addrgrp6ExcludeMember `pulumi:"excludeMembers"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members []Addrgrp6Member `pulumi:"members"`
 	// IPv6 address group name.
@@ -166,8 +178,14 @@ type Addrgrp6State struct {
 	Comment pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+	Exclude pulumi.StringPtrInput
+	// Address6 exclusion member. The structure of `excludeMember` block is documented below.
+	ExcludeMembers Addrgrp6ExcludeMemberArrayInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members Addrgrp6MemberArrayInput
 	// IPv6 address group name.
@@ -193,8 +211,14 @@ type addrgrp6Args struct {
 	Comment *string `pulumi:"comment"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+	Exclude *string `pulumi:"exclude"`
+	// Address6 exclusion member. The structure of `excludeMember` block is documented below.
+	ExcludeMembers []Addrgrp6ExcludeMember `pulumi:"excludeMembers"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables *string `pulumi:"getAllTables"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members []Addrgrp6Member `pulumi:"members"`
 	// IPv6 address group name.
@@ -217,8 +241,14 @@ type Addrgrp6Args struct {
 	Comment pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+	Exclude pulumi.StringPtrInput
+	// Address6 exclusion member. The structure of `excludeMember` block is documented below.
+	ExcludeMembers Addrgrp6ExcludeMemberArrayInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	GetAllTables pulumi.StringPtrInput
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members Addrgrp6MemberArrayInput
 	// IPv6 address group name.
@@ -335,9 +365,24 @@ func (o Addrgrp6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Addrgrp6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+// Enable/disable address6 exclusion. Valid values: `enable`, `disable`.
+func (o Addrgrp6Output) Exclude() pulumi.StringOutput {
+	return o.ApplyT(func(v *Addrgrp6) pulumi.StringOutput { return v.Exclude }).(pulumi.StringOutput)
+}
+
+// Address6 exclusion member. The structure of `excludeMember` block is documented below.
+func (o Addrgrp6Output) ExcludeMembers() Addrgrp6ExcludeMemberArrayOutput {
+	return o.ApplyT(func(v *Addrgrp6) Addrgrp6ExcludeMemberArrayOutput { return v.ExcludeMembers }).(Addrgrp6ExcludeMemberArrayOutput)
+}
+
 // Security Fabric global object setting. Valid values: `enable`, `disable`.
 func (o Addrgrp6Output) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v *Addrgrp6) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+func (o Addrgrp6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Addrgrp6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 // Address objects contained within the group. The structure of `member` block is documented below.

@@ -22,6 +22,17 @@ __all__ = [
     'SettingsSourceInterface',
     'SettingsTunnelIpPool',
     'SettingsTunnelIpv6Pool',
+    'GetSettingsAuthenticationRuleResult',
+    'GetSettingsAuthenticationRuleGroupResult',
+    'GetSettingsAuthenticationRuleSourceAddress6Result',
+    'GetSettingsAuthenticationRuleSourceAddressResult',
+    'GetSettingsAuthenticationRuleSourceInterfaceResult',
+    'GetSettingsAuthenticationRuleUserResult',
+    'GetSettingsSourceAddress6Result',
+    'GetSettingsSourceAddressResult',
+    'GetSettingsSourceInterfaceResult',
+    'GetSettingsTunnelIpPoolResult',
+    'GetSettingsTunnelIpv6PoolResult',
 ]
 
 @pulumi.output_type
@@ -412,6 +423,347 @@ class SettingsTunnelIpv6Pool(dict):
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetSettingsAuthenticationRuleResult(dict):
+    def __init__(__self__, *,
+                 auth: str,
+                 cipher: str,
+                 client_cert: str,
+                 groups: Sequence['outputs.GetSettingsAuthenticationRuleGroupResult'],
+                 id: int,
+                 portal: str,
+                 realm: str,
+                 source_address6_negate: str,
+                 source_address6s: Sequence['outputs.GetSettingsAuthenticationRuleSourceAddress6Result'],
+                 source_address_negate: str,
+                 source_addresses: Sequence['outputs.GetSettingsAuthenticationRuleSourceAddressResult'],
+                 source_interfaces: Sequence['outputs.GetSettingsAuthenticationRuleSourceInterfaceResult'],
+                 user_peer: str,
+                 users: Sequence['outputs.GetSettingsAuthenticationRuleUserResult']):
+        """
+        :param str auth: SSL VPN authentication method restriction.
+        :param str cipher: SSL VPN cipher strength.
+        :param str client_cert: Enable/disable SSL VPN client certificate restrictive.
+        :param Sequence['GetSettingsAuthenticationRuleGroupArgs'] groups: User groups. The structure of `groups` block is documented below.
+        :param int id: ID (0 - 4294967295).
+        :param str portal: SSL VPN portal.
+        :param str realm: SSL VPN realm.
+        :param str source_address6_negate: Enable/disable negated source IPv6 address match.
+        :param Sequence['GetSettingsAuthenticationRuleSourceAddress6Args'] source_address6s: IPv6 source address of incoming traffic. The structure of `source_address6` block is documented below.
+        :param str source_address_negate: Enable/disable negated source address match.
+        :param Sequence['GetSettingsAuthenticationRuleSourceAddressArgs'] source_addresses: Source address of incoming traffic. The structure of `source_address` block is documented below.
+        :param Sequence['GetSettingsAuthenticationRuleSourceInterfaceArgs'] source_interfaces: SSL VPN source interface of incoming traffic. The structure of `source_interface` block is documented below.
+        :param str user_peer: Name of user peer.
+        :param Sequence['GetSettingsAuthenticationRuleUserArgs'] users: User name. The structure of `users` block is documented below.
+        """
+        pulumi.set(__self__, "auth", auth)
+        pulumi.set(__self__, "cipher", cipher)
+        pulumi.set(__self__, "client_cert", client_cert)
+        pulumi.set(__self__, "groups", groups)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "portal", portal)
+        pulumi.set(__self__, "realm", realm)
+        pulumi.set(__self__, "source_address6_negate", source_address6_negate)
+        pulumi.set(__self__, "source_address6s", source_address6s)
+        pulumi.set(__self__, "source_address_negate", source_address_negate)
+        pulumi.set(__self__, "source_addresses", source_addresses)
+        pulumi.set(__self__, "source_interfaces", source_interfaces)
+        pulumi.set(__self__, "user_peer", user_peer)
+        pulumi.set(__self__, "users", users)
+
+    @property
+    @pulumi.getter
+    def auth(self) -> str:
+        """
+        SSL VPN authentication method restriction.
+        """
+        return pulumi.get(self, "auth")
+
+    @property
+    @pulumi.getter
+    def cipher(self) -> str:
+        """
+        SSL VPN cipher strength.
+        """
+        return pulumi.get(self, "cipher")
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> str:
+        """
+        Enable/disable SSL VPN client certificate restrictive.
+        """
+        return pulumi.get(self, "client_cert")
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Sequence['outputs.GetSettingsAuthenticationRuleGroupResult']:
+        """
+        User groups. The structure of `groups` block is documented below.
+        """
+        return pulumi.get(self, "groups")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        ID (0 - 4294967295).
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def portal(self) -> str:
+        """
+        SSL VPN portal.
+        """
+        return pulumi.get(self, "portal")
+
+    @property
+    @pulumi.getter
+    def realm(self) -> str:
+        """
+        SSL VPN realm.
+        """
+        return pulumi.get(self, "realm")
+
+    @property
+    @pulumi.getter(name="sourceAddress6Negate")
+    def source_address6_negate(self) -> str:
+        """
+        Enable/disable negated source IPv6 address match.
+        """
+        return pulumi.get(self, "source_address6_negate")
+
+    @property
+    @pulumi.getter(name="sourceAddress6s")
+    def source_address6s(self) -> Sequence['outputs.GetSettingsAuthenticationRuleSourceAddress6Result']:
+        """
+        IPv6 source address of incoming traffic. The structure of `source_address6` block is documented below.
+        """
+        return pulumi.get(self, "source_address6s")
+
+    @property
+    @pulumi.getter(name="sourceAddressNegate")
+    def source_address_negate(self) -> str:
+        """
+        Enable/disable negated source address match.
+        """
+        return pulumi.get(self, "source_address_negate")
+
+    @property
+    @pulumi.getter(name="sourceAddresses")
+    def source_addresses(self) -> Sequence['outputs.GetSettingsAuthenticationRuleSourceAddressResult']:
+        """
+        Source address of incoming traffic. The structure of `source_address` block is documented below.
+        """
+        return pulumi.get(self, "source_addresses")
+
+    @property
+    @pulumi.getter(name="sourceInterfaces")
+    def source_interfaces(self) -> Sequence['outputs.GetSettingsAuthenticationRuleSourceInterfaceResult']:
+        """
+        SSL VPN source interface of incoming traffic. The structure of `source_interface` block is documented below.
+        """
+        return pulumi.get(self, "source_interfaces")
+
+    @property
+    @pulumi.getter(name="userPeer")
+    def user_peer(self) -> str:
+        """
+        Name of user peer.
+        """
+        return pulumi.get(self, "user_peer")
+
+    @property
+    @pulumi.getter
+    def users(self) -> Sequence['outputs.GetSettingsAuthenticationRuleUserResult']:
+        """
+        User name. The structure of `users` block is documented below.
+        """
+        return pulumi.get(self, "users")
+
+
+@pulumi.output_type
+class GetSettingsAuthenticationRuleGroupResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetSettingsAuthenticationRuleSourceAddress6Result(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetSettingsAuthenticationRuleSourceAddressResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetSettingsAuthenticationRuleSourceInterfaceResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetSettingsAuthenticationRuleUserResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetSettingsSourceAddress6Result(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetSettingsSourceAddressResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetSettingsSourceInterfaceResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetSettingsTunnelIpPoolResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetSettingsTunnelIpv6PoolResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
         """
         Group name.
         """

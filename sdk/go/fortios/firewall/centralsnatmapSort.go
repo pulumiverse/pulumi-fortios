@@ -15,12 +15,14 @@ import (
 type CentralsnatmapSort struct {
 	pulumi.CustomResourceState
 
-	Comment       pulumi.StringPtrOutput `pulumi:"comment"`
-	ForceRecreate pulumi.StringPtrOutput `pulumi:"forceRecreate"`
-	Sortby        pulumi.StringOutput    `pulumi:"sortby"`
-	Sortdirection pulumi.StringOutput    `pulumi:"sortdirection"`
-	Status        pulumi.StringPtrOutput `pulumi:"status"`
-	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment          pulumi.StringPtrOutput                       `pulumi:"comment"`
+	ForceRecreate    pulumi.StringOutput                          `pulumi:"forceRecreate"`
+	ManualOrders     pulumi.StringArrayOutput                     `pulumi:"manualOrders"`
+	Sortby           pulumi.StringOutput                          `pulumi:"sortby"`
+	Sortdirection    pulumi.StringOutput                          `pulumi:"sortdirection"`
+	StatePolicyLists CentralsnatmapSortStatePolicyListArrayOutput `pulumi:"statePolicyLists"`
+	Status           pulumi.StringOutput                          `pulumi:"status"`
+	Vdomparam        pulumi.StringPtrOutput                       `pulumi:"vdomparam"`
 }
 
 // NewCentralsnatmapSort registers a new resource with the given unique name, arguments, and options.
@@ -59,21 +61,25 @@ func GetCentralsnatmapSort(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CentralsnatmapSort resources.
 type centralsnatmapSortState struct {
-	Comment       *string `pulumi:"comment"`
-	ForceRecreate *string `pulumi:"forceRecreate"`
-	Sortby        *string `pulumi:"sortby"`
-	Sortdirection *string `pulumi:"sortdirection"`
-	Status        *string `pulumi:"status"`
-	Vdomparam     *string `pulumi:"vdomparam"`
+	Comment          *string                             `pulumi:"comment"`
+	ForceRecreate    *string                             `pulumi:"forceRecreate"`
+	ManualOrders     []string                            `pulumi:"manualOrders"`
+	Sortby           *string                             `pulumi:"sortby"`
+	Sortdirection    *string                             `pulumi:"sortdirection"`
+	StatePolicyLists []CentralsnatmapSortStatePolicyList `pulumi:"statePolicyLists"`
+	Status           *string                             `pulumi:"status"`
+	Vdomparam        *string                             `pulumi:"vdomparam"`
 }
 
 type CentralsnatmapSortState struct {
-	Comment       pulumi.StringPtrInput
-	ForceRecreate pulumi.StringPtrInput
-	Sortby        pulumi.StringPtrInput
-	Sortdirection pulumi.StringPtrInput
-	Status        pulumi.StringPtrInput
-	Vdomparam     pulumi.StringPtrInput
+	Comment          pulumi.StringPtrInput
+	ForceRecreate    pulumi.StringPtrInput
+	ManualOrders     pulumi.StringArrayInput
+	Sortby           pulumi.StringPtrInput
+	Sortdirection    pulumi.StringPtrInput
+	StatePolicyLists CentralsnatmapSortStatePolicyListArrayInput
+	Status           pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (CentralsnatmapSortState) ElementType() reflect.Type {
@@ -81,18 +87,20 @@ func (CentralsnatmapSortState) ElementType() reflect.Type {
 }
 
 type centralsnatmapSortArgs struct {
-	Comment       *string `pulumi:"comment"`
-	ForceRecreate *string `pulumi:"forceRecreate"`
-	Sortby        string  `pulumi:"sortby"`
-	Sortdirection string  `pulumi:"sortdirection"`
-	Status        *string `pulumi:"status"`
-	Vdomparam     *string `pulumi:"vdomparam"`
+	Comment       *string  `pulumi:"comment"`
+	ForceRecreate *string  `pulumi:"forceRecreate"`
+	ManualOrders  []string `pulumi:"manualOrders"`
+	Sortby        string   `pulumi:"sortby"`
+	Sortdirection string   `pulumi:"sortdirection"`
+	Status        *string  `pulumi:"status"`
+	Vdomparam     *string  `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a CentralsnatmapSort resource.
 type CentralsnatmapSortArgs struct {
 	Comment       pulumi.StringPtrInput
 	ForceRecreate pulumi.StringPtrInput
+	ManualOrders  pulumi.StringArrayInput
 	Sortby        pulumi.StringInput
 	Sortdirection pulumi.StringInput
 	Status        pulumi.StringPtrInput
@@ -190,8 +198,12 @@ func (o CentralsnatmapSortOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CentralsnatmapSort) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-func (o CentralsnatmapSortOutput) ForceRecreate() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CentralsnatmapSort) pulumi.StringPtrOutput { return v.ForceRecreate }).(pulumi.StringPtrOutput)
+func (o CentralsnatmapSortOutput) ForceRecreate() pulumi.StringOutput {
+	return o.ApplyT(func(v *CentralsnatmapSort) pulumi.StringOutput { return v.ForceRecreate }).(pulumi.StringOutput)
+}
+
+func (o CentralsnatmapSortOutput) ManualOrders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CentralsnatmapSort) pulumi.StringArrayOutput { return v.ManualOrders }).(pulumi.StringArrayOutput)
 }
 
 func (o CentralsnatmapSortOutput) Sortby() pulumi.StringOutput {
@@ -202,8 +214,12 @@ func (o CentralsnatmapSortOutput) Sortdirection() pulumi.StringOutput {
 	return o.ApplyT(func(v *CentralsnatmapSort) pulumi.StringOutput { return v.Sortdirection }).(pulumi.StringOutput)
 }
 
-func (o CentralsnatmapSortOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CentralsnatmapSort) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
+func (o CentralsnatmapSortOutput) StatePolicyLists() CentralsnatmapSortStatePolicyListArrayOutput {
+	return o.ApplyT(func(v *CentralsnatmapSort) CentralsnatmapSortStatePolicyListArrayOutput { return v.StatePolicyLists }).(CentralsnatmapSortStatePolicyListArrayOutput)
+}
+
+func (o CentralsnatmapSortOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *CentralsnatmapSort) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
 func (o CentralsnatmapSortOutput) Vdomparam() pulumi.StringPtrOutput {

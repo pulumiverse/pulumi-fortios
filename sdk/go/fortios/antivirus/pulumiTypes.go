@@ -26,7 +26,7 @@ type ProfileCifs struct {
 	ExternalBlocklist *string `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai *string `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr *string `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox *string `pulumi:"fortisandbox"`
@@ -62,7 +62,7 @@ type ProfileCifsArgs struct {
 	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
@@ -181,7 +181,7 @@ func (o ProfileCifsOutput) Fortiai() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileCifs) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileCifsOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileCifs) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
@@ -290,7 +290,7 @@ func (o ProfileCifsPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileCifsPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileCifs) *string {
 		if v == nil {
@@ -929,7 +929,7 @@ type ProfileFtp struct {
 	ExternalBlocklist *string `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai *string `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr *string `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox *string `pulumi:"fortisandbox"`
@@ -965,7 +965,7 @@ type ProfileFtpArgs struct {
 	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
@@ -1084,7 +1084,7 @@ func (o ProfileFtpOutput) Fortiai() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileFtp) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileFtpOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileFtp) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
@@ -1193,7 +1193,7 @@ func (o ProfileFtpPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileFtpPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileFtp) *string {
 		if v == nil {
@@ -1258,7 +1258,7 @@ type ProfileHttp struct {
 	ExternalBlocklist *string `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai *string `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr *string `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox *string `pulumi:"fortisandbox"`
@@ -1298,7 +1298,7 @@ type ProfileHttpArgs struct {
 	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
@@ -1424,7 +1424,7 @@ func (o ProfileHttpOutput) Fortiai() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileHttp) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileHttpOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileHttp) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
@@ -1548,7 +1548,7 @@ func (o ProfileHttpPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileHttpPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
@@ -1625,7 +1625,7 @@ type ProfileImap struct {
 	ExternalBlocklist *string `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai *string `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr *string `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox *string `pulumi:"fortisandbox"`
@@ -1665,7 +1665,7 @@ type ProfileImapArgs struct {
 	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
@@ -1794,7 +1794,7 @@ func (o ProfileImapOutput) Fortiai() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileImap) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileImapOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileImap) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
@@ -1923,7 +1923,7 @@ func (o ProfileImapPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileImapPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileImap) *string {
 		if v == nil {
@@ -2507,7 +2507,7 @@ type ProfileNntp struct {
 	ExternalBlocklist *string `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai *string `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr *string `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox *string `pulumi:"fortisandbox"`
@@ -2543,7 +2543,7 @@ type ProfileNntpArgs struct {
 	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
@@ -2662,7 +2662,7 @@ func (o ProfileNntpOutput) Fortiai() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileNntp) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileNntpOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileNntp) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
@@ -2771,7 +2771,7 @@ func (o ProfileNntpPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileNntpPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileNntp) *string {
 		if v == nil {
@@ -2994,7 +2994,7 @@ type ProfilePop3 struct {
 	ExternalBlocklist *string `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai *string `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr *string `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox *string `pulumi:"fortisandbox"`
@@ -3034,7 +3034,7 @@ type ProfilePop3Args struct {
 	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
@@ -3163,7 +3163,7 @@ func (o ProfilePop3Output) Fortiai() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfilePop3Output) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
@@ -3292,7 +3292,7 @@ func (o ProfilePop3PtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfilePop3PtrOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -3572,7 +3572,7 @@ type ProfileSmtp struct {
 	ExternalBlocklist *string `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai *string `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr *string `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox *string `pulumi:"fortisandbox"`
@@ -3612,7 +3612,7 @@ type ProfileSmtpArgs struct {
 	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
@@ -3741,7 +3741,7 @@ func (o ProfileSmtpOutput) Fortiai() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileSmtp) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileSmtpOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileSmtp) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
@@ -3870,7 +3870,7 @@ func (o ProfileSmtpPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileSmtpPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileSmtp) *string {
 		if v == nil {
@@ -3933,7 +3933,7 @@ type ProfileSsh struct {
 	ExternalBlocklist *string `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai *string `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr *string `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox *string `pulumi:"fortisandbox"`
@@ -3969,7 +3969,7 @@ type ProfileSshArgs struct {
 	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
 	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
-	// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
 	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
@@ -4088,7 +4088,7 @@ func (o ProfileSshOutput) Fortiai() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileSsh) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileSshOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileSsh) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
@@ -4197,7 +4197,7 @@ func (o ProfileSshPtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
+// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfileSshPtrOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileSsh) *string {
 		if v == nil {

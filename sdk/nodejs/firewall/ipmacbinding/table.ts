@@ -74,7 +74,7 @@ export class Table extends pulumi.CustomResource {
      */
     public readonly ip!: pulumi.Output<string>;
     /**
-     * MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+     * MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
      */
     public readonly mac!: pulumi.Output<string>;
     /**
@@ -139,7 +139,7 @@ export interface TableState {
      */
     ip?: pulumi.Input<string>;
     /**
-     * MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+     * MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
      */
     mac?: pulumi.Input<string>;
     /**
@@ -169,7 +169,7 @@ export interface TableArgs {
      */
     ip: pulumi.Input<string>;
     /**
-     * MAC address portion of the pair (format: xx:xx:xx:xx:xx:xx in hexidecimal).
+     * MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal).
      */
     mac?: pulumi.Input<string>;
     /**

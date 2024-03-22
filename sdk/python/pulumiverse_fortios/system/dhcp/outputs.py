@@ -12,19 +12,25 @@ from . import outputs
 
 __all__ = [
     'ServerExcludeRange',
+    'ServerExcludeRangeUciString',
     'ServerExcludeRangeVciString',
     'ServerIpRange',
+    'ServerIpRangeUciString',
     'ServerIpRangeVciString',
     'ServerOption',
+    'ServerOptionUciString',
     'ServerOptionVciString',
     'ServerReservedAddress',
     'ServerTftpServer',
     'ServerVciString',
     'GetServerExcludeRangeResult',
+    'GetServerExcludeRangeUciStringResult',
     'GetServerExcludeRangeVciStringResult',
     'GetServerIpRangeResult',
+    'GetServerIpRangeUciStringResult',
     'GetServerIpRangeVciStringResult',
     'GetServerOptionResult',
+    'GetServerOptionUciStringResult',
     'GetServerOptionVciStringResult',
     'GetServerReservedAddressResult',
     'GetServerTftpServerResult',
@@ -38,8 +44,14 @@ class ServerExcludeRange(dict):
         suggest = None
         if key == "endIp":
             suggest = "end_ip"
+        elif key == "leaseTime":
+            suggest = "lease_time"
         elif key == "startIp":
             suggest = "start_ip"
+        elif key == "uciMatch":
+            suggest = "uci_match"
+        elif key == "uciStrings":
+            suggest = "uci_strings"
         elif key == "vciMatch":
             suggest = "vci_match"
         elif key == "vciStrings":
@@ -59,13 +71,19 @@ class ServerExcludeRange(dict):
     def __init__(__self__, *,
                  end_ip: Optional[str] = None,
                  id: Optional[int] = None,
+                 lease_time: Optional[int] = None,
                  start_ip: Optional[str] = None,
+                 uci_match: Optional[str] = None,
+                 uci_strings: Optional[Sequence['outputs.ServerExcludeRangeUciString']] = None,
                  vci_match: Optional[str] = None,
                  vci_strings: Optional[Sequence['outputs.ServerExcludeRangeVciString']] = None):
         """
         :param str end_ip: End of IP range.
         :param int id: ID.
+        :param int lease_time: Lease time in seconds, 0 means default lease time.
         :param str start_ip: Start of IP range.
+        :param str uci_match: Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+        :param Sequence['ServerExcludeRangeUciStringArgs'] uci_strings: One or more UCI strings in quotes separated by spaces. The structure of `uci_string` block is documented below.
         :param str vci_match: Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
         :param Sequence['ServerExcludeRangeVciStringArgs'] vci_strings: One or more VCI strings in quotes separated by spaces. The structure of `vci_string` block is documented below.
         """
@@ -73,8 +91,14 @@ class ServerExcludeRange(dict):
             pulumi.set(__self__, "end_ip", end_ip)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if lease_time is not None:
+            pulumi.set(__self__, "lease_time", lease_time)
         if start_ip is not None:
             pulumi.set(__self__, "start_ip", start_ip)
+        if uci_match is not None:
+            pulumi.set(__self__, "uci_match", uci_match)
+        if uci_strings is not None:
+            pulumi.set(__self__, "uci_strings", uci_strings)
         if vci_match is not None:
             pulumi.set(__self__, "vci_match", vci_match)
         if vci_strings is not None:
@@ -97,12 +121,36 @@ class ServerExcludeRange(dict):
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="leaseTime")
+    def lease_time(self) -> Optional[int]:
+        """
+        Lease time in seconds, 0 means default lease time.
+        """
+        return pulumi.get(self, "lease_time")
+
+    @property
     @pulumi.getter(name="startIp")
     def start_ip(self) -> Optional[str]:
         """
         Start of IP range.
         """
         return pulumi.get(self, "start_ip")
+
+    @property
+    @pulumi.getter(name="uciMatch")
+    def uci_match(self) -> Optional[str]:
+        """
+        Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "uci_match")
+
+    @property
+    @pulumi.getter(name="uciStrings")
+    def uci_strings(self) -> Optional[Sequence['outputs.ServerExcludeRangeUciString']]:
+        """
+        One or more UCI strings in quotes separated by spaces. The structure of `uci_string` block is documented below.
+        """
+        return pulumi.get(self, "uci_strings")
 
     @property
     @pulumi.getter(name="vciMatch")
@@ -119,6 +167,42 @@ class ServerExcludeRange(dict):
         One or more VCI strings in quotes separated by spaces. The structure of `vci_string` block is documented below.
         """
         return pulumi.get(self, "vci_strings")
+
+
+@pulumi.output_type
+class ServerExcludeRangeUciString(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "uciString":
+            suggest = "uci_string"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServerExcludeRangeUciString. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServerExcludeRangeUciString.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServerExcludeRangeUciString.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 uci_string: Optional[str] = None):
+        """
+        :param str uci_string: UCI strings.
+        """
+        if uci_string is not None:
+            pulumi.set(__self__, "uci_string", uci_string)
+
+    @property
+    @pulumi.getter(name="uciString")
+    def uci_string(self) -> Optional[str]:
+        """
+        UCI strings.
+        """
+        return pulumi.get(self, "uci_string")
 
 
 @pulumi.output_type
@@ -164,8 +248,14 @@ class ServerIpRange(dict):
         suggest = None
         if key == "endIp":
             suggest = "end_ip"
+        elif key == "leaseTime":
+            suggest = "lease_time"
         elif key == "startIp":
             suggest = "start_ip"
+        elif key == "uciMatch":
+            suggest = "uci_match"
+        elif key == "uciStrings":
+            suggest = "uci_strings"
         elif key == "vciMatch":
             suggest = "vci_match"
         elif key == "vciStrings":
@@ -185,13 +275,19 @@ class ServerIpRange(dict):
     def __init__(__self__, *,
                  end_ip: Optional[str] = None,
                  id: Optional[int] = None,
+                 lease_time: Optional[int] = None,
                  start_ip: Optional[str] = None,
+                 uci_match: Optional[str] = None,
+                 uci_strings: Optional[Sequence['outputs.ServerIpRangeUciString']] = None,
                  vci_match: Optional[str] = None,
                  vci_strings: Optional[Sequence['outputs.ServerIpRangeVciString']] = None):
         """
         :param str end_ip: End of IP range.
         :param int id: ID.
+        :param int lease_time: Lease time in seconds, 0 means default lease time.
         :param str start_ip: Start of IP range.
+        :param str uci_match: Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+        :param Sequence['ServerIpRangeUciStringArgs'] uci_strings: One or more UCI strings in quotes separated by spaces. The structure of `uci_string` block is documented below.
         :param str vci_match: Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
         :param Sequence['ServerIpRangeVciStringArgs'] vci_strings: One or more VCI strings in quotes separated by spaces. The structure of `vci_string` block is documented below.
         """
@@ -199,8 +295,14 @@ class ServerIpRange(dict):
             pulumi.set(__self__, "end_ip", end_ip)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if lease_time is not None:
+            pulumi.set(__self__, "lease_time", lease_time)
         if start_ip is not None:
             pulumi.set(__self__, "start_ip", start_ip)
+        if uci_match is not None:
+            pulumi.set(__self__, "uci_match", uci_match)
+        if uci_strings is not None:
+            pulumi.set(__self__, "uci_strings", uci_strings)
         if vci_match is not None:
             pulumi.set(__self__, "vci_match", vci_match)
         if vci_strings is not None:
@@ -223,12 +325,36 @@ class ServerIpRange(dict):
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="leaseTime")
+    def lease_time(self) -> Optional[int]:
+        """
+        Lease time in seconds, 0 means default lease time.
+        """
+        return pulumi.get(self, "lease_time")
+
+    @property
     @pulumi.getter(name="startIp")
     def start_ip(self) -> Optional[str]:
         """
         Start of IP range.
         """
         return pulumi.get(self, "start_ip")
+
+    @property
+    @pulumi.getter(name="uciMatch")
+    def uci_match(self) -> Optional[str]:
+        """
+        Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "uci_match")
+
+    @property
+    @pulumi.getter(name="uciStrings")
+    def uci_strings(self) -> Optional[Sequence['outputs.ServerIpRangeUciString']]:
+        """
+        One or more UCI strings in quotes separated by spaces. The structure of `uci_string` block is documented below.
+        """
+        return pulumi.get(self, "uci_strings")
 
     @property
     @pulumi.getter(name="vciMatch")
@@ -245,6 +371,42 @@ class ServerIpRange(dict):
         One or more VCI strings in quotes separated by spaces. The structure of `vci_string` block is documented below.
         """
         return pulumi.get(self, "vci_strings")
+
+
+@pulumi.output_type
+class ServerIpRangeUciString(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "uciString":
+            suggest = "uci_string"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServerIpRangeUciString. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServerIpRangeUciString.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServerIpRangeUciString.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 uci_string: Optional[str] = None):
+        """
+        :param str uci_string: UCI strings.
+        """
+        if uci_string is not None:
+            pulumi.set(__self__, "uci_string", uci_string)
+
+    @property
+    @pulumi.getter(name="uciString")
+    def uci_string(self) -> Optional[str]:
+        """
+        UCI strings.
+        """
+        return pulumi.get(self, "uci_string")
 
 
 @pulumi.output_type
@@ -288,7 +450,11 @@ class ServerOption(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "vciMatch":
+        if key == "uciMatch":
+            suggest = "uci_match"
+        elif key == "uciStrings":
+            suggest = "uci_strings"
+        elif key == "vciMatch":
             suggest = "vci_match"
         elif key == "vciStrings":
             suggest = "vci_strings"
@@ -309,6 +475,8 @@ class ServerOption(dict):
                  id: Optional[int] = None,
                  ip: Optional[str] = None,
                  type: Optional[str] = None,
+                 uci_match: Optional[str] = None,
+                 uci_strings: Optional[Sequence['outputs.ServerOptionUciString']] = None,
                  value: Optional[str] = None,
                  vci_match: Optional[str] = None,
                  vci_strings: Optional[Sequence['outputs.ServerOptionVciString']] = None):
@@ -317,6 +485,8 @@ class ServerOption(dict):
         :param int id: ID.
         :param str ip: DHCP option IPs.
         :param str type: DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
+        :param str uci_match: Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this option. Valid values: `disable`, `enable`.
+        :param Sequence['ServerOptionUciStringArgs'] uci_strings: One or more UCI strings in quotes separated by spaces. The structure of `uci_string` block is documented below.
         :param str value: DHCP option value.
         :param str vci_match: Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: `disable`, `enable`.
         :param Sequence['ServerOptionVciStringArgs'] vci_strings: One or more VCI strings in quotes separated by spaces. The structure of `vci_string` block is documented below.
@@ -329,6 +499,10 @@ class ServerOption(dict):
             pulumi.set(__self__, "ip", ip)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if uci_match is not None:
+            pulumi.set(__self__, "uci_match", uci_match)
+        if uci_strings is not None:
+            pulumi.set(__self__, "uci_strings", uci_strings)
         if value is not None:
             pulumi.set(__self__, "value", value)
         if vci_match is not None:
@@ -369,6 +543,22 @@ class ServerOption(dict):
         return pulumi.get(self, "type")
 
     @property
+    @pulumi.getter(name="uciMatch")
+    def uci_match(self) -> Optional[str]:
+        """
+        Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this option. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "uci_match")
+
+    @property
+    @pulumi.getter(name="uciStrings")
+    def uci_strings(self) -> Optional[Sequence['outputs.ServerOptionUciString']]:
+        """
+        One or more UCI strings in quotes separated by spaces. The structure of `uci_string` block is documented below.
+        """
+        return pulumi.get(self, "uci_strings")
+
+    @property
     @pulumi.getter
     def value(self) -> Optional[str]:
         """
@@ -391,6 +581,42 @@ class ServerOption(dict):
         One or more VCI strings in quotes separated by spaces. The structure of `vci_string` block is documented below.
         """
         return pulumi.get(self, "vci_strings")
+
+
+@pulumi.output_type
+class ServerOptionUciString(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "uciString":
+            suggest = "uci_string"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServerOptionUciString. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServerOptionUciString.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServerOptionUciString.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 uci_string: Optional[str] = None):
+        """
+        :param str uci_string: UCI strings.
+        """
+        if uci_string is not None:
+            pulumi.set(__self__, "uci_string", uci_string)
+
+    @property
+    @pulumi.getter(name="uciString")
+    def uci_string(self) -> Optional[str]:
+        """
+        UCI strings.
+        """
+        return pulumi.get(self, "uci_string")
 
 
 @pulumi.output_type
@@ -656,19 +882,28 @@ class GetServerExcludeRangeResult(dict):
     def __init__(__self__, *,
                  end_ip: str,
                  id: int,
+                 lease_time: int,
                  start_ip: str,
+                 uci_match: str,
+                 uci_strings: Sequence['outputs.GetServerExcludeRangeUciStringResult'],
                  vci_match: str,
                  vci_strings: Sequence['outputs.GetServerExcludeRangeVciStringResult']):
         """
         :param str end_ip: End of IP range.
         :param int id: ID.
+        :param int lease_time: Lease time in seconds, 0 means default lease time.
         :param str start_ip: Start of IP range.
+        :param str uci_match: Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+        :param Sequence['GetServerExcludeRangeUciStringArgs'] uci_strings: UCI strings.
         :param str vci_match: Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
         :param Sequence['GetServerExcludeRangeVciStringArgs'] vci_strings: VCI strings.
         """
         pulumi.set(__self__, "end_ip", end_ip)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lease_time", lease_time)
         pulumi.set(__self__, "start_ip", start_ip)
+        pulumi.set(__self__, "uci_match", uci_match)
+        pulumi.set(__self__, "uci_strings", uci_strings)
         pulumi.set(__self__, "vci_match", vci_match)
         pulumi.set(__self__, "vci_strings", vci_strings)
 
@@ -689,12 +924,36 @@ class GetServerExcludeRangeResult(dict):
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="leaseTime")
+    def lease_time(self) -> int:
+        """
+        Lease time in seconds, 0 means default lease time.
+        """
+        return pulumi.get(self, "lease_time")
+
+    @property
     @pulumi.getter(name="startIp")
     def start_ip(self) -> str:
         """
         Start of IP range.
         """
         return pulumi.get(self, "start_ip")
+
+    @property
+    @pulumi.getter(name="uciMatch")
+    def uci_match(self) -> str:
+        """
+        Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+        """
+        return pulumi.get(self, "uci_match")
+
+    @property
+    @pulumi.getter(name="uciStrings")
+    def uci_strings(self) -> Sequence['outputs.GetServerExcludeRangeUciStringResult']:
+        """
+        UCI strings.
+        """
+        return pulumi.get(self, "uci_strings")
 
     @property
     @pulumi.getter(name="vciMatch")
@@ -711,6 +970,24 @@ class GetServerExcludeRangeResult(dict):
         VCI strings.
         """
         return pulumi.get(self, "vci_strings")
+
+
+@pulumi.output_type
+class GetServerExcludeRangeUciStringResult(dict):
+    def __init__(__self__, *,
+                 uci_string: str):
+        """
+        :param str uci_string: UCI strings.
+        """
+        pulumi.set(__self__, "uci_string", uci_string)
+
+    @property
+    @pulumi.getter(name="uciString")
+    def uci_string(self) -> str:
+        """
+        UCI strings.
+        """
+        return pulumi.get(self, "uci_string")
 
 
 @pulumi.output_type
@@ -736,19 +1013,28 @@ class GetServerIpRangeResult(dict):
     def __init__(__self__, *,
                  end_ip: str,
                  id: int,
+                 lease_time: int,
                  start_ip: str,
+                 uci_match: str,
+                 uci_strings: Sequence['outputs.GetServerIpRangeUciStringResult'],
                  vci_match: str,
                  vci_strings: Sequence['outputs.GetServerIpRangeVciStringResult']):
         """
         :param str end_ip: End of IP range.
         :param int id: ID.
+        :param int lease_time: Lease time in seconds, 0 means default lease time.
         :param str start_ip: Start of IP range.
+        :param str uci_match: Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+        :param Sequence['GetServerIpRangeUciStringArgs'] uci_strings: UCI strings.
         :param str vci_match: Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
         :param Sequence['GetServerIpRangeVciStringArgs'] vci_strings: VCI strings.
         """
         pulumi.set(__self__, "end_ip", end_ip)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lease_time", lease_time)
         pulumi.set(__self__, "start_ip", start_ip)
+        pulumi.set(__self__, "uci_match", uci_match)
+        pulumi.set(__self__, "uci_strings", uci_strings)
         pulumi.set(__self__, "vci_match", vci_match)
         pulumi.set(__self__, "vci_strings", vci_strings)
 
@@ -769,12 +1055,36 @@ class GetServerIpRangeResult(dict):
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="leaseTime")
+    def lease_time(self) -> int:
+        """
+        Lease time in seconds, 0 means default lease time.
+        """
+        return pulumi.get(self, "lease_time")
+
+    @property
     @pulumi.getter(name="startIp")
     def start_ip(self) -> str:
         """
         Start of IP range.
         """
         return pulumi.get(self, "start_ip")
+
+    @property
+    @pulumi.getter(name="uciMatch")
+    def uci_match(self) -> str:
+        """
+        Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+        """
+        return pulumi.get(self, "uci_match")
+
+    @property
+    @pulumi.getter(name="uciStrings")
+    def uci_strings(self) -> Sequence['outputs.GetServerIpRangeUciStringResult']:
+        """
+        UCI strings.
+        """
+        return pulumi.get(self, "uci_strings")
 
     @property
     @pulumi.getter(name="vciMatch")
@@ -791,6 +1101,24 @@ class GetServerIpRangeResult(dict):
         VCI strings.
         """
         return pulumi.get(self, "vci_strings")
+
+
+@pulumi.output_type
+class GetServerIpRangeUciStringResult(dict):
+    def __init__(__self__, *,
+                 uci_string: str):
+        """
+        :param str uci_string: UCI strings.
+        """
+        pulumi.set(__self__, "uci_string", uci_string)
+
+    @property
+    @pulumi.getter(name="uciString")
+    def uci_string(self) -> str:
+        """
+        UCI strings.
+        """
+        return pulumi.get(self, "uci_string")
 
 
 @pulumi.output_type
@@ -818,6 +1146,8 @@ class GetServerOptionResult(dict):
                  id: int,
                  ip: str,
                  type: str,
+                 uci_match: str,
+                 uci_strings: Sequence['outputs.GetServerOptionUciStringResult'],
                  value: str,
                  vci_match: str,
                  vci_strings: Sequence['outputs.GetServerOptionVciStringResult']):
@@ -826,6 +1156,8 @@ class GetServerOptionResult(dict):
         :param int id: ID.
         :param str ip: IP address to be reserved for the MAC address.
         :param str type: DHCP reserved-address type.
+        :param str uci_match: Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+        :param Sequence['GetServerOptionUciStringArgs'] uci_strings: UCI strings.
         :param str value: DHCP option value.
         :param str vci_match: Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range.
         :param Sequence['GetServerOptionVciStringArgs'] vci_strings: VCI strings.
@@ -834,6 +1166,8 @@ class GetServerOptionResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip", ip)
         pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "uci_match", uci_match)
+        pulumi.set(__self__, "uci_strings", uci_strings)
         pulumi.set(__self__, "value", value)
         pulumi.set(__self__, "vci_match", vci_match)
         pulumi.set(__self__, "vci_strings", vci_strings)
@@ -871,6 +1205,22 @@ class GetServerOptionResult(dict):
         return pulumi.get(self, "type")
 
     @property
+    @pulumi.getter(name="uciMatch")
+    def uci_match(self) -> str:
+        """
+        Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range.
+        """
+        return pulumi.get(self, "uci_match")
+
+    @property
+    @pulumi.getter(name="uciStrings")
+    def uci_strings(self) -> Sequence['outputs.GetServerOptionUciStringResult']:
+        """
+        UCI strings.
+        """
+        return pulumi.get(self, "uci_strings")
+
+    @property
     @pulumi.getter
     def value(self) -> str:
         """
@@ -893,6 +1243,24 @@ class GetServerOptionResult(dict):
         VCI strings.
         """
         return pulumi.get(self, "vci_strings")
+
+
+@pulumi.output_type
+class GetServerOptionUciStringResult(dict):
+    def __init__(__self__, *,
+                 uci_string: str):
+        """
+        :param str uci_string: UCI strings.
+        """
+        pulumi.set(__self__, "uci_string", uci_string)
+
+    @property
+    @pulumi.getter(name="uciString")
+    def uci_string(self) -> str:
+        """
+        UCI strings.
+        """
+        return pulumi.get(self, "uci_string")
 
 
 @pulumi.output_type
