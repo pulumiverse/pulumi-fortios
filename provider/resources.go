@@ -66,6 +66,7 @@ var module_overrides = map[string]string{
 	"switchcontrollerptp":            "switchcontroller/ptp",
 	"switchcontrollerqos":            "switchcontroller/qos",
 	"switchcontrollersecuritypolicy": "switchcontroller/securitypolicy",
+	"switchcontrolleracl":            "switchcontroller/acl",
 	"routerbgp":                      "router/bgp",
 	"routerospf":                     "router/ospf",
 	"routerospf6":                    "router/ospf6",
