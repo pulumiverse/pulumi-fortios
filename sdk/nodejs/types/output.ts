@@ -22533,6 +22533,50 @@ export namespace switchcontroller {
         vlanName: string;
     }
 
+    export namespace acl {
+        export interface GroupIngress {
+            /**
+             * ACL ID.
+             */
+            id: number;
+        }
+
+        export interface IngressAction {
+            /**
+             * Enable/disable count. Valid values: `enable`, `disable`.
+             */
+            count: string;
+            /**
+             * Enable/disable drop. Valid values: `enable`, `disable`.
+             */
+            drop: string;
+        }
+
+        export interface IngressClassifier {
+            /**
+             * Destination IP address to be matched.
+             */
+            dstIpPrefix: string;
+            /**
+             * Destination MAC address to be matched.
+             */
+            dstMac: string;
+            /**
+             * Source IP address to be matched.
+             */
+            srcIpPrefix: string;
+            /**
+             * Source MAC address to be matched.
+             */
+            srcMac: string;
+            /**
+             * VLAN ID to be matched.
+             */
+            vlan: number;
+        }
+
+    }
+
     export namespace autoconfig {
         export interface CustomSwitchBinding {
             /**
@@ -22621,50 +22665,6 @@ export namespace switchcontroller {
         }
 
     }
-}
-
-export namespace switchcontrolleracl {
-    export interface GroupIngress {
-        /**
-         * ACL ID.
-         */
-        id: number;
-    }
-
-    export interface IngressAction {
-        /**
-         * Enable/disable count. Valid values: `enable`, `disable`.
-         */
-        count: string;
-        /**
-         * Enable/disable drop. Valid values: `enable`, `disable`.
-         */
-        drop: string;
-    }
-
-    export interface IngressClassifier {
-        /**
-         * Destination IP address to be matched.
-         */
-        dstIpPrefix: string;
-        /**
-         * Destination MAC address to be matched.
-         */
-        dstMac: string;
-        /**
-         * Source IP address to be matched.
-         */
-        srcIpPrefix: string;
-        /**
-         * Source MAC address to be matched.
-         */
-        srcMac: string;
-        /**
-         * VLAN ID to be matched.
-         */
-        vlan: number;
-    }
-
 }
 
 export namespace system {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Fortios.Switchcontrolleracl.Outputs
+namespace Pulumiverse.Fortios.Switchcontroller.Acl.Outputs
 {
 
     [OutputType]

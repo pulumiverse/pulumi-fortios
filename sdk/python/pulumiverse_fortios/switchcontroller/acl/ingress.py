@@ -7,7 +7,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities
+from ... import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -241,7 +241,7 @@ class Ingress(pulumi.CustomResource):
         SwitchControllerAcl Ingress can be imported using any of these accepted formats:
 
         ```sh
-        $ pulumi import fortios:switchcontrolleracl/ingress:Ingress labelname {{fosid}}
+        $ pulumi import fortios:switchcontroller/acl/ingress:Ingress labelname {{fosid}}
         ```
 
         If you do not want to import arguments of block:
@@ -249,7 +249,7 @@ class Ingress(pulumi.CustomResource):
         $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-        $ pulumi import fortios:switchcontrolleracl/ingress:Ingress labelname {{fosid}}
+        $ pulumi import fortios:switchcontroller/acl/ingress:Ingress labelname {{fosid}}
         ```
 
         $ unset "FORTIOS_IMPORT_TABLE"
@@ -277,7 +277,7 @@ class Ingress(pulumi.CustomResource):
         SwitchControllerAcl Ingress can be imported using any of these accepted formats:
 
         ```sh
-        $ pulumi import fortios:switchcontrolleracl/ingress:Ingress labelname {{fosid}}
+        $ pulumi import fortios:switchcontroller/acl/ingress:Ingress labelname {{fosid}}
         ```
 
         If you do not want to import arguments of block:
@@ -285,7 +285,7 @@ class Ingress(pulumi.CustomResource):
         $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-        $ pulumi import fortios:switchcontrolleracl/ingress:Ingress labelname {{fosid}}
+        $ pulumi import fortios:switchcontroller/acl/ingress:Ingress labelname {{fosid}}
         ```
 
         $ unset "FORTIOS_IMPORT_TABLE"
@@ -327,7 +327,7 @@ class Ingress(pulumi.CustomResource):
             __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["vdomparam"] = vdomparam
         super(Ingress, __self__).__init__(
-            'fortios:switchcontrolleracl/ingress:Ingress',
+            'fortios:switchcontroller/acl/ingress:Ingress',
             resource_name,
             __props__,
             opts)

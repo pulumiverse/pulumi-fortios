@@ -43,7 +43,6 @@ import * as report from "./report";
 import * as router from "./router";
 import * as rule from "./rule";
 import * as switchcontroller from "./switchcontroller";
-import * as switchcontrolleracl from "./switchcontrolleracl";
 import * as system from "./system";
 import * as types from "./types";
 import * as user from "./user";
@@ -87,7 +86,6 @@ export {
     router,
     rule,
     switchcontroller,
-    switchcontrolleracl,
     system,
     types,
     user,

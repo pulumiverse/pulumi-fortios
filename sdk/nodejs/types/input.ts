@@ -16530,6 +16530,49 @@ export namespace switchcontroller {
          */
         vlanName?: pulumi.Input<string>;
     }
+    export namespace acl {
+        export interface GroupIngress {
+            /**
+             * ACL ID.
+             */
+            id?: pulumi.Input<number>;
+        }
+
+        export interface IngressAction {
+            /**
+             * Enable/disable count. Valid values: `enable`, `disable`.
+             */
+            count?: pulumi.Input<string>;
+            /**
+             * Enable/disable drop. Valid values: `enable`, `disable`.
+             */
+            drop?: pulumi.Input<string>;
+        }
+
+        export interface IngressClassifier {
+            /**
+             * Destination IP address to be matched.
+             */
+            dstIpPrefix?: pulumi.Input<string>;
+            /**
+             * Destination MAC address to be matched.
+             */
+            dstMac?: pulumi.Input<string>;
+            /**
+             * Source IP address to be matched.
+             */
+            srcIpPrefix?: pulumi.Input<string>;
+            /**
+             * Source MAC address to be matched.
+             */
+            srcMac?: pulumi.Input<string>;
+            /**
+             * VLAN ID to be matched.
+             */
+            vlan?: pulumi.Input<number>;
+        }
+    }
+
     export namespace autoconfig {
         export interface CustomSwitchBinding {
             /**
@@ -16614,49 +16657,6 @@ export namespace switchcontroller {
              */
             name?: pulumi.Input<string>;
         }
-    }
-}
-
-export namespace switchcontrolleracl {
-    export interface GroupIngress {
-        /**
-         * ACL ID.
-         */
-        id?: pulumi.Input<number>;
-    }
-
-    export interface IngressAction {
-        /**
-         * Enable/disable count. Valid values: `enable`, `disable`.
-         */
-        count?: pulumi.Input<string>;
-        /**
-         * Enable/disable drop. Valid values: `enable`, `disable`.
-         */
-        drop?: pulumi.Input<string>;
-    }
-
-    export interface IngressClassifier {
-        /**
-         * Destination IP address to be matched.
-         */
-        dstIpPrefix?: pulumi.Input<string>;
-        /**
-         * Destination MAC address to be matched.
-         */
-        dstMac?: pulumi.Input<string>;
-        /**
-         * Source IP address to be matched.
-         */
-        srcIpPrefix?: pulumi.Input<string>;
-        /**
-         * Source MAC address to be matched.
-         */
-        srcMac?: pulumi.Input<string>;
-        /**
-         * VLAN ID to be matched.
-         */
-        vlan?: pulumi.Input<number>;
     }
 }
 

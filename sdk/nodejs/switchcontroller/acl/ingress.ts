@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
-import * as utilities from "../utilities";
+import * as inputs from "../../types/input";
+import * as outputs from "../../types/output";
+import * as utilities from "../../utilities";
 
 /**
  * Configure ingress ACL policies to be applied on managed FortiSwitch ports. Applies to FortiOS Version `>= 7.4.0`.
@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * SwitchControllerAcl Ingress can be imported using any of these accepted formats:
  *
  * ```sh
- * $ pulumi import fortios:switchcontrolleracl/ingress:Ingress labelname {{fosid}}
+ * $ pulumi import fortios:switchcontroller/acl/ingress:Ingress labelname {{fosid}}
  * ```
  *
  * If you do not want to import arguments of block:
@@ -22,7 +22,7 @@ import * as utilities from "../utilities";
  * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- * $ pulumi import fortios:switchcontrolleracl/ingress:Ingress labelname {{fosid}}
+ * $ pulumi import fortios:switchcontroller/acl/ingress:Ingress labelname {{fosid}}
  * ```
  *
  * $ unset "FORTIOS_IMPORT_TABLE"
@@ -42,7 +42,7 @@ export class Ingress extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'fortios:switchcontrolleracl/ingress:Ingress';
+    public static readonly __pulumiType = 'fortios:switchcontroller/acl/ingress:Ingress';
 
     /**
      * Returns true if the given object is an instance of Ingress.  This is designed to work even
@@ -58,11 +58,11 @@ export class Ingress extends pulumi.CustomResource {
     /**
      * ACL actions. The structure of `action` block is documented below.
      */
-    public readonly action!: pulumi.Output<outputs.switchcontrolleracl.IngressAction>;
+    public readonly action!: pulumi.Output<outputs.switchcontroller.acl.IngressAction>;
     /**
      * ACL classifiers. The structure of `classifier` block is documented below.
      */
-    public readonly classifier!: pulumi.Output<outputs.switchcontrolleracl.IngressClassifier>;
+    public readonly classifier!: pulumi.Output<outputs.switchcontroller.acl.IngressClassifier>;
     /**
      * Description for the ACL policy.
      */
@@ -120,11 +120,11 @@ export interface IngressState {
     /**
      * ACL actions. The structure of `action` block is documented below.
      */
-    action?: pulumi.Input<inputs.switchcontrolleracl.IngressAction>;
+    action?: pulumi.Input<inputs.switchcontroller.acl.IngressAction>;
     /**
      * ACL classifiers. The structure of `classifier` block is documented below.
      */
-    classifier?: pulumi.Input<inputs.switchcontrolleracl.IngressClassifier>;
+    classifier?: pulumi.Input<inputs.switchcontroller.acl.IngressClassifier>;
     /**
      * Description for the ACL policy.
      */
@@ -150,11 +150,11 @@ export interface IngressArgs {
     /**
      * ACL actions. The structure of `action` block is documented below.
      */
-    action?: pulumi.Input<inputs.switchcontrolleracl.IngressAction>;
+    action?: pulumi.Input<inputs.switchcontroller.acl.IngressAction>;
     /**
      * ACL classifiers. The structure of `classifier` block is documented below.
      */
-    classifier?: pulumi.Input<inputs.switchcontrolleracl.IngressClassifier>;
+    classifier?: pulumi.Input<inputs.switchcontroller.acl.IngressClassifier>;
     /**
      * Description for the ACL policy.
      */

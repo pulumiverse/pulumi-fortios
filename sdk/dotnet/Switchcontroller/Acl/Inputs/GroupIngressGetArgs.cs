@@ -8,21 +8,20 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Fortios.Switchcontrolleracl.Outputs
+namespace Pulumiverse.Fortios.Switchcontroller.Acl.Inputs
 {
 
-    [OutputType]
-    public sealed class GroupIngress
+    public sealed class GroupIngressGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ACL ID.
         /// </summary>
-        public readonly int? Id;
+        [Input("id")]
+        public Input<int>? Id { get; set; }
 
-        [OutputConstructor]
-        private GroupIngress(int? id)
+        public GroupIngressGetArgs()
         {
-            Id = id;
         }
+        public static new GroupIngressGetArgs Empty => new GroupIngressGetArgs();
     }
 }

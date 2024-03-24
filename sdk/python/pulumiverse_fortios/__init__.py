@@ -71,8 +71,6 @@ if typing.TYPE_CHECKING:
     rule = __rule
     import pulumiverse_fortios.switchcontroller as __switchcontroller
     switchcontroller = __switchcontroller
-    import pulumiverse_fortios.switchcontrolleracl as __switchcontrolleracl
-    switchcontrolleracl = __switchcontrolleracl
     import pulumiverse_fortios.system as __system
     system = __system
     import pulumiverse_fortios.user as __user
@@ -123,7 +121,6 @@ else:
     router = _utilities.lazy_import('pulumiverse_fortios.router')
     rule = _utilities.lazy_import('pulumiverse_fortios.rule')
     switchcontroller = _utilities.lazy_import('pulumiverse_fortios.switchcontroller')
-    switchcontrolleracl = _utilities.lazy_import('pulumiverse_fortios.switchcontrolleracl')
     system = _utilities.lazy_import('pulumiverse_fortios.system')
     user = _utilities.lazy_import('pulumiverse_fortios.user')
     virtualpatch = _utilities.lazy_import('pulumiverse_fortios.virtualpatch')
@@ -2899,6 +2896,22 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "switchcontroller/acl/group",
+  "fqn": "pulumiverse_fortios.switchcontroller.acl",
+  "classes": {
+   "fortios:switchcontroller/acl/group:Group": "Group"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "switchcontroller/acl/ingress",
+  "fqn": "pulumiverse_fortios.switchcontroller.acl",
+  "classes": {
+   "fortios:switchcontroller/acl/ingress:Ingress": "Ingress"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "switchcontroller/autoconfig/custom",
   "fqn": "pulumiverse_fortios.switchcontroller.autoconfig",
   "classes": {
@@ -3319,22 +3332,6 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.switchcontroller",
   "classes": {
    "fortios:switchcontroller/vlanpolicy:Vlanpolicy": "Vlanpolicy"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "switchcontrolleracl/group",
-  "fqn": "pulumiverse_fortios.switchcontrolleracl",
-  "classes": {
-   "fortios:switchcontrolleracl/group:Group": "Group"
-  }
- },
- {
-  "pkg": "fortios",
-  "mod": "switchcontrolleracl/ingress",
-  "fqn": "pulumiverse_fortios.switchcontrolleracl",
-  "classes": {
-   "fortios:switchcontrolleracl/ingress:Ingress": "Ingress"
   }
  },
  {

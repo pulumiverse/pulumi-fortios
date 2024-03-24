@@ -47,6 +47,8 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import pulumiverse_fortios.switchcontroller.acl as __acl
+    acl = __acl
     import pulumiverse_fortios.switchcontroller.autoconfig as __autoconfig
     autoconfig = __autoconfig
     import pulumiverse_fortios.switchcontroller.initialconfig as __initialconfig
@@ -58,6 +60,7 @@ if typing.TYPE_CHECKING:
     import pulumiverse_fortios.switchcontroller.securitypolicy as __securitypolicy
     securitypolicy = __securitypolicy
 else:
+    acl = _utilities.lazy_import('pulumiverse_fortios.switchcontroller.acl')
     autoconfig = _utilities.lazy_import('pulumiverse_fortios.switchcontroller.autoconfig')
     initialconfig = _utilities.lazy_import('pulumiverse_fortios.switchcontroller.initialconfig')
     ptp = _utilities.lazy_import('pulumiverse_fortios.switchcontroller.ptp')

@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "../utilities";
+import * as utilities from "../../utilities";
 
 // Export members:
 export { GroupArgs, GroupState } from "./group";
@@ -20,14 +20,14 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "fortios:switchcontrolleracl/group:Group":
+            case "fortios:switchcontroller/acl/group:Group":
                 return new Group(name, <any>undefined, { urn })
-            case "fortios:switchcontrolleracl/ingress:Ingress":
+            case "fortios:switchcontroller/acl/ingress:Ingress":
                 return new Ingress(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("fortios", "switchcontrolleracl/group", _module)
-pulumi.runtime.registerResourceModule("fortios", "switchcontrolleracl/ingress", _module)
+pulumi.runtime.registerResourceModule("fortios", "switchcontroller/acl/group", _module)
+pulumi.runtime.registerResourceModule("fortios", "switchcontroller/acl/ingress", _module)

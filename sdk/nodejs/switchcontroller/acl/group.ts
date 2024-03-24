@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
-import * as utilities from "../utilities";
+import * as inputs from "../../types/input";
+import * as outputs from "../../types/output";
+import * as utilities from "../../utilities";
 
 /**
  * Configure ACL groups to be applied on managed FortiSwitch ports. Applies to FortiOS Version `>= 7.4.0`.
@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * SwitchControllerAcl Group can be imported using any of these accepted formats:
  *
  * ```sh
- * $ pulumi import fortios:switchcontrolleracl/group:Group labelname {{name}}
+ * $ pulumi import fortios:switchcontroller/acl/group:Group labelname {{name}}
  * ```
  *
  * If you do not want to import arguments of block:
@@ -22,7 +22,7 @@ import * as utilities from "../utilities";
  * $ export "FORTIOS_IMPORT_TABLE"="false"
  *
  * ```sh
- * $ pulumi import fortios:switchcontrolleracl/group:Group labelname {{name}}
+ * $ pulumi import fortios:switchcontroller/acl/group:Group labelname {{name}}
  * ```
  *
  * $ unset "FORTIOS_IMPORT_TABLE"
@@ -42,7 +42,7 @@ export class Group extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'fortios:switchcontrolleracl/group:Group';
+    public static readonly __pulumiType = 'fortios:switchcontroller/acl/group:Group';
 
     /**
      * Returns true if the given object is an instance of Group.  This is designed to work even
@@ -66,7 +66,7 @@ export class Group extends pulumi.CustomResource {
     /**
      * Configure ingress ACL policies in group. The structure of `ingress` block is documented below.
      */
-    public readonly ingresses!: pulumi.Output<outputs.switchcontrolleracl.GroupIngress[] | undefined>;
+    public readonly ingresses!: pulumi.Output<outputs.switchcontroller.acl.GroupIngress[] | undefined>;
     /**
      * Group name.
      */
@@ -122,7 +122,7 @@ export interface GroupState {
     /**
      * Configure ingress ACL policies in group. The structure of `ingress` block is documented below.
      */
-    ingresses?: pulumi.Input<pulumi.Input<inputs.switchcontrolleracl.GroupIngress>[]>;
+    ingresses?: pulumi.Input<pulumi.Input<inputs.switchcontroller.acl.GroupIngress>[]>;
     /**
      * Group name.
      */
@@ -148,7 +148,7 @@ export interface GroupArgs {
     /**
      * Configure ingress ACL policies in group. The structure of `ingress` block is documented below.
      */
-    ingresses?: pulumi.Input<pulumi.Input<inputs.switchcontrolleracl.GroupIngress>[]>;
+    ingresses?: pulumi.Input<pulumi.Input<inputs.switchcontroller.acl.GroupIngress>[]>;
     /**
      * Group name.
      */

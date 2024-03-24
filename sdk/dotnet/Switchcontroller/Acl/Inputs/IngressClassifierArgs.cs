@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Fortios.Switchcontrolleracl.Inputs
+namespace Pulumiverse.Fortios.Switchcontroller.Acl.Inputs
 {
 
-    public sealed class IngressClassifierGetArgs : global::Pulumi.ResourceArgs
+    public sealed class IngressClassifierArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Destination IP address to be matched.
@@ -43,9 +43,9 @@ namespace Pulumiverse.Fortios.Switchcontrolleracl.Inputs
         [Input("vlan")]
         public Input<int>? Vlan { get; set; }
 
-        public IngressClassifierGetArgs()
+        public IngressClassifierArgs()
         {
         }
-        public static new IngressClassifierGetArgs Empty => new IngressClassifierGetArgs();
+        public static new IngressClassifierArgs Empty => new IngressClassifierArgs();
     }
 }

@@ -8,26 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Fortios.Switchcontrolleracl.Inputs
+namespace Pulumiverse.Fortios.Switchcontroller.Acl.Outputs
 {
 
-    public sealed class IngressActionGetArgs : global::Pulumi.ResourceArgs
+    [OutputType]
+    public sealed class IngressAction
     {
         /// <summary>
         /// Enable/disable count. Valid values: `enable`, `disable`.
         /// </summary>
-        [Input("count")]
-        public Input<string>? Count { get; set; }
-
+        public readonly string? Count;
         /// <summary>
         /// Enable/disable drop. Valid values: `enable`, `disable`.
         /// </summary>
-        [Input("drop")]
-        public Input<string>? Drop { get; set; }
+        public readonly string? Drop;
 
-        public IngressActionGetArgs()
+        [OutputConstructor]
+        private IngressAction(
+            string? count,
+
+            string? drop)
         {
+            Count = count;
+            Drop = drop;
         }
-        public static new IngressActionGetArgs Empty => new IngressActionGetArgs();
     }
 }
