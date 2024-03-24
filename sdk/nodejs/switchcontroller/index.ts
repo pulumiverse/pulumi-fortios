@@ -192,6 +192,7 @@ utilities.lazyLoad(exports, ["Vlanpolicy"], () => require("./vlanpolicy"));
 
 
 // Export sub-modules:
+import * as acl from "./acl";
 import * as autoconfig from "./autoconfig";
 import * as initialconfig from "./initialconfig";
 import * as ptp from "./ptp";
@@ -199,6 +200,7 @@ import * as qos from "./qos";
 import * as securitypolicy from "./securitypolicy";
 
 export {
+    acl,
     autoconfig,
     initialconfig,
     ptp,

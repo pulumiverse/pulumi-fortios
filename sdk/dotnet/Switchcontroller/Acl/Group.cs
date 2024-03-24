@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Fortios.Switchcontrolleracl
+namespace Pulumiverse.Fortios.Switchcontroller.Acl
 {
     /// <summary>
     /// Configure ACL groups to be applied on managed FortiSwitch ports. Applies to FortiOS Version `&gt;= 7.4.0`.
@@ -18,7 +18,7 @@ namespace Pulumiverse.Fortios.Switchcontrolleracl
     /// SwitchControllerAcl Group can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    /// $ pulumi import fortios:switchcontrolleracl/group:Group labelname {{name}}
+    /// $ pulumi import fortios:switchcontroller/acl/group:Group labelname {{name}}
     /// ```
     /// 
     /// If you do not want to import arguments of block:
@@ -26,12 +26,12 @@ namespace Pulumiverse.Fortios.Switchcontrolleracl
     /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    /// $ pulumi import fortios:switchcontrolleracl/group:Group labelname {{name}}
+    /// $ pulumi import fortios:switchcontroller/acl/group:Group labelname {{name}}
     /// ```
     /// 
     /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
-    [FortiosResourceType("fortios:switchcontrolleracl/group:Group")]
+    [FortiosResourceType("fortios:switchcontroller/acl/group:Group")]
     public partial class Group : global::Pulumi.CustomResource
     {
         /// <summary>
@@ -73,12 +73,12 @@ namespace Pulumiverse.Fortios.Switchcontrolleracl
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Group(string name, GroupArgs? args = null, CustomResourceOptions? options = null)
-            : base("fortios:switchcontrolleracl/group:Group", name, args ?? new GroupArgs(), MakeResourceOptions(options, ""))
+            : base("fortios:switchcontroller/acl/group:Group", name, args ?? new GroupArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Group(string name, Input<string> id, GroupState? state = null, CustomResourceOptions? options = null)
-            : base("fortios:switchcontrolleracl/group:Group", name, state, MakeResourceOptions(options, id))
+            : base("fortios:switchcontroller/acl/group:Group", name, state, MakeResourceOptions(options, id))
         {
         }
 

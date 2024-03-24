@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Fortios.Switchcontrolleracl.Inputs
+namespace Pulumiverse.Fortios.Switchcontroller.Acl.Inputs
 {
 
-    public sealed class GroupIngressGetArgs : global::Pulumi.ResourceArgs
+    public sealed class GroupIngressArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ACL ID.
@@ -19,9 +19,9 @@ namespace Pulumiverse.Fortios.Switchcontrolleracl.Inputs
         [Input("id")]
         public Input<int>? Id { get; set; }
 
-        public GroupIngressGetArgs()
+        public GroupIngressArgs()
         {
         }
-        public static new GroupIngressGetArgs Empty => new GroupIngressGetArgs();
+        public static new GroupIngressArgs Empty => new GroupIngressArgs();
     }
 }

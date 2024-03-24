@@ -7,7 +7,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities
+from ... import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -208,7 +208,7 @@ class Group(pulumi.CustomResource):
         SwitchControllerAcl Group can be imported using any of these accepted formats:
 
         ```sh
-        $ pulumi import fortios:switchcontrolleracl/group:Group labelname {{name}}
+        $ pulumi import fortios:switchcontroller/acl/group:Group labelname {{name}}
         ```
 
         If you do not want to import arguments of block:
@@ -216,7 +216,7 @@ class Group(pulumi.CustomResource):
         $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-        $ pulumi import fortios:switchcontrolleracl/group:Group labelname {{name}}
+        $ pulumi import fortios:switchcontroller/acl/group:Group labelname {{name}}
         ```
 
         $ unset "FORTIOS_IMPORT_TABLE"
@@ -243,7 +243,7 @@ class Group(pulumi.CustomResource):
         SwitchControllerAcl Group can be imported using any of these accepted formats:
 
         ```sh
-        $ pulumi import fortios:switchcontrolleracl/group:Group labelname {{name}}
+        $ pulumi import fortios:switchcontroller/acl/group:Group labelname {{name}}
         ```
 
         If you do not want to import arguments of block:
@@ -251,7 +251,7 @@ class Group(pulumi.CustomResource):
         $ export "FORTIOS_IMPORT_TABLE"="false"
 
         ```sh
-        $ pulumi import fortios:switchcontrolleracl/group:Group labelname {{name}}
+        $ pulumi import fortios:switchcontroller/acl/group:Group labelname {{name}}
         ```
 
         $ unset "FORTIOS_IMPORT_TABLE"
@@ -291,7 +291,7 @@ class Group(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
         super(Group, __self__).__init__(
-            'fortios:switchcontrolleracl/group:Group',
+            'fortios:switchcontroller/acl/group:Group',
             resource_name,
             __props__,
             opts)

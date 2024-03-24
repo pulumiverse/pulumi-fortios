@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Fortios.Switchcontrolleracl
+namespace Pulumiverse.Fortios.Switchcontroller.Acl
 {
     /// <summary>
     /// Configure ingress ACL policies to be applied on managed FortiSwitch ports. Applies to FortiOS Version `&gt;= 7.4.0`.
@@ -18,7 +18,7 @@ namespace Pulumiverse.Fortios.Switchcontrolleracl
     /// SwitchControllerAcl Ingress can be imported using any of these accepted formats:
     /// 
     /// ```sh
-    /// $ pulumi import fortios:switchcontrolleracl/ingress:Ingress labelname {{fosid}}
+    /// $ pulumi import fortios:switchcontroller/acl/ingress:Ingress labelname {{fosid}}
     /// ```
     /// 
     /// If you do not want to import arguments of block:
@@ -26,12 +26,12 @@ namespace Pulumiverse.Fortios.Switchcontrolleracl
     /// $ export "FORTIOS_IMPORT_TABLE"="false"
     /// 
     /// ```sh
-    /// $ pulumi import fortios:switchcontrolleracl/ingress:Ingress labelname {{fosid}}
+    /// $ pulumi import fortios:switchcontroller/acl/ingress:Ingress labelname {{fosid}}
     /// ```
     /// 
     /// $ unset "FORTIOS_IMPORT_TABLE"
     /// </summary>
-    [FortiosResourceType("fortios:switchcontrolleracl/ingress:Ingress")]
+    [FortiosResourceType("fortios:switchcontroller/acl/ingress:Ingress")]
     public partial class Ingress : global::Pulumi.CustomResource
     {
         /// <summary>
@@ -79,12 +79,12 @@ namespace Pulumiverse.Fortios.Switchcontrolleracl
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Ingress(string name, IngressArgs? args = null, CustomResourceOptions? options = null)
-            : base("fortios:switchcontrolleracl/ingress:Ingress", name, args ?? new IngressArgs(), MakeResourceOptions(options, ""))
+            : base("fortios:switchcontroller/acl/ingress:Ingress", name, args ?? new IngressArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Ingress(string name, Input<string> id, IngressState? state = null, CustomResourceOptions? options = null)
-            : base("fortios:switchcontrolleracl/ingress:Ingress", name, state, MakeResourceOptions(options, id))
+            : base("fortios:switchcontroller/acl/ingress:Ingress", name, state, MakeResourceOptions(options, id))
         {
         }
 
