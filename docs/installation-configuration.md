@@ -19,12 +19,12 @@ The Fortios provider binary is a third party binary. It can be installed using
 the `pulumi plugin` command.
 
 ```bash
-pulumi plugin install resource fortios <version>
+pulumi plugin install resource fortios <version> --server github://api.github.com/pulumiverse
 ```
 
 Replace the version string `<version>` with your desired version.
 
-## Configuration for FortiGate
+## Configuration for FortiGate  
 
 ### Example usage
 
