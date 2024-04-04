@@ -1293,52 +1293,157 @@ If the port is changed or intended to be changed, refer to the details below
 1. Configure the Firewall's admin_sport to 8443 manually.
 
 1. Configure the Provider part of the configuration file, add the 8443 port
-number to the hostname/IP and separate them with a colon, as follows:
+number to the hostname/IP and separate them with a colon, as follows in the
+`Pulumi.yaml` file:
 
-```hcl
-provider "fortios" {
-  hostname = "192.168.52.111:8443"
-  token    = "nx6nbGn8tnFddaa3Qy79jpjfsyw1"
-  ...
-}
+```yaml
+name: Fortios
+runtime: yaml
+config:
+  fortios:hostname:
+    value: 192.168.52.111:8443
+  fortios:token:
+    value: nx6nbGn8tnFddaa3Qy79jpjfsyw1
 ```
 
 ### Option II
 
-1 Configure the admin_sport port in the Pulumi configuration file as follows:
+1. Configure the admin_sport port as follows:
 
-```hcl
-provider "fortios" {
-  hostname = "192.168.52.111"
-  token    = "nx6nbGn8tnFddaa3Qy79jpjfsyw1"
-  insecure = "true"
-}
+    Pulumi.yaml:
 
-resource "fortios_system_global" "fglobal" {
-  admintimeout   = 240
-  hostname       = "testhostname"
-  timezone       = "33"
-  admin_sport    = 8443
-  admin_ssh_port = 22
-}
-```
+    ```yaml
+    provider "fortios" {
+      hostname = "192.168.52.111"
+      token    = "nx6nbGn8tnFddaa3Qy79jpjfsyw1"
+      insecure = "true"
+    }
+    ```
 
-Then execute "Pulumi init; Pulumi plan; Pulumi apply". After a few seconds or
-more (depending on your network situation), then press Ctrl+C to end the apply
-command. If your network is okay, the admin_sport will be successfully set to
-8443.
+    Language dependent resource:
 
-2 Change the Provider part of the configuration file, add the 8443 port number
-to the hostname and separate them with a colon, as follows, then re-apply
-Pulumi:
+    {{< chooser language "typescript,python,go,csharp,yaml" >}}
 
-```hcl
-provider "fortios" {
-  hostname = "192.168.52.111:8443"
-  token    = "nx6nbGn8tnFddaa3Qy79jpjfsyw1"
-  insecure = "true"
-}
-```
+    {{% choosable language typescript %}}}
+
+    ```typescript
+    import * as pulumi from "@pulumi/pulumi";
+    import * as fortios from "@pulumiverse/fortios";
+
+    const fglobal = new fortios.system.Global("fglobal", {
+        admintimeout: 240,
+        hostname: "testhostname",
+        timezone: "33",
+        adminSport: 8443,
+        adminSshPort: 22,
+    });
+    ```
+
+    {{% /choosable %}}
+
+    {{% choosable language python %}}
+
+    ```python
+    import pulumi
+    import pulumiverse_fortios as fortios
+
+    fglobal = fortios.system.Global("fglobal",
+        admintimeout=240,
+        hostname="testhostname",
+        timezone="33",
+        admin_sport=8443,
+        admin_ssh_port=22)
+    ```
+
+    {{% /choosable %}}
+
+    {{% choosable language go %}}
+
+    ```go
+    package main
+
+    import (
+      "github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+      "github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/system"
+    )
+
+    func main() {
+      pulumi.Run(func(ctx *pulumi.Context) error {
+        _, err := system.NewGlobal(ctx, "fglobal", &system.GlobalArgs{
+          Admintimeout: pulumi.Int(240),
+          Hostname:     pulumi.String("testhostname"),
+          Timezone:     pulumi.String("33"),
+          AdminSport:   pulumi.Int(8443),
+          AdminSshPort: pulumi.Int(22),
+        })
+        if err != nil {
+          return err
+        }
+        return nil
+      })
+    }
+    ```
+
+    {{% /choosable %}}
+
+    {{% choosable language csharp %}}
+
+    ```csharp
+    using System.Collections.Generic;
+    using System.Linq;
+    using Pulumi;
+    using Fortios = Pulumiverse.Fortios;
+
+    return await Deployment.RunAsync(() => 
+    {
+        var fglobal = new Fortios.System.Global("fglobal", new()
+        {
+            Admintimeout = 240,
+            Hostname = "testhostname",
+            Timezone = "33",
+            AdminSport = 8443,
+            AdminSshPort = 22,
+        });
+
+    });
+    ```
+
+    {{% /choosable %}}
+
+    {{% choosable language yaml %}}
+
+    ```yaml
+    resources:
+      fglobal:
+        type: fortios:system:Global
+        properties:
+          admintimeout: 240
+          hostname: testhostname
+          timezone: '33'
+          adminSport: 8443
+          adminSshPort: 22
+    ```
+
+    {{% /choosable %}}
+
+    {{< /chooser >}}
+
+    Then execute "Pulumi init; Pulumi plan; Pulumi apply". After a few seconds
+    or more (depending on your network situation), then press `Ctrl+C` to end
+    the apply command. If your network is okay, the `adminSport` will be
+    successfully set to `8443`.
+
+2. Change the Provider part of the configuration file `Pulumi.yaml`, add the
+   8443 port number to the hostname and separate them with a colon, as follows,
+   then re-apply Pulumi:
+
+    ```yaml
+    provider "fortios" {
+      hostname = "192.168.52.111:8443"
+      token    = "nx6nbGn8tnFddaa3Qy79jpjfsyw1"
+      insecure = "true"
+    }
+    ```
 
 ## Sort security policies
 
