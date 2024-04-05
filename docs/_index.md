@@ -23,7 +23,7 @@ This is a community maintained provider. Please file issues and feature requests
 
 {{< chooser language "typescript,python,go,csharp,yaml" >}}
 
-{{% choosable language typescript %}}}
+{{% choosable language typescript %}}
 
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
