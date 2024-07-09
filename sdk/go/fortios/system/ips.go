@@ -38,7 +38,7 @@ type Ips struct {
 	// Time to hold and monitor IPS signatures. Format <#d##h> (day range: 0 - 7, hour range: 0 - 23, max hold time: 7d0h, default hold time: 0d0h).
 	SignatureHoldTime pulumi.StringOutput `pulumi:"signatureHoldTime"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewIps registers a new resource with the given unique name, arguments, and options.
@@ -209,8 +209,8 @@ func (o IpsOutput) SignatureHoldTime() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o IpsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Ips) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o IpsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ips) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type IpsArrayOutput struct{ *pulumi.OutputState }

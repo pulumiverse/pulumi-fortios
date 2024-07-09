@@ -94,7 +94,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> FirewallAddrgrp { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        /// Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         /// </summary>
         [Output("firewallPolicy")]
         public Output<int> FirewallPolicy { get; private set; } = null!;
@@ -124,7 +124,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> IpsecPhase2Interface { get; private set; } = null!;
 
         /// <summary>
-        /// Log disk quota in MB.
+        /// Log disk quota in megabytes (MB).
         /// </summary>
         [Output("logDiskQuota")]
         public Output<int> LogDiskQuota { get; private set; } = null!;
@@ -181,7 +181,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -255,7 +255,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? FirewallAddrgrp { get; set; }
 
         /// <summary>
-        /// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        /// Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         /// </summary>
         [Input("firewallPolicy")]
         public Input<int>? FirewallPolicy { get; set; }
@@ -285,7 +285,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? IpsecPhase2Interface { get; set; }
 
         /// <summary>
-        /// Log disk quota in MB.
+        /// Log disk quota in megabytes (MB).
         /// </summary>
         [Input("logDiskQuota")]
         public Input<int>? LogDiskQuota { get; set; }
@@ -377,7 +377,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? FirewallAddrgrp { get; set; }
 
         /// <summary>
-        /// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        /// Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         /// </summary>
         [Input("firewallPolicy")]
         public Input<int>? FirewallPolicy { get; set; }
@@ -407,7 +407,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? IpsecPhase2Interface { get; set; }
 
         /// <summary>
-        /// Log disk quota in MB.
+        /// Log disk quota in megabytes (MB).
         /// </summary>
         [Input("logDiskQuota")]
         public Input<int>? LogDiskQuota { get; set; }

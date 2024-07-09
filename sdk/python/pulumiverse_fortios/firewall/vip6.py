@@ -59,6 +59,7 @@ class Vip6Args:
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input['Vip6RealserverArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input['Vip6SrcFilterArgs']]]] = None,
+                 src_vip_filter: Optional[pulumi.Input[str]] = None,
                  ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
@@ -111,7 +112,7 @@ class Vip6Args:
         :param pulumi.Input[str] embedded_ipv4_address: Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] h2_support: Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] h3_support: Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
@@ -144,6 +145,7 @@ class Vip6Args:
         :param pulumi.Input[Sequence[pulumi.Input['Vip6RealserverArgs']]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input['Vip6SrcFilterArgs']]] src_filters: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
+        :param pulumi.Input[str] src_vip_filter: Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
         :param pulumi.Input[str] ssl_certificate: The name of the SSL certificate to use for SSL acceleration.
@@ -269,6 +271,8 @@ class Vip6Args:
             pulumi.set(__self__, "server_type", server_type)
         if src_filters is not None:
             pulumi.set(__self__, "src_filters", src_filters)
+        if src_vip_filter is not None:
+            pulumi.set(__self__, "src_vip_filter", src_vip_filter)
         if ssl_accept_ffdhe_groups is not None:
             pulumi.set(__self__, "ssl_accept_ffdhe_groups", ssl_accept_ffdhe_groups)
         if ssl_algorithm is not None:
@@ -474,7 +478,7 @@ class Vip6Args:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -865,6 +869,18 @@ class Vip6Args:
     @src_filters.setter
     def src_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Vip6SrcFilterArgs']]]]):
         pulumi.set(self, "src_filters", value)
+
+    @property
+    @pulumi.getter(name="srcVipFilter")
+    def src_vip_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "src_vip_filter")
+
+    @src_vip_filter.setter
+    def src_vip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "src_vip_filter", value)
 
     @property
     @pulumi.getter(name="sslAcceptFfdheGroups")
@@ -1393,6 +1409,7 @@ class _Vip6State:
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input['Vip6RealserverArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input['Vip6SrcFilterArgs']]]] = None,
+                 src_vip_filter: Optional[pulumi.Input[str]] = None,
                  ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
@@ -1444,7 +1461,7 @@ class _Vip6State:
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] h2_support: Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] h3_support: Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
@@ -1478,6 +1495,7 @@ class _Vip6State:
         :param pulumi.Input[Sequence[pulumi.Input['Vip6RealserverArgs']]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input['Vip6SrcFilterArgs']]] src_filters: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
+        :param pulumi.Input[str] src_vip_filter: Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
         :param pulumi.Input[str] ssl_certificate: The name of the SSL certificate to use for SSL acceleration.
@@ -1605,6 +1623,8 @@ class _Vip6State:
             pulumi.set(__self__, "server_type", server_type)
         if src_filters is not None:
             pulumi.set(__self__, "src_filters", src_filters)
+        if src_vip_filter is not None:
+            pulumi.set(__self__, "src_vip_filter", src_vip_filter)
         if ssl_accept_ffdhe_groups is not None:
             pulumi.set(__self__, "ssl_accept_ffdhe_groups", ssl_accept_ffdhe_groups)
         if ssl_algorithm is not None:
@@ -1798,7 +1818,7 @@ class _Vip6State:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2201,6 +2221,18 @@ class _Vip6State:
     @src_filters.setter
     def src_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Vip6SrcFilterArgs']]]]):
         pulumi.set(self, "src_filters", value)
+
+    @property
+    @pulumi.getter(name="srcVipFilter")
+    def src_vip_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "src_vip_filter")
+
+    @src_vip_filter.setter
+    def src_vip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "src_vip_filter", value)
 
     @property
     @pulumi.getter(name="sslAcceptFfdheGroups")
@@ -2731,6 +2763,7 @@ class Vip6(pulumi.CustomResource):
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6RealserverArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SrcFilterArgs']]]]] = None,
+                 src_vip_filter: Optional[pulumi.Input[str]] = None,
                  ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
@@ -2862,7 +2895,7 @@ class Vip6(pulumi.CustomResource):
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] h2_support: Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] h3_support: Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
@@ -2896,6 +2929,7 @@ class Vip6(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6RealserverArgs']]]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SrcFilterArgs']]]] src_filters: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
+        :param pulumi.Input[str] src_vip_filter: Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
         :param pulumi.Input[str] ssl_certificate: The name of the SSL certificate to use for SSL acceleration.
@@ -3080,6 +3114,7 @@ class Vip6(pulumi.CustomResource):
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6RealserverArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SrcFilterArgs']]]]] = None,
+                 src_vip_filter: Optional[pulumi.Input[str]] = None,
                  ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
@@ -3176,6 +3211,7 @@ class Vip6(pulumi.CustomResource):
             __props__.__dict__["realservers"] = realservers
             __props__.__dict__["server_type"] = server_type
             __props__.__dict__["src_filters"] = src_filters
+            __props__.__dict__["src_vip_filter"] = src_vip_filter
             __props__.__dict__["ssl_accept_ffdhe_groups"] = ssl_accept_ffdhe_groups
             __props__.__dict__["ssl_algorithm"] = ssl_algorithm
             __props__.__dict__["ssl_certificate"] = ssl_certificate
@@ -3269,6 +3305,7 @@ class Vip6(pulumi.CustomResource):
             realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6RealserverArgs']]]]] = None,
             server_type: Optional[pulumi.Input[str]] = None,
             src_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SrcFilterArgs']]]]] = None,
+            src_vip_filter: Optional[pulumi.Input[str]] = None,
             ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
             ssl_algorithm: Optional[pulumi.Input[str]] = None,
             ssl_certificate: Optional[pulumi.Input[str]] = None,
@@ -3325,7 +3362,7 @@ class Vip6(pulumi.CustomResource):
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] h2_support: Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] h3_support: Enable/disable HTTP3/QUIC support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
@@ -3359,6 +3396,7 @@ class Vip6(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6RealserverArgs']]]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Vip6SrcFilterArgs']]]] src_filters: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
+        :param pulumi.Input[str] src_vip_filter: Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
         :param pulumi.Input[str] ssl_certificate: The name of the SSL certificate to use for SSL acceleration.
@@ -3447,6 +3485,7 @@ class Vip6(pulumi.CustomResource):
         __props__.__dict__["realservers"] = realservers
         __props__.__dict__["server_type"] = server_type
         __props__.__dict__["src_filters"] = src_filters
+        __props__.__dict__["src_vip_filter"] = src_vip_filter
         __props__.__dict__["ssl_accept_ffdhe_groups"] = ssl_accept_ffdhe_groups
         __props__.__dict__["ssl_algorithm"] = ssl_algorithm
         __props__.__dict__["ssl_certificate"] = ssl_certificate
@@ -3565,7 +3604,7 @@ class Vip6(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -3832,6 +3871,14 @@ class Vip6(pulumi.CustomResource):
         Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
         """
         return pulumi.get(self, "src_filters")
+
+    @property
+    @pulumi.getter(name="srcVipFilter")
+    def src_vip_filter(self) -> pulumi.Output[str]:
+        """
+        Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "src_vip_filter")
 
     @property
     @pulumi.getter(name="sslAcceptFfdheGroups")
@@ -4131,7 +4178,7 @@ class Vip6(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

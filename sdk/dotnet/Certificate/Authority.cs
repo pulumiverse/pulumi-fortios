@@ -65,6 +65,12 @@ namespace Pulumiverse.Fortios.Certificate
         public Output<string> EstUrl { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("fabricCa")]
+        public Output<string> FabricCa { get; private set; } = null!;
+
+        /// <summary>
         /// Time at which CA was last updated.
         /// </summary>
         [Output("lastUpdated")]
@@ -122,7 +128,7 @@ namespace Pulumiverse.Fortios.Certificate
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -214,6 +220,12 @@ namespace Pulumiverse.Fortios.Certificate
         /// </summary>
         [Input("estUrl")]
         public Input<string>? EstUrl { get; set; }
+
+        /// <summary>
+        /// Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("fabricCa")]
+        public Input<string>? FabricCa { get; set; }
 
         /// <summary>
         /// Time at which CA was last updated.
@@ -322,6 +334,12 @@ namespace Pulumiverse.Fortios.Certificate
         /// </summary>
         [Input("estUrl")]
         public Input<string>? EstUrl { get; set; }
+
+        /// <summary>
+        /// Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("fabricCa")]
+        public Input<string>? FabricCa { get; set; }
 
         /// <summary>
         /// Time at which CA was last updated.

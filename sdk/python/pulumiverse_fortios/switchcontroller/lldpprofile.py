@@ -52,10 +52,10 @@ class LldpprofileArgs:
         :param pulumi.Input[str] auto_mclag_icl: Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['LldpprofileCustomTlvArgs']]] custom_tlvs: Configuration method to edit custom TLV entries. The structure of `custom_tlvs` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['LldpprofileMedLocationServiceArgs']]] med_location_services: Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `med_location_service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['LldpprofileMedNetworkPolicyArgs']]] med_network_policies: Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `med_network_policy` block is documented below.
-        :param pulumi.Input[str] med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
+        :param pulumi.Input[str] med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions).
         :param pulumi.Input[str] n8021_tlvs: Transmitted IEEE 802.1 TLVs. Valid values: `port-vlan-id`.
         :param pulumi.Input[str] n8023_tlvs: Transmitted IEEE 802.3 TLVs.
         :param pulumi.Input[str] name: Profile name.
@@ -264,7 +264,7 @@ class LldpprofileArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -300,7 +300,7 @@ class LldpprofileArgs:
     @pulumi.getter(name="medTlvs")
     def med_tlvs(self) -> Optional[pulumi.Input[str]]:
         """
-        Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
+        Transmitted LLDP-MED TLVs (type-length-value descriptions).
         """
         return pulumi.get(self, "med_tlvs")
 
@@ -396,10 +396,10 @@ class _LldpprofileState:
         :param pulumi.Input[str] auto_mclag_icl: Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['LldpprofileCustomTlvArgs']]] custom_tlvs: Configuration method to edit custom TLV entries. The structure of `custom_tlvs` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['LldpprofileMedLocationServiceArgs']]] med_location_services: Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `med_location_service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['LldpprofileMedNetworkPolicyArgs']]] med_network_policies: Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `med_network_policy` block is documented below.
-        :param pulumi.Input[str] med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
+        :param pulumi.Input[str] med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions).
         :param pulumi.Input[str] n8021_tlvs: Transmitted IEEE 802.1 TLVs. Valid values: `port-vlan-id`.
         :param pulumi.Input[str] n8023_tlvs: Transmitted IEEE 802.3 TLVs.
         :param pulumi.Input[str] name: Profile name.
@@ -608,7 +608,7 @@ class _LldpprofileState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -644,7 +644,7 @@ class _LldpprofileState:
     @pulumi.getter(name="medTlvs")
     def med_tlvs(self) -> Optional[pulumi.Input[str]]:
         """
-        Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
+        Transmitted LLDP-MED TLVs (type-length-value descriptions).
         """
         return pulumi.get(self, "med_tlvs")
 
@@ -778,10 +778,10 @@ class Lldpprofile(pulumi.CustomResource):
         :param pulumi.Input[str] auto_mclag_icl: Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileCustomTlvArgs']]]] custom_tlvs: Configuration method to edit custom TLV entries. The structure of `custom_tlvs` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedLocationServiceArgs']]]] med_location_services: Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `med_location_service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedNetworkPolicyArgs']]]] med_network_policies: Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `med_network_policy` block is documented below.
-        :param pulumi.Input[str] med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
+        :param pulumi.Input[str] med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions).
         :param pulumi.Input[str] n8021_tlvs: Transmitted IEEE 802.1 TLVs. Valid values: `port-vlan-id`.
         :param pulumi.Input[str] n8023_tlvs: Transmitted IEEE 802.3 TLVs.
         :param pulumi.Input[str] name: Profile name.
@@ -945,10 +945,10 @@ class Lldpprofile(pulumi.CustomResource):
         :param pulumi.Input[str] auto_mclag_icl: Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileCustomTlvArgs']]]] custom_tlvs: Configuration method to edit custom TLV entries. The structure of `custom_tlvs` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedLocationServiceArgs']]]] med_location_services: Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. The structure of `med_location_service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LldpprofileMedNetworkPolicyArgs']]]] med_network_policies: Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. The structure of `med_network_policy` block is documented below.
-        :param pulumi.Input[str] med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
+        :param pulumi.Input[str] med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions).
         :param pulumi.Input[str] n8021_tlvs: Transmitted IEEE 802.1 TLVs. Valid values: `port-vlan-id`.
         :param pulumi.Input[str] n8023_tlvs: Transmitted IEEE 802.3 TLVs.
         :param pulumi.Input[str] name: Profile name.
@@ -1089,7 +1089,7 @@ class Lldpprofile(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1113,7 +1113,7 @@ class Lldpprofile(pulumi.CustomResource):
     @pulumi.getter(name="medTlvs")
     def med_tlvs(self) -> pulumi.Output[str]:
         """
-        Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
+        Transmitted LLDP-MED TLVs (type-length-value descriptions).
         """
         return pulumi.get(self, "med_tlvs")
 
@@ -1143,7 +1143,7 @@ class Lldpprofile(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

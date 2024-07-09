@@ -211,7 +211,7 @@ namespace Pulumiverse.Fortios.Certificate
         public Output<string> State { get; private set; } = null!;
 
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>

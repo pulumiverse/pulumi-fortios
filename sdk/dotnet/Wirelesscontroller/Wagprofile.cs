@@ -59,7 +59,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> PingInterval { get; private set; } = null!;
 
         /// <summary>
-        /// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+        /// Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
         /// </summary>
         [Output("pingNumber")]
         public Output<int> PingNumber { get; private set; } = null!;
@@ -80,7 +80,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// IP Address of the wireless access gateway.
@@ -166,7 +166,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? PingInterval { get; set; }
 
         /// <summary>
-        /// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+        /// Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
         /// </summary>
         [Input("pingNumber")]
         public Input<int>? PingNumber { get; set; }
@@ -234,7 +234,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? PingInterval { get; set; }
 
         /// <summary>
-        /// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+        /// Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
         /// </summary>
         [Input("pingNumber")]
         public Input<int>? PingNumber { get; set; }

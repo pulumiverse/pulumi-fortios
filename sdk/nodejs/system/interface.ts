@@ -244,6 +244,10 @@ export class Interface extends pulumi.CustomResource {
      */
     public readonly dhcpRelayAgentOption!: pulumi.Output<string>;
     /**
+     * Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+     */
+    public readonly dhcpRelayAllowNoEndOption!: pulumi.Output<string>;
+    /**
      * DHCP relay circuit ID.
      */
     public readonly dhcpRelayCircuitId!: pulumi.Output<string>;
@@ -428,7 +432,7 @@ export class Interface extends pulumi.CustomResource {
      */
     public readonly forwardErrorCorrection!: pulumi.Output<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -460,7 +464,7 @@ export class Interface extends pulumi.CustomResource {
      */
     public readonly ikeSamlServer!: pulumi.Output<string>;
     /**
-     * Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+     * Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
      */
     public readonly inbandwidth!: pulumi.Output<number>;
     /**
@@ -468,7 +472,7 @@ export class Interface extends pulumi.CustomResource {
      */
     public readonly ingressShapingProfile!: pulumi.Output<string>;
     /**
-     * Ingress Spillover threshold (0 - 16776000 kbps).
+     * Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
      */
     public readonly ingressSpilloverThreshold!: pulumi.Output<number>;
     /**
@@ -620,7 +624,7 @@ export class Interface extends pulumi.CustomResource {
      */
     public readonly netflowSampler!: pulumi.Output<string>;
     /**
-     * Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+     * Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
      */
     public readonly outbandwidth!: pulumi.Output<number>;
     /**
@@ -636,7 +640,7 @@ export class Interface extends pulumi.CustomResource {
      */
     public readonly pingServStatus!: pulumi.Output<number>;
     /**
-     * sFlow polling interval (1 - 255 sec).
+     * sFlow polling interval in seconds (1 - 255).
      */
     public readonly pollingInterval!: pulumi.Output<number>;
     /**
@@ -828,7 +832,7 @@ export class Interface extends pulumi.CustomResource {
      */
     public readonly switchControllerAccessVlan!: pulumi.Output<string>;
     /**
-     * Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+     * Enable/disable FortiSwitch ARP inspection.
      */
     public readonly switchControllerArpInspection!: pulumi.Output<string>;
     /**
@@ -966,7 +970,7 @@ export class Interface extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Switch control interface VLAN ID.
      */
@@ -1062,6 +1066,7 @@ export class Interface extends pulumi.CustomResource {
             resourceInputs["dhcpClasslessRouteAddition"] = state ? state.dhcpClasslessRouteAddition : undefined;
             resourceInputs["dhcpClientIdentifier"] = state ? state.dhcpClientIdentifier : undefined;
             resourceInputs["dhcpRelayAgentOption"] = state ? state.dhcpRelayAgentOption : undefined;
+            resourceInputs["dhcpRelayAllowNoEndOption"] = state ? state.dhcpRelayAllowNoEndOption : undefined;
             resourceInputs["dhcpRelayCircuitId"] = state ? state.dhcpRelayCircuitId : undefined;
             resourceInputs["dhcpRelayInterface"] = state ? state.dhcpRelayInterface : undefined;
             resourceInputs["dhcpRelayInterfaceSelectMethod"] = state ? state.dhcpRelayInterfaceSelectMethod : undefined;
@@ -1299,6 +1304,7 @@ export class Interface extends pulumi.CustomResource {
             resourceInputs["dhcpClasslessRouteAddition"] = args ? args.dhcpClasslessRouteAddition : undefined;
             resourceInputs["dhcpClientIdentifier"] = args ? args.dhcpClientIdentifier : undefined;
             resourceInputs["dhcpRelayAgentOption"] = args ? args.dhcpRelayAgentOption : undefined;
+            resourceInputs["dhcpRelayAllowNoEndOption"] = args ? args.dhcpRelayAllowNoEndOption : undefined;
             resourceInputs["dhcpRelayCircuitId"] = args ? args.dhcpRelayCircuitId : undefined;
             resourceInputs["dhcpRelayInterface"] = args ? args.dhcpRelayInterface : undefined;
             resourceInputs["dhcpRelayInterfaceSelectMethod"] = args ? args.dhcpRelayInterfaceSelectMethod : undefined;
@@ -1667,6 +1673,10 @@ export interface InterfaceState {
      */
     dhcpRelayAgentOption?: pulumi.Input<string>;
     /**
+     * Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+     */
+    dhcpRelayAllowNoEndOption?: pulumi.Input<string>;
+    /**
      * DHCP relay circuit ID.
      */
     dhcpRelayCircuitId?: pulumi.Input<string>;
@@ -1851,7 +1861,7 @@ export interface InterfaceState {
      */
     forwardErrorCorrection?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -1883,7 +1893,7 @@ export interface InterfaceState {
      */
     ikeSamlServer?: pulumi.Input<string>;
     /**
-     * Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+     * Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
      */
     inbandwidth?: pulumi.Input<number>;
     /**
@@ -1891,7 +1901,7 @@ export interface InterfaceState {
      */
     ingressShapingProfile?: pulumi.Input<string>;
     /**
-     * Ingress Spillover threshold (0 - 16776000 kbps).
+     * Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
      */
     ingressSpilloverThreshold?: pulumi.Input<number>;
     /**
@@ -2043,7 +2053,7 @@ export interface InterfaceState {
      */
     netflowSampler?: pulumi.Input<string>;
     /**
-     * Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+     * Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
      */
     outbandwidth?: pulumi.Input<number>;
     /**
@@ -2059,7 +2069,7 @@ export interface InterfaceState {
      */
     pingServStatus?: pulumi.Input<number>;
     /**
-     * sFlow polling interval (1 - 255 sec).
+     * sFlow polling interval in seconds (1 - 255).
      */
     pollingInterval?: pulumi.Input<number>;
     /**
@@ -2251,7 +2261,7 @@ export interface InterfaceState {
      */
     switchControllerAccessVlan?: pulumi.Input<string>;
     /**
-     * Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+     * Enable/disable FortiSwitch ARP inspection.
      */
     switchControllerArpInspection?: pulumi.Input<string>;
     /**
@@ -2601,6 +2611,10 @@ export interface InterfaceArgs {
      */
     dhcpRelayAgentOption?: pulumi.Input<string>;
     /**
+     * Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+     */
+    dhcpRelayAllowNoEndOption?: pulumi.Input<string>;
+    /**
      * DHCP relay circuit ID.
      */
     dhcpRelayCircuitId?: pulumi.Input<string>;
@@ -2785,7 +2799,7 @@ export interface InterfaceArgs {
      */
     forwardErrorCorrection?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -2817,7 +2831,7 @@ export interface InterfaceArgs {
      */
     ikeSamlServer?: pulumi.Input<string>;
     /**
-     * Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+     * Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
      */
     inbandwidth?: pulumi.Input<number>;
     /**
@@ -2825,7 +2839,7 @@ export interface InterfaceArgs {
      */
     ingressShapingProfile?: pulumi.Input<string>;
     /**
-     * Ingress Spillover threshold (0 - 16776000 kbps).
+     * Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
      */
     ingressSpilloverThreshold?: pulumi.Input<number>;
     /**
@@ -2977,7 +2991,7 @@ export interface InterfaceArgs {
      */
     netflowSampler?: pulumi.Input<string>;
     /**
-     * Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+     * Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
      */
     outbandwidth?: pulumi.Input<number>;
     /**
@@ -2993,7 +3007,7 @@ export interface InterfaceArgs {
      */
     pingServStatus?: pulumi.Input<number>;
     /**
-     * sFlow polling interval (1 - 255 sec).
+     * sFlow polling interval in seconds (1 - 255).
      */
     pollingInterval?: pulumi.Input<number>;
     /**
@@ -3185,7 +3199,7 @@ export interface InterfaceArgs {
      */
     switchControllerAccessVlan?: pulumi.Input<string>;
     /**
-     * Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+     * Enable/disable FortiSwitch ARP inspection.
      */
     switchControllerArpInspection?: pulumi.Input<string>;
     /**

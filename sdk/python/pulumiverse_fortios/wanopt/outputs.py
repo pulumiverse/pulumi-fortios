@@ -909,7 +909,7 @@ class ProfileHttp(dict):
         :param str prefer_chunking: Select dynamic or fixed-size data chunking for HTTP WAN Optimization. Valid values: `dynamic`, `fix`.
         :param str protocol_opt: Select Protocol specific optimitation or generic TCP optimization. Valid values: `protocol`, `tcp`.
         :param str secure_tunnel: Enable/disable securing the WAN Opt tunnel using SSL. Secure and non-secure tunnels use the same TCP port (7810). Valid values: `enable`, `disable`.
-        :param str ssl: Enable/disable SSL/TLS offloading (hardware acceleration) for HTTPS traffic in this tunnel. Valid values: `enable`, `disable`.
+        :param str ssl: Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
         :param int ssl_port: Port on which to expect HTTPS traffic for SSL/TLS offloading.
         :param str status: Enable/disable HTTP WAN Optimization. Valid values: `enable`, `disable`.
         :param str tunnel_non_http: Configure how to process non-HTTP traffic when a profile configured for HTTP traffic accepts a non-HTTP session. Can occur if an application sends non-HTTP traffic using an HTTP destination port. Valid values: `enable`, `disable`.
@@ -993,7 +993,7 @@ class ProfileHttp(dict):
     @pulumi.getter
     def ssl(self) -> Optional[str]:
         """
-        Enable/disable SSL/TLS offloading (hardware acceleration) for HTTPS traffic in this tunnel. Valid values: `enable`, `disable`.
+        Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ssl")
 
@@ -1185,7 +1185,7 @@ class ProfileTcp(dict):
         :param str log_traffic: Enable/disable logging. Valid values: `enable`, `disable`.
         :param str port: Single port number or port number range for TCP. Only packets with a destination port number that matches this port number or range are accepted by this profile.
         :param str secure_tunnel: Enable/disable securing the WAN Opt tunnel using SSL. Secure and non-secure tunnels use the same TCP port (7810). Valid values: `enable`, `disable`.
-        :param str ssl: Enable/disable SSL/TLS offloading. Valid values: `enable`, `disable`.
+        :param str ssl: Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
         :param int ssl_port: Port on which to expect HTTPS traffic for SSL/TLS offloading.
         :param str status: Enable/disable HTTP WAN Optimization. Valid values: `enable`, `disable`.
         :param str tunnel_sharing: Tunnel sharing mode for aggressive/non-aggressive and/or interactive/non-interactive protocols. Valid values: `private`, `shared`, `express-shared`.
@@ -1253,7 +1253,7 @@ class ProfileTcp(dict):
     @pulumi.getter
     def ssl(self) -> Optional[str]:
         """
-        Enable/disable SSL/TLS offloading. Valid values: `enable`, `disable`.
+        Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ssl")
 

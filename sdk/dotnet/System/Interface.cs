@@ -313,6 +313,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> DhcpRelayAgentOption { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("dhcpRelayAllowNoEndOption")]
+        public Output<string> DhcpRelayAllowNoEndOption { get; private set; } = null!;
+
+        /// <summary>
         /// DHCP relay circuit ID.
         /// </summary>
         [Output("dhcpRelayCircuitId")]
@@ -589,7 +595,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> ForwardErrorCorrection { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -637,7 +643,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> IkeSamlServer { get; private set; } = null!;
 
         /// <summary>
-        /// Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+        /// Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, &gt;= 7.2.1: 0 - 80000000 kbps.
         /// </summary>
         [Output("inbandwidth")]
         public Output<int> Inbandwidth { get; private set; } = null!;
@@ -649,7 +655,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> IngressShapingProfile { get; private set; } = null!;
 
         /// <summary>
-        /// Ingress Spillover threshold (0 - 16776000 kbps).
+        /// Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
         /// </summary>
         [Output("ingressSpilloverThreshold")]
         public Output<int> IngressSpilloverThreshold { get; private set; } = null!;
@@ -877,7 +883,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> NetflowSampler { get; private set; } = null!;
 
         /// <summary>
-        /// Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+        /// Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, &gt;= 7.2.1: 0 - 80000000 kbps.
         /// </summary>
         [Output("outbandwidth")]
         public Output<int> Outbandwidth { get; private set; } = null!;
@@ -901,7 +907,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> PingServStatus { get; private set; } = null!;
 
         /// <summary>
-        /// sFlow polling interval (1 - 255 sec).
+        /// sFlow polling interval in seconds (1 - 255).
         /// </summary>
         [Output("pollingInterval")]
         public Output<int> PollingInterval { get; private set; } = null!;
@@ -1189,7 +1195,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> SwitchControllerAccessVlan { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+        /// Enable/disable FortiSwitch ARP inspection.
         /// </summary>
         [Output("switchControllerArpInspection")]
         public Output<string> SwitchControllerArpInspection { get; private set; } = null!;
@@ -1396,7 +1402,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Switch control interface VLAN ID.
@@ -1764,6 +1770,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DhcpRelayAgentOption { get; set; }
 
         /// <summary>
+        /// Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("dhcpRelayAllowNoEndOption")]
+        public Input<string>? DhcpRelayAllowNoEndOption { get; set; }
+
+        /// <summary>
         /// DHCP relay circuit ID.
         /// </summary>
         [Input("dhcpRelayCircuitId")]
@@ -2062,7 +2074,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ForwardErrorCorrection { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -2110,7 +2122,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? IkeSamlServer { get; set; }
 
         /// <summary>
-        /// Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+        /// Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, &gt;= 7.2.1: 0 - 80000000 kbps.
         /// </summary>
         [Input("inbandwidth")]
         public Input<int>? Inbandwidth { get; set; }
@@ -2122,7 +2134,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? IngressShapingProfile { get; set; }
 
         /// <summary>
-        /// Ingress Spillover threshold (0 - 16776000 kbps).
+        /// Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
         /// </summary>
         [Input("ingressSpilloverThreshold")]
         public Input<int>? IngressSpilloverThreshold { get; set; }
@@ -2362,7 +2374,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? NetflowSampler { get; set; }
 
         /// <summary>
-        /// Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+        /// Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, &gt;= 7.2.1: 0 - 80000000 kbps.
         /// </summary>
         [Input("outbandwidth")]
         public Input<int>? Outbandwidth { get; set; }
@@ -2396,7 +2408,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? PingServStatus { get; set; }
 
         /// <summary>
-        /// sFlow polling interval (1 - 255 sec).
+        /// sFlow polling interval in seconds (1 - 255).
         /// </summary>
         [Input("pollingInterval")]
         public Input<int>? PollingInterval { get; set; }
@@ -2706,7 +2718,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? SwitchControllerAccessVlan { get; set; }
 
         /// <summary>
-        /// Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+        /// Enable/disable FortiSwitch ARP inspection.
         /// </summary>
         [Input("switchControllerArpInspection")]
         public Input<string>? SwitchControllerArpInspection { get; set; }
@@ -3248,6 +3260,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DhcpRelayAgentOption { get; set; }
 
         /// <summary>
+        /// Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("dhcpRelayAllowNoEndOption")]
+        public Input<string>? DhcpRelayAllowNoEndOption { get; set; }
+
+        /// <summary>
         /// DHCP relay circuit ID.
         /// </summary>
         [Input("dhcpRelayCircuitId")]
@@ -3546,7 +3564,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ForwardErrorCorrection { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -3594,7 +3612,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? IkeSamlServer { get; set; }
 
         /// <summary>
-        /// Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+        /// Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, &gt;= 7.2.1: 0 - 80000000 kbps.
         /// </summary>
         [Input("inbandwidth")]
         public Input<int>? Inbandwidth { get; set; }
@@ -3606,7 +3624,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? IngressShapingProfile { get; set; }
 
         /// <summary>
-        /// Ingress Spillover threshold (0 - 16776000 kbps).
+        /// Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
         /// </summary>
         [Input("ingressSpilloverThreshold")]
         public Input<int>? IngressSpilloverThreshold { get; set; }
@@ -3846,7 +3864,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? NetflowSampler { get; set; }
 
         /// <summary>
-        /// Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+        /// Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, &gt;= 7.2.1: 0 - 80000000 kbps.
         /// </summary>
         [Input("outbandwidth")]
         public Input<int>? Outbandwidth { get; set; }
@@ -3880,7 +3898,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? PingServStatus { get; set; }
 
         /// <summary>
-        /// sFlow polling interval (1 - 255 sec).
+        /// sFlow polling interval in seconds (1 - 255).
         /// </summary>
         [Input("pollingInterval")]
         public Input<int>? PollingInterval { get; set; }
@@ -4190,7 +4208,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? SwitchControllerAccessVlan { get; set; }
 
         /// <summary>
-        /// Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+        /// Enable/disable FortiSwitch ARP inspection.
         /// </summary>
         [Input("switchControllerArpInspection")]
         public Input<string>? SwitchControllerArpInspection { get; set; }

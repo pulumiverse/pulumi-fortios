@@ -69,9 +69,9 @@ import (
 type Dns struct {
 	pulumi.CustomResourceState
 
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	// Alternate primary DNS server. This is not used as a failover DNS server.
 	AltPrimary pulumi.StringOutput `pulumi:"altPrimary"`
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	// Alternate secondary DNS server. This is not used as a failover DNS server.
 	AltSecondary pulumi.StringOutput `pulumi:"altSecondary"`
 	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
 	CacheNotfoundResponses pulumi.StringOutput `pulumi:"cacheNotfoundResponses"`
@@ -91,7 +91,7 @@ type Dns struct {
 	FqdnMaxRefresh pulumi.IntOutput `pulumi:"fqdnMaxRefresh"`
 	// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
 	FqdnMinRefresh pulumi.IntOutput `pulumi:"fqdnMinRefresh"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
@@ -122,7 +122,7 @@ type Dns struct {
 	// DNS query timeout interval in seconds (1 - 10).
 	Timeout pulumi.IntOutput `pulumi:"timeout"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewDns registers a new resource with the given unique name, arguments, and options.
@@ -158,9 +158,9 @@ func GetDns(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Dns resources.
 type dnsState struct {
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	// Alternate primary DNS server. This is not used as a failover DNS server.
 	AltPrimary *string `pulumi:"altPrimary"`
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	// Alternate secondary DNS server. This is not used as a failover DNS server.
 	AltSecondary *string `pulumi:"altSecondary"`
 	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
 	CacheNotfoundResponses *string `pulumi:"cacheNotfoundResponses"`
@@ -180,7 +180,7 @@ type dnsState struct {
 	FqdnMaxRefresh *int `pulumi:"fqdnMaxRefresh"`
 	// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
 	FqdnMinRefresh *int `pulumi:"fqdnMinRefresh"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -215,9 +215,9 @@ type dnsState struct {
 }
 
 type DnsState struct {
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	// Alternate primary DNS server. This is not used as a failover DNS server.
 	AltPrimary pulumi.StringPtrInput
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	// Alternate secondary DNS server. This is not used as a failover DNS server.
 	AltSecondary pulumi.StringPtrInput
 	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
 	CacheNotfoundResponses pulumi.StringPtrInput
@@ -237,7 +237,7 @@ type DnsState struct {
 	FqdnMaxRefresh pulumi.IntPtrInput
 	// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
 	FqdnMinRefresh pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -276,9 +276,9 @@ func (DnsState) ElementType() reflect.Type {
 }
 
 type dnsArgs struct {
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	// Alternate primary DNS server. This is not used as a failover DNS server.
 	AltPrimary *string `pulumi:"altPrimary"`
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	// Alternate secondary DNS server. This is not used as a failover DNS server.
 	AltSecondary *string `pulumi:"altSecondary"`
 	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
 	CacheNotfoundResponses *string `pulumi:"cacheNotfoundResponses"`
@@ -298,7 +298,7 @@ type dnsArgs struct {
 	FqdnMaxRefresh *int `pulumi:"fqdnMaxRefresh"`
 	// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
 	FqdnMinRefresh *int `pulumi:"fqdnMinRefresh"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -334,9 +334,9 @@ type dnsArgs struct {
 
 // The set of arguments for constructing a Dns resource.
 type DnsArgs struct {
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	// Alternate primary DNS server. This is not used as a failover DNS server.
 	AltPrimary pulumi.StringPtrInput
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	// Alternate secondary DNS server. This is not used as a failover DNS server.
 	AltSecondary pulumi.StringPtrInput
 	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
 	CacheNotfoundResponses pulumi.StringPtrInput
@@ -356,7 +356,7 @@ type DnsArgs struct {
 	FqdnMaxRefresh pulumi.IntPtrInput
 	// FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
 	FqdnMinRefresh pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -477,12 +477,12 @@ func (o DnsOutput) ToDnsOutputWithContext(ctx context.Context) DnsOutput {
 	return o
 }
 
-// Alternate primary DNS server. (This is not used as a failover DNS server.)
+// Alternate primary DNS server. This is not used as a failover DNS server.
 func (o DnsOutput) AltPrimary() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dns) pulumi.StringOutput { return v.AltPrimary }).(pulumi.StringOutput)
 }
 
-// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+// Alternate secondary DNS server. This is not used as a failover DNS server.
 func (o DnsOutput) AltSecondary() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dns) pulumi.StringOutput { return v.AltSecondary }).(pulumi.StringOutput)
 }
@@ -532,7 +532,7 @@ func (o DnsOutput) FqdnMinRefresh() pulumi.IntOutput {
 	return o.ApplyT(func(v *Dns) pulumi.IntOutput { return v.FqdnMinRefresh }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o DnsOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Dns) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -608,8 +608,8 @@ func (o DnsOutput) Timeout() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o DnsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Dns) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o DnsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Dns) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type DnsArrayOutput struct{ *pulumi.OutputState }

@@ -72,6 +72,8 @@ import (
 type Global struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+	AlwaysLearnClientIp pulumi.StringOutput `pulumi:"alwaysLearnClientIp"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
@@ -80,7 +82,7 @@ type Global struct {
 	ForwardProxyAuth pulumi.StringOutput `pulumi:"forwardProxyAuth"`
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout pulumi.IntOutput `pulumi:"forwardServerAffinityTimeout"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
 	LdapUserCache pulumi.StringOutput `pulumi:"ldapUserCache"`
@@ -100,7 +102,7 @@ type Global struct {
 	LogPolicyPending pulumi.StringOutput `pulumi:"logPolicyPending"`
 	// Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
 	MaxMessageLength pulumi.IntOutput `pulumi:"maxMessageLength"`
-	// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+	// Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
 	MaxRequestLength pulumi.IntOutput `pulumi:"maxRequestLength"`
 	// Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
 	MaxWafBodyCacheLength pulumi.IntOutput `pulumi:"maxWafBodyCacheLength"`
@@ -108,6 +110,8 @@ type Global struct {
 	PolicyCategoryDeepInspect pulumi.StringOutput `pulumi:"policyCategoryDeepInspect"`
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn pulumi.StringOutput `pulumi:"proxyFqdn"`
+	// Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+	ProxyTransparentCertInspection pulumi.StringOutput `pulumi:"proxyTransparentCertInspection"`
 	// IPv4 source addresses to exempt proxy affinity.
 	SrcAffinityExemptAddr pulumi.StringOutput `pulumi:"srcAffinityExemptAddr"`
 	// IPv6 source addresses to exempt proxy affinity.
@@ -123,7 +127,7 @@ type Global struct {
 	// Action to take when an unknown version of HTTP is encountered: reject, allow (tunnel), or proceed with best-effort. Valid values: `reject`, `tunnel`, `best-effort`.
 	UnknownHttpVersion pulumi.StringOutput `pulumi:"unknownHttpVersion"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Name of the web proxy profile to apply when explicit proxy traffic is allowed by default and traffic is accepted that does not match an explicit proxy policy.
 	WebproxyProfile pulumi.StringOutput `pulumi:"webproxyProfile"`
 }
@@ -161,6 +165,8 @@ func GetGlobal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Global resources.
 type globalState struct {
+	// Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+	AlwaysLearnClientIp *string `pulumi:"alwaysLearnClientIp"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
@@ -169,7 +175,7 @@ type globalState struct {
 	ForwardProxyAuth *string `pulumi:"forwardProxyAuth"`
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout *int `pulumi:"forwardServerAffinityTimeout"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
 	LdapUserCache *string `pulumi:"ldapUserCache"`
@@ -189,7 +195,7 @@ type globalState struct {
 	LogPolicyPending *string `pulumi:"logPolicyPending"`
 	// Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
 	MaxMessageLength *int `pulumi:"maxMessageLength"`
-	// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+	// Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
 	MaxRequestLength *int `pulumi:"maxRequestLength"`
 	// Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
 	MaxWafBodyCacheLength *int `pulumi:"maxWafBodyCacheLength"`
@@ -197,6 +203,8 @@ type globalState struct {
 	PolicyCategoryDeepInspect *string `pulumi:"policyCategoryDeepInspect"`
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn *string `pulumi:"proxyFqdn"`
+	// Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+	ProxyTransparentCertInspection *string `pulumi:"proxyTransparentCertInspection"`
 	// IPv4 source addresses to exempt proxy affinity.
 	SrcAffinityExemptAddr *string `pulumi:"srcAffinityExemptAddr"`
 	// IPv6 source addresses to exempt proxy affinity.
@@ -218,6 +226,8 @@ type globalState struct {
 }
 
 type GlobalState struct {
+	// Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+	AlwaysLearnClientIp pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
@@ -226,7 +236,7 @@ type GlobalState struct {
 	ForwardProxyAuth pulumi.StringPtrInput
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
 	LdapUserCache pulumi.StringPtrInput
@@ -246,7 +256,7 @@ type GlobalState struct {
 	LogPolicyPending pulumi.StringPtrInput
 	// Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
 	MaxMessageLength pulumi.IntPtrInput
-	// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+	// Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
 	MaxRequestLength pulumi.IntPtrInput
 	// Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
 	MaxWafBodyCacheLength pulumi.IntPtrInput
@@ -254,6 +264,8 @@ type GlobalState struct {
 	PolicyCategoryDeepInspect pulumi.StringPtrInput
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn pulumi.StringPtrInput
+	// Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+	ProxyTransparentCertInspection pulumi.StringPtrInput
 	// IPv4 source addresses to exempt proxy affinity.
 	SrcAffinityExemptAddr pulumi.StringPtrInput
 	// IPv6 source addresses to exempt proxy affinity.
@@ -279,6 +291,8 @@ func (GlobalState) ElementType() reflect.Type {
 }
 
 type globalArgs struct {
+	// Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+	AlwaysLearnClientIp *string `pulumi:"alwaysLearnClientIp"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
@@ -287,7 +301,7 @@ type globalArgs struct {
 	ForwardProxyAuth *string `pulumi:"forwardProxyAuth"`
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout *int `pulumi:"forwardServerAffinityTimeout"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
 	LdapUserCache *string `pulumi:"ldapUserCache"`
@@ -307,7 +321,7 @@ type globalArgs struct {
 	LogPolicyPending *string `pulumi:"logPolicyPending"`
 	// Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
 	MaxMessageLength *int `pulumi:"maxMessageLength"`
-	// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+	// Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
 	MaxRequestLength *int `pulumi:"maxRequestLength"`
 	// Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
 	MaxWafBodyCacheLength *int `pulumi:"maxWafBodyCacheLength"`
@@ -315,6 +329,8 @@ type globalArgs struct {
 	PolicyCategoryDeepInspect *string `pulumi:"policyCategoryDeepInspect"`
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn string `pulumi:"proxyFqdn"`
+	// Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+	ProxyTransparentCertInspection *string `pulumi:"proxyTransparentCertInspection"`
 	// IPv4 source addresses to exempt proxy affinity.
 	SrcAffinityExemptAddr *string `pulumi:"srcAffinityExemptAddr"`
 	// IPv6 source addresses to exempt proxy affinity.
@@ -337,6 +353,8 @@ type globalArgs struct {
 
 // The set of arguments for constructing a Global resource.
 type GlobalArgs struct {
+	// Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+	AlwaysLearnClientIp pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
@@ -345,7 +363,7 @@ type GlobalArgs struct {
 	ForwardProxyAuth pulumi.StringPtrInput
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
 	LdapUserCache pulumi.StringPtrInput
@@ -365,7 +383,7 @@ type GlobalArgs struct {
 	LogPolicyPending pulumi.StringPtrInput
 	// Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
 	MaxMessageLength pulumi.IntPtrInput
-	// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+	// Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
 	MaxRequestLength pulumi.IntPtrInput
 	// Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
 	MaxWafBodyCacheLength pulumi.IntPtrInput
@@ -373,6 +391,8 @@ type GlobalArgs struct {
 	PolicyCategoryDeepInspect pulumi.StringPtrInput
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn pulumi.StringInput
+	// Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+	ProxyTransparentCertInspection pulumi.StringPtrInput
 	// IPv4 source addresses to exempt proxy affinity.
 	SrcAffinityExemptAddr pulumi.StringPtrInput
 	// IPv6 source addresses to exempt proxy affinity.
@@ -480,6 +500,11 @@ func (o GlobalOutput) ToGlobalOutputWithContext(ctx context.Context) GlobalOutpu
 	return o
 }
 
+// Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+func (o GlobalOutput) AlwaysLearnClientIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.AlwaysLearnClientIp }).(pulumi.StringOutput)
+}
+
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o GlobalOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
@@ -500,7 +525,7 @@ func (o GlobalOutput) ForwardServerAffinityTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.ForwardServerAffinityTimeout }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o GlobalOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -550,7 +575,7 @@ func (o GlobalOutput) MaxMessageLength() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MaxMessageLength }).(pulumi.IntOutput)
 }
 
-// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+// Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
 func (o GlobalOutput) MaxRequestLength() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MaxRequestLength }).(pulumi.IntOutput)
 }
@@ -568,6 +593,11 @@ func (o GlobalOutput) PolicyCategoryDeepInspect() pulumi.StringOutput {
 // Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 func (o GlobalOutput) ProxyFqdn() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.ProxyFqdn }).(pulumi.StringOutput)
+}
+
+// Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+func (o GlobalOutput) ProxyTransparentCertInspection() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.ProxyTransparentCertInspection }).(pulumi.StringOutput)
 }
 
 // IPv4 source addresses to exempt proxy affinity.
@@ -606,8 +636,8 @@ func (o GlobalOutput) UnknownHttpVersion() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o GlobalOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o GlobalOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Name of the web proxy profile to apply when explicit proxy traffic is allowed by default and traffic is accepted that does not match an explicit proxy policy.

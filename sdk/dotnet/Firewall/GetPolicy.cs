@@ -547,6 +547,10 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPolicyPoolnameResult> Poolnames;
         /// <summary>
+        /// Enable/disable preservation of the original source port from source NAT if it has not been used.
+        /// </summary>
+        public readonly string PortPreserve;
+        /// <summary>
         /// Name of profile group.
         /// </summary>
         public readonly string ProfileGroup;
@@ -1092,6 +1096,8 @@ namespace Pulumiverse.Fortios.Firewall
 
             ImmutableArray<Outputs.GetPolicyPoolnameResult> poolnames,
 
+            string portPreserve,
+
             string profileGroup,
 
             string profileProtocolOptions,
@@ -1365,6 +1371,7 @@ namespace Pulumiverse.Fortios.Firewall
             Policyid = policyid;
             Poolname6s = poolname6s;
             Poolnames = poolnames;
+            PortPreserve = portPreserve;
             ProfileGroup = profileGroup;
             ProfileProtocolOptions = profileProtocolOptions;
             ProfileType = profileType;

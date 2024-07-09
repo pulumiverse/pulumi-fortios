@@ -94,7 +94,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<int> HttpMaxRedirects { get; private set; } = null!;
 
         /// <summary>
-        /// Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions &gt;= 7.2.0: 5 - 65535 sec.
+        /// Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.15: 5 - 65635 sec. On FortiOS versions &gt;= 7.2.0: 5 - 65535 sec.
         /// </summary>
         [Output("interval")]
         public Output<int> Interval { get; private set; } = null!;
@@ -106,7 +106,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions &gt;= 7.2.0: 0 - 65535.
+        /// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.15: 0 - 65635. On FortiOS versions &gt;= 7.2.0: 0 - 65535.
         /// </summary>
         [Output("port")]
         public Output<int> Port { get; private set; } = null!;
@@ -139,7 +139,7 @@ namespace Pulumiverse.Fortios.Firewall
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -225,7 +225,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? HttpMaxRedirects { get; set; }
 
         /// <summary>
-        /// Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions &gt;= 7.2.0: 5 - 65535 sec.
+        /// Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.15: 5 - 65635 sec. On FortiOS versions &gt;= 7.2.0: 5 - 65535 sec.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
@@ -237,7 +237,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions &gt;= 7.2.0: 0 - 65535.
+        /// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.15: 0 - 65635. On FortiOS versions &gt;= 7.2.0: 0 - 65535.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
@@ -317,7 +317,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? HttpMaxRedirects { get; set; }
 
         /// <summary>
-        /// Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions &gt;= 7.2.0: 5 - 65535 sec.
+        /// Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.15: 5 - 65635 sec. On FortiOS versions &gt;= 7.2.0: 5 - 65535 sec.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
@@ -329,7 +329,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions &gt;= 7.2.0: 0 - 65535.
+        /// Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.15: 0 - 65635. On FortiOS versions &gt;= 7.2.0: 0 - 65535.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }

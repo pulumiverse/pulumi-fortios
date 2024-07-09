@@ -43,6 +43,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly int KeyId;
         /// <summary>
+        /// Select NTP authentication type.
+        /// </summary>
+        public readonly string KeyType;
+        /// <summary>
         /// Enable to use NTPv3 instead of NTPv4.
         /// </summary>
         public readonly string Ntpv3;
@@ -67,6 +71,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             int keyId,
 
+            string keyType,
+
             string ntpv3,
 
             string server)
@@ -78,6 +84,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             IpType = ipType;
             Key = key;
             KeyId = keyId;
+            KeyType = keyType;
             Ntpv3 = ntpv3;
             Server = server;
         }

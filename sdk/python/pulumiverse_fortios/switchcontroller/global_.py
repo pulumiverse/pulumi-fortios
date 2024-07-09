@@ -62,12 +62,12 @@ class GlobalArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fips_enforce: Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] https_image_push: Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_mac_limit_violations: Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] mac_aging_interval: Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
         :param pulumi.Input[str] mac_event_logging: Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] mac_retention_period: Time in hours after which an inactive MAC is removed from client DB.
+        :param pulumi.Input[int] mac_retention_period: Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval).
         :param pulumi.Input[int] mac_violation_timer: Set timeout for Learning Limit Violations (0 = disabled).
         :param pulumi.Input[str] quarantine_mode: Quarantine mode. Valid values: `by-vlan`, `by-redirect`.
         :param pulumi.Input[str] sn_dns_resolution: Enable/disable DNS resolution of the FortiSwitch unit's IP address by use of its serial number. Valid values: `enable`, `disable`.
@@ -320,7 +320,7 @@ class GlobalArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -380,7 +380,7 @@ class GlobalArgs:
     @pulumi.getter(name="macRetentionPeriod")
     def mac_retention_period(self) -> Optional[pulumi.Input[int]]:
         """
-        Time in hours after which an inactive MAC is removed from client DB.
+        Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval).
         """
         return pulumi.get(self, "mac_retention_period")
 
@@ -534,12 +534,12 @@ class _GlobalState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fips_enforce: Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] https_image_push: Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_mac_limit_violations: Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] mac_aging_interval: Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
         :param pulumi.Input[str] mac_event_logging: Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] mac_retention_period: Time in hours after which an inactive MAC is removed from client DB.
+        :param pulumi.Input[int] mac_retention_period: Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval).
         :param pulumi.Input[int] mac_violation_timer: Set timeout for Learning Limit Violations (0 = disabled).
         :param pulumi.Input[str] quarantine_mode: Quarantine mode. Valid values: `by-vlan`, `by-redirect`.
         :param pulumi.Input[str] sn_dns_resolution: Enable/disable DNS resolution of the FortiSwitch unit's IP address by use of its serial number. Valid values: `enable`, `disable`.
@@ -792,7 +792,7 @@ class _GlobalState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -852,7 +852,7 @@ class _GlobalState:
     @pulumi.getter(name="macRetentionPeriod")
     def mac_retention_period(self) -> Optional[pulumi.Input[int]]:
         """
-        Time in hours after which an inactive MAC is removed from client DB.
+        Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval).
         """
         return pulumi.get(self, "mac_retention_period")
 
@@ -1045,12 +1045,12 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fips_enforce: Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] https_image_push: Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_mac_limit_violations: Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] mac_aging_interval: Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
         :param pulumi.Input[str] mac_event_logging: Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] mac_retention_period: Time in hours after which an inactive MAC is removed from client DB.
+        :param pulumi.Input[int] mac_retention_period: Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval).
         :param pulumi.Input[int] mac_violation_timer: Set timeout for Learning Limit Violations (0 = disabled).
         :param pulumi.Input[str] quarantine_mode: Quarantine mode. Valid values: `by-vlan`, `by-redirect`.
         :param pulumi.Input[str] sn_dns_resolution: Enable/disable DNS resolution of the FortiSwitch unit's IP address by use of its serial number. Valid values: `enable`, `disable`.
@@ -1245,12 +1245,12 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fips_enforce: Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] https_image_push: Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_mac_limit_violations: Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] mac_aging_interval: Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
         :param pulumi.Input[str] mac_event_logging: Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] mac_retention_period: Time in hours after which an inactive MAC is removed from client DB.
+        :param pulumi.Input[int] mac_retention_period: Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval).
         :param pulumi.Input[int] mac_violation_timer: Set timeout for Learning Limit Violations (0 = disabled).
         :param pulumi.Input[str] quarantine_mode: Quarantine mode. Valid values: `by-vlan`, `by-redirect`.
         :param pulumi.Input[str] sn_dns_resolution: Enable/disable DNS resolution of the FortiSwitch unit's IP address by use of its serial number. Valid values: `enable`, `disable`.
@@ -1419,7 +1419,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1459,7 +1459,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="macRetentionPeriod")
     def mac_retention_period(self) -> pulumi.Output[int]:
         """
-        Time in hours after which an inactive MAC is removed from client DB.
+        Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval).
         """
         return pulumi.get(self, "mac_retention_period")
 
@@ -1497,7 +1497,7 @@ class Global(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

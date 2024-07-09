@@ -101,9 +101,11 @@ type Sslsshprofile struct {
 	Dot SslsshprofileDotOutput `pulumi:"dot"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// ClientHelloOuter SNIs to be blocked. The structure of `echOuterSni` block is documented below.
+	EchOuterSnis SslsshprofileEchOuterSniArrayOutput `pulumi:"echOuterSnis"`
 	// Configure FTPS options. The structure of `ftps` block is documented below.
 	Ftps SslsshprofileFtpsOutput `pulumi:"ftps"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure HTTPS options. The structure of `https` block is documented below.
 	Https SslsshprofileHttpsOutput `pulumi:"https"`
@@ -154,7 +156,7 @@ type Sslsshprofile struct {
 	// Enable/disable the use of SSL server table for SSL offloading. Valid values: `disable`, `enable`.
 	UseSslServer pulumi.StringOutput `pulumi:"useSslServer"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable exempting servers by FortiGuard whitelist. Valid values: `enable`, `disable`.
 	Whitelist pulumi.StringOutput `pulumi:"whitelist"`
 }
@@ -203,9 +205,11 @@ type sslsshprofileState struct {
 	Dot *SslsshprofileDot `pulumi:"dot"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// ClientHelloOuter SNIs to be blocked. The structure of `echOuterSni` block is documented below.
+	EchOuterSnis []SslsshprofileEchOuterSni `pulumi:"echOuterSnis"`
 	// Configure FTPS options. The structure of `ftps` block is documented below.
 	Ftps *SslsshprofileFtps `pulumi:"ftps"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure HTTPS options. The structure of `https` block is documented below.
 	Https *SslsshprofileHttps `pulumi:"https"`
@@ -276,9 +280,11 @@ type SslsshprofileState struct {
 	Dot SslsshprofileDotPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// ClientHelloOuter SNIs to be blocked. The structure of `echOuterSni` block is documented below.
+	EchOuterSnis SslsshprofileEchOuterSniArrayInput
 	// Configure FTPS options. The structure of `ftps` block is documented below.
 	Ftps SslsshprofileFtpsPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure HTTPS options. The structure of `https` block is documented below.
 	Https SslsshprofileHttpsPtrInput
@@ -353,9 +359,11 @@ type sslsshprofileArgs struct {
 	Dot *SslsshprofileDot `pulumi:"dot"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// ClientHelloOuter SNIs to be blocked. The structure of `echOuterSni` block is documented below.
+	EchOuterSnis []SslsshprofileEchOuterSni `pulumi:"echOuterSnis"`
 	// Configure FTPS options. The structure of `ftps` block is documented below.
 	Ftps *SslsshprofileFtps `pulumi:"ftps"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure HTTPS options. The structure of `https` block is documented below.
 	Https *SslsshprofileHttps `pulumi:"https"`
@@ -427,9 +435,11 @@ type SslsshprofileArgs struct {
 	Dot SslsshprofileDotPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// ClientHelloOuter SNIs to be blocked. The structure of `echOuterSni` block is documented below.
+	EchOuterSnis SslsshprofileEchOuterSniArrayInput
 	// Configure FTPS options. The structure of `ftps` block is documented below.
 	Ftps SslsshprofileFtpsPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure HTTPS options. The structure of `https` block is documented below.
 	Https SslsshprofileHttpsPtrInput
@@ -607,12 +617,17 @@ func (o SslsshprofileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Sslsshprofile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+// ClientHelloOuter SNIs to be blocked. The structure of `echOuterSni` block is documented below.
+func (o SslsshprofileOutput) EchOuterSnis() SslsshprofileEchOuterSniArrayOutput {
+	return o.ApplyT(func(v *Sslsshprofile) SslsshprofileEchOuterSniArrayOutput { return v.EchOuterSnis }).(SslsshprofileEchOuterSniArrayOutput)
+}
+
 // Configure FTPS options. The structure of `ftps` block is documented below.
 func (o SslsshprofileOutput) Ftps() SslsshprofileFtpsOutput {
 	return o.ApplyT(func(v *Sslsshprofile) SslsshprofileFtpsOutput { return v.Ftps }).(SslsshprofileFtpsOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SslsshprofileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Sslsshprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -738,8 +753,8 @@ func (o SslsshprofileOutput) UseSslServer() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SslsshprofileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Sslsshprofile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SslsshprofileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sslsshprofile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable exempting servers by FortiGuard whitelist. Valid values: `enable`, `disable`.

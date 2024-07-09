@@ -363,7 +363,7 @@ namespace Pulumiverse.Fortios.Voip.Outputs
         /// </summary>
         public readonly string? PreserveOverride;
         /// <summary>
-        /// Expiry time for provisional INVITE (10 - 3600 sec).
+        /// Expiry time (10-3600, in seconds) for provisional INVITE.
         /// </summary>
         public readonly int? ProvisionalInviteExpiryTime;
         /// <summary>

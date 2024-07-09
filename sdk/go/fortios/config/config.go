@@ -205,6 +205,9 @@ func GetToken(ctx *pulumi.Context) string {
 func GetUsername(ctx *pulumi.Context) string {
 	return config.Get(ctx, "fortios:username")
 }
+
+// Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+// vdom value on that resource.
 func GetVdom(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "fortios:vdom")
 	if err == nil {

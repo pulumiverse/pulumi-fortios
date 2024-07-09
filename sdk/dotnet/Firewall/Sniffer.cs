@@ -176,7 +176,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<int> Fosid { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -236,7 +236,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> Logtraffic { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
+        /// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.15, 7.0.1-7.0.15: 1 - 1000000, default = 4000.
         /// </summary>
         [Output("maxPacketCount")]
         public Output<int> MaxPacketCount { get; private set; } = null!;
@@ -293,7 +293,7 @@ namespace Pulumiverse.Fortios.Firewall
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// List of VLANs to sniff.
@@ -475,7 +475,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -541,7 +541,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Logtraffic { get; set; }
 
         /// <summary>
-        /// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
+        /// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.15, 7.0.1-7.0.15: 1 - 1000000, default = 4000.
         /// </summary>
         [Input("maxPacketCount")]
         public Input<int>? MaxPacketCount { get; set; }
@@ -741,7 +741,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -807,7 +807,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? Logtraffic { get; set; }
 
         /// <summary>
-        /// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
+        /// Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.15, 7.0.1-7.0.15: 1 - 1000000, default = 4000.
         /// </summary>
         [Input("maxPacketCount")]
         public Input<int>? MaxPacketCount { get; set; }

@@ -19,6 +19,7 @@ class FctemsArgs:
                  call_timeout: Optional[pulumi.Input[int]] = None,
                  capabilities: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 cloud_authentication_access_key: Optional[pulumi.Input[str]] = None,
                  cloud_server_type: Optional[pulumi.Input[str]] = None,
                  dirty_reason: Optional[pulumi.Input[str]] = None,
                  ems_id: Optional[pulumi.Input[int]] = None,
@@ -52,9 +53,10 @@ class FctemsArgs:
         :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         :param pulumi.Input[str] capabilities: List of EMS capabilities.
         :param pulumi.Input[str] certificate: FortiClient EMS certificate.
+        :param pulumi.Input[str] cloud_authentication_access_key: FortiClient EMS Cloud multitenancy access key
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] dirty_reason: Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
-        :param pulumi.Input[int] ems_id: EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+        :param pulumi.Input[int] ems_id: EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         :param pulumi.Input[str] fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -89,6 +91,8 @@ class FctemsArgs:
             pulumi.set(__self__, "capabilities", capabilities)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
+        if cloud_authentication_access_key is not None:
+            pulumi.set(__self__, "cloud_authentication_access_key", cloud_authentication_access_key)
         if cloud_server_type is not None:
             pulumi.set(__self__, "cloud_server_type", cloud_server_type)
         if dirty_reason is not None:
@@ -203,6 +207,18 @@ class FctemsArgs:
         pulumi.set(self, "certificate", value)
 
     @property
+    @pulumi.getter(name="cloudAuthenticationAccessKey")
+    def cloud_authentication_access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiClient EMS Cloud multitenancy access key
+        """
+        return pulumi.get(self, "cloud_authentication_access_key")
+
+    @cloud_authentication_access_key.setter
+    def cloud_authentication_access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cloud_authentication_access_key", value)
+
+    @property
     @pulumi.getter(name="cloudServerType")
     def cloud_server_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -230,7 +246,7 @@ class FctemsArgs:
     @pulumi.getter(name="emsId")
     def ems_id(self) -> Optional[pulumi.Input[int]]:
         """
-        EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+        EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         """
         return pulumi.get(self, "ems_id")
 
@@ -523,6 +539,7 @@ class _FctemsState:
                  call_timeout: Optional[pulumi.Input[int]] = None,
                  capabilities: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 cloud_authentication_access_key: Optional[pulumi.Input[str]] = None,
                  cloud_server_type: Optional[pulumi.Input[str]] = None,
                  dirty_reason: Optional[pulumi.Input[str]] = None,
                  ems_id: Optional[pulumi.Input[int]] = None,
@@ -556,9 +573,10 @@ class _FctemsState:
         :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         :param pulumi.Input[str] capabilities: List of EMS capabilities.
         :param pulumi.Input[str] certificate: FortiClient EMS certificate.
+        :param pulumi.Input[str] cloud_authentication_access_key: FortiClient EMS Cloud multitenancy access key
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] dirty_reason: Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
-        :param pulumi.Input[int] ems_id: EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+        :param pulumi.Input[int] ems_id: EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         :param pulumi.Input[str] fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -593,6 +611,8 @@ class _FctemsState:
             pulumi.set(__self__, "capabilities", capabilities)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
+        if cloud_authentication_access_key is not None:
+            pulumi.set(__self__, "cloud_authentication_access_key", cloud_authentication_access_key)
         if cloud_server_type is not None:
             pulumi.set(__self__, "cloud_server_type", cloud_server_type)
         if dirty_reason is not None:
@@ -707,6 +727,18 @@ class _FctemsState:
         pulumi.set(self, "certificate", value)
 
     @property
+    @pulumi.getter(name="cloudAuthenticationAccessKey")
+    def cloud_authentication_access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiClient EMS Cloud multitenancy access key
+        """
+        return pulumi.get(self, "cloud_authentication_access_key")
+
+    @cloud_authentication_access_key.setter
+    def cloud_authentication_access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cloud_authentication_access_key", value)
+
+    @property
     @pulumi.getter(name="cloudServerType")
     def cloud_server_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -734,7 +766,7 @@ class _FctemsState:
     @pulumi.getter(name="emsId")
     def ems_id(self) -> Optional[pulumi.Input[int]]:
         """
-        EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+        EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         """
         return pulumi.get(self, "ems_id")
 
@@ -1029,6 +1061,7 @@ class Fctems(pulumi.CustomResource):
                  call_timeout: Optional[pulumi.Input[int]] = None,
                  capabilities: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 cloud_authentication_access_key: Optional[pulumi.Input[str]] = None,
                  cloud_server_type: Optional[pulumi.Input[str]] = None,
                  dirty_reason: Optional[pulumi.Input[str]] = None,
                  ems_id: Optional[pulumi.Input[int]] = None,
@@ -1084,9 +1117,10 @@ class Fctems(pulumi.CustomResource):
         :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         :param pulumi.Input[str] capabilities: List of EMS capabilities.
         :param pulumi.Input[str] certificate: FortiClient EMS certificate.
+        :param pulumi.Input[str] cloud_authentication_access_key: FortiClient EMS Cloud multitenancy access key
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] dirty_reason: Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
-        :param pulumi.Input[int] ems_id: EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+        :param pulumi.Input[int] ems_id: EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         :param pulumi.Input[str] fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -1158,6 +1192,7 @@ class Fctems(pulumi.CustomResource):
                  call_timeout: Optional[pulumi.Input[int]] = None,
                  capabilities: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 cloud_authentication_access_key: Optional[pulumi.Input[str]] = None,
                  cloud_server_type: Optional[pulumi.Input[str]] = None,
                  dirty_reason: Optional[pulumi.Input[str]] = None,
                  ems_id: Optional[pulumi.Input[int]] = None,
@@ -1198,6 +1233,7 @@ class Fctems(pulumi.CustomResource):
             __props__.__dict__["call_timeout"] = call_timeout
             __props__.__dict__["capabilities"] = capabilities
             __props__.__dict__["certificate"] = certificate
+            __props__.__dict__["cloud_authentication_access_key"] = cloud_authentication_access_key
             __props__.__dict__["cloud_server_type"] = cloud_server_type
             __props__.__dict__["dirty_reason"] = dirty_reason
             __props__.__dict__["ems_id"] = ems_id
@@ -1241,6 +1277,7 @@ class Fctems(pulumi.CustomResource):
             call_timeout: Optional[pulumi.Input[int]] = None,
             capabilities: Optional[pulumi.Input[str]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
+            cloud_authentication_access_key: Optional[pulumi.Input[str]] = None,
             cloud_server_type: Optional[pulumi.Input[str]] = None,
             dirty_reason: Optional[pulumi.Input[str]] = None,
             ems_id: Optional[pulumi.Input[int]] = None,
@@ -1279,9 +1316,10 @@ class Fctems(pulumi.CustomResource):
         :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout. On FortiOS versions 6.2.4-6.2.6: 500 - 30000 milliseconds, default = 5000. On FortiOS versions 6.4.0: 500 - 50000 milliseconds, default = 5000. On FortiOS versions >= 6.4.2: 1 - 180 seconds, default = 30. On FortiOS versions 6.4.1: 500 - 180000 milliseconds, default = 30000.
         :param pulumi.Input[str] capabilities: List of EMS capabilities.
         :param pulumi.Input[str] certificate: FortiClient EMS certificate.
+        :param pulumi.Input[str] cloud_authentication_access_key: FortiClient EMS Cloud multitenancy access key
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] dirty_reason: Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
-        :param pulumi.Input[int] ems_id: EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+        :param pulumi.Input[int] ems_id: EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         :param pulumi.Input[str] fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -1315,6 +1353,7 @@ class Fctems(pulumi.CustomResource):
         __props__.__dict__["call_timeout"] = call_timeout
         __props__.__dict__["capabilities"] = capabilities
         __props__.__dict__["certificate"] = certificate
+        __props__.__dict__["cloud_authentication_access_key"] = cloud_authentication_access_key
         __props__.__dict__["cloud_server_type"] = cloud_server_type
         __props__.__dict__["dirty_reason"] = dirty_reason
         __props__.__dict__["ems_id"] = ems_id
@@ -1384,6 +1423,14 @@ class Fctems(pulumi.CustomResource):
         return pulumi.get(self, "certificate")
 
     @property
+    @pulumi.getter(name="cloudAuthenticationAccessKey")
+    def cloud_authentication_access_key(self) -> pulumi.Output[str]:
+        """
+        FortiClient EMS Cloud multitenancy access key
+        """
+        return pulumi.get(self, "cloud_authentication_access_key")
+
+    @property
     @pulumi.getter(name="cloudServerType")
     def cloud_server_type(self) -> pulumi.Output[str]:
         """
@@ -1403,7 +1450,7 @@ class Fctems(pulumi.CustomResource):
     @pulumi.getter(name="emsId")
     def ems_id(self) -> pulumi.Output[int]:
         """
-        EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+        EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
         """
         return pulumi.get(self, "ems_id")
 
@@ -1569,7 +1616,7 @@ class Fctems(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

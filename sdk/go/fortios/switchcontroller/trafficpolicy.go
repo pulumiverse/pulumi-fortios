@@ -84,7 +84,7 @@ type Trafficpolicy struct {
 	// Configure type of policy(ingress/egress). Valid values: `ingress`, `egress`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewTrafficpolicy registers a new resource with the given unique name, arguments, and options.
@@ -359,8 +359,8 @@ func (o TrafficpolicyOutput) Type() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o TrafficpolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Trafficpolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o TrafficpolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Trafficpolicy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type TrafficpolicyArrayOutput struct{ *pulumi.OutputState }

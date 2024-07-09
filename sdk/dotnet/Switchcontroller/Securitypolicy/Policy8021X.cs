@@ -95,6 +95,18 @@ namespace Pulumiverse.Fortios.Switchcontroller.Securitypolicy
         public Output<int> AuthserverTimeoutPeriod { get; private set; } = null!;
 
         /// <summary>
+        /// Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+        /// </summary>
+        [Output("authserverTimeoutTagged")]
+        public Output<string> AuthserverTimeoutTagged { get; private set; } = null!;
+
+        /// <summary>
+        /// Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+        /// </summary>
+        [Output("authserverTimeoutTaggedVlanid")]
+        public Output<string> AuthserverTimeoutTaggedVlanid { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
         /// </summary>
         [Output("authserverTimeoutVlan")]
@@ -105,6 +117,12 @@ namespace Pulumiverse.Fortios.Switchcontroller.Securitypolicy
         /// </summary>
         [Output("authserverTimeoutVlanid")]
         public Output<string> AuthserverTimeoutVlanid { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("dacl")]
+        public Output<string> Dacl { get; private set; } = null!;
 
         /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
@@ -131,7 +149,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Securitypolicy
         public Output<string> FramevidApply { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -206,7 +224,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Securitypolicy
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -280,6 +298,18 @@ namespace Pulumiverse.Fortios.Switchcontroller.Securitypolicy
         public Input<int>? AuthserverTimeoutPeriod { get; set; }
 
         /// <summary>
+        /// Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+        /// </summary>
+        [Input("authserverTimeoutTagged")]
+        public Input<string>? AuthserverTimeoutTagged { get; set; }
+
+        /// <summary>
+        /// Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+        /// </summary>
+        [Input("authserverTimeoutTaggedVlanid")]
+        public Input<string>? AuthserverTimeoutTaggedVlanid { get; set; }
+
+        /// <summary>
         /// Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
         /// </summary>
         [Input("authserverTimeoutVlan")]
@@ -290,6 +320,12 @@ namespace Pulumiverse.Fortios.Switchcontroller.Securitypolicy
         /// </summary>
         [Input("authserverTimeoutVlanid")]
         public Input<string>? AuthserverTimeoutVlanid { get; set; }
+
+        /// <summary>
+        /// Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("dacl")]
+        public Input<string>? Dacl { get; set; }
 
         /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
@@ -316,7 +352,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Securitypolicy
         public Input<string>? FramevidApply { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -432,6 +468,18 @@ namespace Pulumiverse.Fortios.Switchcontroller.Securitypolicy
         public Input<int>? AuthserverTimeoutPeriod { get; set; }
 
         /// <summary>
+        /// Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+        /// </summary>
+        [Input("authserverTimeoutTagged")]
+        public Input<string>? AuthserverTimeoutTagged { get; set; }
+
+        /// <summary>
+        /// Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+        /// </summary>
+        [Input("authserverTimeoutTaggedVlanid")]
+        public Input<string>? AuthserverTimeoutTaggedVlanid { get; set; }
+
+        /// <summary>
         /// Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
         /// </summary>
         [Input("authserverTimeoutVlan")]
@@ -442,6 +490,12 @@ namespace Pulumiverse.Fortios.Switchcontroller.Securitypolicy
         /// </summary>
         [Input("authserverTimeoutVlanid")]
         public Input<string>? AuthserverTimeoutVlanid { get; set; }
+
+        /// <summary>
+        /// Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("dacl")]
+        public Input<string>? Dacl { get; set; }
 
         /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
@@ -468,7 +522,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Securitypolicy
         public Input<string>? FramevidApply { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }

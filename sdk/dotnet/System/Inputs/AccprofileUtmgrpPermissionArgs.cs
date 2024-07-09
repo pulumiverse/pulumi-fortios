@@ -44,6 +44,12 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<string>? DataLossPrevention { get; set; }
 
         /// <summary>
+        /// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+        /// </summary>
+        [Input("dlp")]
+        public Input<string>? Dlp { get; set; }
+
+        /// <summary>
         /// DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
         /// </summary>
         [Input("dnsfilter")]

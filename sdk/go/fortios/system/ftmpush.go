@@ -65,7 +65,7 @@ type Ftmpush struct {
 	Proxy pulumi.StringOutput `pulumi:"proxy"`
 	// IPv4 address or domain name of FortiToken Mobile push services server.
 	Server pulumi.StringOutput `pulumi:"server"`
-	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+	// Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
 	ServerCert pulumi.StringOutput `pulumi:"serverCert"`
 	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
 	ServerIp pulumi.StringOutput `pulumi:"serverIp"`
@@ -74,7 +74,7 @@ type Ftmpush struct {
 	// Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewFtmpush registers a new resource with the given unique name, arguments, and options.
@@ -111,7 +111,7 @@ type ftmpushState struct {
 	Proxy *string `pulumi:"proxy"`
 	// IPv4 address or domain name of FortiToken Mobile push services server.
 	Server *string `pulumi:"server"`
-	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+	// Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
 	ServerCert *string `pulumi:"serverCert"`
 	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
 	ServerIp *string `pulumi:"serverIp"`
@@ -128,7 +128,7 @@ type FtmpushState struct {
 	Proxy pulumi.StringPtrInput
 	// IPv4 address or domain name of FortiToken Mobile push services server.
 	Server pulumi.StringPtrInput
-	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+	// Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
 	ServerCert pulumi.StringPtrInput
 	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
 	ServerIp pulumi.StringPtrInput
@@ -149,7 +149,7 @@ type ftmpushArgs struct {
 	Proxy *string `pulumi:"proxy"`
 	// IPv4 address or domain name of FortiToken Mobile push services server.
 	Server *string `pulumi:"server"`
-	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+	// Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
 	ServerCert *string `pulumi:"serverCert"`
 	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
 	ServerIp *string `pulumi:"serverIp"`
@@ -167,7 +167,7 @@ type FtmpushArgs struct {
 	Proxy pulumi.StringPtrInput
 	// IPv4 address or domain name of FortiToken Mobile push services server.
 	Server pulumi.StringPtrInput
-	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+	// Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
 	ServerCert pulumi.StringPtrInput
 	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
 	ServerIp pulumi.StringPtrInput
@@ -276,7 +276,7 @@ func (o FtmpushOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ftmpush) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
 }
 
-// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+// Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
 func (o FtmpushOutput) ServerCert() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ftmpush) pulumi.StringOutput { return v.ServerCert }).(pulumi.StringOutput)
 }
@@ -297,8 +297,8 @@ func (o FtmpushOutput) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o FtmpushOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Ftmpush) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o FtmpushOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ftmpush) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type FtmpushArrayOutput struct{ *pulumi.OutputState }

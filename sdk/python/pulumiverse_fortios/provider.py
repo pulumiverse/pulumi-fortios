@@ -46,6 +46,8 @@ class ProviderArgs:
         :param pulumi.Input[str] password: The password of the user.
         :param pulumi.Input[str] peerauth: Enable/disable peer authentication, can be 'enable' or 'disable'
         :param pulumi.Input[str] username: The username of the user.
+        :param pulumi.Input[str] vdom: Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+               vdom value on that resource.
         """
         if cabundlecontent is None:
             cabundlecontent = _utilities.get_env('FORTIOS_CA_CABUNDLECONTENT')
@@ -308,6 +310,10 @@ class ProviderArgs:
     @property
     @pulumi.getter
     def vdom(self) -> Optional[pulumi.Input[str]]:
+        """
+        Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+        vdom value on that resource.
+        """
         return pulumi.get(self, "vdom")
 
     @vdom.setter
@@ -359,6 +365,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[str] password: The password of the user.
         :param pulumi.Input[str] peerauth: Enable/disable peer authentication, can be 'enable' or 'disable'
         :param pulumi.Input[str] username: The username of the user.
+        :param pulumi.Input[str] vdom: Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+               vdom value on that resource.
         """
         ...
     @overload
@@ -586,5 +594,9 @@ class Provider(pulumi.ProviderResource):
     @property
     @pulumi.getter
     def vdom(self) -> pulumi.Output[Optional[str]]:
+        """
+        Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+        vdom value on that resource.
+        """
         return pulumi.get(self, "vdom")
 

@@ -39,7 +39,7 @@ type Dictionary struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// DLP dictionary entries. The structure of `entries` block is documented below.
 	Entries DictionaryEntryArrayOutput `pulumi:"entries"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable match-around support. Valid values: `enable`, `disable`.
 	MatchAround pulumi.StringOutput `pulumi:"matchAround"`
@@ -50,7 +50,7 @@ type Dictionary struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewDictionary registers a new resource with the given unique name, arguments, and options.
@@ -89,7 +89,7 @@ type dictionaryState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// DLP dictionary entries. The structure of `entries` block is documented below.
 	Entries []DictionaryEntry `pulumi:"entries"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable match-around support. Valid values: `enable`, `disable`.
 	MatchAround *string `pulumi:"matchAround"`
@@ -110,7 +110,7 @@ type DictionaryState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// DLP dictionary entries. The structure of `entries` block is documented below.
 	Entries DictionaryEntryArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable match-around support. Valid values: `enable`, `disable`.
 	MatchAround pulumi.StringPtrInput
@@ -135,7 +135,7 @@ type dictionaryArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// DLP dictionary entries. The structure of `entries` block is documented below.
 	Entries []DictionaryEntry `pulumi:"entries"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable match-around support. Valid values: `enable`, `disable`.
 	MatchAround *string `pulumi:"matchAround"`
@@ -157,7 +157,7 @@ type DictionaryArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// DLP dictionary entries. The structure of `entries` block is documented below.
 	Entries DictionaryEntryArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable match-around support. Valid values: `enable`, `disable`.
 	MatchAround pulumi.StringPtrInput
@@ -273,7 +273,7 @@ func (o DictionaryOutput) Entries() DictionaryEntryArrayOutput {
 	return o.ApplyT(func(v *Dictionary) DictionaryEntryArrayOutput { return v.Entries }).(DictionaryEntryArrayOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o DictionaryOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Dictionary) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -299,8 +299,8 @@ func (o DictionaryOutput) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o DictionaryOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Dictionary) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o DictionaryOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Dictionary) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type DictionaryArrayOutput struct{ *pulumi.OutputState }

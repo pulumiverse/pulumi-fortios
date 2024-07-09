@@ -59,6 +59,10 @@ namespace Pulumiverse.Fortios.System.Snmp
     public sealed class GetSysinfoResult
     {
         /// <summary>
+        /// Enable/disable allowance of appending VDOM or interface index in some RFC tables.
+        /// </summary>
+        public readonly string AppendIndex;
+        /// <summary>
         /// Contact information.
         /// </summary>
         public readonly string ContactInfo;
@@ -110,6 +114,8 @@ namespace Pulumiverse.Fortios.System.Snmp
 
         [OutputConstructor]
         private GetSysinfoResult(
+            string appendIndex,
+
             string contactInfo,
 
             string description,
@@ -136,6 +142,7 @@ namespace Pulumiverse.Fortios.System.Snmp
 
             string? vdomparam)
         {
+            AppendIndex = appendIndex;
             ContactInfo = contactInfo;
             Description = description;
             EngineId = engineId;

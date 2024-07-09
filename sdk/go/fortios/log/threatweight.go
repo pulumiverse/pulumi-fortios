@@ -184,7 +184,7 @@ type Threatweight struct {
 	FailedConnection pulumi.StringOutput `pulumi:"failedConnection"`
 	// Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
 	Geolocations ThreatweightGeolocationArrayOutput `pulumi:"geolocations"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// IPS threat weight settings. The structure of `ips` block is documented below.
 	Ips ThreatweightIpsOutput `pulumi:"ips"`
@@ -197,7 +197,7 @@ type Threatweight struct {
 	// Threat weight score for URL blocking. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
 	UrlBlockDetected pulumi.StringOutput `pulumi:"urlBlockDetected"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Web filtering threat weight settings. The structure of `web` block is documented below.
 	Webs ThreatweightWebArrayOutput `pulumi:"webs"`
 }
@@ -244,7 +244,7 @@ type threatweightState struct {
 	FailedConnection *string `pulumi:"failedConnection"`
 	// Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
 	Geolocations []ThreatweightGeolocation `pulumi:"geolocations"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// IPS threat weight settings. The structure of `ips` block is documented below.
 	Ips *ThreatweightIps `pulumi:"ips"`
@@ -275,7 +275,7 @@ type ThreatweightState struct {
 	FailedConnection pulumi.StringPtrInput
 	// Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
 	Geolocations ThreatweightGeolocationArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// IPS threat weight settings. The structure of `ips` block is documented below.
 	Ips ThreatweightIpsPtrInput
@@ -310,7 +310,7 @@ type threatweightArgs struct {
 	FailedConnection *string `pulumi:"failedConnection"`
 	// Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
 	Geolocations []ThreatweightGeolocation `pulumi:"geolocations"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// IPS threat weight settings. The structure of `ips` block is documented below.
 	Ips *ThreatweightIps `pulumi:"ips"`
@@ -342,7 +342,7 @@ type ThreatweightArgs struct {
 	FailedConnection pulumi.StringPtrInput
 	// Geolocation-based threat weight settings. The structure of `geolocation` block is documented below.
 	Geolocations ThreatweightGeolocationArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// IPS threat weight settings. The structure of `ips` block is documented below.
 	Ips ThreatweightIpsPtrInput
@@ -477,7 +477,7 @@ func (o ThreatweightOutput) Geolocations() ThreatweightGeolocationArrayOutput {
 	return o.ApplyT(func(v *Threatweight) ThreatweightGeolocationArrayOutput { return v.Geolocations }).(ThreatweightGeolocationArrayOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ThreatweightOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Threatweight) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -508,8 +508,8 @@ func (o ThreatweightOutput) UrlBlockDetected() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ThreatweightOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Threatweight) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ThreatweightOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Threatweight) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Web filtering threat weight settings. The structure of `web` block is documented below.

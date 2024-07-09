@@ -39,14 +39,14 @@ type Switchgroup struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// FortiLink interface to which switch group members belong.
 	Fortilink pulumi.StringOutput `pulumi:"fortilink"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// FortiSwitch members belonging to this switch group. The structure of `members` block is documented below.
 	Members SwitchgroupMemberArrayOutput `pulumi:"members"`
 	// Switch group name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSwitchgroup registers a new resource with the given unique name, arguments, and options.
@@ -85,7 +85,7 @@ type switchgroupState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// FortiLink interface to which switch group members belong.
 	Fortilink *string `pulumi:"fortilink"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiSwitch members belonging to this switch group. The structure of `members` block is documented below.
 	Members []SwitchgroupMember `pulumi:"members"`
@@ -102,7 +102,7 @@ type SwitchgroupState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// FortiLink interface to which switch group members belong.
 	Fortilink pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// FortiSwitch members belonging to this switch group. The structure of `members` block is documented below.
 	Members SwitchgroupMemberArrayInput
@@ -123,7 +123,7 @@ type switchgroupArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// FortiLink interface to which switch group members belong.
 	Fortilink *string `pulumi:"fortilink"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiSwitch members belonging to this switch group. The structure of `members` block is documented below.
 	Members []SwitchgroupMember `pulumi:"members"`
@@ -141,7 +141,7 @@ type SwitchgroupArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// FortiLink interface to which switch group members belong.
 	Fortilink pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// FortiSwitch members belonging to this switch group. The structure of `members` block is documented below.
 	Members SwitchgroupMemberArrayInput
@@ -253,7 +253,7 @@ func (o SwitchgroupOutput) Fortilink() pulumi.StringOutput {
 	return o.ApplyT(func(v *Switchgroup) pulumi.StringOutput { return v.Fortilink }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SwitchgroupOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Switchgroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -269,8 +269,8 @@ func (o SwitchgroupOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SwitchgroupOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Switchgroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SwitchgroupOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Switchgroup) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SwitchgroupArrayOutput struct{ *pulumi.OutputState }

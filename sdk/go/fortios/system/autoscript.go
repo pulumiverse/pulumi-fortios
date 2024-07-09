@@ -87,7 +87,7 @@ type Autoscript struct {
 	// Maximum running time for this script in seconds (0 = no timeout).
 	Timeout pulumi.IntOutput `pulumi:"timeout"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewAutoscript registers a new resource with the given unique name, arguments, and options.
@@ -323,8 +323,8 @@ func (o AutoscriptOutput) Timeout() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o AutoscriptOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Autoscript) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o AutoscriptOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Autoscript) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type AutoscriptArrayOutput struct{ *pulumi.OutputState }

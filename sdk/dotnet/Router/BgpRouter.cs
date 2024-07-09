@@ -214,13 +214,13 @@ namespace Pulumiverse.Fortios.Router
         public Output<string> AlwaysCompareMed { get; private set; } = null!;
 
         /// <summary>
-        /// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+        /// Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as_string`.*
         /// </summary>
         [Output("as")]
         public Output<int> As { get; private set; } = null!;
 
         /// <summary>
-        /// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        /// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
         /// </summary>
         [Output("asString")]
         public Output<string> AsString { get; private set; } = null!;
@@ -382,7 +382,7 @@ namespace Pulumiverse.Fortios.Router
         public Output<string> FastExternalFailover { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -547,7 +547,7 @@ namespace Pulumiverse.Fortios.Router
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// BGP IPv6 VRF leaking table. The structure of `vrf6` block is documented below.
@@ -581,7 +581,7 @@ namespace Pulumiverse.Fortios.Router
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public BgpRouter(string name, BgpRouterArgs args, CustomResourceOptions? options = null)
+        public BgpRouter(string name, BgpRouterArgs? args = null, CustomResourceOptions? options = null)
             : base("fortios:router/bgp:Bgp", name, args ?? new BgpRouterArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -711,13 +711,13 @@ namespace Pulumiverse.Fortios.Router
         public Input<string>? AlwaysCompareMed { get; set; }
 
         /// <summary>
-        /// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+        /// Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as_string`.*
         /// </summary>
-        [Input("as", required: true)]
-        public Input<int> As { get; set; } = null!;
+        [Input("as")]
+        public Input<int>? As { get; set; }
 
         /// <summary>
-        /// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        /// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
         /// </summary>
         [Input("asString")]
         public Input<string>? AsString { get; set; }
@@ -885,7 +885,7 @@ namespace Pulumiverse.Fortios.Router
         public Input<string>? FastExternalFailover { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -1247,13 +1247,13 @@ namespace Pulumiverse.Fortios.Router
         public Input<string>? AlwaysCompareMed { get; set; }
 
         /// <summary>
-        /// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+        /// Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as_string`.*
         /// </summary>
         [Input("as")]
         public Input<int>? As { get; set; }
 
         /// <summary>
-        /// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        /// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
         /// </summary>
         [Input("asString")]
         public Input<string>? AsString { get; set; }
@@ -1421,7 +1421,7 @@ namespace Pulumiverse.Fortios.Router
         public Input<string>? FastExternalFailover { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }

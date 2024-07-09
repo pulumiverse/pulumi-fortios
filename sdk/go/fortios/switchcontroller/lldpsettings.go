@@ -76,7 +76,7 @@ type Lldpsettings struct {
 	// Frequency of LLDP PDU transmission from FortiSwitch (5 - 4095 sec, default = 30). Packet TTL is tx-hold * tx-interval.
 	TxInterval pulumi.IntOutput `pulumi:"txInterval"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewLldpsettings registers a new resource with the given unique name, arguments, and options.
@@ -299,8 +299,8 @@ func (o LldpsettingsOutput) TxInterval() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o LldpsettingsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Lldpsettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o LldpsettingsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Lldpsettings) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type LldpsettingsArrayOutput struct{ *pulumi.OutputState }

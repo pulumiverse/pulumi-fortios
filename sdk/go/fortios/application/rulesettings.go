@@ -36,7 +36,7 @@ type Rulesettings struct {
 	// Rule ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewRulesettings registers a new resource with the given unique name, arguments, and options.
@@ -194,8 +194,8 @@ func (o RulesettingsOutput) Fosid() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o RulesettingsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Rulesettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o RulesettingsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Rulesettings) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type RulesettingsArrayOutput struct{ *pulumi.OutputState }

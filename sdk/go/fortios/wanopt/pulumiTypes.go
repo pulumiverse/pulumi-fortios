@@ -1790,7 +1790,7 @@ type ProfileHttp struct {
 	ProtocolOpt *string `pulumi:"protocolOpt"`
 	// Enable/disable securing the WAN Opt tunnel using SSL. Secure and non-secure tunnels use the same TCP port (7810). Valid values: `enable`, `disable`.
 	SecureTunnel *string `pulumi:"secureTunnel"`
-	// Enable/disable SSL/TLS offloading (hardware acceleration) for HTTPS traffic in this tunnel. Valid values: `enable`, `disable`.
+	// Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
 	Ssl *string `pulumi:"ssl"`
 	// Port on which to expect HTTPS traffic for SSL/TLS offloading.
 	SslPort *int `pulumi:"sslPort"`
@@ -1828,7 +1828,7 @@ type ProfileHttpArgs struct {
 	ProtocolOpt pulumi.StringPtrInput `pulumi:"protocolOpt"`
 	// Enable/disable securing the WAN Opt tunnel using SSL. Secure and non-secure tunnels use the same TCP port (7810). Valid values: `enable`, `disable`.
 	SecureTunnel pulumi.StringPtrInput `pulumi:"secureTunnel"`
-	// Enable/disable SSL/TLS offloading (hardware acceleration) for HTTPS traffic in this tunnel. Valid values: `enable`, `disable`.
+	// Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
 	Ssl pulumi.StringPtrInput `pulumi:"ssl"`
 	// Port on which to expect HTTPS traffic for SSL/TLS offloading.
 	SslPort pulumi.IntPtrInput `pulumi:"sslPort"`
@@ -1949,7 +1949,7 @@ func (o ProfileHttpOutput) SecureTunnel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileHttp) *string { return v.SecureTunnel }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable SSL/TLS offloading (hardware acceleration) for HTTPS traffic in this tunnel. Valid values: `enable`, `disable`.
+// Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
 func (o ProfileHttpOutput) Ssl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileHttp) *string { return v.Ssl }).(pulumi.StringPtrOutput)
 }
@@ -2063,7 +2063,7 @@ func (o ProfileHttpPtrOutput) SecureTunnel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable SSL/TLS offloading (hardware acceleration) for HTTPS traffic in this tunnel. Valid values: `enable`, `disable`.
+// Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
 func (o ProfileHttpPtrOutput) Ssl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileHttp) *string {
 		if v == nil {
@@ -2366,7 +2366,7 @@ type ProfileTcp struct {
 	Port *string `pulumi:"port"`
 	// Enable/disable securing the WAN Opt tunnel using SSL. Secure and non-secure tunnels use the same TCP port (7810). Valid values: `enable`, `disable`.
 	SecureTunnel *string `pulumi:"secureTunnel"`
-	// Enable/disable SSL/TLS offloading. Valid values: `enable`, `disable`.
+	// Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
 	Ssl *string `pulumi:"ssl"`
 	// Port on which to expect HTTPS traffic for SSL/TLS offloading.
 	SslPort *int `pulumi:"sslPort"`
@@ -2398,7 +2398,7 @@ type ProfileTcpArgs struct {
 	Port pulumi.StringPtrInput `pulumi:"port"`
 	// Enable/disable securing the WAN Opt tunnel using SSL. Secure and non-secure tunnels use the same TCP port (7810). Valid values: `enable`, `disable`.
 	SecureTunnel pulumi.StringPtrInput `pulumi:"secureTunnel"`
-	// Enable/disable SSL/TLS offloading. Valid values: `enable`, `disable`.
+	// Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
 	Ssl pulumi.StringPtrInput `pulumi:"ssl"`
 	// Port on which to expect HTTPS traffic for SSL/TLS offloading.
 	SslPort pulumi.IntPtrInput `pulumi:"sslPort"`
@@ -2510,7 +2510,7 @@ func (o ProfileTcpOutput) SecureTunnel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileTcp) *string { return v.SecureTunnel }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable SSL/TLS offloading. Valid values: `enable`, `disable`.
+// Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
 func (o ProfileTcpOutput) Ssl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileTcp) *string { return v.Ssl }).(pulumi.StringPtrOutput)
 }
@@ -2604,7 +2604,7 @@ func (o ProfileTcpPtrOutput) SecureTunnel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable SSL/TLS offloading. Valid values: `enable`, `disable`.
+// Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
 func (o ProfileTcpPtrOutput) Ssl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileTcp) *string {
 		if v == nil {

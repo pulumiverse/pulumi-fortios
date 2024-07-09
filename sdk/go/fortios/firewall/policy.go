@@ -237,7 +237,7 @@ type Policy struct {
 	GeoipAnycast pulumi.StringOutput `pulumi:"geoipAnycast"`
 	// Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
 	GeoipMatch pulumi.StringOutput `pulumi:"geoipMatch"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel pulumi.StringPtrOutput `pulumi:"globalLabel"`
@@ -377,6 +377,8 @@ type Policy struct {
 	Poolname6s PolicyPoolname6ArrayOutput `pulumi:"poolname6s"`
 	// IP Pool names. The structure of `poolname` block is documented below.
 	Poolnames PolicyPoolnameArrayOutput `pulumi:"poolnames"`
+	// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+	PortPreserve pulumi.StringOutput `pulumi:"portPreserve"`
 	// Name of profile group.
 	ProfileGroup pulumi.StringPtrOutput `pulumi:"profileGroup"`
 	// Name of an existing Protocol options profile.
@@ -476,7 +478,7 @@ type Policy struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringPtrOutput `pulumi:"videofilterProfile"`
 	// Name of an existing virtual-patch profile.
@@ -669,7 +671,7 @@ type policyState struct {
 	GeoipAnycast *string `pulumi:"geoipAnycast"`
 	// Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
 	GeoipMatch *string `pulumi:"geoipMatch"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel *string `pulumi:"globalLabel"`
@@ -809,6 +811,8 @@ type policyState struct {
 	Poolname6s []PolicyPoolname6 `pulumi:"poolname6s"`
 	// IP Pool names. The structure of `poolname` block is documented below.
 	Poolnames []PolicyPoolname `pulumi:"poolnames"`
+	// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+	PortPreserve *string `pulumi:"portPreserve"`
 	// Name of profile group.
 	ProfileGroup *string `pulumi:"profileGroup"`
 	// Name of an existing Protocol options profile.
@@ -1066,7 +1070,7 @@ type PolicyState struct {
 	GeoipAnycast pulumi.StringPtrInput
 	// Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
 	GeoipMatch pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel pulumi.StringPtrInput
@@ -1206,6 +1210,8 @@ type PolicyState struct {
 	Poolname6s PolicyPoolname6ArrayInput
 	// IP Pool names. The structure of `poolname` block is documented below.
 	Poolnames PolicyPoolnameArrayInput
+	// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+	PortPreserve pulumi.StringPtrInput
 	// Name of profile group.
 	ProfileGroup pulumi.StringPtrInput
 	// Name of an existing Protocol options profile.
@@ -1467,7 +1473,7 @@ type policyArgs struct {
 	GeoipAnycast *string `pulumi:"geoipAnycast"`
 	// Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
 	GeoipMatch *string `pulumi:"geoipMatch"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel *string `pulumi:"globalLabel"`
@@ -1607,6 +1613,8 @@ type policyArgs struct {
 	Poolname6s []PolicyPoolname6 `pulumi:"poolname6s"`
 	// IP Pool names. The structure of `poolname` block is documented below.
 	Poolnames []PolicyPoolname `pulumi:"poolnames"`
+	// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+	PortPreserve *string `pulumi:"portPreserve"`
 	// Name of profile group.
 	ProfileGroup *string `pulumi:"profileGroup"`
 	// Name of an existing Protocol options profile.
@@ -1865,7 +1873,7 @@ type PolicyArgs struct {
 	GeoipAnycast pulumi.StringPtrInput
 	// Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
 	GeoipMatch pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel pulumi.StringPtrInput
@@ -2005,6 +2013,8 @@ type PolicyArgs struct {
 	Poolname6s PolicyPoolname6ArrayInput
 	// IP Pool names. The structure of `poolname` block is documented below.
 	Poolnames PolicyPoolnameArrayInput
+	// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+	PortPreserve pulumi.StringPtrInput
 	// Name of profile group.
 	ProfileGroup pulumi.StringPtrInput
 	// Name of an existing Protocol options profile.
@@ -2498,7 +2508,7 @@ func (o PolicyOutput) GeoipMatch() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.GeoipMatch }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o PolicyOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -2852,6 +2862,11 @@ func (o PolicyOutput) Poolnames() PolicyPoolnameArrayOutput {
 	return o.ApplyT(func(v *Policy) PolicyPoolnameArrayOutput { return v.Poolnames }).(PolicyPoolnameArrayOutput)
 }
 
+// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+func (o PolicyOutput) PortPreserve() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.PortPreserve }).(pulumi.StringOutput)
+}
+
 // Name of profile group.
 func (o PolicyOutput) ProfileGroup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.ProfileGroup }).(pulumi.StringPtrOutput)
@@ -3098,8 +3113,8 @@ func (o PolicyOutput) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o PolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o PolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Name of an existing VideoFilter profile.

@@ -46,8 +46,8 @@ class DnsArgs:
         """
         The set of arguments for constructing a Dns resource.
         :param pulumi.Input[str] primary: Primary DNS server IP address.
-        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
-        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. This is not used as a failover DNS server.
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. This is not used as a failover DNS server.
         :param pulumi.Input[str] cache_notfound_responses: Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] dns_cache_limit: Maximum number of records in the DNS cache.
         :param pulumi.Input[int] dns_cache_ttl: Duration in seconds that the DNS cache retains information.
@@ -57,7 +57,7 @@ class DnsArgs:
         :param pulumi.Input[int] fqdn_cache_ttl: FQDN cache time to live in seconds (0 - 86400, default = 0).
         :param pulumi.Input[int] fqdn_max_refresh: FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
         :param pulumi.Input[int] fqdn_min_refresh: FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary DNS server IPv6 address.
@@ -143,7 +143,7 @@ class DnsArgs:
     @pulumi.getter(name="altPrimary")
     def alt_primary(self) -> Optional[pulumi.Input[str]]:
         """
-        Alternate primary DNS server. (This is not used as a failover DNS server.)
+        Alternate primary DNS server. This is not used as a failover DNS server.
         """
         return pulumi.get(self, "alt_primary")
 
@@ -155,7 +155,7 @@ class DnsArgs:
     @pulumi.getter(name="altSecondary")
     def alt_secondary(self) -> Optional[pulumi.Input[str]]:
         """
-        Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        Alternate secondary DNS server. This is not used as a failover DNS server.
         """
         return pulumi.get(self, "alt_secondary")
 
@@ -275,7 +275,7 @@ class DnsArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -484,8 +484,8 @@ class _DnsState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Dns resources.
-        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
-        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. This is not used as a failover DNS server.
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. This is not used as a failover DNS server.
         :param pulumi.Input[str] cache_notfound_responses: Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] dns_cache_limit: Maximum number of records in the DNS cache.
         :param pulumi.Input[int] dns_cache_ttl: Duration in seconds that the DNS cache retains information.
@@ -495,7 +495,7 @@ class _DnsState:
         :param pulumi.Input[int] fqdn_cache_ttl: FQDN cache time to live in seconds (0 - 86400, default = 0).
         :param pulumi.Input[int] fqdn_max_refresh: FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
         :param pulumi.Input[int] fqdn_min_refresh: FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary DNS server IPv6 address.
@@ -571,7 +571,7 @@ class _DnsState:
     @pulumi.getter(name="altPrimary")
     def alt_primary(self) -> Optional[pulumi.Input[str]]:
         """
-        Alternate primary DNS server. (This is not used as a failover DNS server.)
+        Alternate primary DNS server. This is not used as a failover DNS server.
         """
         return pulumi.get(self, "alt_primary")
 
@@ -583,7 +583,7 @@ class _DnsState:
     @pulumi.getter(name="altSecondary")
     def alt_secondary(self) -> Optional[pulumi.Input[str]]:
         """
-        Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        Alternate secondary DNS server. This is not used as a failover DNS server.
         """
         return pulumi.get(self, "alt_secondary")
 
@@ -703,7 +703,7 @@ class _DnsState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -967,8 +967,8 @@ class Dns(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
-        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. This is not used as a failover DNS server.
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. This is not used as a failover DNS server.
         :param pulumi.Input[str] cache_notfound_responses: Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] dns_cache_limit: Maximum number of records in the DNS cache.
         :param pulumi.Input[int] dns_cache_ttl: Duration in seconds that the DNS cache retains information.
@@ -978,7 +978,7 @@ class Dns(pulumi.CustomResource):
         :param pulumi.Input[int] fqdn_cache_ttl: FQDN cache time to live in seconds (0 - 86400, default = 0).
         :param pulumi.Input[int] fqdn_max_refresh: FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
         :param pulumi.Input[int] fqdn_min_refresh: FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary DNS server IPv6 address.
@@ -1165,8 +1165,8 @@ class Dns(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
-        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. This is not used as a failover DNS server.
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. This is not used as a failover DNS server.
         :param pulumi.Input[str] cache_notfound_responses: Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] dns_cache_limit: Maximum number of records in the DNS cache.
         :param pulumi.Input[int] dns_cache_ttl: Duration in seconds that the DNS cache retains information.
@@ -1176,7 +1176,7 @@ class Dns(pulumi.CustomResource):
         :param pulumi.Input[int] fqdn_cache_ttl: FQDN cache time to live in seconds (0 - 86400, default = 0).
         :param pulumi.Input[int] fqdn_max_refresh: FQDN cache maximum refresh time in seconds (3600 - 86400, default = 3600).
         :param pulumi.Input[int] fqdn_min_refresh: FQDN cache minimum refresh time in seconds (10 - 3600, default = 60).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary DNS server IPv6 address.
@@ -1230,7 +1230,7 @@ class Dns(pulumi.CustomResource):
     @pulumi.getter(name="altPrimary")
     def alt_primary(self) -> pulumi.Output[str]:
         """
-        Alternate primary DNS server. (This is not used as a failover DNS server.)
+        Alternate primary DNS server. This is not used as a failover DNS server.
         """
         return pulumi.get(self, "alt_primary")
 
@@ -1238,7 +1238,7 @@ class Dns(pulumi.CustomResource):
     @pulumi.getter(name="altSecondary")
     def alt_secondary(self) -> pulumi.Output[str]:
         """
-        Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        Alternate secondary DNS server. This is not used as a failover DNS server.
         """
         return pulumi.get(self, "alt_secondary")
 
@@ -1318,7 +1318,7 @@ class Dns(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1436,7 +1436,7 @@ class Dns(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

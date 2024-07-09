@@ -119,7 +119,7 @@ type Settings struct {
 	EncryptAndStorePassword pulumi.StringOutput `pulumi:"encryptAndStorePassword"`
 	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
 	ForceTwoFactorAuth pulumi.StringOutput `pulumi:"forceTwoFactorAuth"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor pulumi.StringOutput `pulumi:"headerXForwardedFor"`
@@ -203,7 +203,7 @@ type Settings struct {
 	TunnelIpPools SettingsTunnelIpPoolArrayOutput `pulumi:"tunnelIpPools"`
 	// Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpv6Pools` block is documented below.
 	TunnelIpv6Pools SettingsTunnelIpv6PoolArrayOutput `pulumi:"tunnelIpv6Pools"`
-	// Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
+	// Number of seconds after which user sessions are cleaned up after tunnel connection is dropped (default = 30). On FortiOS versions 6.2.0-7.4.3: 1 - 255 sec. On FortiOS versions >= 7.4.4: 1 - 86400 sec.
 	TunnelUserSessionTimeout pulumi.IntOutput `pulumi:"tunnelUserSessionTimeout"`
 	// Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
 	UnsafeLegacyRenegotiation pulumi.StringOutput `pulumi:"unsafeLegacyRenegotiation"`
@@ -212,7 +212,7 @@ type Settings struct {
 	// Name of user peer.
 	UserPeer pulumi.StringOutput `pulumi:"userPeer"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable use of IP pools defined in firewall policy while using web-mode. Valid values: `enable`, `disable`.
 	WebModeSnat pulumi.StringOutput `pulumi:"webModeSnat"`
 	// WINS server 1.
@@ -311,7 +311,7 @@ type settingsState struct {
 	EncryptAndStorePassword *string `pulumi:"encryptAndStorePassword"`
 	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
 	ForceTwoFactorAuth *string `pulumi:"forceTwoFactorAuth"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor *string `pulumi:"headerXForwardedFor"`
@@ -395,7 +395,7 @@ type settingsState struct {
 	TunnelIpPools []SettingsTunnelIpPool `pulumi:"tunnelIpPools"`
 	// Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpv6Pools` block is documented below.
 	TunnelIpv6Pools []SettingsTunnelIpv6Pool `pulumi:"tunnelIpv6Pools"`
-	// Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
+	// Number of seconds after which user sessions are cleaned up after tunnel connection is dropped (default = 30). On FortiOS versions 6.2.0-7.4.3: 1 - 255 sec. On FortiOS versions >= 7.4.4: 1 - 86400 sec.
 	TunnelUserSessionTimeout *int `pulumi:"tunnelUserSessionTimeout"`
 	// Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
 	UnsafeLegacyRenegotiation *string `pulumi:"unsafeLegacyRenegotiation"`
@@ -474,7 +474,7 @@ type SettingsState struct {
 	EncryptAndStorePassword pulumi.StringPtrInput
 	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
 	ForceTwoFactorAuth pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor pulumi.StringPtrInput
@@ -558,7 +558,7 @@ type SettingsState struct {
 	TunnelIpPools SettingsTunnelIpPoolArrayInput
 	// Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpv6Pools` block is documented below.
 	TunnelIpv6Pools SettingsTunnelIpv6PoolArrayInput
-	// Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
+	// Number of seconds after which user sessions are cleaned up after tunnel connection is dropped (default = 30). On FortiOS versions 6.2.0-7.4.3: 1 - 255 sec. On FortiOS versions >= 7.4.4: 1 - 86400 sec.
 	TunnelUserSessionTimeout pulumi.IntPtrInput
 	// Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
 	UnsafeLegacyRenegotiation pulumi.StringPtrInput
@@ -641,7 +641,7 @@ type settingsArgs struct {
 	EncryptAndStorePassword *string `pulumi:"encryptAndStorePassword"`
 	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
 	ForceTwoFactorAuth *string `pulumi:"forceTwoFactorAuth"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor *string `pulumi:"headerXForwardedFor"`
@@ -725,7 +725,7 @@ type settingsArgs struct {
 	TunnelIpPools []SettingsTunnelIpPool `pulumi:"tunnelIpPools"`
 	// Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpv6Pools` block is documented below.
 	TunnelIpv6Pools []SettingsTunnelIpv6Pool `pulumi:"tunnelIpv6Pools"`
-	// Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
+	// Number of seconds after which user sessions are cleaned up after tunnel connection is dropped (default = 30). On FortiOS versions 6.2.0-7.4.3: 1 - 255 sec. On FortiOS versions >= 7.4.4: 1 - 86400 sec.
 	TunnelUserSessionTimeout *int `pulumi:"tunnelUserSessionTimeout"`
 	// Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
 	UnsafeLegacyRenegotiation *string `pulumi:"unsafeLegacyRenegotiation"`
@@ -805,7 +805,7 @@ type SettingsArgs struct {
 	EncryptAndStorePassword pulumi.StringPtrInput
 	// Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
 	ForceTwoFactorAuth pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor pulumi.StringPtrInput
@@ -889,7 +889,7 @@ type SettingsArgs struct {
 	TunnelIpPools SettingsTunnelIpPoolArrayInput
 	// Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpv6Pools` block is documented below.
 	TunnelIpv6Pools SettingsTunnelIpv6PoolArrayInput
-	// Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
+	// Number of seconds after which user sessions are cleaned up after tunnel connection is dropped (default = 30). On FortiOS versions 6.2.0-7.4.3: 1 - 255 sec. On FortiOS versions >= 7.4.4: 1 - 86400 sec.
 	TunnelUserSessionTimeout pulumi.IntPtrInput
 	// Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
 	UnsafeLegacyRenegotiation pulumi.StringPtrInput
@@ -1138,7 +1138,7 @@ func (o SettingsOutput) ForceTwoFactorAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.ForceTwoFactorAuth }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SettingsOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1348,7 +1348,7 @@ func (o SettingsOutput) TunnelIpv6Pools() SettingsTunnelIpv6PoolArrayOutput {
 	return o.ApplyT(func(v *Settings) SettingsTunnelIpv6PoolArrayOutput { return v.TunnelIpv6Pools }).(SettingsTunnelIpv6PoolArrayOutput)
 }
 
-// Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
+// Number of seconds after which user sessions are cleaned up after tunnel connection is dropped (default = 30). On FortiOS versions 6.2.0-7.4.3: 1 - 255 sec. On FortiOS versions >= 7.4.4: 1 - 86400 sec.
 func (o SettingsOutput) TunnelUserSessionTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.TunnelUserSessionTimeout }).(pulumi.IntOutput)
 }
@@ -1369,8 +1369,8 @@ func (o SettingsOutput) UserPeer() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SettingsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Settings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SettingsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable use of IP pools defined in firewall policy while using web-mode. Valid values: `enable`, `disable`.

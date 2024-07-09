@@ -72,7 +72,7 @@ type Setting struct {
 	// Number of items to populate. On FortiOS versions 6.2.0: 100 - 4000. On FortiOS versions >= 6.2.4: 1000 - 20000.
 	TopN pulumi.IntOutput `pulumi:"topN"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Web browsing time calculation threshold (3 - 15 min).
 	WebBrowsingThreshold pulumi.IntOutput `pulumi:"webBrowsingThreshold"`
 }
@@ -279,8 +279,8 @@ func (o SettingOutput) TopN() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SettingOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SettingOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Web browsing time calculation threshold (3 - 15 min).

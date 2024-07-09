@@ -64,7 +64,7 @@ type Hamonitor struct {
 	// Enable/disable monitor VLAN interfaces. Valid values: `enable`, `disable`.
 	MonitorVlan pulumi.StringOutput `pulumi:"monitorVlan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Configure heartbeat interval (seconds).
 	VlanHbInterval pulumi.IntOutput `pulumi:"vlanHbInterval"`
 	// VLAN lost heartbeat threshold (1 - 60).
@@ -242,8 +242,8 @@ func (o HamonitorOutput) MonitorVlan() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o HamonitorOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Hamonitor) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o HamonitorOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Hamonitor) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Configure heartbeat interval (seconds).

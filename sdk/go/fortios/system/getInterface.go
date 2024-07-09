@@ -139,6 +139,8 @@ type LookupInterfaceResult struct {
 	DhcpClientIdentifier string `pulumi:"dhcpClientIdentifier"`
 	// Enable/disable DHCP relay agent option.
 	DhcpRelayAgentOption string `pulumi:"dhcpRelayAgentOption"`
+	// Enable/disable relaying DHCP messages with no end option.
+	DhcpRelayAllowNoEndOption string `pulumi:"dhcpRelayAllowNoEndOption"`
 	// DHCP relay circuit ID.
 	DhcpRelayCircuitId string `pulumi:"dhcpRelayCircuitId"`
 	// Specify outgoing interface to reach server.
@@ -758,6 +760,11 @@ func (o LookupInterfaceResultOutput) DhcpClientIdentifier() pulumi.StringOutput 
 // Enable/disable DHCP relay agent option.
 func (o LookupInterfaceResultOutput) DhcpRelayAgentOption() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInterfaceResult) string { return v.DhcpRelayAgentOption }).(pulumi.StringOutput)
+}
+
+// Enable/disable relaying DHCP messages with no end option.
+func (o LookupInterfaceResultOutput) DhcpRelayAllowNoEndOption() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInterfaceResult) string { return v.DhcpRelayAllowNoEndOption }).(pulumi.StringOutput)
 }
 
 // DHCP relay circuit ID.

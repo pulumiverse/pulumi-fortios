@@ -203,6 +203,10 @@ type Phase1interface struct {
 	Banner pulumi.StringPtrOutput `pulumi:"banner"`
 	// Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
 	CertIdValidation pulumi.StringOutput `pulumi:"certIdValidation"`
+	// Enable/disable domain stripping on certificate identity. Valid values: `disable`, `enable`.
+	CertPeerUsernameStrip pulumi.StringOutput `pulumi:"certPeerUsernameStrip"`
+	// Enable/disable cross validation of peer username and the identity in the peer's certificate. Valid values: `none`, `othername`, `rfc822name`, `cn`.
+	CertPeerUsernameValidation pulumi.StringOutput `pulumi:"certPeerUsernameValidation"`
 	// CA certificate trust store. Valid values: `local`, `ems`.
 	CertTrustStore pulumi.StringOutput `pulumi:"certTrustStore"`
 	// The names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
@@ -213,6 +217,10 @@ type Phase1interface struct {
 	ClientAutoNegotiate pulumi.StringOutput `pulumi:"clientAutoNegotiate"`
 	// Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. Valid values: `disable`, `enable`.
 	ClientKeepAlive pulumi.StringOutput `pulumi:"clientKeepAlive"`
+	// Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. Valid values: `enable`, `disable`.
+	ClientResume pulumi.StringOutput `pulumi:"clientResume"`
+	// Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 1800).
+	ClientResumeInterval pulumi.IntOutput `pulumi:"clientResumeInterval"`
 	// Comment.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
 	// IPv4 address of default route gateway to use for traffic exiting the interface.
@@ -281,11 +289,11 @@ type Phase1interface struct {
 	ExchangeIpAddr6 pulumi.StringOutput `pulumi:"exchangeIpAddr6"`
 	// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
 	FallbackTcpThreshold pulumi.IntOutput `pulumi:"fallbackTcpThreshold"`
-	// Number of base Forward Error Correction packets (1 - 100).
+	// Number of base Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 100. On FortiOS versions >= 7.0.2: 1 - 20.
 	FecBase pulumi.IntOutput `pulumi:"fecBase"`
-	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor). *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec_string`.*
 	FecCodec pulumi.IntOutput `pulumi:"fecCodec"`
-	// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+	// Forward Error Correction encoding/decoding algorithm. *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec`.* Valid values: `rs`, `xor`.
 	FecCodecString pulumi.StringOutput `pulumi:"fecCodecString"`
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress pulumi.StringOutput `pulumi:"fecEgress"`
@@ -295,9 +303,9 @@ type Phase1interface struct {
 	FecIngress pulumi.StringOutput `pulumi:"fecIngress"`
 	// Forward Error Correction (FEC) mapping profile.
 	FecMappingProfile pulumi.StringOutput `pulumi:"fecMappingProfile"`
-	// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
+	// Timeout in milliseconds before dropping Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 10000. On FortiOS versions >= 7.0.2: 1 - 1000.
 	FecReceiveTimeout pulumi.IntOutput `pulumi:"fecReceiveTimeout"`
-	// Number of redundant Forward Error Correction packets (1 - 100).
+	// Number of redundant Forward Error Correction packets. On FortiOS versions 6.2.4-6.2.6: 0 - 100,  when fec-codec is reed-solomon  or 1 when fec-codec is xor. On FortiOS versions >= 7.0.2: 1 - 5 for reed-solomon, 1 for xor.
 	FecRedundant pulumi.IntOutput `pulumi:"fecRedundant"`
 	// Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
 	FecSendTimeout pulumi.IntOutput `pulumi:"fecSendTimeout"`
@@ -311,11 +319,11 @@ type Phase1interface struct {
 	Fragmentation pulumi.StringOutput `pulumi:"fragmentation"`
 	// IKE fragmentation MTU (500 - 16000).
 	FragmentationMtu pulumi.IntOutput `pulumi:"fragmentationMtu"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
 	GroupAuthentication pulumi.StringOutput `pulumi:"groupAuthentication"`
-	// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
+	// Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x.
 	GroupAuthenticationSecret pulumi.StringPtrOutput `pulumi:"groupAuthenticationSecret"`
 	// Enable/disable sequence number jump ahead for IPsec HA. Valid values: `enable`, `disable`.
 	HaSyncEspSeqno pulumi.StringOutput `pulumi:"haSyncEspSeqno"`
@@ -453,7 +461,7 @@ type Phase1interface struct {
 	PpkIdentity pulumi.StringOutput `pulumi:"ppkIdentity"`
 	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
 	PpkSecret pulumi.StringPtrOutput `pulumi:"ppkSecret"`
-	// Priority for routes added by IKE (0 - 4294967295).
+	// Priority for routes added by IKE. On FortiOS versions 6.2.0-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority pulumi.IntOutput `pulumi:"priority"`
 	// Phase1 proposal. Valid values: `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm-prfsha1`, `aes128gcm-prfsha256`, `aes128gcm-prfsha384`, `aes128gcm-prfsha512`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm-prfsha1`, `aes256gcm-prfsha256`, `aes256gcm-prfsha384`, `aes256gcm-prfsha512`, `chacha20poly1305-prfsha1`, `chacha20poly1305-prfsha256`, `chacha20poly1305-prfsha384`, `chacha20poly1305-prfsha512`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
 	Proposal pulumi.StringOutput `pulumi:"proposal"`
@@ -473,7 +481,27 @@ type Phase1interface struct {
 	RemoteGw pulumi.StringOutput `pulumi:"remoteGw"`
 	// IPv6 address of the remote gateway's external interface.
 	RemoteGw6 pulumi.StringOutput `pulumi:"remoteGw6"`
-	// Domain name of remote gateway (eg. name.DDNS.com).
+	// IPv6 addresses associated to a specific country.
+	RemoteGw6Country pulumi.StringOutput `pulumi:"remoteGw6Country"`
+	// Last IPv6 address in the range.
+	RemoteGw6EndIp pulumi.StringOutput `pulumi:"remoteGw6EndIp"`
+	// Set type of IPv6 remote gateway address matching. Valid values: `any`, `ipprefix`, `iprange`, `geography`.
+	RemoteGw6Match pulumi.StringOutput `pulumi:"remoteGw6Match"`
+	// First IPv6 address in the range.
+	RemoteGw6StartIp pulumi.StringOutput `pulumi:"remoteGw6StartIp"`
+	// IPv6 address and prefix.
+	RemoteGw6Subnet pulumi.StringOutput `pulumi:"remoteGw6Subnet"`
+	// IPv4 addresses associated to a specific country.
+	RemoteGwCountry pulumi.StringOutput `pulumi:"remoteGwCountry"`
+	// Last IPv4 address in the range.
+	RemoteGwEndIp pulumi.StringOutput `pulumi:"remoteGwEndIp"`
+	// Set type of IPv4 remote gateway address matching. Valid values: `any`, `ipmask`, `iprange`, `geography`.
+	RemoteGwMatch pulumi.StringOutput `pulumi:"remoteGwMatch"`
+	// First IPv4 address in the range.
+	RemoteGwStartIp pulumi.StringOutput `pulumi:"remoteGwStartIp"`
+	// IPv4 address and subnet mask.
+	RemoteGwSubnet pulumi.StringOutput `pulumi:"remoteGwSubnet"`
+	// Domain name of remote gateway. For example, name.ddns.com.
 	RemotegwDdns pulumi.StringOutput `pulumi:"remotegwDdns"`
 	// Digital Signature Authentication RSA signature format. Valid values: `pkcs1`, `pss`.
 	RsaSignatureFormat pulumi.StringOutput `pulumi:"rsaSignatureFormat"`
@@ -500,7 +528,7 @@ type Phase1interface struct {
 	// User group name for dialup peers.
 	Usrgrp pulumi.StringOutput `pulumi:"usrgrp"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// VNI of VXLAN tunnel.
 	Vni pulumi.IntOutput `pulumi:"vni"`
 	// GUI VPN Wizard Type.
@@ -616,6 +644,10 @@ type phase1interfaceState struct {
 	Banner *string `pulumi:"banner"`
 	// Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
 	CertIdValidation *string `pulumi:"certIdValidation"`
+	// Enable/disable domain stripping on certificate identity. Valid values: `disable`, `enable`.
+	CertPeerUsernameStrip *string `pulumi:"certPeerUsernameStrip"`
+	// Enable/disable cross validation of peer username and the identity in the peer's certificate. Valid values: `none`, `othername`, `rfc822name`, `cn`.
+	CertPeerUsernameValidation *string `pulumi:"certPeerUsernameValidation"`
 	// CA certificate trust store. Valid values: `local`, `ems`.
 	CertTrustStore *string `pulumi:"certTrustStore"`
 	// The names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
@@ -626,6 +658,10 @@ type phase1interfaceState struct {
 	ClientAutoNegotiate *string `pulumi:"clientAutoNegotiate"`
 	// Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. Valid values: `disable`, `enable`.
 	ClientKeepAlive *string `pulumi:"clientKeepAlive"`
+	// Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. Valid values: `enable`, `disable`.
+	ClientResume *string `pulumi:"clientResume"`
+	// Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 1800).
+	ClientResumeInterval *int `pulumi:"clientResumeInterval"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
 	// IPv4 address of default route gateway to use for traffic exiting the interface.
@@ -694,11 +730,11 @@ type phase1interfaceState struct {
 	ExchangeIpAddr6 *string `pulumi:"exchangeIpAddr6"`
 	// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
 	FallbackTcpThreshold *int `pulumi:"fallbackTcpThreshold"`
-	// Number of base Forward Error Correction packets (1 - 100).
+	// Number of base Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 100. On FortiOS versions >= 7.0.2: 1 - 20.
 	FecBase *int `pulumi:"fecBase"`
-	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor). *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec_string`.*
 	FecCodec *int `pulumi:"fecCodec"`
-	// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+	// Forward Error Correction encoding/decoding algorithm. *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec`.* Valid values: `rs`, `xor`.
 	FecCodecString *string `pulumi:"fecCodecString"`
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress *string `pulumi:"fecEgress"`
@@ -708,9 +744,9 @@ type phase1interfaceState struct {
 	FecIngress *string `pulumi:"fecIngress"`
 	// Forward Error Correction (FEC) mapping profile.
 	FecMappingProfile *string `pulumi:"fecMappingProfile"`
-	// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
+	// Timeout in milliseconds before dropping Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 10000. On FortiOS versions >= 7.0.2: 1 - 1000.
 	FecReceiveTimeout *int `pulumi:"fecReceiveTimeout"`
-	// Number of redundant Forward Error Correction packets (1 - 100).
+	// Number of redundant Forward Error Correction packets. On FortiOS versions 6.2.4-6.2.6: 0 - 100,  when fec-codec is reed-solomon  or 1 when fec-codec is xor. On FortiOS versions >= 7.0.2: 1 - 5 for reed-solomon, 1 for xor.
 	FecRedundant *int `pulumi:"fecRedundant"`
 	// Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
 	FecSendTimeout *int `pulumi:"fecSendTimeout"`
@@ -724,11 +760,11 @@ type phase1interfaceState struct {
 	Fragmentation *string `pulumi:"fragmentation"`
 	// IKE fragmentation MTU (500 - 16000).
 	FragmentationMtu *int `pulumi:"fragmentationMtu"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
 	GroupAuthentication *string `pulumi:"groupAuthentication"`
-	// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
+	// Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x.
 	GroupAuthenticationSecret *string `pulumi:"groupAuthenticationSecret"`
 	// Enable/disable sequence number jump ahead for IPsec HA. Valid values: `enable`, `disable`.
 	HaSyncEspSeqno *string `pulumi:"haSyncEspSeqno"`
@@ -866,7 +902,7 @@ type phase1interfaceState struct {
 	PpkIdentity *string `pulumi:"ppkIdentity"`
 	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
 	PpkSecret *string `pulumi:"ppkSecret"`
-	// Priority for routes added by IKE (0 - 4294967295).
+	// Priority for routes added by IKE. On FortiOS versions 6.2.0-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority *int `pulumi:"priority"`
 	// Phase1 proposal. Valid values: `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm-prfsha1`, `aes128gcm-prfsha256`, `aes128gcm-prfsha384`, `aes128gcm-prfsha512`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm-prfsha1`, `aes256gcm-prfsha256`, `aes256gcm-prfsha384`, `aes256gcm-prfsha512`, `chacha20poly1305-prfsha1`, `chacha20poly1305-prfsha256`, `chacha20poly1305-prfsha384`, `chacha20poly1305-prfsha512`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
 	Proposal *string `pulumi:"proposal"`
@@ -886,7 +922,27 @@ type phase1interfaceState struct {
 	RemoteGw *string `pulumi:"remoteGw"`
 	// IPv6 address of the remote gateway's external interface.
 	RemoteGw6 *string `pulumi:"remoteGw6"`
-	// Domain name of remote gateway (eg. name.DDNS.com).
+	// IPv6 addresses associated to a specific country.
+	RemoteGw6Country *string `pulumi:"remoteGw6Country"`
+	// Last IPv6 address in the range.
+	RemoteGw6EndIp *string `pulumi:"remoteGw6EndIp"`
+	// Set type of IPv6 remote gateway address matching. Valid values: `any`, `ipprefix`, `iprange`, `geography`.
+	RemoteGw6Match *string `pulumi:"remoteGw6Match"`
+	// First IPv6 address in the range.
+	RemoteGw6StartIp *string `pulumi:"remoteGw6StartIp"`
+	// IPv6 address and prefix.
+	RemoteGw6Subnet *string `pulumi:"remoteGw6Subnet"`
+	// IPv4 addresses associated to a specific country.
+	RemoteGwCountry *string `pulumi:"remoteGwCountry"`
+	// Last IPv4 address in the range.
+	RemoteGwEndIp *string `pulumi:"remoteGwEndIp"`
+	// Set type of IPv4 remote gateway address matching. Valid values: `any`, `ipmask`, `iprange`, `geography`.
+	RemoteGwMatch *string `pulumi:"remoteGwMatch"`
+	// First IPv4 address in the range.
+	RemoteGwStartIp *string `pulumi:"remoteGwStartIp"`
+	// IPv4 address and subnet mask.
+	RemoteGwSubnet *string `pulumi:"remoteGwSubnet"`
+	// Domain name of remote gateway. For example, name.ddns.com.
 	RemotegwDdns *string `pulumi:"remotegwDdns"`
 	// Digital Signature Authentication RSA signature format. Valid values: `pkcs1`, `pss`.
 	RsaSignatureFormat *string `pulumi:"rsaSignatureFormat"`
@@ -971,6 +1027,10 @@ type Phase1interfaceState struct {
 	Banner pulumi.StringPtrInput
 	// Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
 	CertIdValidation pulumi.StringPtrInput
+	// Enable/disable domain stripping on certificate identity. Valid values: `disable`, `enable`.
+	CertPeerUsernameStrip pulumi.StringPtrInput
+	// Enable/disable cross validation of peer username and the identity in the peer's certificate. Valid values: `none`, `othername`, `rfc822name`, `cn`.
+	CertPeerUsernameValidation pulumi.StringPtrInput
 	// CA certificate trust store. Valid values: `local`, `ems`.
 	CertTrustStore pulumi.StringPtrInput
 	// The names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
@@ -981,6 +1041,10 @@ type Phase1interfaceState struct {
 	ClientAutoNegotiate pulumi.StringPtrInput
 	// Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. Valid values: `disable`, `enable`.
 	ClientKeepAlive pulumi.StringPtrInput
+	// Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. Valid values: `enable`, `disable`.
+	ClientResume pulumi.StringPtrInput
+	// Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 1800).
+	ClientResumeInterval pulumi.IntPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
 	// IPv4 address of default route gateway to use for traffic exiting the interface.
@@ -1049,11 +1113,11 @@ type Phase1interfaceState struct {
 	ExchangeIpAddr6 pulumi.StringPtrInput
 	// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
 	FallbackTcpThreshold pulumi.IntPtrInput
-	// Number of base Forward Error Correction packets (1 - 100).
+	// Number of base Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 100. On FortiOS versions >= 7.0.2: 1 - 20.
 	FecBase pulumi.IntPtrInput
-	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor). *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec_string`.*
 	FecCodec pulumi.IntPtrInput
-	// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+	// Forward Error Correction encoding/decoding algorithm. *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec`.* Valid values: `rs`, `xor`.
 	FecCodecString pulumi.StringPtrInput
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress pulumi.StringPtrInput
@@ -1063,9 +1127,9 @@ type Phase1interfaceState struct {
 	FecIngress pulumi.StringPtrInput
 	// Forward Error Correction (FEC) mapping profile.
 	FecMappingProfile pulumi.StringPtrInput
-	// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
+	// Timeout in milliseconds before dropping Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 10000. On FortiOS versions >= 7.0.2: 1 - 1000.
 	FecReceiveTimeout pulumi.IntPtrInput
-	// Number of redundant Forward Error Correction packets (1 - 100).
+	// Number of redundant Forward Error Correction packets. On FortiOS versions 6.2.4-6.2.6: 0 - 100,  when fec-codec is reed-solomon  or 1 when fec-codec is xor. On FortiOS versions >= 7.0.2: 1 - 5 for reed-solomon, 1 for xor.
 	FecRedundant pulumi.IntPtrInput
 	// Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
 	FecSendTimeout pulumi.IntPtrInput
@@ -1079,11 +1143,11 @@ type Phase1interfaceState struct {
 	Fragmentation pulumi.StringPtrInput
 	// IKE fragmentation MTU (500 - 16000).
 	FragmentationMtu pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
 	GroupAuthentication pulumi.StringPtrInput
-	// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
+	// Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x.
 	GroupAuthenticationSecret pulumi.StringPtrInput
 	// Enable/disable sequence number jump ahead for IPsec HA. Valid values: `enable`, `disable`.
 	HaSyncEspSeqno pulumi.StringPtrInput
@@ -1221,7 +1285,7 @@ type Phase1interfaceState struct {
 	PpkIdentity pulumi.StringPtrInput
 	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
 	PpkSecret pulumi.StringPtrInput
-	// Priority for routes added by IKE (0 - 4294967295).
+	// Priority for routes added by IKE. On FortiOS versions 6.2.0-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority pulumi.IntPtrInput
 	// Phase1 proposal. Valid values: `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm-prfsha1`, `aes128gcm-prfsha256`, `aes128gcm-prfsha384`, `aes128gcm-prfsha512`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm-prfsha1`, `aes256gcm-prfsha256`, `aes256gcm-prfsha384`, `aes256gcm-prfsha512`, `chacha20poly1305-prfsha1`, `chacha20poly1305-prfsha256`, `chacha20poly1305-prfsha384`, `chacha20poly1305-prfsha512`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
 	Proposal pulumi.StringPtrInput
@@ -1241,7 +1305,27 @@ type Phase1interfaceState struct {
 	RemoteGw pulumi.StringPtrInput
 	// IPv6 address of the remote gateway's external interface.
 	RemoteGw6 pulumi.StringPtrInput
-	// Domain name of remote gateway (eg. name.DDNS.com).
+	// IPv6 addresses associated to a specific country.
+	RemoteGw6Country pulumi.StringPtrInput
+	// Last IPv6 address in the range.
+	RemoteGw6EndIp pulumi.StringPtrInput
+	// Set type of IPv6 remote gateway address matching. Valid values: `any`, `ipprefix`, `iprange`, `geography`.
+	RemoteGw6Match pulumi.StringPtrInput
+	// First IPv6 address in the range.
+	RemoteGw6StartIp pulumi.StringPtrInput
+	// IPv6 address and prefix.
+	RemoteGw6Subnet pulumi.StringPtrInput
+	// IPv4 addresses associated to a specific country.
+	RemoteGwCountry pulumi.StringPtrInput
+	// Last IPv4 address in the range.
+	RemoteGwEndIp pulumi.StringPtrInput
+	// Set type of IPv4 remote gateway address matching. Valid values: `any`, `ipmask`, `iprange`, `geography`.
+	RemoteGwMatch pulumi.StringPtrInput
+	// First IPv4 address in the range.
+	RemoteGwStartIp pulumi.StringPtrInput
+	// IPv4 address and subnet mask.
+	RemoteGwSubnet pulumi.StringPtrInput
+	// Domain name of remote gateway. For example, name.ddns.com.
 	RemotegwDdns pulumi.StringPtrInput
 	// Digital Signature Authentication RSA signature format. Valid values: `pkcs1`, `pss`.
 	RsaSignatureFormat pulumi.StringPtrInput
@@ -1330,6 +1414,10 @@ type phase1interfaceArgs struct {
 	Banner *string `pulumi:"banner"`
 	// Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
 	CertIdValidation *string `pulumi:"certIdValidation"`
+	// Enable/disable domain stripping on certificate identity. Valid values: `disable`, `enable`.
+	CertPeerUsernameStrip *string `pulumi:"certPeerUsernameStrip"`
+	// Enable/disable cross validation of peer username and the identity in the peer's certificate. Valid values: `none`, `othername`, `rfc822name`, `cn`.
+	CertPeerUsernameValidation *string `pulumi:"certPeerUsernameValidation"`
 	// CA certificate trust store. Valid values: `local`, `ems`.
 	CertTrustStore *string `pulumi:"certTrustStore"`
 	// The names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
@@ -1340,6 +1428,10 @@ type phase1interfaceArgs struct {
 	ClientAutoNegotiate *string `pulumi:"clientAutoNegotiate"`
 	// Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. Valid values: `disable`, `enable`.
 	ClientKeepAlive *string `pulumi:"clientKeepAlive"`
+	// Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. Valid values: `enable`, `disable`.
+	ClientResume *string `pulumi:"clientResume"`
+	// Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 1800).
+	ClientResumeInterval *int `pulumi:"clientResumeInterval"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
 	// IPv4 address of default route gateway to use for traffic exiting the interface.
@@ -1408,11 +1500,11 @@ type phase1interfaceArgs struct {
 	ExchangeIpAddr6 *string `pulumi:"exchangeIpAddr6"`
 	// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
 	FallbackTcpThreshold *int `pulumi:"fallbackTcpThreshold"`
-	// Number of base Forward Error Correction packets (1 - 100).
+	// Number of base Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 100. On FortiOS versions >= 7.0.2: 1 - 20.
 	FecBase *int `pulumi:"fecBase"`
-	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor). *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec_string`.*
 	FecCodec *int `pulumi:"fecCodec"`
-	// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+	// Forward Error Correction encoding/decoding algorithm. *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec`.* Valid values: `rs`, `xor`.
 	FecCodecString *string `pulumi:"fecCodecString"`
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress *string `pulumi:"fecEgress"`
@@ -1422,9 +1514,9 @@ type phase1interfaceArgs struct {
 	FecIngress *string `pulumi:"fecIngress"`
 	// Forward Error Correction (FEC) mapping profile.
 	FecMappingProfile *string `pulumi:"fecMappingProfile"`
-	// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
+	// Timeout in milliseconds before dropping Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 10000. On FortiOS versions >= 7.0.2: 1 - 1000.
 	FecReceiveTimeout *int `pulumi:"fecReceiveTimeout"`
-	// Number of redundant Forward Error Correction packets (1 - 100).
+	// Number of redundant Forward Error Correction packets. On FortiOS versions 6.2.4-6.2.6: 0 - 100,  when fec-codec is reed-solomon  or 1 when fec-codec is xor. On FortiOS versions >= 7.0.2: 1 - 5 for reed-solomon, 1 for xor.
 	FecRedundant *int `pulumi:"fecRedundant"`
 	// Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
 	FecSendTimeout *int `pulumi:"fecSendTimeout"`
@@ -1438,11 +1530,11 @@ type phase1interfaceArgs struct {
 	Fragmentation *string `pulumi:"fragmentation"`
 	// IKE fragmentation MTU (500 - 16000).
 	FragmentationMtu *int `pulumi:"fragmentationMtu"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
 	GroupAuthentication *string `pulumi:"groupAuthentication"`
-	// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
+	// Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x.
 	GroupAuthenticationSecret *string `pulumi:"groupAuthenticationSecret"`
 	// Enable/disable sequence number jump ahead for IPsec HA. Valid values: `enable`, `disable`.
 	HaSyncEspSeqno *string `pulumi:"haSyncEspSeqno"`
@@ -1580,7 +1672,7 @@ type phase1interfaceArgs struct {
 	PpkIdentity *string `pulumi:"ppkIdentity"`
 	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
 	PpkSecret *string `pulumi:"ppkSecret"`
-	// Priority for routes added by IKE (0 - 4294967295).
+	// Priority for routes added by IKE. On FortiOS versions 6.2.0-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority *int `pulumi:"priority"`
 	// Phase1 proposal. Valid values: `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm-prfsha1`, `aes128gcm-prfsha256`, `aes128gcm-prfsha384`, `aes128gcm-prfsha512`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm-prfsha1`, `aes256gcm-prfsha256`, `aes256gcm-prfsha384`, `aes256gcm-prfsha512`, `chacha20poly1305-prfsha1`, `chacha20poly1305-prfsha256`, `chacha20poly1305-prfsha384`, `chacha20poly1305-prfsha512`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
 	Proposal string `pulumi:"proposal"`
@@ -1600,7 +1692,27 @@ type phase1interfaceArgs struct {
 	RemoteGw *string `pulumi:"remoteGw"`
 	// IPv6 address of the remote gateway's external interface.
 	RemoteGw6 *string `pulumi:"remoteGw6"`
-	// Domain name of remote gateway (eg. name.DDNS.com).
+	// IPv6 addresses associated to a specific country.
+	RemoteGw6Country *string `pulumi:"remoteGw6Country"`
+	// Last IPv6 address in the range.
+	RemoteGw6EndIp *string `pulumi:"remoteGw6EndIp"`
+	// Set type of IPv6 remote gateway address matching. Valid values: `any`, `ipprefix`, `iprange`, `geography`.
+	RemoteGw6Match *string `pulumi:"remoteGw6Match"`
+	// First IPv6 address in the range.
+	RemoteGw6StartIp *string `pulumi:"remoteGw6StartIp"`
+	// IPv6 address and prefix.
+	RemoteGw6Subnet *string `pulumi:"remoteGw6Subnet"`
+	// IPv4 addresses associated to a specific country.
+	RemoteGwCountry *string `pulumi:"remoteGwCountry"`
+	// Last IPv4 address in the range.
+	RemoteGwEndIp *string `pulumi:"remoteGwEndIp"`
+	// Set type of IPv4 remote gateway address matching. Valid values: `any`, `ipmask`, `iprange`, `geography`.
+	RemoteGwMatch *string `pulumi:"remoteGwMatch"`
+	// First IPv4 address in the range.
+	RemoteGwStartIp *string `pulumi:"remoteGwStartIp"`
+	// IPv4 address and subnet mask.
+	RemoteGwSubnet *string `pulumi:"remoteGwSubnet"`
+	// Domain name of remote gateway. For example, name.ddns.com.
 	RemotegwDdns *string `pulumi:"remotegwDdns"`
 	// Digital Signature Authentication RSA signature format. Valid values: `pkcs1`, `pss`.
 	RsaSignatureFormat *string `pulumi:"rsaSignatureFormat"`
@@ -1686,6 +1798,10 @@ type Phase1interfaceArgs struct {
 	Banner pulumi.StringPtrInput
 	// Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. Valid values: `enable`, `disable`.
 	CertIdValidation pulumi.StringPtrInput
+	// Enable/disable domain stripping on certificate identity. Valid values: `disable`, `enable`.
+	CertPeerUsernameStrip pulumi.StringPtrInput
+	// Enable/disable cross validation of peer username and the identity in the peer's certificate. Valid values: `none`, `othername`, `rfc822name`, `cn`.
+	CertPeerUsernameValidation pulumi.StringPtrInput
 	// CA certificate trust store. Valid values: `local`, `ems`.
 	CertTrustStore pulumi.StringPtrInput
 	// The names of up to 4 signed personal certificates. The structure of `certificate` block is documented below.
@@ -1696,6 +1812,10 @@ type Phase1interfaceArgs struct {
 	ClientAutoNegotiate pulumi.StringPtrInput
 	// Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. Valid values: `disable`, `enable`.
 	ClientKeepAlive pulumi.StringPtrInput
+	// Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. Valid values: `enable`, `disable`.
+	ClientResume pulumi.StringPtrInput
+	// Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 1800).
+	ClientResumeInterval pulumi.IntPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
 	// IPv4 address of default route gateway to use for traffic exiting the interface.
@@ -1764,11 +1884,11 @@ type Phase1interfaceArgs struct {
 	ExchangeIpAddr6 pulumi.StringPtrInput
 	// Timeout in seconds before falling back IKE/IPsec traffic to tcp.
 	FallbackTcpThreshold pulumi.IntPtrInput
-	// Number of base Forward Error Correction packets (1 - 100).
+	// Number of base Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 100. On FortiOS versions >= 7.0.2: 1 - 20.
 	FecBase pulumi.IntPtrInput
-	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+	// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor). *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec_string`.*
 	FecCodec pulumi.IntPtrInput
-	// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+	// Forward Error Correction encoding/decoding algorithm. *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec`.* Valid values: `rs`, `xor`.
 	FecCodecString pulumi.StringPtrInput
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress pulumi.StringPtrInput
@@ -1778,9 +1898,9 @@ type Phase1interfaceArgs struct {
 	FecIngress pulumi.StringPtrInput
 	// Forward Error Correction (FEC) mapping profile.
 	FecMappingProfile pulumi.StringPtrInput
-	// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
+	// Timeout in milliseconds before dropping Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 10000. On FortiOS versions >= 7.0.2: 1 - 1000.
 	FecReceiveTimeout pulumi.IntPtrInput
-	// Number of redundant Forward Error Correction packets (1 - 100).
+	// Number of redundant Forward Error Correction packets. On FortiOS versions 6.2.4-6.2.6: 0 - 100,  when fec-codec is reed-solomon  or 1 when fec-codec is xor. On FortiOS versions >= 7.0.2: 1 - 5 for reed-solomon, 1 for xor.
 	FecRedundant pulumi.IntPtrInput
 	// Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
 	FecSendTimeout pulumi.IntPtrInput
@@ -1794,11 +1914,11 @@ type Phase1interfaceArgs struct {
 	Fragmentation pulumi.StringPtrInput
 	// IKE fragmentation MTU (500 - 16000).
 	FragmentationMtu pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable IKEv2 IDi group authentication. Valid values: `enable`, `disable`.
 	GroupAuthentication pulumi.StringPtrInput
-	// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
+	// Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x.
 	GroupAuthenticationSecret pulumi.StringPtrInput
 	// Enable/disable sequence number jump ahead for IPsec HA. Valid values: `enable`, `disable`.
 	HaSyncEspSeqno pulumi.StringPtrInput
@@ -1936,7 +2056,7 @@ type Phase1interfaceArgs struct {
 	PpkIdentity pulumi.StringPtrInput
 	// IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
 	PpkSecret pulumi.StringPtrInput
-	// Priority for routes added by IKE (0 - 4294967295).
+	// Priority for routes added by IKE. On FortiOS versions 6.2.0-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority pulumi.IntPtrInput
 	// Phase1 proposal. Valid values: `des-md5`, `des-sha1`, `des-sha256`, `des-sha384`, `des-sha512`, `3des-md5`, `3des-sha1`, `3des-sha256`, `3des-sha384`, `3des-sha512`, `aes128-md5`, `aes128-sha1`, `aes128-sha256`, `aes128-sha384`, `aes128-sha512`, `aes128gcm-prfsha1`, `aes128gcm-prfsha256`, `aes128gcm-prfsha384`, `aes128gcm-prfsha512`, `aes192-md5`, `aes192-sha1`, `aes192-sha256`, `aes192-sha384`, `aes192-sha512`, `aes256-md5`, `aes256-sha1`, `aes256-sha256`, `aes256-sha384`, `aes256-sha512`, `aes256gcm-prfsha1`, `aes256gcm-prfsha256`, `aes256gcm-prfsha384`, `aes256gcm-prfsha512`, `chacha20poly1305-prfsha1`, `chacha20poly1305-prfsha256`, `chacha20poly1305-prfsha384`, `chacha20poly1305-prfsha512`, `aria128-md5`, `aria128-sha1`, `aria128-sha256`, `aria128-sha384`, `aria128-sha512`, `aria192-md5`, `aria192-sha1`, `aria192-sha256`, `aria192-sha384`, `aria192-sha512`, `aria256-md5`, `aria256-sha1`, `aria256-sha256`, `aria256-sha384`, `aria256-sha512`, `seed-md5`, `seed-sha1`, `seed-sha256`, `seed-sha384`, `seed-sha512`.
 	Proposal pulumi.StringInput
@@ -1956,7 +2076,27 @@ type Phase1interfaceArgs struct {
 	RemoteGw pulumi.StringPtrInput
 	// IPv6 address of the remote gateway's external interface.
 	RemoteGw6 pulumi.StringPtrInput
-	// Domain name of remote gateway (eg. name.DDNS.com).
+	// IPv6 addresses associated to a specific country.
+	RemoteGw6Country pulumi.StringPtrInput
+	// Last IPv6 address in the range.
+	RemoteGw6EndIp pulumi.StringPtrInput
+	// Set type of IPv6 remote gateway address matching. Valid values: `any`, `ipprefix`, `iprange`, `geography`.
+	RemoteGw6Match pulumi.StringPtrInput
+	// First IPv6 address in the range.
+	RemoteGw6StartIp pulumi.StringPtrInput
+	// IPv6 address and prefix.
+	RemoteGw6Subnet pulumi.StringPtrInput
+	// IPv4 addresses associated to a specific country.
+	RemoteGwCountry pulumi.StringPtrInput
+	// Last IPv4 address in the range.
+	RemoteGwEndIp pulumi.StringPtrInput
+	// Set type of IPv4 remote gateway address matching. Valid values: `any`, `ipmask`, `iprange`, `geography`.
+	RemoteGwMatch pulumi.StringPtrInput
+	// First IPv4 address in the range.
+	RemoteGwStartIp pulumi.StringPtrInput
+	// IPv4 address and subnet mask.
+	RemoteGwSubnet pulumi.StringPtrInput
+	// Domain name of remote gateway. For example, name.ddns.com.
 	RemotegwDdns pulumi.StringPtrInput
 	// Digital Signature Authentication RSA signature format. Valid values: `pkcs1`, `pss`.
 	RsaSignatureFormat pulumi.StringPtrInput
@@ -2199,6 +2339,16 @@ func (o Phase1interfaceOutput) CertIdValidation() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.CertIdValidation }).(pulumi.StringOutput)
 }
 
+// Enable/disable domain stripping on certificate identity. Valid values: `disable`, `enable`.
+func (o Phase1interfaceOutput) CertPeerUsernameStrip() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.CertPeerUsernameStrip }).(pulumi.StringOutput)
+}
+
+// Enable/disable cross validation of peer username and the identity in the peer's certificate. Valid values: `none`, `othername`, `rfc822name`, `cn`.
+func (o Phase1interfaceOutput) CertPeerUsernameValidation() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.CertPeerUsernameValidation }).(pulumi.StringOutput)
+}
+
 // CA certificate trust store. Valid values: `local`, `ems`.
 func (o Phase1interfaceOutput) CertTrustStore() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.CertTrustStore }).(pulumi.StringOutput)
@@ -2222,6 +2372,16 @@ func (o Phase1interfaceOutput) ClientAutoNegotiate() pulumi.StringOutput {
 // Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. Valid values: `disable`, `enable`.
 func (o Phase1interfaceOutput) ClientKeepAlive() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.ClientKeepAlive }).(pulumi.StringOutput)
+}
+
+// Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. Valid values: `enable`, `disable`.
+func (o Phase1interfaceOutput) ClientResume() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.ClientResume }).(pulumi.StringOutput)
+}
+
+// Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 1800).
+func (o Phase1interfaceOutput) ClientResumeInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.IntOutput { return v.ClientResumeInterval }).(pulumi.IntOutput)
 }
 
 // Comment.
@@ -2394,17 +2554,17 @@ func (o Phase1interfaceOutput) FallbackTcpThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.IntOutput { return v.FallbackTcpThreshold }).(pulumi.IntOutput)
 }
 
-// Number of base Forward Error Correction packets (1 - 100).
+// Number of base Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 100. On FortiOS versions >= 7.0.2: 1 - 20.
 func (o Phase1interfaceOutput) FecBase() pulumi.IntOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.IntOutput { return v.FecBase }).(pulumi.IntOutput)
 }
 
-// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor). *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec_string`.*
 func (o Phase1interfaceOutput) FecCodec() pulumi.IntOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.IntOutput { return v.FecCodec }).(pulumi.IntOutput)
 }
 
-// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+// Forward Error Correction encoding/decoding algorithm. *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec`.* Valid values: `rs`, `xor`.
 func (o Phase1interfaceOutput) FecCodecString() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.FecCodecString }).(pulumi.StringOutput)
 }
@@ -2429,12 +2589,12 @@ func (o Phase1interfaceOutput) FecMappingProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.FecMappingProfile }).(pulumi.StringOutput)
 }
 
-// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
+// Timeout in milliseconds before dropping Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 10000. On FortiOS versions >= 7.0.2: 1 - 1000.
 func (o Phase1interfaceOutput) FecReceiveTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.IntOutput { return v.FecReceiveTimeout }).(pulumi.IntOutput)
 }
 
-// Number of redundant Forward Error Correction packets (1 - 100).
+// Number of redundant Forward Error Correction packets. On FortiOS versions 6.2.4-6.2.6: 0 - 100,  when fec-codec is reed-solomon  or 1 when fec-codec is xor. On FortiOS versions >= 7.0.2: 1 - 5 for reed-solomon, 1 for xor.
 func (o Phase1interfaceOutput) FecRedundant() pulumi.IntOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.IntOutput { return v.FecRedundant }).(pulumi.IntOutput)
 }
@@ -2469,7 +2629,7 @@ func (o Phase1interfaceOutput) FragmentationMtu() pulumi.IntOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.IntOutput { return v.FragmentationMtu }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o Phase1interfaceOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -2479,7 +2639,7 @@ func (o Phase1interfaceOutput) GroupAuthentication() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.GroupAuthentication }).(pulumi.StringOutput)
 }
 
-// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
+// Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x.
 func (o Phase1interfaceOutput) GroupAuthenticationSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.StringPtrOutput { return v.GroupAuthenticationSecret }).(pulumi.StringPtrOutput)
 }
@@ -2824,7 +2984,7 @@ func (o Phase1interfaceOutput) PpkSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.StringPtrOutput { return v.PpkSecret }).(pulumi.StringPtrOutput)
 }
 
-// Priority for routes added by IKE (0 - 4294967295).
+// Priority for routes added by IKE. On FortiOS versions 6.2.0-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
 func (o Phase1interfaceOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
 }
@@ -2874,7 +3034,57 @@ func (o Phase1interfaceOutput) RemoteGw6() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.RemoteGw6 }).(pulumi.StringOutput)
 }
 
-// Domain name of remote gateway (eg. name.DDNS.com).
+// IPv6 addresses associated to a specific country.
+func (o Phase1interfaceOutput) RemoteGw6Country() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.RemoteGw6Country }).(pulumi.StringOutput)
+}
+
+// Last IPv6 address in the range.
+func (o Phase1interfaceOutput) RemoteGw6EndIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.RemoteGw6EndIp }).(pulumi.StringOutput)
+}
+
+// Set type of IPv6 remote gateway address matching. Valid values: `any`, `ipprefix`, `iprange`, `geography`.
+func (o Phase1interfaceOutput) RemoteGw6Match() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.RemoteGw6Match }).(pulumi.StringOutput)
+}
+
+// First IPv6 address in the range.
+func (o Phase1interfaceOutput) RemoteGw6StartIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.RemoteGw6StartIp }).(pulumi.StringOutput)
+}
+
+// IPv6 address and prefix.
+func (o Phase1interfaceOutput) RemoteGw6Subnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.RemoteGw6Subnet }).(pulumi.StringOutput)
+}
+
+// IPv4 addresses associated to a specific country.
+func (o Phase1interfaceOutput) RemoteGwCountry() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.RemoteGwCountry }).(pulumi.StringOutput)
+}
+
+// Last IPv4 address in the range.
+func (o Phase1interfaceOutput) RemoteGwEndIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.RemoteGwEndIp }).(pulumi.StringOutput)
+}
+
+// Set type of IPv4 remote gateway address matching. Valid values: `any`, `ipmask`, `iprange`, `geography`.
+func (o Phase1interfaceOutput) RemoteGwMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.RemoteGwMatch }).(pulumi.StringOutput)
+}
+
+// First IPv4 address in the range.
+func (o Phase1interfaceOutput) RemoteGwStartIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.RemoteGwStartIp }).(pulumi.StringOutput)
+}
+
+// IPv4 address and subnet mask.
+func (o Phase1interfaceOutput) RemoteGwSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.RemoteGwSubnet }).(pulumi.StringOutput)
+}
+
+// Domain name of remote gateway. For example, name.ddns.com.
 func (o Phase1interfaceOutput) RemotegwDdns() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.RemotegwDdns }).(pulumi.StringOutput)
 }
@@ -2940,8 +3150,8 @@ func (o Phase1interfaceOutput) Usrgrp() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Phase1interfaceOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Phase1interface) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Phase1interfaceOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase1interface) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // VNI of VXLAN tunnel.

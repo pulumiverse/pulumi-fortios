@@ -94,6 +94,9 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Inputs
         [Input("channelBonding")]
         public Input<string>? ChannelBonding { get; set; }
 
+        [Input("channelBondingExt")]
+        public Input<string>? ChannelBondingExt { get; set; }
+
         [Input("channelUtilization")]
         public Input<string>? ChannelUtilization { get; set; }
 

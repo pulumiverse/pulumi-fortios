@@ -122,7 +122,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -188,6 +188,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<int> Policyid { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("portPreserve")]
+        public Output<string> PortPreserve { get; private set; } = null!;
+
+        /// <summary>
         /// Integer value for the protocol type (0 - 255).
         /// </summary>
         [Output("protocol")]
@@ -221,7 +227,7 @@ namespace Pulumiverse.Fortios.Firewall
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -325,7 +331,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -413,6 +419,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("policyid")]
         public Input<int>? Policyid { get; set; }
+
+        /// <summary>
+        /// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("portPreserve")]
+        public Input<string>? PortPreserve { get; set; }
 
         /// <summary>
         /// Integer value for the protocol type (0 - 255).
@@ -519,7 +531,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -607,6 +619,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("policyid")]
         public Input<int>? Policyid { get; set; }
+
+        /// <summary>
+        /// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("portPreserve")]
+        public Input<string>? PortPreserve { get; set; }
 
         /// <summary>
         /// Integer value for the protocol type (0 - 255).

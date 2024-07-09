@@ -91,6 +91,8 @@ type Ippool struct {
 	Nat64 pulumi.StringOutput `pulumi:"nat64"`
 	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
 	NumBlocksPerUser pulumi.IntOutput `pulumi:"numBlocksPerUser"`
+	// Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+	PbaInterimLog pulumi.IntOutput `pulumi:"pbaInterimLog"`
 	// Port block allocation timeout (seconds).
 	PbaTimeout pulumi.IntOutput `pulumi:"pbaTimeout"`
 	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
@@ -110,7 +112,7 @@ type Ippool struct {
 	// IP pool type. On FortiOS versions 6.2.0-7.4.1: overload, one-to-one, fixed port range, or port block allocation. On FortiOS versions >= 7.4.2: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewIppool registers a new resource with the given unique name, arguments, and options.
@@ -171,6 +173,8 @@ type ippoolState struct {
 	Nat64 *string `pulumi:"nat64"`
 	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
 	NumBlocksPerUser *int `pulumi:"numBlocksPerUser"`
+	// Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+	PbaInterimLog *int `pulumi:"pbaInterimLog"`
 	// Port block allocation timeout (seconds).
 	PbaTimeout *int `pulumi:"pbaTimeout"`
 	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
@@ -216,6 +220,8 @@ type IppoolState struct {
 	Nat64 pulumi.StringPtrInput
 	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
 	NumBlocksPerUser pulumi.IntPtrInput
+	// Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+	PbaInterimLog pulumi.IntPtrInput
 	// Port block allocation timeout (seconds).
 	PbaTimeout pulumi.IntPtrInput
 	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
@@ -265,6 +271,8 @@ type ippoolArgs struct {
 	Nat64 *string `pulumi:"nat64"`
 	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
 	NumBlocksPerUser *int `pulumi:"numBlocksPerUser"`
+	// Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+	PbaInterimLog *int `pulumi:"pbaInterimLog"`
 	// Port block allocation timeout (seconds).
 	PbaTimeout *int `pulumi:"pbaTimeout"`
 	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
@@ -311,6 +319,8 @@ type IppoolArgs struct {
 	Nat64 pulumi.StringPtrInput
 	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
 	NumBlocksPerUser pulumi.IntPtrInput
+	// Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+	PbaInterimLog pulumi.IntPtrInput
 	// Port block allocation timeout (seconds).
 	PbaTimeout pulumi.IntPtrInput
 	// Enable/disable full cone NAT. Valid values: `disable`, `enable`.
@@ -475,6 +485,11 @@ func (o IppoolOutput) NumBlocksPerUser() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ippool) pulumi.IntOutput { return v.NumBlocksPerUser }).(pulumi.IntOutput)
 }
 
+// Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+func (o IppoolOutput) PbaInterimLog() pulumi.IntOutput {
+	return o.ApplyT(func(v *Ippool) pulumi.IntOutput { return v.PbaInterimLog }).(pulumi.IntOutput)
+}
+
 // Port block allocation timeout (seconds).
 func (o IppoolOutput) PbaTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ippool) pulumi.IntOutput { return v.PbaTimeout }).(pulumi.IntOutput)
@@ -521,8 +536,8 @@ func (o IppoolOutput) Type() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o IppoolOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Ippool) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o IppoolOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ippool) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type IppoolArrayOutput struct{ *pulumi.OutputState }

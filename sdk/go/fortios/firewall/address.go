@@ -96,7 +96,7 @@ type Address struct {
 	Fqdn pulumi.StringPtrOutput `pulumi:"fqdn"`
 	// FSSO group(s). The structure of `fssoGroup` block is documented below.
 	FssoGroups AddressFssoGroupArrayOutput `pulumi:"fssoGroups"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Dynamic address matching hardware model.
 	HwModel pulumi.StringPtrOutput `pulumi:"hwModel"`
@@ -157,7 +157,7 @@ type Address struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable address visibility in the GUI. Valid values: `enable`, `disable`.
 	Visibility pulumi.StringPtrOutput `pulumi:"visibility"`
 	// IP address and wildcard netmask.
@@ -226,7 +226,7 @@ type addressState struct {
 	Fqdn *string `pulumi:"fqdn"`
 	// FSSO group(s). The structure of `fssoGroup` block is documented below.
 	FssoGroups []AddressFssoGroup `pulumi:"fssoGroups"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Dynamic address matching hardware model.
 	HwModel *string `pulumi:"hwModel"`
@@ -327,7 +327,7 @@ type AddressState struct {
 	Fqdn pulumi.StringPtrInput
 	// FSSO group(s). The structure of `fssoGroup` block is documented below.
 	FssoGroups AddressFssoGroupArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Dynamic address matching hardware model.
 	HwModel pulumi.StringPtrInput
@@ -432,7 +432,7 @@ type addressArgs struct {
 	Fqdn *string `pulumi:"fqdn"`
 	// FSSO group(s). The structure of `fssoGroup` block is documented below.
 	FssoGroups []AddressFssoGroup `pulumi:"fssoGroups"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Dynamic address matching hardware model.
 	HwModel *string `pulumi:"hwModel"`
@@ -534,7 +534,7 @@ type AddressArgs struct {
 	Fqdn pulumi.StringPtrInput
 	// FSSO group(s). The structure of `fssoGroup` block is documented below.
 	FssoGroups AddressFssoGroupArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Dynamic address matching hardware model.
 	HwModel pulumi.StringPtrInput
@@ -766,7 +766,7 @@ func (o AddressOutput) FssoGroups() AddressFssoGroupArrayOutput {
 	return o.ApplyT(func(v *Address) AddressFssoGroupArrayOutput { return v.FssoGroups }).(AddressFssoGroupArrayOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o AddressOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -917,8 +917,8 @@ func (o AddressOutput) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o AddressOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Address) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o AddressOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable address visibility in the GUI. Valid values: `enable`, `disable`.

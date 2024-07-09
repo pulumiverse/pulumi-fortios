@@ -92,11 +92,11 @@ type Static6 struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// IPv6 address of the gateway.
 	Gateway pulumi.StringOutput `pulumi:"gateway"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt pulumi.StringOutput `pulumi:"linkMonitorExempt"`
-	// Administrative priority (0 - 4294967295).
+	// Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions >= 6.4.2: 1 - 65535.
 	Priority pulumi.IntOutput `pulumi:"priority"`
 	// Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringOutput `pulumi:"sdwan"`
@@ -107,7 +107,7 @@ type Static6 struct {
 	// Enable/disable this static route. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
 	VirtualWanLink pulumi.StringOutput `pulumi:"virtualWanLink"`
 	// Virtual Routing Forwarding ID.
@@ -171,11 +171,11 @@ type static6State struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// IPv6 address of the gateway.
 	Gateway *string `pulumi:"gateway"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt *string `pulumi:"linkMonitorExempt"`
-	// Administrative priority (0 - 4294967295).
+	// Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions >= 6.4.2: 1 - 65535.
 	Priority *int `pulumi:"priority"`
 	// Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan *string `pulumi:"sdwan"`
@@ -218,11 +218,11 @@ type Static6State struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// IPv6 address of the gateway.
 	Gateway pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt pulumi.StringPtrInput
-	// Administrative priority (0 - 4294967295).
+	// Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions >= 6.4.2: 1 - 65535.
 	Priority pulumi.IntPtrInput
 	// Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringPtrInput
@@ -269,11 +269,11 @@ type static6Args struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// IPv6 address of the gateway.
 	Gateway *string `pulumi:"gateway"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt *string `pulumi:"linkMonitorExempt"`
-	// Administrative priority (0 - 4294967295).
+	// Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions >= 6.4.2: 1 - 65535.
 	Priority *int `pulumi:"priority"`
 	// Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan *string `pulumi:"sdwan"`
@@ -317,11 +317,11 @@ type Static6Args struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// IPv6 address of the gateway.
 	Gateway pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
 	LinkMonitorExempt pulumi.StringPtrInput
-	// Administrative priority (0 - 4294967295).
+	// Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions >= 6.4.2: 1 - 65535.
 	Priority pulumi.IntPtrInput
 	// Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringPtrInput
@@ -483,7 +483,7 @@ func (o Static6Output) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *Static6) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o Static6Output) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Static6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -493,7 +493,7 @@ func (o Static6Output) LinkMonitorExempt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Static6) pulumi.StringOutput { return v.LinkMonitorExempt }).(pulumi.StringOutput)
 }
 
-// Administrative priority (0 - 4294967295).
+// Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions >= 6.4.2: 1 - 65535.
 func (o Static6Output) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v *Static6) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
 }
@@ -519,8 +519,8 @@ func (o Static6Output) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Static6Output) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Static6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Static6Output) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Static6) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.

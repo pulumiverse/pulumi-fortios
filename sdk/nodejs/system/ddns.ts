@@ -98,7 +98,7 @@ export class Ddns extends pulumi.CustomResource {
      */
     public readonly ddnsAuth!: pulumi.Output<string>;
     /**
-     * Your fully qualified domain name (for example, yourname.DDNS.com).
+     * Your fully qualified domain name. For example, yourname.ddns.com.
      */
     public readonly ddnsDomain!: pulumi.Output<string>;
     /**
@@ -150,7 +150,7 @@ export class Ddns extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -166,7 +166,7 @@ export class Ddns extends pulumi.CustomResource {
      */
     public readonly sslCertificate!: pulumi.Output<string>;
     /**
-     * DDNS update interval (60 - 2592000 sec, default = 300).
+     * DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
      */
     public readonly updateInterval!: pulumi.Output<number>;
     /**
@@ -176,7 +176,7 @@ export class Ddns extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Ddns resource with the given unique name, arguments, and options.
@@ -276,7 +276,7 @@ export interface DdnsState {
      */
     ddnsAuth?: pulumi.Input<string>;
     /**
-     * Your fully qualified domain name (for example, yourname.DDNS.com).
+     * Your fully qualified domain name. For example, yourname.ddns.com.
      */
     ddnsDomain?: pulumi.Input<string>;
     /**
@@ -328,7 +328,7 @@ export interface DdnsState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -344,7 +344,7 @@ export interface DdnsState {
      */
     sslCertificate?: pulumi.Input<string>;
     /**
-     * DDNS update interval (60 - 2592000 sec, default = 300).
+     * DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
      */
     updateInterval?: pulumi.Input<number>;
     /**
@@ -378,7 +378,7 @@ export interface DdnsArgs {
      */
     ddnsAuth?: pulumi.Input<string>;
     /**
-     * Your fully qualified domain name (for example, yourname.DDNS.com).
+     * Your fully qualified domain name. For example, yourname.ddns.com.
      */
     ddnsDomain?: pulumi.Input<string>;
     /**
@@ -430,7 +430,7 @@ export interface DdnsArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -446,7 +446,7 @@ export interface DdnsArgs {
      */
     sslCertificate?: pulumi.Input<string>;
     /**
-     * DDNS update interval (60 - 2592000 sec, default = 300).
+     * DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
      */
     updateInterval?: pulumi.Input<number>;
     /**

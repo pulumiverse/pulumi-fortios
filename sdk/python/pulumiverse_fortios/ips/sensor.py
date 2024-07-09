@@ -36,7 +36,7 @@ class SensorArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SensorEntryArgs']]] entries: IPS sensor filter. The structure of `entries` block is documented below.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SensorFilterArgs']]] filters: IPS sensor filter. The structure of `filter` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Sensor name.
         :param pulumi.Input[Sequence[pulumi.Input['SensorOverrideArgs']]] overrides: IPS override rule. The structure of `override` block is documented below.
         :param pulumi.Input[str] replacemsg_group: Replacement message group.
@@ -144,7 +144,7 @@ class SensorArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -236,7 +236,7 @@ class _SensorState:
         :param pulumi.Input[Sequence[pulumi.Input['SensorEntryArgs']]] entries: IPS sensor filter. The structure of `entries` block is documented below.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SensorFilterArgs']]] filters: IPS sensor filter. The structure of `filter` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Sensor name.
         :param pulumi.Input[Sequence[pulumi.Input['SensorOverrideArgs']]] overrides: IPS override rule. The structure of `override` block is documented below.
         :param pulumi.Input[str] replacemsg_group: Replacement message group.
@@ -344,7 +344,7 @@ class _SensorState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -460,7 +460,7 @@ class Sensor(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SensorEntryArgs']]]] entries: IPS sensor filter. The structure of `entries` block is documented below.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SensorFilterArgs']]]] filters: IPS sensor filter. The structure of `filter` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Sensor name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SensorOverrideArgs']]]] overrides: IPS override rule. The structure of `override` block is documented below.
         :param pulumi.Input[str] replacemsg_group: Replacement message group.
@@ -577,7 +577,7 @@ class Sensor(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SensorEntryArgs']]]] entries: IPS sensor filter. The structure of `entries` block is documented below.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SensorFilterArgs']]]] filters: IPS sensor filter. The structure of `filter` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: Sensor name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SensorOverrideArgs']]]] overrides: IPS override rule. The structure of `override` block is documented below.
         :param pulumi.Input[str] replacemsg_group: Replacement message group.
@@ -654,7 +654,7 @@ class Sensor(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -692,7 +692,7 @@ class Sensor(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

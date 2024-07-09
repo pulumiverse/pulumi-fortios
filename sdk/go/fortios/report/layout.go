@@ -88,7 +88,7 @@ type Layout struct {
 	EmailSend pulumi.StringOutput `pulumi:"emailSend"`
 	// Report format. Valid values: `pdf`.
 	Format pulumi.StringOutput `pulumi:"format"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
 	MaxPdfReport pulumi.IntOutput `pulumi:"maxPdfReport"`
@@ -109,7 +109,7 @@ type Layout struct {
 	// Report title.
 	Title pulumi.StringOutput `pulumi:"title"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewLayout registers a new resource with the given unique name, arguments, and options.
@@ -163,7 +163,7 @@ type layoutState struct {
 	EmailSend *string `pulumi:"emailSend"`
 	// Report format. Valid values: `pdf`.
 	Format *string `pulumi:"format"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
 	MaxPdfReport *int `pulumi:"maxPdfReport"`
@@ -206,7 +206,7 @@ type LayoutState struct {
 	EmailSend pulumi.StringPtrInput
 	// Report format. Valid values: `pdf`.
 	Format pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
 	MaxPdfReport pulumi.IntPtrInput
@@ -253,7 +253,7 @@ type layoutArgs struct {
 	EmailSend *string `pulumi:"emailSend"`
 	// Report format. Valid values: `pdf`.
 	Format *string `pulumi:"format"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
 	MaxPdfReport *int `pulumi:"maxPdfReport"`
@@ -297,7 +297,7 @@ type LayoutArgs struct {
 	EmailSend pulumi.StringPtrInput
 	// Report format. Valid values: `pdf`.
 	Format pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Maximum number of PDF reports to keep at one time (oldest report is overwritten).
 	MaxPdfReport pulumi.IntPtrInput
@@ -453,7 +453,7 @@ func (o LayoutOutput) Format() pulumi.StringOutput {
 	return o.ApplyT(func(v *Layout) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o LayoutOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Layout) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -504,8 +504,8 @@ func (o LayoutOutput) Title() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o LayoutOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Layout) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o LayoutOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Layout) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type LayoutArrayOutput struct{ *pulumi.OutputState }

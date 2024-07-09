@@ -54,7 +54,7 @@ class Policy6Args:
         :param pulumi.Input[int] end_port: End destination port number (1 - 65535).
         :param pulumi.Input[int] end_source_port: End source port number (1 - 65535).
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] input_device_negate: Enable/disable negation of input device match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Policy6InternetServiceCustomArgs']]] internet_service_customs: Custom Destination Internet Service name. The structure of `internet_service_custom` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['Policy6InternetServiceIdArgs']]] internet_service_ids: Destination Internet Service ID. The structure of `internet_service_id` block is documented below.
@@ -247,7 +247,7 @@ class Policy6Args:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -476,7 +476,7 @@ class _Policy6State:
         :param pulumi.Input[int] end_port: End destination port number (1 - 65535).
         :param pulumi.Input[int] end_source_port: End source port number (1 - 65535).
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] input_device: Incoming interface name.
         :param pulumi.Input[str] input_device_negate: Enable/disable negation of input device match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Policy6InternetServiceCustomArgs']]] internet_service_customs: Custom Destination Internet Service name. The structure of `internet_service_custom` block is documented below.
@@ -659,7 +659,7 @@ class _Policy6State:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -945,7 +945,7 @@ class Policy6(pulumi.CustomResource):
         :param pulumi.Input[int] end_port: End destination port number (1 - 65535).
         :param pulumi.Input[int] end_source_port: End source port number (1 - 65535).
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] input_device: Incoming interface name.
         :param pulumi.Input[str] input_device_negate: Enable/disable negation of input device match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6InternetServiceCustomArgs']]]] internet_service_customs: Custom Destination Internet Service name. The structure of `internet_service_custom` block is documented below.
@@ -1141,7 +1141,7 @@ class Policy6(pulumi.CustomResource):
         :param pulumi.Input[int] end_port: End destination port number (1 - 65535).
         :param pulumi.Input[int] end_source_port: End source port number (1 - 65535).
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] input_device: Incoming interface name.
         :param pulumi.Input[str] input_device_negate: Enable/disable negation of input device match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Policy6InternetServiceCustomArgs']]]] internet_service_customs: Custom Destination Internet Service name. The structure of `internet_service_custom` block is documented below.
@@ -1267,7 +1267,7 @@ class Policy6(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1393,7 +1393,7 @@ class Policy6(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

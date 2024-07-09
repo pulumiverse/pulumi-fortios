@@ -48,7 +48,7 @@ type Stormcontrolpolicy struct {
 	// Enable/disable storm control to drop/allow unknown unicast traffic in override mode. Valid values: `enable`, `disable`.
 	UnknownUnicast pulumi.StringOutput `pulumi:"unknownUnicast"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewStormcontrolpolicy registers a new resource with the given unique name, arguments, and options.
@@ -284,8 +284,8 @@ func (o StormcontrolpolicyOutput) UnknownUnicast() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o StormcontrolpolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Stormcontrolpolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o StormcontrolpolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Stormcontrolpolicy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type StormcontrolpolicyArrayOutput struct{ *pulumi.OutputState }

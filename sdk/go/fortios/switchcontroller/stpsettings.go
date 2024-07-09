@@ -69,7 +69,7 @@ type Stpsettings struct {
 	ForwardTime pulumi.IntOutput `pulumi:"forwardTime"`
 	// Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
 	HelloTime pulumi.IntOutput `pulumi:"helloTime"`
-	// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+	// Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
 	MaxAge pulumi.IntOutput `pulumi:"maxAge"`
 	// Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
 	MaxHops pulumi.IntOutput `pulumi:"maxHops"`
@@ -82,7 +82,7 @@ type Stpsettings struct {
 	// Enable/disable STP. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewStpsettings registers a new resource with the given unique name, arguments, and options.
@@ -119,7 +119,7 @@ type stpsettingsState struct {
 	ForwardTime *int `pulumi:"forwardTime"`
 	// Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
 	HelloTime *int `pulumi:"helloTime"`
-	// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+	// Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
 	MaxAge *int `pulumi:"maxAge"`
 	// Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
 	MaxHops *int `pulumi:"maxHops"`
@@ -140,7 +140,7 @@ type StpsettingsState struct {
 	ForwardTime pulumi.IntPtrInput
 	// Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
 	HelloTime pulumi.IntPtrInput
-	// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+	// Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
 	MaxAge pulumi.IntPtrInput
 	// Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
 	MaxHops pulumi.IntPtrInput
@@ -165,7 +165,7 @@ type stpsettingsArgs struct {
 	ForwardTime *int `pulumi:"forwardTime"`
 	// Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
 	HelloTime *int `pulumi:"helloTime"`
-	// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+	// Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
 	MaxAge *int `pulumi:"maxAge"`
 	// Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
 	MaxHops *int `pulumi:"maxHops"`
@@ -187,7 +187,7 @@ type StpsettingsArgs struct {
 	ForwardTime pulumi.IntPtrInput
 	// Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
 	HelloTime pulumi.IntPtrInput
-	// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+	// Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
 	MaxAge pulumi.IntPtrInput
 	// Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
 	MaxHops pulumi.IntPtrInput
@@ -300,7 +300,7 @@ func (o StpsettingsOutput) HelloTime() pulumi.IntOutput {
 	return o.ApplyT(func(v *Stpsettings) pulumi.IntOutput { return v.HelloTime }).(pulumi.IntOutput)
 }
 
-// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+// Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
 func (o StpsettingsOutput) MaxAge() pulumi.IntOutput {
 	return o.ApplyT(func(v *Stpsettings) pulumi.IntOutput { return v.MaxAge }).(pulumi.IntOutput)
 }
@@ -331,8 +331,8 @@ func (o StpsettingsOutput) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o StpsettingsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Stpsettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o StpsettingsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Stpsettings) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type StpsettingsArrayOutput struct{ *pulumi.OutputState }

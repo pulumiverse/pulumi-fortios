@@ -22,7 +22,7 @@ class GetGlobalResult:
     """
     A collection of values returned by getGlobal.
     """
-    def __init__(__self__, admin_concurrent=None, admin_console_timeout=None, admin_forticloud_sso_default_profile=None, admin_forticloud_sso_login=None, admin_host=None, admin_hsts_max_age=None, admin_https_pki_required=None, admin_https_redirect=None, admin_https_ssl_banned_ciphers=None, admin_https_ssl_ciphersuites=None, admin_https_ssl_versions=None, admin_lockout_duration=None, admin_lockout_threshold=None, admin_login_max=None, admin_maintainer=None, admin_port=None, admin_restrict_local=None, admin_scp=None, admin_server_cert=None, admin_sport=None, admin_ssh_grace_time=None, admin_ssh_password=None, admin_ssh_port=None, admin_ssh_v1=None, admin_telnet=None, admin_telnet_port=None, admintimeout=None, alias=None, allow_traffic_redirect=None, anti_replay=None, arp_max_entry=None, asymroute=None, auth_cert=None, auth_http_port=None, auth_https_port=None, auth_ike_saml_port=None, auth_keepalive=None, auth_session_limit=None, auto_auth_extension_device=None, autorun_log_fsck=None, av_affinity=None, av_failopen=None, av_failopen_session=None, batch_cmdb=None, bfd_affinity=None, block_session_timer=None, br_fdb_max_entry=None, cert_chain_max=None, cfg_revert_timeout=None, cfg_save=None, check_protocol_header=None, check_reset_range=None, cli_audit_log=None, cloud_communication=None, clt_cert_req=None, cmdbsvr_affinity=None, compliance_check=None, compliance_check_time=None, cpu_use_threshold=None, csr_ca_attribute=None, daily_restart=None, default_service_source_port=None, device_identification_active_scan_delay=None, device_idle_timeout=None, dh_params=None, dnsproxy_worker_count=None, dst=None, early_tcp_npu_session=None, edit_vdom_prompt=None, endpoint_control_fds_access=None, endpoint_control_portal_port=None, extender_controller_reserved_network=None, failtime=None, faz_disk_buffer_size=None, fds_statistics=None, fds_statistics_period=None, fec_port=None, fgd_alert_subscription=None, forticonverter_config_upload=None, forticonverter_integration=None, fortiextender=None, fortiextender_data_port=None, fortiextender_discovery_lockdown=None, fortiextender_provision_on_authorization=None, fortiextender_vlan_mode=None, fortigslb_integration=None, fortiipam_integration=None, fortiservice_port=None, fortitoken_cloud=None, fortitoken_cloud_push_status=None, fortitoken_cloud_sync_interval=None, gui_allow_default_hostname=None, gui_allow_incompatible_fabric_fgt=None, gui_app_detection_sdwan=None, gui_auto_upgrade_setup_warning=None, gui_cdn_domain_override=None, gui_cdn_usage=None, gui_certificates=None, gui_custom_language=None, gui_date_format=None, gui_date_time_source=None, gui_device_latitude=None, gui_device_longitude=None, gui_display_hostname=None, gui_firmware_upgrade_setup_warning=None, gui_firmware_upgrade_warning=None, gui_forticare_registration_setup_warning=None, gui_fortigate_cloud_sandbox=None, gui_fortiguard_resource_fetch=None, gui_fortisandbox_cloud=None, gui_ipv6=None, gui_lines_per_page=None, gui_local_out=None, gui_replacement_message_groups=None, gui_rest_api_cache=None, gui_theme=None, gui_wireless_opensecurity=None, gui_workflow_management=None, ha_affinity=None, honor_df=None, hostname=None, id=None, igmp_state_limit=None, ike_embryonic_limit=None, interface_subnet_usage=None, internet_service_database=None, internet_service_download_lists=None, interval=None, ip_fragment_mem_thresholds=None, ip_src_port_range=None, ips_affinity=None, ipsec_asic_offload=None, ipsec_ha_seqjump_rate=None, ipsec_hmac_offload=None, ipsec_round_robin=None, ipsec_soft_dec_async=None, ipv6_accept_dad=None, ipv6_allow_anycast_probe=None, ipv6_allow_local_in_slient_drop=None, ipv6_allow_multicast_probe=None, ipv6_allow_traffic_redirect=None, irq_time_accounting=None, language=None, ldapconntimeout=None, lldp_reception=None, lldp_transmission=None, log_single_cpu_high=None, log_ssl_connection=None, log_uuid_address=None, log_uuid_policy=None, login_timestamp=None, long_vdom_name=None, management_ip=None, management_port=None, management_port_use_admin_sport=None, management_vdom=None, max_dlpstat_memory=None, max_route_cache_size=None, mc_ttl_notchange=None, memory_use_threshold_extreme=None, memory_use_threshold_green=None, memory_use_threshold_red=None, miglog_affinity=None, miglogd_children=None, multi_factor_authentication=None, multicast_forward=None, ndp_max_entry=None, per_user_bal=None, per_user_bwl=None, pmtu_discovery=None, policy_auth_concurrent=None, post_login_banner=None, pre_login_banner=None, private_data_encryption=None, proxy_auth_lifetime=None, proxy_auth_lifetime_timeout=None, proxy_auth_timeout=None, proxy_cert_use_mgmt_vdom=None, proxy_cipher_hardware_acceleration=None, proxy_hardware_acceleration=None, proxy_keep_alive_mode=None, proxy_kxp_hardware_acceleration=None, proxy_re_authentication_mode=None, proxy_re_authentication_time=None, proxy_resource_mode=None, proxy_worker_count=None, purdue_level=None, quic_ack_thresold=None, quic_congestion_control_algo=None, quic_max_datagram_size=None, quic_pmtud=None, quic_tls_handshake_timeout=None, quic_udp_payload_size_shaping_per_cid=None, radius_port=None, reboot_upon_config_restore=None, refresh=None, remoteauthtimeout=None, reset_sessionless_tcp=None, restart_time=None, revision_backup_on_logout=None, revision_image_auto_backup=None, scanunit_count=None, security_rating_result_submission=None, security_rating_run_on_schedule=None, send_pmtu_icmp=None, sflowd_max_children_num=None, snat_route_change=None, special_file23_support=None, speedtest_server=None, speedtestd_ctrl_port=None, speedtestd_server_port=None, split_port=None, ssd_trim_date=None, ssd_trim_freq=None, ssd_trim_hour=None, ssd_trim_min=None, ssd_trim_weekday=None, ssh_cbc_cipher=None, ssh_enc_algo=None, ssh_hmac_md5=None, ssh_hostkey=None, ssh_hostkey_algo=None, ssh_hostkey_override=None, ssh_hostkey_password=None, ssh_kex_algo=None, ssh_kex_sha1=None, ssh_mac_algo=None, ssh_mac_weak=None, ssl_min_proto_version=None, ssl_static_key_ciphers=None, sslvpn_cipher_hardware_acceleration=None, sslvpn_ems_sn_check=None, sslvpn_kxp_hardware_acceleration=None, sslvpn_max_worker_count=None, sslvpn_plugin_version_check=None, sslvpn_web_mode=None, strict_dirty_session_check=None, strong_crypto=None, switch_controller=None, switch_controller_reserved_network=None, sys_perf_log_interval=None, syslog_affinity=None, tcp_halfclose_timer=None, tcp_halfopen_timer=None, tcp_option=None, tcp_rst_timer=None, tcp_timewait_timer=None, tftp=None, timezone=None, tp_mc_skip_policy=None, traffic_priority=None, traffic_priority_level=None, two_factor_email_expiry=None, two_factor_fac_expiry=None, two_factor_ftk_expiry=None, two_factor_ftm_expiry=None, two_factor_sms_expiry=None, udp_idle_timer=None, url_filter_affinity=None, url_filter_count=None, user_device_store_max_devices=None, user_device_store_max_unified_mem=None, user_device_store_max_users=None, user_server_cert=None, vdom_admin=None, vdom_mode=None, vdomparam=None, vip_arp_range=None, virtual_server_count=None, virtual_server_hardware_acceleration=None, virtual_switch_vlan=None, vpn_ems_sn_check=None, wad_affinity=None, wad_csvc_cs_count=None, wad_csvc_db_count=None, wad_memory_change_granularity=None, wad_restart_end_time=None, wad_restart_mode=None, wad_restart_start_time=None, wad_source_affinity=None, wad_worker_count=None, wifi_ca_certificate=None, wifi_certificate=None, wimax4g_usb=None, wireless_controller=None, wireless_controller_port=None):
+    def __init__(__self__, admin_concurrent=None, admin_console_timeout=None, admin_forticloud_sso_default_profile=None, admin_forticloud_sso_login=None, admin_host=None, admin_hsts_max_age=None, admin_https_pki_required=None, admin_https_redirect=None, admin_https_ssl_banned_ciphers=None, admin_https_ssl_ciphersuites=None, admin_https_ssl_versions=None, admin_lockout_duration=None, admin_lockout_threshold=None, admin_login_max=None, admin_maintainer=None, admin_port=None, admin_restrict_local=None, admin_scp=None, admin_server_cert=None, admin_sport=None, admin_ssh_grace_time=None, admin_ssh_password=None, admin_ssh_port=None, admin_ssh_v1=None, admin_telnet=None, admin_telnet_port=None, admintimeout=None, alias=None, allow_traffic_redirect=None, anti_replay=None, arp_max_entry=None, asymroute=None, auth_cert=None, auth_http_port=None, auth_https_port=None, auth_ike_saml_port=None, auth_keepalive=None, auth_session_limit=None, auto_auth_extension_device=None, autorun_log_fsck=None, av_affinity=None, av_failopen=None, av_failopen_session=None, batch_cmdb=None, bfd_affinity=None, block_session_timer=None, br_fdb_max_entry=None, cert_chain_max=None, cfg_revert_timeout=None, cfg_save=None, check_protocol_header=None, check_reset_range=None, cli_audit_log=None, cloud_communication=None, clt_cert_req=None, cmdbsvr_affinity=None, compliance_check=None, compliance_check_time=None, cpu_use_threshold=None, csr_ca_attribute=None, daily_restart=None, default_service_source_port=None, device_identification_active_scan_delay=None, device_idle_timeout=None, dh_params=None, dhcp_lease_backup_interval=None, dnsproxy_worker_count=None, dst=None, early_tcp_npu_session=None, edit_vdom_prompt=None, endpoint_control_fds_access=None, endpoint_control_portal_port=None, extender_controller_reserved_network=None, failtime=None, faz_disk_buffer_size=None, fds_statistics=None, fds_statistics_period=None, fec_port=None, fgd_alert_subscription=None, forticonverter_config_upload=None, forticonverter_integration=None, fortiextender=None, fortiextender_data_port=None, fortiextender_discovery_lockdown=None, fortiextender_provision_on_authorization=None, fortiextender_vlan_mode=None, fortigslb_integration=None, fortiipam_integration=None, fortiservice_port=None, fortitoken_cloud=None, fortitoken_cloud_push_status=None, fortitoken_cloud_sync_interval=None, gui_allow_default_hostname=None, gui_allow_incompatible_fabric_fgt=None, gui_app_detection_sdwan=None, gui_auto_upgrade_setup_warning=None, gui_cdn_domain_override=None, gui_cdn_usage=None, gui_certificates=None, gui_custom_language=None, gui_date_format=None, gui_date_time_source=None, gui_device_latitude=None, gui_device_longitude=None, gui_display_hostname=None, gui_firmware_upgrade_setup_warning=None, gui_firmware_upgrade_warning=None, gui_forticare_registration_setup_warning=None, gui_fortigate_cloud_sandbox=None, gui_fortiguard_resource_fetch=None, gui_fortisandbox_cloud=None, gui_ipv6=None, gui_lines_per_page=None, gui_local_out=None, gui_replacement_message_groups=None, gui_rest_api_cache=None, gui_theme=None, gui_wireless_opensecurity=None, gui_workflow_management=None, ha_affinity=None, honor_df=None, hostname=None, id=None, igmp_state_limit=None, ike_embryonic_limit=None, interface_subnet_usage=None, internet_service_database=None, internet_service_download_lists=None, interval=None, ip_fragment_mem_thresholds=None, ip_src_port_range=None, ips_affinity=None, ipsec_asic_offload=None, ipsec_ha_seqjump_rate=None, ipsec_hmac_offload=None, ipsec_qat_offload=None, ipsec_round_robin=None, ipsec_soft_dec_async=None, ipv6_accept_dad=None, ipv6_allow_anycast_probe=None, ipv6_allow_local_in_silent_drop=None, ipv6_allow_local_in_slient_drop=None, ipv6_allow_multicast_probe=None, ipv6_allow_traffic_redirect=None, irq_time_accounting=None, language=None, ldapconntimeout=None, lldp_reception=None, lldp_transmission=None, log_single_cpu_high=None, log_ssl_connection=None, log_uuid_address=None, log_uuid_policy=None, login_timestamp=None, long_vdom_name=None, management_ip=None, management_port=None, management_port_use_admin_sport=None, management_vdom=None, max_dlpstat_memory=None, max_route_cache_size=None, mc_ttl_notchange=None, memory_use_threshold_extreme=None, memory_use_threshold_green=None, memory_use_threshold_red=None, miglog_affinity=None, miglogd_children=None, multi_factor_authentication=None, multicast_forward=None, ndp_max_entry=None, npu_neighbor_update=None, per_user_bal=None, per_user_bwl=None, pmtu_discovery=None, policy_auth_concurrent=None, post_login_banner=None, pre_login_banner=None, private_data_encryption=None, proxy_auth_lifetime=None, proxy_auth_lifetime_timeout=None, proxy_auth_timeout=None, proxy_cert_use_mgmt_vdom=None, proxy_cipher_hardware_acceleration=None, proxy_hardware_acceleration=None, proxy_keep_alive_mode=None, proxy_kxp_hardware_acceleration=None, proxy_re_authentication_mode=None, proxy_re_authentication_time=None, proxy_resource_mode=None, proxy_worker_count=None, purdue_level=None, quic_ack_thresold=None, quic_congestion_control_algo=None, quic_max_datagram_size=None, quic_pmtud=None, quic_tls_handshake_timeout=None, quic_udp_payload_size_shaping_per_cid=None, radius_port=None, reboot_upon_config_restore=None, refresh=None, remoteauthtimeout=None, reset_sessionless_tcp=None, restart_time=None, revision_backup_on_logout=None, revision_image_auto_backup=None, scanunit_count=None, security_rating_result_submission=None, security_rating_run_on_schedule=None, send_pmtu_icmp=None, sflowd_max_children_num=None, snat_route_change=None, special_file23_support=None, speedtest_server=None, speedtestd_ctrl_port=None, speedtestd_server_port=None, split_port=None, ssd_trim_date=None, ssd_trim_freq=None, ssd_trim_hour=None, ssd_trim_min=None, ssd_trim_weekday=None, ssh_cbc_cipher=None, ssh_enc_algo=None, ssh_hmac_md5=None, ssh_hostkey=None, ssh_hostkey_algo=None, ssh_hostkey_override=None, ssh_hostkey_password=None, ssh_kex_algo=None, ssh_kex_sha1=None, ssh_mac_algo=None, ssh_mac_weak=None, ssl_min_proto_version=None, ssl_static_key_ciphers=None, sslvpn_cipher_hardware_acceleration=None, sslvpn_ems_sn_check=None, sslvpn_kxp_hardware_acceleration=None, sslvpn_max_worker_count=None, sslvpn_plugin_version_check=None, sslvpn_web_mode=None, strict_dirty_session_check=None, strong_crypto=None, switch_controller=None, switch_controller_reserved_network=None, sys_perf_log_interval=None, syslog_affinity=None, tcp_halfclose_timer=None, tcp_halfopen_timer=None, tcp_option=None, tcp_rst_timer=None, tcp_timewait_timer=None, tftp=None, timezone=None, tp_mc_skip_policy=None, traffic_priority=None, traffic_priority_level=None, two_factor_email_expiry=None, two_factor_fac_expiry=None, two_factor_ftk_expiry=None, two_factor_ftm_expiry=None, two_factor_sms_expiry=None, udp_idle_timer=None, url_filter_affinity=None, url_filter_count=None, user_device_store_max_devices=None, user_device_store_max_unified_mem=None, user_device_store_max_users=None, user_server_cert=None, vdom_admin=None, vdom_mode=None, vdomparam=None, vip_arp_range=None, virtual_server_count=None, virtual_server_hardware_acceleration=None, virtual_switch_vlan=None, vpn_ems_sn_check=None, wad_affinity=None, wad_csvc_cs_count=None, wad_csvc_db_count=None, wad_memory_change_granularity=None, wad_restart_end_time=None, wad_restart_mode=None, wad_restart_start_time=None, wad_source_affinity=None, wad_worker_count=None, wifi_ca_certificate=None, wifi_certificate=None, wimax4g_usb=None, wireless_controller=None, wireless_controller_port=None):
         if admin_concurrent and not isinstance(admin_concurrent, str):
             raise TypeError("Expected argument 'admin_concurrent' to be a str")
         pulumi.set(__self__, "admin_concurrent", admin_concurrent)
@@ -218,6 +218,9 @@ class GetGlobalResult:
         if dh_params and not isinstance(dh_params, str):
             raise TypeError("Expected argument 'dh_params' to be a str")
         pulumi.set(__self__, "dh_params", dh_params)
+        if dhcp_lease_backup_interval and not isinstance(dhcp_lease_backup_interval, int):
+            raise TypeError("Expected argument 'dhcp_lease_backup_interval' to be a int")
+        pulumi.set(__self__, "dhcp_lease_backup_interval", dhcp_lease_backup_interval)
         if dnsproxy_worker_count and not isinstance(dnsproxy_worker_count, int):
             raise TypeError("Expected argument 'dnsproxy_worker_count' to be a int")
         pulumi.set(__self__, "dnsproxy_worker_count", dnsproxy_worker_count)
@@ -425,6 +428,9 @@ class GetGlobalResult:
         if ipsec_hmac_offload and not isinstance(ipsec_hmac_offload, str):
             raise TypeError("Expected argument 'ipsec_hmac_offload' to be a str")
         pulumi.set(__self__, "ipsec_hmac_offload", ipsec_hmac_offload)
+        if ipsec_qat_offload and not isinstance(ipsec_qat_offload, str):
+            raise TypeError("Expected argument 'ipsec_qat_offload' to be a str")
+        pulumi.set(__self__, "ipsec_qat_offload", ipsec_qat_offload)
         if ipsec_round_robin and not isinstance(ipsec_round_robin, str):
             raise TypeError("Expected argument 'ipsec_round_robin' to be a str")
         pulumi.set(__self__, "ipsec_round_robin", ipsec_round_robin)
@@ -437,6 +443,9 @@ class GetGlobalResult:
         if ipv6_allow_anycast_probe and not isinstance(ipv6_allow_anycast_probe, str):
             raise TypeError("Expected argument 'ipv6_allow_anycast_probe' to be a str")
         pulumi.set(__self__, "ipv6_allow_anycast_probe", ipv6_allow_anycast_probe)
+        if ipv6_allow_local_in_silent_drop and not isinstance(ipv6_allow_local_in_silent_drop, str):
+            raise TypeError("Expected argument 'ipv6_allow_local_in_silent_drop' to be a str")
+        pulumi.set(__self__, "ipv6_allow_local_in_silent_drop", ipv6_allow_local_in_silent_drop)
         if ipv6_allow_local_in_slient_drop and not isinstance(ipv6_allow_local_in_slient_drop, str):
             raise TypeError("Expected argument 'ipv6_allow_local_in_slient_drop' to be a str")
         pulumi.set(__self__, "ipv6_allow_local_in_slient_drop", ipv6_allow_local_in_slient_drop)
@@ -524,6 +533,9 @@ class GetGlobalResult:
         if ndp_max_entry and not isinstance(ndp_max_entry, int):
             raise TypeError("Expected argument 'ndp_max_entry' to be a int")
         pulumi.set(__self__, "ndp_max_entry", ndp_max_entry)
+        if npu_neighbor_update and not isinstance(npu_neighbor_update, str):
+            raise TypeError("Expected argument 'npu_neighbor_update' to be a str")
+        pulumi.set(__self__, "npu_neighbor_update", npu_neighbor_update)
         if per_user_bal and not isinstance(per_user_bal, str):
             raise TypeError("Expected argument 'per_user_bal' to be a str")
         pulumi.set(__self__, "per_user_bal", per_user_bal)
@@ -1403,6 +1415,14 @@ class GetGlobalResult:
         return pulumi.get(self, "dh_params")
 
     @property
+    @pulumi.getter(name="dhcpLeaseBackupInterval")
+    def dhcp_lease_backup_interval(self) -> int:
+        """
+        DHCP leases backup interval in seconds (10 - 3600, default = 60).
+        """
+        return pulumi.get(self, "dhcp_lease_backup_interval")
+
+    @property
     @pulumi.getter(name="dnsproxyWorkerCount")
     def dnsproxy_worker_count(self) -> int:
         """
@@ -1955,6 +1975,14 @@ class GetGlobalResult:
         return pulumi.get(self, "ipsec_hmac_offload")
 
     @property
+    @pulumi.getter(name="ipsecQatOffload")
+    def ipsec_qat_offload(self) -> str:
+        """
+        Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption.
+        """
+        return pulumi.get(self, "ipsec_qat_offload")
+
+    @property
     @pulumi.getter(name="ipsecRoundRobin")
     def ipsec_round_robin(self) -> str:
         """
@@ -1985,6 +2013,14 @@ class GetGlobalResult:
         Enable/disable IPv6 address probe through Anycast.
         """
         return pulumi.get(self, "ipv6_allow_anycast_probe")
+
+    @property
+    @pulumi.getter(name="ipv6AllowLocalInSilentDrop")
+    def ipv6_allow_local_in_silent_drop(self) -> str:
+        """
+        Enable/disable silent drop of IPv6 local-in traffic.
+        """
+        return pulumi.get(self, "ipv6_allow_local_in_silent_drop")
 
     @property
     @pulumi.getter(name="ipv6AllowLocalInSlientDrop")
@@ -2217,6 +2253,14 @@ class GetGlobalResult:
         Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
         """
         return pulumi.get(self, "ndp_max_entry")
+
+    @property
+    @pulumi.getter(name="npuNeighborUpdate")
+    def npu_neighbor_update(self) -> str:
+        """
+        Enable/disable sending of probing packets to update neighbors for offloaded sessions.
+        """
+        return pulumi.get(self, "npu_neighbor_update")
 
     @property
     @pulumi.getter(name="perUserBal")
@@ -3239,6 +3283,7 @@ class AwaitableGetGlobalResult(GetGlobalResult):
             device_identification_active_scan_delay=self.device_identification_active_scan_delay,
             device_idle_timeout=self.device_idle_timeout,
             dh_params=self.dh_params,
+            dhcp_lease_backup_interval=self.dhcp_lease_backup_interval,
             dnsproxy_worker_count=self.dnsproxy_worker_count,
             dst=self.dst,
             early_tcp_npu_session=self.early_tcp_npu_session,
@@ -3308,10 +3353,12 @@ class AwaitableGetGlobalResult(GetGlobalResult):
             ipsec_asic_offload=self.ipsec_asic_offload,
             ipsec_ha_seqjump_rate=self.ipsec_ha_seqjump_rate,
             ipsec_hmac_offload=self.ipsec_hmac_offload,
+            ipsec_qat_offload=self.ipsec_qat_offload,
             ipsec_round_robin=self.ipsec_round_robin,
             ipsec_soft_dec_async=self.ipsec_soft_dec_async,
             ipv6_accept_dad=self.ipv6_accept_dad,
             ipv6_allow_anycast_probe=self.ipv6_allow_anycast_probe,
+            ipv6_allow_local_in_silent_drop=self.ipv6_allow_local_in_silent_drop,
             ipv6_allow_local_in_slient_drop=self.ipv6_allow_local_in_slient_drop,
             ipv6_allow_multicast_probe=self.ipv6_allow_multicast_probe,
             ipv6_allow_traffic_redirect=self.ipv6_allow_traffic_redirect,
@@ -3341,6 +3388,7 @@ class AwaitableGetGlobalResult(GetGlobalResult):
             multi_factor_authentication=self.multi_factor_authentication,
             multicast_forward=self.multicast_forward,
             ndp_max_entry=self.ndp_max_entry,
+            npu_neighbor_update=self.npu_neighbor_update,
             per_user_bal=self.per_user_bal,
             per_user_bwl=self.per_user_bwl,
             pmtu_discovery=self.pmtu_discovery,
@@ -3551,6 +3599,7 @@ def get_global(vdomparam: Optional[str] = None,
         device_identification_active_scan_delay=pulumi.get(__ret__, 'device_identification_active_scan_delay'),
         device_idle_timeout=pulumi.get(__ret__, 'device_idle_timeout'),
         dh_params=pulumi.get(__ret__, 'dh_params'),
+        dhcp_lease_backup_interval=pulumi.get(__ret__, 'dhcp_lease_backup_interval'),
         dnsproxy_worker_count=pulumi.get(__ret__, 'dnsproxy_worker_count'),
         dst=pulumi.get(__ret__, 'dst'),
         early_tcp_npu_session=pulumi.get(__ret__, 'early_tcp_npu_session'),
@@ -3620,10 +3669,12 @@ def get_global(vdomparam: Optional[str] = None,
         ipsec_asic_offload=pulumi.get(__ret__, 'ipsec_asic_offload'),
         ipsec_ha_seqjump_rate=pulumi.get(__ret__, 'ipsec_ha_seqjump_rate'),
         ipsec_hmac_offload=pulumi.get(__ret__, 'ipsec_hmac_offload'),
+        ipsec_qat_offload=pulumi.get(__ret__, 'ipsec_qat_offload'),
         ipsec_round_robin=pulumi.get(__ret__, 'ipsec_round_robin'),
         ipsec_soft_dec_async=pulumi.get(__ret__, 'ipsec_soft_dec_async'),
         ipv6_accept_dad=pulumi.get(__ret__, 'ipv6_accept_dad'),
         ipv6_allow_anycast_probe=pulumi.get(__ret__, 'ipv6_allow_anycast_probe'),
+        ipv6_allow_local_in_silent_drop=pulumi.get(__ret__, 'ipv6_allow_local_in_silent_drop'),
         ipv6_allow_local_in_slient_drop=pulumi.get(__ret__, 'ipv6_allow_local_in_slient_drop'),
         ipv6_allow_multicast_probe=pulumi.get(__ret__, 'ipv6_allow_multicast_probe'),
         ipv6_allow_traffic_redirect=pulumi.get(__ret__, 'ipv6_allow_traffic_redirect'),
@@ -3653,6 +3704,7 @@ def get_global(vdomparam: Optional[str] = None,
         multi_factor_authentication=pulumi.get(__ret__, 'multi_factor_authentication'),
         multicast_forward=pulumi.get(__ret__, 'multicast_forward'),
         ndp_max_entry=pulumi.get(__ret__, 'ndp_max_entry'),
+        npu_neighbor_update=pulumi.get(__ret__, 'npu_neighbor_update'),
         per_user_bal=pulumi.get(__ret__, 'per_user_bal'),
         per_user_bwl=pulumi.get(__ret__, 'per_user_bwl'),
         pmtu_discovery=pulumi.get(__ret__, 'pmtu_discovery'),

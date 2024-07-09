@@ -74,6 +74,10 @@ export class Fctems extends pulumi.CustomResource {
      */
     public readonly certificate!: pulumi.Output<string>;
     /**
+     * FortiClient EMS Cloud multitenancy access key
+     */
+    public readonly cloudAuthenticationAccessKey!: pulumi.Output<string>;
+    /**
      * Cloud server type. Valid values: `production`, `alpha`, `beta`.
      */
     public readonly cloudServerType!: pulumi.Output<string>;
@@ -82,7 +86,7 @@ export class Fctems extends pulumi.CustomResource {
      */
     public readonly dirtyReason!: pulumi.Output<string>;
     /**
-     * EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+     * EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
      */
     public readonly emsId!: pulumi.Output<number>;
     /**
@@ -168,7 +172,7 @@ export class Fctems extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Lowest CA cert on Fortigate in verified EMS cert chain.
      */
@@ -196,6 +200,7 @@ export class Fctems extends pulumi.CustomResource {
             resourceInputs["callTimeout"] = state ? state.callTimeout : undefined;
             resourceInputs["capabilities"] = state ? state.capabilities : undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["cloudAuthenticationAccessKey"] = state ? state.cloudAuthenticationAccessKey : undefined;
             resourceInputs["cloudServerType"] = state ? state.cloudServerType : undefined;
             resourceInputs["dirtyReason"] = state ? state.dirtyReason : undefined;
             resourceInputs["emsId"] = state ? state.emsId : undefined;
@@ -229,6 +234,7 @@ export class Fctems extends pulumi.CustomResource {
             resourceInputs["callTimeout"] = args ? args.callTimeout : undefined;
             resourceInputs["capabilities"] = args ? args.capabilities : undefined;
             resourceInputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["cloudAuthenticationAccessKey"] = args ? args.cloudAuthenticationAccessKey : undefined;
             resourceInputs["cloudServerType"] = args ? args.cloudServerType : undefined;
             resourceInputs["dirtyReason"] = args ? args.dirtyReason : undefined;
             resourceInputs["emsId"] = args ? args.emsId : undefined;
@@ -288,6 +294,10 @@ export interface FctemsState {
      */
     certificate?: pulumi.Input<string>;
     /**
+     * FortiClient EMS Cloud multitenancy access key
+     */
+    cloudAuthenticationAccessKey?: pulumi.Input<string>;
+    /**
      * Cloud server type. Valid values: `production`, `alpha`, `beta`.
      */
     cloudServerType?: pulumi.Input<string>;
@@ -296,7 +306,7 @@ export interface FctemsState {
      */
     dirtyReason?: pulumi.Input<string>;
     /**
-     * EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+     * EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
      */
     emsId?: pulumi.Input<number>;
     /**
@@ -418,6 +428,10 @@ export interface FctemsArgs {
      */
     certificate?: pulumi.Input<string>;
     /**
+     * FortiClient EMS Cloud multitenancy access key
+     */
+    cloudAuthenticationAccessKey?: pulumi.Input<string>;
+    /**
      * Cloud server type. Valid values: `production`, `alpha`, `beta`.
      */
     cloudServerType?: pulumi.Input<string>;
@@ -426,7 +440,7 @@ export interface FctemsArgs {
      */
     dirtyReason?: pulumi.Input<string>;
     /**
-     * EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+     * EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
      */
     emsId?: pulumi.Input<number>;
     /**

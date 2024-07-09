@@ -53,11 +53,11 @@ class AutomationtriggerArgs:
         :param pulumi.Input[str] faz_event_severity: FortiAnalyzer event severity.
         :param pulumi.Input[str] faz_event_tags: FortiAnalyzer event tags.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationtriggerFieldArgs']]] fields: Customized trigger field settings. The structure of `fields` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ioc_level: IOC threat level. Valid values: `medium`, `high`.
         :param pulumi.Input[str] license_type: License type.
-        :param pulumi.Input[int] logid: Log ID to trigger event.
-        :param pulumi.Input[Sequence[pulumi.Input['AutomationtriggerLogidBlockArgs']]] logid_blocks: Log IDs to trigger event. The structure of `logid_block` block is documented below.
+        :param pulumi.Input[int] logid: Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid_block`.*
+        :param pulumi.Input[Sequence[pulumi.Input['AutomationtriggerLogidBlockArgs']]] logid_blocks: Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logid_block` block is documented below.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] report_type: Security Rating report.
         :param pulumi.Input[str] serial: Fabric connector serial number.
@@ -65,7 +65,7 @@ class AutomationtriggerArgs:
         :param pulumi.Input[int] trigger_day: Day within a month to trigger.
         :param pulumi.Input[str] trigger_frequency: Scheduled trigger frequency (default = daily).
         :param pulumi.Input[int] trigger_hour: Hour of the day on which to trigger (0 - 23, default = 1).
-        :param pulumi.Input[int] trigger_minute: Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+        :param pulumi.Input[int] trigger_minute: Minute of the hour on which to trigger (0 - 59, default = 0).
         :param pulumi.Input[str] trigger_type: Trigger type. Valid values: `event-based`, `scheduled`.
         :param pulumi.Input[str] trigger_weekday: Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -236,7 +236,7 @@ class AutomationtriggerArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -272,7 +272,7 @@ class AutomationtriggerArgs:
     @pulumi.getter
     def logid(self) -> Optional[pulumi.Input[int]]:
         """
-        Log ID to trigger event.
+        Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid_block`.*
         """
         return pulumi.get(self, "logid")
 
@@ -284,7 +284,7 @@ class AutomationtriggerArgs:
     @pulumi.getter(name="logidBlocks")
     def logid_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AutomationtriggerLogidBlockArgs']]]]:
         """
-        Log IDs to trigger event. The structure of `logid_block` block is documented below.
+        Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logid_block` block is documented below.
         """
         return pulumi.get(self, "logid_blocks")
 
@@ -380,7 +380,7 @@ class AutomationtriggerArgs:
     @pulumi.getter(name="triggerMinute")
     def trigger_minute(self) -> Optional[pulumi.Input[int]]:
         """
-        Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+        Minute of the hour on which to trigger (0 - 59, default = 0).
         """
         return pulumi.get(self, "trigger_minute")
 
@@ -477,11 +477,11 @@ class _AutomationtriggerState:
         :param pulumi.Input[str] faz_event_severity: FortiAnalyzer event severity.
         :param pulumi.Input[str] faz_event_tags: FortiAnalyzer event tags.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationtriggerFieldArgs']]] fields: Customized trigger field settings. The structure of `fields` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ioc_level: IOC threat level. Valid values: `medium`, `high`.
         :param pulumi.Input[str] license_type: License type.
-        :param pulumi.Input[int] logid: Log ID to trigger event.
-        :param pulumi.Input[Sequence[pulumi.Input['AutomationtriggerLogidBlockArgs']]] logid_blocks: Log IDs to trigger event. The structure of `logid_block` block is documented below.
+        :param pulumi.Input[int] logid: Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid_block`.*
+        :param pulumi.Input[Sequence[pulumi.Input['AutomationtriggerLogidBlockArgs']]] logid_blocks: Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logid_block` block is documented below.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] report_type: Security Rating report.
         :param pulumi.Input[str] serial: Fabric connector serial number.
@@ -489,7 +489,7 @@ class _AutomationtriggerState:
         :param pulumi.Input[int] trigger_day: Day within a month to trigger.
         :param pulumi.Input[str] trigger_frequency: Scheduled trigger frequency (default = daily).
         :param pulumi.Input[int] trigger_hour: Hour of the day on which to trigger (0 - 23, default = 1).
-        :param pulumi.Input[int] trigger_minute: Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+        :param pulumi.Input[int] trigger_minute: Minute of the hour on which to trigger (0 - 59, default = 0).
         :param pulumi.Input[str] trigger_type: Trigger type. Valid values: `event-based`, `scheduled`.
         :param pulumi.Input[str] trigger_weekday: Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -660,7 +660,7 @@ class _AutomationtriggerState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -696,7 +696,7 @@ class _AutomationtriggerState:
     @pulumi.getter
     def logid(self) -> Optional[pulumi.Input[int]]:
         """
-        Log ID to trigger event.
+        Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid_block`.*
         """
         return pulumi.get(self, "logid")
 
@@ -708,7 +708,7 @@ class _AutomationtriggerState:
     @pulumi.getter(name="logidBlocks")
     def logid_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AutomationtriggerLogidBlockArgs']]]]:
         """
-        Log IDs to trigger event. The structure of `logid_block` block is documented below.
+        Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logid_block` block is documented below.
         """
         return pulumi.get(self, "logid_blocks")
 
@@ -804,7 +804,7 @@ class _AutomationtriggerState:
     @pulumi.getter(name="triggerMinute")
     def trigger_minute(self) -> Optional[pulumi.Input[int]]:
         """
-        Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+        Minute of the hour on which to trigger (0 - 59, default = 0).
         """
         return pulumi.get(self, "trigger_minute")
 
@@ -941,11 +941,11 @@ class Automationtrigger(pulumi.CustomResource):
         :param pulumi.Input[str] faz_event_severity: FortiAnalyzer event severity.
         :param pulumi.Input[str] faz_event_tags: FortiAnalyzer event tags.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerFieldArgs']]]] fields: Customized trigger field settings. The structure of `fields` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ioc_level: IOC threat level. Valid values: `medium`, `high`.
         :param pulumi.Input[str] license_type: License type.
-        :param pulumi.Input[int] logid: Log ID to trigger event.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerLogidBlockArgs']]]] logid_blocks: Log IDs to trigger event. The structure of `logid_block` block is documented below.
+        :param pulumi.Input[int] logid: Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid_block`.*
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerLogidBlockArgs']]]] logid_blocks: Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logid_block` block is documented below.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] report_type: Security Rating report.
         :param pulumi.Input[str] serial: Fabric connector serial number.
@@ -953,7 +953,7 @@ class Automationtrigger(pulumi.CustomResource):
         :param pulumi.Input[int] trigger_day: Day within a month to trigger.
         :param pulumi.Input[str] trigger_frequency: Scheduled trigger frequency (default = daily).
         :param pulumi.Input[int] trigger_hour: Hour of the day on which to trigger (0 - 23, default = 1).
-        :param pulumi.Input[int] trigger_minute: Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+        :param pulumi.Input[int] trigger_minute: Minute of the hour on which to trigger (0 - 59, default = 0).
         :param pulumi.Input[str] trigger_type: Trigger type. Valid values: `event-based`, `scheduled`.
         :param pulumi.Input[str] trigger_weekday: Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -1130,11 +1130,11 @@ class Automationtrigger(pulumi.CustomResource):
         :param pulumi.Input[str] faz_event_severity: FortiAnalyzer event severity.
         :param pulumi.Input[str] faz_event_tags: FortiAnalyzer event tags.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerFieldArgs']]]] fields: Customized trigger field settings. The structure of `fields` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ioc_level: IOC threat level. Valid values: `medium`, `high`.
         :param pulumi.Input[str] license_type: License type.
-        :param pulumi.Input[int] logid: Log ID to trigger event.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerLogidBlockArgs']]]] logid_blocks: Log IDs to trigger event. The structure of `logid_block` block is documented below.
+        :param pulumi.Input[int] logid: Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid_block`.*
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationtriggerLogidBlockArgs']]]] logid_blocks: Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logid_block` block is documented below.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] report_type: Security Rating report.
         :param pulumi.Input[str] serial: Fabric connector serial number.
@@ -1142,7 +1142,7 @@ class Automationtrigger(pulumi.CustomResource):
         :param pulumi.Input[int] trigger_day: Day within a month to trigger.
         :param pulumi.Input[str] trigger_frequency: Scheduled trigger frequency (default = daily).
         :param pulumi.Input[int] trigger_hour: Hour of the day on which to trigger (0 - 23, default = 1).
-        :param pulumi.Input[int] trigger_minute: Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+        :param pulumi.Input[int] trigger_minute: Minute of the hour on which to trigger (0 - 59, default = 0).
         :param pulumi.Input[str] trigger_type: Trigger type. Valid values: `event-based`, `scheduled`.
         :param pulumi.Input[str] trigger_weekday: Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -1256,7 +1256,7 @@ class Automationtrigger(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1280,7 +1280,7 @@ class Automationtrigger(pulumi.CustomResource):
     @pulumi.getter
     def logid(self) -> pulumi.Output[int]:
         """
-        Log ID to trigger event.
+        Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid_block`.*
         """
         return pulumi.get(self, "logid")
 
@@ -1288,7 +1288,7 @@ class Automationtrigger(pulumi.CustomResource):
     @pulumi.getter(name="logidBlocks")
     def logid_blocks(self) -> pulumi.Output[Optional[Sequence['outputs.AutomationtriggerLogidBlock']]]:
         """
-        Log IDs to trigger event. The structure of `logid_block` block is documented below.
+        Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logid_block` block is documented below.
         """
         return pulumi.get(self, "logid_blocks")
 
@@ -1352,7 +1352,7 @@ class Automationtrigger(pulumi.CustomResource):
     @pulumi.getter(name="triggerMinute")
     def trigger_minute(self) -> pulumi.Output[int]:
         """
-        Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+        Minute of the hour on which to trigger (0 - 59, default = 0).
         """
         return pulumi.get(self, "trigger_minute")
 
@@ -1374,7 +1374,7 @@ class Automationtrigger(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

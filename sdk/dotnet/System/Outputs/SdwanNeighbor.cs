@@ -23,11 +23,11 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? Ip;
         /// <summary>
-        /// Member sequence number.
+        /// Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `member_block`.*
         /// </summary>
         public readonly int? Member;
         /// <summary>
-        /// Member sequence number list. The structure of `member_block` block is documented below.
+        /// Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `member_block` block is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.SdwanNeighborMemberBlock> MemberBlocks;
         /// <summary>

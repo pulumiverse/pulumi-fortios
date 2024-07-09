@@ -17,6 +17,7 @@ __all__ = ['GlobalArgs', 'Global']
 class GlobalArgs:
     def __init__(__self__, *,
                  proxy_fqdn: pulumi.Input[str],
+                 always_learn_client_ip: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
@@ -34,6 +35,7 @@ class GlobalArgs:
                  max_request_length: Optional[pulumi.Input[int]] = None,
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
                  policy_category_deep_inspect: Optional[pulumi.Input[str]] = None,
+                 proxy_transparent_cert_inspection: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
                  ssl_ca_cert: Optional[pulumi.Input[str]] = None,
@@ -46,11 +48,12 @@ class GlobalArgs:
         """
         The set of arguments for constructing a Global resource.
         :param pulumi.Input[str] proxy_fqdn: Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
+        :param pulumi.Input[str] always_learn_client_ip: Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fast_policy_match: Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_proxy_auth: Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_server_affinity_timeout: Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldap_user_cache: Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip: Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip_from_header: Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
@@ -60,9 +63,10 @@ class GlobalArgs:
         :param pulumi.Input[str] log_forward_server: Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_policy_pending: Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_message_length: Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
-        :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+        :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
         :param pulumi.Input[int] max_waf_body_cache_length: Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
         :param pulumi.Input[str] policy_category_deep_inspect: Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] proxy_transparent_cert_inspection: Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] src_affinity_exempt_addr: IPv4 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] ssl_ca_cert: SSL CA certificate for SSL interception.
@@ -74,6 +78,8 @@ class GlobalArgs:
         :param pulumi.Input[str] webproxy_profile: Name of the web proxy profile to apply when explicit proxy traffic is allowed by default and traffic is accepted that does not match an explicit proxy policy.
         """
         pulumi.set(__self__, "proxy_fqdn", proxy_fqdn)
+        if always_learn_client_ip is not None:
+            pulumi.set(__self__, "always_learn_client_ip", always_learn_client_ip)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fast_policy_match is not None:
@@ -108,6 +114,8 @@ class GlobalArgs:
             pulumi.set(__self__, "max_waf_body_cache_length", max_waf_body_cache_length)
         if policy_category_deep_inspect is not None:
             pulumi.set(__self__, "policy_category_deep_inspect", policy_category_deep_inspect)
+        if proxy_transparent_cert_inspection is not None:
+            pulumi.set(__self__, "proxy_transparent_cert_inspection", proxy_transparent_cert_inspection)
         if src_affinity_exempt_addr is not None:
             pulumi.set(__self__, "src_affinity_exempt_addr", src_affinity_exempt_addr)
         if src_affinity_exempt_addr6 is not None:
@@ -138,6 +146,18 @@ class GlobalArgs:
     @proxy_fqdn.setter
     def proxy_fqdn(self, value: pulumi.Input[str]):
         pulumi.set(self, "proxy_fqdn", value)
+
+    @property
+    @pulumi.getter(name="alwaysLearnClientIp")
+    def always_learn_client_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "always_learn_client_ip")
+
+    @always_learn_client_ip.setter
+    def always_learn_client_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "always_learn_client_ip", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -191,7 +211,7 @@ class GlobalArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -311,7 +331,7 @@ class GlobalArgs:
     @pulumi.getter(name="maxRequestLength")
     def max_request_length(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+        Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
         """
         return pulumi.get(self, "max_request_length")
 
@@ -342,6 +362,18 @@ class GlobalArgs:
     @policy_category_deep_inspect.setter
     def policy_category_deep_inspect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy_category_deep_inspect", value)
+
+    @property
+    @pulumi.getter(name="proxyTransparentCertInspection")
+    def proxy_transparent_cert_inspection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy_transparent_cert_inspection")
+
+    @proxy_transparent_cert_inspection.setter
+    def proxy_transparent_cert_inspection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_transparent_cert_inspection", value)
 
     @property
     @pulumi.getter(name="srcAffinityExemptAddr")
@@ -455,6 +487,7 @@ class GlobalArgs:
 @pulumi.input_type
 class _GlobalState:
     def __init__(__self__, *,
+                 always_learn_client_ip: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
@@ -473,6 +506,7 @@ class _GlobalState:
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
                  policy_category_deep_inspect: Optional[pulumi.Input[str]] = None,
                  proxy_fqdn: Optional[pulumi.Input[str]] = None,
+                 proxy_transparent_cert_inspection: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
                  ssl_ca_cert: Optional[pulumi.Input[str]] = None,
@@ -484,11 +518,12 @@ class _GlobalState:
                  webproxy_profile: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Global resources.
+        :param pulumi.Input[str] always_learn_client_ip: Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fast_policy_match: Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_proxy_auth: Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_server_affinity_timeout: Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldap_user_cache: Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip: Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip_from_header: Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
@@ -498,10 +533,11 @@ class _GlobalState:
         :param pulumi.Input[str] log_forward_server: Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_policy_pending: Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_message_length: Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
-        :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+        :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
         :param pulumi.Input[int] max_waf_body_cache_length: Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
         :param pulumi.Input[str] policy_category_deep_inspect: Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] proxy_fqdn: Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
+        :param pulumi.Input[str] proxy_transparent_cert_inspection: Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] src_affinity_exempt_addr: IPv4 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] ssl_ca_cert: SSL CA certificate for SSL interception.
@@ -512,6 +548,8 @@ class _GlobalState:
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] webproxy_profile: Name of the web proxy profile to apply when explicit proxy traffic is allowed by default and traffic is accepted that does not match an explicit proxy policy.
         """
+        if always_learn_client_ip is not None:
+            pulumi.set(__self__, "always_learn_client_ip", always_learn_client_ip)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fast_policy_match is not None:
@@ -548,6 +586,8 @@ class _GlobalState:
             pulumi.set(__self__, "policy_category_deep_inspect", policy_category_deep_inspect)
         if proxy_fqdn is not None:
             pulumi.set(__self__, "proxy_fqdn", proxy_fqdn)
+        if proxy_transparent_cert_inspection is not None:
+            pulumi.set(__self__, "proxy_transparent_cert_inspection", proxy_transparent_cert_inspection)
         if src_affinity_exempt_addr is not None:
             pulumi.set(__self__, "src_affinity_exempt_addr", src_affinity_exempt_addr)
         if src_affinity_exempt_addr6 is not None:
@@ -566,6 +606,18 @@ class _GlobalState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if webproxy_profile is not None:
             pulumi.set(__self__, "webproxy_profile", webproxy_profile)
+
+    @property
+    @pulumi.getter(name="alwaysLearnClientIp")
+    def always_learn_client_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "always_learn_client_ip")
+
+    @always_learn_client_ip.setter
+    def always_learn_client_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "always_learn_client_ip", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -619,7 +671,7 @@ class _GlobalState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -739,7 +791,7 @@ class _GlobalState:
     @pulumi.getter(name="maxRequestLength")
     def max_request_length(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+        Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
         """
         return pulumi.get(self, "max_request_length")
 
@@ -782,6 +834,18 @@ class _GlobalState:
     @proxy_fqdn.setter
     def proxy_fqdn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "proxy_fqdn", value)
+
+    @property
+    @pulumi.getter(name="proxyTransparentCertInspection")
+    def proxy_transparent_cert_inspection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy_transparent_cert_inspection")
+
+    @proxy_transparent_cert_inspection.setter
+    def proxy_transparent_cert_inspection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_transparent_cert_inspection", value)
 
     @property
     @pulumi.getter(name="srcAffinityExemptAddr")
@@ -897,6 +961,7 @@ class Global(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 always_learn_client_ip: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
@@ -915,6 +980,7 @@ class Global(pulumi.CustomResource):
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
                  policy_category_deep_inspect: Optional[pulumi.Input[str]] = None,
                  proxy_fqdn: Optional[pulumi.Input[str]] = None,
+                 proxy_transparent_cert_inspection: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
                  ssl_ca_cert: Optional[pulumi.Input[str]] = None,
@@ -970,11 +1036,12 @@ class Global(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] always_learn_client_ip: Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fast_policy_match: Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_proxy_auth: Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_server_affinity_timeout: Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldap_user_cache: Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip: Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip_from_header: Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
@@ -984,10 +1051,11 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] log_forward_server: Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_policy_pending: Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_message_length: Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
-        :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+        :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
         :param pulumi.Input[int] max_waf_body_cache_length: Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
         :param pulumi.Input[str] policy_category_deep_inspect: Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] proxy_fqdn: Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
+        :param pulumi.Input[str] proxy_transparent_cert_inspection: Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] src_affinity_exempt_addr: IPv4 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] ssl_ca_cert: SSL CA certificate for SSL interception.
@@ -1062,6 +1130,7 @@ class Global(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 always_learn_client_ip: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
@@ -1080,6 +1149,7 @@ class Global(pulumi.CustomResource):
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
                  policy_category_deep_inspect: Optional[pulumi.Input[str]] = None,
                  proxy_fqdn: Optional[pulumi.Input[str]] = None,
+                 proxy_transparent_cert_inspection: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
                  src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
                  ssl_ca_cert: Optional[pulumi.Input[str]] = None,
@@ -1098,6 +1168,7 @@ class Global(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = GlobalArgs.__new__(GlobalArgs)
 
+            __props__.__dict__["always_learn_client_ip"] = always_learn_client_ip
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fast_policy_match"] = fast_policy_match
             __props__.__dict__["forward_proxy_auth"] = forward_proxy_auth
@@ -1118,6 +1189,7 @@ class Global(pulumi.CustomResource):
             if proxy_fqdn is None and not opts.urn:
                 raise TypeError("Missing required property 'proxy_fqdn'")
             __props__.__dict__["proxy_fqdn"] = proxy_fqdn
+            __props__.__dict__["proxy_transparent_cert_inspection"] = proxy_transparent_cert_inspection
             __props__.__dict__["src_affinity_exempt_addr"] = src_affinity_exempt_addr
             __props__.__dict__["src_affinity_exempt_addr6"] = src_affinity_exempt_addr6
             __props__.__dict__["ssl_ca_cert"] = ssl_ca_cert
@@ -1137,6 +1209,7 @@ class Global(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            always_learn_client_ip: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fast_policy_match: Optional[pulumi.Input[str]] = None,
             forward_proxy_auth: Optional[pulumi.Input[str]] = None,
@@ -1155,6 +1228,7 @@ class Global(pulumi.CustomResource):
             max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
             policy_category_deep_inspect: Optional[pulumi.Input[str]] = None,
             proxy_fqdn: Optional[pulumi.Input[str]] = None,
+            proxy_transparent_cert_inspection: Optional[pulumi.Input[str]] = None,
             src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
             src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
             ssl_ca_cert: Optional[pulumi.Input[str]] = None,
@@ -1171,11 +1245,12 @@ class Global(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] always_learn_client_ip: Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] fast_policy_match: Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_proxy_auth: Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_server_affinity_timeout: Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ldap_user_cache: Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip: Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip_from_header: Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
@@ -1185,10 +1260,11 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] log_forward_server: Enable/disable forward server name logging in forward traffic log. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_policy_pending: Enable/disable logging sessions that are pending on policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_message_length: Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
-        :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+        :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
         :param pulumi.Input[int] max_waf_body_cache_length: Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
         :param pulumi.Input[str] policy_category_deep_inspect: Enable/disable deep inspection for application level category policy matching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] proxy_fqdn: Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
+        :param pulumi.Input[str] proxy_transparent_cert_inspection: Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] src_affinity_exempt_addr: IPv4 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] ssl_ca_cert: SSL CA certificate for SSL interception.
@@ -1203,6 +1279,7 @@ class Global(pulumi.CustomResource):
 
         __props__ = _GlobalState.__new__(_GlobalState)
 
+        __props__.__dict__["always_learn_client_ip"] = always_learn_client_ip
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fast_policy_match"] = fast_policy_match
         __props__.__dict__["forward_proxy_auth"] = forward_proxy_auth
@@ -1221,6 +1298,7 @@ class Global(pulumi.CustomResource):
         __props__.__dict__["max_waf_body_cache_length"] = max_waf_body_cache_length
         __props__.__dict__["policy_category_deep_inspect"] = policy_category_deep_inspect
         __props__.__dict__["proxy_fqdn"] = proxy_fqdn
+        __props__.__dict__["proxy_transparent_cert_inspection"] = proxy_transparent_cert_inspection
         __props__.__dict__["src_affinity_exempt_addr"] = src_affinity_exempt_addr
         __props__.__dict__["src_affinity_exempt_addr6"] = src_affinity_exempt_addr6
         __props__.__dict__["ssl_ca_cert"] = ssl_ca_cert
@@ -1231,6 +1309,14 @@ class Global(pulumi.CustomResource):
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["webproxy_profile"] = webproxy_profile
         return Global(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="alwaysLearnClientIp")
+    def always_learn_client_ip(self) -> pulumi.Output[str]:
+        """
+        Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "always_learn_client_ip")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -1268,7 +1354,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1348,7 +1434,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="maxRequestLength")
     def max_request_length(self) -> pulumi.Output[int]:
         """
-        Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+        Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
         """
         return pulumi.get(self, "max_request_length")
 
@@ -1375,6 +1461,14 @@ class Global(pulumi.CustomResource):
         Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
         """
         return pulumi.get(self, "proxy_fqdn")
+
+    @property
+    @pulumi.getter(name="proxyTransparentCertInspection")
+    def proxy_transparent_cert_inspection(self) -> pulumi.Output[str]:
+        """
+        Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy_transparent_cert_inspection")
 
     @property
     @pulumi.getter(name="srcAffinityExemptAddr")
@@ -1434,7 +1528,7 @@ class Global(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

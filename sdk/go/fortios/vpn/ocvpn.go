@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
-// Configure Overlay Controller VPN settings. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7,7.0.8,7.0.9,7.0.10,7.0.11,7.0.12,7.0.13,7.2.0,7.2.1,7.2.2,7.2.3,7.2.4,7.2.6`.
+// Configure Overlay Controller VPN settings. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,6.4.15,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7,7.0.8,7.0.9,7.0.10,7.0.11,7.0.12,7.0.13,7.0.14,7.0.15,7.2.0,7.2.1,7.2.2,7.2.3,7.2.4,7.2.6,7.2.7,7.2.8`.
 //
 // ## Import
 //
@@ -45,7 +45,7 @@ type Ocvpn struct {
 	EapUsers pulumi.StringOutput `pulumi:"eapUsers"`
 	// Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
 	ForticlientAccess OcvpnForticlientAccessOutput `pulumi:"forticlientAccess"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Class B subnet reserved for private IP address assignment.
 	IpAllocationBlock pulumi.StringOutput `pulumi:"ipAllocationBlock"`
@@ -66,7 +66,7 @@ type Ocvpn struct {
 	// Enable/disable Overlay Controller cloud assisted VPN. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// FortiGate WAN interfaces to use with OCVPN. The structure of `wanInterface` block is documented below.
 	WanInterfaces OcvpnWanInterfaceArrayOutput `pulumi:"wanInterfaces"`
 }
@@ -113,7 +113,7 @@ type ocvpnState struct {
 	EapUsers *string `pulumi:"eapUsers"`
 	// Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
 	ForticlientAccess *OcvpnForticlientAccess `pulumi:"forticlientAccess"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Class B subnet reserved for private IP address assignment.
 	IpAllocationBlock *string `pulumi:"ipAllocationBlock"`
@@ -152,7 +152,7 @@ type OcvpnState struct {
 	EapUsers pulumi.StringPtrInput
 	// Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
 	ForticlientAccess OcvpnForticlientAccessPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Class B subnet reserved for private IP address assignment.
 	IpAllocationBlock pulumi.StringPtrInput
@@ -195,7 +195,7 @@ type ocvpnArgs struct {
 	EapUsers *string `pulumi:"eapUsers"`
 	// Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
 	ForticlientAccess *OcvpnForticlientAccess `pulumi:"forticlientAccess"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Class B subnet reserved for private IP address assignment.
 	IpAllocationBlock *string `pulumi:"ipAllocationBlock"`
@@ -235,7 +235,7 @@ type OcvpnArgs struct {
 	EapUsers pulumi.StringPtrInput
 	// Configure FortiClient settings. The structure of `forticlientAccess` block is documented below.
 	ForticlientAccess OcvpnForticlientAccessPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Class B subnet reserved for private IP address assignment.
 	IpAllocationBlock pulumi.StringPtrInput
@@ -378,7 +378,7 @@ func (o OcvpnOutput) ForticlientAccess() OcvpnForticlientAccessOutput {
 	return o.ApplyT(func(v *Ocvpn) OcvpnForticlientAccessOutput { return v.ForticlientAccess }).(OcvpnForticlientAccessOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o OcvpnOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Ocvpn) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -429,8 +429,8 @@ func (o OcvpnOutput) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o OcvpnOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Ocvpn) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o OcvpnOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ocvpn) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // FortiGate WAN interfaces to use with OCVPN. The structure of `wanInterface` block is documented below.

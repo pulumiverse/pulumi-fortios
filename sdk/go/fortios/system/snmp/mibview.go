@@ -40,7 +40,7 @@ type Mibview struct {
 	// MIB view name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewMibview registers a new resource with the given unique name, arguments, and options.
@@ -224,8 +224,8 @@ func (o MibviewOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o MibviewOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Mibview) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o MibviewOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Mibview) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type MibviewArrayOutput struct{ *pulumi.OutputState }

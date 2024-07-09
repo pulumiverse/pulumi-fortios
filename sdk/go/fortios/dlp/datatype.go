@@ -52,7 +52,7 @@ type Datatype struct {
 	// Template to transform user input to a pattern using capture group from 'pattern'.
 	Transform pulumi.StringOutput `pulumi:"transform"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Regular expression pattern string used to verify the data type.
 	Verify pulumi.StringOutput `pulumi:"verify"`
 	// Extra regular expression pattern string used to verify the data type.
@@ -344,8 +344,8 @@ func (o DatatypeOutput) Transform() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o DatatypeOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Datatype) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o DatatypeOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Datatype) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Regular expression pattern string used to verify the data type.

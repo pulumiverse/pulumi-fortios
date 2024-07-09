@@ -43,17 +43,17 @@ type Widsprofile struct {
 	ApBgscanDisableSchedules WidsprofileApBgscanDisableScheduleArrayOutput `pulumi:"apBgscanDisableSchedules"`
 	// Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
 	ApBgscanDisableStart pulumi.StringOutput `pulumi:"apBgscanDisableStart"`
-	// Listening time on a scanning channel (10 - 1000 msec, default = 20).
+	// Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
 	ApBgscanDuration pulumi.IntOutput `pulumi:"apBgscanDuration"`
-	// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+	// Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
 	ApBgscanIdle pulumi.IntOutput `pulumi:"apBgscanIdle"`
-	// Period of time between scanning two channels (1 - 600 sec, default = 1).
+	// Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
 	ApBgscanIntv pulumi.IntOutput `pulumi:"apBgscanIntv"`
-	// Period of time between background scans (60 - 3600 sec, default = 600).
+	// Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
 	ApBgscanPeriod pulumi.IntOutput `pulumi:"apBgscanPeriod"`
-	// Period of time between background scan reports (15 - 600 sec, default = 30).
+	// Period between background scan reports (15 - 600 sec, default = 30).
 	ApBgscanReportIntv pulumi.IntOutput `pulumi:"apBgscanReportIntv"`
-	// Period of time between foreground scan reports (15 - 600 sec, default = 15).
+	// Period between foreground scan reports (15 - 600 sec, default = 15).
 	ApFgscanReportIntv pulumi.IntOutput `pulumi:"apFgscanReportIntv"`
 	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
 	ApScan pulumi.StringOutput `pulumi:"apScan"`
@@ -123,7 +123,7 @@ type Widsprofile struct {
 	EapolSuccIntv pulumi.IntOutput `pulumi:"eapolSuccIntv"`
 	// The threshold value for EAPOL-Success flooding in specified interval.
 	EapolSuccThresh pulumi.IntOutput `pulumi:"eapolSuccThresh"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
 	InvalidMacOui pulumi.StringOutput `pulumi:"invalidMacOui"`
@@ -135,14 +135,14 @@ type Widsprofile struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
 	NullSsidProbeResp pulumi.StringOutput `pulumi:"nullSsidProbeResp"`
-	// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+	// Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
 	SensorMode pulumi.StringOutput `pulumi:"sensorMode"`
 	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
 	SpoofedDeauth pulumi.StringOutput `pulumi:"spoofedDeauth"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	//
 	// The `apScanChannelList2g5g` block supports:
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
 	WeakWepIv pulumi.StringOutput `pulumi:"weakWepIv"`
 	// Enable/disable wireless bridge detection (default = disable). Valid values: `enable`, `disable`.
@@ -189,17 +189,17 @@ type widsprofileState struct {
 	ApBgscanDisableSchedules []WidsprofileApBgscanDisableSchedule `pulumi:"apBgscanDisableSchedules"`
 	// Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
 	ApBgscanDisableStart *string `pulumi:"apBgscanDisableStart"`
-	// Listening time on a scanning channel (10 - 1000 msec, default = 20).
+	// Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
 	ApBgscanDuration *int `pulumi:"apBgscanDuration"`
-	// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+	// Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
 	ApBgscanIdle *int `pulumi:"apBgscanIdle"`
-	// Period of time between scanning two channels (1 - 600 sec, default = 1).
+	// Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
 	ApBgscanIntv *int `pulumi:"apBgscanIntv"`
-	// Period of time between background scans (60 - 3600 sec, default = 600).
+	// Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
 	ApBgscanPeriod *int `pulumi:"apBgscanPeriod"`
-	// Period of time between background scan reports (15 - 600 sec, default = 30).
+	// Period between background scan reports (15 - 600 sec, default = 30).
 	ApBgscanReportIntv *int `pulumi:"apBgscanReportIntv"`
-	// Period of time between foreground scan reports (15 - 600 sec, default = 15).
+	// Period between foreground scan reports (15 - 600 sec, default = 15).
 	ApFgscanReportIntv *int `pulumi:"apFgscanReportIntv"`
 	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
 	ApScan *string `pulumi:"apScan"`
@@ -269,7 +269,7 @@ type widsprofileState struct {
 	EapolSuccIntv *int `pulumi:"eapolSuccIntv"`
 	// The threshold value for EAPOL-Success flooding in specified interval.
 	EapolSuccThresh *int `pulumi:"eapolSuccThresh"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
 	InvalidMacOui *string `pulumi:"invalidMacOui"`
@@ -281,7 +281,7 @@ type widsprofileState struct {
 	Name *string `pulumi:"name"`
 	// Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
 	NullSsidProbeResp *string `pulumi:"nullSsidProbeResp"`
-	// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+	// Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
 	SensorMode *string `pulumi:"sensorMode"`
 	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
 	SpoofedDeauth *string `pulumi:"spoofedDeauth"`
@@ -306,17 +306,17 @@ type WidsprofileState struct {
 	ApBgscanDisableSchedules WidsprofileApBgscanDisableScheduleArrayInput
 	// Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
 	ApBgscanDisableStart pulumi.StringPtrInput
-	// Listening time on a scanning channel (10 - 1000 msec, default = 20).
+	// Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
 	ApBgscanDuration pulumi.IntPtrInput
-	// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+	// Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
 	ApBgscanIdle pulumi.IntPtrInput
-	// Period of time between scanning two channels (1 - 600 sec, default = 1).
+	// Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
 	ApBgscanIntv pulumi.IntPtrInput
-	// Period of time between background scans (60 - 3600 sec, default = 600).
+	// Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
 	ApBgscanPeriod pulumi.IntPtrInput
-	// Period of time between background scan reports (15 - 600 sec, default = 30).
+	// Period between background scan reports (15 - 600 sec, default = 30).
 	ApBgscanReportIntv pulumi.IntPtrInput
-	// Period of time between foreground scan reports (15 - 600 sec, default = 15).
+	// Period between foreground scan reports (15 - 600 sec, default = 15).
 	ApFgscanReportIntv pulumi.IntPtrInput
 	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
 	ApScan pulumi.StringPtrInput
@@ -386,7 +386,7 @@ type WidsprofileState struct {
 	EapolSuccIntv pulumi.IntPtrInput
 	// The threshold value for EAPOL-Success flooding in specified interval.
 	EapolSuccThresh pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
 	InvalidMacOui pulumi.StringPtrInput
@@ -398,7 +398,7 @@ type WidsprofileState struct {
 	Name pulumi.StringPtrInput
 	// Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
 	NullSsidProbeResp pulumi.StringPtrInput
-	// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+	// Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
 	SensorMode pulumi.StringPtrInput
 	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
 	SpoofedDeauth pulumi.StringPtrInput
@@ -427,17 +427,17 @@ type widsprofileArgs struct {
 	ApBgscanDisableSchedules []WidsprofileApBgscanDisableSchedule `pulumi:"apBgscanDisableSchedules"`
 	// Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
 	ApBgscanDisableStart *string `pulumi:"apBgscanDisableStart"`
-	// Listening time on a scanning channel (10 - 1000 msec, default = 20).
+	// Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
 	ApBgscanDuration *int `pulumi:"apBgscanDuration"`
-	// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+	// Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
 	ApBgscanIdle *int `pulumi:"apBgscanIdle"`
-	// Period of time between scanning two channels (1 - 600 sec, default = 1).
+	// Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
 	ApBgscanIntv *int `pulumi:"apBgscanIntv"`
-	// Period of time between background scans (60 - 3600 sec, default = 600).
+	// Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
 	ApBgscanPeriod *int `pulumi:"apBgscanPeriod"`
-	// Period of time between background scan reports (15 - 600 sec, default = 30).
+	// Period between background scan reports (15 - 600 sec, default = 30).
 	ApBgscanReportIntv *int `pulumi:"apBgscanReportIntv"`
-	// Period of time between foreground scan reports (15 - 600 sec, default = 15).
+	// Period between foreground scan reports (15 - 600 sec, default = 15).
 	ApFgscanReportIntv *int `pulumi:"apFgscanReportIntv"`
 	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
 	ApScan *string `pulumi:"apScan"`
@@ -507,7 +507,7 @@ type widsprofileArgs struct {
 	EapolSuccIntv *int `pulumi:"eapolSuccIntv"`
 	// The threshold value for EAPOL-Success flooding in specified interval.
 	EapolSuccThresh *int `pulumi:"eapolSuccThresh"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
 	InvalidMacOui *string `pulumi:"invalidMacOui"`
@@ -519,7 +519,7 @@ type widsprofileArgs struct {
 	Name *string `pulumi:"name"`
 	// Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
 	NullSsidProbeResp *string `pulumi:"nullSsidProbeResp"`
-	// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+	// Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
 	SensorMode *string `pulumi:"sensorMode"`
 	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
 	SpoofedDeauth *string `pulumi:"spoofedDeauth"`
@@ -545,17 +545,17 @@ type WidsprofileArgs struct {
 	ApBgscanDisableSchedules WidsprofileApBgscanDisableScheduleArrayInput
 	// Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
 	ApBgscanDisableStart pulumi.StringPtrInput
-	// Listening time on a scanning channel (10 - 1000 msec, default = 20).
+	// Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
 	ApBgscanDuration pulumi.IntPtrInput
-	// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+	// Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
 	ApBgscanIdle pulumi.IntPtrInput
-	// Period of time between scanning two channels (1 - 600 sec, default = 1).
+	// Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
 	ApBgscanIntv pulumi.IntPtrInput
-	// Period of time between background scans (60 - 3600 sec, default = 600).
+	// Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
 	ApBgscanPeriod pulumi.IntPtrInput
-	// Period of time between background scan reports (15 - 600 sec, default = 30).
+	// Period between background scan reports (15 - 600 sec, default = 30).
 	ApBgscanReportIntv pulumi.IntPtrInput
-	// Period of time between foreground scan reports (15 - 600 sec, default = 15).
+	// Period between foreground scan reports (15 - 600 sec, default = 15).
 	ApFgscanReportIntv pulumi.IntPtrInput
 	// Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
 	ApScan pulumi.StringPtrInput
@@ -625,7 +625,7 @@ type WidsprofileArgs struct {
 	EapolSuccIntv pulumi.IntPtrInput
 	// The threshold value for EAPOL-Success flooding in specified interval.
 	EapolSuccThresh pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
 	InvalidMacOui pulumi.StringPtrInput
@@ -637,7 +637,7 @@ type WidsprofileArgs struct {
 	Name pulumi.StringPtrInput
 	// Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
 	NullSsidProbeResp pulumi.StringPtrInput
-	// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+	// Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
 	SensorMode pulumi.StringPtrInput
 	// Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
 	SpoofedDeauth pulumi.StringPtrInput
@@ -763,32 +763,32 @@ func (o WidsprofileOutput) ApBgscanDisableStart() pulumi.StringOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.StringOutput { return v.ApBgscanDisableStart }).(pulumi.StringOutput)
 }
 
-// Listening time on a scanning channel (10 - 1000 msec, default = 20).
+// Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
 func (o WidsprofileOutput) ApBgscanDuration() pulumi.IntOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.IntOutput { return v.ApBgscanDuration }).(pulumi.IntOutput)
 }
 
-// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+// Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
 func (o WidsprofileOutput) ApBgscanIdle() pulumi.IntOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.IntOutput { return v.ApBgscanIdle }).(pulumi.IntOutput)
 }
 
-// Period of time between scanning two channels (1 - 600 sec, default = 1).
+// Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
 func (o WidsprofileOutput) ApBgscanIntv() pulumi.IntOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.IntOutput { return v.ApBgscanIntv }).(pulumi.IntOutput)
 }
 
-// Period of time between background scans (60 - 3600 sec, default = 600).
+// Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
 func (o WidsprofileOutput) ApBgscanPeriod() pulumi.IntOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.IntOutput { return v.ApBgscanPeriod }).(pulumi.IntOutput)
 }
 
-// Period of time between background scan reports (15 - 600 sec, default = 30).
+// Period between background scan reports (15 - 600 sec, default = 30).
 func (o WidsprofileOutput) ApBgscanReportIntv() pulumi.IntOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.IntOutput { return v.ApBgscanReportIntv }).(pulumi.IntOutput)
 }
 
-// Period of time between foreground scan reports (15 - 600 sec, default = 15).
+// Period between foreground scan reports (15 - 600 sec, default = 15).
 func (o WidsprofileOutput) ApFgscanReportIntv() pulumi.IntOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.IntOutput { return v.ApFgscanReportIntv }).(pulumi.IntOutput)
 }
@@ -963,7 +963,7 @@ func (o WidsprofileOutput) EapolSuccThresh() pulumi.IntOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.IntOutput { return v.EapolSuccThresh }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o WidsprofileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -993,7 +993,7 @@ func (o WidsprofileOutput) NullSsidProbeResp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.StringOutput { return v.NullSsidProbeResp }).(pulumi.StringOutput)
 }
 
-// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+// Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
 func (o WidsprofileOutput) SensorMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Widsprofile) pulumi.StringOutput { return v.SensorMode }).(pulumi.StringOutput)
 }
@@ -1006,8 +1006,8 @@ func (o WidsprofileOutput) SpoofedDeauth() pulumi.StringOutput {
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 //
 // The `apScanChannelList2g5g` block supports:
-func (o WidsprofileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Widsprofile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o WidsprofileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Widsprofile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.

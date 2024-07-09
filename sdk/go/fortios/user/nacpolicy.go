@@ -45,7 +45,9 @@ type Nacpolicy struct {
 	Family pulumi.StringOutput `pulumi:"family"`
 	// Dynamic firewall address to associate MAC which match this policy.
 	FirewallAddress pulumi.StringOutput `pulumi:"firewallAddress"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// NAC policy matching FortiVoice tag.
+	FortivoiceTag pulumi.StringOutput `pulumi:"fortivoiceTag"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// NAC policy matching host.
 	Host pulumi.StringOutput `pulumi:"host"`
@@ -55,6 +57,10 @@ type Nacpolicy struct {
 	HwVersion pulumi.StringOutput `pulumi:"hwVersion"`
 	// NAC policy matching MAC address.
 	Mac pulumi.StringOutput `pulumi:"mac"`
+	// Number of days the matched devices will be retained (0 - always retain)
+	MatchPeriod pulumi.IntOutput `pulumi:"matchPeriod"`
+	// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+	MatchType pulumi.StringOutput `pulumi:"matchType"`
 	// NAC policy name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// NAC policy matching operating system.
@@ -88,7 +94,7 @@ type Nacpolicy struct {
 	// NAC policy matching user group.
 	UserGroup pulumi.StringOutput `pulumi:"userGroup"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewNacpolicy registers a new resource with the given unique name, arguments, and options.
@@ -133,7 +139,9 @@ type nacpolicyState struct {
 	Family *string `pulumi:"family"`
 	// Dynamic firewall address to associate MAC which match this policy.
 	FirewallAddress *string `pulumi:"firewallAddress"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// NAC policy matching FortiVoice tag.
+	FortivoiceTag *string `pulumi:"fortivoiceTag"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// NAC policy matching host.
 	Host *string `pulumi:"host"`
@@ -143,6 +151,10 @@ type nacpolicyState struct {
 	HwVersion *string `pulumi:"hwVersion"`
 	// NAC policy matching MAC address.
 	Mac *string `pulumi:"mac"`
+	// Number of days the matched devices will be retained (0 - always retain)
+	MatchPeriod *int `pulumi:"matchPeriod"`
+	// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+	MatchType *string `pulumi:"matchType"`
 	// NAC policy name.
 	Name *string `pulumi:"name"`
 	// NAC policy matching operating system.
@@ -192,7 +204,9 @@ type NacpolicyState struct {
 	Family pulumi.StringPtrInput
 	// Dynamic firewall address to associate MAC which match this policy.
 	FirewallAddress pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// NAC policy matching FortiVoice tag.
+	FortivoiceTag pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// NAC policy matching host.
 	Host pulumi.StringPtrInput
@@ -202,6 +216,10 @@ type NacpolicyState struct {
 	HwVersion pulumi.StringPtrInput
 	// NAC policy matching MAC address.
 	Mac pulumi.StringPtrInput
+	// Number of days the matched devices will be retained (0 - always retain)
+	MatchPeriod pulumi.IntPtrInput
+	// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+	MatchType pulumi.StringPtrInput
 	// NAC policy name.
 	Name pulumi.StringPtrInput
 	// NAC policy matching operating system.
@@ -255,7 +273,9 @@ type nacpolicyArgs struct {
 	Family *string `pulumi:"family"`
 	// Dynamic firewall address to associate MAC which match this policy.
 	FirewallAddress *string `pulumi:"firewallAddress"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// NAC policy matching FortiVoice tag.
+	FortivoiceTag *string `pulumi:"fortivoiceTag"`
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// NAC policy matching host.
 	Host *string `pulumi:"host"`
@@ -265,6 +285,10 @@ type nacpolicyArgs struct {
 	HwVersion *string `pulumi:"hwVersion"`
 	// NAC policy matching MAC address.
 	Mac *string `pulumi:"mac"`
+	// Number of days the matched devices will be retained (0 - always retain)
+	MatchPeriod *int `pulumi:"matchPeriod"`
+	// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+	MatchType *string `pulumi:"matchType"`
 	// NAC policy name.
 	Name *string `pulumi:"name"`
 	// NAC policy matching operating system.
@@ -315,7 +339,9 @@ type NacpolicyArgs struct {
 	Family pulumi.StringPtrInput
 	// Dynamic firewall address to associate MAC which match this policy.
 	FirewallAddress pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// NAC policy matching FortiVoice tag.
+	FortivoiceTag pulumi.StringPtrInput
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// NAC policy matching host.
 	Host pulumi.StringPtrInput
@@ -325,6 +351,10 @@ type NacpolicyArgs struct {
 	HwVersion pulumi.StringPtrInput
 	// NAC policy matching MAC address.
 	Mac pulumi.StringPtrInput
+	// Number of days the matched devices will be retained (0 - always retain)
+	MatchPeriod pulumi.IntPtrInput
+	// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+	MatchType pulumi.StringPtrInput
 	// NAC policy name.
 	Name pulumi.StringPtrInput
 	// NAC policy matching operating system.
@@ -478,7 +508,12 @@ func (o NacpolicyOutput) FirewallAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Nacpolicy) pulumi.StringOutput { return v.FirewallAddress }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// NAC policy matching FortiVoice tag.
+func (o NacpolicyOutput) FortivoiceTag() pulumi.StringOutput {
+	return o.ApplyT(func(v *Nacpolicy) pulumi.StringOutput { return v.FortivoiceTag }).(pulumi.StringOutput)
+}
+
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o NacpolicyOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Nacpolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -501,6 +536,16 @@ func (o NacpolicyOutput) HwVersion() pulumi.StringOutput {
 // NAC policy matching MAC address.
 func (o NacpolicyOutput) Mac() pulumi.StringOutput {
 	return o.ApplyT(func(v *Nacpolicy) pulumi.StringOutput { return v.Mac }).(pulumi.StringOutput)
+}
+
+// Number of days the matched devices will be retained (0 - always retain)
+func (o NacpolicyOutput) MatchPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *Nacpolicy) pulumi.IntOutput { return v.MatchPeriod }).(pulumi.IntOutput)
+}
+
+// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+func (o NacpolicyOutput) MatchType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Nacpolicy) pulumi.StringOutput { return v.MatchType }).(pulumi.StringOutput)
 }
 
 // NAC policy name.
@@ -584,8 +629,8 @@ func (o NacpolicyOutput) UserGroup() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o NacpolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Nacpolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o NacpolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Nacpolicy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type NacpolicyArrayOutput struct{ *pulumi.OutputState }

@@ -42,7 +42,7 @@ type Networkservicedynamic struct {
 	// SDN connector name.
 	Sdn pulumi.StringOutput `pulumi:"sdn"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewNetworkservicedynamic registers a new resource with the given unique name, arguments, and options.
@@ -239,8 +239,8 @@ func (o NetworkservicedynamicOutput) Sdn() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o NetworkservicedynamicOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Networkservicedynamic) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o NetworkservicedynamicOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Networkservicedynamic) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type NetworkservicedynamicArrayOutput struct{ *pulumi.OutputState }

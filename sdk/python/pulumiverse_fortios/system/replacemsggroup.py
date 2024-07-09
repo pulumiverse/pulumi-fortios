@@ -55,7 +55,7 @@ class ReplacemsggroupArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupEcArgs']]] ecs: Replacement message table entries. The structure of `ec` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupFortiguardWfArgs']]] fortiguard_wfs: Replacement message table entries. The structure of `fortiguard_wf` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupFtpArgs']]] ftps: Replacement message table entries. The structure of `ftp` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupHttpArgs']]] https: Replacement message table entries. The structure of `http` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupIcapArgs']]] icaps: Replacement message table entries. The structure of `icap` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupMailArgs']]] mails: Replacement message table entries. The structure of `mail` block is documented below.
@@ -267,7 +267,7 @@ class ReplacemsggroupArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -461,7 +461,7 @@ class _ReplacemsggroupState:
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupEcArgs']]] ecs: Replacement message table entries. The structure of `ec` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupFortiguardWfArgs']]] fortiguard_wfs: Replacement message table entries. The structure of `fortiguard_wf` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupFtpArgs']]] ftps: Replacement message table entries. The structure of `ftp` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Group type.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupHttpArgs']]] https: Replacement message table entries. The structure of `http` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ReplacemsggroupIcapArgs']]] icaps: Replacement message table entries. The structure of `icap` block is documented below.
@@ -663,7 +663,7 @@ class _ReplacemsggroupState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -904,7 +904,7 @@ class Replacemsggroup(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupEcArgs']]]] ecs: Replacement message table entries. The structure of `ec` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFortiguardWfArgs']]]] fortiguard_wfs: Replacement message table entries. The structure of `fortiguard_wf` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFtpArgs']]]] ftps: Replacement message table entries. The structure of `ftp` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Group type.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupHttpArgs']]]] https: Replacement message table entries. The structure of `http` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupIcapArgs']]]] icaps: Replacement message table entries. The structure of `icap` block is documented below.
@@ -1086,7 +1086,7 @@ class Replacemsggroup(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupEcArgs']]]] ecs: Replacement message table entries. The structure of `ec` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFortiguardWfArgs']]]] fortiguard_wfs: Replacement message table entries. The structure of `fortiguard_wf` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupFtpArgs']]]] ftps: Replacement message table entries. The structure of `ftp` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Group type.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupHttpArgs']]]] https: Replacement message table entries. The structure of `http` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReplacemsggroupIcapArgs']]]] icaps: Replacement message table entries. The structure of `icap` block is documented below.
@@ -1224,7 +1224,7 @@ class Replacemsggroup(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1318,7 +1318,7 @@ class Replacemsggroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -83,7 +83,7 @@ type Passwordpolicy struct {
 	// Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `enable`, `disable`.
 	ReusePassword pulumi.StringOutput `pulumi:"reusePassword"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Time in days before a password expiration warning message is displayed to the user upon login.
 	WarnDays pulumi.IntOutput `pulumi:"warnDays"`
 }
@@ -381,8 +381,8 @@ func (o PasswordpolicyOutput) ReusePassword() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o PasswordpolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Passwordpolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o PasswordpolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Passwordpolicy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Time in days before a password expiration warning message is displayed to the user upon login.

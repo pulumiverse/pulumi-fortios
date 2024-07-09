@@ -32,7 +32,7 @@ class PeripshaperArgs:
         :param pulumi.Input[str] diffserv_reverse: Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffservcode_forward: Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
         :param pulumi.Input[str] diffservcode_rev: Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-        :param pulumi.Input[int] max_bandwidth: Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        :param pulumi.Input[int] max_bandwidth: Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
         :param pulumi.Input[int] max_concurrent_session: Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
         :param pulumi.Input[int] max_concurrent_tcp_session: Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
         :param pulumi.Input[int] max_concurrent_udp_session: Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
@@ -126,7 +126,7 @@ class PeripshaperArgs:
     @pulumi.getter(name="maxBandwidth")
     def max_bandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
         """
         return pulumi.get(self, "max_bandwidth")
 
@@ -216,7 +216,7 @@ class _PeripshaperState:
         :param pulumi.Input[str] diffserv_reverse: Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffservcode_forward: Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
         :param pulumi.Input[str] diffservcode_rev: Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-        :param pulumi.Input[int] max_bandwidth: Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        :param pulumi.Input[int] max_bandwidth: Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
         :param pulumi.Input[int] max_concurrent_session: Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
         :param pulumi.Input[int] max_concurrent_tcp_session: Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
         :param pulumi.Input[int] max_concurrent_udp_session: Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
@@ -310,7 +310,7 @@ class _PeripshaperState:
     @pulumi.getter(name="maxBandwidth")
     def max_bandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
         """
         return pulumi.get(self, "max_bandwidth")
 
@@ -440,7 +440,7 @@ class Peripshaper(pulumi.CustomResource):
         :param pulumi.Input[str] diffserv_reverse: Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffservcode_forward: Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
         :param pulumi.Input[str] diffservcode_rev: Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-        :param pulumi.Input[int] max_bandwidth: Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        :param pulumi.Input[int] max_bandwidth: Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
         :param pulumi.Input[int] max_concurrent_session: Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
         :param pulumi.Input[int] max_concurrent_tcp_session: Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
         :param pulumi.Input[int] max_concurrent_udp_session: Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
@@ -569,7 +569,7 @@ class Peripshaper(pulumi.CustomResource):
         :param pulumi.Input[str] diffserv_reverse: Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] diffservcode_forward: Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
         :param pulumi.Input[str] diffservcode_rev: Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
-        :param pulumi.Input[int] max_bandwidth: Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        :param pulumi.Input[int] max_bandwidth: Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
         :param pulumi.Input[int] max_concurrent_session: Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
         :param pulumi.Input[int] max_concurrent_tcp_session: Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
         :param pulumi.Input[int] max_concurrent_udp_session: Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
@@ -637,7 +637,7 @@ class Peripshaper(pulumi.CustomResource):
     @pulumi.getter(name="maxBandwidth")
     def max_bandwidth(self) -> pulumi.Output[int]:
         """
-        Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+        Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
         """
         return pulumi.get(self, "max_bandwidth")
 
@@ -675,7 +675,7 @@ class Peripshaper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

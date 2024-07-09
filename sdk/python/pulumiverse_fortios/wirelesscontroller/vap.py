@@ -21,6 +21,7 @@ class VapArgs:
                  additional_akms: Optional[pulumi.Input[str]] = None,
                  address_group: Optional[pulumi.Input[str]] = None,
                  address_group_policy: Optional[pulumi.Input[str]] = None,
+                 akm24_only: Optional[pulumi.Input[str]] = None,
                  alias: Optional[pulumi.Input[str]] = None,
                  antivirus_profile: Optional[pulumi.Input[str]] = None,
                  application_detection_engine: Optional[pulumi.Input[str]] = None,
@@ -32,12 +33,14 @@ class VapArgs:
                  auth_cert: Optional[pulumi.Input[str]] = None,
                  auth_portal_addr: Optional[pulumi.Input[str]] = None,
                  beacon_advertising: Optional[pulumi.Input[str]] = None,
+                 beacon_protection: Optional[pulumi.Input[str]] = None,
                  broadcast_ssid: Optional[pulumi.Input[str]] = None,
                  broadcast_suppression: Optional[pulumi.Input[str]] = None,
                  bss_color_partial: Optional[pulumi.Input[str]] = None,
                  bstm_disassociation_imminent: Optional[pulumi.Input[str]] = None,
                  bstm_load_balancing_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
+                 captive_portal: Optional[pulumi.Input[str]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
                  captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
@@ -118,6 +121,7 @@ class VapArgs:
                  nac: Optional[pulumi.Input[str]] = None,
                  nac_profile: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nas_filter_rule: Optional[pulumi.Input[str]] = None,
                  neighbor_report_dual_band: Optional[pulumi.Input[str]] = None,
                  okc: Optional[pulumi.Input[str]] = None,
                  osen: Optional[pulumi.Input[str]] = None,
@@ -158,6 +162,9 @@ class VapArgs:
                  rates11ax_mcs_map: Optional[pulumi.Input[str]] = None,
                  rates11ax_ss12: Optional[pulumi.Input[str]] = None,
                  rates11ax_ss34: Optional[pulumi.Input[str]] = None,
+                 rates11be_mcs_map: Optional[pulumi.Input[str]] = None,
+                 rates11be_mcs_map160: Optional[pulumi.Input[str]] = None,
+                 rates11be_mcs_map320: Optional[pulumi.Input[str]] = None,
                  rates11bg: Optional[pulumi.Input[str]] = None,
                  rates11n_ss12: Optional[pulumi.Input[str]] = None,
                  rates11n_ss34: Optional[pulumi.Input[str]] = None,
@@ -202,9 +209,10 @@ class VapArgs:
         The set of arguments for constructing a Vap resource.
         :param pulumi.Input[str] access_control_list: access-control-list profile name.
         :param pulumi.Input[int] acct_interim_interval: WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
-        :param pulumi.Input[str] additional_akms: Additional AKMs. Valid values: `akm6`.
+        :param pulumi.Input[str] additional_akms: Additional AKMs.
         :param pulumi.Input[str] address_group: Address group ID.
         :param pulumi.Input[str] address_group_policy: Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
+        :param pulumi.Input[str] akm24_only: WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] alias: Alias.
         :param pulumi.Input[str] antivirus_profile: AntiVirus profile name.
         :param pulumi.Input[str] application_detection_engine: Enable/disable application detection engine (default = disable). Valid values: `enable`, `disable`.
@@ -216,12 +224,14 @@ class VapArgs:
         :param pulumi.Input[str] auth_cert: HTTPS server certificate.
         :param pulumi.Input[str] auth_portal_addr: Address of captive portal.
         :param pulumi.Input[str] beacon_advertising: Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+        :param pulumi.Input[str] beacon_protection: Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] broadcast_ssid: Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] broadcast_suppression: Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
         :param pulumi.Input[str] bss_color_partial: Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bstm_disassociation_imminent: Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] bstm_load_balancing_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
         :param pulumi.Input[int] bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+        :param pulumi.Input[str] captive_portal: Enable/disable captive portal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] captive_portal_ac_name: Local-bridging captive portal ac-name.
         :param pulumi.Input[int] captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
         :param pulumi.Input[str] captive_portal_fw_accounting: Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
@@ -253,9 +263,9 @@ class VapArgs:
         :param pulumi.Input[int] ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
         :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
         :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtk_rekey: Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (1800 - 864000 sec, default = 86400).
+        :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         :param pulumi.Input[str] high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] hotspot20_profile: Hotspot 2.0 profile name.
         :param pulumi.Input[str] igmp_snooping: Enable/disable IGMP snooping. Valid values: `enable`, `disable`.
@@ -302,6 +312,7 @@ class VapArgs:
         :param pulumi.Input[str] nac: Enable/disable network access control. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nac_profile: NAC profile name.
         :param pulumi.Input[str] name: Virtual AP name.
+        :param pulumi.Input[str] nas_filter_rule: Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] neighbor_report_dual_band: Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] okc: Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] osen: Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
@@ -322,7 +333,7 @@ class VapArgs:
         :param pulumi.Input[str] probe_resp_suppression: Enable/disable probe response suppression (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] probe_resp_threshold: Minimum signal level/threshold in dBm required for the AP response to probe requests (-95 to -20, default = -80).
         :param pulumi.Input[str] ptk_rekey: Enable/disable PTK rekey for WPA-Enterprise security. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] ptk_rekey_intv: PTK rekey interval (1800 - 864000 sec, default = 86400).
+        :param pulumi.Input[int] ptk_rekey_intv: PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         :param pulumi.Input[str] qos_profile: Quality of service profile name.
         :param pulumi.Input[str] quarantine: Enable/disable station quarantine (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radio2g_threshold: Minimum signal level/threshold in dBm required for the AP response to receive a packet in 2.4G band (-95 to -20, default = -79).
@@ -342,6 +353,9 @@ class VapArgs:
         :param pulumi.Input[str] rates11ax_mcs_map: Comma separated list of max supported HE MCS for spatial streams 1 through 8.
         :param pulumi.Input[str] rates11ax_ss12: Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ax_ss34: Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+        :param pulumi.Input[str] rates11be_mcs_map: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+        :param pulumi.Input[str] rates11be_mcs_map160: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+        :param pulumi.Input[str] rates11be_mcs_map320: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
         :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g.
         :param pulumi.Input[str] rates11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
         :param pulumi.Input[str] rates11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
@@ -393,6 +407,8 @@ class VapArgs:
             pulumi.set(__self__, "address_group", address_group)
         if address_group_policy is not None:
             pulumi.set(__self__, "address_group_policy", address_group_policy)
+        if akm24_only is not None:
+            pulumi.set(__self__, "akm24_only", akm24_only)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
         if antivirus_profile is not None:
@@ -415,6 +431,8 @@ class VapArgs:
             pulumi.set(__self__, "auth_portal_addr", auth_portal_addr)
         if beacon_advertising is not None:
             pulumi.set(__self__, "beacon_advertising", beacon_advertising)
+        if beacon_protection is not None:
+            pulumi.set(__self__, "beacon_protection", beacon_protection)
         if broadcast_ssid is not None:
             pulumi.set(__self__, "broadcast_ssid", broadcast_ssid)
         if broadcast_suppression is not None:
@@ -427,6 +445,8 @@ class VapArgs:
             pulumi.set(__self__, "bstm_load_balancing_disassoc_timer", bstm_load_balancing_disassoc_timer)
         if bstm_rssi_disassoc_timer is not None:
             pulumi.set(__self__, "bstm_rssi_disassoc_timer", bstm_rssi_disassoc_timer)
+        if captive_portal is not None:
+            pulumi.set(__self__, "captive_portal", captive_portal)
         if captive_portal_ac_name is not None:
             pulumi.set(__self__, "captive_portal_ac_name", captive_portal_ac_name)
         if captive_portal_auth_timeout is not None:
@@ -587,6 +607,8 @@ class VapArgs:
             pulumi.set(__self__, "nac_profile", nac_profile)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nas_filter_rule is not None:
+            pulumi.set(__self__, "nas_filter_rule", nas_filter_rule)
         if neighbor_report_dual_band is not None:
             pulumi.set(__self__, "neighbor_report_dual_band", neighbor_report_dual_band)
         if okc is not None:
@@ -667,6 +689,12 @@ class VapArgs:
             pulumi.set(__self__, "rates11ax_ss12", rates11ax_ss12)
         if rates11ax_ss34 is not None:
             pulumi.set(__self__, "rates11ax_ss34", rates11ax_ss34)
+        if rates11be_mcs_map is not None:
+            pulumi.set(__self__, "rates11be_mcs_map", rates11be_mcs_map)
+        if rates11be_mcs_map160 is not None:
+            pulumi.set(__self__, "rates11be_mcs_map160", rates11be_mcs_map160)
+        if rates11be_mcs_map320 is not None:
+            pulumi.set(__self__, "rates11be_mcs_map320", rates11be_mcs_map320)
         if rates11bg is not None:
             pulumi.set(__self__, "rates11bg", rates11bg)
         if rates11n_ss12 is not None:
@@ -776,7 +804,7 @@ class VapArgs:
     @pulumi.getter(name="additionalAkms")
     def additional_akms(self) -> Optional[pulumi.Input[str]]:
         """
-        Additional AKMs. Valid values: `akm6`.
+        Additional AKMs.
         """
         return pulumi.get(self, "additional_akms")
 
@@ -807,6 +835,18 @@ class VapArgs:
     @address_group_policy.setter
     def address_group_policy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "address_group_policy", value)
+
+    @property
+    @pulumi.getter(name="akm24Only")
+    def akm24_only(self) -> Optional[pulumi.Input[str]]:
+        """
+        WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "akm24_only")
+
+    @akm24_only.setter
+    def akm24_only(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "akm24_only", value)
 
     @property
     @pulumi.getter
@@ -941,6 +981,18 @@ class VapArgs:
         pulumi.set(self, "beacon_advertising", value)
 
     @property
+    @pulumi.getter(name="beaconProtection")
+    def beacon_protection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "beacon_protection")
+
+    @beacon_protection.setter
+    def beacon_protection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "beacon_protection", value)
+
+    @property
     @pulumi.getter(name="broadcastSsid")
     def broadcast_ssid(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1011,6 +1063,18 @@ class VapArgs:
     @bstm_rssi_disassoc_timer.setter
     def bstm_rssi_disassoc_timer(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "bstm_rssi_disassoc_timer", value)
+
+    @property
+    @pulumi.getter(name="captivePortal")
+    def captive_portal(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable captive portal. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "captive_portal")
+
+    @captive_portal.setter
+    def captive_portal(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "captive_portal", value)
 
     @property
     @pulumi.getter(name="captivePortalAcName")
@@ -1388,7 +1452,7 @@ class VapArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1412,7 +1476,7 @@ class VapArgs:
     @pulumi.getter(name="gtkRekeyIntv")
     def gtk_rekey_intv(self) -> Optional[pulumi.Input[int]]:
         """
-        GTK rekey interval (1800 - 864000 sec, default = 86400).
+        GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         """
         return pulumi.get(self, "gtk_rekey_intv")
 
@@ -1973,6 +2037,18 @@ class VapArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="nasFilterRule")
+    def nas_filter_rule(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nas_filter_rule")
+
+    @nas_filter_rule.setter
+    def nas_filter_rule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nas_filter_rule", value)
+
+    @property
     @pulumi.getter(name="neighborReportDualBand")
     def neighbor_report_dual_band(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2216,7 +2292,7 @@ class VapArgs:
     @pulumi.getter(name="ptkRekeyIntv")
     def ptk_rekey_intv(self) -> Optional[pulumi.Input[int]]:
         """
-        PTK rekey interval (1800 - 864000 sec, default = 86400).
+        PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         """
         return pulumi.get(self, "ptk_rekey_intv")
 
@@ -2451,6 +2527,42 @@ class VapArgs:
     @rates11ax_ss34.setter
     def rates11ax_ss34(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "rates11ax_ss34", value)
+
+    @property
+    @pulumi.getter(name="rates11beMcsMap")
+    def rates11be_mcs_map(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+        """
+        return pulumi.get(self, "rates11be_mcs_map")
+
+    @rates11be_mcs_map.setter
+    def rates11be_mcs_map(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rates11be_mcs_map", value)
+
+    @property
+    @pulumi.getter(name="rates11beMcsMap160")
+    def rates11be_mcs_map160(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+        """
+        return pulumi.get(self, "rates11be_mcs_map160")
+
+    @rates11be_mcs_map160.setter
+    def rates11be_mcs_map160(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rates11be_mcs_map160", value)
+
+    @property
+    @pulumi.getter(name="rates11beMcsMap320")
+    def rates11be_mcs_map320(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+        """
+        return pulumi.get(self, "rates11be_mcs_map320")
+
+    @rates11be_mcs_map320.setter
+    def rates11be_mcs_map320(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rates11be_mcs_map320", value)
 
     @property
     @pulumi.getter
@@ -2941,6 +3053,7 @@ class _VapState:
                  additional_akms: Optional[pulumi.Input[str]] = None,
                  address_group: Optional[pulumi.Input[str]] = None,
                  address_group_policy: Optional[pulumi.Input[str]] = None,
+                 akm24_only: Optional[pulumi.Input[str]] = None,
                  alias: Optional[pulumi.Input[str]] = None,
                  antivirus_profile: Optional[pulumi.Input[str]] = None,
                  application_detection_engine: Optional[pulumi.Input[str]] = None,
@@ -2952,12 +3065,14 @@ class _VapState:
                  auth_cert: Optional[pulumi.Input[str]] = None,
                  auth_portal_addr: Optional[pulumi.Input[str]] = None,
                  beacon_advertising: Optional[pulumi.Input[str]] = None,
+                 beacon_protection: Optional[pulumi.Input[str]] = None,
                  broadcast_ssid: Optional[pulumi.Input[str]] = None,
                  broadcast_suppression: Optional[pulumi.Input[str]] = None,
                  bss_color_partial: Optional[pulumi.Input[str]] = None,
                  bstm_disassociation_imminent: Optional[pulumi.Input[str]] = None,
                  bstm_load_balancing_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
+                 captive_portal: Optional[pulumi.Input[str]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
                  captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
@@ -3038,6 +3153,7 @@ class _VapState:
                  nac: Optional[pulumi.Input[str]] = None,
                  nac_profile: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nas_filter_rule: Optional[pulumi.Input[str]] = None,
                  neighbor_report_dual_band: Optional[pulumi.Input[str]] = None,
                  okc: Optional[pulumi.Input[str]] = None,
                  osen: Optional[pulumi.Input[str]] = None,
@@ -3078,6 +3194,9 @@ class _VapState:
                  rates11ax_mcs_map: Optional[pulumi.Input[str]] = None,
                  rates11ax_ss12: Optional[pulumi.Input[str]] = None,
                  rates11ax_ss34: Optional[pulumi.Input[str]] = None,
+                 rates11be_mcs_map: Optional[pulumi.Input[str]] = None,
+                 rates11be_mcs_map160: Optional[pulumi.Input[str]] = None,
+                 rates11be_mcs_map320: Optional[pulumi.Input[str]] = None,
                  rates11bg: Optional[pulumi.Input[str]] = None,
                  rates11n_ss12: Optional[pulumi.Input[str]] = None,
                  rates11n_ss34: Optional[pulumi.Input[str]] = None,
@@ -3122,9 +3241,10 @@ class _VapState:
         Input properties used for looking up and filtering Vap resources.
         :param pulumi.Input[str] access_control_list: access-control-list profile name.
         :param pulumi.Input[int] acct_interim_interval: WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
-        :param pulumi.Input[str] additional_akms: Additional AKMs. Valid values: `akm6`.
+        :param pulumi.Input[str] additional_akms: Additional AKMs.
         :param pulumi.Input[str] address_group: Address group ID.
         :param pulumi.Input[str] address_group_policy: Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
+        :param pulumi.Input[str] akm24_only: WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] alias: Alias.
         :param pulumi.Input[str] antivirus_profile: AntiVirus profile name.
         :param pulumi.Input[str] application_detection_engine: Enable/disable application detection engine (default = disable). Valid values: `enable`, `disable`.
@@ -3136,12 +3256,14 @@ class _VapState:
         :param pulumi.Input[str] auth_cert: HTTPS server certificate.
         :param pulumi.Input[str] auth_portal_addr: Address of captive portal.
         :param pulumi.Input[str] beacon_advertising: Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+        :param pulumi.Input[str] beacon_protection: Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] broadcast_ssid: Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] broadcast_suppression: Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
         :param pulumi.Input[str] bss_color_partial: Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bstm_disassociation_imminent: Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] bstm_load_balancing_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
         :param pulumi.Input[int] bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+        :param pulumi.Input[str] captive_portal: Enable/disable captive portal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] captive_portal_ac_name: Local-bridging captive portal ac-name.
         :param pulumi.Input[int] captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
         :param pulumi.Input[str] captive_portal_fw_accounting: Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
@@ -3173,9 +3295,9 @@ class _VapState:
         :param pulumi.Input[int] ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
         :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
         :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtk_rekey: Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (1800 - 864000 sec, default = 86400).
+        :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         :param pulumi.Input[str] high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] hotspot20_profile: Hotspot 2.0 profile name.
         :param pulumi.Input[str] igmp_snooping: Enable/disable IGMP snooping. Valid values: `enable`, `disable`.
@@ -3222,6 +3344,7 @@ class _VapState:
         :param pulumi.Input[str] nac: Enable/disable network access control. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nac_profile: NAC profile name.
         :param pulumi.Input[str] name: Virtual AP name.
+        :param pulumi.Input[str] nas_filter_rule: Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] neighbor_report_dual_band: Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] okc: Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] osen: Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
@@ -3242,7 +3365,7 @@ class _VapState:
         :param pulumi.Input[str] probe_resp_suppression: Enable/disable probe response suppression (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] probe_resp_threshold: Minimum signal level/threshold in dBm required for the AP response to probe requests (-95 to -20, default = -80).
         :param pulumi.Input[str] ptk_rekey: Enable/disable PTK rekey for WPA-Enterprise security. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] ptk_rekey_intv: PTK rekey interval (1800 - 864000 sec, default = 86400).
+        :param pulumi.Input[int] ptk_rekey_intv: PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         :param pulumi.Input[str] qos_profile: Quality of service profile name.
         :param pulumi.Input[str] quarantine: Enable/disable station quarantine (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radio2g_threshold: Minimum signal level/threshold in dBm required for the AP response to receive a packet in 2.4G band (-95 to -20, default = -79).
@@ -3262,6 +3385,9 @@ class _VapState:
         :param pulumi.Input[str] rates11ax_mcs_map: Comma separated list of max supported HE MCS for spatial streams 1 through 8.
         :param pulumi.Input[str] rates11ax_ss12: Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ax_ss34: Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+        :param pulumi.Input[str] rates11be_mcs_map: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+        :param pulumi.Input[str] rates11be_mcs_map160: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+        :param pulumi.Input[str] rates11be_mcs_map320: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
         :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g.
         :param pulumi.Input[str] rates11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
         :param pulumi.Input[str] rates11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
@@ -3313,6 +3439,8 @@ class _VapState:
             pulumi.set(__self__, "address_group", address_group)
         if address_group_policy is not None:
             pulumi.set(__self__, "address_group_policy", address_group_policy)
+        if akm24_only is not None:
+            pulumi.set(__self__, "akm24_only", akm24_only)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
         if antivirus_profile is not None:
@@ -3335,6 +3463,8 @@ class _VapState:
             pulumi.set(__self__, "auth_portal_addr", auth_portal_addr)
         if beacon_advertising is not None:
             pulumi.set(__self__, "beacon_advertising", beacon_advertising)
+        if beacon_protection is not None:
+            pulumi.set(__self__, "beacon_protection", beacon_protection)
         if broadcast_ssid is not None:
             pulumi.set(__self__, "broadcast_ssid", broadcast_ssid)
         if broadcast_suppression is not None:
@@ -3347,6 +3477,8 @@ class _VapState:
             pulumi.set(__self__, "bstm_load_balancing_disassoc_timer", bstm_load_balancing_disassoc_timer)
         if bstm_rssi_disassoc_timer is not None:
             pulumi.set(__self__, "bstm_rssi_disassoc_timer", bstm_rssi_disassoc_timer)
+        if captive_portal is not None:
+            pulumi.set(__self__, "captive_portal", captive_portal)
         if captive_portal_ac_name is not None:
             pulumi.set(__self__, "captive_portal_ac_name", captive_portal_ac_name)
         if captive_portal_auth_timeout is not None:
@@ -3507,6 +3639,8 @@ class _VapState:
             pulumi.set(__self__, "nac_profile", nac_profile)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nas_filter_rule is not None:
+            pulumi.set(__self__, "nas_filter_rule", nas_filter_rule)
         if neighbor_report_dual_band is not None:
             pulumi.set(__self__, "neighbor_report_dual_band", neighbor_report_dual_band)
         if okc is not None:
@@ -3587,6 +3721,12 @@ class _VapState:
             pulumi.set(__self__, "rates11ax_ss12", rates11ax_ss12)
         if rates11ax_ss34 is not None:
             pulumi.set(__self__, "rates11ax_ss34", rates11ax_ss34)
+        if rates11be_mcs_map is not None:
+            pulumi.set(__self__, "rates11be_mcs_map", rates11be_mcs_map)
+        if rates11be_mcs_map160 is not None:
+            pulumi.set(__self__, "rates11be_mcs_map160", rates11be_mcs_map160)
+        if rates11be_mcs_map320 is not None:
+            pulumi.set(__self__, "rates11be_mcs_map320", rates11be_mcs_map320)
         if rates11bg is not None:
             pulumi.set(__self__, "rates11bg", rates11bg)
         if rates11n_ss12 is not None:
@@ -3696,7 +3836,7 @@ class _VapState:
     @pulumi.getter(name="additionalAkms")
     def additional_akms(self) -> Optional[pulumi.Input[str]]:
         """
-        Additional AKMs. Valid values: `akm6`.
+        Additional AKMs.
         """
         return pulumi.get(self, "additional_akms")
 
@@ -3727,6 +3867,18 @@ class _VapState:
     @address_group_policy.setter
     def address_group_policy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "address_group_policy", value)
+
+    @property
+    @pulumi.getter(name="akm24Only")
+    def akm24_only(self) -> Optional[pulumi.Input[str]]:
+        """
+        WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "akm24_only")
+
+    @akm24_only.setter
+    def akm24_only(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "akm24_only", value)
 
     @property
     @pulumi.getter
@@ -3861,6 +4013,18 @@ class _VapState:
         pulumi.set(self, "beacon_advertising", value)
 
     @property
+    @pulumi.getter(name="beaconProtection")
+    def beacon_protection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "beacon_protection")
+
+    @beacon_protection.setter
+    def beacon_protection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "beacon_protection", value)
+
+    @property
     @pulumi.getter(name="broadcastSsid")
     def broadcast_ssid(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3931,6 +4095,18 @@ class _VapState:
     @bstm_rssi_disassoc_timer.setter
     def bstm_rssi_disassoc_timer(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "bstm_rssi_disassoc_timer", value)
+
+    @property
+    @pulumi.getter(name="captivePortal")
+    def captive_portal(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable captive portal. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "captive_portal")
+
+    @captive_portal.setter
+    def captive_portal(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "captive_portal", value)
 
     @property
     @pulumi.getter(name="captivePortalAcName")
@@ -4308,7 +4484,7 @@ class _VapState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -4332,7 +4508,7 @@ class _VapState:
     @pulumi.getter(name="gtkRekeyIntv")
     def gtk_rekey_intv(self) -> Optional[pulumi.Input[int]]:
         """
-        GTK rekey interval (1800 - 864000 sec, default = 86400).
+        GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         """
         return pulumi.get(self, "gtk_rekey_intv")
 
@@ -4893,6 +5069,18 @@ class _VapState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="nasFilterRule")
+    def nas_filter_rule(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nas_filter_rule")
+
+    @nas_filter_rule.setter
+    def nas_filter_rule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nas_filter_rule", value)
+
+    @property
     @pulumi.getter(name="neighborReportDualBand")
     def neighbor_report_dual_band(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5136,7 +5324,7 @@ class _VapState:
     @pulumi.getter(name="ptkRekeyIntv")
     def ptk_rekey_intv(self) -> Optional[pulumi.Input[int]]:
         """
-        PTK rekey interval (1800 - 864000 sec, default = 86400).
+        PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         """
         return pulumi.get(self, "ptk_rekey_intv")
 
@@ -5371,6 +5559,42 @@ class _VapState:
     @rates11ax_ss34.setter
     def rates11ax_ss34(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "rates11ax_ss34", value)
+
+    @property
+    @pulumi.getter(name="rates11beMcsMap")
+    def rates11be_mcs_map(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+        """
+        return pulumi.get(self, "rates11be_mcs_map")
+
+    @rates11be_mcs_map.setter
+    def rates11be_mcs_map(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rates11be_mcs_map", value)
+
+    @property
+    @pulumi.getter(name="rates11beMcsMap160")
+    def rates11be_mcs_map160(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+        """
+        return pulumi.get(self, "rates11be_mcs_map160")
+
+    @rates11be_mcs_map160.setter
+    def rates11be_mcs_map160(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rates11be_mcs_map160", value)
+
+    @property
+    @pulumi.getter(name="rates11beMcsMap320")
+    def rates11be_mcs_map320(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+        """
+        return pulumi.get(self, "rates11be_mcs_map320")
+
+    @rates11be_mcs_map320.setter
+    def rates11be_mcs_map320(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rates11be_mcs_map320", value)
 
     @property
     @pulumi.getter
@@ -5863,6 +6087,7 @@ class Vap(pulumi.CustomResource):
                  additional_akms: Optional[pulumi.Input[str]] = None,
                  address_group: Optional[pulumi.Input[str]] = None,
                  address_group_policy: Optional[pulumi.Input[str]] = None,
+                 akm24_only: Optional[pulumi.Input[str]] = None,
                  alias: Optional[pulumi.Input[str]] = None,
                  antivirus_profile: Optional[pulumi.Input[str]] = None,
                  application_detection_engine: Optional[pulumi.Input[str]] = None,
@@ -5874,12 +6099,14 @@ class Vap(pulumi.CustomResource):
                  auth_cert: Optional[pulumi.Input[str]] = None,
                  auth_portal_addr: Optional[pulumi.Input[str]] = None,
                  beacon_advertising: Optional[pulumi.Input[str]] = None,
+                 beacon_protection: Optional[pulumi.Input[str]] = None,
                  broadcast_ssid: Optional[pulumi.Input[str]] = None,
                  broadcast_suppression: Optional[pulumi.Input[str]] = None,
                  bss_color_partial: Optional[pulumi.Input[str]] = None,
                  bstm_disassociation_imminent: Optional[pulumi.Input[str]] = None,
                  bstm_load_balancing_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
+                 captive_portal: Optional[pulumi.Input[str]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
                  captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
@@ -5960,6 +6187,7 @@ class Vap(pulumi.CustomResource):
                  nac: Optional[pulumi.Input[str]] = None,
                  nac_profile: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nas_filter_rule: Optional[pulumi.Input[str]] = None,
                  neighbor_report_dual_band: Optional[pulumi.Input[str]] = None,
                  okc: Optional[pulumi.Input[str]] = None,
                  osen: Optional[pulumi.Input[str]] = None,
@@ -6000,6 +6228,9 @@ class Vap(pulumi.CustomResource):
                  rates11ax_mcs_map: Optional[pulumi.Input[str]] = None,
                  rates11ax_ss12: Optional[pulumi.Input[str]] = None,
                  rates11ax_ss34: Optional[pulumi.Input[str]] = None,
+                 rates11be_mcs_map: Optional[pulumi.Input[str]] = None,
+                 rates11be_mcs_map160: Optional[pulumi.Input[str]] = None,
+                 rates11be_mcs_map320: Optional[pulumi.Input[str]] = None,
                  rates11bg: Optional[pulumi.Input[str]] = None,
                  rates11n_ss12: Optional[pulumi.Input[str]] = None,
                  rates11n_ss34: Optional[pulumi.Input[str]] = None,
@@ -6066,9 +6297,10 @@ class Vap(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_control_list: access-control-list profile name.
         :param pulumi.Input[int] acct_interim_interval: WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
-        :param pulumi.Input[str] additional_akms: Additional AKMs. Valid values: `akm6`.
+        :param pulumi.Input[str] additional_akms: Additional AKMs.
         :param pulumi.Input[str] address_group: Address group ID.
         :param pulumi.Input[str] address_group_policy: Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
+        :param pulumi.Input[str] akm24_only: WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] alias: Alias.
         :param pulumi.Input[str] antivirus_profile: AntiVirus profile name.
         :param pulumi.Input[str] application_detection_engine: Enable/disable application detection engine (default = disable). Valid values: `enable`, `disable`.
@@ -6080,12 +6312,14 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] auth_cert: HTTPS server certificate.
         :param pulumi.Input[str] auth_portal_addr: Address of captive portal.
         :param pulumi.Input[str] beacon_advertising: Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+        :param pulumi.Input[str] beacon_protection: Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] broadcast_ssid: Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] broadcast_suppression: Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
         :param pulumi.Input[str] bss_color_partial: Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bstm_disassociation_imminent: Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] bstm_load_balancing_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
         :param pulumi.Input[int] bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+        :param pulumi.Input[str] captive_portal: Enable/disable captive portal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] captive_portal_ac_name: Local-bridging captive portal ac-name.
         :param pulumi.Input[int] captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
         :param pulumi.Input[str] captive_portal_fw_accounting: Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
@@ -6117,9 +6351,9 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[int] ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
         :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
         :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtk_rekey: Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (1800 - 864000 sec, default = 86400).
+        :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         :param pulumi.Input[str] high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] hotspot20_profile: Hotspot 2.0 profile name.
         :param pulumi.Input[str] igmp_snooping: Enable/disable IGMP snooping. Valid values: `enable`, `disable`.
@@ -6166,6 +6400,7 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] nac: Enable/disable network access control. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nac_profile: NAC profile name.
         :param pulumi.Input[str] name: Virtual AP name.
+        :param pulumi.Input[str] nas_filter_rule: Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] neighbor_report_dual_band: Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] okc: Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] osen: Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
@@ -6186,7 +6421,7 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] probe_resp_suppression: Enable/disable probe response suppression (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] probe_resp_threshold: Minimum signal level/threshold in dBm required for the AP response to probe requests (-95 to -20, default = -80).
         :param pulumi.Input[str] ptk_rekey: Enable/disable PTK rekey for WPA-Enterprise security. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] ptk_rekey_intv: PTK rekey interval (1800 - 864000 sec, default = 86400).
+        :param pulumi.Input[int] ptk_rekey_intv: PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         :param pulumi.Input[str] qos_profile: Quality of service profile name.
         :param pulumi.Input[str] quarantine: Enable/disable station quarantine (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radio2g_threshold: Minimum signal level/threshold in dBm required for the AP response to receive a packet in 2.4G band (-95 to -20, default = -79).
@@ -6206,6 +6441,9 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] rates11ax_mcs_map: Comma separated list of max supported HE MCS for spatial streams 1 through 8.
         :param pulumi.Input[str] rates11ax_ss12: Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ax_ss34: Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+        :param pulumi.Input[str] rates11be_mcs_map: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+        :param pulumi.Input[str] rates11be_mcs_map160: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+        :param pulumi.Input[str] rates11be_mcs_map320: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
         :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g.
         :param pulumi.Input[str] rates11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
         :param pulumi.Input[str] rates11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
@@ -6294,6 +6532,7 @@ class Vap(pulumi.CustomResource):
                  additional_akms: Optional[pulumi.Input[str]] = None,
                  address_group: Optional[pulumi.Input[str]] = None,
                  address_group_policy: Optional[pulumi.Input[str]] = None,
+                 akm24_only: Optional[pulumi.Input[str]] = None,
                  alias: Optional[pulumi.Input[str]] = None,
                  antivirus_profile: Optional[pulumi.Input[str]] = None,
                  application_detection_engine: Optional[pulumi.Input[str]] = None,
@@ -6305,12 +6544,14 @@ class Vap(pulumi.CustomResource):
                  auth_cert: Optional[pulumi.Input[str]] = None,
                  auth_portal_addr: Optional[pulumi.Input[str]] = None,
                  beacon_advertising: Optional[pulumi.Input[str]] = None,
+                 beacon_protection: Optional[pulumi.Input[str]] = None,
                  broadcast_ssid: Optional[pulumi.Input[str]] = None,
                  broadcast_suppression: Optional[pulumi.Input[str]] = None,
                  bss_color_partial: Optional[pulumi.Input[str]] = None,
                  bstm_disassociation_imminent: Optional[pulumi.Input[str]] = None,
                  bstm_load_balancing_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
+                 captive_portal: Optional[pulumi.Input[str]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
                  captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
@@ -6391,6 +6632,7 @@ class Vap(pulumi.CustomResource):
                  nac: Optional[pulumi.Input[str]] = None,
                  nac_profile: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nas_filter_rule: Optional[pulumi.Input[str]] = None,
                  neighbor_report_dual_band: Optional[pulumi.Input[str]] = None,
                  okc: Optional[pulumi.Input[str]] = None,
                  osen: Optional[pulumi.Input[str]] = None,
@@ -6431,6 +6673,9 @@ class Vap(pulumi.CustomResource):
                  rates11ax_mcs_map: Optional[pulumi.Input[str]] = None,
                  rates11ax_ss12: Optional[pulumi.Input[str]] = None,
                  rates11ax_ss34: Optional[pulumi.Input[str]] = None,
+                 rates11be_mcs_map: Optional[pulumi.Input[str]] = None,
+                 rates11be_mcs_map160: Optional[pulumi.Input[str]] = None,
+                 rates11be_mcs_map320: Optional[pulumi.Input[str]] = None,
                  rates11bg: Optional[pulumi.Input[str]] = None,
                  rates11n_ss12: Optional[pulumi.Input[str]] = None,
                  rates11n_ss34: Optional[pulumi.Input[str]] = None,
@@ -6485,6 +6730,7 @@ class Vap(pulumi.CustomResource):
             __props__.__dict__["additional_akms"] = additional_akms
             __props__.__dict__["address_group"] = address_group
             __props__.__dict__["address_group_policy"] = address_group_policy
+            __props__.__dict__["akm24_only"] = akm24_only
             __props__.__dict__["alias"] = alias
             __props__.__dict__["antivirus_profile"] = antivirus_profile
             __props__.__dict__["application_detection_engine"] = application_detection_engine
@@ -6496,12 +6742,14 @@ class Vap(pulumi.CustomResource):
             __props__.__dict__["auth_cert"] = auth_cert
             __props__.__dict__["auth_portal_addr"] = auth_portal_addr
             __props__.__dict__["beacon_advertising"] = beacon_advertising
+            __props__.__dict__["beacon_protection"] = beacon_protection
             __props__.__dict__["broadcast_ssid"] = broadcast_ssid
             __props__.__dict__["broadcast_suppression"] = broadcast_suppression
             __props__.__dict__["bss_color_partial"] = bss_color_partial
             __props__.__dict__["bstm_disassociation_imminent"] = bstm_disassociation_imminent
             __props__.__dict__["bstm_load_balancing_disassoc_timer"] = bstm_load_balancing_disassoc_timer
             __props__.__dict__["bstm_rssi_disassoc_timer"] = bstm_rssi_disassoc_timer
+            __props__.__dict__["captive_portal"] = captive_portal
             __props__.__dict__["captive_portal_ac_name"] = captive_portal_ac_name
             __props__.__dict__["captive_portal_auth_timeout"] = captive_portal_auth_timeout
             __props__.__dict__["captive_portal_fw_accounting"] = captive_portal_fw_accounting
@@ -6582,6 +6830,7 @@ class Vap(pulumi.CustomResource):
             __props__.__dict__["nac"] = nac
             __props__.__dict__["nac_profile"] = nac_profile
             __props__.__dict__["name"] = name
+            __props__.__dict__["nas_filter_rule"] = nas_filter_rule
             __props__.__dict__["neighbor_report_dual_band"] = neighbor_report_dual_band
             __props__.__dict__["okc"] = okc
             __props__.__dict__["osen"] = osen
@@ -6622,6 +6871,9 @@ class Vap(pulumi.CustomResource):
             __props__.__dict__["rates11ax_mcs_map"] = rates11ax_mcs_map
             __props__.__dict__["rates11ax_ss12"] = rates11ax_ss12
             __props__.__dict__["rates11ax_ss34"] = rates11ax_ss34
+            __props__.__dict__["rates11be_mcs_map"] = rates11be_mcs_map
+            __props__.__dict__["rates11be_mcs_map160"] = rates11be_mcs_map160
+            __props__.__dict__["rates11be_mcs_map320"] = rates11be_mcs_map320
             __props__.__dict__["rates11bg"] = rates11bg
             __props__.__dict__["rates11n_ss12"] = rates11n_ss12
             __props__.__dict__["rates11n_ss34"] = rates11n_ss34
@@ -6679,6 +6931,7 @@ class Vap(pulumi.CustomResource):
             additional_akms: Optional[pulumi.Input[str]] = None,
             address_group: Optional[pulumi.Input[str]] = None,
             address_group_policy: Optional[pulumi.Input[str]] = None,
+            akm24_only: Optional[pulumi.Input[str]] = None,
             alias: Optional[pulumi.Input[str]] = None,
             antivirus_profile: Optional[pulumi.Input[str]] = None,
             application_detection_engine: Optional[pulumi.Input[str]] = None,
@@ -6690,12 +6943,14 @@ class Vap(pulumi.CustomResource):
             auth_cert: Optional[pulumi.Input[str]] = None,
             auth_portal_addr: Optional[pulumi.Input[str]] = None,
             beacon_advertising: Optional[pulumi.Input[str]] = None,
+            beacon_protection: Optional[pulumi.Input[str]] = None,
             broadcast_ssid: Optional[pulumi.Input[str]] = None,
             broadcast_suppression: Optional[pulumi.Input[str]] = None,
             bss_color_partial: Optional[pulumi.Input[str]] = None,
             bstm_disassociation_imminent: Optional[pulumi.Input[str]] = None,
             bstm_load_balancing_disassoc_timer: Optional[pulumi.Input[int]] = None,
             bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
+            captive_portal: Optional[pulumi.Input[str]] = None,
             captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
             captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
             captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
@@ -6776,6 +7031,7 @@ class Vap(pulumi.CustomResource):
             nac: Optional[pulumi.Input[str]] = None,
             nac_profile: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            nas_filter_rule: Optional[pulumi.Input[str]] = None,
             neighbor_report_dual_band: Optional[pulumi.Input[str]] = None,
             okc: Optional[pulumi.Input[str]] = None,
             osen: Optional[pulumi.Input[str]] = None,
@@ -6816,6 +7072,9 @@ class Vap(pulumi.CustomResource):
             rates11ax_mcs_map: Optional[pulumi.Input[str]] = None,
             rates11ax_ss12: Optional[pulumi.Input[str]] = None,
             rates11ax_ss34: Optional[pulumi.Input[str]] = None,
+            rates11be_mcs_map: Optional[pulumi.Input[str]] = None,
+            rates11be_mcs_map160: Optional[pulumi.Input[str]] = None,
+            rates11be_mcs_map320: Optional[pulumi.Input[str]] = None,
             rates11bg: Optional[pulumi.Input[str]] = None,
             rates11n_ss12: Optional[pulumi.Input[str]] = None,
             rates11n_ss34: Optional[pulumi.Input[str]] = None,
@@ -6865,9 +7124,10 @@ class Vap(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_control_list: access-control-list profile name.
         :param pulumi.Input[int] acct_interim_interval: WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
-        :param pulumi.Input[str] additional_akms: Additional AKMs. Valid values: `akm6`.
+        :param pulumi.Input[str] additional_akms: Additional AKMs.
         :param pulumi.Input[str] address_group: Address group ID.
         :param pulumi.Input[str] address_group_policy: Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
+        :param pulumi.Input[str] akm24_only: WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] alias: Alias.
         :param pulumi.Input[str] antivirus_profile: AntiVirus profile name.
         :param pulumi.Input[str] application_detection_engine: Enable/disable application detection engine (default = disable). Valid values: `enable`, `disable`.
@@ -6879,12 +7139,14 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] auth_cert: HTTPS server certificate.
         :param pulumi.Input[str] auth_portal_addr: Address of captive portal.
         :param pulumi.Input[str] beacon_advertising: Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+        :param pulumi.Input[str] beacon_protection: Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] broadcast_ssid: Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] broadcast_suppression: Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
         :param pulumi.Input[str] bss_color_partial: Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bstm_disassociation_imminent: Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] bstm_load_balancing_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
         :param pulumi.Input[int] bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+        :param pulumi.Input[str] captive_portal: Enable/disable captive portal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] captive_portal_ac_name: Local-bridging captive portal ac-name.
         :param pulumi.Input[int] captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
         :param pulumi.Input[str] captive_portal_fw_accounting: Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `enable`, `disable`.
@@ -6916,9 +7178,9 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[int] ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
         :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
         :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gtk_rekey: Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (1800 - 864000 sec, default = 86400).
+        :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         :param pulumi.Input[str] high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] hotspot20_profile: Hotspot 2.0 profile name.
         :param pulumi.Input[str] igmp_snooping: Enable/disable IGMP snooping. Valid values: `enable`, `disable`.
@@ -6965,6 +7227,7 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] nac: Enable/disable network access control. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nac_profile: NAC profile name.
         :param pulumi.Input[str] name: Virtual AP name.
+        :param pulumi.Input[str] nas_filter_rule: Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] neighbor_report_dual_band: Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] okc: Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] osen: Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
@@ -6985,7 +7248,7 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] probe_resp_suppression: Enable/disable probe response suppression (to ignore weak signals) (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] probe_resp_threshold: Minimum signal level/threshold in dBm required for the AP response to probe requests (-95 to -20, default = -80).
         :param pulumi.Input[str] ptk_rekey: Enable/disable PTK rekey for WPA-Enterprise security. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] ptk_rekey_intv: PTK rekey interval (1800 - 864000 sec, default = 86400).
+        :param pulumi.Input[int] ptk_rekey_intv: PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         :param pulumi.Input[str] qos_profile: Quality of service profile name.
         :param pulumi.Input[str] quarantine: Enable/disable station quarantine (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radio2g_threshold: Minimum signal level/threshold in dBm required for the AP response to receive a packet in 2.4G band (-95 to -20, default = -79).
@@ -7005,6 +7268,9 @@ class Vap(pulumi.CustomResource):
         :param pulumi.Input[str] rates11ax_mcs_map: Comma separated list of max supported HE MCS for spatial streams 1 through 8.
         :param pulumi.Input[str] rates11ax_ss12: Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ax_ss34: Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+        :param pulumi.Input[str] rates11be_mcs_map: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+        :param pulumi.Input[str] rates11be_mcs_map160: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+        :param pulumi.Input[str] rates11be_mcs_map320: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
         :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g.
         :param pulumi.Input[str] rates11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
         :param pulumi.Input[str] rates11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
@@ -7055,6 +7321,7 @@ class Vap(pulumi.CustomResource):
         __props__.__dict__["additional_akms"] = additional_akms
         __props__.__dict__["address_group"] = address_group
         __props__.__dict__["address_group_policy"] = address_group_policy
+        __props__.__dict__["akm24_only"] = akm24_only
         __props__.__dict__["alias"] = alias
         __props__.__dict__["antivirus_profile"] = antivirus_profile
         __props__.__dict__["application_detection_engine"] = application_detection_engine
@@ -7066,12 +7333,14 @@ class Vap(pulumi.CustomResource):
         __props__.__dict__["auth_cert"] = auth_cert
         __props__.__dict__["auth_portal_addr"] = auth_portal_addr
         __props__.__dict__["beacon_advertising"] = beacon_advertising
+        __props__.__dict__["beacon_protection"] = beacon_protection
         __props__.__dict__["broadcast_ssid"] = broadcast_ssid
         __props__.__dict__["broadcast_suppression"] = broadcast_suppression
         __props__.__dict__["bss_color_partial"] = bss_color_partial
         __props__.__dict__["bstm_disassociation_imminent"] = bstm_disassociation_imminent
         __props__.__dict__["bstm_load_balancing_disassoc_timer"] = bstm_load_balancing_disassoc_timer
         __props__.__dict__["bstm_rssi_disassoc_timer"] = bstm_rssi_disassoc_timer
+        __props__.__dict__["captive_portal"] = captive_portal
         __props__.__dict__["captive_portal_ac_name"] = captive_portal_ac_name
         __props__.__dict__["captive_portal_auth_timeout"] = captive_portal_auth_timeout
         __props__.__dict__["captive_portal_fw_accounting"] = captive_portal_fw_accounting
@@ -7152,6 +7421,7 @@ class Vap(pulumi.CustomResource):
         __props__.__dict__["nac"] = nac
         __props__.__dict__["nac_profile"] = nac_profile
         __props__.__dict__["name"] = name
+        __props__.__dict__["nas_filter_rule"] = nas_filter_rule
         __props__.__dict__["neighbor_report_dual_band"] = neighbor_report_dual_band
         __props__.__dict__["okc"] = okc
         __props__.__dict__["osen"] = osen
@@ -7192,6 +7462,9 @@ class Vap(pulumi.CustomResource):
         __props__.__dict__["rates11ax_mcs_map"] = rates11ax_mcs_map
         __props__.__dict__["rates11ax_ss12"] = rates11ax_ss12
         __props__.__dict__["rates11ax_ss34"] = rates11ax_ss34
+        __props__.__dict__["rates11be_mcs_map"] = rates11be_mcs_map
+        __props__.__dict__["rates11be_mcs_map160"] = rates11be_mcs_map160
+        __props__.__dict__["rates11be_mcs_map320"] = rates11be_mcs_map320
         __props__.__dict__["rates11bg"] = rates11bg
         __props__.__dict__["rates11n_ss12"] = rates11n_ss12
         __props__.__dict__["rates11n_ss34"] = rates11n_ss34
@@ -7254,7 +7527,7 @@ class Vap(pulumi.CustomResource):
     @pulumi.getter(name="additionalAkms")
     def additional_akms(self) -> pulumi.Output[str]:
         """
-        Additional AKMs. Valid values: `akm6`.
+        Additional AKMs.
         """
         return pulumi.get(self, "additional_akms")
 
@@ -7273,6 +7546,14 @@ class Vap(pulumi.CustomResource):
         Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
         """
         return pulumi.get(self, "address_group_policy")
+
+    @property
+    @pulumi.getter(name="akm24Only")
+    def akm24_only(self) -> pulumi.Output[str]:
+        """
+        WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "akm24_only")
 
     @property
     @pulumi.getter
@@ -7363,6 +7644,14 @@ class Vap(pulumi.CustomResource):
         return pulumi.get(self, "beacon_advertising")
 
     @property
+    @pulumi.getter(name="beaconProtection")
+    def beacon_protection(self) -> pulumi.Output[str]:
+        """
+        Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "beacon_protection")
+
+    @property
     @pulumi.getter(name="broadcastSsid")
     def broadcast_ssid(self) -> pulumi.Output[str]:
         """
@@ -7409,6 +7698,14 @@ class Vap(pulumi.CustomResource):
         Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
         """
         return pulumi.get(self, "bstm_rssi_disassoc_timer")
+
+    @property
+    @pulumi.getter(name="captivePortal")
+    def captive_portal(self) -> pulumi.Output[str]:
+        """
+        Enable/disable captive portal. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "captive_portal")
 
     @property
     @pulumi.getter(name="captivePortalAcName")
@@ -7662,7 +7959,7 @@ class Vap(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -7678,7 +7975,7 @@ class Vap(pulumi.CustomResource):
     @pulumi.getter(name="gtkRekeyIntv")
     def gtk_rekey_intv(self) -> pulumi.Output[int]:
         """
-        GTK rekey interval (1800 - 864000 sec, default = 86400).
+        GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         """
         return pulumi.get(self, "gtk_rekey_intv")
 
@@ -8051,6 +8348,14 @@ class Vap(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="nasFilterRule")
+    def nas_filter_rule(self) -> pulumi.Output[str]:
+        """
+        Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nas_filter_rule")
+
+    @property
     @pulumi.getter(name="neighborReportDualBand")
     def neighbor_report_dual_band(self) -> pulumi.Output[str]:
         """
@@ -8214,7 +8519,7 @@ class Vap(pulumi.CustomResource):
     @pulumi.getter(name="ptkRekeyIntv")
     def ptk_rekey_intv(self) -> pulumi.Output[int]:
         """
-        PTK rekey interval (1800 - 864000 sec, default = 86400).
+        PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
         """
         return pulumi.get(self, "ptk_rekey_intv")
 
@@ -8369,6 +8674,30 @@ class Vap(pulumi.CustomResource):
         Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
         """
         return pulumi.get(self, "rates11ax_ss34")
+
+    @property
+    @pulumi.getter(name="rates11beMcsMap")
+    def rates11be_mcs_map(self) -> pulumi.Output[str]:
+        """
+        Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+        """
+        return pulumi.get(self, "rates11be_mcs_map")
+
+    @property
+    @pulumi.getter(name="rates11beMcsMap160")
+    def rates11be_mcs_map160(self) -> pulumi.Output[str]:
+        """
+        Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+        """
+        return pulumi.get(self, "rates11be_mcs_map160")
+
+    @property
+    @pulumi.getter(name="rates11beMcsMap320")
+    def rates11be_mcs_map320(self) -> pulumi.Output[str]:
+        """
+        Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+        """
+        return pulumi.get(self, "rates11be_mcs_map320")
 
     @property
     @pulumi.getter
@@ -8628,7 +8957,7 @@ class Vap(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -26,7 +26,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         public Input<string>? LocalOverride { get; set; }
 
         /// <summary>
-        /// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+        /// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions &gt;= 7.4.0: 0-10000000, drop-all=0.
         /// </summary>
         [Input("rate")]
         public Input<int>? Rate { get; set; }

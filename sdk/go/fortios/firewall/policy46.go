@@ -114,7 +114,7 @@ type Policy46 struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
 	Fixedport pulumi.StringOutput `pulumi:"fixedport"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
 	Ippool pulumi.StringOutput `pulumi:"ippool"`
@@ -153,7 +153,7 @@ type Policy46 struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewPolicy46 registers a new resource with the given unique name, arguments, and options.
@@ -213,7 +213,7 @@ type policy46State struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
 	Fixedport *string `pulumi:"fixedport"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
 	Ippool *string `pulumi:"ippool"`
@@ -268,7 +268,7 @@ type Policy46State struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
 	Fixedport pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
 	Ippool pulumi.StringPtrInput
@@ -327,7 +327,7 @@ type policy46Args struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
 	Fixedport *string `pulumi:"fixedport"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
 	Ippool *string `pulumi:"ippool"`
@@ -383,7 +383,7 @@ type Policy46Args struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable fixed port for this policy. Valid values: `enable`, `disable`.
 	Fixedport pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable use of IP Pools for source NAT. Valid values: `enable`, `disable`.
 	Ippool pulumi.StringPtrInput
@@ -542,7 +542,7 @@ func (o Policy46Output) Fixedport() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy46) pulumi.StringOutput { return v.Fixedport }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o Policy46Output) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy46) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -638,8 +638,8 @@ func (o Policy46Output) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Policy46Output) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Policy46) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Policy46Output) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy46) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type Policy46ArrayOutput struct{ *pulumi.OutputState }

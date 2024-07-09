@@ -35,7 +35,7 @@ class Extender1Args:
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: FortiExtender login password.
         :param pulumi.Input['Extender1Modem1Args'] modem1: Configuration options for modem 1. The structure of `modem1` block is documented below.
         :param pulumi.Input['Extender1Modem2Args'] modem2: Configuration options for modem 2. The structure of `modem2` block is documented below.
@@ -131,7 +131,7 @@ class Extender1Args:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -234,7 +234,7 @@ class _Extender1State:
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: FortiExtender login password.
         :param pulumi.Input['Extender1Modem1Args'] modem1: Configuration options for modem 1. The structure of `modem1` block is documented below.
         :param pulumi.Input['Extender1Modem2Args'] modem2: Configuration options for modem 2. The structure of `modem2` block is documented below.
@@ -331,7 +331,7 @@ class _Extender1State:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -514,7 +514,7 @@ class Extender1(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: FortiExtender login password.
         :param pulumi.Input[pulumi.InputType['Extender1Modem1Args']] modem1: Configuration options for modem 1. The structure of `modem1` block is documented below.
         :param pulumi.Input[pulumi.InputType['Extender1Modem2Args']] modem2: Configuration options for modem 2. The structure of `modem2` block is documented below.
@@ -691,7 +691,7 @@ class Extender1(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: FortiExtender login password.
         :param pulumi.Input[pulumi.InputType['Extender1Modem1Args']] modem1: Configuration options for modem 1. The structure of `modem1` block is documented below.
         :param pulumi.Input[pulumi.InputType['Extender1Modem2Args']] modem2: Configuration options for modem 2. The structure of `modem2` block is documented below.
@@ -761,7 +761,7 @@ class Extender1(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -807,7 +807,7 @@ class Extender1(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -155,6 +155,8 @@ type Interface struct {
 	DhcpClientIdentifier pulumi.StringOutput `pulumi:"dhcpClientIdentifier"`
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
 	DhcpRelayAgentOption pulumi.StringOutput `pulumi:"dhcpRelayAgentOption"`
+	// Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+	DhcpRelayAllowNoEndOption pulumi.StringOutput `pulumi:"dhcpRelayAllowNoEndOption"`
 	// DHCP relay circuit ID.
 	DhcpRelayCircuitId pulumi.StringOutput `pulumi:"dhcpRelayCircuitId"`
 	// Specify outgoing interface to reach server.
@@ -247,7 +249,7 @@ type Interface struct {
 	ForwardDomain pulumi.IntOutput `pulumi:"forwardDomain"`
 	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
 	ForwardErrorCorrection pulumi.StringOutput `pulumi:"forwardErrorCorrection"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect pulumi.StringOutput `pulumi:"gwdetect"`
@@ -263,11 +265,11 @@ type Interface struct {
 	IdleTimeout pulumi.IntOutput `pulumi:"idleTimeout"`
 	// Configure IKE authentication SAML server.
 	IkeSamlServer pulumi.StringOutput `pulumi:"ikeSamlServer"`
-	// Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+	// Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
 	Inbandwidth pulumi.IntOutput `pulumi:"inbandwidth"`
 	// Incoming traffic shaping profile.
 	IngressShapingProfile pulumi.StringOutput `pulumi:"ingressShapingProfile"`
-	// Ingress Spillover threshold (0 - 16776000 kbps).
+	// Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
 	IngressSpilloverThreshold pulumi.IntOutput `pulumi:"ingressSpilloverThreshold"`
 	// Interface name.
 	Interface pulumi.StringOutput `pulumi:"interface"`
@@ -343,7 +345,7 @@ type Interface struct {
 	NetbiosForward pulumi.StringOutput `pulumi:"netbiosForward"`
 	// Enable/disable NetFlow on this interface and set the data that NetFlow collects (rx, tx, or both). Valid values: `disable`, `tx`, `rx`, `both`.
 	NetflowSampler pulumi.StringOutput `pulumi:"netflowSampler"`
-	// Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+	// Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
 	Outbandwidth pulumi.IntOutput `pulumi:"outbandwidth"`
 	// PPPoE Active Discovery Terminate (PADT) used to terminate sessions after an idle time.
 	PadtRetryTimeout pulumi.IntOutput `pulumi:"padtRetryTimeout"`
@@ -351,7 +353,7 @@ type Interface struct {
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// PING server status.
 	PingServStatus pulumi.IntOutput `pulumi:"pingServStatus"`
-	// sFlow polling interval (1 - 255 sec).
+	// sFlow polling interval in seconds (1 - 255).
 	PollingInterval pulumi.IntOutput `pulumi:"pollingInterval"`
 	// Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
 	PppoeUnnumberedNegotiate pulumi.StringOutput `pulumi:"pppoeUnnumberedNegotiate"`
@@ -447,7 +449,7 @@ type Interface struct {
 	Switch pulumi.StringOutput `pulumi:"switch"`
 	// Block FortiSwitch port-to-port traffic. Valid values: `enable`, `disable`.
 	SwitchControllerAccessVlan pulumi.StringOutput `pulumi:"switchControllerAccessVlan"`
-	// Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+	// Enable/disable FortiSwitch ARP inspection.
 	SwitchControllerArpInspection pulumi.StringOutput `pulumi:"switchControllerArpInspection"`
 	// Switch controller DHCP snooping. Valid values: `enable`, `disable`.
 	SwitchControllerDhcpSnooping pulumi.StringOutput `pulumi:"switchControllerDhcpSnooping"`
@@ -516,7 +518,7 @@ type Interface struct {
 	// Interface is in this virtual domain (VDOM).
 	Vdom pulumi.StringOutput `pulumi:"vdom"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Switch control interface VLAN ID.
 	Vindex pulumi.IntOutput `pulumi:"vindex"`
 	// Ethernet protocol of VLAN. Valid values: `8021q`, `8021ad`.
@@ -669,6 +671,8 @@ type interfaceState struct {
 	DhcpClientIdentifier *string `pulumi:"dhcpClientIdentifier"`
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
 	DhcpRelayAgentOption *string `pulumi:"dhcpRelayAgentOption"`
+	// Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+	DhcpRelayAllowNoEndOption *string `pulumi:"dhcpRelayAllowNoEndOption"`
 	// DHCP relay circuit ID.
 	DhcpRelayCircuitId *string `pulumi:"dhcpRelayCircuitId"`
 	// Specify outgoing interface to reach server.
@@ -761,7 +765,7 @@ type interfaceState struct {
 	ForwardDomain *int `pulumi:"forwardDomain"`
 	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
 	ForwardErrorCorrection *string `pulumi:"forwardErrorCorrection"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect *string `pulumi:"gwdetect"`
@@ -777,11 +781,11 @@ type interfaceState struct {
 	IdleTimeout *int `pulumi:"idleTimeout"`
 	// Configure IKE authentication SAML server.
 	IkeSamlServer *string `pulumi:"ikeSamlServer"`
-	// Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+	// Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
 	Inbandwidth *int `pulumi:"inbandwidth"`
 	// Incoming traffic shaping profile.
 	IngressShapingProfile *string `pulumi:"ingressShapingProfile"`
-	// Ingress Spillover threshold (0 - 16776000 kbps).
+	// Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
 	IngressSpilloverThreshold *int `pulumi:"ingressSpilloverThreshold"`
 	// Interface name.
 	Interface *string `pulumi:"interface"`
@@ -857,7 +861,7 @@ type interfaceState struct {
 	NetbiosForward *string `pulumi:"netbiosForward"`
 	// Enable/disable NetFlow on this interface and set the data that NetFlow collects (rx, tx, or both). Valid values: `disable`, `tx`, `rx`, `both`.
 	NetflowSampler *string `pulumi:"netflowSampler"`
-	// Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+	// Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
 	Outbandwidth *int `pulumi:"outbandwidth"`
 	// PPPoE Active Discovery Terminate (PADT) used to terminate sessions after an idle time.
 	PadtRetryTimeout *int `pulumi:"padtRetryTimeout"`
@@ -865,7 +869,7 @@ type interfaceState struct {
 	Password *string `pulumi:"password"`
 	// PING server status.
 	PingServStatus *int `pulumi:"pingServStatus"`
-	// sFlow polling interval (1 - 255 sec).
+	// sFlow polling interval in seconds (1 - 255).
 	PollingInterval *int `pulumi:"pollingInterval"`
 	// Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
 	PppoeUnnumberedNegotiate *string `pulumi:"pppoeUnnumberedNegotiate"`
@@ -961,7 +965,7 @@ type interfaceState struct {
 	Switch *string `pulumi:"switch"`
 	// Block FortiSwitch port-to-port traffic. Valid values: `enable`, `disable`.
 	SwitchControllerAccessVlan *string `pulumi:"switchControllerAccessVlan"`
-	// Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+	// Enable/disable FortiSwitch ARP inspection.
 	SwitchControllerArpInspection *string `pulumi:"switchControllerArpInspection"`
 	// Switch controller DHCP snooping. Valid values: `enable`, `disable`.
 	SwitchControllerDhcpSnooping *string `pulumi:"switchControllerDhcpSnooping"`
@@ -1136,6 +1140,8 @@ type InterfaceState struct {
 	DhcpClientIdentifier pulumi.StringPtrInput
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
 	DhcpRelayAgentOption pulumi.StringPtrInput
+	// Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+	DhcpRelayAllowNoEndOption pulumi.StringPtrInput
 	// DHCP relay circuit ID.
 	DhcpRelayCircuitId pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
@@ -1228,7 +1234,7 @@ type InterfaceState struct {
 	ForwardDomain pulumi.IntPtrInput
 	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
 	ForwardErrorCorrection pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect pulumi.StringPtrInput
@@ -1244,11 +1250,11 @@ type InterfaceState struct {
 	IdleTimeout pulumi.IntPtrInput
 	// Configure IKE authentication SAML server.
 	IkeSamlServer pulumi.StringPtrInput
-	// Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+	// Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
 	Inbandwidth pulumi.IntPtrInput
 	// Incoming traffic shaping profile.
 	IngressShapingProfile pulumi.StringPtrInput
-	// Ingress Spillover threshold (0 - 16776000 kbps).
+	// Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
 	IngressSpilloverThreshold pulumi.IntPtrInput
 	// Interface name.
 	Interface pulumi.StringPtrInput
@@ -1324,7 +1330,7 @@ type InterfaceState struct {
 	NetbiosForward pulumi.StringPtrInput
 	// Enable/disable NetFlow on this interface and set the data that NetFlow collects (rx, tx, or both). Valid values: `disable`, `tx`, `rx`, `both`.
 	NetflowSampler pulumi.StringPtrInput
-	// Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+	// Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
 	Outbandwidth pulumi.IntPtrInput
 	// PPPoE Active Discovery Terminate (PADT) used to terminate sessions after an idle time.
 	PadtRetryTimeout pulumi.IntPtrInput
@@ -1332,7 +1338,7 @@ type InterfaceState struct {
 	Password pulumi.StringPtrInput
 	// PING server status.
 	PingServStatus pulumi.IntPtrInput
-	// sFlow polling interval (1 - 255 sec).
+	// sFlow polling interval in seconds (1 - 255).
 	PollingInterval pulumi.IntPtrInput
 	// Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
 	PppoeUnnumberedNegotiate pulumi.StringPtrInput
@@ -1428,7 +1434,7 @@ type InterfaceState struct {
 	Switch pulumi.StringPtrInput
 	// Block FortiSwitch port-to-port traffic. Valid values: `enable`, `disable`.
 	SwitchControllerAccessVlan pulumi.StringPtrInput
-	// Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+	// Enable/disable FortiSwitch ARP inspection.
 	SwitchControllerArpInspection pulumi.StringPtrInput
 	// Switch controller DHCP snooping. Valid values: `enable`, `disable`.
 	SwitchControllerDhcpSnooping pulumi.StringPtrInput
@@ -1607,6 +1613,8 @@ type interfaceArgs struct {
 	DhcpClientIdentifier *string `pulumi:"dhcpClientIdentifier"`
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
 	DhcpRelayAgentOption *string `pulumi:"dhcpRelayAgentOption"`
+	// Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+	DhcpRelayAllowNoEndOption *string `pulumi:"dhcpRelayAllowNoEndOption"`
 	// DHCP relay circuit ID.
 	DhcpRelayCircuitId *string `pulumi:"dhcpRelayCircuitId"`
 	// Specify outgoing interface to reach server.
@@ -1699,7 +1707,7 @@ type interfaceArgs struct {
 	ForwardDomain *int `pulumi:"forwardDomain"`
 	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
 	ForwardErrorCorrection *string `pulumi:"forwardErrorCorrection"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect *string `pulumi:"gwdetect"`
@@ -1715,11 +1723,11 @@ type interfaceArgs struct {
 	IdleTimeout *int `pulumi:"idleTimeout"`
 	// Configure IKE authentication SAML server.
 	IkeSamlServer *string `pulumi:"ikeSamlServer"`
-	// Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+	// Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
 	Inbandwidth *int `pulumi:"inbandwidth"`
 	// Incoming traffic shaping profile.
 	IngressShapingProfile *string `pulumi:"ingressShapingProfile"`
-	// Ingress Spillover threshold (0 - 16776000 kbps).
+	// Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
 	IngressSpilloverThreshold *int `pulumi:"ingressSpilloverThreshold"`
 	// Interface name.
 	Interface *string `pulumi:"interface"`
@@ -1795,7 +1803,7 @@ type interfaceArgs struct {
 	NetbiosForward *string `pulumi:"netbiosForward"`
 	// Enable/disable NetFlow on this interface and set the data that NetFlow collects (rx, tx, or both). Valid values: `disable`, `tx`, `rx`, `both`.
 	NetflowSampler *string `pulumi:"netflowSampler"`
-	// Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+	// Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
 	Outbandwidth *int `pulumi:"outbandwidth"`
 	// PPPoE Active Discovery Terminate (PADT) used to terminate sessions after an idle time.
 	PadtRetryTimeout *int `pulumi:"padtRetryTimeout"`
@@ -1803,7 +1811,7 @@ type interfaceArgs struct {
 	Password *string `pulumi:"password"`
 	// PING server status.
 	PingServStatus *int `pulumi:"pingServStatus"`
-	// sFlow polling interval (1 - 255 sec).
+	// sFlow polling interval in seconds (1 - 255).
 	PollingInterval *int `pulumi:"pollingInterval"`
 	// Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
 	PppoeUnnumberedNegotiate *string `pulumi:"pppoeUnnumberedNegotiate"`
@@ -1899,7 +1907,7 @@ type interfaceArgs struct {
 	Switch *string `pulumi:"switch"`
 	// Block FortiSwitch port-to-port traffic. Valid values: `enable`, `disable`.
 	SwitchControllerAccessVlan *string `pulumi:"switchControllerAccessVlan"`
-	// Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+	// Enable/disable FortiSwitch ARP inspection.
 	SwitchControllerArpInspection *string `pulumi:"switchControllerArpInspection"`
 	// Switch controller DHCP snooping. Valid values: `enable`, `disable`.
 	SwitchControllerDhcpSnooping *string `pulumi:"switchControllerDhcpSnooping"`
@@ -2075,6 +2083,8 @@ type InterfaceArgs struct {
 	DhcpClientIdentifier pulumi.StringPtrInput
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
 	DhcpRelayAgentOption pulumi.StringPtrInput
+	// Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+	DhcpRelayAllowNoEndOption pulumi.StringPtrInput
 	// DHCP relay circuit ID.
 	DhcpRelayCircuitId pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
@@ -2167,7 +2177,7 @@ type InterfaceArgs struct {
 	ForwardDomain pulumi.IntPtrInput
 	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
 	ForwardErrorCorrection pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect pulumi.StringPtrInput
@@ -2183,11 +2193,11 @@ type InterfaceArgs struct {
 	IdleTimeout pulumi.IntPtrInput
 	// Configure IKE authentication SAML server.
 	IkeSamlServer pulumi.StringPtrInput
-	// Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+	// Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
 	Inbandwidth pulumi.IntPtrInput
 	// Incoming traffic shaping profile.
 	IngressShapingProfile pulumi.StringPtrInput
-	// Ingress Spillover threshold (0 - 16776000 kbps).
+	// Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
 	IngressSpilloverThreshold pulumi.IntPtrInput
 	// Interface name.
 	Interface pulumi.StringPtrInput
@@ -2263,7 +2273,7 @@ type InterfaceArgs struct {
 	NetbiosForward pulumi.StringPtrInput
 	// Enable/disable NetFlow on this interface and set the data that NetFlow collects (rx, tx, or both). Valid values: `disable`, `tx`, `rx`, `both`.
 	NetflowSampler pulumi.StringPtrInput
-	// Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+	// Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
 	Outbandwidth pulumi.IntPtrInput
 	// PPPoE Active Discovery Terminate (PADT) used to terminate sessions after an idle time.
 	PadtRetryTimeout pulumi.IntPtrInput
@@ -2271,7 +2281,7 @@ type InterfaceArgs struct {
 	Password pulumi.StringPtrInput
 	// PING server status.
 	PingServStatus pulumi.IntPtrInput
-	// sFlow polling interval (1 - 255 sec).
+	// sFlow polling interval in seconds (1 - 255).
 	PollingInterval pulumi.IntPtrInput
 	// Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
 	PppoeUnnumberedNegotiate pulumi.StringPtrInput
@@ -2367,7 +2377,7 @@ type InterfaceArgs struct {
 	Switch pulumi.StringPtrInput
 	// Block FortiSwitch port-to-port traffic. Valid values: `enable`, `disable`.
 	SwitchControllerAccessVlan pulumi.StringPtrInput
-	// Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+	// Enable/disable FortiSwitch ARP inspection.
 	SwitchControllerArpInspection pulumi.StringPtrInput
 	// Switch controller DHCP snooping. Valid values: `enable`, `disable`.
 	SwitchControllerDhcpSnooping pulumi.StringPtrInput
@@ -2751,6 +2761,11 @@ func (o InterfaceOutput) DhcpRelayAgentOption() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.DhcpRelayAgentOption }).(pulumi.StringOutput)
 }
 
+// Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+func (o InterfaceOutput) DhcpRelayAllowNoEndOption() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.DhcpRelayAllowNoEndOption }).(pulumi.StringOutput)
+}
+
 // DHCP relay circuit ID.
 func (o InterfaceOutput) DhcpRelayCircuitId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.DhcpRelayCircuitId }).(pulumi.StringOutput)
@@ -2981,7 +2996,7 @@ func (o InterfaceOutput) ForwardErrorCorrection() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.ForwardErrorCorrection }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o InterfaceOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -3021,7 +3036,7 @@ func (o InterfaceOutput) IkeSamlServer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.IkeSamlServer }).(pulumi.StringOutput)
 }
 
-// Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+// Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
 func (o InterfaceOutput) Inbandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *Interface) pulumi.IntOutput { return v.Inbandwidth }).(pulumi.IntOutput)
 }
@@ -3031,7 +3046,7 @@ func (o InterfaceOutput) IngressShapingProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.IngressShapingProfile }).(pulumi.StringOutput)
 }
 
-// Ingress Spillover threshold (0 - 16776000 kbps).
+// Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
 func (o InterfaceOutput) IngressSpilloverThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v *Interface) pulumi.IntOutput { return v.IngressSpilloverThreshold }).(pulumi.IntOutput)
 }
@@ -3221,7 +3236,7 @@ func (o InterfaceOutput) NetflowSampler() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.NetflowSampler }).(pulumi.StringOutput)
 }
 
-// Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+// Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
 func (o InterfaceOutput) Outbandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *Interface) pulumi.IntOutput { return v.Outbandwidth }).(pulumi.IntOutput)
 }
@@ -3241,7 +3256,7 @@ func (o InterfaceOutput) PingServStatus() pulumi.IntOutput {
 	return o.ApplyT(func(v *Interface) pulumi.IntOutput { return v.PingServStatus }).(pulumi.IntOutput)
 }
 
-// sFlow polling interval (1 - 255 sec).
+// sFlow polling interval in seconds (1 - 255).
 func (o InterfaceOutput) PollingInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Interface) pulumi.IntOutput { return v.PollingInterval }).(pulumi.IntOutput)
 }
@@ -3481,7 +3496,7 @@ func (o InterfaceOutput) SwitchControllerAccessVlan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.SwitchControllerAccessVlan }).(pulumi.StringOutput)
 }
 
-// Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+// Enable/disable FortiSwitch ARP inspection.
 func (o InterfaceOutput) SwitchControllerArpInspection() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.SwitchControllerArpInspection }).(pulumi.StringOutput)
 }
@@ -3652,8 +3667,8 @@ func (o InterfaceOutput) Vdom() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o InterfaceOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Interface) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o InterfaceOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interface) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Switch control interface VLAN ID.

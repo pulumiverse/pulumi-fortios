@@ -40,9 +40,12 @@ class CsfArgs:
                  management_ip: Optional[pulumi.Input[str]] = None,
                  management_port: Optional[pulumi.Input[int]] = None,
                  saml_configuration_sync: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input['CsfTrustedListArgs']]]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  upstream: Optional[pulumi.Input[str]] = None,
+                 upstream_interface: Optional[pulumi.Input[str]] = None,
+                 upstream_interface_select_method: Optional[pulumi.Input[str]] = None,
                  upstream_ip: Optional[pulumi.Input[str]] = None,
                  upstream_port: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -65,16 +68,19 @@ class CsfArgs:
         :param pulumi.Input[int] file_quota_warning: Warn when the set percentage of quota has been used.
         :param pulumi.Input[str] fixed_key: Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
         :param pulumi.Input[str] forticloud_account_enforcement: Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
         :param pulumi.Input[str] group_password: Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
         :param pulumi.Input[str] log_unification: Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] management_ip: Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
         :param pulumi.Input[int] management_port: Overriding port for management connection (Overrides admin port).
         :param pulumi.Input[str] saml_configuration_sync: SAML setting configuration synchronization. Valid values: `default`, `local`.
+        :param pulumi.Input[str] source_ip: Source IP address for communication with the upstream FortiGate.
         :param pulumi.Input[Sequence[pulumi.Input['CsfTrustedListArgs']]] trusted_lists: Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
         :param pulumi.Input[str] uid: Unique ID of the current CSF node
         :param pulumi.Input[str] upstream: IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
+        :param pulumi.Input[str] upstream_interface: Specify outgoing interface to reach server.
+        :param pulumi.Input[str] upstream_interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] upstream_ip: IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[int] upstream_port: The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -126,12 +132,18 @@ class CsfArgs:
             pulumi.set(__self__, "management_port", management_port)
         if saml_configuration_sync is not None:
             pulumi.set(__self__, "saml_configuration_sync", saml_configuration_sync)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
         if trusted_lists is not None:
             pulumi.set(__self__, "trusted_lists", trusted_lists)
         if uid is not None:
             pulumi.set(__self__, "uid", uid)
         if upstream is not None:
             pulumi.set(__self__, "upstream", upstream)
+        if upstream_interface is not None:
+            pulumi.set(__self__, "upstream_interface", upstream_interface)
+        if upstream_interface_select_method is not None:
+            pulumi.set(__self__, "upstream_interface_select_method", upstream_interface_select_method)
         if upstream_ip is not None:
             pulumi.set(__self__, "upstream_ip", upstream_ip)
         if upstream_port is not None:
@@ -347,7 +359,7 @@ class CsfArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -428,6 +440,18 @@ class CsfArgs:
         pulumi.set(self, "saml_configuration_sync", value)
 
     @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Source IP address for communication with the upstream FortiGate.
+        """
+        return pulumi.get(self, "source_ip")
+
+    @source_ip.setter
+    def source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip", value)
+
+    @property
     @pulumi.getter(name="trustedLists")
     def trusted_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CsfTrustedListArgs']]]]:
         """
@@ -462,6 +486,30 @@ class CsfArgs:
     @upstream.setter
     def upstream(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "upstream", value)
+
+    @property
+    @pulumi.getter(name="upstreamInterface")
+    def upstream_interface(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "upstream_interface")
+
+    @upstream_interface.setter
+    def upstream_interface(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "upstream_interface", value)
+
+    @property
+    @pulumi.getter(name="upstreamInterfaceSelectMethod")
+    def upstream_interface_select_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        """
+        return pulumi.get(self, "upstream_interface_select_method")
+
+    @upstream_interface_select_method.setter
+    def upstream_interface_select_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "upstream_interface_select_method", value)
 
     @property
     @pulumi.getter(name="upstreamIp")
@@ -526,10 +574,13 @@ class _CsfState:
                  management_ip: Optional[pulumi.Input[str]] = None,
                  management_port: Optional[pulumi.Input[int]] = None,
                  saml_configuration_sync: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input['CsfTrustedListArgs']]]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  upstream: Optional[pulumi.Input[str]] = None,
+                 upstream_interface: Optional[pulumi.Input[str]] = None,
+                 upstream_interface_select_method: Optional[pulumi.Input[str]] = None,
                  upstream_ip: Optional[pulumi.Input[str]] = None,
                  upstream_port: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -551,17 +602,20 @@ class _CsfState:
         :param pulumi.Input[int] file_quota_warning: Warn when the set percentage of quota has been used.
         :param pulumi.Input[str] fixed_key: Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
         :param pulumi.Input[str] forticloud_account_enforcement: Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
         :param pulumi.Input[str] group_password: Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
         :param pulumi.Input[str] log_unification: Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] management_ip: Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
         :param pulumi.Input[int] management_port: Overriding port for management connection (Overrides admin port).
         :param pulumi.Input[str] saml_configuration_sync: SAML setting configuration synchronization. Valid values: `default`, `local`.
+        :param pulumi.Input[str] source_ip: Source IP address for communication with the upstream FortiGate.
         :param pulumi.Input[str] status: Enable/disable Security Fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['CsfTrustedListArgs']]] trusted_lists: Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
         :param pulumi.Input[str] uid: Unique ID of the current CSF node
         :param pulumi.Input[str] upstream: IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
+        :param pulumi.Input[str] upstream_interface: Specify outgoing interface to reach server.
+        :param pulumi.Input[str] upstream_interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] upstream_ip: IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[int] upstream_port: The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -612,6 +666,8 @@ class _CsfState:
             pulumi.set(__self__, "management_port", management_port)
         if saml_configuration_sync is not None:
             pulumi.set(__self__, "saml_configuration_sync", saml_configuration_sync)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if trusted_lists is not None:
@@ -620,6 +676,10 @@ class _CsfState:
             pulumi.set(__self__, "uid", uid)
         if upstream is not None:
             pulumi.set(__self__, "upstream", upstream)
+        if upstream_interface is not None:
+            pulumi.set(__self__, "upstream_interface", upstream_interface)
+        if upstream_interface_select_method is not None:
+            pulumi.set(__self__, "upstream_interface_select_method", upstream_interface_select_method)
         if upstream_ip is not None:
             pulumi.set(__self__, "upstream_ip", upstream_ip)
         if upstream_port is not None:
@@ -823,7 +883,7 @@ class _CsfState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -904,6 +964,18 @@ class _CsfState:
         pulumi.set(self, "saml_configuration_sync", value)
 
     @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Source IP address for communication with the upstream FortiGate.
+        """
+        return pulumi.get(self, "source_ip")
+
+    @source_ip.setter
+    def source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -950,6 +1022,30 @@ class _CsfState:
     @upstream.setter
     def upstream(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "upstream", value)
+
+    @property
+    @pulumi.getter(name="upstreamInterface")
+    def upstream_interface(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "upstream_interface")
+
+    @upstream_interface.setter
+    def upstream_interface(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "upstream_interface", value)
+
+    @property
+    @pulumi.getter(name="upstreamInterfaceSelectMethod")
+    def upstream_interface_select_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        """
+        return pulumi.get(self, "upstream_interface_select_method")
+
+    @upstream_interface_select_method.setter
+    def upstream_interface_select_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "upstream_interface_select_method", value)
 
     @property
     @pulumi.getter(name="upstreamIp")
@@ -1016,10 +1112,13 @@ class Csf(pulumi.CustomResource):
                  management_ip: Optional[pulumi.Input[str]] = None,
                  management_port: Optional[pulumi.Input[int]] = None,
                  saml_configuration_sync: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfTrustedListArgs']]]]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  upstream: Optional[pulumi.Input[str]] = None,
+                 upstream_interface: Optional[pulumi.Input[str]] = None,
+                 upstream_interface_select_method: Optional[pulumi.Input[str]] = None,
                  upstream_ip: Optional[pulumi.Input[str]] = None,
                  upstream_port: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -1079,17 +1178,20 @@ class Csf(pulumi.CustomResource):
         :param pulumi.Input[int] file_quota_warning: Warn when the set percentage of quota has been used.
         :param pulumi.Input[str] fixed_key: Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
         :param pulumi.Input[str] forticloud_account_enforcement: Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
         :param pulumi.Input[str] group_password: Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
         :param pulumi.Input[str] log_unification: Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] management_ip: Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
         :param pulumi.Input[int] management_port: Overriding port for management connection (Overrides admin port).
         :param pulumi.Input[str] saml_configuration_sync: SAML setting configuration synchronization. Valid values: `default`, `local`.
+        :param pulumi.Input[str] source_ip: Source IP address for communication with the upstream FortiGate.
         :param pulumi.Input[str] status: Enable/disable Security Fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfTrustedListArgs']]]] trusted_lists: Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
         :param pulumi.Input[str] uid: Unique ID of the current CSF node
         :param pulumi.Input[str] upstream: IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
+        :param pulumi.Input[str] upstream_interface: Specify outgoing interface to reach server.
+        :param pulumi.Input[str] upstream_interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] upstream_ip: IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[int] upstream_port: The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -1175,10 +1277,13 @@ class Csf(pulumi.CustomResource):
                  management_ip: Optional[pulumi.Input[str]] = None,
                  management_port: Optional[pulumi.Input[int]] = None,
                  saml_configuration_sync: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfTrustedListArgs']]]]] = None,
                  uid: Optional[pulumi.Input[str]] = None,
                  upstream: Optional[pulumi.Input[str]] = None,
+                 upstream_interface: Optional[pulumi.Input[str]] = None,
+                 upstream_interface_select_method: Optional[pulumi.Input[str]] = None,
                  upstream_ip: Optional[pulumi.Input[str]] = None,
                  upstream_port: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -1214,12 +1319,15 @@ class Csf(pulumi.CustomResource):
             __props__.__dict__["management_ip"] = management_ip
             __props__.__dict__["management_port"] = management_port
             __props__.__dict__["saml_configuration_sync"] = saml_configuration_sync
+            __props__.__dict__["source_ip"] = source_ip
             if status is None and not opts.urn:
                 raise TypeError("Missing required property 'status'")
             __props__.__dict__["status"] = status
             __props__.__dict__["trusted_lists"] = trusted_lists
             __props__.__dict__["uid"] = uid
             __props__.__dict__["upstream"] = upstream
+            __props__.__dict__["upstream_interface"] = upstream_interface
+            __props__.__dict__["upstream_interface_select_method"] = upstream_interface_select_method
             __props__.__dict__["upstream_ip"] = upstream_ip
             __props__.__dict__["upstream_port"] = upstream_port
             __props__.__dict__["vdomparam"] = vdomparam
@@ -1258,10 +1366,13 @@ class Csf(pulumi.CustomResource):
             management_ip: Optional[pulumi.Input[str]] = None,
             management_port: Optional[pulumi.Input[int]] = None,
             saml_configuration_sync: Optional[pulumi.Input[str]] = None,
+            source_ip: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfTrustedListArgs']]]]] = None,
             uid: Optional[pulumi.Input[str]] = None,
             upstream: Optional[pulumi.Input[str]] = None,
+            upstream_interface: Optional[pulumi.Input[str]] = None,
+            upstream_interface_select_method: Optional[pulumi.Input[str]] = None,
             upstream_ip: Optional[pulumi.Input[str]] = None,
             upstream_port: Optional[pulumi.Input[int]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Csf':
@@ -1288,17 +1399,20 @@ class Csf(pulumi.CustomResource):
         :param pulumi.Input[int] file_quota_warning: Warn when the set percentage of quota has been used.
         :param pulumi.Input[str] fixed_key: Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
         :param pulumi.Input[str] forticloud_account_enforcement: Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
         :param pulumi.Input[str] group_password: Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
         :param pulumi.Input[str] log_unification: Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] management_ip: Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
         :param pulumi.Input[int] management_port: Overriding port for management connection (Overrides admin port).
         :param pulumi.Input[str] saml_configuration_sync: SAML setting configuration synchronization. Valid values: `default`, `local`.
+        :param pulumi.Input[str] source_ip: Source IP address for communication with the upstream FortiGate.
         :param pulumi.Input[str] status: Enable/disable Security Fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsfTrustedListArgs']]]] trusted_lists: Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
         :param pulumi.Input[str] uid: Unique ID of the current CSF node
         :param pulumi.Input[str] upstream: IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
+        :param pulumi.Input[str] upstream_interface: Specify outgoing interface to reach server.
+        :param pulumi.Input[str] upstream_interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] upstream_ip: IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[int] upstream_port: The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -1330,10 +1444,13 @@ class Csf(pulumi.CustomResource):
         __props__.__dict__["management_ip"] = management_ip
         __props__.__dict__["management_port"] = management_port
         __props__.__dict__["saml_configuration_sync"] = saml_configuration_sync
+        __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["status"] = status
         __props__.__dict__["trusted_lists"] = trusted_lists
         __props__.__dict__["uid"] = uid
         __props__.__dict__["upstream"] = upstream
+        __props__.__dict__["upstream_interface"] = upstream_interface
+        __props__.__dict__["upstream_interface_select_method"] = upstream_interface_select_method
         __props__.__dict__["upstream_ip"] = upstream_ip
         __props__.__dict__["upstream_port"] = upstream_port
         __props__.__dict__["vdomparam"] = vdomparam
@@ -1471,7 +1588,7 @@ class Csf(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1524,6 +1641,14 @@ class Csf(pulumi.CustomResource):
         return pulumi.get(self, "saml_configuration_sync")
 
     @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> pulumi.Output[str]:
+        """
+        Source IP address for communication with the upstream FortiGate.
+        """
+        return pulumi.get(self, "source_ip")
+
+    @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
@@ -1556,6 +1681,22 @@ class Csf(pulumi.CustomResource):
         return pulumi.get(self, "upstream")
 
     @property
+    @pulumi.getter(name="upstreamInterface")
+    def upstream_interface(self) -> pulumi.Output[str]:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "upstream_interface")
+
+    @property
+    @pulumi.getter(name="upstreamInterfaceSelectMethod")
+    def upstream_interface_select_method(self) -> pulumi.Output[str]:
+        """
+        Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        """
+        return pulumi.get(self, "upstream_interface_select_method")
+
+    @property
     @pulumi.getter(name="upstreamIp")
     def upstream_ip(self) -> pulumi.Output[str]:
         """
@@ -1573,7 +1714,7 @@ class Csf(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -3332,6 +3332,8 @@ type BgpNeighborGroup struct {
 	PrefixListOutVpnv6 *string `pulumi:"prefixListOutVpnv6"`
 	// AS number of neighbor.
 	RemoteAs *int `pulumi:"remoteAs"`
+	// BGP filter for remote AS.
+	RemoteAsFilter *string `pulumi:"remoteAsFilter"`
 	// Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
 	RemovePrivateAs *string `pulumi:"removePrivateAs"`
 	// Enable/disable remove private AS number from IPv6 outbound updates. Valid values: `enable`, `disable`.
@@ -3656,6 +3658,8 @@ type BgpNeighborGroupArgs struct {
 	PrefixListOutVpnv6 pulumi.StringPtrInput `pulumi:"prefixListOutVpnv6"`
 	// AS number of neighbor.
 	RemoteAs pulumi.IntPtrInput `pulumi:"remoteAs"`
+	// BGP filter for remote AS.
+	RemoteAsFilter pulumi.StringPtrInput `pulumi:"remoteAsFilter"`
 	// Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
 	RemovePrivateAs pulumi.StringPtrInput `pulumi:"removePrivateAs"`
 	// Enable/disable remove private AS number from IPv6 outbound updates. Valid values: `enable`, `disable`.
@@ -4338,6 +4342,11 @@ func (o BgpNeighborGroupOutput) PrefixListOutVpnv6() pulumi.StringPtrOutput {
 // AS number of neighbor.
 func (o BgpNeighborGroupOutput) RemoteAs() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v BgpNeighborGroup) *int { return v.RemoteAs }).(pulumi.IntPtrOutput)
+}
+
+// BGP filter for remote AS.
+func (o BgpNeighborGroupOutput) RemoteAsFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BgpNeighborGroup) *string { return v.RemoteAsFilter }).(pulumi.StringPtrOutput)
 }
 
 // Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
@@ -21190,6 +21199,8 @@ type GetBgpNeighborGroup struct {
 	PrefixListOutVpnv6 string `pulumi:"prefixListOutVpnv6"`
 	// AS number of neighbor.
 	RemoteAs int `pulumi:"remoteAs"`
+	// BGP filter for remote AS.
+	RemoteAsFilter string `pulumi:"remoteAsFilter"`
 	// Enable/disable remove private AS number from IPv4 outbound updates.
 	RemovePrivateAs string `pulumi:"removePrivateAs"`
 	// Enable/disable remove private AS number from IPv6 outbound updates.
@@ -21514,6 +21525,8 @@ type GetBgpNeighborGroupArgs struct {
 	PrefixListOutVpnv6 pulumi.StringInput `pulumi:"prefixListOutVpnv6"`
 	// AS number of neighbor.
 	RemoteAs pulumi.IntInput `pulumi:"remoteAs"`
+	// BGP filter for remote AS.
+	RemoteAsFilter pulumi.StringInput `pulumi:"remoteAsFilter"`
 	// Enable/disable remove private AS number from IPv4 outbound updates.
 	RemovePrivateAs pulumi.StringInput `pulumi:"removePrivateAs"`
 	// Enable/disable remove private AS number from IPv6 outbound updates.
@@ -22196,6 +22209,11 @@ func (o GetBgpNeighborGroupOutput) PrefixListOutVpnv6() pulumi.StringOutput {
 // AS number of neighbor.
 func (o GetBgpNeighborGroupOutput) RemoteAs() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBgpNeighborGroup) int { return v.RemoteAs }).(pulumi.IntOutput)
+}
+
+// BGP filter for remote AS.
+func (o GetBgpNeighborGroupOutput) RemoteAsFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBgpNeighborGroup) string { return v.RemoteAsFilter }).(pulumi.StringOutput)
 }
 
 // Enable/disable remove private AS number from IPv4 outbound updates.

@@ -72,6 +72,7 @@ class VipArgs:
                  server_type: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['VipServiceArgs']]]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input['VipSrcFilterArgs']]]] = None,
+                 src_vip_filter: Optional[pulumi.Input[str]] = None,
                  srcintf_filters: Optional[pulumi.Input[Sequence[pulumi.Input['VipSrcintfFilterArgs']]]] = None,
                  ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
@@ -127,7 +128,7 @@ class VipArgs:
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] gratuitous_arp_interval: Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
         :param pulumi.Input[str] gslb_domain_name: Domain to use when integrating with FortiGSLB.
         :param pulumi.Input[str] gslb_hostname: Hostname to use within the configured FortiGSLB domain.
@@ -172,6 +173,7 @@ class VipArgs:
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input['VipServiceArgs']]] services: Service name. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['VipSrcFilterArgs']]] src_filters: Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces. The structure of `src_filter` block is documented below.
+        :param pulumi.Input[str] src_vip_filter: Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['VipSrcintfFilterArgs']]] srcintf_filters: Interfaces to which the VIP applies. Separate the names with spaces. The structure of `srcintf_filter` block is documented below.
         :param pulumi.Input[str] ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
@@ -327,6 +329,8 @@ class VipArgs:
             pulumi.set(__self__, "services", services)
         if src_filters is not None:
             pulumi.set(__self__, "src_filters", src_filters)
+        if src_vip_filter is not None:
+            pulumi.set(__self__, "src_vip_filter", src_vip_filter)
         if srcintf_filters is not None:
             pulumi.set(__self__, "srcintf_filters", srcintf_filters)
         if ssl_accept_ffdhe_groups is not None:
@@ -548,7 +552,7 @@ class VipArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1083,6 +1087,18 @@ class VipArgs:
     @src_filters.setter
     def src_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VipSrcFilterArgs']]]]):
         pulumi.set(self, "src_filters", value)
+
+    @property
+    @pulumi.getter(name="srcVipFilter")
+    def src_vip_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "src_vip_filter")
+
+    @src_vip_filter.setter
+    def src_vip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "src_vip_filter", value)
 
     @property
     @pulumi.getter(name="srcintfFilters")
@@ -1648,6 +1664,7 @@ class _VipState:
                  server_type: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['VipServiceArgs']]]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input['VipSrcFilterArgs']]]] = None,
+                 src_vip_filter: Optional[pulumi.Input[str]] = None,
                  srcintf_filters: Optional[pulumi.Input[Sequence[pulumi.Input['VipSrcintfFilterArgs']]]] = None,
                  ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
@@ -1703,7 +1720,7 @@ class _VipState:
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] gratuitous_arp_interval: Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
         :param pulumi.Input[str] gslb_domain_name: Domain to use when integrating with FortiGSLB.
         :param pulumi.Input[str] gslb_hostname: Hostname to use within the configured FortiGSLB domain.
@@ -1748,6 +1765,7 @@ class _VipState:
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input['VipServiceArgs']]] services: Service name. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['VipSrcFilterArgs']]] src_filters: Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces. The structure of `src_filter` block is documented below.
+        :param pulumi.Input[str] src_vip_filter: Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['VipSrcintfFilterArgs']]] srcintf_filters: Interfaces to which the VIP applies. Separate the names with spaces. The structure of `srcintf_filter` block is documented below.
         :param pulumi.Input[str] ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
@@ -1903,6 +1921,8 @@ class _VipState:
             pulumi.set(__self__, "services", services)
         if src_filters is not None:
             pulumi.set(__self__, "src_filters", src_filters)
+        if src_vip_filter is not None:
+            pulumi.set(__self__, "src_vip_filter", src_vip_filter)
         if srcintf_filters is not None:
             pulumi.set(__self__, "srcintf_filters", srcintf_filters)
         if ssl_accept_ffdhe_groups is not None:
@@ -2124,7 +2144,7 @@ class _VipState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2659,6 +2679,18 @@ class _VipState:
     @src_filters.setter
     def src_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VipSrcFilterArgs']]]]):
         pulumi.set(self, "src_filters", value)
+
+    @property
+    @pulumi.getter(name="srcVipFilter")
+    def src_vip_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "src_vip_filter")
+
+    @src_vip_filter.setter
+    def src_vip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "src_vip_filter", value)
 
     @property
     @pulumi.getter(name="srcintfFilters")
@@ -3226,6 +3258,7 @@ class Vip(pulumi.CustomResource):
                  server_type: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipServiceArgs']]]]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSrcFilterArgs']]]]] = None,
+                 src_vip_filter: Optional[pulumi.Input[str]] = None,
                  srcintf_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSrcintfFilterArgs']]]]] = None,
                  ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
@@ -3367,7 +3400,7 @@ class Vip(pulumi.CustomResource):
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] gratuitous_arp_interval: Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
         :param pulumi.Input[str] gslb_domain_name: Domain to use when integrating with FortiGSLB.
         :param pulumi.Input[str] gslb_hostname: Hostname to use within the configured FortiGSLB domain.
@@ -3412,6 +3445,7 @@ class Vip(pulumi.CustomResource):
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipServiceArgs']]]] services: Service name. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSrcFilterArgs']]]] src_filters: Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces. The structure of `src_filter` block is documented below.
+        :param pulumi.Input[str] src_vip_filter: Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSrcintfFilterArgs']]]] srcintf_filters: Interfaces to which the VIP applies. Separate the names with spaces. The structure of `srcintf_filter` block is documented below.
         :param pulumi.Input[str] ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
@@ -3617,6 +3651,7 @@ class Vip(pulumi.CustomResource):
                  server_type: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipServiceArgs']]]]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSrcFilterArgs']]]]] = None,
+                 src_vip_filter: Optional[pulumi.Input[str]] = None,
                  srcintf_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSrcintfFilterArgs']]]]] = None,
                  ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
@@ -3724,6 +3759,7 @@ class Vip(pulumi.CustomResource):
             __props__.__dict__["server_type"] = server_type
             __props__.__dict__["services"] = services
             __props__.__dict__["src_filters"] = src_filters
+            __props__.__dict__["src_vip_filter"] = src_vip_filter
             __props__.__dict__["srcintf_filters"] = srcintf_filters
             __props__.__dict__["ssl_accept_ffdhe_groups"] = ssl_accept_ffdhe_groups
             __props__.__dict__["ssl_algorithm"] = ssl_algorithm
@@ -3832,6 +3868,7 @@ class Vip(pulumi.CustomResource):
             server_type: Optional[pulumi.Input[str]] = None,
             services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipServiceArgs']]]]] = None,
             src_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSrcFilterArgs']]]]] = None,
+            src_vip_filter: Optional[pulumi.Input[str]] = None,
             srcintf_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSrcintfFilterArgs']]]]] = None,
             ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
             ssl_algorithm: Optional[pulumi.Input[str]] = None,
@@ -3892,7 +3929,7 @@ class Vip(pulumi.CustomResource):
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] gratuitous_arp_interval: Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
         :param pulumi.Input[str] gslb_domain_name: Domain to use when integrating with FortiGSLB.
         :param pulumi.Input[str] gslb_hostname: Hostname to use within the configured FortiGSLB domain.
@@ -3937,6 +3974,7 @@ class Vip(pulumi.CustomResource):
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipServiceArgs']]]] services: Service name. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSrcFilterArgs']]]] src_filters: Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces. The structure of `src_filter` block is documented below.
+        :param pulumi.Input[str] src_vip_filter: Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VipSrcintfFilterArgs']]]] srcintf_filters: Interfaces to which the VIP applies. Separate the names with spaces. The structure of `srcintf_filter` block is documented below.
         :param pulumi.Input[str] ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
@@ -4040,6 +4078,7 @@ class Vip(pulumi.CustomResource):
         __props__.__dict__["server_type"] = server_type
         __props__.__dict__["services"] = services
         __props__.__dict__["src_filters"] = src_filters
+        __props__.__dict__["src_vip_filter"] = src_vip_filter
         __props__.__dict__["srcintf_filters"] = srcintf_filters
         __props__.__dict__["ssl_accept_ffdhe_groups"] = ssl_accept_ffdhe_groups
         __props__.__dict__["ssl_algorithm"] = ssl_algorithm
@@ -4176,7 +4215,7 @@ class Vip(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -4533,6 +4572,14 @@ class Vip(pulumi.CustomResource):
         return pulumi.get(self, "src_filters")
 
     @property
+    @pulumi.getter(name="srcVipFilter")
+    def src_vip_filter(self) -> pulumi.Output[str]:
+        """
+        Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "src_vip_filter")
+
+    @property
     @pulumi.getter(name="srcintfFilters")
     def srcintf_filters(self) -> pulumi.Output[Optional[Sequence['outputs.VipSrcintfFilter']]]:
         """
@@ -4846,7 +4893,7 @@ class Vip(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

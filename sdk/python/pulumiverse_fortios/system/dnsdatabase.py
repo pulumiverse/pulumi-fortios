@@ -42,17 +42,15 @@ class DnsdatabaseArgs:
         :param pulumi.Input[str] authoritative: Enable/disable authoritative zone. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[int] ttl: Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
-        :param pulumi.Input[str] type: Zone type (master to manage entries directly, slave to import entries from other zones).
+        :param pulumi.Input[str] type: Zone type (primary to manage entries directly, secondary to import entries from other zones).
         :param pulumi.Input[str] view: Zone view (public to serve public clients, shadow to serve internal clients).
         :param pulumi.Input[str] allow_transfer: DNS zone transfer IP address list.
-        :param pulumi.Input[str] contact: Email address of the administrator for this zone.
-               You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-               When using a simple username, the domain of the email will be this zone.
+        :param pulumi.Input[str] contact: Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
         :param pulumi.Input[Sequence[pulumi.Input['DnsdatabaseDnsEntryArgs']]] dns_entries: DNS entry. The structure of `dns_entry` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] forwarder: DNS zone forwarder IP address list.
         :param pulumi.Input[str] forwarder6: Forwarder IPv6 address.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_master: IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
         :param pulumi.Input[str] ip_primary: IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
         :param pulumi.Input[str] name: Zone name.
@@ -141,7 +139,7 @@ class DnsdatabaseArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Zone type (master to manage entries directly, slave to import entries from other zones).
+        Zone type (primary to manage entries directly, secondary to import entries from other zones).
         """
         return pulumi.get(self, "type")
 
@@ -177,9 +175,7 @@ class DnsdatabaseArgs:
     @pulumi.getter
     def contact(self) -> Optional[pulumi.Input[str]]:
         """
-        Email address of the administrator for this zone.
-        You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-        When using a simple username, the domain of the email will be this zone.
+        Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
         """
         return pulumi.get(self, "contact")
 
@@ -239,7 +235,7 @@ class DnsdatabaseArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -384,15 +380,13 @@ class _DnsdatabaseState:
         Input properties used for looking up and filtering Dnsdatabase resources.
         :param pulumi.Input[str] allow_transfer: DNS zone transfer IP address list.
         :param pulumi.Input[str] authoritative: Enable/disable authoritative zone. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] contact: Email address of the administrator for this zone.
-               You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-               When using a simple username, the domain of the email will be this zone.
+        :param pulumi.Input[str] contact: Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
         :param pulumi.Input[Sequence[pulumi.Input['DnsdatabaseDnsEntryArgs']]] dns_entries: DNS entry. The structure of `dns_entry` block is documented below.
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] forwarder: DNS zone forwarder IP address list.
         :param pulumi.Input[str] forwarder6: Forwarder IPv6 address.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_master: IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
         :param pulumi.Input[str] ip_primary: IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
         :param pulumi.Input[str] name: Zone name.
@@ -402,7 +396,7 @@ class _DnsdatabaseState:
         :param pulumi.Input[str] source_ip6: IPv6 source IP address for forwarding to DNS server.
         :param pulumi.Input[str] status: Enable/disable this DNS zone. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ttl: Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
-        :param pulumi.Input[str] type: Zone type (master to manage entries directly, slave to import entries from other zones).
+        :param pulumi.Input[str] type: Zone type (primary to manage entries directly, secondary to import entries from other zones).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] view: Zone view (public to serve public clients, shadow to serve internal clients).
         """
@@ -477,9 +471,7 @@ class _DnsdatabaseState:
     @pulumi.getter
     def contact(self) -> Optional[pulumi.Input[str]]:
         """
-        Email address of the administrator for this zone.
-        You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-        When using a simple username, the domain of the email will be this zone.
+        Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
         """
         return pulumi.get(self, "contact")
 
@@ -551,7 +543,7 @@ class _DnsdatabaseState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -671,7 +663,7 @@ class _DnsdatabaseState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Zone type (master to manage entries directly, slave to import entries from other zones).
+        Zone type (primary to manage entries directly, secondary to import entries from other zones).
         """
         return pulumi.get(self, "type")
 
@@ -781,15 +773,13 @@ class Dnsdatabase(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allow_transfer: DNS zone transfer IP address list.
         :param pulumi.Input[str] authoritative: Enable/disable authoritative zone. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] contact: Email address of the administrator for this zone.
-               You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-               When using a simple username, the domain of the email will be this zone.
+        :param pulumi.Input[str] contact: Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsdatabaseDnsEntryArgs']]]] dns_entries: DNS entry. The structure of `dns_entry` block is documented below.
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] forwarder: DNS zone forwarder IP address list.
         :param pulumi.Input[str] forwarder6: Forwarder IPv6 address.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_master: IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
         :param pulumi.Input[str] ip_primary: IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
         :param pulumi.Input[str] name: Zone name.
@@ -799,7 +789,7 @@ class Dnsdatabase(pulumi.CustomResource):
         :param pulumi.Input[str] source_ip6: IPv6 source IP address for forwarding to DNS server.
         :param pulumi.Input[str] status: Enable/disable this DNS zone. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ttl: Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
-        :param pulumi.Input[str] type: Zone type (master to manage entries directly, slave to import entries from other zones).
+        :param pulumi.Input[str] type: Zone type (primary to manage entries directly, secondary to import entries from other zones).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] view: Zone view (public to serve public clients, shadow to serve internal clients).
         """
@@ -971,15 +961,13 @@ class Dnsdatabase(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allow_transfer: DNS zone transfer IP address list.
         :param pulumi.Input[str] authoritative: Enable/disable authoritative zone. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] contact: Email address of the administrator for this zone.
-               You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-               When using a simple username, the domain of the email will be this zone.
+        :param pulumi.Input[str] contact: Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsdatabaseDnsEntryArgs']]]] dns_entries: DNS entry. The structure of `dns_entry` block is documented below.
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] forwarder: DNS zone forwarder IP address list.
         :param pulumi.Input[str] forwarder6: Forwarder IPv6 address.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_master: IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
         :param pulumi.Input[str] ip_primary: IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone.
         :param pulumi.Input[str] name: Zone name.
@@ -989,7 +977,7 @@ class Dnsdatabase(pulumi.CustomResource):
         :param pulumi.Input[str] source_ip6: IPv6 source IP address for forwarding to DNS server.
         :param pulumi.Input[str] status: Enable/disable this DNS zone. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ttl: Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
-        :param pulumi.Input[str] type: Zone type (master to manage entries directly, slave to import entries from other zones).
+        :param pulumi.Input[str] type: Zone type (primary to manage entries directly, secondary to import entries from other zones).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] view: Zone view (public to serve public clients, shadow to serve internal clients).
         """
@@ -1040,9 +1028,7 @@ class Dnsdatabase(pulumi.CustomResource):
     @pulumi.getter
     def contact(self) -> pulumi.Output[str]:
         """
-        Email address of the administrator for this zone.
-        You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-        When using a simple username, the domain of the email will be this zone.
+        Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
         """
         return pulumi.get(self, "contact")
 
@@ -1090,7 +1076,7 @@ class Dnsdatabase(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1170,13 +1156,13 @@ class Dnsdatabase(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        Zone type (master to manage entries directly, slave to import entries from other zones).
+        Zone type (primary to manage entries directly, secondary to import entries from other zones).
         """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

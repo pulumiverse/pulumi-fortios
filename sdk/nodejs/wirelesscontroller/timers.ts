@@ -72,6 +72,10 @@ export class Timers extends pulumi.CustomResource {
      */
     public readonly authTimeout!: pulumi.Output<number>;
     /**
+     * Time period in minutes to keep BLE device after it is gone (default = 60).
+     */
+    public readonly bleDeviceCleanup!: pulumi.Output<number>;
+    /**
      * Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
      */
     public readonly bleScanReportIntv!: pulumi.Output<number>;
@@ -116,7 +120,7 @@ export class Timers extends pulumi.CustomResource {
      */
     public readonly fakeApLog!: pulumi.Output<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -140,6 +144,14 @@ export class Timers extends pulumi.CustomResource {
      */
     public readonly rogueApLog!: pulumi.Output<number>;
     /**
+     * Time period in minutes to keep rogue station after it is gone (default = 0).
+     */
+    public readonly rogueStaCleanup!: pulumi.Output<number>;
+    /**
+     * Time period in minutes to keep station capability data after it is gone (default = 0).
+     */
+    public readonly staCapCleanup!: pulumi.Output<number>;
+    /**
      * Time between running station capability reports (1 - 255 sec, default = 30).
      */
     public readonly staCapabilityInterval!: pulumi.Output<number>;
@@ -148,7 +160,7 @@ export class Timers extends pulumi.CustomResource {
      */
     public readonly staLocateTimer!: pulumi.Output<number>;
     /**
-     * Time between running client (station) reports (1 - 255 sec, default = 1).
+     * Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
      */
     public readonly staStatsInterval!: pulumi.Output<number>;
     /**
@@ -158,7 +170,7 @@ export class Timers extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Timers resource with the given unique name, arguments, and options.
@@ -177,6 +189,7 @@ export class Timers extends pulumi.CustomResource {
             resourceInputs["apRebootWaitInterval2"] = state ? state.apRebootWaitInterval2 : undefined;
             resourceInputs["apRebootWaitTime"] = state ? state.apRebootWaitTime : undefined;
             resourceInputs["authTimeout"] = state ? state.authTimeout : undefined;
+            resourceInputs["bleDeviceCleanup"] = state ? state.bleDeviceCleanup : undefined;
             resourceInputs["bleScanReportIntv"] = state ? state.bleScanReportIntv : undefined;
             resourceInputs["clientIdleRehomeTimeout"] = state ? state.clientIdleRehomeTimeout : undefined;
             resourceInputs["clientIdleTimeout"] = state ? state.clientIdleTimeout : undefined;
@@ -194,6 +207,8 @@ export class Timers extends pulumi.CustomResource {
             resourceInputs["radioStatsInterval"] = state ? state.radioStatsInterval : undefined;
             resourceInputs["rogueApCleanup"] = state ? state.rogueApCleanup : undefined;
             resourceInputs["rogueApLog"] = state ? state.rogueApLog : undefined;
+            resourceInputs["rogueStaCleanup"] = state ? state.rogueStaCleanup : undefined;
+            resourceInputs["staCapCleanup"] = state ? state.staCapCleanup : undefined;
             resourceInputs["staCapabilityInterval"] = state ? state.staCapabilityInterval : undefined;
             resourceInputs["staLocateTimer"] = state ? state.staLocateTimer : undefined;
             resourceInputs["staStatsInterval"] = state ? state.staStatsInterval : undefined;
@@ -205,6 +220,7 @@ export class Timers extends pulumi.CustomResource {
             resourceInputs["apRebootWaitInterval2"] = args ? args.apRebootWaitInterval2 : undefined;
             resourceInputs["apRebootWaitTime"] = args ? args.apRebootWaitTime : undefined;
             resourceInputs["authTimeout"] = args ? args.authTimeout : undefined;
+            resourceInputs["bleDeviceCleanup"] = args ? args.bleDeviceCleanup : undefined;
             resourceInputs["bleScanReportIntv"] = args ? args.bleScanReportIntv : undefined;
             resourceInputs["clientIdleRehomeTimeout"] = args ? args.clientIdleRehomeTimeout : undefined;
             resourceInputs["clientIdleTimeout"] = args ? args.clientIdleTimeout : undefined;
@@ -222,6 +238,8 @@ export class Timers extends pulumi.CustomResource {
             resourceInputs["radioStatsInterval"] = args ? args.radioStatsInterval : undefined;
             resourceInputs["rogueApCleanup"] = args ? args.rogueApCleanup : undefined;
             resourceInputs["rogueApLog"] = args ? args.rogueApLog : undefined;
+            resourceInputs["rogueStaCleanup"] = args ? args.rogueStaCleanup : undefined;
+            resourceInputs["staCapCleanup"] = args ? args.staCapCleanup : undefined;
             resourceInputs["staCapabilityInterval"] = args ? args.staCapabilityInterval : undefined;
             resourceInputs["staLocateTimer"] = args ? args.staLocateTimer : undefined;
             resourceInputs["staStatsInterval"] = args ? args.staStatsInterval : undefined;
@@ -253,6 +271,10 @@ export interface TimersState {
      * Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
      */
     authTimeout?: pulumi.Input<number>;
+    /**
+     * Time period in minutes to keep BLE device after it is gone (default = 60).
+     */
+    bleDeviceCleanup?: pulumi.Input<number>;
     /**
      * Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
      */
@@ -298,7 +320,7 @@ export interface TimersState {
      */
     fakeApLog?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -322,6 +344,14 @@ export interface TimersState {
      */
     rogueApLog?: pulumi.Input<number>;
     /**
+     * Time period in minutes to keep rogue station after it is gone (default = 0).
+     */
+    rogueStaCleanup?: pulumi.Input<number>;
+    /**
+     * Time period in minutes to keep station capability data after it is gone (default = 0).
+     */
+    staCapCleanup?: pulumi.Input<number>;
+    /**
      * Time between running station capability reports (1 - 255 sec, default = 30).
      */
     staCapabilityInterval?: pulumi.Input<number>;
@@ -330,7 +360,7 @@ export interface TimersState {
      */
     staLocateTimer?: pulumi.Input<number>;
     /**
-     * Time between running client (station) reports (1 - 255 sec, default = 1).
+     * Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
      */
     staStatsInterval?: pulumi.Input<number>;
     /**
@@ -364,6 +394,10 @@ export interface TimersArgs {
      */
     authTimeout?: pulumi.Input<number>;
     /**
+     * Time period in minutes to keep BLE device after it is gone (default = 60).
+     */
+    bleDeviceCleanup?: pulumi.Input<number>;
+    /**
      * Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
      */
     bleScanReportIntv?: pulumi.Input<number>;
@@ -408,7 +442,7 @@ export interface TimersArgs {
      */
     fakeApLog?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -432,6 +466,14 @@ export interface TimersArgs {
      */
     rogueApLog?: pulumi.Input<number>;
     /**
+     * Time period in minutes to keep rogue station after it is gone (default = 0).
+     */
+    rogueStaCleanup?: pulumi.Input<number>;
+    /**
+     * Time period in minutes to keep station capability data after it is gone (default = 0).
+     */
+    staCapCleanup?: pulumi.Input<number>;
+    /**
      * Time between running station capability reports (1 - 255 sec, default = 30).
      */
     staCapabilityInterval?: pulumi.Input<number>;
@@ -440,7 +482,7 @@ export interface TimersArgs {
      */
     staLocateTimer?: pulumi.Input<number>;
     /**
-     * Time between running client (station) reports (1 - 255 sec, default = 1).
+     * Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
      */
     staStatsInterval?: pulumi.Input<number>;
     /**

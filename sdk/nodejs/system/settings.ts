@@ -107,7 +107,7 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly bfd!: pulumi.Output<string>;
     /**
-     * BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+     * BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
      */
     public readonly bfdDesiredMinTx!: pulumi.Output<number>;
     /**
@@ -119,7 +119,7 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly bfdDontEnforceSrcPort!: pulumi.Output<string>;
     /**
-     * BFD required minimal receive interval (1 - 100000 ms, default = 50).
+     * BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
      */
     public readonly bfdRequiredMinRx!: pulumi.Output<number>;
     /**
@@ -199,7 +199,7 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
-     * Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+     * Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
      */
     public readonly ecmpMaxPaths!: pulumi.Output<number>;
     /**
@@ -231,7 +231,7 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly gateway6!: pulumi.Output<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -535,6 +535,10 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly inspectionMode!: pulumi.Output<string>;
     /**
+     * Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+     */
+    public readonly internetServiceAppCtrlSize!: pulumi.Output<number>;
+    /**
      * Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
      */
     public readonly internetServiceDatabaseCache!: pulumi.Output<string>;
@@ -679,13 +683,13 @@ export class Settings extends pulumi.CustomResource {
      */
     public readonly v4EcmpMode!: pulumi.Output<string>;
     /**
-     * VDOM type (traffic or admin).
+     * VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
      */
     public readonly vdomType!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. Valid values: `ipsec`, `pptp`, `l2tp`, `ssl`.
      */
@@ -828,6 +832,7 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["ikeTcpPort"] = state ? state.ikeTcpPort : undefined;
             resourceInputs["implicitAllowDns"] = state ? state.implicitAllowDns : undefined;
             resourceInputs["inspectionMode"] = state ? state.inspectionMode : undefined;
+            resourceInputs["internetServiceAppCtrlSize"] = state ? state.internetServiceAppCtrlSize : undefined;
             resourceInputs["internetServiceDatabaseCache"] = state ? state.internetServiceDatabaseCache : undefined;
             resourceInputs["ip"] = state ? state.ip : undefined;
             resourceInputs["ip6"] = state ? state.ip6 : undefined;
@@ -987,6 +992,7 @@ export class Settings extends pulumi.CustomResource {
             resourceInputs["ikeTcpPort"] = args ? args.ikeTcpPort : undefined;
             resourceInputs["implicitAllowDns"] = args ? args.implicitAllowDns : undefined;
             resourceInputs["inspectionMode"] = args ? args.inspectionMode : undefined;
+            resourceInputs["internetServiceAppCtrlSize"] = args ? args.internetServiceAppCtrlSize : undefined;
             resourceInputs["internetServiceDatabaseCache"] = args ? args.internetServiceDatabaseCache : undefined;
             resourceInputs["ip"] = args ? args.ip : undefined;
             resourceInputs["ip6"] = args ? args.ip6 : undefined;
@@ -1075,7 +1081,7 @@ export interface SettingsState {
      */
     bfd?: pulumi.Input<string>;
     /**
-     * BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+     * BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
      */
     bfdDesiredMinTx?: pulumi.Input<number>;
     /**
@@ -1087,7 +1093,7 @@ export interface SettingsState {
      */
     bfdDontEnforceSrcPort?: pulumi.Input<string>;
     /**
-     * BFD required minimal receive interval (1 - 100000 ms, default = 50).
+     * BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
      */
     bfdRequiredMinRx?: pulumi.Input<number>;
     /**
@@ -1167,7 +1173,7 @@ export interface SettingsState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+     * Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
      */
     ecmpMaxPaths?: pulumi.Input<number>;
     /**
@@ -1199,7 +1205,7 @@ export interface SettingsState {
      */
     gateway6?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -1503,6 +1509,10 @@ export interface SettingsState {
      */
     inspectionMode?: pulumi.Input<string>;
     /**
+     * Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+     */
+    internetServiceAppCtrlSize?: pulumi.Input<number>;
+    /**
      * Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
      */
     internetServiceDatabaseCache?: pulumi.Input<string>;
@@ -1647,7 +1657,7 @@ export interface SettingsState {
      */
     v4EcmpMode?: pulumi.Input<string>;
     /**
-     * VDOM type (traffic or admin).
+     * VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
      */
     vdomType?: pulumi.Input<string>;
     /**
@@ -1709,7 +1719,7 @@ export interface SettingsArgs {
      */
     bfd?: pulumi.Input<string>;
     /**
-     * BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+     * BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
      */
     bfdDesiredMinTx?: pulumi.Input<number>;
     /**
@@ -1721,7 +1731,7 @@ export interface SettingsArgs {
      */
     bfdDontEnforceSrcPort?: pulumi.Input<string>;
     /**
-     * BFD required minimal receive interval (1 - 100000 ms, default = 50).
+     * BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
      */
     bfdRequiredMinRx?: pulumi.Input<number>;
     /**
@@ -1801,7 +1811,7 @@ export interface SettingsArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+     * Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
      */
     ecmpMaxPaths?: pulumi.Input<number>;
     /**
@@ -1833,7 +1843,7 @@ export interface SettingsArgs {
      */
     gateway6?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -2137,6 +2147,10 @@ export interface SettingsArgs {
      */
     inspectionMode?: pulumi.Input<string>;
     /**
+     * Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+     */
+    internetServiceAppCtrlSize?: pulumi.Input<number>;
+    /**
      * Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
      */
     internetServiceDatabaseCache?: pulumi.Input<string>;
@@ -2281,7 +2295,7 @@ export interface SettingsArgs {
      */
     v4EcmpMode?: pulumi.Input<string>;
     /**
-     * VDOM type (traffic or admin).
+     * VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
      */
     vdomType?: pulumi.Input<string>;
     /**

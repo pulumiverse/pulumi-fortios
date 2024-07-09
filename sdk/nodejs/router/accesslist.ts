@@ -106,7 +106,7 @@ export class Accesslist extends pulumi.CustomResource {
      * Rule. The structure of `rule` block is documented below.
      */
     public readonly rules!: pulumi.Output<outputs.router.AccesslistRule[] | undefined>;
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Accesslist resource with the given unique name, arguments, and options.

@@ -67,7 +67,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Vdom { get; private set; } = null!;
 
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>

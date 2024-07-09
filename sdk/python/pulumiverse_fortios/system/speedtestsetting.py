@@ -133,7 +133,7 @@ class Speedtestsetting(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure speed test setting. Applies to FortiOS Version `7.2.6,7.4.1,7.4.2`.
+        Configure speed test setting. Applies to FortiOS Version `7.2.6,7.2.7,7.2.8,7.4.1,7.4.2,7.4.3,7.4.4`.
 
         ## Import
 
@@ -166,7 +166,7 @@ class Speedtestsetting(pulumi.CustomResource):
                  args: Optional[SpeedtestsettingArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure speed test setting. Applies to FortiOS Version `7.2.6,7.4.1,7.4.2`.
+        Configure speed test setting. Applies to FortiOS Version `7.2.6,7.2.7,7.2.8,7.4.1,7.4.2,7.4.3,7.4.4`.
 
         ## Import
 
@@ -267,7 +267,7 @@ class Speedtestsetting(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -121,7 +121,7 @@ type Interfacepolicy6 struct {
 	EmailfilterProfile pulumi.StringOutput `pulumi:"emailfilterProfile"`
 	// Enable/disable email filter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus pulumi.StringOutput `pulumi:"emailfilterProfileStatus"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Monitored interface name from available interfaces.
 	Interface pulumi.StringOutput `pulumi:"interface"`
@@ -152,7 +152,7 @@ type Interfacepolicy6 struct {
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	//
 	// The `srcaddr6` block supports:
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Web filter profile.
 	WebfilterProfile pulumi.StringOutput `pulumi:"webfilterProfile"`
 	// Enable/disable web filtering. Valid values: `enable`, `disable`.
@@ -232,7 +232,7 @@ type interfacepolicy6State struct {
 	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
 	// Enable/disable email filter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus *string `pulumi:"emailfilterProfileStatus"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Monitored interface name from available interfaces.
 	Interface *string `pulumi:"interface"`
@@ -305,7 +305,7 @@ type Interfacepolicy6State struct {
 	EmailfilterProfile pulumi.StringPtrInput
 	// Enable/disable email filter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Monitored interface name from available interfaces.
 	Interface pulumi.StringPtrInput
@@ -382,7 +382,7 @@ type interfacepolicy6Args struct {
 	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
 	// Enable/disable email filter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus *string `pulumi:"emailfilterProfileStatus"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Monitored interface name from available interfaces.
 	Interface string `pulumi:"interface"`
@@ -456,7 +456,7 @@ type Interfacepolicy6Args struct {
 	EmailfilterProfile pulumi.StringPtrInput
 	// Enable/disable email filter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Monitored interface name from available interfaces.
 	Interface pulumi.StringInput
@@ -666,7 +666,7 @@ func (o Interfacepolicy6Output) EmailfilterProfileStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Interfacepolicy6) pulumi.StringOutput { return v.EmailfilterProfileStatus }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o Interfacepolicy6Output) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Interfacepolicy6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -739,8 +739,8 @@ func (o Interfacepolicy6Output) Uuid() pulumi.StringOutput {
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 //
 // The `srcaddr6` block supports:
-func (o Interfacepolicy6Output) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Interfacepolicy6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Interfacepolicy6Output) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Interfacepolicy6) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Web filter profile.

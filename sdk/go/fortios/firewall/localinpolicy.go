@@ -90,12 +90,26 @@ type Localinpolicy struct {
 	Dstaddrs LocalinpolicyDstaddrArrayOutput `pulumi:"dstaddrs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
 	HaMgmtIntfOnly pulumi.StringOutput `pulumi:"haMgmtIntfOnly"`
-	// Incoming interface name from available options.
+	// Enable/disable use of Internet Services in source for this local-in policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
+	InternetServiceSrc pulumi.StringOutput `pulumi:"internetServiceSrc"`
+	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+	InternetServiceSrcCustomGroups LocalinpolicyInternetServiceSrcCustomGroupArrayOutput `pulumi:"internetServiceSrcCustomGroups"`
+	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
+	InternetServiceSrcCustoms LocalinpolicyInternetServiceSrcCustomArrayOutput `pulumi:"internetServiceSrcCustoms"`
+	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
+	InternetServiceSrcGroups LocalinpolicyInternetServiceSrcGroupArrayOutput `pulumi:"internetServiceSrcGroups"`
+	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
+	InternetServiceSrcNames LocalinpolicyInternetServiceSrcNameArrayOutput `pulumi:"internetServiceSrcNames"`
+	// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+	InternetServiceSrcNegate pulumi.StringOutput `pulumi:"internetServiceSrcNegate"`
+	// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intfBlock`.*
 	Intf pulumi.StringOutput `pulumi:"intf"`
+	// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intfBlock` block is documented below.
+	IntfBlocks LocalinpolicyIntfBlockArrayOutput `pulumi:"intfBlocks"`
 	// User defined local in policy ID.
 	Policyid pulumi.IntOutput `pulumi:"policyid"`
 	// Schedule object from available options.
@@ -113,7 +127,7 @@ type Localinpolicy struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable virtual patching. Valid values: `enable`, `disable`.
 	VirtualPatch pulumi.StringOutput `pulumi:"virtualPatch"`
 }
@@ -167,12 +181,26 @@ type localinpolicyState struct {
 	Dstaddrs []LocalinpolicyDstaddr `pulumi:"dstaddrs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
 	HaMgmtIntfOnly *string `pulumi:"haMgmtIntfOnly"`
-	// Incoming interface name from available options.
+	// Enable/disable use of Internet Services in source for this local-in policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
+	InternetServiceSrc *string `pulumi:"internetServiceSrc"`
+	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+	InternetServiceSrcCustomGroups []LocalinpolicyInternetServiceSrcCustomGroup `pulumi:"internetServiceSrcCustomGroups"`
+	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
+	InternetServiceSrcCustoms []LocalinpolicyInternetServiceSrcCustom `pulumi:"internetServiceSrcCustoms"`
+	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
+	InternetServiceSrcGroups []LocalinpolicyInternetServiceSrcGroup `pulumi:"internetServiceSrcGroups"`
+	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
+	InternetServiceSrcNames []LocalinpolicyInternetServiceSrcName `pulumi:"internetServiceSrcNames"`
+	// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+	InternetServiceSrcNegate *string `pulumi:"internetServiceSrcNegate"`
+	// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intfBlock`.*
 	Intf *string `pulumi:"intf"`
+	// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intfBlock` block is documented below.
+	IntfBlocks []LocalinpolicyIntfBlock `pulumi:"intfBlocks"`
 	// User defined local in policy ID.
 	Policyid *int `pulumi:"policyid"`
 	// Schedule object from available options.
@@ -206,12 +234,26 @@ type LocalinpolicyState struct {
 	Dstaddrs LocalinpolicyDstaddrArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
 	HaMgmtIntfOnly pulumi.StringPtrInput
-	// Incoming interface name from available options.
+	// Enable/disable use of Internet Services in source for this local-in policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
+	InternetServiceSrc pulumi.StringPtrInput
+	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+	InternetServiceSrcCustomGroups LocalinpolicyInternetServiceSrcCustomGroupArrayInput
+	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
+	InternetServiceSrcCustoms LocalinpolicyInternetServiceSrcCustomArrayInput
+	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
+	InternetServiceSrcGroups LocalinpolicyInternetServiceSrcGroupArrayInput
+	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
+	InternetServiceSrcNames LocalinpolicyInternetServiceSrcNameArrayInput
+	// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+	InternetServiceSrcNegate pulumi.StringPtrInput
+	// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intfBlock`.*
 	Intf pulumi.StringPtrInput
+	// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intfBlock` block is documented below.
+	IntfBlocks LocalinpolicyIntfBlockArrayInput
 	// User defined local in policy ID.
 	Policyid pulumi.IntPtrInput
 	// Schedule object from available options.
@@ -249,12 +291,26 @@ type localinpolicyArgs struct {
 	Dstaddrs []LocalinpolicyDstaddr `pulumi:"dstaddrs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
 	HaMgmtIntfOnly *string `pulumi:"haMgmtIntfOnly"`
-	// Incoming interface name from available options.
+	// Enable/disable use of Internet Services in source for this local-in policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
+	InternetServiceSrc *string `pulumi:"internetServiceSrc"`
+	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+	InternetServiceSrcCustomGroups []LocalinpolicyInternetServiceSrcCustomGroup `pulumi:"internetServiceSrcCustomGroups"`
+	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
+	InternetServiceSrcCustoms []LocalinpolicyInternetServiceSrcCustom `pulumi:"internetServiceSrcCustoms"`
+	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
+	InternetServiceSrcGroups []LocalinpolicyInternetServiceSrcGroup `pulumi:"internetServiceSrcGroups"`
+	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
+	InternetServiceSrcNames []LocalinpolicyInternetServiceSrcName `pulumi:"internetServiceSrcNames"`
+	// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+	InternetServiceSrcNegate *string `pulumi:"internetServiceSrcNegate"`
+	// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intfBlock`.*
 	Intf *string `pulumi:"intf"`
+	// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intfBlock` block is documented below.
+	IntfBlocks []LocalinpolicyIntfBlock `pulumi:"intfBlocks"`
 	// User defined local in policy ID.
 	Policyid *int `pulumi:"policyid"`
 	// Schedule object from available options.
@@ -289,12 +345,26 @@ type LocalinpolicyArgs struct {
 	Dstaddrs LocalinpolicyDstaddrArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `enable`, `disable`.
 	HaMgmtIntfOnly pulumi.StringPtrInput
-	// Incoming interface name from available options.
+	// Enable/disable use of Internet Services in source for this local-in policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
+	InternetServiceSrc pulumi.StringPtrInput
+	// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+	InternetServiceSrcCustomGroups LocalinpolicyInternetServiceSrcCustomGroupArrayInput
+	// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
+	InternetServiceSrcCustoms LocalinpolicyInternetServiceSrcCustomArrayInput
+	// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
+	InternetServiceSrcGroups LocalinpolicyInternetServiceSrcGroupArrayInput
+	// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
+	InternetServiceSrcNames LocalinpolicyInternetServiceSrcNameArrayInput
+	// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+	InternetServiceSrcNegate pulumi.StringPtrInput
+	// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intfBlock`.*
 	Intf pulumi.StringPtrInput
+	// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intfBlock` block is documented below.
+	IntfBlocks LocalinpolicyIntfBlockArrayInput
 	// User defined local in policy ID.
 	Policyid pulumi.IntPtrInput
 	// Schedule object from available options.
@@ -429,7 +499,7 @@ func (o LocalinpolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Localinpolicy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o LocalinpolicyOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Localinpolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -439,9 +509,52 @@ func (o LocalinpolicyOutput) HaMgmtIntfOnly() pulumi.StringOutput {
 	return o.ApplyT(func(v *Localinpolicy) pulumi.StringOutput { return v.HaMgmtIntfOnly }).(pulumi.StringOutput)
 }
 
-// Incoming interface name from available options.
+// Enable/disable use of Internet Services in source for this local-in policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
+func (o LocalinpolicyOutput) InternetServiceSrc() pulumi.StringOutput {
+	return o.ApplyT(func(v *Localinpolicy) pulumi.StringOutput { return v.InternetServiceSrc }).(pulumi.StringOutput)
+}
+
+// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+func (o LocalinpolicyOutput) InternetServiceSrcCustomGroups() LocalinpolicyInternetServiceSrcCustomGroupArrayOutput {
+	return o.ApplyT(func(v *Localinpolicy) LocalinpolicyInternetServiceSrcCustomGroupArrayOutput {
+		return v.InternetServiceSrcCustomGroups
+	}).(LocalinpolicyInternetServiceSrcCustomGroupArrayOutput)
+}
+
+// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
+func (o LocalinpolicyOutput) InternetServiceSrcCustoms() LocalinpolicyInternetServiceSrcCustomArrayOutput {
+	return o.ApplyT(func(v *Localinpolicy) LocalinpolicyInternetServiceSrcCustomArrayOutput {
+		return v.InternetServiceSrcCustoms
+	}).(LocalinpolicyInternetServiceSrcCustomArrayOutput)
+}
+
+// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
+func (o LocalinpolicyOutput) InternetServiceSrcGroups() LocalinpolicyInternetServiceSrcGroupArrayOutput {
+	return o.ApplyT(func(v *Localinpolicy) LocalinpolicyInternetServiceSrcGroupArrayOutput {
+		return v.InternetServiceSrcGroups
+	}).(LocalinpolicyInternetServiceSrcGroupArrayOutput)
+}
+
+// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
+func (o LocalinpolicyOutput) InternetServiceSrcNames() LocalinpolicyInternetServiceSrcNameArrayOutput {
+	return o.ApplyT(func(v *Localinpolicy) LocalinpolicyInternetServiceSrcNameArrayOutput {
+		return v.InternetServiceSrcNames
+	}).(LocalinpolicyInternetServiceSrcNameArrayOutput)
+}
+
+// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+func (o LocalinpolicyOutput) InternetServiceSrcNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v *Localinpolicy) pulumi.StringOutput { return v.InternetServiceSrcNegate }).(pulumi.StringOutput)
+}
+
+// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intfBlock`.*
 func (o LocalinpolicyOutput) Intf() pulumi.StringOutput {
 	return o.ApplyT(func(v *Localinpolicy) pulumi.StringOutput { return v.Intf }).(pulumi.StringOutput)
+}
+
+// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intfBlock` block is documented below.
+func (o LocalinpolicyOutput) IntfBlocks() LocalinpolicyIntfBlockArrayOutput {
+	return o.ApplyT(func(v *Localinpolicy) LocalinpolicyIntfBlockArrayOutput { return v.IntfBlocks }).(LocalinpolicyIntfBlockArrayOutput)
 }
 
 // User defined local in policy ID.
@@ -485,8 +598,8 @@ func (o LocalinpolicyOutput) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o LocalinpolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Localinpolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o LocalinpolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Localinpolicy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable virtual patching. Valid values: `enable`, `disable`.

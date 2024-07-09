@@ -130,7 +130,7 @@ class SecuritypolicyArgs:
         :param pulumi.Input[str] enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyFssoGroupArgs']]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyGroupArgs']]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
@@ -185,8 +185,8 @@ class SecuritypolicyArgs:
         :param pulumi.Input[str] ssh_filter_profile: Name of an existing SSH filter profile.
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] status: Enable or disable this policy. Valid values: `enable`, `disable`.
-        :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUrlCategoryArgs']]] url_categories: URL category ID list. The structure of `url_category` block is documented below.
-        :param pulumi.Input[str] url_category_unitary: URL categories or groups.
+        :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUrlCategoryArgs']]] url_categories: URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `url_category` block is documented below.
+        :param pulumi.Input[str] url_category_unitary: URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUserArgs']]] users: Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -664,7 +664,7 @@ class SecuritypolicyArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1324,7 +1324,7 @@ class SecuritypolicyArgs:
     @pulumi.getter(name="urlCategories")
     def url_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUrlCategoryArgs']]]]:
         """
-        URL category ID list. The structure of `url_category` block is documented below.
+        URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `url_category` block is documented below.
         """
         return pulumi.get(self, "url_categories")
 
@@ -1336,7 +1336,7 @@ class SecuritypolicyArgs:
     @pulumi.getter(name="urlCategoryUnitary")
     def url_category_unitary(self) -> Optional[pulumi.Input[str]]:
         """
-        URL categories or groups.
+        URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
         """
         return pulumi.get(self, "url_category_unitary")
 
@@ -1546,7 +1546,7 @@ class _SecuritypolicyState:
         :param pulumi.Input[str] enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyFssoGroupArgs']]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyGroupArgs']]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
@@ -1601,8 +1601,8 @@ class _SecuritypolicyState:
         :param pulumi.Input[str] ssh_filter_profile: Name of an existing SSH filter profile.
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] status: Enable or disable this policy. Valid values: `enable`, `disable`.
-        :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUrlCategoryArgs']]] url_categories: URL category ID list. The structure of `url_category` block is documented below.
-        :param pulumi.Input[str] url_category_unitary: URL categories or groups.
+        :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUrlCategoryArgs']]] url_categories: URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `url_category` block is documented below.
+        :param pulumi.Input[str] url_category_unitary: URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
         :param pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUserArgs']]] users: Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -2080,7 +2080,7 @@ class _SecuritypolicyState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2740,7 +2740,7 @@ class _SecuritypolicyState:
     @pulumi.getter(name="urlCategories")
     def url_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecuritypolicyUrlCategoryArgs']]]]:
         """
-        URL category ID list. The structure of `url_category` block is documented below.
+        URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `url_category` block is documented below.
         """
         return pulumi.get(self, "url_categories")
 
@@ -2752,7 +2752,7 @@ class _SecuritypolicyState:
     @pulumi.getter(name="urlCategoryUnitary")
     def url_category_unitary(self) -> Optional[pulumi.Input[str]]:
         """
-        URL categories or groups.
+        URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
         """
         return pulumi.get(self, "url_category_unitary")
 
@@ -3014,7 +3014,7 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyFssoGroupArgs']]]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyGroupArgs']]]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
@@ -3069,8 +3069,8 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] ssh_filter_profile: Name of an existing SSH filter profile.
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] status: Enable or disable this policy. Valid values: `enable`, `disable`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUrlCategoryArgs']]]] url_categories: URL category ID list. The structure of `url_category` block is documented below.
-        :param pulumi.Input[str] url_category_unitary: URL categories or groups.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUrlCategoryArgs']]]] url_categories: URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `url_category` block is documented below.
+        :param pulumi.Input[str] url_category_unitary: URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUserArgs']]]] users: Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -3463,7 +3463,7 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyFssoGroupArgs']]]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyGroupArgs']]]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] icap_profile: Name of an existing ICAP profile.
         :param pulumi.Input[str] internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `enable`, `disable`.
@@ -3518,8 +3518,8 @@ class Securitypolicy(pulumi.CustomResource):
         :param pulumi.Input[str] ssh_filter_profile: Name of an existing SSH filter profile.
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] status: Enable or disable this policy. Valid values: `enable`, `disable`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUrlCategoryArgs']]]] url_categories: URL category ID list. The structure of `url_category` block is documented below.
-        :param pulumi.Input[str] url_category_unitary: URL categories or groups.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUrlCategoryArgs']]]] url_categories: URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `url_category` block is documented below.
+        :param pulumi.Input[str] url_category_unitary: URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecuritypolicyUserArgs']]]] users: Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -3818,7 +3818,7 @@ class Securitypolicy(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -4258,7 +4258,7 @@ class Securitypolicy(pulumi.CustomResource):
     @pulumi.getter(name="urlCategories")
     def url_categories(self) -> pulumi.Output[Optional[Sequence['outputs.SecuritypolicyUrlCategory']]]:
         """
-        URL category ID list. The structure of `url_category` block is documented below.
+        URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `url_category` block is documented below.
         """
         return pulumi.get(self, "url_categories")
 
@@ -4266,7 +4266,7 @@ class Securitypolicy(pulumi.CustomResource):
     @pulumi.getter(name="urlCategoryUnitary")
     def url_category_unitary(self) -> pulumi.Output[str]:
         """
-        URL categories or groups.
+        URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
         """
         return pulumi.get(self, "url_category_unitary")
 
@@ -4288,7 +4288,7 @@ class Securitypolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -188,6 +188,10 @@ namespace Pulumiverse.Fortios
         }
 
         private static readonly __Value<string?> _vdom = new __Value<string?>(() => __config.Get("vdom") ?? Utilities.GetEnv("FORTIOS_VDOM"));
+        /// <summary>
+        /// Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+        /// vdom value on that resource.
+        /// </summary>
         public static string? Vdom
         {
             get => _vdom.Get();

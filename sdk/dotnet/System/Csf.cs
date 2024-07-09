@@ -155,7 +155,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> ForticloudAccountEnforcement { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -197,6 +197,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> SamlConfigurationSync { get; private set; } = null!;
 
         /// <summary>
+        /// Source IP address for communication with the upstream FortiGate.
+        /// </summary>
+        [Output("sourceIp")]
+        public Output<string> SourceIp { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable Security Fabric. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("status")]
@@ -221,6 +227,18 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Upstream { get; private set; } = null!;
 
         /// <summary>
+        /// Specify outgoing interface to reach server.
+        /// </summary>
+        [Output("upstreamInterface")]
+        public Output<string> UpstreamInterface { get; private set; } = null!;
+
+        /// <summary>
+        /// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        /// </summary>
+        [Output("upstreamInterfaceSelectMethod")]
+        public Output<string> UpstreamInterfaceSelectMethod { get; private set; } = null!;
+
+        /// <summary>
         /// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         /// </summary>
         [Output("upstreamIp")]
@@ -236,7 +254,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -409,7 +427,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ForticloudAccountEnforcement { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -461,6 +479,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? SamlConfigurationSync { get; set; }
 
         /// <summary>
+        /// Source IP address for communication with the upstream FortiGate.
+        /// </summary>
+        [Input("sourceIp")]
+        public Input<string>? SourceIp { get; set; }
+
+        /// <summary>
         /// Enable/disable Security Fabric. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("status", required: true)]
@@ -489,6 +513,18 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("upstream")]
         public Input<string>? Upstream { get; set; }
+
+        /// <summary>
+        /// Specify outgoing interface to reach server.
+        /// </summary>
+        [Input("upstreamInterface")]
+        public Input<string>? UpstreamInterface { get; set; }
+
+        /// <summary>
+        /// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        /// </summary>
+        [Input("upstreamInterfaceSelectMethod")]
+        public Input<string>? UpstreamInterfaceSelectMethod { get; set; }
 
         /// <summary>
         /// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
@@ -635,7 +671,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ForticloudAccountEnforcement { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -687,6 +723,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? SamlConfigurationSync { get; set; }
 
         /// <summary>
+        /// Source IP address for communication with the upstream FortiGate.
+        /// </summary>
+        [Input("sourceIp")]
+        public Input<string>? SourceIp { get; set; }
+
+        /// <summary>
         /// Enable/disable Security Fabric. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("status")]
@@ -715,6 +757,18 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("upstream")]
         public Input<string>? Upstream { get; set; }
+
+        /// <summary>
+        /// Specify outgoing interface to reach server.
+        /// </summary>
+        [Input("upstreamInterface")]
+        public Input<string>? UpstreamInterface { get; set; }
+
+        /// <summary>
+        /// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        /// </summary>
+        [Input("upstreamInterfaceSelectMethod")]
+        public Input<string>? UpstreamInterfaceSelectMethod { get; set; }
 
         /// <summary>
         /// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.

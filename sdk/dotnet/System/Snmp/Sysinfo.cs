@@ -56,6 +56,12 @@ namespace Pulumiverse.Fortios.System.Snmp
     public partial class Sysinfo : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("appendIndex")]
+        public Output<string> AppendIndex { get; private set; } = null!;
+
+        /// <summary>
         /// Contact information.
         /// </summary>
         [Output("contactInfo")]
@@ -68,7 +74,7 @@ namespace Pulumiverse.Fortios.System.Snmp
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Local SNMP engineID string (maximum 24 characters).
+        /// Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions &gt;= 7.0.1: maximum 27 characters.
         /// </summary>
         [Output("engineId")]
         public Output<string> EngineId { get; private set; } = null!;
@@ -125,7 +131,7 @@ namespace Pulumiverse.Fortios.System.Snmp
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -175,6 +181,12 @@ namespace Pulumiverse.Fortios.System.Snmp
     public sealed class SysinfoArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("appendIndex")]
+        public Input<string>? AppendIndex { get; set; }
+
+        /// <summary>
         /// Contact information.
         /// </summary>
         [Input("contactInfo")]
@@ -187,7 +199,7 @@ namespace Pulumiverse.Fortios.System.Snmp
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Local SNMP engineID string (maximum 24 characters).
+        /// Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions &gt;= 7.0.1: maximum 27 characters.
         /// </summary>
         [Input("engineId")]
         public Input<string>? EngineId { get; set; }
@@ -255,6 +267,12 @@ namespace Pulumiverse.Fortios.System.Snmp
     public sealed class SysinfoState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("appendIndex")]
+        public Input<string>? AppendIndex { get; set; }
+
+        /// <summary>
         /// Contact information.
         /// </summary>
         [Input("contactInfo")]
@@ -267,7 +285,7 @@ namespace Pulumiverse.Fortios.System.Snmp
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Local SNMP engineID string (maximum 24 characters).
+        /// Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions &gt;= 7.0.1: maximum 27 characters.
         /// </summary>
         [Input("engineId")]
         public Input<string>? EngineId { get; set; }

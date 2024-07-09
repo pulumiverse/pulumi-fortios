@@ -560,6 +560,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "extensioncontroller/extendervap",
+  "fqn": "pulumiverse_fortios.extensioncontroller",
+  "classes": {
+   "fortios:extensioncontroller/extendervap:Extendervap": "Extendervap"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "extensioncontroller/fortigate",
   "fqn": "pulumiverse_fortios.extensioncontroller",
   "classes": {
@@ -1372,6 +1380,14 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.firewall",
   "classes": {
    "fortios:firewall/objectVipgroup:ObjectVipgroup": "ObjectVipgroup"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "firewall/ondemandsniffer",
+  "fqn": "pulumiverse_fortios.firewall",
+  "classes": {
+   "fortios:firewall/ondemandsniffer:Ondemandsniffer": "Ondemandsniffer"
   }
  },
  {
@@ -3880,6 +3896,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "system/licenseFortiflex",
+  "fqn": "pulumiverse_fortios.system",
+  "classes": {
+   "fortios:system/licenseFortiflex:LicenseFortiflex": "LicenseFortiflex"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "system/licenseVdom",
   "fqn": "pulumiverse_fortios.system",
   "classes": {
@@ -4404,6 +4428,14 @@ _utilities.register(
   "fqn": "pulumiverse_fortios.system",
   "classes": {
    "fortios:system/speedtestsetting:Speedtestsetting": "Speedtestsetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "system/sshconfig",
+  "fqn": "pulumiverse_fortios.system",
+  "classes": {
+   "fortios:system/sshconfig:Sshconfig": "Sshconfig"
   }
  },
  {

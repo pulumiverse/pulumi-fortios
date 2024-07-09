@@ -49,7 +49,7 @@ class ListArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ListEntryArgs']]] entries: Application list entries. The structure of `entries` block is documented below.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: List name.
         :param pulumi.Input[str] options: Basic application protocol signatures allowed by default.
         :param pulumi.Input[str] other_application_action: Action for other applications. Valid values: `pass`, `block`.
@@ -228,7 +228,7 @@ class ListArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -393,7 +393,7 @@ class _ListState:
         :param pulumi.Input[Sequence[pulumi.Input['ListEntryArgs']]] entries: Application list entries. The structure of `entries` block is documented below.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: List name.
         :param pulumi.Input[str] options: Basic application protocol signatures allowed by default.
         :param pulumi.Input[str] other_application_action: Action for other applications. Valid values: `pass`, `block`.
@@ -572,7 +572,7 @@ class _ListState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -779,7 +779,7 @@ class List(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListEntryArgs']]]] entries: Application list entries. The structure of `entries` block is documented below.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: List name.
         :param pulumi.Input[str] options: Basic application protocol signatures allowed by default.
         :param pulumi.Input[str] other_application_action: Action for other applications. Valid values: `pass`, `block`.
@@ -950,7 +950,7 @@ class List(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ListEntryArgs']]]] entries: Application list entries. The structure of `entries` block is documented below.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] name: List name.
         :param pulumi.Input[str] options: Basic application protocol signatures allowed by default.
         :param pulumi.Input[str] other_application_action: Action for other applications. Valid values: `pass`, `block`.
@@ -1073,7 +1073,7 @@ class List(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1151,7 +1151,7 @@ class List(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

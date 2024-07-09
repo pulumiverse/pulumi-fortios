@@ -43,7 +43,7 @@ type Vdomproperty struct {
 	FirewallAddress pulumi.StringOutput `pulumi:"firewallAddress"`
 	// Maximum guaranteed number of firewall address groups (IPv4, IPv6).
 	FirewallAddrgrp pulumi.StringOutput `pulumi:"firewallAddrgrp"`
-	// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+	// Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
 	FirewallPolicy pulumi.StringOutput `pulumi:"firewallPolicy"`
 	// Maximum guaranteed number of VPN IPsec phase 1 tunnels.
 	IpsecPhase1 pulumi.StringOutput `pulumi:"ipsecPhase1"`
@@ -53,7 +53,7 @@ type Vdomproperty struct {
 	IpsecPhase2 pulumi.StringOutput `pulumi:"ipsecPhase2"`
 	// Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
 	IpsecPhase2Interface pulumi.StringOutput `pulumi:"ipsecPhase2Interface"`
-	// Log disk quota in MB (range depends on how much disk space is available).
+	// Log disk quota in megabytes (MB). Range depends on how much disk space is available.
 	LogDiskQuota pulumi.StringOutput `pulumi:"logDiskQuota"`
 	// VDOM name.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -67,7 +67,7 @@ type Vdomproperty struct {
 	ServiceGroup pulumi.StringOutput `pulumi:"serviceGroup"`
 	// Maximum guaranteed number of sessions.
 	Session pulumi.StringOutput `pulumi:"session"`
-	// Permanent SNMP Index of the virtual domain (0 - 4294967295).
+	// Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
 	SnmpIndex pulumi.IntOutput `pulumi:"snmpIndex"`
 	// Maximum guaranteed number of SSL-VPNs.
 	Sslvpn pulumi.StringOutput `pulumi:"sslvpn"`
@@ -76,7 +76,7 @@ type Vdomproperty struct {
 	// Maximum guaranteed number of user groups.
 	UserGroup pulumi.StringOutput `pulumi:"userGroup"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewVdomproperty registers a new resource with the given unique name, arguments, and options.
@@ -119,7 +119,7 @@ type vdompropertyState struct {
 	FirewallAddress *string `pulumi:"firewallAddress"`
 	// Maximum guaranteed number of firewall address groups (IPv4, IPv6).
 	FirewallAddrgrp *string `pulumi:"firewallAddrgrp"`
-	// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+	// Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
 	FirewallPolicy *string `pulumi:"firewallPolicy"`
 	// Maximum guaranteed number of VPN IPsec phase 1 tunnels.
 	IpsecPhase1 *string `pulumi:"ipsecPhase1"`
@@ -129,7 +129,7 @@ type vdompropertyState struct {
 	IpsecPhase2 *string `pulumi:"ipsecPhase2"`
 	// Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
 	IpsecPhase2Interface *string `pulumi:"ipsecPhase2Interface"`
-	// Log disk quota in MB (range depends on how much disk space is available).
+	// Log disk quota in megabytes (MB). Range depends on how much disk space is available.
 	LogDiskQuota *string `pulumi:"logDiskQuota"`
 	// VDOM name.
 	Name *string `pulumi:"name"`
@@ -143,7 +143,7 @@ type vdompropertyState struct {
 	ServiceGroup *string `pulumi:"serviceGroup"`
 	// Maximum guaranteed number of sessions.
 	Session *string `pulumi:"session"`
-	// Permanent SNMP Index of the virtual domain (0 - 4294967295).
+	// Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
 	SnmpIndex *int `pulumi:"snmpIndex"`
 	// Maximum guaranteed number of SSL-VPNs.
 	Sslvpn *string `pulumi:"sslvpn"`
@@ -166,7 +166,7 @@ type VdompropertyState struct {
 	FirewallAddress pulumi.StringPtrInput
 	// Maximum guaranteed number of firewall address groups (IPv4, IPv6).
 	FirewallAddrgrp pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+	// Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
 	FirewallPolicy pulumi.StringPtrInput
 	// Maximum guaranteed number of VPN IPsec phase 1 tunnels.
 	IpsecPhase1 pulumi.StringPtrInput
@@ -176,7 +176,7 @@ type VdompropertyState struct {
 	IpsecPhase2 pulumi.StringPtrInput
 	// Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
 	IpsecPhase2Interface pulumi.StringPtrInput
-	// Log disk quota in MB (range depends on how much disk space is available).
+	// Log disk quota in megabytes (MB). Range depends on how much disk space is available.
 	LogDiskQuota pulumi.StringPtrInput
 	// VDOM name.
 	Name pulumi.StringPtrInput
@@ -190,7 +190,7 @@ type VdompropertyState struct {
 	ServiceGroup pulumi.StringPtrInput
 	// Maximum guaranteed number of sessions.
 	Session pulumi.StringPtrInput
-	// Permanent SNMP Index of the virtual domain (0 - 4294967295).
+	// Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
 	SnmpIndex pulumi.IntPtrInput
 	// Maximum guaranteed number of SSL-VPNs.
 	Sslvpn pulumi.StringPtrInput
@@ -217,7 +217,7 @@ type vdompropertyArgs struct {
 	FirewallAddress *string `pulumi:"firewallAddress"`
 	// Maximum guaranteed number of firewall address groups (IPv4, IPv6).
 	FirewallAddrgrp *string `pulumi:"firewallAddrgrp"`
-	// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+	// Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
 	FirewallPolicy *string `pulumi:"firewallPolicy"`
 	// Maximum guaranteed number of VPN IPsec phase 1 tunnels.
 	IpsecPhase1 *string `pulumi:"ipsecPhase1"`
@@ -227,7 +227,7 @@ type vdompropertyArgs struct {
 	IpsecPhase2 *string `pulumi:"ipsecPhase2"`
 	// Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
 	IpsecPhase2Interface *string `pulumi:"ipsecPhase2Interface"`
-	// Log disk quota in MB (range depends on how much disk space is available).
+	// Log disk quota in megabytes (MB). Range depends on how much disk space is available.
 	LogDiskQuota *string `pulumi:"logDiskQuota"`
 	// VDOM name.
 	Name *string `pulumi:"name"`
@@ -241,7 +241,7 @@ type vdompropertyArgs struct {
 	ServiceGroup *string `pulumi:"serviceGroup"`
 	// Maximum guaranteed number of sessions.
 	Session *string `pulumi:"session"`
-	// Permanent SNMP Index of the virtual domain (0 - 4294967295).
+	// Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
 	SnmpIndex *int `pulumi:"snmpIndex"`
 	// Maximum guaranteed number of SSL-VPNs.
 	Sslvpn *string `pulumi:"sslvpn"`
@@ -265,7 +265,7 @@ type VdompropertyArgs struct {
 	FirewallAddress pulumi.StringPtrInput
 	// Maximum guaranteed number of firewall address groups (IPv4, IPv6).
 	FirewallAddrgrp pulumi.StringPtrInput
-	// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+	// Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
 	FirewallPolicy pulumi.StringPtrInput
 	// Maximum guaranteed number of VPN IPsec phase 1 tunnels.
 	IpsecPhase1 pulumi.StringPtrInput
@@ -275,7 +275,7 @@ type VdompropertyArgs struct {
 	IpsecPhase2 pulumi.StringPtrInput
 	// Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
 	IpsecPhase2Interface pulumi.StringPtrInput
-	// Log disk quota in MB (range depends on how much disk space is available).
+	// Log disk quota in megabytes (MB). Range depends on how much disk space is available.
 	LogDiskQuota pulumi.StringPtrInput
 	// VDOM name.
 	Name pulumi.StringPtrInput
@@ -289,7 +289,7 @@ type VdompropertyArgs struct {
 	ServiceGroup pulumi.StringPtrInput
 	// Maximum guaranteed number of sessions.
 	Session pulumi.StringPtrInput
-	// Permanent SNMP Index of the virtual domain (0 - 4294967295).
+	// Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
 	SnmpIndex pulumi.IntPtrInput
 	// Maximum guaranteed number of SSL-VPNs.
 	Sslvpn pulumi.StringPtrInput
@@ -413,7 +413,7 @@ func (o VdompropertyOutput) FirewallAddrgrp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vdomproperty) pulumi.StringOutput { return v.FirewallAddrgrp }).(pulumi.StringOutput)
 }
 
-// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+// Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
 func (o VdompropertyOutput) FirewallPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vdomproperty) pulumi.StringOutput { return v.FirewallPolicy }).(pulumi.StringOutput)
 }
@@ -438,7 +438,7 @@ func (o VdompropertyOutput) IpsecPhase2Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vdomproperty) pulumi.StringOutput { return v.IpsecPhase2Interface }).(pulumi.StringOutput)
 }
 
-// Log disk quota in MB (range depends on how much disk space is available).
+// Log disk quota in megabytes (MB). Range depends on how much disk space is available.
 func (o VdompropertyOutput) LogDiskQuota() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vdomproperty) pulumi.StringOutput { return v.LogDiskQuota }).(pulumi.StringOutput)
 }
@@ -473,7 +473,7 @@ func (o VdompropertyOutput) Session() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vdomproperty) pulumi.StringOutput { return v.Session }).(pulumi.StringOutput)
 }
 
-// Permanent SNMP Index of the virtual domain (0 - 4294967295).
+// Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
 func (o VdompropertyOutput) SnmpIndex() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vdomproperty) pulumi.IntOutput { return v.SnmpIndex }).(pulumi.IntOutput)
 }
@@ -494,8 +494,8 @@ func (o VdompropertyOutput) UserGroup() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o VdompropertyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Vdomproperty) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o VdompropertyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vdomproperty) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type VdompropertyArrayOutput struct{ *pulumi.OutputState }

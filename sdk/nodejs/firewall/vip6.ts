@@ -151,7 +151,7 @@ export class Vip6 extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -286,6 +286,10 @@ export class Vip6 extends pulumi.CustomResource {
      * Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
      */
     public readonly srcFilters!: pulumi.Output<outputs.firewall.Vip6SrcFilter[] | undefined>;
+    /**
+     * Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+     */
+    public readonly srcVipFilter!: pulumi.Output<string>;
     /**
      * Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
      */
@@ -437,7 +441,7 @@ export class Vip6 extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
      */
@@ -503,6 +507,7 @@ export class Vip6 extends pulumi.CustomResource {
             resourceInputs["realservers"] = state ? state.realservers : undefined;
             resourceInputs["serverType"] = state ? state.serverType : undefined;
             resourceInputs["srcFilters"] = state ? state.srcFilters : undefined;
+            resourceInputs["srcVipFilter"] = state ? state.srcVipFilter : undefined;
             resourceInputs["sslAcceptFfdheGroups"] = state ? state.sslAcceptFfdheGroups : undefined;
             resourceInputs["sslAlgorithm"] = state ? state.sslAlgorithm : undefined;
             resourceInputs["sslCertificate"] = state ? state.sslCertificate : undefined;
@@ -594,6 +599,7 @@ export class Vip6 extends pulumi.CustomResource {
             resourceInputs["realservers"] = args ? args.realservers : undefined;
             resourceInputs["serverType"] = args ? args.serverType : undefined;
             resourceInputs["srcFilters"] = args ? args.srcFilters : undefined;
+            resourceInputs["srcVipFilter"] = args ? args.srcVipFilter : undefined;
             resourceInputs["sslAcceptFfdheGroups"] = args ? args.sslAcceptFfdheGroups : undefined;
             resourceInputs["sslAlgorithm"] = args ? args.sslAlgorithm : undefined;
             resourceInputs["sslCertificate"] = args ? args.sslCertificate : undefined;
@@ -681,7 +687,7 @@ export interface Vip6State {
      */
     fosid?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -816,6 +822,10 @@ export interface Vip6State {
      * Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
      */
     srcFilters?: pulumi.Input<pulumi.Input<inputs.firewall.Vip6SrcFilter>[]>;
+    /**
+     * Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+     */
+    srcVipFilter?: pulumi.Input<string>;
     /**
      * Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
      */
@@ -1019,7 +1029,7 @@ export interface Vip6Args {
      */
     fosid?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -1154,6 +1164,10 @@ export interface Vip6Args {
      * Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
      */
     srcFilters?: pulumi.Input<pulumi.Input<inputs.firewall.Vip6SrcFilter>[]>;
+    /**
+     * Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+     */
+    srcVipFilter?: pulumi.Input<string>;
     /**
      * Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
      */

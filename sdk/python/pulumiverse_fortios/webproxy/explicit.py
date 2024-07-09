@@ -16,7 +16,9 @@ __all__ = ['ExplicitArgs', 'Explicit']
 @pulumi.input_type
 class ExplicitArgs:
     def __init__(__self__, *,
+                 client_cert: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 empty_cert_action: Optional[pulumi.Input[str]] = None,
                  ftp_incoming_port: Optional[pulumi.Input[str]] = None,
                  ftp_over_http: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
@@ -50,13 +52,16 @@ class ExplicitArgs:
                  strict_guest: Optional[pulumi.Input[str]] = None,
                  trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
                  unknown_http_version: Optional[pulumi.Input[str]] = None,
+                 user_agent_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Explicit resource.
+        :param pulumi.Input[str] client_cert: Enable/disable to request client certificate. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] empty_cert_action: Action of an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
         :param pulumi.Input[str] ftp_incoming_port: Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
         :param pulumi.Input[str] ftp_over_http: Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] http_connection_mode: HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
         :param pulumi.Input[str] http_incoming_port: Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
         :param pulumi.Input[str] https_incoming_port: Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
@@ -74,7 +79,7 @@ class ExplicitArgs:
         :param pulumi.Input[str] pac_file_through_https: Enable/disable to get Proxy Auto-Configuration (PAC) through HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pac_file_url: PAC file access URL.
         :param pulumi.Input[Sequence[pulumi.Input['ExplicitPacPolicyArgs']]] pac_policies: PAC policies. The structure of `pac_policy` block is documented below.
-        :param pulumi.Input[str] pref_dns_result: Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
+        :param pulumi.Input[str] pref_dns_result: Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4).
         :param pulumi.Input[str] realm: Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
         :param pulumi.Input[str] sec_default_action: Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
         :param pulumi.Input[str] secure_web_proxy: Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
@@ -87,10 +92,15 @@ class ExplicitArgs:
         :param pulumi.Input[str] strict_guest: Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] trace_auth_no_rsp: Enable/disable logging timed-out authentication requests. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] unknown_http_version: Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
+        :param pulumi.Input[str] user_agent_detect: Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if client_cert is not None:
+            pulumi.set(__self__, "client_cert", client_cert)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if empty_cert_action is not None:
+            pulumi.set(__self__, "empty_cert_action", empty_cert_action)
         if ftp_incoming_port is not None:
             pulumi.set(__self__, "ftp_incoming_port", ftp_incoming_port)
         if ftp_over_http is not None:
@@ -157,8 +167,22 @@ class ExplicitArgs:
             pulumi.set(__self__, "trace_auth_no_rsp", trace_auth_no_rsp)
         if unknown_http_version is not None:
             pulumi.set(__self__, "unknown_http_version", unknown_http_version)
+        if user_agent_detect is not None:
+            pulumi.set(__self__, "user_agent_detect", user_agent_detect)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable to request client certificate. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "client_cert")
+
+    @client_cert.setter
+    def client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_cert", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -171,6 +195,18 @@ class ExplicitArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="emptyCertAction")
+    def empty_cert_action(self) -> Optional[pulumi.Input[str]]:
+        """
+        Action of an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
+        """
+        return pulumi.get(self, "empty_cert_action")
+
+    @empty_cert_action.setter
+    def empty_cert_action(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "empty_cert_action", value)
 
     @property
     @pulumi.getter(name="ftpIncomingPort")
@@ -200,7 +236,7 @@ class ExplicitArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -416,7 +452,7 @@ class ExplicitArgs:
     @pulumi.getter(name="prefDnsResult")
     def pref_dns_result(self) -> Optional[pulumi.Input[str]]:
         """
-        Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
+        Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4).
         """
         return pulumi.get(self, "pref_dns_result")
 
@@ -567,6 +603,18 @@ class ExplicitArgs:
     @unknown_http_version.setter
     def unknown_http_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "unknown_http_version", value)
+
+    @property
+    @pulumi.getter(name="userAgentDetect")
+    def user_agent_detect(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "user_agent_detect")
+
+    @user_agent_detect.setter
+    def user_agent_detect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_agent_detect", value)
 
     @property
     @pulumi.getter
@@ -584,7 +632,9 @@ class ExplicitArgs:
 @pulumi.input_type
 class _ExplicitState:
     def __init__(__self__, *,
+                 client_cert: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 empty_cert_action: Optional[pulumi.Input[str]] = None,
                  ftp_incoming_port: Optional[pulumi.Input[str]] = None,
                  ftp_over_http: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
@@ -618,13 +668,16 @@ class _ExplicitState:
                  strict_guest: Optional[pulumi.Input[str]] = None,
                  trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
                  unknown_http_version: Optional[pulumi.Input[str]] = None,
+                 user_agent_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Explicit resources.
+        :param pulumi.Input[str] client_cert: Enable/disable to request client certificate. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] empty_cert_action: Action of an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
         :param pulumi.Input[str] ftp_incoming_port: Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
         :param pulumi.Input[str] ftp_over_http: Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] http_connection_mode: HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
         :param pulumi.Input[str] http_incoming_port: Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
         :param pulumi.Input[str] https_incoming_port: Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
@@ -642,7 +695,7 @@ class _ExplicitState:
         :param pulumi.Input[str] pac_file_through_https: Enable/disable to get Proxy Auto-Configuration (PAC) through HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pac_file_url: PAC file access URL.
         :param pulumi.Input[Sequence[pulumi.Input['ExplicitPacPolicyArgs']]] pac_policies: PAC policies. The structure of `pac_policy` block is documented below.
-        :param pulumi.Input[str] pref_dns_result: Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
+        :param pulumi.Input[str] pref_dns_result: Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4).
         :param pulumi.Input[str] realm: Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
         :param pulumi.Input[str] sec_default_action: Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
         :param pulumi.Input[str] secure_web_proxy: Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
@@ -655,10 +708,15 @@ class _ExplicitState:
         :param pulumi.Input[str] strict_guest: Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] trace_auth_no_rsp: Enable/disable logging timed-out authentication requests. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] unknown_http_version: Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
+        :param pulumi.Input[str] user_agent_detect: Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if client_cert is not None:
+            pulumi.set(__self__, "client_cert", client_cert)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if empty_cert_action is not None:
+            pulumi.set(__self__, "empty_cert_action", empty_cert_action)
         if ftp_incoming_port is not None:
             pulumi.set(__self__, "ftp_incoming_port", ftp_incoming_port)
         if ftp_over_http is not None:
@@ -725,8 +783,22 @@ class _ExplicitState:
             pulumi.set(__self__, "trace_auth_no_rsp", trace_auth_no_rsp)
         if unknown_http_version is not None:
             pulumi.set(__self__, "unknown_http_version", unknown_http_version)
+        if user_agent_detect is not None:
+            pulumi.set(__self__, "user_agent_detect", user_agent_detect)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable to request client certificate. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "client_cert")
+
+    @client_cert.setter
+    def client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_cert", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -739,6 +811,18 @@ class _ExplicitState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="emptyCertAction")
+    def empty_cert_action(self) -> Optional[pulumi.Input[str]]:
+        """
+        Action of an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
+        """
+        return pulumi.get(self, "empty_cert_action")
+
+    @empty_cert_action.setter
+    def empty_cert_action(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "empty_cert_action", value)
 
     @property
     @pulumi.getter(name="ftpIncomingPort")
@@ -768,7 +852,7 @@ class _ExplicitState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -984,7 +1068,7 @@ class _ExplicitState:
     @pulumi.getter(name="prefDnsResult")
     def pref_dns_result(self) -> Optional[pulumi.Input[str]]:
         """
-        Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
+        Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4).
         """
         return pulumi.get(self, "pref_dns_result")
 
@@ -1135,6 +1219,18 @@ class _ExplicitState:
     @unknown_http_version.setter
     def unknown_http_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "unknown_http_version", value)
+
+    @property
+    @pulumi.getter(name="userAgentDetect")
+    def user_agent_detect(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "user_agent_detect")
+
+    @user_agent_detect.setter
+    def user_agent_detect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_agent_detect", value)
 
     @property
     @pulumi.getter
@@ -1154,7 +1250,9 @@ class Explicit(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 empty_cert_action: Optional[pulumi.Input[str]] = None,
                  ftp_incoming_port: Optional[pulumi.Input[str]] = None,
                  ftp_over_http: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
@@ -1188,6 +1286,7 @@ class Explicit(pulumi.CustomResource):
                  strict_guest: Optional[pulumi.Input[str]] = None,
                  trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
                  unknown_http_version: Optional[pulumi.Input[str]] = None,
+                 user_agent_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -1213,10 +1312,12 @@ class Explicit(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] client_cert: Enable/disable to request client certificate. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] empty_cert_action: Action of an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
         :param pulumi.Input[str] ftp_incoming_port: Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
         :param pulumi.Input[str] ftp_over_http: Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] http_connection_mode: HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
         :param pulumi.Input[str] http_incoming_port: Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
         :param pulumi.Input[str] https_incoming_port: Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
@@ -1234,7 +1335,7 @@ class Explicit(pulumi.CustomResource):
         :param pulumi.Input[str] pac_file_through_https: Enable/disable to get Proxy Auto-Configuration (PAC) through HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pac_file_url: PAC file access URL.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExplicitPacPolicyArgs']]]] pac_policies: PAC policies. The structure of `pac_policy` block is documented below.
-        :param pulumi.Input[str] pref_dns_result: Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
+        :param pulumi.Input[str] pref_dns_result: Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4).
         :param pulumi.Input[str] realm: Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
         :param pulumi.Input[str] sec_default_action: Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
         :param pulumi.Input[str] secure_web_proxy: Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
@@ -1247,6 +1348,7 @@ class Explicit(pulumi.CustomResource):
         :param pulumi.Input[str] strict_guest: Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] trace_auth_no_rsp: Enable/disable logging timed-out authentication requests. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] unknown_http_version: Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
+        :param pulumi.Input[str] user_agent_detect: Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -1291,7 +1393,9 @@ class Explicit(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 empty_cert_action: Optional[pulumi.Input[str]] = None,
                  ftp_incoming_port: Optional[pulumi.Input[str]] = None,
                  ftp_over_http: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
@@ -1325,6 +1429,7 @@ class Explicit(pulumi.CustomResource):
                  strict_guest: Optional[pulumi.Input[str]] = None,
                  trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
                  unknown_http_version: Optional[pulumi.Input[str]] = None,
+                 user_agent_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1335,7 +1440,9 @@ class Explicit(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ExplicitArgs.__new__(ExplicitArgs)
 
+            __props__.__dict__["client_cert"] = client_cert
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["empty_cert_action"] = empty_cert_action
             __props__.__dict__["ftp_incoming_port"] = ftp_incoming_port
             __props__.__dict__["ftp_over_http"] = ftp_over_http
             __props__.__dict__["get_all_tables"] = get_all_tables
@@ -1369,6 +1476,7 @@ class Explicit(pulumi.CustomResource):
             __props__.__dict__["strict_guest"] = strict_guest
             __props__.__dict__["trace_auth_no_rsp"] = trace_auth_no_rsp
             __props__.__dict__["unknown_http_version"] = unknown_http_version
+            __props__.__dict__["user_agent_detect"] = user_agent_detect
             __props__.__dict__["vdomparam"] = vdomparam
         super(Explicit, __self__).__init__(
             'fortios:webproxy/explicit:Explicit',
@@ -1380,7 +1488,9 @@ class Explicit(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            client_cert: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            empty_cert_action: Optional[pulumi.Input[str]] = None,
             ftp_incoming_port: Optional[pulumi.Input[str]] = None,
             ftp_over_http: Optional[pulumi.Input[str]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
@@ -1414,6 +1524,7 @@ class Explicit(pulumi.CustomResource):
             strict_guest: Optional[pulumi.Input[str]] = None,
             trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
             unknown_http_version: Optional[pulumi.Input[str]] = None,
+            user_agent_detect: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Explicit':
         """
         Get an existing Explicit resource's state with the given name, id, and optional extra
@@ -1422,10 +1533,12 @@ class Explicit(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] client_cert: Enable/disable to request client certificate. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
+        :param pulumi.Input[str] empty_cert_action: Action of an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
         :param pulumi.Input[str] ftp_incoming_port: Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
         :param pulumi.Input[str] ftp_over_http: Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] http_connection_mode: HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
         :param pulumi.Input[str] http_incoming_port: Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080).
         :param pulumi.Input[str] https_incoming_port: Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP).
@@ -1443,7 +1556,7 @@ class Explicit(pulumi.CustomResource):
         :param pulumi.Input[str] pac_file_through_https: Enable/disable to get Proxy Auto-Configuration (PAC) through HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pac_file_url: PAC file access URL.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExplicitPacPolicyArgs']]]] pac_policies: PAC policies. The structure of `pac_policy` block is documented below.
-        :param pulumi.Input[str] pref_dns_result: Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
+        :param pulumi.Input[str] pref_dns_result: Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4).
         :param pulumi.Input[str] realm: Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
         :param pulumi.Input[str] sec_default_action: Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. Valid values: `accept`, `deny`.
         :param pulumi.Input[str] secure_web_proxy: Enable/disable/require the secure web proxy for HTTP and HTTPS session. Valid values: `disable`, `enable`, `secure`.
@@ -1456,13 +1569,16 @@ class Explicit(pulumi.CustomResource):
         :param pulumi.Input[str] strict_guest: Enable/disable strict guest user checking by the explicit web proxy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] trace_auth_no_rsp: Enable/disable logging timed-out authentication requests. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] unknown_http_version: Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
+        :param pulumi.Input[str] user_agent_detect: Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ExplicitState.__new__(_ExplicitState)
 
+        __props__.__dict__["client_cert"] = client_cert
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["empty_cert_action"] = empty_cert_action
         __props__.__dict__["ftp_incoming_port"] = ftp_incoming_port
         __props__.__dict__["ftp_over_http"] = ftp_over_http
         __props__.__dict__["get_all_tables"] = get_all_tables
@@ -1496,8 +1612,17 @@ class Explicit(pulumi.CustomResource):
         __props__.__dict__["strict_guest"] = strict_guest
         __props__.__dict__["trace_auth_no_rsp"] = trace_auth_no_rsp
         __props__.__dict__["unknown_http_version"] = unknown_http_version
+        __props__.__dict__["user_agent_detect"] = user_agent_detect
         __props__.__dict__["vdomparam"] = vdomparam
         return Explicit(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> pulumi.Output[str]:
+        """
+        Enable/disable to request client certificate. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "client_cert")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -1506,6 +1631,14 @@ class Explicit(pulumi.CustomResource):
         Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="emptyCertAction")
+    def empty_cert_action(self) -> pulumi.Output[str]:
+        """
+        Action of an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
+        """
+        return pulumi.get(self, "empty_cert_action")
 
     @property
     @pulumi.getter(name="ftpIncomingPort")
@@ -1527,7 +1660,7 @@ class Explicit(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1671,7 +1804,7 @@ class Explicit(pulumi.CustomResource):
     @pulumi.getter(name="prefDnsResult")
     def pref_dns_result(self) -> pulumi.Output[str]:
         """
-        Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
+        Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4).
         """
         return pulumi.get(self, "pref_dns_result")
 
@@ -1772,8 +1905,16 @@ class Explicit(pulumi.CustomResource):
         return pulumi.get(self, "unknown_http_version")
 
     @property
+    @pulumi.getter(name="userAgentDetect")
+    def user_agent_detect(self) -> pulumi.Output[str]:
+        """
+        Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "user_agent_detect")
+
+    @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

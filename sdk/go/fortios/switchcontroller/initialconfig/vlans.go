@@ -44,7 +44,7 @@ type Vlans struct {
 	// VLAN for RSPAN/ERSPAN mirrored traffic.
 	Rspan pulumi.StringOutput `pulumi:"rspan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// VLAN dedicated for video devices.
 	Video pulumi.StringOutput `pulumi:"video"`
 	// VLAN dedicated for voice devices.
@@ -274,8 +274,8 @@ func (o VlansOutput) Rspan() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o VlansOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Vlans) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o VlansOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vlans) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // VLAN dedicated for video devices.

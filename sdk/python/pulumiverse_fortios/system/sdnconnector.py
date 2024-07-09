@@ -97,7 +97,7 @@ class SdnconnectorArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorForwardingRuleArgs']]] forwarding_rules: Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
         :param pulumi.Input[str] gcp_project: GCP project name.
         :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorGcpProjectListArgs']]] gcp_project_lists: Configure GCP project list. The structure of `gcp_project_list` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ibm_region: IBM cloud region name.
@@ -130,7 +130,7 @@ class SdnconnectorArgs:
         :param pulumi.Input[str] service_account: GCP service account email.
         :param pulumi.Input[str] subscription_id: Azure subscription ID.
         :param pulumi.Input[str] tenant_id: Tenant ID (directory ID).
-        :param pulumi.Input[int] update_interval: Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+        :param pulumi.Input[int] update_interval: Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
         :param pulumi.Input[str] use_metadata_iam: Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] user_id: User ID.
         :param pulumi.Input[str] username: Username of the remote SDN connector as login credentials.
@@ -482,7 +482,7 @@ class SdnconnectorArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -878,7 +878,7 @@ class SdnconnectorArgs:
     @pulumi.getter(name="updateInterval")
     def update_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+        Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
         """
         return pulumi.get(self, "update_interval")
 
@@ -1077,7 +1077,7 @@ class _SdnconnectorState:
         :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorForwardingRuleArgs']]] forwarding_rules: Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
         :param pulumi.Input[str] gcp_project: GCP project name.
         :param pulumi.Input[Sequence[pulumi.Input['SdnconnectorGcpProjectListArgs']]] gcp_project_lists: Configure GCP project list. The structure of `gcp_project_list` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ibm_region: IBM cloud region name.
@@ -1112,7 +1112,7 @@ class _SdnconnectorState:
         :param pulumi.Input[str] subscription_id: Azure subscription ID.
         :param pulumi.Input[str] tenant_id: Tenant ID (directory ID).
         :param pulumi.Input[str] type: Type of SDN connector.
-        :param pulumi.Input[int] update_interval: Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+        :param pulumi.Input[int] update_interval: Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
         :param pulumi.Input[str] use_metadata_iam: Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] user_id: User ID.
         :param pulumi.Input[str] username: Username of the remote SDN connector as login credentials.
@@ -1442,7 +1442,7 @@ class _SdnconnectorState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1862,7 +1862,7 @@ class _SdnconnectorState:
     @pulumi.getter(name="updateInterval")
     def update_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+        Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
         """
         return pulumi.get(self, "update_interval")
 
@@ -2104,7 +2104,7 @@ class Sdnconnector(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorForwardingRuleArgs']]]] forwarding_rules: Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
         :param pulumi.Input[str] gcp_project: GCP project name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorGcpProjectListArgs']]]] gcp_project_lists: Configure GCP project list. The structure of `gcp_project_list` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ibm_region: IBM cloud region name.
@@ -2139,7 +2139,7 @@ class Sdnconnector(pulumi.CustomResource):
         :param pulumi.Input[str] subscription_id: Azure subscription ID.
         :param pulumi.Input[str] tenant_id: Tenant ID (directory ID).
         :param pulumi.Input[str] type: Type of SDN connector.
-        :param pulumi.Input[int] update_interval: Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+        :param pulumi.Input[int] update_interval: Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
         :param pulumi.Input[str] use_metadata_iam: Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] user_id: User ID.
         :param pulumi.Input[str] username: Username of the remote SDN connector as login credentials.
@@ -2442,7 +2442,7 @@ class Sdnconnector(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorForwardingRuleArgs']]]] forwarding_rules: Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
         :param pulumi.Input[str] gcp_project: GCP project name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SdnconnectorGcpProjectListArgs']]]] gcp_project_lists: Configure GCP project list. The structure of `gcp_project_list` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ibm_region: IBM cloud region name.
@@ -2477,7 +2477,7 @@ class Sdnconnector(pulumi.CustomResource):
         :param pulumi.Input[str] subscription_id: Azure subscription ID.
         :param pulumi.Input[str] tenant_id: Tenant ID (directory ID).
         :param pulumi.Input[str] type: Type of SDN connector.
-        :param pulumi.Input[int] update_interval: Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+        :param pulumi.Input[int] update_interval: Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
         :param pulumi.Input[str] use_metadata_iam: Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] user_id: User ID.
         :param pulumi.Input[str] username: Username of the remote SDN connector as login credentials.
@@ -2687,7 +2687,7 @@ class Sdnconnector(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2967,7 +2967,7 @@ class Sdnconnector(pulumi.CustomResource):
     @pulumi.getter(name="updateInterval")
     def update_interval(self) -> pulumi.Output[int]:
         """
-        Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+        Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
         """
         return pulumi.get(self, "update_interval")
 
@@ -3021,7 +3021,7 @@ class Sdnconnector(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

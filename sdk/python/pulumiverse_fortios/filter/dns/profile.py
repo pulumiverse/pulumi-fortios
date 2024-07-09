@@ -32,6 +32,7 @@ class ProfileArgs:
                  safe_search: Optional[pulumi.Input[str]] = None,
                  sdns_domain_log: Optional[pulumi.Input[str]] = None,
                  sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+                 strip_ech: Optional[pulumi.Input[str]] = None,
                  transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  youtube_restrict: Optional[pulumi.Input[str]] = None):
@@ -45,7 +46,7 @@ class ProfileArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input['ProfileExternalIpBlocklistArgs']]] external_ip_blocklists: One or more external IP block lists. The structure of `external_ip_blocklist` block is documented below.
         :param pulumi.Input['ProfileFtgdDnsArgs'] ftgd_dns: FortiGuard DNS Filter settings. The structure of `ftgd_dns` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log_all_domain: Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[str] redirect_portal: IP address of the SDNS redirect portal.
@@ -53,9 +54,10 @@ class ProfileArgs:
         :param pulumi.Input[str] safe_search: Enable/disable Google, Bing, and YouTube safe search. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] sdns_domain_log: Enable/disable domain filtering and botnet domain logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sdns_ftgd_err_log: Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] strip_ech: Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]] transparent_dns_databases: Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-        :param pulumi.Input[str] youtube_restrict: Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+        :param pulumi.Input[str] youtube_restrict: Set safe search for YouTube restriction level.
         """
         if block_action is not None:
             pulumi.set(__self__, "block_action", block_action)
@@ -89,6 +91,8 @@ class ProfileArgs:
             pulumi.set(__self__, "sdns_domain_log", sdns_domain_log)
         if sdns_ftgd_err_log is not None:
             pulumi.set(__self__, "sdns_ftgd_err_log", sdns_ftgd_err_log)
+        if strip_ech is not None:
+            pulumi.set(__self__, "strip_ech", strip_ech)
         if transparent_dns_databases is not None:
             pulumi.set(__self__, "transparent_dns_databases", transparent_dns_databases)
         if vdomparam is not None:
@@ -196,7 +200,7 @@ class ProfileArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -289,6 +293,18 @@ class ProfileArgs:
         pulumi.set(self, "sdns_ftgd_err_log", value)
 
     @property
+    @pulumi.getter(name="stripEch")
+    def strip_ech(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "strip_ech")
+
+    @strip_ech.setter
+    def strip_ech(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "strip_ech", value)
+
+    @property
     @pulumi.getter(name="transparentDnsDatabases")
     def transparent_dns_databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]]]:
         """
@@ -316,7 +332,7 @@ class ProfileArgs:
     @pulumi.getter(name="youtubeRestrict")
     def youtube_restrict(self) -> Optional[pulumi.Input[str]]:
         """
-        Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+        Set safe search for YouTube restriction level.
         """
         return pulumi.get(self, "youtube_restrict")
 
@@ -344,6 +360,7 @@ class _ProfileState:
                  safe_search: Optional[pulumi.Input[str]] = None,
                  sdns_domain_log: Optional[pulumi.Input[str]] = None,
                  sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+                 strip_ech: Optional[pulumi.Input[str]] = None,
                  transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  youtube_restrict: Optional[pulumi.Input[str]] = None):
@@ -357,7 +374,7 @@ class _ProfileState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input['ProfileExternalIpBlocklistArgs']]] external_ip_blocklists: One or more external IP block lists. The structure of `external_ip_blocklist` block is documented below.
         :param pulumi.Input['ProfileFtgdDnsArgs'] ftgd_dns: FortiGuard DNS Filter settings. The structure of `ftgd_dns` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log_all_domain: Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[str] redirect_portal: IP address of the SDNS redirect portal.
@@ -365,9 +382,10 @@ class _ProfileState:
         :param pulumi.Input[str] safe_search: Enable/disable Google, Bing, and YouTube safe search. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] sdns_domain_log: Enable/disable domain filtering and botnet domain logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sdns_ftgd_err_log: Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] strip_ech: Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]] transparent_dns_databases: Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-        :param pulumi.Input[str] youtube_restrict: Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+        :param pulumi.Input[str] youtube_restrict: Set safe search for YouTube restriction level.
         """
         if block_action is not None:
             pulumi.set(__self__, "block_action", block_action)
@@ -401,6 +419,8 @@ class _ProfileState:
             pulumi.set(__self__, "sdns_domain_log", sdns_domain_log)
         if sdns_ftgd_err_log is not None:
             pulumi.set(__self__, "sdns_ftgd_err_log", sdns_ftgd_err_log)
+        if strip_ech is not None:
+            pulumi.set(__self__, "strip_ech", strip_ech)
         if transparent_dns_databases is not None:
             pulumi.set(__self__, "transparent_dns_databases", transparent_dns_databases)
         if vdomparam is not None:
@@ -508,7 +528,7 @@ class _ProfileState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -601,6 +621,18 @@ class _ProfileState:
         pulumi.set(self, "sdns_ftgd_err_log", value)
 
     @property
+    @pulumi.getter(name="stripEch")
+    def strip_ech(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "strip_ech")
+
+    @strip_ech.setter
+    def strip_ech(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "strip_ech", value)
+
+    @property
     @pulumi.getter(name="transparentDnsDatabases")
     def transparent_dns_databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProfileTransparentDnsDatabaseArgs']]]]:
         """
@@ -628,7 +660,7 @@ class _ProfileState:
     @pulumi.getter(name="youtubeRestrict")
     def youtube_restrict(self) -> Optional[pulumi.Input[str]]:
         """
-        Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+        Set safe search for YouTube restriction level.
         """
         return pulumi.get(self, "youtube_restrict")
 
@@ -658,6 +690,7 @@ class Profile(pulumi.CustomResource):
                  safe_search: Optional[pulumi.Input[str]] = None,
                  sdns_domain_log: Optional[pulumi.Input[str]] = None,
                  sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+                 strip_ech: Optional[pulumi.Input[str]] = None,
                  transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileTransparentDnsDatabaseArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  youtube_restrict: Optional[pulumi.Input[str]] = None,
@@ -741,7 +774,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileExternalIpBlocklistArgs']]]] external_ip_blocklists: One or more external IP block lists. The structure of `external_ip_blocklist` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileFtgdDnsArgs']] ftgd_dns: FortiGuard DNS Filter settings. The structure of `ftgd_dns` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log_all_domain: Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[str] redirect_portal: IP address of the SDNS redirect portal.
@@ -749,9 +782,10 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] safe_search: Enable/disable Google, Bing, and YouTube safe search. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] sdns_domain_log: Enable/disable domain filtering and botnet domain logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sdns_ftgd_err_log: Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] strip_ech: Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileTransparentDnsDatabaseArgs']]]] transparent_dns_databases: Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-        :param pulumi.Input[str] youtube_restrict: Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+        :param pulumi.Input[str] youtube_restrict: Set safe search for YouTube restriction level.
         """
         ...
     @overload
@@ -859,6 +893,7 @@ class Profile(pulumi.CustomResource):
                  safe_search: Optional[pulumi.Input[str]] = None,
                  sdns_domain_log: Optional[pulumi.Input[str]] = None,
                  sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+                 strip_ech: Optional[pulumi.Input[str]] = None,
                  transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileTransparentDnsDatabaseArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  youtube_restrict: Optional[pulumi.Input[str]] = None,
@@ -887,6 +922,7 @@ class Profile(pulumi.CustomResource):
             __props__.__dict__["safe_search"] = safe_search
             __props__.__dict__["sdns_domain_log"] = sdns_domain_log
             __props__.__dict__["sdns_ftgd_err_log"] = sdns_ftgd_err_log
+            __props__.__dict__["strip_ech"] = strip_ech
             __props__.__dict__["transparent_dns_databases"] = transparent_dns_databases
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["youtube_restrict"] = youtube_restrict
@@ -916,6 +952,7 @@ class Profile(pulumi.CustomResource):
             safe_search: Optional[pulumi.Input[str]] = None,
             sdns_domain_log: Optional[pulumi.Input[str]] = None,
             sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+            strip_ech: Optional[pulumi.Input[str]] = None,
             transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileTransparentDnsDatabaseArgs']]]]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             youtube_restrict: Optional[pulumi.Input[str]] = None) -> 'Profile':
@@ -934,7 +971,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileExternalIpBlocklistArgs']]]] external_ip_blocklists: One or more external IP block lists. The structure of `external_ip_blocklist` block is documented below.
         :param pulumi.Input[pulumi.InputType['ProfileFtgdDnsArgs']] ftgd_dns: FortiGuard DNS Filter settings. The structure of `ftgd_dns` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] log_all_domain: Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[str] redirect_portal: IP address of the SDNS redirect portal.
@@ -942,9 +979,10 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] safe_search: Enable/disable Google, Bing, and YouTube safe search. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] sdns_domain_log: Enable/disable domain filtering and botnet domain logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sdns_ftgd_err_log: Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] strip_ech: Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileTransparentDnsDatabaseArgs']]]] transparent_dns_databases: Transparent DNS database zones. The structure of `transparent_dns_database` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-        :param pulumi.Input[str] youtube_restrict: Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+        :param pulumi.Input[str] youtube_restrict: Set safe search for YouTube restriction level.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -966,6 +1004,7 @@ class Profile(pulumi.CustomResource):
         __props__.__dict__["safe_search"] = safe_search
         __props__.__dict__["sdns_domain_log"] = sdns_domain_log
         __props__.__dict__["sdns_ftgd_err_log"] = sdns_ftgd_err_log
+        __props__.__dict__["strip_ech"] = strip_ech
         __props__.__dict__["transparent_dns_databases"] = transparent_dns_databases
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["youtube_restrict"] = youtube_restrict
@@ -1039,7 +1078,7 @@ class Profile(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1100,6 +1139,14 @@ class Profile(pulumi.CustomResource):
         return pulumi.get(self, "sdns_ftgd_err_log")
 
     @property
+    @pulumi.getter(name="stripEch")
+    def strip_ech(self) -> pulumi.Output[str]:
+        """
+        Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "strip_ech")
+
+    @property
     @pulumi.getter(name="transparentDnsDatabases")
     def transparent_dns_databases(self) -> pulumi.Output[Optional[Sequence['outputs.ProfileTransparentDnsDatabase']]]:
         """
@@ -1109,7 +1156,7 @@ class Profile(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -1119,7 +1166,7 @@ class Profile(pulumi.CustomResource):
     @pulumi.getter(name="youtubeRestrict")
     def youtube_restrict(self) -> pulumi.Output[str]:
         """
-        Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+        Set safe search for YouTube restriction level.
         """
         return pulumi.get(self, "youtube_restrict")
 

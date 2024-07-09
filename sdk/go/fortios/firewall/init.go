@@ -139,6 +139,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ObjectVip{}
 	case "fortios:firewall/objectVipgroup:ObjectVipgroup":
 		r = &ObjectVipgroup{}
+	case "fortios:firewall/ondemandsniffer:Ondemandsniffer":
+		r = &Ondemandsniffer{}
 	case "fortios:firewall/policy46:Policy46":
 		r = &Policy46{}
 	case "fortios:firewall/policy64:Policy64":
@@ -513,6 +515,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"firewall/objectVipgroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"firewall/ondemandsniffer",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

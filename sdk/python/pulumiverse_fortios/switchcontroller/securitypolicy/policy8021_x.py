@@ -20,8 +20,11 @@ class Policy8021XArgs:
                  auth_fail_vlan_id: Optional[pulumi.Input[str]] = None,
                  auth_fail_vlanid: Optional[pulumi.Input[int]] = None,
                  authserver_timeout_period: Optional[pulumi.Input[int]] = None,
+                 authserver_timeout_tagged: Optional[pulumi.Input[str]] = None,
+                 authserver_timeout_tagged_vlanid: Optional[pulumi.Input[str]] = None,
                  authserver_timeout_vlan: Optional[pulumi.Input[str]] = None,
                  authserver_timeout_vlanid: Optional[pulumi.Input[str]] = None,
+                 dacl: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  eap_auto_untagged_vlans: Optional[pulumi.Input[str]] = None,
                  eap_passthru: Optional[pulumi.Input[str]] = None,
@@ -45,13 +48,16 @@ class Policy8021XArgs:
         :param pulumi.Input[str] auth_fail_vlan_id: VLAN ID on which authentication failed.
         :param pulumi.Input[int] auth_fail_vlanid: VLAN ID on which authentication failed.
         :param pulumi.Input[int] authserver_timeout_period: Authentication server timeout period (3 - 15 sec, default = 3).
+        :param pulumi.Input[str] authserver_timeout_tagged: Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+        :param pulumi.Input[str] authserver_timeout_tagged_vlanid: Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
         :param pulumi.Input[str] authserver_timeout_vlan: Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
         :param pulumi.Input[str] authserver_timeout_vlanid: Authentication server timeout VLAN name.
+        :param pulumi.Input[str] dacl: Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] eap_auto_untagged_vlans: Enable/disable automatic inclusion of untagged VLANs. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] eap_passthru: Enable/disable EAP pass-through mode, allowing protocols (such as LLDP) to pass through ports for more flexible authentication. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] framevid_apply: Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] guest_auth_delay: Guest authentication delay (1 - 900  sec, default = 30).
         :param pulumi.Input[str] guest_vlan: Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] guest_vlan_id: Guest VLAN name.
@@ -73,10 +79,16 @@ class Policy8021XArgs:
             pulumi.set(__self__, "auth_fail_vlanid", auth_fail_vlanid)
         if authserver_timeout_period is not None:
             pulumi.set(__self__, "authserver_timeout_period", authserver_timeout_period)
+        if authserver_timeout_tagged is not None:
+            pulumi.set(__self__, "authserver_timeout_tagged", authserver_timeout_tagged)
+        if authserver_timeout_tagged_vlanid is not None:
+            pulumi.set(__self__, "authserver_timeout_tagged_vlanid", authserver_timeout_tagged_vlanid)
         if authserver_timeout_vlan is not None:
             pulumi.set(__self__, "authserver_timeout_vlan", authserver_timeout_vlan)
         if authserver_timeout_vlanid is not None:
             pulumi.set(__self__, "authserver_timeout_vlanid", authserver_timeout_vlanid)
+        if dacl is not None:
+            pulumi.set(__self__, "dacl", dacl)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if eap_auto_untagged_vlans is not None:
@@ -161,6 +173,30 @@ class Policy8021XArgs:
         pulumi.set(self, "authserver_timeout_period", value)
 
     @property
+    @pulumi.getter(name="authserverTimeoutTagged")
+    def authserver_timeout_tagged(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+        """
+        return pulumi.get(self, "authserver_timeout_tagged")
+
+    @authserver_timeout_tagged.setter
+    def authserver_timeout_tagged(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authserver_timeout_tagged", value)
+
+    @property
+    @pulumi.getter(name="authserverTimeoutTaggedVlanid")
+    def authserver_timeout_tagged_vlanid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+        """
+        return pulumi.get(self, "authserver_timeout_tagged_vlanid")
+
+    @authserver_timeout_tagged_vlanid.setter
+    def authserver_timeout_tagged_vlanid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authserver_timeout_tagged_vlanid", value)
+
+    @property
     @pulumi.getter(name="authserverTimeoutVlan")
     def authserver_timeout_vlan(self) -> Optional[pulumi.Input[str]]:
         """
@@ -183,6 +219,18 @@ class Policy8021XArgs:
     @authserver_timeout_vlanid.setter
     def authserver_timeout_vlanid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "authserver_timeout_vlanid", value)
+
+    @property
+    @pulumi.getter
+    def dacl(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dacl")
+
+    @dacl.setter
+    def dacl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dacl", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -236,7 +284,7 @@ class Policy8021XArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -396,8 +444,11 @@ class _Policy8021XState:
                  auth_fail_vlan_id: Optional[pulumi.Input[str]] = None,
                  auth_fail_vlanid: Optional[pulumi.Input[int]] = None,
                  authserver_timeout_period: Optional[pulumi.Input[int]] = None,
+                 authserver_timeout_tagged: Optional[pulumi.Input[str]] = None,
+                 authserver_timeout_tagged_vlanid: Optional[pulumi.Input[str]] = None,
                  authserver_timeout_vlan: Optional[pulumi.Input[str]] = None,
                  authserver_timeout_vlanid: Optional[pulumi.Input[str]] = None,
+                 dacl: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  eap_auto_untagged_vlans: Optional[pulumi.Input[str]] = None,
                  eap_passthru: Optional[pulumi.Input[str]] = None,
@@ -421,13 +472,16 @@ class _Policy8021XState:
         :param pulumi.Input[str] auth_fail_vlan_id: VLAN ID on which authentication failed.
         :param pulumi.Input[int] auth_fail_vlanid: VLAN ID on which authentication failed.
         :param pulumi.Input[int] authserver_timeout_period: Authentication server timeout period (3 - 15 sec, default = 3).
+        :param pulumi.Input[str] authserver_timeout_tagged: Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+        :param pulumi.Input[str] authserver_timeout_tagged_vlanid: Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
         :param pulumi.Input[str] authserver_timeout_vlan: Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
         :param pulumi.Input[str] authserver_timeout_vlanid: Authentication server timeout VLAN name.
+        :param pulumi.Input[str] dacl: Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] eap_auto_untagged_vlans: Enable/disable automatic inclusion of untagged VLANs. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] eap_passthru: Enable/disable EAP pass-through mode, allowing protocols (such as LLDP) to pass through ports for more flexible authentication. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] framevid_apply: Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] guest_auth_delay: Guest authentication delay (1 - 900  sec, default = 30).
         :param pulumi.Input[str] guest_vlan: Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] guest_vlan_id: Guest VLAN name.
@@ -449,10 +503,16 @@ class _Policy8021XState:
             pulumi.set(__self__, "auth_fail_vlanid", auth_fail_vlanid)
         if authserver_timeout_period is not None:
             pulumi.set(__self__, "authserver_timeout_period", authserver_timeout_period)
+        if authserver_timeout_tagged is not None:
+            pulumi.set(__self__, "authserver_timeout_tagged", authserver_timeout_tagged)
+        if authserver_timeout_tagged_vlanid is not None:
+            pulumi.set(__self__, "authserver_timeout_tagged_vlanid", authserver_timeout_tagged_vlanid)
         if authserver_timeout_vlan is not None:
             pulumi.set(__self__, "authserver_timeout_vlan", authserver_timeout_vlan)
         if authserver_timeout_vlanid is not None:
             pulumi.set(__self__, "authserver_timeout_vlanid", authserver_timeout_vlanid)
+        if dacl is not None:
+            pulumi.set(__self__, "dacl", dacl)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if eap_auto_untagged_vlans is not None:
@@ -537,6 +597,30 @@ class _Policy8021XState:
         pulumi.set(self, "authserver_timeout_period", value)
 
     @property
+    @pulumi.getter(name="authserverTimeoutTagged")
+    def authserver_timeout_tagged(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+        """
+        return pulumi.get(self, "authserver_timeout_tagged")
+
+    @authserver_timeout_tagged.setter
+    def authserver_timeout_tagged(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authserver_timeout_tagged", value)
+
+    @property
+    @pulumi.getter(name="authserverTimeoutTaggedVlanid")
+    def authserver_timeout_tagged_vlanid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+        """
+        return pulumi.get(self, "authserver_timeout_tagged_vlanid")
+
+    @authserver_timeout_tagged_vlanid.setter
+    def authserver_timeout_tagged_vlanid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authserver_timeout_tagged_vlanid", value)
+
+    @property
     @pulumi.getter(name="authserverTimeoutVlan")
     def authserver_timeout_vlan(self) -> Optional[pulumi.Input[str]]:
         """
@@ -559,6 +643,18 @@ class _Policy8021XState:
     @authserver_timeout_vlanid.setter
     def authserver_timeout_vlanid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "authserver_timeout_vlanid", value)
+
+    @property
+    @pulumi.getter
+    def dacl(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dacl")
+
+    @dacl.setter
+    def dacl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dacl", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -612,7 +708,7 @@ class _Policy8021XState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -774,8 +870,11 @@ class Policy8021X(pulumi.CustomResource):
                  auth_fail_vlan_id: Optional[pulumi.Input[str]] = None,
                  auth_fail_vlanid: Optional[pulumi.Input[int]] = None,
                  authserver_timeout_period: Optional[pulumi.Input[int]] = None,
+                 authserver_timeout_tagged: Optional[pulumi.Input[str]] = None,
+                 authserver_timeout_tagged_vlanid: Optional[pulumi.Input[str]] = None,
                  authserver_timeout_vlan: Optional[pulumi.Input[str]] = None,
                  authserver_timeout_vlanid: Optional[pulumi.Input[str]] = None,
+                 dacl: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  eap_auto_untagged_vlans: Optional[pulumi.Input[str]] = None,
                  eap_passthru: Optional[pulumi.Input[str]] = None,
@@ -845,13 +944,16 @@ class Policy8021X(pulumi.CustomResource):
         :param pulumi.Input[str] auth_fail_vlan_id: VLAN ID on which authentication failed.
         :param pulumi.Input[int] auth_fail_vlanid: VLAN ID on which authentication failed.
         :param pulumi.Input[int] authserver_timeout_period: Authentication server timeout period (3 - 15 sec, default = 3).
+        :param pulumi.Input[str] authserver_timeout_tagged: Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+        :param pulumi.Input[str] authserver_timeout_tagged_vlanid: Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
         :param pulumi.Input[str] authserver_timeout_vlan: Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
         :param pulumi.Input[str] authserver_timeout_vlanid: Authentication server timeout VLAN name.
+        :param pulumi.Input[str] dacl: Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] eap_auto_untagged_vlans: Enable/disable automatic inclusion of untagged VLANs. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] eap_passthru: Enable/disable EAP pass-through mode, allowing protocols (such as LLDP) to pass through ports for more flexible authentication. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] framevid_apply: Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] guest_auth_delay: Guest authentication delay (1 - 900  sec, default = 30).
         :param pulumi.Input[str] guest_vlan: Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] guest_vlan_id: Guest VLAN name.
@@ -935,8 +1037,11 @@ class Policy8021X(pulumi.CustomResource):
                  auth_fail_vlan_id: Optional[pulumi.Input[str]] = None,
                  auth_fail_vlanid: Optional[pulumi.Input[int]] = None,
                  authserver_timeout_period: Optional[pulumi.Input[int]] = None,
+                 authserver_timeout_tagged: Optional[pulumi.Input[str]] = None,
+                 authserver_timeout_tagged_vlanid: Optional[pulumi.Input[str]] = None,
                  authserver_timeout_vlan: Optional[pulumi.Input[str]] = None,
                  authserver_timeout_vlanid: Optional[pulumi.Input[str]] = None,
+                 dacl: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  eap_auto_untagged_vlans: Optional[pulumi.Input[str]] = None,
                  eap_passthru: Optional[pulumi.Input[str]] = None,
@@ -967,8 +1072,11 @@ class Policy8021X(pulumi.CustomResource):
             __props__.__dict__["auth_fail_vlan_id"] = auth_fail_vlan_id
             __props__.__dict__["auth_fail_vlanid"] = auth_fail_vlanid
             __props__.__dict__["authserver_timeout_period"] = authserver_timeout_period
+            __props__.__dict__["authserver_timeout_tagged"] = authserver_timeout_tagged
+            __props__.__dict__["authserver_timeout_tagged_vlanid"] = authserver_timeout_tagged_vlanid
             __props__.__dict__["authserver_timeout_vlan"] = authserver_timeout_vlan
             __props__.__dict__["authserver_timeout_vlanid"] = authserver_timeout_vlanid
+            __props__.__dict__["dacl"] = dacl
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["eap_auto_untagged_vlans"] = eap_auto_untagged_vlans
             __props__.__dict__["eap_passthru"] = eap_passthru
@@ -1000,8 +1108,11 @@ class Policy8021X(pulumi.CustomResource):
             auth_fail_vlan_id: Optional[pulumi.Input[str]] = None,
             auth_fail_vlanid: Optional[pulumi.Input[int]] = None,
             authserver_timeout_period: Optional[pulumi.Input[int]] = None,
+            authserver_timeout_tagged: Optional[pulumi.Input[str]] = None,
+            authserver_timeout_tagged_vlanid: Optional[pulumi.Input[str]] = None,
             authserver_timeout_vlan: Optional[pulumi.Input[str]] = None,
             authserver_timeout_vlanid: Optional[pulumi.Input[str]] = None,
+            dacl: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             eap_auto_untagged_vlans: Optional[pulumi.Input[str]] = None,
             eap_passthru: Optional[pulumi.Input[str]] = None,
@@ -1030,13 +1141,16 @@ class Policy8021X(pulumi.CustomResource):
         :param pulumi.Input[str] auth_fail_vlan_id: VLAN ID on which authentication failed.
         :param pulumi.Input[int] auth_fail_vlanid: VLAN ID on which authentication failed.
         :param pulumi.Input[int] authserver_timeout_period: Authentication server timeout period (3 - 15 sec, default = 3).
+        :param pulumi.Input[str] authserver_timeout_tagged: Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+        :param pulumi.Input[str] authserver_timeout_tagged_vlanid: Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
         :param pulumi.Input[str] authserver_timeout_vlan: Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
         :param pulumi.Input[str] authserver_timeout_vlanid: Authentication server timeout VLAN name.
+        :param pulumi.Input[str] dacl: Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] eap_auto_untagged_vlans: Enable/disable automatic inclusion of untagged VLANs. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] eap_passthru: Enable/disable EAP pass-through mode, allowing protocols (such as LLDP) to pass through ports for more flexible authentication. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] framevid_apply: Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] guest_auth_delay: Guest authentication delay (1 - 900  sec, default = 30).
         :param pulumi.Input[str] guest_vlan: Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] guest_vlan_id: Guest VLAN name.
@@ -1058,8 +1172,11 @@ class Policy8021X(pulumi.CustomResource):
         __props__.__dict__["auth_fail_vlan_id"] = auth_fail_vlan_id
         __props__.__dict__["auth_fail_vlanid"] = auth_fail_vlanid
         __props__.__dict__["authserver_timeout_period"] = authserver_timeout_period
+        __props__.__dict__["authserver_timeout_tagged"] = authserver_timeout_tagged
+        __props__.__dict__["authserver_timeout_tagged_vlanid"] = authserver_timeout_tagged_vlanid
         __props__.__dict__["authserver_timeout_vlan"] = authserver_timeout_vlan
         __props__.__dict__["authserver_timeout_vlanid"] = authserver_timeout_vlanid
+        __props__.__dict__["dacl"] = dacl
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["eap_auto_untagged_vlans"] = eap_auto_untagged_vlans
         __props__.__dict__["eap_passthru"] = eap_passthru
@@ -1112,6 +1229,22 @@ class Policy8021X(pulumi.CustomResource):
         return pulumi.get(self, "authserver_timeout_period")
 
     @property
+    @pulumi.getter(name="authserverTimeoutTagged")
+    def authserver_timeout_tagged(self) -> pulumi.Output[str]:
+        """
+        Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+        """
+        return pulumi.get(self, "authserver_timeout_tagged")
+
+    @property
+    @pulumi.getter(name="authserverTimeoutTaggedVlanid")
+    def authserver_timeout_tagged_vlanid(self) -> pulumi.Output[str]:
+        """
+        Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+        """
+        return pulumi.get(self, "authserver_timeout_tagged_vlanid")
+
+    @property
     @pulumi.getter(name="authserverTimeoutVlan")
     def authserver_timeout_vlan(self) -> pulumi.Output[str]:
         """
@@ -1126,6 +1259,14 @@ class Policy8021X(pulumi.CustomResource):
         Authentication server timeout VLAN name.
         """
         return pulumi.get(self, "authserver_timeout_vlanid")
+
+    @property
+    @pulumi.getter
+    def dacl(self) -> pulumi.Output[str]:
+        """
+        Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dacl")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -1163,7 +1304,7 @@ class Policy8021X(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1257,7 +1398,7 @@ class Policy8021X(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

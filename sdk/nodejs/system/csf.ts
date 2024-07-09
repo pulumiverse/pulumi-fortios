@@ -137,7 +137,7 @@ export class Csf extends pulumi.CustomResource {
      */
     public readonly forticloudAccountEnforcement!: pulumi.Output<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -165,6 +165,10 @@ export class Csf extends pulumi.CustomResource {
      */
     public readonly samlConfigurationSync!: pulumi.Output<string>;
     /**
+     * Source IP address for communication with the upstream FortiGate.
+     */
+    public readonly sourceIp!: pulumi.Output<string>;
+    /**
      * Enable/disable Security Fabric. Valid values: `enable`, `disable`.
      */
     public readonly status!: pulumi.Output<string>;
@@ -181,6 +185,14 @@ export class Csf extends pulumi.CustomResource {
      */
     public readonly upstream!: pulumi.Output<string>;
     /**
+     * Specify outgoing interface to reach server.
+     */
+    public readonly upstreamInterface!: pulumi.Output<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    public readonly upstreamInterfaceSelectMethod!: pulumi.Output<string>;
+    /**
      * IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
      */
     public readonly upstreamIp!: pulumi.Output<string>;
@@ -191,7 +203,7 @@ export class Csf extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Csf resource with the given unique name, arguments, and options.
@@ -229,10 +241,13 @@ export class Csf extends pulumi.CustomResource {
             resourceInputs["managementIp"] = state ? state.managementIp : undefined;
             resourceInputs["managementPort"] = state ? state.managementPort : undefined;
             resourceInputs["samlConfigurationSync"] = state ? state.samlConfigurationSync : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["trustedLists"] = state ? state.trustedLists : undefined;
             resourceInputs["uid"] = state ? state.uid : undefined;
             resourceInputs["upstream"] = state ? state.upstream : undefined;
+            resourceInputs["upstreamInterface"] = state ? state.upstreamInterface : undefined;
+            resourceInputs["upstreamInterfaceSelectMethod"] = state ? state.upstreamInterfaceSelectMethod : undefined;
             resourceInputs["upstreamIp"] = state ? state.upstreamIp : undefined;
             resourceInputs["upstreamPort"] = state ? state.upstreamPort : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -264,10 +279,13 @@ export class Csf extends pulumi.CustomResource {
             resourceInputs["managementIp"] = args ? args.managementIp : undefined;
             resourceInputs["managementPort"] = args ? args.managementPort : undefined;
             resourceInputs["samlConfigurationSync"] = args ? args.samlConfigurationSync : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["trustedLists"] = args ? args.trustedLists : undefined;
             resourceInputs["uid"] = args ? args.uid : undefined;
             resourceInputs["upstream"] = args ? args.upstream : undefined;
+            resourceInputs["upstreamInterface"] = args ? args.upstreamInterface : undefined;
+            resourceInputs["upstreamInterfaceSelectMethod"] = args ? args.upstreamInterfaceSelectMethod : undefined;
             resourceInputs["upstreamIp"] = args ? args.upstreamIp : undefined;
             resourceInputs["upstreamPort"] = args ? args.upstreamPort : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -348,7 +366,7 @@ export interface CsfState {
      */
     forticloudAccountEnforcement?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -376,6 +394,10 @@ export interface CsfState {
      */
     samlConfigurationSync?: pulumi.Input<string>;
     /**
+     * Source IP address for communication with the upstream FortiGate.
+     */
+    sourceIp?: pulumi.Input<string>;
+    /**
      * Enable/disable Security Fabric. Valid values: `enable`, `disable`.
      */
     status?: pulumi.Input<string>;
@@ -391,6 +413,14 @@ export interface CsfState {
      * IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
      */
     upstream?: pulumi.Input<string>;
+    /**
+     * Specify outgoing interface to reach server.
+     */
+    upstreamInterface?: pulumi.Input<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    upstreamInterfaceSelectMethod?: pulumi.Input<string>;
     /**
      * IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
      */
@@ -474,7 +504,7 @@ export interface CsfArgs {
      */
     forticloudAccountEnforcement?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -502,6 +532,10 @@ export interface CsfArgs {
      */
     samlConfigurationSync?: pulumi.Input<string>;
     /**
+     * Source IP address for communication with the upstream FortiGate.
+     */
+    sourceIp?: pulumi.Input<string>;
+    /**
      * Enable/disable Security Fabric. Valid values: `enable`, `disable`.
      */
     status: pulumi.Input<string>;
@@ -517,6 +551,14 @@ export interface CsfArgs {
      * IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
      */
     upstream?: pulumi.Input<string>;
+    /**
+     * Specify outgoing interface to reach server.
+     */
+    upstreamInterface?: pulumi.Input<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    upstreamInterfaceSelectMethod?: pulumi.Input<string>;
     /**
      * IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
      */

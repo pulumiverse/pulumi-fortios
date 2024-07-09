@@ -121,7 +121,7 @@ export class Externalresource extends pulumi.CustomResource {
      */
     public readonly updateMethod!: pulumi.Output<string>;
     /**
-     * Override HTTP User-Agent header used when retrieving this external resource.
+     * HTTP User-Agent header (default = 'curl/7.58.0').
      */
     public readonly userAgent!: pulumi.Output<string>;
     /**
@@ -135,7 +135,7 @@ export class Externalresource extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Externalresource resource with the given unique name, arguments, and options.
@@ -257,7 +257,7 @@ export interface ExternalresourceState {
      */
     updateMethod?: pulumi.Input<string>;
     /**
-     * Override HTTP User-Agent header used when retrieving this external resource.
+     * HTTP User-Agent header (default = 'curl/7.58.0').
      */
     userAgent?: pulumi.Input<string>;
     /**
@@ -331,7 +331,7 @@ export interface ExternalresourceArgs {
      */
     updateMethod?: pulumi.Input<string>;
     /**
-     * Override HTTP User-Agent header used when retrieving this external resource.
+     * HTTP User-Agent header (default = 'curl/7.58.0').
      */
     userAgent?: pulumi.Input<string>;
     /**

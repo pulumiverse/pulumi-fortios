@@ -44,6 +44,12 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? ClientCertificate { get; set; }
 
         /// <summary>
+        /// Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+        /// </summary>
+        [Input("encryptedClientHello")]
+        public Input<string>? EncryptedClientHello { get; set; }
+
+        /// <summary>
         /// Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
         /// </summary>
         [Input("expiredServerCert")]

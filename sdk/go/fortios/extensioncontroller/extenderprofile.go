@@ -45,7 +45,7 @@ type Extenderprofile struct {
 	Extension pulumi.StringOutput `pulumi:"extension"`
 	// ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension ExtenderprofileLanExtensionOutput `pulumi:"lanExtension"`
@@ -53,12 +53,14 @@ type Extenderprofile struct {
 	LoginPassword pulumi.StringPtrOutput `pulumi:"loginPassword"`
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
 	LoginPasswordChange pulumi.StringOutput `pulumi:"loginPasswordChange"`
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+	// Model.
 	Model pulumi.StringOutput `pulumi:"model"`
 	// FortiExtender profile name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
+	// FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+	Wifi ExtenderprofileWifiOutput `pulumi:"wifi"`
 }
 
 // NewExtenderprofile registers a new resource with the given unique name, arguments, and options.
@@ -103,7 +105,7 @@ type extenderprofileState struct {
 	Extension *string `pulumi:"extension"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension *ExtenderprofileLanExtension `pulumi:"lanExtension"`
@@ -111,12 +113,14 @@ type extenderprofileState struct {
 	LoginPassword *string `pulumi:"loginPassword"`
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
 	LoginPasswordChange *string `pulumi:"loginPasswordChange"`
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+	// Model.
 	Model *string `pulumi:"model"`
 	// FortiExtender profile name.
 	Name *string `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+	Wifi *ExtenderprofileWifi `pulumi:"wifi"`
 }
 
 type ExtenderprofileState struct {
@@ -132,7 +136,7 @@ type ExtenderprofileState struct {
 	Extension pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension ExtenderprofileLanExtensionPtrInput
@@ -140,12 +144,14 @@ type ExtenderprofileState struct {
 	LoginPassword pulumi.StringPtrInput
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
 	LoginPasswordChange pulumi.StringPtrInput
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+	// Model.
 	Model pulumi.StringPtrInput
 	// FortiExtender profile name.
 	Name pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+	Wifi ExtenderprofileWifiPtrInput
 }
 
 func (ExtenderprofileState) ElementType() reflect.Type {
@@ -165,7 +171,7 @@ type extenderprofileArgs struct {
 	Extension *string `pulumi:"extension"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension *ExtenderprofileLanExtension `pulumi:"lanExtension"`
@@ -173,12 +179,14 @@ type extenderprofileArgs struct {
 	LoginPassword *string `pulumi:"loginPassword"`
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
 	LoginPasswordChange *string `pulumi:"loginPasswordChange"`
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+	// Model.
 	Model *string `pulumi:"model"`
 	// FortiExtender profile name.
 	Name *string `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+	Wifi *ExtenderprofileWifi `pulumi:"wifi"`
 }
 
 // The set of arguments for constructing a Extenderprofile resource.
@@ -195,7 +203,7 @@ type ExtenderprofileArgs struct {
 	Extension pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension ExtenderprofileLanExtensionPtrInput
@@ -203,12 +211,14 @@ type ExtenderprofileArgs struct {
 	LoginPassword pulumi.StringPtrInput
 	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
 	LoginPasswordChange pulumi.StringPtrInput
-	// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+	// Model.
 	Model pulumi.StringPtrInput
 	// FortiExtender profile name.
 	Name pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+	Wifi ExtenderprofileWifiPtrInput
 }
 
 func (ExtenderprofileArgs) ElementType() reflect.Type {
@@ -328,7 +338,7 @@ func (o ExtenderprofileOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Extenderprofile) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ExtenderprofileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Extenderprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -348,7 +358,7 @@ func (o ExtenderprofileOutput) LoginPasswordChange() pulumi.StringOutput {
 	return o.ApplyT(func(v *Extenderprofile) pulumi.StringOutput { return v.LoginPasswordChange }).(pulumi.StringOutput)
 }
 
-// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+// Model.
 func (o ExtenderprofileOutput) Model() pulumi.StringOutput {
 	return o.ApplyT(func(v *Extenderprofile) pulumi.StringOutput { return v.Model }).(pulumi.StringOutput)
 }
@@ -359,8 +369,13 @@ func (o ExtenderprofileOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ExtenderprofileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Extenderprofile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ExtenderprofileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Extenderprofile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
+}
+
+// FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+func (o ExtenderprofileOutput) Wifi() ExtenderprofileWifiOutput {
+	return o.ApplyT(func(v *Extenderprofile) ExtenderprofileWifiOutput { return v.Wifi }).(ExtenderprofileWifiOutput)
 }
 
 type ExtenderprofileArrayOutput struct{ *pulumi.OutputState }

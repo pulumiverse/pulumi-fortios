@@ -244,7 +244,7 @@ class PortalBookmarkGroupBookmarkArgs:
         :param pulumi.Input[str] domain: Login domain.
         :param pulumi.Input[str] folder: Network shared file folder parameter.
         :param pulumi.Input[Sequence[pulumi.Input['PortalBookmarkGroupBookmarkFormDataArgs']]] form_datas: Form data. The structure of `form_data` block is documented below.
-        :param pulumi.Input[int] height: Screen height (range from 480 - 65535, default = 768).
+        :param pulumi.Input[int] height: Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         :param pulumi.Input[str] host: Host name/IP parameter.
         :param pulumi.Input[str] keyboard_layout: Keyboard layout.
         :param pulumi.Input[int] listening_port: Listening port (0 - 65535).
@@ -254,10 +254,10 @@ class PortalBookmarkGroupBookmarkArgs:
         :param pulumi.Input[str] name: Bookmark name.
         :param pulumi.Input[int] port: Remote port.
         :param pulumi.Input[str] preconnection_blob: An arbitrary string which identifies the RDP source.
-        :param pulumi.Input[int] preconnection_id: The numeric ID of the RDP source (0-2147483648).
+        :param pulumi.Input[int] preconnection_id: The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
         :param pulumi.Input[int] remote_port: Remote port (0 - 65535).
         :param pulumi.Input[str] restricted_admin: Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] security: Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        :param pulumi.Input[str] security: Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
         :param pulumi.Input[str] send_preconnection_id: Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server_layout: Server side keyboard layout.
         :param pulumi.Input[str] show_status_window: Enable/disable showing of status window. Valid values: `enable`, `disable`.
@@ -268,7 +268,7 @@ class PortalBookmarkGroupBookmarkArgs:
         :param pulumi.Input[str] sso_username: SSO user name.
         :param pulumi.Input[str] url: URL parameter.
         :param pulumi.Input[str] vnc_keyboard_layout: Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
-        :param pulumi.Input[int] width: Screen width (range from 640 - 65535, default = 1024).
+        :param pulumi.Input[int] width: Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         if additional_params is not None:
             pulumi.set(__self__, "additional_params", additional_params)
@@ -423,7 +423,7 @@ class PortalBookmarkGroupBookmarkArgs:
     @pulumi.getter
     def height(self) -> Optional[pulumi.Input[int]]:
         """
-        Screen height (range from 480 - 65535, default = 768).
+        Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         return pulumi.get(self, "height")
 
@@ -543,7 +543,7 @@ class PortalBookmarkGroupBookmarkArgs:
     @pulumi.getter(name="preconnectionId")
     def preconnection_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The numeric ID of the RDP source (0-2147483648).
+        The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
         """
         return pulumi.get(self, "preconnection_id")
 
@@ -579,7 +579,7 @@ class PortalBookmarkGroupBookmarkArgs:
     @pulumi.getter
     def security(self) -> Optional[pulumi.Input[str]]:
         """
-        Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
         """
         return pulumi.get(self, "security")
 
@@ -711,7 +711,7 @@ class PortalBookmarkGroupBookmarkArgs:
     @pulumi.getter
     def width(self) -> Optional[pulumi.Input[int]]:
         """
-        Screen width (range from 640 - 65535, default = 1024).
+        Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         return pulumi.get(self, "width")
 
@@ -1170,7 +1170,7 @@ class PortalSplitDnArgs:
         """
         :param pulumi.Input[str] dns_server1: DNS server 1.
         :param pulumi.Input[str] dns_server2: DNS server 2.
-        :param pulumi.Input[str] domains: Split DNS domains used for SSL-VPN clients separated by comma(,).
+        :param pulumi.Input[str] domains: Split DNS domains used for SSL-VPN clients separated by comma.
         :param pulumi.Input[int] id: ID.
         :param pulumi.Input[str] ipv6_dns_server1: IPv6 DNS server 1.
         :param pulumi.Input[str] ipv6_dns_server2: IPv6 DNS server 2.
@@ -1216,7 +1216,7 @@ class PortalSplitDnArgs:
     @pulumi.getter
     def domains(self) -> Optional[pulumi.Input[str]]:
         """
-        Split DNS domains used for SSL-VPN clients separated by comma(,).
+        Split DNS domains used for SSL-VPN clients separated by comma.
         """
         return pulumi.get(self, "domains")
 
@@ -1327,7 +1327,7 @@ class UserbookmarkBookmarkArgs:
         :param pulumi.Input[str] domain: Login domain.
         :param pulumi.Input[str] folder: Network shared file folder parameter.
         :param pulumi.Input[Sequence[pulumi.Input['UserbookmarkBookmarkFormDataArgs']]] form_datas: Form data. The structure of `form_data` block is documented below.
-        :param pulumi.Input[int] height: Screen height (range from 480 - 65535, default = 768).
+        :param pulumi.Input[int] height: Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         :param pulumi.Input[str] host: Host name/IP parameter.
         :param pulumi.Input[str] keyboard_layout: Keyboard layout.
         :param pulumi.Input[int] listening_port: Listening port (0 - 65535).
@@ -1337,10 +1337,10 @@ class UserbookmarkBookmarkArgs:
         :param pulumi.Input[str] name: Bookmark name.
         :param pulumi.Input[int] port: Remote port.
         :param pulumi.Input[str] preconnection_blob: An arbitrary string which identifies the RDP source.
-        :param pulumi.Input[int] preconnection_id: The numeric ID of the RDP source (0-2147483648).
+        :param pulumi.Input[int] preconnection_id: The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
         :param pulumi.Input[int] remote_port: Remote port (0 - 65535).
         :param pulumi.Input[str] restricted_admin: Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] security: Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        :param pulumi.Input[str] security: Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
         :param pulumi.Input[str] send_preconnection_id: Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server_layout: Server side keyboard layout.
         :param pulumi.Input[str] show_status_window: Enable/disable showing of status window. Valid values: `enable`, `disable`.
@@ -1351,7 +1351,7 @@ class UserbookmarkBookmarkArgs:
         :param pulumi.Input[str] sso_username: SSO user name.
         :param pulumi.Input[str] url: URL parameter.
         :param pulumi.Input[str] vnc_keyboard_layout: Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
-        :param pulumi.Input[int] width: Screen width (range from 640 - 65535, default = 1024).
+        :param pulumi.Input[int] width: Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         if additional_params is not None:
             pulumi.set(__self__, "additional_params", additional_params)
@@ -1506,7 +1506,7 @@ class UserbookmarkBookmarkArgs:
     @pulumi.getter
     def height(self) -> Optional[pulumi.Input[int]]:
         """
-        Screen height (range from 480 - 65535, default = 768).
+        Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         return pulumi.get(self, "height")
 
@@ -1626,7 +1626,7 @@ class UserbookmarkBookmarkArgs:
     @pulumi.getter(name="preconnectionId")
     def preconnection_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The numeric ID of the RDP source (0-2147483648).
+        The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
         """
         return pulumi.get(self, "preconnection_id")
 
@@ -1662,7 +1662,7 @@ class UserbookmarkBookmarkArgs:
     @pulumi.getter
     def security(self) -> Optional[pulumi.Input[str]]:
         """
-        Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
         """
         return pulumi.get(self, "security")
 
@@ -1794,7 +1794,7 @@ class UserbookmarkBookmarkArgs:
     @pulumi.getter
     def width(self) -> Optional[pulumi.Input[int]]:
         """
-        Screen width (range from 640 - 65535, default = 1024).
+        Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         return pulumi.get(self, "width")
 
@@ -1885,7 +1885,7 @@ class UsergroupbookmarkBookmarkArgs:
         :param pulumi.Input[str] domain: Login domain.
         :param pulumi.Input[str] folder: Network shared file folder parameter.
         :param pulumi.Input[Sequence[pulumi.Input['UsergroupbookmarkBookmarkFormDataArgs']]] form_datas: Form data. The structure of `form_data` block is documented below.
-        :param pulumi.Input[int] height: Screen height (range from 480 - 65535, default = 768).
+        :param pulumi.Input[int] height: Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         :param pulumi.Input[str] host: Host name/IP parameter.
         :param pulumi.Input[str] keyboard_layout: Keyboard layout.
         :param pulumi.Input[int] listening_port: Listening port (0 - 65535).
@@ -1895,10 +1895,10 @@ class UsergroupbookmarkBookmarkArgs:
         :param pulumi.Input[str] name: Bookmark name.
         :param pulumi.Input[int] port: Remote port.
         :param pulumi.Input[str] preconnection_blob: An arbitrary string which identifies the RDP source.
-        :param pulumi.Input[int] preconnection_id: The numeric ID of the RDP source (0-2147483648).
+        :param pulumi.Input[int] preconnection_id: The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
         :param pulumi.Input[int] remote_port: Remote port (0 - 65535).
         :param pulumi.Input[str] restricted_admin: Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] security: Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        :param pulumi.Input[str] security: Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
         :param pulumi.Input[str] send_preconnection_id: Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server_layout: Server side keyboard layout.
         :param pulumi.Input[str] show_status_window: Enable/disable showing of status window. Valid values: `enable`, `disable`.
@@ -1909,7 +1909,7 @@ class UsergroupbookmarkBookmarkArgs:
         :param pulumi.Input[str] sso_username: SSO user name.
         :param pulumi.Input[str] url: URL parameter.
         :param pulumi.Input[str] vnc_keyboard_layout: Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
-        :param pulumi.Input[int] width: Screen width (range from 640 - 65535, default = 1024).
+        :param pulumi.Input[int] width: Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         if additional_params is not None:
             pulumi.set(__self__, "additional_params", additional_params)
@@ -2064,7 +2064,7 @@ class UsergroupbookmarkBookmarkArgs:
     @pulumi.getter
     def height(self) -> Optional[pulumi.Input[int]]:
         """
-        Screen height (range from 480 - 65535, default = 768).
+        Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         return pulumi.get(self, "height")
 
@@ -2184,7 +2184,7 @@ class UsergroupbookmarkBookmarkArgs:
     @pulumi.getter(name="preconnectionId")
     def preconnection_id(self) -> Optional[pulumi.Input[int]]:
         """
-        The numeric ID of the RDP source (0-2147483648).
+        The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
         """
         return pulumi.get(self, "preconnection_id")
 
@@ -2220,7 +2220,7 @@ class UsergroupbookmarkBookmarkArgs:
     @pulumi.getter
     def security(self) -> Optional[pulumi.Input[str]]:
         """
-        Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
         """
         return pulumi.get(self, "security")
 
@@ -2352,7 +2352,7 @@ class UsergroupbookmarkBookmarkArgs:
     @pulumi.getter
     def width(self) -> Optional[pulumi.Input[int]]:
         """
-        Screen width (range from 640 - 65535, default = 1024).
+        Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         return pulumi.get(self, "width")
 

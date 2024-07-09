@@ -94,7 +94,7 @@ type Overridesetting struct {
 	FallbackToPrimary pulumi.StringOutput `pulumi:"fallbackToPrimary"`
 	// Hidden setting index of FortiAnalyzer.
 	FazType pulumi.IntOutput `pulumi:"fazType"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm pulumi.StringOutput `pulumi:"hmacAlgorithm"`
@@ -143,7 +143,7 @@ type Overridesetting struct {
 	// Enable/disable use of management VDOM IP address as source IP for logs sent to FortiAnalyzer. Valid values: `enable`, `disable`.
 	UseManagementVdom pulumi.StringOutput `pulumi:"useManagementVdom"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewOverridesetting registers a new resource with the given unique name, arguments, and options.
@@ -196,7 +196,7 @@ type overridesettingState struct {
 	FallbackToPrimary *string `pulumi:"fallbackToPrimary"`
 	// Hidden setting index of FortiAnalyzer.
 	FazType *int `pulumi:"fazType"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm *string `pulumi:"hmacAlgorithm"`
@@ -269,7 +269,7 @@ type OverridesettingState struct {
 	FallbackToPrimary pulumi.StringPtrInput
 	// Hidden setting index of FortiAnalyzer.
 	FazType pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm pulumi.StringPtrInput
@@ -346,7 +346,7 @@ type overridesettingArgs struct {
 	FallbackToPrimary *string `pulumi:"fallbackToPrimary"`
 	// Hidden setting index of FortiAnalyzer.
 	FazType *int `pulumi:"fazType"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm *string `pulumi:"hmacAlgorithm"`
@@ -420,7 +420,7 @@ type OverridesettingArgs struct {
 	FallbackToPrimary pulumi.StringPtrInput
 	// Hidden setting index of FortiAnalyzer.
 	FazType pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// FortiAnalyzer IPsec tunnel HMAC algorithm.
 	HmacAlgorithm pulumi.StringPtrInput
@@ -609,7 +609,7 @@ func (o OverridesettingOutput) FazType() pulumi.IntOutput {
 	return o.ApplyT(func(v *Overridesetting) pulumi.IntOutput { return v.FazType }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o OverridesettingOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Overridesetting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -730,8 +730,8 @@ func (o OverridesettingOutput) UseManagementVdom() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o OverridesettingOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Overridesetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o OverridesettingOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Overridesetting) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type OverridesettingArrayOutput struct{ *pulumi.OutputState }

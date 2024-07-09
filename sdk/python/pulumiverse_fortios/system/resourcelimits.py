@@ -39,12 +39,12 @@ class ResourcelimitsArgs:
         :param pulumi.Input[int] dialup_tunnel: Maximum number of dial-up tunnels.
         :param pulumi.Input[int] firewall_address: Maximum number of firewall addresses (IPv4, IPv6, multicast).
         :param pulumi.Input[int] firewall_addrgrp: Maximum number of firewall address groups (IPv4, IPv6).
-        :param pulumi.Input[int] firewall_policy: Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        :param pulumi.Input[int] firewall_policy: Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         :param pulumi.Input[int] ipsec_phase1: Maximum number of VPN IPsec phase1 tunnels.
         :param pulumi.Input[int] ipsec_phase1_interface: Maximum number of VPN IPsec phase1 interface tunnels.
         :param pulumi.Input[int] ipsec_phase2: Maximum number of VPN IPsec phase2 tunnels.
         :param pulumi.Input[int] ipsec_phase2_interface: Maximum number of VPN IPsec phase2 interface tunnels.
-        :param pulumi.Input[int] log_disk_quota: Log disk quota in MB.
+        :param pulumi.Input[int] log_disk_quota: Log disk quota in megabytes (MB).
         :param pulumi.Input[int] onetime_schedule: Maximum number of firewall one-time schedules.
         :param pulumi.Input[int] proxy: Maximum number of concurrent proxy users.
         :param pulumi.Input[int] recurring_schedule: Maximum number of firewall recurring schedules.
@@ -146,7 +146,7 @@ class ResourcelimitsArgs:
     @pulumi.getter(name="firewallPolicy")
     def firewall_policy(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         """
         return pulumi.get(self, "firewall_policy")
 
@@ -206,7 +206,7 @@ class ResourcelimitsArgs:
     @pulumi.getter(name="logDiskQuota")
     def log_disk_quota(self) -> Optional[pulumi.Input[int]]:
         """
-        Log disk quota in MB.
+        Log disk quota in megabytes (MB).
         """
         return pulumi.get(self, "log_disk_quota")
 
@@ -351,12 +351,12 @@ class _ResourcelimitsState:
         :param pulumi.Input[int] dialup_tunnel: Maximum number of dial-up tunnels.
         :param pulumi.Input[int] firewall_address: Maximum number of firewall addresses (IPv4, IPv6, multicast).
         :param pulumi.Input[int] firewall_addrgrp: Maximum number of firewall address groups (IPv4, IPv6).
-        :param pulumi.Input[int] firewall_policy: Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        :param pulumi.Input[int] firewall_policy: Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         :param pulumi.Input[int] ipsec_phase1: Maximum number of VPN IPsec phase1 tunnels.
         :param pulumi.Input[int] ipsec_phase1_interface: Maximum number of VPN IPsec phase1 interface tunnels.
         :param pulumi.Input[int] ipsec_phase2: Maximum number of VPN IPsec phase2 tunnels.
         :param pulumi.Input[int] ipsec_phase2_interface: Maximum number of VPN IPsec phase2 interface tunnels.
-        :param pulumi.Input[int] log_disk_quota: Log disk quota in MB.
+        :param pulumi.Input[int] log_disk_quota: Log disk quota in megabytes (MB).
         :param pulumi.Input[int] onetime_schedule: Maximum number of firewall one-time schedules.
         :param pulumi.Input[int] proxy: Maximum number of concurrent proxy users.
         :param pulumi.Input[int] recurring_schedule: Maximum number of firewall recurring schedules.
@@ -458,7 +458,7 @@ class _ResourcelimitsState:
     @pulumi.getter(name="firewallPolicy")
     def firewall_policy(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         """
         return pulumi.get(self, "firewall_policy")
 
@@ -518,7 +518,7 @@ class _ResourcelimitsState:
     @pulumi.getter(name="logDiskQuota")
     def log_disk_quota(self) -> Optional[pulumi.Input[int]]:
         """
-        Log disk quota in MB.
+        Log disk quota in megabytes (MB).
         """
         return pulumi.get(self, "log_disk_quota")
 
@@ -714,12 +714,12 @@ class Resourcelimits(pulumi.CustomResource):
         :param pulumi.Input[int] dialup_tunnel: Maximum number of dial-up tunnels.
         :param pulumi.Input[int] firewall_address: Maximum number of firewall addresses (IPv4, IPv6, multicast).
         :param pulumi.Input[int] firewall_addrgrp: Maximum number of firewall address groups (IPv4, IPv6).
-        :param pulumi.Input[int] firewall_policy: Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        :param pulumi.Input[int] firewall_policy: Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         :param pulumi.Input[int] ipsec_phase1: Maximum number of VPN IPsec phase1 tunnels.
         :param pulumi.Input[int] ipsec_phase1_interface: Maximum number of VPN IPsec phase1 interface tunnels.
         :param pulumi.Input[int] ipsec_phase2: Maximum number of VPN IPsec phase2 tunnels.
         :param pulumi.Input[int] ipsec_phase2_interface: Maximum number of VPN IPsec phase2 interface tunnels.
-        :param pulumi.Input[int] log_disk_quota: Log disk quota in MB.
+        :param pulumi.Input[int] log_disk_quota: Log disk quota in megabytes (MB).
         :param pulumi.Input[int] onetime_schedule: Maximum number of firewall one-time schedules.
         :param pulumi.Input[int] proxy: Maximum number of concurrent proxy users.
         :param pulumi.Input[int] recurring_schedule: Maximum number of firewall recurring schedules.
@@ -886,12 +886,12 @@ class Resourcelimits(pulumi.CustomResource):
         :param pulumi.Input[int] dialup_tunnel: Maximum number of dial-up tunnels.
         :param pulumi.Input[int] firewall_address: Maximum number of firewall addresses (IPv4, IPv6, multicast).
         :param pulumi.Input[int] firewall_addrgrp: Maximum number of firewall address groups (IPv4, IPv6).
-        :param pulumi.Input[int] firewall_policy: Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        :param pulumi.Input[int] firewall_policy: Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         :param pulumi.Input[int] ipsec_phase1: Maximum number of VPN IPsec phase1 tunnels.
         :param pulumi.Input[int] ipsec_phase1_interface: Maximum number of VPN IPsec phase1 interface tunnels.
         :param pulumi.Input[int] ipsec_phase2: Maximum number of VPN IPsec phase2 tunnels.
         :param pulumi.Input[int] ipsec_phase2_interface: Maximum number of VPN IPsec phase2 interface tunnels.
-        :param pulumi.Input[int] log_disk_quota: Log disk quota in MB.
+        :param pulumi.Input[int] log_disk_quota: Log disk quota in megabytes (MB).
         :param pulumi.Input[int] onetime_schedule: Maximum number of firewall one-time schedules.
         :param pulumi.Input[int] proxy: Maximum number of concurrent proxy users.
         :param pulumi.Input[int] recurring_schedule: Maximum number of firewall recurring schedules.
@@ -963,7 +963,7 @@ class Resourcelimits(pulumi.CustomResource):
     @pulumi.getter(name="firewallPolicy")
     def firewall_policy(self) -> pulumi.Output[int]:
         """
-        Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         """
         return pulumi.get(self, "firewall_policy")
 
@@ -1003,7 +1003,7 @@ class Resourcelimits(pulumi.CustomResource):
     @pulumi.getter(name="logDiskQuota")
     def log_disk_quota(self) -> pulumi.Output[int]:
         """
-        Log disk quota in MB.
+        Log disk quota in megabytes (MB).
         """
         return pulumi.get(self, "log_disk_quota")
 
@@ -1073,7 +1073,7 @@ class Resourcelimits(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

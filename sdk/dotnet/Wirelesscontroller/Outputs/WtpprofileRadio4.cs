@@ -43,6 +43,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         public readonly string? CallAdmissionControl;
         public readonly int? CallCapacity;
         public readonly string? ChannelBonding;
+        public readonly string? ChannelBondingExt;
         public readonly string? ChannelUtilization;
         public readonly ImmutableArray<Outputs.WtpprofileRadio4Channel> Channels;
         public readonly string? Coexistence;
@@ -156,6 +157,8 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
             int? callCapacity,
 
             string? channelBonding,
+
+            string? channelBondingExt,
 
             string? channelUtilization,
 
@@ -289,6 +292,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
             CallAdmissionControl = callAdmissionControl;
             CallCapacity = callCapacity;
             ChannelBonding = channelBonding;
+            ChannelBondingExt = channelBondingExt;
             ChannelUtilization = channelUtilization;
             Channels = channels;
             Coexistence = coexistence;

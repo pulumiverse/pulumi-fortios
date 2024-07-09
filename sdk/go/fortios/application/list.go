@@ -87,7 +87,7 @@ type List struct {
 	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
 	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
 	ForceInclusionSslDiSigs pulumi.StringOutput `pulumi:"forceInclusionSslDiSigs"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// List name.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -108,7 +108,7 @@ type List struct {
 	// Enable/disable logging for unknown applications. Valid values: `disable`, `enable`.
 	UnknownApplicationLog pulumi.StringOutput `pulumi:"unknownApplicationLog"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewList registers a new resource with the given unique name, arguments, and options.
@@ -161,7 +161,7 @@ type listState struct {
 	ExtendedLog *string `pulumi:"extendedLog"`
 	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
 	ForceInclusionSslDiSigs *string `pulumi:"forceInclusionSslDiSigs"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// List name.
 	Name *string `pulumi:"name"`
@@ -206,7 +206,7 @@ type ListState struct {
 	ExtendedLog pulumi.StringPtrInput
 	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
 	ForceInclusionSslDiSigs pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// List name.
 	Name pulumi.StringPtrInput
@@ -255,7 +255,7 @@ type listArgs struct {
 	ExtendedLog *string `pulumi:"extendedLog"`
 	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
 	ForceInclusionSslDiSigs *string `pulumi:"forceInclusionSslDiSigs"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// List name.
 	Name *string `pulumi:"name"`
@@ -301,7 +301,7 @@ type ListArgs struct {
 	ExtendedLog pulumi.StringPtrInput
 	// Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
 	ForceInclusionSslDiSigs pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// List name.
 	Name pulumi.StringPtrInput
@@ -462,7 +462,7 @@ func (o ListOutput) ForceInclusionSslDiSigs() pulumi.StringOutput {
 	return o.ApplyT(func(v *List) pulumi.StringOutput { return v.ForceInclusionSslDiSigs }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ListOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *List) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -513,8 +513,8 @@ func (o ListOutput) UnknownApplicationLog() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ListOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *List) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ListOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *List) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ListArrayOutput struct{ *pulumi.OutputState }

@@ -121,5 +121,9 @@ class _ExportableConfig(types.ModuleType):
 
     @property
     def vdom(self) -> Optional[str]:
+        """
+        Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+        vdom value on that resource.
+        """
         return __config__.get('vdom') or _utilities.get_env('FORTIOS_VDOM')
 

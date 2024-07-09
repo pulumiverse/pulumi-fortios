@@ -51,7 +51,7 @@ type Accessproxy struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Action of an empty client certificate.
 	EmptyCertAction pulumi.StringOutput `pulumi:"emptyCertAction"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
 	HttpSupportedMaxVersion pulumi.StringOutput `pulumi:"httpSupportedMaxVersion"`
@@ -70,7 +70,7 @@ type Accessproxy struct {
 	// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
 	UserAgentDetect pulumi.StringOutput `pulumi:"userAgentDetect"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Virtual IP name.
 	Vip pulumi.StringOutput `pulumi:"vip"`
 }
@@ -123,7 +123,7 @@ type accessproxyState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Action of an empty client certificate.
 	EmptyCertAction *string `pulumi:"emptyCertAction"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
 	HttpSupportedMaxVersion *string `pulumi:"httpSupportedMaxVersion"`
@@ -166,7 +166,7 @@ type AccessproxyState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Action of an empty client certificate.
 	EmptyCertAction pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
 	HttpSupportedMaxVersion pulumi.StringPtrInput
@@ -213,7 +213,7 @@ type accessproxyArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Action of an empty client certificate.
 	EmptyCertAction *string `pulumi:"emptyCertAction"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
 	HttpSupportedMaxVersion *string `pulumi:"httpSupportedMaxVersion"`
@@ -257,7 +257,7 @@ type AccessproxyArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Action of an empty client certificate.
 	EmptyCertAction pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
 	HttpSupportedMaxVersion pulumi.StringPtrInput
@@ -413,7 +413,7 @@ func (o AccessproxyOutput) EmptyCertAction() pulumi.StringOutput {
 	return o.ApplyT(func(v *Accessproxy) pulumi.StringOutput { return v.EmptyCertAction }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o AccessproxyOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Accessproxy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -459,8 +459,8 @@ func (o AccessproxyOutput) UserAgentDetect() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o AccessproxyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Accessproxy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o AccessproxyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Accessproxy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Virtual IP name.

@@ -85,7 +85,7 @@ type Overridefilter struct {
 	ForwardTraffic pulumi.StringOutput `pulumi:"forwardTraffic"`
 	// Free Style Filters The structure of `freeStyle` block is documented below.
 	FreeStyles OverridefilterFreeStyleArrayOutput `pulumi:"freeStyles"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
 	Gtp pulumi.StringOutput `pulumi:"gtp"`
@@ -104,7 +104,7 @@ type Overridefilter struct {
 	// Enable/disable SSH logging. Valid values: `enable`, `disable`.
 	Ssh pulumi.StringOutput `pulumi:"ssh"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringOutput `pulumi:"voip"`
 	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
@@ -157,7 +157,7 @@ type overridefilterState struct {
 	ForwardTraffic *string `pulumi:"forwardTraffic"`
 	// Free Style Filters The structure of `freeStyle` block is documented below.
 	FreeStyles []OverridefilterFreeStyle `pulumi:"freeStyles"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
 	Gtp *string `pulumi:"gtp"`
@@ -200,7 +200,7 @@ type OverridefilterState struct {
 	ForwardTraffic pulumi.StringPtrInput
 	// Free Style Filters The structure of `freeStyle` block is documented below.
 	FreeStyles OverridefilterFreeStyleArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
 	Gtp pulumi.StringPtrInput
@@ -247,7 +247,7 @@ type overridefilterArgs struct {
 	ForwardTraffic *string `pulumi:"forwardTraffic"`
 	// Free Style Filters The structure of `freeStyle` block is documented below.
 	FreeStyles []OverridefilterFreeStyle `pulumi:"freeStyles"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
 	Gtp *string `pulumi:"gtp"`
@@ -291,7 +291,7 @@ type OverridefilterArgs struct {
 	ForwardTraffic pulumi.StringPtrInput
 	// Free Style Filters The structure of `freeStyle` block is documented below.
 	FreeStyles OverridefilterFreeStyleArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable GTP messages logging. Valid values: `enable`, `disable`.
 	Gtp pulumi.StringPtrInput
@@ -444,7 +444,7 @@ func (o OverridefilterOutput) FreeStyles() OverridefilterFreeStyleArrayOutput {
 	return o.ApplyT(func(v *Overridefilter) OverridefilterFreeStyleArrayOutput { return v.FreeStyles }).(OverridefilterFreeStyleArrayOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o OverridefilterOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Overridefilter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -490,8 +490,8 @@ func (o OverridefilterOutput) Ssh() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o OverridefilterOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Overridefilter) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o OverridefilterOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Overridefilter) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable VoIP logging. Valid values: `enable`, `disable`.

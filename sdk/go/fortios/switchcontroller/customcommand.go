@@ -68,7 +68,7 @@ type Customcommand struct {
 	// Description.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewCustomcommand registers a new resource with the given unique name, arguments, and options.
@@ -255,8 +255,8 @@ func (o CustomcommandOutput) Description() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o CustomcommandOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Customcommand) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o CustomcommandOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Customcommand) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type CustomcommandArrayOutput struct{ *pulumi.OutputState }

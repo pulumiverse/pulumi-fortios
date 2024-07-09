@@ -91,7 +91,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
         /// </summary>
         public readonly string? PlaceType;
         /// <summary>
-        /// Post office box (P.O. box).
+        /// Post office box.
         /// </summary>
         public readonly string? PostOfficeBox;
         /// <summary>

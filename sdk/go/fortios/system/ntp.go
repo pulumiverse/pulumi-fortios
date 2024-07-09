@@ -68,7 +68,7 @@ type Ntp struct {
 	Authentication pulumi.StringOutput `pulumi:"authentication"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// FortiGate interface(s) with NTP server mode enabled. Devices on your network can contact these interfaces for NTP services. The structure of `interface` block is documented below.
 	Interfaces NtpInterfaceArrayOutput `pulumi:"interfaces"`
@@ -76,7 +76,7 @@ type Ntp struct {
 	Key pulumi.StringPtrOutput `pulumi:"key"`
 	// Key ID for authentication.
 	KeyId pulumi.IntOutput `pulumi:"keyId"`
-	// Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
+	// Key type for authentication. On FortiOS versions 6.2.4-7.4.3: MD5, SHA1. On FortiOS versions >= 7.4.4: MD5, SHA1, SHA256.
 	KeyType pulumi.StringOutput `pulumi:"keyType"`
 	// Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
 	Ntpservers NtpNtpserverArrayOutput `pulumi:"ntpservers"`
@@ -93,7 +93,7 @@ type Ntp struct {
 	// Use the FortiGuard NTP server or any other available NTP Server. Valid values: `fortiguard`, `custom`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewNtp registers a new resource with the given unique name, arguments, and options.
@@ -137,7 +137,7 @@ type ntpState struct {
 	Authentication *string `pulumi:"authentication"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiGate interface(s) with NTP server mode enabled. Devices on your network can contact these interfaces for NTP services. The structure of `interface` block is documented below.
 	Interfaces []NtpInterface `pulumi:"interfaces"`
@@ -145,7 +145,7 @@ type ntpState struct {
 	Key *string `pulumi:"key"`
 	// Key ID for authentication.
 	KeyId *int `pulumi:"keyId"`
-	// Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
+	// Key type for authentication. On FortiOS versions 6.2.4-7.4.3: MD5, SHA1. On FortiOS versions >= 7.4.4: MD5, SHA1, SHA256.
 	KeyType *string `pulumi:"keyType"`
 	// Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
 	Ntpservers []NtpNtpserver `pulumi:"ntpservers"`
@@ -170,7 +170,7 @@ type NtpState struct {
 	Authentication pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// FortiGate interface(s) with NTP server mode enabled. Devices on your network can contact these interfaces for NTP services. The structure of `interface` block is documented below.
 	Interfaces NtpInterfaceArrayInput
@@ -178,7 +178,7 @@ type NtpState struct {
 	Key pulumi.StringPtrInput
 	// Key ID for authentication.
 	KeyId pulumi.IntPtrInput
-	// Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
+	// Key type for authentication. On FortiOS versions 6.2.4-7.4.3: MD5, SHA1. On FortiOS versions >= 7.4.4: MD5, SHA1, SHA256.
 	KeyType pulumi.StringPtrInput
 	// Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
 	Ntpservers NtpNtpserverArrayInput
@@ -207,7 +207,7 @@ type ntpArgs struct {
 	Authentication *string `pulumi:"authentication"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiGate interface(s) with NTP server mode enabled. Devices on your network can contact these interfaces for NTP services. The structure of `interface` block is documented below.
 	Interfaces []NtpInterface `pulumi:"interfaces"`
@@ -215,7 +215,7 @@ type ntpArgs struct {
 	Key *string `pulumi:"key"`
 	// Key ID for authentication.
 	KeyId *int `pulumi:"keyId"`
-	// Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
+	// Key type for authentication. On FortiOS versions 6.2.4-7.4.3: MD5, SHA1. On FortiOS versions >= 7.4.4: MD5, SHA1, SHA256.
 	KeyType *string `pulumi:"keyType"`
 	// Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
 	Ntpservers []NtpNtpserver `pulumi:"ntpservers"`
@@ -241,7 +241,7 @@ type NtpArgs struct {
 	Authentication pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// FortiGate interface(s) with NTP server mode enabled. Devices on your network can contact these interfaces for NTP services. The structure of `interface` block is documented below.
 	Interfaces NtpInterfaceArrayInput
@@ -249,7 +249,7 @@ type NtpArgs struct {
 	Key pulumi.StringPtrInput
 	// Key ID for authentication.
 	KeyId pulumi.IntPtrInput
-	// Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
+	// Key type for authentication. On FortiOS versions 6.2.4-7.4.3: MD5, SHA1. On FortiOS versions >= 7.4.4: MD5, SHA1, SHA256.
 	KeyType pulumi.StringPtrInput
 	// Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
 	Ntpservers NtpNtpserverArrayInput
@@ -366,7 +366,7 @@ func (o NtpOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Ntp) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o NtpOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Ntp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -386,7 +386,7 @@ func (o NtpOutput) KeyId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ntp) pulumi.IntOutput { return v.KeyId }).(pulumi.IntOutput)
 }
 
-// Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
+// Key type for authentication. On FortiOS versions 6.2.4-7.4.3: MD5, SHA1. On FortiOS versions >= 7.4.4: MD5, SHA1, SHA256.
 func (o NtpOutput) KeyType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ntp) pulumi.StringOutput { return v.KeyType }).(pulumi.StringOutput)
 }
@@ -427,8 +427,8 @@ func (o NtpOutput) Type() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o NtpOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Ntp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o NtpOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ntp) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type NtpArrayOutput struct{ *pulumi.OutputState }

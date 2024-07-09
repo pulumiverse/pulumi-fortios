@@ -108,7 +108,7 @@ class ManagedswitchArgs:
         :param pulumi.Input[str] fsw_wan1_admin: FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] fsw_wan2_admin: FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] fsw_wan2_peer: FortiSwitch WAN2 peer port.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ManagedswitchIgmpSnoopingArgs'] igmp_snooping: Configure FortiSwitch IGMP snooping global settings. The structure of `igmp_snooping` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchIpSourceGuardArgs']]] ip_source_guards: IP source guard. The structure of `ip_source_guard` block is documented below.
         :param pulumi.Input[int] l3_discovered: Layer 3 management discovered.
@@ -534,7 +534,7 @@ class ManagedswitchArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1249,7 +1249,7 @@ class _ManagedswitchState:
         :param pulumi.Input[str] fsw_wan1_peer: Fortiswitch WAN1 peer port.
         :param pulumi.Input[str] fsw_wan2_admin: FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] fsw_wan2_peer: FortiSwitch WAN2 peer port.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ManagedswitchIgmpSnoopingArgs'] igmp_snooping: Configure FortiSwitch IGMP snooping global settings. The structure of `igmp_snooping` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['ManagedswitchIpSourceGuardArgs']]] ip_source_guards: IP source guard. The structure of `ip_source_guard` block is documented below.
         :param pulumi.Input[int] l3_discovered: Layer 3 management discovered.
@@ -1666,7 +1666,7 @@ class _ManagedswitchState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2417,7 +2417,7 @@ class Managedswitch(pulumi.CustomResource):
         :param pulumi.Input[str] fsw_wan1_peer: Fortiswitch WAN1 peer port.
         :param pulumi.Input[str] fsw_wan2_admin: FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] fsw_wan2_peer: FortiSwitch WAN2 peer port.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ManagedswitchIgmpSnoopingArgs']] igmp_snooping: Configure FortiSwitch IGMP snooping global settings. The structure of `igmp_snooping` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchIpSourceGuardArgs']]]] ip_source_guards: IP source guard. The structure of `ip_source_guard` block is documented below.
         :param pulumi.Input[int] l3_discovered: Layer 3 management discovered.
@@ -2774,7 +2774,7 @@ class Managedswitch(pulumi.CustomResource):
         :param pulumi.Input[str] fsw_wan1_peer: Fortiswitch WAN1 peer port.
         :param pulumi.Input[str] fsw_wan2_admin: FortiSwitch WAN2 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
         :param pulumi.Input[str] fsw_wan2_peer: FortiSwitch WAN2 peer port.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ManagedswitchIgmpSnoopingArgs']] igmp_snooping: Configure FortiSwitch IGMP snooping global settings. The structure of `igmp_snooping` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ManagedswitchIpSourceGuardArgs']]]] ip_source_guards: IP source guard. The structure of `ip_source_guard` block is documented below.
         :param pulumi.Input[int] l3_discovered: Layer 3 management discovered.
@@ -3053,7 +3053,7 @@ class Managedswitch(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -3451,7 +3451,7 @@ class Managedswitch(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

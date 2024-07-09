@@ -46,7 +46,7 @@ type Certificate struct {
 	// Type of certificate authentication method. Valid values: `single-certificate`, `trusted-issuer`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewCertificate registers a new resource with the given unique name, arguments, and options.
@@ -269,8 +269,8 @@ func (o CertificateOutput) Type() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o CertificateOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o CertificateOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type CertificateArrayOutput struct{ *pulumi.OutputState }

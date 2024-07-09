@@ -122,6 +122,12 @@ namespace Pulumiverse.Fortios.User
         public Output<string> SourceIp { get; private set; } = null!;
 
         /// <summary>
+        /// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        /// </summary>
+        [Output("statusTtl")]
+        public Output<int> StatusTtl { get; private set; } = null!;
+
+        /// <summary>
         /// Key to access the tertiary server.
         /// </summary>
         [Output("tertiaryKey")]
@@ -137,7 +143,7 @@ namespace Pulumiverse.Fortios.User
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -278,6 +284,12 @@ namespace Pulumiverse.Fortios.User
         [Input("sourceIp")]
         public Input<string>? SourceIp { get; set; }
 
+        /// <summary>
+        /// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        /// </summary>
+        [Input("statusTtl")]
+        public Input<int>? StatusTtl { get; set; }
+
         [Input("tertiaryKey")]
         private Input<string>? _tertiaryKey;
 
@@ -399,6 +411,12 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("sourceIp")]
         public Input<string>? SourceIp { get; set; }
+
+        /// <summary>
+        /// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        /// </summary>
+        [Input("statusTtl")]
+        public Input<int>? StatusTtl { get; set; }
 
         [Input("tertiaryKey")]
         private Input<string>? _tertiaryKey;

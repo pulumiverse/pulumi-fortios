@@ -77,7 +77,7 @@ type Networkvisibility struct {
 	// Enable/disable logging of source geographical location visibility. Valid values: `disable`, `enable`.
 	SourceLocation pulumi.StringOutput `pulumi:"sourceLocation"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewNetworkvisibility registers a new resource with the given unique name, arguments, and options.
@@ -300,8 +300,8 @@ func (o NetworkvisibilityOutput) SourceLocation() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o NetworkvisibilityOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Networkvisibility) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o NetworkvisibilityOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Networkvisibility) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type NetworkvisibilityArrayOutput struct{ *pulumi.OutputState }

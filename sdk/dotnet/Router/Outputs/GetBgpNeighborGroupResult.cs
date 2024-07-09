@@ -443,6 +443,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
         /// </summary>
         public readonly int RemoteAs;
         /// <summary>
+        /// BGP filter for remote AS.
+        /// </summary>
+        public readonly string RemoteAsFilter;
+        /// <summary>
         /// Enable/disable remove private AS number from IPv4 outbound updates.
         /// </summary>
         public readonly string RemovePrivateAs;
@@ -851,6 +855,8 @@ namespace Pulumiverse.Fortios.Router.Outputs
 
             int remoteAs,
 
+            string remoteAsFilter,
+
             string removePrivateAs,
 
             string removePrivateAs6,
@@ -1054,6 +1060,7 @@ namespace Pulumiverse.Fortios.Router.Outputs
             PrefixListOutVpnv4 = prefixListOutVpnv4;
             PrefixListOutVpnv6 = prefixListOutVpnv6;
             RemoteAs = remoteAs;
+            RemoteAsFilter = remoteAsFilter;
             RemovePrivateAs = removePrivateAs;
             RemovePrivateAs6 = removePrivateAs6;
             RemovePrivateAsEvpn = removePrivateAsEvpn;

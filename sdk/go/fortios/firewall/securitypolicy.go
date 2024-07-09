@@ -133,7 +133,7 @@ type Securitypolicy struct {
 	FileFilterProfile pulumi.StringOutput `pulumi:"fileFilterProfile"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups SecuritypolicyFssoGroupArrayOutput `pulumi:"fssoGroups"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups SecuritypolicyGroupArrayOutput `pulumi:"groups"`
@@ -243,16 +243,16 @@ type Securitypolicy struct {
 	SslSshProfile pulumi.StringOutput `pulumi:"sslSshProfile"`
 	// Enable or disable this policy. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// URL category ID list. The structure of `urlCategory` block is documented below.
+	// URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `urlCategory` block is documented below.
 	UrlCategories SecuritypolicyUrlCategoryArrayOutput `pulumi:"urlCategories"`
-	// URL categories or groups.
+	// URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
 	UrlCategoryUnitary pulumi.StringOutput `pulumi:"urlCategoryUnitary"`
 	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
 	Users SecuritypolicyUserArrayOutput `pulumi:"users"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Name of an existing VideoFilter profile.
 	VideofilterProfile pulumi.StringOutput `pulumi:"videofilterProfile"`
 	// Name of an existing virtual-patch profile.
@@ -341,7 +341,7 @@ type securitypolicyState struct {
 	FileFilterProfile *string `pulumi:"fileFilterProfile"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups []SecuritypolicyFssoGroup `pulumi:"fssoGroups"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups []SecuritypolicyGroup `pulumi:"groups"`
@@ -451,9 +451,9 @@ type securitypolicyState struct {
 	SslSshProfile *string `pulumi:"sslSshProfile"`
 	// Enable or disable this policy. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
-	// URL category ID list. The structure of `urlCategory` block is documented below.
+	// URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `urlCategory` block is documented below.
 	UrlCategories []SecuritypolicyUrlCategory `pulumi:"urlCategories"`
-	// URL categories or groups.
+	// URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
 	UrlCategoryUnitary *string `pulumi:"urlCategoryUnitary"`
 	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
 	Users []SecuritypolicyUser `pulumi:"users"`
@@ -520,7 +520,7 @@ type SecuritypolicyState struct {
 	FileFilterProfile pulumi.StringPtrInput
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups SecuritypolicyFssoGroupArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups SecuritypolicyGroupArrayInput
@@ -630,9 +630,9 @@ type SecuritypolicyState struct {
 	SslSshProfile pulumi.StringPtrInput
 	// Enable or disable this policy. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
-	// URL category ID list. The structure of `urlCategory` block is documented below.
+	// URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `urlCategory` block is documented below.
 	UrlCategories SecuritypolicyUrlCategoryArrayInput
-	// URL categories or groups.
+	// URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
 	UrlCategoryUnitary pulumi.StringPtrInput
 	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
 	Users SecuritypolicyUserArrayInput
@@ -703,7 +703,7 @@ type securitypolicyArgs struct {
 	FileFilterProfile *string `pulumi:"fileFilterProfile"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups []SecuritypolicyFssoGroup `pulumi:"fssoGroups"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups []SecuritypolicyGroup `pulumi:"groups"`
@@ -813,9 +813,9 @@ type securitypolicyArgs struct {
 	SslSshProfile *string `pulumi:"sslSshProfile"`
 	// Enable or disable this policy. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
-	// URL category ID list. The structure of `urlCategory` block is documented below.
+	// URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `urlCategory` block is documented below.
 	UrlCategories []SecuritypolicyUrlCategory `pulumi:"urlCategories"`
-	// URL categories or groups.
+	// URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
 	UrlCategoryUnitary *string `pulumi:"urlCategoryUnitary"`
 	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
 	Users []SecuritypolicyUser `pulumi:"users"`
@@ -883,7 +883,7 @@ type SecuritypolicyArgs struct {
 	FileFilterProfile pulumi.StringPtrInput
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups SecuritypolicyFssoGroupArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
 	Groups SecuritypolicyGroupArrayInput
@@ -993,9 +993,9 @@ type SecuritypolicyArgs struct {
 	SslSshProfile pulumi.StringPtrInput
 	// Enable or disable this policy. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
-	// URL category ID list. The structure of `urlCategory` block is documented below.
+	// URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `urlCategory` block is documented below.
 	UrlCategories SecuritypolicyUrlCategoryArrayInput
-	// URL categories or groups.
+	// URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
 	UrlCategoryUnitary pulumi.StringPtrInput
 	// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
 	Users SecuritypolicyUserArrayInput
@@ -1220,7 +1220,7 @@ func (o SecuritypolicyOutput) FssoGroups() SecuritypolicyFssoGroupArrayOutput {
 	return o.ApplyT(func(v *Securitypolicy) SecuritypolicyFssoGroupArrayOutput { return v.FssoGroups }).(SecuritypolicyFssoGroupArrayOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SecuritypolicyOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Securitypolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1521,12 +1521,12 @@ func (o SecuritypolicyOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// URL category ID list. The structure of `urlCategory` block is documented below.
+// URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `urlCategory` block is documented below.
 func (o SecuritypolicyOutput) UrlCategories() SecuritypolicyUrlCategoryArrayOutput {
 	return o.ApplyT(func(v *Securitypolicy) SecuritypolicyUrlCategoryArrayOutput { return v.UrlCategories }).(SecuritypolicyUrlCategoryArrayOutput)
 }
 
-// URL categories or groups.
+// URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
 func (o SecuritypolicyOutput) UrlCategoryUnitary() pulumi.StringOutput {
 	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.UrlCategoryUnitary }).(pulumi.StringOutput)
 }
@@ -1542,8 +1542,8 @@ func (o SecuritypolicyOutput) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SecuritypolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Securitypolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SecuritypolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Securitypolicy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Name of an existing VideoFilter profile.

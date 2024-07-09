@@ -128,7 +128,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         public Input<string>? PlaceType { get; set; }
 
         /// <summary>
-        /// Post office box (P.O. box).
+        /// Post office box.
         /// </summary>
         [Input("postOfficeBox")]
         public Input<string>? PostOfficeBox { get; set; }

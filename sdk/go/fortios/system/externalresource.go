@@ -90,14 +90,14 @@ type Externalresource struct {
 	Type pulumi.StringOutput `pulumi:"type"`
 	// External resource update method. Valid values: `feed`, `push`.
 	UpdateMethod pulumi.StringOutput `pulumi:"updateMethod"`
-	// Override HTTP User-Agent header used when retrieving this external resource.
+	// HTTP User-Agent header (default = 'curl/7.58.0').
 	UserAgent pulumi.StringOutput `pulumi:"userAgent"`
 	// HTTP basic authentication user name.
 	Username pulumi.StringOutput `pulumi:"username"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewExternalresource registers a new resource with the given unique name, arguments, and options.
@@ -169,7 +169,7 @@ type externalresourceState struct {
 	Type *string `pulumi:"type"`
 	// External resource update method. Valid values: `feed`, `push`.
 	UpdateMethod *string `pulumi:"updateMethod"`
-	// Override HTTP User-Agent header used when retrieving this external resource.
+	// HTTP User-Agent header (default = 'curl/7.58.0').
 	UserAgent *string `pulumi:"userAgent"`
 	// HTTP basic authentication user name.
 	Username *string `pulumi:"username"`
@@ -206,7 +206,7 @@ type ExternalresourceState struct {
 	Type pulumi.StringPtrInput
 	// External resource update method. Valid values: `feed`, `push`.
 	UpdateMethod pulumi.StringPtrInput
-	// Override HTTP User-Agent header used when retrieving this external resource.
+	// HTTP User-Agent header (default = 'curl/7.58.0').
 	UserAgent pulumi.StringPtrInput
 	// HTTP basic authentication user name.
 	Username pulumi.StringPtrInput
@@ -247,7 +247,7 @@ type externalresourceArgs struct {
 	Type *string `pulumi:"type"`
 	// External resource update method. Valid values: `feed`, `push`.
 	UpdateMethod *string `pulumi:"updateMethod"`
-	// Override HTTP User-Agent header used when retrieving this external resource.
+	// HTTP User-Agent header (default = 'curl/7.58.0').
 	UserAgent *string `pulumi:"userAgent"`
 	// HTTP basic authentication user name.
 	Username *string `pulumi:"username"`
@@ -285,7 +285,7 @@ type ExternalresourceArgs struct {
 	Type pulumi.StringPtrInput
 	// External resource update method. Valid values: `feed`, `push`.
 	UpdateMethod pulumi.StringPtrInput
-	// Override HTTP User-Agent header used when retrieving this external resource.
+	// HTTP User-Agent header (default = 'curl/7.58.0').
 	UserAgent pulumi.StringPtrInput
 	// HTTP basic authentication user name.
 	Username pulumi.StringPtrInput
@@ -447,7 +447,7 @@ func (o ExternalresourceOutput) UpdateMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v *Externalresource) pulumi.StringOutput { return v.UpdateMethod }).(pulumi.StringOutput)
 }
 
-// Override HTTP User-Agent header used when retrieving this external resource.
+// HTTP User-Agent header (default = 'curl/7.58.0').
 func (o ExternalresourceOutput) UserAgent() pulumi.StringOutput {
 	return o.ApplyT(func(v *Externalresource) pulumi.StringOutput { return v.UserAgent }).(pulumi.StringOutput)
 }
@@ -463,8 +463,8 @@ func (o ExternalresourceOutput) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ExternalresourceOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Externalresource) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ExternalresourceOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Externalresource) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ExternalresourceArrayOutput struct{ *pulumi.OutputState }

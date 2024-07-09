@@ -83,9 +83,9 @@ class FortiguardArgs:
         The set of arguments for constructing a Fortiguard resource.
         :param pulumi.Input[int] antispam_timeout: Antispam query time out (1 - 30 sec, default = 7).
         :param pulumi.Input[int] outbreak_prevention_timeout: FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
-        :param pulumi.Input[int] webfilter_timeout: Web filter query time out (1 - 30 sec, default = 7).
+        :param pulumi.Input[int] webfilter_timeout: Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
         :param pulumi.Input[str] antispam_cache: Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
         :param pulumi.Input[int] antispam_cache_mpermille: Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
         :param pulumi.Input[int] antispam_cache_ttl: Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         :param pulumi.Input[int] antispam_expiration: Expiration date of the FortiGuard antispam contract.
@@ -94,7 +94,7 @@ class FortiguardArgs:
         :param pulumi.Input[str] anycast_sdns_server_ip: IP address of the FortiGuard anycast DNS rating server.
         :param pulumi.Input[int] anycast_sdns_server_port: Port to connect to on the FortiGuard anycast DNS rating server.
         :param pulumi.Input[str] auto_firmware_upgrade: Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] auto_firmware_upgrade_day: Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        :param pulumi.Input[str] auto_firmware_upgrade_day: Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[int] auto_firmware_upgrade_delay: Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
         :param pulumi.Input[int] auto_firmware_upgrade_end_hour: End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
         :param pulumi.Input[int] auto_firmware_upgrade_start_hour: Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
@@ -303,7 +303,7 @@ class FortiguardArgs:
     @pulumi.getter(name="webfilterTimeout")
     def webfilter_timeout(self) -> pulumi.Input[int]:
         """
-        Web filter query time out (1 - 30 sec, default = 7).
+        Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
         """
         return pulumi.get(self, "webfilter_timeout")
 
@@ -327,7 +327,7 @@ class FortiguardArgs:
     @pulumi.getter(name="antispamCacheMpercent")
     def antispam_cache_mpercent(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+        Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
         """
         return pulumi.get(self, "antispam_cache_mpercent")
 
@@ -435,7 +435,7 @@ class FortiguardArgs:
     @pulumi.getter(name="autoFirmwareUpgradeDay")
     def auto_firmware_upgrade_day(self) -> Optional[pulumi.Input[str]]:
         """
-        Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         """
         return pulumi.get(self, "auto_firmware_upgrade_day")
 
@@ -1127,7 +1127,7 @@ class _FortiguardState:
         """
         Input properties used for looking up and filtering Fortiguard resources.
         :param pulumi.Input[str] antispam_cache: Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
         :param pulumi.Input[int] antispam_cache_mpermille: Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
         :param pulumi.Input[int] antispam_cache_ttl: Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         :param pulumi.Input[int] antispam_expiration: Expiration date of the FortiGuard antispam contract.
@@ -1137,7 +1137,7 @@ class _FortiguardState:
         :param pulumi.Input[str] anycast_sdns_server_ip: IP address of the FortiGuard anycast DNS rating server.
         :param pulumi.Input[int] anycast_sdns_server_port: Port to connect to on the FortiGuard anycast DNS rating server.
         :param pulumi.Input[str] auto_firmware_upgrade: Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] auto_firmware_upgrade_day: Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        :param pulumi.Input[str] auto_firmware_upgrade_day: Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[int] auto_firmware_upgrade_delay: Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
         :param pulumi.Input[int] auto_firmware_upgrade_end_hour: End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
         :param pulumi.Input[int] auto_firmware_upgrade_start_hour: Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
@@ -1190,7 +1190,7 @@ class _FortiguardState:
         :param pulumi.Input[int] webfilter_expiration: Expiration date of the FortiGuard web filter contract.
         :param pulumi.Input[str] webfilter_force_off: Enable/disable turning off the FortiGuard web filtering service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] webfilter_license: Interval of time between license checks for the FortiGuard web filter contract.
-        :param pulumi.Input[int] webfilter_timeout: Web filter query time out (1 - 30 sec, default = 7).
+        :param pulumi.Input[int] webfilter_timeout: Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
         """
         if antispam_cache is not None:
             pulumi.set(__self__, "antispam_cache", antispam_cache)
@@ -1339,7 +1339,7 @@ class _FortiguardState:
     @pulumi.getter(name="antispamCacheMpercent")
     def antispam_cache_mpercent(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+        Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
         """
         return pulumi.get(self, "antispam_cache_mpercent")
 
@@ -1459,7 +1459,7 @@ class _FortiguardState:
     @pulumi.getter(name="autoFirmwareUpgradeDay")
     def auto_firmware_upgrade_day(self) -> Optional[pulumi.Input[str]]:
         """
-        Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         """
         return pulumi.get(self, "auto_firmware_upgrade_day")
 
@@ -2095,7 +2095,7 @@ class _FortiguardState:
     @pulumi.getter(name="webfilterTimeout")
     def webfilter_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Web filter query time out (1 - 30 sec, default = 7).
+        Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
         """
         return pulumi.get(self, "webfilter_timeout")
 
@@ -2238,7 +2238,7 @@ class Fortiguard(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] antispam_cache: Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
         :param pulumi.Input[int] antispam_cache_mpermille: Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
         :param pulumi.Input[int] antispam_cache_ttl: Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         :param pulumi.Input[int] antispam_expiration: Expiration date of the FortiGuard antispam contract.
@@ -2248,7 +2248,7 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.Input[str] anycast_sdns_server_ip: IP address of the FortiGuard anycast DNS rating server.
         :param pulumi.Input[int] anycast_sdns_server_port: Port to connect to on the FortiGuard anycast DNS rating server.
         :param pulumi.Input[str] auto_firmware_upgrade: Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] auto_firmware_upgrade_day: Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        :param pulumi.Input[str] auto_firmware_upgrade_day: Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[int] auto_firmware_upgrade_delay: Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
         :param pulumi.Input[int] auto_firmware_upgrade_end_hour: End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
         :param pulumi.Input[int] auto_firmware_upgrade_start_hour: Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
@@ -2301,7 +2301,7 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.Input[int] webfilter_expiration: Expiration date of the FortiGuard web filter contract.
         :param pulumi.Input[str] webfilter_force_off: Enable/disable turning off the FortiGuard web filtering service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] webfilter_license: Interval of time between license checks for the FortiGuard web filter contract.
-        :param pulumi.Input[int] webfilter_timeout: Web filter query time out (1 - 30 sec, default = 7).
+        :param pulumi.Input[int] webfilter_timeout: Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
         """
         ...
     @overload
@@ -2614,7 +2614,7 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] antispam_cache: Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
         :param pulumi.Input[int] antispam_cache_mpermille: Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
         :param pulumi.Input[int] antispam_cache_ttl: Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         :param pulumi.Input[int] antispam_expiration: Expiration date of the FortiGuard antispam contract.
@@ -2624,7 +2624,7 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.Input[str] anycast_sdns_server_ip: IP address of the FortiGuard anycast DNS rating server.
         :param pulumi.Input[int] anycast_sdns_server_port: Port to connect to on the FortiGuard anycast DNS rating server.
         :param pulumi.Input[str] auto_firmware_upgrade: Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] auto_firmware_upgrade_day: Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        :param pulumi.Input[str] auto_firmware_upgrade_day: Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[int] auto_firmware_upgrade_delay: Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
         :param pulumi.Input[int] auto_firmware_upgrade_end_hour: End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
         :param pulumi.Input[int] auto_firmware_upgrade_start_hour: Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
@@ -2677,7 +2677,7 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.Input[int] webfilter_expiration: Expiration date of the FortiGuard web filter contract.
         :param pulumi.Input[str] webfilter_force_off: Enable/disable turning off the FortiGuard web filtering service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] webfilter_license: Interval of time between license checks for the FortiGuard web filter contract.
-        :param pulumi.Input[int] webfilter_timeout: Web filter query time out (1 - 30 sec, default = 7).
+        :param pulumi.Input[int] webfilter_timeout: Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -2762,7 +2762,7 @@ class Fortiguard(pulumi.CustomResource):
     @pulumi.getter(name="antispamCacheMpercent")
     def antispam_cache_mpercent(self) -> pulumi.Output[int]:
         """
-        Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+        Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
         """
         return pulumi.get(self, "antispam_cache_mpercent")
 
@@ -2842,7 +2842,7 @@ class Fortiguard(pulumi.CustomResource):
     @pulumi.getter(name="autoFirmwareUpgradeDay")
     def auto_firmware_upgrade_day(self) -> pulumi.Output[str]:
         """
-        Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         """
         return pulumi.get(self, "auto_firmware_upgrade_day")
 
@@ -3200,7 +3200,7 @@ class Fortiguard(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -3266,7 +3266,7 @@ class Fortiguard(pulumi.CustomResource):
     @pulumi.getter(name="webfilterTimeout")
     def webfilter_timeout(self) -> pulumi.Output[int]:
         """
-        Web filter query time out (1 - 30 sec, default = 7).
+        Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
         """
         return pulumi.get(self, "webfilter_timeout")
 

@@ -122,7 +122,7 @@ type Theme struct {
 	// Table of contents title style.
 	TocTitleStyle pulumi.StringOutput `pulumi:"tocTitleStyle"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewTheme registers a new resource with the given unique name, arguments, and options.
@@ -657,8 +657,8 @@ func (o ThemeOutput) TocTitleStyle() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ThemeOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Theme) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ThemeOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Theme) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ThemeArrayOutput struct{ *pulumi.OutputState }

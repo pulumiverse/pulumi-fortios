@@ -104,9 +104,19 @@ __all__ = [
     'InternetservicegroupMember',
     'InternetservicesubappSubApp',
     'Localinpolicy6Dstaddr',
+    'Localinpolicy6InternetService6SrcCustom',
+    'Localinpolicy6InternetService6SrcCustomGroup',
+    'Localinpolicy6InternetService6SrcGroup',
+    'Localinpolicy6InternetService6SrcName',
+    'Localinpolicy6IntfBlock',
     'Localinpolicy6Service',
     'Localinpolicy6Srcaddr',
     'LocalinpolicyDstaddr',
+    'LocalinpolicyInternetServiceSrcCustom',
+    'LocalinpolicyInternetServiceSrcCustomGroup',
+    'LocalinpolicyInternetServiceSrcGroup',
+    'LocalinpolicyInternetServiceSrcName',
+    'LocalinpolicyIntfBlock',
     'LocalinpolicyService',
     'LocalinpolicySrcaddr',
     'Multicastaddress6Tagging',
@@ -117,6 +127,9 @@ __all__ = [
     'Multicastpolicy6Srcaddr',
     'MulticastpolicyDstaddr',
     'MulticastpolicySrcaddr',
+    'OndemandsnifferHost',
+    'OndemandsnifferPort',
+    'OndemandsnifferProtocol',
     'Policy46Dstaddr',
     'Policy46Poolname',
     'Policy46Service',
@@ -296,6 +309,7 @@ __all__ = [
     'SnifferAnomaly',
     'SnifferIpThreatfeed',
     'SslsshprofileDot',
+    'SslsshprofileEchOuterSni',
     'SslsshprofileFtps',
     'SslsshprofileHttps',
     'SslsshprofileImaps',
@@ -4752,8 +4766,8 @@ class DoSpolicy6Anomaly(dict):
         :param str quarantine_expiry: Duration of quarantine. (Format ###d##h##m, minimum 1m, maximum 364d23h59m, default = 5m). Requires quarantine set to attacker.
         :param str quarantine_log: Enable/disable quarantine logging. Valid values: `disable`, `enable`.
         :param str status: Enable/disable this anomaly. Valid values: `disable`, `enable`.
-        :param int threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
-        :param int thresholddefault: Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        :param int threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
+        :param int thresholddefault: Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         if action is not None:
             pulumi.set(__self__, "action", action)
@@ -4834,7 +4848,7 @@ class DoSpolicy6Anomaly(dict):
     @pulumi.getter
     def threshold(self) -> Optional[int]:
         """
-        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "threshold")
 
@@ -4842,7 +4856,7 @@ class DoSpolicy6Anomaly(dict):
     @pulumi.getter
     def thresholddefault(self) -> Optional[int]:
         """
-        Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "thresholddefault")
 
@@ -4943,8 +4957,8 @@ class DoSpolicyAnomaly(dict):
         :param str quarantine_expiry: Duration of quarantine. (Format ###d##h##m, minimum 1m, maximum 364d23h59m, default = 5m). Requires quarantine set to attacker.
         :param str quarantine_log: Enable/disable quarantine logging. Valid values: `disable`, `enable`.
         :param str status: Enable/disable this anomaly. Valid values: `disable`, `enable`.
-        :param int threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
-        :param int thresholddefault: Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        :param int threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
+        :param int thresholddefault: Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         if action is not None:
             pulumi.set(__self__, "action", action)
@@ -5025,7 +5039,7 @@ class DoSpolicyAnomaly(dict):
     @pulumi.getter
     def threshold(self) -> Optional[int]:
         """
-        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "threshold")
 
@@ -5033,7 +5047,7 @@ class DoSpolicyAnomaly(dict):
     @pulumi.getter
     def thresholddefault(self) -> Optional[int]:
         """
-        Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "thresholddefault")
 
@@ -6341,6 +6355,77 @@ class Localinpolicy6Dstaddr(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
+        :param str name: Custom Internet Service6 group name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Custom Internet Service6 group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class Localinpolicy6InternetService6SrcCustom(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class Localinpolicy6InternetService6SrcCustomGroup(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class Localinpolicy6InternetService6SrcGroup(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class Localinpolicy6InternetService6SrcName(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class Localinpolicy6IntfBlock(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
         :param str name: Address name.
         """
         if name is not None:
@@ -6395,6 +6480,101 @@ class Localinpolicy6Srcaddr(dict):
 
 @pulumi.output_type
 class LocalinpolicyDstaddr(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Address name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Address name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class LocalinpolicyInternetServiceSrcCustom(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Custom Internet Service name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Custom Internet Service name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class LocalinpolicyInternetServiceSrcCustomGroup(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Custom Internet Service group name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Custom Internet Service group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class LocalinpolicyInternetServiceSrcGroup(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Internet Service group name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Internet Service group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class LocalinpolicyInternetServiceSrcName(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Internet Service name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Internet Service name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class LocalinpolicyIntfBlock(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
@@ -6648,6 +6828,63 @@ class MulticastpolicySrcaddr(dict):
         Source address objects.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class OndemandsnifferHost(dict):
+    def __init__(__self__, *,
+                 host: Optional[str] = None):
+        """
+        :param str host: IPv4 or IPv6 host.
+        """
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[str]:
+        """
+        IPv4 or IPv6 host.
+        """
+        return pulumi.get(self, "host")
+
+
+@pulumi.output_type
+class OndemandsnifferPort(dict):
+    def __init__(__self__, *,
+                 port: Optional[int] = None):
+        """
+        :param int port: Port to filter in this traffic sniffer.
+        """
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        Port to filter in this traffic sniffer.
+        """
+        return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class OndemandsnifferProtocol(dict):
+    def __init__(__self__, *,
+                 protocol: Optional[int] = None):
+        """
+        :param int protocol: Integer value for the protocol type as defined by IANA (0 - 255).
+        """
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[int]:
+        """
+        Integer value for the protocol type as defined by IANA (0 - 255).
+        """
+        return pulumi.get(self, "protocol")
 
 
 @pulumi.output_type
@@ -12083,7 +12320,7 @@ class SnifferAnomaly(dict):
         :param str quarantine_expiry: Duration of quarantine. (Format ###d##h##m, minimum 1m, maximum 364d23h59m, default = 5m). Requires quarantine set to attacker.
         :param str quarantine_log: Enable/disable quarantine logging. Valid values: `disable`, `enable`.
         :param str status: Enable/disable this anomaly. Valid values: `disable`, `enable`.
-        :param int threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        :param int threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         :param int thresholddefault: Number of detected instances (packets per second or concurrent session number) which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
         """
         if action is not None:
@@ -12165,7 +12402,7 @@ class SnifferAnomaly(dict):
     @pulumi.getter
     def threshold(self) -> Optional[int]:
         """
-        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "threshold")
 
@@ -12395,6 +12632,37 @@ class SslsshprofileDot(dict):
         Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
         return pulumi.get(self, "untrusted_server_cert")
+
+
+@pulumi.output_type
+class SslsshprofileEchOuterSni(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 sni: Optional[str] = None):
+        """
+        :param str name: ClientHelloOuter SNI name.
+        :param str sni: ClientHelloOuter SNI to be blocked.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if sni is not None:
+            pulumi.set(__self__, "sni", sni)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        ClientHelloOuter SNI name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def sni(self) -> Optional[str]:
+        """
+        ClientHelloOuter SNI to be blocked.
+        """
+        return pulumi.get(self, "sni")
 
 
 @pulumi.output_type
@@ -12654,6 +12922,8 @@ class SslsshprofileHttps(dict):
             suggest = "client_cert_request"
         elif key == "clientCertificate":
             suggest = "client_certificate"
+        elif key == "encryptedClientHello":
+            suggest = "encrypted_client_hello"
         elif key == "expiredServerCert":
             suggest = "expired_server_cert"
         elif key == "invalidServerCert":
@@ -12694,6 +12964,7 @@ class SslsshprofileHttps(dict):
                  cert_validation_timeout: Optional[str] = None,
                  client_cert_request: Optional[str] = None,
                  client_certificate: Optional[str] = None,
+                 encrypted_client_hello: Optional[str] = None,
                  expired_server_cert: Optional[str] = None,
                  invalid_server_cert: Optional[str] = None,
                  min_allowed_ssl_version: Optional[str] = None,
@@ -12714,6 +12985,7 @@ class SslsshprofileHttps(dict):
         :param str cert_validation_timeout: Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
         :param str client_cert_request: Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
         :param str client_certificate: Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
+        :param str encrypted_client_hello: Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
         :param str expired_server_cert: Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
         :param str invalid_server_cert: Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
         :param str min_allowed_ssl_version: Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
@@ -12739,6 +13011,8 @@ class SslsshprofileHttps(dict):
             pulumi.set(__self__, "client_cert_request", client_cert_request)
         if client_certificate is not None:
             pulumi.set(__self__, "client_certificate", client_certificate)
+        if encrypted_client_hello is not None:
+            pulumi.set(__self__, "encrypted_client_hello", encrypted_client_hello)
         if expired_server_cert is not None:
             pulumi.set(__self__, "expired_server_cert", expired_server_cert)
         if invalid_server_cert is not None:
@@ -12807,6 +13081,14 @@ class SslsshprofileHttps(dict):
         Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
         """
         return pulumi.get(self, "client_certificate")
+
+    @property
+    @pulumi.getter(name="encryptedClientHello")
+    def encrypted_client_hello(self) -> Optional[str]:
+        """
+        Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+        """
+        return pulumi.get(self, "encrypted_client_hello")
 
     @property
     @pulumi.getter(name="expiredServerCert")
@@ -13726,6 +14008,8 @@ class SslsshprofileSsl(dict):
             suggest = "client_cert_request"
         elif key == "clientCertificate":
             suggest = "client_certificate"
+        elif key == "encryptedClientHello":
+            suggest = "encrypted_client_hello"
         elif key == "expiredServerCert":
             suggest = "expired_server_cert"
         elif key == "inspectAll":
@@ -13766,6 +14050,7 @@ class SslsshprofileSsl(dict):
                  cert_validation_timeout: Optional[str] = None,
                  client_cert_request: Optional[str] = None,
                  client_certificate: Optional[str] = None,
+                 encrypted_client_hello: Optional[str] = None,
                  expired_server_cert: Optional[str] = None,
                  inspect_all: Optional[str] = None,
                  invalid_server_cert: Optional[str] = None,
@@ -13783,6 +14068,7 @@ class SslsshprofileSsl(dict):
         :param str cert_validation_timeout: Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
         :param str client_cert_request: Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
         :param str client_certificate: Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
+        :param str encrypted_client_hello: Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
         :param str expired_server_cert: Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
         :param str inspect_all: Level of SSL inspection. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
         :param str invalid_server_cert: Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
@@ -13805,6 +14091,8 @@ class SslsshprofileSsl(dict):
             pulumi.set(__self__, "client_cert_request", client_cert_request)
         if client_certificate is not None:
             pulumi.set(__self__, "client_certificate", client_certificate)
+        if encrypted_client_hello is not None:
+            pulumi.set(__self__, "encrypted_client_hello", encrypted_client_hello)
         if expired_server_cert is not None:
             pulumi.set(__self__, "expired_server_cert", expired_server_cert)
         if inspect_all is not None:
@@ -13867,6 +14155,14 @@ class SslsshprofileSsl(dict):
         Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
         """
         return pulumi.get(self, "client_certificate")
+
+    @property
+    @pulumi.getter(name="encryptedClientHello")
+    def encrypted_client_hello(self) -> Optional[str]:
+        """
+        Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+        """
+        return pulumi.get(self, "encrypted_client_hello")
 
     @property
     @pulumi.getter(name="expiredServerCert")

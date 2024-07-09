@@ -43,11 +43,11 @@ class MobiletunnelArgs:
         :param pulumi.Input[int] n_mhae_spi: NEMO authentication SPI (default: 256).
         :param pulumi.Input[int] reg_interval: NMMO HA registration interval (5 - 300, default = 5).
         :param pulumi.Input[int] reg_retry: Maximum number of NMMO HA registration retries (1 to 30, default = 3).
-        :param pulumi.Input[int] renew_interval: Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+        :param pulumi.Input[int] renew_interval: Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
         :param pulumi.Input[str] roaming_interface: Select the associated interface name from available options.
-        :param pulumi.Input[str] tunnel_mode: NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+        :param pulumi.Input[str] tunnel_mode: NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] home_address: Home IP address (Format: xxx.xxx.xxx.xxx).
         :param pulumi.Input[str] n_mhae_key: NEMO authentication key.
         :param pulumi.Input[str] name: Tunnel name.
@@ -170,7 +170,7 @@ class MobiletunnelArgs:
     @pulumi.getter(name="renewInterval")
     def renew_interval(self) -> pulumi.Input[int]:
         """
-        Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+        Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
         """
         return pulumi.get(self, "renew_interval")
 
@@ -194,7 +194,7 @@ class MobiletunnelArgs:
     @pulumi.getter(name="tunnelMode")
     def tunnel_mode(self) -> pulumi.Input[str]:
         """
-        NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+        NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
         """
         return pulumi.get(self, "tunnel_mode")
 
@@ -218,7 +218,7 @@ class MobiletunnelArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -323,7 +323,7 @@ class _MobiletunnelState:
         """
         Input properties used for looking up and filtering Mobiletunnel resources.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hash_algorithm: Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
         :param pulumi.Input[str] home_address: Home IP address (Format: xxx.xxx.xxx.xxx).
         :param pulumi.Input[str] home_agent: IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
@@ -335,10 +335,10 @@ class _MobiletunnelState:
         :param pulumi.Input[Sequence[pulumi.Input['MobiletunnelNetworkArgs']]] networks: NEMO network configuration. The structure of `network` block is documented below.
         :param pulumi.Input[int] reg_interval: NMMO HA registration interval (5 - 300, default = 5).
         :param pulumi.Input[int] reg_retry: Maximum number of NMMO HA registration retries (1 to 30, default = 3).
-        :param pulumi.Input[int] renew_interval: Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+        :param pulumi.Input[int] renew_interval: Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
         :param pulumi.Input[str] roaming_interface: Select the associated interface name from available options.
         :param pulumi.Input[str] status: Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] tunnel_mode: NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+        :param pulumi.Input[str] tunnel_mode: NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if dynamic_sort_subtable is not None:
@@ -394,7 +394,7 @@ class _MobiletunnelState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -538,7 +538,7 @@ class _MobiletunnelState:
     @pulumi.getter(name="renewInterval")
     def renew_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+        Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
         """
         return pulumi.get(self, "renew_interval")
 
@@ -574,7 +574,7 @@ class _MobiletunnelState:
     @pulumi.getter(name="tunnelMode")
     def tunnel_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+        NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
         """
         return pulumi.get(self, "tunnel_mode")
 
@@ -665,7 +665,7 @@ class Mobiletunnel(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hash_algorithm: Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
         :param pulumi.Input[str] home_address: Home IP address (Format: xxx.xxx.xxx.xxx).
         :param pulumi.Input[str] home_agent: IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
@@ -677,10 +677,10 @@ class Mobiletunnel(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MobiletunnelNetworkArgs']]]] networks: NEMO network configuration. The structure of `network` block is documented below.
         :param pulumi.Input[int] reg_interval: NMMO HA registration interval (5 - 300, default = 5).
         :param pulumi.Input[int] reg_retry: Maximum number of NMMO HA registration retries (1 to 30, default = 3).
-        :param pulumi.Input[int] renew_interval: Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+        :param pulumi.Input[int] renew_interval: Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
         :param pulumi.Input[str] roaming_interface: Select the associated interface name from available options.
         :param pulumi.Input[str] status: Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] tunnel_mode: NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+        :param pulumi.Input[str] tunnel_mode: NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -850,7 +850,7 @@ class Mobiletunnel(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] hash_algorithm: Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
         :param pulumi.Input[str] home_address: Home IP address (Format: xxx.xxx.xxx.xxx).
         :param pulumi.Input[str] home_agent: IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
@@ -862,10 +862,10 @@ class Mobiletunnel(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MobiletunnelNetworkArgs']]]] networks: NEMO network configuration. The structure of `network` block is documented below.
         :param pulumi.Input[int] reg_interval: NMMO HA registration interval (5 - 300, default = 5).
         :param pulumi.Input[int] reg_retry: Maximum number of NMMO HA registration retries (1 to 30, default = 3).
-        :param pulumi.Input[int] renew_interval: Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+        :param pulumi.Input[int] renew_interval: Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
         :param pulumi.Input[str] roaming_interface: Select the associated interface name from available options.
         :param pulumi.Input[str] status: Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] tunnel_mode: NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+        :param pulumi.Input[str] tunnel_mode: NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -904,7 +904,7 @@ class Mobiletunnel(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1000,7 +1000,7 @@ class Mobiletunnel(pulumi.CustomResource):
     @pulumi.getter(name="renewInterval")
     def renew_interval(self) -> pulumi.Output[int]:
         """
-        Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+        Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
         """
         return pulumi.get(self, "renew_interval")
 
@@ -1024,13 +1024,13 @@ class Mobiletunnel(pulumi.CustomResource):
     @pulumi.getter(name="tunnelMode")
     def tunnel_mode(self) -> pulumi.Output[str]:
         """
-        NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+        NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
         """
         return pulumi.get(self, "tunnel_mode")
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -39,7 +39,7 @@ type Deviceupgrade struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Upgrade failure reason.
 	FailureReason pulumi.StringOutput `pulumi:"failureReason"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
 	HaRebootController pulumi.StringOutput `pulumi:"haRebootController"`
@@ -49,7 +49,7 @@ type Deviceupgrade struct {
 	MaximumMinutes pulumi.IntOutput `pulumi:"maximumMinutes"`
 	// Serial number of the node to include.
 	Serial pulumi.StringOutput `pulumi:"serial"`
-	// Upgrade configuration time in UTC (hh:mm yyyy/mm/dd UTC).
+	// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
 	SetupTime pulumi.StringOutput `pulumi:"setupTime"`
 	// Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `device-disconnected`, `ready`, `coordinating`, `staging`, `final-check`, `upgrade-devices`, `cancelled`, `confirmed`, `done`, `failed`.
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -60,7 +60,7 @@ type Deviceupgrade struct {
 	// Fortinet OS image versions to upgrade through in major-minor-patch format, such as 7-0-4.
 	UpgradePath pulumi.StringOutput `pulumi:"upgradePath"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewDeviceupgrade registers a new resource with the given unique name, arguments, and options.
@@ -99,7 +99,7 @@ type deviceupgradeState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Upgrade failure reason.
 	FailureReason *string `pulumi:"failureReason"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
 	HaRebootController *string `pulumi:"haRebootController"`
@@ -109,7 +109,7 @@ type deviceupgradeState struct {
 	MaximumMinutes *int `pulumi:"maximumMinutes"`
 	// Serial number of the node to include.
 	Serial *string `pulumi:"serial"`
-	// Upgrade configuration time in UTC (hh:mm yyyy/mm/dd UTC).
+	// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
 	SetupTime *string `pulumi:"setupTime"`
 	// Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `device-disconnected`, `ready`, `coordinating`, `staging`, `final-check`, `upgrade-devices`, `cancelled`, `confirmed`, `done`, `failed`.
 	Status *string `pulumi:"status"`
@@ -130,7 +130,7 @@ type DeviceupgradeState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Upgrade failure reason.
 	FailureReason pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
 	HaRebootController pulumi.StringPtrInput
@@ -140,7 +140,7 @@ type DeviceupgradeState struct {
 	MaximumMinutes pulumi.IntPtrInput
 	// Serial number of the node to include.
 	Serial pulumi.StringPtrInput
-	// Upgrade configuration time in UTC (hh:mm yyyy/mm/dd UTC).
+	// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
 	SetupTime pulumi.StringPtrInput
 	// Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `device-disconnected`, `ready`, `coordinating`, `staging`, `final-check`, `upgrade-devices`, `cancelled`, `confirmed`, `done`, `failed`.
 	Status pulumi.StringPtrInput
@@ -165,7 +165,7 @@ type deviceupgradeArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Upgrade failure reason.
 	FailureReason *string `pulumi:"failureReason"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
 	HaRebootController *string `pulumi:"haRebootController"`
@@ -175,7 +175,7 @@ type deviceupgradeArgs struct {
 	MaximumMinutes *int `pulumi:"maximumMinutes"`
 	// Serial number of the node to include.
 	Serial *string `pulumi:"serial"`
-	// Upgrade configuration time in UTC (hh:mm yyyy/mm/dd UTC).
+	// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
 	SetupTime *string `pulumi:"setupTime"`
 	// Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `device-disconnected`, `ready`, `coordinating`, `staging`, `final-check`, `upgrade-devices`, `cancelled`, `confirmed`, `done`, `failed`.
 	Status *string `pulumi:"status"`
@@ -197,7 +197,7 @@ type DeviceupgradeArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Upgrade failure reason.
 	FailureReason pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
 	HaRebootController pulumi.StringPtrInput
@@ -207,7 +207,7 @@ type DeviceupgradeArgs struct {
 	MaximumMinutes pulumi.IntPtrInput
 	// Serial number of the node to include.
 	Serial pulumi.StringPtrInput
-	// Upgrade configuration time in UTC (hh:mm yyyy/mm/dd UTC).
+	// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
 	SetupTime pulumi.StringPtrInput
 	// Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `device-disconnected`, `ready`, `coordinating`, `staging`, `final-check`, `upgrade-devices`, `cancelled`, `confirmed`, `done`, `failed`.
 	Status pulumi.StringPtrInput
@@ -323,7 +323,7 @@ func (o DeviceupgradeOutput) FailureReason() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deviceupgrade) pulumi.StringOutput { return v.FailureReason }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o DeviceupgradeOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Deviceupgrade) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -348,7 +348,7 @@ func (o DeviceupgradeOutput) Serial() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deviceupgrade) pulumi.StringOutput { return v.Serial }).(pulumi.StringOutput)
 }
 
-// Upgrade configuration time in UTC (hh:mm yyyy/mm/dd UTC).
+// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
 func (o DeviceupgradeOutput) SetupTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deviceupgrade) pulumi.StringOutput { return v.SetupTime }).(pulumi.StringOutput)
 }
@@ -374,8 +374,8 @@ func (o DeviceupgradeOutput) UpgradePath() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o DeviceupgradeOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Deviceupgrade) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o DeviceupgradeOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Deviceupgrade) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type DeviceupgradeArrayOutput struct{ *pulumi.OutputState }

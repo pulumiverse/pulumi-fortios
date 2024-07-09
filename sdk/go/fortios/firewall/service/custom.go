@@ -93,7 +93,7 @@ type Custom struct {
 	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Helper name.
 	Helper pulumi.StringOutput `pulumi:"helper"`
@@ -132,7 +132,7 @@ type Custom struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.
 	Visibility pulumi.StringOutput `pulumi:"visibility"`
 }
@@ -187,7 +187,7 @@ type customState struct {
 	FabricObject *string `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn *string `pulumi:"fqdn"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Helper name.
 	Helper *string `pulumi:"helper"`
@@ -252,7 +252,7 @@ type CustomState struct {
 	FabricObject pulumi.StringPtrInput
 	// Fully qualified domain name.
 	Fqdn pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Helper name.
 	Helper pulumi.StringPtrInput
@@ -321,7 +321,7 @@ type customArgs struct {
 	FabricObject *string `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn *string `pulumi:"fqdn"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Helper name.
 	Helper *string `pulumi:"helper"`
@@ -387,7 +387,7 @@ type CustomArgs struct {
 	FabricObject pulumi.StringPtrInput
 	// Fully qualified domain name.
 	Fqdn pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Helper name.
 	Helper pulumi.StringPtrInput
@@ -568,7 +568,7 @@ func (o CustomOutput) Fqdn() pulumi.StringOutput {
 	return o.ApplyT(func(v *Custom) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o CustomOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Custom) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -664,8 +664,8 @@ func (o CustomOutput) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o CustomOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Custom) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o CustomOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Custom) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable the visibility of the service on the GUI. Valid values: `enable`, `disable`.

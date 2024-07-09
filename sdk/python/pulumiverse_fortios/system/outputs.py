@@ -107,6 +107,7 @@ __all__ = [
     'InterfaceVrrp',
     'InterfaceVrrpProxyArp',
     'IpamPool',
+    'IpamPoolExclude',
     'IpamRule',
     'IpamRuleDevice',
     'IpamRuleInterface',
@@ -690,6 +691,7 @@ class AccprofileUtmgrpPermission(dict):
                  casb: Optional[str] = None,
                  data_leak_prevention: Optional[str] = None,
                  data_loss_prevention: Optional[str] = None,
+                 dlp: Optional[str] = None,
                  dnsfilter: Optional[str] = None,
                  emailfilter: Optional[str] = None,
                  endpoint_control: Optional[str] = None,
@@ -708,6 +710,7 @@ class AccprofileUtmgrpPermission(dict):
         :param str casb: Inline CASB filter profile and settings Valid values: `none`, `read`, `read-write`.
         :param str data_leak_prevention: DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str data_loss_prevention: DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+        :param str dlp: DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str dnsfilter: DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str emailfilter: AntiSpam filter and settings. Valid values: `none`, `read`, `read-write`.
         :param str endpoint_control: FortiClient Profiles. Valid values: `none`, `read`, `read-write`.
@@ -731,6 +734,8 @@ class AccprofileUtmgrpPermission(dict):
             pulumi.set(__self__, "data_leak_prevention", data_leak_prevention)
         if data_loss_prevention is not None:
             pulumi.set(__self__, "data_loss_prevention", data_loss_prevention)
+        if dlp is not None:
+            pulumi.set(__self__, "dlp", dlp)
         if dnsfilter is not None:
             pulumi.set(__self__, "dnsfilter", dnsfilter)
         if emailfilter is not None:
@@ -795,6 +800,14 @@ class AccprofileUtmgrpPermission(dict):
         DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
         """
         return pulumi.get(self, "data_loss_prevention")
+
+    @property
+    @pulumi.getter
+    def dlp(self) -> Optional[str]:
+        """
+        DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+        """
+        return pulumi.get(self, "dlp")
 
     @property
     @pulumi.getter
@@ -3052,7 +3065,7 @@ class DnsdatabaseDnsEntry(dict):
         :param int id: DNS entry ID.
         :param str ip: IPv4 address of the host.
         :param str ipv6: IPv6 address of the host.
-        :param int preference: DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+        :param int preference: DNS entry preference (0 - 65535, highest preference = 0, default = 10).
         :param str status: Enable/disable resource record status. Valid values: `enable`, `disable`.
         :param int ttl: Time-to-live for this entry (0 to 2147483647 sec, default = 0).
         :param str type: Resource record type. Valid values: `A`, `NS`, `CNAME`, `MX`, `AAAA`, `PTR`, `PTR_V6`.
@@ -3120,7 +3133,7 @@ class DnsdatabaseDnsEntry(dict):
     @pulumi.getter
     def preference(self) -> Optional[int]:
         """
-        DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+        DNS entry preference (0 - 65535, highest preference = 0, default = 10).
         """
         return pulumi.get(self, "preference")
 
@@ -3565,8 +3578,8 @@ class FederatedupgradeNodeList(dict):
         :param str device_type: What type of device this node represents.
         :param int maximum_minutes: Maximum number of minutes to allow for immediate upgrade preparation.
         :param str serial: Serial number of the node to include.
-        :param str setup_time: When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
-        :param str time: Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+        :param str setup_time: Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
+        :param str time: Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
         :param str timing: Whether the upgrade should be run immediately, or at a scheduled time. Valid values: `immediate`, `scheduled`.
         :param str upgrade_path: Image IDs to upgrade through.
         """
@@ -3623,7 +3636,7 @@ class FederatedupgradeNodeList(dict):
     @pulumi.getter(name="setupTime")
     def setup_time(self) -> Optional[str]:
         """
-        When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
+        Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
         """
         return pulumi.get(self, "setup_time")
 
@@ -3631,7 +3644,7 @@ class FederatedupgradeNodeList(dict):
     @pulumi.getter
     def time(self) -> Optional[str]:
         """
-        Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+        Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
         """
         return pulumi.get(self, "time")
 
@@ -3896,7 +3909,7 @@ class HaSecondaryVcluster(dict):
                  vdom: Optional[str] = None):
         """
         :param str monitor: Interfaces to check for port monitoring (or link failure).
-        :param str override: Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        :param str override: Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
         :param int override_wait_time: Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
         :param int pingserver_failover_threshold: Remote IP monitoring failover threshold (0 - 50).
         :param str pingserver_monitor_interface: Interfaces to check for remote IP monitoring.
@@ -3939,7 +3952,7 @@ class HaSecondaryVcluster(dict):
     @pulumi.getter
     def override(self) -> Optional[str]:
         """
-        Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "override")
 
@@ -6850,15 +6863,19 @@ class InterfaceVrrpProxyArp(dict):
 class IpamPool(dict):
     def __init__(__self__, *,
                  description: Optional[str] = None,
+                 excludes: Optional[Sequence['outputs.IpamPoolExclude']] = None,
                  name: Optional[str] = None,
                  subnet: Optional[str] = None):
         """
         :param str description: Description.
+        :param Sequence['IpamPoolExcludeArgs'] excludes: Configure pool exclude subnets. The structure of `exclude` block is documented below.
         :param str name: IPAM pool name.
         :param str subnet: Configure IPAM pool subnet, Class A - Class B subnet.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if excludes is not None:
+            pulumi.set(__self__, "excludes", excludes)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if subnet is not None:
@@ -6871,6 +6888,14 @@ class IpamPool(dict):
         Description.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def excludes(self) -> Optional[Sequence['outputs.IpamPoolExclude']]:
+        """
+        Configure pool exclude subnets. The structure of `exclude` block is documented below.
+        """
+        return pulumi.get(self, "excludes")
 
     @property
     @pulumi.getter
@@ -6887,6 +6912,54 @@ class IpamPool(dict):
         Configure IPAM pool subnet, Class A - Class B subnet.
         """
         return pulumi.get(self, "subnet")
+
+
+@pulumi.output_type
+class IpamPoolExclude(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "excludeSubnet":
+            suggest = "exclude_subnet"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IpamPoolExclude. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IpamPoolExclude.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IpamPoolExclude.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 exclude_subnet: Optional[str] = None,
+                 id: Optional[int] = None):
+        """
+        :param str exclude_subnet: Configure subnet to exclude from the IPAM pool.
+        :param int id: Exclude ID.
+        """
+        if exclude_subnet is not None:
+            pulumi.set(__self__, "exclude_subnet", exclude_subnet)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="excludeSubnet")
+    def exclude_subnet(self) -> Optional[str]:
+        """
+        Configure subnet to exclude from the IPAM pool.
+        """
+        return pulumi.get(self, "exclude_subnet")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Exclude ID.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -7497,6 +7570,8 @@ class NtpNtpserver(dict):
             suggest = "ip_type"
         elif key == "keyId":
             suggest = "key_id"
+        elif key == "keyType":
+            suggest = "key_type"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in NtpNtpserver. Access the value via the '{suggest}' property getter instead.")
@@ -7517,6 +7592,7 @@ class NtpNtpserver(dict):
                  ip_type: Optional[str] = None,
                  key: Optional[str] = None,
                  key_id: Optional[int] = None,
+                 key_type: Optional[str] = None,
                  ntpv3: Optional[str] = None,
                  server: Optional[str] = None):
         """
@@ -7525,8 +7601,9 @@ class NtpNtpserver(dict):
         :param str interface: Specify outgoing interface to reach server.
         :param str interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param str ip_type: Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
-        :param str key: Key for MD5/SHA1 authentication.
+        :param str key: Key for authentication. On FortiOS versions 6.2.0: MD5(NTPv3)/SHA1(NTPv4). On FortiOS versions >= 7.4.4: MD5(NTPv3)/SHA1(NTPv4)/SHA256(NTPv4).
         :param int key_id: Key ID for authentication.
+        :param str key_type: Select NTP authentication type. Valid values: `MD5`, `SHA1`, `SHA256`.
         :param str ntpv3: Enable to use NTPv3 instead of NTPv4. Valid values: `enable`, `disable`.
         :param str server: IP address or hostname of the NTP Server.
         """
@@ -7544,6 +7621,8 @@ class NtpNtpserver(dict):
             pulumi.set(__self__, "key", key)
         if key_id is not None:
             pulumi.set(__self__, "key_id", key_id)
+        if key_type is not None:
+            pulumi.set(__self__, "key_type", key_type)
         if ntpv3 is not None:
             pulumi.set(__self__, "ntpv3", ntpv3)
         if server is not None:
@@ -7593,7 +7672,7 @@ class NtpNtpserver(dict):
     @pulumi.getter
     def key(self) -> Optional[str]:
         """
-        Key for MD5/SHA1 authentication.
+        Key for authentication. On FortiOS versions 6.2.0: MD5(NTPv3)/SHA1(NTPv4). On FortiOS versions >= 7.4.4: MD5(NTPv3)/SHA1(NTPv4)/SHA256(NTPv4).
         """
         return pulumi.get(self, "key")
 
@@ -7604,6 +7683,14 @@ class NtpNtpserver(dict):
         Key ID for authentication.
         """
         return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter(name="keyType")
+    def key_type(self) -> Optional[str]:
+        """
+        Select NTP authentication type. Valid values: `MD5`, `SHA1`, `SHA256`.
+        """
+        return pulumi.get(self, "key_type")
 
     @property
     @pulumi.getter
@@ -10639,16 +10726,16 @@ class SdwanHealthCheck(dict):
         :param str http_agent: String in the http-agent field in the HTTP header.
         :param str http_get: URL used to communicate with the server if the protocol if the protocol is HTTP.
         :param str http_match: Response string expected from the server if the protocol is HTTP.
-        :param int interval: Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600*1000 msec, default = 500).
+        :param int interval: Status check interval in milliseconds, or the time between attempting to connect to the server (default = 500). On FortiOS versions 6.4.1-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
         :param Sequence['SdwanHealthCheckMemberArgs'] members: Member sequence number list. The structure of `members` block is documented below.
         :param str mos_codec: Codec to use for MOS calculation (default = g711). Valid values: `g711`, `g722`, `g729`.
         :param str name: Health check name.
-        :param int packet_size: Packet size of a twamp test session,
+        :param int packet_size: Packet size of a TWAMP test session. (124/158 - 1024)
         :param str password: Twamp controller password in authentication mode
-        :param int port: Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).
+        :param int port: Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
         :param int probe_count: Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
         :param str probe_packets: Enable/disable transmission of probe packets. Valid values: `disable`, `enable`.
-        :param int probe_timeout: Time to wait before a probe packet is considered lost (500 - 3600*1000 msec, default = 500).
+        :param int probe_timeout: Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.4.2-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 6.4.1: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
         :param str protocol: Protocol used to determine if the FortiGate can communicate with the server.
         :param str quality_measured_method: Method to measure the quality of tcp-connect. Valid values: `half-open`, `half-close`.
         :param int recoverytime: Number of successful responses received before server is considered recovered (1 - 3600, default = 5).
@@ -10881,7 +10968,7 @@ class SdwanHealthCheck(dict):
     @pulumi.getter
     def interval(self) -> Optional[int]:
         """
-        Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600*1000 msec, default = 500).
+        Status check interval in milliseconds, or the time between attempting to connect to the server (default = 500). On FortiOS versions 6.4.1-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
         """
         return pulumi.get(self, "interval")
 
@@ -10913,7 +11000,7 @@ class SdwanHealthCheck(dict):
     @pulumi.getter(name="packetSize")
     def packet_size(self) -> Optional[int]:
         """
-        Packet size of a twamp test session,
+        Packet size of a TWAMP test session. (124/158 - 1024)
         """
         return pulumi.get(self, "packet_size")
 
@@ -10929,7 +11016,7 @@ class SdwanHealthCheck(dict):
     @pulumi.getter
     def port(self) -> Optional[int]:
         """
-        Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).
+        Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
         """
         return pulumi.get(self, "port")
 
@@ -10953,7 +11040,7 @@ class SdwanHealthCheck(dict):
     @pulumi.getter(name="probeTimeout")
     def probe_timeout(self) -> Optional[int]:
         """
-        Time to wait before a probe packet is considered lost (500 - 3600*1000 msec, default = 500).
+        Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.4.2-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 6.4.1: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
         """
         return pulumi.get(self, "probe_timeout")
 
@@ -11358,7 +11445,7 @@ class SdwanMember(dict):
         :param int ingress_spillover_threshold: Ingress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.
         :param str interface: Interface name.
         :param str preferred_source: Preferred source of route for this member.
-        :param int priority: Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+        :param int priority: Priority of the interface for IPv4 . Used for SD-WAN rules or priority rules. On FortiOS versions 6.4.1: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535, default = 1.
         :param int priority6: Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.
         :param int seq_num: Member sequence number.
         :param str source: Source IP address used in the health-check packet to the server.
@@ -11467,7 +11554,7 @@ class SdwanMember(dict):
     @pulumi.getter
     def priority(self) -> Optional[int]:
         """
-        Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+        Priority of the interface for IPv4 . Used for SD-WAN rules or priority rules. On FortiOS versions 6.4.1: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535, default = 1.
         """
         return pulumi.get(self, "priority")
 
@@ -11592,8 +11679,8 @@ class SdwanNeighbor(dict):
         """
         :param str health_check: SD-WAN health-check name.
         :param str ip: IP/IPv6 address of neighbor.
-        :param int member: Member sequence number.
-        :param Sequence['SdwanNeighborMemberBlockArgs'] member_blocks: Member sequence number list. The structure of `member_block` block is documented below.
+        :param int member: Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `member_block`.*
+        :param Sequence['SdwanNeighborMemberBlockArgs'] member_blocks: Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `member_block` block is documented below.
         :param int minimum_sla_meet_members: Minimum number of members which meet SLA when the neighbor is preferred.
         :param str mode: What metric to select the neighbor. Valid values: `sla`, `speedtest`.
         :param str role: Role of neighbor. Valid values: `standalone`, `primary`, `secondary`.
@@ -11639,7 +11726,7 @@ class SdwanNeighbor(dict):
     @pulumi.getter
     def member(self) -> Optional[int]:
         """
-        Member sequence number.
+        Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `member_block`.*
         """
         return pulumi.get(self, "member")
 
@@ -11647,7 +11734,7 @@ class SdwanNeighbor(dict):
     @pulumi.getter(name="memberBlocks")
     def member_blocks(self) -> Optional[Sequence['outputs.SdwanNeighborMemberBlock']]:
         """
-        Member sequence number list. The structure of `member_block` block is documented below.
+        Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `member_block` block is documented below.
         """
         return pulumi.get(self, "member_blocks")
 
@@ -14343,7 +14430,7 @@ class VirtualwanlinkHealthCheck(dict):
         :param str http_agent: String in the http-agent field in the HTTP header.
         :param str http_get: URL used to communicate with the server if the protocol if the protocol is HTTP.
         :param str http_match: Response string expected from the server if the protocol is HTTP.
-        :param int interval: Status check interval, or the time between attempting to connect to the server (1 - 3600 sec, default = 5).
+        :param int interval: Status check interval, or the time between attempting to connect to the server. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-6.4.0: 500 - 3600*1000 msec, default = 500.
         :param Sequence['VirtualwanlinkHealthCheckMemberArgs'] members: Member sequence number list. The structure of `members` block is documented below.
         :param str name: Status check or health check name.
         :param int packet_size: Packet size of a twamp test session,
@@ -14504,7 +14591,7 @@ class VirtualwanlinkHealthCheck(dict):
     @pulumi.getter
     def interval(self) -> Optional[int]:
         """
-        Status check interval, or the time between attempting to connect to the server (1 - 3600 sec, default = 5).
+        Status check interval, or the time between attempting to connect to the server. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-6.4.0: 500 - 3600*1000 msec, default = 500.
         """
         return pulumi.get(self, "interval")
 
@@ -14880,8 +14967,8 @@ class VirtualwanlinkMember(dict):
         :param str source6: Source IPv6 address used in the health-check packet to the server.
         :param int spillover_threshold: Egress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.
         :param str status: Enable/disable this interface in the SD-WAN. Valid values: `disable`, `enable`.
-        :param int volume_ratio: Measured volume ratio (this value / sum of all values = percentage of link volume, 0 - 255).
-        :param int weight: Weight of this interface for weighted load balancing. (0 - 255) More traffic is directed to interfaces with higher weights.
+        :param int volume_ratio: Measured volume ratio (this value / sum of all values = percentage of link volume). On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
+        :param int weight: Weight of this interface for weighted load balancing. More traffic is directed to interfaces with higher weights. On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
@@ -15012,7 +15099,7 @@ class VirtualwanlinkMember(dict):
     @pulumi.getter(name="volumeRatio")
     def volume_ratio(self) -> Optional[int]:
         """
-        Measured volume ratio (this value / sum of all values = percentage of link volume, 0 - 255).
+        Measured volume ratio (this value / sum of all values = percentage of link volume). On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
         """
         return pulumi.get(self, "volume_ratio")
 
@@ -15020,7 +15107,7 @@ class VirtualwanlinkMember(dict):
     @pulumi.getter
     def weight(self) -> Optional[int]:
         """
-        Weight of this interface for weighted load balancing. (0 - 255) More traffic is directed to interfaces with higher weights.
+        Weight of this interface for weighted load balancing. More traffic is directed to interfaces with higher weights. On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
         """
         return pulumi.get(self, "weight")
 
@@ -16604,6 +16691,7 @@ class GetAccprofileUtmgrpPermissionResult(dict):
                  casb: str,
                  data_leak_prevention: str,
                  data_loss_prevention: str,
+                 dlp: str,
                  dnsfilter: str,
                  emailfilter: str,
                  endpoint_control: str,
@@ -16622,6 +16710,7 @@ class GetAccprofileUtmgrpPermissionResult(dict):
         :param str casb: Inline CASB filter profile and settings
         :param str data_leak_prevention: DLP profiles and settings.
         :param str data_loss_prevention: DLP profiles and settings.
+        :param str dlp: DLP profiles and settings.
         :param str dnsfilter: DNS Filter profiles and settings.
         :param str emailfilter: AntiSpam filter and settings.
         :param str endpoint_control: FortiClient Profiles.
@@ -16640,6 +16729,7 @@ class GetAccprofileUtmgrpPermissionResult(dict):
         pulumi.set(__self__, "casb", casb)
         pulumi.set(__self__, "data_leak_prevention", data_leak_prevention)
         pulumi.set(__self__, "data_loss_prevention", data_loss_prevention)
+        pulumi.set(__self__, "dlp", dlp)
         pulumi.set(__self__, "dnsfilter", dnsfilter)
         pulumi.set(__self__, "emailfilter", emailfilter)
         pulumi.set(__self__, "endpoint_control", endpoint_control)
@@ -16692,6 +16782,14 @@ class GetAccprofileUtmgrpPermissionResult(dict):
         DLP profiles and settings.
         """
         return pulumi.get(self, "data_loss_prevention")
+
+    @property
+    @pulumi.getter
+    def dlp(self) -> str:
+        """
+        DLP profiles and settings.
+        """
+        return pulumi.get(self, "dlp")
 
     @property
     @pulumi.getter
@@ -20247,6 +20345,7 @@ class GetNtpNtpserverResult(dict):
                  ip_type: str,
                  key: str,
                  key_id: int,
+                 key_type: str,
                  ntpv3: str,
                  server: str):
         """
@@ -20257,6 +20356,7 @@ class GetNtpNtpserverResult(dict):
         :param str ip_type: Choose to connect to IPv4 or/and IPv6 NTP server.
         :param str key: Key for MD5/SHA1 authentication.
         :param int key_id: Key ID for authentication.
+        :param str key_type: Select NTP authentication type.
         :param str ntpv3: Enable to use NTPv3 instead of NTPv4.
         :param str server: IP address or hostname of the NTP Server.
         """
@@ -20267,6 +20367,7 @@ class GetNtpNtpserverResult(dict):
         pulumi.set(__self__, "ip_type", ip_type)
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "key_type", key_type)
         pulumi.set(__self__, "ntpv3", ntpv3)
         pulumi.set(__self__, "server", server)
 
@@ -20325,6 +20426,14 @@ class GetNtpNtpserverResult(dict):
         Key ID for authentication.
         """
         return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter(name="keyType")
+    def key_type(self) -> str:
+        """
+        Select NTP authentication type.
+        """
+        return pulumi.get(self, "key_type")
 
     @property
     @pulumi.getter

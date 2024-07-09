@@ -79,6 +79,10 @@ export class Global extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+     */
+    public readonly alwaysLearnClientIp!: pulumi.Output<string>;
+    /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
@@ -95,7 +99,7 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly forwardServerAffinityTimeout!: pulumi.Output<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -135,7 +139,7 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly maxMessageLength!: pulumi.Output<number>;
     /**
-     * Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+     * Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
      */
     public readonly maxRequestLength!: pulumi.Output<number>;
     /**
@@ -150,6 +154,10 @@ export class Global extends pulumi.CustomResource {
      * Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
      */
     public readonly proxyFqdn!: pulumi.Output<string>;
+    /**
+     * Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+     */
+    public readonly proxyTransparentCertInspection!: pulumi.Output<string>;
     /**
      * IPv4 source addresses to exempt proxy affinity.
      */
@@ -181,7 +189,7 @@ export class Global extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Name of the web proxy profile to apply when explicit proxy traffic is allowed by default and traffic is accepted that does not match an explicit proxy policy.
      */
@@ -200,6 +208,7 @@ export class Global extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GlobalState | undefined;
+            resourceInputs["alwaysLearnClientIp"] = state ? state.alwaysLearnClientIp : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fastPolicyMatch"] = state ? state.fastPolicyMatch : undefined;
             resourceInputs["forwardProxyAuth"] = state ? state.forwardProxyAuth : undefined;
@@ -218,6 +227,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["maxWafBodyCacheLength"] = state ? state.maxWafBodyCacheLength : undefined;
             resourceInputs["policyCategoryDeepInspect"] = state ? state.policyCategoryDeepInspect : undefined;
             resourceInputs["proxyFqdn"] = state ? state.proxyFqdn : undefined;
+            resourceInputs["proxyTransparentCertInspection"] = state ? state.proxyTransparentCertInspection : undefined;
             resourceInputs["srcAffinityExemptAddr"] = state ? state.srcAffinityExemptAddr : undefined;
             resourceInputs["srcAffinityExemptAddr6"] = state ? state.srcAffinityExemptAddr6 : undefined;
             resourceInputs["sslCaCert"] = state ? state.sslCaCert : undefined;
@@ -232,6 +242,7 @@ export class Global extends pulumi.CustomResource {
             if ((!args || args.proxyFqdn === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'proxyFqdn'");
             }
+            resourceInputs["alwaysLearnClientIp"] = args ? args.alwaysLearnClientIp : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fastPolicyMatch"] = args ? args.fastPolicyMatch : undefined;
             resourceInputs["forwardProxyAuth"] = args ? args.forwardProxyAuth : undefined;
@@ -250,6 +261,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["maxWafBodyCacheLength"] = args ? args.maxWafBodyCacheLength : undefined;
             resourceInputs["policyCategoryDeepInspect"] = args ? args.policyCategoryDeepInspect : undefined;
             resourceInputs["proxyFqdn"] = args ? args.proxyFqdn : undefined;
+            resourceInputs["proxyTransparentCertInspection"] = args ? args.proxyTransparentCertInspection : undefined;
             resourceInputs["srcAffinityExemptAddr"] = args ? args.srcAffinityExemptAddr : undefined;
             resourceInputs["srcAffinityExemptAddr6"] = args ? args.srcAffinityExemptAddr6 : undefined;
             resourceInputs["sslCaCert"] = args ? args.sslCaCert : undefined;
@@ -270,6 +282,10 @@ export class Global extends pulumi.CustomResource {
  */
 export interface GlobalState {
     /**
+     * Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+     */
+    alwaysLearnClientIp?: pulumi.Input<string>;
+    /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -286,7 +302,7 @@ export interface GlobalState {
      */
     forwardServerAffinityTimeout?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -326,7 +342,7 @@ export interface GlobalState {
      */
     maxMessageLength?: pulumi.Input<number>;
     /**
-     * Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+     * Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
      */
     maxRequestLength?: pulumi.Input<number>;
     /**
@@ -341,6 +357,10 @@ export interface GlobalState {
      * Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
      */
     proxyFqdn?: pulumi.Input<string>;
+    /**
+     * Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+     */
+    proxyTransparentCertInspection?: pulumi.Input<string>;
     /**
      * IPv4 source addresses to exempt proxy affinity.
      */
@@ -384,6 +404,10 @@ export interface GlobalState {
  */
 export interface GlobalArgs {
     /**
+     * Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+     */
+    alwaysLearnClientIp?: pulumi.Input<string>;
+    /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -400,7 +424,7 @@ export interface GlobalArgs {
      */
     forwardServerAffinityTimeout?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -440,7 +464,7 @@ export interface GlobalArgs {
      */
     maxMessageLength?: pulumi.Input<number>;
     /**
-     * Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+     * Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions >= 6.2.4: default = 8.
      */
     maxRequestLength?: pulumi.Input<number>;
     /**
@@ -455,6 +479,10 @@ export interface GlobalArgs {
      * Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
      */
     proxyFqdn: pulumi.Input<string>;
+    /**
+     * Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+     */
+    proxyTransparentCertInspection?: pulumi.Input<string>;
     /**
      * IPv4 source addresses to exempt proxy affinity.
      */

@@ -96,7 +96,7 @@ class ExtenderArgs:
         :param pulumi.Input[str] enforce_bandwidth: Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ha_shared_secret: HA shared secret.
         :param pulumi.Input[str] ifname: FortiExtender interface name.
         :param pulumi.Input[str] initiated_update: Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
@@ -509,7 +509,7 @@ class ExtenderArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -996,7 +996,7 @@ class _ExtenderState:
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ha_shared_secret: HA shared secret.
         :param pulumi.Input[str] ifname: FortiExtender interface name.
         :param pulumi.Input[str] initiated_update: Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
@@ -1401,7 +1401,7 @@ class _ExtenderState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1953,7 +1953,7 @@ class Extender(pulumi.CustomResource):
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ha_shared_secret: HA shared secret.
         :param pulumi.Input[str] ifname: FortiExtender interface name.
         :param pulumi.Input[str] initiated_update: Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
@@ -2283,7 +2283,7 @@ class Extender(pulumi.CustomResource):
         :param pulumi.Input[str] ext_name: FortiExtender name.
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ha_shared_secret: HA shared secret.
         :param pulumi.Input[str] ifname: FortiExtender interface name.
         :param pulumi.Input[str] initiated_update: Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
@@ -2553,7 +2553,7 @@ class Extender(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2791,7 +2791,7 @@ class Extender(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

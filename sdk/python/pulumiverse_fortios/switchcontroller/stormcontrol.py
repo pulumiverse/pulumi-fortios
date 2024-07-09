@@ -22,7 +22,7 @@ class StormcontrolArgs:
         """
         The set of arguments for constructing a Stormcontrol resource.
         :param pulumi.Input[str] broadcast: Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] rate: Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+        :param pulumi.Input[int] rate: Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
         :param pulumi.Input[str] unknown_multicast: Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] unknown_unicast: Enable/disable storm control to drop unknown unicast traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -54,7 +54,7 @@ class StormcontrolArgs:
     @pulumi.getter
     def rate(self) -> Optional[pulumi.Input[int]]:
         """
-        Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+        Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
         """
         return pulumi.get(self, "rate")
 
@@ -110,7 +110,7 @@ class _StormcontrolState:
         """
         Input properties used for looking up and filtering Stormcontrol resources.
         :param pulumi.Input[str] broadcast: Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] rate: Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+        :param pulumi.Input[int] rate: Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
         :param pulumi.Input[str] unknown_multicast: Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] unknown_unicast: Enable/disable storm control to drop unknown unicast traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -142,7 +142,7 @@ class _StormcontrolState:
     @pulumi.getter
     def rate(self) -> Optional[pulumi.Input[int]]:
         """
-        Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+        Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
         """
         return pulumi.get(self, "rate")
 
@@ -222,7 +222,7 @@ class Stormcontrol(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] broadcast: Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] rate: Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+        :param pulumi.Input[int] rate: Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
         :param pulumi.Input[str] unknown_multicast: Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] unknown_unicast: Enable/disable storm control to drop unknown unicast traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -311,7 +311,7 @@ class Stormcontrol(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] broadcast: Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] rate: Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+        :param pulumi.Input[int] rate: Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
         :param pulumi.Input[str] unknown_multicast: Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] unknown_unicast: Enable/disable storm control to drop unknown unicast traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -339,7 +339,7 @@ class Stormcontrol(pulumi.CustomResource):
     @pulumi.getter
     def rate(self) -> pulumi.Output[int]:
         """
-        Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+        Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
         """
         return pulumi.get(self, "rate")
 
@@ -361,7 +361,7 @@ class Stormcontrol(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -38,7 +38,7 @@ type Subclass struct {
 	// Signature subclass name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSubclass registers a new resource with the given unique name, arguments, and options.
@@ -209,8 +209,8 @@ func (o SubclassOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SubclassOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Subclass) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SubclassOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Subclass) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SubclassArrayOutput struct{ *pulumi.OutputState }

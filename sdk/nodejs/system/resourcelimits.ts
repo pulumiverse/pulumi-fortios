@@ -98,7 +98,7 @@ export class Resourcelimits extends pulumi.CustomResource {
      */
     public readonly firewallAddrgrp!: pulumi.Output<number>;
     /**
-     * Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+     * Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
      */
     public readonly firewallPolicy!: pulumi.Output<number>;
     /**
@@ -118,7 +118,7 @@ export class Resourcelimits extends pulumi.CustomResource {
      */
     public readonly ipsecPhase2Interface!: pulumi.Output<number>;
     /**
-     * Log disk quota in MB.
+     * Log disk quota in megabytes (MB).
      */
     public readonly logDiskQuota!: pulumi.Output<number>;
     /**
@@ -156,7 +156,7 @@ export class Resourcelimits extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Resourcelimits resource with the given unique name, arguments, and options.
@@ -238,7 +238,7 @@ export interface ResourcelimitsState {
      */
     firewallAddrgrp?: pulumi.Input<number>;
     /**
-     * Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+     * Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
      */
     firewallPolicy?: pulumi.Input<number>;
     /**
@@ -258,7 +258,7 @@ export interface ResourcelimitsState {
      */
     ipsecPhase2Interface?: pulumi.Input<number>;
     /**
-     * Log disk quota in MB.
+     * Log disk quota in megabytes (MB).
      */
     logDiskQuota?: pulumi.Input<number>;
     /**
@@ -320,7 +320,7 @@ export interface ResourcelimitsArgs {
      */
     firewallAddrgrp?: pulumi.Input<number>;
     /**
-     * Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+     * Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
      */
     firewallPolicy?: pulumi.Input<number>;
     /**
@@ -340,7 +340,7 @@ export interface ResourcelimitsArgs {
      */
     ipsecPhase2Interface?: pulumi.Input<number>;
     /**
-     * Log disk quota in MB.
+     * Log disk quota in megabytes (MB).
      */
     logDiskQuota?: pulumi.Input<number>;
     /**

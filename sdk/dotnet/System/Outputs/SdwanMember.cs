@@ -43,7 +43,7 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? PreferredSource;
         /// <summary>
-        /// Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+        /// Priority of the interface for IPv4 . Used for SD-WAN rules or priority rules. On FortiOS versions 6.4.1: 0 - 65535. On FortiOS versions &gt;= 7.0.4: 1 - 65535, default = 1.
         /// </summary>
         public readonly int? Priority;
         /// <summary>

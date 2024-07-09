@@ -35,13 +35,17 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? IpType;
         /// <summary>
-        /// Key for MD5/SHA1 authentication.
+        /// Key for authentication. On FortiOS versions 6.2.0: MD5(NTPv3)/SHA1(NTPv4). On FortiOS versions &gt;= 7.4.4: MD5(NTPv3)/SHA1(NTPv4)/SHA256(NTPv4).
         /// </summary>
         public readonly string? Key;
         /// <summary>
         /// Key ID for authentication.
         /// </summary>
         public readonly int? KeyId;
+        /// <summary>
+        /// Select NTP authentication type. Valid values: `MD5`, `SHA1`, `SHA256`.
+        /// </summary>
+        public readonly string? KeyType;
         /// <summary>
         /// Enable to use NTPv3 instead of NTPv4. Valid values: `enable`, `disable`.
         /// </summary>
@@ -67,6 +71,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             int? keyId,
 
+            string? keyType,
+
             string? ntpv3,
 
             string? server)
@@ -78,6 +84,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             IpType = ipType;
             Key = key;
             KeyId = keyId;
+            KeyType = keyType;
             Ntpv3 = ntpv3;
             Server = server;
         }

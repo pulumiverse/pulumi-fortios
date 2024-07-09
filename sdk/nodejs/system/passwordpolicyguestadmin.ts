@@ -91,7 +91,7 @@ export class Passwordpolicyguestadmin extends pulumi.CustomResource {
      */
     public readonly expireStatus!: pulumi.Output<string>;
     /**
-     * Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+     * Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
      */
     public readonly minChangeCharacters!: pulumi.Output<number>;
     /**
@@ -115,7 +115,7 @@ export class Passwordpolicyguestadmin extends pulumi.CustomResource {
      */
     public readonly minimumLength!: pulumi.Output<number>;
     /**
-     * Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
+     * Enable/disable reuse of password. On FortiOS versions 6.2.0-7.0.0: If both reuse-password and change-4-characters are enabled, change-4-characters overrides.. On FortiOS versions >= 7.0.1: If both reuse-password and min-change-characters are enabled, min-change-characters overrides.. Valid values: `enable`, `disable`.
      */
     public readonly reusePassword!: pulumi.Output<string>;
     /**
@@ -125,7 +125,7 @@ export class Passwordpolicyguestadmin extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Passwordpolicyguestadmin resource with the given unique name, arguments, and options.
@@ -195,7 +195,7 @@ export interface PasswordpolicyguestadminState {
      */
     expireStatus?: pulumi.Input<string>;
     /**
-     * Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+     * Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
      */
     minChangeCharacters?: pulumi.Input<number>;
     /**
@@ -219,7 +219,7 @@ export interface PasswordpolicyguestadminState {
      */
     minimumLength?: pulumi.Input<number>;
     /**
-     * Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
+     * Enable/disable reuse of password. On FortiOS versions 6.2.0-7.0.0: If both reuse-password and change-4-characters are enabled, change-4-characters overrides.. On FortiOS versions >= 7.0.1: If both reuse-password and min-change-characters are enabled, min-change-characters overrides.. Valid values: `enable`, `disable`.
      */
     reusePassword?: pulumi.Input<string>;
     /**
@@ -253,7 +253,7 @@ export interface PasswordpolicyguestadminArgs {
      */
     expireStatus?: pulumi.Input<string>;
     /**
-     * Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+     * Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
      */
     minChangeCharacters?: pulumi.Input<number>;
     /**
@@ -277,7 +277,7 @@ export interface PasswordpolicyguestadminArgs {
      */
     minimumLength?: pulumi.Input<number>;
     /**
-     * Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
+     * Enable/disable reuse of password. On FortiOS versions 6.2.0-7.0.0: If both reuse-password and change-4-characters are enabled, change-4-characters overrides.. On FortiOS versions >= 7.0.1: If both reuse-password and min-change-characters are enabled, min-change-characters overrides.. Valid values: `enable`, `disable`.
      */
     reusePassword?: pulumi.Input<string>;
     /**

@@ -135,6 +135,10 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         public readonly int Policyid;
         /// <summary>
+        /// Enable/disable preservation of the original source port from source NAT if it has not been used.
+        /// </summary>
+        public readonly string PortPreserve;
+        /// <summary>
         /// Integer value for the protocol type (0 - 255).
         /// </summary>
         public readonly int Protocol;
@@ -190,6 +194,8 @@ namespace Pulumiverse.Fortios.Firewall
 
             int policyid,
 
+            string portPreserve,
+
             int protocol,
 
             ImmutableArray<Outputs.GetCentralsnatmapSrcintfResult> srcintfs,
@@ -218,6 +224,7 @@ namespace Pulumiverse.Fortios.Firewall
             OrigAddrs = origAddrs;
             OrigPort = origPort;
             Policyid = policyid;
+            PortPreserve = portPreserve;
             Protocol = protocol;
             Srcintfs = srcintfs;
             Status = status;

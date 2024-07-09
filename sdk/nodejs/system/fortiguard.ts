@@ -98,7 +98,7 @@ export class Fortiguard extends pulumi.CustomResource {
      */
     public readonly antispamCache!: pulumi.Output<string>;
     /**
-     * Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+     * Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
      */
     public readonly antispamCacheMpercent!: pulumi.Output<number>;
     /**
@@ -138,7 +138,7 @@ export class Fortiguard extends pulumi.CustomResource {
      */
     public readonly autoFirmwareUpgrade!: pulumi.Output<string>;
     /**
-     * Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+     * Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
      */
     public readonly autoFirmwareUpgradeDay!: pulumi.Output<string>;
     /**
@@ -320,7 +320,7 @@ export class Fortiguard extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Expiration date of the FortiGuard video filter contract.
      */
@@ -350,7 +350,7 @@ export class Fortiguard extends pulumi.CustomResource {
      */
     public readonly webfilterLicense!: pulumi.Output<number>;
     /**
-     * Web filter query time out (1 - 30 sec, default = 7).
+     * Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
      */
     public readonly webfilterTimeout!: pulumi.Output<number>;
 
@@ -525,7 +525,7 @@ export interface FortiguardState {
      */
     antispamCache?: pulumi.Input<string>;
     /**
-     * Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+     * Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
      */
     antispamCacheMpercent?: pulumi.Input<number>;
     /**
@@ -565,7 +565,7 @@ export interface FortiguardState {
      */
     autoFirmwareUpgrade?: pulumi.Input<string>;
     /**
-     * Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+     * Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
      */
     autoFirmwareUpgradeDay?: pulumi.Input<string>;
     /**
@@ -777,7 +777,7 @@ export interface FortiguardState {
      */
     webfilterLicense?: pulumi.Input<number>;
     /**
-     * Web filter query time out (1 - 30 sec, default = 7).
+     * Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
      */
     webfilterTimeout?: pulumi.Input<number>;
 }
@@ -791,7 +791,7 @@ export interface FortiguardArgs {
      */
     antispamCache?: pulumi.Input<string>;
     /**
-     * Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+     * Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
      */
     antispamCacheMpercent?: pulumi.Input<number>;
     /**
@@ -831,7 +831,7 @@ export interface FortiguardArgs {
      */
     autoFirmwareUpgrade?: pulumi.Input<string>;
     /**
-     * Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+     * Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
      */
     autoFirmwareUpgradeDay?: pulumi.Input<string>;
     /**
@@ -1043,7 +1043,7 @@ export interface FortiguardArgs {
      */
     webfilterLicense?: pulumi.Input<number>;
     /**
-     * Web filter query time out (1 - 30 sec, default = 7).
+     * Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
      */
     webfilterTimeout: pulumi.Input<number>;
 }

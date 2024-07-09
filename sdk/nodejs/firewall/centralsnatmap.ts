@@ -108,7 +108,7 @@ export class Centralsnatmap extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -152,6 +152,10 @@ export class Centralsnatmap extends pulumi.CustomResource {
      */
     public readonly policyid!: pulumi.Output<number>;
     /**
+     * Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+     */
+    public readonly portPreserve!: pulumi.Output<string>;
+    /**
      * Integer value for the protocol type (0 - 255).
      */
     public readonly protocol!: pulumi.Output<number>;
@@ -174,7 +178,7 @@ export class Centralsnatmap extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Centralsnatmap resource with the given unique name, arguments, and options.
@@ -206,6 +210,7 @@ export class Centralsnatmap extends pulumi.CustomResource {
             resourceInputs["origAddrs"] = state ? state.origAddrs : undefined;
             resourceInputs["origPort"] = state ? state.origPort : undefined;
             resourceInputs["policyid"] = state ? state.policyid : undefined;
+            resourceInputs["portPreserve"] = state ? state.portPreserve : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
             resourceInputs["srcintfs"] = state ? state.srcintfs : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -252,6 +257,7 @@ export class Centralsnatmap extends pulumi.CustomResource {
             resourceInputs["origAddrs"] = args ? args.origAddrs : undefined;
             resourceInputs["origPort"] = args ? args.origPort : undefined;
             resourceInputs["policyid"] = args ? args.policyid : undefined;
+            resourceInputs["portPreserve"] = args ? args.portPreserve : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
             resourceInputs["srcintfs"] = args ? args.srcintfs : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
@@ -293,7 +299,7 @@ export interface CentralsnatmapState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -336,6 +342,10 @@ export interface CentralsnatmapState {
      * Policy ID.
      */
     policyid?: pulumi.Input<number>;
+    /**
+     * Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+     */
+    portPreserve?: pulumi.Input<string>;
     /**
      * Integer value for the protocol type (0 - 255).
      */
@@ -391,7 +401,7 @@ export interface CentralsnatmapArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -434,6 +444,10 @@ export interface CentralsnatmapArgs {
      * Policy ID.
      */
     policyid?: pulumi.Input<number>;
+    /**
+     * Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+     */
+    portPreserve?: pulumi.Input<string>;
     /**
      * Integer value for the protocol type (0 - 255).
      */

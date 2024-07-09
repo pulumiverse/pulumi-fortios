@@ -94,7 +94,7 @@ type Chart struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Favorite. Valid values: `no`, `yes`.
 	Favorite pulumi.StringOutput `pulumi:"favorite"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
 	GraphType pulumi.StringOutput `pulumi:"graphType"`
@@ -119,7 +119,7 @@ type Chart struct {
 	// Value series of pie chart. The structure of `valueSeries` block is documented below.
 	ValueSeries ChartValueSeriesOutput `pulumi:"valueSeries"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// X-series of chart. The structure of `xSeries` block is documented below.
 	XSeries ChartXSeriesOutput `pulumi:"xSeries"`
 	// Y-series of chart. The structure of `ySeries` block is documented below.
@@ -184,7 +184,7 @@ type chartState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Favorite. Valid values: `no`, `yes`.
 	Favorite *string `pulumi:"favorite"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
 	GraphType *string `pulumi:"graphType"`
@@ -239,7 +239,7 @@ type ChartState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Favorite. Valid values: `no`, `yes`.
 	Favorite pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
 	GraphType pulumi.StringPtrInput
@@ -298,7 +298,7 @@ type chartArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Favorite. Valid values: `no`, `yes`.
 	Favorite *string `pulumi:"favorite"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
 	GraphType *string `pulumi:"graphType"`
@@ -354,7 +354,7 @@ type ChartArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Favorite. Valid values: `no`, `yes`.
 	Favorite pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Graph type. Valid values: `none`, `bar`, `pie`, `line`, `flow`.
 	GraphType pulumi.StringPtrInput
@@ -528,7 +528,7 @@ func (o ChartOutput) Favorite() pulumi.StringOutput {
 	return o.ApplyT(func(v *Chart) pulumi.StringOutput { return v.Favorite }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ChartOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Chart) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -589,8 +589,8 @@ func (o ChartOutput) ValueSeries() ChartValueSeriesOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ChartOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Chart) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ChartOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Chart) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // X-series of chart. The structure of `xSeries` block is documented below.

@@ -94,7 +94,7 @@ export class Ldbmonitor extends pulumi.CustomResource {
      */
     public readonly httpMaxRedirects!: pulumi.Output<number>;
     /**
-     * Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions >= 7.2.0: 5 - 65535 sec.
+     * Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.15: 5 - 65635 sec. On FortiOS versions >= 7.2.0: 5 - 65535 sec.
      */
     public readonly interval!: pulumi.Output<number>;
     /**
@@ -102,7 +102,7 @@ export class Ldbmonitor extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions >= 7.2.0: 0 - 65535.
+     * Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.15: 0 - 65635. On FortiOS versions >= 7.2.0: 0 - 65535.
      */
     public readonly port!: pulumi.Output<number>;
     /**
@@ -124,7 +124,7 @@ export class Ldbmonitor extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Ldbmonitor resource with the given unique name, arguments, and options.
@@ -207,7 +207,7 @@ export interface LdbmonitorState {
      */
     httpMaxRedirects?: pulumi.Input<number>;
     /**
-     * Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions >= 7.2.0: 5 - 65535 sec.
+     * Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.15: 5 - 65635 sec. On FortiOS versions >= 7.2.0: 5 - 65535 sec.
      */
     interval?: pulumi.Input<number>;
     /**
@@ -215,7 +215,7 @@ export interface LdbmonitorState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions >= 7.2.0: 0 - 65535.
+     * Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.15: 0 - 65635. On FortiOS versions >= 7.2.0: 0 - 65535.
      */
     port?: pulumi.Input<number>;
     /**
@@ -269,7 +269,7 @@ export interface LdbmonitorArgs {
      */
     httpMaxRedirects?: pulumi.Input<number>;
     /**
-     * Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.13: 5 - 65635 sec. On FortiOS versions >= 7.2.0: 5 - 65535 sec.
+     * Time between health checks (default = 10). On FortiOS versions 6.2.0-7.0.15: 5 - 65635 sec. On FortiOS versions >= 7.2.0: 5 - 65535 sec.
      */
     interval?: pulumi.Input<number>;
     /**
@@ -277,7 +277,7 @@ export interface LdbmonitorArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.13: 0 - 65635. On FortiOS versions >= 7.2.0: 0 - 65535.
+     * Service port used to perform the health check. If 0, health check monitor inherits port configured for the server (default = 0). On FortiOS versions 6.2.0-7.0.15: 0 - 65635. On FortiOS versions >= 7.2.0: 0 - 65535.
      */
     port?: pulumi.Input<number>;
     /**

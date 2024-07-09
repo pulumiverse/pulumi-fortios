@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
-// Configure speed test setting. Applies to FortiOS Version `7.2.6,7.4.1,7.4.2`.
+// Configure speed test setting. Applies to FortiOS Version `7.2.6,7.2.7,7.2.8,7.4.1,7.4.2,7.4.3,7.4.4`.
 //
 // ## Import
 //
@@ -38,7 +38,7 @@ type Speedtestsetting struct {
 	// Number of parallel client streams (1 - 64, default = 4) for the TCP protocol to run during the speed test.
 	MultipleTcpStream pulumi.IntOutput `pulumi:"multipleTcpStream"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSpeedtestsetting registers a new resource with the given unique name, arguments, and options.
@@ -209,8 +209,8 @@ func (o SpeedtestsettingOutput) MultipleTcpStream() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SpeedtestsettingOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Speedtestsetting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SpeedtestsettingOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Speedtestsetting) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SpeedtestsettingArrayOutput struct{ *pulumi.OutputState }

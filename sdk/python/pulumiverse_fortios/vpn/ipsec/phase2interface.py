@@ -90,7 +90,7 @@ class Phase2interfaceArgs:
         :param pulumi.Input[str] ipv4_df: Enable/disable setting and resetting of IPv4 'Don't Fragment' bit. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] keepalive: Enable/disable keep alive. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] keylife_type: Keylife type. Valid values: `seconds`, `kbs`, `both`.
-        :param pulumi.Input[int] keylifekbs: Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+        :param pulumi.Input[int] keylifekbs: Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
         :param pulumi.Input[int] keylifeseconds: Phase2 key life in time in seconds (120 - 172800).
         :param pulumi.Input[str] l2tp: Enable/disable L2TP over IPsec. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: IPsec tunnel name.
@@ -532,7 +532,7 @@ class Phase2interfaceArgs:
     @pulumi.getter
     def keylifekbs(self) -> Optional[pulumi.Input[int]]:
         """
-        Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+        Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
         """
         return pulumi.get(self, "keylifekbs")
 
@@ -846,7 +846,7 @@ class _Phase2interfaceState:
         :param pulumi.Input[str] ipv4_df: Enable/disable setting and resetting of IPv4 'Don't Fragment' bit. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] keepalive: Enable/disable keep alive. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] keylife_type: Keylife type. Valid values: `seconds`, `kbs`, `both`.
-        :param pulumi.Input[int] keylifekbs: Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+        :param pulumi.Input[int] keylifekbs: Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
         :param pulumi.Input[int] keylifeseconds: Phase2 key life in time in seconds (120 - 172800).
         :param pulumi.Input[str] l2tp: Enable/disable L2TP over IPsec. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: IPsec tunnel name.
@@ -1268,7 +1268,7 @@ class _Phase2interfaceState:
     @pulumi.getter
     def keylifekbs(self) -> Optional[pulumi.Input[int]]:
         """
-        Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+        Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
         """
         return pulumi.get(self, "keylifekbs")
 
@@ -1763,7 +1763,7 @@ class Phase2interface(pulumi.CustomResource):
         :param pulumi.Input[str] ipv4_df: Enable/disable setting and resetting of IPv4 'Don't Fragment' bit. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] keepalive: Enable/disable keep alive. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] keylife_type: Keylife type. Valid values: `seconds`, `kbs`, `both`.
-        :param pulumi.Input[int] keylifekbs: Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+        :param pulumi.Input[int] keylifekbs: Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
         :param pulumi.Input[int] keylifeseconds: Phase2 key life in time in seconds (120 - 172800).
         :param pulumi.Input[str] l2tp: Enable/disable L2TP over IPsec. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: IPsec tunnel name.
@@ -2157,7 +2157,7 @@ class Phase2interface(pulumi.CustomResource):
         :param pulumi.Input[str] ipv4_df: Enable/disable setting and resetting of IPv4 'Don't Fragment' bit. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] keepalive: Enable/disable keep alive. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] keylife_type: Keylife type. Valid values: `seconds`, `kbs`, `both`.
-        :param pulumi.Input[int] keylifekbs: Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+        :param pulumi.Input[int] keylifekbs: Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
         :param pulumi.Input[int] keylifeseconds: Phase2 key life in time in seconds (120 - 172800).
         :param pulumi.Input[str] l2tp: Enable/disable L2TP over IPsec. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: IPsec tunnel name.
@@ -2437,7 +2437,7 @@ class Phase2interface(pulumi.CustomResource):
     @pulumi.getter
     def keylifekbs(self) -> pulumi.Output[int]:
         """
-        Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+        Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
         """
         return pulumi.get(self, "keylifekbs")
 
@@ -2603,7 +2603,7 @@ class Phase2interface(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

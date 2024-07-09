@@ -33,13 +33,17 @@ import (
 type Explicit struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable to request client certificate. Valid values: `disable`, `enable`.
+	ClientCert pulumi.StringOutput `pulumi:"clientCert"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Action of an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
+	EmptyCertAction pulumi.StringOutput `pulumi:"emptyCertAction"`
 	// Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
 	FtpIncomingPort pulumi.StringOutput `pulumi:"ftpIncomingPort"`
 	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
 	FtpOverHttp pulumi.StringOutput `pulumi:"ftpOverHttp"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
 	HttpConnectionMode pulumi.StringOutput `pulumi:"httpConnectionMode"`
@@ -75,7 +79,7 @@ type Explicit struct {
 	PacFileUrl pulumi.StringOutput `pulumi:"pacFileUrl"`
 	// PAC policies. The structure of `pacPolicy` block is documented below.
 	PacPolicies ExplicitPacPolicyArrayOutput `pulumi:"pacPolicies"`
-	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
+	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4).
 	PrefDnsResult pulumi.StringOutput `pulumi:"prefDnsResult"`
 	// Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
 	Realm pulumi.StringOutput `pulumi:"realm"`
@@ -101,8 +105,10 @@ type Explicit struct {
 	TraceAuthNoRsp pulumi.StringOutput `pulumi:"traceAuthNoRsp"`
 	// Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
 	UnknownHttpVersion pulumi.StringOutput `pulumi:"unknownHttpVersion"`
+	// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
+	UserAgentDetect pulumi.StringOutput `pulumi:"userAgentDetect"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewExplicit registers a new resource with the given unique name, arguments, and options.
@@ -135,13 +141,17 @@ func GetExplicit(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Explicit resources.
 type explicitState struct {
+	// Enable/disable to request client certificate. Valid values: `disable`, `enable`.
+	ClientCert *string `pulumi:"clientCert"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Action of an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
+	EmptyCertAction *string `pulumi:"emptyCertAction"`
 	// Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
 	FtpIncomingPort *string `pulumi:"ftpIncomingPort"`
 	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
 	FtpOverHttp *string `pulumi:"ftpOverHttp"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
 	HttpConnectionMode *string `pulumi:"httpConnectionMode"`
@@ -177,7 +187,7 @@ type explicitState struct {
 	PacFileUrl *string `pulumi:"pacFileUrl"`
 	// PAC policies. The structure of `pacPolicy` block is documented below.
 	PacPolicies []ExplicitPacPolicy `pulumi:"pacPolicies"`
-	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
+	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4).
 	PrefDnsResult *string `pulumi:"prefDnsResult"`
 	// Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
 	Realm *string `pulumi:"realm"`
@@ -203,18 +213,24 @@ type explicitState struct {
 	TraceAuthNoRsp *string `pulumi:"traceAuthNoRsp"`
 	// Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
 	UnknownHttpVersion *string `pulumi:"unknownHttpVersion"`
+	// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
+	UserAgentDetect *string `pulumi:"userAgentDetect"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type ExplicitState struct {
+	// Enable/disable to request client certificate. Valid values: `disable`, `enable`.
+	ClientCert pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Action of an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
+	EmptyCertAction pulumi.StringPtrInput
 	// Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
 	FtpIncomingPort pulumi.StringPtrInput
 	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
 	FtpOverHttp pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
 	HttpConnectionMode pulumi.StringPtrInput
@@ -250,7 +266,7 @@ type ExplicitState struct {
 	PacFileUrl pulumi.StringPtrInput
 	// PAC policies. The structure of `pacPolicy` block is documented below.
 	PacPolicies ExplicitPacPolicyArrayInput
-	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
+	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4).
 	PrefDnsResult pulumi.StringPtrInput
 	// Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
 	Realm pulumi.StringPtrInput
@@ -276,6 +292,8 @@ type ExplicitState struct {
 	TraceAuthNoRsp pulumi.StringPtrInput
 	// Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
 	UnknownHttpVersion pulumi.StringPtrInput
+	// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
+	UserAgentDetect pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -285,13 +303,17 @@ func (ExplicitState) ElementType() reflect.Type {
 }
 
 type explicitArgs struct {
+	// Enable/disable to request client certificate. Valid values: `disable`, `enable`.
+	ClientCert *string `pulumi:"clientCert"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Action of an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
+	EmptyCertAction *string `pulumi:"emptyCertAction"`
 	// Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
 	FtpIncomingPort *string `pulumi:"ftpIncomingPort"`
 	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
 	FtpOverHttp *string `pulumi:"ftpOverHttp"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
 	HttpConnectionMode *string `pulumi:"httpConnectionMode"`
@@ -327,7 +349,7 @@ type explicitArgs struct {
 	PacFileUrl *string `pulumi:"pacFileUrl"`
 	// PAC policies. The structure of `pacPolicy` block is documented below.
 	PacPolicies []ExplicitPacPolicy `pulumi:"pacPolicies"`
-	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
+	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4).
 	PrefDnsResult *string `pulumi:"prefDnsResult"`
 	// Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
 	Realm *string `pulumi:"realm"`
@@ -353,19 +375,25 @@ type explicitArgs struct {
 	TraceAuthNoRsp *string `pulumi:"traceAuthNoRsp"`
 	// Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
 	UnknownHttpVersion *string `pulumi:"unknownHttpVersion"`
+	// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
+	UserAgentDetect *string `pulumi:"userAgentDetect"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a Explicit resource.
 type ExplicitArgs struct {
+	// Enable/disable to request client certificate. Valid values: `disable`, `enable`.
+	ClientCert pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Action of an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
+	EmptyCertAction pulumi.StringPtrInput
 	// Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
 	FtpIncomingPort pulumi.StringPtrInput
 	// Enable to proxy FTP-over-HTTP sessions sent from a web browser. Valid values: `enable`, `disable`.
 	FtpOverHttp pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// HTTP connection mode (default = static). Valid values: `static`, `multiplex`, `serverpool`.
 	HttpConnectionMode pulumi.StringPtrInput
@@ -401,7 +429,7 @@ type ExplicitArgs struct {
 	PacFileUrl pulumi.StringPtrInput
 	// PAC policies. The structure of `pacPolicy` block is documented below.
 	PacPolicies ExplicitPacPolicyArrayInput
-	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
+	// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4).
 	PrefDnsResult pulumi.StringPtrInput
 	// Authentication realm used to identify the explicit web proxy (maximum of 63 characters).
 	Realm pulumi.StringPtrInput
@@ -427,6 +455,8 @@ type ExplicitArgs struct {
 	TraceAuthNoRsp pulumi.StringPtrInput
 	// Either reject unknown HTTP traffic as malformed or handle unknown HTTP traffic as best as the proxy server can.
 	UnknownHttpVersion pulumi.StringPtrInput
+	// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
+	UserAgentDetect pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -518,9 +548,19 @@ func (o ExplicitOutput) ToExplicitOutputWithContext(ctx context.Context) Explici
 	return o
 }
 
+// Enable/disable to request client certificate. Valid values: `disable`, `enable`.
+func (o ExplicitOutput) ClientCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.ClientCert }).(pulumi.StringOutput)
+}
+
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 func (o ExplicitOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+// Action of an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
+func (o ExplicitOutput) EmptyCertAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.EmptyCertAction }).(pulumi.StringOutput)
 }
 
 // Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP).
@@ -533,7 +573,7 @@ func (o ExplicitOutput) FtpOverHttp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.FtpOverHttp }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ExplicitOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -623,7 +663,7 @@ func (o ExplicitOutput) PacPolicies() ExplicitPacPolicyArrayOutput {
 	return o.ApplyT(func(v *Explicit) ExplicitPacPolicyArrayOutput { return v.PacPolicies }).(ExplicitPacPolicyArrayOutput)
 }
 
-// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). Valid values: `ipv4`, `ipv6`.
+// Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4).
 func (o ExplicitOutput) PrefDnsResult() pulumi.StringOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.PrefDnsResult }).(pulumi.StringOutput)
 }
@@ -688,9 +728,14 @@ func (o ExplicitOutput) UnknownHttpVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.UnknownHttpVersion }).(pulumi.StringOutput)
 }
 
+// Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
+func (o ExplicitOutput) UserAgentDetect() pulumi.StringOutput {
+	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.UserAgentDetect }).(pulumi.StringOutput)
+}
+
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ExplicitOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Explicit) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ExplicitOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Explicit) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ExplicitArrayOutput struct{ *pulumi.OutputState }

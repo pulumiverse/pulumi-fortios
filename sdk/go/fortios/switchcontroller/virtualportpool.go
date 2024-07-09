@@ -64,7 +64,7 @@ type Virtualportpool struct {
 	// Virtual switch pool name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewVirtualportpool registers a new resource with the given unique name, arguments, and options.
@@ -235,8 +235,8 @@ func (o VirtualportpoolOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o VirtualportpoolOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Virtualportpool) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o VirtualportpoolOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Virtualportpool) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type VirtualportpoolArrayOutput struct{ *pulumi.OutputState }

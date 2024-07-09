@@ -91,7 +91,7 @@ type Fortiguard struct {
 
 	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
 	AntispamCache pulumi.StringOutput `pulumi:"antispamCache"`
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+	// Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
 	AntispamCacheMpercent pulumi.IntOutput `pulumi:"antispamCacheMpercent"`
 	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
 	AntispamCacheMpermille pulumi.IntOutput `pulumi:"antispamCacheMpermille"`
@@ -111,7 +111,7 @@ type Fortiguard struct {
 	AnycastSdnsServerPort pulumi.IntOutput `pulumi:"anycastSdnsServerPort"`
 	// Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `enable`, `disable`.
 	AutoFirmwareUpgrade pulumi.StringOutput `pulumi:"autoFirmwareUpgrade"`
-	// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+	// Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	AutoFirmwareUpgradeDay pulumi.StringOutput `pulumi:"autoFirmwareUpgradeDay"`
 	// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
 	AutoFirmwareUpgradeDelay pulumi.IntOutput `pulumi:"autoFirmwareUpgradeDelay"`
@@ -202,7 +202,7 @@ type Fortiguard struct {
 	// FortiGuard Service virtual domain name.
 	Vdom pulumi.StringOutput `pulumi:"vdom"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Expiration date of the FortiGuard video filter contract.
 	VideofilterExpiration pulumi.IntOutput `pulumi:"videofilterExpiration"`
 	// Interval of time between license checks for the FortiGuard video filter contract.
@@ -217,7 +217,7 @@ type Fortiguard struct {
 	WebfilterForceOff pulumi.StringOutput `pulumi:"webfilterForceOff"`
 	// Interval of time between license checks for the FortiGuard web filter contract.
 	WebfilterLicense pulumi.IntOutput `pulumi:"webfilterLicense"`
-	// Web filter query time out (1 - 30 sec, default = 7).
+	// Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
 	WebfilterTimeout pulumi.IntOutput `pulumi:"webfilterTimeout"`
 }
 
@@ -269,7 +269,7 @@ func GetFortiguard(ctx *pulumi.Context,
 type fortiguardState struct {
 	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
 	AntispamCache *string `pulumi:"antispamCache"`
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+	// Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
 	AntispamCacheMpercent *int `pulumi:"antispamCacheMpercent"`
 	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
 	AntispamCacheMpermille *int `pulumi:"antispamCacheMpermille"`
@@ -289,7 +289,7 @@ type fortiguardState struct {
 	AnycastSdnsServerPort *int `pulumi:"anycastSdnsServerPort"`
 	// Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `enable`, `disable`.
 	AutoFirmwareUpgrade *string `pulumi:"autoFirmwareUpgrade"`
-	// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+	// Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	AutoFirmwareUpgradeDay *string `pulumi:"autoFirmwareUpgradeDay"`
 	// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
 	AutoFirmwareUpgradeDelay *int `pulumi:"autoFirmwareUpgradeDelay"`
@@ -395,14 +395,14 @@ type fortiguardState struct {
 	WebfilterForceOff *string `pulumi:"webfilterForceOff"`
 	// Interval of time between license checks for the FortiGuard web filter contract.
 	WebfilterLicense *int `pulumi:"webfilterLicense"`
-	// Web filter query time out (1 - 30 sec, default = 7).
+	// Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
 	WebfilterTimeout *int `pulumi:"webfilterTimeout"`
 }
 
 type FortiguardState struct {
 	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
 	AntispamCache pulumi.StringPtrInput
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+	// Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
 	AntispamCacheMpercent pulumi.IntPtrInput
 	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
 	AntispamCacheMpermille pulumi.IntPtrInput
@@ -422,7 +422,7 @@ type FortiguardState struct {
 	AnycastSdnsServerPort pulumi.IntPtrInput
 	// Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `enable`, `disable`.
 	AutoFirmwareUpgrade pulumi.StringPtrInput
-	// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+	// Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	AutoFirmwareUpgradeDay pulumi.StringPtrInput
 	// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
 	AutoFirmwareUpgradeDelay pulumi.IntPtrInput
@@ -528,7 +528,7 @@ type FortiguardState struct {
 	WebfilterForceOff pulumi.StringPtrInput
 	// Interval of time between license checks for the FortiGuard web filter contract.
 	WebfilterLicense pulumi.IntPtrInput
-	// Web filter query time out (1 - 30 sec, default = 7).
+	// Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
 	WebfilterTimeout pulumi.IntPtrInput
 }
 
@@ -539,7 +539,7 @@ func (FortiguardState) ElementType() reflect.Type {
 type fortiguardArgs struct {
 	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
 	AntispamCache *string `pulumi:"antispamCache"`
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+	// Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
 	AntispamCacheMpercent *int `pulumi:"antispamCacheMpercent"`
 	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
 	AntispamCacheMpermille *int `pulumi:"antispamCacheMpermille"`
@@ -559,7 +559,7 @@ type fortiguardArgs struct {
 	AnycastSdnsServerPort *int `pulumi:"anycastSdnsServerPort"`
 	// Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `enable`, `disable`.
 	AutoFirmwareUpgrade *string `pulumi:"autoFirmwareUpgrade"`
-	// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+	// Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	AutoFirmwareUpgradeDay *string `pulumi:"autoFirmwareUpgradeDay"`
 	// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
 	AutoFirmwareUpgradeDelay *int `pulumi:"autoFirmwareUpgradeDelay"`
@@ -665,7 +665,7 @@ type fortiguardArgs struct {
 	WebfilterForceOff *string `pulumi:"webfilterForceOff"`
 	// Interval of time between license checks for the FortiGuard web filter contract.
 	WebfilterLicense *int `pulumi:"webfilterLicense"`
-	// Web filter query time out (1 - 30 sec, default = 7).
+	// Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
 	WebfilterTimeout int `pulumi:"webfilterTimeout"`
 }
 
@@ -673,7 +673,7 @@ type fortiguardArgs struct {
 type FortiguardArgs struct {
 	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
 	AntispamCache pulumi.StringPtrInput
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+	// Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
 	AntispamCacheMpercent pulumi.IntPtrInput
 	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
 	AntispamCacheMpermille pulumi.IntPtrInput
@@ -693,7 +693,7 @@ type FortiguardArgs struct {
 	AnycastSdnsServerPort pulumi.IntPtrInput
 	// Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `enable`, `disable`.
 	AutoFirmwareUpgrade pulumi.StringPtrInput
-	// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+	// Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	AutoFirmwareUpgradeDay pulumi.StringPtrInput
 	// Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
 	AutoFirmwareUpgradeDelay pulumi.IntPtrInput
@@ -799,7 +799,7 @@ type FortiguardArgs struct {
 	WebfilterForceOff pulumi.StringPtrInput
 	// Interval of time between license checks for the FortiGuard web filter contract.
 	WebfilterLicense pulumi.IntPtrInput
-	// Web filter query time out (1 - 30 sec, default = 7).
+	// Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
 	WebfilterTimeout pulumi.IntInput
 }
 
@@ -895,7 +895,7 @@ func (o FortiguardOutput) AntispamCache() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.AntispamCache }).(pulumi.StringOutput)
 }
 
-// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+// Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
 func (o FortiguardOutput) AntispamCacheMpercent() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.AntispamCacheMpercent }).(pulumi.IntOutput)
 }
@@ -945,7 +945,7 @@ func (o FortiguardOutput) AutoFirmwareUpgrade() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.AutoFirmwareUpgrade }).(pulumi.StringOutput)
 }
 
-// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+// Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 func (o FortiguardOutput) AutoFirmwareUpgradeDay() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.AutoFirmwareUpgradeDay }).(pulumi.StringOutput)
 }
@@ -1171,8 +1171,8 @@ func (o FortiguardOutput) Vdom() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o FortiguardOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Fortiguard) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o FortiguardOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Expiration date of the FortiGuard video filter contract.
@@ -1210,7 +1210,7 @@ func (o FortiguardOutput) WebfilterLicense() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.WebfilterLicense }).(pulumi.IntOutput)
 }
 
-// Web filter query time out (1 - 30 sec, default = 7).
+// Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions >= 7.4.1: default = 15.
 func (o FortiguardOutput) WebfilterTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.WebfilterTimeout }).(pulumi.IntOutput)
 }

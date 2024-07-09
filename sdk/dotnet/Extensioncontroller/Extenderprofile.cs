@@ -71,7 +71,7 @@ namespace Pulumiverse.Fortios.Extensioncontroller
         public Output<int> Fosid { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -95,7 +95,7 @@ namespace Pulumiverse.Fortios.Extensioncontroller
         public Output<string> LoginPasswordChange { get; private set; } = null!;
 
         /// <summary>
-        /// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+        /// Model.
         /// </summary>
         [Output("model")]
         public Output<string> Model { get; private set; } = null!;
@@ -110,7 +110,13 @@ namespace Pulumiverse.Fortios.Extensioncontroller
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
+
+        /// <summary>
+        /// FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+        /// </summary>
+        [Output("wifi")]
+        public Output<Outputs.ExtenderprofileWifi> Wifi { get; private set; } = null!;
 
 
         /// <summary>
@@ -196,7 +202,7 @@ namespace Pulumiverse.Fortios.Extensioncontroller
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -220,7 +226,7 @@ namespace Pulumiverse.Fortios.Extensioncontroller
         public Input<string>? LoginPasswordChange { get; set; }
 
         /// <summary>
-        /// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+        /// Model.
         /// </summary>
         [Input("model")]
         public Input<string>? Model { get; set; }
@@ -236,6 +242,12 @@ namespace Pulumiverse.Fortios.Extensioncontroller
         /// </summary>
         [Input("vdomparam")]
         public Input<string>? Vdomparam { get; set; }
+
+        /// <summary>
+        /// FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+        /// </summary>
+        [Input("wifi")]
+        public Input<Inputs.ExtenderprofileWifiArgs>? Wifi { get; set; }
 
         public ExtenderprofileArgs()
         {
@@ -282,7 +294,7 @@ namespace Pulumiverse.Fortios.Extensioncontroller
         public Input<int>? Fosid { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -306,7 +318,7 @@ namespace Pulumiverse.Fortios.Extensioncontroller
         public Input<string>? LoginPasswordChange { get; set; }
 
         /// <summary>
-        /// Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+        /// Model.
         /// </summary>
         [Input("model")]
         public Input<string>? Model { get; set; }
@@ -322,6 +334,12 @@ namespace Pulumiverse.Fortios.Extensioncontroller
         /// </summary>
         [Input("vdomparam")]
         public Input<string>? Vdomparam { get; set; }
+
+        /// <summary>
+        /// FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+        /// </summary>
+        [Input("wifi")]
+        public Input<Inputs.ExtenderprofileWifiGetArgs>? Wifi { get; set; }
 
         public ExtenderprofileState()
         {

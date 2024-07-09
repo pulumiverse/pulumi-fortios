@@ -40,7 +40,7 @@ type LookupNtpResult struct {
 	Key string `pulumi:"key"`
 	// Key ID for authentication.
 	KeyId int `pulumi:"keyId"`
-	// Key type for authentication (MD5, SHA1).
+	// Select NTP authentication type.
 	KeyType string `pulumi:"keyType"`
 	// Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
 	Ntpservers []GetNtpNtpserver `pulumi:"ntpservers"`
@@ -122,7 +122,7 @@ func (o LookupNtpResultOutput) KeyId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNtpResult) int { return v.KeyId }).(pulumi.IntOutput)
 }
 
-// Key type for authentication (MD5, SHA1).
+// Select NTP authentication type.
 func (o LookupNtpResultOutput) KeyType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNtpResult) string { return v.KeyType }).(pulumi.StringOutput)
 }

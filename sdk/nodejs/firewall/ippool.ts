@@ -118,6 +118,10 @@ export class Ippool extends pulumi.CustomResource {
      */
     public readonly numBlocksPerUser!: pulumi.Output<number>;
     /**
+     * Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+     */
+    public readonly pbaInterimLog!: pulumi.Output<number>;
+    /**
      * Port block allocation timeout (seconds).
      */
     public readonly pbaTimeout!: pulumi.Output<number>;
@@ -156,7 +160,7 @@ export class Ippool extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Ippool resource with the given unique name, arguments, and options.
@@ -182,6 +186,7 @@ export class Ippool extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nat64"] = state ? state.nat64 : undefined;
             resourceInputs["numBlocksPerUser"] = state ? state.numBlocksPerUser : undefined;
+            resourceInputs["pbaInterimLog"] = state ? state.pbaInterimLog : undefined;
             resourceInputs["pbaTimeout"] = state ? state.pbaTimeout : undefined;
             resourceInputs["permitAnyHost"] = state ? state.permitAnyHost : undefined;
             resourceInputs["portPerUser"] = state ? state.portPerUser : undefined;
@@ -211,6 +216,7 @@ export class Ippool extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nat64"] = args ? args.nat64 : undefined;
             resourceInputs["numBlocksPerUser"] = args ? args.numBlocksPerUser : undefined;
+            resourceInputs["pbaInterimLog"] = args ? args.pbaInterimLog : undefined;
             resourceInputs["pbaTimeout"] = args ? args.pbaTimeout : undefined;
             resourceInputs["permitAnyHost"] = args ? args.permitAnyHost : undefined;
             resourceInputs["portPerUser"] = args ? args.portPerUser : undefined;
@@ -275,6 +281,10 @@ export interface IppoolState {
      * Number of addresses blocks that can be used by a user (1 to 128, default = 8).
      */
     numBlocksPerUser?: pulumi.Input<number>;
+    /**
+     * Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+     */
+    pbaInterimLog?: pulumi.Input<number>;
     /**
      * Port block allocation timeout (seconds).
      */
@@ -365,6 +375,10 @@ export interface IppoolArgs {
      * Number of addresses blocks that can be used by a user (1 to 128, default = 8).
      */
     numBlocksPerUser?: pulumi.Input<number>;
+    /**
+     * Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+     */
+    pbaInterimLog?: pulumi.Input<number>;
     /**
      * Port block allocation timeout (seconds).
      */

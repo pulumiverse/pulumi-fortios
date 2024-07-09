@@ -74,7 +74,7 @@ type Multicastaddress struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Final IPv4 address (inclusive) in the range for the address.
 	EndIp pulumi.StringOutput `pulumi:"endIp"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Multicast address name.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -87,7 +87,7 @@ type Multicastaddress struct {
 	// Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address. Valid values: `multicastrange`, `broadcastmask`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable visibility of the multicast address on the GUI. Valid values: `enable`, `disable`.
 	Visibility pulumi.StringOutput `pulumi:"visibility"`
 }
@@ -132,7 +132,7 @@ type multicastaddressState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Final IPv4 address (inclusive) in the range for the address.
 	EndIp *string `pulumi:"endIp"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Multicast address name.
 	Name *string `pulumi:"name"`
@@ -161,7 +161,7 @@ type MulticastaddressState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Final IPv4 address (inclusive) in the range for the address.
 	EndIp pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Multicast address name.
 	Name pulumi.StringPtrInput
@@ -194,7 +194,7 @@ type multicastaddressArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Final IPv4 address (inclusive) in the range for the address.
 	EndIp *string `pulumi:"endIp"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Multicast address name.
 	Name *string `pulumi:"name"`
@@ -224,7 +224,7 @@ type MulticastaddressArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Final IPv4 address (inclusive) in the range for the address.
 	EndIp pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Multicast address name.
 	Name pulumi.StringPtrInput
@@ -354,7 +354,7 @@ func (o MulticastaddressOutput) EndIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Multicastaddress) pulumi.StringOutput { return v.EndIp }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o MulticastaddressOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Multicastaddress) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -385,8 +385,8 @@ func (o MulticastaddressOutput) Type() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o MulticastaddressOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Multicastaddress) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o MulticastaddressOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Multicastaddress) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable visibility of the multicast address on the GUI. Valid values: `enable`, `disable`.

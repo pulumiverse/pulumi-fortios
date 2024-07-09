@@ -124,7 +124,7 @@ type Modem struct {
 	// User name to access the specified dialup account.
 	Username3 pulumi.StringOutput `pulumi:"username3"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enter wireless port number, 0 for default, 1 for first port, ... (0 - 4294967295, default = 0)
 	WirelessPort pulumi.IntOutput `pulumi:"wirelessPort"`
 }
@@ -864,8 +864,8 @@ func (o ModemOutput) Username3() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ModemOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Modem) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ModemOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Modem) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enter wireless port number, 0 for default, 1 for first port, ... (0 - 4294967295, default = 0)

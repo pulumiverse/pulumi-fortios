@@ -63,7 +63,7 @@ class SettingArgs:
         :param pulumi.Input[int] email_interval: Interval between sending alert emails (1 - 99999 min, default = 5).
         :param pulumi.Input[int] emergency_interval: Emergency alert interval in minutes.
         :param pulumi.Input[int] error_interval: Error alert interval in minutes.
-        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
         :param pulumi.Input[str] fds_license_expiring_warning: Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fds_update_logs: Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter_mode: How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
@@ -290,7 +290,7 @@ class SettingArgs:
     @pulumi.getter(name="fdsLicenseExpiringDays")
     def fds_license_expiring_days(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
         """
         return pulumi.get(self, "fds_license_expiring_days")
 
@@ -663,7 +663,7 @@ class _SettingState:
         :param pulumi.Input[int] email_interval: Interval between sending alert emails (1 - 99999 min, default = 5).
         :param pulumi.Input[int] emergency_interval: Emergency alert interval in minutes.
         :param pulumi.Input[int] error_interval: Error alert interval in minutes.
-        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
         :param pulumi.Input[str] fds_license_expiring_warning: Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fds_update_logs: Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter_mode: How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
@@ -890,7 +890,7 @@ class _SettingState:
     @pulumi.getter(name="fdsLicenseExpiringDays")
     def fds_license_expiring_days(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
         """
         return pulumi.get(self, "fds_license_expiring_days")
 
@@ -1308,7 +1308,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[int] email_interval: Interval between sending alert emails (1 - 99999 min, default = 5).
         :param pulumi.Input[int] emergency_interval: Emergency alert interval in minutes.
         :param pulumi.Input[int] error_interval: Error alert interval in minutes.
-        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
         :param pulumi.Input[str] fds_license_expiring_warning: Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fds_update_logs: Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter_mode: How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
@@ -1546,7 +1546,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[int] email_interval: Interval between sending alert emails (1 - 99999 min, default = 5).
         :param pulumi.Input[int] emergency_interval: Emergency alert interval in minutes.
         :param pulumi.Input[int] error_interval: Error alert interval in minutes.
-        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+        :param pulumi.Input[int] fds_license_expiring_days: Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
         :param pulumi.Input[str] fds_license_expiring_warning: Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fds_update_logs: Enable/disable FortiGuard update logs in alert email. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter_mode: How to filter log messages that are sent to alert emails. Valid values: `category`, `threshold`.
@@ -1701,7 +1701,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="fdsLicenseExpiringDays")
     def fds_license_expiring_days(self) -> pulumi.Output[int]:
         """
-        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+        Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
         """
         return pulumi.get(self, "fds_license_expiring_days")
 
@@ -1883,7 +1883,7 @@ class Setting(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -67,7 +67,7 @@ type Replacemsgimage struct {
 	// Image name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewReplacemsgimage registers a new resource with the given unique name, arguments, and options.
@@ -251,8 +251,8 @@ func (o ReplacemsgimageOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ReplacemsgimageOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Replacemsgimage) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ReplacemsgimageOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Replacemsgimage) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ReplacemsgimageArrayOutput struct{ *pulumi.OutputState }

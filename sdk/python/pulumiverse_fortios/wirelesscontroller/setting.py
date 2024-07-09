@@ -38,7 +38,7 @@ class SettingArgs:
         The set of arguments for constructing a Setting resource.
         :param pulumi.Input[str] account_id: FortiCloud customer account ID.
         :param pulumi.Input[str] country: Country or region in which the FortiGate is located. The country determines the 802.11 bands and channels that are available.
-        :param pulumi.Input[int] darrp_optimize: Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        :param pulumi.Input[int] darrp_optimize: Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
         :param pulumi.Input[Sequence[pulumi.Input['SettingDarrpOptimizeScheduleArgs']]] darrp_optimize_schedules: Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrp_optimize_schedules` block is documented below.
         :param pulumi.Input[int] device_holdoff: Lower limit of creation time of device for identification in minutes (0 - 60, default = 5).
         :param pulumi.Input[int] device_idle: Upper limit of idle time of device for identification in minutes (0 - 14400, default = 1440).
@@ -48,7 +48,7 @@ class SettingArgs:
         :param pulumi.Input[str] fake_ssid_action: Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
         :param pulumi.Input[str] fapc_compatibility: Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['SettingOffendingSsidArgs']]] offending_ssids: Configure offending SSID. The structure of `offending_ssid` block is documented below.
         :param pulumi.Input[str] phishing_ssid_detect: Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
@@ -120,7 +120,7 @@ class SettingArgs:
     @pulumi.getter(name="darrpOptimize")
     def darrp_optimize(self) -> Optional[pulumi.Input[int]]:
         """
-        Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
         """
         return pulumi.get(self, "darrp_optimize")
 
@@ -240,7 +240,7 @@ class SettingArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -334,7 +334,7 @@ class _SettingState:
         Input properties used for looking up and filtering Setting resources.
         :param pulumi.Input[str] account_id: FortiCloud customer account ID.
         :param pulumi.Input[str] country: Country or region in which the FortiGate is located. The country determines the 802.11 bands and channels that are available.
-        :param pulumi.Input[int] darrp_optimize: Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        :param pulumi.Input[int] darrp_optimize: Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
         :param pulumi.Input[Sequence[pulumi.Input['SettingDarrpOptimizeScheduleArgs']]] darrp_optimize_schedules: Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrp_optimize_schedules` block is documented below.
         :param pulumi.Input[int] device_holdoff: Lower limit of creation time of device for identification in minutes (0 - 60, default = 5).
         :param pulumi.Input[int] device_idle: Upper limit of idle time of device for identification in minutes (0 - 14400, default = 1440).
@@ -344,7 +344,7 @@ class _SettingState:
         :param pulumi.Input[str] fake_ssid_action: Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
         :param pulumi.Input[str] fapc_compatibility: Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['SettingOffendingSsidArgs']]] offending_ssids: Configure offending SSID. The structure of `offending_ssid` block is documented below.
         :param pulumi.Input[str] phishing_ssid_detect: Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
@@ -416,7 +416,7 @@ class _SettingState:
     @pulumi.getter(name="darrpOptimize")
     def darrp_optimize(self) -> Optional[pulumi.Input[int]]:
         """
-        Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
         """
         return pulumi.get(self, "darrp_optimize")
 
@@ -536,7 +536,7 @@ class _SettingState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -654,7 +654,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_id: FortiCloud customer account ID.
         :param pulumi.Input[str] country: Country or region in which the FortiGate is located. The country determines the 802.11 bands and channels that are available.
-        :param pulumi.Input[int] darrp_optimize: Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        :param pulumi.Input[int] darrp_optimize: Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingDarrpOptimizeScheduleArgs']]]] darrp_optimize_schedules: Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrp_optimize_schedules` block is documented below.
         :param pulumi.Input[int] device_holdoff: Lower limit of creation time of device for identification in minutes (0 - 60, default = 5).
         :param pulumi.Input[int] device_idle: Upper limit of idle time of device for identification in minutes (0 - 14400, default = 1440).
@@ -664,7 +664,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] fake_ssid_action: Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
         :param pulumi.Input[str] fapc_compatibility: Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingOffendingSsidArgs']]]] offending_ssids: Configure offending SSID. The structure of `offending_ssid` block is documented below.
         :param pulumi.Input[str] phishing_ssid_detect: Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
@@ -795,7 +795,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_id: FortiCloud customer account ID.
         :param pulumi.Input[str] country: Country or region in which the FortiGate is located. The country determines the 802.11 bands and channels that are available.
-        :param pulumi.Input[int] darrp_optimize: Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        :param pulumi.Input[int] darrp_optimize: Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingDarrpOptimizeScheduleArgs']]]] darrp_optimize_schedules: Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrp_optimize_schedules` block is documented below.
         :param pulumi.Input[int] device_holdoff: Lower limit of creation time of device for identification in minutes (0 - 60, default = 5).
         :param pulumi.Input[int] device_idle: Upper limit of idle time of device for identification in minutes (0 - 14400, default = 1440).
@@ -805,7 +805,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] fake_ssid_action: Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
         :param pulumi.Input[str] fapc_compatibility: Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingOffendingSsidArgs']]]] offending_ssids: Configure offending SSID. The structure of `offending_ssid` block is documented below.
         :param pulumi.Input[str] phishing_ssid_detect: Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
@@ -856,7 +856,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="darrpOptimize")
     def darrp_optimize(self) -> pulumi.Output[int]:
         """
-        Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
         """
         return pulumi.get(self, "darrp_optimize")
 
@@ -936,7 +936,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -966,7 +966,7 @@ class Setting(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

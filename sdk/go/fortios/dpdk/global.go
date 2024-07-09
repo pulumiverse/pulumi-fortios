@@ -37,7 +37,7 @@ type Global struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
 	Elasticbuffer pulumi.StringOutput `pulumi:"elasticbuffer"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
 	HugepagePercentage pulumi.IntOutput `pulumi:"hugepagePercentage"`
@@ -58,7 +58,7 @@ type Global struct {
 	// Enable/disable DPDK operation for the entire system. Valid values: `disable`, `enable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewGlobal registers a new resource with the given unique name, arguments, and options.
@@ -95,7 +95,7 @@ type globalState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
 	Elasticbuffer *string `pulumi:"elasticbuffer"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
 	HugepagePercentage *int `pulumi:"hugepagePercentage"`
@@ -124,7 +124,7 @@ type GlobalState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
 	Elasticbuffer pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
 	HugepagePercentage pulumi.IntPtrInput
@@ -157,7 +157,7 @@ type globalArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
 	Elasticbuffer *string `pulumi:"elasticbuffer"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
 	HugepagePercentage *int `pulumi:"hugepagePercentage"`
@@ -187,7 +187,7 @@ type GlobalArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable elasticbuffer support for all DPDK ports. Valid values: `disable`, `enable`.
 	Elasticbuffer pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Percentage of main memory allocated to hugepages, which are available for DPDK operation.
 	HugepagePercentage pulumi.IntPtrInput
@@ -308,7 +308,7 @@ func (o GlobalOutput) Elasticbuffer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Elasticbuffer }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o GlobalOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -359,8 +359,8 @@ func (o GlobalOutput) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o GlobalOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o GlobalOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type GlobalArrayOutput struct{ *pulumi.OutputState }

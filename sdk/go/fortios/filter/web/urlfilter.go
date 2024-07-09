@@ -70,7 +70,7 @@ type Urlfilter struct {
 	Entries UrlfilterEntryArrayOutput `pulumi:"entries"`
 	// ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
 	Ip4MappedIp6 pulumi.StringOutput `pulumi:"ip4MappedIp6"`
@@ -81,7 +81,7 @@ type Urlfilter struct {
 	// Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `enable`, `disable`.
 	OneArmIpsUrlfilter pulumi.StringOutput `pulumi:"oneArmIpsUrlfilter"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewUrlfilter registers a new resource with the given unique name, arguments, and options.
@@ -125,7 +125,7 @@ type urlfilterState struct {
 	Entries []UrlfilterEntry `pulumi:"entries"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
 	Ip4MappedIp6 *string `pulumi:"ip4MappedIp6"`
@@ -148,7 +148,7 @@ type UrlfilterState struct {
 	Entries UrlfilterEntryArrayInput
 	// ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
 	Ip4MappedIp6 pulumi.StringPtrInput
@@ -175,7 +175,7 @@ type urlfilterArgs struct {
 	Entries []UrlfilterEntry `pulumi:"entries"`
 	// ID.
 	Fosid int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
 	Ip4MappedIp6 *string `pulumi:"ip4MappedIp6"`
@@ -199,7 +199,7 @@ type UrlfilterArgs struct {
 	Entries UrlfilterEntryArrayInput
 	// ID.
 	Fosid pulumi.IntInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `enable`, `disable`.
 	Ip4MappedIp6 pulumi.StringPtrInput
@@ -320,7 +320,7 @@ func (o UrlfilterOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Urlfilter) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o UrlfilterOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Urlfilter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -346,8 +346,8 @@ func (o UrlfilterOutput) OneArmIpsUrlfilter() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o UrlfilterOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Urlfilter) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o UrlfilterOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Urlfilter) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type UrlfilterArrayOutput struct{ *pulumi.OutputState }

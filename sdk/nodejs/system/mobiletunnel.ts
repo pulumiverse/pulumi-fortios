@@ -83,7 +83,7 @@ export class Mobiletunnel extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -131,7 +131,7 @@ export class Mobiletunnel extends pulumi.CustomResource {
      */
     public readonly regRetry!: pulumi.Output<number>;
     /**
-     * Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+     * Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
      */
     public readonly renewInterval!: pulumi.Output<number>;
     /**
@@ -143,13 +143,13 @@ export class Mobiletunnel extends pulumi.CustomResource {
      */
     public readonly status!: pulumi.Output<string>;
     /**
-     * NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+     * NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
      */
     public readonly tunnelMode!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Mobiletunnel resource with the given unique name, arguments, and options.
@@ -249,7 +249,7 @@ export interface MobiletunnelState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -297,7 +297,7 @@ export interface MobiletunnelState {
      */
     regRetry?: pulumi.Input<number>;
     /**
-     * Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+     * Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
      */
     renewInterval?: pulumi.Input<number>;
     /**
@@ -309,7 +309,7 @@ export interface MobiletunnelState {
      */
     status?: pulumi.Input<string>;
     /**
-     * NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+     * NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
      */
     tunnelMode?: pulumi.Input<string>;
     /**
@@ -327,7 +327,7 @@ export interface MobiletunnelArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -375,7 +375,7 @@ export interface MobiletunnelArgs {
      */
     regRetry: pulumi.Input<number>;
     /**
-     * Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+     * Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
      */
     renewInterval: pulumi.Input<number>;
     /**
@@ -387,7 +387,7 @@ export interface MobiletunnelArgs {
      */
     status?: pulumi.Input<string>;
     /**
-     * NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+     * NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
      */
     tunnelMode: pulumi.Input<string>;
     /**

@@ -81,13 +81,13 @@ type Settings struct {
 	AuxiliarySession pulumi.StringOutput `pulumi:"auxiliarySession"`
 	// Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
 	Bfd pulumi.StringOutput `pulumi:"bfd"`
-	// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+	// BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
 	BfdDesiredMinTx pulumi.IntOutput `pulumi:"bfdDesiredMinTx"`
 	// BFD detection multiplier (1 - 50, default = 3).
 	BfdDetectMult pulumi.IntOutput `pulumi:"bfdDetectMult"`
 	// Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
 	BfdDontEnforceSrcPort pulumi.StringOutput `pulumi:"bfdDontEnforceSrcPort"`
-	// BFD required minimal receive interval (1 - 100000 ms, default = 50).
+	// BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
 	BfdRequiredMinRx pulumi.IntOutput `pulumi:"bfdRequiredMinRx"`
 	// Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
 	BlockLandAttack pulumi.StringOutput `pulumi:"blockLandAttack"`
@@ -127,7 +127,7 @@ type Settings struct {
 	DynAddrSessionCheck pulumi.StringOutput `pulumi:"dynAddrSessionCheck"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
 	EcmpMaxPaths pulumi.IntOutput `pulumi:"ecmpMaxPaths"`
 	// Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
 	EmailPortalCheckDns pulumi.StringOutput `pulumi:"emailPortalCheckDns"`
@@ -143,7 +143,7 @@ type Settings struct {
 	Gateway pulumi.StringOutput `pulumi:"gateway"`
 	// Transparent mode IPv4 default gateway IP address.
 	Gateway6 pulumi.StringOutput `pulumi:"gateway6"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
 	GuiAdvancedPolicy pulumi.StringOutput `pulumi:"guiAdvancedPolicy"`
@@ -295,6 +295,8 @@ type Settings struct {
 	ImplicitAllowDns pulumi.StringOutput `pulumi:"implicitAllowDns"`
 	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
 	InspectionMode pulumi.StringOutput `pulumi:"inspectionMode"`
+	// Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+	InternetServiceAppCtrlSize pulumi.IntOutput `pulumi:"internetServiceAppCtrlSize"`
 	// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
 	InternetServiceDatabaseCache pulumi.StringOutput `pulumi:"internetServiceDatabaseCache"`
 	// IP address and netmask.
@@ -367,10 +369,10 @@ type Settings struct {
 	Utf8SpamTagging pulumi.StringOutput `pulumi:"utf8SpamTagging"`
 	// IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
 	V4EcmpMode pulumi.StringOutput `pulumi:"v4EcmpMode"`
-	// VDOM type (traffic or admin).
+	// VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
 	VdomType pulumi.StringOutput `pulumi:"vdomType"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. Valid values: `ipsec`, `pptp`, `l2tp`, `ssl`.
 	VpnStatsLog pulumi.StringOutput `pulumi:"vpnStatsLog"`
 	// Period to send VPN log statistics (0 or 60 - 86400 sec).
@@ -427,13 +429,13 @@ type settingsState struct {
 	AuxiliarySession *string `pulumi:"auxiliarySession"`
 	// Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
 	Bfd *string `pulumi:"bfd"`
-	// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+	// BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
 	BfdDesiredMinTx *int `pulumi:"bfdDesiredMinTx"`
 	// BFD detection multiplier (1 - 50, default = 3).
 	BfdDetectMult *int `pulumi:"bfdDetectMult"`
 	// Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
 	BfdDontEnforceSrcPort *string `pulumi:"bfdDontEnforceSrcPort"`
-	// BFD required minimal receive interval (1 - 100000 ms, default = 50).
+	// BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
 	BfdRequiredMinRx *int `pulumi:"bfdRequiredMinRx"`
 	// Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
 	BlockLandAttack *string `pulumi:"blockLandAttack"`
@@ -473,7 +475,7 @@ type settingsState struct {
 	DynAddrSessionCheck *string `pulumi:"dynAddrSessionCheck"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
 	EcmpMaxPaths *int `pulumi:"ecmpMaxPaths"`
 	// Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
 	EmailPortalCheckDns *string `pulumi:"emailPortalCheckDns"`
@@ -489,7 +491,7 @@ type settingsState struct {
 	Gateway *string `pulumi:"gateway"`
 	// Transparent mode IPv4 default gateway IP address.
 	Gateway6 *string `pulumi:"gateway6"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
 	GuiAdvancedPolicy *string `pulumi:"guiAdvancedPolicy"`
@@ -641,6 +643,8 @@ type settingsState struct {
 	ImplicitAllowDns *string `pulumi:"implicitAllowDns"`
 	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
 	InspectionMode *string `pulumi:"inspectionMode"`
+	// Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+	InternetServiceAppCtrlSize *int `pulumi:"internetServiceAppCtrlSize"`
 	// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
 	InternetServiceDatabaseCache *string `pulumi:"internetServiceDatabaseCache"`
 	// IP address and netmask.
@@ -713,7 +717,7 @@ type settingsState struct {
 	Utf8SpamTagging *string `pulumi:"utf8SpamTagging"`
 	// IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
 	V4EcmpMode *string `pulumi:"v4EcmpMode"`
-	// VDOM type (traffic or admin).
+	// VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
 	VdomType *string `pulumi:"vdomType"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -744,13 +748,13 @@ type SettingsState struct {
 	AuxiliarySession pulumi.StringPtrInput
 	// Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
 	Bfd pulumi.StringPtrInput
-	// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+	// BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
 	BfdDesiredMinTx pulumi.IntPtrInput
 	// BFD detection multiplier (1 - 50, default = 3).
 	BfdDetectMult pulumi.IntPtrInput
 	// Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
 	BfdDontEnforceSrcPort pulumi.StringPtrInput
-	// BFD required minimal receive interval (1 - 100000 ms, default = 50).
+	// BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
 	BfdRequiredMinRx pulumi.IntPtrInput
 	// Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
 	BlockLandAttack pulumi.StringPtrInput
@@ -790,7 +794,7 @@ type SettingsState struct {
 	DynAddrSessionCheck pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
 	EcmpMaxPaths pulumi.IntPtrInput
 	// Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
 	EmailPortalCheckDns pulumi.StringPtrInput
@@ -806,7 +810,7 @@ type SettingsState struct {
 	Gateway pulumi.StringPtrInput
 	// Transparent mode IPv4 default gateway IP address.
 	Gateway6 pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
 	GuiAdvancedPolicy pulumi.StringPtrInput
@@ -958,6 +962,8 @@ type SettingsState struct {
 	ImplicitAllowDns pulumi.StringPtrInput
 	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
 	InspectionMode pulumi.StringPtrInput
+	// Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+	InternetServiceAppCtrlSize pulumi.IntPtrInput
 	// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
 	InternetServiceDatabaseCache pulumi.StringPtrInput
 	// IP address and netmask.
@@ -1030,7 +1036,7 @@ type SettingsState struct {
 	Utf8SpamTagging pulumi.StringPtrInput
 	// IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
 	V4EcmpMode pulumi.StringPtrInput
-	// VDOM type (traffic or admin).
+	// VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
 	VdomType pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -1065,13 +1071,13 @@ type settingsArgs struct {
 	AuxiliarySession *string `pulumi:"auxiliarySession"`
 	// Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
 	Bfd *string `pulumi:"bfd"`
-	// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+	// BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
 	BfdDesiredMinTx *int `pulumi:"bfdDesiredMinTx"`
 	// BFD detection multiplier (1 - 50, default = 3).
 	BfdDetectMult *int `pulumi:"bfdDetectMult"`
 	// Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
 	BfdDontEnforceSrcPort *string `pulumi:"bfdDontEnforceSrcPort"`
-	// BFD required minimal receive interval (1 - 100000 ms, default = 50).
+	// BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
 	BfdRequiredMinRx *int `pulumi:"bfdRequiredMinRx"`
 	// Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
 	BlockLandAttack *string `pulumi:"blockLandAttack"`
@@ -1111,7 +1117,7 @@ type settingsArgs struct {
 	DynAddrSessionCheck *string `pulumi:"dynAddrSessionCheck"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
 	EcmpMaxPaths *int `pulumi:"ecmpMaxPaths"`
 	// Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
 	EmailPortalCheckDns *string `pulumi:"emailPortalCheckDns"`
@@ -1127,7 +1133,7 @@ type settingsArgs struct {
 	Gateway *string `pulumi:"gateway"`
 	// Transparent mode IPv4 default gateway IP address.
 	Gateway6 *string `pulumi:"gateway6"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
 	GuiAdvancedPolicy *string `pulumi:"guiAdvancedPolicy"`
@@ -1279,6 +1285,8 @@ type settingsArgs struct {
 	ImplicitAllowDns *string `pulumi:"implicitAllowDns"`
 	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
 	InspectionMode *string `pulumi:"inspectionMode"`
+	// Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+	InternetServiceAppCtrlSize *int `pulumi:"internetServiceAppCtrlSize"`
 	// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
 	InternetServiceDatabaseCache *string `pulumi:"internetServiceDatabaseCache"`
 	// IP address and netmask.
@@ -1351,7 +1359,7 @@ type settingsArgs struct {
 	Utf8SpamTagging *string `pulumi:"utf8SpamTagging"`
 	// IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
 	V4EcmpMode *string `pulumi:"v4EcmpMode"`
-	// VDOM type (traffic or admin).
+	// VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
 	VdomType *string `pulumi:"vdomType"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -1383,13 +1391,13 @@ type SettingsArgs struct {
 	AuxiliarySession pulumi.StringPtrInput
 	// Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
 	Bfd pulumi.StringPtrInput
-	// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+	// BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
 	BfdDesiredMinTx pulumi.IntPtrInput
 	// BFD detection multiplier (1 - 50, default = 3).
 	BfdDetectMult pulumi.IntPtrInput
 	// Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
 	BfdDontEnforceSrcPort pulumi.StringPtrInput
-	// BFD required minimal receive interval (1 - 100000 ms, default = 50).
+	// BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
 	BfdRequiredMinRx pulumi.IntPtrInput
 	// Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
 	BlockLandAttack pulumi.StringPtrInput
@@ -1429,7 +1437,7 @@ type SettingsArgs struct {
 	DynAddrSessionCheck pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+	// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
 	EcmpMaxPaths pulumi.IntPtrInput
 	// Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
 	EmailPortalCheckDns pulumi.StringPtrInput
@@ -1445,7 +1453,7 @@ type SettingsArgs struct {
 	Gateway pulumi.StringPtrInput
 	// Transparent mode IPv4 default gateway IP address.
 	Gateway6 pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
 	GuiAdvancedPolicy pulumi.StringPtrInput
@@ -1597,6 +1605,8 @@ type SettingsArgs struct {
 	ImplicitAllowDns pulumi.StringPtrInput
 	// Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
 	InspectionMode pulumi.StringPtrInput
+	// Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+	InternetServiceAppCtrlSize pulumi.IntPtrInput
 	// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
 	InternetServiceDatabaseCache pulumi.StringPtrInput
 	// IP address and netmask.
@@ -1669,7 +1679,7 @@ type SettingsArgs struct {
 	Utf8SpamTagging pulumi.StringPtrInput
 	// IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
 	V4EcmpMode pulumi.StringPtrInput
-	// VDOM type (traffic or admin).
+	// VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
 	VdomType pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -1813,7 +1823,7 @@ func (o SettingsOutput) Bfd() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.Bfd }).(pulumi.StringOutput)
 }
 
-// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+// BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
 func (o SettingsOutput) BfdDesiredMinTx() pulumi.IntOutput {
 	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.BfdDesiredMinTx }).(pulumi.IntOutput)
 }
@@ -1828,7 +1838,7 @@ func (o SettingsOutput) BfdDontEnforceSrcPort() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.BfdDontEnforceSrcPort }).(pulumi.StringOutput)
 }
 
-// BFD required minimal receive interval (1 - 100000 ms, default = 50).
+// BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
 func (o SettingsOutput) BfdRequiredMinRx() pulumi.IntOutput {
 	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.BfdRequiredMinRx }).(pulumi.IntOutput)
 }
@@ -1928,7 +1938,7 @@ func (o SettingsOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
-// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
 func (o SettingsOutput) EcmpMaxPaths() pulumi.IntOutput {
 	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.EcmpMaxPaths }).(pulumi.IntOutput)
 }
@@ -1968,7 +1978,7 @@ func (o SettingsOutput) Gateway6() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.Gateway6 }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SettingsOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -2348,6 +2358,11 @@ func (o SettingsOutput) InspectionMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.InspectionMode }).(pulumi.StringOutput)
 }
 
+// Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+func (o SettingsOutput) InternetServiceAppCtrlSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *Settings) pulumi.IntOutput { return v.InternetServiceAppCtrlSize }).(pulumi.IntOutput)
+}
+
 // Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
 func (o SettingsOutput) InternetServiceDatabaseCache() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.InternetServiceDatabaseCache }).(pulumi.StringOutput)
@@ -2528,14 +2543,14 @@ func (o SettingsOutput) V4EcmpMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.V4EcmpMode }).(pulumi.StringOutput)
 }
 
-// VDOM type (traffic or admin).
+// VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
 func (o SettingsOutput) VdomType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.VdomType }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SettingsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Settings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SettingsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. Valid values: `ipsec`, `pptp`, `l2tp`, `ssl`.

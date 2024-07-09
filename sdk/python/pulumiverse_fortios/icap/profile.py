@@ -59,7 +59,7 @@ class ProfileArgs:
         :param pulumi.Input[str] file_transfer_failure: Action to take if the ICAP server cannot be contacted when processing a file transfer. Valid values: `error`, `bypass`.
         :param pulumi.Input[str] file_transfer_path: Path component of the ICAP URI that identifies the file transfer processing service.
         :param pulumi.Input[str] file_transfer_server: ICAP server to use for a file transfer.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] icap_block_log: Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['ProfileIcapHeaderArgs']]] icap_headers: Configure ICAP forwarded request headers. The structure of `icap_headers` block is documented below.
         :param pulumi.Input[str] methods: The allowed HTTP methods that will be sent to ICAP server for further processing.
@@ -252,7 +252,7 @@ class ProfileArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -595,7 +595,7 @@ class _ProfileState:
         :param pulumi.Input[str] file_transfer_failure: Action to take if the ICAP server cannot be contacted when processing a file transfer. Valid values: `error`, `bypass`.
         :param pulumi.Input[str] file_transfer_path: Path component of the ICAP URI that identifies the file transfer processing service.
         :param pulumi.Input[str] file_transfer_server: ICAP server to use for a file transfer.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] icap_block_log: Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['ProfileIcapHeaderArgs']]] icap_headers: Configure ICAP forwarded request headers. The structure of `icap_headers` block is documented below.
         :param pulumi.Input[str] methods: The allowed HTTP methods that will be sent to ICAP server for further processing.
@@ -788,7 +788,7 @@ class _ProfileState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1176,7 +1176,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] file_transfer_failure: Action to take if the ICAP server cannot be contacted when processing a file transfer. Valid values: `error`, `bypass`.
         :param pulumi.Input[str] file_transfer_path: Path component of the ICAP URI that identifies the file transfer processing service.
         :param pulumi.Input[str] file_transfer_server: ICAP server to use for a file transfer.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] icap_block_log: Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileIcapHeaderArgs']]]] icap_headers: Configure ICAP forwarded request headers. The structure of `icap_headers` block is documented below.
         :param pulumi.Input[str] methods: The allowed HTTP methods that will be sent to ICAP server for further processing.
@@ -1398,7 +1398,7 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] file_transfer_failure: Action to take if the ICAP server cannot be contacted when processing a file transfer. Valid values: `error`, `bypass`.
         :param pulumi.Input[str] file_transfer_path: Path component of the ICAP URI that identifies the file transfer processing service.
         :param pulumi.Input[str] file_transfer_server: ICAP server to use for a file transfer.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] icap_block_log: Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProfileIcapHeaderArgs']]]] icap_headers: Configure ICAP forwarded request headers. The structure of `icap_headers` block is documented below.
         :param pulumi.Input[str] methods: The allowed HTTP methods that will be sent to ICAP server for further processing.
@@ -1531,7 +1531,7 @@ class Profile(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1721,7 +1721,7 @@ class Profile(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -65,6 +65,12 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
+        /// FortiClient EMS Cloud multitenancy access key
+        /// </summary>
+        [Output("cloudAuthenticationAccessKey")]
+        public Output<string> CloudAuthenticationAccessKey { get; private set; } = null!;
+
+        /// <summary>
         /// Cloud server type. Valid values: `production`, `alpha`, `beta`.
         /// </summary>
         [Output("cloudServerType")]
@@ -77,7 +83,7 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Output<string> DirtyReason { get; private set; } = null!;
 
         /// <summary>
-        /// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions &gt;= 7.2.4: 1 - 7.
+        /// EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions &gt;= 7.2.4: 1 - 7.
         /// </summary>
         [Output("emsId")]
         public Output<int> EmsId { get; private set; } = null!;
@@ -206,7 +212,7 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Lowest CA cert on Fortigate in verified EMS cert chain.
@@ -312,6 +318,12 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
+        /// FortiClient EMS Cloud multitenancy access key
+        /// </summary>
+        [Input("cloudAuthenticationAccessKey")]
+        public Input<string>? CloudAuthenticationAccessKey { get; set; }
+
+        /// <summary>
         /// Cloud server type. Valid values: `production`, `alpha`, `beta`.
         /// </summary>
         [Input("cloudServerType")]
@@ -324,7 +336,7 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Input<string>? DirtyReason { get; set; }
 
         /// <summary>
-        /// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions &gt;= 7.2.4: 1 - 7.
+        /// EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions &gt;= 7.2.4: 1 - 7.
         /// </summary>
         [Input("emsId")]
         public Input<int>? EmsId { get; set; }
@@ -516,6 +528,12 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
+        /// FortiClient EMS Cloud multitenancy access key
+        /// </summary>
+        [Input("cloudAuthenticationAccessKey")]
+        public Input<string>? CloudAuthenticationAccessKey { get; set; }
+
+        /// <summary>
         /// Cloud server type. Valid values: `production`, `alpha`, `beta`.
         /// </summary>
         [Input("cloudServerType")]
@@ -528,7 +546,7 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Input<string>? DirtyReason { get; set; }
 
         /// <summary>
-        /// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions &gt;= 7.2.4: 1 - 7.
+        /// EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions &gt;= 7.2.4: 1 - 7.
         /// </summary>
         [Input("emsId")]
         public Input<int>? EmsId { get; set; }

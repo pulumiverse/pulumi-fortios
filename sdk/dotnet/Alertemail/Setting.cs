@@ -124,7 +124,7 @@ namespace Pulumiverse.Fortios.Alertemail
         public Output<int> ErrorInterval { get; private set; } = null!;
 
         /// <summary>
-        /// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+        /// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
         /// </summary>
         [Output("fdsLicenseExpiringDays")]
         public Output<int> FdsLicenseExpiringDays { get; private set; } = null!;
@@ -265,7 +265,7 @@ namespace Pulumiverse.Fortios.Alertemail
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
@@ -393,7 +393,7 @@ namespace Pulumiverse.Fortios.Alertemail
         public Input<int>? ErrorInterval { get; set; }
 
         /// <summary>
-        /// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+        /// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
         /// </summary>
         [Input("fdsLicenseExpiringDays")]
         public Input<int>? FdsLicenseExpiringDays { get; set; }
@@ -623,7 +623,7 @@ namespace Pulumiverse.Fortios.Alertemail
         public Input<int>? ErrorInterval { get; set; }
 
         /// <summary>
-        /// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+        /// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
         /// </summary>
         [Input("fdsLicenseExpiringDays")]
         public Input<int>? FdsLicenseExpiringDays { get; set; }

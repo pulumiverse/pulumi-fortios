@@ -126,7 +126,7 @@ class SettingsArgs:
         :param pulumi.Input[str] encode2f_sequence: Encode \\2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] encrypt_and_store_password: Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] force_two_factor_auth: Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] header_x_forwarded_for: Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] hsts_include_subdomains: Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] http_compression: Enable to allow HTTP compression over SSL-VPN tunnels. Valid values: `enable`, `disable`.
@@ -168,7 +168,7 @@ class SettingsArgs:
         :param pulumi.Input[str] tunnel_connect_without_reauth: Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SettingsTunnelIpPoolArgs']]] tunnel_ip_pools: Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ip_pools` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['SettingsTunnelIpv6PoolArgs']]] tunnel_ipv6_pools: Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ipv6_pools` block is documented below.
-        :param pulumi.Input[int] tunnel_user_session_timeout: Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
+        :param pulumi.Input[int] tunnel_user_session_timeout: Number of seconds after which user sessions are cleaned up after tunnel connection is dropped (default = 30). On FortiOS versions 6.2.0-7.4.3: 1 - 255 sec. On FortiOS versions >= 7.4.4: 1 - 86400 sec.
         :param pulumi.Input[str] unsafe_legacy_renegotiation: Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] url_obscuration: Enable to obscure the host name of the URL of the web browser display. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] user_peer: Name of user peer.
@@ -680,7 +680,7 @@ class SettingsArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1184,7 +1184,7 @@ class SettingsArgs:
     @pulumi.getter(name="tunnelUserSessionTimeout")
     def tunnel_user_session_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
+        Number of seconds after which user sessions are cleaned up after tunnel connection is dropped (default = 30). On FortiOS versions 6.2.0-7.4.3: 1 - 255 sec. On FortiOS versions >= 7.4.4: 1 - 86400 sec.
         """
         return pulumi.get(self, "tunnel_user_session_timeout")
 
@@ -1414,7 +1414,7 @@ class _SettingsState:
         :param pulumi.Input[str] encode2f_sequence: Encode \\2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] encrypt_and_store_password: Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] force_two_factor_auth: Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] header_x_forwarded_for: Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] hsts_include_subdomains: Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] http_compression: Enable to allow HTTP compression over SSL-VPN tunnels. Valid values: `enable`, `disable`.
@@ -1456,7 +1456,7 @@ class _SettingsState:
         :param pulumi.Input[str] tunnel_connect_without_reauth: Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SettingsTunnelIpPoolArgs']]] tunnel_ip_pools: Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ip_pools` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['SettingsTunnelIpv6PoolArgs']]] tunnel_ipv6_pools: Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ipv6_pools` block is documented below.
-        :param pulumi.Input[int] tunnel_user_session_timeout: Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
+        :param pulumi.Input[int] tunnel_user_session_timeout: Number of seconds after which user sessions are cleaned up after tunnel connection is dropped (default = 30). On FortiOS versions 6.2.0-7.4.3: 1 - 255 sec. On FortiOS versions >= 7.4.4: 1 - 86400 sec.
         :param pulumi.Input[str] unsafe_legacy_renegotiation: Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] url_obscuration: Enable to obscure the host name of the URL of the web browser display. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] user_peer: Name of user peer.
@@ -1968,7 +1968,7 @@ class _SettingsState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2472,7 +2472,7 @@ class _SettingsState:
     @pulumi.getter(name="tunnelUserSessionTimeout")
     def tunnel_user_session_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
+        Number of seconds after which user sessions are cleaned up after tunnel connection is dropped (default = 30). On FortiOS versions 6.2.0-7.4.3: 1 - 255 sec. On FortiOS versions >= 7.4.4: 1 - 86400 sec.
         """
         return pulumi.get(self, "tunnel_user_session_timeout")
 
@@ -2740,7 +2740,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] encode2f_sequence: Encode \\2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] encrypt_and_store_password: Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] force_two_factor_auth: Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] header_x_forwarded_for: Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] hsts_include_subdomains: Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] http_compression: Enable to allow HTTP compression over SSL-VPN tunnels. Valid values: `enable`, `disable`.
@@ -2782,7 +2782,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] tunnel_connect_without_reauth: Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingsTunnelIpPoolArgs']]]] tunnel_ip_pools: Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ip_pools` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingsTunnelIpv6PoolArgs']]]] tunnel_ipv6_pools: Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ipv6_pools` block is documented below.
-        :param pulumi.Input[int] tunnel_user_session_timeout: Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
+        :param pulumi.Input[int] tunnel_user_session_timeout: Number of seconds after which user sessions are cleaned up after tunnel connection is dropped (default = 30). On FortiOS versions 6.2.0-7.4.3: 1 - 255 sec. On FortiOS versions >= 7.4.4: 1 - 86400 sec.
         :param pulumi.Input[str] unsafe_legacy_renegotiation: Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] url_obscuration: Enable to obscure the host name of the URL of the web browser display. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] user_peer: Name of user peer.
@@ -3143,7 +3143,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] encode2f_sequence: Encode \\2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] encrypt_and_store_password: Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] force_two_factor_auth: Enable to force two-factor authentication for all SSL-VPNs. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] header_x_forwarded_for: Forward the same, add, or remove HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] hsts_include_subdomains: Add HSTS includeSubDomains response header. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] http_compression: Enable to allow HTTP compression over SSL-VPN tunnels. Valid values: `enable`, `disable`.
@@ -3185,7 +3185,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] tunnel_connect_without_reauth: Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingsTunnelIpPoolArgs']]]] tunnel_ip_pools: Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ip_pools` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SettingsTunnelIpv6PoolArgs']]]] tunnel_ipv6_pools: Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ipv6_pools` block is documented below.
-        :param pulumi.Input[int] tunnel_user_session_timeout: Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
+        :param pulumi.Input[int] tunnel_user_session_timeout: Number of seconds after which user sessions are cleaned up after tunnel connection is dropped (default = 30). On FortiOS versions 6.2.0-7.4.3: 1 - 255 sec. On FortiOS versions >= 7.4.4: 1 - 86400 sec.
         :param pulumi.Input[str] unsafe_legacy_renegotiation: Enable/disable unsafe legacy re-negotiation. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] url_obscuration: Enable to obscure the host name of the URL of the web browser display. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] user_peer: Name of user peer.
@@ -3510,7 +3510,7 @@ class Settings(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -3846,7 +3846,7 @@ class Settings(pulumi.CustomResource):
     @pulumi.getter(name="tunnelUserSessionTimeout")
     def tunnel_user_session_timeout(self) -> pulumi.Output[int]:
         """
-        Time out value to clean up user session after tunnel connection is dropped (1 - 255 sec, default=30).
+        Number of seconds after which user sessions are cleaned up after tunnel connection is dropped (default = 30). On FortiOS versions 6.2.0-7.4.3: 1 - 255 sec. On FortiOS versions >= 7.4.4: 1 - 86400 sec.
         """
         return pulumi.get(self, "tunnel_user_session_timeout")
 
@@ -3876,7 +3876,7 @@ class Settings(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

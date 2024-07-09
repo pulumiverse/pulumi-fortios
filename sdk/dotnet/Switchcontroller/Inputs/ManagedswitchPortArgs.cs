@@ -37,6 +37,12 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         [Input("aggregatorMode")]
         public Input<string>? AggregatorMode { get; set; }
 
+        /// <summary>
+        /// Enable/Disable allow ARP monitor. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("allowArpMonitor")]
+        public Input<string>? AllowArpMonitor { get; set; }
+
         [Input("allowedVlans")]
         private InputList<Inputs.ManagedswitchPortAllowedVlanArgs>? _allowedVlans;
 
@@ -150,6 +156,12 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         /// </summary>
         [Input("exportToPoolFlag")]
         public Input<int>? ExportToPoolFlag { get; set; }
+
+        /// <summary>
+        /// LACP fallback port.
+        /// </summary>
+        [Input("fallbackPort")]
+        public Input<string>? FallbackPort { get; set; }
 
         /// <summary>
         /// FEC capable.
@@ -584,7 +596,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         public Input<string>? SampleDirection { get; set; }
 
         /// <summary>
-        /// sFlow sampler counter polling interval (1 - 255 sec).
+        /// sFlow sampling counter polling interval in seconds (0 - 255).
         /// </summary>
         [Input("sflowCounterInterval")]
         public Input<int>? SflowCounterInterval { get; set; }

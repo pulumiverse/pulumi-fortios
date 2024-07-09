@@ -53,7 +53,7 @@ export interface GetNtpResult {
      */
     readonly keyId: number;
     /**
-     * Key type for authentication (MD5, SHA1).
+     * Select NTP authentication type.
      */
     readonly keyType: string;
     /**

@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
@@ -161,9 +160,9 @@ type Bgp struct {
 	AggregateAddresses BgpAggregateAddressArrayOutput `pulumi:"aggregateAddresses"`
 	// Enable/disable always compare MED. Valid values: `enable`, `disable`.
 	AlwaysCompareMed pulumi.StringOutput `pulumi:"alwaysCompareMed"`
-	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `asString`.*
 	As pulumi.IntOutput `pulumi:"as"`
-	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
 	AsString pulumi.StringOutput `pulumi:"asString"`
 	// Enable/disable ignore AS path. Valid values: `enable`, `disable`.
 	BestpathAsPathIgnore pulumi.StringOutput `pulumi:"bestpathAsPathIgnore"`
@@ -217,7 +216,7 @@ type Bgp struct {
 	EnforceFirstAs pulumi.StringOutput `pulumi:"enforceFirstAs"`
 	// Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
 	FastExternalFailover pulumi.StringOutput `pulumi:"fastExternalFailover"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
 	GracefulEndOnTimer pulumi.StringOutput `pulumi:"gracefulEndOnTimer"`
@@ -272,7 +271,7 @@ type Bgp struct {
 	// Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
 	TagResolveMode pulumi.StringOutput `pulumi:"tagResolveMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// BGP IPv6 VRF leaking table. The structure of `vrf6` block is documented below.
 	Vrf6s BgpVrf6ArrayOutput `pulumi:"vrf6s"`
 	// BGP IPv6 VRF leaking table. The structure of `vrfLeak6` block is documented below.
@@ -287,12 +286,9 @@ type Bgp struct {
 func NewBgp(ctx *pulumi.Context,
 	name string, args *BgpArgs, opts ...pulumi.ResourceOption) (*Bgp, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &BgpArgs{}
 	}
 
-	if args.As == nil {
-		return nil, errors.New("invalid value for required argument 'As'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Bgp
 	err := ctx.RegisterResource("fortios:router/bgp:Bgp", name, args, &resource, opts...)
@@ -340,9 +336,9 @@ type bgpState struct {
 	AggregateAddresses []BgpAggregateAddress `pulumi:"aggregateAddresses"`
 	// Enable/disable always compare MED. Valid values: `enable`, `disable`.
 	AlwaysCompareMed *string `pulumi:"alwaysCompareMed"`
-	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `asString`.*
 	As *int `pulumi:"as"`
-	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
 	AsString *string `pulumi:"asString"`
 	// Enable/disable ignore AS path. Valid values: `enable`, `disable`.
 	BestpathAsPathIgnore *string `pulumi:"bestpathAsPathIgnore"`
@@ -396,7 +392,7 @@ type bgpState struct {
 	EnforceFirstAs *string `pulumi:"enforceFirstAs"`
 	// Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
 	FastExternalFailover *string `pulumi:"fastExternalFailover"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
 	GracefulEndOnTimer *string `pulumi:"gracefulEndOnTimer"`
@@ -487,9 +483,9 @@ type BgpState struct {
 	AggregateAddresses BgpAggregateAddressArrayInput
 	// Enable/disable always compare MED. Valid values: `enable`, `disable`.
 	AlwaysCompareMed pulumi.StringPtrInput
-	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `asString`.*
 	As pulumi.IntPtrInput
-	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
 	AsString pulumi.StringPtrInput
 	// Enable/disable ignore AS path. Valid values: `enable`, `disable`.
 	BestpathAsPathIgnore pulumi.StringPtrInput
@@ -543,7 +539,7 @@ type BgpState struct {
 	EnforceFirstAs pulumi.StringPtrInput
 	// Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
 	FastExternalFailover pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
 	GracefulEndOnTimer pulumi.StringPtrInput
@@ -638,9 +634,9 @@ type bgpArgs struct {
 	AggregateAddresses []BgpAggregateAddress `pulumi:"aggregateAddresses"`
 	// Enable/disable always compare MED. Valid values: `enable`, `disable`.
 	AlwaysCompareMed *string `pulumi:"alwaysCompareMed"`
-	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
-	As int `pulumi:"as"`
-	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `asString`.*
+	As *int `pulumi:"as"`
+	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
 	AsString *string `pulumi:"asString"`
 	// Enable/disable ignore AS path. Valid values: `enable`, `disable`.
 	BestpathAsPathIgnore *string `pulumi:"bestpathAsPathIgnore"`
@@ -694,7 +690,7 @@ type bgpArgs struct {
 	EnforceFirstAs *string `pulumi:"enforceFirstAs"`
 	// Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
 	FastExternalFailover *string `pulumi:"fastExternalFailover"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
 	GracefulEndOnTimer *string `pulumi:"gracefulEndOnTimer"`
@@ -786,9 +782,9 @@ type BgpArgs struct {
 	AggregateAddresses BgpAggregateAddressArrayInput
 	// Enable/disable always compare MED. Valid values: `enable`, `disable`.
 	AlwaysCompareMed pulumi.StringPtrInput
-	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
-	As pulumi.IntInput
-	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+	// Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `asString`.*
+	As pulumi.IntPtrInput
+	// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
 	AsString pulumi.StringPtrInput
 	// Enable/disable ignore AS path. Valid values: `enable`, `disable`.
 	BestpathAsPathIgnore pulumi.StringPtrInput
@@ -842,7 +838,7 @@ type BgpArgs struct {
 	EnforceFirstAs pulumi.StringPtrInput
 	// Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
 	FastExternalFailover pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
 	GracefulEndOnTimer pulumi.StringPtrInput
@@ -1055,12 +1051,12 @@ func (o BgpOutput) AlwaysCompareMed() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bgp) pulumi.StringOutput { return v.AlwaysCompareMed }).(pulumi.StringOutput)
 }
 
-// Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+// Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `asString`.*
 func (o BgpOutput) As() pulumi.IntOutput {
 	return o.ApplyT(func(v *Bgp) pulumi.IntOutput { return v.As }).(pulumi.IntOutput)
 }
 
-// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+// Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
 func (o BgpOutput) AsString() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bgp) pulumi.StringOutput { return v.AsString }).(pulumi.StringOutput)
 }
@@ -1195,7 +1191,7 @@ func (o BgpOutput) FastExternalFailover() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bgp) pulumi.StringOutput { return v.FastExternalFailover }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o BgpOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Bgp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1331,8 +1327,8 @@ func (o BgpOutput) TagResolveMode() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o BgpOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Bgp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o BgpOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bgp) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // BGP IPv6 VRF leaking table. The structure of `vrf6` block is documented below.

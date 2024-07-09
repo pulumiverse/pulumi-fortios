@@ -7973,9 +7973,9 @@ type DoSpolicy6Anomaly struct {
 	QuarantineLog *string `pulumi:"quarantineLog"`
 	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
 	Status *string `pulumi:"status"`
-	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 	Threshold *int `pulumi:"threshold"`
-	// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+	// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 	Thresholddefault *int `pulumi:"thresholddefault"`
 }
 
@@ -8005,9 +8005,9 @@ type DoSpolicy6AnomalyArgs struct {
 	QuarantineLog pulumi.StringPtrInput `pulumi:"quarantineLog"`
 	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
-	// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+	// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 	Thresholddefault pulumi.IntPtrInput `pulumi:"thresholddefault"`
 }
 
@@ -8097,12 +8097,12 @@ func (o DoSpolicy6AnomalyOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DoSpolicy6Anomaly) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 func (o DoSpolicy6AnomalyOutput) Threshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DoSpolicy6Anomaly) *int { return v.Threshold }).(pulumi.IntPtrOutput)
 }
 
-// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 func (o DoSpolicy6AnomalyOutput) Thresholddefault() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DoSpolicy6Anomaly) *int { return v.Thresholddefault }).(pulumi.IntPtrOutput)
 }
@@ -8433,9 +8433,9 @@ type DoSpolicyAnomaly struct {
 	QuarantineLog *string `pulumi:"quarantineLog"`
 	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
 	Status *string `pulumi:"status"`
-	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 	Threshold *int `pulumi:"threshold"`
-	// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+	// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 	Thresholddefault *int `pulumi:"thresholddefault"`
 }
 
@@ -8465,9 +8465,9 @@ type DoSpolicyAnomalyArgs struct {
 	QuarantineLog pulumi.StringPtrInput `pulumi:"quarantineLog"`
 	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
-	// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+	// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 	Thresholddefault pulumi.IntPtrInput `pulumi:"thresholddefault"`
 }
 
@@ -8557,12 +8557,12 @@ func (o DoSpolicyAnomalyOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DoSpolicyAnomaly) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 func (o DoSpolicyAnomalyOutput) Threshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DoSpolicyAnomaly) *int { return v.Threshold }).(pulumi.IntPtrOutput)
 }
 
-// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+// Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 func (o DoSpolicyAnomalyOutput) Thresholddefault() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DoSpolicyAnomaly) *int { return v.Thresholddefault }).(pulumi.IntPtrOutput)
 }
@@ -11879,7 +11879,7 @@ func (o InternetservicesubappSubAppArrayOutput) Index(i pulumi.IntInput) Interne
 }
 
 type Localinpolicy6Dstaddr struct {
-	// Address name.
+	// Custom Internet Service6 group name.
 	Name *string `pulumi:"name"`
 }
 
@@ -11895,7 +11895,7 @@ type Localinpolicy6DstaddrInput interface {
 }
 
 type Localinpolicy6DstaddrArgs struct {
-	// Address name.
+	// Custom Internet Service6 group name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -11950,7 +11950,7 @@ func (o Localinpolicy6DstaddrOutput) ToLocalinpolicy6DstaddrOutputWithContext(ct
 	return o
 }
 
-// Address name.
+// Custom Internet Service6 group name.
 func (o Localinpolicy6DstaddrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Localinpolicy6Dstaddr) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -11973,6 +11973,479 @@ func (o Localinpolicy6DstaddrArrayOutput) Index(i pulumi.IntInput) Localinpolicy
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Localinpolicy6Dstaddr {
 		return vs[0].([]Localinpolicy6Dstaddr)[vs[1].(int)]
 	}).(Localinpolicy6DstaddrOutput)
+}
+
+type Localinpolicy6InternetService6SrcCustom struct {
+	Name *string `pulumi:"name"`
+}
+
+// Localinpolicy6InternetService6SrcCustomInput is an input type that accepts Localinpolicy6InternetService6SrcCustomArgs and Localinpolicy6InternetService6SrcCustomOutput values.
+// You can construct a concrete instance of `Localinpolicy6InternetService6SrcCustomInput` via:
+//
+//	Localinpolicy6InternetService6SrcCustomArgs{...}
+type Localinpolicy6InternetService6SrcCustomInput interface {
+	pulumi.Input
+
+	ToLocalinpolicy6InternetService6SrcCustomOutput() Localinpolicy6InternetService6SrcCustomOutput
+	ToLocalinpolicy6InternetService6SrcCustomOutputWithContext(context.Context) Localinpolicy6InternetService6SrcCustomOutput
+}
+
+type Localinpolicy6InternetService6SrcCustomArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (Localinpolicy6InternetService6SrcCustomArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Localinpolicy6InternetService6SrcCustom)(nil)).Elem()
+}
+
+func (i Localinpolicy6InternetService6SrcCustomArgs) ToLocalinpolicy6InternetService6SrcCustomOutput() Localinpolicy6InternetService6SrcCustomOutput {
+	return i.ToLocalinpolicy6InternetService6SrcCustomOutputWithContext(context.Background())
+}
+
+func (i Localinpolicy6InternetService6SrcCustomArgs) ToLocalinpolicy6InternetService6SrcCustomOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcCustomOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Localinpolicy6InternetService6SrcCustomOutput)
+}
+
+// Localinpolicy6InternetService6SrcCustomArrayInput is an input type that accepts Localinpolicy6InternetService6SrcCustomArray and Localinpolicy6InternetService6SrcCustomArrayOutput values.
+// You can construct a concrete instance of `Localinpolicy6InternetService6SrcCustomArrayInput` via:
+//
+//	Localinpolicy6InternetService6SrcCustomArray{ Localinpolicy6InternetService6SrcCustomArgs{...} }
+type Localinpolicy6InternetService6SrcCustomArrayInput interface {
+	pulumi.Input
+
+	ToLocalinpolicy6InternetService6SrcCustomArrayOutput() Localinpolicy6InternetService6SrcCustomArrayOutput
+	ToLocalinpolicy6InternetService6SrcCustomArrayOutputWithContext(context.Context) Localinpolicy6InternetService6SrcCustomArrayOutput
+}
+
+type Localinpolicy6InternetService6SrcCustomArray []Localinpolicy6InternetService6SrcCustomInput
+
+func (Localinpolicy6InternetService6SrcCustomArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Localinpolicy6InternetService6SrcCustom)(nil)).Elem()
+}
+
+func (i Localinpolicy6InternetService6SrcCustomArray) ToLocalinpolicy6InternetService6SrcCustomArrayOutput() Localinpolicy6InternetService6SrcCustomArrayOutput {
+	return i.ToLocalinpolicy6InternetService6SrcCustomArrayOutputWithContext(context.Background())
+}
+
+func (i Localinpolicy6InternetService6SrcCustomArray) ToLocalinpolicy6InternetService6SrcCustomArrayOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcCustomArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Localinpolicy6InternetService6SrcCustomArrayOutput)
+}
+
+type Localinpolicy6InternetService6SrcCustomOutput struct{ *pulumi.OutputState }
+
+func (Localinpolicy6InternetService6SrcCustomOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Localinpolicy6InternetService6SrcCustom)(nil)).Elem()
+}
+
+func (o Localinpolicy6InternetService6SrcCustomOutput) ToLocalinpolicy6InternetService6SrcCustomOutput() Localinpolicy6InternetService6SrcCustomOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcCustomOutput) ToLocalinpolicy6InternetService6SrcCustomOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcCustomOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcCustomOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Localinpolicy6InternetService6SrcCustom) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type Localinpolicy6InternetService6SrcCustomArrayOutput struct{ *pulumi.OutputState }
+
+func (Localinpolicy6InternetService6SrcCustomArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Localinpolicy6InternetService6SrcCustom)(nil)).Elem()
+}
+
+func (o Localinpolicy6InternetService6SrcCustomArrayOutput) ToLocalinpolicy6InternetService6SrcCustomArrayOutput() Localinpolicy6InternetService6SrcCustomArrayOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcCustomArrayOutput) ToLocalinpolicy6InternetService6SrcCustomArrayOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcCustomArrayOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcCustomArrayOutput) Index(i pulumi.IntInput) Localinpolicy6InternetService6SrcCustomOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Localinpolicy6InternetService6SrcCustom {
+		return vs[0].([]Localinpolicy6InternetService6SrcCustom)[vs[1].(int)]
+	}).(Localinpolicy6InternetService6SrcCustomOutput)
+}
+
+type Localinpolicy6InternetService6SrcCustomGroup struct {
+	Name *string `pulumi:"name"`
+}
+
+// Localinpolicy6InternetService6SrcCustomGroupInput is an input type that accepts Localinpolicy6InternetService6SrcCustomGroupArgs and Localinpolicy6InternetService6SrcCustomGroupOutput values.
+// You can construct a concrete instance of `Localinpolicy6InternetService6SrcCustomGroupInput` via:
+//
+//	Localinpolicy6InternetService6SrcCustomGroupArgs{...}
+type Localinpolicy6InternetService6SrcCustomGroupInput interface {
+	pulumi.Input
+
+	ToLocalinpolicy6InternetService6SrcCustomGroupOutput() Localinpolicy6InternetService6SrcCustomGroupOutput
+	ToLocalinpolicy6InternetService6SrcCustomGroupOutputWithContext(context.Context) Localinpolicy6InternetService6SrcCustomGroupOutput
+}
+
+type Localinpolicy6InternetService6SrcCustomGroupArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (Localinpolicy6InternetService6SrcCustomGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Localinpolicy6InternetService6SrcCustomGroup)(nil)).Elem()
+}
+
+func (i Localinpolicy6InternetService6SrcCustomGroupArgs) ToLocalinpolicy6InternetService6SrcCustomGroupOutput() Localinpolicy6InternetService6SrcCustomGroupOutput {
+	return i.ToLocalinpolicy6InternetService6SrcCustomGroupOutputWithContext(context.Background())
+}
+
+func (i Localinpolicy6InternetService6SrcCustomGroupArgs) ToLocalinpolicy6InternetService6SrcCustomGroupOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcCustomGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Localinpolicy6InternetService6SrcCustomGroupOutput)
+}
+
+// Localinpolicy6InternetService6SrcCustomGroupArrayInput is an input type that accepts Localinpolicy6InternetService6SrcCustomGroupArray and Localinpolicy6InternetService6SrcCustomGroupArrayOutput values.
+// You can construct a concrete instance of `Localinpolicy6InternetService6SrcCustomGroupArrayInput` via:
+//
+//	Localinpolicy6InternetService6SrcCustomGroupArray{ Localinpolicy6InternetService6SrcCustomGroupArgs{...} }
+type Localinpolicy6InternetService6SrcCustomGroupArrayInput interface {
+	pulumi.Input
+
+	ToLocalinpolicy6InternetService6SrcCustomGroupArrayOutput() Localinpolicy6InternetService6SrcCustomGroupArrayOutput
+	ToLocalinpolicy6InternetService6SrcCustomGroupArrayOutputWithContext(context.Context) Localinpolicy6InternetService6SrcCustomGroupArrayOutput
+}
+
+type Localinpolicy6InternetService6SrcCustomGroupArray []Localinpolicy6InternetService6SrcCustomGroupInput
+
+func (Localinpolicy6InternetService6SrcCustomGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Localinpolicy6InternetService6SrcCustomGroup)(nil)).Elem()
+}
+
+func (i Localinpolicy6InternetService6SrcCustomGroupArray) ToLocalinpolicy6InternetService6SrcCustomGroupArrayOutput() Localinpolicy6InternetService6SrcCustomGroupArrayOutput {
+	return i.ToLocalinpolicy6InternetService6SrcCustomGroupArrayOutputWithContext(context.Background())
+}
+
+func (i Localinpolicy6InternetService6SrcCustomGroupArray) ToLocalinpolicy6InternetService6SrcCustomGroupArrayOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcCustomGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Localinpolicy6InternetService6SrcCustomGroupArrayOutput)
+}
+
+type Localinpolicy6InternetService6SrcCustomGroupOutput struct{ *pulumi.OutputState }
+
+func (Localinpolicy6InternetService6SrcCustomGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Localinpolicy6InternetService6SrcCustomGroup)(nil)).Elem()
+}
+
+func (o Localinpolicy6InternetService6SrcCustomGroupOutput) ToLocalinpolicy6InternetService6SrcCustomGroupOutput() Localinpolicy6InternetService6SrcCustomGroupOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcCustomGroupOutput) ToLocalinpolicy6InternetService6SrcCustomGroupOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcCustomGroupOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcCustomGroupOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Localinpolicy6InternetService6SrcCustomGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type Localinpolicy6InternetService6SrcCustomGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (Localinpolicy6InternetService6SrcCustomGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Localinpolicy6InternetService6SrcCustomGroup)(nil)).Elem()
+}
+
+func (o Localinpolicy6InternetService6SrcCustomGroupArrayOutput) ToLocalinpolicy6InternetService6SrcCustomGroupArrayOutput() Localinpolicy6InternetService6SrcCustomGroupArrayOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcCustomGroupArrayOutput) ToLocalinpolicy6InternetService6SrcCustomGroupArrayOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcCustomGroupArrayOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcCustomGroupArrayOutput) Index(i pulumi.IntInput) Localinpolicy6InternetService6SrcCustomGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Localinpolicy6InternetService6SrcCustomGroup {
+		return vs[0].([]Localinpolicy6InternetService6SrcCustomGroup)[vs[1].(int)]
+	}).(Localinpolicy6InternetService6SrcCustomGroupOutput)
+}
+
+type Localinpolicy6InternetService6SrcGroup struct {
+	Name *string `pulumi:"name"`
+}
+
+// Localinpolicy6InternetService6SrcGroupInput is an input type that accepts Localinpolicy6InternetService6SrcGroupArgs and Localinpolicy6InternetService6SrcGroupOutput values.
+// You can construct a concrete instance of `Localinpolicy6InternetService6SrcGroupInput` via:
+//
+//	Localinpolicy6InternetService6SrcGroupArgs{...}
+type Localinpolicy6InternetService6SrcGroupInput interface {
+	pulumi.Input
+
+	ToLocalinpolicy6InternetService6SrcGroupOutput() Localinpolicy6InternetService6SrcGroupOutput
+	ToLocalinpolicy6InternetService6SrcGroupOutputWithContext(context.Context) Localinpolicy6InternetService6SrcGroupOutput
+}
+
+type Localinpolicy6InternetService6SrcGroupArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (Localinpolicy6InternetService6SrcGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Localinpolicy6InternetService6SrcGroup)(nil)).Elem()
+}
+
+func (i Localinpolicy6InternetService6SrcGroupArgs) ToLocalinpolicy6InternetService6SrcGroupOutput() Localinpolicy6InternetService6SrcGroupOutput {
+	return i.ToLocalinpolicy6InternetService6SrcGroupOutputWithContext(context.Background())
+}
+
+func (i Localinpolicy6InternetService6SrcGroupArgs) ToLocalinpolicy6InternetService6SrcGroupOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Localinpolicy6InternetService6SrcGroupOutput)
+}
+
+// Localinpolicy6InternetService6SrcGroupArrayInput is an input type that accepts Localinpolicy6InternetService6SrcGroupArray and Localinpolicy6InternetService6SrcGroupArrayOutput values.
+// You can construct a concrete instance of `Localinpolicy6InternetService6SrcGroupArrayInput` via:
+//
+//	Localinpolicy6InternetService6SrcGroupArray{ Localinpolicy6InternetService6SrcGroupArgs{...} }
+type Localinpolicy6InternetService6SrcGroupArrayInput interface {
+	pulumi.Input
+
+	ToLocalinpolicy6InternetService6SrcGroupArrayOutput() Localinpolicy6InternetService6SrcGroupArrayOutput
+	ToLocalinpolicy6InternetService6SrcGroupArrayOutputWithContext(context.Context) Localinpolicy6InternetService6SrcGroupArrayOutput
+}
+
+type Localinpolicy6InternetService6SrcGroupArray []Localinpolicy6InternetService6SrcGroupInput
+
+func (Localinpolicy6InternetService6SrcGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Localinpolicy6InternetService6SrcGroup)(nil)).Elem()
+}
+
+func (i Localinpolicy6InternetService6SrcGroupArray) ToLocalinpolicy6InternetService6SrcGroupArrayOutput() Localinpolicy6InternetService6SrcGroupArrayOutput {
+	return i.ToLocalinpolicy6InternetService6SrcGroupArrayOutputWithContext(context.Background())
+}
+
+func (i Localinpolicy6InternetService6SrcGroupArray) ToLocalinpolicy6InternetService6SrcGroupArrayOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Localinpolicy6InternetService6SrcGroupArrayOutput)
+}
+
+type Localinpolicy6InternetService6SrcGroupOutput struct{ *pulumi.OutputState }
+
+func (Localinpolicy6InternetService6SrcGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Localinpolicy6InternetService6SrcGroup)(nil)).Elem()
+}
+
+func (o Localinpolicy6InternetService6SrcGroupOutput) ToLocalinpolicy6InternetService6SrcGroupOutput() Localinpolicy6InternetService6SrcGroupOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcGroupOutput) ToLocalinpolicy6InternetService6SrcGroupOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcGroupOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcGroupOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Localinpolicy6InternetService6SrcGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type Localinpolicy6InternetService6SrcGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (Localinpolicy6InternetService6SrcGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Localinpolicy6InternetService6SrcGroup)(nil)).Elem()
+}
+
+func (o Localinpolicy6InternetService6SrcGroupArrayOutput) ToLocalinpolicy6InternetService6SrcGroupArrayOutput() Localinpolicy6InternetService6SrcGroupArrayOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcGroupArrayOutput) ToLocalinpolicy6InternetService6SrcGroupArrayOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcGroupArrayOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcGroupArrayOutput) Index(i pulumi.IntInput) Localinpolicy6InternetService6SrcGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Localinpolicy6InternetService6SrcGroup {
+		return vs[0].([]Localinpolicy6InternetService6SrcGroup)[vs[1].(int)]
+	}).(Localinpolicy6InternetService6SrcGroupOutput)
+}
+
+type Localinpolicy6InternetService6SrcName struct {
+	Name *string `pulumi:"name"`
+}
+
+// Localinpolicy6InternetService6SrcNameInput is an input type that accepts Localinpolicy6InternetService6SrcNameArgs and Localinpolicy6InternetService6SrcNameOutput values.
+// You can construct a concrete instance of `Localinpolicy6InternetService6SrcNameInput` via:
+//
+//	Localinpolicy6InternetService6SrcNameArgs{...}
+type Localinpolicy6InternetService6SrcNameInput interface {
+	pulumi.Input
+
+	ToLocalinpolicy6InternetService6SrcNameOutput() Localinpolicy6InternetService6SrcNameOutput
+	ToLocalinpolicy6InternetService6SrcNameOutputWithContext(context.Context) Localinpolicy6InternetService6SrcNameOutput
+}
+
+type Localinpolicy6InternetService6SrcNameArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (Localinpolicy6InternetService6SrcNameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Localinpolicy6InternetService6SrcName)(nil)).Elem()
+}
+
+func (i Localinpolicy6InternetService6SrcNameArgs) ToLocalinpolicy6InternetService6SrcNameOutput() Localinpolicy6InternetService6SrcNameOutput {
+	return i.ToLocalinpolicy6InternetService6SrcNameOutputWithContext(context.Background())
+}
+
+func (i Localinpolicy6InternetService6SrcNameArgs) ToLocalinpolicy6InternetService6SrcNameOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcNameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Localinpolicy6InternetService6SrcNameOutput)
+}
+
+// Localinpolicy6InternetService6SrcNameArrayInput is an input type that accepts Localinpolicy6InternetService6SrcNameArray and Localinpolicy6InternetService6SrcNameArrayOutput values.
+// You can construct a concrete instance of `Localinpolicy6InternetService6SrcNameArrayInput` via:
+//
+//	Localinpolicy6InternetService6SrcNameArray{ Localinpolicy6InternetService6SrcNameArgs{...} }
+type Localinpolicy6InternetService6SrcNameArrayInput interface {
+	pulumi.Input
+
+	ToLocalinpolicy6InternetService6SrcNameArrayOutput() Localinpolicy6InternetService6SrcNameArrayOutput
+	ToLocalinpolicy6InternetService6SrcNameArrayOutputWithContext(context.Context) Localinpolicy6InternetService6SrcNameArrayOutput
+}
+
+type Localinpolicy6InternetService6SrcNameArray []Localinpolicy6InternetService6SrcNameInput
+
+func (Localinpolicy6InternetService6SrcNameArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Localinpolicy6InternetService6SrcName)(nil)).Elem()
+}
+
+func (i Localinpolicy6InternetService6SrcNameArray) ToLocalinpolicy6InternetService6SrcNameArrayOutput() Localinpolicy6InternetService6SrcNameArrayOutput {
+	return i.ToLocalinpolicy6InternetService6SrcNameArrayOutputWithContext(context.Background())
+}
+
+func (i Localinpolicy6InternetService6SrcNameArray) ToLocalinpolicy6InternetService6SrcNameArrayOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcNameArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Localinpolicy6InternetService6SrcNameArrayOutput)
+}
+
+type Localinpolicy6InternetService6SrcNameOutput struct{ *pulumi.OutputState }
+
+func (Localinpolicy6InternetService6SrcNameOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Localinpolicy6InternetService6SrcName)(nil)).Elem()
+}
+
+func (o Localinpolicy6InternetService6SrcNameOutput) ToLocalinpolicy6InternetService6SrcNameOutput() Localinpolicy6InternetService6SrcNameOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcNameOutput) ToLocalinpolicy6InternetService6SrcNameOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcNameOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcNameOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Localinpolicy6InternetService6SrcName) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type Localinpolicy6InternetService6SrcNameArrayOutput struct{ *pulumi.OutputState }
+
+func (Localinpolicy6InternetService6SrcNameArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Localinpolicy6InternetService6SrcName)(nil)).Elem()
+}
+
+func (o Localinpolicy6InternetService6SrcNameArrayOutput) ToLocalinpolicy6InternetService6SrcNameArrayOutput() Localinpolicy6InternetService6SrcNameArrayOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcNameArrayOutput) ToLocalinpolicy6InternetService6SrcNameArrayOutputWithContext(ctx context.Context) Localinpolicy6InternetService6SrcNameArrayOutput {
+	return o
+}
+
+func (o Localinpolicy6InternetService6SrcNameArrayOutput) Index(i pulumi.IntInput) Localinpolicy6InternetService6SrcNameOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Localinpolicy6InternetService6SrcName {
+		return vs[0].([]Localinpolicy6InternetService6SrcName)[vs[1].(int)]
+	}).(Localinpolicy6InternetService6SrcNameOutput)
+}
+
+type Localinpolicy6IntfBlock struct {
+	// Address name.
+	Name *string `pulumi:"name"`
+}
+
+// Localinpolicy6IntfBlockInput is an input type that accepts Localinpolicy6IntfBlockArgs and Localinpolicy6IntfBlockOutput values.
+// You can construct a concrete instance of `Localinpolicy6IntfBlockInput` via:
+//
+//	Localinpolicy6IntfBlockArgs{...}
+type Localinpolicy6IntfBlockInput interface {
+	pulumi.Input
+
+	ToLocalinpolicy6IntfBlockOutput() Localinpolicy6IntfBlockOutput
+	ToLocalinpolicy6IntfBlockOutputWithContext(context.Context) Localinpolicy6IntfBlockOutput
+}
+
+type Localinpolicy6IntfBlockArgs struct {
+	// Address name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (Localinpolicy6IntfBlockArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Localinpolicy6IntfBlock)(nil)).Elem()
+}
+
+func (i Localinpolicy6IntfBlockArgs) ToLocalinpolicy6IntfBlockOutput() Localinpolicy6IntfBlockOutput {
+	return i.ToLocalinpolicy6IntfBlockOutputWithContext(context.Background())
+}
+
+func (i Localinpolicy6IntfBlockArgs) ToLocalinpolicy6IntfBlockOutputWithContext(ctx context.Context) Localinpolicy6IntfBlockOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Localinpolicy6IntfBlockOutput)
+}
+
+// Localinpolicy6IntfBlockArrayInput is an input type that accepts Localinpolicy6IntfBlockArray and Localinpolicy6IntfBlockArrayOutput values.
+// You can construct a concrete instance of `Localinpolicy6IntfBlockArrayInput` via:
+//
+//	Localinpolicy6IntfBlockArray{ Localinpolicy6IntfBlockArgs{...} }
+type Localinpolicy6IntfBlockArrayInput interface {
+	pulumi.Input
+
+	ToLocalinpolicy6IntfBlockArrayOutput() Localinpolicy6IntfBlockArrayOutput
+	ToLocalinpolicy6IntfBlockArrayOutputWithContext(context.Context) Localinpolicy6IntfBlockArrayOutput
+}
+
+type Localinpolicy6IntfBlockArray []Localinpolicy6IntfBlockInput
+
+func (Localinpolicy6IntfBlockArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Localinpolicy6IntfBlock)(nil)).Elem()
+}
+
+func (i Localinpolicy6IntfBlockArray) ToLocalinpolicy6IntfBlockArrayOutput() Localinpolicy6IntfBlockArrayOutput {
+	return i.ToLocalinpolicy6IntfBlockArrayOutputWithContext(context.Background())
+}
+
+func (i Localinpolicy6IntfBlockArray) ToLocalinpolicy6IntfBlockArrayOutputWithContext(ctx context.Context) Localinpolicy6IntfBlockArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(Localinpolicy6IntfBlockArrayOutput)
+}
+
+type Localinpolicy6IntfBlockOutput struct{ *pulumi.OutputState }
+
+func (Localinpolicy6IntfBlockOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Localinpolicy6IntfBlock)(nil)).Elem()
+}
+
+func (o Localinpolicy6IntfBlockOutput) ToLocalinpolicy6IntfBlockOutput() Localinpolicy6IntfBlockOutput {
+	return o
+}
+
+func (o Localinpolicy6IntfBlockOutput) ToLocalinpolicy6IntfBlockOutputWithContext(ctx context.Context) Localinpolicy6IntfBlockOutput {
+	return o
+}
+
+// Address name.
+func (o Localinpolicy6IntfBlockOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Localinpolicy6IntfBlock) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type Localinpolicy6IntfBlockArrayOutput struct{ *pulumi.OutputState }
+
+func (Localinpolicy6IntfBlockArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Localinpolicy6IntfBlock)(nil)).Elem()
+}
+
+func (o Localinpolicy6IntfBlockArrayOutput) ToLocalinpolicy6IntfBlockArrayOutput() Localinpolicy6IntfBlockArrayOutput {
+	return o
+}
+
+func (o Localinpolicy6IntfBlockArrayOutput) ToLocalinpolicy6IntfBlockArrayOutputWithContext(ctx context.Context) Localinpolicy6IntfBlockArrayOutput {
+	return o
+}
+
+func (o Localinpolicy6IntfBlockArrayOutput) Index(i pulumi.IntInput) Localinpolicy6IntfBlockOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Localinpolicy6IntfBlock {
+		return vs[0].([]Localinpolicy6IntfBlock)[vs[1].(int)]
+	}).(Localinpolicy6IntfBlockOutput)
 }
 
 type Localinpolicy6Service struct {
@@ -12264,6 +12737,491 @@ func (o LocalinpolicyDstaddrArrayOutput) Index(i pulumi.IntInput) LocalinpolicyD
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LocalinpolicyDstaddr {
 		return vs[0].([]LocalinpolicyDstaddr)[vs[1].(int)]
 	}).(LocalinpolicyDstaddrOutput)
+}
+
+type LocalinpolicyInternetServiceSrcCustom struct {
+	// Custom Internet Service name.
+	Name *string `pulumi:"name"`
+}
+
+// LocalinpolicyInternetServiceSrcCustomInput is an input type that accepts LocalinpolicyInternetServiceSrcCustomArgs and LocalinpolicyInternetServiceSrcCustomOutput values.
+// You can construct a concrete instance of `LocalinpolicyInternetServiceSrcCustomInput` via:
+//
+//	LocalinpolicyInternetServiceSrcCustomArgs{...}
+type LocalinpolicyInternetServiceSrcCustomInput interface {
+	pulumi.Input
+
+	ToLocalinpolicyInternetServiceSrcCustomOutput() LocalinpolicyInternetServiceSrcCustomOutput
+	ToLocalinpolicyInternetServiceSrcCustomOutputWithContext(context.Context) LocalinpolicyInternetServiceSrcCustomOutput
+}
+
+type LocalinpolicyInternetServiceSrcCustomArgs struct {
+	// Custom Internet Service name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (LocalinpolicyInternetServiceSrcCustomArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LocalinpolicyInternetServiceSrcCustom)(nil)).Elem()
+}
+
+func (i LocalinpolicyInternetServiceSrcCustomArgs) ToLocalinpolicyInternetServiceSrcCustomOutput() LocalinpolicyInternetServiceSrcCustomOutput {
+	return i.ToLocalinpolicyInternetServiceSrcCustomOutputWithContext(context.Background())
+}
+
+func (i LocalinpolicyInternetServiceSrcCustomArgs) ToLocalinpolicyInternetServiceSrcCustomOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcCustomOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LocalinpolicyInternetServiceSrcCustomOutput)
+}
+
+// LocalinpolicyInternetServiceSrcCustomArrayInput is an input type that accepts LocalinpolicyInternetServiceSrcCustomArray and LocalinpolicyInternetServiceSrcCustomArrayOutput values.
+// You can construct a concrete instance of `LocalinpolicyInternetServiceSrcCustomArrayInput` via:
+//
+//	LocalinpolicyInternetServiceSrcCustomArray{ LocalinpolicyInternetServiceSrcCustomArgs{...} }
+type LocalinpolicyInternetServiceSrcCustomArrayInput interface {
+	pulumi.Input
+
+	ToLocalinpolicyInternetServiceSrcCustomArrayOutput() LocalinpolicyInternetServiceSrcCustomArrayOutput
+	ToLocalinpolicyInternetServiceSrcCustomArrayOutputWithContext(context.Context) LocalinpolicyInternetServiceSrcCustomArrayOutput
+}
+
+type LocalinpolicyInternetServiceSrcCustomArray []LocalinpolicyInternetServiceSrcCustomInput
+
+func (LocalinpolicyInternetServiceSrcCustomArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LocalinpolicyInternetServiceSrcCustom)(nil)).Elem()
+}
+
+func (i LocalinpolicyInternetServiceSrcCustomArray) ToLocalinpolicyInternetServiceSrcCustomArrayOutput() LocalinpolicyInternetServiceSrcCustomArrayOutput {
+	return i.ToLocalinpolicyInternetServiceSrcCustomArrayOutputWithContext(context.Background())
+}
+
+func (i LocalinpolicyInternetServiceSrcCustomArray) ToLocalinpolicyInternetServiceSrcCustomArrayOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcCustomArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LocalinpolicyInternetServiceSrcCustomArrayOutput)
+}
+
+type LocalinpolicyInternetServiceSrcCustomOutput struct{ *pulumi.OutputState }
+
+func (LocalinpolicyInternetServiceSrcCustomOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LocalinpolicyInternetServiceSrcCustom)(nil)).Elem()
+}
+
+func (o LocalinpolicyInternetServiceSrcCustomOutput) ToLocalinpolicyInternetServiceSrcCustomOutput() LocalinpolicyInternetServiceSrcCustomOutput {
+	return o
+}
+
+func (o LocalinpolicyInternetServiceSrcCustomOutput) ToLocalinpolicyInternetServiceSrcCustomOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcCustomOutput {
+	return o
+}
+
+// Custom Internet Service name.
+func (o LocalinpolicyInternetServiceSrcCustomOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LocalinpolicyInternetServiceSrcCustom) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type LocalinpolicyInternetServiceSrcCustomArrayOutput struct{ *pulumi.OutputState }
+
+func (LocalinpolicyInternetServiceSrcCustomArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LocalinpolicyInternetServiceSrcCustom)(nil)).Elem()
+}
+
+func (o LocalinpolicyInternetServiceSrcCustomArrayOutput) ToLocalinpolicyInternetServiceSrcCustomArrayOutput() LocalinpolicyInternetServiceSrcCustomArrayOutput {
+	return o
+}
+
+func (o LocalinpolicyInternetServiceSrcCustomArrayOutput) ToLocalinpolicyInternetServiceSrcCustomArrayOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcCustomArrayOutput {
+	return o
+}
+
+func (o LocalinpolicyInternetServiceSrcCustomArrayOutput) Index(i pulumi.IntInput) LocalinpolicyInternetServiceSrcCustomOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LocalinpolicyInternetServiceSrcCustom {
+		return vs[0].([]LocalinpolicyInternetServiceSrcCustom)[vs[1].(int)]
+	}).(LocalinpolicyInternetServiceSrcCustomOutput)
+}
+
+type LocalinpolicyInternetServiceSrcCustomGroup struct {
+	// Custom Internet Service group name.
+	Name *string `pulumi:"name"`
+}
+
+// LocalinpolicyInternetServiceSrcCustomGroupInput is an input type that accepts LocalinpolicyInternetServiceSrcCustomGroupArgs and LocalinpolicyInternetServiceSrcCustomGroupOutput values.
+// You can construct a concrete instance of `LocalinpolicyInternetServiceSrcCustomGroupInput` via:
+//
+//	LocalinpolicyInternetServiceSrcCustomGroupArgs{...}
+type LocalinpolicyInternetServiceSrcCustomGroupInput interface {
+	pulumi.Input
+
+	ToLocalinpolicyInternetServiceSrcCustomGroupOutput() LocalinpolicyInternetServiceSrcCustomGroupOutput
+	ToLocalinpolicyInternetServiceSrcCustomGroupOutputWithContext(context.Context) LocalinpolicyInternetServiceSrcCustomGroupOutput
+}
+
+type LocalinpolicyInternetServiceSrcCustomGroupArgs struct {
+	// Custom Internet Service group name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (LocalinpolicyInternetServiceSrcCustomGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LocalinpolicyInternetServiceSrcCustomGroup)(nil)).Elem()
+}
+
+func (i LocalinpolicyInternetServiceSrcCustomGroupArgs) ToLocalinpolicyInternetServiceSrcCustomGroupOutput() LocalinpolicyInternetServiceSrcCustomGroupOutput {
+	return i.ToLocalinpolicyInternetServiceSrcCustomGroupOutputWithContext(context.Background())
+}
+
+func (i LocalinpolicyInternetServiceSrcCustomGroupArgs) ToLocalinpolicyInternetServiceSrcCustomGroupOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcCustomGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LocalinpolicyInternetServiceSrcCustomGroupOutput)
+}
+
+// LocalinpolicyInternetServiceSrcCustomGroupArrayInput is an input type that accepts LocalinpolicyInternetServiceSrcCustomGroupArray and LocalinpolicyInternetServiceSrcCustomGroupArrayOutput values.
+// You can construct a concrete instance of `LocalinpolicyInternetServiceSrcCustomGroupArrayInput` via:
+//
+//	LocalinpolicyInternetServiceSrcCustomGroupArray{ LocalinpolicyInternetServiceSrcCustomGroupArgs{...} }
+type LocalinpolicyInternetServiceSrcCustomGroupArrayInput interface {
+	pulumi.Input
+
+	ToLocalinpolicyInternetServiceSrcCustomGroupArrayOutput() LocalinpolicyInternetServiceSrcCustomGroupArrayOutput
+	ToLocalinpolicyInternetServiceSrcCustomGroupArrayOutputWithContext(context.Context) LocalinpolicyInternetServiceSrcCustomGroupArrayOutput
+}
+
+type LocalinpolicyInternetServiceSrcCustomGroupArray []LocalinpolicyInternetServiceSrcCustomGroupInput
+
+func (LocalinpolicyInternetServiceSrcCustomGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LocalinpolicyInternetServiceSrcCustomGroup)(nil)).Elem()
+}
+
+func (i LocalinpolicyInternetServiceSrcCustomGroupArray) ToLocalinpolicyInternetServiceSrcCustomGroupArrayOutput() LocalinpolicyInternetServiceSrcCustomGroupArrayOutput {
+	return i.ToLocalinpolicyInternetServiceSrcCustomGroupArrayOutputWithContext(context.Background())
+}
+
+func (i LocalinpolicyInternetServiceSrcCustomGroupArray) ToLocalinpolicyInternetServiceSrcCustomGroupArrayOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcCustomGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LocalinpolicyInternetServiceSrcCustomGroupArrayOutput)
+}
+
+type LocalinpolicyInternetServiceSrcCustomGroupOutput struct{ *pulumi.OutputState }
+
+func (LocalinpolicyInternetServiceSrcCustomGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LocalinpolicyInternetServiceSrcCustomGroup)(nil)).Elem()
+}
+
+func (o LocalinpolicyInternetServiceSrcCustomGroupOutput) ToLocalinpolicyInternetServiceSrcCustomGroupOutput() LocalinpolicyInternetServiceSrcCustomGroupOutput {
+	return o
+}
+
+func (o LocalinpolicyInternetServiceSrcCustomGroupOutput) ToLocalinpolicyInternetServiceSrcCustomGroupOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcCustomGroupOutput {
+	return o
+}
+
+// Custom Internet Service group name.
+func (o LocalinpolicyInternetServiceSrcCustomGroupOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LocalinpolicyInternetServiceSrcCustomGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type LocalinpolicyInternetServiceSrcCustomGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (LocalinpolicyInternetServiceSrcCustomGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LocalinpolicyInternetServiceSrcCustomGroup)(nil)).Elem()
+}
+
+func (o LocalinpolicyInternetServiceSrcCustomGroupArrayOutput) ToLocalinpolicyInternetServiceSrcCustomGroupArrayOutput() LocalinpolicyInternetServiceSrcCustomGroupArrayOutput {
+	return o
+}
+
+func (o LocalinpolicyInternetServiceSrcCustomGroupArrayOutput) ToLocalinpolicyInternetServiceSrcCustomGroupArrayOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcCustomGroupArrayOutput {
+	return o
+}
+
+func (o LocalinpolicyInternetServiceSrcCustomGroupArrayOutput) Index(i pulumi.IntInput) LocalinpolicyInternetServiceSrcCustomGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LocalinpolicyInternetServiceSrcCustomGroup {
+		return vs[0].([]LocalinpolicyInternetServiceSrcCustomGroup)[vs[1].(int)]
+	}).(LocalinpolicyInternetServiceSrcCustomGroupOutput)
+}
+
+type LocalinpolicyInternetServiceSrcGroup struct {
+	// Internet Service group name.
+	Name *string `pulumi:"name"`
+}
+
+// LocalinpolicyInternetServiceSrcGroupInput is an input type that accepts LocalinpolicyInternetServiceSrcGroupArgs and LocalinpolicyInternetServiceSrcGroupOutput values.
+// You can construct a concrete instance of `LocalinpolicyInternetServiceSrcGroupInput` via:
+//
+//	LocalinpolicyInternetServiceSrcGroupArgs{...}
+type LocalinpolicyInternetServiceSrcGroupInput interface {
+	pulumi.Input
+
+	ToLocalinpolicyInternetServiceSrcGroupOutput() LocalinpolicyInternetServiceSrcGroupOutput
+	ToLocalinpolicyInternetServiceSrcGroupOutputWithContext(context.Context) LocalinpolicyInternetServiceSrcGroupOutput
+}
+
+type LocalinpolicyInternetServiceSrcGroupArgs struct {
+	// Internet Service group name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (LocalinpolicyInternetServiceSrcGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LocalinpolicyInternetServiceSrcGroup)(nil)).Elem()
+}
+
+func (i LocalinpolicyInternetServiceSrcGroupArgs) ToLocalinpolicyInternetServiceSrcGroupOutput() LocalinpolicyInternetServiceSrcGroupOutput {
+	return i.ToLocalinpolicyInternetServiceSrcGroupOutputWithContext(context.Background())
+}
+
+func (i LocalinpolicyInternetServiceSrcGroupArgs) ToLocalinpolicyInternetServiceSrcGroupOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LocalinpolicyInternetServiceSrcGroupOutput)
+}
+
+// LocalinpolicyInternetServiceSrcGroupArrayInput is an input type that accepts LocalinpolicyInternetServiceSrcGroupArray and LocalinpolicyInternetServiceSrcGroupArrayOutput values.
+// You can construct a concrete instance of `LocalinpolicyInternetServiceSrcGroupArrayInput` via:
+//
+//	LocalinpolicyInternetServiceSrcGroupArray{ LocalinpolicyInternetServiceSrcGroupArgs{...} }
+type LocalinpolicyInternetServiceSrcGroupArrayInput interface {
+	pulumi.Input
+
+	ToLocalinpolicyInternetServiceSrcGroupArrayOutput() LocalinpolicyInternetServiceSrcGroupArrayOutput
+	ToLocalinpolicyInternetServiceSrcGroupArrayOutputWithContext(context.Context) LocalinpolicyInternetServiceSrcGroupArrayOutput
+}
+
+type LocalinpolicyInternetServiceSrcGroupArray []LocalinpolicyInternetServiceSrcGroupInput
+
+func (LocalinpolicyInternetServiceSrcGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LocalinpolicyInternetServiceSrcGroup)(nil)).Elem()
+}
+
+func (i LocalinpolicyInternetServiceSrcGroupArray) ToLocalinpolicyInternetServiceSrcGroupArrayOutput() LocalinpolicyInternetServiceSrcGroupArrayOutput {
+	return i.ToLocalinpolicyInternetServiceSrcGroupArrayOutputWithContext(context.Background())
+}
+
+func (i LocalinpolicyInternetServiceSrcGroupArray) ToLocalinpolicyInternetServiceSrcGroupArrayOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LocalinpolicyInternetServiceSrcGroupArrayOutput)
+}
+
+type LocalinpolicyInternetServiceSrcGroupOutput struct{ *pulumi.OutputState }
+
+func (LocalinpolicyInternetServiceSrcGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LocalinpolicyInternetServiceSrcGroup)(nil)).Elem()
+}
+
+func (o LocalinpolicyInternetServiceSrcGroupOutput) ToLocalinpolicyInternetServiceSrcGroupOutput() LocalinpolicyInternetServiceSrcGroupOutput {
+	return o
+}
+
+func (o LocalinpolicyInternetServiceSrcGroupOutput) ToLocalinpolicyInternetServiceSrcGroupOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcGroupOutput {
+	return o
+}
+
+// Internet Service group name.
+func (o LocalinpolicyInternetServiceSrcGroupOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LocalinpolicyInternetServiceSrcGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type LocalinpolicyInternetServiceSrcGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (LocalinpolicyInternetServiceSrcGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LocalinpolicyInternetServiceSrcGroup)(nil)).Elem()
+}
+
+func (o LocalinpolicyInternetServiceSrcGroupArrayOutput) ToLocalinpolicyInternetServiceSrcGroupArrayOutput() LocalinpolicyInternetServiceSrcGroupArrayOutput {
+	return o
+}
+
+func (o LocalinpolicyInternetServiceSrcGroupArrayOutput) ToLocalinpolicyInternetServiceSrcGroupArrayOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcGroupArrayOutput {
+	return o
+}
+
+func (o LocalinpolicyInternetServiceSrcGroupArrayOutput) Index(i pulumi.IntInput) LocalinpolicyInternetServiceSrcGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LocalinpolicyInternetServiceSrcGroup {
+		return vs[0].([]LocalinpolicyInternetServiceSrcGroup)[vs[1].(int)]
+	}).(LocalinpolicyInternetServiceSrcGroupOutput)
+}
+
+type LocalinpolicyInternetServiceSrcName struct {
+	// Internet Service name.
+	Name *string `pulumi:"name"`
+}
+
+// LocalinpolicyInternetServiceSrcNameInput is an input type that accepts LocalinpolicyInternetServiceSrcNameArgs and LocalinpolicyInternetServiceSrcNameOutput values.
+// You can construct a concrete instance of `LocalinpolicyInternetServiceSrcNameInput` via:
+//
+//	LocalinpolicyInternetServiceSrcNameArgs{...}
+type LocalinpolicyInternetServiceSrcNameInput interface {
+	pulumi.Input
+
+	ToLocalinpolicyInternetServiceSrcNameOutput() LocalinpolicyInternetServiceSrcNameOutput
+	ToLocalinpolicyInternetServiceSrcNameOutputWithContext(context.Context) LocalinpolicyInternetServiceSrcNameOutput
+}
+
+type LocalinpolicyInternetServiceSrcNameArgs struct {
+	// Internet Service name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (LocalinpolicyInternetServiceSrcNameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LocalinpolicyInternetServiceSrcName)(nil)).Elem()
+}
+
+func (i LocalinpolicyInternetServiceSrcNameArgs) ToLocalinpolicyInternetServiceSrcNameOutput() LocalinpolicyInternetServiceSrcNameOutput {
+	return i.ToLocalinpolicyInternetServiceSrcNameOutputWithContext(context.Background())
+}
+
+func (i LocalinpolicyInternetServiceSrcNameArgs) ToLocalinpolicyInternetServiceSrcNameOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcNameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LocalinpolicyInternetServiceSrcNameOutput)
+}
+
+// LocalinpolicyInternetServiceSrcNameArrayInput is an input type that accepts LocalinpolicyInternetServiceSrcNameArray and LocalinpolicyInternetServiceSrcNameArrayOutput values.
+// You can construct a concrete instance of `LocalinpolicyInternetServiceSrcNameArrayInput` via:
+//
+//	LocalinpolicyInternetServiceSrcNameArray{ LocalinpolicyInternetServiceSrcNameArgs{...} }
+type LocalinpolicyInternetServiceSrcNameArrayInput interface {
+	pulumi.Input
+
+	ToLocalinpolicyInternetServiceSrcNameArrayOutput() LocalinpolicyInternetServiceSrcNameArrayOutput
+	ToLocalinpolicyInternetServiceSrcNameArrayOutputWithContext(context.Context) LocalinpolicyInternetServiceSrcNameArrayOutput
+}
+
+type LocalinpolicyInternetServiceSrcNameArray []LocalinpolicyInternetServiceSrcNameInput
+
+func (LocalinpolicyInternetServiceSrcNameArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LocalinpolicyInternetServiceSrcName)(nil)).Elem()
+}
+
+func (i LocalinpolicyInternetServiceSrcNameArray) ToLocalinpolicyInternetServiceSrcNameArrayOutput() LocalinpolicyInternetServiceSrcNameArrayOutput {
+	return i.ToLocalinpolicyInternetServiceSrcNameArrayOutputWithContext(context.Background())
+}
+
+func (i LocalinpolicyInternetServiceSrcNameArray) ToLocalinpolicyInternetServiceSrcNameArrayOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcNameArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LocalinpolicyInternetServiceSrcNameArrayOutput)
+}
+
+type LocalinpolicyInternetServiceSrcNameOutput struct{ *pulumi.OutputState }
+
+func (LocalinpolicyInternetServiceSrcNameOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LocalinpolicyInternetServiceSrcName)(nil)).Elem()
+}
+
+func (o LocalinpolicyInternetServiceSrcNameOutput) ToLocalinpolicyInternetServiceSrcNameOutput() LocalinpolicyInternetServiceSrcNameOutput {
+	return o
+}
+
+func (o LocalinpolicyInternetServiceSrcNameOutput) ToLocalinpolicyInternetServiceSrcNameOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcNameOutput {
+	return o
+}
+
+// Internet Service name.
+func (o LocalinpolicyInternetServiceSrcNameOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LocalinpolicyInternetServiceSrcName) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type LocalinpolicyInternetServiceSrcNameArrayOutput struct{ *pulumi.OutputState }
+
+func (LocalinpolicyInternetServiceSrcNameArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LocalinpolicyInternetServiceSrcName)(nil)).Elem()
+}
+
+func (o LocalinpolicyInternetServiceSrcNameArrayOutput) ToLocalinpolicyInternetServiceSrcNameArrayOutput() LocalinpolicyInternetServiceSrcNameArrayOutput {
+	return o
+}
+
+func (o LocalinpolicyInternetServiceSrcNameArrayOutput) ToLocalinpolicyInternetServiceSrcNameArrayOutputWithContext(ctx context.Context) LocalinpolicyInternetServiceSrcNameArrayOutput {
+	return o
+}
+
+func (o LocalinpolicyInternetServiceSrcNameArrayOutput) Index(i pulumi.IntInput) LocalinpolicyInternetServiceSrcNameOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LocalinpolicyInternetServiceSrcName {
+		return vs[0].([]LocalinpolicyInternetServiceSrcName)[vs[1].(int)]
+	}).(LocalinpolicyInternetServiceSrcNameOutput)
+}
+
+type LocalinpolicyIntfBlock struct {
+	// Address name.
+	Name *string `pulumi:"name"`
+}
+
+// LocalinpolicyIntfBlockInput is an input type that accepts LocalinpolicyIntfBlockArgs and LocalinpolicyIntfBlockOutput values.
+// You can construct a concrete instance of `LocalinpolicyIntfBlockInput` via:
+//
+//	LocalinpolicyIntfBlockArgs{...}
+type LocalinpolicyIntfBlockInput interface {
+	pulumi.Input
+
+	ToLocalinpolicyIntfBlockOutput() LocalinpolicyIntfBlockOutput
+	ToLocalinpolicyIntfBlockOutputWithContext(context.Context) LocalinpolicyIntfBlockOutput
+}
+
+type LocalinpolicyIntfBlockArgs struct {
+	// Address name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (LocalinpolicyIntfBlockArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LocalinpolicyIntfBlock)(nil)).Elem()
+}
+
+func (i LocalinpolicyIntfBlockArgs) ToLocalinpolicyIntfBlockOutput() LocalinpolicyIntfBlockOutput {
+	return i.ToLocalinpolicyIntfBlockOutputWithContext(context.Background())
+}
+
+func (i LocalinpolicyIntfBlockArgs) ToLocalinpolicyIntfBlockOutputWithContext(ctx context.Context) LocalinpolicyIntfBlockOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LocalinpolicyIntfBlockOutput)
+}
+
+// LocalinpolicyIntfBlockArrayInput is an input type that accepts LocalinpolicyIntfBlockArray and LocalinpolicyIntfBlockArrayOutput values.
+// You can construct a concrete instance of `LocalinpolicyIntfBlockArrayInput` via:
+//
+//	LocalinpolicyIntfBlockArray{ LocalinpolicyIntfBlockArgs{...} }
+type LocalinpolicyIntfBlockArrayInput interface {
+	pulumi.Input
+
+	ToLocalinpolicyIntfBlockArrayOutput() LocalinpolicyIntfBlockArrayOutput
+	ToLocalinpolicyIntfBlockArrayOutputWithContext(context.Context) LocalinpolicyIntfBlockArrayOutput
+}
+
+type LocalinpolicyIntfBlockArray []LocalinpolicyIntfBlockInput
+
+func (LocalinpolicyIntfBlockArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LocalinpolicyIntfBlock)(nil)).Elem()
+}
+
+func (i LocalinpolicyIntfBlockArray) ToLocalinpolicyIntfBlockArrayOutput() LocalinpolicyIntfBlockArrayOutput {
+	return i.ToLocalinpolicyIntfBlockArrayOutputWithContext(context.Background())
+}
+
+func (i LocalinpolicyIntfBlockArray) ToLocalinpolicyIntfBlockArrayOutputWithContext(ctx context.Context) LocalinpolicyIntfBlockArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LocalinpolicyIntfBlockArrayOutput)
+}
+
+type LocalinpolicyIntfBlockOutput struct{ *pulumi.OutputState }
+
+func (LocalinpolicyIntfBlockOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LocalinpolicyIntfBlock)(nil)).Elem()
+}
+
+func (o LocalinpolicyIntfBlockOutput) ToLocalinpolicyIntfBlockOutput() LocalinpolicyIntfBlockOutput {
+	return o
+}
+
+func (o LocalinpolicyIntfBlockOutput) ToLocalinpolicyIntfBlockOutputWithContext(ctx context.Context) LocalinpolicyIntfBlockOutput {
+	return o
+}
+
+// Address name.
+func (o LocalinpolicyIntfBlockOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LocalinpolicyIntfBlock) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type LocalinpolicyIntfBlockArrayOutput struct{ *pulumi.OutputState }
+
+func (LocalinpolicyIntfBlockArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LocalinpolicyIntfBlock)(nil)).Elem()
+}
+
+func (o LocalinpolicyIntfBlockArrayOutput) ToLocalinpolicyIntfBlockArrayOutput() LocalinpolicyIntfBlockArrayOutput {
+	return o
+}
+
+func (o LocalinpolicyIntfBlockArrayOutput) ToLocalinpolicyIntfBlockArrayOutputWithContext(ctx context.Context) LocalinpolicyIntfBlockArrayOutput {
+	return o
+}
+
+func (o LocalinpolicyIntfBlockArrayOutput) Index(i pulumi.IntInput) LocalinpolicyIntfBlockOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LocalinpolicyIntfBlock {
+		return vs[0].([]LocalinpolicyIntfBlock)[vs[1].(int)]
+	}).(LocalinpolicyIntfBlockOutput)
 }
 
 type LocalinpolicyService struct {
@@ -13270,6 +14228,297 @@ func (o MulticastpolicySrcaddrArrayOutput) Index(i pulumi.IntInput) Multicastpol
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MulticastpolicySrcaddr {
 		return vs[0].([]MulticastpolicySrcaddr)[vs[1].(int)]
 	}).(MulticastpolicySrcaddrOutput)
+}
+
+type OndemandsnifferHost struct {
+	// IPv4 or IPv6 host.
+	Host *string `pulumi:"host"`
+}
+
+// OndemandsnifferHostInput is an input type that accepts OndemandsnifferHostArgs and OndemandsnifferHostOutput values.
+// You can construct a concrete instance of `OndemandsnifferHostInput` via:
+//
+//	OndemandsnifferHostArgs{...}
+type OndemandsnifferHostInput interface {
+	pulumi.Input
+
+	ToOndemandsnifferHostOutput() OndemandsnifferHostOutput
+	ToOndemandsnifferHostOutputWithContext(context.Context) OndemandsnifferHostOutput
+}
+
+type OndemandsnifferHostArgs struct {
+	// IPv4 or IPv6 host.
+	Host pulumi.StringPtrInput `pulumi:"host"`
+}
+
+func (OndemandsnifferHostArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OndemandsnifferHost)(nil)).Elem()
+}
+
+func (i OndemandsnifferHostArgs) ToOndemandsnifferHostOutput() OndemandsnifferHostOutput {
+	return i.ToOndemandsnifferHostOutputWithContext(context.Background())
+}
+
+func (i OndemandsnifferHostArgs) ToOndemandsnifferHostOutputWithContext(ctx context.Context) OndemandsnifferHostOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OndemandsnifferHostOutput)
+}
+
+// OndemandsnifferHostArrayInput is an input type that accepts OndemandsnifferHostArray and OndemandsnifferHostArrayOutput values.
+// You can construct a concrete instance of `OndemandsnifferHostArrayInput` via:
+//
+//	OndemandsnifferHostArray{ OndemandsnifferHostArgs{...} }
+type OndemandsnifferHostArrayInput interface {
+	pulumi.Input
+
+	ToOndemandsnifferHostArrayOutput() OndemandsnifferHostArrayOutput
+	ToOndemandsnifferHostArrayOutputWithContext(context.Context) OndemandsnifferHostArrayOutput
+}
+
+type OndemandsnifferHostArray []OndemandsnifferHostInput
+
+func (OndemandsnifferHostArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OndemandsnifferHost)(nil)).Elem()
+}
+
+func (i OndemandsnifferHostArray) ToOndemandsnifferHostArrayOutput() OndemandsnifferHostArrayOutput {
+	return i.ToOndemandsnifferHostArrayOutputWithContext(context.Background())
+}
+
+func (i OndemandsnifferHostArray) ToOndemandsnifferHostArrayOutputWithContext(ctx context.Context) OndemandsnifferHostArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OndemandsnifferHostArrayOutput)
+}
+
+type OndemandsnifferHostOutput struct{ *pulumi.OutputState }
+
+func (OndemandsnifferHostOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OndemandsnifferHost)(nil)).Elem()
+}
+
+func (o OndemandsnifferHostOutput) ToOndemandsnifferHostOutput() OndemandsnifferHostOutput {
+	return o
+}
+
+func (o OndemandsnifferHostOutput) ToOndemandsnifferHostOutputWithContext(ctx context.Context) OndemandsnifferHostOutput {
+	return o
+}
+
+// IPv4 or IPv6 host.
+func (o OndemandsnifferHostOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OndemandsnifferHost) *string { return v.Host }).(pulumi.StringPtrOutput)
+}
+
+type OndemandsnifferHostArrayOutput struct{ *pulumi.OutputState }
+
+func (OndemandsnifferHostArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OndemandsnifferHost)(nil)).Elem()
+}
+
+func (o OndemandsnifferHostArrayOutput) ToOndemandsnifferHostArrayOutput() OndemandsnifferHostArrayOutput {
+	return o
+}
+
+func (o OndemandsnifferHostArrayOutput) ToOndemandsnifferHostArrayOutputWithContext(ctx context.Context) OndemandsnifferHostArrayOutput {
+	return o
+}
+
+func (o OndemandsnifferHostArrayOutput) Index(i pulumi.IntInput) OndemandsnifferHostOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OndemandsnifferHost {
+		return vs[0].([]OndemandsnifferHost)[vs[1].(int)]
+	}).(OndemandsnifferHostOutput)
+}
+
+type OndemandsnifferPort struct {
+	// Port to filter in this traffic sniffer.
+	Port *int `pulumi:"port"`
+}
+
+// OndemandsnifferPortInput is an input type that accepts OndemandsnifferPortArgs and OndemandsnifferPortOutput values.
+// You can construct a concrete instance of `OndemandsnifferPortInput` via:
+//
+//	OndemandsnifferPortArgs{...}
+type OndemandsnifferPortInput interface {
+	pulumi.Input
+
+	ToOndemandsnifferPortOutput() OndemandsnifferPortOutput
+	ToOndemandsnifferPortOutputWithContext(context.Context) OndemandsnifferPortOutput
+}
+
+type OndemandsnifferPortArgs struct {
+	// Port to filter in this traffic sniffer.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+}
+
+func (OndemandsnifferPortArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OndemandsnifferPort)(nil)).Elem()
+}
+
+func (i OndemandsnifferPortArgs) ToOndemandsnifferPortOutput() OndemandsnifferPortOutput {
+	return i.ToOndemandsnifferPortOutputWithContext(context.Background())
+}
+
+func (i OndemandsnifferPortArgs) ToOndemandsnifferPortOutputWithContext(ctx context.Context) OndemandsnifferPortOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OndemandsnifferPortOutput)
+}
+
+// OndemandsnifferPortArrayInput is an input type that accepts OndemandsnifferPortArray and OndemandsnifferPortArrayOutput values.
+// You can construct a concrete instance of `OndemandsnifferPortArrayInput` via:
+//
+//	OndemandsnifferPortArray{ OndemandsnifferPortArgs{...} }
+type OndemandsnifferPortArrayInput interface {
+	pulumi.Input
+
+	ToOndemandsnifferPortArrayOutput() OndemandsnifferPortArrayOutput
+	ToOndemandsnifferPortArrayOutputWithContext(context.Context) OndemandsnifferPortArrayOutput
+}
+
+type OndemandsnifferPortArray []OndemandsnifferPortInput
+
+func (OndemandsnifferPortArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OndemandsnifferPort)(nil)).Elem()
+}
+
+func (i OndemandsnifferPortArray) ToOndemandsnifferPortArrayOutput() OndemandsnifferPortArrayOutput {
+	return i.ToOndemandsnifferPortArrayOutputWithContext(context.Background())
+}
+
+func (i OndemandsnifferPortArray) ToOndemandsnifferPortArrayOutputWithContext(ctx context.Context) OndemandsnifferPortArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OndemandsnifferPortArrayOutput)
+}
+
+type OndemandsnifferPortOutput struct{ *pulumi.OutputState }
+
+func (OndemandsnifferPortOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OndemandsnifferPort)(nil)).Elem()
+}
+
+func (o OndemandsnifferPortOutput) ToOndemandsnifferPortOutput() OndemandsnifferPortOutput {
+	return o
+}
+
+func (o OndemandsnifferPortOutput) ToOndemandsnifferPortOutputWithContext(ctx context.Context) OndemandsnifferPortOutput {
+	return o
+}
+
+// Port to filter in this traffic sniffer.
+func (o OndemandsnifferPortOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v OndemandsnifferPort) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+type OndemandsnifferPortArrayOutput struct{ *pulumi.OutputState }
+
+func (OndemandsnifferPortArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OndemandsnifferPort)(nil)).Elem()
+}
+
+func (o OndemandsnifferPortArrayOutput) ToOndemandsnifferPortArrayOutput() OndemandsnifferPortArrayOutput {
+	return o
+}
+
+func (o OndemandsnifferPortArrayOutput) ToOndemandsnifferPortArrayOutputWithContext(ctx context.Context) OndemandsnifferPortArrayOutput {
+	return o
+}
+
+func (o OndemandsnifferPortArrayOutput) Index(i pulumi.IntInput) OndemandsnifferPortOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OndemandsnifferPort {
+		return vs[0].([]OndemandsnifferPort)[vs[1].(int)]
+	}).(OndemandsnifferPortOutput)
+}
+
+type OndemandsnifferProtocol struct {
+	// Integer value for the protocol type as defined by IANA (0 - 255).
+	Protocol *int `pulumi:"protocol"`
+}
+
+// OndemandsnifferProtocolInput is an input type that accepts OndemandsnifferProtocolArgs and OndemandsnifferProtocolOutput values.
+// You can construct a concrete instance of `OndemandsnifferProtocolInput` via:
+//
+//	OndemandsnifferProtocolArgs{...}
+type OndemandsnifferProtocolInput interface {
+	pulumi.Input
+
+	ToOndemandsnifferProtocolOutput() OndemandsnifferProtocolOutput
+	ToOndemandsnifferProtocolOutputWithContext(context.Context) OndemandsnifferProtocolOutput
+}
+
+type OndemandsnifferProtocolArgs struct {
+	// Integer value for the protocol type as defined by IANA (0 - 255).
+	Protocol pulumi.IntPtrInput `pulumi:"protocol"`
+}
+
+func (OndemandsnifferProtocolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OndemandsnifferProtocol)(nil)).Elem()
+}
+
+func (i OndemandsnifferProtocolArgs) ToOndemandsnifferProtocolOutput() OndemandsnifferProtocolOutput {
+	return i.ToOndemandsnifferProtocolOutputWithContext(context.Background())
+}
+
+func (i OndemandsnifferProtocolArgs) ToOndemandsnifferProtocolOutputWithContext(ctx context.Context) OndemandsnifferProtocolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OndemandsnifferProtocolOutput)
+}
+
+// OndemandsnifferProtocolArrayInput is an input type that accepts OndemandsnifferProtocolArray and OndemandsnifferProtocolArrayOutput values.
+// You can construct a concrete instance of `OndemandsnifferProtocolArrayInput` via:
+//
+//	OndemandsnifferProtocolArray{ OndemandsnifferProtocolArgs{...} }
+type OndemandsnifferProtocolArrayInput interface {
+	pulumi.Input
+
+	ToOndemandsnifferProtocolArrayOutput() OndemandsnifferProtocolArrayOutput
+	ToOndemandsnifferProtocolArrayOutputWithContext(context.Context) OndemandsnifferProtocolArrayOutput
+}
+
+type OndemandsnifferProtocolArray []OndemandsnifferProtocolInput
+
+func (OndemandsnifferProtocolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OndemandsnifferProtocol)(nil)).Elem()
+}
+
+func (i OndemandsnifferProtocolArray) ToOndemandsnifferProtocolArrayOutput() OndemandsnifferProtocolArrayOutput {
+	return i.ToOndemandsnifferProtocolArrayOutputWithContext(context.Background())
+}
+
+func (i OndemandsnifferProtocolArray) ToOndemandsnifferProtocolArrayOutputWithContext(ctx context.Context) OndemandsnifferProtocolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OndemandsnifferProtocolArrayOutput)
+}
+
+type OndemandsnifferProtocolOutput struct{ *pulumi.OutputState }
+
+func (OndemandsnifferProtocolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OndemandsnifferProtocol)(nil)).Elem()
+}
+
+func (o OndemandsnifferProtocolOutput) ToOndemandsnifferProtocolOutput() OndemandsnifferProtocolOutput {
+	return o
+}
+
+func (o OndemandsnifferProtocolOutput) ToOndemandsnifferProtocolOutputWithContext(ctx context.Context) OndemandsnifferProtocolOutput {
+	return o
+}
+
+// Integer value for the protocol type as defined by IANA (0 - 255).
+func (o OndemandsnifferProtocolOutput) Protocol() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v OndemandsnifferProtocol) *int { return v.Protocol }).(pulumi.IntPtrOutput)
+}
+
+type OndemandsnifferProtocolArrayOutput struct{ *pulumi.OutputState }
+
+func (OndemandsnifferProtocolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OndemandsnifferProtocol)(nil)).Elem()
+}
+
+func (o OndemandsnifferProtocolArrayOutput) ToOndemandsnifferProtocolArrayOutput() OndemandsnifferProtocolArrayOutput {
+	return o
+}
+
+func (o OndemandsnifferProtocolArrayOutput) ToOndemandsnifferProtocolArrayOutputWithContext(ctx context.Context) OndemandsnifferProtocolArrayOutput {
+	return o
+}
+
+func (o OndemandsnifferProtocolArrayOutput) Index(i pulumi.IntInput) OndemandsnifferProtocolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OndemandsnifferProtocol {
+		return vs[0].([]OndemandsnifferProtocol)[vs[1].(int)]
+	}).(OndemandsnifferProtocolOutput)
 }
 
 type Policy46Dstaddr struct {
@@ -33186,7 +34435,7 @@ type SnifferAnomaly struct {
 	QuarantineLog *string `pulumi:"quarantineLog"`
 	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
 	Status *string `pulumi:"status"`
-	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 	Threshold *int `pulumi:"threshold"`
 	// Number of detected instances (packets per second or concurrent session number) which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
 	Thresholddefault *int `pulumi:"thresholddefault"`
@@ -33218,7 +34467,7 @@ type SnifferAnomalyArgs struct {
 	QuarantineLog pulumi.StringPtrInput `pulumi:"quarantineLog"`
 	// Enable/disable this anomaly. Valid values: `disable`, `enable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+	// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
 	// Number of detected instances (packets per second or concurrent session number) which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
 	Thresholddefault pulumi.IntPtrInput `pulumi:"thresholddefault"`
@@ -33310,7 +34559,7 @@ func (o SnifferAnomalyOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SnifferAnomaly) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
 func (o SnifferAnomalyOutput) Threshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SnifferAnomaly) *int { return v.Threshold }).(pulumi.IntPtrOutput)
 }
@@ -33802,6 +35051,112 @@ func (o SslsshprofileDotPtrOutput) UntrustedServerCert() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+type SslsshprofileEchOuterSni struct {
+	// ClientHelloOuter SNI name.
+	Name *string `pulumi:"name"`
+	// ClientHelloOuter SNI to be blocked.
+	Sni *string `pulumi:"sni"`
+}
+
+// SslsshprofileEchOuterSniInput is an input type that accepts SslsshprofileEchOuterSniArgs and SslsshprofileEchOuterSniOutput values.
+// You can construct a concrete instance of `SslsshprofileEchOuterSniInput` via:
+//
+//	SslsshprofileEchOuterSniArgs{...}
+type SslsshprofileEchOuterSniInput interface {
+	pulumi.Input
+
+	ToSslsshprofileEchOuterSniOutput() SslsshprofileEchOuterSniOutput
+	ToSslsshprofileEchOuterSniOutputWithContext(context.Context) SslsshprofileEchOuterSniOutput
+}
+
+type SslsshprofileEchOuterSniArgs struct {
+	// ClientHelloOuter SNI name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// ClientHelloOuter SNI to be blocked.
+	Sni pulumi.StringPtrInput `pulumi:"sni"`
+}
+
+func (SslsshprofileEchOuterSniArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslsshprofileEchOuterSni)(nil)).Elem()
+}
+
+func (i SslsshprofileEchOuterSniArgs) ToSslsshprofileEchOuterSniOutput() SslsshprofileEchOuterSniOutput {
+	return i.ToSslsshprofileEchOuterSniOutputWithContext(context.Background())
+}
+
+func (i SslsshprofileEchOuterSniArgs) ToSslsshprofileEchOuterSniOutputWithContext(ctx context.Context) SslsshprofileEchOuterSniOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslsshprofileEchOuterSniOutput)
+}
+
+// SslsshprofileEchOuterSniArrayInput is an input type that accepts SslsshprofileEchOuterSniArray and SslsshprofileEchOuterSniArrayOutput values.
+// You can construct a concrete instance of `SslsshprofileEchOuterSniArrayInput` via:
+//
+//	SslsshprofileEchOuterSniArray{ SslsshprofileEchOuterSniArgs{...} }
+type SslsshprofileEchOuterSniArrayInput interface {
+	pulumi.Input
+
+	ToSslsshprofileEchOuterSniArrayOutput() SslsshprofileEchOuterSniArrayOutput
+	ToSslsshprofileEchOuterSniArrayOutputWithContext(context.Context) SslsshprofileEchOuterSniArrayOutput
+}
+
+type SslsshprofileEchOuterSniArray []SslsshprofileEchOuterSniInput
+
+func (SslsshprofileEchOuterSniArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslsshprofileEchOuterSni)(nil)).Elem()
+}
+
+func (i SslsshprofileEchOuterSniArray) ToSslsshprofileEchOuterSniArrayOutput() SslsshprofileEchOuterSniArrayOutput {
+	return i.ToSslsshprofileEchOuterSniArrayOutputWithContext(context.Background())
+}
+
+func (i SslsshprofileEchOuterSniArray) ToSslsshprofileEchOuterSniArrayOutputWithContext(ctx context.Context) SslsshprofileEchOuterSniArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslsshprofileEchOuterSniArrayOutput)
+}
+
+type SslsshprofileEchOuterSniOutput struct{ *pulumi.OutputState }
+
+func (SslsshprofileEchOuterSniOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslsshprofileEchOuterSni)(nil)).Elem()
+}
+
+func (o SslsshprofileEchOuterSniOutput) ToSslsshprofileEchOuterSniOutput() SslsshprofileEchOuterSniOutput {
+	return o
+}
+
+func (o SslsshprofileEchOuterSniOutput) ToSslsshprofileEchOuterSniOutputWithContext(ctx context.Context) SslsshprofileEchOuterSniOutput {
+	return o
+}
+
+// ClientHelloOuter SNI name.
+func (o SslsshprofileEchOuterSniOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SslsshprofileEchOuterSni) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// ClientHelloOuter SNI to be blocked.
+func (o SslsshprofileEchOuterSniOutput) Sni() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SslsshprofileEchOuterSni) *string { return v.Sni }).(pulumi.StringPtrOutput)
+}
+
+type SslsshprofileEchOuterSniArrayOutput struct{ *pulumi.OutputState }
+
+func (SslsshprofileEchOuterSniArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslsshprofileEchOuterSni)(nil)).Elem()
+}
+
+func (o SslsshprofileEchOuterSniArrayOutput) ToSslsshprofileEchOuterSniArrayOutput() SslsshprofileEchOuterSniArrayOutput {
+	return o
+}
+
+func (o SslsshprofileEchOuterSniArrayOutput) ToSslsshprofileEchOuterSniArrayOutputWithContext(ctx context.Context) SslsshprofileEchOuterSniArrayOutput {
+	return o
+}
+
+func (o SslsshprofileEchOuterSniArrayOutput) Index(i pulumi.IntInput) SslsshprofileEchOuterSniOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SslsshprofileEchOuterSni {
+		return vs[0].([]SslsshprofileEchOuterSni)[vs[1].(int)]
+	}).(SslsshprofileEchOuterSniOutput)
+}
+
 type SslsshprofileFtps struct {
 	// Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 	CertValidationFailure *string `pulumi:"certValidationFailure"`
@@ -34235,6 +35590,8 @@ type SslsshprofileHttps struct {
 	ClientCertRequest *string `pulumi:"clientCertRequest"`
 	// Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
 	ClientCertificate *string `pulumi:"clientCertificate"`
+	// Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+	EncryptedClientHello *string `pulumi:"encryptedClientHello"`
 	// Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
 	ExpiredServerCert *string `pulumi:"expiredServerCert"`
 	// Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
@@ -34287,6 +35644,8 @@ type SslsshprofileHttpsArgs struct {
 	ClientCertRequest pulumi.StringPtrInput `pulumi:"clientCertRequest"`
 	// Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
 	ClientCertificate pulumi.StringPtrInput `pulumi:"clientCertificate"`
+	// Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+	EncryptedClientHello pulumi.StringPtrInput `pulumi:"encryptedClientHello"`
 	// Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
 	ExpiredServerCert pulumi.StringPtrInput `pulumi:"expiredServerCert"`
 	// Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
@@ -34417,6 +35776,11 @@ func (o SslsshprofileHttpsOutput) ClientCertRequest() pulumi.StringPtrOutput {
 // Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
 func (o SslsshprofileHttpsOutput) ClientCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofileHttps) *string { return v.ClientCertificate }).(pulumi.StringPtrOutput)
+}
+
+// Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+func (o SslsshprofileHttpsOutput) EncryptedClientHello() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SslsshprofileHttps) *string { return v.EncryptedClientHello }).(pulumi.StringPtrOutput)
 }
 
 // Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
@@ -34560,6 +35924,16 @@ func (o SslsshprofileHttpsPtrOutput) ClientCertificate() pulumi.StringPtrOutput 
 			return nil
 		}
 		return v.ClientCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
+// Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+func (o SslsshprofileHttpsPtrOutput) EncryptedClientHello() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SslsshprofileHttps) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EncryptedClientHello
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -36186,6 +37560,8 @@ type SslsshprofileSsl struct {
 	ClientCertRequest *string `pulumi:"clientCertRequest"`
 	// Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
 	ClientCertificate *string `pulumi:"clientCertificate"`
+	// Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+	EncryptedClientHello *string `pulumi:"encryptedClientHello"`
 	// Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
 	ExpiredServerCert *string `pulumi:"expiredServerCert"`
 	// Level of SSL inspection. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
@@ -36232,6 +37608,8 @@ type SslsshprofileSslArgs struct {
 	ClientCertRequest pulumi.StringPtrInput `pulumi:"clientCertRequest"`
 	// Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
 	ClientCertificate pulumi.StringPtrInput `pulumi:"clientCertificate"`
+	// Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+	EncryptedClientHello pulumi.StringPtrInput `pulumi:"encryptedClientHello"`
 	// Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
 	ExpiredServerCert pulumi.StringPtrInput `pulumi:"expiredServerCert"`
 	// Level of SSL inspection. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
@@ -36356,6 +37734,11 @@ func (o SslsshprofileSslOutput) ClientCertRequest() pulumi.StringPtrOutput {
 // Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
 func (o SslsshprofileSslOutput) ClientCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofileSsl) *string { return v.ClientCertificate }).(pulumi.StringPtrOutput)
+}
+
+// Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+func (o SslsshprofileSslOutput) EncryptedClientHello() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SslsshprofileSsl) *string { return v.EncryptedClientHello }).(pulumi.StringPtrOutput)
 }
 
 // Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
@@ -36484,6 +37867,16 @@ func (o SslsshprofileSslPtrOutput) ClientCertificate() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.ClientCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
+// Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+func (o SslsshprofileSslPtrOutput) EncryptedClientHello() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SslsshprofileSsl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EncryptedClientHello
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -58149,685 +59542,6 @@ func (o GetProxypolicyInternetServiceNameArrayOutput) Index(i pulumi.IntInput) G
 	}).(GetProxypolicyInternetServiceNameOutput)
 }
 
-type GetProxypolicyPoolname struct {
-	// Group name.
-	Name string `pulumi:"name"`
-}
-
-// GetProxypolicyPoolnameInput is an input type that accepts GetProxypolicyPoolnameArgs and GetProxypolicyPoolnameOutput values.
-// You can construct a concrete instance of `GetProxypolicyPoolnameInput` via:
-//
-//	GetProxypolicyPoolnameArgs{...}
-type GetProxypolicyPoolnameInput interface {
-	pulumi.Input
-
-	ToGetProxypolicyPoolnameOutput() GetProxypolicyPoolnameOutput
-	ToGetProxypolicyPoolnameOutputWithContext(context.Context) GetProxypolicyPoolnameOutput
-}
-
-type GetProxypolicyPoolnameArgs struct {
-	// Group name.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetProxypolicyPoolnameArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicyPoolname)(nil)).Elem()
-}
-
-func (i GetProxypolicyPoolnameArgs) ToGetProxypolicyPoolnameOutput() GetProxypolicyPoolnameOutput {
-	return i.ToGetProxypolicyPoolnameOutputWithContext(context.Background())
-}
-
-func (i GetProxypolicyPoolnameArgs) ToGetProxypolicyPoolnameOutputWithContext(ctx context.Context) GetProxypolicyPoolnameOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyPoolnameOutput)
-}
-
-// GetProxypolicyPoolnameArrayInput is an input type that accepts GetProxypolicyPoolnameArray and GetProxypolicyPoolnameArrayOutput values.
-// You can construct a concrete instance of `GetProxypolicyPoolnameArrayInput` via:
-//
-//	GetProxypolicyPoolnameArray{ GetProxypolicyPoolnameArgs{...} }
-type GetProxypolicyPoolnameArrayInput interface {
-	pulumi.Input
-
-	ToGetProxypolicyPoolnameArrayOutput() GetProxypolicyPoolnameArrayOutput
-	ToGetProxypolicyPoolnameArrayOutputWithContext(context.Context) GetProxypolicyPoolnameArrayOutput
-}
-
-type GetProxypolicyPoolnameArray []GetProxypolicyPoolnameInput
-
-func (GetProxypolicyPoolnameArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicyPoolname)(nil)).Elem()
-}
-
-func (i GetProxypolicyPoolnameArray) ToGetProxypolicyPoolnameArrayOutput() GetProxypolicyPoolnameArrayOutput {
-	return i.ToGetProxypolicyPoolnameArrayOutputWithContext(context.Background())
-}
-
-func (i GetProxypolicyPoolnameArray) ToGetProxypolicyPoolnameArrayOutputWithContext(ctx context.Context) GetProxypolicyPoolnameArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyPoolnameArrayOutput)
-}
-
-type GetProxypolicyPoolnameOutput struct{ *pulumi.OutputState }
-
-func (GetProxypolicyPoolnameOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicyPoolname)(nil)).Elem()
-}
-
-func (o GetProxypolicyPoolnameOutput) ToGetProxypolicyPoolnameOutput() GetProxypolicyPoolnameOutput {
-	return o
-}
-
-func (o GetProxypolicyPoolnameOutput) ToGetProxypolicyPoolnameOutputWithContext(ctx context.Context) GetProxypolicyPoolnameOutput {
-	return o
-}
-
-// Group name.
-func (o GetProxypolicyPoolnameOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetProxypolicyPoolname) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetProxypolicyPoolnameArrayOutput struct{ *pulumi.OutputState }
-
-func (GetProxypolicyPoolnameArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicyPoolname)(nil)).Elem()
-}
-
-func (o GetProxypolicyPoolnameArrayOutput) ToGetProxypolicyPoolnameArrayOutput() GetProxypolicyPoolnameArrayOutput {
-	return o
-}
-
-func (o GetProxypolicyPoolnameArrayOutput) ToGetProxypolicyPoolnameArrayOutputWithContext(ctx context.Context) GetProxypolicyPoolnameArrayOutput {
-	return o
-}
-
-func (o GetProxypolicyPoolnameArrayOutput) Index(i pulumi.IntInput) GetProxypolicyPoolnameOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProxypolicyPoolname {
-		return vs[0].([]GetProxypolicyPoolname)[vs[1].(int)]
-	}).(GetProxypolicyPoolnameOutput)
-}
-
-type GetProxypolicyService struct {
-	// Group name.
-	Name string `pulumi:"name"`
-}
-
-// GetProxypolicyServiceInput is an input type that accepts GetProxypolicyServiceArgs and GetProxypolicyServiceOutput values.
-// You can construct a concrete instance of `GetProxypolicyServiceInput` via:
-//
-//	GetProxypolicyServiceArgs{...}
-type GetProxypolicyServiceInput interface {
-	pulumi.Input
-
-	ToGetProxypolicyServiceOutput() GetProxypolicyServiceOutput
-	ToGetProxypolicyServiceOutputWithContext(context.Context) GetProxypolicyServiceOutput
-}
-
-type GetProxypolicyServiceArgs struct {
-	// Group name.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetProxypolicyServiceArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicyService)(nil)).Elem()
-}
-
-func (i GetProxypolicyServiceArgs) ToGetProxypolicyServiceOutput() GetProxypolicyServiceOutput {
-	return i.ToGetProxypolicyServiceOutputWithContext(context.Background())
-}
-
-func (i GetProxypolicyServiceArgs) ToGetProxypolicyServiceOutputWithContext(ctx context.Context) GetProxypolicyServiceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyServiceOutput)
-}
-
-// GetProxypolicyServiceArrayInput is an input type that accepts GetProxypolicyServiceArray and GetProxypolicyServiceArrayOutput values.
-// You can construct a concrete instance of `GetProxypolicyServiceArrayInput` via:
-//
-//	GetProxypolicyServiceArray{ GetProxypolicyServiceArgs{...} }
-type GetProxypolicyServiceArrayInput interface {
-	pulumi.Input
-
-	ToGetProxypolicyServiceArrayOutput() GetProxypolicyServiceArrayOutput
-	ToGetProxypolicyServiceArrayOutputWithContext(context.Context) GetProxypolicyServiceArrayOutput
-}
-
-type GetProxypolicyServiceArray []GetProxypolicyServiceInput
-
-func (GetProxypolicyServiceArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicyService)(nil)).Elem()
-}
-
-func (i GetProxypolicyServiceArray) ToGetProxypolicyServiceArrayOutput() GetProxypolicyServiceArrayOutput {
-	return i.ToGetProxypolicyServiceArrayOutputWithContext(context.Background())
-}
-
-func (i GetProxypolicyServiceArray) ToGetProxypolicyServiceArrayOutputWithContext(ctx context.Context) GetProxypolicyServiceArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyServiceArrayOutput)
-}
-
-type GetProxypolicyServiceOutput struct{ *pulumi.OutputState }
-
-func (GetProxypolicyServiceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicyService)(nil)).Elem()
-}
-
-func (o GetProxypolicyServiceOutput) ToGetProxypolicyServiceOutput() GetProxypolicyServiceOutput {
-	return o
-}
-
-func (o GetProxypolicyServiceOutput) ToGetProxypolicyServiceOutputWithContext(ctx context.Context) GetProxypolicyServiceOutput {
-	return o
-}
-
-// Group name.
-func (o GetProxypolicyServiceOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetProxypolicyService) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetProxypolicyServiceArrayOutput struct{ *pulumi.OutputState }
-
-func (GetProxypolicyServiceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicyService)(nil)).Elem()
-}
-
-func (o GetProxypolicyServiceArrayOutput) ToGetProxypolicyServiceArrayOutput() GetProxypolicyServiceArrayOutput {
-	return o
-}
-
-func (o GetProxypolicyServiceArrayOutput) ToGetProxypolicyServiceArrayOutputWithContext(ctx context.Context) GetProxypolicyServiceArrayOutput {
-	return o
-}
-
-func (o GetProxypolicyServiceArrayOutput) Index(i pulumi.IntInput) GetProxypolicyServiceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProxypolicyService {
-		return vs[0].([]GetProxypolicyService)[vs[1].(int)]
-	}).(GetProxypolicyServiceOutput)
-}
-
-type GetProxypolicySrcaddr6 struct {
-	// Group name.
-	Name string `pulumi:"name"`
-}
-
-// GetProxypolicySrcaddr6Input is an input type that accepts GetProxypolicySrcaddr6Args and GetProxypolicySrcaddr6Output values.
-// You can construct a concrete instance of `GetProxypolicySrcaddr6Input` via:
-//
-//	GetProxypolicySrcaddr6Args{...}
-type GetProxypolicySrcaddr6Input interface {
-	pulumi.Input
-
-	ToGetProxypolicySrcaddr6Output() GetProxypolicySrcaddr6Output
-	ToGetProxypolicySrcaddr6OutputWithContext(context.Context) GetProxypolicySrcaddr6Output
-}
-
-type GetProxypolicySrcaddr6Args struct {
-	// Group name.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetProxypolicySrcaddr6Args) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicySrcaddr6)(nil)).Elem()
-}
-
-func (i GetProxypolicySrcaddr6Args) ToGetProxypolicySrcaddr6Output() GetProxypolicySrcaddr6Output {
-	return i.ToGetProxypolicySrcaddr6OutputWithContext(context.Background())
-}
-
-func (i GetProxypolicySrcaddr6Args) ToGetProxypolicySrcaddr6OutputWithContext(ctx context.Context) GetProxypolicySrcaddr6Output {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicySrcaddr6Output)
-}
-
-// GetProxypolicySrcaddr6ArrayInput is an input type that accepts GetProxypolicySrcaddr6Array and GetProxypolicySrcaddr6ArrayOutput values.
-// You can construct a concrete instance of `GetProxypolicySrcaddr6ArrayInput` via:
-//
-//	GetProxypolicySrcaddr6Array{ GetProxypolicySrcaddr6Args{...} }
-type GetProxypolicySrcaddr6ArrayInput interface {
-	pulumi.Input
-
-	ToGetProxypolicySrcaddr6ArrayOutput() GetProxypolicySrcaddr6ArrayOutput
-	ToGetProxypolicySrcaddr6ArrayOutputWithContext(context.Context) GetProxypolicySrcaddr6ArrayOutput
-}
-
-type GetProxypolicySrcaddr6Array []GetProxypolicySrcaddr6Input
-
-func (GetProxypolicySrcaddr6Array) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicySrcaddr6)(nil)).Elem()
-}
-
-func (i GetProxypolicySrcaddr6Array) ToGetProxypolicySrcaddr6ArrayOutput() GetProxypolicySrcaddr6ArrayOutput {
-	return i.ToGetProxypolicySrcaddr6ArrayOutputWithContext(context.Background())
-}
-
-func (i GetProxypolicySrcaddr6Array) ToGetProxypolicySrcaddr6ArrayOutputWithContext(ctx context.Context) GetProxypolicySrcaddr6ArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicySrcaddr6ArrayOutput)
-}
-
-type GetProxypolicySrcaddr6Output struct{ *pulumi.OutputState }
-
-func (GetProxypolicySrcaddr6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicySrcaddr6)(nil)).Elem()
-}
-
-func (o GetProxypolicySrcaddr6Output) ToGetProxypolicySrcaddr6Output() GetProxypolicySrcaddr6Output {
-	return o
-}
-
-func (o GetProxypolicySrcaddr6Output) ToGetProxypolicySrcaddr6OutputWithContext(ctx context.Context) GetProxypolicySrcaddr6Output {
-	return o
-}
-
-// Group name.
-func (o GetProxypolicySrcaddr6Output) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetProxypolicySrcaddr6) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetProxypolicySrcaddr6ArrayOutput struct{ *pulumi.OutputState }
-
-func (GetProxypolicySrcaddr6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicySrcaddr6)(nil)).Elem()
-}
-
-func (o GetProxypolicySrcaddr6ArrayOutput) ToGetProxypolicySrcaddr6ArrayOutput() GetProxypolicySrcaddr6ArrayOutput {
-	return o
-}
-
-func (o GetProxypolicySrcaddr6ArrayOutput) ToGetProxypolicySrcaddr6ArrayOutputWithContext(ctx context.Context) GetProxypolicySrcaddr6ArrayOutput {
-	return o
-}
-
-func (o GetProxypolicySrcaddr6ArrayOutput) Index(i pulumi.IntInput) GetProxypolicySrcaddr6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProxypolicySrcaddr6 {
-		return vs[0].([]GetProxypolicySrcaddr6)[vs[1].(int)]
-	}).(GetProxypolicySrcaddr6Output)
-}
-
-type GetProxypolicySrcaddr struct {
-	// Group name.
-	Name string `pulumi:"name"`
-}
-
-// GetProxypolicySrcaddrInput is an input type that accepts GetProxypolicySrcaddrArgs and GetProxypolicySrcaddrOutput values.
-// You can construct a concrete instance of `GetProxypolicySrcaddrInput` via:
-//
-//	GetProxypolicySrcaddrArgs{...}
-type GetProxypolicySrcaddrInput interface {
-	pulumi.Input
-
-	ToGetProxypolicySrcaddrOutput() GetProxypolicySrcaddrOutput
-	ToGetProxypolicySrcaddrOutputWithContext(context.Context) GetProxypolicySrcaddrOutput
-}
-
-type GetProxypolicySrcaddrArgs struct {
-	// Group name.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetProxypolicySrcaddrArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicySrcaddr)(nil)).Elem()
-}
-
-func (i GetProxypolicySrcaddrArgs) ToGetProxypolicySrcaddrOutput() GetProxypolicySrcaddrOutput {
-	return i.ToGetProxypolicySrcaddrOutputWithContext(context.Background())
-}
-
-func (i GetProxypolicySrcaddrArgs) ToGetProxypolicySrcaddrOutputWithContext(ctx context.Context) GetProxypolicySrcaddrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicySrcaddrOutput)
-}
-
-// GetProxypolicySrcaddrArrayInput is an input type that accepts GetProxypolicySrcaddrArray and GetProxypolicySrcaddrArrayOutput values.
-// You can construct a concrete instance of `GetProxypolicySrcaddrArrayInput` via:
-//
-//	GetProxypolicySrcaddrArray{ GetProxypolicySrcaddrArgs{...} }
-type GetProxypolicySrcaddrArrayInput interface {
-	pulumi.Input
-
-	ToGetProxypolicySrcaddrArrayOutput() GetProxypolicySrcaddrArrayOutput
-	ToGetProxypolicySrcaddrArrayOutputWithContext(context.Context) GetProxypolicySrcaddrArrayOutput
-}
-
-type GetProxypolicySrcaddrArray []GetProxypolicySrcaddrInput
-
-func (GetProxypolicySrcaddrArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicySrcaddr)(nil)).Elem()
-}
-
-func (i GetProxypolicySrcaddrArray) ToGetProxypolicySrcaddrArrayOutput() GetProxypolicySrcaddrArrayOutput {
-	return i.ToGetProxypolicySrcaddrArrayOutputWithContext(context.Background())
-}
-
-func (i GetProxypolicySrcaddrArray) ToGetProxypolicySrcaddrArrayOutputWithContext(ctx context.Context) GetProxypolicySrcaddrArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicySrcaddrArrayOutput)
-}
-
-type GetProxypolicySrcaddrOutput struct{ *pulumi.OutputState }
-
-func (GetProxypolicySrcaddrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicySrcaddr)(nil)).Elem()
-}
-
-func (o GetProxypolicySrcaddrOutput) ToGetProxypolicySrcaddrOutput() GetProxypolicySrcaddrOutput {
-	return o
-}
-
-func (o GetProxypolicySrcaddrOutput) ToGetProxypolicySrcaddrOutputWithContext(ctx context.Context) GetProxypolicySrcaddrOutput {
-	return o
-}
-
-// Group name.
-func (o GetProxypolicySrcaddrOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetProxypolicySrcaddr) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetProxypolicySrcaddrArrayOutput struct{ *pulumi.OutputState }
-
-func (GetProxypolicySrcaddrArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicySrcaddr)(nil)).Elem()
-}
-
-func (o GetProxypolicySrcaddrArrayOutput) ToGetProxypolicySrcaddrArrayOutput() GetProxypolicySrcaddrArrayOutput {
-	return o
-}
-
-func (o GetProxypolicySrcaddrArrayOutput) ToGetProxypolicySrcaddrArrayOutputWithContext(ctx context.Context) GetProxypolicySrcaddrArrayOutput {
-	return o
-}
-
-func (o GetProxypolicySrcaddrArrayOutput) Index(i pulumi.IntInput) GetProxypolicySrcaddrOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProxypolicySrcaddr {
-		return vs[0].([]GetProxypolicySrcaddr)[vs[1].(int)]
-	}).(GetProxypolicySrcaddrOutput)
-}
-
-type GetProxypolicySrcintf struct {
-	// Group name.
-	Name string `pulumi:"name"`
-}
-
-// GetProxypolicySrcintfInput is an input type that accepts GetProxypolicySrcintfArgs and GetProxypolicySrcintfOutput values.
-// You can construct a concrete instance of `GetProxypolicySrcintfInput` via:
-//
-//	GetProxypolicySrcintfArgs{...}
-type GetProxypolicySrcintfInput interface {
-	pulumi.Input
-
-	ToGetProxypolicySrcintfOutput() GetProxypolicySrcintfOutput
-	ToGetProxypolicySrcintfOutputWithContext(context.Context) GetProxypolicySrcintfOutput
-}
-
-type GetProxypolicySrcintfArgs struct {
-	// Group name.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetProxypolicySrcintfArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicySrcintf)(nil)).Elem()
-}
-
-func (i GetProxypolicySrcintfArgs) ToGetProxypolicySrcintfOutput() GetProxypolicySrcintfOutput {
-	return i.ToGetProxypolicySrcintfOutputWithContext(context.Background())
-}
-
-func (i GetProxypolicySrcintfArgs) ToGetProxypolicySrcintfOutputWithContext(ctx context.Context) GetProxypolicySrcintfOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicySrcintfOutput)
-}
-
-// GetProxypolicySrcintfArrayInput is an input type that accepts GetProxypolicySrcintfArray and GetProxypolicySrcintfArrayOutput values.
-// You can construct a concrete instance of `GetProxypolicySrcintfArrayInput` via:
-//
-//	GetProxypolicySrcintfArray{ GetProxypolicySrcintfArgs{...} }
-type GetProxypolicySrcintfArrayInput interface {
-	pulumi.Input
-
-	ToGetProxypolicySrcintfArrayOutput() GetProxypolicySrcintfArrayOutput
-	ToGetProxypolicySrcintfArrayOutputWithContext(context.Context) GetProxypolicySrcintfArrayOutput
-}
-
-type GetProxypolicySrcintfArray []GetProxypolicySrcintfInput
-
-func (GetProxypolicySrcintfArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicySrcintf)(nil)).Elem()
-}
-
-func (i GetProxypolicySrcintfArray) ToGetProxypolicySrcintfArrayOutput() GetProxypolicySrcintfArrayOutput {
-	return i.ToGetProxypolicySrcintfArrayOutputWithContext(context.Background())
-}
-
-func (i GetProxypolicySrcintfArray) ToGetProxypolicySrcintfArrayOutputWithContext(ctx context.Context) GetProxypolicySrcintfArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicySrcintfArrayOutput)
-}
-
-type GetProxypolicySrcintfOutput struct{ *pulumi.OutputState }
-
-func (GetProxypolicySrcintfOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicySrcintf)(nil)).Elem()
-}
-
-func (o GetProxypolicySrcintfOutput) ToGetProxypolicySrcintfOutput() GetProxypolicySrcintfOutput {
-	return o
-}
-
-func (o GetProxypolicySrcintfOutput) ToGetProxypolicySrcintfOutputWithContext(ctx context.Context) GetProxypolicySrcintfOutput {
-	return o
-}
-
-// Group name.
-func (o GetProxypolicySrcintfOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetProxypolicySrcintf) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetProxypolicySrcintfArrayOutput struct{ *pulumi.OutputState }
-
-func (GetProxypolicySrcintfArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicySrcintf)(nil)).Elem()
-}
-
-func (o GetProxypolicySrcintfArrayOutput) ToGetProxypolicySrcintfArrayOutput() GetProxypolicySrcintfArrayOutput {
-	return o
-}
-
-func (o GetProxypolicySrcintfArrayOutput) ToGetProxypolicySrcintfArrayOutputWithContext(ctx context.Context) GetProxypolicySrcintfArrayOutput {
-	return o
-}
-
-func (o GetProxypolicySrcintfArrayOutput) Index(i pulumi.IntInput) GetProxypolicySrcintfOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProxypolicySrcintf {
-		return vs[0].([]GetProxypolicySrcintf)[vs[1].(int)]
-	}).(GetProxypolicySrcintfOutput)
-}
-
-type GetProxypolicyUser struct {
-	// Group name.
-	Name string `pulumi:"name"`
-}
-
-// GetProxypolicyUserInput is an input type that accepts GetProxypolicyUserArgs and GetProxypolicyUserOutput values.
-// You can construct a concrete instance of `GetProxypolicyUserInput` via:
-//
-//	GetProxypolicyUserArgs{...}
-type GetProxypolicyUserInput interface {
-	pulumi.Input
-
-	ToGetProxypolicyUserOutput() GetProxypolicyUserOutput
-	ToGetProxypolicyUserOutputWithContext(context.Context) GetProxypolicyUserOutput
-}
-
-type GetProxypolicyUserArgs struct {
-	// Group name.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetProxypolicyUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicyUser)(nil)).Elem()
-}
-
-func (i GetProxypolicyUserArgs) ToGetProxypolicyUserOutput() GetProxypolicyUserOutput {
-	return i.ToGetProxypolicyUserOutputWithContext(context.Background())
-}
-
-func (i GetProxypolicyUserArgs) ToGetProxypolicyUserOutputWithContext(ctx context.Context) GetProxypolicyUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyUserOutput)
-}
-
-// GetProxypolicyUserArrayInput is an input type that accepts GetProxypolicyUserArray and GetProxypolicyUserArrayOutput values.
-// You can construct a concrete instance of `GetProxypolicyUserArrayInput` via:
-//
-//	GetProxypolicyUserArray{ GetProxypolicyUserArgs{...} }
-type GetProxypolicyUserArrayInput interface {
-	pulumi.Input
-
-	ToGetProxypolicyUserArrayOutput() GetProxypolicyUserArrayOutput
-	ToGetProxypolicyUserArrayOutputWithContext(context.Context) GetProxypolicyUserArrayOutput
-}
-
-type GetProxypolicyUserArray []GetProxypolicyUserInput
-
-func (GetProxypolicyUserArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicyUser)(nil)).Elem()
-}
-
-func (i GetProxypolicyUserArray) ToGetProxypolicyUserArrayOutput() GetProxypolicyUserArrayOutput {
-	return i.ToGetProxypolicyUserArrayOutputWithContext(context.Background())
-}
-
-func (i GetProxypolicyUserArray) ToGetProxypolicyUserArrayOutputWithContext(ctx context.Context) GetProxypolicyUserArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyUserArrayOutput)
-}
-
-type GetProxypolicyUserOutput struct{ *pulumi.OutputState }
-
-func (GetProxypolicyUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicyUser)(nil)).Elem()
-}
-
-func (o GetProxypolicyUserOutput) ToGetProxypolicyUserOutput() GetProxypolicyUserOutput {
-	return o
-}
-
-func (o GetProxypolicyUserOutput) ToGetProxypolicyUserOutputWithContext(ctx context.Context) GetProxypolicyUserOutput {
-	return o
-}
-
-// Group name.
-func (o GetProxypolicyUserOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetProxypolicyUser) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetProxypolicyUserArrayOutput struct{ *pulumi.OutputState }
-
-func (GetProxypolicyUserArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicyUser)(nil)).Elem()
-}
-
-func (o GetProxypolicyUserArrayOutput) ToGetProxypolicyUserArrayOutput() GetProxypolicyUserArrayOutput {
-	return o
-}
-
-func (o GetProxypolicyUserArrayOutput) ToGetProxypolicyUserArrayOutputWithContext(ctx context.Context) GetProxypolicyUserArrayOutput {
-	return o
-}
-
-func (o GetProxypolicyUserArrayOutput) Index(i pulumi.IntInput) GetProxypolicyUserOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProxypolicyUser {
-		return vs[0].([]GetProxypolicyUser)[vs[1].(int)]
-	}).(GetProxypolicyUserOutput)
-}
-
-type GetProxypolicyZtnaEmsTag struct {
-	// Group name.
-	Name string `pulumi:"name"`
-}
-
-// GetProxypolicyZtnaEmsTagInput is an input type that accepts GetProxypolicyZtnaEmsTagArgs and GetProxypolicyZtnaEmsTagOutput values.
-// You can construct a concrete instance of `GetProxypolicyZtnaEmsTagInput` via:
-//
-//	GetProxypolicyZtnaEmsTagArgs{...}
-type GetProxypolicyZtnaEmsTagInput interface {
-	pulumi.Input
-
-	ToGetProxypolicyZtnaEmsTagOutput() GetProxypolicyZtnaEmsTagOutput
-	ToGetProxypolicyZtnaEmsTagOutputWithContext(context.Context) GetProxypolicyZtnaEmsTagOutput
-}
-
-type GetProxypolicyZtnaEmsTagArgs struct {
-	// Group name.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetProxypolicyZtnaEmsTagArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicyZtnaEmsTag)(nil)).Elem()
-}
-
-func (i GetProxypolicyZtnaEmsTagArgs) ToGetProxypolicyZtnaEmsTagOutput() GetProxypolicyZtnaEmsTagOutput {
-	return i.ToGetProxypolicyZtnaEmsTagOutputWithContext(context.Background())
-}
-
-func (i GetProxypolicyZtnaEmsTagArgs) ToGetProxypolicyZtnaEmsTagOutputWithContext(ctx context.Context) GetProxypolicyZtnaEmsTagOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyZtnaEmsTagOutput)
-}
-
-// GetProxypolicyZtnaEmsTagArrayInput is an input type that accepts GetProxypolicyZtnaEmsTagArray and GetProxypolicyZtnaEmsTagArrayOutput values.
-// You can construct a concrete instance of `GetProxypolicyZtnaEmsTagArrayInput` via:
-//
-//	GetProxypolicyZtnaEmsTagArray{ GetProxypolicyZtnaEmsTagArgs{...} }
-type GetProxypolicyZtnaEmsTagArrayInput interface {
-	pulumi.Input
-
-	ToGetProxypolicyZtnaEmsTagArrayOutput() GetProxypolicyZtnaEmsTagArrayOutput
-	ToGetProxypolicyZtnaEmsTagArrayOutputWithContext(context.Context) GetProxypolicyZtnaEmsTagArrayOutput
-}
-
-type GetProxypolicyZtnaEmsTagArray []GetProxypolicyZtnaEmsTagInput
-
-func (GetProxypolicyZtnaEmsTagArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicyZtnaEmsTag)(nil)).Elem()
-}
-
-func (i GetProxypolicyZtnaEmsTagArray) ToGetProxypolicyZtnaEmsTagArrayOutput() GetProxypolicyZtnaEmsTagArrayOutput {
-	return i.ToGetProxypolicyZtnaEmsTagArrayOutputWithContext(context.Background())
-}
-
-func (i GetProxypolicyZtnaEmsTagArray) ToGetProxypolicyZtnaEmsTagArrayOutputWithContext(ctx context.Context) GetProxypolicyZtnaEmsTagArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProxypolicyZtnaEmsTagArrayOutput)
-}
-
-type GetProxypolicyZtnaEmsTagOutput struct{ *pulumi.OutputState }
-
-func (GetProxypolicyZtnaEmsTagOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProxypolicyZtnaEmsTag)(nil)).Elem()
-}
-
-func (o GetProxypolicyZtnaEmsTagOutput) ToGetProxypolicyZtnaEmsTagOutput() GetProxypolicyZtnaEmsTagOutput {
-	return o
-}
-
-func (o GetProxypolicyZtnaEmsTagOutput) ToGetProxypolicyZtnaEmsTagOutputWithContext(ctx context.Context) GetProxypolicyZtnaEmsTagOutput {
-	return o
-}
-
-// Group name.
-func (o GetProxypolicyZtnaEmsTagOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetProxypolicyZtnaEmsTag) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetProxypolicyZtnaEmsTagArrayOutput struct{ *pulumi.OutputState }
-
-func (GetProxypolicyZtnaEmsTagArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetProxypolicyZtnaEmsTag)(nil)).Elem()
-}
-
-func (o GetProxypolicyZtnaEmsTagArrayOutput) ToGetProxypolicyZtnaEmsTagArrayOutput() GetProxypolicyZtnaEmsTagArrayOutput {
-	return o
-}
-
-func (o GetProxypolicyZtnaEmsTagArrayOutput) ToGetProxypolicyZtnaEmsTagArrayOutputWithContext(ctx context.Context) GetProxypolicyZtnaEmsTagArrayOutput {
-	return o
-}
-
-func (o GetProxypolicyZtnaEmsTagArrayOutput) Index(i pulumi.IntInput) GetProxypolicyZtnaEmsTagOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProxypolicyZtnaEmsTag {
-		return vs[0].([]GetProxypolicyZtnaEmsTag)[vs[1].(int)]
-	}).(GetProxypolicyZtnaEmsTagOutput)
-}
-
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGateway6Input)(nil)).Elem(), Accessproxy6ApiGateway6Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Accessproxy6ApiGateway6ArrayInput)(nil)).Elem(), Accessproxy6ApiGateway6Array{})
@@ -59015,12 +59729,32 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InternetservicesubappSubAppArrayInput)(nil)).Elem(), InternetservicesubappSubAppArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6DstaddrInput)(nil)).Elem(), Localinpolicy6DstaddrArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6DstaddrArrayInput)(nil)).Elem(), Localinpolicy6DstaddrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6InternetService6SrcCustomInput)(nil)).Elem(), Localinpolicy6InternetService6SrcCustomArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6InternetService6SrcCustomArrayInput)(nil)).Elem(), Localinpolicy6InternetService6SrcCustomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6InternetService6SrcCustomGroupInput)(nil)).Elem(), Localinpolicy6InternetService6SrcCustomGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6InternetService6SrcCustomGroupArrayInput)(nil)).Elem(), Localinpolicy6InternetService6SrcCustomGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6InternetService6SrcGroupInput)(nil)).Elem(), Localinpolicy6InternetService6SrcGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6InternetService6SrcGroupArrayInput)(nil)).Elem(), Localinpolicy6InternetService6SrcGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6InternetService6SrcNameInput)(nil)).Elem(), Localinpolicy6InternetService6SrcNameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6InternetService6SrcNameArrayInput)(nil)).Elem(), Localinpolicy6InternetService6SrcNameArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6IntfBlockInput)(nil)).Elem(), Localinpolicy6IntfBlockArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6IntfBlockArrayInput)(nil)).Elem(), Localinpolicy6IntfBlockArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6ServiceInput)(nil)).Elem(), Localinpolicy6ServiceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6ServiceArrayInput)(nil)).Elem(), Localinpolicy6ServiceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6SrcaddrInput)(nil)).Elem(), Localinpolicy6SrcaddrArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Localinpolicy6SrcaddrArrayInput)(nil)).Elem(), Localinpolicy6SrcaddrArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyDstaddrInput)(nil)).Elem(), LocalinpolicyDstaddrArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyDstaddrArrayInput)(nil)).Elem(), LocalinpolicyDstaddrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyInternetServiceSrcCustomInput)(nil)).Elem(), LocalinpolicyInternetServiceSrcCustomArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyInternetServiceSrcCustomArrayInput)(nil)).Elem(), LocalinpolicyInternetServiceSrcCustomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyInternetServiceSrcCustomGroupInput)(nil)).Elem(), LocalinpolicyInternetServiceSrcCustomGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyInternetServiceSrcCustomGroupArrayInput)(nil)).Elem(), LocalinpolicyInternetServiceSrcCustomGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyInternetServiceSrcGroupInput)(nil)).Elem(), LocalinpolicyInternetServiceSrcGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyInternetServiceSrcGroupArrayInput)(nil)).Elem(), LocalinpolicyInternetServiceSrcGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyInternetServiceSrcNameInput)(nil)).Elem(), LocalinpolicyInternetServiceSrcNameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyInternetServiceSrcNameArrayInput)(nil)).Elem(), LocalinpolicyInternetServiceSrcNameArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyIntfBlockInput)(nil)).Elem(), LocalinpolicyIntfBlockArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyIntfBlockArrayInput)(nil)).Elem(), LocalinpolicyIntfBlockArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyServiceInput)(nil)).Elem(), LocalinpolicyServiceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicyServiceArrayInput)(nil)).Elem(), LocalinpolicyServiceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LocalinpolicySrcaddrInput)(nil)).Elem(), LocalinpolicySrcaddrArgs{})
@@ -59041,6 +59775,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MulticastpolicyDstaddrArrayInput)(nil)).Elem(), MulticastpolicyDstaddrArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MulticastpolicySrcaddrInput)(nil)).Elem(), MulticastpolicySrcaddrArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MulticastpolicySrcaddrArrayInput)(nil)).Elem(), MulticastpolicySrcaddrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OndemandsnifferHostInput)(nil)).Elem(), OndemandsnifferHostArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OndemandsnifferHostArrayInput)(nil)).Elem(), OndemandsnifferHostArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OndemandsnifferPortInput)(nil)).Elem(), OndemandsnifferPortArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OndemandsnifferPortArrayInput)(nil)).Elem(), OndemandsnifferPortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OndemandsnifferProtocolInput)(nil)).Elem(), OndemandsnifferProtocolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OndemandsnifferProtocolArrayInput)(nil)).Elem(), OndemandsnifferProtocolArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Policy46DstaddrInput)(nil)).Elem(), Policy46DstaddrArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Policy46DstaddrArrayInput)(nil)).Elem(), Policy46DstaddrArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Policy46PoolnameInput)(nil)).Elem(), Policy46PoolnameArgs{})
@@ -59399,6 +60139,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SnifferIpThreatfeedArrayInput)(nil)).Elem(), SnifferIpThreatfeedArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SslsshprofileDotInput)(nil)).Elem(), SslsshprofileDotArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SslsshprofileDotPtrInput)(nil)).Elem(), SslsshprofileDotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslsshprofileEchOuterSniInput)(nil)).Elem(), SslsshprofileEchOuterSniArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslsshprofileEchOuterSniArrayInput)(nil)).Elem(), SslsshprofileEchOuterSniArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SslsshprofileFtpsInput)(nil)).Elem(), SslsshprofileFtpsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SslsshprofileFtpsPtrInput)(nil)).Elem(), SslsshprofileFtpsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SslsshprofileHttpsInput)(nil)).Elem(), SslsshprofileHttpsArgs{})
@@ -59801,20 +60543,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetServiceIdArrayInput)(nil)).Elem(), GetProxypolicyInternetServiceIdArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetServiceNameInput)(nil)).Elem(), GetProxypolicyInternetServiceNameArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyInternetServiceNameArrayInput)(nil)).Elem(), GetProxypolicyInternetServiceNameArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyPoolnameInput)(nil)).Elem(), GetProxypolicyPoolnameArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyPoolnameArrayInput)(nil)).Elem(), GetProxypolicyPoolnameArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyServiceInput)(nil)).Elem(), GetProxypolicyServiceArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyServiceArrayInput)(nil)).Elem(), GetProxypolicyServiceArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicySrcaddr6Input)(nil)).Elem(), GetProxypolicySrcaddr6Args{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicySrcaddr6ArrayInput)(nil)).Elem(), GetProxypolicySrcaddr6Array{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicySrcaddrInput)(nil)).Elem(), GetProxypolicySrcaddrArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicySrcaddrArrayInput)(nil)).Elem(), GetProxypolicySrcaddrArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicySrcintfInput)(nil)).Elem(), GetProxypolicySrcintfArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicySrcintfArrayInput)(nil)).Elem(), GetProxypolicySrcintfArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyUserInput)(nil)).Elem(), GetProxypolicyUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyUserArrayInput)(nil)).Elem(), GetProxypolicyUserArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyZtnaEmsTagInput)(nil)).Elem(), GetProxypolicyZtnaEmsTagArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProxypolicyZtnaEmsTagArrayInput)(nil)).Elem(), GetProxypolicyZtnaEmsTagArray{})
 	pulumi.RegisterOutputType(Accessproxy6ApiGateway6Output{})
 	pulumi.RegisterOutputType(Accessproxy6ApiGateway6ArrayOutput{})
 	pulumi.RegisterOutputType(Accessproxy6ApiGateway6ApplicationOutput{})
@@ -60001,12 +60729,32 @@ func init() {
 	pulumi.RegisterOutputType(InternetservicesubappSubAppArrayOutput{})
 	pulumi.RegisterOutputType(Localinpolicy6DstaddrOutput{})
 	pulumi.RegisterOutputType(Localinpolicy6DstaddrArrayOutput{})
+	pulumi.RegisterOutputType(Localinpolicy6InternetService6SrcCustomOutput{})
+	pulumi.RegisterOutputType(Localinpolicy6InternetService6SrcCustomArrayOutput{})
+	pulumi.RegisterOutputType(Localinpolicy6InternetService6SrcCustomGroupOutput{})
+	pulumi.RegisterOutputType(Localinpolicy6InternetService6SrcCustomGroupArrayOutput{})
+	pulumi.RegisterOutputType(Localinpolicy6InternetService6SrcGroupOutput{})
+	pulumi.RegisterOutputType(Localinpolicy6InternetService6SrcGroupArrayOutput{})
+	pulumi.RegisterOutputType(Localinpolicy6InternetService6SrcNameOutput{})
+	pulumi.RegisterOutputType(Localinpolicy6InternetService6SrcNameArrayOutput{})
+	pulumi.RegisterOutputType(Localinpolicy6IntfBlockOutput{})
+	pulumi.RegisterOutputType(Localinpolicy6IntfBlockArrayOutput{})
 	pulumi.RegisterOutputType(Localinpolicy6ServiceOutput{})
 	pulumi.RegisterOutputType(Localinpolicy6ServiceArrayOutput{})
 	pulumi.RegisterOutputType(Localinpolicy6SrcaddrOutput{})
 	pulumi.RegisterOutputType(Localinpolicy6SrcaddrArrayOutput{})
 	pulumi.RegisterOutputType(LocalinpolicyDstaddrOutput{})
 	pulumi.RegisterOutputType(LocalinpolicyDstaddrArrayOutput{})
+	pulumi.RegisterOutputType(LocalinpolicyInternetServiceSrcCustomOutput{})
+	pulumi.RegisterOutputType(LocalinpolicyInternetServiceSrcCustomArrayOutput{})
+	pulumi.RegisterOutputType(LocalinpolicyInternetServiceSrcCustomGroupOutput{})
+	pulumi.RegisterOutputType(LocalinpolicyInternetServiceSrcCustomGroupArrayOutput{})
+	pulumi.RegisterOutputType(LocalinpolicyInternetServiceSrcGroupOutput{})
+	pulumi.RegisterOutputType(LocalinpolicyInternetServiceSrcGroupArrayOutput{})
+	pulumi.RegisterOutputType(LocalinpolicyInternetServiceSrcNameOutput{})
+	pulumi.RegisterOutputType(LocalinpolicyInternetServiceSrcNameArrayOutput{})
+	pulumi.RegisterOutputType(LocalinpolicyIntfBlockOutput{})
+	pulumi.RegisterOutputType(LocalinpolicyIntfBlockArrayOutput{})
 	pulumi.RegisterOutputType(LocalinpolicyServiceOutput{})
 	pulumi.RegisterOutputType(LocalinpolicyServiceArrayOutput{})
 	pulumi.RegisterOutputType(LocalinpolicySrcaddrOutput{})
@@ -60027,6 +60775,12 @@ func init() {
 	pulumi.RegisterOutputType(MulticastpolicyDstaddrArrayOutput{})
 	pulumi.RegisterOutputType(MulticastpolicySrcaddrOutput{})
 	pulumi.RegisterOutputType(MulticastpolicySrcaddrArrayOutput{})
+	pulumi.RegisterOutputType(OndemandsnifferHostOutput{})
+	pulumi.RegisterOutputType(OndemandsnifferHostArrayOutput{})
+	pulumi.RegisterOutputType(OndemandsnifferPortOutput{})
+	pulumi.RegisterOutputType(OndemandsnifferPortArrayOutput{})
+	pulumi.RegisterOutputType(OndemandsnifferProtocolOutput{})
+	pulumi.RegisterOutputType(OndemandsnifferProtocolArrayOutput{})
 	pulumi.RegisterOutputType(Policy46DstaddrOutput{})
 	pulumi.RegisterOutputType(Policy46DstaddrArrayOutput{})
 	pulumi.RegisterOutputType(Policy46PoolnameOutput{})
@@ -60385,6 +61139,8 @@ func init() {
 	pulumi.RegisterOutputType(SnifferIpThreatfeedArrayOutput{})
 	pulumi.RegisterOutputType(SslsshprofileDotOutput{})
 	pulumi.RegisterOutputType(SslsshprofileDotPtrOutput{})
+	pulumi.RegisterOutputType(SslsshprofileEchOuterSniOutput{})
+	pulumi.RegisterOutputType(SslsshprofileEchOuterSniArrayOutput{})
 	pulumi.RegisterOutputType(SslsshprofileFtpsOutput{})
 	pulumi.RegisterOutputType(SslsshprofileFtpsPtrOutput{})
 	pulumi.RegisterOutputType(SslsshprofileHttpsOutput{})
@@ -60787,18 +61543,4 @@ func init() {
 	pulumi.RegisterOutputType(GetProxypolicyInternetServiceIdArrayOutput{})
 	pulumi.RegisterOutputType(GetProxypolicyInternetServiceNameOutput{})
 	pulumi.RegisterOutputType(GetProxypolicyInternetServiceNameArrayOutput{})
-	pulumi.RegisterOutputType(GetProxypolicyPoolnameOutput{})
-	pulumi.RegisterOutputType(GetProxypolicyPoolnameArrayOutput{})
-	pulumi.RegisterOutputType(GetProxypolicyServiceOutput{})
-	pulumi.RegisterOutputType(GetProxypolicyServiceArrayOutput{})
-	pulumi.RegisterOutputType(GetProxypolicySrcaddr6Output{})
-	pulumi.RegisterOutputType(GetProxypolicySrcaddr6ArrayOutput{})
-	pulumi.RegisterOutputType(GetProxypolicySrcaddrOutput{})
-	pulumi.RegisterOutputType(GetProxypolicySrcaddrArrayOutput{})
-	pulumi.RegisterOutputType(GetProxypolicySrcintfOutput{})
-	pulumi.RegisterOutputType(GetProxypolicySrcintfArrayOutput{})
-	pulumi.RegisterOutputType(GetProxypolicyUserOutput{})
-	pulumi.RegisterOutputType(GetProxypolicyUserArrayOutput{})
-	pulumi.RegisterOutputType(GetProxypolicyZtnaEmsTagOutput{})
-	pulumi.RegisterOutputType(GetProxypolicyZtnaEmsTagArrayOutput{})
 }

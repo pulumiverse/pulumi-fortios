@@ -73,7 +73,7 @@ type Console struct {
 	// Console output mode. Valid values: `standard`, `more`.
 	Output pulumi.StringOutput `pulumi:"output"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewConsole registers a new resource with the given unique name, arguments, and options.
@@ -283,8 +283,8 @@ func (o ConsoleOutput) Output() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ConsoleOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Console) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ConsoleOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Console) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ConsoleArrayOutput struct{ *pulumi.OutputState }

@@ -35,7 +35,7 @@ namespace Pulumiverse.Fortios.Wanopt.Outputs
         /// </summary>
         public readonly string? SecureTunnel;
         /// <summary>
-        /// Enable/disable SSL/TLS offloading. Valid values: `enable`, `disable`.
+        /// Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
         /// </summary>
         public readonly string? Ssl;
         /// <summary>

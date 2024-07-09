@@ -545,6 +545,11 @@ export type ObjectVipgroup = import("./objectVipgroup").ObjectVipgroup;
 export const ObjectVipgroup: typeof import("./objectVipgroup").ObjectVipgroup = null as any;
 utilities.lazyLoad(exports, ["ObjectVipgroup"], () => require("./objectVipgroup"));
 
+export { OndemandsnifferArgs, OndemandsnifferState } from "./ondemandsniffer";
+export type Ondemandsniffer = import("./ondemandsniffer").Ondemandsniffer;
+export const Ondemandsniffer: typeof import("./ondemandsniffer").Ondemandsniffer = null as any;
+utilities.lazyLoad(exports, ["Ondemandsniffer"], () => require("./ondemandsniffer"));
+
 export { PolicyArgs, PolicyState } from "./policy";
 export type Policy = import("./policy").Policy;
 export const Policy: typeof import("./policy").Policy = null as any;
@@ -859,6 +864,8 @@ const _module = {
                 return new ObjectVip(name, <any>undefined, { urn })
             case "fortios:firewall/objectVipgroup:ObjectVipgroup":
                 return new ObjectVipgroup(name, <any>undefined, { urn })
+            case "fortios:firewall/ondemandsniffer:Ondemandsniffer":
+                return new Ondemandsniffer(name, <any>undefined, { urn })
             case "fortios:firewall/policy46:Policy46":
                 return new Policy46(name, <any>undefined, { urn })
             case "fortios:firewall/policy64:Policy64":
@@ -991,6 +998,7 @@ pulumi.runtime.registerResourceModule("fortios", "firewall/objectServicecategory
 pulumi.runtime.registerResourceModule("fortios", "firewall/objectServicegroup", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/objectVip", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/objectVipgroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "firewall/ondemandsniffer", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/policy", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/policy46", _module)
 pulumi.runtime.registerResourceModule("fortios", "firewall/policy6", _module)

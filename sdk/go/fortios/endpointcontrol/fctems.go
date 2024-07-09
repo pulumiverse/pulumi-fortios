@@ -43,11 +43,13 @@ type Fctems struct {
 	Capabilities pulumi.StringOutput `pulumi:"capabilities"`
 	// FortiClient EMS certificate.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
+	// FortiClient EMS Cloud multitenancy access key
+	CloudAuthenticationAccessKey pulumi.StringOutput `pulumi:"cloudAuthenticationAccessKey"`
 	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
 	CloudServerType pulumi.StringOutput `pulumi:"cloudServerType"`
 	// Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
 	DirtyReason pulumi.StringOutput `pulumi:"dirtyReason"`
-	// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+	// EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
 	EmsId pulumi.IntOutput `pulumi:"emsId"`
 	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
 	FortinetoneCloudAuthentication pulumi.StringOutput `pulumi:"fortinetoneCloudAuthentication"`
@@ -90,7 +92,7 @@ type Fctems struct {
 	// Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. Valid values: `enable`, `disable`.
 	TrustCaCn pulumi.StringOutput `pulumi:"trustCaCn"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Lowest CA cert on Fortigate in verified EMS cert chain.
 	VerifyingCa pulumi.StringOutput `pulumi:"verifyingCa"`
 	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
@@ -144,11 +146,13 @@ type fctemsState struct {
 	Capabilities *string `pulumi:"capabilities"`
 	// FortiClient EMS certificate.
 	Certificate *string `pulumi:"certificate"`
+	// FortiClient EMS Cloud multitenancy access key
+	CloudAuthenticationAccessKey *string `pulumi:"cloudAuthenticationAccessKey"`
 	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
 	CloudServerType *string `pulumi:"cloudServerType"`
 	// Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
 	DirtyReason *string `pulumi:"dirtyReason"`
-	// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+	// EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
 	EmsId *int `pulumi:"emsId"`
 	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
 	FortinetoneCloudAuthentication *string `pulumi:"fortinetoneCloudAuthentication"`
@@ -209,11 +213,13 @@ type FctemsState struct {
 	Capabilities pulumi.StringPtrInput
 	// FortiClient EMS certificate.
 	Certificate pulumi.StringPtrInput
+	// FortiClient EMS Cloud multitenancy access key
+	CloudAuthenticationAccessKey pulumi.StringPtrInput
 	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
 	CloudServerType pulumi.StringPtrInput
 	// Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
 	DirtyReason pulumi.StringPtrInput
-	// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+	// EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
 	EmsId pulumi.IntPtrInput
 	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
 	FortinetoneCloudAuthentication pulumi.StringPtrInput
@@ -278,11 +284,13 @@ type fctemsArgs struct {
 	Capabilities *string `pulumi:"capabilities"`
 	// FortiClient EMS certificate.
 	Certificate *string `pulumi:"certificate"`
+	// FortiClient EMS Cloud multitenancy access key
+	CloudAuthenticationAccessKey *string `pulumi:"cloudAuthenticationAccessKey"`
 	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
 	CloudServerType *string `pulumi:"cloudServerType"`
 	// Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
 	DirtyReason *string `pulumi:"dirtyReason"`
-	// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+	// EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
 	EmsId *int `pulumi:"emsId"`
 	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
 	FortinetoneCloudAuthentication *string `pulumi:"fortinetoneCloudAuthentication"`
@@ -344,11 +352,13 @@ type FctemsArgs struct {
 	Capabilities pulumi.StringPtrInput
 	// FortiClient EMS certificate.
 	Certificate pulumi.StringPtrInput
+	// FortiClient EMS Cloud multitenancy access key
+	CloudAuthenticationAccessKey pulumi.StringPtrInput
 	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
 	CloudServerType pulumi.StringPtrInput
 	// Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
 	DirtyReason pulumi.StringPtrInput
-	// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+	// EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
 	EmsId pulumi.IntPtrInput
 	// Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
 	FortinetoneCloudAuthentication pulumi.StringPtrInput
@@ -510,6 +520,11 @@ func (o FctemsOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fctems) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
 }
 
+// FortiClient EMS Cloud multitenancy access key
+func (o FctemsOutput) CloudAuthenticationAccessKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fctems) pulumi.StringOutput { return v.CloudAuthenticationAccessKey }).(pulumi.StringOutput)
+}
+
 // Cloud server type. Valid values: `production`, `alpha`, `beta`.
 func (o FctemsOutput) CloudServerType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fctems) pulumi.StringOutput { return v.CloudServerType }).(pulumi.StringOutput)
@@ -520,7 +535,7 @@ func (o FctemsOutput) DirtyReason() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fctems) pulumi.StringOutput { return v.DirtyReason }).(pulumi.StringOutput)
 }
 
-// EMS ID in order. On FortiOS versions 7.0.8-7.0.13, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
+// EMS ID in order. On FortiOS versions 7.0.8-7.0.15, 7.2.1-7.2.3: 1 - 5. On FortiOS versions >= 7.2.4: 1 - 7.
 func (o FctemsOutput) EmsId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fctems) pulumi.IntOutput { return v.EmsId }).(pulumi.IntOutput)
 }
@@ -626,8 +641,8 @@ func (o FctemsOutput) TrustCaCn() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o FctemsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Fctems) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o FctemsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fctems) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Lowest CA cert on Fortigate in verified EMS cert chain.

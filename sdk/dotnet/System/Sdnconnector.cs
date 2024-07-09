@@ -158,7 +158,7 @@ namespace Pulumiverse.Fortios.System
         public Output<ImmutableArray<Outputs.SdnconnectorGcpProjectList>> GcpProjectLists { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -368,7 +368,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+        /// Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions &gt;= 6.2.4: 30 - 3600 sec.
         /// </summary>
         [Output("updateInterval")]
         public Output<int> UpdateInterval { get; private set; } = null!;
@@ -413,7 +413,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable server certificate verification. Valid values: `disable`, `enable`.
@@ -643,7 +643,7 @@ namespace Pulumiverse.Fortios.System
         }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -933,7 +933,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+        /// Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions &gt;= 6.2.4: 30 - 3600 sec.
         /// </summary>
         [Input("updateInterval")]
         public Input<int>? UpdateInterval { get; set; }
@@ -1167,7 +1167,7 @@ namespace Pulumiverse.Fortios.System
         }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -1457,7 +1457,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+        /// Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions &gt;= 6.2.4: 30 - 3600 sec.
         /// </summary>
         [Input("updateInterval")]
         public Input<int>? UpdateInterval { get; set; }

@@ -44,7 +44,7 @@ type Template struct {
 	// Initial config template name
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Unique VLAN ID.
 	Vlanid pulumi.IntOutput `pulumi:"vlanid"`
 }
@@ -264,8 +264,8 @@ func (o TemplateOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o TemplateOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Template) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o TemplateOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Template) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Unique VLAN ID.

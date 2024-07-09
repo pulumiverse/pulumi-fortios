@@ -24,7 +24,7 @@ class DnsserverArgs:
         """
         The set of arguments for constructing a Dnsserver resource.
         :param pulumi.Input[str] dnsfilter_profile: DNS filter profile.
-        :param pulumi.Input[str] doh: DNS over HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] doh: Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] doh3: Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] doq: Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
@@ -62,7 +62,7 @@ class DnsserverArgs:
     @pulumi.getter
     def doh(self) -> Optional[pulumi.Input[str]]:
         """
-        DNS over HTTPS. Valid values: `enable`, `disable`.
+        Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "doh")
 
@@ -144,7 +144,7 @@ class _DnsserverState:
         """
         Input properties used for looking up and filtering Dnsserver resources.
         :param pulumi.Input[str] dnsfilter_profile: DNS filter profile.
-        :param pulumi.Input[str] doh: DNS over HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] doh: Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] doh3: Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] doq: Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
@@ -182,7 +182,7 @@ class _DnsserverState:
     @pulumi.getter
     def doh(self) -> Optional[pulumi.Input[str]]:
         """
-        DNS over HTTPS. Valid values: `enable`, `disable`.
+        Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "doh")
 
@@ -299,7 +299,7 @@ class Dnsserver(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dnsfilter_profile: DNS filter profile.
-        :param pulumi.Input[str] doh: DNS over HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] doh: Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] doh3: Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] doq: Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
@@ -407,7 +407,7 @@ class Dnsserver(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dnsfilter_profile: DNS filter profile.
-        :param pulumi.Input[str] doh: DNS over HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] doh: Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] doh3: Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] doq: Enable/disable DNS over QUIC/853 (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
@@ -439,7 +439,7 @@ class Dnsserver(pulumi.CustomResource):
     @pulumi.getter
     def doh(self) -> pulumi.Output[str]:
         """
-        DNS over HTTPS. Valid values: `enable`, `disable`.
+        Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "doh")
 
@@ -477,7 +477,7 @@ class Dnsserver(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

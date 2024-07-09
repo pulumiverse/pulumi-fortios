@@ -89,7 +89,7 @@ class AdminArgs:
         :param pulumi.Input[str] email_to: This administrator's email address.
         :param pulumi.Input[str] force_password_change: Enable/disable force password change on next login. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortitoken: This administrator's FortiToken serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] guest_auth: Enable/disable guest authentication. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] guest_lang: Guest management portal language.
         :param pulumi.Input[Sequence[pulumi.Input['AdminGuestUsergroupArgs']]] guest_usergroups: Select guest user groups. The structure of `guest_usergroups` block is documented below.
@@ -372,7 +372,7 @@ class AdminArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1105,7 +1105,7 @@ class _AdminState:
         :param pulumi.Input[str] email_to: This administrator's email address.
         :param pulumi.Input[str] force_password_change: Enable/disable force password change on next login. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortitoken: This administrator's FortiToken serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] guest_auth: Enable/disable guest authentication. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] guest_lang: Guest management portal language.
         :param pulumi.Input[Sequence[pulumi.Input['AdminGuestUsergroupArgs']]] guest_usergroups: Select guest user groups. The structure of `guest_usergroups` block is documented below.
@@ -1388,7 +1388,7 @@ class _AdminState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2170,7 +2170,7 @@ class Admin(pulumi.CustomResource):
         :param pulumi.Input[str] email_to: This administrator's email address.
         :param pulumi.Input[str] force_password_change: Enable/disable force password change on next login. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortitoken: This administrator's FortiToken serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] guest_auth: Enable/disable guest authentication. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] guest_lang: Guest management portal language.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdminGuestUsergroupArgs']]]] guest_usergroups: Select guest user groups. The structure of `guest_usergroups` block is documented below.
@@ -2518,7 +2518,7 @@ class Admin(pulumi.CustomResource):
         :param pulumi.Input[str] email_to: This administrator's email address.
         :param pulumi.Input[str] force_password_change: Enable/disable force password change on next login. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortitoken: This administrator's FortiToken serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] guest_auth: Enable/disable guest authentication. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] guest_lang: Guest management portal language.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdminGuestUsergroupArgs']]]] guest_usergroups: Select guest user groups. The structure of `guest_usergroups` block is documented below.
@@ -2711,7 +2711,7 @@ class Admin(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -3125,7 +3125,7 @@ class Admin(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

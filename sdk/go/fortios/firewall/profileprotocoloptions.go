@@ -160,7 +160,7 @@ type Profileprotocoloptions struct {
 	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
 	// Configure FTP protocol options. The structure of `ftp` block is documented below.
 	Ftp ProfileprotocoloptionsFtpOutput `pulumi:"ftp"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure HTTP protocol options. The structure of `http` block is documented below.
 	Http ProfileprotocoloptionsHttpOutput `pulumi:"http"`
@@ -189,7 +189,7 @@ type Profileprotocoloptions struct {
 	// Enable/disable logging for HTTP/HTTPS switching protocols. Valid values: `disable`, `enable`.
 	SwitchingProtocolsLog pulumi.StringOutput `pulumi:"switchingProtocolsLog"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewProfileprotocoloptions registers a new resource with the given unique name, arguments, and options.
@@ -232,7 +232,7 @@ type profileprotocoloptionsState struct {
 	FeatureSet *string `pulumi:"featureSet"`
 	// Configure FTP protocol options. The structure of `ftp` block is documented below.
 	Ftp *ProfileprotocoloptionsFtp `pulumi:"ftp"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure HTTP protocol options. The structure of `http` block is documented below.
 	Http *ProfileprotocoloptionsHttp `pulumi:"http"`
@@ -275,7 +275,7 @@ type ProfileprotocoloptionsState struct {
 	FeatureSet pulumi.StringPtrInput
 	// Configure FTP protocol options. The structure of `ftp` block is documented below.
 	Ftp ProfileprotocoloptionsFtpPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure HTTP protocol options. The structure of `http` block is documented below.
 	Http ProfileprotocoloptionsHttpPtrInput
@@ -322,7 +322,7 @@ type profileprotocoloptionsArgs struct {
 	FeatureSet *string `pulumi:"featureSet"`
 	// Configure FTP protocol options. The structure of `ftp` block is documented below.
 	Ftp *ProfileprotocoloptionsFtp `pulumi:"ftp"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure HTTP protocol options. The structure of `http` block is documented below.
 	Http *ProfileprotocoloptionsHttp `pulumi:"http"`
@@ -366,7 +366,7 @@ type ProfileprotocoloptionsArgs struct {
 	FeatureSet pulumi.StringPtrInput
 	// Configure FTP protocol options. The structure of `ftp` block is documented below.
 	Ftp ProfileprotocoloptionsFtpPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure HTTP protocol options. The structure of `http` block is documented below.
 	Http ProfileprotocoloptionsHttpPtrInput
@@ -510,7 +510,7 @@ func (o ProfileprotocoloptionsOutput) Ftp() ProfileprotocoloptionsFtpOutput {
 	return o.ApplyT(func(v *Profileprotocoloptions) ProfileprotocoloptionsFtpOutput { return v.Ftp }).(ProfileprotocoloptionsFtpOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ProfileprotocoloptionsOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Profileprotocoloptions) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -581,8 +581,8 @@ func (o ProfileprotocoloptionsOutput) SwitchingProtocolsLog() pulumi.StringOutpu
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ProfileprotocoloptionsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Profileprotocoloptions) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ProfileprotocoloptionsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profileprotocoloptions) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ProfileprotocoloptionsArrayOutput struct{ *pulumi.OutputState }

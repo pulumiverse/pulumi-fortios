@@ -131,7 +131,7 @@ type Accprofile struct {
 	Fwgrp pulumi.StringOutput `pulumi:"fwgrp"`
 	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
 	FwgrpPermission AccprofileFwgrpPermissionOutput `pulumi:"fwgrpPermission"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
 	Loggrp pulumi.StringOutput `pulumi:"loggrp"`
@@ -162,7 +162,7 @@ type Accprofile struct {
 	// Custom Security Profile permissions. The structure of `utmgrpPermission` block is documented below.
 	UtmgrpPermission AccprofileUtmgrpPermissionOutput `pulumi:"utmgrpPermission"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Administrator access to IPsec, SSL, PPTP, and L2TP VPN. Valid values: `none`, `read`, `read-write`.
 	Vpngrp pulumi.StringOutput `pulumi:"vpngrp"`
 	// Administrator access to WAN Opt & Cache. Valid values: `none`, `read`, `read-write`.
@@ -225,7 +225,7 @@ type accprofileState struct {
 	Fwgrp *string `pulumi:"fwgrp"`
 	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
 	FwgrpPermission *AccprofileFwgrpPermission `pulumi:"fwgrpPermission"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
 	Loggrp *string `pulumi:"loggrp"`
@@ -290,7 +290,7 @@ type AccprofileState struct {
 	Fwgrp pulumi.StringPtrInput
 	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
 	FwgrpPermission AccprofileFwgrpPermissionPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
 	Loggrp pulumi.StringPtrInput
@@ -359,7 +359,7 @@ type accprofileArgs struct {
 	Fwgrp *string `pulumi:"fwgrp"`
 	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
 	FwgrpPermission *AccprofileFwgrpPermission `pulumi:"fwgrpPermission"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
 	Loggrp *string `pulumi:"loggrp"`
@@ -425,7 +425,7 @@ type AccprofileArgs struct {
 	Fwgrp pulumi.StringPtrInput
 	// Custom firewall permission. The structure of `fwgrpPermission` block is documented below.
 	FwgrpPermission AccprofileFwgrpPermissionPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Administrator access to Logging and Reporting including viewing log messages. Valid values: `none`, `read`, `read-write`, `custom`.
 	Loggrp pulumi.StringPtrInput
@@ -612,7 +612,7 @@ func (o AccprofileOutput) FwgrpPermission() AccprofileFwgrpPermissionOutput {
 	return o.ApplyT(func(v *Accprofile) AccprofileFwgrpPermissionOutput { return v.FwgrpPermission }).(AccprofileFwgrpPermissionOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o AccprofileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Accprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -688,8 +688,8 @@ func (o AccprofileOutput) UtmgrpPermission() AccprofileUtmgrpPermissionOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o AccprofileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Accprofile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o AccprofileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Accprofile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Administrator access to IPsec, SSL, PPTP, and L2TP VPN. Valid values: `none`, `read`, `read-write`.

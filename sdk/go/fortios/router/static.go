@@ -94,7 +94,7 @@ type Static struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Gateway IP for this route.
 	Gateway pulumi.StringOutput `pulumi:"gateway"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Application ID in the Internet service database.
 	InternetService pulumi.IntOutput `pulumi:"internetService"`
@@ -119,7 +119,7 @@ type Static struct {
 	// Route tag.
 	Tag pulumi.IntOutput `pulumi:"tag"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
 	VirtualWanLink pulumi.StringOutput `pulumi:"virtualWanLink"`
 	// Virtual Routing Forwarding ID.
@@ -178,7 +178,7 @@ type staticState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Gateway IP for this route.
 	Gateway *string `pulumi:"gateway"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Application ID in the Internet service database.
 	InternetService *int `pulumi:"internetService"`
@@ -233,7 +233,7 @@ type StaticState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Gateway IP for this route.
 	Gateway pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Application ID in the Internet service database.
 	InternetService pulumi.IntPtrInput
@@ -292,7 +292,7 @@ type staticArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Gateway IP for this route.
 	Gateway *string `pulumi:"gateway"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Application ID in the Internet service database.
 	InternetService *int `pulumi:"internetService"`
@@ -348,7 +348,7 @@ type StaticArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Gateway IP for this route.
 	Gateway pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Application ID in the Internet service database.
 	InternetService pulumi.IntPtrInput
@@ -519,7 +519,7 @@ func (o StaticOutput) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *Static) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o StaticOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Static) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -580,8 +580,8 @@ func (o StaticOutput) Tag() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o StaticOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Static) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o StaticOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Static) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.

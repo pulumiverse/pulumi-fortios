@@ -46,7 +46,7 @@ class ExternalresourceArgs:
         :param pulumi.Input[str] status: Enable/disable user resource. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] type: User resource type.
         :param pulumi.Input[str] update_method: External resource update method. Valid values: `feed`, `push`.
-        :param pulumi.Input[str] user_agent: Override HTTP User-Agent header used when retrieving this external resource.
+        :param pulumi.Input[str] user_agent: HTTP User-Agent header (default = 'curl/7.58.0').
         :param pulumi.Input[str] username: HTTP basic authentication user name.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -244,7 +244,7 @@ class ExternalresourceArgs:
     @pulumi.getter(name="userAgent")
     def user_agent(self) -> Optional[pulumi.Input[str]]:
         """
-        Override HTTP User-Agent header used when retrieving this external resource.
+        HTTP User-Agent header (default = 'curl/7.58.0').
         """
         return pulumi.get(self, "user_agent")
 
@@ -324,7 +324,7 @@ class _ExternalresourceState:
         :param pulumi.Input[str] status: Enable/disable user resource. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] type: User resource type.
         :param pulumi.Input[str] update_method: External resource update method. Valid values: `feed`, `push`.
-        :param pulumi.Input[str] user_agent: Override HTTP User-Agent header used when retrieving this external resource.
+        :param pulumi.Input[str] user_agent: HTTP User-Agent header (default = 'curl/7.58.0').
         :param pulumi.Input[str] username: HTTP basic authentication user name.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -524,7 +524,7 @@ class _ExternalresourceState:
     @pulumi.getter(name="userAgent")
     def user_agent(self) -> Optional[pulumi.Input[str]]:
         """
-        Override HTTP User-Agent header used when retrieving this external resource.
+        HTTP User-Agent header (default = 'curl/7.58.0').
         """
         return pulumi.get(self, "user_agent")
 
@@ -642,7 +642,7 @@ class Externalresource(pulumi.CustomResource):
         :param pulumi.Input[str] status: Enable/disable user resource. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] type: User resource type.
         :param pulumi.Input[str] update_method: External resource update method. Valid values: `feed`, `push`.
-        :param pulumi.Input[str] user_agent: Override HTTP User-Agent header used when retrieving this external resource.
+        :param pulumi.Input[str] user_agent: HTTP User-Agent header (default = 'curl/7.58.0').
         :param pulumi.Input[str] username: HTTP basic authentication user name.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -799,7 +799,7 @@ class Externalresource(pulumi.CustomResource):
         :param pulumi.Input[str] status: Enable/disable user resource. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] type: User resource type.
         :param pulumi.Input[str] update_method: External resource update method. Valid values: `feed`, `push`.
-        :param pulumi.Input[str] user_agent: Override HTTP User-Agent header used when retrieving this external resource.
+        :param pulumi.Input[str] user_agent: HTTP User-Agent header (default = 'curl/7.58.0').
         :param pulumi.Input[str] username: HTTP basic authentication user name.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -935,7 +935,7 @@ class Externalresource(pulumi.CustomResource):
     @pulumi.getter(name="userAgent")
     def user_agent(self) -> pulumi.Output[str]:
         """
-        Override HTTP User-Agent header used when retrieving this external resource.
+        HTTP User-Agent header (default = 'curl/7.58.0').
         """
         return pulumi.get(self, "user_agent")
 
@@ -957,7 +957,7 @@ class Externalresource(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

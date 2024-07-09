@@ -16,7 +16,6 @@ __all__ = ['BgpArgs', 'Bgp']
 @pulumi.input_type
 class BgpArgs:
     def __init__(__self__, *,
-                 as_: pulumi.Input[int],
                  additional_path: Optional[pulumi.Input[str]] = None,
                  additional_path6: Optional[pulumi.Input[str]] = None,
                  additional_path_select: Optional[pulumi.Input[int]] = None,
@@ -29,6 +28,7 @@ class BgpArgs:
                  aggregate_address6s: Optional[pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddress6Args']]]] = None,
                  aggregate_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddressArgs']]]] = None,
                  always_compare_med: Optional[pulumi.Input[str]] = None,
+                 as_: Optional[pulumi.Input[int]] = None,
                  as_string: Optional[pulumi.Input[str]] = None,
                  bestpath_as_path_ignore: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_confed_aspath: Optional[pulumi.Input[str]] = None,
@@ -90,7 +90,6 @@ class BgpArgs:
                  vrves: Optional[pulumi.Input[Sequence[pulumi.Input['BgpVrfArgs']]]] = None):
         """
         The set of arguments for constructing a Bgp resource.
-        :param pulumi.Input[int] as_: Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
         :param pulumi.Input[str] additional_path: Enable/disable selection of BGP IPv4 additional paths. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] additional_path6: Enable/disable selection of BGP IPv6 additional paths. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] additional_path_select: Number of additional paths to be selected for each IPv4 NLRI.
@@ -103,7 +102,8 @@ class BgpArgs:
         :param pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddress6Args']]] aggregate_address6s: BGP IPv6 aggregate address table. The structure of `aggregate_address6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddressArgs']]] aggregate_addresses: BGP aggregate address table. The structure of `aggregate_address` block is documented below.
         :param pulumi.Input[str] always_compare_med: Enable/disable always compare MED. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] as_string: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        :param pulumi.Input[int] as_: Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as_string`.*
+        :param pulumi.Input[str] as_string: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
         :param pulumi.Input[str] bestpath_as_path_ignore: Enable/disable ignore AS path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_confed_aspath: Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_routerid: Enable/disable compare router ID for identical EBGP paths. Valid values: `enable`, `disable`.
@@ -130,7 +130,7 @@ class BgpArgs:
         :param pulumi.Input[str] ebgp_multipath: Enable/disable EBGP multi-path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] enforce_first_as: Enable/disable enforce first AS for EBGP routes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fast_external_failover: Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] graceful_end_on_timer: Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] graceful_restart: Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] graceful_restart_time: Time needed for neighbors to restart (sec).
@@ -163,7 +163,6 @@ class BgpArgs:
         :param pulumi.Input[Sequence[pulumi.Input['BgpVrfLeakArgs']]] vrf_leaks: BGP VRF leaking table. The structure of `vrf_leak` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['BgpVrfArgs']]] vrves: BGP VRF leaking table. The structure of `vrf` block is documented below.
         """
-        pulumi.set(__self__, "as_", as_)
         if additional_path is not None:
             pulumi.set(__self__, "additional_path", additional_path)
         if additional_path6 is not None:
@@ -188,6 +187,8 @@ class BgpArgs:
             pulumi.set(__self__, "aggregate_addresses", aggregate_addresses)
         if always_compare_med is not None:
             pulumi.set(__self__, "always_compare_med", always_compare_med)
+        if as_ is not None:
+            pulumi.set(__self__, "as_", as_)
         if as_string is not None:
             pulumi.set(__self__, "as_string", as_string)
         if bestpath_as_path_ignore is not None:
@@ -306,18 +307,6 @@ class BgpArgs:
             pulumi.set(__self__, "vrf_leaks", vrf_leaks)
         if vrves is not None:
             pulumi.set(__self__, "vrves", vrves)
-
-    @property
-    @pulumi.getter(name="as")
-    def as_(self) -> pulumi.Input[int]:
-        """
-        Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
-        """
-        return pulumi.get(self, "as_")
-
-    @as_.setter
-    def as_(self, value: pulumi.Input[int]):
-        pulumi.set(self, "as_", value)
 
     @property
     @pulumi.getter(name="additionalPath")
@@ -464,10 +453,22 @@ class BgpArgs:
         pulumi.set(self, "always_compare_med", value)
 
     @property
+    @pulumi.getter(name="as")
+    def as_(self) -> Optional[pulumi.Input[int]]:
+        """
+        Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as_string`.*
+        """
+        return pulumi.get(self, "as_")
+
+    @as_.setter
+    def as_(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "as_", value)
+
+    @property
     @pulumi.getter(name="asString")
     def as_string(self) -> Optional[pulumi.Input[str]]:
         """
-        Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
         """
         return pulumi.get(self, "as_string")
 
@@ -791,7 +792,7 @@ class BgpArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1261,8 +1262,8 @@ class _BgpState:
         :param pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddress6Args']]] aggregate_address6s: BGP IPv6 aggregate address table. The structure of `aggregate_address6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['BgpAggregateAddressArgs']]] aggregate_addresses: BGP aggregate address table. The structure of `aggregate_address` block is documented below.
         :param pulumi.Input[str] always_compare_med: Enable/disable always compare MED. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] as_: Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
-        :param pulumi.Input[str] as_string: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        :param pulumi.Input[int] as_: Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as_string`.*
+        :param pulumi.Input[str] as_string: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
         :param pulumi.Input[str] bestpath_as_path_ignore: Enable/disable ignore AS path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_confed_aspath: Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_routerid: Enable/disable compare router ID for identical EBGP paths. Valid values: `enable`, `disable`.
@@ -1289,7 +1290,7 @@ class _BgpState:
         :param pulumi.Input[str] ebgp_multipath: Enable/disable EBGP multi-path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] enforce_first_as: Enable/disable enforce first AS for EBGP routes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fast_external_failover: Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] graceful_end_on_timer: Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] graceful_restart: Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] graceful_restart_time: Time needed for neighbors to restart (sec).
@@ -1615,7 +1616,7 @@ class _BgpState:
     @pulumi.getter(name="as")
     def as_(self) -> Optional[pulumi.Input[int]]:
         """
-        Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+        Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as_string`.*
         """
         return pulumi.get(self, "as_")
 
@@ -1627,7 +1628,7 @@ class _BgpState:
     @pulumi.getter(name="asString")
     def as_string(self) -> Optional[pulumi.Input[str]]:
         """
-        Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
         """
         return pulumi.get(self, "as_string")
 
@@ -1951,7 +1952,7 @@ class _BgpState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2532,8 +2533,8 @@ class Bgp(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddress6Args']]]] aggregate_address6s: BGP IPv6 aggregate address table. The structure of `aggregate_address6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddressArgs']]]] aggregate_addresses: BGP aggregate address table. The structure of `aggregate_address` block is documented below.
         :param pulumi.Input[str] always_compare_med: Enable/disable always compare MED. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] as_: Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
-        :param pulumi.Input[str] as_string: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        :param pulumi.Input[int] as_: Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as_string`.*
+        :param pulumi.Input[str] as_string: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
         :param pulumi.Input[str] bestpath_as_path_ignore: Enable/disable ignore AS path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_confed_aspath: Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_routerid: Enable/disable compare router ID for identical EBGP paths. Valid values: `enable`, `disable`.
@@ -2560,7 +2561,7 @@ class Bgp(pulumi.CustomResource):
         :param pulumi.Input[str] ebgp_multipath: Enable/disable EBGP multi-path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] enforce_first_as: Enable/disable enforce first AS for EBGP routes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fast_external_failover: Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] graceful_end_on_timer: Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] graceful_restart: Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] graceful_restart_time: Time needed for neighbors to restart (sec).
@@ -2597,7 +2598,7 @@ class Bgp(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: BgpArgs,
+                 args: Optional[BgpArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Configure BGP.
@@ -2815,8 +2816,6 @@ class Bgp(pulumi.CustomResource):
             __props__.__dict__["aggregate_address6s"] = aggregate_address6s
             __props__.__dict__["aggregate_addresses"] = aggregate_addresses
             __props__.__dict__["always_compare_med"] = always_compare_med
-            if as_ is None and not opts.urn:
-                raise TypeError("Missing required property 'as_'")
             __props__.__dict__["as_"] = as_
             __props__.__dict__["as_string"] = as_string
             __props__.__dict__["bestpath_as_path_ignore"] = bestpath_as_path_ignore
@@ -2978,8 +2977,8 @@ class Bgp(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddress6Args']]]] aggregate_address6s: BGP IPv6 aggregate address table. The structure of `aggregate_address6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BgpAggregateAddressArgs']]]] aggregate_addresses: BGP aggregate address table. The structure of `aggregate_address` block is documented below.
         :param pulumi.Input[str] always_compare_med: Enable/disable always compare MED. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] as_: Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
-        :param pulumi.Input[str] as_string: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        :param pulumi.Input[int] as_: Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as_string`.*
+        :param pulumi.Input[str] as_string: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
         :param pulumi.Input[str] bestpath_as_path_ignore: Enable/disable ignore AS path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_confed_aspath: Enable/disable compare federation AS path length. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bestpath_cmp_routerid: Enable/disable compare router ID for identical EBGP paths. Valid values: `enable`, `disable`.
@@ -3006,7 +3005,7 @@ class Bgp(pulumi.CustomResource):
         :param pulumi.Input[str] ebgp_multipath: Enable/disable EBGP multi-path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] enforce_first_as: Enable/disable enforce first AS for EBGP routes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fast_external_failover: Enable/disable reset peer BGP session if link goes down. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] graceful_end_on_timer: Enable/disable to exit graceful restart on timer only. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] graceful_restart: Enable/disable BGP graceful restart capabilities. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] graceful_restart_time: Time needed for neighbors to restart (sec).
@@ -3217,7 +3216,7 @@ class Bgp(pulumi.CustomResource):
     @pulumi.getter(name="as")
     def as_(self) -> pulumi.Output[int]:
         """
-        Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+        Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as_string`.*
         """
         return pulumi.get(self, "as_")
 
@@ -3225,7 +3224,7 @@ class Bgp(pulumi.CustomResource):
     @pulumi.getter(name="asString")
     def as_string(self) -> pulumi.Output[str]:
         """
-        Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+        Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
         """
         return pulumi.get(self, "as_string")
 
@@ -3441,7 +3440,7 @@ class Bgp(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -3655,7 +3654,7 @@ class Bgp(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

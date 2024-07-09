@@ -126,7 +126,7 @@ type Vip6 struct {
 	Extport pulumi.StringOutput `pulumi:"extport"`
 	// Custom defined ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
 	H2Support pulumi.StringOutput `pulumi:"h2Support"`
@@ -194,6 +194,8 @@ type Vip6 struct {
 	ServerType pulumi.StringOutput `pulumi:"serverType"`
 	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters Vip6SrcFilterArrayOutput `pulumi:"srcFilters"`
+	// Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+	SrcVipFilter pulumi.StringOutput `pulumi:"srcVipFilter"`
 	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
 	SslAcceptFfdheGroups pulumi.StringOutput `pulumi:"sslAcceptFfdheGroups"`
 	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
@@ -269,7 +271,7 @@ type Vip6 struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
 	WeblogicServer pulumi.StringOutput `pulumi:"weblogicServer"`
 	// Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. Valid values: `disable`, `enable`.
@@ -330,7 +332,7 @@ type vip6State struct {
 	Extport *string `pulumi:"extport"`
 	// Custom defined ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
 	H2Support *string `pulumi:"h2Support"`
@@ -398,6 +400,8 @@ type vip6State struct {
 	ServerType *string `pulumi:"serverType"`
 	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters []Vip6SrcFilter `pulumi:"srcFilters"`
+	// Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+	SrcVipFilter *string `pulumi:"srcVipFilter"`
 	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
 	SslAcceptFfdheGroups *string `pulumi:"sslAcceptFfdheGroups"`
 	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
@@ -499,7 +503,7 @@ type Vip6State struct {
 	Extport pulumi.StringPtrInput
 	// Custom defined ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
 	H2Support pulumi.StringPtrInput
@@ -567,6 +571,8 @@ type Vip6State struct {
 	ServerType pulumi.StringPtrInput
 	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters Vip6SrcFilterArrayInput
+	// Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+	SrcVipFilter pulumi.StringPtrInput
 	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
 	SslAcceptFfdheGroups pulumi.StringPtrInput
 	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
@@ -672,7 +678,7 @@ type vip6Args struct {
 	Extport *string `pulumi:"extport"`
 	// Custom defined ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
 	H2Support *string `pulumi:"h2Support"`
@@ -740,6 +746,8 @@ type vip6Args struct {
 	ServerType *string `pulumi:"serverType"`
 	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters []Vip6SrcFilter `pulumi:"srcFilters"`
+	// Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+	SrcVipFilter *string `pulumi:"srcVipFilter"`
 	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
 	SslAcceptFfdheGroups *string `pulumi:"sslAcceptFfdheGroups"`
 	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
@@ -842,7 +850,7 @@ type Vip6Args struct {
 	Extport pulumi.StringPtrInput
 	// Custom defined ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable HTTP2 support (default = enable). Valid values: `enable`, `disable`.
 	H2Support pulumi.StringPtrInput
@@ -910,6 +918,8 @@ type Vip6Args struct {
 	ServerType pulumi.StringPtrInput
 	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters Vip6SrcFilterArrayInput
+	// Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+	SrcVipFilter pulumi.StringPtrInput
 	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
 	SslAcceptFfdheGroups pulumi.StringPtrInput
 	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
@@ -1124,7 +1134,7 @@ func (o Vip6Output) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vip6) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o Vip6Output) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Vip6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1292,6 +1302,11 @@ func (o Vip6Output) ServerType() pulumi.StringOutput {
 // Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 func (o Vip6Output) SrcFilters() Vip6SrcFilterArrayOutput {
 	return o.ApplyT(func(v *Vip6) Vip6SrcFilterArrayOutput { return v.SrcFilters }).(Vip6SrcFilterArrayOutput)
+}
+
+// Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+func (o Vip6Output) SrcVipFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip6) pulumi.StringOutput { return v.SrcVipFilter }).(pulumi.StringOutput)
 }
 
 // Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
@@ -1480,8 +1495,8 @@ func (o Vip6Output) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Vip6Output) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Vip6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Vip6Output) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip6) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.

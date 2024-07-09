@@ -46,7 +46,7 @@ type Sdnproxy struct {
 	// SDN proxy username.
 	Username pulumi.StringOutput `pulumi:"username"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSdnproxy registers a new resource with the given unique name, arguments, and options.
@@ -269,8 +269,8 @@ func (o SdnproxyOutput) Username() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SdnproxyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Sdnproxy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SdnproxyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sdnproxy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SdnproxyArrayOutput struct{ *pulumi.OutputState }

@@ -79,12 +79,12 @@ class WidsprofileArgs:
         :param pulumi.Input[str] ap_bgscan_disable_end: End time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
         :param pulumi.Input[Sequence[pulumi.Input['WidsprofileApBgscanDisableScheduleArgs']]] ap_bgscan_disable_schedules: Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `ap_bgscan_disable_schedules` block is documented below.
         :param pulumi.Input[str] ap_bgscan_disable_start: Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-        :param pulumi.Input[int] ap_bgscan_duration: Listening time on a scanning channel (10 - 1000 msec, default = 20).
-        :param pulumi.Input[int] ap_bgscan_idle: Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
-        :param pulumi.Input[int] ap_bgscan_intv: Period of time between scanning two channels (1 - 600 sec, default = 1).
-        :param pulumi.Input[int] ap_bgscan_period: Period of time between background scans (60 - 3600 sec, default = 600).
-        :param pulumi.Input[int] ap_bgscan_report_intv: Period of time between background scan reports (15 - 600 sec, default = 30).
-        :param pulumi.Input[int] ap_fgscan_report_intv: Period of time between foreground scan reports (15 - 600 sec, default = 15).
+        :param pulumi.Input[int] ap_bgscan_duration: Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
+        :param pulumi.Input[int] ap_bgscan_idle: Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
+        :param pulumi.Input[int] ap_bgscan_intv: Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
+        :param pulumi.Input[int] ap_bgscan_period: Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
+        :param pulumi.Input[int] ap_bgscan_report_intv: Period between background scan reports (15 - 600 sec, default = 30).
+        :param pulumi.Input[int] ap_fgscan_report_intv: Period between foreground scan reports (15 - 600 sec, default = 15).
         :param pulumi.Input[str] ap_scan: Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList2g5gArgs']]] ap_scan_channel_list2g5gs: Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList6gArgs']]] ap_scan_channel_list6gs: Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
@@ -119,13 +119,13 @@ class WidsprofileArgs:
         :param pulumi.Input[str] eapol_succ_flood: Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] eapol_succ_intv: The detection interval for EAPOL-Success flooding (1 - 3600 sec).
         :param pulumi.Input[int] eapol_succ_thresh: The threshold value for EAPOL-Success flooding in specified interval.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] invalid_mac_oui: Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] long_duration_attack: Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] long_duration_thresh: Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
         :param pulumi.Input[str] name: WIDS profile name.
         :param pulumi.Input[str] null_ssid_probe_resp: Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] sensor_mode: Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+        :param pulumi.Input[str] sensor_mode: Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         :param pulumi.Input[str] spoofed_deauth: Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
                
@@ -310,7 +310,7 @@ class WidsprofileArgs:
     @pulumi.getter(name="apBgscanDuration")
     def ap_bgscan_duration(self) -> Optional[pulumi.Input[int]]:
         """
-        Listening time on a scanning channel (10 - 1000 msec, default = 20).
+        Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
         """
         return pulumi.get(self, "ap_bgscan_duration")
 
@@ -322,7 +322,7 @@ class WidsprofileArgs:
     @pulumi.getter(name="apBgscanIdle")
     def ap_bgscan_idle(self) -> Optional[pulumi.Input[int]]:
         """
-        Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+        Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
         """
         return pulumi.get(self, "ap_bgscan_idle")
 
@@ -334,7 +334,7 @@ class WidsprofileArgs:
     @pulumi.getter(name="apBgscanIntv")
     def ap_bgscan_intv(self) -> Optional[pulumi.Input[int]]:
         """
-        Period of time between scanning two channels (1 - 600 sec, default = 1).
+        Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
         """
         return pulumi.get(self, "ap_bgscan_intv")
 
@@ -346,7 +346,7 @@ class WidsprofileArgs:
     @pulumi.getter(name="apBgscanPeriod")
     def ap_bgscan_period(self) -> Optional[pulumi.Input[int]]:
         """
-        Period of time between background scans (60 - 3600 sec, default = 600).
+        Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
         """
         return pulumi.get(self, "ap_bgscan_period")
 
@@ -358,7 +358,7 @@ class WidsprofileArgs:
     @pulumi.getter(name="apBgscanReportIntv")
     def ap_bgscan_report_intv(self) -> Optional[pulumi.Input[int]]:
         """
-        Period of time between background scan reports (15 - 600 sec, default = 30).
+        Period between background scan reports (15 - 600 sec, default = 30).
         """
         return pulumi.get(self, "ap_bgscan_report_intv")
 
@@ -370,7 +370,7 @@ class WidsprofileArgs:
     @pulumi.getter(name="apFgscanReportIntv")
     def ap_fgscan_report_intv(self) -> Optional[pulumi.Input[int]]:
         """
-        Period of time between foreground scan reports (15 - 600 sec, default = 15).
+        Period between foreground scan reports (15 - 600 sec, default = 15).
         """
         return pulumi.get(self, "ap_fgscan_report_intv")
 
@@ -790,7 +790,7 @@ class WidsprofileArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -862,7 +862,7 @@ class WidsprofileArgs:
     @pulumi.getter(name="sensorMode")
     def sensor_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+        Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         """
         return pulumi.get(self, "sensor_mode")
 
@@ -987,12 +987,12 @@ class _WidsprofileState:
         :param pulumi.Input[str] ap_bgscan_disable_end: End time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
         :param pulumi.Input[Sequence[pulumi.Input['WidsprofileApBgscanDisableScheduleArgs']]] ap_bgscan_disable_schedules: Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `ap_bgscan_disable_schedules` block is documented below.
         :param pulumi.Input[str] ap_bgscan_disable_start: Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-        :param pulumi.Input[int] ap_bgscan_duration: Listening time on a scanning channel (10 - 1000 msec, default = 20).
-        :param pulumi.Input[int] ap_bgscan_idle: Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
-        :param pulumi.Input[int] ap_bgscan_intv: Period of time between scanning two channels (1 - 600 sec, default = 1).
-        :param pulumi.Input[int] ap_bgscan_period: Period of time between background scans (60 - 3600 sec, default = 600).
-        :param pulumi.Input[int] ap_bgscan_report_intv: Period of time between background scan reports (15 - 600 sec, default = 30).
-        :param pulumi.Input[int] ap_fgscan_report_intv: Period of time between foreground scan reports (15 - 600 sec, default = 15).
+        :param pulumi.Input[int] ap_bgscan_duration: Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
+        :param pulumi.Input[int] ap_bgscan_idle: Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
+        :param pulumi.Input[int] ap_bgscan_intv: Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
+        :param pulumi.Input[int] ap_bgscan_period: Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
+        :param pulumi.Input[int] ap_bgscan_report_intv: Period between background scan reports (15 - 600 sec, default = 30).
+        :param pulumi.Input[int] ap_fgscan_report_intv: Period between foreground scan reports (15 - 600 sec, default = 15).
         :param pulumi.Input[str] ap_scan: Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList2g5gArgs']]] ap_scan_channel_list2g5gs: Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['WidsprofileApScanChannelList6gArgs']]] ap_scan_channel_list6gs: Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
@@ -1027,13 +1027,13 @@ class _WidsprofileState:
         :param pulumi.Input[str] eapol_succ_flood: Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] eapol_succ_intv: The detection interval for EAPOL-Success flooding (1 - 3600 sec).
         :param pulumi.Input[int] eapol_succ_thresh: The threshold value for EAPOL-Success flooding in specified interval.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] invalid_mac_oui: Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] long_duration_attack: Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] long_duration_thresh: Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
         :param pulumi.Input[str] name: WIDS profile name.
         :param pulumi.Input[str] null_ssid_probe_resp: Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] sensor_mode: Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+        :param pulumi.Input[str] sensor_mode: Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         :param pulumi.Input[str] spoofed_deauth: Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
                
@@ -1218,7 +1218,7 @@ class _WidsprofileState:
     @pulumi.getter(name="apBgscanDuration")
     def ap_bgscan_duration(self) -> Optional[pulumi.Input[int]]:
         """
-        Listening time on a scanning channel (10 - 1000 msec, default = 20).
+        Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
         """
         return pulumi.get(self, "ap_bgscan_duration")
 
@@ -1230,7 +1230,7 @@ class _WidsprofileState:
     @pulumi.getter(name="apBgscanIdle")
     def ap_bgscan_idle(self) -> Optional[pulumi.Input[int]]:
         """
-        Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+        Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
         """
         return pulumi.get(self, "ap_bgscan_idle")
 
@@ -1242,7 +1242,7 @@ class _WidsprofileState:
     @pulumi.getter(name="apBgscanIntv")
     def ap_bgscan_intv(self) -> Optional[pulumi.Input[int]]:
         """
-        Period of time between scanning two channels (1 - 600 sec, default = 1).
+        Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
         """
         return pulumi.get(self, "ap_bgscan_intv")
 
@@ -1254,7 +1254,7 @@ class _WidsprofileState:
     @pulumi.getter(name="apBgscanPeriod")
     def ap_bgscan_period(self) -> Optional[pulumi.Input[int]]:
         """
-        Period of time between background scans (60 - 3600 sec, default = 600).
+        Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
         """
         return pulumi.get(self, "ap_bgscan_period")
 
@@ -1266,7 +1266,7 @@ class _WidsprofileState:
     @pulumi.getter(name="apBgscanReportIntv")
     def ap_bgscan_report_intv(self) -> Optional[pulumi.Input[int]]:
         """
-        Period of time between background scan reports (15 - 600 sec, default = 30).
+        Period between background scan reports (15 - 600 sec, default = 30).
         """
         return pulumi.get(self, "ap_bgscan_report_intv")
 
@@ -1278,7 +1278,7 @@ class _WidsprofileState:
     @pulumi.getter(name="apFgscanReportIntv")
     def ap_fgscan_report_intv(self) -> Optional[pulumi.Input[int]]:
         """
-        Period of time between foreground scan reports (15 - 600 sec, default = 15).
+        Period between foreground scan reports (15 - 600 sec, default = 15).
         """
         return pulumi.get(self, "ap_fgscan_report_intv")
 
@@ -1698,7 +1698,7 @@ class _WidsprofileState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1770,7 +1770,7 @@ class _WidsprofileState:
     @pulumi.getter(name="sensorMode")
     def sensor_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+        Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         """
         return pulumi.get(self, "sensor_mode")
 
@@ -1919,12 +1919,12 @@ class Widsprofile(pulumi.CustomResource):
         :param pulumi.Input[str] ap_bgscan_disable_end: End time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApBgscanDisableScheduleArgs']]]] ap_bgscan_disable_schedules: Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `ap_bgscan_disable_schedules` block is documented below.
         :param pulumi.Input[str] ap_bgscan_disable_start: Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-        :param pulumi.Input[int] ap_bgscan_duration: Listening time on a scanning channel (10 - 1000 msec, default = 20).
-        :param pulumi.Input[int] ap_bgscan_idle: Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
-        :param pulumi.Input[int] ap_bgscan_intv: Period of time between scanning two channels (1 - 600 sec, default = 1).
-        :param pulumi.Input[int] ap_bgscan_period: Period of time between background scans (60 - 3600 sec, default = 600).
-        :param pulumi.Input[int] ap_bgscan_report_intv: Period of time between background scan reports (15 - 600 sec, default = 30).
-        :param pulumi.Input[int] ap_fgscan_report_intv: Period of time between foreground scan reports (15 - 600 sec, default = 15).
+        :param pulumi.Input[int] ap_bgscan_duration: Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
+        :param pulumi.Input[int] ap_bgscan_idle: Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
+        :param pulumi.Input[int] ap_bgscan_intv: Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
+        :param pulumi.Input[int] ap_bgscan_period: Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
+        :param pulumi.Input[int] ap_bgscan_report_intv: Period between background scan reports (15 - 600 sec, default = 30).
+        :param pulumi.Input[int] ap_fgscan_report_intv: Period between foreground scan reports (15 - 600 sec, default = 15).
         :param pulumi.Input[str] ap_scan: Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList2g5gArgs']]]] ap_scan_channel_list2g5gs: Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList6gArgs']]]] ap_scan_channel_list6gs: Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
@@ -1959,13 +1959,13 @@ class Widsprofile(pulumi.CustomResource):
         :param pulumi.Input[str] eapol_succ_flood: Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] eapol_succ_intv: The detection interval for EAPOL-Success flooding (1 - 3600 sec).
         :param pulumi.Input[int] eapol_succ_thresh: The threshold value for EAPOL-Success flooding in specified interval.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] invalid_mac_oui: Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] long_duration_attack: Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] long_duration_thresh: Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
         :param pulumi.Input[str] name: WIDS profile name.
         :param pulumi.Input[str] null_ssid_probe_resp: Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] sensor_mode: Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+        :param pulumi.Input[str] sensor_mode: Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         :param pulumi.Input[str] spoofed_deauth: Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
                
@@ -2214,12 +2214,12 @@ class Widsprofile(pulumi.CustomResource):
         :param pulumi.Input[str] ap_bgscan_disable_end: End time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApBgscanDisableScheduleArgs']]]] ap_bgscan_disable_schedules: Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `ap_bgscan_disable_schedules` block is documented below.
         :param pulumi.Input[str] ap_bgscan_disable_start: Start time, using a 24-hour clock in the format of hh:mm, for disabling background scanning (default = 00:00).
-        :param pulumi.Input[int] ap_bgscan_duration: Listening time on a scanning channel (10 - 1000 msec, default = 20).
-        :param pulumi.Input[int] ap_bgscan_idle: Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
-        :param pulumi.Input[int] ap_bgscan_intv: Period of time between scanning two channels (1 - 600 sec, default = 1).
-        :param pulumi.Input[int] ap_bgscan_period: Period of time between background scans (60 - 3600 sec, default = 600).
-        :param pulumi.Input[int] ap_bgscan_report_intv: Period of time between background scan reports (15 - 600 sec, default = 30).
-        :param pulumi.Input[int] ap_fgscan_report_intv: Period of time between foreground scan reports (15 - 600 sec, default = 15).
+        :param pulumi.Input[int] ap_bgscan_duration: Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
+        :param pulumi.Input[int] ap_bgscan_idle: Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
+        :param pulumi.Input[int] ap_bgscan_intv: Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
+        :param pulumi.Input[int] ap_bgscan_period: Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
+        :param pulumi.Input[int] ap_bgscan_report_intv: Period between background scan reports (15 - 600 sec, default = 30).
+        :param pulumi.Input[int] ap_fgscan_report_intv: Period between foreground scan reports (15 - 600 sec, default = 15).
         :param pulumi.Input[str] ap_scan: Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList2g5gArgs']]]] ap_scan_channel_list2g5gs: Selected ap scan channel list for 2.4G and 5G bands. The structure of `ap_scan_channel_list_2g_5g` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WidsprofileApScanChannelList6gArgs']]]] ap_scan_channel_list6gs: Selected ap scan channel list for 6G band. The structure of `ap_scan_channel_list_6g` block is documented below.
@@ -2254,13 +2254,13 @@ class Widsprofile(pulumi.CustomResource):
         :param pulumi.Input[str] eapol_succ_flood: Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] eapol_succ_intv: The detection interval for EAPOL-Success flooding (1 - 3600 sec).
         :param pulumi.Input[int] eapol_succ_thresh: The threshold value for EAPOL-Success flooding in specified interval.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] invalid_mac_oui: Enable/disable invalid MAC OUI detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] long_duration_attack: Enable/disable long duration attack detection based on user configured threshold (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] long_duration_thresh: Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200).
         :param pulumi.Input[str] name: WIDS profile name.
         :param pulumi.Input[str] null_ssid_probe_resp: Enable/disable null SSID probe response detection (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] sensor_mode: Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+        :param pulumi.Input[str] sensor_mode: Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         :param pulumi.Input[str] spoofed_deauth: Enable/disable spoofed de-authentication attack detection (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
                
@@ -2374,7 +2374,7 @@ class Widsprofile(pulumi.CustomResource):
     @pulumi.getter(name="apBgscanDuration")
     def ap_bgscan_duration(self) -> pulumi.Output[int]:
         """
-        Listening time on a scanning channel (10 - 1000 msec, default = 20).
+        Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
         """
         return pulumi.get(self, "ap_bgscan_duration")
 
@@ -2382,7 +2382,7 @@ class Widsprofile(pulumi.CustomResource):
     @pulumi.getter(name="apBgscanIdle")
     def ap_bgscan_idle(self) -> pulumi.Output[int]:
         """
-        Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+        Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
         """
         return pulumi.get(self, "ap_bgscan_idle")
 
@@ -2390,7 +2390,7 @@ class Widsprofile(pulumi.CustomResource):
     @pulumi.getter(name="apBgscanIntv")
     def ap_bgscan_intv(self) -> pulumi.Output[int]:
         """
-        Period of time between scanning two channels (1 - 600 sec, default = 1).
+        Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
         """
         return pulumi.get(self, "ap_bgscan_intv")
 
@@ -2398,7 +2398,7 @@ class Widsprofile(pulumi.CustomResource):
     @pulumi.getter(name="apBgscanPeriod")
     def ap_bgscan_period(self) -> pulumi.Output[int]:
         """
-        Period of time between background scans (60 - 3600 sec, default = 600).
+        Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
         """
         return pulumi.get(self, "ap_bgscan_period")
 
@@ -2406,7 +2406,7 @@ class Widsprofile(pulumi.CustomResource):
     @pulumi.getter(name="apBgscanReportIntv")
     def ap_bgscan_report_intv(self) -> pulumi.Output[int]:
         """
-        Period of time between background scan reports (15 - 600 sec, default = 30).
+        Period between background scan reports (15 - 600 sec, default = 30).
         """
         return pulumi.get(self, "ap_bgscan_report_intv")
 
@@ -2414,7 +2414,7 @@ class Widsprofile(pulumi.CustomResource):
     @pulumi.getter(name="apFgscanReportIntv")
     def ap_fgscan_report_intv(self) -> pulumi.Output[int]:
         """
-        Period of time between foreground scan reports (15 - 600 sec, default = 15).
+        Period between foreground scan reports (15 - 600 sec, default = 15).
         """
         return pulumi.get(self, "ap_fgscan_report_intv")
 
@@ -2694,7 +2694,7 @@ class Widsprofile(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2742,7 +2742,7 @@ class Widsprofile(pulumi.CustomResource):
     @pulumi.getter(name="sensorMode")
     def sensor_mode(self) -> pulumi.Output[str]:
         """
-        Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+        Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         """
         return pulumi.get(self, "sensor_mode")
 
@@ -2756,7 +2756,7 @@ class Widsprofile(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 

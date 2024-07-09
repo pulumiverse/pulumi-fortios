@@ -1048,6 +1048,8 @@ type MpskprofileMpskGroupMpskKey struct {
 	ConcurrentClientLimitType *string `pulumi:"concurrentClientLimitType"`
 	// Number of clients that can connect using this pre-shared key (1 - 65535, default is 256).
 	ConcurrentClients *int `pulumi:"concurrentClients"`
+	// Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
+	KeyType *string `pulumi:"keyType"`
 	// MAC address.
 	Mac *string `pulumi:"mac"`
 	// Firewall schedule for MPSK passphrase. The passphrase will be effective only when at least one schedule is valid. The structure of `mpskSchedules` block is documented below.
@@ -1056,6 +1058,12 @@ type MpskprofileMpskGroupMpskKey struct {
 	Name *string `pulumi:"name"`
 	// WPA Pre-shared key.
 	Passphrase *string `pulumi:"passphrase"`
+	// WPA3 SAE password.
+	SaePassword *string `pulumi:"saePassword"`
+	// Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+	SaePk *string `pulumi:"saePk"`
+	// Private key used for WPA3 SAE-PK authentication.
+	SaePrivateKey *string `pulumi:"saePrivateKey"`
 }
 
 // MpskprofileMpskGroupMpskKeyInput is an input type that accepts MpskprofileMpskGroupMpskKeyArgs and MpskprofileMpskGroupMpskKeyOutput values.
@@ -1076,6 +1084,8 @@ type MpskprofileMpskGroupMpskKeyArgs struct {
 	ConcurrentClientLimitType pulumi.StringPtrInput `pulumi:"concurrentClientLimitType"`
 	// Number of clients that can connect using this pre-shared key (1 - 65535, default is 256).
 	ConcurrentClients pulumi.IntPtrInput `pulumi:"concurrentClients"`
+	// Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
+	KeyType pulumi.StringPtrInput `pulumi:"keyType"`
 	// MAC address.
 	Mac pulumi.StringPtrInput `pulumi:"mac"`
 	// Firewall schedule for MPSK passphrase. The passphrase will be effective only when at least one schedule is valid. The structure of `mpskSchedules` block is documented below.
@@ -1084,6 +1094,12 @@ type MpskprofileMpskGroupMpskKeyArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// WPA Pre-shared key.
 	Passphrase pulumi.StringPtrInput `pulumi:"passphrase"`
+	// WPA3 SAE password.
+	SaePassword pulumi.StringPtrInput `pulumi:"saePassword"`
+	// Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+	SaePk pulumi.StringPtrInput `pulumi:"saePk"`
+	// Private key used for WPA3 SAE-PK authentication.
+	SaePrivateKey pulumi.StringPtrInput `pulumi:"saePrivateKey"`
 }
 
 func (MpskprofileMpskGroupMpskKeyArgs) ElementType() reflect.Type {
@@ -1152,6 +1168,11 @@ func (o MpskprofileMpskGroupMpskKeyOutput) ConcurrentClients() pulumi.IntPtrOutp
 	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *int { return v.ConcurrentClients }).(pulumi.IntPtrOutput)
 }
 
+// Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
+func (o MpskprofileMpskGroupMpskKeyOutput) KeyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *string { return v.KeyType }).(pulumi.StringPtrOutput)
+}
+
 // MAC address.
 func (o MpskprofileMpskGroupMpskKeyOutput) Mac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *string { return v.Mac }).(pulumi.StringPtrOutput)
@@ -1170,6 +1191,21 @@ func (o MpskprofileMpskGroupMpskKeyOutput) Name() pulumi.StringPtrOutput {
 // WPA Pre-shared key.
 func (o MpskprofileMpskGroupMpskKeyOutput) Passphrase() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *string { return v.Passphrase }).(pulumi.StringPtrOutput)
+}
+
+// WPA3 SAE password.
+func (o MpskprofileMpskGroupMpskKeyOutput) SaePassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *string { return v.SaePassword }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+func (o MpskprofileMpskGroupMpskKeyOutput) SaePk() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *string { return v.SaePk }).(pulumi.StringPtrOutput)
+}
+
+// Private key used for WPA3 SAE-PK authentication.
+func (o MpskprofileMpskGroupMpskKeyOutput) SaePrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *string { return v.SaePrivateKey }).(pulumi.StringPtrOutput)
 }
 
 type MpskprofileMpskGroupMpskKeyArrayOutput struct{ *pulumi.OutputState }
@@ -7861,13 +7897,13 @@ func (o WtpprofileLanPtrOutput) PortSsid() pulumi.StringPtrOutput {
 type WtpprofileLbs struct {
 	// Enable/disable AeroScout Real Time Location Service (RTLS) support. Valid values: `enable`, `disable`.
 	Aeroscout *string `pulumi:"aeroscout"`
-	// Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+	// Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
 	AeroscoutApMac *string `pulumi:"aeroscoutApMac"`
-	// Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+	// Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
 	AeroscoutMmuReport *string `pulumi:"aeroscoutMmuReport"`
-	// Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+	// Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
 	AeroscoutMu *string `pulumi:"aeroscoutMu"`
-	// AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+	// eroScout MU mode dilution factor (default = 20).
 	AeroscoutMuFactor *int `pulumi:"aeroscoutMuFactor"`
 	// AeroScout MU mode timeout (0 - 65535 sec, default = 5).
 	AeroscoutMuTimeout *int `pulumi:"aeroscoutMuTimeout"`
@@ -7875,13 +7911,13 @@ type WtpprofileLbs struct {
 	AeroscoutServerIp *string `pulumi:"aeroscoutServerIp"`
 	// AeroScout server UDP listening port.
 	AeroscoutServerPort *int `pulumi:"aeroscoutServerPort"`
-	// Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
 	EkahauBlinkMode *string `pulumi:"ekahauBlinkMode"`
 	// WiFi frame MAC address or WiFi Tag.
 	EkahauTag *string `pulumi:"ekahauTag"`
-	// IP address of Ekahua RTLS Controller (ERC).
+	// IP address of Ekahau RTLS Controller (ERC).
 	ErcServerIp *string `pulumi:"ercServerIp"`
-	// Ekahua RTLS Controller (ERC) UDP listening port.
+	// Ekahau RTLS Controller (ERC) UDP listening port.
 	ErcServerPort *int `pulumi:"ercServerPort"`
 	// Enable/disable FortiPresence to monitor the location and activity of WiFi clients even if they don't connect to this WiFi network (default = disable). Valid values: `foreign`, `both`, `disable`.
 	Fortipresence *string `pulumi:"fortipresence"`
@@ -7889,7 +7925,7 @@ type WtpprofileLbs struct {
 	FortipresenceBle *string `pulumi:"fortipresenceBle"`
 	// FortiPresence report transmit frequency (5 - 65535 sec, default = 30).
 	FortipresenceFrequency *int `pulumi:"fortipresenceFrequency"`
-	// FortiPresence server UDP listening port (default = 3000).
+	// UDP listening port of FortiPresence server (default = 3000).
 	FortipresencePort *int `pulumi:"fortipresencePort"`
 	// FortiPresence project name (max. 16 characters, default = fortipresence).
 	FortipresenceProject *string `pulumi:"fortipresenceProject"`
@@ -7949,13 +7985,13 @@ type WtpprofileLbsInput interface {
 type WtpprofileLbsArgs struct {
 	// Enable/disable AeroScout Real Time Location Service (RTLS) support. Valid values: `enable`, `disable`.
 	Aeroscout pulumi.StringPtrInput `pulumi:"aeroscout"`
-	// Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+	// Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
 	AeroscoutApMac pulumi.StringPtrInput `pulumi:"aeroscoutApMac"`
-	// Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+	// Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
 	AeroscoutMmuReport pulumi.StringPtrInput `pulumi:"aeroscoutMmuReport"`
-	// Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+	// Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
 	AeroscoutMu pulumi.StringPtrInput `pulumi:"aeroscoutMu"`
-	// AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+	// eroScout MU mode dilution factor (default = 20).
 	AeroscoutMuFactor pulumi.IntPtrInput `pulumi:"aeroscoutMuFactor"`
 	// AeroScout MU mode timeout (0 - 65535 sec, default = 5).
 	AeroscoutMuTimeout pulumi.IntPtrInput `pulumi:"aeroscoutMuTimeout"`
@@ -7963,13 +7999,13 @@ type WtpprofileLbsArgs struct {
 	AeroscoutServerIp pulumi.StringPtrInput `pulumi:"aeroscoutServerIp"`
 	// AeroScout server UDP listening port.
 	AeroscoutServerPort pulumi.IntPtrInput `pulumi:"aeroscoutServerPort"`
-	// Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
 	EkahauBlinkMode pulumi.StringPtrInput `pulumi:"ekahauBlinkMode"`
 	// WiFi frame MAC address or WiFi Tag.
 	EkahauTag pulumi.StringPtrInput `pulumi:"ekahauTag"`
-	// IP address of Ekahua RTLS Controller (ERC).
+	// IP address of Ekahau RTLS Controller (ERC).
 	ErcServerIp pulumi.StringPtrInput `pulumi:"ercServerIp"`
-	// Ekahua RTLS Controller (ERC) UDP listening port.
+	// Ekahau RTLS Controller (ERC) UDP listening port.
 	ErcServerPort pulumi.IntPtrInput `pulumi:"ercServerPort"`
 	// Enable/disable FortiPresence to monitor the location and activity of WiFi clients even if they don't connect to this WiFi network (default = disable). Valid values: `foreign`, `both`, `disable`.
 	Fortipresence pulumi.StringPtrInput `pulumi:"fortipresence"`
@@ -7977,7 +8013,7 @@ type WtpprofileLbsArgs struct {
 	FortipresenceBle pulumi.StringPtrInput `pulumi:"fortipresenceBle"`
 	// FortiPresence report transmit frequency (5 - 65535 sec, default = 30).
 	FortipresenceFrequency pulumi.IntPtrInput `pulumi:"fortipresenceFrequency"`
-	// FortiPresence server UDP listening port (default = 3000).
+	// UDP listening port of FortiPresence server (default = 3000).
 	FortipresencePort pulumi.IntPtrInput `pulumi:"fortipresencePort"`
 	// FortiPresence project name (max. 16 characters, default = fortipresence).
 	FortipresenceProject pulumi.StringPtrInput `pulumi:"fortipresenceProject"`
@@ -8105,22 +8141,22 @@ func (o WtpprofileLbsOutput) Aeroscout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.Aeroscout }).(pulumi.StringPtrOutput)
 }
 
-// Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+// Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
 func (o WtpprofileLbsOutput) AeroscoutApMac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.AeroscoutApMac }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+// Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileLbsOutput) AeroscoutMmuReport() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.AeroscoutMmuReport }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+// Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileLbsOutput) AeroscoutMu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.AeroscoutMu }).(pulumi.StringPtrOutput)
 }
 
-// AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+// eroScout MU mode dilution factor (default = 20).
 func (o WtpprofileLbsOutput) AeroscoutMuFactor() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *int { return v.AeroscoutMuFactor }).(pulumi.IntPtrOutput)
 }
@@ -8140,7 +8176,7 @@ func (o WtpprofileLbsOutput) AeroscoutServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *int { return v.AeroscoutServerPort }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+// Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileLbsOutput) EkahauBlinkMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.EkahauBlinkMode }).(pulumi.StringPtrOutput)
 }
@@ -8150,12 +8186,12 @@ func (o WtpprofileLbsOutput) EkahauTag() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.EkahauTag }).(pulumi.StringPtrOutput)
 }
 
-// IP address of Ekahua RTLS Controller (ERC).
+// IP address of Ekahau RTLS Controller (ERC).
 func (o WtpprofileLbsOutput) ErcServerIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.ErcServerIp }).(pulumi.StringPtrOutput)
 }
 
-// Ekahua RTLS Controller (ERC) UDP listening port.
+// Ekahau RTLS Controller (ERC) UDP listening port.
 func (o WtpprofileLbsOutput) ErcServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *int { return v.ErcServerPort }).(pulumi.IntPtrOutput)
 }
@@ -8175,7 +8211,7 @@ func (o WtpprofileLbsOutput) FortipresenceFrequency() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *int { return v.FortipresenceFrequency }).(pulumi.IntPtrOutput)
 }
 
-// FortiPresence server UDP listening port (default = 3000).
+// UDP listening port of FortiPresence server (default = 3000).
 func (o WtpprofileLbsOutput) FortipresencePort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *int { return v.FortipresencePort }).(pulumi.IntPtrOutput)
 }
@@ -8319,7 +8355,7 @@ func (o WtpprofileLbsPtrOutput) Aeroscout() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+// Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
 func (o WtpprofileLbsPtrOutput) AeroscoutApMac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *string {
 		if v == nil {
@@ -8329,7 +8365,7 @@ func (o WtpprofileLbsPtrOutput) AeroscoutApMac() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+// Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileLbsPtrOutput) AeroscoutMmuReport() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *string {
 		if v == nil {
@@ -8339,7 +8375,7 @@ func (o WtpprofileLbsPtrOutput) AeroscoutMmuReport() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+// Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileLbsPtrOutput) AeroscoutMu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *string {
 		if v == nil {
@@ -8349,7 +8385,7 @@ func (o WtpprofileLbsPtrOutput) AeroscoutMu() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+// eroScout MU mode dilution factor (default = 20).
 func (o WtpprofileLbsPtrOutput) AeroscoutMuFactor() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *int {
 		if v == nil {
@@ -8389,7 +8425,7 @@ func (o WtpprofileLbsPtrOutput) AeroscoutServerPort() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+// Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileLbsPtrOutput) EkahauBlinkMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *string {
 		if v == nil {
@@ -8409,7 +8445,7 @@ func (o WtpprofileLbsPtrOutput) EkahauTag() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// IP address of Ekahua RTLS Controller (ERC).
+// IP address of Ekahau RTLS Controller (ERC).
 func (o WtpprofileLbsPtrOutput) ErcServerIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *string {
 		if v == nil {
@@ -8419,7 +8455,7 @@ func (o WtpprofileLbsPtrOutput) ErcServerIp() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Ekahua RTLS Controller (ERC) UDP listening port.
+// Ekahau RTLS Controller (ERC) UDP listening port.
 func (o WtpprofileLbsPtrOutput) ErcServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *int {
 		if v == nil {
@@ -8459,7 +8495,7 @@ func (o WtpprofileLbsPtrOutput) FortipresenceFrequency() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// FortiPresence server UDP listening port (default = 3000).
+// UDP listening port of FortiPresence server (default = 3000).
 func (o WtpprofileLbsPtrOutput) FortipresencePort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *int {
 		if v == nil {
@@ -8979,6 +9015,7 @@ type WtpprofileRadio1 struct {
 	CallAdmissionControl      *string                   `pulumi:"callAdmissionControl"`
 	CallCapacity              *int                      `pulumi:"callCapacity"`
 	ChannelBonding            *string                   `pulumi:"channelBonding"`
+	ChannelBondingExt         *string                   `pulumi:"channelBondingExt"`
 	ChannelUtilization        *string                   `pulumi:"channelUtilization"`
 	Channels                  []WtpprofileRadio1Channel `pulumi:"channels"`
 	Coexistence               *string                   `pulumi:"coexistence"`
@@ -9076,6 +9113,7 @@ type WtpprofileRadio1Args struct {
 	CallAdmissionControl      pulumi.StringPtrInput             `pulumi:"callAdmissionControl"`
 	CallCapacity              pulumi.IntPtrInput                `pulumi:"callCapacity"`
 	ChannelBonding            pulumi.StringPtrInput             `pulumi:"channelBonding"`
+	ChannelBondingExt         pulumi.StringPtrInput             `pulumi:"channelBondingExt"`
 	ChannelUtilization        pulumi.StringPtrInput             `pulumi:"channelUtilization"`
 	Channels                  WtpprofileRadio1ChannelArrayInput `pulumi:"channels"`
 	Coexistence               pulumi.StringPtrInput             `pulumi:"coexistence"`
@@ -9314,6 +9352,10 @@ func (o WtpprofileRadio1Output) CallCapacity() pulumi.IntPtrOutput {
 
 func (o WtpprofileRadio1Output) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ChannelBonding }).(pulumi.StringPtrOutput)
+}
+
+func (o WtpprofileRadio1Output) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ChannelBondingExt }).(pulumi.StringPtrOutput)
 }
 
 func (o WtpprofileRadio1Output) ChannelUtilization() pulumi.StringPtrOutput {
@@ -9790,6 +9832,15 @@ func (o WtpprofileRadio1PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.ChannelBonding
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WtpprofileRadio1PtrOutput) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChannelBondingExt
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -10503,6 +10554,7 @@ type WtpprofileRadio2 struct {
 	CallAdmissionControl      *string                   `pulumi:"callAdmissionControl"`
 	CallCapacity              *int                      `pulumi:"callCapacity"`
 	ChannelBonding            *string                   `pulumi:"channelBonding"`
+	ChannelBondingExt         *string                   `pulumi:"channelBondingExt"`
 	ChannelUtilization        *string                   `pulumi:"channelUtilization"`
 	Channels                  []WtpprofileRadio2Channel `pulumi:"channels"`
 	Coexistence               *string                   `pulumi:"coexistence"`
@@ -10600,6 +10652,7 @@ type WtpprofileRadio2Args struct {
 	CallAdmissionControl      pulumi.StringPtrInput             `pulumi:"callAdmissionControl"`
 	CallCapacity              pulumi.IntPtrInput                `pulumi:"callCapacity"`
 	ChannelBonding            pulumi.StringPtrInput             `pulumi:"channelBonding"`
+	ChannelBondingExt         pulumi.StringPtrInput             `pulumi:"channelBondingExt"`
 	ChannelUtilization        pulumi.StringPtrInput             `pulumi:"channelUtilization"`
 	Channels                  WtpprofileRadio2ChannelArrayInput `pulumi:"channels"`
 	Coexistence               pulumi.StringPtrInput             `pulumi:"coexistence"`
@@ -10838,6 +10891,10 @@ func (o WtpprofileRadio2Output) CallCapacity() pulumi.IntPtrOutput {
 
 func (o WtpprofileRadio2Output) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ChannelBonding }).(pulumi.StringPtrOutput)
+}
+
+func (o WtpprofileRadio2Output) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ChannelBondingExt }).(pulumi.StringPtrOutput)
 }
 
 func (o WtpprofileRadio2Output) ChannelUtilization() pulumi.StringPtrOutput {
@@ -11314,6 +11371,15 @@ func (o WtpprofileRadio2PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.ChannelBonding
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WtpprofileRadio2PtrOutput) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChannelBondingExt
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -12027,6 +12093,7 @@ type WtpprofileRadio3 struct {
 	CallAdmissionControl      *string                   `pulumi:"callAdmissionControl"`
 	CallCapacity              *int                      `pulumi:"callCapacity"`
 	ChannelBonding            *string                   `pulumi:"channelBonding"`
+	ChannelBondingExt         *string                   `pulumi:"channelBondingExt"`
 	ChannelUtilization        *string                   `pulumi:"channelUtilization"`
 	Channels                  []WtpprofileRadio3Channel `pulumi:"channels"`
 	Coexistence               *string                   `pulumi:"coexistence"`
@@ -12123,6 +12190,7 @@ type WtpprofileRadio3Args struct {
 	CallAdmissionControl      pulumi.StringPtrInput             `pulumi:"callAdmissionControl"`
 	CallCapacity              pulumi.IntPtrInput                `pulumi:"callCapacity"`
 	ChannelBonding            pulumi.StringPtrInput             `pulumi:"channelBonding"`
+	ChannelBondingExt         pulumi.StringPtrInput             `pulumi:"channelBondingExt"`
 	ChannelUtilization        pulumi.StringPtrInput             `pulumi:"channelUtilization"`
 	Channels                  WtpprofileRadio3ChannelArrayInput `pulumi:"channels"`
 	Coexistence               pulumi.StringPtrInput             `pulumi:"coexistence"`
@@ -12360,6 +12428,10 @@ func (o WtpprofileRadio3Output) CallCapacity() pulumi.IntPtrOutput {
 
 func (o WtpprofileRadio3Output) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ChannelBonding }).(pulumi.StringPtrOutput)
+}
+
+func (o WtpprofileRadio3Output) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ChannelBondingExt }).(pulumi.StringPtrOutput)
 }
 
 func (o WtpprofileRadio3Output) ChannelUtilization() pulumi.StringPtrOutput {
@@ -12832,6 +12904,15 @@ func (o WtpprofileRadio3PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.ChannelBonding
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WtpprofileRadio3PtrOutput) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChannelBondingExt
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -13536,6 +13617,7 @@ type WtpprofileRadio4 struct {
 	CallAdmissionControl      *string                   `pulumi:"callAdmissionControl"`
 	CallCapacity              *int                      `pulumi:"callCapacity"`
 	ChannelBonding            *string                   `pulumi:"channelBonding"`
+	ChannelBondingExt         *string                   `pulumi:"channelBondingExt"`
 	ChannelUtilization        *string                   `pulumi:"channelUtilization"`
 	Channels                  []WtpprofileRadio4Channel `pulumi:"channels"`
 	Coexistence               *string                   `pulumi:"coexistence"`
@@ -13632,6 +13714,7 @@ type WtpprofileRadio4Args struct {
 	CallAdmissionControl      pulumi.StringPtrInput             `pulumi:"callAdmissionControl"`
 	CallCapacity              pulumi.IntPtrInput                `pulumi:"callCapacity"`
 	ChannelBonding            pulumi.StringPtrInput             `pulumi:"channelBonding"`
+	ChannelBondingExt         pulumi.StringPtrInput             `pulumi:"channelBondingExt"`
 	ChannelUtilization        pulumi.StringPtrInput             `pulumi:"channelUtilization"`
 	Channels                  WtpprofileRadio4ChannelArrayInput `pulumi:"channels"`
 	Coexistence               pulumi.StringPtrInput             `pulumi:"coexistence"`
@@ -13869,6 +13952,10 @@ func (o WtpprofileRadio4Output) CallCapacity() pulumi.IntPtrOutput {
 
 func (o WtpprofileRadio4Output) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ChannelBonding }).(pulumi.StringPtrOutput)
+}
+
+func (o WtpprofileRadio4Output) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ChannelBondingExt }).(pulumi.StringPtrOutput)
 }
 
 func (o WtpprofileRadio4Output) ChannelUtilization() pulumi.StringPtrOutput {
@@ -14341,6 +14428,15 @@ func (o WtpprofileRadio4PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.ChannelBonding
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WtpprofileRadio4PtrOutput) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio4) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChannelBondingExt
 	}).(pulumi.StringPtrOutput)
 }
 

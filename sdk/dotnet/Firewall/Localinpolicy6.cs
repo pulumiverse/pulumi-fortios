@@ -108,16 +108,58 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
 
         /// <summary>
-        /// Incoming interface name from available options.
+        /// Enable/disable use of IPv6 Internet Services in source for this local-in policy.If enabled, source address is not used. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("internetService6Src")]
+        public Output<string> InternetService6Src { get; private set; } = null!;
+
+        /// <summary>
+        /// Custom Internet Service6 source group name. The structure of `internet_service6_src_custom_group` block is documented below.
+        /// </summary>
+        [Output("internetService6SrcCustomGroups")]
+        public Output<ImmutableArray<Outputs.Localinpolicy6InternetService6SrcCustomGroup>> InternetService6SrcCustomGroups { get; private set; } = null!;
+
+        /// <summary>
+        /// Custom IPv6 Internet Service source name. The structure of `internet_service6_src_custom` block is documented below.
+        /// </summary>
+        [Output("internetService6SrcCustoms")]
+        public Output<ImmutableArray<Outputs.Localinpolicy6InternetService6SrcCustom>> InternetService6SrcCustoms { get; private set; } = null!;
+
+        /// <summary>
+        /// Internet Service6 source group name. The structure of `internet_service6_src_group` block is documented below.
+        /// </summary>
+        [Output("internetService6SrcGroups")]
+        public Output<ImmutableArray<Outputs.Localinpolicy6InternetService6SrcGroup>> InternetService6SrcGroups { get; private set; } = null!;
+
+        /// <summary>
+        /// IPv6 Internet Service source name. The structure of `internet_service6_src_name` block is documented below.
+        /// </summary>
+        [Output("internetService6SrcNames")]
+        public Output<ImmutableArray<Outputs.Localinpolicy6InternetService6SrcName>> InternetService6SrcNames { get; private set; } = null!;
+
+        /// <summary>
+        /// When enabled internet-service6-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("internetService6SrcNegate")]
+        public Output<string> InternetService6SrcNegate { get; private set; } = null!;
+
+        /// <summary>
+        /// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf_block`.*
         /// </summary>
         [Output("intf")]
         public Output<string> Intf { get; private set; } = null!;
+
+        /// <summary>
+        /// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intf_block` block is documented below.
+        /// </summary>
+        [Output("intfBlocks")]
+        public Output<ImmutableArray<Outputs.Localinpolicy6IntfBlock>> IntfBlocks { get; private set; } = null!;
 
         /// <summary>
         /// User defined local in policy ID.
@@ -171,7 +213,7 @@ namespace Pulumiverse.Fortios.Firewall
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable the virtual patching feature. Valid values: `enable`, `disable`.
@@ -263,16 +305,88 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
-        /// Incoming interface name from available options.
+        /// Enable/disable use of IPv6 Internet Services in source for this local-in policy.If enabled, source address is not used. Valid values: `enable`, `disable`.
         /// </summary>
-        [Input("intf", required: true)]
-        public Input<string> Intf { get; set; } = null!;
+        [Input("internetService6Src")]
+        public Input<string>? InternetService6Src { get; set; }
+
+        [Input("internetService6SrcCustomGroups")]
+        private InputList<Inputs.Localinpolicy6InternetService6SrcCustomGroupArgs>? _internetService6SrcCustomGroups;
+
+        /// <summary>
+        /// Custom Internet Service6 source group name. The structure of `internet_service6_src_custom_group` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Localinpolicy6InternetService6SrcCustomGroupArgs> InternetService6SrcCustomGroups
+        {
+            get => _internetService6SrcCustomGroups ?? (_internetService6SrcCustomGroups = new InputList<Inputs.Localinpolicy6InternetService6SrcCustomGroupArgs>());
+            set => _internetService6SrcCustomGroups = value;
+        }
+
+        [Input("internetService6SrcCustoms")]
+        private InputList<Inputs.Localinpolicy6InternetService6SrcCustomArgs>? _internetService6SrcCustoms;
+
+        /// <summary>
+        /// Custom IPv6 Internet Service source name. The structure of `internet_service6_src_custom` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Localinpolicy6InternetService6SrcCustomArgs> InternetService6SrcCustoms
+        {
+            get => _internetService6SrcCustoms ?? (_internetService6SrcCustoms = new InputList<Inputs.Localinpolicy6InternetService6SrcCustomArgs>());
+            set => _internetService6SrcCustoms = value;
+        }
+
+        [Input("internetService6SrcGroups")]
+        private InputList<Inputs.Localinpolicy6InternetService6SrcGroupArgs>? _internetService6SrcGroups;
+
+        /// <summary>
+        /// Internet Service6 source group name. The structure of `internet_service6_src_group` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Localinpolicy6InternetService6SrcGroupArgs> InternetService6SrcGroups
+        {
+            get => _internetService6SrcGroups ?? (_internetService6SrcGroups = new InputList<Inputs.Localinpolicy6InternetService6SrcGroupArgs>());
+            set => _internetService6SrcGroups = value;
+        }
+
+        [Input("internetService6SrcNames")]
+        private InputList<Inputs.Localinpolicy6InternetService6SrcNameArgs>? _internetService6SrcNames;
+
+        /// <summary>
+        /// IPv6 Internet Service source name. The structure of `internet_service6_src_name` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Localinpolicy6InternetService6SrcNameArgs> InternetService6SrcNames
+        {
+            get => _internetService6SrcNames ?? (_internetService6SrcNames = new InputList<Inputs.Localinpolicy6InternetService6SrcNameArgs>());
+            set => _internetService6SrcNames = value;
+        }
+
+        /// <summary>
+        /// When enabled internet-service6-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("internetService6SrcNegate")]
+        public Input<string>? InternetService6SrcNegate { get; set; }
+
+        /// <summary>
+        /// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf_block`.*
+        /// </summary>
+        [Input("intf")]
+        public Input<string>? Intf { get; set; }
+
+        [Input("intfBlocks")]
+        private InputList<Inputs.Localinpolicy6IntfBlockArgs>? _intfBlocks;
+
+        /// <summary>
+        /// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intf_block` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Localinpolicy6IntfBlockArgs> IntfBlocks
+        {
+            get => _intfBlocks ?? (_intfBlocks = new InputList<Inputs.Localinpolicy6IntfBlockArgs>());
+            set => _intfBlocks = value;
+        }
 
         /// <summary>
         /// User defined local in policy ID.
@@ -391,16 +505,88 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
 
         /// <summary>
-        /// Incoming interface name from available options.
+        /// Enable/disable use of IPv6 Internet Services in source for this local-in policy.If enabled, source address is not used. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("internetService6Src")]
+        public Input<string>? InternetService6Src { get; set; }
+
+        [Input("internetService6SrcCustomGroups")]
+        private InputList<Inputs.Localinpolicy6InternetService6SrcCustomGroupGetArgs>? _internetService6SrcCustomGroups;
+
+        /// <summary>
+        /// Custom Internet Service6 source group name. The structure of `internet_service6_src_custom_group` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Localinpolicy6InternetService6SrcCustomGroupGetArgs> InternetService6SrcCustomGroups
+        {
+            get => _internetService6SrcCustomGroups ?? (_internetService6SrcCustomGroups = new InputList<Inputs.Localinpolicy6InternetService6SrcCustomGroupGetArgs>());
+            set => _internetService6SrcCustomGroups = value;
+        }
+
+        [Input("internetService6SrcCustoms")]
+        private InputList<Inputs.Localinpolicy6InternetService6SrcCustomGetArgs>? _internetService6SrcCustoms;
+
+        /// <summary>
+        /// Custom IPv6 Internet Service source name. The structure of `internet_service6_src_custom` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Localinpolicy6InternetService6SrcCustomGetArgs> InternetService6SrcCustoms
+        {
+            get => _internetService6SrcCustoms ?? (_internetService6SrcCustoms = new InputList<Inputs.Localinpolicy6InternetService6SrcCustomGetArgs>());
+            set => _internetService6SrcCustoms = value;
+        }
+
+        [Input("internetService6SrcGroups")]
+        private InputList<Inputs.Localinpolicy6InternetService6SrcGroupGetArgs>? _internetService6SrcGroups;
+
+        /// <summary>
+        /// Internet Service6 source group name. The structure of `internet_service6_src_group` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Localinpolicy6InternetService6SrcGroupGetArgs> InternetService6SrcGroups
+        {
+            get => _internetService6SrcGroups ?? (_internetService6SrcGroups = new InputList<Inputs.Localinpolicy6InternetService6SrcGroupGetArgs>());
+            set => _internetService6SrcGroups = value;
+        }
+
+        [Input("internetService6SrcNames")]
+        private InputList<Inputs.Localinpolicy6InternetService6SrcNameGetArgs>? _internetService6SrcNames;
+
+        /// <summary>
+        /// IPv6 Internet Service source name. The structure of `internet_service6_src_name` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Localinpolicy6InternetService6SrcNameGetArgs> InternetService6SrcNames
+        {
+            get => _internetService6SrcNames ?? (_internetService6SrcNames = new InputList<Inputs.Localinpolicy6InternetService6SrcNameGetArgs>());
+            set => _internetService6SrcNames = value;
+        }
+
+        /// <summary>
+        /// When enabled internet-service6-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("internetService6SrcNegate")]
+        public Input<string>? InternetService6SrcNegate { get; set; }
+
+        /// <summary>
+        /// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf_block`.*
         /// </summary>
         [Input("intf")]
         public Input<string>? Intf { get; set; }
+
+        [Input("intfBlocks")]
+        private InputList<Inputs.Localinpolicy6IntfBlockGetArgs>? _intfBlocks;
+
+        /// <summary>
+        /// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intf_block` block is documented below.
+        /// </summary>
+        public InputList<Inputs.Localinpolicy6IntfBlockGetArgs> IntfBlocks
+        {
+            get => _intfBlocks ?? (_intfBlocks = new InputList<Inputs.Localinpolicy6IntfBlockGetArgs>());
+            set => _intfBlocks = value;
+        }
 
         /// <summary>
         /// User defined local in policy ID.

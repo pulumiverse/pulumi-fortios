@@ -109,7 +109,7 @@ export class Automationtrigger extends pulumi.CustomResource {
      */
     public readonly fields!: pulumi.Output<outputs.system.AutomationtriggerField[] | undefined>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -121,11 +121,11 @@ export class Automationtrigger extends pulumi.CustomResource {
      */
     public readonly licenseType!: pulumi.Output<string>;
     /**
-     * Log ID to trigger event.
+     * Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logidBlock`.*
      */
     public readonly logid!: pulumi.Output<number>;
     /**
-     * Log IDs to trigger event. The structure of `logidBlock` block is documented below.
+     * Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logidBlock` block is documented below.
      */
     public readonly logidBlocks!: pulumi.Output<outputs.system.AutomationtriggerLogidBlock[] | undefined>;
     /**
@@ -157,7 +157,7 @@ export class Automationtrigger extends pulumi.CustomResource {
      */
     public readonly triggerHour!: pulumi.Output<number>;
     /**
-     * Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+     * Minute of the hour on which to trigger (0 - 59, default = 0).
      */
     public readonly triggerMinute!: pulumi.Output<number>;
     /**
@@ -171,7 +171,7 @@ export class Automationtrigger extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Virtual domain(s) that this trigger is valid for. The structure of `vdom` block is documented below.
      */
@@ -291,7 +291,7 @@ export interface AutomationtriggerState {
      */
     fields?: pulumi.Input<pulumi.Input<inputs.system.AutomationtriggerField>[]>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -303,11 +303,11 @@ export interface AutomationtriggerState {
      */
     licenseType?: pulumi.Input<string>;
     /**
-     * Log ID to trigger event.
+     * Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logidBlock`.*
      */
     logid?: pulumi.Input<number>;
     /**
-     * Log IDs to trigger event. The structure of `logidBlock` block is documented below.
+     * Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logidBlock` block is documented below.
      */
     logidBlocks?: pulumi.Input<pulumi.Input<inputs.system.AutomationtriggerLogidBlock>[]>;
     /**
@@ -339,7 +339,7 @@ export interface AutomationtriggerState {
      */
     triggerHour?: pulumi.Input<number>;
     /**
-     * Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+     * Minute of the hour on which to trigger (0 - 59, default = 0).
      */
     triggerMinute?: pulumi.Input<number>;
     /**
@@ -401,7 +401,7 @@ export interface AutomationtriggerArgs {
      */
     fields?: pulumi.Input<pulumi.Input<inputs.system.AutomationtriggerField>[]>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -413,11 +413,11 @@ export interface AutomationtriggerArgs {
      */
     licenseType?: pulumi.Input<string>;
     /**
-     * Log ID to trigger event.
+     * Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logidBlock`.*
      */
     logid?: pulumi.Input<number>;
     /**
-     * Log IDs to trigger event. The structure of `logidBlock` block is documented below.
+     * Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logidBlock` block is documented below.
      */
     logidBlocks?: pulumi.Input<pulumi.Input<inputs.system.AutomationtriggerLogidBlock>[]>;
     /**
@@ -449,7 +449,7 @@ export interface AutomationtriggerArgs {
      */
     triggerHour?: pulumi.Input<number>;
     /**
-     * Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+     * Minute of the hour on which to trigger (0 - 59, default = 0).
      */
     triggerMinute?: pulumi.Input<number>;
     /**

@@ -62,9 +62,9 @@ import (
 type Global struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+	// Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
 	AdminConcurrent pulumi.StringOutput `pulumi:"adminConcurrent"`
-	// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+	// Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
 	AdminConsoleTimeout pulumi.IntOutput `pulumi:"adminConsoleTimeout"`
 	// Override access profile.
 	AdminForticloudSsoDefaultProfile pulumi.StringOutput `pulumi:"adminForticloudSsoDefaultProfile"`
@@ -114,7 +114,7 @@ type Global struct {
 	AdminTelnet pulumi.StringOutput `pulumi:"adminTelnet"`
 	// Administrative access port for TELNET. (1 - 65535, default = 23).
 	AdminTelnetPort pulumi.IntOutput `pulumi:"adminTelnetPort"`
-	// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+	// Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
 	Admintimeout pulumi.IntOutput `pulumi:"admintimeout"`
 	// Alias for your FortiGate unit.
 	Alias pulumi.StringOutput `pulumi:"alias"`
@@ -128,9 +128,9 @@ type Global struct {
 	Asymroute pulumi.StringOutput `pulumi:"asymroute"`
 	// Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
 	AuthCert pulumi.StringOutput `pulumi:"authCert"`
-	// User authentication HTTP port. (1 - 65535, default = 80).
+	// User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
 	AuthHttpPort pulumi.IntOutput `pulumi:"authHttpPort"`
-	// User authentication HTTPS port. (1 - 65535, default = 443).
+	// User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
 	AuthHttpsPort pulumi.IntOutput `pulumi:"authHttpsPort"`
 	// User IKE SAML authentication port (0 - 65535, default = 1001).
 	AuthIkeSamlPort pulumi.IntOutput `pulumi:"authIkeSamlPort"`
@@ -158,7 +158,7 @@ type Global struct {
 	BrFdbMaxEntry pulumi.IntOutput `pulumi:"brFdbMaxEntry"`
 	// Maximum number of certificates that can be traversed in a certificate chain.
 	CertChainMax pulumi.IntOutput `pulumi:"certChainMax"`
-	// Time-out for reverting to the last saved configuration.
+	// Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
 	CfgRevertTimeout pulumi.IntOutput `pulumi:"cfgRevertTimeout"`
 	// Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
 	CfgSave pulumi.StringOutput `pulumi:"cfgSave"`
@@ -192,6 +192,8 @@ type Global struct {
 	DeviceIdleTimeout pulumi.IntOutput `pulumi:"deviceIdleTimeout"`
 	// Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
 	DhParams pulumi.StringOutput `pulumi:"dhParams"`
+	// DHCP leases backup interval in seconds (10 - 3600, default = 60).
+	DhcpLeaseBackupInterval pulumi.IntOutput `pulumi:"dhcpLeaseBackupInterval"`
 	// DNS proxy worker count.
 	DnsproxyWorkerCount pulumi.IntOutput `pulumi:"dnsproxyWorkerCount"`
 	// Enable/disable daylight saving time. Valid values: `enable`, `disable`.
@@ -246,7 +248,7 @@ type Global struct {
 	FortitokenCloudPushStatus pulumi.StringOutput `pulumi:"fortitokenCloudPushStatus"`
 	// Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
 	FortitokenCloudSyncInterval pulumi.IntOutput `pulumi:"fortitokenCloudSyncInterval"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
 	GuiAllowDefaultHostname pulumi.StringOutput `pulumi:"guiAllowDefaultHostname"`
@@ -332,6 +334,8 @@ type Global struct {
 	IpsecHaSeqjumpRate pulumi.IntOutput `pulumi:"ipsecHaSeqjumpRate"`
 	// Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
 	IpsecHmacOffload pulumi.StringOutput `pulumi:"ipsecHmacOffload"`
+	// Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+	IpsecQatOffload pulumi.StringOutput `pulumi:"ipsecQatOffload"`
 	// Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
 	IpsecRoundRobin pulumi.StringOutput `pulumi:"ipsecRoundRobin"`
 	// Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
@@ -340,6 +344,8 @@ type Global struct {
 	Ipv6AcceptDad pulumi.IntOutput `pulumi:"ipv6AcceptDad"`
 	// Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
 	Ipv6AllowAnycastProbe pulumi.StringOutput `pulumi:"ipv6AllowAnycastProbe"`
+	// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+	Ipv6AllowLocalInSilentDrop pulumi.StringOutput `pulumi:"ipv6AllowLocalInSilentDrop"`
 	// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
 	Ipv6AllowLocalInSlientDrop pulumi.StringOutput `pulumi:"ipv6AllowLocalInSlientDrop"`
 	// Enable/disable IPv6 address probe through Multicast. Valid values: `enable`, `disable`.
@@ -388,9 +394,9 @@ type Global struct {
 	MemoryUseThresholdGreen pulumi.IntOutput `pulumi:"memoryUseThresholdGreen"`
 	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 	MemoryUseThresholdRed pulumi.IntOutput `pulumi:"memoryUseThresholdRed"`
-	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+	// Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
 	MiglogAffinity pulumi.StringOutput `pulumi:"miglogAffinity"`
-	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
 	MiglogdChildren pulumi.IntOutput `pulumi:"miglogdChildren"`
 	// Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
 	MultiFactorAuthentication pulumi.StringOutput `pulumi:"multiFactorAuthentication"`
@@ -398,6 +404,8 @@ type Global struct {
 	MulticastForward pulumi.StringOutput `pulumi:"multicastForward"`
 	// Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
 	NdpMaxEntry pulumi.IntOutput `pulumi:"ndpMaxEntry"`
+	// Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+	NpuNeighborUpdate pulumi.StringOutput `pulumi:"npuNeighborUpdate"`
 	// Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
 	PerUserBal pulumi.StringOutput `pulumi:"perUserBal"`
 	// Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
@@ -454,9 +462,9 @@ type Global struct {
 	RadiusPort pulumi.IntOutput `pulumi:"radiusPort"`
 	// Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
 	RebootUponConfigRestore pulumi.StringOutput `pulumi:"rebootUponConfigRestore"`
-	// Statistics refresh interval in GUI.
+	// Statistics refresh interval second(s) in GUI.
 	Refresh pulumi.IntOutput `pulumi:"refresh"`
-	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
 	Remoteauthtimeout pulumi.IntOutput `pulumi:"remoteauthtimeout"`
 	// Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
 	ResetSessionlessTcp pulumi.StringOutput `pulumi:"resetSessionlessTcp"`
@@ -538,7 +546,7 @@ type Global struct {
 	SslvpnWebMode pulumi.StringOutput `pulumi:"sslvpnWebMode"`
 	// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
 	StrictDirtySessionCheck pulumi.StringOutput `pulumi:"strictDirtySessionCheck"`
-	// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+	// Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
 	StrongCrypto pulumi.StringOutput `pulumi:"strongCrypto"`
 	// Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
 	SwitchController pulumi.StringOutput `pulumi:"switchController"`
@@ -556,7 +564,7 @@ type Global struct {
 	TcpOption pulumi.StringOutput `pulumi:"tcpOption"`
 	// Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
 	TcpRstTimer pulumi.IntOutput `pulumi:"tcpRstTimer"`
-	// Length of the TCP TIME-WAIT state in seconds.
+	// Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
 	TcpTimewaitTimer pulumi.IntOutput `pulumi:"tcpTimewaitTimer"`
 	// Enable/disable TFTP. Valid values: `enable`, `disable`.
 	Tftp pulumi.StringOutput `pulumi:"tftp"`
@@ -597,7 +605,7 @@ type Global struct {
 	// Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
 	VdomMode pulumi.StringOutput `pulumi:"vdomMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
 	VipArpRange pulumi.StringOutput `pulumi:"vipArpRange"`
 	// Maximum number of virtual server processes to create. The maximum is the number of CPU cores. This is not available on single-core CPUs.
@@ -668,9 +676,9 @@ func GetGlobal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Global resources.
 type globalState struct {
-	// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+	// Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
 	AdminConcurrent *string `pulumi:"adminConcurrent"`
-	// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+	// Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
 	AdminConsoleTimeout *int `pulumi:"adminConsoleTimeout"`
 	// Override access profile.
 	AdminForticloudSsoDefaultProfile *string `pulumi:"adminForticloudSsoDefaultProfile"`
@@ -720,7 +728,7 @@ type globalState struct {
 	AdminTelnet *string `pulumi:"adminTelnet"`
 	// Administrative access port for TELNET. (1 - 65535, default = 23).
 	AdminTelnetPort *int `pulumi:"adminTelnetPort"`
-	// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+	// Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
 	Admintimeout *int `pulumi:"admintimeout"`
 	// Alias for your FortiGate unit.
 	Alias *string `pulumi:"alias"`
@@ -734,9 +742,9 @@ type globalState struct {
 	Asymroute *string `pulumi:"asymroute"`
 	// Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
 	AuthCert *string `pulumi:"authCert"`
-	// User authentication HTTP port. (1 - 65535, default = 80).
+	// User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
 	AuthHttpPort *int `pulumi:"authHttpPort"`
-	// User authentication HTTPS port. (1 - 65535, default = 443).
+	// User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
 	AuthHttpsPort *int `pulumi:"authHttpsPort"`
 	// User IKE SAML authentication port (0 - 65535, default = 1001).
 	AuthIkeSamlPort *int `pulumi:"authIkeSamlPort"`
@@ -764,7 +772,7 @@ type globalState struct {
 	BrFdbMaxEntry *int `pulumi:"brFdbMaxEntry"`
 	// Maximum number of certificates that can be traversed in a certificate chain.
 	CertChainMax *int `pulumi:"certChainMax"`
-	// Time-out for reverting to the last saved configuration.
+	// Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
 	CfgRevertTimeout *int `pulumi:"cfgRevertTimeout"`
 	// Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
 	CfgSave *string `pulumi:"cfgSave"`
@@ -798,6 +806,8 @@ type globalState struct {
 	DeviceIdleTimeout *int `pulumi:"deviceIdleTimeout"`
 	// Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
 	DhParams *string `pulumi:"dhParams"`
+	// DHCP leases backup interval in seconds (10 - 3600, default = 60).
+	DhcpLeaseBackupInterval *int `pulumi:"dhcpLeaseBackupInterval"`
 	// DNS proxy worker count.
 	DnsproxyWorkerCount *int `pulumi:"dnsproxyWorkerCount"`
 	// Enable/disable daylight saving time. Valid values: `enable`, `disable`.
@@ -852,7 +862,7 @@ type globalState struct {
 	FortitokenCloudPushStatus *string `pulumi:"fortitokenCloudPushStatus"`
 	// Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
 	FortitokenCloudSyncInterval *int `pulumi:"fortitokenCloudSyncInterval"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
 	GuiAllowDefaultHostname *string `pulumi:"guiAllowDefaultHostname"`
@@ -938,6 +948,8 @@ type globalState struct {
 	IpsecHaSeqjumpRate *int `pulumi:"ipsecHaSeqjumpRate"`
 	// Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
 	IpsecHmacOffload *string `pulumi:"ipsecHmacOffload"`
+	// Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+	IpsecQatOffload *string `pulumi:"ipsecQatOffload"`
 	// Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
 	IpsecRoundRobin *string `pulumi:"ipsecRoundRobin"`
 	// Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
@@ -946,6 +958,8 @@ type globalState struct {
 	Ipv6AcceptDad *int `pulumi:"ipv6AcceptDad"`
 	// Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
 	Ipv6AllowAnycastProbe *string `pulumi:"ipv6AllowAnycastProbe"`
+	// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+	Ipv6AllowLocalInSilentDrop *string `pulumi:"ipv6AllowLocalInSilentDrop"`
 	// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
 	Ipv6AllowLocalInSlientDrop *string `pulumi:"ipv6AllowLocalInSlientDrop"`
 	// Enable/disable IPv6 address probe through Multicast. Valid values: `enable`, `disable`.
@@ -994,9 +1008,9 @@ type globalState struct {
 	MemoryUseThresholdGreen *int `pulumi:"memoryUseThresholdGreen"`
 	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 	MemoryUseThresholdRed *int `pulumi:"memoryUseThresholdRed"`
-	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+	// Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
 	MiglogAffinity *string `pulumi:"miglogAffinity"`
-	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
 	MiglogdChildren *int `pulumi:"miglogdChildren"`
 	// Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
 	MultiFactorAuthentication *string `pulumi:"multiFactorAuthentication"`
@@ -1004,6 +1018,8 @@ type globalState struct {
 	MulticastForward *string `pulumi:"multicastForward"`
 	// Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
 	NdpMaxEntry *int `pulumi:"ndpMaxEntry"`
+	// Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+	NpuNeighborUpdate *string `pulumi:"npuNeighborUpdate"`
 	// Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
 	PerUserBal *string `pulumi:"perUserBal"`
 	// Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
@@ -1060,9 +1076,9 @@ type globalState struct {
 	RadiusPort *int `pulumi:"radiusPort"`
 	// Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
 	RebootUponConfigRestore *string `pulumi:"rebootUponConfigRestore"`
-	// Statistics refresh interval in GUI.
+	// Statistics refresh interval second(s) in GUI.
 	Refresh *int `pulumi:"refresh"`
-	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
 	Remoteauthtimeout *int `pulumi:"remoteauthtimeout"`
 	// Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
 	ResetSessionlessTcp *string `pulumi:"resetSessionlessTcp"`
@@ -1144,7 +1160,7 @@ type globalState struct {
 	SslvpnWebMode *string `pulumi:"sslvpnWebMode"`
 	// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
 	StrictDirtySessionCheck *string `pulumi:"strictDirtySessionCheck"`
-	// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+	// Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
 	StrongCrypto *string `pulumi:"strongCrypto"`
 	// Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
 	SwitchController *string `pulumi:"switchController"`
@@ -1162,7 +1178,7 @@ type globalState struct {
 	TcpOption *string `pulumi:"tcpOption"`
 	// Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
 	TcpRstTimer *int `pulumi:"tcpRstTimer"`
-	// Length of the TCP TIME-WAIT state in seconds.
+	// Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
 	TcpTimewaitTimer *int `pulumi:"tcpTimewaitTimer"`
 	// Enable/disable TFTP. Valid values: `enable`, `disable`.
 	Tftp *string `pulumi:"tftp"`
@@ -1245,9 +1261,9 @@ type globalState struct {
 }
 
 type GlobalState struct {
-	// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+	// Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
 	AdminConcurrent pulumi.StringPtrInput
-	// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+	// Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
 	AdminConsoleTimeout pulumi.IntPtrInput
 	// Override access profile.
 	AdminForticloudSsoDefaultProfile pulumi.StringPtrInput
@@ -1297,7 +1313,7 @@ type GlobalState struct {
 	AdminTelnet pulumi.StringPtrInput
 	// Administrative access port for TELNET. (1 - 65535, default = 23).
 	AdminTelnetPort pulumi.IntPtrInput
-	// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+	// Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
 	Admintimeout pulumi.IntPtrInput
 	// Alias for your FortiGate unit.
 	Alias pulumi.StringPtrInput
@@ -1311,9 +1327,9 @@ type GlobalState struct {
 	Asymroute pulumi.StringPtrInput
 	// Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
 	AuthCert pulumi.StringPtrInput
-	// User authentication HTTP port. (1 - 65535, default = 80).
+	// User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
 	AuthHttpPort pulumi.IntPtrInput
-	// User authentication HTTPS port. (1 - 65535, default = 443).
+	// User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
 	AuthHttpsPort pulumi.IntPtrInput
 	// User IKE SAML authentication port (0 - 65535, default = 1001).
 	AuthIkeSamlPort pulumi.IntPtrInput
@@ -1341,7 +1357,7 @@ type GlobalState struct {
 	BrFdbMaxEntry pulumi.IntPtrInput
 	// Maximum number of certificates that can be traversed in a certificate chain.
 	CertChainMax pulumi.IntPtrInput
-	// Time-out for reverting to the last saved configuration.
+	// Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
 	CfgRevertTimeout pulumi.IntPtrInput
 	// Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
 	CfgSave pulumi.StringPtrInput
@@ -1375,6 +1391,8 @@ type GlobalState struct {
 	DeviceIdleTimeout pulumi.IntPtrInput
 	// Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
 	DhParams pulumi.StringPtrInput
+	// DHCP leases backup interval in seconds (10 - 3600, default = 60).
+	DhcpLeaseBackupInterval pulumi.IntPtrInput
 	// DNS proxy worker count.
 	DnsproxyWorkerCount pulumi.IntPtrInput
 	// Enable/disable daylight saving time. Valid values: `enable`, `disable`.
@@ -1429,7 +1447,7 @@ type GlobalState struct {
 	FortitokenCloudPushStatus pulumi.StringPtrInput
 	// Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
 	FortitokenCloudSyncInterval pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
 	GuiAllowDefaultHostname pulumi.StringPtrInput
@@ -1515,6 +1533,8 @@ type GlobalState struct {
 	IpsecHaSeqjumpRate pulumi.IntPtrInput
 	// Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
 	IpsecHmacOffload pulumi.StringPtrInput
+	// Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+	IpsecQatOffload pulumi.StringPtrInput
 	// Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
 	IpsecRoundRobin pulumi.StringPtrInput
 	// Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
@@ -1523,6 +1543,8 @@ type GlobalState struct {
 	Ipv6AcceptDad pulumi.IntPtrInput
 	// Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
 	Ipv6AllowAnycastProbe pulumi.StringPtrInput
+	// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+	Ipv6AllowLocalInSilentDrop pulumi.StringPtrInput
 	// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
 	Ipv6AllowLocalInSlientDrop pulumi.StringPtrInput
 	// Enable/disable IPv6 address probe through Multicast. Valid values: `enable`, `disable`.
@@ -1571,9 +1593,9 @@ type GlobalState struct {
 	MemoryUseThresholdGreen pulumi.IntPtrInput
 	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 	MemoryUseThresholdRed pulumi.IntPtrInput
-	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+	// Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
 	MiglogAffinity pulumi.StringPtrInput
-	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
 	MiglogdChildren pulumi.IntPtrInput
 	// Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
 	MultiFactorAuthentication pulumi.StringPtrInput
@@ -1581,6 +1603,8 @@ type GlobalState struct {
 	MulticastForward pulumi.StringPtrInput
 	// Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
 	NdpMaxEntry pulumi.IntPtrInput
+	// Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+	NpuNeighborUpdate pulumi.StringPtrInput
 	// Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
 	PerUserBal pulumi.StringPtrInput
 	// Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
@@ -1637,9 +1661,9 @@ type GlobalState struct {
 	RadiusPort pulumi.IntPtrInput
 	// Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
 	RebootUponConfigRestore pulumi.StringPtrInput
-	// Statistics refresh interval in GUI.
+	// Statistics refresh interval second(s) in GUI.
 	Refresh pulumi.IntPtrInput
-	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
 	Remoteauthtimeout pulumi.IntPtrInput
 	// Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
 	ResetSessionlessTcp pulumi.StringPtrInput
@@ -1721,7 +1745,7 @@ type GlobalState struct {
 	SslvpnWebMode pulumi.StringPtrInput
 	// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
 	StrictDirtySessionCheck pulumi.StringPtrInput
-	// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+	// Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
 	StrongCrypto pulumi.StringPtrInput
 	// Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
 	SwitchController pulumi.StringPtrInput
@@ -1739,7 +1763,7 @@ type GlobalState struct {
 	TcpOption pulumi.StringPtrInput
 	// Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
 	TcpRstTimer pulumi.IntPtrInput
-	// Length of the TCP TIME-WAIT state in seconds.
+	// Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
 	TcpTimewaitTimer pulumi.IntPtrInput
 	// Enable/disable TFTP. Valid values: `enable`, `disable`.
 	Tftp pulumi.StringPtrInput
@@ -1826,9 +1850,9 @@ func (GlobalState) ElementType() reflect.Type {
 }
 
 type globalArgs struct {
-	// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+	// Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
 	AdminConcurrent *string `pulumi:"adminConcurrent"`
-	// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+	// Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
 	AdminConsoleTimeout *int `pulumi:"adminConsoleTimeout"`
 	// Override access profile.
 	AdminForticloudSsoDefaultProfile *string `pulumi:"adminForticloudSsoDefaultProfile"`
@@ -1878,7 +1902,7 @@ type globalArgs struct {
 	AdminTelnet *string `pulumi:"adminTelnet"`
 	// Administrative access port for TELNET. (1 - 65535, default = 23).
 	AdminTelnetPort *int `pulumi:"adminTelnetPort"`
-	// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+	// Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
 	Admintimeout *int `pulumi:"admintimeout"`
 	// Alias for your FortiGate unit.
 	Alias *string `pulumi:"alias"`
@@ -1892,9 +1916,9 @@ type globalArgs struct {
 	Asymroute *string `pulumi:"asymroute"`
 	// Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
 	AuthCert *string `pulumi:"authCert"`
-	// User authentication HTTP port. (1 - 65535, default = 80).
+	// User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
 	AuthHttpPort *int `pulumi:"authHttpPort"`
-	// User authentication HTTPS port. (1 - 65535, default = 443).
+	// User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
 	AuthHttpsPort *int `pulumi:"authHttpsPort"`
 	// User IKE SAML authentication port (0 - 65535, default = 1001).
 	AuthIkeSamlPort *int `pulumi:"authIkeSamlPort"`
@@ -1922,7 +1946,7 @@ type globalArgs struct {
 	BrFdbMaxEntry *int `pulumi:"brFdbMaxEntry"`
 	// Maximum number of certificates that can be traversed in a certificate chain.
 	CertChainMax *int `pulumi:"certChainMax"`
-	// Time-out for reverting to the last saved configuration.
+	// Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
 	CfgRevertTimeout *int `pulumi:"cfgRevertTimeout"`
 	// Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
 	CfgSave *string `pulumi:"cfgSave"`
@@ -1956,6 +1980,8 @@ type globalArgs struct {
 	DeviceIdleTimeout *int `pulumi:"deviceIdleTimeout"`
 	// Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
 	DhParams *string `pulumi:"dhParams"`
+	// DHCP leases backup interval in seconds (10 - 3600, default = 60).
+	DhcpLeaseBackupInterval *int `pulumi:"dhcpLeaseBackupInterval"`
 	// DNS proxy worker count.
 	DnsproxyWorkerCount *int `pulumi:"dnsproxyWorkerCount"`
 	// Enable/disable daylight saving time. Valid values: `enable`, `disable`.
@@ -2010,7 +2036,7 @@ type globalArgs struct {
 	FortitokenCloudPushStatus *string `pulumi:"fortitokenCloudPushStatus"`
 	// Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
 	FortitokenCloudSyncInterval *int `pulumi:"fortitokenCloudSyncInterval"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
 	GuiAllowDefaultHostname *string `pulumi:"guiAllowDefaultHostname"`
@@ -2096,6 +2122,8 @@ type globalArgs struct {
 	IpsecHaSeqjumpRate *int `pulumi:"ipsecHaSeqjumpRate"`
 	// Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
 	IpsecHmacOffload *string `pulumi:"ipsecHmacOffload"`
+	// Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+	IpsecQatOffload *string `pulumi:"ipsecQatOffload"`
 	// Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
 	IpsecRoundRobin *string `pulumi:"ipsecRoundRobin"`
 	// Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
@@ -2104,6 +2132,8 @@ type globalArgs struct {
 	Ipv6AcceptDad *int `pulumi:"ipv6AcceptDad"`
 	// Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
 	Ipv6AllowAnycastProbe *string `pulumi:"ipv6AllowAnycastProbe"`
+	// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+	Ipv6AllowLocalInSilentDrop *string `pulumi:"ipv6AllowLocalInSilentDrop"`
 	// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
 	Ipv6AllowLocalInSlientDrop *string `pulumi:"ipv6AllowLocalInSlientDrop"`
 	// Enable/disable IPv6 address probe through Multicast. Valid values: `enable`, `disable`.
@@ -2152,9 +2182,9 @@ type globalArgs struct {
 	MemoryUseThresholdGreen *int `pulumi:"memoryUseThresholdGreen"`
 	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 	MemoryUseThresholdRed *int `pulumi:"memoryUseThresholdRed"`
-	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+	// Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
 	MiglogAffinity *string `pulumi:"miglogAffinity"`
-	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
 	MiglogdChildren *int `pulumi:"miglogdChildren"`
 	// Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
 	MultiFactorAuthentication *string `pulumi:"multiFactorAuthentication"`
@@ -2162,6 +2192,8 @@ type globalArgs struct {
 	MulticastForward *string `pulumi:"multicastForward"`
 	// Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
 	NdpMaxEntry *int `pulumi:"ndpMaxEntry"`
+	// Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+	NpuNeighborUpdate *string `pulumi:"npuNeighborUpdate"`
 	// Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
 	PerUserBal *string `pulumi:"perUserBal"`
 	// Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
@@ -2218,9 +2250,9 @@ type globalArgs struct {
 	RadiusPort *int `pulumi:"radiusPort"`
 	// Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
 	RebootUponConfigRestore *string `pulumi:"rebootUponConfigRestore"`
-	// Statistics refresh interval in GUI.
+	// Statistics refresh interval second(s) in GUI.
 	Refresh *int `pulumi:"refresh"`
-	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
 	Remoteauthtimeout *int `pulumi:"remoteauthtimeout"`
 	// Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
 	ResetSessionlessTcp *string `pulumi:"resetSessionlessTcp"`
@@ -2302,7 +2334,7 @@ type globalArgs struct {
 	SslvpnWebMode *string `pulumi:"sslvpnWebMode"`
 	// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
 	StrictDirtySessionCheck *string `pulumi:"strictDirtySessionCheck"`
-	// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+	// Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
 	StrongCrypto *string `pulumi:"strongCrypto"`
 	// Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
 	SwitchController *string `pulumi:"switchController"`
@@ -2320,7 +2352,7 @@ type globalArgs struct {
 	TcpOption *string `pulumi:"tcpOption"`
 	// Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
 	TcpRstTimer *int `pulumi:"tcpRstTimer"`
-	// Length of the TCP TIME-WAIT state in seconds.
+	// Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
 	TcpTimewaitTimer *int `pulumi:"tcpTimewaitTimer"`
 	// Enable/disable TFTP. Valid values: `enable`, `disable`.
 	Tftp *string `pulumi:"tftp"`
@@ -2404,9 +2436,9 @@ type globalArgs struct {
 
 // The set of arguments for constructing a Global resource.
 type GlobalArgs struct {
-	// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+	// Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
 	AdminConcurrent pulumi.StringPtrInput
-	// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+	// Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
 	AdminConsoleTimeout pulumi.IntPtrInput
 	// Override access profile.
 	AdminForticloudSsoDefaultProfile pulumi.StringPtrInput
@@ -2456,7 +2488,7 @@ type GlobalArgs struct {
 	AdminTelnet pulumi.StringPtrInput
 	// Administrative access port for TELNET. (1 - 65535, default = 23).
 	AdminTelnetPort pulumi.IntPtrInput
-	// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+	// Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
 	Admintimeout pulumi.IntPtrInput
 	// Alias for your FortiGate unit.
 	Alias pulumi.StringPtrInput
@@ -2470,9 +2502,9 @@ type GlobalArgs struct {
 	Asymroute pulumi.StringPtrInput
 	// Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
 	AuthCert pulumi.StringPtrInput
-	// User authentication HTTP port. (1 - 65535, default = 80).
+	// User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
 	AuthHttpPort pulumi.IntPtrInput
-	// User authentication HTTPS port. (1 - 65535, default = 443).
+	// User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
 	AuthHttpsPort pulumi.IntPtrInput
 	// User IKE SAML authentication port (0 - 65535, default = 1001).
 	AuthIkeSamlPort pulumi.IntPtrInput
@@ -2500,7 +2532,7 @@ type GlobalArgs struct {
 	BrFdbMaxEntry pulumi.IntPtrInput
 	// Maximum number of certificates that can be traversed in a certificate chain.
 	CertChainMax pulumi.IntPtrInput
-	// Time-out for reverting to the last saved configuration.
+	// Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
 	CfgRevertTimeout pulumi.IntPtrInput
 	// Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
 	CfgSave pulumi.StringPtrInput
@@ -2534,6 +2566,8 @@ type GlobalArgs struct {
 	DeviceIdleTimeout pulumi.IntPtrInput
 	// Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
 	DhParams pulumi.StringPtrInput
+	// DHCP leases backup interval in seconds (10 - 3600, default = 60).
+	DhcpLeaseBackupInterval pulumi.IntPtrInput
 	// DNS proxy worker count.
 	DnsproxyWorkerCount pulumi.IntPtrInput
 	// Enable/disable daylight saving time. Valid values: `enable`, `disable`.
@@ -2588,7 +2622,7 @@ type GlobalArgs struct {
 	FortitokenCloudPushStatus pulumi.StringPtrInput
 	// Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
 	FortitokenCloudSyncInterval pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
 	GuiAllowDefaultHostname pulumi.StringPtrInput
@@ -2674,6 +2708,8 @@ type GlobalArgs struct {
 	IpsecHaSeqjumpRate pulumi.IntPtrInput
 	// Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
 	IpsecHmacOffload pulumi.StringPtrInput
+	// Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+	IpsecQatOffload pulumi.StringPtrInput
 	// Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
 	IpsecRoundRobin pulumi.StringPtrInput
 	// Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
@@ -2682,6 +2718,8 @@ type GlobalArgs struct {
 	Ipv6AcceptDad pulumi.IntPtrInput
 	// Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
 	Ipv6AllowAnycastProbe pulumi.StringPtrInput
+	// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+	Ipv6AllowLocalInSilentDrop pulumi.StringPtrInput
 	// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
 	Ipv6AllowLocalInSlientDrop pulumi.StringPtrInput
 	// Enable/disable IPv6 address probe through Multicast. Valid values: `enable`, `disable`.
@@ -2730,9 +2768,9 @@ type GlobalArgs struct {
 	MemoryUseThresholdGreen pulumi.IntPtrInput
 	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 	MemoryUseThresholdRed pulumi.IntPtrInput
-	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+	// Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
 	MiglogAffinity pulumi.StringPtrInput
-	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+	// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
 	MiglogdChildren pulumi.IntPtrInput
 	// Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
 	MultiFactorAuthentication pulumi.StringPtrInput
@@ -2740,6 +2778,8 @@ type GlobalArgs struct {
 	MulticastForward pulumi.StringPtrInput
 	// Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
 	NdpMaxEntry pulumi.IntPtrInput
+	// Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+	NpuNeighborUpdate pulumi.StringPtrInput
 	// Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
 	PerUserBal pulumi.StringPtrInput
 	// Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
@@ -2796,9 +2836,9 @@ type GlobalArgs struct {
 	RadiusPort pulumi.IntPtrInput
 	// Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
 	RebootUponConfigRestore pulumi.StringPtrInput
-	// Statistics refresh interval in GUI.
+	// Statistics refresh interval second(s) in GUI.
 	Refresh pulumi.IntPtrInput
-	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+	// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
 	Remoteauthtimeout pulumi.IntPtrInput
 	// Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
 	ResetSessionlessTcp pulumi.StringPtrInput
@@ -2880,7 +2920,7 @@ type GlobalArgs struct {
 	SslvpnWebMode pulumi.StringPtrInput
 	// Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
 	StrictDirtySessionCheck pulumi.StringPtrInput
-	// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+	// Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
 	StrongCrypto pulumi.StringPtrInput
 	// Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
 	SwitchController pulumi.StringPtrInput
@@ -2898,7 +2938,7 @@ type GlobalArgs struct {
 	TcpOption pulumi.StringPtrInput
 	// Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
 	TcpRstTimer pulumi.IntPtrInput
-	// Length of the TCP TIME-WAIT state in seconds.
+	// Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
 	TcpTimewaitTimer pulumi.IntPtrInput
 	// Enable/disable TFTP. Valid values: `enable`, `disable`.
 	Tftp pulumi.StringPtrInput
@@ -3067,12 +3107,12 @@ func (o GlobalOutput) ToGlobalOutputWithContext(ctx context.Context) GlobalOutpu
 	return o
 }
 
-// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+// Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
 func (o GlobalOutput) AdminConcurrent() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.AdminConcurrent }).(pulumi.StringOutput)
 }
 
-// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+// Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
 func (o GlobalOutput) AdminConsoleTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.AdminConsoleTimeout }).(pulumi.IntOutput)
 }
@@ -3197,7 +3237,7 @@ func (o GlobalOutput) AdminTelnetPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.AdminTelnetPort }).(pulumi.IntOutput)
 }
 
-// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+// Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
 func (o GlobalOutput) Admintimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.Admintimeout }).(pulumi.IntOutput)
 }
@@ -3232,12 +3272,12 @@ func (o GlobalOutput) AuthCert() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.AuthCert }).(pulumi.StringOutput)
 }
 
-// User authentication HTTP port. (1 - 65535, default = 80).
+// User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
 func (o GlobalOutput) AuthHttpPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.AuthHttpPort }).(pulumi.IntOutput)
 }
 
-// User authentication HTTPS port. (1 - 65535, default = 443).
+// User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
 func (o GlobalOutput) AuthHttpsPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.AuthHttpsPort }).(pulumi.IntOutput)
 }
@@ -3307,7 +3347,7 @@ func (o GlobalOutput) CertChainMax() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.CertChainMax }).(pulumi.IntOutput)
 }
 
-// Time-out for reverting to the last saved configuration.
+// Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
 func (o GlobalOutput) CfgRevertTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.CfgRevertTimeout }).(pulumi.IntOutput)
 }
@@ -3390,6 +3430,11 @@ func (o GlobalOutput) DeviceIdleTimeout() pulumi.IntOutput {
 // Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
 func (o GlobalOutput) DhParams() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.DhParams }).(pulumi.StringOutput)
+}
+
+// DHCP leases backup interval in seconds (10 - 3600, default = 60).
+func (o GlobalOutput) DhcpLeaseBackupInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.DhcpLeaseBackupInterval }).(pulumi.IntOutput)
 }
 
 // DNS proxy worker count.
@@ -3527,7 +3572,7 @@ func (o GlobalOutput) FortitokenCloudSyncInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.FortitokenCloudSyncInterval }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o GlobalOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -3742,6 +3787,11 @@ func (o GlobalOutput) IpsecHmacOffload() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.IpsecHmacOffload }).(pulumi.StringOutput)
 }
 
+// Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+func (o GlobalOutput) IpsecQatOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.IpsecQatOffload }).(pulumi.StringOutput)
+}
+
 // Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
 func (o GlobalOutput) IpsecRoundRobin() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.IpsecRoundRobin }).(pulumi.StringOutput)
@@ -3760,6 +3810,11 @@ func (o GlobalOutput) Ipv6AcceptDad() pulumi.IntOutput {
 // Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
 func (o GlobalOutput) Ipv6AllowAnycastProbe() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Ipv6AllowAnycastProbe }).(pulumi.StringOutput)
+}
+
+// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+func (o GlobalOutput) Ipv6AllowLocalInSilentDrop() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Ipv6AllowLocalInSilentDrop }).(pulumi.StringOutput)
 }
 
 // Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
@@ -3882,12 +3937,12 @@ func (o GlobalOutput) MemoryUseThresholdRed() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MemoryUseThresholdRed }).(pulumi.IntOutput)
 }
 
-// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+// Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
 func (o GlobalOutput) MiglogAffinity() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.MiglogAffinity }).(pulumi.StringOutput)
 }
 
-// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
 func (o GlobalOutput) MiglogdChildren() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MiglogdChildren }).(pulumi.IntOutput)
 }
@@ -3905,6 +3960,11 @@ func (o GlobalOutput) MulticastForward() pulumi.StringOutput {
 // Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
 func (o GlobalOutput) NdpMaxEntry() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.NdpMaxEntry }).(pulumi.IntOutput)
+}
+
+// Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+func (o GlobalOutput) NpuNeighborUpdate() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.NpuNeighborUpdate }).(pulumi.StringOutput)
 }
 
 // Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
@@ -4047,12 +4107,12 @@ func (o GlobalOutput) RebootUponConfigRestore() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.RebootUponConfigRestore }).(pulumi.StringOutput)
 }
 
-// Statistics refresh interval in GUI.
+// Statistics refresh interval second(s) in GUI.
 func (o GlobalOutput) Refresh() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.Refresh }).(pulumi.IntOutput)
 }
 
-// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
 func (o GlobalOutput) Remoteauthtimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.Remoteauthtimeout }).(pulumi.IntOutput)
 }
@@ -4257,7 +4317,7 @@ func (o GlobalOutput) StrictDirtySessionCheck() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.StrictDirtySessionCheck }).(pulumi.StringOutput)
 }
 
-// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+// Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
 func (o GlobalOutput) StrongCrypto() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.StrongCrypto }).(pulumi.StringOutput)
 }
@@ -4302,7 +4362,7 @@ func (o GlobalOutput) TcpRstTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.TcpRstTimer }).(pulumi.IntOutput)
 }
 
-// Length of the TCP TIME-WAIT state in seconds.
+// Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
 func (o GlobalOutput) TcpTimewaitTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.TcpTimewaitTimer }).(pulumi.IntOutput)
 }
@@ -4403,8 +4463,8 @@ func (o GlobalOutput) VdomMode() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o GlobalOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o GlobalOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.

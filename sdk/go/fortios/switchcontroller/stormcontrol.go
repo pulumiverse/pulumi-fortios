@@ -35,14 +35,14 @@ type Stormcontrol struct {
 
 	// Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
 	Broadcast pulumi.StringOutput `pulumi:"broadcast"`
-	// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+	// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
 	Rate pulumi.IntOutput `pulumi:"rate"`
 	// Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
 	UnknownMulticast pulumi.StringOutput `pulumi:"unknownMulticast"`
 	// Enable/disable storm control to drop unknown unicast traffic. Valid values: `enable`, `disable`.
 	UnknownUnicast pulumi.StringOutput `pulumi:"unknownUnicast"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewStormcontrol registers a new resource with the given unique name, arguments, and options.
@@ -77,7 +77,7 @@ func GetStormcontrol(ctx *pulumi.Context,
 type stormcontrolState struct {
 	// Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
 	Broadcast *string `pulumi:"broadcast"`
-	// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+	// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
 	Rate *int `pulumi:"rate"`
 	// Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
 	UnknownMulticast *string `pulumi:"unknownMulticast"`
@@ -90,7 +90,7 @@ type stormcontrolState struct {
 type StormcontrolState struct {
 	// Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
 	Broadcast pulumi.StringPtrInput
-	// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+	// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
 	Rate pulumi.IntPtrInput
 	// Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
 	UnknownMulticast pulumi.StringPtrInput
@@ -107,7 +107,7 @@ func (StormcontrolState) ElementType() reflect.Type {
 type stormcontrolArgs struct {
 	// Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
 	Broadcast *string `pulumi:"broadcast"`
-	// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+	// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
 	Rate *int `pulumi:"rate"`
 	// Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
 	UnknownMulticast *string `pulumi:"unknownMulticast"`
@@ -121,7 +121,7 @@ type stormcontrolArgs struct {
 type StormcontrolArgs struct {
 	// Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
 	Broadcast pulumi.StringPtrInput
-	// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+	// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
 	Rate pulumi.IntPtrInput
 	// Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
 	UnknownMulticast pulumi.StringPtrInput
@@ -223,7 +223,7 @@ func (o StormcontrolOutput) Broadcast() pulumi.StringOutput {
 	return o.ApplyT(func(v *Stormcontrol) pulumi.StringOutput { return v.Broadcast }).(pulumi.StringOutput)
 }
 
-// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
 func (o StormcontrolOutput) Rate() pulumi.IntOutput {
 	return o.ApplyT(func(v *Stormcontrol) pulumi.IntOutput { return v.Rate }).(pulumi.IntOutput)
 }
@@ -239,8 +239,8 @@ func (o StormcontrolOutput) UnknownUnicast() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o StormcontrolOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Stormcontrol) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o StormcontrolOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Stormcontrol) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type StormcontrolArrayOutput struct{ *pulumi.OutputState }

@@ -800,6 +800,8 @@ type AccprofileUtmgrpPermission struct {
 	DataLeakPrevention *string `pulumi:"dataLeakPrevention"`
 	// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
 	DataLossPrevention *string `pulumi:"dataLossPrevention"`
+	// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+	Dlp *string `pulumi:"dlp"`
 	// DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
 	Dnsfilter *string `pulumi:"dnsfilter"`
 	// AntiSpam filter and settings. Valid values: `none`, `read`, `read-write`.
@@ -848,6 +850,8 @@ type AccprofileUtmgrpPermissionArgs struct {
 	DataLeakPrevention pulumi.StringPtrInput `pulumi:"dataLeakPrevention"`
 	// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
 	DataLossPrevention pulumi.StringPtrInput `pulumi:"dataLossPrevention"`
+	// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+	Dlp pulumi.StringPtrInput `pulumi:"dlp"`
 	// DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
 	Dnsfilter pulumi.StringPtrInput `pulumi:"dnsfilter"`
 	// AntiSpam filter and settings. Valid values: `none`, `read`, `read-write`.
@@ -974,6 +978,11 @@ func (o AccprofileUtmgrpPermissionOutput) DataLeakPrevention() pulumi.StringPtrO
 // DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
 func (o AccprofileUtmgrpPermissionOutput) DataLossPrevention() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccprofileUtmgrpPermission) *string { return v.DataLossPrevention }).(pulumi.StringPtrOutput)
+}
+
+// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+func (o AccprofileUtmgrpPermissionOutput) Dlp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccprofileUtmgrpPermission) *string { return v.Dlp }).(pulumi.StringPtrOutput)
 }
 
 // DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
@@ -1107,6 +1116,16 @@ func (o AccprofileUtmgrpPermissionPtrOutput) DataLossPrevention() pulumi.StringP
 			return nil
 		}
 		return v.DataLossPrevention
+	}).(pulumi.StringPtrOutput)
+}
+
+// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+func (o AccprofileUtmgrpPermissionPtrOutput) Dlp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AccprofileUtmgrpPermission) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Dlp
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -6000,7 +6019,7 @@ type DnsdatabaseDnsEntry struct {
 	Ip *string `pulumi:"ip"`
 	// IPv6 address of the host.
 	Ipv6 *string `pulumi:"ipv6"`
-	// DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+	// DNS entry preference (0 - 65535, highest preference = 0, default = 10).
 	Preference *int `pulumi:"preference"`
 	// Enable/disable resource record status. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
@@ -6032,7 +6051,7 @@ type DnsdatabaseDnsEntryArgs struct {
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// IPv6 address of the host.
 	Ipv6 pulumi.StringPtrInput `pulumi:"ipv6"`
-	// DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+	// DNS entry preference (0 - 65535, highest preference = 0, default = 10).
 	Preference pulumi.IntPtrInput `pulumi:"preference"`
 	// Enable/disable resource record status. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
@@ -6118,7 +6137,7 @@ func (o DnsdatabaseDnsEntryOutput) Ipv6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DnsdatabaseDnsEntry) *string { return v.Ipv6 }).(pulumi.StringPtrOutput)
 }
 
-// DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+// DNS entry preference (0 - 65535, highest preference = 0, default = 10).
 func (o DnsdatabaseDnsEntryOutput) Preference() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DnsdatabaseDnsEntry) *int { return v.Preference }).(pulumi.IntPtrOutput)
 }
@@ -6796,9 +6815,9 @@ type FederatedupgradeNodeList struct {
 	MaximumMinutes *int `pulumi:"maximumMinutes"`
 	// Serial number of the node to include.
 	Serial *string `pulumi:"serial"`
-	// When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
+	// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
 	SetupTime *string `pulumi:"setupTime"`
-	// Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+	// Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
 	Time *string `pulumi:"time"`
 	// Whether the upgrade should be run immediately, or at a scheduled time. Valid values: `immediate`, `scheduled`.
 	Timing *string `pulumi:"timing"`
@@ -6826,9 +6845,9 @@ type FederatedupgradeNodeListArgs struct {
 	MaximumMinutes pulumi.IntPtrInput `pulumi:"maximumMinutes"`
 	// Serial number of the node to include.
 	Serial pulumi.StringPtrInput `pulumi:"serial"`
-	// When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
+	// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
 	SetupTime pulumi.StringPtrInput `pulumi:"setupTime"`
-	// Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+	// Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
 	Time pulumi.StringPtrInput `pulumi:"time"`
 	// Whether the upgrade should be run immediately, or at a scheduled time. Valid values: `immediate`, `scheduled`.
 	Timing pulumi.StringPtrInput `pulumi:"timing"`
@@ -6907,12 +6926,12 @@ func (o FederatedupgradeNodeListOutput) Serial() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedupgradeNodeList) *string { return v.Serial }).(pulumi.StringPtrOutput)
 }
 
-// When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
+// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
 func (o FederatedupgradeNodeListOutput) SetupTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedupgradeNodeList) *string { return v.SetupTime }).(pulumi.StringPtrOutput)
 }
 
-// Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+// Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
 func (o FederatedupgradeNodeListOutput) Time() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedupgradeNodeList) *string { return v.Time }).(pulumi.StringPtrOutput)
 }
@@ -7404,7 +7423,7 @@ func (o HaHaMgmtInterfaceArrayOutput) Index(i pulumi.IntInput) HaHaMgmtInterface
 type HaSecondaryVcluster struct {
 	// Interfaces to check for port monitoring (or link failure).
 	Monitor *string `pulumi:"monitor"`
-	// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+	// Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
 	Override *string `pulumi:"override"`
 	// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
 	OverrideWaitTime *int `pulumi:"overrideWaitTime"`
@@ -7438,7 +7457,7 @@ type HaSecondaryVclusterInput interface {
 type HaSecondaryVclusterArgs struct {
 	// Interfaces to check for port monitoring (or link failure).
 	Monitor pulumi.StringPtrInput `pulumi:"monitor"`
-	// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+	// Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
 	Override pulumi.StringPtrInput `pulumi:"override"`
 	// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
 	OverrideWaitTime pulumi.IntPtrInput `pulumi:"overrideWaitTime"`
@@ -7540,7 +7559,7 @@ func (o HaSecondaryVclusterOutput) Monitor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *string { return v.Monitor }).(pulumi.StringPtrOutput)
 }
 
-// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+// Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
 func (o HaSecondaryVclusterOutput) Override() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *string { return v.Override }).(pulumi.StringPtrOutput)
 }
@@ -7619,7 +7638,7 @@ func (o HaSecondaryVclusterPtrOutput) Monitor() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+// Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
 func (o HaSecondaryVclusterPtrOutput) Override() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *HaSecondaryVcluster) *string {
 		if v == nil {
@@ -13999,6 +14018,8 @@ func (o InterfaceVrrpProxyArpArrayOutput) Index(i pulumi.IntInput) InterfaceVrrp
 type IpamPool struct {
 	// Description.
 	Description *string `pulumi:"description"`
+	// Configure pool exclude subnets. The structure of `exclude` block is documented below.
+	Excludes []IpamPoolExclude `pulumi:"excludes"`
 	// IPAM pool name.
 	Name *string `pulumi:"name"`
 	// Configure IPAM pool subnet, Class A - Class B subnet.
@@ -14019,6 +14040,8 @@ type IpamPoolInput interface {
 type IpamPoolArgs struct {
 	// Description.
 	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Configure pool exclude subnets. The structure of `exclude` block is documented below.
+	Excludes IpamPoolExcludeArrayInput `pulumi:"excludes"`
 	// IPAM pool name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Configure IPAM pool subnet, Class A - Class B subnet.
@@ -14081,6 +14104,11 @@ func (o IpamPoolOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamPool) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Configure pool exclude subnets. The structure of `exclude` block is documented below.
+func (o IpamPoolOutput) Excludes() IpamPoolExcludeArrayOutput {
+	return o.ApplyT(func(v IpamPool) []IpamPoolExclude { return v.Excludes }).(IpamPoolExcludeArrayOutput)
+}
+
 // IPAM pool name.
 func (o IpamPoolOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamPool) *string { return v.Name }).(pulumi.StringPtrOutput)
@@ -14109,6 +14137,112 @@ func (o IpamPoolArrayOutput) Index(i pulumi.IntInput) IpamPoolOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpamPool {
 		return vs[0].([]IpamPool)[vs[1].(int)]
 	}).(IpamPoolOutput)
+}
+
+type IpamPoolExclude struct {
+	// Configure subnet to exclude from the IPAM pool.
+	ExcludeSubnet *string `pulumi:"excludeSubnet"`
+	// Exclude ID.
+	Id *int `pulumi:"id"`
+}
+
+// IpamPoolExcludeInput is an input type that accepts IpamPoolExcludeArgs and IpamPoolExcludeOutput values.
+// You can construct a concrete instance of `IpamPoolExcludeInput` via:
+//
+//	IpamPoolExcludeArgs{...}
+type IpamPoolExcludeInput interface {
+	pulumi.Input
+
+	ToIpamPoolExcludeOutput() IpamPoolExcludeOutput
+	ToIpamPoolExcludeOutputWithContext(context.Context) IpamPoolExcludeOutput
+}
+
+type IpamPoolExcludeArgs struct {
+	// Configure subnet to exclude from the IPAM pool.
+	ExcludeSubnet pulumi.StringPtrInput `pulumi:"excludeSubnet"`
+	// Exclude ID.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+}
+
+func (IpamPoolExcludeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamPoolExclude)(nil)).Elem()
+}
+
+func (i IpamPoolExcludeArgs) ToIpamPoolExcludeOutput() IpamPoolExcludeOutput {
+	return i.ToIpamPoolExcludeOutputWithContext(context.Background())
+}
+
+func (i IpamPoolExcludeArgs) ToIpamPoolExcludeOutputWithContext(ctx context.Context) IpamPoolExcludeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamPoolExcludeOutput)
+}
+
+// IpamPoolExcludeArrayInput is an input type that accepts IpamPoolExcludeArray and IpamPoolExcludeArrayOutput values.
+// You can construct a concrete instance of `IpamPoolExcludeArrayInput` via:
+//
+//	IpamPoolExcludeArray{ IpamPoolExcludeArgs{...} }
+type IpamPoolExcludeArrayInput interface {
+	pulumi.Input
+
+	ToIpamPoolExcludeArrayOutput() IpamPoolExcludeArrayOutput
+	ToIpamPoolExcludeArrayOutputWithContext(context.Context) IpamPoolExcludeArrayOutput
+}
+
+type IpamPoolExcludeArray []IpamPoolExcludeInput
+
+func (IpamPoolExcludeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamPoolExclude)(nil)).Elem()
+}
+
+func (i IpamPoolExcludeArray) ToIpamPoolExcludeArrayOutput() IpamPoolExcludeArrayOutput {
+	return i.ToIpamPoolExcludeArrayOutputWithContext(context.Background())
+}
+
+func (i IpamPoolExcludeArray) ToIpamPoolExcludeArrayOutputWithContext(ctx context.Context) IpamPoolExcludeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamPoolExcludeArrayOutput)
+}
+
+type IpamPoolExcludeOutput struct{ *pulumi.OutputState }
+
+func (IpamPoolExcludeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamPoolExclude)(nil)).Elem()
+}
+
+func (o IpamPoolExcludeOutput) ToIpamPoolExcludeOutput() IpamPoolExcludeOutput {
+	return o
+}
+
+func (o IpamPoolExcludeOutput) ToIpamPoolExcludeOutputWithContext(ctx context.Context) IpamPoolExcludeOutput {
+	return o
+}
+
+// Configure subnet to exclude from the IPAM pool.
+func (o IpamPoolExcludeOutput) ExcludeSubnet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpamPoolExclude) *string { return v.ExcludeSubnet }).(pulumi.StringPtrOutput)
+}
+
+// Exclude ID.
+func (o IpamPoolExcludeOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v IpamPoolExclude) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+type IpamPoolExcludeArrayOutput struct{ *pulumi.OutputState }
+
+func (IpamPoolExcludeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamPoolExclude)(nil)).Elem()
+}
+
+func (o IpamPoolExcludeArrayOutput) ToIpamPoolExcludeArrayOutput() IpamPoolExcludeArrayOutput {
+	return o
+}
+
+func (o IpamPoolExcludeArrayOutput) ToIpamPoolExcludeArrayOutputWithContext(ctx context.Context) IpamPoolExcludeArrayOutput {
+	return o
+}
+
+func (o IpamPoolExcludeArrayOutput) Index(i pulumi.IntInput) IpamPoolExcludeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpamPoolExclude {
+		return vs[0].([]IpamPoolExclude)[vs[1].(int)]
+	}).(IpamPoolExcludeOutput)
 }
 
 type IpamRule struct {
@@ -15720,10 +15854,12 @@ type NtpNtpserver struct {
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
 	// Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
 	IpType *string `pulumi:"ipType"`
-	// Key for MD5/SHA1 authentication.
+	// Key for authentication. On FortiOS versions 6.2.0: MD5(NTPv3)/SHA1(NTPv4). On FortiOS versions >= 7.4.4: MD5(NTPv3)/SHA1(NTPv4)/SHA256(NTPv4).
 	Key *string `pulumi:"key"`
 	// Key ID for authentication.
 	KeyId *int `pulumi:"keyId"`
+	// Select NTP authentication type. Valid values: `MD5`, `SHA1`, `SHA256`.
+	KeyType *string `pulumi:"keyType"`
 	// Enable to use NTPv3 instead of NTPv4. Valid values: `enable`, `disable`.
 	Ntpv3 *string `pulumi:"ntpv3"`
 	// IP address or hostname of the NTP Server.
@@ -15752,10 +15888,12 @@ type NtpNtpserverArgs struct {
 	InterfaceSelectMethod pulumi.StringPtrInput `pulumi:"interfaceSelectMethod"`
 	// Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
 	IpType pulumi.StringPtrInput `pulumi:"ipType"`
-	// Key for MD5/SHA1 authentication.
+	// Key for authentication. On FortiOS versions 6.2.0: MD5(NTPv3)/SHA1(NTPv4). On FortiOS versions >= 7.4.4: MD5(NTPv3)/SHA1(NTPv4)/SHA256(NTPv4).
 	Key pulumi.StringPtrInput `pulumi:"key"`
 	// Key ID for authentication.
 	KeyId pulumi.IntPtrInput `pulumi:"keyId"`
+	// Select NTP authentication type. Valid values: `MD5`, `SHA1`, `SHA256`.
+	KeyType pulumi.StringPtrInput `pulumi:"keyType"`
 	// Enable to use NTPv3 instead of NTPv4. Valid values: `enable`, `disable`.
 	Ntpv3 pulumi.StringPtrInput `pulumi:"ntpv3"`
 	// IP address or hostname of the NTP Server.
@@ -15838,7 +15976,7 @@ func (o NtpNtpserverOutput) IpType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NtpNtpserver) *string { return v.IpType }).(pulumi.StringPtrOutput)
 }
 
-// Key for MD5/SHA1 authentication.
+// Key for authentication. On FortiOS versions 6.2.0: MD5(NTPv3)/SHA1(NTPv4). On FortiOS versions >= 7.4.4: MD5(NTPv3)/SHA1(NTPv4)/SHA256(NTPv4).
 func (o NtpNtpserverOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NtpNtpserver) *string { return v.Key }).(pulumi.StringPtrOutput)
 }
@@ -15846,6 +15984,11 @@ func (o NtpNtpserverOutput) Key() pulumi.StringPtrOutput {
 // Key ID for authentication.
 func (o NtpNtpserverOutput) KeyId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NtpNtpserver) *int { return v.KeyId }).(pulumi.IntPtrOutput)
+}
+
+// Select NTP authentication type. Valid values: `MD5`, `SHA1`, `SHA256`.
+func (o NtpNtpserverOutput) KeyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NtpNtpserver) *string { return v.KeyType }).(pulumi.StringPtrOutput)
 }
 
 // Enable to use NTPv3 instead of NTPv4. Valid values: `enable`, `disable`.
@@ -21849,7 +21992,7 @@ type SdwanHealthCheck struct {
 	HttpGet *string `pulumi:"httpGet"`
 	// Response string expected from the server if the protocol is HTTP.
 	HttpMatch *string `pulumi:"httpMatch"`
-	// Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600*1000 msec, default = 500).
+	// Status check interval in milliseconds, or the time between attempting to connect to the server (default = 500). On FortiOS versions 6.4.1-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
 	Interval *int `pulumi:"interval"`
 	// Member sequence number list. The structure of `members` block is documented below.
 	Members []SdwanHealthCheckMember `pulumi:"members"`
@@ -21857,17 +22000,17 @@ type SdwanHealthCheck struct {
 	MosCodec *string `pulumi:"mosCodec"`
 	// Health check name.
 	Name *string `pulumi:"name"`
-	// Packet size of a twamp test session,
+	// Packet size of a TWAMP test session. (124/158 - 1024)
 	PacketSize *int `pulumi:"packetSize"`
 	// Twamp controller password in authentication mode
 	Password *string `pulumi:"password"`
-	// Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).
+	// Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
 	Port *int `pulumi:"port"`
 	// Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
 	ProbeCount *int `pulumi:"probeCount"`
 	// Enable/disable transmission of probe packets. Valid values: `disable`, `enable`.
 	ProbePackets *string `pulumi:"probePackets"`
-	// Time to wait before a probe packet is considered lost (500 - 3600*1000 msec, default = 500).
+	// Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.4.2-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 6.4.1: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
 	ProbeTimeout *int `pulumi:"probeTimeout"`
 	// Protocol used to determine if the FortiGate can communicate with the server.
 	Protocol *string `pulumi:"protocol"`
@@ -21955,7 +22098,7 @@ type SdwanHealthCheckArgs struct {
 	HttpGet pulumi.StringPtrInput `pulumi:"httpGet"`
 	// Response string expected from the server if the protocol is HTTP.
 	HttpMatch pulumi.StringPtrInput `pulumi:"httpMatch"`
-	// Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600*1000 msec, default = 500).
+	// Status check interval in milliseconds, or the time between attempting to connect to the server (default = 500). On FortiOS versions 6.4.1-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
 	Interval pulumi.IntPtrInput `pulumi:"interval"`
 	// Member sequence number list. The structure of `members` block is documented below.
 	Members SdwanHealthCheckMemberArrayInput `pulumi:"members"`
@@ -21963,17 +22106,17 @@ type SdwanHealthCheckArgs struct {
 	MosCodec pulumi.StringPtrInput `pulumi:"mosCodec"`
 	// Health check name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Packet size of a twamp test session,
+	// Packet size of a TWAMP test session. (124/158 - 1024)
 	PacketSize pulumi.IntPtrInput `pulumi:"packetSize"`
 	// Twamp controller password in authentication mode
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).
+	// Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
 	ProbeCount pulumi.IntPtrInput `pulumi:"probeCount"`
 	// Enable/disable transmission of probe packets. Valid values: `disable`, `enable`.
 	ProbePackets pulumi.StringPtrInput `pulumi:"probePackets"`
-	// Time to wait before a probe packet is considered lost (500 - 3600*1000 msec, default = 500).
+	// Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.4.2-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 6.4.1: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
 	ProbeTimeout pulumi.IntPtrInput `pulumi:"probeTimeout"`
 	// Protocol used to determine if the FortiGate can communicate with the server.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
@@ -22142,7 +22285,7 @@ func (o SdwanHealthCheckOutput) HttpMatch() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *string { return v.HttpMatch }).(pulumi.StringPtrOutput)
 }
 
-// Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600*1000 msec, default = 500).
+// Status check interval in milliseconds, or the time between attempting to connect to the server (default = 500). On FortiOS versions 6.4.1-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
 func (o SdwanHealthCheckOutput) Interval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *int { return v.Interval }).(pulumi.IntPtrOutput)
 }
@@ -22162,7 +22305,7 @@ func (o SdwanHealthCheckOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Packet size of a twamp test session,
+// Packet size of a TWAMP test session. (124/158 - 1024)
 func (o SdwanHealthCheckOutput) PacketSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *int { return v.PacketSize }).(pulumi.IntPtrOutput)
 }
@@ -22172,7 +22315,7 @@ func (o SdwanHealthCheckOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).
+// Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
 func (o SdwanHealthCheckOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -22187,7 +22330,7 @@ func (o SdwanHealthCheckOutput) ProbePackets() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *string { return v.ProbePackets }).(pulumi.StringPtrOutput)
 }
 
-// Time to wait before a probe packet is considered lost (500 - 3600*1000 msec, default = 500).
+// Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.4.2-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 6.4.1: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
 func (o SdwanHealthCheckOutput) ProbeTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *int { return v.ProbeTimeout }).(pulumi.IntPtrOutput)
 }
@@ -22594,7 +22737,7 @@ type SdwanMember struct {
 	Interface *string `pulumi:"interface"`
 	// Preferred source of route for this member.
 	PreferredSource *string `pulumi:"preferredSource"`
-	// Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+	// Priority of the interface for IPv4 . Used for SD-WAN rules or priority rules. On FortiOS versions 6.4.1: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535, default = 1.
 	Priority *int `pulumi:"priority"`
 	// Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.
 	Priority6 *int `pulumi:"priority6"`
@@ -22644,7 +22787,7 @@ type SdwanMemberArgs struct {
 	Interface pulumi.StringPtrInput `pulumi:"interface"`
 	// Preferred source of route for this member.
 	PreferredSource pulumi.StringPtrInput `pulumi:"preferredSource"`
-	// Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+	// Priority of the interface for IPv4 . Used for SD-WAN rules or priority rules. On FortiOS versions 6.4.1: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535, default = 1.
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
 	// Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.
 	Priority6 pulumi.IntPtrInput `pulumi:"priority6"`
@@ -22754,7 +22897,7 @@ func (o SdwanMemberOutput) PreferredSource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanMember) *string { return v.PreferredSource }).(pulumi.StringPtrOutput)
 }
 
-// Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+// Priority of the interface for IPv4 . Used for SD-WAN rules or priority rules. On FortiOS versions 6.4.1: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535, default = 1.
 func (o SdwanMemberOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanMember) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
@@ -22834,9 +22977,9 @@ type SdwanNeighbor struct {
 	HealthCheck *string `pulumi:"healthCheck"`
 	// IP/IPv6 address of neighbor.
 	Ip *string `pulumi:"ip"`
-	// Member sequence number.
+	// Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `memberBlock`.*
 	Member *int `pulumi:"member"`
-	// Member sequence number list. The structure of `memberBlock` block is documented below.
+	// Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `memberBlock` block is documented below.
 	MemberBlocks []SdwanNeighborMemberBlock `pulumi:"memberBlocks"`
 	// Minimum number of members which meet SLA when the neighbor is preferred.
 	MinimumSlaMeetMembers *int `pulumi:"minimumSlaMeetMembers"`
@@ -22866,9 +23009,9 @@ type SdwanNeighborArgs struct {
 	HealthCheck pulumi.StringPtrInput `pulumi:"healthCheck"`
 	// IP/IPv6 address of neighbor.
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
-	// Member sequence number.
+	// Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `memberBlock`.*
 	Member pulumi.IntPtrInput `pulumi:"member"`
-	// Member sequence number list. The structure of `memberBlock` block is documented below.
+	// Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `memberBlock` block is documented below.
 	MemberBlocks SdwanNeighborMemberBlockArrayInput `pulumi:"memberBlocks"`
 	// Minimum number of members which meet SLA when the neighbor is preferred.
 	MinimumSlaMeetMembers pulumi.IntPtrInput `pulumi:"minimumSlaMeetMembers"`
@@ -22943,12 +23086,12 @@ func (o SdwanNeighborOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanNeighbor) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
-// Member sequence number.
+// Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `memberBlock`.*
 func (o SdwanNeighborOutput) Member() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanNeighbor) *int { return v.Member }).(pulumi.IntPtrOutput)
 }
 
-// Member sequence number list. The structure of `memberBlock` block is documented below.
+// Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `memberBlock` block is documented below.
 func (o SdwanNeighborOutput) MemberBlocks() SdwanNeighborMemberBlockArrayOutput {
 	return o.ApplyT(func(v SdwanNeighbor) []SdwanNeighborMemberBlock { return v.MemberBlocks }).(SdwanNeighborMemberBlockArrayOutput)
 }
@@ -28314,7 +28457,7 @@ type VirtualwanlinkHealthCheck struct {
 	HttpGet *string `pulumi:"httpGet"`
 	// Response string expected from the server if the protocol is HTTP.
 	HttpMatch *string `pulumi:"httpMatch"`
-	// Status check interval, or the time between attempting to connect to the server (1 - 3600 sec, default = 5).
+	// Status check interval, or the time between attempting to connect to the server. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-6.4.0: 500 - 3600*1000 msec, default = 500.
 	Interval *int `pulumi:"interval"`
 	// Member sequence number list. The structure of `members` block is documented below.
 	Members []VirtualwanlinkHealthCheckMember `pulumi:"members"`
@@ -28394,7 +28537,7 @@ type VirtualwanlinkHealthCheckArgs struct {
 	HttpGet pulumi.StringPtrInput `pulumi:"httpGet"`
 	// Response string expected from the server if the protocol is HTTP.
 	HttpMatch pulumi.StringPtrInput `pulumi:"httpMatch"`
-	// Status check interval, or the time between attempting to connect to the server (1 - 3600 sec, default = 5).
+	// Status check interval, or the time between attempting to connect to the server. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-6.4.0: 500 - 3600*1000 msec, default = 500.
 	Interval pulumi.IntPtrInput `pulumi:"interval"`
 	// Member sequence number list. The structure of `members` block is documented below.
 	Members VirtualwanlinkHealthCheckMemberArrayInput `pulumi:"members"`
@@ -28537,7 +28680,7 @@ func (o VirtualwanlinkHealthCheckOutput) HttpMatch() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VirtualwanlinkHealthCheck) *string { return v.HttpMatch }).(pulumi.StringPtrOutput)
 }
 
-// Status check interval, or the time between attempting to connect to the server (1 - 3600 sec, default = 5).
+// Status check interval, or the time between attempting to connect to the server. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-6.4.0: 500 - 3600*1000 msec, default = 500.
 func (o VirtualwanlinkHealthCheckOutput) Interval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v VirtualwanlinkHealthCheck) *int { return v.Interval }).(pulumi.IntPtrOutput)
 }
@@ -28937,9 +29080,9 @@ type VirtualwanlinkMember struct {
 	SpilloverThreshold *int `pulumi:"spilloverThreshold"`
 	// Enable/disable this interface in the SD-WAN. Valid values: `disable`, `enable`.
 	Status *string `pulumi:"status"`
-	// Measured volume ratio (this value / sum of all values = percentage of link volume, 0 - 255).
+	// Measured volume ratio (this value / sum of all values = percentage of link volume). On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
 	VolumeRatio *int `pulumi:"volumeRatio"`
-	// Weight of this interface for weighted load balancing. (0 - 255) More traffic is directed to interfaces with higher weights.
+	// Weight of this interface for weighted load balancing. More traffic is directed to interfaces with higher weights. On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
 	Weight *int `pulumi:"weight"`
 }
 
@@ -28979,9 +29122,9 @@ type VirtualwanlinkMemberArgs struct {
 	SpilloverThreshold pulumi.IntPtrInput `pulumi:"spilloverThreshold"`
 	// Enable/disable this interface in the SD-WAN. Valid values: `disable`, `enable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Measured volume ratio (this value / sum of all values = percentage of link volume, 0 - 255).
+	// Measured volume ratio (this value / sum of all values = percentage of link volume). On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
 	VolumeRatio pulumi.IntPtrInput `pulumi:"volumeRatio"`
-	// Weight of this interface for weighted load balancing. (0 - 255) More traffic is directed to interfaces with higher weights.
+	// Weight of this interface for weighted load balancing. More traffic is directed to interfaces with higher weights. On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
 	Weight pulumi.IntPtrInput `pulumi:"weight"`
 }
 
@@ -29096,12 +29239,12 @@ func (o VirtualwanlinkMemberOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VirtualwanlinkMember) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Measured volume ratio (this value / sum of all values = percentage of link volume, 0 - 255).
+// Measured volume ratio (this value / sum of all values = percentage of link volume). On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
 func (o VirtualwanlinkMemberOutput) VolumeRatio() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v VirtualwanlinkMember) *int { return v.VolumeRatio }).(pulumi.IntPtrOutput)
 }
 
-// Weight of this interface for weighted load balancing. (0 - 255) More traffic is directed to interfaces with higher weights.
+// Weight of this interface for weighted load balancing. More traffic is directed to interfaces with higher weights. On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
 func (o VirtualwanlinkMemberOutput) Weight() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v VirtualwanlinkMember) *int { return v.Weight }).(pulumi.IntPtrOutput)
 }
@@ -32787,6 +32930,8 @@ type GetAccprofileUtmgrpPermission struct {
 	DataLeakPrevention string `pulumi:"dataLeakPrevention"`
 	// DLP profiles and settings.
 	DataLossPrevention string `pulumi:"dataLossPrevention"`
+	// DLP profiles and settings.
+	Dlp string `pulumi:"dlp"`
 	// DNS Filter profiles and settings.
 	Dnsfilter string `pulumi:"dnsfilter"`
 	// AntiSpam filter and settings.
@@ -32835,6 +32980,8 @@ type GetAccprofileUtmgrpPermissionArgs struct {
 	DataLeakPrevention pulumi.StringInput `pulumi:"dataLeakPrevention"`
 	// DLP profiles and settings.
 	DataLossPrevention pulumi.StringInput `pulumi:"dataLossPrevention"`
+	// DLP profiles and settings.
+	Dlp pulumi.StringInput `pulumi:"dlp"`
 	// DNS Filter profiles and settings.
 	Dnsfilter pulumi.StringInput `pulumi:"dnsfilter"`
 	// AntiSpam filter and settings.
@@ -32935,6 +33082,11 @@ func (o GetAccprofileUtmgrpPermissionOutput) DataLeakPrevention() pulumi.StringO
 // DLP profiles and settings.
 func (o GetAccprofileUtmgrpPermissionOutput) DataLossPrevention() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccprofileUtmgrpPermission) string { return v.DataLossPrevention }).(pulumi.StringOutput)
+}
+
+// DLP profiles and settings.
+func (o GetAccprofileUtmgrpPermissionOutput) Dlp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccprofileUtmgrpPermission) string { return v.Dlp }).(pulumi.StringOutput)
 }
 
 // DNS Filter profiles and settings.
@@ -41202,6 +41354,8 @@ type GetNtpNtpserver struct {
 	Key string `pulumi:"key"`
 	// Key ID for authentication.
 	KeyId int `pulumi:"keyId"`
+	// Select NTP authentication type.
+	KeyType string `pulumi:"keyType"`
 	// Enable to use NTPv3 instead of NTPv4.
 	Ntpv3 string `pulumi:"ntpv3"`
 	// IP address or hostname of the NTP Server.
@@ -41234,6 +41388,8 @@ type GetNtpNtpserverArgs struct {
 	Key pulumi.StringInput `pulumi:"key"`
 	// Key ID for authentication.
 	KeyId pulumi.IntInput `pulumi:"keyId"`
+	// Select NTP authentication type.
+	KeyType pulumi.StringInput `pulumi:"keyType"`
 	// Enable to use NTPv3 instead of NTPv4.
 	Ntpv3 pulumi.StringInput `pulumi:"ntpv3"`
 	// IP address or hostname of the NTP Server.
@@ -41324,6 +41480,11 @@ func (o GetNtpNtpserverOutput) Key() pulumi.StringOutput {
 // Key ID for authentication.
 func (o GetNtpNtpserverOutput) KeyId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetNtpNtpserver) int { return v.KeyId }).(pulumi.IntOutput)
+}
+
+// Select NTP authentication type.
+func (o GetNtpNtpserverOutput) KeyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNtpNtpserver) string { return v.KeyType }).(pulumi.StringOutput)
 }
 
 // Enable to use NTPv3 instead of NTPv4.
@@ -50116,6 +50277,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InterfaceVrrpProxyArpArrayInput)(nil)).Elem(), InterfaceVrrpProxyArpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamPoolInput)(nil)).Elem(), IpamPoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamPoolArrayInput)(nil)).Elem(), IpamPoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamPoolExcludeInput)(nil)).Elem(), IpamPoolExcludeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamPoolExcludeArrayInput)(nil)).Elem(), IpamPoolExcludeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamRuleInput)(nil)).Elem(), IpamRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamRuleArrayInput)(nil)).Elem(), IpamRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamRuleDeviceInput)(nil)).Elem(), IpamRuleDeviceArgs{})
@@ -50880,6 +51043,8 @@ func init() {
 	pulumi.RegisterOutputType(InterfaceVrrpProxyArpArrayOutput{})
 	pulumi.RegisterOutputType(IpamPoolOutput{})
 	pulumi.RegisterOutputType(IpamPoolArrayOutput{})
+	pulumi.RegisterOutputType(IpamPoolExcludeOutput{})
+	pulumi.RegisterOutputType(IpamPoolExcludeArrayOutput{})
 	pulumi.RegisterOutputType(IpamRuleOutput{})
 	pulumi.RegisterOutputType(IpamRuleArrayOutput{})
 	pulumi.RegisterOutputType(IpamRuleDeviceOutput{})

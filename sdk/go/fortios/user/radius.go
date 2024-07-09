@@ -84,7 +84,7 @@ import (
 type Radius struct {
 	pulumi.CustomResourceState
 
-	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	// Define subject identity field in certificate for user access right checking.
 	AccountKeyCertField pulumi.StringOutput `pulumi:"accountKeyCertField"`
 	// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
 	AccountKeyProcessing pulumi.StringOutput `pulumi:"accountKeyProcessing"`
@@ -110,7 +110,7 @@ type Radius struct {
 	Delimiter pulumi.StringOutput `pulumi:"delimiter"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
 	GroupOverrideAttrType pulumi.StringOutput `pulumi:"groupOverrideAttrType"`
@@ -207,7 +207,7 @@ type Radius struct {
 	// Enable/disable case sensitive user names. Valid values: `enable`, `disable`.
 	UsernameCaseSensitive pulumi.StringOutput `pulumi:"usernameCaseSensitive"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewRadius registers a new resource with the given unique name, arguments, and options.
@@ -263,7 +263,7 @@ func GetRadius(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Radius resources.
 type radiusState struct {
-	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	// Define subject identity field in certificate for user access right checking.
 	AccountKeyCertField *string `pulumi:"accountKeyCertField"`
 	// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
 	AccountKeyProcessing *string `pulumi:"accountKeyProcessing"`
@@ -289,7 +289,7 @@ type radiusState struct {
 	Delimiter *string `pulumi:"delimiter"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
 	GroupOverrideAttrType *string `pulumi:"groupOverrideAttrType"`
@@ -390,7 +390,7 @@ type radiusState struct {
 }
 
 type RadiusState struct {
-	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	// Define subject identity field in certificate for user access right checking.
 	AccountKeyCertField pulumi.StringPtrInput
 	// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
 	AccountKeyProcessing pulumi.StringPtrInput
@@ -416,7 +416,7 @@ type RadiusState struct {
 	Delimiter pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
 	GroupOverrideAttrType pulumi.StringPtrInput
@@ -521,7 +521,7 @@ func (RadiusState) ElementType() reflect.Type {
 }
 
 type radiusArgs struct {
-	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	// Define subject identity field in certificate for user access right checking.
 	AccountKeyCertField *string `pulumi:"accountKeyCertField"`
 	// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
 	AccountKeyProcessing *string `pulumi:"accountKeyProcessing"`
@@ -547,7 +547,7 @@ type radiusArgs struct {
 	Delimiter *string `pulumi:"delimiter"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
 	GroupOverrideAttrType *string `pulumi:"groupOverrideAttrType"`
@@ -649,7 +649,7 @@ type radiusArgs struct {
 
 // The set of arguments for constructing a Radius resource.
 type RadiusArgs struct {
-	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	// Define subject identity field in certificate for user access right checking.
 	AccountKeyCertField pulumi.StringPtrInput
 	// Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
 	AccountKeyProcessing pulumi.StringPtrInput
@@ -675,7 +675,7 @@ type RadiusArgs struct {
 	Delimiter pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
 	GroupOverrideAttrType pulumi.StringPtrInput
@@ -862,7 +862,7 @@ func (o RadiusOutput) ToRadiusOutputWithContext(ctx context.Context) RadiusOutpu
 	return o
 }
 
-// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+// Define subject identity field in certificate for user access right checking.
 func (o RadiusOutput) AccountKeyCertField() pulumi.StringOutput {
 	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.AccountKeyCertField }).(pulumi.StringOutput)
 }
@@ -927,7 +927,7 @@ func (o RadiusOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Radius) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o RadiusOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Radius) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1168,8 +1168,8 @@ func (o RadiusOutput) UsernameCaseSensitive() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o RadiusOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Radius) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o RadiusOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Radius) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type RadiusArrayOutput struct{ *pulumi.OutputState }

@@ -77,7 +77,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string?> Comment { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+        /// Enable/disable FortiAP console login access (default = enable). Valid values: `enable`, `disable`.
         /// </summary>
         [Output("consoleLogin")]
         public Output<string> ConsoleLogin { get; private set; } = null!;
@@ -137,7 +137,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> FrequencyHandoff { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -167,7 +167,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> IndoorOutdoorDeployment { get; private set; } = null!;
 
         /// <summary>
-        /// Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        /// Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         /// </summary>
         [Output("ipFragmentPreventing")]
         public Output<string> IpFragmentPreventing { get; private set; } = null!;
@@ -197,7 +197,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> LedState { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
+        /// Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP. On FortiOS versions 6.2.0: default = disable. On FortiOS versions &gt;= 6.2.4: default = enable. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("lldp")]
         public Output<string> Lldp { get; private set; } = null!;
@@ -287,13 +287,13 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> SyslogProfile { get; private set; } = null!;
 
         /// <summary>
-        /// Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        /// The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         /// </summary>
         [Output("tunMtuDownlink")]
         public Output<int> TunMtuDownlink { get; private set; } = null!;
 
         /// <summary>
-        /// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        /// The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         /// </summary>
         [Output("tunMtuUplink")]
         public Output<int> TunMtuUplink { get; private set; } = null!;
@@ -305,10 +305,16 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> Unii45ghzBand { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable USB port of the WTP (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("usbPort")]
+        public Output<string> UsbPort { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
@@ -440,7 +446,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+        /// Enable/disable FortiAP console login access (default = enable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("consoleLogin")]
         public Input<string>? ConsoleLogin { get; set; }
@@ -506,7 +512,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? FrequencyHandoff { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -536,7 +542,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? IndoorOutdoorDeployment { get; set; }
 
         /// <summary>
-        /// Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        /// Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         /// </summary>
         [Input("ipFragmentPreventing")]
         public Input<string>? IpFragmentPreventing { get; set; }
@@ -572,7 +578,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? LedState { get; set; }
 
         /// <summary>
-        /// Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
+        /// Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP. On FortiOS versions 6.2.0: default = disable. On FortiOS versions &gt;= 6.2.4: default = enable. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("lldp")]
         public Input<string>? Lldp { get; set; }
@@ -678,13 +684,13 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? SyslogProfile { get; set; }
 
         /// <summary>
-        /// Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        /// The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         /// </summary>
         [Input("tunMtuDownlink")]
         public Input<int>? TunMtuDownlink { get; set; }
 
         /// <summary>
-        /// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        /// The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         /// </summary>
         [Input("tunMtuUplink")]
         public Input<int>? TunMtuUplink { get; set; }
@@ -694,6 +700,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("unii45ghzBand")]
         public Input<string>? Unii45ghzBand { get; set; }
+
+        /// <summary>
+        /// Enable/disable USB port of the WTP (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("usbPort")]
+        public Input<string>? UsbPort { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -788,7 +800,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+        /// Enable/disable FortiAP console login access (default = enable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("consoleLogin")]
         public Input<string>? ConsoleLogin { get; set; }
@@ -854,7 +866,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? FrequencyHandoff { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -884,7 +896,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? IndoorOutdoorDeployment { get; set; }
 
         /// <summary>
-        /// Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        /// Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         /// </summary>
         [Input("ipFragmentPreventing")]
         public Input<string>? IpFragmentPreventing { get; set; }
@@ -920,7 +932,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? LedState { get; set; }
 
         /// <summary>
-        /// Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
+        /// Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP. On FortiOS versions 6.2.0: default = disable. On FortiOS versions &gt;= 6.2.4: default = enable. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("lldp")]
         public Input<string>? Lldp { get; set; }
@@ -1026,13 +1038,13 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? SyslogProfile { get; set; }
 
         /// <summary>
-        /// Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        /// The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         /// </summary>
         [Input("tunMtuDownlink")]
         public Input<int>? TunMtuDownlink { get; set; }
 
         /// <summary>
-        /// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        /// The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         /// </summary>
         [Input("tunMtuUplink")]
         public Input<int>? TunMtuUplink { get; set; }
@@ -1042,6 +1054,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("unii45ghzBand")]
         public Input<string>? Unii45ghzBand { get; set; }
+
+        /// <summary>
+        /// Enable/disable USB port of the WTP (default = enable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("usbPort")]
+        public Input<string>? UsbPort { get; set; }
 
         /// <summary>
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

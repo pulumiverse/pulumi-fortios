@@ -80,7 +80,7 @@ class RadiusArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Radius resource.
-        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking.
         :param pulumi.Input[str] account_key_processing: Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
         :param pulumi.Input[Sequence[pulumi.Input['RadiusAccountingServerArgs']]] accounting_servers: Additional accounting servers. The structure of `accounting_server` block is documented below.
         :param pulumi.Input[str] acct_all_servers: Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
@@ -93,7 +93,7 @@ class RadiusArgs:
         :param pulumi.Input[str] client_cert: Client certificate to use under TLS.
         :param pulumi.Input[str] delimiter: Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_override_attr_type: RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
         :param pulumi.Input[str] h3c_compatibility: Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -272,7 +272,7 @@ class RadiusArgs:
     @pulumi.getter(name="accountKeyCertField")
     def account_key_cert_field(self) -> Optional[pulumi.Input[str]]:
         """
-        Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        Define subject identity field in certificate for user access right checking.
         """
         return pulumi.get(self, "account_key_cert_field")
 
@@ -428,7 +428,7 @@ class RadiusArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1080,7 +1080,7 @@ class _RadiusState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Radius resources.
-        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking.
         :param pulumi.Input[str] account_key_processing: Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
         :param pulumi.Input[Sequence[pulumi.Input['RadiusAccountingServerArgs']]] accounting_servers: Additional accounting servers. The structure of `accounting_server` block is documented below.
         :param pulumi.Input[str] acct_all_servers: Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
@@ -1093,7 +1093,7 @@ class _RadiusState:
         :param pulumi.Input[str] client_cert: Client certificate to use under TLS.
         :param pulumi.Input[str] delimiter: Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_override_attr_type: RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
         :param pulumi.Input[str] h3c_compatibility: Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -1272,7 +1272,7 @@ class _RadiusState:
     @pulumi.getter(name="accountKeyCertField")
     def account_key_cert_field(self) -> Optional[pulumi.Input[str]]:
         """
-        Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        Define subject identity field in certificate for user access right checking.
         """
         return pulumi.get(self, "account_key_cert_field")
 
@@ -1428,7 +1428,7 @@ class _RadiusState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2139,7 +2139,7 @@ class Radius(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking.
         :param pulumi.Input[str] account_key_processing: Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RadiusAccountingServerArgs']]]] accounting_servers: Additional accounting servers. The structure of `accounting_server` block is documented below.
         :param pulumi.Input[str] acct_all_servers: Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
@@ -2152,7 +2152,7 @@ class Radius(pulumi.CustomResource):
         :param pulumi.Input[str] client_cert: Client certificate to use under TLS.
         :param pulumi.Input[str] delimiter: Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_override_attr_type: RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
         :param pulumi.Input[str] h3c_compatibility: Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -2493,7 +2493,7 @@ class Radius(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking.
         :param pulumi.Input[str] account_key_processing: Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RadiusAccountingServerArgs']]]] accounting_servers: Additional accounting servers. The structure of `accounting_server` block is documented below.
         :param pulumi.Input[str] acct_all_servers: Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `enable`, `disable`.
@@ -2506,7 +2506,7 @@ class Radius(pulumi.CustomResource):
         :param pulumi.Input[str] client_cert: Client certificate to use under TLS.
         :param pulumi.Input[str] delimiter: Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_override_attr_type: RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
         :param pulumi.Input[str] h3c_compatibility: Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -2628,7 +2628,7 @@ class Radius(pulumi.CustomResource):
     @pulumi.getter(name="accountKeyCertField")
     def account_key_cert_field(self) -> pulumi.Output[str]:
         """
-        Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        Define subject identity field in certificate for user access right checking.
         """
         return pulumi.get(self, "account_key_cert_field")
 
@@ -2732,7 +2732,7 @@ class Radius(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -3114,7 +3114,7 @@ class Radius(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

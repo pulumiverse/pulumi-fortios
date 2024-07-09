@@ -209,6 +209,10 @@ export interface GetInterfaceResult {
      */
     readonly dhcpRelayAgentOption: string;
     /**
+     * Enable/disable relaying DHCP messages with no end option.
+     */
+    readonly dhcpRelayAllowNoEndOption: string;
+    /**
      * DHCP relay circuit ID.
      */
     readonly dhcpRelayCircuitId: string;

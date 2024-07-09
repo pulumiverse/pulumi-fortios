@@ -101,6 +101,10 @@ export interface GetCentralsnatmapResult {
      */
     readonly policyid: number;
     /**
+     * Enable/disable preservation of the original source port from source NAT if it has not been used.
+     */
+    readonly portPreserve: string;
+    /**
      * Integer value for the protocol type (0 - 255).
      */
     readonly protocol: number;

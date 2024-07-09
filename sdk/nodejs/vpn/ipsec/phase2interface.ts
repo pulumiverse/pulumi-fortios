@@ -289,7 +289,7 @@ export class Phase2interface extends pulumi.CustomResource {
      */
     public readonly keylifeType!: pulumi.Output<string>;
     /**
-     * Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+     * Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
      */
     public readonly keylifekbs!: pulumi.Output<number>;
     /**
@@ -375,7 +375,7 @@ export class Phase2interface extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Phase2interface resource with the given unique name, arguments, and options.
@@ -603,7 +603,7 @@ export interface Phase2interfaceState {
      */
     keylifeType?: pulumi.Input<string>;
     /**
-     * Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+     * Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
      */
     keylifekbs?: pulumi.Input<number>;
     /**
@@ -797,7 +797,7 @@ export interface Phase2interfaceArgs {
      */
     keylifeType?: pulumi.Input<string>;
     /**
-     * Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+     * Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
      */
     keylifekbs?: pulumi.Input<number>;
     /**

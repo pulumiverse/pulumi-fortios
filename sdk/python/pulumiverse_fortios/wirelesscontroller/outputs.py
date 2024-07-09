@@ -691,8 +691,16 @@ class MpskprofileMpskGroupMpskKey(dict):
             suggest = "concurrent_client_limit_type"
         elif key == "concurrentClients":
             suggest = "concurrent_clients"
+        elif key == "keyType":
+            suggest = "key_type"
         elif key == "mpskSchedules":
             suggest = "mpsk_schedules"
+        elif key == "saePassword":
+            suggest = "sae_password"
+        elif key == "saePk":
+            suggest = "sae_pk"
+        elif key == "saePrivateKey":
+            suggest = "sae_private_key"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in MpskprofileMpskGroupMpskKey. Access the value via the '{suggest}' property getter instead.")
@@ -709,18 +717,26 @@ class MpskprofileMpskGroupMpskKey(dict):
                  comment: Optional[str] = None,
                  concurrent_client_limit_type: Optional[str] = None,
                  concurrent_clients: Optional[int] = None,
+                 key_type: Optional[str] = None,
                  mac: Optional[str] = None,
                  mpsk_schedules: Optional[Sequence['outputs.MpskprofileMpskGroupMpskKeyMpskSchedule']] = None,
                  name: Optional[str] = None,
-                 passphrase: Optional[str] = None):
+                 passphrase: Optional[str] = None,
+                 sae_password: Optional[str] = None,
+                 sae_pk: Optional[str] = None,
+                 sae_private_key: Optional[str] = None):
         """
         :param str comment: Comment.
         :param str concurrent_client_limit_type: MPSK client limit type options. Valid values: `default`, `unlimited`, `specified`.
         :param int concurrent_clients: Number of clients that can connect using this pre-shared key (1 - 65535, default is 256).
+        :param str key_type: Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
         :param str mac: MAC address.
         :param Sequence['MpskprofileMpskGroupMpskKeyMpskScheduleArgs'] mpsk_schedules: Firewall schedule for MPSK passphrase. The passphrase will be effective only when at least one schedule is valid. The structure of `mpsk_schedules` block is documented below.
         :param str name: Pre-shared key name.
         :param str passphrase: WPA Pre-shared key.
+        :param str sae_password: WPA3 SAE password.
+        :param str sae_pk: Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+        :param str sae_private_key: Private key used for WPA3 SAE-PK authentication.
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
@@ -728,6 +744,8 @@ class MpskprofileMpskGroupMpskKey(dict):
             pulumi.set(__self__, "concurrent_client_limit_type", concurrent_client_limit_type)
         if concurrent_clients is not None:
             pulumi.set(__self__, "concurrent_clients", concurrent_clients)
+        if key_type is not None:
+            pulumi.set(__self__, "key_type", key_type)
         if mac is not None:
             pulumi.set(__self__, "mac", mac)
         if mpsk_schedules is not None:
@@ -736,6 +754,12 @@ class MpskprofileMpskGroupMpskKey(dict):
             pulumi.set(__self__, "name", name)
         if passphrase is not None:
             pulumi.set(__self__, "passphrase", passphrase)
+        if sae_password is not None:
+            pulumi.set(__self__, "sae_password", sae_password)
+        if sae_pk is not None:
+            pulumi.set(__self__, "sae_pk", sae_pk)
+        if sae_private_key is not None:
+            pulumi.set(__self__, "sae_private_key", sae_private_key)
 
     @property
     @pulumi.getter
@@ -760,6 +784,14 @@ class MpskprofileMpskGroupMpskKey(dict):
         Number of clients that can connect using this pre-shared key (1 - 65535, default is 256).
         """
         return pulumi.get(self, "concurrent_clients")
+
+    @property
+    @pulumi.getter(name="keyType")
+    def key_type(self) -> Optional[str]:
+        """
+        Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
+        """
+        return pulumi.get(self, "key_type")
 
     @property
     @pulumi.getter
@@ -792,6 +824,30 @@ class MpskprofileMpskGroupMpskKey(dict):
         WPA Pre-shared key.
         """
         return pulumi.get(self, "passphrase")
+
+    @property
+    @pulumi.getter(name="saePassword")
+    def sae_password(self) -> Optional[str]:
+        """
+        WPA3 SAE password.
+        """
+        return pulumi.get(self, "sae_password")
+
+    @property
+    @pulumi.getter(name="saePk")
+    def sae_pk(self) -> Optional[str]:
+        """
+        Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "sae_pk")
+
+    @property
+    @pulumi.getter(name="saePrivateKey")
+    def sae_private_key(self) -> Optional[str]:
+        """
+        Private key used for WPA3 SAE-PK authentication.
+        """
+        return pulumi.get(self, "sae_private_key")
 
 
 @pulumi.output_type
@@ -3746,21 +3802,21 @@ class WtpprofileLbs(dict):
                  station_locate: Optional[str] = None):
         """
         :param str aeroscout: Enable/disable AeroScout Real Time Location Service (RTLS) support. Valid values: `enable`, `disable`.
-        :param str aeroscout_ap_mac: Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
-        :param str aeroscout_mmu_report: Enable/disable MU compounded report. Valid values: `enable`, `disable`.
-        :param str aeroscout_mu: Enable/disable AeroScout support. Valid values: `enable`, `disable`.
-        :param int aeroscout_mu_factor: AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+        :param str aeroscout_ap_mac: Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
+        :param str aeroscout_mmu_report: Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
+        :param str aeroscout_mu: Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
+        :param int aeroscout_mu_factor: eroScout MU mode dilution factor (default = 20).
         :param int aeroscout_mu_timeout: AeroScout MU mode timeout (0 - 65535 sec, default = 5).
         :param str aeroscout_server_ip: IP address of AeroScout server.
         :param int aeroscout_server_port: AeroScout server UDP listening port.
-        :param str ekahau_blink_mode: Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+        :param str ekahau_blink_mode: Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
         :param str ekahau_tag: WiFi frame MAC address or WiFi Tag.
-        :param str erc_server_ip: IP address of Ekahua RTLS Controller (ERC).
-        :param int erc_server_port: Ekahua RTLS Controller (ERC) UDP listening port.
+        :param str erc_server_ip: IP address of Ekahau RTLS Controller (ERC).
+        :param int erc_server_port: Ekahau RTLS Controller (ERC) UDP listening port.
         :param str fortipresence: Enable/disable FortiPresence to monitor the location and activity of WiFi clients even if they don't connect to this WiFi network (default = disable). Valid values: `foreign`, `both`, `disable`.
         :param str fortipresence_ble: Enable/disable FortiPresence finding and reporting BLE devices. Valid values: `enable`, `disable`.
         :param int fortipresence_frequency: FortiPresence report transmit frequency (5 - 65535 sec, default = 30).
-        :param int fortipresence_port: FortiPresence server UDP listening port (default = 3000).
+        :param int fortipresence_port: UDP listening port of FortiPresence server (default = 3000).
         :param str fortipresence_project: FortiPresence project name (max. 16 characters, default = fortipresence).
         :param str fortipresence_rogue: Enable/disable FortiPresence finding and reporting rogue APs. Valid values: `enable`, `disable`.
         :param str fortipresence_secret: FortiPresence secret password (max. 16 characters).
@@ -3870,7 +3926,7 @@ class WtpprofileLbs(dict):
     @pulumi.getter(name="aeroscoutApMac")
     def aeroscout_ap_mac(self) -> Optional[str]:
         """
-        Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+        Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
         """
         return pulumi.get(self, "aeroscout_ap_mac")
 
@@ -3878,7 +3934,7 @@ class WtpprofileLbs(dict):
     @pulumi.getter(name="aeroscoutMmuReport")
     def aeroscout_mmu_report(self) -> Optional[str]:
         """
-        Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+        Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "aeroscout_mmu_report")
 
@@ -3886,7 +3942,7 @@ class WtpprofileLbs(dict):
     @pulumi.getter(name="aeroscoutMu")
     def aeroscout_mu(self) -> Optional[str]:
         """
-        Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+        Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "aeroscout_mu")
 
@@ -3894,7 +3950,7 @@ class WtpprofileLbs(dict):
     @pulumi.getter(name="aeroscoutMuFactor")
     def aeroscout_mu_factor(self) -> Optional[int]:
         """
-        AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+        eroScout MU mode dilution factor (default = 20).
         """
         return pulumi.get(self, "aeroscout_mu_factor")
 
@@ -3926,7 +3982,7 @@ class WtpprofileLbs(dict):
     @pulumi.getter(name="ekahauBlinkMode")
     def ekahau_blink_mode(self) -> Optional[str]:
         """
-        Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+        Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ekahau_blink_mode")
 
@@ -3942,7 +3998,7 @@ class WtpprofileLbs(dict):
     @pulumi.getter(name="ercServerIp")
     def erc_server_ip(self) -> Optional[str]:
         """
-        IP address of Ekahua RTLS Controller (ERC).
+        IP address of Ekahau RTLS Controller (ERC).
         """
         return pulumi.get(self, "erc_server_ip")
 
@@ -3950,7 +4006,7 @@ class WtpprofileLbs(dict):
     @pulumi.getter(name="ercServerPort")
     def erc_server_port(self) -> Optional[int]:
         """
-        Ekahua RTLS Controller (ERC) UDP listening port.
+        Ekahau RTLS Controller (ERC) UDP listening port.
         """
         return pulumi.get(self, "erc_server_port")
 
@@ -3982,7 +4038,7 @@ class WtpprofileLbs(dict):
     @pulumi.getter(name="fortipresencePort")
     def fortipresence_port(self) -> Optional[int]:
         """
-        FortiPresence server UDP listening port (default = 3000).
+        UDP listening port of FortiPresence server (default = 3000).
         """
         return pulumi.get(self, "fortipresence_port")
 
@@ -4270,6 +4326,8 @@ class WtpprofileRadio1(dict):
             suggest = "call_capacity"
         elif key == "channelBonding":
             suggest = "channel_bonding"
+        elif key == "channelBondingExt":
+            suggest = "channel_bonding_ext"
         elif key == "channelUtilization":
             suggest = "channel_utilization"
         elif key == "drmaSensitivity":
@@ -4401,6 +4459,7 @@ class WtpprofileRadio1(dict):
                  call_admission_control: Optional[str] = None,
                  call_capacity: Optional[int] = None,
                  channel_bonding: Optional[str] = None,
+                 channel_bonding_ext: Optional[str] = None,
                  channel_utilization: Optional[str] = None,
                  channels: Optional[Sequence['outputs.WtpprofileRadio1Channel']] = None,
                  coexistence: Optional[str] = None,
@@ -4512,6 +4571,8 @@ class WtpprofileRadio1(dict):
             pulumi.set(__self__, "call_capacity", call_capacity)
         if channel_bonding is not None:
             pulumi.set(__self__, "channel_bonding", channel_bonding)
+        if channel_bonding_ext is not None:
+            pulumi.set(__self__, "channel_bonding_ext", channel_bonding_ext)
         if channel_utilization is not None:
             pulumi.set(__self__, "channel_utilization", channel_utilization)
         if channels is not None:
@@ -4753,6 +4814,11 @@ class WtpprofileRadio1(dict):
     @pulumi.getter(name="channelBonding")
     def channel_bonding(self) -> Optional[str]:
         return pulumi.get(self, "channel_bonding")
+
+    @property
+    @pulumi.getter(name="channelBondingExt")
+    def channel_bonding_ext(self) -> Optional[str]:
+        return pulumi.get(self, "channel_bonding_ext")
 
     @property
     @pulumi.getter(name="channelUtilization")
@@ -5122,6 +5188,8 @@ class WtpprofileRadio2(dict):
             suggest = "call_capacity"
         elif key == "channelBonding":
             suggest = "channel_bonding"
+        elif key == "channelBondingExt":
+            suggest = "channel_bonding_ext"
         elif key == "channelUtilization":
             suggest = "channel_utilization"
         elif key == "drmaSensitivity":
@@ -5253,6 +5321,7 @@ class WtpprofileRadio2(dict):
                  call_admission_control: Optional[str] = None,
                  call_capacity: Optional[int] = None,
                  channel_bonding: Optional[str] = None,
+                 channel_bonding_ext: Optional[str] = None,
                  channel_utilization: Optional[str] = None,
                  channels: Optional[Sequence['outputs.WtpprofileRadio2Channel']] = None,
                  coexistence: Optional[str] = None,
@@ -5364,6 +5433,8 @@ class WtpprofileRadio2(dict):
             pulumi.set(__self__, "call_capacity", call_capacity)
         if channel_bonding is not None:
             pulumi.set(__self__, "channel_bonding", channel_bonding)
+        if channel_bonding_ext is not None:
+            pulumi.set(__self__, "channel_bonding_ext", channel_bonding_ext)
         if channel_utilization is not None:
             pulumi.set(__self__, "channel_utilization", channel_utilization)
         if channels is not None:
@@ -5605,6 +5676,11 @@ class WtpprofileRadio2(dict):
     @pulumi.getter(name="channelBonding")
     def channel_bonding(self) -> Optional[str]:
         return pulumi.get(self, "channel_bonding")
+
+    @property
+    @pulumi.getter(name="channelBondingExt")
+    def channel_bonding_ext(self) -> Optional[str]:
+        return pulumi.get(self, "channel_bonding_ext")
 
     @property
     @pulumi.getter(name="channelUtilization")
@@ -5974,6 +6050,8 @@ class WtpprofileRadio3(dict):
             suggest = "call_capacity"
         elif key == "channelBonding":
             suggest = "channel_bonding"
+        elif key == "channelBondingExt":
+            suggest = "channel_bonding_ext"
         elif key == "channelUtilization":
             suggest = "channel_utilization"
         elif key == "drmaSensitivity":
@@ -6103,6 +6181,7 @@ class WtpprofileRadio3(dict):
                  call_admission_control: Optional[str] = None,
                  call_capacity: Optional[int] = None,
                  channel_bonding: Optional[str] = None,
+                 channel_bonding_ext: Optional[str] = None,
                  channel_utilization: Optional[str] = None,
                  channels: Optional[Sequence['outputs.WtpprofileRadio3Channel']] = None,
                  coexistence: Optional[str] = None,
@@ -6213,6 +6292,8 @@ class WtpprofileRadio3(dict):
             pulumi.set(__self__, "call_capacity", call_capacity)
         if channel_bonding is not None:
             pulumi.set(__self__, "channel_bonding", channel_bonding)
+        if channel_bonding_ext is not None:
+            pulumi.set(__self__, "channel_bonding_ext", channel_bonding_ext)
         if channel_utilization is not None:
             pulumi.set(__self__, "channel_utilization", channel_utilization)
         if channels is not None:
@@ -6452,6 +6533,11 @@ class WtpprofileRadio3(dict):
     @pulumi.getter(name="channelBonding")
     def channel_bonding(self) -> Optional[str]:
         return pulumi.get(self, "channel_bonding")
+
+    @property
+    @pulumi.getter(name="channelBondingExt")
+    def channel_bonding_ext(self) -> Optional[str]:
+        return pulumi.get(self, "channel_bonding_ext")
 
     @property
     @pulumi.getter(name="channelUtilization")
@@ -6816,6 +6902,8 @@ class WtpprofileRadio4(dict):
             suggest = "call_capacity"
         elif key == "channelBonding":
             suggest = "channel_bonding"
+        elif key == "channelBondingExt":
+            suggest = "channel_bonding_ext"
         elif key == "channelUtilization":
             suggest = "channel_utilization"
         elif key == "drmaSensitivity":
@@ -6945,6 +7033,7 @@ class WtpprofileRadio4(dict):
                  call_admission_control: Optional[str] = None,
                  call_capacity: Optional[int] = None,
                  channel_bonding: Optional[str] = None,
+                 channel_bonding_ext: Optional[str] = None,
                  channel_utilization: Optional[str] = None,
                  channels: Optional[Sequence['outputs.WtpprofileRadio4Channel']] = None,
                  coexistence: Optional[str] = None,
@@ -7055,6 +7144,8 @@ class WtpprofileRadio4(dict):
             pulumi.set(__self__, "call_capacity", call_capacity)
         if channel_bonding is not None:
             pulumi.set(__self__, "channel_bonding", channel_bonding)
+        if channel_bonding_ext is not None:
+            pulumi.set(__self__, "channel_bonding_ext", channel_bonding_ext)
         if channel_utilization is not None:
             pulumi.set(__self__, "channel_utilization", channel_utilization)
         if channels is not None:
@@ -7294,6 +7385,11 @@ class WtpprofileRadio4(dict):
     @pulumi.getter(name="channelBonding")
     def channel_bonding(self) -> Optional[str]:
         return pulumi.get(self, "channel_bonding")
+
+    @property
+    @pulumi.getter(name="channelBondingExt")
+    def channel_bonding_ext(self) -> Optional[str]:
+        return pulumi.get(self, "channel_bonding_ext")
 
     @property
     @pulumi.getter(name="channelUtilization")

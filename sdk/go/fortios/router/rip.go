@@ -105,7 +105,7 @@ type Rip struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Garbage timer in seconds.
 	GarbageTimer pulumi.IntOutput `pulumi:"garbageTimer"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// RIP interface configuration. The structure of `interface` block is documented below.
 	Interfaces RipInterfaceArrayOutput `pulumi:"interfaces"`
@@ -128,7 +128,7 @@ type Rip struct {
 	// Update timer in seconds.
 	UpdateTimer pulumi.IntOutput `pulumi:"updateTimer"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// RIP version. Valid values: `1`, `2`.
 	Version pulumi.StringOutput `pulumi:"version"`
 }
@@ -175,7 +175,7 @@ type ripState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Garbage timer in seconds.
 	GarbageTimer *int `pulumi:"garbageTimer"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// RIP interface configuration. The structure of `interface` block is documented below.
 	Interfaces []RipInterface `pulumi:"interfaces"`
@@ -216,7 +216,7 @@ type RipState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Garbage timer in seconds.
 	GarbageTimer pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// RIP interface configuration. The structure of `interface` block is documented below.
 	Interfaces RipInterfaceArrayInput
@@ -261,7 +261,7 @@ type ripArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Garbage timer in seconds.
 	GarbageTimer *int `pulumi:"garbageTimer"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// RIP interface configuration. The structure of `interface` block is documented below.
 	Interfaces []RipInterface `pulumi:"interfaces"`
@@ -303,7 +303,7 @@ type RipArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Garbage timer in seconds.
 	GarbageTimer pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// RIP interface configuration. The structure of `interface` block is documented below.
 	Interfaces RipInterfaceArrayInput
@@ -448,7 +448,7 @@ func (o RipOutput) GarbageTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v *Rip) pulumi.IntOutput { return v.GarbageTimer }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o RipOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Rip) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -504,8 +504,8 @@ func (o RipOutput) UpdateTimer() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o RipOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Rip) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o RipOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Rip) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // RIP version. Valid values: `1`, `2`.

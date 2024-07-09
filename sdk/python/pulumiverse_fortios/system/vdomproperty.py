@@ -43,19 +43,19 @@ class VdompropertyArgs:
         :param pulumi.Input[str] dialup_tunnel: Maximum guaranteed number of dial-up tunnels.
         :param pulumi.Input[str] firewall_address: Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast).
         :param pulumi.Input[str] firewall_addrgrp: Maximum guaranteed number of firewall address groups (IPv4, IPv6).
-        :param pulumi.Input[str] firewall_policy: Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        :param pulumi.Input[str] firewall_policy: Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         :param pulumi.Input[str] ipsec_phase1: Maximum guaranteed number of VPN IPsec phase 1 tunnels.
         :param pulumi.Input[str] ipsec_phase1_interface: Maximum guaranteed number of VPN IPsec phase1 interface tunnels.
         :param pulumi.Input[str] ipsec_phase2: Maximum guaranteed number of VPN IPsec phase 2 tunnels.
         :param pulumi.Input[str] ipsec_phase2_interface: Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
-        :param pulumi.Input[str] log_disk_quota: Log disk quota in MB (range depends on how much disk space is available).
+        :param pulumi.Input[str] log_disk_quota: Log disk quota in megabytes (MB). Range depends on how much disk space is available.
         :param pulumi.Input[str] name: VDOM name.
         :param pulumi.Input[str] onetime_schedule: Maximum guaranteed number of firewall one-time schedules.
         :param pulumi.Input[str] proxy: Maximum guaranteed number of concurrent proxy users.
         :param pulumi.Input[str] recurring_schedule: Maximum guaranteed number of firewall recurring schedules.
         :param pulumi.Input[str] service_group: Maximum guaranteed number of firewall service groups.
         :param pulumi.Input[str] session: Maximum guaranteed number of sessions.
-        :param pulumi.Input[int] snmp_index: Permanent SNMP Index of the virtual domain (0 - 4294967295).
+        :param pulumi.Input[int] snmp_index: Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
         :param pulumi.Input[str] sslvpn: Maximum guaranteed number of SSL-VPNs.
         :param pulumi.Input[str] user: Maximum guaranteed number of local users.
         :param pulumi.Input[str] user_group: Maximum guaranteed number of user groups.
@@ -170,7 +170,7 @@ class VdompropertyArgs:
     @pulumi.getter(name="firewallPolicy")
     def firewall_policy(self) -> Optional[pulumi.Input[str]]:
         """
-        Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         """
         return pulumi.get(self, "firewall_policy")
 
@@ -230,7 +230,7 @@ class VdompropertyArgs:
     @pulumi.getter(name="logDiskQuota")
     def log_disk_quota(self) -> Optional[pulumi.Input[str]]:
         """
-        Log disk quota in MB (range depends on how much disk space is available).
+        Log disk quota in megabytes (MB). Range depends on how much disk space is available.
         """
         return pulumi.get(self, "log_disk_quota")
 
@@ -314,7 +314,7 @@ class VdompropertyArgs:
     @pulumi.getter(name="snmpIndex")
     def snmp_index(self) -> Optional[pulumi.Input[int]]:
         """
-        Permanent SNMP Index of the virtual domain (0 - 4294967295).
+        Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
         """
         return pulumi.get(self, "snmp_index")
 
@@ -403,19 +403,19 @@ class _VdompropertyState:
         :param pulumi.Input[str] dialup_tunnel: Maximum guaranteed number of dial-up tunnels.
         :param pulumi.Input[str] firewall_address: Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast).
         :param pulumi.Input[str] firewall_addrgrp: Maximum guaranteed number of firewall address groups (IPv4, IPv6).
-        :param pulumi.Input[str] firewall_policy: Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        :param pulumi.Input[str] firewall_policy: Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         :param pulumi.Input[str] ipsec_phase1: Maximum guaranteed number of VPN IPsec phase 1 tunnels.
         :param pulumi.Input[str] ipsec_phase1_interface: Maximum guaranteed number of VPN IPsec phase1 interface tunnels.
         :param pulumi.Input[str] ipsec_phase2: Maximum guaranteed number of VPN IPsec phase 2 tunnels.
         :param pulumi.Input[str] ipsec_phase2_interface: Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
-        :param pulumi.Input[str] log_disk_quota: Log disk quota in MB (range depends on how much disk space is available).
+        :param pulumi.Input[str] log_disk_quota: Log disk quota in megabytes (MB). Range depends on how much disk space is available.
         :param pulumi.Input[str] name: VDOM name.
         :param pulumi.Input[str] onetime_schedule: Maximum guaranteed number of firewall one-time schedules.
         :param pulumi.Input[str] proxy: Maximum guaranteed number of concurrent proxy users.
         :param pulumi.Input[str] recurring_schedule: Maximum guaranteed number of firewall recurring schedules.
         :param pulumi.Input[str] service_group: Maximum guaranteed number of firewall service groups.
         :param pulumi.Input[str] session: Maximum guaranteed number of sessions.
-        :param pulumi.Input[int] snmp_index: Permanent SNMP Index of the virtual domain (0 - 4294967295).
+        :param pulumi.Input[int] snmp_index: Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
         :param pulumi.Input[str] sslvpn: Maximum guaranteed number of SSL-VPNs.
         :param pulumi.Input[str] user: Maximum guaranteed number of local users.
         :param pulumi.Input[str] user_group: Maximum guaranteed number of user groups.
@@ -530,7 +530,7 @@ class _VdompropertyState:
     @pulumi.getter(name="firewallPolicy")
     def firewall_policy(self) -> Optional[pulumi.Input[str]]:
         """
-        Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         """
         return pulumi.get(self, "firewall_policy")
 
@@ -590,7 +590,7 @@ class _VdompropertyState:
     @pulumi.getter(name="logDiskQuota")
     def log_disk_quota(self) -> Optional[pulumi.Input[str]]:
         """
-        Log disk quota in MB (range depends on how much disk space is available).
+        Log disk quota in megabytes (MB). Range depends on how much disk space is available.
         """
         return pulumi.get(self, "log_disk_quota")
 
@@ -674,7 +674,7 @@ class _VdompropertyState:
     @pulumi.getter(name="snmpIndex")
     def snmp_index(self) -> Optional[pulumi.Input[int]]:
         """
-        Permanent SNMP Index of the virtual domain (0 - 4294967295).
+        Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
         """
         return pulumi.get(self, "snmp_index")
 
@@ -787,19 +787,19 @@ class Vdomproperty(pulumi.CustomResource):
         :param pulumi.Input[str] dialup_tunnel: Maximum guaranteed number of dial-up tunnels.
         :param pulumi.Input[str] firewall_address: Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast).
         :param pulumi.Input[str] firewall_addrgrp: Maximum guaranteed number of firewall address groups (IPv4, IPv6).
-        :param pulumi.Input[str] firewall_policy: Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        :param pulumi.Input[str] firewall_policy: Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         :param pulumi.Input[str] ipsec_phase1: Maximum guaranteed number of VPN IPsec phase 1 tunnels.
         :param pulumi.Input[str] ipsec_phase1_interface: Maximum guaranteed number of VPN IPsec phase1 interface tunnels.
         :param pulumi.Input[str] ipsec_phase2: Maximum guaranteed number of VPN IPsec phase 2 tunnels.
         :param pulumi.Input[str] ipsec_phase2_interface: Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
-        :param pulumi.Input[str] log_disk_quota: Log disk quota in MB (range depends on how much disk space is available).
+        :param pulumi.Input[str] log_disk_quota: Log disk quota in megabytes (MB). Range depends on how much disk space is available.
         :param pulumi.Input[str] name: VDOM name.
         :param pulumi.Input[str] onetime_schedule: Maximum guaranteed number of firewall one-time schedules.
         :param pulumi.Input[str] proxy: Maximum guaranteed number of concurrent proxy users.
         :param pulumi.Input[str] recurring_schedule: Maximum guaranteed number of firewall recurring schedules.
         :param pulumi.Input[str] service_group: Maximum guaranteed number of firewall service groups.
         :param pulumi.Input[str] session: Maximum guaranteed number of sessions.
-        :param pulumi.Input[int] snmp_index: Permanent SNMP Index of the virtual domain (0 - 4294967295).
+        :param pulumi.Input[int] snmp_index: Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
         :param pulumi.Input[str] sslvpn: Maximum guaranteed number of SSL-VPNs.
         :param pulumi.Input[str] user: Maximum guaranteed number of local users.
         :param pulumi.Input[str] user_group: Maximum guaranteed number of user groups.
@@ -944,19 +944,19 @@ class Vdomproperty(pulumi.CustomResource):
         :param pulumi.Input[str] dialup_tunnel: Maximum guaranteed number of dial-up tunnels.
         :param pulumi.Input[str] firewall_address: Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast).
         :param pulumi.Input[str] firewall_addrgrp: Maximum guaranteed number of firewall address groups (IPv4, IPv6).
-        :param pulumi.Input[str] firewall_policy: Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        :param pulumi.Input[str] firewall_policy: Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         :param pulumi.Input[str] ipsec_phase1: Maximum guaranteed number of VPN IPsec phase 1 tunnels.
         :param pulumi.Input[str] ipsec_phase1_interface: Maximum guaranteed number of VPN IPsec phase1 interface tunnels.
         :param pulumi.Input[str] ipsec_phase2: Maximum guaranteed number of VPN IPsec phase 2 tunnels.
         :param pulumi.Input[str] ipsec_phase2_interface: Maximum guaranteed number of VPN IPsec phase2 interface tunnels.
-        :param pulumi.Input[str] log_disk_quota: Log disk quota in MB (range depends on how much disk space is available).
+        :param pulumi.Input[str] log_disk_quota: Log disk quota in megabytes (MB). Range depends on how much disk space is available.
         :param pulumi.Input[str] name: VDOM name.
         :param pulumi.Input[str] onetime_schedule: Maximum guaranteed number of firewall one-time schedules.
         :param pulumi.Input[str] proxy: Maximum guaranteed number of concurrent proxy users.
         :param pulumi.Input[str] recurring_schedule: Maximum guaranteed number of firewall recurring schedules.
         :param pulumi.Input[str] service_group: Maximum guaranteed number of firewall service groups.
         :param pulumi.Input[str] session: Maximum guaranteed number of sessions.
-        :param pulumi.Input[int] snmp_index: Permanent SNMP Index of the virtual domain (0 - 4294967295).
+        :param pulumi.Input[int] snmp_index: Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
         :param pulumi.Input[str] sslvpn: Maximum guaranteed number of SSL-VPNs.
         :param pulumi.Input[str] user: Maximum guaranteed number of local users.
         :param pulumi.Input[str] user_group: Maximum guaranteed number of user groups.
@@ -1034,7 +1034,7 @@ class Vdomproperty(pulumi.CustomResource):
     @pulumi.getter(name="firewallPolicy")
     def firewall_policy(self) -> pulumi.Output[str]:
         """
-        Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         """
         return pulumi.get(self, "firewall_policy")
 
@@ -1074,7 +1074,7 @@ class Vdomproperty(pulumi.CustomResource):
     @pulumi.getter(name="logDiskQuota")
     def log_disk_quota(self) -> pulumi.Output[str]:
         """
-        Log disk quota in MB (range depends on how much disk space is available).
+        Log disk quota in megabytes (MB). Range depends on how much disk space is available.
         """
         return pulumi.get(self, "log_disk_quota")
 
@@ -1130,7 +1130,7 @@ class Vdomproperty(pulumi.CustomResource):
     @pulumi.getter(name="snmpIndex")
     def snmp_index(self) -> pulumi.Output[int]:
         """
-        Permanent SNMP Index of the virtual domain (0 - 4294967295).
+        Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
         """
         return pulumi.get(self, "snmp_index")
 
@@ -1160,7 +1160,7 @@ class Vdomproperty(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

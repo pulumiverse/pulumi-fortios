@@ -3665,6 +3665,7 @@ class BgpNeighborGroupArgs:
                  prefix_list_out_vpnv4: Optional[pulumi.Input[str]] = None,
                  prefix_list_out_vpnv6: Optional[pulumi.Input[str]] = None,
                  remote_as: Optional[pulumi.Input[int]] = None,
+                 remote_as_filter: Optional[pulumi.Input[str]] = None,
                  remove_private_as: Optional[pulumi.Input[str]] = None,
                  remove_private_as6: Optional[pulumi.Input[str]] = None,
                  remove_private_as_evpn: Optional[pulumi.Input[str]] = None,
@@ -3821,6 +3822,7 @@ class BgpNeighborGroupArgs:
         :param pulumi.Input[str] prefix_list_out_vpnv4: Outbound filter for VPNv4 updates to this neighbor.
         :param pulumi.Input[str] prefix_list_out_vpnv6: Outbound filter for VPNv6 updates to this neighbor.
         :param pulumi.Input[int] remote_as: AS number of neighbor.
+        :param pulumi.Input[str] remote_as_filter: BGP filter for remote AS.
         :param pulumi.Input[str] remove_private_as: Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remove_private_as6: Enable/disable remove private AS number from IPv6 outbound updates. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remove_private_as_evpn: Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
@@ -4084,6 +4086,8 @@ class BgpNeighborGroupArgs:
             pulumi.set(__self__, "prefix_list_out_vpnv6", prefix_list_out_vpnv6)
         if remote_as is not None:
             pulumi.set(__self__, "remote_as", remote_as)
+        if remote_as_filter is not None:
+            pulumi.set(__self__, "remote_as_filter", remote_as_filter)
         if remove_private_as is not None:
             pulumi.set(__self__, "remove_private_as", remove_private_as)
         if remove_private_as6 is not None:
@@ -5464,6 +5468,18 @@ class BgpNeighborGroupArgs:
     @remote_as.setter
     def remote_as(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "remote_as", value)
+
+    @property
+    @pulumi.getter(name="remoteAsFilter")
+    def remote_as_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        BGP filter for remote AS.
+        """
+        return pulumi.get(self, "remote_as_filter")
+
+    @remote_as_filter.setter
+    def remote_as_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "remote_as_filter", value)
 
     @property
     @pulumi.getter(name="removePrivateAs")

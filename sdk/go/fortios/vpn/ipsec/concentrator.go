@@ -63,7 +63,7 @@ type Concentrator struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Concentrator ID. (1-65535)
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
 	Members ConcentratorMemberArrayOutput `pulumi:"members"`
@@ -72,7 +72,7 @@ type Concentrator struct {
 	// Enable to check source address of phase 2 selector. Disable to check only the destination selector. Valid values: `disable`, `enable`.
 	SrcCheck pulumi.StringOutput `pulumi:"srcCheck"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewConcentrator registers a new resource with the given unique name, arguments, and options.
@@ -109,7 +109,7 @@ type concentratorState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Concentrator ID. (1-65535)
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
 	Members []ConcentratorMember `pulumi:"members"`
@@ -126,7 +126,7 @@ type ConcentratorState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Concentrator ID. (1-65535)
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
 	Members ConcentratorMemberArrayInput
@@ -147,7 +147,7 @@ type concentratorArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Concentrator ID. (1-65535)
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
 	Members []ConcentratorMember `pulumi:"members"`
@@ -165,7 +165,7 @@ type ConcentratorArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Concentrator ID. (1-65535)
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
 	Members ConcentratorMemberArrayInput
@@ -274,7 +274,7 @@ func (o ConcentratorOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Concentrator) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ConcentratorOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Concentrator) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -295,8 +295,8 @@ func (o ConcentratorOutput) SrcCheck() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ConcentratorOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Concentrator) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ConcentratorOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Concentrator) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ConcentratorArrayOutput struct{ *pulumi.OutputState }

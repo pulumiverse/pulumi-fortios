@@ -69,7 +69,7 @@ type Intercontroller struct {
 	FastFailoverMax pulumi.IntOutput `pulumi:"fastFailoverMax"`
 	// Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
 	FastFailoverWait pulumi.IntOutput `pulumi:"fastFailoverWait"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Secret key for inter-controller communications.
 	InterControllerKey pulumi.StringPtrOutput `pulumi:"interControllerKey"`
@@ -82,7 +82,7 @@ type Intercontroller struct {
 	// Enable/disable layer 3 roaming (default = disable). Valid values: `enable`, `disable`.
 	L3Roaming pulumi.StringOutput `pulumi:"l3Roaming"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewIntercontroller registers a new resource with the given unique name, arguments, and options.
@@ -128,7 +128,7 @@ type intercontrollerState struct {
 	FastFailoverMax *int `pulumi:"fastFailoverMax"`
 	// Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
 	FastFailoverWait *int `pulumi:"fastFailoverWait"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Secret key for inter-controller communications.
 	InterControllerKey *string `pulumi:"interControllerKey"`
@@ -151,7 +151,7 @@ type IntercontrollerState struct {
 	FastFailoverMax pulumi.IntPtrInput
 	// Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
 	FastFailoverWait pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Secret key for inter-controller communications.
 	InterControllerKey pulumi.StringPtrInput
@@ -178,7 +178,7 @@ type intercontrollerArgs struct {
 	FastFailoverMax *int `pulumi:"fastFailoverMax"`
 	// Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
 	FastFailoverWait *int `pulumi:"fastFailoverWait"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Secret key for inter-controller communications.
 	InterControllerKey *string `pulumi:"interControllerKey"`
@@ -202,7 +202,7 @@ type IntercontrollerArgs struct {
 	FastFailoverMax pulumi.IntPtrInput
 	// Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
 	FastFailoverWait pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Secret key for inter-controller communications.
 	InterControllerKey pulumi.StringPtrInput
@@ -320,7 +320,7 @@ func (o IntercontrollerOutput) FastFailoverWait() pulumi.IntOutput {
 	return o.ApplyT(func(v *Intercontroller) pulumi.IntOutput { return v.FastFailoverWait }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o IntercontrollerOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Intercontroller) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -351,8 +351,8 @@ func (o IntercontrollerOutput) L3Roaming() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o IntercontrollerOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Intercontroller) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o IntercontrollerOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Intercontroller) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type IntercontrollerArrayOutput struct{ *pulumi.OutputState }

@@ -14,7 +14,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
     public sealed class QuarantineTargetTagArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Tag string(eg. string1 string2 string3).
+        /// Tag string. For example, string1 string2 string3.
         /// </summary>
         [Input("tags")]
         public Input<string>? Tags { get; set; }

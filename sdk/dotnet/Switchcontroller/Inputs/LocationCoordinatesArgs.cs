@@ -20,7 +20,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         public Input<string>? Altitude { get; set; }
 
         /// <summary>
-        /// m ( meters), f ( floors). Valid values: `m`, `f`.
+        /// Configure the unit for which the altitude is to (m = meters, f = floors of a building). Valid values: `m`, `f`.
         /// </summary>
         [Input("altitudeUnit")]
         public Input<string>? AltitudeUnit { get; set; }
@@ -32,13 +32,13 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         public Input<string>? Datum { get; set; }
 
         /// <summary>
-        /// Floating point start with ( +/- )  or end with ( N or S ) eg. +/-16.67 or 16.67N.
+        /// Floating point starting with +/- or ending with (N or S). For example, +/-16.67 or 16.67N.
         /// </summary>
         [Input("latitude")]
         public Input<string>? Latitude { get; set; }
 
         /// <summary>
-        /// Floating point start with ( +/- )  or end with ( E or W ) eg. +/-26.789 or 26.789E.
+        /// Floating point starting with +/- or ending with (N or S). For example, +/-26.789 or 26.789E.
         /// </summary>
         [Input("longitude")]
         public Input<string>? Longitude { get; set; }

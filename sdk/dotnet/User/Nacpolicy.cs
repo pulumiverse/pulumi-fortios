@@ -71,7 +71,13 @@ namespace Pulumiverse.Fortios.User
         public Output<string> FirewallAddress { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// NAC policy matching FortiVoice tag.
+        /// </summary>
+        [Output("fortivoiceTag")]
+        public Output<string> FortivoiceTag { get; private set; } = null!;
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -99,6 +105,18 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Output("mac")]
         public Output<string> Mac { get; private set; } = null!;
+
+        /// <summary>
+        /// Number of days the matched devices will be retained (0 - always retain)
+        /// </summary>
+        [Output("matchPeriod")]
+        public Output<int> MatchPeriod { get; private set; } = null!;
+
+        /// <summary>
+        /// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+        /// </summary>
+        [Output("matchType")]
+        public Output<string> MatchType { get; private set; } = null!;
 
         /// <summary>
         /// NAC policy name.
@@ -200,7 +218,7 @@ namespace Pulumiverse.Fortios.User
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -286,7 +304,13 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? FirewallAddress { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// NAC policy matching FortiVoice tag.
+        /// </summary>
+        [Input("fortivoiceTag")]
+        public Input<string>? FortivoiceTag { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -314,6 +338,18 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("mac")]
         public Input<string>? Mac { get; set; }
+
+        /// <summary>
+        /// Number of days the matched devices will be retained (0 - always retain)
+        /// </summary>
+        [Input("matchPeriod")]
+        public Input<int>? MatchPeriod { get; set; }
+
+        /// <summary>
+        /// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+        /// </summary>
+        [Input("matchType")]
+        public Input<string>? MatchType { get; set; }
 
         /// <summary>
         /// NAC policy name.
@@ -480,7 +516,13 @@ namespace Pulumiverse.Fortios.User
         public Input<string>? FirewallAddress { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// NAC policy matching FortiVoice tag.
+        /// </summary>
+        [Input("fortivoiceTag")]
+        public Input<string>? FortivoiceTag { get; set; }
+
+        /// <summary>
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -508,6 +550,18 @@ namespace Pulumiverse.Fortios.User
         /// </summary>
         [Input("mac")]
         public Input<string>? Mac { get; set; }
+
+        /// <summary>
+        /// Number of days the matched devices will be retained (0 - always retain)
+        /// </summary>
+        [Input("matchPeriod")]
+        public Input<int>? MatchPeriod { get; set; }
+
+        /// <summary>
+        /// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+        /// </summary>
+        [Input("matchType")]
+        public Input<string>? MatchType { get; set; }
 
         /// <summary>
         /// NAC policy name.

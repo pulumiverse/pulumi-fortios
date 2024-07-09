@@ -45,7 +45,7 @@ type Localca struct {
 	// SSH proxy local CA source type. Valid values: `built-in`, `user`.
 	Source pulumi.StringOutput `pulumi:"source"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewLocalca registers a new resource with the given unique name, arguments, and options.
@@ -276,8 +276,8 @@ func (o LocalcaOutput) Source() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o LocalcaOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Localca) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o LocalcaOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Localca) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type LocalcaArrayOutput struct{ *pulumi.OutputState }

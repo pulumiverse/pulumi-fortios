@@ -43,7 +43,7 @@ type Ftp struct {
 	// Message type.
 	MsgType pulumi.StringOutput `pulumi:"msgType"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewFtp registers a new resource with the given unique name, arguments, and options.
@@ -243,8 +243,8 @@ func (o FtpOutput) MsgType() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o FtpOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Ftp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o FtpOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ftp) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type FtpArrayOutput struct{ *pulumi.OutputState }

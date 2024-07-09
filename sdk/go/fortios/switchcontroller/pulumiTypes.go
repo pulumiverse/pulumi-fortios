@@ -32,6 +32,10 @@ type DynamicportpolicyPolicy struct {
 	LldpProfile *string `pulumi:"lldpProfile"`
 	// Policy matching MAC address.
 	Mac *string `pulumi:"mac"`
+	// Number of days the matched devices will be retained (0 - 120, 0 = always retain).
+	MatchPeriod *int `pulumi:"matchPeriod"`
+	// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+	MatchType *string `pulumi:"matchType"`
 	// 802.1x security policy to be applied when using this policy.
 	N8021x *string `pulumi:"n8021x"`
 	// Policy name.
@@ -76,6 +80,10 @@ type DynamicportpolicyPolicyArgs struct {
 	LldpProfile pulumi.StringPtrInput `pulumi:"lldpProfile"`
 	// Policy matching MAC address.
 	Mac pulumi.StringPtrInput `pulumi:"mac"`
+	// Number of days the matched devices will be retained (0 - 120, 0 = always retain).
+	MatchPeriod pulumi.IntPtrInput `pulumi:"matchPeriod"`
+	// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+	MatchType pulumi.StringPtrInput `pulumi:"matchType"`
 	// 802.1x security policy to be applied when using this policy.
 	N8021x pulumi.StringPtrInput `pulumi:"n8021x"`
 	// Policy name.
@@ -184,6 +192,16 @@ func (o DynamicportpolicyPolicyOutput) LldpProfile() pulumi.StringPtrOutput {
 // Policy matching MAC address.
 func (o DynamicportpolicyPolicyOutput) Mac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DynamicportpolicyPolicy) *string { return v.Mac }).(pulumi.StringPtrOutput)
+}
+
+// Number of days the matched devices will be retained (0 - 120, 0 = always retain).
+func (o DynamicportpolicyPolicyOutput) MatchPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DynamicportpolicyPolicy) *int { return v.MatchPeriod }).(pulumi.IntPtrOutput)
+}
+
+// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+func (o DynamicportpolicyPolicyOutput) MatchType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DynamicportpolicyPolicy) *string { return v.MatchType }).(pulumi.StringPtrOutput)
 }
 
 // 802.1x security policy to be applied when using this policy.
@@ -1543,7 +1561,7 @@ type LocationAddressCivic struct {
 	ParentKey *string `pulumi:"parentKey"`
 	// Placetype.
 	PlaceType *string `pulumi:"placeType"`
-	// Post office box (P.O. box).
+	// Post office box.
 	PostOfficeBox *string `pulumi:"postOfficeBox"`
 	// Postal community name.
 	PostalCommunity *string `pulumi:"postalCommunity"`
@@ -1625,7 +1643,7 @@ type LocationAddressCivicArgs struct {
 	ParentKey pulumi.StringPtrInput `pulumi:"parentKey"`
 	// Placetype.
 	PlaceType pulumi.StringPtrInput `pulumi:"placeType"`
-	// Post office box (P.O. box).
+	// Post office box.
 	PostOfficeBox pulumi.StringPtrInput `pulumi:"postOfficeBox"`
 	// Postal community name.
 	PostalCommunity pulumi.StringPtrInput `pulumi:"postalCommunity"`
@@ -1829,7 +1847,7 @@ func (o LocationAddressCivicOutput) PlaceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LocationAddressCivic) *string { return v.PlaceType }).(pulumi.StringPtrOutput)
 }
 
-// Post office box (P.O. box).
+// Post office box.
 func (o LocationAddressCivicOutput) PostOfficeBox() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LocationAddressCivic) *string { return v.PostOfficeBox }).(pulumi.StringPtrOutput)
 }
@@ -2118,7 +2136,7 @@ func (o LocationAddressCivicPtrOutput) PlaceType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Post office box (P.O. box).
+// Post office box.
 func (o LocationAddressCivicPtrOutput) PostOfficeBox() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LocationAddressCivic) *string {
 		if v == nil {
@@ -2271,13 +2289,13 @@ func (o LocationAddressCivicPtrOutput) Zip() pulumi.StringPtrOutput {
 type LocationCoordinates struct {
 	// +/- Floating point no. eg. 117.47.
 	Altitude *string `pulumi:"altitude"`
-	// m ( meters), f ( floors). Valid values: `m`, `f`.
+	// Configure the unit for which the altitude is to (m = meters, f = floors of a building). Valid values: `m`, `f`.
 	AltitudeUnit *string `pulumi:"altitudeUnit"`
 	// WGS84, NAD83, NAD83/MLLW. Valid values: `WGS84`, `NAD83`, `NAD83/MLLW`.
 	Datum *string `pulumi:"datum"`
-	// Floating point start with ( +/- )  or end with ( N or S ) eg. +/-16.67 or 16.67N.
+	// Floating point starting with +/- or ending with (N or S). For example, +/-16.67 or 16.67N.
 	Latitude *string `pulumi:"latitude"`
-	// Floating point start with ( +/- )  or end with ( E or W ) eg. +/-26.789 or 26.789E.
+	// Floating point starting with +/- or ending with (N or S). For example, +/-26.789 or 26.789E.
 	Longitude *string `pulumi:"longitude"`
 	// Parent key name.
 	ParentKey *string `pulumi:"parentKey"`
@@ -2297,13 +2315,13 @@ type LocationCoordinatesInput interface {
 type LocationCoordinatesArgs struct {
 	// +/- Floating point no. eg. 117.47.
 	Altitude pulumi.StringPtrInput `pulumi:"altitude"`
-	// m ( meters), f ( floors). Valid values: `m`, `f`.
+	// Configure the unit for which the altitude is to (m = meters, f = floors of a building). Valid values: `m`, `f`.
 	AltitudeUnit pulumi.StringPtrInput `pulumi:"altitudeUnit"`
 	// WGS84, NAD83, NAD83/MLLW. Valid values: `WGS84`, `NAD83`, `NAD83/MLLW`.
 	Datum pulumi.StringPtrInput `pulumi:"datum"`
-	// Floating point start with ( +/- )  or end with ( N or S ) eg. +/-16.67 or 16.67N.
+	// Floating point starting with +/- or ending with (N or S). For example, +/-16.67 or 16.67N.
 	Latitude pulumi.StringPtrInput `pulumi:"latitude"`
-	// Floating point start with ( +/- )  or end with ( E or W ) eg. +/-26.789 or 26.789E.
+	// Floating point starting with +/- or ending with (N or S). For example, +/-26.789 or 26.789E.
 	Longitude pulumi.StringPtrInput `pulumi:"longitude"`
 	// Parent key name.
 	ParentKey pulumi.StringPtrInput `pulumi:"parentKey"`
@@ -2391,7 +2409,7 @@ func (o LocationCoordinatesOutput) Altitude() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LocationCoordinates) *string { return v.Altitude }).(pulumi.StringPtrOutput)
 }
 
-// m ( meters), f ( floors). Valid values: `m`, `f`.
+// Configure the unit for which the altitude is to (m = meters, f = floors of a building). Valid values: `m`, `f`.
 func (o LocationCoordinatesOutput) AltitudeUnit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LocationCoordinates) *string { return v.AltitudeUnit }).(pulumi.StringPtrOutput)
 }
@@ -2401,12 +2419,12 @@ func (o LocationCoordinatesOutput) Datum() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LocationCoordinates) *string { return v.Datum }).(pulumi.StringPtrOutput)
 }
 
-// Floating point start with ( +/- )  or end with ( N or S ) eg. +/-16.67 or 16.67N.
+// Floating point starting with +/- or ending with (N or S). For example, +/-16.67 or 16.67N.
 func (o LocationCoordinatesOutput) Latitude() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LocationCoordinates) *string { return v.Latitude }).(pulumi.StringPtrOutput)
 }
 
-// Floating point start with ( +/- )  or end with ( E or W ) eg. +/-26.789 or 26.789E.
+// Floating point starting with +/- or ending with (N or S). For example, +/-26.789 or 26.789E.
 func (o LocationCoordinatesOutput) Longitude() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LocationCoordinates) *string { return v.Longitude }).(pulumi.StringPtrOutput)
 }
@@ -2450,7 +2468,7 @@ func (o LocationCoordinatesPtrOutput) Altitude() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// m ( meters), f ( floors). Valid values: `m`, `f`.
+// Configure the unit for which the altitude is to (m = meters, f = floors of a building). Valid values: `m`, `f`.
 func (o LocationCoordinatesPtrOutput) AltitudeUnit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LocationCoordinates) *string {
 		if v == nil {
@@ -2470,7 +2488,7 @@ func (o LocationCoordinatesPtrOutput) Datum() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Floating point start with ( +/- )  or end with ( N or S ) eg. +/-16.67 or 16.67N.
+// Floating point starting with +/- or ending with (N or S). For example, +/-16.67 or 16.67N.
 func (o LocationCoordinatesPtrOutput) Latitude() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LocationCoordinates) *string {
 		if v == nil {
@@ -2480,7 +2498,7 @@ func (o LocationCoordinatesPtrOutput) Latitude() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Floating point start with ( +/- )  or end with ( E or W ) eg. +/-26.789 or 26.789E.
+// Floating point starting with +/- or ending with (N or S). For example, +/-26.789 or 26.789E.
 func (o LocationCoordinatesPtrOutput) Longitude() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LocationCoordinates) *string {
 		if v == nil {
@@ -4084,6 +4102,8 @@ type ManagedswitchPort struct {
 	AclGroups []ManagedswitchPortAclGroup `pulumi:"aclGroups"`
 	// LACP member select mode. Valid values: `bandwidth`, `count`.
 	AggregatorMode *string `pulumi:"aggregatorMode"`
+	// Enable/Disable allow ARP monitor. Valid values: `disable`, `enable`.
+	AllowArpMonitor *string `pulumi:"allowArpMonitor"`
 	// Configure switch port tagged vlans The structure of `allowedVlans` block is documented below.
 	AllowedVlans []ManagedswitchPortAllowedVlan `pulumi:"allowedVlans"`
 	// Enable/disable all defined vlans on this port. Valid values: `enable`, `disable`.
@@ -4116,6 +4136,8 @@ type ManagedswitchPort struct {
 	ExportToPool *string `pulumi:"exportToPool"`
 	// Switch controller export port to pool-list.
 	ExportToPoolFlag *int `pulumi:"exportToPoolFlag"`
+	// LACP fallback port.
+	FallbackPort *string `pulumi:"fallbackPort"`
 	// FEC capable.
 	FecCapable *int `pulumi:"fecCapable"`
 	// State of forward error correction.
@@ -4254,7 +4276,7 @@ type ManagedswitchPort struct {
 	RpvstPort *string `pulumi:"rpvstPort"`
 	// sFlow sample direction. Valid values: `tx`, `rx`, `both`.
 	SampleDirection *string `pulumi:"sampleDirection"`
-	// sFlow sampler counter polling interval (1 - 255 sec).
+	// sFlow sampling counter polling interval in seconds (0 - 255).
 	SflowCounterInterval *int `pulumi:"sflowCounterInterval"`
 	// sFlow sampler sample rate (0 - 99999 p/sec).
 	SflowSampleRate *int `pulumi:"sflowSampleRate"`
@@ -4310,6 +4332,8 @@ type ManagedswitchPortArgs struct {
 	AclGroups ManagedswitchPortAclGroupArrayInput `pulumi:"aclGroups"`
 	// LACP member select mode. Valid values: `bandwidth`, `count`.
 	AggregatorMode pulumi.StringPtrInput `pulumi:"aggregatorMode"`
+	// Enable/Disable allow ARP monitor. Valid values: `disable`, `enable`.
+	AllowArpMonitor pulumi.StringPtrInput `pulumi:"allowArpMonitor"`
 	// Configure switch port tagged vlans The structure of `allowedVlans` block is documented below.
 	AllowedVlans ManagedswitchPortAllowedVlanArrayInput `pulumi:"allowedVlans"`
 	// Enable/disable all defined vlans on this port. Valid values: `enable`, `disable`.
@@ -4342,6 +4366,8 @@ type ManagedswitchPortArgs struct {
 	ExportToPool pulumi.StringPtrInput `pulumi:"exportToPool"`
 	// Switch controller export port to pool-list.
 	ExportToPoolFlag pulumi.IntPtrInput `pulumi:"exportToPoolFlag"`
+	// LACP fallback port.
+	FallbackPort pulumi.StringPtrInput `pulumi:"fallbackPort"`
 	// FEC capable.
 	FecCapable pulumi.IntPtrInput `pulumi:"fecCapable"`
 	// State of forward error correction.
@@ -4480,7 +4506,7 @@ type ManagedswitchPortArgs struct {
 	RpvstPort pulumi.StringPtrInput `pulumi:"rpvstPort"`
 	// sFlow sample direction. Valid values: `tx`, `rx`, `both`.
 	SampleDirection pulumi.StringPtrInput `pulumi:"sampleDirection"`
-	// sFlow sampler counter polling interval (1 - 255 sec).
+	// sFlow sampling counter polling interval in seconds (0 - 255).
 	SflowCounterInterval pulumi.IntPtrInput `pulumi:"sflowCounterInterval"`
 	// sFlow sampler sample rate (0 - 99999 p/sec).
 	SflowSampleRate pulumi.IntPtrInput `pulumi:"sflowSampleRate"`
@@ -4584,6 +4610,11 @@ func (o ManagedswitchPortOutput) AggregatorMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.AggregatorMode }).(pulumi.StringPtrOutput)
 }
 
+// Enable/Disable allow ARP monitor. Valid values: `disable`, `enable`.
+func (o ManagedswitchPortOutput) AllowArpMonitor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPort) *string { return v.AllowArpMonitor }).(pulumi.StringPtrOutput)
+}
+
 // Configure switch port tagged vlans The structure of `allowedVlans` block is documented below.
 func (o ManagedswitchPortOutput) AllowedVlans() ManagedswitchPortAllowedVlanArrayOutput {
 	return o.ApplyT(func(v ManagedswitchPort) []ManagedswitchPortAllowedVlan { return v.AllowedVlans }).(ManagedswitchPortAllowedVlanArrayOutput)
@@ -4664,6 +4695,11 @@ func (o ManagedswitchPortOutput) ExportToPool() pulumi.StringPtrOutput {
 // Switch controller export port to pool-list.
 func (o ManagedswitchPortOutput) ExportToPoolFlag() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *int { return v.ExportToPoolFlag }).(pulumi.IntPtrOutput)
+}
+
+// LACP fallback port.
+func (o ManagedswitchPortOutput) FallbackPort() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ManagedswitchPort) *string { return v.FallbackPort }).(pulumi.StringPtrOutput)
 }
 
 // FEC capable.
@@ -5011,7 +5047,7 @@ func (o ManagedswitchPortOutput) SampleDirection() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.SampleDirection }).(pulumi.StringPtrOutput)
 }
 
-// sFlow sampler counter polling interval (1 - 255 sec).
+// sFlow sampling counter polling interval in seconds (0 - 255).
 func (o ManagedswitchPortOutput) SflowCounterInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *int { return v.SflowCounterInterval }).(pulumi.IntPtrOutput)
 }
@@ -7193,7 +7229,7 @@ type ManagedswitchStormControl struct {
 	Broadcast *string `pulumi:"broadcast"`
 	// Enable to override global FortiSwitch storm control settings for this FortiSwitch. Valid values: `enable`, `disable`.
 	LocalOverride *string `pulumi:"localOverride"`
-	// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+	// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
 	Rate *int `pulumi:"rate"`
 	// Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
 	UnknownMulticast *string `pulumi:"unknownMulticast"`
@@ -7217,7 +7253,7 @@ type ManagedswitchStormControlArgs struct {
 	Broadcast pulumi.StringPtrInput `pulumi:"broadcast"`
 	// Enable to override global FortiSwitch storm control settings for this FortiSwitch. Valid values: `enable`, `disable`.
 	LocalOverride pulumi.StringPtrInput `pulumi:"localOverride"`
-	// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+	// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
 	Rate pulumi.IntPtrInput `pulumi:"rate"`
 	// Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
 	UnknownMulticast pulumi.StringPtrInput `pulumi:"unknownMulticast"`
@@ -7312,7 +7348,7 @@ func (o ManagedswitchStormControlOutput) LocalOverride() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v ManagedswitchStormControl) *string { return v.LocalOverride }).(pulumi.StringPtrOutput)
 }
 
-// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
 func (o ManagedswitchStormControlOutput) Rate() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedswitchStormControl) *int { return v.Rate }).(pulumi.IntPtrOutput)
 }
@@ -7371,7 +7407,7 @@ func (o ManagedswitchStormControlPtrOutput) LocalOverride() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
 func (o ManagedswitchStormControlPtrOutput) Rate() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchStormControl) *int {
 		if v == nil {
@@ -8339,7 +8375,7 @@ func (o QuarantineTargetArrayOutput) Index(i pulumi.IntInput) QuarantineTargetOu
 }
 
 type QuarantineTargetTag struct {
-	// Tag string(eg. string1 string2 string3).
+	// Tag string. For example, string1 string2 string3.
 	Tags *string `pulumi:"tags"`
 }
 
@@ -8355,7 +8391,7 @@ type QuarantineTargetTagInput interface {
 }
 
 type QuarantineTargetTagArgs struct {
-	// Tag string(eg. string1 string2 string3).
+	// Tag string. For example, string1 string2 string3.
 	Tags pulumi.StringPtrInput `pulumi:"tags"`
 }
 
@@ -8410,7 +8446,7 @@ func (o QuarantineTargetTagOutput) ToQuarantineTargetTagOutputWithContext(ctx co
 	return o
 }
 
-// Tag string(eg. string1 string2 string3).
+// Tag string. For example, string1 string2 string3.
 func (o QuarantineTargetTagOutput) Tags() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v QuarantineTargetTag) *string { return v.Tags }).(pulumi.StringPtrOutput)
 }

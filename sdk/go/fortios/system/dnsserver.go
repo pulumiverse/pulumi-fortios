@@ -62,7 +62,7 @@ type Dnsserver struct {
 
 	// DNS filter profile.
 	DnsfilterProfile pulumi.StringOutput `pulumi:"dnsfilterProfile"`
-	// DNS over HTTPS. Valid values: `enable`, `disable`.
+	// Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
 	Doh pulumi.StringOutput `pulumi:"doh"`
 	// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
 	Doh3 pulumi.StringOutput `pulumi:"doh3"`
@@ -73,7 +73,7 @@ type Dnsserver struct {
 	// DNS server name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewDnsserver registers a new resource with the given unique name, arguments, and options.
@@ -108,7 +108,7 @@ func GetDnsserver(ctx *pulumi.Context,
 type dnsserverState struct {
 	// DNS filter profile.
 	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
-	// DNS over HTTPS. Valid values: `enable`, `disable`.
+	// Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
 	Doh *string `pulumi:"doh"`
 	// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
 	Doh3 *string `pulumi:"doh3"`
@@ -125,7 +125,7 @@ type dnsserverState struct {
 type DnsserverState struct {
 	// DNS filter profile.
 	DnsfilterProfile pulumi.StringPtrInput
-	// DNS over HTTPS. Valid values: `enable`, `disable`.
+	// Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
 	Doh pulumi.StringPtrInput
 	// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
 	Doh3 pulumi.StringPtrInput
@@ -146,7 +146,7 @@ func (DnsserverState) ElementType() reflect.Type {
 type dnsserverArgs struct {
 	// DNS filter profile.
 	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
-	// DNS over HTTPS. Valid values: `enable`, `disable`.
+	// Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
 	Doh *string `pulumi:"doh"`
 	// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
 	Doh3 *string `pulumi:"doh3"`
@@ -164,7 +164,7 @@ type dnsserverArgs struct {
 type DnsserverArgs struct {
 	// DNS filter profile.
 	DnsfilterProfile pulumi.StringPtrInput
-	// DNS over HTTPS. Valid values: `enable`, `disable`.
+	// Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
 	Doh pulumi.StringPtrInput
 	// Enable/disable DNS over QUIC/HTTP3/443 (default = disable). Valid values: `enable`, `disable`.
 	Doh3 pulumi.StringPtrInput
@@ -270,7 +270,7 @@ func (o DnsserverOutput) DnsfilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dnsserver) pulumi.StringOutput { return v.DnsfilterProfile }).(pulumi.StringOutput)
 }
 
-// DNS over HTTPS. Valid values: `enable`, `disable`.
+// Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
 func (o DnsserverOutput) Doh() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dnsserver) pulumi.StringOutput { return v.Doh }).(pulumi.StringOutput)
 }
@@ -296,8 +296,8 @@ func (o DnsserverOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o DnsserverOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Dnsserver) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o DnsserverOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Dnsserver) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type DnsserverArrayOutput struct{ *pulumi.OutputState }

@@ -68,6 +68,10 @@ export class Sysinfo extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+     */
+    public readonly appendIndex!: pulumi.Output<string>;
+    /**
      * Contact information.
      */
     public readonly contactInfo!: pulumi.Output<string | undefined>;
@@ -76,7 +80,7 @@ export class Sysinfo extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Local SNMP engineID string (maximum 24 characters).
+     * Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
      */
     public readonly engineId!: pulumi.Output<string>;
     /**
@@ -114,7 +118,7 @@ export class Sysinfo extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Sysinfo resource with the given unique name, arguments, and options.
@@ -129,6 +133,7 @@ export class Sysinfo extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SysinfoState | undefined;
+            resourceInputs["appendIndex"] = state ? state.appendIndex : undefined;
             resourceInputs["contactInfo"] = state ? state.contactInfo : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["engineId"] = state ? state.engineId : undefined;
@@ -143,6 +148,7 @@ export class Sysinfo extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SysinfoArgs | undefined;
+            resourceInputs["appendIndex"] = args ? args.appendIndex : undefined;
             resourceInputs["contactInfo"] = args ? args.contactInfo : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["engineId"] = args ? args.engineId : undefined;
@@ -166,6 +172,10 @@ export class Sysinfo extends pulumi.CustomResource {
  */
 export interface SysinfoState {
     /**
+     * Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+     */
+    appendIndex?: pulumi.Input<string>;
+    /**
      * Contact information.
      */
     contactInfo?: pulumi.Input<string>;
@@ -174,7 +184,7 @@ export interface SysinfoState {
      */
     description?: pulumi.Input<string>;
     /**
-     * Local SNMP engineID string (maximum 24 characters).
+     * Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
      */
     engineId?: pulumi.Input<string>;
     /**
@@ -220,6 +230,10 @@ export interface SysinfoState {
  */
 export interface SysinfoArgs {
     /**
+     * Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+     */
+    appendIndex?: pulumi.Input<string>;
+    /**
      * Contact information.
      */
     contactInfo?: pulumi.Input<string>;
@@ -228,7 +242,7 @@ export interface SysinfoArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * Local SNMP engineID string (maximum 24 characters).
+     * Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
      */
     engineId?: pulumi.Input<string>;
     /**

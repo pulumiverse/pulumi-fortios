@@ -27,8 +27,8 @@ class ProfileArgs:
         """
         The set of arguments for constructing a Profile resource.
         :param pulumi.Input[str] comment: Comment.
-        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] feature_set: IPS or voipd (SIP-ALG) inspection feature set.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileMsrpArgs'] msrp: MSRP. The structure of `msrp` block is documented below.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input['ProfileSccpArgs'] sccp: SCCP. The structure of `sccp` block is documented below.
@@ -68,7 +68,7 @@ class ProfileArgs:
     @pulumi.getter(name="featureSet")
     def feature_set(self) -> Optional[pulumi.Input[str]]:
         """
-        Flow or proxy inspection feature set.
+        IPS or voipd (SIP-ALG) inspection feature set.
         """
         return pulumi.get(self, "feature_set")
 
@@ -80,7 +80,7 @@ class ProfileArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -163,8 +163,8 @@ class _ProfileState:
         """
         Input properties used for looking up and filtering Profile resources.
         :param pulumi.Input[str] comment: Comment.
-        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] feature_set: IPS or voipd (SIP-ALG) inspection feature set.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ProfileMsrpArgs'] msrp: MSRP. The structure of `msrp` block is documented below.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input['ProfileSccpArgs'] sccp: SCCP. The structure of `sccp` block is documented below.
@@ -204,7 +204,7 @@ class _ProfileState:
     @pulumi.getter(name="featureSet")
     def feature_set(self) -> Optional[pulumi.Input[str]]:
         """
-        Flow or proxy inspection feature set.
+        IPS or voipd (SIP-ALG) inspection feature set.
         """
         return pulumi.get(self, "feature_set")
 
@@ -216,7 +216,7 @@ class _ProfileState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -389,8 +389,8 @@ class Profile(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Comment.
-        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] feature_set: IPS or voipd (SIP-ALG) inspection feature set.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileMsrpArgs']] msrp: MSRP. The structure of `msrp` block is documented below.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[pulumi.InputType['ProfileSccpArgs']] sccp: SCCP. The structure of `sccp` block is documented below.
@@ -556,8 +556,8 @@ class Profile(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Comment.
-        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] feature_set: IPS or voipd (SIP-ALG) inspection feature set.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ProfileMsrpArgs']] msrp: MSRP. The structure of `msrp` block is documented below.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[pulumi.InputType['ProfileSccpArgs']] sccp: SCCP. The structure of `sccp` block is documented below.
@@ -590,7 +590,7 @@ class Profile(pulumi.CustomResource):
     @pulumi.getter(name="featureSet")
     def feature_set(self) -> pulumi.Output[str]:
         """
-        Flow or proxy inspection feature set.
+        IPS or voipd (SIP-ALG) inspection feature set.
         """
         return pulumi.get(self, "feature_set")
 
@@ -598,7 +598,7 @@ class Profile(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -636,7 +636,7 @@ class Profile(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

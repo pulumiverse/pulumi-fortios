@@ -53,7 +53,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<int> DataSyncInterval { get; private set; } = null!;
 
         /// <summary>
-        /// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+        /// Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions &gt;= 7.4.4: 5 - 180 sec, default = 60.
         /// </summary>
         [Output("dynamicPeriodicInterval")]
         public Output<int> DynamicPeriodicInterval { get; private set; } = null!;
@@ -83,7 +83,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<int> IotWeightThreshold { get; private set; } = null!;
 
         /// <summary>
-        /// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+        /// Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions &gt;= 7.4.4: 5 - 180 sec, default = 60.
         /// </summary>
         [Output("nacPeriodicInterval")]
         public Output<int> NacPeriodicInterval { get; private set; } = null!;
@@ -110,7 +110,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<int>? DataSyncInterval { get; set; }
 
         /// <summary>
-        /// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+        /// Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions &gt;= 7.4.4: 5 - 180 sec, default = 60.
         /// </summary>
         [Input("dynamicPeriodicInterval")]
         public Input<int>? DynamicPeriodicInterval { get; set; }
@@ -208,7 +208,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<int>? IotWeightThreshold { get; set; }
 
         /// <summary>
-        /// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+        /// Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions &gt;= 7.4.4: 5 - 180 sec, default = 60.
         /// </summary>
         [Input("nacPeriodicInterval")]
         public Input<int>? NacPeriodicInterval { get; set; }
@@ -264,7 +264,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<int>? DataSyncInterval { get; set; }
 
         /// <summary>
-        /// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+        /// Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions &gt;= 7.4.4: 5 - 180 sec, default = 60.
         /// </summary>
         [Input("dynamicPeriodicInterval")]
         public Input<int>? DynamicPeriodicInterval { get; set; }
@@ -294,7 +294,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<int>? IotWeightThreshold { get; set; }
 
         /// <summary>
-        /// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+        /// Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions &gt;= 7.4.4: 5 - 180 sec, default = 60.
         /// </summary>
         [Input("nacPeriodicInterval")]
         public Input<int>? NacPeriodicInterval { get; set; }

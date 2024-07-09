@@ -42,7 +42,7 @@ type Apstatus struct {
 	// Access Point's (AP's) status: rogue, accepted, or supressed. Valid values: `rogue`, `accepted`, `suppressed`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewApstatus registers a new resource with the given unique name, arguments, and options.
@@ -239,8 +239,8 @@ func (o ApstatusOutput) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ApstatusOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Apstatus) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ApstatusOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Apstatus) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ApstatusArrayOutput struct{ *pulumi.OutputState }

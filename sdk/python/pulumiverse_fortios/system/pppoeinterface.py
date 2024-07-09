@@ -41,8 +41,8 @@ class PppoeinterfaceArgs:
         :param pulumi.Input[int] idle_timeout: PPPoE auto disconnect after idle timeout (0-4294967295 sec).
         :param pulumi.Input[str] ipunnumbered: PPPoE unnumbered IP.
         :param pulumi.Input[str] ipv6: Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] lcp_echo_interval: PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
-        :param pulumi.Input[int] lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+        :param pulumi.Input[int] lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
+        :param pulumi.Input[int] lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect.
         :param pulumi.Input[str] name: Name of the PPPoE interface.
         :param pulumi.Input[int] padt_retry_timeout: PPPoE terminate timeout value in (0-4294967295 sec).
         :param pulumi.Input[str] password: Enter the password.
@@ -185,7 +185,7 @@ class PppoeinterfaceArgs:
     @pulumi.getter(name="lcpEchoInterval")
     def lcp_echo_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
+        Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
         """
         return pulumi.get(self, "lcp_echo_interval")
 
@@ -197,7 +197,7 @@ class PppoeinterfaceArgs:
     @pulumi.getter(name="lcpMaxEchoFails")
     def lcp_max_echo_fails(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+        Maximum missed LCP echo messages before disconnect.
         """
         return pulumi.get(self, "lcp_max_echo_fails")
 
@@ -320,8 +320,8 @@ class _PppoeinterfaceState:
         :param pulumi.Input[int] idle_timeout: PPPoE auto disconnect after idle timeout (0-4294967295 sec).
         :param pulumi.Input[str] ipunnumbered: PPPoE unnumbered IP.
         :param pulumi.Input[str] ipv6: Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] lcp_echo_interval: PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
-        :param pulumi.Input[int] lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+        :param pulumi.Input[int] lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
+        :param pulumi.Input[int] lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect.
         :param pulumi.Input[str] name: Name of the PPPoE interface.
         :param pulumi.Input[int] padt_retry_timeout: PPPoE terminate timeout value in (0-4294967295 sec).
         :param pulumi.Input[str] password: Enter the password.
@@ -465,7 +465,7 @@ class _PppoeinterfaceState:
     @pulumi.getter(name="lcpEchoInterval")
     def lcp_echo_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
+        Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
         """
         return pulumi.get(self, "lcp_echo_interval")
 
@@ -477,7 +477,7 @@ class _PppoeinterfaceState:
     @pulumi.getter(name="lcpMaxEchoFails")
     def lcp_max_echo_fails(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+        Maximum missed LCP echo messages before disconnect.
         """
         return pulumi.get(self, "lcp_max_echo_fails")
 
@@ -644,8 +644,8 @@ class Pppoeinterface(pulumi.CustomResource):
         :param pulumi.Input[int] idle_timeout: PPPoE auto disconnect after idle timeout (0-4294967295 sec).
         :param pulumi.Input[str] ipunnumbered: PPPoE unnumbered IP.
         :param pulumi.Input[str] ipv6: Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] lcp_echo_interval: PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
-        :param pulumi.Input[int] lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+        :param pulumi.Input[int] lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
+        :param pulumi.Input[int] lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect.
         :param pulumi.Input[str] name: Name of the PPPoE interface.
         :param pulumi.Input[int] padt_retry_timeout: PPPoE terminate timeout value in (0-4294967295 sec).
         :param pulumi.Input[str] password: Enter the password.
@@ -805,8 +805,8 @@ class Pppoeinterface(pulumi.CustomResource):
         :param pulumi.Input[int] idle_timeout: PPPoE auto disconnect after idle timeout (0-4294967295 sec).
         :param pulumi.Input[str] ipunnumbered: PPPoE unnumbered IP.
         :param pulumi.Input[str] ipv6: Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] lcp_echo_interval: PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
-        :param pulumi.Input[int] lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+        :param pulumi.Input[int] lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
+        :param pulumi.Input[int] lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect.
         :param pulumi.Input[str] name: Name of the PPPoE interface.
         :param pulumi.Input[int] padt_retry_timeout: PPPoE terminate timeout value in (0-4294967295 sec).
         :param pulumi.Input[str] password: Enter the password.
@@ -906,7 +906,7 @@ class Pppoeinterface(pulumi.CustomResource):
     @pulumi.getter(name="lcpEchoInterval")
     def lcp_echo_interval(self) -> pulumi.Output[int]:
         """
-        PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
+        Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
         """
         return pulumi.get(self, "lcp_echo_interval")
 
@@ -914,7 +914,7 @@ class Pppoeinterface(pulumi.CustomResource):
     @pulumi.getter(name="lcpMaxEchoFails")
     def lcp_max_echo_fails(self) -> pulumi.Output[int]:
         """
-        Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+        Maximum missed LCP echo messages before disconnect.
         """
         return pulumi.get(self, "lcp_max_echo_fails")
 
@@ -968,7 +968,7 @@ class Pppoeinterface(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

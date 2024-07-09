@@ -45,7 +45,7 @@ type Sensor struct {
 	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
 	// IPS sensor filter. The structure of `filter` block is documented below.
 	Filters SensorFilterArrayOutput `pulumi:"filters"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Sensor name.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -56,7 +56,7 @@ type Sensor struct {
 	// Block or monitor connections to Botnet servers, or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
 	ScanBotnetConnections pulumi.StringOutput `pulumi:"scanBotnetConnections"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSensor registers a new resource with the given unique name, arguments, and options.
@@ -101,7 +101,7 @@ type sensorState struct {
 	ExtendedLog *string `pulumi:"extendedLog"`
 	// IPS sensor filter. The structure of `filter` block is documented below.
 	Filters []SensorFilter `pulumi:"filters"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Sensor name.
 	Name *string `pulumi:"name"`
@@ -128,7 +128,7 @@ type SensorState struct {
 	ExtendedLog pulumi.StringPtrInput
 	// IPS sensor filter. The structure of `filter` block is documented below.
 	Filters SensorFilterArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Sensor name.
 	Name pulumi.StringPtrInput
@@ -159,7 +159,7 @@ type sensorArgs struct {
 	ExtendedLog *string `pulumi:"extendedLog"`
 	// IPS sensor filter. The structure of `filter` block is documented below.
 	Filters []SensorFilter `pulumi:"filters"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Sensor name.
 	Name *string `pulumi:"name"`
@@ -187,7 +187,7 @@ type SensorArgs struct {
 	ExtendedLog pulumi.StringPtrInput
 	// IPS sensor filter. The structure of `filter` block is documented below.
 	Filters SensorFilterArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Sensor name.
 	Name pulumi.StringPtrInput
@@ -318,7 +318,7 @@ func (o SensorOutput) Filters() SensorFilterArrayOutput {
 	return o.ApplyT(func(v *Sensor) SensorFilterArrayOutput { return v.Filters }).(SensorFilterArrayOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SensorOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Sensor) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -344,8 +344,8 @@ func (o SensorOutput) ScanBotnetConnections() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SensorOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Sensor) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SensorOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sensor) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SensorArrayOutput struct{ *pulumi.OutputState }

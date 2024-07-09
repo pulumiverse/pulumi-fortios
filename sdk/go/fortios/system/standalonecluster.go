@@ -41,9 +41,9 @@ type Standalonecluster struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
 	Encryption pulumi.StringOutput `pulumi:"encryption"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
-	// Cluster member ID (0 - 3).
+	// Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
 	GroupMemberId pulumi.IntOutput `pulumi:"groupMemberId"`
 	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
 	Layer2Connection pulumi.StringOutput `pulumi:"layer2Connection"`
@@ -54,7 +54,7 @@ type Standalonecluster struct {
 	// Cluster group ID (0 - 255). Must be the same for all members.
 	StandaloneGroupId pulumi.IntOutput `pulumi:"standaloneGroupId"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewStandalonecluster registers a new resource with the given unique name, arguments, and options.
@@ -102,9 +102,9 @@ type standaloneclusterState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
 	Encryption *string `pulumi:"encryption"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
-	// Cluster member ID (0 - 3).
+	// Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
 	GroupMemberId *int `pulumi:"groupMemberId"`
 	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
 	Layer2Connection *string `pulumi:"layer2Connection"`
@@ -127,9 +127,9 @@ type StandaloneclusterState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
 	Encryption pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
-	// Cluster member ID (0 - 3).
+	// Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
 	GroupMemberId pulumi.IntPtrInput
 	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
 	Layer2Connection pulumi.StringPtrInput
@@ -156,9 +156,9 @@ type standaloneclusterArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
 	Encryption *string `pulumi:"encryption"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
-	// Cluster member ID (0 - 3).
+	// Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
 	GroupMemberId *int `pulumi:"groupMemberId"`
 	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
 	Layer2Connection *string `pulumi:"layer2Connection"`
@@ -182,9 +182,9 @@ type StandaloneclusterArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
 	Encryption pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
-	// Cluster member ID (0 - 3).
+	// Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
 	GroupMemberId pulumi.IntPtrInput
 	// Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
 	Layer2Connection pulumi.StringPtrInput
@@ -305,12 +305,12 @@ func (o StandaloneclusterOutput) Encryption() pulumi.StringOutput {
 	return o.ApplyT(func(v *Standalonecluster) pulumi.StringOutput { return v.Encryption }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o StandaloneclusterOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Standalonecluster) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
-// Cluster member ID (0 - 3).
+// Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
 func (o StandaloneclusterOutput) GroupMemberId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Standalonecluster) pulumi.IntOutput { return v.GroupMemberId }).(pulumi.IntOutput)
 }
@@ -336,8 +336,8 @@ func (o StandaloneclusterOutput) StandaloneGroupId() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o StandaloneclusterOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Standalonecluster) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o StandaloneclusterOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Standalonecluster) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type StandaloneclusterArrayOutput struct{ *pulumi.OutputState }

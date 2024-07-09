@@ -84,7 +84,7 @@ type Resourcelimits struct {
 	FirewallAddress pulumi.IntOutput `pulumi:"firewallAddress"`
 	// Maximum number of firewall address groups (IPv4, IPv6).
 	FirewallAddrgrp pulumi.IntOutput `pulumi:"firewallAddrgrp"`
-	// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+	// Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
 	FirewallPolicy pulumi.IntOutput `pulumi:"firewallPolicy"`
 	// Maximum number of VPN IPsec phase1 tunnels.
 	IpsecPhase1 pulumi.IntOutput `pulumi:"ipsecPhase1"`
@@ -94,7 +94,7 @@ type Resourcelimits struct {
 	IpsecPhase2 pulumi.IntOutput `pulumi:"ipsecPhase2"`
 	// Maximum number of VPN IPsec phase2 interface tunnels.
 	IpsecPhase2Interface pulumi.IntOutput `pulumi:"ipsecPhase2Interface"`
-	// Log disk quota in MB.
+	// Log disk quota in megabytes (MB).
 	LogDiskQuota pulumi.IntOutput `pulumi:"logDiskQuota"`
 	// Maximum number of firewall one-time schedules.
 	OnetimeSchedule pulumi.IntOutput `pulumi:"onetimeSchedule"`
@@ -113,7 +113,7 @@ type Resourcelimits struct {
 	// Maximum number of user groups.
 	UserGroup pulumi.IntOutput `pulumi:"userGroup"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewResourcelimits registers a new resource with the given unique name, arguments, and options.
@@ -154,7 +154,7 @@ type resourcelimitsState struct {
 	FirewallAddress *int `pulumi:"firewallAddress"`
 	// Maximum number of firewall address groups (IPv4, IPv6).
 	FirewallAddrgrp *int `pulumi:"firewallAddrgrp"`
-	// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+	// Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
 	FirewallPolicy *int `pulumi:"firewallPolicy"`
 	// Maximum number of VPN IPsec phase1 tunnels.
 	IpsecPhase1 *int `pulumi:"ipsecPhase1"`
@@ -164,7 +164,7 @@ type resourcelimitsState struct {
 	IpsecPhase2 *int `pulumi:"ipsecPhase2"`
 	// Maximum number of VPN IPsec phase2 interface tunnels.
 	IpsecPhase2Interface *int `pulumi:"ipsecPhase2Interface"`
-	// Log disk quota in MB.
+	// Log disk quota in megabytes (MB).
 	LogDiskQuota *int `pulumi:"logDiskQuota"`
 	// Maximum number of firewall one-time schedules.
 	OnetimeSchedule *int `pulumi:"onetimeSchedule"`
@@ -195,7 +195,7 @@ type ResourcelimitsState struct {
 	FirewallAddress pulumi.IntPtrInput
 	// Maximum number of firewall address groups (IPv4, IPv6).
 	FirewallAddrgrp pulumi.IntPtrInput
-	// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+	// Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
 	FirewallPolicy pulumi.IntPtrInput
 	// Maximum number of VPN IPsec phase1 tunnels.
 	IpsecPhase1 pulumi.IntPtrInput
@@ -205,7 +205,7 @@ type ResourcelimitsState struct {
 	IpsecPhase2 pulumi.IntPtrInput
 	// Maximum number of VPN IPsec phase2 interface tunnels.
 	IpsecPhase2Interface pulumi.IntPtrInput
-	// Log disk quota in MB.
+	// Log disk quota in megabytes (MB).
 	LogDiskQuota pulumi.IntPtrInput
 	// Maximum number of firewall one-time schedules.
 	OnetimeSchedule pulumi.IntPtrInput
@@ -240,7 +240,7 @@ type resourcelimitsArgs struct {
 	FirewallAddress *int `pulumi:"firewallAddress"`
 	// Maximum number of firewall address groups (IPv4, IPv6).
 	FirewallAddrgrp *int `pulumi:"firewallAddrgrp"`
-	// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+	// Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
 	FirewallPolicy *int `pulumi:"firewallPolicy"`
 	// Maximum number of VPN IPsec phase1 tunnels.
 	IpsecPhase1 *int `pulumi:"ipsecPhase1"`
@@ -250,7 +250,7 @@ type resourcelimitsArgs struct {
 	IpsecPhase2 *int `pulumi:"ipsecPhase2"`
 	// Maximum number of VPN IPsec phase2 interface tunnels.
 	IpsecPhase2Interface *int `pulumi:"ipsecPhase2Interface"`
-	// Log disk quota in MB.
+	// Log disk quota in megabytes (MB).
 	LogDiskQuota *int `pulumi:"logDiskQuota"`
 	// Maximum number of firewall one-time schedules.
 	OnetimeSchedule *int `pulumi:"onetimeSchedule"`
@@ -282,7 +282,7 @@ type ResourcelimitsArgs struct {
 	FirewallAddress pulumi.IntPtrInput
 	// Maximum number of firewall address groups (IPv4, IPv6).
 	FirewallAddrgrp pulumi.IntPtrInput
-	// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+	// Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
 	FirewallPolicy pulumi.IntPtrInput
 	// Maximum number of VPN IPsec phase1 tunnels.
 	IpsecPhase1 pulumi.IntPtrInput
@@ -292,7 +292,7 @@ type ResourcelimitsArgs struct {
 	IpsecPhase2 pulumi.IntPtrInput
 	// Maximum number of VPN IPsec phase2 interface tunnels.
 	IpsecPhase2Interface pulumi.IntPtrInput
-	// Log disk quota in MB.
+	// Log disk quota in megabytes (MB).
 	LogDiskQuota pulumi.IntPtrInput
 	// Maximum number of firewall one-time schedules.
 	OnetimeSchedule pulumi.IntPtrInput
@@ -421,7 +421,7 @@ func (o ResourcelimitsOutput) FirewallAddrgrp() pulumi.IntOutput {
 	return o.ApplyT(func(v *Resourcelimits) pulumi.IntOutput { return v.FirewallAddrgrp }).(pulumi.IntOutput)
 }
 
-// Maximum number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+// Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
 func (o ResourcelimitsOutput) FirewallPolicy() pulumi.IntOutput {
 	return o.ApplyT(func(v *Resourcelimits) pulumi.IntOutput { return v.FirewallPolicy }).(pulumi.IntOutput)
 }
@@ -446,7 +446,7 @@ func (o ResourcelimitsOutput) IpsecPhase2Interface() pulumi.IntOutput {
 	return o.ApplyT(func(v *Resourcelimits) pulumi.IntOutput { return v.IpsecPhase2Interface }).(pulumi.IntOutput)
 }
 
-// Log disk quota in MB.
+// Log disk quota in megabytes (MB).
 func (o ResourcelimitsOutput) LogDiskQuota() pulumi.IntOutput {
 	return o.ApplyT(func(v *Resourcelimits) pulumi.IntOutput { return v.LogDiskQuota }).(pulumi.IntOutput)
 }
@@ -492,8 +492,8 @@ func (o ResourcelimitsOutput) UserGroup() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ResourcelimitsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Resourcelimits) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ResourcelimitsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Resourcelimits) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ResourcelimitsArrayOutput struct{ *pulumi.OutputState }

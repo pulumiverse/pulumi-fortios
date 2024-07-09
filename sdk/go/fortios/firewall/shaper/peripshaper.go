@@ -75,7 +75,7 @@ type Peripshaper struct {
 	DiffservcodeForward pulumi.StringOutput `pulumi:"diffservcodeForward"`
 	// Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
 	DiffservcodeRev pulumi.StringOutput `pulumi:"diffservcodeRev"`
-	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
 	MaxBandwidth pulumi.IntOutput `pulumi:"maxBandwidth"`
 	// Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
 	MaxConcurrentSession pulumi.IntOutput `pulumi:"maxConcurrentSession"`
@@ -86,7 +86,7 @@ type Peripshaper struct {
 	// Traffic shaper name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewPeripshaper registers a new resource with the given unique name, arguments, and options.
@@ -129,7 +129,7 @@ type peripshaperState struct {
 	DiffservcodeForward *string `pulumi:"diffservcodeForward"`
 	// Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
 	DiffservcodeRev *string `pulumi:"diffservcodeRev"`
-	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
 	MaxBandwidth *int `pulumi:"maxBandwidth"`
 	// Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
 	MaxConcurrentSession *int `pulumi:"maxConcurrentSession"`
@@ -154,7 +154,7 @@ type PeripshaperState struct {
 	DiffservcodeForward pulumi.StringPtrInput
 	// Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
 	DiffservcodeRev pulumi.StringPtrInput
-	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
 	MaxBandwidth pulumi.IntPtrInput
 	// Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
 	MaxConcurrentSession pulumi.IntPtrInput
@@ -183,7 +183,7 @@ type peripshaperArgs struct {
 	DiffservcodeForward *string `pulumi:"diffservcodeForward"`
 	// Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
 	DiffservcodeRev *string `pulumi:"diffservcodeRev"`
-	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
 	MaxBandwidth *int `pulumi:"maxBandwidth"`
 	// Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
 	MaxConcurrentSession *int `pulumi:"maxConcurrentSession"`
@@ -209,7 +209,7 @@ type PeripshaperArgs struct {
 	DiffservcodeForward pulumi.StringPtrInput
 	// Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
 	DiffservcodeRev pulumi.StringPtrInput
-	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+	// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
 	MaxBandwidth pulumi.IntPtrInput
 	// Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
 	MaxConcurrentSession pulumi.IntPtrInput
@@ -335,7 +335,7 @@ func (o PeripshaperOutput) DiffservcodeRev() pulumi.StringOutput {
 	return o.ApplyT(func(v *Peripshaper) pulumi.StringOutput { return v.DiffservcodeRev }).(pulumi.StringOutput)
 }
 
-// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
 func (o PeripshaperOutput) MaxBandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *Peripshaper) pulumi.IntOutput { return v.MaxBandwidth }).(pulumi.IntOutput)
 }
@@ -361,8 +361,8 @@ func (o PeripshaperOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o PeripshaperOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Peripshaper) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o PeripshaperOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Peripshaper) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type PeripshaperArrayOutput struct{ *pulumi.OutputState }

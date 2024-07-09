@@ -16,6 +16,7 @@ class FctemsoverrideArgs:
     def __init__(__self__, *,
                  call_timeout: Optional[pulumi.Input[int]] = None,
                  capabilities: Optional[pulumi.Input[str]] = None,
+                 cloud_authentication_access_key: Optional[pulumi.Input[str]] = None,
                  cloud_server_type: Optional[pulumi.Input[str]] = None,
                  dirty_reason: Optional[pulumi.Input[str]] = None,
                  ems_id: Optional[pulumi.Input[int]] = None,
@@ -45,6 +46,7 @@ class FctemsoverrideArgs:
         The set of arguments for constructing a Fctemsoverride resource.
         :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout in seconds (1 - 180 seconds, default = 30).
         :param pulumi.Input[str] capabilities: List of EMS capabilities.
+        :param pulumi.Input[str] cloud_authentication_access_key: FortiClient EMS Cloud multitenancy access key
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] dirty_reason: Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
         :param pulumi.Input[int] ems_id: EMS ID in order (1 - 7).
@@ -75,6 +77,8 @@ class FctemsoverrideArgs:
             pulumi.set(__self__, "call_timeout", call_timeout)
         if capabilities is not None:
             pulumi.set(__self__, "capabilities", capabilities)
+        if cloud_authentication_access_key is not None:
+            pulumi.set(__self__, "cloud_authentication_access_key", cloud_authentication_access_key)
         if cloud_server_type is not None:
             pulumi.set(__self__, "cloud_server_type", cloud_server_type)
         if dirty_reason is not None:
@@ -149,6 +153,18 @@ class FctemsoverrideArgs:
     @capabilities.setter
     def capabilities(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "capabilities", value)
+
+    @property
+    @pulumi.getter(name="cloudAuthenticationAccessKey")
+    def cloud_authentication_access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiClient EMS Cloud multitenancy access key
+        """
+        return pulumi.get(self, "cloud_authentication_access_key")
+
+    @cloud_authentication_access_key.setter
+    def cloud_authentication_access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cloud_authentication_access_key", value)
 
     @property
     @pulumi.getter(name="cloudServerType")
@@ -456,6 +472,7 @@ class _FctemsoverrideState:
     def __init__(__self__, *,
                  call_timeout: Optional[pulumi.Input[int]] = None,
                  capabilities: Optional[pulumi.Input[str]] = None,
+                 cloud_authentication_access_key: Optional[pulumi.Input[str]] = None,
                  cloud_server_type: Optional[pulumi.Input[str]] = None,
                  dirty_reason: Optional[pulumi.Input[str]] = None,
                  ems_id: Optional[pulumi.Input[int]] = None,
@@ -485,6 +502,7 @@ class _FctemsoverrideState:
         Input properties used for looking up and filtering Fctemsoverride resources.
         :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout in seconds (1 - 180 seconds, default = 30).
         :param pulumi.Input[str] capabilities: List of EMS capabilities.
+        :param pulumi.Input[str] cloud_authentication_access_key: FortiClient EMS Cloud multitenancy access key
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] dirty_reason: Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
         :param pulumi.Input[int] ems_id: EMS ID in order (1 - 7).
@@ -515,6 +533,8 @@ class _FctemsoverrideState:
             pulumi.set(__self__, "call_timeout", call_timeout)
         if capabilities is not None:
             pulumi.set(__self__, "capabilities", capabilities)
+        if cloud_authentication_access_key is not None:
+            pulumi.set(__self__, "cloud_authentication_access_key", cloud_authentication_access_key)
         if cloud_server_type is not None:
             pulumi.set(__self__, "cloud_server_type", cloud_server_type)
         if dirty_reason is not None:
@@ -589,6 +609,18 @@ class _FctemsoverrideState:
     @capabilities.setter
     def capabilities(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "capabilities", value)
+
+    @property
+    @pulumi.getter(name="cloudAuthenticationAccessKey")
+    def cloud_authentication_access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiClient EMS Cloud multitenancy access key
+        """
+        return pulumi.get(self, "cloud_authentication_access_key")
+
+    @cloud_authentication_access_key.setter
+    def cloud_authentication_access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cloud_authentication_access_key", value)
 
     @property
     @pulumi.getter(name="cloudServerType")
@@ -898,6 +930,7 @@ class Fctemsoverride(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  call_timeout: Optional[pulumi.Input[int]] = None,
                  capabilities: Optional[pulumi.Input[str]] = None,
+                 cloud_authentication_access_key: Optional[pulumi.Input[str]] = None,
                  cloud_server_type: Optional[pulumi.Input[str]] = None,
                  dirty_reason: Optional[pulumi.Input[str]] = None,
                  ems_id: Optional[pulumi.Input[int]] = None,
@@ -949,6 +982,7 @@ class Fctemsoverride(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout in seconds (1 - 180 seconds, default = 30).
         :param pulumi.Input[str] capabilities: List of EMS capabilities.
+        :param pulumi.Input[str] cloud_authentication_access_key: FortiClient EMS Cloud multitenancy access key
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] dirty_reason: Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
         :param pulumi.Input[int] ems_id: EMS ID in order (1 - 7).
@@ -1019,6 +1053,7 @@ class Fctemsoverride(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  call_timeout: Optional[pulumi.Input[int]] = None,
                  capabilities: Optional[pulumi.Input[str]] = None,
+                 cloud_authentication_access_key: Optional[pulumi.Input[str]] = None,
                  cloud_server_type: Optional[pulumi.Input[str]] = None,
                  dirty_reason: Optional[pulumi.Input[str]] = None,
                  ems_id: Optional[pulumi.Input[int]] = None,
@@ -1055,6 +1090,7 @@ class Fctemsoverride(pulumi.CustomResource):
 
             __props__.__dict__["call_timeout"] = call_timeout
             __props__.__dict__["capabilities"] = capabilities
+            __props__.__dict__["cloud_authentication_access_key"] = cloud_authentication_access_key
             __props__.__dict__["cloud_server_type"] = cloud_server_type
             __props__.__dict__["dirty_reason"] = dirty_reason
             __props__.__dict__["ems_id"] = ems_id
@@ -1092,6 +1128,7 @@ class Fctemsoverride(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             call_timeout: Optional[pulumi.Input[int]] = None,
             capabilities: Optional[pulumi.Input[str]] = None,
+            cloud_authentication_access_key: Optional[pulumi.Input[str]] = None,
             cloud_server_type: Optional[pulumi.Input[str]] = None,
             dirty_reason: Optional[pulumi.Input[str]] = None,
             ems_id: Optional[pulumi.Input[int]] = None,
@@ -1126,6 +1163,7 @@ class Fctemsoverride(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout in seconds (1 - 180 seconds, default = 30).
         :param pulumi.Input[str] capabilities: List of EMS capabilities.
+        :param pulumi.Input[str] cloud_authentication_access_key: FortiClient EMS Cloud multitenancy access key
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] dirty_reason: Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
         :param pulumi.Input[int] ems_id: EMS ID in order (1 - 7).
@@ -1158,6 +1196,7 @@ class Fctemsoverride(pulumi.CustomResource):
 
         __props__.__dict__["call_timeout"] = call_timeout
         __props__.__dict__["capabilities"] = capabilities
+        __props__.__dict__["cloud_authentication_access_key"] = cloud_authentication_access_key
         __props__.__dict__["cloud_server_type"] = cloud_server_type
         __props__.__dict__["dirty_reason"] = dirty_reason
         __props__.__dict__["ems_id"] = ems_id
@@ -1200,6 +1239,14 @@ class Fctemsoverride(pulumi.CustomResource):
         List of EMS capabilities.
         """
         return pulumi.get(self, "capabilities")
+
+    @property
+    @pulumi.getter(name="cloudAuthenticationAccessKey")
+    def cloud_authentication_access_key(self) -> pulumi.Output[str]:
+        """
+        FortiClient EMS Cloud multitenancy access key
+        """
+        return pulumi.get(self, "cloud_authentication_access_key")
 
     @property
     @pulumi.getter(name="cloudServerType")
@@ -1379,7 +1426,7 @@ class Fctemsoverride(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

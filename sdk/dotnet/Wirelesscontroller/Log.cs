@@ -98,7 +98,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
@@ -111,6 +111,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("wtpEventLog")]
         public Output<string> WtpEventLog { get; private set; } = null!;
+
+        /// <summary>
+        /// Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+        /// </summary>
+        [Output("wtpFipsEventLog")]
+        public Output<string> WtpFipsEventLog { get; private set; } = null!;
 
 
         /// <summary>
@@ -237,6 +243,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         [Input("wtpEventLog")]
         public Input<string>? WtpEventLog { get; set; }
 
+        /// <summary>
+        /// Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+        /// </summary>
+        [Input("wtpFipsEventLog")]
+        public Input<string>? WtpFipsEventLog { get; set; }
+
         public LogArgs()
         {
         }
@@ -322,6 +334,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("wtpEventLog")]
         public Input<string>? WtpEventLog { get; set; }
+
+        /// <summary>
+        /// Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+        /// </summary>
+        [Input("wtpFipsEventLog")]
+        public Input<string>? WtpFipsEventLog { get; set; }
 
         public LogState()
         {

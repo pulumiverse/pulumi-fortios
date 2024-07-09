@@ -132,6 +132,7 @@ class SettingsArgs:
                  ike_tcp_port: Optional[pulumi.Input[int]] = None,
                  implicit_allow_dns: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
+                 internet_service_app_ctrl_size: Optional[pulumi.Input[int]] = None,
                  internet_service_database_cache: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
@@ -184,10 +185,10 @@ class SettingsArgs:
         :param pulumi.Input[str] asymroute_icmp: Enable/disable ICMP asymmetric routing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auxiliary_session: Enable/disable auxiliary session. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bfd: Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] bfd_desired_min_tx: BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+        :param pulumi.Input[int] bfd_desired_min_tx: BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         :param pulumi.Input[int] bfd_detect_mult: BFD detection multiplier (1 - 50, default = 3).
         :param pulumi.Input[str] bfd_dont_enforce_src_port: Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] bfd_required_min_rx: BFD required minimal receive interval (1 - 100000 ms, default = 50).
+        :param pulumi.Input[int] bfd_required_min_rx: BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         :param pulumi.Input[str] block_land_attack: Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] central_nat: Enable/disable central NAT. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: VDOM comments.
@@ -207,7 +208,7 @@ class SettingsArgs:
         :param pulumi.Input[int] discovered_device_timeout: Timeout for discovered devices (1 - 365 days, default = 28).
         :param pulumi.Input[str] dyn_addr_session_check: Enable/disable dirty session check caused by dynamic address updates. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[int] ecmp_max_paths: Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+        :param pulumi.Input[int] ecmp_max_paths: Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
         :param pulumi.Input[str] email_portal_check_dns: Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ext_resource_session_check: Enable/disable dirty session check caused by external resource updates. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firewall_session_dirty: Select how to manage sessions affected by firewall policy configuration changes. Valid values: `check-all`, `check-new`, `check-policy-option`.
@@ -215,7 +216,7 @@ class SettingsArgs:
         :param pulumi.Input[str] fw_session_hairpin: Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gateway: Transparent mode IPv4 default gateway IP address.
         :param pulumi.Input[str] gateway6: Transparent mode IPv4 default gateway IP address.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gui_advanced_policy: Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_advanced_wireless_features: Enable/disable advanced wireless features in GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_unnamed_policy: Enable/disable the requirement for policy naming on the GUI. Valid values: `enable`, `disable`.
@@ -291,6 +292,7 @@ class SettingsArgs:
         :param pulumi.Input[int] ike_tcp_port: TCP port for IKE/IPsec traffic (default 4500).
         :param pulumi.Input[str] implicit_allow_dns: Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] inspection_mode: Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
+        :param pulumi.Input[int] internet_service_app_ctrl_size: Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
         :param pulumi.Input[str] internet_service_database_cache: Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ip: IP address and netmask.
         :param pulumi.Input[str] ip6: IPv6 address prefix for NAT mode.
@@ -327,7 +329,7 @@ class SettingsArgs:
         :param pulumi.Input[str] tcp_session_without_syn: Enable/disable allowing TCP session without SYN flags. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] utf8_spam_tagging: Enable/disable converting antispam tags to UTF-8 for better non-ASCII character support. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] v4_ecmp_mode: IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
-        :param pulumi.Input[str] vdom_type: VDOM type (traffic or admin).
+        :param pulumi.Input[str] vdom_type: VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vpn_stats_log: Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. Valid values: `ipsec`, `pptp`, `l2tp`, `ssl`.
         :param pulumi.Input[int] vpn_stats_period: Period to send VPN log statistics (0 or 60 - 86400 sec).
@@ -565,6 +567,8 @@ class SettingsArgs:
             pulumi.set(__self__, "implicit_allow_dns", implicit_allow_dns)
         if inspection_mode is not None:
             pulumi.set(__self__, "inspection_mode", inspection_mode)
+        if internet_service_app_ctrl_size is not None:
+            pulumi.set(__self__, "internet_service_app_ctrl_size", internet_service_app_ctrl_size)
         if internet_service_database_cache is not None:
             pulumi.set(__self__, "internet_service_database_cache", internet_service_database_cache)
         if ip is not None:
@@ -760,7 +764,7 @@ class SettingsArgs:
     @pulumi.getter(name="bfdDesiredMinTx")
     def bfd_desired_min_tx(self) -> Optional[pulumi.Input[int]]:
         """
-        BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+        BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         """
         return pulumi.get(self, "bfd_desired_min_tx")
 
@@ -796,7 +800,7 @@ class SettingsArgs:
     @pulumi.getter(name="bfdRequiredMinRx")
     def bfd_required_min_rx(self) -> Optional[pulumi.Input[int]]:
         """
-        BFD required minimal receive interval (1 - 100000 ms, default = 50).
+        BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         """
         return pulumi.get(self, "bfd_required_min_rx")
 
@@ -1036,7 +1040,7 @@ class SettingsArgs:
     @pulumi.getter(name="ecmpMaxPaths")
     def ecmp_max_paths(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+        Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
         """
         return pulumi.get(self, "ecmp_max_paths")
 
@@ -1132,7 +1136,7 @@ class SettingsArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2041,6 +2045,18 @@ class SettingsArgs:
         pulumi.set(self, "inspection_mode", value)
 
     @property
+    @pulumi.getter(name="internetServiceAppCtrlSize")
+    def internet_service_app_ctrl_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+        """
+        return pulumi.get(self, "internet_service_app_ctrl_size")
+
+    @internet_service_app_ctrl_size.setter
+    def internet_service_app_ctrl_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "internet_service_app_ctrl_size", value)
+
+    @property
     @pulumi.getter(name="internetServiceDatabaseCache")
     def internet_service_database_cache(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2476,7 +2492,7 @@ class SettingsArgs:
     @pulumi.getter(name="vdomType")
     def vdom_type(self) -> Optional[pulumi.Input[str]]:
         """
-        VDOM type (traffic or admin).
+        VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
         """
         return pulumi.get(self, "vdom_type")
 
@@ -2652,6 +2668,7 @@ class _SettingsState:
                  ike_tcp_port: Optional[pulumi.Input[int]] = None,
                  implicit_allow_dns: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
+                 internet_service_app_ctrl_size: Optional[pulumi.Input[int]] = None,
                  internet_service_database_cache: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
@@ -2704,10 +2721,10 @@ class _SettingsState:
         :param pulumi.Input[str] asymroute_icmp: Enable/disable ICMP asymmetric routing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auxiliary_session: Enable/disable auxiliary session. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bfd: Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] bfd_desired_min_tx: BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+        :param pulumi.Input[int] bfd_desired_min_tx: BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         :param pulumi.Input[int] bfd_detect_mult: BFD detection multiplier (1 - 50, default = 3).
         :param pulumi.Input[str] bfd_dont_enforce_src_port: Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] bfd_required_min_rx: BFD required minimal receive interval (1 - 100000 ms, default = 50).
+        :param pulumi.Input[int] bfd_required_min_rx: BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         :param pulumi.Input[str] block_land_attack: Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] central_nat: Enable/disable central NAT. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: VDOM comments.
@@ -2727,7 +2744,7 @@ class _SettingsState:
         :param pulumi.Input[int] discovered_device_timeout: Timeout for discovered devices (1 - 365 days, default = 28).
         :param pulumi.Input[str] dyn_addr_session_check: Enable/disable dirty session check caused by dynamic address updates. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[int] ecmp_max_paths: Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+        :param pulumi.Input[int] ecmp_max_paths: Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
         :param pulumi.Input[str] email_portal_check_dns: Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ext_resource_session_check: Enable/disable dirty session check caused by external resource updates. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firewall_session_dirty: Select how to manage sessions affected by firewall policy configuration changes. Valid values: `check-all`, `check-new`, `check-policy-option`.
@@ -2735,7 +2752,7 @@ class _SettingsState:
         :param pulumi.Input[str] fw_session_hairpin: Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gateway: Transparent mode IPv4 default gateway IP address.
         :param pulumi.Input[str] gateway6: Transparent mode IPv4 default gateway IP address.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gui_advanced_policy: Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_advanced_wireless_features: Enable/disable advanced wireless features in GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_unnamed_policy: Enable/disable the requirement for policy naming on the GUI. Valid values: `enable`, `disable`.
@@ -2811,6 +2828,7 @@ class _SettingsState:
         :param pulumi.Input[int] ike_tcp_port: TCP port for IKE/IPsec traffic (default 4500).
         :param pulumi.Input[str] implicit_allow_dns: Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] inspection_mode: Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
+        :param pulumi.Input[int] internet_service_app_ctrl_size: Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
         :param pulumi.Input[str] internet_service_database_cache: Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ip: IP address and netmask.
         :param pulumi.Input[str] ip6: IPv6 address prefix for NAT mode.
@@ -2847,7 +2865,7 @@ class _SettingsState:
         :param pulumi.Input[str] tcp_session_without_syn: Enable/disable allowing TCP session without SYN flags. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] utf8_spam_tagging: Enable/disable converting antispam tags to UTF-8 for better non-ASCII character support. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] v4_ecmp_mode: IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
-        :param pulumi.Input[str] vdom_type: VDOM type (traffic or admin).
+        :param pulumi.Input[str] vdom_type: VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vpn_stats_log: Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. Valid values: `ipsec`, `pptp`, `l2tp`, `ssl`.
         :param pulumi.Input[int] vpn_stats_period: Period to send VPN log statistics (0 or 60 - 86400 sec).
@@ -3085,6 +3103,8 @@ class _SettingsState:
             pulumi.set(__self__, "implicit_allow_dns", implicit_allow_dns)
         if inspection_mode is not None:
             pulumi.set(__self__, "inspection_mode", inspection_mode)
+        if internet_service_app_ctrl_size is not None:
+            pulumi.set(__self__, "internet_service_app_ctrl_size", internet_service_app_ctrl_size)
         if internet_service_database_cache is not None:
             pulumi.set(__self__, "internet_service_database_cache", internet_service_database_cache)
         if ip is not None:
@@ -3280,7 +3300,7 @@ class _SettingsState:
     @pulumi.getter(name="bfdDesiredMinTx")
     def bfd_desired_min_tx(self) -> Optional[pulumi.Input[int]]:
         """
-        BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+        BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         """
         return pulumi.get(self, "bfd_desired_min_tx")
 
@@ -3316,7 +3336,7 @@ class _SettingsState:
     @pulumi.getter(name="bfdRequiredMinRx")
     def bfd_required_min_rx(self) -> Optional[pulumi.Input[int]]:
         """
-        BFD required minimal receive interval (1 - 100000 ms, default = 50).
+        BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         """
         return pulumi.get(self, "bfd_required_min_rx")
 
@@ -3556,7 +3576,7 @@ class _SettingsState:
     @pulumi.getter(name="ecmpMaxPaths")
     def ecmp_max_paths(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+        Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
         """
         return pulumi.get(self, "ecmp_max_paths")
 
@@ -3652,7 +3672,7 @@ class _SettingsState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -4561,6 +4581,18 @@ class _SettingsState:
         pulumi.set(self, "inspection_mode", value)
 
     @property
+    @pulumi.getter(name="internetServiceAppCtrlSize")
+    def internet_service_app_ctrl_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+        """
+        return pulumi.get(self, "internet_service_app_ctrl_size")
+
+    @internet_service_app_ctrl_size.setter
+    def internet_service_app_ctrl_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "internet_service_app_ctrl_size", value)
+
+    @property
     @pulumi.getter(name="internetServiceDatabaseCache")
     def internet_service_database_cache(self) -> Optional[pulumi.Input[str]]:
         """
@@ -4996,7 +5028,7 @@ class _SettingsState:
     @pulumi.getter(name="vdomType")
     def vdom_type(self) -> Optional[pulumi.Input[str]]:
         """
-        VDOM type (traffic or admin).
+        VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
         """
         return pulumi.get(self, "vdom_type")
 
@@ -5174,6 +5206,7 @@ class Settings(pulumi.CustomResource):
                  ike_tcp_port: Optional[pulumi.Input[int]] = None,
                  implicit_allow_dns: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
+                 internet_service_app_ctrl_size: Optional[pulumi.Input[int]] = None,
                  internet_service_database_cache: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
@@ -5262,10 +5295,10 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] asymroute_icmp: Enable/disable ICMP asymmetric routing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auxiliary_session: Enable/disable auxiliary session. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bfd: Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] bfd_desired_min_tx: BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+        :param pulumi.Input[int] bfd_desired_min_tx: BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         :param pulumi.Input[int] bfd_detect_mult: BFD detection multiplier (1 - 50, default = 3).
         :param pulumi.Input[str] bfd_dont_enforce_src_port: Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] bfd_required_min_rx: BFD required minimal receive interval (1 - 100000 ms, default = 50).
+        :param pulumi.Input[int] bfd_required_min_rx: BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         :param pulumi.Input[str] block_land_attack: Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] central_nat: Enable/disable central NAT. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: VDOM comments.
@@ -5285,7 +5318,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[int] discovered_device_timeout: Timeout for discovered devices (1 - 365 days, default = 28).
         :param pulumi.Input[str] dyn_addr_session_check: Enable/disable dirty session check caused by dynamic address updates. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[int] ecmp_max_paths: Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+        :param pulumi.Input[int] ecmp_max_paths: Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
         :param pulumi.Input[str] email_portal_check_dns: Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ext_resource_session_check: Enable/disable dirty session check caused by external resource updates. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firewall_session_dirty: Select how to manage sessions affected by firewall policy configuration changes. Valid values: `check-all`, `check-new`, `check-policy-option`.
@@ -5293,7 +5326,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] fw_session_hairpin: Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gateway: Transparent mode IPv4 default gateway IP address.
         :param pulumi.Input[str] gateway6: Transparent mode IPv4 default gateway IP address.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gui_advanced_policy: Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_advanced_wireless_features: Enable/disable advanced wireless features in GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_unnamed_policy: Enable/disable the requirement for policy naming on the GUI. Valid values: `enable`, `disable`.
@@ -5369,6 +5402,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[int] ike_tcp_port: TCP port for IKE/IPsec traffic (default 4500).
         :param pulumi.Input[str] implicit_allow_dns: Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] inspection_mode: Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
+        :param pulumi.Input[int] internet_service_app_ctrl_size: Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
         :param pulumi.Input[str] internet_service_database_cache: Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ip: IP address and netmask.
         :param pulumi.Input[str] ip6: IPv6 address prefix for NAT mode.
@@ -5405,7 +5439,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] tcp_session_without_syn: Enable/disable allowing TCP session without SYN flags. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] utf8_spam_tagging: Enable/disable converting antispam tags to UTF-8 for better non-ASCII character support. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] v4_ecmp_mode: IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
-        :param pulumi.Input[str] vdom_type: VDOM type (traffic or admin).
+        :param pulumi.Input[str] vdom_type: VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vpn_stats_log: Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. Valid values: `ipsec`, `pptp`, `l2tp`, `ssl`.
         :param pulumi.Input[int] vpn_stats_period: Period to send VPN log statistics (0 or 60 - 86400 sec).
@@ -5583,6 +5617,7 @@ class Settings(pulumi.CustomResource):
                  ike_tcp_port: Optional[pulumi.Input[int]] = None,
                  implicit_allow_dns: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
+                 internet_service_app_ctrl_size: Optional[pulumi.Input[int]] = None,
                  internet_service_database_cache: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
@@ -5749,6 +5784,7 @@ class Settings(pulumi.CustomResource):
             __props__.__dict__["ike_tcp_port"] = ike_tcp_port
             __props__.__dict__["implicit_allow_dns"] = implicit_allow_dns
             __props__.__dict__["inspection_mode"] = inspection_mode
+            __props__.__dict__["internet_service_app_ctrl_size"] = internet_service_app_ctrl_size
             __props__.__dict__["internet_service_database_cache"] = internet_service_database_cache
             __props__.__dict__["ip"] = ip
             __props__.__dict__["ip6"] = ip6
@@ -5916,6 +5952,7 @@ class Settings(pulumi.CustomResource):
             ike_tcp_port: Optional[pulumi.Input[int]] = None,
             implicit_allow_dns: Optional[pulumi.Input[str]] = None,
             inspection_mode: Optional[pulumi.Input[str]] = None,
+            internet_service_app_ctrl_size: Optional[pulumi.Input[int]] = None,
             internet_service_database_cache: Optional[pulumi.Input[str]] = None,
             ip: Optional[pulumi.Input[str]] = None,
             ip6: Optional[pulumi.Input[str]] = None,
@@ -5973,10 +6010,10 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] asymroute_icmp: Enable/disable ICMP asymmetric routing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auxiliary_session: Enable/disable auxiliary session. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bfd: Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] bfd_desired_min_tx: BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+        :param pulumi.Input[int] bfd_desired_min_tx: BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         :param pulumi.Input[int] bfd_detect_mult: BFD detection multiplier (1 - 50, default = 3).
         :param pulumi.Input[str] bfd_dont_enforce_src_port: Enable to not enforce verifying the source port of BFD Packets. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] bfd_required_min_rx: BFD required minimal receive interval (1 - 100000 ms, default = 50).
+        :param pulumi.Input[int] bfd_required_min_rx: BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         :param pulumi.Input[str] block_land_attack: Enable/disable blocking of land attacks. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] central_nat: Enable/disable central NAT. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: VDOM comments.
@@ -5996,7 +6033,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[int] discovered_device_timeout: Timeout for discovered devices (1 - 365 days, default = 28).
         :param pulumi.Input[str] dyn_addr_session_check: Enable/disable dirty session check caused by dynamic address updates. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[int] ecmp_max_paths: Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+        :param pulumi.Input[int] ecmp_max_paths: Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
         :param pulumi.Input[str] email_portal_check_dns: Enable/disable using DNS to validate email addresses collected by a captive portal. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ext_resource_session_check: Enable/disable dirty session check caused by external resource updates. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] firewall_session_dirty: Select how to manage sessions affected by firewall policy configuration changes. Valid values: `check-all`, `check-new`, `check-policy-option`.
@@ -6004,7 +6041,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] fw_session_hairpin: Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gateway: Transparent mode IPv4 default gateway IP address.
         :param pulumi.Input[str] gateway6: Transparent mode IPv4 default gateway IP address.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gui_advanced_policy: Enable/disable advanced policy configuration on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_advanced_wireless_features: Enable/disable advanced wireless features in GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_unnamed_policy: Enable/disable the requirement for policy naming on the GUI. Valid values: `enable`, `disable`.
@@ -6080,6 +6117,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[int] ike_tcp_port: TCP port for IKE/IPsec traffic (default 4500).
         :param pulumi.Input[str] implicit_allow_dns: Enable/disable implicitly allowing DNS traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] inspection_mode: Inspection mode (proxy-based or flow-based). Valid values: `proxy`, `flow`.
+        :param pulumi.Input[int] internet_service_app_ctrl_size: Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
         :param pulumi.Input[str] internet_service_database_cache: Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ip: IP address and netmask.
         :param pulumi.Input[str] ip6: IPv6 address prefix for NAT mode.
@@ -6116,7 +6154,7 @@ class Settings(pulumi.CustomResource):
         :param pulumi.Input[str] tcp_session_without_syn: Enable/disable allowing TCP session without SYN flags. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] utf8_spam_tagging: Enable/disable converting antispam tags to UTF-8 for better non-ASCII character support. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] v4_ecmp_mode: IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`.
-        :param pulumi.Input[str] vdom_type: VDOM type (traffic or admin).
+        :param pulumi.Input[str] vdom_type: VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vpn_stats_log: Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. Valid values: `ipsec`, `pptp`, `l2tp`, `ssl`.
         :param pulumi.Input[int] vpn_stats_period: Period to send VPN log statistics (0 or 60 - 86400 sec).
@@ -6242,6 +6280,7 @@ class Settings(pulumi.CustomResource):
         __props__.__dict__["ike_tcp_port"] = ike_tcp_port
         __props__.__dict__["implicit_allow_dns"] = implicit_allow_dns
         __props__.__dict__["inspection_mode"] = inspection_mode
+        __props__.__dict__["internet_service_app_ctrl_size"] = internet_service_app_ctrl_size
         __props__.__dict__["internet_service_database_cache"] = internet_service_database_cache
         __props__.__dict__["ip"] = ip
         __props__.__dict__["ip6"] = ip6
@@ -6361,7 +6400,7 @@ class Settings(pulumi.CustomResource):
     @pulumi.getter(name="bfdDesiredMinTx")
     def bfd_desired_min_tx(self) -> pulumi.Output[int]:
         """
-        BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+        BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         """
         return pulumi.get(self, "bfd_desired_min_tx")
 
@@ -6385,7 +6424,7 @@ class Settings(pulumi.CustomResource):
     @pulumi.getter(name="bfdRequiredMinRx")
     def bfd_required_min_rx(self) -> pulumi.Output[int]:
         """
-        BFD required minimal receive interval (1 - 100000 ms, default = 50).
+        BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions >= 7.0.0: default = 250.
         """
         return pulumi.get(self, "bfd_required_min_rx")
 
@@ -6545,7 +6584,7 @@ class Settings(pulumi.CustomResource):
     @pulumi.getter(name="ecmpMaxPaths")
     def ecmp_max_paths(self) -> pulumi.Output[int]:
         """
-        Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+        Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions >= 6.2.4: 1 - 255, default = 255.
         """
         return pulumi.get(self, "ecmp_max_paths")
 
@@ -6609,7 +6648,7 @@ class Settings(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -7214,6 +7253,14 @@ class Settings(pulumi.CustomResource):
         return pulumi.get(self, "inspection_mode")
 
     @property
+    @pulumi.getter(name="internetServiceAppCtrlSize")
+    def internet_service_app_ctrl_size(self) -> pulumi.Output[int]:
+        """
+        Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+        """
+        return pulumi.get(self, "internet_service_app_ctrl_size")
+
+    @property
     @pulumi.getter(name="internetServiceDatabaseCache")
     def internet_service_database_cache(self) -> pulumi.Output[str]:
         """
@@ -7505,13 +7552,13 @@ class Settings(pulumi.CustomResource):
     @pulumi.getter(name="vdomType")
     def vdom_type(self) -> pulumi.Output[str]:
         """
-        VDOM type (traffic or admin).
+        VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions >= 7.2.1: traffic, lan-extension or admin.
         """
         return pulumi.get(self, "vdom_type")
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

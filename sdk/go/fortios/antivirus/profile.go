@@ -123,7 +123,7 @@ type Profile struct {
 	FtgdAnalytics pulumi.StringOutput `pulumi:"ftgdAnalytics"`
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
 	Ftp ProfileFtpOutput `pulumi:"ftp"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure HTTP AntiVirus options. The structure of `http` block is documented below.
 	Http ProfileHttpOutput `pulumi:"http"`
@@ -158,7 +158,7 @@ type Profile struct {
 	// Configure SFTP and SCP AntiVirus options. The structure of `ssh` block is documented below.
 	Ssh ProfileSshOutput `pulumi:"ssh"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewProfile registers a new resource with the given unique name, arguments, and options.
@@ -245,7 +245,7 @@ type profileState struct {
 	FtgdAnalytics *string `pulumi:"ftgdAnalytics"`
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
 	Ftp *ProfileFtp `pulumi:"ftp"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure HTTP AntiVirus options. The structure of `http` block is documented below.
 	Http *ProfileHttp `pulumi:"http"`
@@ -338,7 +338,7 @@ type ProfileState struct {
 	FtgdAnalytics pulumi.StringPtrInput
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
 	Ftp ProfileFtpPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure HTTP AntiVirus options. The structure of `http` block is documented below.
 	Http ProfileHttpPtrInput
@@ -435,7 +435,7 @@ type profileArgs struct {
 	FtgdAnalytics *string `pulumi:"ftgdAnalytics"`
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
 	Ftp *ProfileFtp `pulumi:"ftp"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure HTTP AntiVirus options. The structure of `http` block is documented below.
 	Http *ProfileHttp `pulumi:"http"`
@@ -529,7 +529,7 @@ type ProfileArgs struct {
 	FtgdAnalytics pulumi.StringPtrInput
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
 	Ftp ProfileFtpPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure HTTP AntiVirus options. The structure of `http` block is documented below.
 	Http ProfileHttpPtrInput
@@ -789,7 +789,7 @@ func (o ProfileOutput) Ftp() ProfileFtpOutput {
 	return o.ApplyT(func(v *Profile) ProfileFtpOutput { return v.Ftp }).(ProfileFtpOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -875,8 +875,8 @@ func (o ProfileOutput) Ssh() ProfileSshOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ProfileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ProfileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ProfileArrayOutput struct{ *pulumi.OutputState }

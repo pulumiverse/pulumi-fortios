@@ -70,7 +70,7 @@ export class Wagprofile extends pulumi.CustomResource {
      */
     public readonly pingInterval!: pulumi.Output<number>;
     /**
-     * Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+     * Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
      */
     public readonly pingNumber!: pulumi.Output<number>;
     /**
@@ -84,7 +84,7 @@ export class Wagprofile extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * IP Address of the wireless access gateway.
      */
@@ -156,7 +156,7 @@ export interface WagprofileState {
      */
     pingInterval?: pulumi.Input<number>;
     /**
-     * Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+     * Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
      */
     pingNumber?: pulumi.Input<number>;
     /**
@@ -202,7 +202,7 @@ export interface WagprofileArgs {
      */
     pingInterval?: pulumi.Input<number>;
     /**
-     * Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+     * Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
      */
     pingNumber?: pulumi.Input<number>;
     /**

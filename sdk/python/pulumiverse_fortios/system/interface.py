@@ -58,6 +58,7 @@ class InterfaceArgs:
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_allow_no_end_option: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -292,6 +293,7 @@ class InterfaceArgs:
         :param pulumi.Input[str] dhcp_classless_route_addition: Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dhcp_client_identifier: DHCP client identifier.
         :param pulumi.Input[str] dhcp_relay_agent_option: Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dhcp_relay_allow_no_end_option: Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp_relay_circuit_id: DHCP relay circuit ID.
         :param pulumi.Input[str] dhcp_relay_interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] dhcp_relay_interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -338,7 +340,7 @@ class InterfaceArgs:
         :param pulumi.Input[str] fortilink_stacking: Enable/disable FortiLink switch-stacking on this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_domain: Transparent mode forward domain.
         :param pulumi.Input[str] forward_error_correction: Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gwdetect: Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ha_priority: HA election priority for the PING server.
         :param pulumi.Input[str] icmp_accept_redirect: Enable/disable ICMP accept redirect. Valid values: `enable`, `disable`.
@@ -346,9 +348,9 @@ class InterfaceArgs:
         :param pulumi.Input[str] ident_accept: Enable/disable authentication for this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] idle_timeout: PPPoE auto disconnect after idle timeout seconds, 0 means no timeout.
         :param pulumi.Input[str] ike_saml_server: Configure IKE authentication SAML server.
-        :param pulumi.Input[int] inbandwidth: Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+        :param pulumi.Input[int] inbandwidth: Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         :param pulumi.Input[str] ingress_shaping_profile: Incoming traffic shaping profile.
-        :param pulumi.Input[int] ingress_spillover_threshold: Ingress Spillover threshold (0 - 16776000 kbps).
+        :param pulumi.Input[int] ingress_spillover_threshold: Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
         :param pulumi.Input[str] interface: Interface name.
         :param pulumi.Input[int] internal: Implicitly created.
         :param pulumi.Input[str] ip: Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
@@ -386,11 +388,11 @@ class InterfaceArgs:
         :param pulumi.Input[str] ndiscforward: Enable/disable NDISC forwarding. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] netbios_forward: Enable/disable NETBIOS forwarding. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] netflow_sampler: Enable/disable NetFlow on this interface and set the data that NetFlow collects (rx, tx, or both). Valid values: `disable`, `tx`, `rx`, `both`.
-        :param pulumi.Input[int] outbandwidth: Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+        :param pulumi.Input[int] outbandwidth: Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         :param pulumi.Input[int] padt_retry_timeout: PPPoE Active Discovery Terminate (PADT) used to terminate sessions after an idle time.
         :param pulumi.Input[str] password: PPPoE account's password.
         :param pulumi.Input[int] ping_serv_status: PING server status.
-        :param pulumi.Input[int] polling_interval: sFlow polling interval (1 - 255 sec).
+        :param pulumi.Input[int] polling_interval: sFlow polling interval in seconds (1 - 255).
         :param pulumi.Input[str] pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pptp_auth_type: PPTP authentication type. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
         :param pulumi.Input[str] pptp_client: Enable/disable PPTP client. Valid values: `enable`, `disable`.
@@ -438,7 +440,7 @@ class InterfaceArgs:
         :param pulumi.Input[int] swc_vlan: Creation status for switch-controller VLANs.
         :param pulumi.Input[str] switch: Contained in switch.
         :param pulumi.Input[str] switch_controller_access_vlan: Block FortiSwitch port-to-port traffic. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] switch_controller_arp_inspection: Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] switch_controller_arp_inspection: Enable/disable FortiSwitch ARP inspection.
         :param pulumi.Input[str] switch_controller_dhcp_snooping: Switch controller DHCP snooping. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller_dhcp_snooping_option82: Switch controller DHCP snooping option82. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller_dhcp_snooping_verify_mac: Switch controller DHCP snooping verify MAC. Valid values: `enable`, `disable`.
@@ -566,6 +568,8 @@ class InterfaceArgs:
             pulumi.set(__self__, "dhcp_client_identifier", dhcp_client_identifier)
         if dhcp_relay_agent_option is not None:
             pulumi.set(__self__, "dhcp_relay_agent_option", dhcp_relay_agent_option)
+        if dhcp_relay_allow_no_end_option is not None:
+            pulumi.set(__self__, "dhcp_relay_allow_no_end_option", dhcp_relay_allow_no_end_option)
         if dhcp_relay_circuit_id is not None:
             pulumi.set(__self__, "dhcp_relay_circuit_id", dhcp_relay_circuit_id)
         if dhcp_relay_interface is not None:
@@ -1452,6 +1456,18 @@ class InterfaceArgs:
         pulumi.set(self, "dhcp_relay_agent_option", value)
 
     @property
+    @pulumi.getter(name="dhcpRelayAllowNoEndOption")
+    def dhcp_relay_allow_no_end_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dhcp_relay_allow_no_end_option")
+
+    @dhcp_relay_allow_no_end_option.setter
+    def dhcp_relay_allow_no_end_option(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_relay_allow_no_end_option", value)
+
+    @property
     @pulumi.getter(name="dhcpRelayCircuitId")
     def dhcp_relay_circuit_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2007,7 +2023,7 @@ class InterfaceArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2103,7 +2119,7 @@ class InterfaceArgs:
     @pulumi.getter
     def inbandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+        Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         """
         return pulumi.get(self, "inbandwidth")
 
@@ -2127,7 +2143,7 @@ class InterfaceArgs:
     @pulumi.getter(name="ingressSpilloverThreshold")
     def ingress_spillover_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        Ingress Spillover threshold (0 - 16776000 kbps).
+        Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
         """
         return pulumi.get(self, "ingress_spillover_threshold")
 
@@ -2583,7 +2599,7 @@ class InterfaceArgs:
     @pulumi.getter
     def outbandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+        Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         """
         return pulumi.get(self, "outbandwidth")
 
@@ -2631,7 +2647,7 @@ class InterfaceArgs:
     @pulumi.getter(name="pollingInterval")
     def polling_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        sFlow polling interval (1 - 255 sec).
+        sFlow polling interval in seconds (1 - 255).
         """
         return pulumi.get(self, "polling_interval")
 
@@ -3207,7 +3223,7 @@ class InterfaceArgs:
     @pulumi.getter(name="switchControllerArpInspection")
     def switch_controller_arp_inspection(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+        Enable/disable FortiSwitch ARP inspection.
         """
         return pulumi.get(self, "switch_controller_arp_inspection")
 
@@ -3776,6 +3792,7 @@ class _InterfaceState:
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_allow_no_end_option: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -4010,6 +4027,7 @@ class _InterfaceState:
         :param pulumi.Input[str] dhcp_classless_route_addition: Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dhcp_client_identifier: DHCP client identifier.
         :param pulumi.Input[str] dhcp_relay_agent_option: Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dhcp_relay_allow_no_end_option: Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp_relay_circuit_id: DHCP relay circuit ID.
         :param pulumi.Input[str] dhcp_relay_interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] dhcp_relay_interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -4056,7 +4074,7 @@ class _InterfaceState:
         :param pulumi.Input[str] fortilink_stacking: Enable/disable FortiLink switch-stacking on this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_domain: Transparent mode forward domain.
         :param pulumi.Input[str] forward_error_correction: Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gwdetect: Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ha_priority: HA election priority for the PING server.
         :param pulumi.Input[str] icmp_accept_redirect: Enable/disable ICMP accept redirect. Valid values: `enable`, `disable`.
@@ -4064,9 +4082,9 @@ class _InterfaceState:
         :param pulumi.Input[str] ident_accept: Enable/disable authentication for this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] idle_timeout: PPPoE auto disconnect after idle timeout seconds, 0 means no timeout.
         :param pulumi.Input[str] ike_saml_server: Configure IKE authentication SAML server.
-        :param pulumi.Input[int] inbandwidth: Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+        :param pulumi.Input[int] inbandwidth: Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         :param pulumi.Input[str] ingress_shaping_profile: Incoming traffic shaping profile.
-        :param pulumi.Input[int] ingress_spillover_threshold: Ingress Spillover threshold (0 - 16776000 kbps).
+        :param pulumi.Input[int] ingress_spillover_threshold: Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
         :param pulumi.Input[str] interface: Interface name.
         :param pulumi.Input[int] internal: Implicitly created.
         :param pulumi.Input[str] ip: Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
@@ -4104,11 +4122,11 @@ class _InterfaceState:
         :param pulumi.Input[str] ndiscforward: Enable/disable NDISC forwarding. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] netbios_forward: Enable/disable NETBIOS forwarding. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] netflow_sampler: Enable/disable NetFlow on this interface and set the data that NetFlow collects (rx, tx, or both). Valid values: `disable`, `tx`, `rx`, `both`.
-        :param pulumi.Input[int] outbandwidth: Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+        :param pulumi.Input[int] outbandwidth: Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         :param pulumi.Input[int] padt_retry_timeout: PPPoE Active Discovery Terminate (PADT) used to terminate sessions after an idle time.
         :param pulumi.Input[str] password: PPPoE account's password.
         :param pulumi.Input[int] ping_serv_status: PING server status.
-        :param pulumi.Input[int] polling_interval: sFlow polling interval (1 - 255 sec).
+        :param pulumi.Input[int] polling_interval: sFlow polling interval in seconds (1 - 255).
         :param pulumi.Input[str] pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pptp_auth_type: PPTP authentication type. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
         :param pulumi.Input[str] pptp_client: Enable/disable PPTP client. Valid values: `enable`, `disable`.
@@ -4156,7 +4174,7 @@ class _InterfaceState:
         :param pulumi.Input[int] swc_vlan: Creation status for switch-controller VLANs.
         :param pulumi.Input[str] switch: Contained in switch.
         :param pulumi.Input[str] switch_controller_access_vlan: Block FortiSwitch port-to-port traffic. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] switch_controller_arp_inspection: Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] switch_controller_arp_inspection: Enable/disable FortiSwitch ARP inspection.
         :param pulumi.Input[str] switch_controller_dhcp_snooping: Switch controller DHCP snooping. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller_dhcp_snooping_option82: Switch controller DHCP snooping option82. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller_dhcp_snooping_verify_mac: Switch controller DHCP snooping verify MAC. Valid values: `enable`, `disable`.
@@ -4284,6 +4302,8 @@ class _InterfaceState:
             pulumi.set(__self__, "dhcp_client_identifier", dhcp_client_identifier)
         if dhcp_relay_agent_option is not None:
             pulumi.set(__self__, "dhcp_relay_agent_option", dhcp_relay_agent_option)
+        if dhcp_relay_allow_no_end_option is not None:
+            pulumi.set(__self__, "dhcp_relay_allow_no_end_option", dhcp_relay_allow_no_end_option)
         if dhcp_relay_circuit_id is not None:
             pulumi.set(__self__, "dhcp_relay_circuit_id", dhcp_relay_circuit_id)
         if dhcp_relay_interface is not None:
@@ -5160,6 +5180,18 @@ class _InterfaceState:
         pulumi.set(self, "dhcp_relay_agent_option", value)
 
     @property
+    @pulumi.getter(name="dhcpRelayAllowNoEndOption")
+    def dhcp_relay_allow_no_end_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dhcp_relay_allow_no_end_option")
+
+    @dhcp_relay_allow_no_end_option.setter
+    def dhcp_relay_allow_no_end_option(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_relay_allow_no_end_option", value)
+
+    @property
     @pulumi.getter(name="dhcpRelayCircuitId")
     def dhcp_relay_circuit_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5715,7 +5747,7 @@ class _InterfaceState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -5811,7 +5843,7 @@ class _InterfaceState:
     @pulumi.getter
     def inbandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+        Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         """
         return pulumi.get(self, "inbandwidth")
 
@@ -5835,7 +5867,7 @@ class _InterfaceState:
     @pulumi.getter(name="ingressSpilloverThreshold")
     def ingress_spillover_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        Ingress Spillover threshold (0 - 16776000 kbps).
+        Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
         """
         return pulumi.get(self, "ingress_spillover_threshold")
 
@@ -6291,7 +6323,7 @@ class _InterfaceState:
     @pulumi.getter
     def outbandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+        Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         """
         return pulumi.get(self, "outbandwidth")
 
@@ -6339,7 +6371,7 @@ class _InterfaceState:
     @pulumi.getter(name="pollingInterval")
     def polling_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        sFlow polling interval (1 - 255 sec).
+        sFlow polling interval in seconds (1 - 255).
         """
         return pulumi.get(self, "polling_interval")
 
@@ -6915,7 +6947,7 @@ class _InterfaceState:
     @pulumi.getter(name="switchControllerArpInspection")
     def switch_controller_arp_inspection(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+        Enable/disable FortiSwitch ARP inspection.
         """
         return pulumi.get(self, "switch_controller_arp_inspection")
 
@@ -7498,6 +7530,7 @@ class Interface(pulumi.CustomResource):
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_allow_no_end_option: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -7777,6 +7810,7 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] dhcp_classless_route_addition: Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dhcp_client_identifier: DHCP client identifier.
         :param pulumi.Input[str] dhcp_relay_agent_option: Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dhcp_relay_allow_no_end_option: Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp_relay_circuit_id: DHCP relay circuit ID.
         :param pulumi.Input[str] dhcp_relay_interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] dhcp_relay_interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -7823,7 +7857,7 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] fortilink_stacking: Enable/disable FortiLink switch-stacking on this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_domain: Transparent mode forward domain.
         :param pulumi.Input[str] forward_error_correction: Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gwdetect: Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ha_priority: HA election priority for the PING server.
         :param pulumi.Input[str] icmp_accept_redirect: Enable/disable ICMP accept redirect. Valid values: `enable`, `disable`.
@@ -7831,9 +7865,9 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] ident_accept: Enable/disable authentication for this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] idle_timeout: PPPoE auto disconnect after idle timeout seconds, 0 means no timeout.
         :param pulumi.Input[str] ike_saml_server: Configure IKE authentication SAML server.
-        :param pulumi.Input[int] inbandwidth: Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+        :param pulumi.Input[int] inbandwidth: Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         :param pulumi.Input[str] ingress_shaping_profile: Incoming traffic shaping profile.
-        :param pulumi.Input[int] ingress_spillover_threshold: Ingress Spillover threshold (0 - 16776000 kbps).
+        :param pulumi.Input[int] ingress_spillover_threshold: Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
         :param pulumi.Input[str] interface: Interface name.
         :param pulumi.Input[int] internal: Implicitly created.
         :param pulumi.Input[str] ip: Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
@@ -7871,11 +7905,11 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] ndiscforward: Enable/disable NDISC forwarding. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] netbios_forward: Enable/disable NETBIOS forwarding. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] netflow_sampler: Enable/disable NetFlow on this interface and set the data that NetFlow collects (rx, tx, or both). Valid values: `disable`, `tx`, `rx`, `both`.
-        :param pulumi.Input[int] outbandwidth: Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+        :param pulumi.Input[int] outbandwidth: Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         :param pulumi.Input[int] padt_retry_timeout: PPPoE Active Discovery Terminate (PADT) used to terminate sessions after an idle time.
         :param pulumi.Input[str] password: PPPoE account's password.
         :param pulumi.Input[int] ping_serv_status: PING server status.
-        :param pulumi.Input[int] polling_interval: sFlow polling interval (1 - 255 sec).
+        :param pulumi.Input[int] polling_interval: sFlow polling interval in seconds (1 - 255).
         :param pulumi.Input[str] pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pptp_auth_type: PPTP authentication type. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
         :param pulumi.Input[str] pptp_client: Enable/disable PPTP client. Valid values: `enable`, `disable`.
@@ -7923,7 +7957,7 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[int] swc_vlan: Creation status for switch-controller VLANs.
         :param pulumi.Input[str] switch: Contained in switch.
         :param pulumi.Input[str] switch_controller_access_vlan: Block FortiSwitch port-to-port traffic. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] switch_controller_arp_inspection: Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] switch_controller_arp_inspection: Enable/disable FortiSwitch ARP inspection.
         :param pulumi.Input[str] switch_controller_dhcp_snooping: Switch controller DHCP snooping. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller_dhcp_snooping_option82: Switch controller DHCP snooping option82. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller_dhcp_snooping_verify_mac: Switch controller DHCP snooping verify MAC. Valid values: `enable`, `disable`.
@@ -8075,6 +8109,7 @@ class Interface(pulumi.CustomResource):
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_allow_no_end_option: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -8316,6 +8351,7 @@ class Interface(pulumi.CustomResource):
             __props__.__dict__["dhcp_classless_route_addition"] = dhcp_classless_route_addition
             __props__.__dict__["dhcp_client_identifier"] = dhcp_client_identifier
             __props__.__dict__["dhcp_relay_agent_option"] = dhcp_relay_agent_option
+            __props__.__dict__["dhcp_relay_allow_no_end_option"] = dhcp_relay_allow_no_end_option
             __props__.__dict__["dhcp_relay_circuit_id"] = dhcp_relay_circuit_id
             __props__.__dict__["dhcp_relay_interface"] = dhcp_relay_interface
             __props__.__dict__["dhcp_relay_interface_select_method"] = dhcp_relay_interface_select_method
@@ -8562,6 +8598,7 @@ class Interface(pulumi.CustomResource):
             dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
             dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
             dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+            dhcp_relay_allow_no_end_option: Optional[pulumi.Input[str]] = None,
             dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
             dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
             dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -8801,6 +8838,7 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] dhcp_classless_route_addition: Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dhcp_client_identifier: DHCP client identifier.
         :param pulumi.Input[str] dhcp_relay_agent_option: Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dhcp_relay_allow_no_end_option: Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dhcp_relay_circuit_id: DHCP relay circuit ID.
         :param pulumi.Input[str] dhcp_relay_interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] dhcp_relay_interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -8847,7 +8885,7 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] fortilink_stacking: Enable/disable FortiLink switch-stacking on this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_domain: Transparent mode forward domain.
         :param pulumi.Input[str] forward_error_correction: Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gwdetect: Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ha_priority: HA election priority for the PING server.
         :param pulumi.Input[str] icmp_accept_redirect: Enable/disable ICMP accept redirect. Valid values: `enable`, `disable`.
@@ -8855,9 +8893,9 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] ident_accept: Enable/disable authentication for this interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] idle_timeout: PPPoE auto disconnect after idle timeout seconds, 0 means no timeout.
         :param pulumi.Input[str] ike_saml_server: Configure IKE authentication SAML server.
-        :param pulumi.Input[int] inbandwidth: Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+        :param pulumi.Input[int] inbandwidth: Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         :param pulumi.Input[str] ingress_shaping_profile: Incoming traffic shaping profile.
-        :param pulumi.Input[int] ingress_spillover_threshold: Ingress Spillover threshold (0 - 16776000 kbps).
+        :param pulumi.Input[int] ingress_spillover_threshold: Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
         :param pulumi.Input[str] interface: Interface name.
         :param pulumi.Input[int] internal: Implicitly created.
         :param pulumi.Input[str] ip: Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
@@ -8895,11 +8933,11 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[str] ndiscforward: Enable/disable NDISC forwarding. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] netbios_forward: Enable/disable NETBIOS forwarding. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] netflow_sampler: Enable/disable NetFlow on this interface and set the data that NetFlow collects (rx, tx, or both). Valid values: `disable`, `tx`, `rx`, `both`.
-        :param pulumi.Input[int] outbandwidth: Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+        :param pulumi.Input[int] outbandwidth: Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         :param pulumi.Input[int] padt_retry_timeout: PPPoE Active Discovery Terminate (PADT) used to terminate sessions after an idle time.
         :param pulumi.Input[str] password: PPPoE account's password.
         :param pulumi.Input[int] ping_serv_status: PING server status.
-        :param pulumi.Input[int] polling_interval: sFlow polling interval (1 - 255 sec).
+        :param pulumi.Input[int] polling_interval: sFlow polling interval in seconds (1 - 255).
         :param pulumi.Input[str] pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered negotiation. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pptp_auth_type: PPTP authentication type. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
         :param pulumi.Input[str] pptp_client: Enable/disable PPTP client. Valid values: `enable`, `disable`.
@@ -8947,7 +8985,7 @@ class Interface(pulumi.CustomResource):
         :param pulumi.Input[int] swc_vlan: Creation status for switch-controller VLANs.
         :param pulumi.Input[str] switch: Contained in switch.
         :param pulumi.Input[str] switch_controller_access_vlan: Block FortiSwitch port-to-port traffic. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] switch_controller_arp_inspection: Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] switch_controller_arp_inspection: Enable/disable FortiSwitch ARP inspection.
         :param pulumi.Input[str] switch_controller_dhcp_snooping: Switch controller DHCP snooping. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller_dhcp_snooping_option82: Switch controller DHCP snooping option82. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller_dhcp_snooping_verify_mac: Switch controller DHCP snooping verify MAC. Valid values: `enable`, `disable`.
@@ -9038,6 +9076,7 @@ class Interface(pulumi.CustomResource):
         __props__.__dict__["dhcp_classless_route_addition"] = dhcp_classless_route_addition
         __props__.__dict__["dhcp_client_identifier"] = dhcp_client_identifier
         __props__.__dict__["dhcp_relay_agent_option"] = dhcp_relay_agent_option
+        __props__.__dict__["dhcp_relay_allow_no_end_option"] = dhcp_relay_allow_no_end_option
         __props__.__dict__["dhcp_relay_circuit_id"] = dhcp_relay_circuit_id
         __props__.__dict__["dhcp_relay_interface"] = dhcp_relay_interface
         __props__.__dict__["dhcp_relay_interface_select_method"] = dhcp_relay_interface_select_method
@@ -9560,6 +9599,14 @@ class Interface(pulumi.CustomResource):
         return pulumi.get(self, "dhcp_relay_agent_option")
 
     @property
+    @pulumi.getter(name="dhcpRelayAllowNoEndOption")
+    def dhcp_relay_allow_no_end_option(self) -> pulumi.Output[str]:
+        """
+        Enable/disable relaying DHCP messages with no end option. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dhcp_relay_allow_no_end_option")
+
+    @property
     @pulumi.getter(name="dhcpRelayCircuitId")
     def dhcp_relay_circuit_id(self) -> pulumi.Output[str]:
         """
@@ -9931,7 +9978,7 @@ class Interface(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -9995,7 +10042,7 @@ class Interface(pulumi.CustomResource):
     @pulumi.getter
     def inbandwidth(self) -> pulumi.Output[int]:
         """
-        Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+        Bandwidth limit for incoming traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         """
         return pulumi.get(self, "inbandwidth")
 
@@ -10011,7 +10058,7 @@ class Interface(pulumi.CustomResource):
     @pulumi.getter(name="ingressSpilloverThreshold")
     def ingress_spillover_threshold(self) -> pulumi.Output[int]:
         """
-        Ingress Spillover threshold (0 - 16776000 kbps).
+        Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
         """
         return pulumi.get(self, "ingress_spillover_threshold")
 
@@ -10315,7 +10362,7 @@ class Interface(pulumi.CustomResource):
     @pulumi.getter
     def outbandwidth(self) -> pulumi.Output[int]:
         """
-        Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+        Bandwidth limit for outgoing traffic, 0 means unlimited. On FortiOS versions 6.2.0-6.2.6: 0 - 16776000 kbps. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000 kbps.
         """
         return pulumi.get(self, "outbandwidth")
 
@@ -10347,7 +10394,7 @@ class Interface(pulumi.CustomResource):
     @pulumi.getter(name="pollingInterval")
     def polling_interval(self) -> pulumi.Output[int]:
         """
-        sFlow polling interval (1 - 255 sec).
+        sFlow polling interval in seconds (1 - 255).
         """
         return pulumi.get(self, "polling_interval")
 
@@ -10731,7 +10778,7 @@ class Interface(pulumi.CustomResource):
     @pulumi.getter(name="switchControllerArpInspection")
     def switch_controller_arp_inspection(self) -> pulumi.Output[str]:
         """
-        Enable/disable FortiSwitch ARP inspection. Valid values: `enable`, `disable`.
+        Enable/disable FortiSwitch ARP inspection.
         """
         return pulumi.get(self, "switch_controller_arp_inspection")
 
@@ -11001,7 +11048,7 @@ class Interface(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

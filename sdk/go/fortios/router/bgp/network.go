@@ -47,7 +47,7 @@ type Network struct {
 	// Route map to modify generated route.
 	RouteMap pulumi.StringOutput `pulumi:"routeMap"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewNetwork registers a new resource with the given unique name, arguments, and options.
@@ -260,8 +260,8 @@ func (o NetworkOutput) RouteMap() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o NetworkOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o NetworkOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type NetworkArrayOutput struct{ *pulumi.OutputState }

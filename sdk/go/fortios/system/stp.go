@@ -44,7 +44,7 @@ type Stp struct {
 	// STP switch priority; the lower the number the higher the priority (select from 0, 4096, 8192, 12288, 16384, 20480, 24576, 28672, 32768, 36864, 40960, 45056, 49152, 53248, and 57344). Valid values: `0`, `4096`, `8192`, `12288`, `16384`, `20480`, `24576`, `28672`, `32768`, `36864`, `40960`, `45056`, `49152`, `53248`, `57344`.
 	SwitchPriority pulumi.StringOutput `pulumi:"switchPriority"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewStp registers a new resource with the given unique name, arguments, and options.
@@ -254,8 +254,8 @@ func (o StpOutput) SwitchPriority() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o StpOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Stp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o StpOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Stp) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type StpArrayOutput struct{ *pulumi.OutputState }

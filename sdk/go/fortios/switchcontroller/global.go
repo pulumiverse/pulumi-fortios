@@ -94,7 +94,7 @@ type Global struct {
 	FipsEnforce pulumi.StringOutput `pulumi:"fipsEnforce"`
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization pulumi.StringOutput `pulumi:"firmwareProvisionOnAuthorization"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush pulumi.StringOutput `pulumi:"httpsImagePush"`
@@ -104,7 +104,7 @@ type Global struct {
 	MacAgingInterval pulumi.IntOutput `pulumi:"macAgingInterval"`
 	// Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
 	MacEventLogging pulumi.StringOutput `pulumi:"macEventLogging"`
-	// Time in hours after which an inactive MAC is removed from client DB.
+	// Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval).
 	MacRetentionPeriod pulumi.IntOutput `pulumi:"macRetentionPeriod"`
 	// Set timeout for Learning Limit Violations (0 = disabled).
 	MacViolationTimer pulumi.IntOutput `pulumi:"macViolationTimer"`
@@ -115,7 +115,7 @@ type Global struct {
 	// Control which sources update the device user list. Valid values: `mac-cache`, `lldp`, `dhcp-snooping`, `l2-db`, `l3-db`.
 	UpdateUserDevice pulumi.StringOutput `pulumi:"updateUserDevice"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.
 	VlanAllMode pulumi.StringOutput `pulumi:"vlanAllMode"`
 	// Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. Valid values: `description`, `name`.
@@ -184,7 +184,7 @@ type globalState struct {
 	FipsEnforce *string `pulumi:"fipsEnforce"`
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush *string `pulumi:"httpsImagePush"`
@@ -194,7 +194,7 @@ type globalState struct {
 	MacAgingInterval *int `pulumi:"macAgingInterval"`
 	// Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
 	MacEventLogging *string `pulumi:"macEventLogging"`
-	// Time in hours after which an inactive MAC is removed from client DB.
+	// Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval).
 	MacRetentionPeriod *int `pulumi:"macRetentionPeriod"`
 	// Set timeout for Learning Limit Violations (0 = disabled).
 	MacViolationTimer *int `pulumi:"macViolationTimer"`
@@ -245,7 +245,7 @@ type GlobalState struct {
 	FipsEnforce pulumi.StringPtrInput
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush pulumi.StringPtrInput
@@ -255,7 +255,7 @@ type GlobalState struct {
 	MacAgingInterval pulumi.IntPtrInput
 	// Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
 	MacEventLogging pulumi.StringPtrInput
-	// Time in hours after which an inactive MAC is removed from client DB.
+	// Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval).
 	MacRetentionPeriod pulumi.IntPtrInput
 	// Set timeout for Learning Limit Violations (0 = disabled).
 	MacViolationTimer pulumi.IntPtrInput
@@ -310,7 +310,7 @@ type globalArgs struct {
 	FipsEnforce *string `pulumi:"fipsEnforce"`
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush *string `pulumi:"httpsImagePush"`
@@ -320,7 +320,7 @@ type globalArgs struct {
 	MacAgingInterval *int `pulumi:"macAgingInterval"`
 	// Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
 	MacEventLogging *string `pulumi:"macEventLogging"`
-	// Time in hours after which an inactive MAC is removed from client DB.
+	// Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval).
 	MacRetentionPeriod *int `pulumi:"macRetentionPeriod"`
 	// Set timeout for Learning Limit Violations (0 = disabled).
 	MacViolationTimer *int `pulumi:"macViolationTimer"`
@@ -372,7 +372,7 @@ type GlobalArgs struct {
 	FipsEnforce pulumi.StringPtrInput
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush pulumi.StringPtrInput
@@ -382,7 +382,7 @@ type GlobalArgs struct {
 	MacAgingInterval pulumi.IntPtrInput
 	// Enable/disable MAC address event logging. Valid values: `enable`, `disable`.
 	MacEventLogging pulumi.StringPtrInput
-	// Time in hours after which an inactive MAC is removed from client DB.
+	// Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval).
 	MacRetentionPeriod pulumi.IntPtrInput
 	// Set timeout for Learning Limit Violations (0 = disabled).
 	MacViolationTimer pulumi.IntPtrInput
@@ -564,7 +564,7 @@ func (o GlobalOutput) FirmwareProvisionOnAuthorization() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.FirmwareProvisionOnAuthorization }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o GlobalOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -589,7 +589,7 @@ func (o GlobalOutput) MacEventLogging() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.MacEventLogging }).(pulumi.StringOutput)
 }
 
-// Time in hours after which an inactive MAC is removed from client DB.
+// Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval).
 func (o GlobalOutput) MacRetentionPeriod() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MacRetentionPeriod }).(pulumi.IntOutput)
 }
@@ -615,8 +615,8 @@ func (o GlobalOutput) UpdateUserDevice() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o GlobalOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o GlobalOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // VLAN configuration mode, user-defined-vlans or all-possible-vlans. Valid values: `all`, `defined`.

@@ -31,7 +31,7 @@ class FortiguardArgs:
                  warn_auth_https: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Fortiguard resource.
-        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15%).
+        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15).
         :param pulumi.Input[int] cache_mem_permille: Maximum permille of available memory allocated to caching (1 - 150).
         :param pulumi.Input[str] cache_mode: Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
         :param pulumi.Input[str] cache_prefix_match: Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
@@ -82,7 +82,7 @@ class FortiguardArgs:
     @pulumi.getter(name="cacheMemPercent")
     def cache_mem_percent(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum percentage of available memory allocated to caching (1 - 15%).
+        Maximum percentage of available memory allocated to caching (1 - 15).
         """
         return pulumi.get(self, "cache_mem_percent")
 
@@ -279,7 +279,7 @@ class _FortiguardState:
                  warn_auth_https: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Fortiguard resources.
-        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15%).
+        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15).
         :param pulumi.Input[int] cache_mem_permille: Maximum permille of available memory allocated to caching (1 - 150).
         :param pulumi.Input[str] cache_mode: Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
         :param pulumi.Input[str] cache_prefix_match: Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
@@ -330,7 +330,7 @@ class _FortiguardState:
     @pulumi.getter(name="cacheMemPercent")
     def cache_mem_percent(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum percentage of available memory allocated to caching (1 - 15%).
+        Maximum percentage of available memory allocated to caching (1 - 15).
         """
         return pulumi.get(self, "cache_mem_percent")
 
@@ -571,7 +571,7 @@ class Fortiguard(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15%).
+        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15).
         :param pulumi.Input[int] cache_mem_permille: Maximum permille of available memory allocated to caching (1 - 150).
         :param pulumi.Input[str] cache_mode: Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
         :param pulumi.Input[str] cache_prefix_match: Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
@@ -720,7 +720,7 @@ class Fortiguard(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15%).
+        :param pulumi.Input[int] cache_mem_percent: Maximum percentage of available memory allocated to caching (1 - 15).
         :param pulumi.Input[int] cache_mem_permille: Maximum permille of available memory allocated to caching (1 - 150).
         :param pulumi.Input[str] cache_mode: Cache entry expiration mode. Valid values: `ttl`, `db-ver`.
         :param pulumi.Input[str] cache_prefix_match: Enable/disable prefix matching in the cache. Valid values: `enable`, `disable`.
@@ -761,7 +761,7 @@ class Fortiguard(pulumi.CustomResource):
     @pulumi.getter(name="cacheMemPercent")
     def cache_mem_percent(self) -> pulumi.Output[int]:
         """
-        Maximum percentage of available memory allocated to caching (1 - 15%).
+        Maximum percentage of available memory allocated to caching (1 - 15).
         """
         return pulumi.get(self, "cache_mem_percent")
 
@@ -863,7 +863,7 @@ class Fortiguard(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

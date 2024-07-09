@@ -86,9 +86,9 @@ type Pppoeinterface struct {
 	Ipunnumbered pulumi.StringOutput `pulumi:"ipunnumbered"`
 	// Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
 	Ipv6 pulumi.StringOutput `pulumi:"ipv6"`
-	// PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
+	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
 	LcpEchoInterval pulumi.IntOutput `pulumi:"lcpEchoInterval"`
-	// Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+	// Maximum missed LCP echo messages before disconnect.
 	LcpMaxEchoFails pulumi.IntOutput `pulumi:"lcpMaxEchoFails"`
 	// Name of the PPPoE interface.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -103,7 +103,7 @@ type Pppoeinterface struct {
 	// User name.
 	Username pulumi.StringOutput `pulumi:"username"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewPppoeinterface registers a new resource with the given unique name, arguments, and options.
@@ -162,9 +162,9 @@ type pppoeinterfaceState struct {
 	Ipunnumbered *string `pulumi:"ipunnumbered"`
 	// Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
 	Ipv6 *string `pulumi:"ipv6"`
-	// PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
+	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
 	LcpEchoInterval *int `pulumi:"lcpEchoInterval"`
-	// Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+	// Maximum missed LCP echo messages before disconnect.
 	LcpMaxEchoFails *int `pulumi:"lcpMaxEchoFails"`
 	// Name of the PPPoE interface.
 	Name *string `pulumi:"name"`
@@ -199,9 +199,9 @@ type PppoeinterfaceState struct {
 	Ipunnumbered pulumi.StringPtrInput
 	// Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
 	Ipv6 pulumi.StringPtrInput
-	// PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
+	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
 	LcpEchoInterval pulumi.IntPtrInput
-	// Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+	// Maximum missed LCP echo messages before disconnect.
 	LcpMaxEchoFails pulumi.IntPtrInput
 	// Name of the PPPoE interface.
 	Name pulumi.StringPtrInput
@@ -240,9 +240,9 @@ type pppoeinterfaceArgs struct {
 	Ipunnumbered *string `pulumi:"ipunnumbered"`
 	// Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
 	Ipv6 *string `pulumi:"ipv6"`
-	// PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
+	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
 	LcpEchoInterval *int `pulumi:"lcpEchoInterval"`
-	// Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+	// Maximum missed LCP echo messages before disconnect.
 	LcpMaxEchoFails *int `pulumi:"lcpMaxEchoFails"`
 	// Name of the PPPoE interface.
 	Name *string `pulumi:"name"`
@@ -278,9 +278,9 @@ type PppoeinterfaceArgs struct {
 	Ipunnumbered pulumi.StringPtrInput
 	// Enable/disable IPv6 Control Protocol (IPv6CP). Valid values: `enable`, `disable`.
 	Ipv6 pulumi.StringPtrInput
-	// PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
+	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
 	LcpEchoInterval pulumi.IntPtrInput
-	// Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+	// Maximum missed LCP echo messages before disconnect.
 	LcpMaxEchoFails pulumi.IntPtrInput
 	// Name of the PPPoE interface.
 	Name pulumi.StringPtrInput
@@ -425,12 +425,12 @@ func (o PppoeinterfaceOutput) Ipv6() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pppoeinterface) pulumi.StringOutput { return v.Ipv6 }).(pulumi.StringOutput)
 }
 
-// PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
+// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
 func (o PppoeinterfaceOutput) LcpEchoInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Pppoeinterface) pulumi.IntOutput { return v.LcpEchoInterval }).(pulumi.IntOutput)
 }
 
-// Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+// Maximum missed LCP echo messages before disconnect.
 func (o PppoeinterfaceOutput) LcpMaxEchoFails() pulumi.IntOutput {
 	return o.ApplyT(func(v *Pppoeinterface) pulumi.IntOutput { return v.LcpMaxEchoFails }).(pulumi.IntOutput)
 }
@@ -466,8 +466,8 @@ func (o PppoeinterfaceOutput) Username() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o PppoeinterfaceOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Pppoeinterface) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o PppoeinterfaceOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pppoeinterface) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type PppoeinterfaceArrayOutput struct{ *pulumi.OutputState }

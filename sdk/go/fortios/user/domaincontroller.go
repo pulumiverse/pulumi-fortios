@@ -106,7 +106,7 @@ type Domaincontroller struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers DomaincontrollerExtraServerArrayOutput `pulumi:"extraServers"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Hostname of the server to connect to.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
@@ -137,7 +137,7 @@ type Domaincontroller struct {
 	// User name to sign in with. Must have proper permissions for service.
 	Username pulumi.StringOutput `pulumi:"username"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewDomaincontroller registers a new resource with the given unique name, arguments, and options.
@@ -198,7 +198,7 @@ type domaincontrollerState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers []DomaincontrollerExtraServer `pulumi:"extraServers"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Hostname of the server to connect to.
 	Hostname *string `pulumi:"hostname"`
@@ -255,7 +255,7 @@ type DomaincontrollerState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers DomaincontrollerExtraServerArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Hostname of the server to connect to.
 	Hostname pulumi.StringPtrInput
@@ -316,7 +316,7 @@ type domaincontrollerArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers []DomaincontrollerExtraServer `pulumi:"extraServers"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Hostname of the server to connect to.
 	Hostname *string `pulumi:"hostname"`
@@ -374,7 +374,7 @@ type DomaincontrollerArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers DomaincontrollerExtraServerArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Hostname of the server to connect to.
 	Hostname pulumi.StringPtrInput
@@ -550,7 +550,7 @@ func (o DomaincontrollerOutput) ExtraServers() DomaincontrollerExtraServerArrayO
 	return o.ApplyT(func(v *Domaincontroller) DomaincontrollerExtraServerArrayOutput { return v.ExtraServers }).(DomaincontrollerExtraServerArrayOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o DomaincontrollerOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Domaincontroller) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -626,8 +626,8 @@ func (o DomaincontrollerOutput) Username() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o DomaincontrollerOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Domaincontroller) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o DomaincontrollerOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Domaincontroller) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type DomaincontrollerArrayOutput struct{ *pulumi.OutputState }

@@ -78,7 +78,7 @@ class SnifferArgs:
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] file_filter_profile_status: Enable/disable file filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: Sniffer ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         :param pulumi.Input[str] ip_threatfeed_status: Enable/disable IP threat feed. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SnifferIpThreatfeedArgs']]] ip_threatfeeds: Name of an existing IP threat feed. The structure of `ip_threatfeed` block is documented below.
@@ -87,7 +87,7 @@ class SnifferArgs:
         :param pulumi.Input[str] ips_sensor_status: Enable/disable IPS sensor. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6: Enable/disable sniffing IPv6 packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
-        :param pulumi.Input[int] max_packet_count: Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
+        :param pulumi.Input[int] max_packet_count: Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.15, 7.0.1-7.0.15: 1 - 1000000, default = 4000.
         :param pulumi.Input[str] non_ip: Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] port: Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
         :param pulumi.Input[str] protocol: Integer value for the protocol type as defined by IANA (0 - 255).
@@ -415,7 +415,7 @@ class SnifferArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -523,7 +523,7 @@ class SnifferArgs:
     @pulumi.getter(name="maxPacketCount")
     def max_packet_count(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
+        Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.15, 7.0.1-7.0.15: 1 - 1000000, default = 4000.
         """
         return pulumi.get(self, "max_packet_count")
 
@@ -740,7 +740,7 @@ class _SnifferState:
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] file_filter_profile_status: Enable/disable file filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: Sniffer ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         :param pulumi.Input[str] interface: Interface name that traffic sniffing will take place on.
         :param pulumi.Input[str] ip_threatfeed_status: Enable/disable IP threat feed. Valid values: `enable`, `disable`.
@@ -750,7 +750,7 @@ class _SnifferState:
         :param pulumi.Input[str] ips_sensor_status: Enable/disable IPS sensor. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6: Enable/disable sniffing IPv6 packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
-        :param pulumi.Input[int] max_packet_count: Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
+        :param pulumi.Input[int] max_packet_count: Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.15, 7.0.1-7.0.15: 1 - 1000000, default = 4000.
         :param pulumi.Input[str] non_ip: Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] port: Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
         :param pulumi.Input[str] protocol: Integer value for the protocol type as defined by IANA (0 - 255).
@@ -1067,7 +1067,7 @@ class _SnifferState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1187,7 +1187,7 @@ class _SnifferState:
     @pulumi.getter(name="maxPacketCount")
     def max_packet_count(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
+        Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.15, 7.0.1-7.0.15: 1 - 1000000, default = 4000.
         """
         return pulumi.get(self, "max_packet_count")
 
@@ -1453,7 +1453,7 @@ class Sniffer(pulumi.CustomResource):
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] file_filter_profile_status: Enable/disable file filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: Sniffer ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         :param pulumi.Input[str] interface: Interface name that traffic sniffing will take place on.
         :param pulumi.Input[str] ip_threatfeed_status: Enable/disable IP threat feed. Valid values: `enable`, `disable`.
@@ -1463,7 +1463,7 @@ class Sniffer(pulumi.CustomResource):
         :param pulumi.Input[str] ips_sensor_status: Enable/disable IPS sensor. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6: Enable/disable sniffing IPv6 packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
-        :param pulumi.Input[int] max_packet_count: Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
+        :param pulumi.Input[int] max_packet_count: Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.15, 7.0.1-7.0.15: 1 - 1000000, default = 4000.
         :param pulumi.Input[str] non_ip: Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] port: Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
         :param pulumi.Input[str] protocol: Integer value for the protocol type as defined by IANA (0 - 255).
@@ -1713,7 +1713,7 @@ class Sniffer(pulumi.CustomResource):
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] file_filter_profile_status: Enable/disable file filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: Sniffer ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         :param pulumi.Input[str] interface: Interface name that traffic sniffing will take place on.
         :param pulumi.Input[str] ip_threatfeed_status: Enable/disable IP threat feed. Valid values: `enable`, `disable`.
@@ -1723,7 +1723,7 @@ class Sniffer(pulumi.CustomResource):
         :param pulumi.Input[str] ips_sensor_status: Enable/disable IPS sensor. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6: Enable/disable sniffing IPv6 packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. Valid values: `all`, `utm`, `disable`.
-        :param pulumi.Input[int] max_packet_count: Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
+        :param pulumi.Input[int] max_packet_count: Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.15, 7.0.1-7.0.15: 1 - 1000000, default = 4000.
         :param pulumi.Input[str] non_ip: Enable/disable sniffing non-IP packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] port: Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200).
         :param pulumi.Input[str] protocol: Integer value for the protocol type as defined by IANA (0 - 255).
@@ -1932,7 +1932,7 @@ class Sniffer(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2012,7 +2012,7 @@ class Sniffer(pulumi.CustomResource):
     @pulumi.getter(name="maxPacketCount")
     def max_packet_count(self) -> pulumi.Output[int]:
         """
-        Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.14, 7.0.1-7.0.13: 1 - 1000000, default = 4000.
+        Maximum packet count. On FortiOS versions 6.2.0: 1 - 1000000, default = 10000. On FortiOS versions 6.2.4-6.4.2, 7.0.0: 1 - 10000, default = 4000. On FortiOS versions 6.4.10-6.4.15, 7.0.1-7.0.15: 1 - 1000000, default = 4000.
         """
         return pulumi.get(self, "max_packet_count")
 
@@ -2082,7 +2082,7 @@ class Sniffer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

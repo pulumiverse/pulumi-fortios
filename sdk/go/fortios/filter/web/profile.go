@@ -141,7 +141,7 @@ type Profile struct {
 	FileFilter ProfileFileFilterOutput `pulumi:"fileFilter"`
 	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
 	FtgdWf ProfileFtgdWfOutput `pulumi:"ftgdWf"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
 	HttpsReplacemsg pulumi.StringOutput `pulumi:"httpsReplacemsg"`
@@ -162,7 +162,7 @@ type Profile struct {
 	// Replacement message group.
 	ReplacemsgGroup pulumi.StringOutput `pulumi:"replacemsgGroup"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Web content filtering settings. The structure of `web` block is documented below.
 	Web ProfileWebOutput `pulumi:"web"`
 	// Enable/disable logging of AntiPhishing checks. Valid values: `enable`, `disable`.
@@ -257,7 +257,7 @@ type profileState struct {
 	FileFilter *ProfileFileFilter `pulumi:"fileFilter"`
 	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
 	FtgdWf *ProfileFtgdWf `pulumi:"ftgdWf"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
 	HttpsReplacemsg *string `pulumi:"httpsReplacemsg"`
@@ -344,7 +344,7 @@ type ProfileState struct {
 	FileFilter ProfileFileFilterPtrInput
 	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
 	FtgdWf ProfileFtgdWfPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
 	HttpsReplacemsg pulumi.StringPtrInput
@@ -435,7 +435,7 @@ type profileArgs struct {
 	FileFilter *ProfileFileFilter `pulumi:"fileFilter"`
 	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
 	FtgdWf *ProfileFtgdWf `pulumi:"ftgdWf"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
 	HttpsReplacemsg *string `pulumi:"httpsReplacemsg"`
@@ -523,7 +523,7 @@ type ProfileArgs struct {
 	FileFilter ProfileFileFilterPtrInput
 	// FortiGuard Web Filter settings. The structure of `ftgdWf` block is documented below.
 	FtgdWf ProfileFtgdWfPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable replacement messages for HTTPS. Valid values: `enable`, `disable`.
 	HttpsReplacemsg pulumi.StringPtrInput
@@ -717,7 +717,7 @@ func (o ProfileOutput) FtgdWf() ProfileFtgdWfOutput {
 	return o.ApplyT(func(v *Profile) ProfileFtgdWfOutput { return v.FtgdWf }).(ProfileFtgdWfOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -768,8 +768,8 @@ func (o ProfileOutput) ReplacemsgGroup() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ProfileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ProfileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Web content filtering settings. The structure of `web` block is documented below.

@@ -98,7 +98,7 @@ export class Local extends pulumi.CustomResource {
      */
     public readonly cmpRegenerationMethod!: pulumi.Output<string>;
     /**
-     * 'ADDRESS:PORT' for CMP server.
+     * Address and port for CMP server (format = address:port).
      */
     public readonly cmpServer!: pulumi.Output<string>;
     /**
@@ -208,7 +208,7 @@ export class Local extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Local resource with the given unique name, arguments, and options.
@@ -360,7 +360,7 @@ export interface LocalState {
      */
     cmpRegenerationMethod?: pulumi.Input<string>;
     /**
-     * 'ADDRESS:PORT' for CMP server.
+     * Address and port for CMP server (format = address:port).
      */
     cmpServer?: pulumi.Input<string>;
     /**
@@ -522,7 +522,7 @@ export interface LocalArgs {
      */
     cmpRegenerationMethod?: pulumi.Input<string>;
     /**
-     * 'ADDRESS:PORT' for CMP server.
+     * Address and port for CMP server (format = address:port).
      */
     cmpServer?: pulumi.Input<string>;
     /**

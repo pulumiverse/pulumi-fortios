@@ -41,7 +41,7 @@ type Snmp struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// AC SNMP engineId string (maximum 24 characters).
 	EngineId pulumi.StringOutput `pulumi:"engineId"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// CPU usage when trap is sent.
 	TrapHighCpuThreshold pulumi.IntOutput `pulumi:"trapHighCpuThreshold"`
@@ -50,7 +50,7 @@ type Snmp struct {
 	// SNMP User Configuration. The structure of `user` block is documented below.
 	Users SnmpUserArrayOutput `pulumi:"users"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSnmp registers a new resource with the given unique name, arguments, and options.
@@ -91,7 +91,7 @@ type snmpState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// AC SNMP engineId string (maximum 24 characters).
 	EngineId *string `pulumi:"engineId"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// CPU usage when trap is sent.
 	TrapHighCpuThreshold *int `pulumi:"trapHighCpuThreshold"`
@@ -112,7 +112,7 @@ type SnmpState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// AC SNMP engineId string (maximum 24 characters).
 	EngineId pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// CPU usage when trap is sent.
 	TrapHighCpuThreshold pulumi.IntPtrInput
@@ -137,7 +137,7 @@ type snmpArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// AC SNMP engineId string (maximum 24 characters).
 	EngineId *string `pulumi:"engineId"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// CPU usage when trap is sent.
 	TrapHighCpuThreshold *int `pulumi:"trapHighCpuThreshold"`
@@ -159,7 +159,7 @@ type SnmpArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// AC SNMP engineId string (maximum 24 characters).
 	EngineId pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// CPU usage when trap is sent.
 	TrapHighCpuThreshold pulumi.IntPtrInput
@@ -278,7 +278,7 @@ func (o SnmpOutput) EngineId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Snmp) pulumi.StringOutput { return v.EngineId }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SnmpOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Snmp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -299,8 +299,8 @@ func (o SnmpOutput) Users() SnmpUserArrayOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SnmpOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Snmp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SnmpOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Snmp) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SnmpArrayOutput struct{ *pulumi.OutputState }

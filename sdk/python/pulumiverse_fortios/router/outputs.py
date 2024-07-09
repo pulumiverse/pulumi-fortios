@@ -3538,6 +3538,8 @@ class BgpNeighborGroup(dict):
             suggest = "prefix_list_out_vpnv6"
         elif key == "remoteAs":
             suggest = "remote_as"
+        elif key == "remoteAsFilter":
+            suggest = "remote_as_filter"
         elif key == "removePrivateAs":
             suggest = "remove_private_as"
         elif key == "removePrivateAs6":
@@ -3750,6 +3752,7 @@ class BgpNeighborGroup(dict):
                  prefix_list_out_vpnv4: Optional[str] = None,
                  prefix_list_out_vpnv6: Optional[str] = None,
                  remote_as: Optional[int] = None,
+                 remote_as_filter: Optional[str] = None,
                  remove_private_as: Optional[str] = None,
                  remove_private_as6: Optional[str] = None,
                  remove_private_as_evpn: Optional[str] = None,
@@ -3906,6 +3909,7 @@ class BgpNeighborGroup(dict):
         :param str prefix_list_out_vpnv4: Outbound filter for VPNv4 updates to this neighbor.
         :param str prefix_list_out_vpnv6: Outbound filter for VPNv6 updates to this neighbor.
         :param int remote_as: AS number of neighbor.
+        :param str remote_as_filter: BGP filter for remote AS.
         :param str remove_private_as: Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
         :param str remove_private_as6: Enable/disable remove private AS number from IPv6 outbound updates. Valid values: `enable`, `disable`.
         :param str remove_private_as_evpn: Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
@@ -4169,6 +4173,8 @@ class BgpNeighborGroup(dict):
             pulumi.set(__self__, "prefix_list_out_vpnv6", prefix_list_out_vpnv6)
         if remote_as is not None:
             pulumi.set(__self__, "remote_as", remote_as)
+        if remote_as_filter is not None:
+            pulumi.set(__self__, "remote_as_filter", remote_as_filter)
         if remove_private_as is not None:
             pulumi.set(__self__, "remove_private_as", remove_private_as)
         if remove_private_as6 is not None:
@@ -5121,6 +5127,14 @@ class BgpNeighborGroup(dict):
         AS number of neighbor.
         """
         return pulumi.get(self, "remote_as")
+
+    @property
+    @pulumi.getter(name="remoteAsFilter")
+    def remote_as_filter(self) -> Optional[str]:
+        """
+        BGP filter for remote AS.
+        """
+        return pulumi.get(self, "remote_as_filter")
 
     @property
     @pulumi.getter(name="removePrivateAs")
@@ -15757,6 +15771,7 @@ class GetBgpNeighborGroupResult(dict):
                  prefix_list_out_vpnv4: str,
                  prefix_list_out_vpnv6: str,
                  remote_as: int,
+                 remote_as_filter: str,
                  remove_private_as: str,
                  remove_private_as6: str,
                  remove_private_as_evpn: str,
@@ -15913,6 +15928,7 @@ class GetBgpNeighborGroupResult(dict):
         :param str prefix_list_out_vpnv4: Outbound filter for VPNv4 updates to this neighbor.
         :param str prefix_list_out_vpnv6: Outbound filter for VPNv6 updates to this neighbor.
         :param int remote_as: AS number of neighbor.
+        :param str remote_as_filter: BGP filter for remote AS.
         :param str remove_private_as: Enable/disable remove private AS number from IPv4 outbound updates.
         :param str remove_private_as6: Enable/disable remove private AS number from IPv6 outbound updates.
         :param str remove_private_as_evpn: Enable/disable removing private AS number from L2VPN EVPN outbound updates.
@@ -16069,6 +16085,7 @@ class GetBgpNeighborGroupResult(dict):
         pulumi.set(__self__, "prefix_list_out_vpnv4", prefix_list_out_vpnv4)
         pulumi.set(__self__, "prefix_list_out_vpnv6", prefix_list_out_vpnv6)
         pulumi.set(__self__, "remote_as", remote_as)
+        pulumi.set(__self__, "remote_as_filter", remote_as_filter)
         pulumi.set(__self__, "remove_private_as", remove_private_as)
         pulumi.set(__self__, "remove_private_as6", remove_private_as6)
         pulumi.set(__self__, "remove_private_as_evpn", remove_private_as_evpn)
@@ -16973,6 +16990,14 @@ class GetBgpNeighborGroupResult(dict):
         AS number of neighbor.
         """
         return pulumi.get(self, "remote_as")
+
+    @property
+    @pulumi.getter(name="remoteAsFilter")
+    def remote_as_filter(self) -> str:
+        """
+        BGP filter for remote AS.
+        """
+        return pulumi.get(self, "remote_as_filter")
 
     @property
     @pulumi.getter(name="removePrivateAs")

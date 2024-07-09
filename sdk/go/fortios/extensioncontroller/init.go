@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Extender{}
 	case "fortios:extensioncontroller/extenderprofile:Extenderprofile":
 		r = &Extenderprofile{}
+	case "fortios:extensioncontroller/extendervap:Extendervap":
+		r = &Extendervap{}
 	case "fortios:extensioncontroller/fortigate:Fortigate":
 		r = &Fortigate{}
 	case "fortios:extensioncontroller/fortigateprofile:Fortigateprofile":
@@ -57,6 +59,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"extensioncontroller/extenderprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"extensioncontroller/extendervap",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

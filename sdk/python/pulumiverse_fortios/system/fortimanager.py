@@ -407,6 +407,6 @@ class Fortimanager(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         return pulumi.get(self, "vdomparam")
 

@@ -147,6 +147,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Ipv6tunnel{}
 	case "fortios:system/licenseForticare:LicenseForticare":
 		r = &LicenseForticare{}
+	case "fortios:system/licenseFortiflex:LicenseFortiflex":
+		r = &LicenseFortiflex{}
 	case "fortios:system/licenseVdom:LicenseVdom":
 		r = &LicenseVdom{}
 	case "fortios:system/licenseVm:LicenseVm":
@@ -231,6 +233,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Speedtestserver{}
 	case "fortios:system/speedtestsetting:Speedtestsetting":
 		r = &Speedtestsetting{}
+	case "fortios:system/sshconfig:Sshconfig":
+		r = &Sshconfig{}
 	case "fortios:system/ssoadmin:Ssoadmin":
 		r = &Ssoadmin{}
 	case "fortios:system/ssoforticloudadmin:Ssoforticloudadmin":
@@ -609,6 +613,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"system/licenseFortiflex",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"system/licenseVdom",
 		&module{version},
 	)
@@ -815,6 +824,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"system/speedtestsetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"system/sshconfig",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

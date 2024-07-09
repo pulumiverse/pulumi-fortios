@@ -2657,6 +2657,1099 @@ func (o ExtenderprofileLanExtensionBackhaulArrayOutput) Index(i pulumi.IntInput)
 	}).(ExtenderprofileLanExtensionBackhaulOutput)
 }
 
+type ExtenderprofileWifi struct {
+	// Country in which this FEX will operate (default = NA). Valid values: `--`, `AF`, `AL`, `DZ`, `AS`, `AO`, `AR`, `AM`, `AU`, `AT`, `AZ`, `BS`, `BH`, `BD`, `BB`, `BY`, `BE`, `BZ`, `BJ`, `BM`, `BT`, `BO`, `BA`, `BW`, `BR`, `BN`, `BG`, `BF`, `KH`, `CM`, `KY`, `CF`, `TD`, `CL`, `CN`, `CX`, `CO`, `CG`, `CD`, `CR`, `HR`, `CY`, `CZ`, `DK`, `DJ`, `DM`, `DO`, `EC`, `EG`, `SV`, `ET`, `EE`, `GF`, `PF`, `FO`, `FJ`, `FI`, `FR`, `GA`, `GE`, `GM`, `DE`, `GH`, `GI`, `GR`, `GL`, `GD`, `GP`, `GU`, `GT`, `GY`, `HT`, `HN`, `HK`, `HU`, `IS`, `IN`, `ID`, `IQ`, `IE`, `IM`, `IL`, `IT`, `CI`, `JM`, `JO`, `KZ`, `KE`, `KR`, `KW`, `LA`, `LV`, `LB`, `LS`, `LR`, `LY`, `LI`, `LT`, `LU`, `MO`, `MK`, `MG`, `MW`, `MY`, `MV`, `ML`, `MT`, `MH`, `MQ`, `MR`, `MU`, `YT`, `MX`, `FM`, `MD`, `MC`, `MN`, `MA`, `MZ`, `MM`, `NA`, `NP`, `NL`, `AN`, `AW`, `NZ`, `NI`, `NE`, `NG`, `NO`, `MP`, `OM`, `PK`, `PW`, `PA`, `PG`, `PY`, `PE`, `PH`, `PL`, `PT`, `PR`, `QA`, `RE`, `RO`, `RU`, `RW`, `BL`, `KN`, `LC`, `MF`, `PM`, `VC`, `SA`, `SN`, `RS`, `ME`, `SL`, `SG`, `SK`, `SI`, `SO`, `ZA`, `ES`, `LK`, `SR`, `SZ`, `SE`, `CH`, `TW`, `TZ`, `TH`, `TG`, `TT`, `TN`, `TR`, `TM`, `AE`, `TC`, `UG`, `UA`, `GB`, `US`, `PS`, `UY`, `UZ`, `VU`, `VE`, `VN`, `VI`, `WF`, `YE`, `ZM`, `ZW`, `JP`, `CA`.
+	Country *string `pulumi:"country"`
+	// Radio-1 config for Wi-Fi 2.4GHz The structure of `radio1` block is documented below.
+	Radio1 *ExtenderprofileWifiRadio1 `pulumi:"radio1"`
+	// Radio-2 config for Wi-Fi 5GHz The structure of `radio2` block is documented below.
+	//
+	// The `radio1` block supports:
+	Radio2 *ExtenderprofileWifiRadio2 `pulumi:"radio2"`
+}
+
+// ExtenderprofileWifiInput is an input type that accepts ExtenderprofileWifiArgs and ExtenderprofileWifiOutput values.
+// You can construct a concrete instance of `ExtenderprofileWifiInput` via:
+//
+//	ExtenderprofileWifiArgs{...}
+type ExtenderprofileWifiInput interface {
+	pulumi.Input
+
+	ToExtenderprofileWifiOutput() ExtenderprofileWifiOutput
+	ToExtenderprofileWifiOutputWithContext(context.Context) ExtenderprofileWifiOutput
+}
+
+type ExtenderprofileWifiArgs struct {
+	// Country in which this FEX will operate (default = NA). Valid values: `--`, `AF`, `AL`, `DZ`, `AS`, `AO`, `AR`, `AM`, `AU`, `AT`, `AZ`, `BS`, `BH`, `BD`, `BB`, `BY`, `BE`, `BZ`, `BJ`, `BM`, `BT`, `BO`, `BA`, `BW`, `BR`, `BN`, `BG`, `BF`, `KH`, `CM`, `KY`, `CF`, `TD`, `CL`, `CN`, `CX`, `CO`, `CG`, `CD`, `CR`, `HR`, `CY`, `CZ`, `DK`, `DJ`, `DM`, `DO`, `EC`, `EG`, `SV`, `ET`, `EE`, `GF`, `PF`, `FO`, `FJ`, `FI`, `FR`, `GA`, `GE`, `GM`, `DE`, `GH`, `GI`, `GR`, `GL`, `GD`, `GP`, `GU`, `GT`, `GY`, `HT`, `HN`, `HK`, `HU`, `IS`, `IN`, `ID`, `IQ`, `IE`, `IM`, `IL`, `IT`, `CI`, `JM`, `JO`, `KZ`, `KE`, `KR`, `KW`, `LA`, `LV`, `LB`, `LS`, `LR`, `LY`, `LI`, `LT`, `LU`, `MO`, `MK`, `MG`, `MW`, `MY`, `MV`, `ML`, `MT`, `MH`, `MQ`, `MR`, `MU`, `YT`, `MX`, `FM`, `MD`, `MC`, `MN`, `MA`, `MZ`, `MM`, `NA`, `NP`, `NL`, `AN`, `AW`, `NZ`, `NI`, `NE`, `NG`, `NO`, `MP`, `OM`, `PK`, `PW`, `PA`, `PG`, `PY`, `PE`, `PH`, `PL`, `PT`, `PR`, `QA`, `RE`, `RO`, `RU`, `RW`, `BL`, `KN`, `LC`, `MF`, `PM`, `VC`, `SA`, `SN`, `RS`, `ME`, `SL`, `SG`, `SK`, `SI`, `SO`, `ZA`, `ES`, `LK`, `SR`, `SZ`, `SE`, `CH`, `TW`, `TZ`, `TH`, `TG`, `TT`, `TN`, `TR`, `TM`, `AE`, `TC`, `UG`, `UA`, `GB`, `US`, `PS`, `UY`, `UZ`, `VU`, `VE`, `VN`, `VI`, `WF`, `YE`, `ZM`, `ZW`, `JP`, `CA`.
+	Country pulumi.StringPtrInput `pulumi:"country"`
+	// Radio-1 config for Wi-Fi 2.4GHz The structure of `radio1` block is documented below.
+	Radio1 ExtenderprofileWifiRadio1PtrInput `pulumi:"radio1"`
+	// Radio-2 config for Wi-Fi 5GHz The structure of `radio2` block is documented below.
+	//
+	// The `radio1` block supports:
+	Radio2 ExtenderprofileWifiRadio2PtrInput `pulumi:"radio2"`
+}
+
+func (ExtenderprofileWifiArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExtenderprofileWifi)(nil)).Elem()
+}
+
+func (i ExtenderprofileWifiArgs) ToExtenderprofileWifiOutput() ExtenderprofileWifiOutput {
+	return i.ToExtenderprofileWifiOutputWithContext(context.Background())
+}
+
+func (i ExtenderprofileWifiArgs) ToExtenderprofileWifiOutputWithContext(ctx context.Context) ExtenderprofileWifiOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtenderprofileWifiOutput)
+}
+
+func (i ExtenderprofileWifiArgs) ToExtenderprofileWifiPtrOutput() ExtenderprofileWifiPtrOutput {
+	return i.ToExtenderprofileWifiPtrOutputWithContext(context.Background())
+}
+
+func (i ExtenderprofileWifiArgs) ToExtenderprofileWifiPtrOutputWithContext(ctx context.Context) ExtenderprofileWifiPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtenderprofileWifiOutput).ToExtenderprofileWifiPtrOutputWithContext(ctx)
+}
+
+// ExtenderprofileWifiPtrInput is an input type that accepts ExtenderprofileWifiArgs, ExtenderprofileWifiPtr and ExtenderprofileWifiPtrOutput values.
+// You can construct a concrete instance of `ExtenderprofileWifiPtrInput` via:
+//
+//	        ExtenderprofileWifiArgs{...}
+//
+//	or:
+//
+//	        nil
+type ExtenderprofileWifiPtrInput interface {
+	pulumi.Input
+
+	ToExtenderprofileWifiPtrOutput() ExtenderprofileWifiPtrOutput
+	ToExtenderprofileWifiPtrOutputWithContext(context.Context) ExtenderprofileWifiPtrOutput
+}
+
+type extenderprofileWifiPtrType ExtenderprofileWifiArgs
+
+func ExtenderprofileWifiPtr(v *ExtenderprofileWifiArgs) ExtenderprofileWifiPtrInput {
+	return (*extenderprofileWifiPtrType)(v)
+}
+
+func (*extenderprofileWifiPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExtenderprofileWifi)(nil)).Elem()
+}
+
+func (i *extenderprofileWifiPtrType) ToExtenderprofileWifiPtrOutput() ExtenderprofileWifiPtrOutput {
+	return i.ToExtenderprofileWifiPtrOutputWithContext(context.Background())
+}
+
+func (i *extenderprofileWifiPtrType) ToExtenderprofileWifiPtrOutputWithContext(ctx context.Context) ExtenderprofileWifiPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtenderprofileWifiPtrOutput)
+}
+
+type ExtenderprofileWifiOutput struct{ *pulumi.OutputState }
+
+func (ExtenderprofileWifiOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExtenderprofileWifi)(nil)).Elem()
+}
+
+func (o ExtenderprofileWifiOutput) ToExtenderprofileWifiOutput() ExtenderprofileWifiOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiOutput) ToExtenderprofileWifiOutputWithContext(ctx context.Context) ExtenderprofileWifiOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiOutput) ToExtenderprofileWifiPtrOutput() ExtenderprofileWifiPtrOutput {
+	return o.ToExtenderprofileWifiPtrOutputWithContext(context.Background())
+}
+
+func (o ExtenderprofileWifiOutput) ToExtenderprofileWifiPtrOutputWithContext(ctx context.Context) ExtenderprofileWifiPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ExtenderprofileWifi) *ExtenderprofileWifi {
+		return &v
+	}).(ExtenderprofileWifiPtrOutput)
+}
+
+// Country in which this FEX will operate (default = NA). Valid values: `--`, `AF`, `AL`, `DZ`, `AS`, `AO`, `AR`, `AM`, `AU`, `AT`, `AZ`, `BS`, `BH`, `BD`, `BB`, `BY`, `BE`, `BZ`, `BJ`, `BM`, `BT`, `BO`, `BA`, `BW`, `BR`, `BN`, `BG`, `BF`, `KH`, `CM`, `KY`, `CF`, `TD`, `CL`, `CN`, `CX`, `CO`, `CG`, `CD`, `CR`, `HR`, `CY`, `CZ`, `DK`, `DJ`, `DM`, `DO`, `EC`, `EG`, `SV`, `ET`, `EE`, `GF`, `PF`, `FO`, `FJ`, `FI`, `FR`, `GA`, `GE`, `GM`, `DE`, `GH`, `GI`, `GR`, `GL`, `GD`, `GP`, `GU`, `GT`, `GY`, `HT`, `HN`, `HK`, `HU`, `IS`, `IN`, `ID`, `IQ`, `IE`, `IM`, `IL`, `IT`, `CI`, `JM`, `JO`, `KZ`, `KE`, `KR`, `KW`, `LA`, `LV`, `LB`, `LS`, `LR`, `LY`, `LI`, `LT`, `LU`, `MO`, `MK`, `MG`, `MW`, `MY`, `MV`, `ML`, `MT`, `MH`, `MQ`, `MR`, `MU`, `YT`, `MX`, `FM`, `MD`, `MC`, `MN`, `MA`, `MZ`, `MM`, `NA`, `NP`, `NL`, `AN`, `AW`, `NZ`, `NI`, `NE`, `NG`, `NO`, `MP`, `OM`, `PK`, `PW`, `PA`, `PG`, `PY`, `PE`, `PH`, `PL`, `PT`, `PR`, `QA`, `RE`, `RO`, `RU`, `RW`, `BL`, `KN`, `LC`, `MF`, `PM`, `VC`, `SA`, `SN`, `RS`, `ME`, `SL`, `SG`, `SK`, `SI`, `SO`, `ZA`, `ES`, `LK`, `SR`, `SZ`, `SE`, `CH`, `TW`, `TZ`, `TH`, `TG`, `TT`, `TN`, `TR`, `TM`, `AE`, `TC`, `UG`, `UA`, `GB`, `US`, `PS`, `UY`, `UZ`, `VU`, `VE`, `VN`, `VI`, `WF`, `YE`, `ZM`, `ZW`, `JP`, `CA`.
+func (o ExtenderprofileWifiOutput) Country() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifi) *string { return v.Country }).(pulumi.StringPtrOutput)
+}
+
+// Radio-1 config for Wi-Fi 2.4GHz The structure of `radio1` block is documented below.
+func (o ExtenderprofileWifiOutput) Radio1() ExtenderprofileWifiRadio1PtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifi) *ExtenderprofileWifiRadio1 { return v.Radio1 }).(ExtenderprofileWifiRadio1PtrOutput)
+}
+
+// Radio-2 config for Wi-Fi 5GHz The structure of `radio2` block is documented below.
+//
+// The `radio1` block supports:
+func (o ExtenderprofileWifiOutput) Radio2() ExtenderprofileWifiRadio2PtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifi) *ExtenderprofileWifiRadio2 { return v.Radio2 }).(ExtenderprofileWifiRadio2PtrOutput)
+}
+
+type ExtenderprofileWifiPtrOutput struct{ *pulumi.OutputState }
+
+func (ExtenderprofileWifiPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExtenderprofileWifi)(nil)).Elem()
+}
+
+func (o ExtenderprofileWifiPtrOutput) ToExtenderprofileWifiPtrOutput() ExtenderprofileWifiPtrOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiPtrOutput) ToExtenderprofileWifiPtrOutputWithContext(ctx context.Context) ExtenderprofileWifiPtrOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiPtrOutput) Elem() ExtenderprofileWifiOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifi) ExtenderprofileWifi {
+		if v != nil {
+			return *v
+		}
+		var ret ExtenderprofileWifi
+		return ret
+	}).(ExtenderprofileWifiOutput)
+}
+
+// Country in which this FEX will operate (default = NA). Valid values: `--`, `AF`, `AL`, `DZ`, `AS`, `AO`, `AR`, `AM`, `AU`, `AT`, `AZ`, `BS`, `BH`, `BD`, `BB`, `BY`, `BE`, `BZ`, `BJ`, `BM`, `BT`, `BO`, `BA`, `BW`, `BR`, `BN`, `BG`, `BF`, `KH`, `CM`, `KY`, `CF`, `TD`, `CL`, `CN`, `CX`, `CO`, `CG`, `CD`, `CR`, `HR`, `CY`, `CZ`, `DK`, `DJ`, `DM`, `DO`, `EC`, `EG`, `SV`, `ET`, `EE`, `GF`, `PF`, `FO`, `FJ`, `FI`, `FR`, `GA`, `GE`, `GM`, `DE`, `GH`, `GI`, `GR`, `GL`, `GD`, `GP`, `GU`, `GT`, `GY`, `HT`, `HN`, `HK`, `HU`, `IS`, `IN`, `ID`, `IQ`, `IE`, `IM`, `IL`, `IT`, `CI`, `JM`, `JO`, `KZ`, `KE`, `KR`, `KW`, `LA`, `LV`, `LB`, `LS`, `LR`, `LY`, `LI`, `LT`, `LU`, `MO`, `MK`, `MG`, `MW`, `MY`, `MV`, `ML`, `MT`, `MH`, `MQ`, `MR`, `MU`, `YT`, `MX`, `FM`, `MD`, `MC`, `MN`, `MA`, `MZ`, `MM`, `NA`, `NP`, `NL`, `AN`, `AW`, `NZ`, `NI`, `NE`, `NG`, `NO`, `MP`, `OM`, `PK`, `PW`, `PA`, `PG`, `PY`, `PE`, `PH`, `PL`, `PT`, `PR`, `QA`, `RE`, `RO`, `RU`, `RW`, `BL`, `KN`, `LC`, `MF`, `PM`, `VC`, `SA`, `SN`, `RS`, `ME`, `SL`, `SG`, `SK`, `SI`, `SO`, `ZA`, `ES`, `LK`, `SR`, `SZ`, `SE`, `CH`, `TW`, `TZ`, `TH`, `TG`, `TT`, `TN`, `TR`, `TM`, `AE`, `TC`, `UG`, `UA`, `GB`, `US`, `PS`, `UY`, `UZ`, `VU`, `VE`, `VN`, `VI`, `WF`, `YE`, `ZM`, `ZW`, `JP`, `CA`.
+func (o ExtenderprofileWifiPtrOutput) Country() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifi) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Country
+	}).(pulumi.StringPtrOutput)
+}
+
+// Radio-1 config for Wi-Fi 2.4GHz The structure of `radio1` block is documented below.
+func (o ExtenderprofileWifiPtrOutput) Radio1() ExtenderprofileWifiRadio1PtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifi) *ExtenderprofileWifiRadio1 {
+		if v == nil {
+			return nil
+		}
+		return v.Radio1
+	}).(ExtenderprofileWifiRadio1PtrOutput)
+}
+
+// Radio-2 config for Wi-Fi 5GHz The structure of `radio2` block is documented below.
+//
+// The `radio1` block supports:
+func (o ExtenderprofileWifiPtrOutput) Radio2() ExtenderprofileWifiRadio2PtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifi) *ExtenderprofileWifiRadio2 {
+		if v == nil {
+			return nil
+		}
+		return v.Radio2
+	}).(ExtenderprofileWifiRadio2PtrOutput)
+}
+
+type ExtenderprofileWifiRadio1 struct {
+	Band              *string                             `pulumi:"band"`
+	Bandwidth         *string                             `pulumi:"bandwidth"`
+	BeaconInterval    *int                                `pulumi:"beaconInterval"`
+	BssColor          *int                                `pulumi:"bssColor"`
+	BssColorMode      *string                             `pulumi:"bssColorMode"`
+	Channel           *string                             `pulumi:"channel"`
+	ExtensionChannel  *string                             `pulumi:"extensionChannel"`
+	GuardInterval     *string                             `pulumi:"guardInterval"`
+	LanExtVap         *string                             `pulumi:"lanExtVap"`
+	LocalVaps         []ExtenderprofileWifiRadio1LocalVap `pulumi:"localVaps"`
+	MaxClients        *int                                `pulumi:"maxClients"`
+	Mode              *string                             `pulumi:"mode"`
+	N80211d           *string                             `pulumi:"n80211d"`
+	OperatingStandard *string                             `pulumi:"operatingStandard"`
+	PowerLevel        *int                                `pulumi:"powerLevel"`
+	Status            *string                             `pulumi:"status"`
+}
+
+// ExtenderprofileWifiRadio1Input is an input type that accepts ExtenderprofileWifiRadio1Args and ExtenderprofileWifiRadio1Output values.
+// You can construct a concrete instance of `ExtenderprofileWifiRadio1Input` via:
+//
+//	ExtenderprofileWifiRadio1Args{...}
+type ExtenderprofileWifiRadio1Input interface {
+	pulumi.Input
+
+	ToExtenderprofileWifiRadio1Output() ExtenderprofileWifiRadio1Output
+	ToExtenderprofileWifiRadio1OutputWithContext(context.Context) ExtenderprofileWifiRadio1Output
+}
+
+type ExtenderprofileWifiRadio1Args struct {
+	Band              pulumi.StringPtrInput                       `pulumi:"band"`
+	Bandwidth         pulumi.StringPtrInput                       `pulumi:"bandwidth"`
+	BeaconInterval    pulumi.IntPtrInput                          `pulumi:"beaconInterval"`
+	BssColor          pulumi.IntPtrInput                          `pulumi:"bssColor"`
+	BssColorMode      pulumi.StringPtrInput                       `pulumi:"bssColorMode"`
+	Channel           pulumi.StringPtrInput                       `pulumi:"channel"`
+	ExtensionChannel  pulumi.StringPtrInput                       `pulumi:"extensionChannel"`
+	GuardInterval     pulumi.StringPtrInput                       `pulumi:"guardInterval"`
+	LanExtVap         pulumi.StringPtrInput                       `pulumi:"lanExtVap"`
+	LocalVaps         ExtenderprofileWifiRadio1LocalVapArrayInput `pulumi:"localVaps"`
+	MaxClients        pulumi.IntPtrInput                          `pulumi:"maxClients"`
+	Mode              pulumi.StringPtrInput                       `pulumi:"mode"`
+	N80211d           pulumi.StringPtrInput                       `pulumi:"n80211d"`
+	OperatingStandard pulumi.StringPtrInput                       `pulumi:"operatingStandard"`
+	PowerLevel        pulumi.IntPtrInput                          `pulumi:"powerLevel"`
+	Status            pulumi.StringPtrInput                       `pulumi:"status"`
+}
+
+func (ExtenderprofileWifiRadio1Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExtenderprofileWifiRadio1)(nil)).Elem()
+}
+
+func (i ExtenderprofileWifiRadio1Args) ToExtenderprofileWifiRadio1Output() ExtenderprofileWifiRadio1Output {
+	return i.ToExtenderprofileWifiRadio1OutputWithContext(context.Background())
+}
+
+func (i ExtenderprofileWifiRadio1Args) ToExtenderprofileWifiRadio1OutputWithContext(ctx context.Context) ExtenderprofileWifiRadio1Output {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtenderprofileWifiRadio1Output)
+}
+
+func (i ExtenderprofileWifiRadio1Args) ToExtenderprofileWifiRadio1PtrOutput() ExtenderprofileWifiRadio1PtrOutput {
+	return i.ToExtenderprofileWifiRadio1PtrOutputWithContext(context.Background())
+}
+
+func (i ExtenderprofileWifiRadio1Args) ToExtenderprofileWifiRadio1PtrOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio1PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtenderprofileWifiRadio1Output).ToExtenderprofileWifiRadio1PtrOutputWithContext(ctx)
+}
+
+// ExtenderprofileWifiRadio1PtrInput is an input type that accepts ExtenderprofileWifiRadio1Args, ExtenderprofileWifiRadio1Ptr and ExtenderprofileWifiRadio1PtrOutput values.
+// You can construct a concrete instance of `ExtenderprofileWifiRadio1PtrInput` via:
+//
+//	        ExtenderprofileWifiRadio1Args{...}
+//
+//	or:
+//
+//	        nil
+type ExtenderprofileWifiRadio1PtrInput interface {
+	pulumi.Input
+
+	ToExtenderprofileWifiRadio1PtrOutput() ExtenderprofileWifiRadio1PtrOutput
+	ToExtenderprofileWifiRadio1PtrOutputWithContext(context.Context) ExtenderprofileWifiRadio1PtrOutput
+}
+
+type extenderprofileWifiRadio1PtrType ExtenderprofileWifiRadio1Args
+
+func ExtenderprofileWifiRadio1Ptr(v *ExtenderprofileWifiRadio1Args) ExtenderprofileWifiRadio1PtrInput {
+	return (*extenderprofileWifiRadio1PtrType)(v)
+}
+
+func (*extenderprofileWifiRadio1PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExtenderprofileWifiRadio1)(nil)).Elem()
+}
+
+func (i *extenderprofileWifiRadio1PtrType) ToExtenderprofileWifiRadio1PtrOutput() ExtenderprofileWifiRadio1PtrOutput {
+	return i.ToExtenderprofileWifiRadio1PtrOutputWithContext(context.Background())
+}
+
+func (i *extenderprofileWifiRadio1PtrType) ToExtenderprofileWifiRadio1PtrOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio1PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtenderprofileWifiRadio1PtrOutput)
+}
+
+type ExtenderprofileWifiRadio1Output struct{ *pulumi.OutputState }
+
+func (ExtenderprofileWifiRadio1Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExtenderprofileWifiRadio1)(nil)).Elem()
+}
+
+func (o ExtenderprofileWifiRadio1Output) ToExtenderprofileWifiRadio1Output() ExtenderprofileWifiRadio1Output {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio1Output) ToExtenderprofileWifiRadio1OutputWithContext(ctx context.Context) ExtenderprofileWifiRadio1Output {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio1Output) ToExtenderprofileWifiRadio1PtrOutput() ExtenderprofileWifiRadio1PtrOutput {
+	return o.ToExtenderprofileWifiRadio1PtrOutputWithContext(context.Background())
+}
+
+func (o ExtenderprofileWifiRadio1Output) ToExtenderprofileWifiRadio1PtrOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio1PtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ExtenderprofileWifiRadio1) *ExtenderprofileWifiRadio1 {
+		return &v
+	}).(ExtenderprofileWifiRadio1PtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) Band() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *string { return v.Band }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) Bandwidth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *string { return v.Bandwidth }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) BeaconInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *int { return v.BeaconInterval }).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) BssColor() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *int { return v.BssColor }).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) BssColorMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *string { return v.BssColorMode }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) Channel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *string { return v.Channel }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) ExtensionChannel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *string { return v.ExtensionChannel }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) GuardInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *string { return v.GuardInterval }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) LanExtVap() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *string { return v.LanExtVap }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) LocalVaps() ExtenderprofileWifiRadio1LocalVapArrayOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) []ExtenderprofileWifiRadio1LocalVap { return v.LocalVaps }).(ExtenderprofileWifiRadio1LocalVapArrayOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) MaxClients() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *int { return v.MaxClients }).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *string { return v.Mode }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) N80211d() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *string { return v.N80211d }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) OperatingStandard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *string { return v.OperatingStandard }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) PowerLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *int { return v.PowerLevel }).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1Output) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type ExtenderprofileWifiRadio1PtrOutput struct{ *pulumi.OutputState }
+
+func (ExtenderprofileWifiRadio1PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExtenderprofileWifiRadio1)(nil)).Elem()
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) ToExtenderprofileWifiRadio1PtrOutput() ExtenderprofileWifiRadio1PtrOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) ToExtenderprofileWifiRadio1PtrOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio1PtrOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) Elem() ExtenderprofileWifiRadio1Output {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) ExtenderprofileWifiRadio1 {
+		if v != nil {
+			return *v
+		}
+		var ret ExtenderprofileWifiRadio1
+		return ret
+	}).(ExtenderprofileWifiRadio1Output)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) Band() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Band
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) Bandwidth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Bandwidth
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) BeaconInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BeaconInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) BssColor() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BssColor
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) BssColorMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BssColorMode
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) Channel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Channel
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) ExtensionChannel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ExtensionChannel
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) GuardInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GuardInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) LanExtVap() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LanExtVap
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) LocalVaps() ExtenderprofileWifiRadio1LocalVapArrayOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) []ExtenderprofileWifiRadio1LocalVap {
+		if v == nil {
+			return nil
+		}
+		return v.LocalVaps
+	}).(ExtenderprofileWifiRadio1LocalVapArrayOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) MaxClients() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxClients
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Mode
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) N80211d() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.N80211d
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) OperatingStandard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OperatingStandard
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) PowerLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PowerLevel
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio1PtrOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
+}
+
+type ExtenderprofileWifiRadio1LocalVap struct {
+	// Wi-Fi local VAP name.
+	Name *string `pulumi:"name"`
+}
+
+// ExtenderprofileWifiRadio1LocalVapInput is an input type that accepts ExtenderprofileWifiRadio1LocalVapArgs and ExtenderprofileWifiRadio1LocalVapOutput values.
+// You can construct a concrete instance of `ExtenderprofileWifiRadio1LocalVapInput` via:
+//
+//	ExtenderprofileWifiRadio1LocalVapArgs{...}
+type ExtenderprofileWifiRadio1LocalVapInput interface {
+	pulumi.Input
+
+	ToExtenderprofileWifiRadio1LocalVapOutput() ExtenderprofileWifiRadio1LocalVapOutput
+	ToExtenderprofileWifiRadio1LocalVapOutputWithContext(context.Context) ExtenderprofileWifiRadio1LocalVapOutput
+}
+
+type ExtenderprofileWifiRadio1LocalVapArgs struct {
+	// Wi-Fi local VAP name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (ExtenderprofileWifiRadio1LocalVapArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExtenderprofileWifiRadio1LocalVap)(nil)).Elem()
+}
+
+func (i ExtenderprofileWifiRadio1LocalVapArgs) ToExtenderprofileWifiRadio1LocalVapOutput() ExtenderprofileWifiRadio1LocalVapOutput {
+	return i.ToExtenderprofileWifiRadio1LocalVapOutputWithContext(context.Background())
+}
+
+func (i ExtenderprofileWifiRadio1LocalVapArgs) ToExtenderprofileWifiRadio1LocalVapOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio1LocalVapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtenderprofileWifiRadio1LocalVapOutput)
+}
+
+// ExtenderprofileWifiRadio1LocalVapArrayInput is an input type that accepts ExtenderprofileWifiRadio1LocalVapArray and ExtenderprofileWifiRadio1LocalVapArrayOutput values.
+// You can construct a concrete instance of `ExtenderprofileWifiRadio1LocalVapArrayInput` via:
+//
+//	ExtenderprofileWifiRadio1LocalVapArray{ ExtenderprofileWifiRadio1LocalVapArgs{...} }
+type ExtenderprofileWifiRadio1LocalVapArrayInput interface {
+	pulumi.Input
+
+	ToExtenderprofileWifiRadio1LocalVapArrayOutput() ExtenderprofileWifiRadio1LocalVapArrayOutput
+	ToExtenderprofileWifiRadio1LocalVapArrayOutputWithContext(context.Context) ExtenderprofileWifiRadio1LocalVapArrayOutput
+}
+
+type ExtenderprofileWifiRadio1LocalVapArray []ExtenderprofileWifiRadio1LocalVapInput
+
+func (ExtenderprofileWifiRadio1LocalVapArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExtenderprofileWifiRadio1LocalVap)(nil)).Elem()
+}
+
+func (i ExtenderprofileWifiRadio1LocalVapArray) ToExtenderprofileWifiRadio1LocalVapArrayOutput() ExtenderprofileWifiRadio1LocalVapArrayOutput {
+	return i.ToExtenderprofileWifiRadio1LocalVapArrayOutputWithContext(context.Background())
+}
+
+func (i ExtenderprofileWifiRadio1LocalVapArray) ToExtenderprofileWifiRadio1LocalVapArrayOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio1LocalVapArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtenderprofileWifiRadio1LocalVapArrayOutput)
+}
+
+type ExtenderprofileWifiRadio1LocalVapOutput struct{ *pulumi.OutputState }
+
+func (ExtenderprofileWifiRadio1LocalVapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExtenderprofileWifiRadio1LocalVap)(nil)).Elem()
+}
+
+func (o ExtenderprofileWifiRadio1LocalVapOutput) ToExtenderprofileWifiRadio1LocalVapOutput() ExtenderprofileWifiRadio1LocalVapOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio1LocalVapOutput) ToExtenderprofileWifiRadio1LocalVapOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio1LocalVapOutput {
+	return o
+}
+
+// Wi-Fi local VAP name.
+func (o ExtenderprofileWifiRadio1LocalVapOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio1LocalVap) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ExtenderprofileWifiRadio1LocalVapArrayOutput struct{ *pulumi.OutputState }
+
+func (ExtenderprofileWifiRadio1LocalVapArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExtenderprofileWifiRadio1LocalVap)(nil)).Elem()
+}
+
+func (o ExtenderprofileWifiRadio1LocalVapArrayOutput) ToExtenderprofileWifiRadio1LocalVapArrayOutput() ExtenderprofileWifiRadio1LocalVapArrayOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio1LocalVapArrayOutput) ToExtenderprofileWifiRadio1LocalVapArrayOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio1LocalVapArrayOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio1LocalVapArrayOutput) Index(i pulumi.IntInput) ExtenderprofileWifiRadio1LocalVapOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExtenderprofileWifiRadio1LocalVap {
+		return vs[0].([]ExtenderprofileWifiRadio1LocalVap)[vs[1].(int)]
+	}).(ExtenderprofileWifiRadio1LocalVapOutput)
+}
+
+type ExtenderprofileWifiRadio2 struct {
+	Band              *string                             `pulumi:"band"`
+	Bandwidth         *string                             `pulumi:"bandwidth"`
+	BeaconInterval    *int                                `pulumi:"beaconInterval"`
+	BssColor          *int                                `pulumi:"bssColor"`
+	BssColorMode      *string                             `pulumi:"bssColorMode"`
+	Channel           *string                             `pulumi:"channel"`
+	ExtensionChannel  *string                             `pulumi:"extensionChannel"`
+	GuardInterval     *string                             `pulumi:"guardInterval"`
+	LanExtVap         *string                             `pulumi:"lanExtVap"`
+	LocalVaps         []ExtenderprofileWifiRadio2LocalVap `pulumi:"localVaps"`
+	MaxClients        *int                                `pulumi:"maxClients"`
+	Mode              *string                             `pulumi:"mode"`
+	N80211d           *string                             `pulumi:"n80211d"`
+	OperatingStandard *string                             `pulumi:"operatingStandard"`
+	PowerLevel        *int                                `pulumi:"powerLevel"`
+	Status            *string                             `pulumi:"status"`
+}
+
+// ExtenderprofileWifiRadio2Input is an input type that accepts ExtenderprofileWifiRadio2Args and ExtenderprofileWifiRadio2Output values.
+// You can construct a concrete instance of `ExtenderprofileWifiRadio2Input` via:
+//
+//	ExtenderprofileWifiRadio2Args{...}
+type ExtenderprofileWifiRadio2Input interface {
+	pulumi.Input
+
+	ToExtenderprofileWifiRadio2Output() ExtenderprofileWifiRadio2Output
+	ToExtenderprofileWifiRadio2OutputWithContext(context.Context) ExtenderprofileWifiRadio2Output
+}
+
+type ExtenderprofileWifiRadio2Args struct {
+	Band              pulumi.StringPtrInput                       `pulumi:"band"`
+	Bandwidth         pulumi.StringPtrInput                       `pulumi:"bandwidth"`
+	BeaconInterval    pulumi.IntPtrInput                          `pulumi:"beaconInterval"`
+	BssColor          pulumi.IntPtrInput                          `pulumi:"bssColor"`
+	BssColorMode      pulumi.StringPtrInput                       `pulumi:"bssColorMode"`
+	Channel           pulumi.StringPtrInput                       `pulumi:"channel"`
+	ExtensionChannel  pulumi.StringPtrInput                       `pulumi:"extensionChannel"`
+	GuardInterval     pulumi.StringPtrInput                       `pulumi:"guardInterval"`
+	LanExtVap         pulumi.StringPtrInput                       `pulumi:"lanExtVap"`
+	LocalVaps         ExtenderprofileWifiRadio2LocalVapArrayInput `pulumi:"localVaps"`
+	MaxClients        pulumi.IntPtrInput                          `pulumi:"maxClients"`
+	Mode              pulumi.StringPtrInput                       `pulumi:"mode"`
+	N80211d           pulumi.StringPtrInput                       `pulumi:"n80211d"`
+	OperatingStandard pulumi.StringPtrInput                       `pulumi:"operatingStandard"`
+	PowerLevel        pulumi.IntPtrInput                          `pulumi:"powerLevel"`
+	Status            pulumi.StringPtrInput                       `pulumi:"status"`
+}
+
+func (ExtenderprofileWifiRadio2Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExtenderprofileWifiRadio2)(nil)).Elem()
+}
+
+func (i ExtenderprofileWifiRadio2Args) ToExtenderprofileWifiRadio2Output() ExtenderprofileWifiRadio2Output {
+	return i.ToExtenderprofileWifiRadio2OutputWithContext(context.Background())
+}
+
+func (i ExtenderprofileWifiRadio2Args) ToExtenderprofileWifiRadio2OutputWithContext(ctx context.Context) ExtenderprofileWifiRadio2Output {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtenderprofileWifiRadio2Output)
+}
+
+func (i ExtenderprofileWifiRadio2Args) ToExtenderprofileWifiRadio2PtrOutput() ExtenderprofileWifiRadio2PtrOutput {
+	return i.ToExtenderprofileWifiRadio2PtrOutputWithContext(context.Background())
+}
+
+func (i ExtenderprofileWifiRadio2Args) ToExtenderprofileWifiRadio2PtrOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio2PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtenderprofileWifiRadio2Output).ToExtenderprofileWifiRadio2PtrOutputWithContext(ctx)
+}
+
+// ExtenderprofileWifiRadio2PtrInput is an input type that accepts ExtenderprofileWifiRadio2Args, ExtenderprofileWifiRadio2Ptr and ExtenderprofileWifiRadio2PtrOutput values.
+// You can construct a concrete instance of `ExtenderprofileWifiRadio2PtrInput` via:
+//
+//	        ExtenderprofileWifiRadio2Args{...}
+//
+//	or:
+//
+//	        nil
+type ExtenderprofileWifiRadio2PtrInput interface {
+	pulumi.Input
+
+	ToExtenderprofileWifiRadio2PtrOutput() ExtenderprofileWifiRadio2PtrOutput
+	ToExtenderprofileWifiRadio2PtrOutputWithContext(context.Context) ExtenderprofileWifiRadio2PtrOutput
+}
+
+type extenderprofileWifiRadio2PtrType ExtenderprofileWifiRadio2Args
+
+func ExtenderprofileWifiRadio2Ptr(v *ExtenderprofileWifiRadio2Args) ExtenderprofileWifiRadio2PtrInput {
+	return (*extenderprofileWifiRadio2PtrType)(v)
+}
+
+func (*extenderprofileWifiRadio2PtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExtenderprofileWifiRadio2)(nil)).Elem()
+}
+
+func (i *extenderprofileWifiRadio2PtrType) ToExtenderprofileWifiRadio2PtrOutput() ExtenderprofileWifiRadio2PtrOutput {
+	return i.ToExtenderprofileWifiRadio2PtrOutputWithContext(context.Background())
+}
+
+func (i *extenderprofileWifiRadio2PtrType) ToExtenderprofileWifiRadio2PtrOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio2PtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtenderprofileWifiRadio2PtrOutput)
+}
+
+type ExtenderprofileWifiRadio2Output struct{ *pulumi.OutputState }
+
+func (ExtenderprofileWifiRadio2Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExtenderprofileWifiRadio2)(nil)).Elem()
+}
+
+func (o ExtenderprofileWifiRadio2Output) ToExtenderprofileWifiRadio2Output() ExtenderprofileWifiRadio2Output {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio2Output) ToExtenderprofileWifiRadio2OutputWithContext(ctx context.Context) ExtenderprofileWifiRadio2Output {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio2Output) ToExtenderprofileWifiRadio2PtrOutput() ExtenderprofileWifiRadio2PtrOutput {
+	return o.ToExtenderprofileWifiRadio2PtrOutputWithContext(context.Background())
+}
+
+func (o ExtenderprofileWifiRadio2Output) ToExtenderprofileWifiRadio2PtrOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio2PtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ExtenderprofileWifiRadio2) *ExtenderprofileWifiRadio2 {
+		return &v
+	}).(ExtenderprofileWifiRadio2PtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) Band() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *string { return v.Band }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) Bandwidth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *string { return v.Bandwidth }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) BeaconInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *int { return v.BeaconInterval }).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) BssColor() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *int { return v.BssColor }).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) BssColorMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *string { return v.BssColorMode }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) Channel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *string { return v.Channel }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) ExtensionChannel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *string { return v.ExtensionChannel }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) GuardInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *string { return v.GuardInterval }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) LanExtVap() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *string { return v.LanExtVap }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) LocalVaps() ExtenderprofileWifiRadio2LocalVapArrayOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) []ExtenderprofileWifiRadio2LocalVap { return v.LocalVaps }).(ExtenderprofileWifiRadio2LocalVapArrayOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) MaxClients() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *int { return v.MaxClients }).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *string { return v.Mode }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) N80211d() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *string { return v.N80211d }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) OperatingStandard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *string { return v.OperatingStandard }).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) PowerLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *int { return v.PowerLevel }).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2Output) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type ExtenderprofileWifiRadio2PtrOutput struct{ *pulumi.OutputState }
+
+func (ExtenderprofileWifiRadio2PtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExtenderprofileWifiRadio2)(nil)).Elem()
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) ToExtenderprofileWifiRadio2PtrOutput() ExtenderprofileWifiRadio2PtrOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) ToExtenderprofileWifiRadio2PtrOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio2PtrOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) Elem() ExtenderprofileWifiRadio2Output {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) ExtenderprofileWifiRadio2 {
+		if v != nil {
+			return *v
+		}
+		var ret ExtenderprofileWifiRadio2
+		return ret
+	}).(ExtenderprofileWifiRadio2Output)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) Band() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Band
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) Bandwidth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Bandwidth
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) BeaconInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BeaconInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) BssColor() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BssColor
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) BssColorMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BssColorMode
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) Channel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Channel
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) ExtensionChannel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ExtensionChannel
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) GuardInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GuardInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) LanExtVap() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LanExtVap
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) LocalVaps() ExtenderprofileWifiRadio2LocalVapArrayOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) []ExtenderprofileWifiRadio2LocalVap {
+		if v == nil {
+			return nil
+		}
+		return v.LocalVaps
+	}).(ExtenderprofileWifiRadio2LocalVapArrayOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) MaxClients() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxClients
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Mode
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) N80211d() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.N80211d
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) OperatingStandard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OperatingStandard
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) PowerLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PowerLevel
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ExtenderprofileWifiRadio2PtrOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderprofileWifiRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
+}
+
+type ExtenderprofileWifiRadio2LocalVap struct {
+	// Wi-Fi local VAP name.
+	Name *string `pulumi:"name"`
+}
+
+// ExtenderprofileWifiRadio2LocalVapInput is an input type that accepts ExtenderprofileWifiRadio2LocalVapArgs and ExtenderprofileWifiRadio2LocalVapOutput values.
+// You can construct a concrete instance of `ExtenderprofileWifiRadio2LocalVapInput` via:
+//
+//	ExtenderprofileWifiRadio2LocalVapArgs{...}
+type ExtenderprofileWifiRadio2LocalVapInput interface {
+	pulumi.Input
+
+	ToExtenderprofileWifiRadio2LocalVapOutput() ExtenderprofileWifiRadio2LocalVapOutput
+	ToExtenderprofileWifiRadio2LocalVapOutputWithContext(context.Context) ExtenderprofileWifiRadio2LocalVapOutput
+}
+
+type ExtenderprofileWifiRadio2LocalVapArgs struct {
+	// Wi-Fi local VAP name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (ExtenderprofileWifiRadio2LocalVapArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExtenderprofileWifiRadio2LocalVap)(nil)).Elem()
+}
+
+func (i ExtenderprofileWifiRadio2LocalVapArgs) ToExtenderprofileWifiRadio2LocalVapOutput() ExtenderprofileWifiRadio2LocalVapOutput {
+	return i.ToExtenderprofileWifiRadio2LocalVapOutputWithContext(context.Background())
+}
+
+func (i ExtenderprofileWifiRadio2LocalVapArgs) ToExtenderprofileWifiRadio2LocalVapOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio2LocalVapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtenderprofileWifiRadio2LocalVapOutput)
+}
+
+// ExtenderprofileWifiRadio2LocalVapArrayInput is an input type that accepts ExtenderprofileWifiRadio2LocalVapArray and ExtenderprofileWifiRadio2LocalVapArrayOutput values.
+// You can construct a concrete instance of `ExtenderprofileWifiRadio2LocalVapArrayInput` via:
+//
+//	ExtenderprofileWifiRadio2LocalVapArray{ ExtenderprofileWifiRadio2LocalVapArgs{...} }
+type ExtenderprofileWifiRadio2LocalVapArrayInput interface {
+	pulumi.Input
+
+	ToExtenderprofileWifiRadio2LocalVapArrayOutput() ExtenderprofileWifiRadio2LocalVapArrayOutput
+	ToExtenderprofileWifiRadio2LocalVapArrayOutputWithContext(context.Context) ExtenderprofileWifiRadio2LocalVapArrayOutput
+}
+
+type ExtenderprofileWifiRadio2LocalVapArray []ExtenderprofileWifiRadio2LocalVapInput
+
+func (ExtenderprofileWifiRadio2LocalVapArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExtenderprofileWifiRadio2LocalVap)(nil)).Elem()
+}
+
+func (i ExtenderprofileWifiRadio2LocalVapArray) ToExtenderprofileWifiRadio2LocalVapArrayOutput() ExtenderprofileWifiRadio2LocalVapArrayOutput {
+	return i.ToExtenderprofileWifiRadio2LocalVapArrayOutputWithContext(context.Background())
+}
+
+func (i ExtenderprofileWifiRadio2LocalVapArray) ToExtenderprofileWifiRadio2LocalVapArrayOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio2LocalVapArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExtenderprofileWifiRadio2LocalVapArrayOutput)
+}
+
+type ExtenderprofileWifiRadio2LocalVapOutput struct{ *pulumi.OutputState }
+
+func (ExtenderprofileWifiRadio2LocalVapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExtenderprofileWifiRadio2LocalVap)(nil)).Elem()
+}
+
+func (o ExtenderprofileWifiRadio2LocalVapOutput) ToExtenderprofileWifiRadio2LocalVapOutput() ExtenderprofileWifiRadio2LocalVapOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio2LocalVapOutput) ToExtenderprofileWifiRadio2LocalVapOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio2LocalVapOutput {
+	return o
+}
+
+// Wi-Fi local VAP name.
+func (o ExtenderprofileWifiRadio2LocalVapOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExtenderprofileWifiRadio2LocalVap) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type ExtenderprofileWifiRadio2LocalVapArrayOutput struct{ *pulumi.OutputState }
+
+func (ExtenderprofileWifiRadio2LocalVapArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExtenderprofileWifiRadio2LocalVap)(nil)).Elem()
+}
+
+func (o ExtenderprofileWifiRadio2LocalVapArrayOutput) ToExtenderprofileWifiRadio2LocalVapArrayOutput() ExtenderprofileWifiRadio2LocalVapArrayOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio2LocalVapArrayOutput) ToExtenderprofileWifiRadio2LocalVapArrayOutputWithContext(ctx context.Context) ExtenderprofileWifiRadio2LocalVapArrayOutput {
+	return o
+}
+
+func (o ExtenderprofileWifiRadio2LocalVapArrayOutput) Index(i pulumi.IntInput) ExtenderprofileWifiRadio2LocalVapOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExtenderprofileWifiRadio2LocalVap {
+		return vs[0].([]ExtenderprofileWifiRadio2LocalVap)[vs[1].(int)]
+	}).(ExtenderprofileWifiRadio2LocalVapOutput)
+}
+
 type FortigateprofileLanExtension struct {
 	// IPsec phase1 interface.
 	BackhaulInterface *string `pulumi:"backhaulInterface"`
@@ -2859,6 +3952,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderprofileLanExtensionPtrInput)(nil)).Elem(), ExtenderprofileLanExtensionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderprofileLanExtensionBackhaulInput)(nil)).Elem(), ExtenderprofileLanExtensionBackhaulArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderprofileLanExtensionBackhaulArrayInput)(nil)).Elem(), ExtenderprofileLanExtensionBackhaulArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderprofileWifiInput)(nil)).Elem(), ExtenderprofileWifiArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderprofileWifiPtrInput)(nil)).Elem(), ExtenderprofileWifiArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderprofileWifiRadio1Input)(nil)).Elem(), ExtenderprofileWifiRadio1Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderprofileWifiRadio1PtrInput)(nil)).Elem(), ExtenderprofileWifiRadio1Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderprofileWifiRadio1LocalVapInput)(nil)).Elem(), ExtenderprofileWifiRadio1LocalVapArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderprofileWifiRadio1LocalVapArrayInput)(nil)).Elem(), ExtenderprofileWifiRadio1LocalVapArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderprofileWifiRadio2Input)(nil)).Elem(), ExtenderprofileWifiRadio2Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderprofileWifiRadio2PtrInput)(nil)).Elem(), ExtenderprofileWifiRadio2Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderprofileWifiRadio2LocalVapInput)(nil)).Elem(), ExtenderprofileWifiRadio2LocalVapArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderprofileWifiRadio2LocalVapArrayInput)(nil)).Elem(), ExtenderprofileWifiRadio2LocalVapArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FortigateprofileLanExtensionInput)(nil)).Elem(), FortigateprofileLanExtensionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FortigateprofileLanExtensionPtrInput)(nil)).Elem(), FortigateprofileLanExtensionArgs{})
 	pulumi.RegisterOutputType(ExtenderWanExtensionOutput{})
@@ -2887,6 +3990,16 @@ func init() {
 	pulumi.RegisterOutputType(ExtenderprofileLanExtensionPtrOutput{})
 	pulumi.RegisterOutputType(ExtenderprofileLanExtensionBackhaulOutput{})
 	pulumi.RegisterOutputType(ExtenderprofileLanExtensionBackhaulArrayOutput{})
+	pulumi.RegisterOutputType(ExtenderprofileWifiOutput{})
+	pulumi.RegisterOutputType(ExtenderprofileWifiPtrOutput{})
+	pulumi.RegisterOutputType(ExtenderprofileWifiRadio1Output{})
+	pulumi.RegisterOutputType(ExtenderprofileWifiRadio1PtrOutput{})
+	pulumi.RegisterOutputType(ExtenderprofileWifiRadio1LocalVapOutput{})
+	pulumi.RegisterOutputType(ExtenderprofileWifiRadio1LocalVapArrayOutput{})
+	pulumi.RegisterOutputType(ExtenderprofileWifiRadio2Output{})
+	pulumi.RegisterOutputType(ExtenderprofileWifiRadio2PtrOutput{})
+	pulumi.RegisterOutputType(ExtenderprofileWifiRadio2LocalVapOutput{})
+	pulumi.RegisterOutputType(ExtenderprofileWifiRadio2LocalVapArrayOutput{})
 	pulumi.RegisterOutputType(FortigateprofileLanExtensionOutput{})
 	pulumi.RegisterOutputType(FortigateprofileLanExtensionPtrOutput{})
 }

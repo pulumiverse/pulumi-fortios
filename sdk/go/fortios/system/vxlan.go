@@ -74,7 +74,7 @@ type Vxlan struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// EVPN instance.
 	EvpnId pulumi.IntOutput `pulumi:"evpnId"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Outgoing interface for VXLAN encapsulated traffic.
 	Interface pulumi.StringOutput `pulumi:"interface"`
@@ -91,7 +91,7 @@ type Vxlan struct {
 	// IPv4 address of the VXLAN interface on the device at the remote end of the VXLAN. The structure of `remoteIp` block is documented below.
 	RemoteIps VxlanRemoteIpArrayOutput `pulumi:"remoteIps"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// VXLAN network ID.
 	Vni pulumi.IntOutput `pulumi:"vni"`
 }
@@ -141,7 +141,7 @@ type vxlanState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// EVPN instance.
 	EvpnId *int `pulumi:"evpnId"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Outgoing interface for VXLAN encapsulated traffic.
 	Interface *string `pulumi:"interface"`
@@ -170,7 +170,7 @@ type VxlanState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// EVPN instance.
 	EvpnId pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Outgoing interface for VXLAN encapsulated traffic.
 	Interface pulumi.StringPtrInput
@@ -203,7 +203,7 @@ type vxlanArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// EVPN instance.
 	EvpnId *int `pulumi:"evpnId"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Outgoing interface for VXLAN encapsulated traffic.
 	Interface string `pulumi:"interface"`
@@ -233,7 +233,7 @@ type VxlanArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// EVPN instance.
 	EvpnId pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Outgoing interface for VXLAN encapsulated traffic.
 	Interface pulumi.StringInput
@@ -357,7 +357,7 @@ func (o VxlanOutput) EvpnId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vxlan) pulumi.IntOutput { return v.EvpnId }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o VxlanOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Vxlan) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -398,8 +398,8 @@ func (o VxlanOutput) RemoteIps() VxlanRemoteIpArrayOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o VxlanOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Vxlan) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o VxlanOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vxlan) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // VXLAN network ID.

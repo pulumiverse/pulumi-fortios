@@ -19,6 +19,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? Description;
         /// <summary>
+        /// Configure pool exclude subnets. The structure of `exclude` block is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.IpamPoolExclude> Excludes;
+        /// <summary>
         /// IPAM pool name.
         /// </summary>
         public readonly string? Name;
@@ -31,11 +35,14 @@ namespace Pulumiverse.Fortios.System.Outputs
         private IpamPool(
             string? description,
 
+            ImmutableArray<Outputs.IpamPoolExclude> excludes,
+
             string? name,
 
             string? subnet)
         {
             Description = description;
+            Excludes = excludes;
             Name = name;
             Subnet = subnet;
         }

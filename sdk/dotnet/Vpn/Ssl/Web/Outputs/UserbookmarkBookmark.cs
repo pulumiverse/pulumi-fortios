@@ -43,7 +43,7 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.UserbookmarkBookmarkFormData> FormDatas;
         /// <summary>
-        /// Screen height (range from 480 - 65535, default = 768).
+        /// Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions &gt;= 7.0.6: range from 0 - 65535, default = 0.
         /// </summary>
         public readonly int? Height;
         /// <summary>
@@ -83,7 +83,7 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web.Outputs
         /// </summary>
         public readonly string? PreconnectionBlob;
         /// <summary>
-        /// The numeric ID of the RDP source (0-2147483648).
+        /// The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, &gt;= 7.0.1: 0-4294967295.
         /// </summary>
         public readonly int? PreconnectionId;
         /// <summary>
@@ -95,7 +95,7 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web.Outputs
         /// </summary>
         public readonly string? RestrictedAdmin;
         /// <summary>
-        /// Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        /// Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
         /// </summary>
         public readonly string? Security;
         /// <summary>
@@ -139,7 +139,7 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web.Outputs
         /// </summary>
         public readonly string? VncKeyboardLayout;
         /// <summary>
-        /// Screen width (range from 640 - 65535, default = 1024).
+        /// Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions &gt;= 7.0.6: range from 0 - 65535, default = 0.
         /// </summary>
         public readonly int? Width;
 

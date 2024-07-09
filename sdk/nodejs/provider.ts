@@ -76,6 +76,10 @@ export class Provider extends pulumi.ProviderResource {
      * The username of the user.
      */
     public readonly username!: pulumi.Output<string | undefined>;
+    /**
+     * Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+     * vdom value on that resource.
+     */
     public readonly vdom!: pulumi.Output<string | undefined>;
 
     /**
@@ -172,5 +176,9 @@ export interface ProviderArgs {
      * The username of the user.
      */
     username?: pulumi.Input<string>;
+    /**
+     * Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+     * vdom value on that resource.
+     */
     vdom?: pulumi.Input<string>;
 }

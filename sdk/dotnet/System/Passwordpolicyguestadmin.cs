@@ -87,7 +87,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> ExpireStatus { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+        /// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
         /// </summary>
         [Output("minChangeCharacters")]
         public Output<int> MinChangeCharacters { get; private set; } = null!;
@@ -123,7 +123,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> MinimumLength { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
+        /// Enable/disable reuse of password. On FortiOS versions 6.2.0-7.0.0: If both reuse-password and change-4-characters are enabled, change-4-characters overrides.. On FortiOS versions &gt;= 7.0.1: If both reuse-password and min-change-characters are enabled, min-change-characters overrides.. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("reusePassword")]
         public Output<string> ReusePassword { get; private set; } = null!;
@@ -138,7 +138,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ExpireStatus { get; set; }
 
         /// <summary>
-        /// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+        /// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
         /// </summary>
         [Input("minChangeCharacters")]
         public Input<int>? MinChangeCharacters { get; set; }
@@ -248,7 +248,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? MinimumLength { get; set; }
 
         /// <summary>
-        /// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
+        /// Enable/disable reuse of password. On FortiOS versions 6.2.0-7.0.0: If both reuse-password and change-4-characters are enabled, change-4-characters overrides.. On FortiOS versions &gt;= 7.0.1: If both reuse-password and min-change-characters are enabled, min-change-characters overrides.. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("reusePassword")]
         public Input<string>? ReusePassword { get; set; }
@@ -298,7 +298,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ExpireStatus { get; set; }
 
         /// <summary>
-        /// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+        /// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
         /// </summary>
         [Input("minChangeCharacters")]
         public Input<int>? MinChangeCharacters { get; set; }
@@ -334,7 +334,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? MinimumLength { get; set; }
 
         /// <summary>
-        /// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
+        /// Enable/disable reuse of password. On FortiOS versions 6.2.0-7.0.0: If both reuse-password and change-4-characters are enabled, change-4-characters overrides.. On FortiOS versions &gt;= 7.0.1: If both reuse-password and min-change-characters are enabled, min-change-characters overrides.. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("reusePassword")]
         public Input<string>? ReusePassword { get; set; }

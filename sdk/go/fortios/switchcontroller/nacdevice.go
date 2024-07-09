@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
-// Configure/list NAC devices learned on the managed FortiSwitch ports which matches NAC policy. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0`.
+// Configure/list NAC devices learned on the managed FortiSwitch ports which matches NAC policy. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,6.4.15,7.0.0`.
 //
 // ## Import
 //
@@ -54,7 +54,7 @@ type Nacdevice struct {
 	// Status of the learned NAC device. Set enable to authorize the NAC device. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewNacdevice registers a new resource with the given unique name, arguments, and options.
@@ -329,8 +329,8 @@ func (o NacdeviceOutput) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o NacdeviceOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Nacdevice) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o NacdeviceOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Nacdevice) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type NacdeviceArrayOutput struct{ *pulumi.OutputState }

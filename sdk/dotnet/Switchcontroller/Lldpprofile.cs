@@ -135,7 +135,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -153,7 +153,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<ImmutableArray<Outputs.LldpprofileMedNetworkPolicy>> MedNetworkPolicies { get; private set; } = null!;
 
         /// <summary>
-        /// Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
+        /// Transmitted LLDP-MED TLVs (type-length-value descriptions).
         /// </summary>
         [Output("medTlvs")]
         public Output<string> MedTlvs { get; private set; } = null!;
@@ -180,7 +180,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -314,7 +314,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -344,7 +344,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         }
 
         /// <summary>
-        /// Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
+        /// Transmitted LLDP-MED TLVs (type-length-value descriptions).
         /// </summary>
         [Input("medTlvs")]
         public Input<string>? MedTlvs { get; set; }
@@ -466,7 +466,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -496,7 +496,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         }
 
         /// <summary>
-        /// Transmitted LLDP-MED TLVs (type-length-value descriptions): inventory management TLV and/or network policy TLV.
+        /// Transmitted LLDP-MED TLVs (type-length-value descriptions).
         /// </summary>
         [Input("medTlvs")]
         public Input<string>? MedTlvs { get; set; }

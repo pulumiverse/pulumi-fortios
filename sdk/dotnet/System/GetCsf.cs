@@ -147,6 +147,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string SamlConfigurationSync;
         /// <summary>
+        /// Source IP address for communication with the upstream FortiGate.
+        /// </summary>
+        public readonly string SourceIp;
+        /// <summary>
         /// Enable/disable Security Fabric.
         /// </summary>
         public readonly string Status;
@@ -162,6 +166,14 @@ namespace Pulumiverse.Fortios.System
         /// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
         /// </summary>
         public readonly string Upstream;
+        /// <summary>
+        /// Specify outgoing interface to reach server.
+        /// </summary>
+        public readonly string UpstreamInterface;
+        /// <summary>
+        /// Specify how to select outgoing interface to reach server.
+        /// </summary>
+        public readonly string UpstreamInterfaceSelectMethod;
         /// <summary>
         /// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         /// </summary>
@@ -218,6 +230,8 @@ namespace Pulumiverse.Fortios.System
 
             string samlConfigurationSync,
 
+            string sourceIp,
+
             string status,
 
             ImmutableArray<Outputs.GetCsfTrustedListResult> trustedLists,
@@ -225,6 +239,10 @@ namespace Pulumiverse.Fortios.System
             string uid,
 
             string upstream,
+
+            string upstreamInterface,
+
+            string upstreamInterfaceSelectMethod,
 
             string upstreamIp,
 
@@ -254,10 +272,13 @@ namespace Pulumiverse.Fortios.System
             ManagementIp = managementIp;
             ManagementPort = managementPort;
             SamlConfigurationSync = samlConfigurationSync;
+            SourceIp = sourceIp;
             Status = status;
             TrustedLists = trustedLists;
             Uid = uid;
             Upstream = upstream;
+            UpstreamInterface = upstreamInterface;
+            UpstreamInterfaceSelectMethod = upstreamInterfaceSelectMethod;
             UpstreamIp = upstreamIp;
             UpstreamPort = upstreamPort;
             Vdomparam = vdomparam;

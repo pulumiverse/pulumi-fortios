@@ -75,7 +75,7 @@ export class Ftmpush extends pulumi.CustomResource {
      */
     public readonly server!: pulumi.Output<string>;
     /**
-     * Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+     * Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
      */
     public readonly serverCert!: pulumi.Output<string>;
     /**
@@ -93,7 +93,7 @@ export class Ftmpush extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Ftmpush resource with the given unique name, arguments, and options.
@@ -143,7 +143,7 @@ export interface FtmpushState {
      */
     server?: pulumi.Input<string>;
     /**
-     * Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+     * Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
      */
     serverCert?: pulumi.Input<string>;
     /**
@@ -177,7 +177,7 @@ export interface FtmpushArgs {
      */
     server?: pulumi.Input<string>;
     /**
-     * Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+     * Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
      */
     serverCert?: pulumi.Input<string>;
     /**

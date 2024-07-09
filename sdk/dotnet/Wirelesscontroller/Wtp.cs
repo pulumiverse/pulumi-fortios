@@ -101,7 +101,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> FirmwareProvisionLatest { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -119,7 +119,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> Index { get; private set; } = null!;
 
         /// <summary>
-        /// Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        /// Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         /// </summary>
         [Output("ipFragmentPreventing")]
         public Output<string> IpFragmentPreventing { get; private set; } = null!;
@@ -275,13 +275,13 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<ImmutableArray<Outputs.WtpSplitTunnelingAcl>> SplitTunnelingAcls { get; private set; } = null!;
 
         /// <summary>
-        /// Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
+        /// The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         /// </summary>
         [Output("tunMtuDownlink")]
         public Output<int> TunMtuDownlink { get; private set; } = null!;
 
         /// <summary>
-        /// Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+        /// The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         /// </summary>
         [Output("tunMtuUplink")]
         public Output<int> TunMtuUplink { get; private set; } = null!;
@@ -296,7 +296,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable using the FortiAP WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
@@ -440,7 +440,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? FirmwareProvisionLatest { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -458,7 +458,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? Index { get; set; }
 
         /// <summary>
-        /// Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        /// Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         /// </summary>
         [Input("ipFragmentPreventing")]
         public Input<string>? IpFragmentPreventing { get; set; }
@@ -630,13 +630,13 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         }
 
         /// <summary>
-        /// Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
+        /// The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         /// </summary>
         [Input("tunMtuDownlink")]
         public Input<int>? TunMtuDownlink { get; set; }
 
         /// <summary>
-        /// Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+        /// The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         /// </summary>
         [Input("tunMtuUplink")]
         public Input<int>? TunMtuUplink { get; set; }
@@ -752,7 +752,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? FirmwareProvisionLatest { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -770,7 +770,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? Index { get; set; }
 
         /// <summary>
-        /// Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        /// Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         /// </summary>
         [Input("ipFragmentPreventing")]
         public Input<string>? IpFragmentPreventing { get; set; }
@@ -942,13 +942,13 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         }
 
         /// <summary>
-        /// Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
+        /// The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         /// </summary>
         [Input("tunMtuDownlink")]
         public Input<int>? TunMtuDownlink { get; set; }
 
         /// <summary>
-        /// Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+        /// The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         /// </summary>
         [Input("tunMtuUplink")]
         public Input<int>? TunMtuUplink { get; set; }

@@ -37,7 +37,7 @@ type Setting struct {
 	AccountId pulumi.StringOutput `pulumi:"accountId"`
 	// Country or region in which the FortiGate is located. The country determines the 802.11 bands and channels that are available.
 	Country pulumi.StringOutput `pulumi:"country"`
-	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	// Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
 	DarrpOptimize pulumi.IntOutput `pulumi:"darrpOptimize"`
 	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
 	DarrpOptimizeSchedules SettingDarrpOptimizeScheduleArrayOutput `pulumi:"darrpOptimizeSchedules"`
@@ -57,7 +57,7 @@ type Setting struct {
 	FapcCompatibility pulumi.StringOutput `pulumi:"fapcCompatibility"`
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization pulumi.StringOutput `pulumi:"firmwareProvisionOnAuthorization"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids SettingOffendingSsidArrayOutput `pulumi:"offendingSsids"`
@@ -66,7 +66,7 @@ type Setting struct {
 	// Enable/disable rolling WTP upgrade (default = disable). Valid values: `enable`, `disable`.
 	RollingWtpUpgrade pulumi.StringOutput `pulumi:"rollingWtpUpgrade"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
 	WfaCompatibility pulumi.StringOutput `pulumi:"wfaCompatibility"`
 }
@@ -105,7 +105,7 @@ type settingState struct {
 	AccountId *string `pulumi:"accountId"`
 	// Country or region in which the FortiGate is located. The country determines the 802.11 bands and channels that are available.
 	Country *string `pulumi:"country"`
-	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	// Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
 	DarrpOptimize *int `pulumi:"darrpOptimize"`
 	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
 	DarrpOptimizeSchedules []SettingDarrpOptimizeSchedule `pulumi:"darrpOptimizeSchedules"`
@@ -125,7 +125,7 @@ type settingState struct {
 	FapcCompatibility *string `pulumi:"fapcCompatibility"`
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids []SettingOffendingSsid `pulumi:"offendingSsids"`
@@ -144,7 +144,7 @@ type SettingState struct {
 	AccountId pulumi.StringPtrInput
 	// Country or region in which the FortiGate is located. The country determines the 802.11 bands and channels that are available.
 	Country pulumi.StringPtrInput
-	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	// Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
 	DarrpOptimize pulumi.IntPtrInput
 	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
 	DarrpOptimizeSchedules SettingDarrpOptimizeScheduleArrayInput
@@ -164,7 +164,7 @@ type SettingState struct {
 	FapcCompatibility pulumi.StringPtrInput
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids SettingOffendingSsidArrayInput
@@ -187,7 +187,7 @@ type settingArgs struct {
 	AccountId *string `pulumi:"accountId"`
 	// Country or region in which the FortiGate is located. The country determines the 802.11 bands and channels that are available.
 	Country *string `pulumi:"country"`
-	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	// Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
 	DarrpOptimize *int `pulumi:"darrpOptimize"`
 	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
 	DarrpOptimizeSchedules []SettingDarrpOptimizeSchedule `pulumi:"darrpOptimizeSchedules"`
@@ -207,7 +207,7 @@ type settingArgs struct {
 	FapcCompatibility *string `pulumi:"fapcCompatibility"`
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids []SettingOffendingSsid `pulumi:"offendingSsids"`
@@ -227,7 +227,7 @@ type SettingArgs struct {
 	AccountId pulumi.StringPtrInput
 	// Country or region in which the FortiGate is located. The country determines the 802.11 bands and channels that are available.
 	Country pulumi.StringPtrInput
-	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	// Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
 	DarrpOptimize pulumi.IntPtrInput
 	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
 	DarrpOptimizeSchedules SettingDarrpOptimizeScheduleArrayInput
@@ -247,7 +247,7 @@ type SettingArgs struct {
 	FapcCompatibility pulumi.StringPtrInput
 	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids SettingOffendingSsidArrayInput
@@ -358,7 +358,7 @@ func (o SettingOutput) Country() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Country }).(pulumi.StringOutput)
 }
 
-// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+// Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
 func (o SettingOutput) DarrpOptimize() pulumi.IntOutput {
 	return o.ApplyT(func(v *Setting) pulumi.IntOutput { return v.DarrpOptimize }).(pulumi.IntOutput)
 }
@@ -408,7 +408,7 @@ func (o SettingOutput) FirmwareProvisionOnAuthorization() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.FirmwareProvisionOnAuthorization }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SettingOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -429,8 +429,8 @@ func (o SettingOutput) RollingWtpUpgrade() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SettingOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SettingOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable WFA compatibility. Valid values: `enable`, `disable`.

@@ -58,7 +58,7 @@ export class Stormcontrol extends pulumi.CustomResource {
      */
     public readonly broadcast!: pulumi.Output<string>;
     /**
-     * Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+     * Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
      */
     public readonly rate!: pulumi.Output<number>;
     /**
@@ -72,7 +72,7 @@ export class Stormcontrol extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Stormcontrol resource with the given unique name, arguments, and options.
@@ -114,7 +114,7 @@ export interface StormcontrolState {
      */
     broadcast?: pulumi.Input<string>;
     /**
-     * Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+     * Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
      */
     rate?: pulumi.Input<number>;
     /**
@@ -140,7 +140,7 @@ export interface StormcontrolArgs {
      */
     broadcast?: pulumi.Input<string>;
     /**
-     * Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+     * Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
      */
     rate?: pulumi.Input<number>;
     /**

@@ -92,7 +92,7 @@ type Addrgrp6 struct {
 	ExcludeMembers Addrgrp6ExcludeMemberArrayOutput `pulumi:"excludeMembers"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members Addrgrp6MemberArrayOutput `pulumi:"members"`
@@ -103,7 +103,7 @@ type Addrgrp6 struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable address group6 visibility in the GUI. Valid values: `enable`, `disable`.
 	Visibility pulumi.StringOutput `pulumi:"visibility"`
 }
@@ -153,7 +153,7 @@ type addrgrp6State struct {
 	ExcludeMembers []Addrgrp6ExcludeMember `pulumi:"excludeMembers"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members []Addrgrp6Member `pulumi:"members"`
@@ -182,7 +182,7 @@ type Addrgrp6State struct {
 	ExcludeMembers Addrgrp6ExcludeMemberArrayInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members Addrgrp6MemberArrayInput
@@ -215,7 +215,7 @@ type addrgrp6Args struct {
 	ExcludeMembers []Addrgrp6ExcludeMember `pulumi:"excludeMembers"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members []Addrgrp6Member `pulumi:"members"`
@@ -245,7 +245,7 @@ type Addrgrp6Args struct {
 	ExcludeMembers Addrgrp6ExcludeMemberArrayInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members Addrgrp6MemberArrayInput
@@ -378,7 +378,7 @@ func (o Addrgrp6Output) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v *Addrgrp6) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o Addrgrp6Output) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Addrgrp6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -404,8 +404,8 @@ func (o Addrgrp6Output) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Addrgrp6Output) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Addrgrp6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Addrgrp6Output) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Addrgrp6) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable address group6 visibility in the GUI. Valid values: `enable`, `disable`.

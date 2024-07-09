@@ -65,37 +65,37 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> ApBgscanDisableStart { get; private set; } = null!;
 
         /// <summary>
-        /// Listening time on a scanning channel (10 - 1000 msec, default = 20).
+        /// Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions &gt;= 7.0.2: default = 30.
         /// </summary>
         [Output("apBgscanDuration")]
         public Output<int> ApBgscanDuration { get; private set; } = null!;
 
         /// <summary>
-        /// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+        /// Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions &gt;= 7.0.2: default = 20.
         /// </summary>
         [Output("apBgscanIdle")]
         public Output<int> ApBgscanIdle { get; private set; } = null!;
 
         /// <summary>
-        /// Period of time between scanning two channels (1 - 600 sec, default = 1).
+        /// Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions &gt;= 7.0.2: default = 3.
         /// </summary>
         [Output("apBgscanIntv")]
         public Output<int> ApBgscanIntv { get; private set; } = null!;
 
         /// <summary>
-        /// Period of time between background scans (60 - 3600 sec, default = 600).
+        /// Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
         /// </summary>
         [Output("apBgscanPeriod")]
         public Output<int> ApBgscanPeriod { get; private set; } = null!;
 
         /// <summary>
-        /// Period of time between background scan reports (15 - 600 sec, default = 30).
+        /// Period between background scan reports (15 - 600 sec, default = 30).
         /// </summary>
         [Output("apBgscanReportIntv")]
         public Output<int> ApBgscanReportIntv { get; private set; } = null!;
 
         /// <summary>
-        /// Period of time between foreground scan reports (15 - 600 sec, default = 15).
+        /// Period between foreground scan reports (15 - 600 sec, default = 15).
         /// </summary>
         [Output("apFgscanReportIntv")]
         public Output<int> ApFgscanReportIntv { get; private set; } = null!;
@@ -305,7 +305,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> EapolSuccThresh { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -341,7 +341,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> NullSsidProbeResp { get; private set; } = null!;
 
         /// <summary>
-        /// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+        /// Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         /// </summary>
         [Output("sensorMode")]
         public Output<string> SensorMode { get; private set; } = null!;
@@ -358,7 +358,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// The `ap_scan_channel_list_2g_5g` block supports:
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
@@ -456,37 +456,37 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? ApBgscanDisableStart { get; set; }
 
         /// <summary>
-        /// Listening time on a scanning channel (10 - 1000 msec, default = 20).
+        /// Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions &gt;= 7.0.2: default = 30.
         /// </summary>
         [Input("apBgscanDuration")]
         public Input<int>? ApBgscanDuration { get; set; }
 
         /// <summary>
-        /// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+        /// Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions &gt;= 7.0.2: default = 20.
         /// </summary>
         [Input("apBgscanIdle")]
         public Input<int>? ApBgscanIdle { get; set; }
 
         /// <summary>
-        /// Period of time between scanning two channels (1 - 600 sec, default = 1).
+        /// Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions &gt;= 7.0.2: default = 3.
         /// </summary>
         [Input("apBgscanIntv")]
         public Input<int>? ApBgscanIntv { get; set; }
 
         /// <summary>
-        /// Period of time between background scans (60 - 3600 sec, default = 600).
+        /// Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
         /// </summary>
         [Input("apBgscanPeriod")]
         public Input<int>? ApBgscanPeriod { get; set; }
 
         /// <summary>
-        /// Period of time between background scan reports (15 - 600 sec, default = 30).
+        /// Period between background scan reports (15 - 600 sec, default = 30).
         /// </summary>
         [Input("apBgscanReportIntv")]
         public Input<int>? ApBgscanReportIntv { get; set; }
 
         /// <summary>
-        /// Period of time between foreground scan reports (15 - 600 sec, default = 15).
+        /// Period between foreground scan reports (15 - 600 sec, default = 15).
         /// </summary>
         [Input("apFgscanReportIntv")]
         public Input<int>? ApFgscanReportIntv { get; set; }
@@ -708,7 +708,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? EapolSuccThresh { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -744,7 +744,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? NullSsidProbeResp { get; set; }
 
         /// <summary>
-        /// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+        /// Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         /// </summary>
         [Input("sensorMode")]
         public Input<string>? SensorMode { get; set; }
@@ -820,37 +820,37 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? ApBgscanDisableStart { get; set; }
 
         /// <summary>
-        /// Listening time on a scanning channel (10 - 1000 msec, default = 20).
+        /// Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions &gt;= 7.0.2: default = 30.
         /// </summary>
         [Input("apBgscanDuration")]
         public Input<int>? ApBgscanDuration { get; set; }
 
         /// <summary>
-        /// Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+        /// Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions &gt;= 7.0.2: default = 20.
         /// </summary>
         [Input("apBgscanIdle")]
         public Input<int>? ApBgscanIdle { get; set; }
 
         /// <summary>
-        /// Period of time between scanning two channels (1 - 600 sec, default = 1).
+        /// Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions &gt;= 7.0.2: default = 3.
         /// </summary>
         [Input("apBgscanIntv")]
         public Input<int>? ApBgscanIntv { get; set; }
 
         /// <summary>
-        /// Period of time between background scans (60 - 3600 sec, default = 600).
+        /// Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
         /// </summary>
         [Input("apBgscanPeriod")]
         public Input<int>? ApBgscanPeriod { get; set; }
 
         /// <summary>
-        /// Period of time between background scan reports (15 - 600 sec, default = 30).
+        /// Period between background scan reports (15 - 600 sec, default = 30).
         /// </summary>
         [Input("apBgscanReportIntv")]
         public Input<int>? ApBgscanReportIntv { get; set; }
 
         /// <summary>
-        /// Period of time between foreground scan reports (15 - 600 sec, default = 15).
+        /// Period between foreground scan reports (15 - 600 sec, default = 15).
         /// </summary>
         [Input("apFgscanReportIntv")]
         public Input<int>? ApFgscanReportIntv { get; set; }
@@ -1072,7 +1072,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? EapolSuccThresh { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -1108,7 +1108,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? NullSsidProbeResp { get; set; }
 
         /// <summary>
-        /// Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+        /// Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
         /// </summary>
         [Input("sensorMode")]
         public Input<string>? SensorMode { get; set; }

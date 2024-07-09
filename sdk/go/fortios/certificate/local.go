@@ -146,7 +146,7 @@ type Local struct {
 	Source                    pulumi.StringOutput    `pulumi:"source"`
 	SourceIp                  pulumi.StringOutput    `pulumi:"sourceIp"`
 	State                     pulumi.StringOutput    `pulumi:"state"`
-	Vdomparam                 pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam                 pulumi.StringOutput    `pulumi:"vdomparam"`
 }
 
 // NewLocal registers a new resource with the given unique name, arguments, and options.
@@ -608,8 +608,8 @@ func (o LocalOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
-func (o LocalOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Local) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o LocalOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type LocalArrayOutput struct{ *pulumi.OutputState }

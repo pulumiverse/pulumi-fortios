@@ -57,7 +57,7 @@ class SettingArgs:
         :param pulumi.Input[str] faz_override: Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy6_implicit_log: Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy_implicit_log: Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] local_in_allow: Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_broadcast: Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_unicast: Enable/disable local-in-deny-unicast logging. Valid values: `enable`, `disable`.
@@ -260,7 +260,7 @@ class SettingArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -529,7 +529,7 @@ class _SettingState:
         :param pulumi.Input[str] faz_override: Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy6_implicit_log: Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy_implicit_log: Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] local_in_allow: Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_broadcast: Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_unicast: Enable/disable local-in-deny-unicast logging. Valid values: `enable`, `disable`.
@@ -732,7 +732,7 @@ class _SettingState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1053,7 +1053,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] faz_override: Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy6_implicit_log: Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy_implicit_log: Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] local_in_allow: Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_broadcast: Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_unicast: Enable/disable local-in-deny-unicast logging. Valid values: `enable`, `disable`.
@@ -1266,7 +1266,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] faz_override: Enable/disable override FortiAnalyzer settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy6_implicit_log: Enable/disable implicit firewall policy6 logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fwpolicy_implicit_log: Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] local_in_allow: Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_broadcast: Enable/disable local-in-deny-broadcast logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_in_deny_unicast: Enable/disable local-in-deny-unicast logging. Valid values: `enable`, `disable`.
@@ -1405,7 +1405,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1547,7 +1547,7 @@ class Setting(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

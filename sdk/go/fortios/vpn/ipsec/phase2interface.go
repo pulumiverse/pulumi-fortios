@@ -237,7 +237,7 @@ type Phase2interface struct {
 	Keepalive pulumi.StringOutput `pulumi:"keepalive"`
 	// Keylife type. Valid values: `seconds`, `kbs`, `both`.
 	KeylifeType pulumi.StringOutput `pulumi:"keylifeType"`
-	// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+	// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
 	Keylifekbs pulumi.IntOutput `pulumi:"keylifekbs"`
 	// Phase2 key life in time in seconds (120 - 172800).
 	Keylifeseconds pulumi.IntOutput `pulumi:"keylifeseconds"`
@@ -280,7 +280,7 @@ type Phase2interface struct {
 	// Local proxy ID IPv6 subnet.
 	SrcSubnet6 pulumi.StringOutput `pulumi:"srcSubnet6"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewPhase2interface registers a new resource with the given unique name, arguments, and options.
@@ -369,7 +369,7 @@ type phase2interfaceState struct {
 	Keepalive *string `pulumi:"keepalive"`
 	// Keylife type. Valid values: `seconds`, `kbs`, `both`.
 	KeylifeType *string `pulumi:"keylifeType"`
-	// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+	// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
 	Keylifekbs *int `pulumi:"keylifekbs"`
 	// Phase2 key life in time in seconds (120 - 172800).
 	Keylifeseconds *int `pulumi:"keylifeseconds"`
@@ -466,7 +466,7 @@ type Phase2interfaceState struct {
 	Keepalive pulumi.StringPtrInput
 	// Keylife type. Valid values: `seconds`, `kbs`, `both`.
 	KeylifeType pulumi.StringPtrInput
-	// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+	// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
 	Keylifekbs pulumi.IntPtrInput
 	// Phase2 key life in time in seconds (120 - 172800).
 	Keylifeseconds pulumi.IntPtrInput
@@ -567,7 +567,7 @@ type phase2interfaceArgs struct {
 	Keepalive *string `pulumi:"keepalive"`
 	// Keylife type. Valid values: `seconds`, `kbs`, `both`.
 	KeylifeType *string `pulumi:"keylifeType"`
-	// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+	// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
 	Keylifekbs *int `pulumi:"keylifekbs"`
 	// Phase2 key life in time in seconds (120 - 172800).
 	Keylifeseconds *int `pulumi:"keylifeseconds"`
@@ -665,7 +665,7 @@ type Phase2interfaceArgs struct {
 	Keepalive pulumi.StringPtrInput
 	// Keylife type. Valid values: `seconds`, `kbs`, `both`.
 	KeylifeType pulumi.StringPtrInput
-	// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+	// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
 	Keylifekbs pulumi.IntPtrInput
 	// Phase2 key life in time in seconds (120 - 172800).
 	Keylifeseconds pulumi.IntPtrInput
@@ -923,7 +923,7 @@ func (o Phase2interfaceOutput) KeylifeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase2interface) pulumi.StringOutput { return v.KeylifeType }).(pulumi.StringOutput)
 }
 
-// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
 func (o Phase2interfaceOutput) Keylifekbs() pulumi.IntOutput {
 	return o.ApplyT(func(v *Phase2interface) pulumi.IntOutput { return v.Keylifekbs }).(pulumi.IntOutput)
 }
@@ -1029,8 +1029,8 @@ func (o Phase2interfaceOutput) SrcSubnet6() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Phase2interfaceOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Phase2interface) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Phase2interfaceOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase2interface) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type Phase2interfaceArrayOutput struct{ *pulumi.OutputState }

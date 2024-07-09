@@ -50,7 +50,7 @@ type Snmpuser struct {
 	// Security level for message authentication and encryption. Valid values: `no-auth-no-priv`, `auth-no-priv`, `auth-priv`.
 	SecurityLevel pulumi.StringOutput `pulumi:"securityLevel"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSnmpuser registers a new resource with the given unique name, arguments, and options.
@@ -310,8 +310,8 @@ func (o SnmpuserOutput) SecurityLevel() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SnmpuserOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Snmpuser) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SnmpuserOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Snmpuser) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SnmpuserArrayOutput struct{ *pulumi.OutputState }

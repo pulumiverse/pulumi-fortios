@@ -130,7 +130,7 @@ export class Local extends pulumi.CustomResource {
     public readonly source!: pulumi.Output<string>;
     public readonly sourceIp!: pulumi.Output<string>;
     public readonly state!: pulumi.Output<string>;
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Local resource with the given unique name, arguments, and options.

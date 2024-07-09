@@ -79,7 +79,7 @@ type User struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// SNMP notifications (traps) to send.
 	Events pulumi.StringOutput `pulumi:"events"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
 	HaDirect pulumi.StringOutput `pulumi:"haDirect"`
@@ -114,7 +114,7 @@ type User struct {
 	// Enable/disable traps for this SNMP user. Valid values: `enable`, `disable`.
 	TrapStatus pulumi.StringOutput `pulumi:"trapStatus"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// SNMP access control VDOMs. The structure of `vdoms` block is documented below.
 	Vdoms UserVdomArrayOutput `pulumi:"vdoms"`
 }
@@ -168,7 +168,7 @@ type userState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// SNMP notifications (traps) to send.
 	Events *string `pulumi:"events"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
 	HaDirect *string `pulumi:"haDirect"`
@@ -217,7 +217,7 @@ type UserState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// SNMP notifications (traps) to send.
 	Events pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
 	HaDirect pulumi.StringPtrInput
@@ -270,7 +270,7 @@ type userArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// SNMP notifications (traps) to send.
 	Events *string `pulumi:"events"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
 	HaDirect *string `pulumi:"haDirect"`
@@ -320,7 +320,7 @@ type UserArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// SNMP notifications (traps) to send.
 	Events pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
 	HaDirect pulumi.StringPtrInput
@@ -467,7 +467,7 @@ func (o UserOutput) Events() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Events }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o UserOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -553,8 +553,8 @@ func (o UserOutput) TrapStatus() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o UserOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o UserOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // SNMP access control VDOMs. The structure of `vdoms` block is documented below.

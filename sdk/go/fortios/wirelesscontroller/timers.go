@@ -41,6 +41,8 @@ type Timers struct {
 	ApRebootWaitTime pulumi.StringOutput `pulumi:"apRebootWaitTime"`
 	// Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
 	AuthTimeout pulumi.IntOutput `pulumi:"authTimeout"`
+	// Time period in minutes to keep BLE device after it is gone (default = 60).
+	BleDeviceCleanup pulumi.IntOutput `pulumi:"bleDeviceCleanup"`
 	// Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
 	BleScanReportIntv pulumi.IntOutput `pulumi:"bleScanReportIntv"`
 	// Time after which a client is considered idle and disconnected from the home controller (2 - 3600 sec, default = 20, 0 for no timeout).
@@ -63,7 +65,7 @@ type Timers struct {
 	EchoInterval pulumi.IntOutput `pulumi:"echoInterval"`
 	// Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
 	FakeApLog pulumi.IntOutput `pulumi:"fakeApLog"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
 	IpsecIntfCleanup pulumi.IntOutput `pulumi:"ipsecIntfCleanup"`
@@ -75,16 +77,20 @@ type Timers struct {
 	RogueApCleanup pulumi.IntOutput `pulumi:"rogueApCleanup"`
 	// Time between logging rogue AP messages if periodic rogue AP logging is configured (0 - 1440 min, default = 0).
 	RogueApLog pulumi.IntOutput `pulumi:"rogueApLog"`
+	// Time period in minutes to keep rogue station after it is gone (default = 0).
+	RogueStaCleanup pulumi.IntOutput `pulumi:"rogueStaCleanup"`
+	// Time period in minutes to keep station capability data after it is gone (default = 0).
+	StaCapCleanup pulumi.IntOutput `pulumi:"staCapCleanup"`
 	// Time between running station capability reports (1 - 255 sec, default = 30).
 	StaCapabilityInterval pulumi.IntOutput `pulumi:"staCapabilityInterval"`
 	// Time between running client presence flushes to remove clients that are listed but no longer present (0 - 86400 sec, default = 1800).
 	StaLocateTimer pulumi.IntOutput `pulumi:"staLocateTimer"`
-	// Time between running client (station) reports (1 - 255 sec, default = 1).
+	// Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
 	StaStatsInterval pulumi.IntOutput `pulumi:"staStatsInterval"`
 	// Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 15).
 	VapStatsInterval pulumi.IntOutput `pulumi:"vapStatsInterval"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewTimers registers a new resource with the given unique name, arguments, and options.
@@ -125,6 +131,8 @@ type timersState struct {
 	ApRebootWaitTime *string `pulumi:"apRebootWaitTime"`
 	// Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
 	AuthTimeout *int `pulumi:"authTimeout"`
+	// Time period in minutes to keep BLE device after it is gone (default = 60).
+	BleDeviceCleanup *int `pulumi:"bleDeviceCleanup"`
 	// Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
 	BleScanReportIntv *int `pulumi:"bleScanReportIntv"`
 	// Time after which a client is considered idle and disconnected from the home controller (2 - 3600 sec, default = 20, 0 for no timeout).
@@ -147,7 +155,7 @@ type timersState struct {
 	EchoInterval *int `pulumi:"echoInterval"`
 	// Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
 	FakeApLog *int `pulumi:"fakeApLog"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
 	IpsecIntfCleanup *int `pulumi:"ipsecIntfCleanup"`
@@ -159,11 +167,15 @@ type timersState struct {
 	RogueApCleanup *int `pulumi:"rogueApCleanup"`
 	// Time between logging rogue AP messages if periodic rogue AP logging is configured (0 - 1440 min, default = 0).
 	RogueApLog *int `pulumi:"rogueApLog"`
+	// Time period in minutes to keep rogue station after it is gone (default = 0).
+	RogueStaCleanup *int `pulumi:"rogueStaCleanup"`
+	// Time period in minutes to keep station capability data after it is gone (default = 0).
+	StaCapCleanup *int `pulumi:"staCapCleanup"`
 	// Time between running station capability reports (1 - 255 sec, default = 30).
 	StaCapabilityInterval *int `pulumi:"staCapabilityInterval"`
 	// Time between running client presence flushes to remove clients that are listed but no longer present (0 - 86400 sec, default = 1800).
 	StaLocateTimer *int `pulumi:"staLocateTimer"`
-	// Time between running client (station) reports (1 - 255 sec, default = 1).
+	// Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
 	StaStatsInterval *int `pulumi:"staStatsInterval"`
 	// Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 15).
 	VapStatsInterval *int `pulumi:"vapStatsInterval"`
@@ -180,6 +192,8 @@ type TimersState struct {
 	ApRebootWaitTime pulumi.StringPtrInput
 	// Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
 	AuthTimeout pulumi.IntPtrInput
+	// Time period in minutes to keep BLE device after it is gone (default = 60).
+	BleDeviceCleanup pulumi.IntPtrInput
 	// Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
 	BleScanReportIntv pulumi.IntPtrInput
 	// Time after which a client is considered idle and disconnected from the home controller (2 - 3600 sec, default = 20, 0 for no timeout).
@@ -202,7 +216,7 @@ type TimersState struct {
 	EchoInterval pulumi.IntPtrInput
 	// Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
 	FakeApLog pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
 	IpsecIntfCleanup pulumi.IntPtrInput
@@ -214,11 +228,15 @@ type TimersState struct {
 	RogueApCleanup pulumi.IntPtrInput
 	// Time between logging rogue AP messages if periodic rogue AP logging is configured (0 - 1440 min, default = 0).
 	RogueApLog pulumi.IntPtrInput
+	// Time period in minutes to keep rogue station after it is gone (default = 0).
+	RogueStaCleanup pulumi.IntPtrInput
+	// Time period in minutes to keep station capability data after it is gone (default = 0).
+	StaCapCleanup pulumi.IntPtrInput
 	// Time between running station capability reports (1 - 255 sec, default = 30).
 	StaCapabilityInterval pulumi.IntPtrInput
 	// Time between running client presence flushes to remove clients that are listed but no longer present (0 - 86400 sec, default = 1800).
 	StaLocateTimer pulumi.IntPtrInput
-	// Time between running client (station) reports (1 - 255 sec, default = 1).
+	// Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
 	StaStatsInterval pulumi.IntPtrInput
 	// Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 15).
 	VapStatsInterval pulumi.IntPtrInput
@@ -239,6 +257,8 @@ type timersArgs struct {
 	ApRebootWaitTime *string `pulumi:"apRebootWaitTime"`
 	// Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
 	AuthTimeout *int `pulumi:"authTimeout"`
+	// Time period in minutes to keep BLE device after it is gone (default = 60).
+	BleDeviceCleanup *int `pulumi:"bleDeviceCleanup"`
 	// Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
 	BleScanReportIntv *int `pulumi:"bleScanReportIntv"`
 	// Time after which a client is considered idle and disconnected from the home controller (2 - 3600 sec, default = 20, 0 for no timeout).
@@ -261,7 +281,7 @@ type timersArgs struct {
 	EchoInterval *int `pulumi:"echoInterval"`
 	// Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
 	FakeApLog *int `pulumi:"fakeApLog"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
 	IpsecIntfCleanup *int `pulumi:"ipsecIntfCleanup"`
@@ -273,11 +293,15 @@ type timersArgs struct {
 	RogueApCleanup *int `pulumi:"rogueApCleanup"`
 	// Time between logging rogue AP messages if periodic rogue AP logging is configured (0 - 1440 min, default = 0).
 	RogueApLog *int `pulumi:"rogueApLog"`
+	// Time period in minutes to keep rogue station after it is gone (default = 0).
+	RogueStaCleanup *int `pulumi:"rogueStaCleanup"`
+	// Time period in minutes to keep station capability data after it is gone (default = 0).
+	StaCapCleanup *int `pulumi:"staCapCleanup"`
 	// Time between running station capability reports (1 - 255 sec, default = 30).
 	StaCapabilityInterval *int `pulumi:"staCapabilityInterval"`
 	// Time between running client presence flushes to remove clients that are listed but no longer present (0 - 86400 sec, default = 1800).
 	StaLocateTimer *int `pulumi:"staLocateTimer"`
-	// Time between running client (station) reports (1 - 255 sec, default = 1).
+	// Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
 	StaStatsInterval *int `pulumi:"staStatsInterval"`
 	// Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 15).
 	VapStatsInterval *int `pulumi:"vapStatsInterval"`
@@ -295,6 +319,8 @@ type TimersArgs struct {
 	ApRebootWaitTime pulumi.StringPtrInput
 	// Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
 	AuthTimeout pulumi.IntPtrInput
+	// Time period in minutes to keep BLE device after it is gone (default = 60).
+	BleDeviceCleanup pulumi.IntPtrInput
 	// Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
 	BleScanReportIntv pulumi.IntPtrInput
 	// Time after which a client is considered idle and disconnected from the home controller (2 - 3600 sec, default = 20, 0 for no timeout).
@@ -317,7 +343,7 @@ type TimersArgs struct {
 	EchoInterval pulumi.IntPtrInput
 	// Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
 	FakeApLog pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
 	IpsecIntfCleanup pulumi.IntPtrInput
@@ -329,11 +355,15 @@ type TimersArgs struct {
 	RogueApCleanup pulumi.IntPtrInput
 	// Time between logging rogue AP messages if periodic rogue AP logging is configured (0 - 1440 min, default = 0).
 	RogueApLog pulumi.IntPtrInput
+	// Time period in minutes to keep rogue station after it is gone (default = 0).
+	RogueStaCleanup pulumi.IntPtrInput
+	// Time period in minutes to keep station capability data after it is gone (default = 0).
+	StaCapCleanup pulumi.IntPtrInput
 	// Time between running station capability reports (1 - 255 sec, default = 30).
 	StaCapabilityInterval pulumi.IntPtrInput
 	// Time between running client presence flushes to remove clients that are listed but no longer present (0 - 86400 sec, default = 1800).
 	StaLocateTimer pulumi.IntPtrInput
-	// Time between running client (station) reports (1 - 255 sec, default = 1).
+	// Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
 	StaStatsInterval pulumi.IntPtrInput
 	// Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 15).
 	VapStatsInterval pulumi.IntPtrInput
@@ -448,6 +478,11 @@ func (o TimersOutput) AuthTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.AuthTimeout }).(pulumi.IntOutput)
 }
 
+// Time period in minutes to keep BLE device after it is gone (default = 60).
+func (o TimersOutput) BleDeviceCleanup() pulumi.IntOutput {
+	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.BleDeviceCleanup }).(pulumi.IntOutput)
+}
+
 // Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
 func (o TimersOutput) BleScanReportIntv() pulumi.IntOutput {
 	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.BleScanReportIntv }).(pulumi.IntOutput)
@@ -503,7 +538,7 @@ func (o TimersOutput) FakeApLog() pulumi.IntOutput {
 	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.FakeApLog }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o TimersOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Timers) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -533,6 +568,16 @@ func (o TimersOutput) RogueApLog() pulumi.IntOutput {
 	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.RogueApLog }).(pulumi.IntOutput)
 }
 
+// Time period in minutes to keep rogue station after it is gone (default = 0).
+func (o TimersOutput) RogueStaCleanup() pulumi.IntOutput {
+	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.RogueStaCleanup }).(pulumi.IntOutput)
+}
+
+// Time period in minutes to keep station capability data after it is gone (default = 0).
+func (o TimersOutput) StaCapCleanup() pulumi.IntOutput {
+	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.StaCapCleanup }).(pulumi.IntOutput)
+}
+
 // Time between running station capability reports (1 - 255 sec, default = 30).
 func (o TimersOutput) StaCapabilityInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.StaCapabilityInterval }).(pulumi.IntOutput)
@@ -543,7 +588,7 @@ func (o TimersOutput) StaLocateTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.StaLocateTimer }).(pulumi.IntOutput)
 }
 
-// Time between running client (station) reports (1 - 255 sec, default = 1).
+// Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
 func (o TimersOutput) StaStatsInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Timers) pulumi.IntOutput { return v.StaStatsInterval }).(pulumi.IntOutput)
 }
@@ -554,8 +599,8 @@ func (o TimersOutput) VapStatsInterval() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o TimersOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Timers) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o TimersOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Timers) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type TimersArrayOutput struct{ *pulumi.OutputState }

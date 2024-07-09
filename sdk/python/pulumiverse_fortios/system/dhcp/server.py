@@ -99,7 +99,7 @@ class ServerArgs:
         :param pulumi.Input[str] filename: Name of the boot file on the TFTP server.
         :param pulumi.Input[str] forticlient_on_net_status: Enable/disable FortiClient-On-Net service for this DHCP server. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] fosid: ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_mode: Method used to assign client IP. Valid values: `range`, `usrgrp`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerIpRangeArgs']]] ip_ranges: DHCP IP range configuration. The structure of `ip_range` block is documented below.
         :param pulumi.Input[int] ipsec_lease_hold: DHCP over IPsec leases expire this many seconds after tunnel down (0 to disable forced-expiry).
@@ -554,7 +554,7 @@ class ServerArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -983,7 +983,7 @@ class _ServerState:
         :param pulumi.Input[str] filename: Name of the boot file on the TFTP server.
         :param pulumi.Input[str] forticlient_on_net_status: Enable/disable FortiClient-On-Net service for this DHCP server. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] fosid: ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: DHCP server can assign IP configurations to clients connected to this interface.
         :param pulumi.Input[str] ip_mode: Method used to assign client IP. Valid values: `range`, `usrgrp`.
         :param pulumi.Input[Sequence[pulumi.Input['ServerIpRangeArgs']]] ip_ranges: DHCP IP range configuration. The structure of `ip_range` block is documented below.
@@ -1418,7 +1418,7 @@ class _ServerState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1916,7 +1916,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] filename: Name of the boot file on the TFTP server.
         :param pulumi.Input[str] forticlient_on_net_status: Enable/disable FortiClient-On-Net service for this DHCP server. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] fosid: ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: DHCP server can assign IP configurations to clients connected to this interface.
         :param pulumi.Input[str] ip_mode: Method used to assign client IP. Valid values: `range`, `usrgrp`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerIpRangeArgs']]]] ip_ranges: DHCP IP range configuration. The structure of `ip_range` block is documented below.
@@ -2232,7 +2232,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] filename: Name of the boot file on the TFTP server.
         :param pulumi.Input[str] forticlient_on_net_status: Enable/disable FortiClient-On-Net service for this DHCP server. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] fosid: ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: DHCP server can assign IP configurations to clients connected to this interface.
         :param pulumi.Input[str] ip_mode: Method used to assign client IP. Valid values: `range`, `usrgrp`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerIpRangeArgs']]]] ip_ranges: DHCP IP range configuration. The structure of `ip_range` block is documented below.
@@ -2521,7 +2521,7 @@ class Server(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2711,7 +2711,7 @@ class Server(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

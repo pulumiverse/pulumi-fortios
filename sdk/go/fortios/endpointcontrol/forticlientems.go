@@ -55,7 +55,7 @@ type Forticlientems struct {
 	// FortiClient EMS telemetry upload port number. (1 - 65535, default: 8014).
 	UploadPort pulumi.IntOutput `pulumi:"uploadPort"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewForticlientems registers a new resource with the given unique name, arguments, and options.
@@ -346,8 +346,8 @@ func (o ForticlientemsOutput) UploadPort() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ForticlientemsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Forticlientems) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ForticlientemsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Forticlientems) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ForticlientemsArrayOutput struct{ *pulumi.OutputState }

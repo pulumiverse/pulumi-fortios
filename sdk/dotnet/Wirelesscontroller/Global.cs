@@ -73,7 +73,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> AcdProcessCount { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+        /// Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Output("apLogServer")]
         public Output<string> ApLogServer { get; private set; } = null!;
@@ -97,7 +97,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> ControlMessageOffload { get; private set; } = null!;
 
         /// <summary>
-        /// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        /// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
         /// </summary>
         [Output("dataEthernetIi")]
         public Output<string> DataEthernetIi { get; private set; } = null!;
@@ -145,6 +145,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
+        /// Maximum number of BLE devices stored on the controller (default = 0).
+        /// </summary>
+        [Output("maxBleDevice")]
+        public Output<int> MaxBleDevice { get; private set; } = null!;
+
+        /// <summary>
         /// Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
         /// </summary>
         [Output("maxClients")]
@@ -155,6 +161,36 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("maxRetransmit")]
         public Output<int> MaxRetransmit { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum number of rogue APs stored on the controller (default = 0).
+        /// </summary>
+        [Output("maxRogueAp")]
+        public Output<int> MaxRogueAp { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+        /// </summary>
+        [Output("maxRogueApWtp")]
+        public Output<int> MaxRogueApWtp { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum number of rogue stations stored on the controller (default = 0).
+        /// </summary>
+        [Output("maxRogueSta")]
+        public Output<int> MaxRogueSta { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum number of station cap stored on the controller (default = 0).
+        /// </summary>
+        [Output("maxStaCap")]
+        public Output<int> MaxStaCap { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+        /// </summary>
+        [Output("maxStaCapWtp")]
+        public Output<int> MaxStaCapWtp { get; private set; } = null!;
 
         /// <summary>
         /// Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
@@ -202,7 +238,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Wpad daemon process count for multi-core CPU support.
@@ -270,7 +306,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? AcdProcessCount { get; set; }
 
         /// <summary>
-        /// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+        /// Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("apLogServer")]
         public Input<string>? ApLogServer { get; set; }
@@ -294,7 +330,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? ControlMessageOffload { get; set; }
 
         /// <summary>
-        /// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        /// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("dataEthernetIi")]
         public Input<string>? DataEthernetIi { get; set; }
@@ -342,6 +378,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? Location { get; set; }
 
         /// <summary>
+        /// Maximum number of BLE devices stored on the controller (default = 0).
+        /// </summary>
+        [Input("maxBleDevice")]
+        public Input<int>? MaxBleDevice { get; set; }
+
+        /// <summary>
         /// Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
         /// </summary>
         [Input("maxClients")]
@@ -352,6 +394,36 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("maxRetransmit")]
         public Input<int>? MaxRetransmit { get; set; }
+
+        /// <summary>
+        /// Maximum number of rogue APs stored on the controller (default = 0).
+        /// </summary>
+        [Input("maxRogueAp")]
+        public Input<int>? MaxRogueAp { get; set; }
+
+        /// <summary>
+        /// Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+        /// </summary>
+        [Input("maxRogueApWtp")]
+        public Input<int>? MaxRogueApWtp { get; set; }
+
+        /// <summary>
+        /// Maximum number of rogue stations stored on the controller (default = 0).
+        /// </summary>
+        [Input("maxRogueSta")]
+        public Input<int>? MaxRogueSta { get; set; }
+
+        /// <summary>
+        /// Maximum number of station cap stored on the controller (default = 0).
+        /// </summary>
+        [Input("maxStaCap")]
+        public Input<int>? MaxStaCap { get; set; }
+
+        /// <summary>
+        /// Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+        /// </summary>
+        [Input("maxStaCapWtp")]
+        public Input<int>? MaxStaCapWtp { get; set; }
 
         /// <summary>
         /// Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
@@ -428,7 +500,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? AcdProcessCount { get; set; }
 
         /// <summary>
-        /// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+        /// Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("apLogServer")]
         public Input<string>? ApLogServer { get; set; }
@@ -452,7 +524,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? ControlMessageOffload { get; set; }
 
         /// <summary>
-        /// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        /// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("dataEthernetIi")]
         public Input<string>? DataEthernetIi { get; set; }
@@ -500,6 +572,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? Location { get; set; }
 
         /// <summary>
+        /// Maximum number of BLE devices stored on the controller (default = 0).
+        /// </summary>
+        [Input("maxBleDevice")]
+        public Input<int>? MaxBleDevice { get; set; }
+
+        /// <summary>
         /// Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
         /// </summary>
         [Input("maxClients")]
@@ -510,6 +588,36 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("maxRetransmit")]
         public Input<int>? MaxRetransmit { get; set; }
+
+        /// <summary>
+        /// Maximum number of rogue APs stored on the controller (default = 0).
+        /// </summary>
+        [Input("maxRogueAp")]
+        public Input<int>? MaxRogueAp { get; set; }
+
+        /// <summary>
+        /// Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+        /// </summary>
+        [Input("maxRogueApWtp")]
+        public Input<int>? MaxRogueApWtp { get; set; }
+
+        /// <summary>
+        /// Maximum number of rogue stations stored on the controller (default = 0).
+        /// </summary>
+        [Input("maxRogueSta")]
+        public Input<int>? MaxRogueSta { get; set; }
+
+        /// <summary>
+        /// Maximum number of station cap stored on the controller (default = 0).
+        /// </summary>
+        [Input("maxStaCap")]
+        public Input<int>? MaxStaCap { get; set; }
+
+        /// <summary>
+        /// Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+        /// </summary>
+        [Input("maxStaCapWtp")]
+        public Input<int>? MaxStaCapWtp { get; set; }
 
         /// <summary>
         /// Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).

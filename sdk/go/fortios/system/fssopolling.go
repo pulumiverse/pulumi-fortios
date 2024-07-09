@@ -70,7 +70,7 @@ type Fssopolling struct {
 	// Enable/disable FSSO Polling Mode. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewFssopolling registers a new resource with the given unique name, arguments, and options.
@@ -274,8 +274,8 @@ func (o FssopollingOutput) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o FssopollingOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Fssopolling) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o FssopollingOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fssopolling) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type FssopollingArrayOutput struct{ *pulumi.OutputState }

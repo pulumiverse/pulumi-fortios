@@ -94,7 +94,7 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly port!: pulumi.Output<number>;
     /**
-     * Priority for routes added by SSL-VPN (0 - 4294967295).
+     * Priority for routes added by SSL-VPN. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
      */
     public readonly priority!: pulumi.Output<number>;
     /**
@@ -124,7 +124,7 @@ export class Client extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Client resource with the given unique name, arguments, and options.
@@ -228,7 +228,7 @@ export interface ClientState {
      */
     port?: pulumi.Input<number>;
     /**
-     * Priority for routes added by SSL-VPN (0 - 4294967295).
+     * Priority for routes added by SSL-VPN. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
      */
     priority?: pulumi.Input<number>;
     /**
@@ -306,7 +306,7 @@ export interface ClientArgs {
      */
     port?: pulumi.Input<number>;
     /**
-     * Priority for routes added by SSL-VPN (0 - 4294967295).
+     * Priority for routes added by SSL-VPN. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
      */
     priority?: pulumi.Input<number>;
     /**

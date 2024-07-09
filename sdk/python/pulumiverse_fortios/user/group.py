@@ -51,10 +51,10 @@ class GroupArgs:
         :param pulumi.Input[str] company: Set the action for the company guest user field. Valid values: `optional`, `mandatory`, `disabled`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] email: Enable/disable the guest user email address field. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] expire: Time in seconds before guest user accounts expire. (1 - 31536000 sec)
+        :param pulumi.Input[int] expire: Time in seconds before guest user accounts expire (1 - 31536000).
         :param pulumi.Input[str] expire_type: Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
         :param pulumi.Input[int] fosid: Group ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
         :param pulumi.Input[Sequence[pulumi.Input['GroupGuestArgs']]] guests: Guest User. The structure of `guest` block is documented below.
         :param pulumi.Input[str] http_digest_realm: Realm attribute for MD5-digest authentication.
@@ -204,7 +204,7 @@ class GroupArgs:
     @pulumi.getter
     def expire(self) -> Optional[pulumi.Input[int]]:
         """
-        Time in seconds before guest user accounts expire. (1 - 31536000 sec)
+        Time in seconds before guest user accounts expire (1 - 31536000).
         """
         return pulumi.get(self, "expire")
 
@@ -240,7 +240,7 @@ class GroupArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -491,10 +491,10 @@ class _GroupState:
         :param pulumi.Input[str] company: Set the action for the company guest user field. Valid values: `optional`, `mandatory`, `disabled`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] email: Enable/disable the guest user email address field. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] expire: Time in seconds before guest user accounts expire. (1 - 31536000 sec)
+        :param pulumi.Input[int] expire: Time in seconds before guest user accounts expire (1 - 31536000).
         :param pulumi.Input[str] expire_type: Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
         :param pulumi.Input[int] fosid: Group ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
         :param pulumi.Input[Sequence[pulumi.Input['GroupGuestArgs']]] guests: Guest User. The structure of `guest` block is documented below.
         :param pulumi.Input[str] http_digest_realm: Realm attribute for MD5-digest authentication.
@@ -644,7 +644,7 @@ class _GroupState:
     @pulumi.getter
     def expire(self) -> Optional[pulumi.Input[int]]:
         """
-        Time in seconds before guest user accounts expire. (1 - 31536000 sec)
+        Time in seconds before guest user accounts expire (1 - 31536000).
         """
         return pulumi.get(self, "expire")
 
@@ -680,7 +680,7 @@ class _GroupState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -975,10 +975,10 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] company: Set the action for the company guest user field. Valid values: `optional`, `mandatory`, `disabled`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] email: Enable/disable the guest user email address field. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] expire: Time in seconds before guest user accounts expire. (1 - 31536000 sec)
+        :param pulumi.Input[int] expire: Time in seconds before guest user accounts expire (1 - 31536000).
         :param pulumi.Input[str] expire_type: Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
         :param pulumi.Input[int] fosid: Group ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupGuestArgs']]]] guests: Guest User. The structure of `guest` block is documented below.
         :param pulumi.Input[str] http_digest_realm: Realm attribute for MD5-digest authentication.
@@ -1172,10 +1172,10 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] company: Set the action for the company guest user field. Valid values: `optional`, `mandatory`, `disabled`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] email: Enable/disable the guest user email address field. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] expire: Time in seconds before guest user accounts expire. (1 - 31536000 sec)
+        :param pulumi.Input[int] expire: Time in seconds before guest user accounts expire (1 - 31536000).
         :param pulumi.Input[str] expire_type: Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
         :param pulumi.Input[int] fosid: Group ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] group_type: Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupGuestArgs']]]] guests: Guest User. The structure of `guest` block is documented below.
         :param pulumi.Input[str] http_digest_realm: Realm attribute for MD5-digest authentication.
@@ -1279,7 +1279,7 @@ class Group(pulumi.CustomResource):
     @pulumi.getter
     def expire(self) -> pulumi.Output[int]:
         """
-        Time in seconds before guest user accounts expire. (1 - 31536000 sec)
+        Time in seconds before guest user accounts expire (1 - 31536000).
         """
         return pulumi.get(self, "expire")
 
@@ -1303,7 +1303,7 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1437,7 +1437,7 @@ class Group(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -181,7 +181,7 @@ export class Securitypolicy extends pulumi.CustomResource {
      */
     public readonly fssoGroups!: pulumi.Output<outputs.firewall.SecuritypolicyFssoGroup[] | undefined>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -401,11 +401,11 @@ export class Securitypolicy extends pulumi.CustomResource {
      */
     public readonly status!: pulumi.Output<string>;
     /**
-     * URL category ID list. The structure of `urlCategory` block is documented below.
+     * URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `urlCategory` block is documented below.
      */
     public readonly urlCategories!: pulumi.Output<outputs.firewall.SecuritypolicyUrlCategory[] | undefined>;
     /**
-     * URL categories or groups.
+     * URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
      */
     public readonly urlCategoryUnitary!: pulumi.Output<string>;
     /**
@@ -419,7 +419,7 @@ export class Securitypolicy extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Name of an existing VideoFilter profile.
      */
@@ -735,7 +735,7 @@ export interface SecuritypolicyState {
      */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicyFssoGroup>[]>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -955,11 +955,11 @@ export interface SecuritypolicyState {
      */
     status?: pulumi.Input<string>;
     /**
-     * URL category ID list. The structure of `urlCategory` block is documented below.
+     * URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `urlCategory` block is documented below.
      */
     urlCategories?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicyUrlCategory>[]>;
     /**
-     * URL categories or groups.
+     * URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
      */
     urlCategoryUnitary?: pulumi.Input<string>;
     /**
@@ -1093,7 +1093,7 @@ export interface SecuritypolicyArgs {
      */
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicyFssoGroup>[]>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -1313,11 +1313,11 @@ export interface SecuritypolicyArgs {
      */
     status?: pulumi.Input<string>;
     /**
-     * URL category ID list. The structure of `urlCategory` block is documented below.
+     * URL category ID list. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category_unitary`.* The structure of `urlCategory` block is documented below.
      */
     urlCategories?: pulumi.Input<pulumi.Input<inputs.firewall.SecuritypolicyUrlCategory>[]>;
     /**
-     * URL categories or groups.
+     * URL categories or groups. *Due to the data type change of API, for other versions of FortiOS, please check variable `url-category`.*
      */
     urlCategoryUnitary?: pulumi.Input<string>;
     /**

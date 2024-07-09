@@ -75,6 +75,10 @@ export class Rule extends pulumi.CustomResource {
      */
     public readonly activeAuthMethod!: pulumi.Output<string>;
     /**
+     * Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
+     */
+    public readonly certAuthCookie!: pulumi.Output<string>;
+    /**
      * Comment.
      */
     public readonly comments!: pulumi.Output<string | undefined>;
@@ -99,7 +103,7 @@ export class Rule extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -141,7 +145,7 @@ export class Rule extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Enable/disable Web authentication cookies (default = disable). Valid values: `enable`, `disable`.
      */
@@ -165,6 +169,7 @@ export class Rule extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as RuleState | undefined;
             resourceInputs["activeAuthMethod"] = state ? state.activeAuthMethod : undefined;
+            resourceInputs["certAuthCookie"] = state ? state.certAuthCookie : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["corsDepth"] = state ? state.corsDepth : undefined;
             resourceInputs["corsStateful"] = state ? state.corsStateful : undefined;
@@ -187,6 +192,7 @@ export class Rule extends pulumi.CustomResource {
         } else {
             const args = argsOrState as RuleArgs | undefined;
             resourceInputs["activeAuthMethod"] = args ? args.activeAuthMethod : undefined;
+            resourceInputs["certAuthCookie"] = args ? args.certAuthCookie : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["corsDepth"] = args ? args.corsDepth : undefined;
             resourceInputs["corsStateful"] = args ? args.corsStateful : undefined;
@@ -221,6 +227,10 @@ export interface RuleState {
      */
     activeAuthMethod?: pulumi.Input<string>;
     /**
+     * Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
+     */
+    certAuthCookie?: pulumi.Input<string>;
+    /**
      * Comment.
      */
     comments?: pulumi.Input<string>;
@@ -245,7 +255,7 @@ export interface RuleState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -307,6 +317,10 @@ export interface RuleArgs {
      */
     activeAuthMethod?: pulumi.Input<string>;
     /**
+     * Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
+     */
+    certAuthCookie?: pulumi.Input<string>;
+    /**
      * Comment.
      */
     comments?: pulumi.Input<string>;
@@ -331,7 +345,7 @@ export interface RuleArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**

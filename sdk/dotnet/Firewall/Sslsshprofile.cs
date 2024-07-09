@@ -130,13 +130,19 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
+        /// ClientHelloOuter SNIs to be blocked. The structure of `ech_outer_sni` block is documented below.
+        /// </summary>
+        [Output("echOuterSnis")]
+        public Output<ImmutableArray<Outputs.SslsshprofileEchOuterSni>> EchOuterSnis { get; private set; } = null!;
+
+        /// <summary>
         /// Configure FTPS options. The structure of `ftps` block is documented below.
         /// </summary>
         [Output("ftps")]
         public Output<Outputs.SslsshprofileFtps> Ftps { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -289,7 +295,7 @@ namespace Pulumiverse.Fortios.Firewall
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable exempting servers by FortiGuard whitelist. Valid values: `enable`, `disable`.
@@ -386,6 +392,18 @@ namespace Pulumiverse.Fortios.Firewall
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
 
+        [Input("echOuterSnis")]
+        private InputList<Inputs.SslsshprofileEchOuterSniArgs>? _echOuterSnis;
+
+        /// <summary>
+        /// ClientHelloOuter SNIs to be blocked. The structure of `ech_outer_sni` block is documented below.
+        /// </summary>
+        public InputList<Inputs.SslsshprofileEchOuterSniArgs> EchOuterSnis
+        {
+            get => _echOuterSnis ?? (_echOuterSnis = new InputList<Inputs.SslsshprofileEchOuterSniArgs>());
+            set => _echOuterSnis = value;
+        }
+
         /// <summary>
         /// Configure FTPS options. The structure of `ftps` block is documented below.
         /// </summary>
@@ -393,7 +411,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<Inputs.SslsshprofileFtpsArgs>? Ftps { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -616,6 +634,18 @@ namespace Pulumiverse.Fortios.Firewall
         [Input("dynamicSortSubtable")]
         public Input<string>? DynamicSortSubtable { get; set; }
 
+        [Input("echOuterSnis")]
+        private InputList<Inputs.SslsshprofileEchOuterSniGetArgs>? _echOuterSnis;
+
+        /// <summary>
+        /// ClientHelloOuter SNIs to be blocked. The structure of `ech_outer_sni` block is documented below.
+        /// </summary>
+        public InputList<Inputs.SslsshprofileEchOuterSniGetArgs> EchOuterSnis
+        {
+            get => _echOuterSnis ?? (_echOuterSnis = new InputList<Inputs.SslsshprofileEchOuterSniGetArgs>());
+            set => _echOuterSnis = value;
+        }
+
         /// <summary>
         /// Configure FTPS options. The structure of `ftps` block is documented below.
         /// </summary>
@@ -623,7 +653,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<Inputs.SslsshprofileFtpsGetArgs>? Ftps { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }

@@ -83,7 +83,7 @@ type Replacemsggroup struct {
 	FortiguardWfs ReplacemsggroupFortiguardWfArrayOutput `pulumi:"fortiguardWfs"`
 	// Replacement message table entries. The structure of `ftp` block is documented below.
 	Ftps ReplacemsggroupFtpArrayOutput `pulumi:"ftps"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Group type.
 	GroupType pulumi.StringOutput `pulumi:"groupType"`
@@ -108,7 +108,7 @@ type Replacemsggroup struct {
 	// Replacement message table entries. The structure of `utm` block is documented below.
 	Utms ReplacemsggroupUtmArrayOutput `pulumi:"utms"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Replacement message table entries. The structure of `webproxy` block is documented below.
 	Webproxies ReplacemsggroupWebproxyArrayOutput `pulumi:"webproxies"`
 }
@@ -168,7 +168,7 @@ type replacemsggroupState struct {
 	FortiguardWfs []ReplacemsggroupFortiguardWf `pulumi:"fortiguardWfs"`
 	// Replacement message table entries. The structure of `ftp` block is documented below.
 	Ftps []ReplacemsggroupFtp `pulumi:"ftps"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Group type.
 	GroupType *string `pulumi:"groupType"`
@@ -221,7 +221,7 @@ type ReplacemsggroupState struct {
 	FortiguardWfs ReplacemsggroupFortiguardWfArrayInput
 	// Replacement message table entries. The structure of `ftp` block is documented below.
 	Ftps ReplacemsggroupFtpArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Group type.
 	GroupType pulumi.StringPtrInput
@@ -278,7 +278,7 @@ type replacemsggroupArgs struct {
 	FortiguardWfs []ReplacemsggroupFortiguardWf `pulumi:"fortiguardWfs"`
 	// Replacement message table entries. The structure of `ftp` block is documented below.
 	Ftps []ReplacemsggroupFtp `pulumi:"ftps"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Group type.
 	GroupType string `pulumi:"groupType"`
@@ -332,7 +332,7 @@ type ReplacemsggroupArgs struct {
 	FortiguardWfs ReplacemsggroupFortiguardWfArrayInput
 	// Replacement message table entries. The structure of `ftp` block is documented below.
 	Ftps ReplacemsggroupFtpArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Group type.
 	GroupType pulumi.StringInput
@@ -506,7 +506,7 @@ func (o ReplacemsggroupOutput) Ftps() ReplacemsggroupFtpArrayOutput {
 	return o.ApplyT(func(v *Replacemsggroup) ReplacemsggroupFtpArrayOutput { return v.Ftps }).(ReplacemsggroupFtpArrayOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ReplacemsggroupOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Replacemsggroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -567,8 +567,8 @@ func (o ReplacemsggroupOutput) Utms() ReplacemsggroupUtmArrayOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ReplacemsggroupOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Replacemsggroup) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ReplacemsggroupOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Replacemsggroup) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Replacement message table entries. The structure of `webproxy` block is documented below.

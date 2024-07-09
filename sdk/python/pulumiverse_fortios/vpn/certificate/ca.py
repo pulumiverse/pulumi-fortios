@@ -19,6 +19,7 @@ class CaArgs:
                  auto_update_days_warning: Optional[pulumi.Input[int]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
                  est_url: Optional[pulumi.Input[str]] = None,
+                 fabric_ca: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obsolete: Optional[pulumi.Input[str]] = None,
@@ -36,6 +37,7 @@ class CaArgs:
         :param pulumi.Input[int] auto_update_days_warning: Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
         :param pulumi.Input[str] ca_identifier: CA identifier of the SCEP server.
         :param pulumi.Input[str] est_url: URL of the EST server.
+        :param pulumi.Input[str] fabric_ca: Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] last_updated: Time at which CA was last updated.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] obsolete: Enable/disable this CA as obsoleted. Valid values: `disable`, `enable`.
@@ -56,6 +58,8 @@ class CaArgs:
             pulumi.set(__self__, "ca_identifier", ca_identifier)
         if est_url is not None:
             pulumi.set(__self__, "est_url", est_url)
+        if fabric_ca is not None:
+            pulumi.set(__self__, "fabric_ca", fabric_ca)
         if last_updated is not None:
             pulumi.set(__self__, "last_updated", last_updated)
         if name is not None:
@@ -136,6 +140,18 @@ class CaArgs:
     @est_url.setter
     def est_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "est_url", value)
+
+    @property
+    @pulumi.getter(name="fabricCa")
+    def fabric_ca(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "fabric_ca")
+
+    @fabric_ca.setter
+    def fabric_ca(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_ca", value)
 
     @property
     @pulumi.getter(name="lastUpdated")
@@ -266,6 +282,7 @@ class _CaState:
                  ca: Optional[pulumi.Input[str]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
                  est_url: Optional[pulumi.Input[str]] = None,
+                 fabric_ca: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obsolete: Optional[pulumi.Input[str]] = None,
@@ -283,6 +300,7 @@ class _CaState:
         :param pulumi.Input[str] ca: CA certificate as a PEM file.
         :param pulumi.Input[str] ca_identifier: CA identifier of the SCEP server.
         :param pulumi.Input[str] est_url: URL of the EST server.
+        :param pulumi.Input[str] fabric_ca: Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] last_updated: Time at which CA was last updated.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] obsolete: Enable/disable this CA as obsoleted. Valid values: `disable`, `enable`.
@@ -304,6 +322,8 @@ class _CaState:
             pulumi.set(__self__, "ca_identifier", ca_identifier)
         if est_url is not None:
             pulumi.set(__self__, "est_url", est_url)
+        if fabric_ca is not None:
+            pulumi.set(__self__, "fabric_ca", fabric_ca)
         if last_updated is not None:
             pulumi.set(__self__, "last_updated", last_updated)
         if name is not None:
@@ -384,6 +404,18 @@ class _CaState:
     @est_url.setter
     def est_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "est_url", value)
+
+    @property
+    @pulumi.getter(name="fabricCa")
+    def fabric_ca(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "fabric_ca")
+
+    @fabric_ca.setter
+    def fabric_ca(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_ca", value)
 
     @property
     @pulumi.getter(name="lastUpdated")
@@ -516,6 +548,7 @@ class Ca(pulumi.CustomResource):
                  ca: Optional[pulumi.Input[str]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
                  est_url: Optional[pulumi.Input[str]] = None,
+                 fabric_ca: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obsolete: Optional[pulumi.Input[str]] = None,
@@ -555,6 +588,7 @@ class Ca(pulumi.CustomResource):
         :param pulumi.Input[str] ca: CA certificate as a PEM file.
         :param pulumi.Input[str] ca_identifier: CA identifier of the SCEP server.
         :param pulumi.Input[str] est_url: URL of the EST server.
+        :param pulumi.Input[str] fabric_ca: Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] last_updated: Time at which CA was last updated.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] obsolete: Enable/disable this CA as obsoleted. Valid values: `disable`, `enable`.
@@ -613,6 +647,7 @@ class Ca(pulumi.CustomResource):
                  ca: Optional[pulumi.Input[str]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
                  est_url: Optional[pulumi.Input[str]] = None,
+                 fabric_ca: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obsolete: Optional[pulumi.Input[str]] = None,
@@ -639,6 +674,7 @@ class Ca(pulumi.CustomResource):
             __props__.__dict__["ca"] = None if ca is None else pulumi.Output.secret(ca)
             __props__.__dict__["ca_identifier"] = ca_identifier
             __props__.__dict__["est_url"] = est_url
+            __props__.__dict__["fabric_ca"] = fabric_ca
             __props__.__dict__["last_updated"] = last_updated
             __props__.__dict__["name"] = name
             __props__.__dict__["obsolete"] = obsolete
@@ -666,6 +702,7 @@ class Ca(pulumi.CustomResource):
             ca: Optional[pulumi.Input[str]] = None,
             ca_identifier: Optional[pulumi.Input[str]] = None,
             est_url: Optional[pulumi.Input[str]] = None,
+            fabric_ca: Optional[pulumi.Input[str]] = None,
             last_updated: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             obsolete: Optional[pulumi.Input[str]] = None,
@@ -688,6 +725,7 @@ class Ca(pulumi.CustomResource):
         :param pulumi.Input[str] ca: CA certificate as a PEM file.
         :param pulumi.Input[str] ca_identifier: CA identifier of the SCEP server.
         :param pulumi.Input[str] est_url: URL of the EST server.
+        :param pulumi.Input[str] fabric_ca: Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] last_updated: Time at which CA was last updated.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] obsolete: Enable/disable this CA as obsoleted. Valid values: `disable`, `enable`.
@@ -708,6 +746,7 @@ class Ca(pulumi.CustomResource):
         __props__.__dict__["ca"] = ca
         __props__.__dict__["ca_identifier"] = ca_identifier
         __props__.__dict__["est_url"] = est_url
+        __props__.__dict__["fabric_ca"] = fabric_ca
         __props__.__dict__["last_updated"] = last_updated
         __props__.__dict__["name"] = name
         __props__.__dict__["obsolete"] = obsolete
@@ -759,6 +798,14 @@ class Ca(pulumi.CustomResource):
         URL of the EST server.
         """
         return pulumi.get(self, "est_url")
+
+    @property
+    @pulumi.getter(name="fabricCa")
+    def fabric_ca(self) -> pulumi.Output[str]:
+        """
+        Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "fabric_ca")
 
     @property
     @pulumi.getter(name="lastUpdated")
@@ -834,7 +881,7 @@ class Ca(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

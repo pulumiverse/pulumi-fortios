@@ -68,11 +68,11 @@ type Clustersync struct {
 	DownIntfsBeforeSessSyncs ClustersyncDownIntfsBeforeSessSyncArrayOutput `pulumi:"downIntfsBeforeSessSyncs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
-	// Heartbeat interval (1 - 10 sec).
+	// Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
 	HbInterval pulumi.IntOutput `pulumi:"hbInterval"`
-	// Lost heartbeat threshold (1 - 10).
+	// Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
 	HbLostThreshold pulumi.IntOutput `pulumi:"hbLostThreshold"`
 	// IKE heartbeat interval (1 - 60 secs).
 	IkeHeartbeatInterval pulumi.IntOutput `pulumi:"ikeHeartbeatInterval"`
@@ -97,7 +97,7 @@ type Clustersync struct {
 	// Sessions from these VDOMs are synchronized using this session synchronization configuration. The structure of `syncvd` block is documented below.
 	Syncvds ClustersyncSyncvdArrayOutput `pulumi:"syncvds"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewClustersync registers a new resource with the given unique name, arguments, and options.
@@ -134,11 +134,11 @@ type clustersyncState struct {
 	DownIntfsBeforeSessSyncs []ClustersyncDownIntfsBeforeSessSync `pulumi:"downIntfsBeforeSessSyncs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
-	// Heartbeat interval (1 - 10 sec).
+	// Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
 	HbInterval *int `pulumi:"hbInterval"`
-	// Lost heartbeat threshold (1 - 10).
+	// Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
 	HbLostThreshold *int `pulumi:"hbLostThreshold"`
 	// IKE heartbeat interval (1 - 60 secs).
 	IkeHeartbeatInterval *int `pulumi:"ikeHeartbeatInterval"`
@@ -171,11 +171,11 @@ type ClustersyncState struct {
 	DownIntfsBeforeSessSyncs ClustersyncDownIntfsBeforeSessSyncArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
-	// Heartbeat interval (1 - 10 sec).
+	// Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
 	HbInterval pulumi.IntPtrInput
-	// Lost heartbeat threshold (1 - 10).
+	// Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
 	HbLostThreshold pulumi.IntPtrInput
 	// IKE heartbeat interval (1 - 60 secs).
 	IkeHeartbeatInterval pulumi.IntPtrInput
@@ -212,11 +212,11 @@ type clustersyncArgs struct {
 	DownIntfsBeforeSessSyncs []ClustersyncDownIntfsBeforeSessSync `pulumi:"downIntfsBeforeSessSyncs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
-	// Heartbeat interval (1 - 10 sec).
+	// Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
 	HbInterval *int `pulumi:"hbInterval"`
-	// Lost heartbeat threshold (1 - 10).
+	// Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
 	HbLostThreshold *int `pulumi:"hbLostThreshold"`
 	// IKE heartbeat interval (1 - 60 secs).
 	IkeHeartbeatInterval *int `pulumi:"ikeHeartbeatInterval"`
@@ -250,11 +250,11 @@ type ClustersyncArgs struct {
 	DownIntfsBeforeSessSyncs ClustersyncDownIntfsBeforeSessSyncArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
-	// Heartbeat interval (1 - 10 sec).
+	// Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
 	HbInterval pulumi.IntPtrInput
-	// Lost heartbeat threshold (1 - 10).
+	// Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
 	HbLostThreshold pulumi.IntPtrInput
 	// IKE heartbeat interval (1 - 60 secs).
 	IkeHeartbeatInterval pulumi.IntPtrInput
@@ -379,17 +379,17 @@ func (o ClustersyncOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Clustersync) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ClustersyncOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Clustersync) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
-// Heartbeat interval (1 - 10 sec).
+// Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
 func (o ClustersyncOutput) HbInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Clustersync) pulumi.IntOutput { return v.HbInterval }).(pulumi.IntOutput)
 }
 
-// Lost heartbeat threshold (1 - 10).
+// Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
 func (o ClustersyncOutput) HbLostThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v *Clustersync) pulumi.IntOutput { return v.HbLostThreshold }).(pulumi.IntOutput)
 }
@@ -450,8 +450,8 @@ func (o ClustersyncOutput) Syncvds() ClustersyncSyncvdArrayOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ClustersyncOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Clustersync) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ClustersyncOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Clustersync) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ClustersyncArrayOutput struct{ *pulumi.OutputState }

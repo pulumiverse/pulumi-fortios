@@ -22,7 +22,7 @@ class GetCentralsnatmapResult:
     """
     A collection of values returned by getCentralsnatmap.
     """
-    def __init__(__self__, comments=None, dst_addr6s=None, dst_addrs=None, dst_port=None, dstintfs=None, id=None, nat=None, nat46=None, nat64=None, nat_ippool6s=None, nat_ippools=None, nat_port=None, orig_addr6s=None, orig_addrs=None, orig_port=None, policyid=None, protocol=None, srcintfs=None, status=None, type=None, uuid=None, vdomparam=None):
+    def __init__(__self__, comments=None, dst_addr6s=None, dst_addrs=None, dst_port=None, dstintfs=None, id=None, nat=None, nat46=None, nat64=None, nat_ippool6s=None, nat_ippools=None, nat_port=None, orig_addr6s=None, orig_addrs=None, orig_port=None, policyid=None, port_preserve=None, protocol=None, srcintfs=None, status=None, type=None, uuid=None, vdomparam=None):
         if comments and not isinstance(comments, str):
             raise TypeError("Expected argument 'comments' to be a str")
         pulumi.set(__self__, "comments", comments)
@@ -71,6 +71,9 @@ class GetCentralsnatmapResult:
         if policyid and not isinstance(policyid, int):
             raise TypeError("Expected argument 'policyid' to be a int")
         pulumi.set(__self__, "policyid", policyid)
+        if port_preserve and not isinstance(port_preserve, str):
+            raise TypeError("Expected argument 'port_preserve' to be a str")
+        pulumi.set(__self__, "port_preserve", port_preserve)
         if protocol and not isinstance(protocol, int):
             raise TypeError("Expected argument 'protocol' to be a int")
         pulumi.set(__self__, "protocol", protocol)
@@ -219,6 +222,14 @@ class GetCentralsnatmapResult:
         return pulumi.get(self, "policyid")
 
     @property
+    @pulumi.getter(name="portPreserve")
+    def port_preserve(self) -> str:
+        """
+        Enable/disable preservation of the original source port from source NAT if it has not been used.
+        """
+        return pulumi.get(self, "port_preserve")
+
+    @property
     @pulumi.getter
     def protocol(self) -> int:
         """
@@ -286,6 +297,7 @@ class AwaitableGetCentralsnatmapResult(GetCentralsnatmapResult):
             orig_addrs=self.orig_addrs,
             orig_port=self.orig_port,
             policyid=self.policyid,
+            port_preserve=self.port_preserve,
             protocol=self.protocol,
             srcintfs=self.srcintfs,
             status=self.status,
@@ -327,6 +339,7 @@ def get_centralsnatmap(policyid: Optional[int] = None,
         orig_addrs=pulumi.get(__ret__, 'orig_addrs'),
         orig_port=pulumi.get(__ret__, 'orig_port'),
         policyid=pulumi.get(__ret__, 'policyid'),
+        port_preserve=pulumi.get(__ret__, 'port_preserve'),
         protocol=pulumi.get(__ret__, 'protocol'),
         srcintfs=pulumi.get(__ret__, 'srcintfs'),
         status=pulumi.get(__ret__, 'status'),

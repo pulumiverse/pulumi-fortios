@@ -111,7 +111,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Bfd { get; private set; } = null!;
 
         /// <summary>
-        /// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+        /// BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions &gt;= 7.0.0: default = 250.
         /// </summary>
         [Output("bfdDesiredMinTx")]
         public Output<int> BfdDesiredMinTx { get; private set; } = null!;
@@ -129,7 +129,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> BfdDontEnforceSrcPort { get; private set; } = null!;
 
         /// <summary>
-        /// BFD required minimal receive interval (1 - 100000 ms, default = 50).
+        /// BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions &gt;= 7.0.0: default = 250.
         /// </summary>
         [Output("bfdRequiredMinRx")]
         public Output<int> BfdRequiredMinRx { get; private set; } = null!;
@@ -249,7 +249,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+        /// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions &gt;= 6.2.4: 1 - 255, default = 255.
         /// </summary>
         [Output("ecmpMaxPaths")]
         public Output<int> EcmpMaxPaths { get; private set; } = null!;
@@ -297,7 +297,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Gateway6 { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -753,6 +753,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> InspectionMode { get; private set; } = null!;
 
         /// <summary>
+        /// Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+        /// </summary>
+        [Output("internetServiceAppCtrlSize")]
+        public Output<int> InternetServiceAppCtrlSize { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
         /// </summary>
         [Output("internetServiceDatabaseCache")]
@@ -969,7 +975,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> V4EcmpMode { get; private set; } = null!;
 
         /// <summary>
-        /// VDOM type (traffic or admin).
+        /// VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions &gt;= 7.2.1: traffic, lan-extension or admin.
         /// </summary>
         [Output("vdomType")]
         public Output<string> VdomType { get; private set; } = null!;
@@ -978,7 +984,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. Valid values: `ipsec`, `pptp`, `l2tp`, `ssl`.
@@ -1100,7 +1106,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Bfd { get; set; }
 
         /// <summary>
-        /// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+        /// BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions &gt;= 7.0.0: default = 250.
         /// </summary>
         [Input("bfdDesiredMinTx")]
         public Input<int>? BfdDesiredMinTx { get; set; }
@@ -1118,7 +1124,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? BfdDontEnforceSrcPort { get; set; }
 
         /// <summary>
-        /// BFD required minimal receive interval (1 - 100000 ms, default = 50).
+        /// BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions &gt;= 7.0.0: default = 250.
         /// </summary>
         [Input("bfdRequiredMinRx")]
         public Input<int>? BfdRequiredMinRx { get; set; }
@@ -1238,7 +1244,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+        /// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions &gt;= 6.2.4: 1 - 255, default = 255.
         /// </summary>
         [Input("ecmpMaxPaths")]
         public Input<int>? EcmpMaxPaths { get; set; }
@@ -1286,7 +1292,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Gateway6 { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -1748,6 +1754,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? InspectionMode { get; set; }
 
         /// <summary>
+        /// Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+        /// </summary>
+        [Input("internetServiceAppCtrlSize")]
+        public Input<int>? InternetServiceAppCtrlSize { get; set; }
+
+        /// <summary>
         /// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("internetServiceDatabaseCache")]
@@ -1964,7 +1976,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? V4EcmpMode { get; set; }
 
         /// <summary>
-        /// VDOM type (traffic or admin).
+        /// VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions &gt;= 7.2.1: traffic, lan-extension or admin.
         /// </summary>
         [Input("vdomType")]
         public Input<string>? VdomType { get; set; }
@@ -2056,7 +2068,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Bfd { get; set; }
 
         /// <summary>
-        /// BFD desired minimal transmit interval (1 - 100000 ms, default = 50).
+        /// BFD desired minimal transmit interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions &gt;= 7.0.0: default = 250.
         /// </summary>
         [Input("bfdDesiredMinTx")]
         public Input<int>? BfdDesiredMinTx { get; set; }
@@ -2074,7 +2086,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? BfdDontEnforceSrcPort { get; set; }
 
         /// <summary>
-        /// BFD required minimal receive interval (1 - 100000 ms, default = 50).
+        /// BFD required minimal receive interval (1 - 100000 ms). On FortiOS versions 6.2.0-6.4.15: default = 50. On FortiOS versions &gt;= 7.0.0: default = 250.
         /// </summary>
         [Input("bfdRequiredMinRx")]
         public Input<int>? BfdRequiredMinRx { get; set; }
@@ -2194,7 +2206,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 100, default = 10).
+        /// Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing. On FortiOS versions 6.2.0: 1 - 100, default = 10. On FortiOS versions &gt;= 6.2.4: 1 - 255, default = 255.
         /// </summary>
         [Input("ecmpMaxPaths")]
         public Input<int>? EcmpMaxPaths { get; set; }
@@ -2242,7 +2254,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Gateway6 { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -2704,6 +2716,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? InspectionMode { get; set; }
 
         /// <summary>
+        /// Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications.
+        /// </summary>
+        [Input("internetServiceAppCtrlSize")]
+        public Input<int>? InternetServiceAppCtrlSize { get; set; }
+
+        /// <summary>
         /// Enable/disable Internet Service database caching. Valid values: `disable`, `enable`.
         /// </summary>
         [Input("internetServiceDatabaseCache")]
@@ -2920,7 +2938,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? V4EcmpMode { get; set; }
 
         /// <summary>
-        /// VDOM type (traffic or admin).
+        /// VDOM type. On FortiOS versions 7.2.0: traffic or admin. On FortiOS versions &gt;= 7.2.1: traffic, lan-extension or admin.
         /// </summary>
         [Input("vdomType")]
         public Input<string>? VdomType { get; set; }

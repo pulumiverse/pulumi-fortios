@@ -20,6 +20,7 @@ class TimersArgs:
                  ap_reboot_wait_interval2: Optional[pulumi.Input[int]] = None,
                  ap_reboot_wait_time: Optional[pulumi.Input[str]] = None,
                  auth_timeout: Optional[pulumi.Input[int]] = None,
+                 ble_device_cleanup: Optional[pulumi.Input[int]] = None,
                  ble_scan_report_intv: Optional[pulumi.Input[int]] = None,
                  client_idle_rehome_timeout: Optional[pulumi.Input[int]] = None,
                  client_idle_timeout: Optional[pulumi.Input[int]] = None,
@@ -37,6 +38,8 @@ class TimersArgs:
                  radio_stats_interval: Optional[pulumi.Input[int]] = None,
                  rogue_ap_cleanup: Optional[pulumi.Input[int]] = None,
                  rogue_ap_log: Optional[pulumi.Input[int]] = None,
+                 rogue_sta_cleanup: Optional[pulumi.Input[int]] = None,
+                 sta_cap_cleanup: Optional[pulumi.Input[int]] = None,
                  sta_capability_interval: Optional[pulumi.Input[int]] = None,
                  sta_locate_timer: Optional[pulumi.Input[int]] = None,
                  sta_stats_interval: Optional[pulumi.Input[int]] = None,
@@ -48,6 +51,7 @@ class TimersArgs:
         :param pulumi.Input[int] ap_reboot_wait_interval2: Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
         :param pulumi.Input[str] ap_reboot_wait_time: Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
         :param pulumi.Input[int] auth_timeout: Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
+        :param pulumi.Input[int] ble_device_cleanup: Time period in minutes to keep BLE device after it is gone (default = 60).
         :param pulumi.Input[int] ble_scan_report_intv: Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
         :param pulumi.Input[int] client_idle_rehome_timeout: Time after which a client is considered idle and disconnected from the home controller (2 - 3600 sec, default = 20, 0 for no timeout).
         :param pulumi.Input[int] client_idle_timeout: Time after which a client is considered idle and times out (20 - 3600 sec, default = 300, 0 for no timeout).
@@ -59,15 +63,17 @@ class TimersArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] echo_interval: Time between echo requests sent by the managed WTP, AP, or FortiAP (1 - 255 sec, default = 30).
         :param pulumi.Input[int] fake_ap_log: Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] ipsec_intf_cleanup: Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
         :param pulumi.Input[int] nat_session_keep_alive: Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
         :param pulumi.Input[int] radio_stats_interval: Time between running radio reports (1 - 255 sec, default = 15).
         :param pulumi.Input[int] rogue_ap_cleanup: Time period in minutes to keep rogue AP after it is gone (default = 0).
         :param pulumi.Input[int] rogue_ap_log: Time between logging rogue AP messages if periodic rogue AP logging is configured (0 - 1440 min, default = 0).
+        :param pulumi.Input[int] rogue_sta_cleanup: Time period in minutes to keep rogue station after it is gone (default = 0).
+        :param pulumi.Input[int] sta_cap_cleanup: Time period in minutes to keep station capability data after it is gone (default = 0).
         :param pulumi.Input[int] sta_capability_interval: Time between running station capability reports (1 - 255 sec, default = 30).
         :param pulumi.Input[int] sta_locate_timer: Time between running client presence flushes to remove clients that are listed but no longer present (0 - 86400 sec, default = 1800).
-        :param pulumi.Input[int] sta_stats_interval: Time between running client (station) reports (1 - 255 sec, default = 1).
+        :param pulumi.Input[int] sta_stats_interval: Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
         :param pulumi.Input[int] vap_stats_interval: Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 15).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -79,6 +85,8 @@ class TimersArgs:
             pulumi.set(__self__, "ap_reboot_wait_time", ap_reboot_wait_time)
         if auth_timeout is not None:
             pulumi.set(__self__, "auth_timeout", auth_timeout)
+        if ble_device_cleanup is not None:
+            pulumi.set(__self__, "ble_device_cleanup", ble_device_cleanup)
         if ble_scan_report_intv is not None:
             pulumi.set(__self__, "ble_scan_report_intv", ble_scan_report_intv)
         if client_idle_rehome_timeout is not None:
@@ -113,6 +121,10 @@ class TimersArgs:
             pulumi.set(__self__, "rogue_ap_cleanup", rogue_ap_cleanup)
         if rogue_ap_log is not None:
             pulumi.set(__self__, "rogue_ap_log", rogue_ap_log)
+        if rogue_sta_cleanup is not None:
+            pulumi.set(__self__, "rogue_sta_cleanup", rogue_sta_cleanup)
+        if sta_cap_cleanup is not None:
+            pulumi.set(__self__, "sta_cap_cleanup", sta_cap_cleanup)
         if sta_capability_interval is not None:
             pulumi.set(__self__, "sta_capability_interval", sta_capability_interval)
         if sta_locate_timer is not None:
@@ -171,6 +183,18 @@ class TimersArgs:
     @auth_timeout.setter
     def auth_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "auth_timeout", value)
+
+    @property
+    @pulumi.getter(name="bleDeviceCleanup")
+    def ble_device_cleanup(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time period in minutes to keep BLE device after it is gone (default = 60).
+        """
+        return pulumi.get(self, "ble_device_cleanup")
+
+    @ble_device_cleanup.setter
+    def ble_device_cleanup(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ble_device_cleanup", value)
 
     @property
     @pulumi.getter(name="bleScanReportIntv")
@@ -308,7 +332,7 @@ class TimersArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -377,6 +401,30 @@ class TimersArgs:
         pulumi.set(self, "rogue_ap_log", value)
 
     @property
+    @pulumi.getter(name="rogueStaCleanup")
+    def rogue_sta_cleanup(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time period in minutes to keep rogue station after it is gone (default = 0).
+        """
+        return pulumi.get(self, "rogue_sta_cleanup")
+
+    @rogue_sta_cleanup.setter
+    def rogue_sta_cleanup(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rogue_sta_cleanup", value)
+
+    @property
+    @pulumi.getter(name="staCapCleanup")
+    def sta_cap_cleanup(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time period in minutes to keep station capability data after it is gone (default = 0).
+        """
+        return pulumi.get(self, "sta_cap_cleanup")
+
+    @sta_cap_cleanup.setter
+    def sta_cap_cleanup(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sta_cap_cleanup", value)
+
+    @property
     @pulumi.getter(name="staCapabilityInterval")
     def sta_capability_interval(self) -> Optional[pulumi.Input[int]]:
         """
@@ -404,7 +452,7 @@ class TimersArgs:
     @pulumi.getter(name="staStatsInterval")
     def sta_stats_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Time between running client (station) reports (1 - 255 sec, default = 1).
+        Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
         """
         return pulumi.get(self, "sta_stats_interval")
 
@@ -444,6 +492,7 @@ class _TimersState:
                  ap_reboot_wait_interval2: Optional[pulumi.Input[int]] = None,
                  ap_reboot_wait_time: Optional[pulumi.Input[str]] = None,
                  auth_timeout: Optional[pulumi.Input[int]] = None,
+                 ble_device_cleanup: Optional[pulumi.Input[int]] = None,
                  ble_scan_report_intv: Optional[pulumi.Input[int]] = None,
                  client_idle_rehome_timeout: Optional[pulumi.Input[int]] = None,
                  client_idle_timeout: Optional[pulumi.Input[int]] = None,
@@ -461,6 +510,8 @@ class _TimersState:
                  radio_stats_interval: Optional[pulumi.Input[int]] = None,
                  rogue_ap_cleanup: Optional[pulumi.Input[int]] = None,
                  rogue_ap_log: Optional[pulumi.Input[int]] = None,
+                 rogue_sta_cleanup: Optional[pulumi.Input[int]] = None,
+                 sta_cap_cleanup: Optional[pulumi.Input[int]] = None,
                  sta_capability_interval: Optional[pulumi.Input[int]] = None,
                  sta_locate_timer: Optional[pulumi.Input[int]] = None,
                  sta_stats_interval: Optional[pulumi.Input[int]] = None,
@@ -472,6 +523,7 @@ class _TimersState:
         :param pulumi.Input[int] ap_reboot_wait_interval2: Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
         :param pulumi.Input[str] ap_reboot_wait_time: Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
         :param pulumi.Input[int] auth_timeout: Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
+        :param pulumi.Input[int] ble_device_cleanup: Time period in minutes to keep BLE device after it is gone (default = 60).
         :param pulumi.Input[int] ble_scan_report_intv: Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
         :param pulumi.Input[int] client_idle_rehome_timeout: Time after which a client is considered idle and disconnected from the home controller (2 - 3600 sec, default = 20, 0 for no timeout).
         :param pulumi.Input[int] client_idle_timeout: Time after which a client is considered idle and times out (20 - 3600 sec, default = 300, 0 for no timeout).
@@ -483,15 +535,17 @@ class _TimersState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] echo_interval: Time between echo requests sent by the managed WTP, AP, or FortiAP (1 - 255 sec, default = 30).
         :param pulumi.Input[int] fake_ap_log: Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] ipsec_intf_cleanup: Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
         :param pulumi.Input[int] nat_session_keep_alive: Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
         :param pulumi.Input[int] radio_stats_interval: Time between running radio reports (1 - 255 sec, default = 15).
         :param pulumi.Input[int] rogue_ap_cleanup: Time period in minutes to keep rogue AP after it is gone (default = 0).
         :param pulumi.Input[int] rogue_ap_log: Time between logging rogue AP messages if periodic rogue AP logging is configured (0 - 1440 min, default = 0).
+        :param pulumi.Input[int] rogue_sta_cleanup: Time period in minutes to keep rogue station after it is gone (default = 0).
+        :param pulumi.Input[int] sta_cap_cleanup: Time period in minutes to keep station capability data after it is gone (default = 0).
         :param pulumi.Input[int] sta_capability_interval: Time between running station capability reports (1 - 255 sec, default = 30).
         :param pulumi.Input[int] sta_locate_timer: Time between running client presence flushes to remove clients that are listed but no longer present (0 - 86400 sec, default = 1800).
-        :param pulumi.Input[int] sta_stats_interval: Time between running client (station) reports (1 - 255 sec, default = 1).
+        :param pulumi.Input[int] sta_stats_interval: Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
         :param pulumi.Input[int] vap_stats_interval: Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 15).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -503,6 +557,8 @@ class _TimersState:
             pulumi.set(__self__, "ap_reboot_wait_time", ap_reboot_wait_time)
         if auth_timeout is not None:
             pulumi.set(__self__, "auth_timeout", auth_timeout)
+        if ble_device_cleanup is not None:
+            pulumi.set(__self__, "ble_device_cleanup", ble_device_cleanup)
         if ble_scan_report_intv is not None:
             pulumi.set(__self__, "ble_scan_report_intv", ble_scan_report_intv)
         if client_idle_rehome_timeout is not None:
@@ -537,6 +593,10 @@ class _TimersState:
             pulumi.set(__self__, "rogue_ap_cleanup", rogue_ap_cleanup)
         if rogue_ap_log is not None:
             pulumi.set(__self__, "rogue_ap_log", rogue_ap_log)
+        if rogue_sta_cleanup is not None:
+            pulumi.set(__self__, "rogue_sta_cleanup", rogue_sta_cleanup)
+        if sta_cap_cleanup is not None:
+            pulumi.set(__self__, "sta_cap_cleanup", sta_cap_cleanup)
         if sta_capability_interval is not None:
             pulumi.set(__self__, "sta_capability_interval", sta_capability_interval)
         if sta_locate_timer is not None:
@@ -595,6 +655,18 @@ class _TimersState:
     @auth_timeout.setter
     def auth_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "auth_timeout", value)
+
+    @property
+    @pulumi.getter(name="bleDeviceCleanup")
+    def ble_device_cleanup(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time period in minutes to keep BLE device after it is gone (default = 60).
+        """
+        return pulumi.get(self, "ble_device_cleanup")
+
+    @ble_device_cleanup.setter
+    def ble_device_cleanup(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ble_device_cleanup", value)
 
     @property
     @pulumi.getter(name="bleScanReportIntv")
@@ -732,7 +804,7 @@ class _TimersState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -801,6 +873,30 @@ class _TimersState:
         pulumi.set(self, "rogue_ap_log", value)
 
     @property
+    @pulumi.getter(name="rogueStaCleanup")
+    def rogue_sta_cleanup(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time period in minutes to keep rogue station after it is gone (default = 0).
+        """
+        return pulumi.get(self, "rogue_sta_cleanup")
+
+    @rogue_sta_cleanup.setter
+    def rogue_sta_cleanup(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rogue_sta_cleanup", value)
+
+    @property
+    @pulumi.getter(name="staCapCleanup")
+    def sta_cap_cleanup(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time period in minutes to keep station capability data after it is gone (default = 0).
+        """
+        return pulumi.get(self, "sta_cap_cleanup")
+
+    @sta_cap_cleanup.setter
+    def sta_cap_cleanup(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sta_cap_cleanup", value)
+
+    @property
     @pulumi.getter(name="staCapabilityInterval")
     def sta_capability_interval(self) -> Optional[pulumi.Input[int]]:
         """
@@ -828,7 +924,7 @@ class _TimersState:
     @pulumi.getter(name="staStatsInterval")
     def sta_stats_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Time between running client (station) reports (1 - 255 sec, default = 1).
+        Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
         """
         return pulumi.get(self, "sta_stats_interval")
 
@@ -870,6 +966,7 @@ class Timers(pulumi.CustomResource):
                  ap_reboot_wait_interval2: Optional[pulumi.Input[int]] = None,
                  ap_reboot_wait_time: Optional[pulumi.Input[str]] = None,
                  auth_timeout: Optional[pulumi.Input[int]] = None,
+                 ble_device_cleanup: Optional[pulumi.Input[int]] = None,
                  ble_scan_report_intv: Optional[pulumi.Input[int]] = None,
                  client_idle_rehome_timeout: Optional[pulumi.Input[int]] = None,
                  client_idle_timeout: Optional[pulumi.Input[int]] = None,
@@ -887,6 +984,8 @@ class Timers(pulumi.CustomResource):
                  radio_stats_interval: Optional[pulumi.Input[int]] = None,
                  rogue_ap_cleanup: Optional[pulumi.Input[int]] = None,
                  rogue_ap_log: Optional[pulumi.Input[int]] = None,
+                 rogue_sta_cleanup: Optional[pulumi.Input[int]] = None,
+                 sta_cap_cleanup: Optional[pulumi.Input[int]] = None,
                  sta_capability_interval: Optional[pulumi.Input[int]] = None,
                  sta_locate_timer: Optional[pulumi.Input[int]] = None,
                  sta_stats_interval: Optional[pulumi.Input[int]] = None,
@@ -920,6 +1019,7 @@ class Timers(pulumi.CustomResource):
         :param pulumi.Input[int] ap_reboot_wait_interval2: Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
         :param pulumi.Input[str] ap_reboot_wait_time: Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
         :param pulumi.Input[int] auth_timeout: Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
+        :param pulumi.Input[int] ble_device_cleanup: Time period in minutes to keep BLE device after it is gone (default = 60).
         :param pulumi.Input[int] ble_scan_report_intv: Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
         :param pulumi.Input[int] client_idle_rehome_timeout: Time after which a client is considered idle and disconnected from the home controller (2 - 3600 sec, default = 20, 0 for no timeout).
         :param pulumi.Input[int] client_idle_timeout: Time after which a client is considered idle and times out (20 - 3600 sec, default = 300, 0 for no timeout).
@@ -931,15 +1031,17 @@ class Timers(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] echo_interval: Time between echo requests sent by the managed WTP, AP, or FortiAP (1 - 255 sec, default = 30).
         :param pulumi.Input[int] fake_ap_log: Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] ipsec_intf_cleanup: Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
         :param pulumi.Input[int] nat_session_keep_alive: Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
         :param pulumi.Input[int] radio_stats_interval: Time between running radio reports (1 - 255 sec, default = 15).
         :param pulumi.Input[int] rogue_ap_cleanup: Time period in minutes to keep rogue AP after it is gone (default = 0).
         :param pulumi.Input[int] rogue_ap_log: Time between logging rogue AP messages if periodic rogue AP logging is configured (0 - 1440 min, default = 0).
+        :param pulumi.Input[int] rogue_sta_cleanup: Time period in minutes to keep rogue station after it is gone (default = 0).
+        :param pulumi.Input[int] sta_cap_cleanup: Time period in minutes to keep station capability data after it is gone (default = 0).
         :param pulumi.Input[int] sta_capability_interval: Time between running station capability reports (1 - 255 sec, default = 30).
         :param pulumi.Input[int] sta_locate_timer: Time between running client presence flushes to remove clients that are listed but no longer present (0 - 86400 sec, default = 1800).
-        :param pulumi.Input[int] sta_stats_interval: Time between running client (station) reports (1 - 255 sec, default = 1).
+        :param pulumi.Input[int] sta_stats_interval: Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
         :param pulumi.Input[int] vap_stats_interval: Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 15).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -989,6 +1091,7 @@ class Timers(pulumi.CustomResource):
                  ap_reboot_wait_interval2: Optional[pulumi.Input[int]] = None,
                  ap_reboot_wait_time: Optional[pulumi.Input[str]] = None,
                  auth_timeout: Optional[pulumi.Input[int]] = None,
+                 ble_device_cleanup: Optional[pulumi.Input[int]] = None,
                  ble_scan_report_intv: Optional[pulumi.Input[int]] = None,
                  client_idle_rehome_timeout: Optional[pulumi.Input[int]] = None,
                  client_idle_timeout: Optional[pulumi.Input[int]] = None,
@@ -1006,6 +1109,8 @@ class Timers(pulumi.CustomResource):
                  radio_stats_interval: Optional[pulumi.Input[int]] = None,
                  rogue_ap_cleanup: Optional[pulumi.Input[int]] = None,
                  rogue_ap_log: Optional[pulumi.Input[int]] = None,
+                 rogue_sta_cleanup: Optional[pulumi.Input[int]] = None,
+                 sta_cap_cleanup: Optional[pulumi.Input[int]] = None,
                  sta_capability_interval: Optional[pulumi.Input[int]] = None,
                  sta_locate_timer: Optional[pulumi.Input[int]] = None,
                  sta_stats_interval: Optional[pulumi.Input[int]] = None,
@@ -1024,6 +1129,7 @@ class Timers(pulumi.CustomResource):
             __props__.__dict__["ap_reboot_wait_interval2"] = ap_reboot_wait_interval2
             __props__.__dict__["ap_reboot_wait_time"] = ap_reboot_wait_time
             __props__.__dict__["auth_timeout"] = auth_timeout
+            __props__.__dict__["ble_device_cleanup"] = ble_device_cleanup
             __props__.__dict__["ble_scan_report_intv"] = ble_scan_report_intv
             __props__.__dict__["client_idle_rehome_timeout"] = client_idle_rehome_timeout
             __props__.__dict__["client_idle_timeout"] = client_idle_timeout
@@ -1041,6 +1147,8 @@ class Timers(pulumi.CustomResource):
             __props__.__dict__["radio_stats_interval"] = radio_stats_interval
             __props__.__dict__["rogue_ap_cleanup"] = rogue_ap_cleanup
             __props__.__dict__["rogue_ap_log"] = rogue_ap_log
+            __props__.__dict__["rogue_sta_cleanup"] = rogue_sta_cleanup
+            __props__.__dict__["sta_cap_cleanup"] = sta_cap_cleanup
             __props__.__dict__["sta_capability_interval"] = sta_capability_interval
             __props__.__dict__["sta_locate_timer"] = sta_locate_timer
             __props__.__dict__["sta_stats_interval"] = sta_stats_interval
@@ -1060,6 +1168,7 @@ class Timers(pulumi.CustomResource):
             ap_reboot_wait_interval2: Optional[pulumi.Input[int]] = None,
             ap_reboot_wait_time: Optional[pulumi.Input[str]] = None,
             auth_timeout: Optional[pulumi.Input[int]] = None,
+            ble_device_cleanup: Optional[pulumi.Input[int]] = None,
             ble_scan_report_intv: Optional[pulumi.Input[int]] = None,
             client_idle_rehome_timeout: Optional[pulumi.Input[int]] = None,
             client_idle_timeout: Optional[pulumi.Input[int]] = None,
@@ -1077,6 +1186,8 @@ class Timers(pulumi.CustomResource):
             radio_stats_interval: Optional[pulumi.Input[int]] = None,
             rogue_ap_cleanup: Optional[pulumi.Input[int]] = None,
             rogue_ap_log: Optional[pulumi.Input[int]] = None,
+            rogue_sta_cleanup: Optional[pulumi.Input[int]] = None,
+            sta_cap_cleanup: Optional[pulumi.Input[int]] = None,
             sta_capability_interval: Optional[pulumi.Input[int]] = None,
             sta_locate_timer: Optional[pulumi.Input[int]] = None,
             sta_stats_interval: Optional[pulumi.Input[int]] = None,
@@ -1093,6 +1204,7 @@ class Timers(pulumi.CustomResource):
         :param pulumi.Input[int] ap_reboot_wait_interval2: Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot).
         :param pulumi.Input[str] ap_reboot_wait_time: Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm.
         :param pulumi.Input[int] auth_timeout: Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
+        :param pulumi.Input[int] ble_device_cleanup: Time period in minutes to keep BLE device after it is gone (default = 60).
         :param pulumi.Input[int] ble_scan_report_intv: Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
         :param pulumi.Input[int] client_idle_rehome_timeout: Time after which a client is considered idle and disconnected from the home controller (2 - 3600 sec, default = 20, 0 for no timeout).
         :param pulumi.Input[int] client_idle_timeout: Time after which a client is considered idle and times out (20 - 3600 sec, default = 300, 0 for no timeout).
@@ -1104,15 +1216,17 @@ class Timers(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] echo_interval: Time between echo requests sent by the managed WTP, AP, or FortiAP (1 - 255 sec, default = 30).
         :param pulumi.Input[int] fake_ap_log: Time between recording logs about fake APs if periodic fake AP logging is configured (0 - 1440 min, default = 1).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] ipsec_intf_cleanup: Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120).
         :param pulumi.Input[int] nat_session_keep_alive: Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0).
         :param pulumi.Input[int] radio_stats_interval: Time between running radio reports (1 - 255 sec, default = 15).
         :param pulumi.Input[int] rogue_ap_cleanup: Time period in minutes to keep rogue AP after it is gone (default = 0).
         :param pulumi.Input[int] rogue_ap_log: Time between logging rogue AP messages if periodic rogue AP logging is configured (0 - 1440 min, default = 0).
+        :param pulumi.Input[int] rogue_sta_cleanup: Time period in minutes to keep rogue station after it is gone (default = 0).
+        :param pulumi.Input[int] sta_cap_cleanup: Time period in minutes to keep station capability data after it is gone (default = 0).
         :param pulumi.Input[int] sta_capability_interval: Time between running station capability reports (1 - 255 sec, default = 30).
         :param pulumi.Input[int] sta_locate_timer: Time between running client presence flushes to remove clients that are listed but no longer present (0 - 86400 sec, default = 1800).
-        :param pulumi.Input[int] sta_stats_interval: Time between running client (station) reports (1 - 255 sec, default = 1).
+        :param pulumi.Input[int] sta_stats_interval: Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
         :param pulumi.Input[int] vap_stats_interval: Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 15).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -1124,6 +1238,7 @@ class Timers(pulumi.CustomResource):
         __props__.__dict__["ap_reboot_wait_interval2"] = ap_reboot_wait_interval2
         __props__.__dict__["ap_reboot_wait_time"] = ap_reboot_wait_time
         __props__.__dict__["auth_timeout"] = auth_timeout
+        __props__.__dict__["ble_device_cleanup"] = ble_device_cleanup
         __props__.__dict__["ble_scan_report_intv"] = ble_scan_report_intv
         __props__.__dict__["client_idle_rehome_timeout"] = client_idle_rehome_timeout
         __props__.__dict__["client_idle_timeout"] = client_idle_timeout
@@ -1141,6 +1256,8 @@ class Timers(pulumi.CustomResource):
         __props__.__dict__["radio_stats_interval"] = radio_stats_interval
         __props__.__dict__["rogue_ap_cleanup"] = rogue_ap_cleanup
         __props__.__dict__["rogue_ap_log"] = rogue_ap_log
+        __props__.__dict__["rogue_sta_cleanup"] = rogue_sta_cleanup
+        __props__.__dict__["sta_cap_cleanup"] = sta_cap_cleanup
         __props__.__dict__["sta_capability_interval"] = sta_capability_interval
         __props__.__dict__["sta_locate_timer"] = sta_locate_timer
         __props__.__dict__["sta_stats_interval"] = sta_stats_interval
@@ -1179,6 +1296,14 @@ class Timers(pulumi.CustomResource):
         Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5).
         """
         return pulumi.get(self, "auth_timeout")
+
+    @property
+    @pulumi.getter(name="bleDeviceCleanup")
+    def ble_device_cleanup(self) -> pulumi.Output[int]:
+        """
+        Time period in minutes to keep BLE device after it is gone (default = 60).
+        """
+        return pulumi.get(self, "ble_device_cleanup")
 
     @property
     @pulumi.getter(name="bleScanReportIntv")
@@ -1272,7 +1397,7 @@ class Timers(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1317,6 +1442,22 @@ class Timers(pulumi.CustomResource):
         return pulumi.get(self, "rogue_ap_log")
 
     @property
+    @pulumi.getter(name="rogueStaCleanup")
+    def rogue_sta_cleanup(self) -> pulumi.Output[int]:
+        """
+        Time period in minutes to keep rogue station after it is gone (default = 0).
+        """
+        return pulumi.get(self, "rogue_sta_cleanup")
+
+    @property
+    @pulumi.getter(name="staCapCleanup")
+    def sta_cap_cleanup(self) -> pulumi.Output[int]:
+        """
+        Time period in minutes to keep station capability data after it is gone (default = 0).
+        """
+        return pulumi.get(self, "sta_cap_cleanup")
+
+    @property
     @pulumi.getter(name="staCapabilityInterval")
     def sta_capability_interval(self) -> pulumi.Output[int]:
         """
@@ -1336,7 +1477,7 @@ class Timers(pulumi.CustomResource):
     @pulumi.getter(name="staStatsInterval")
     def sta_stats_interval(self) -> pulumi.Output[int]:
         """
-        Time between running client (station) reports (1 - 255 sec, default = 1).
+        Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions >= 7.4.2: default = 10.
         """
         return pulumi.get(self, "sta_stats_interval")
 
@@ -1350,7 +1491,7 @@ class Timers(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

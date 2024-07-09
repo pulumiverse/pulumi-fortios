@@ -66,7 +66,7 @@ export class System extends pulumi.CustomResource {
      */
     public readonly dataSyncInterval!: pulumi.Output<number>;
     /**
-     * Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+     * Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
      */
     public readonly dynamicPeriodicInterval!: pulumi.Output<number>;
     /**
@@ -86,7 +86,7 @@ export class System extends pulumi.CustomResource {
      */
     public readonly iotWeightThreshold!: pulumi.Output<number>;
     /**
-     * Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+     * Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
      */
     public readonly nacPeriodicInterval!: pulumi.Output<number>;
     /**
@@ -104,7 +104,7 @@ export class System extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a System resource with the given unique name, arguments, and options.
@@ -170,7 +170,7 @@ export interface SystemState {
      */
     dataSyncInterval?: pulumi.Input<number>;
     /**
-     * Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+     * Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
      */
     dynamicPeriodicInterval?: pulumi.Input<number>;
     /**
@@ -190,7 +190,7 @@ export interface SystemState {
      */
     iotWeightThreshold?: pulumi.Input<number>;
     /**
-     * Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+     * Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
      */
     nacPeriodicInterval?: pulumi.Input<number>;
     /**
@@ -228,7 +228,7 @@ export interface SystemArgs {
      */
     dataSyncInterval?: pulumi.Input<number>;
     /**
-     * Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+     * Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
      */
     dynamicPeriodicInterval?: pulumi.Input<number>;
     /**
@@ -248,7 +248,7 @@ export interface SystemArgs {
      */
     iotWeightThreshold?: pulumi.Input<number>;
     /**
-     * Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+     * Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
      */
     nacPeriodicInterval?: pulumi.Input<number>;
     /**

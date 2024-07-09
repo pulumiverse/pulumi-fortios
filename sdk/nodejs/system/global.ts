@@ -70,11 +70,11 @@ export class Global extends pulumi.CustomResource {
     }
 
     /**
-     * Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+     * Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
      */
     public readonly adminConcurrent!: pulumi.Output<string>;
     /**
-     * Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+     * Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
      */
     public readonly adminConsoleTimeout!: pulumi.Output<number>;
     /**
@@ -174,7 +174,7 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly adminTelnetPort!: pulumi.Output<number>;
     /**
-     * Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+     * Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
      */
     public readonly admintimeout!: pulumi.Output<number>;
     /**
@@ -202,11 +202,11 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly authCert!: pulumi.Output<string>;
     /**
-     * User authentication HTTP port. (1 - 65535, default = 80).
+     * User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
      */
     public readonly authHttpPort!: pulumi.Output<number>;
     /**
-     * User authentication HTTPS port. (1 - 65535, default = 443).
+     * User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
      */
     public readonly authHttpsPort!: pulumi.Output<number>;
     /**
@@ -262,7 +262,7 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly certChainMax!: pulumi.Output<number>;
     /**
-     * Time-out for reverting to the last saved configuration.
+     * Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
      */
     public readonly cfgRevertTimeout!: pulumi.Output<number>;
     /**
@@ -329,6 +329,10 @@ export class Global extends pulumi.CustomResource {
      * Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
      */
     public readonly dhParams!: pulumi.Output<string>;
+    /**
+     * DHCP leases backup interval in seconds (10 - 3600, default = 60).
+     */
+    public readonly dhcpLeaseBackupInterval!: pulumi.Output<number>;
     /**
      * DNS proxy worker count.
      */
@@ -438,7 +442,7 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly fortitokenCloudSyncInterval!: pulumi.Output<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -610,6 +614,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly ipsecHmacOffload!: pulumi.Output<string>;
     /**
+     * Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+     */
+    public readonly ipsecQatOffload!: pulumi.Output<string>;
+    /**
      * Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
      */
     public readonly ipsecRoundRobin!: pulumi.Output<string>;
@@ -625,6 +633,10 @@ export class Global extends pulumi.CustomResource {
      * Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
      */
     public readonly ipv6AllowAnycastProbe!: pulumi.Output<string>;
+    /**
+     * Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+     */
+    public readonly ipv6AllowLocalInSilentDrop!: pulumi.Output<string>;
     /**
      * Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
      */
@@ -722,11 +734,11 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly memoryUseThresholdRed!: pulumi.Output<number>;
     /**
-     * Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+     * Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
      */
     public readonly miglogAffinity!: pulumi.Output<string>;
     /**
-     * Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+     * Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
      */
     public readonly miglogdChildren!: pulumi.Output<number>;
     /**
@@ -741,6 +753,10 @@ export class Global extends pulumi.CustomResource {
      * Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
      */
     public readonly ndpMaxEntry!: pulumi.Output<number>;
+    /**
+     * Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+     */
+    public readonly npuNeighborUpdate!: pulumi.Output<string>;
     /**
      * Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
      */
@@ -854,11 +870,11 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly rebootUponConfigRestore!: pulumi.Output<string>;
     /**
-     * Statistics refresh interval in GUI.
+     * Statistics refresh interval second(s) in GUI.
      */
     public readonly refresh!: pulumi.Output<number>;
     /**
-     * Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+     * Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
      */
     public readonly remoteauthtimeout!: pulumi.Output<number>;
     /**
@@ -1022,7 +1038,7 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly strictDirtySessionCheck!: pulumi.Output<string>;
     /**
-     * Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+     * Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
      */
     public readonly strongCrypto!: pulumi.Output<string>;
     /**
@@ -1058,7 +1074,7 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly tcpRstTimer!: pulumi.Output<number>;
     /**
-     * Length of the TCP TIME-WAIT state in seconds.
+     * Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
      */
     public readonly tcpTimewaitTimer!: pulumi.Output<number>;
     /**
@@ -1140,7 +1156,7 @@ export class Global extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
      */
@@ -1296,6 +1312,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["deviceIdentificationActiveScanDelay"] = state ? state.deviceIdentificationActiveScanDelay : undefined;
             resourceInputs["deviceIdleTimeout"] = state ? state.deviceIdleTimeout : undefined;
             resourceInputs["dhParams"] = state ? state.dhParams : undefined;
+            resourceInputs["dhcpLeaseBackupInterval"] = state ? state.dhcpLeaseBackupInterval : undefined;
             resourceInputs["dnsproxyWorkerCount"] = state ? state.dnsproxyWorkerCount : undefined;
             resourceInputs["dst"] = state ? state.dst : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
@@ -1366,10 +1383,12 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["ipsecAsicOffload"] = state ? state.ipsecAsicOffload : undefined;
             resourceInputs["ipsecHaSeqjumpRate"] = state ? state.ipsecHaSeqjumpRate : undefined;
             resourceInputs["ipsecHmacOffload"] = state ? state.ipsecHmacOffload : undefined;
+            resourceInputs["ipsecQatOffload"] = state ? state.ipsecQatOffload : undefined;
             resourceInputs["ipsecRoundRobin"] = state ? state.ipsecRoundRobin : undefined;
             resourceInputs["ipsecSoftDecAsync"] = state ? state.ipsecSoftDecAsync : undefined;
             resourceInputs["ipv6AcceptDad"] = state ? state.ipv6AcceptDad : undefined;
             resourceInputs["ipv6AllowAnycastProbe"] = state ? state.ipv6AllowAnycastProbe : undefined;
+            resourceInputs["ipv6AllowLocalInSilentDrop"] = state ? state.ipv6AllowLocalInSilentDrop : undefined;
             resourceInputs["ipv6AllowLocalInSlientDrop"] = state ? state.ipv6AllowLocalInSlientDrop : undefined;
             resourceInputs["ipv6AllowMulticastProbe"] = state ? state.ipv6AllowMulticastProbe : undefined;
             resourceInputs["ipv6AllowTrafficRedirect"] = state ? state.ipv6AllowTrafficRedirect : undefined;
@@ -1399,6 +1418,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["multiFactorAuthentication"] = state ? state.multiFactorAuthentication : undefined;
             resourceInputs["multicastForward"] = state ? state.multicastForward : undefined;
             resourceInputs["ndpMaxEntry"] = state ? state.ndpMaxEntry : undefined;
+            resourceInputs["npuNeighborUpdate"] = state ? state.npuNeighborUpdate : undefined;
             resourceInputs["perUserBal"] = state ? state.perUserBal : undefined;
             resourceInputs["perUserBwl"] = state ? state.perUserBwl : undefined;
             resourceInputs["pmtuDiscovery"] = state ? state.pmtuDiscovery : undefined;
@@ -1585,6 +1605,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["deviceIdentificationActiveScanDelay"] = args ? args.deviceIdentificationActiveScanDelay : undefined;
             resourceInputs["deviceIdleTimeout"] = args ? args.deviceIdleTimeout : undefined;
             resourceInputs["dhParams"] = args ? args.dhParams : undefined;
+            resourceInputs["dhcpLeaseBackupInterval"] = args ? args.dhcpLeaseBackupInterval : undefined;
             resourceInputs["dnsproxyWorkerCount"] = args ? args.dnsproxyWorkerCount : undefined;
             resourceInputs["dst"] = args ? args.dst : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
@@ -1655,10 +1676,12 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["ipsecAsicOffload"] = args ? args.ipsecAsicOffload : undefined;
             resourceInputs["ipsecHaSeqjumpRate"] = args ? args.ipsecHaSeqjumpRate : undefined;
             resourceInputs["ipsecHmacOffload"] = args ? args.ipsecHmacOffload : undefined;
+            resourceInputs["ipsecQatOffload"] = args ? args.ipsecQatOffload : undefined;
             resourceInputs["ipsecRoundRobin"] = args ? args.ipsecRoundRobin : undefined;
             resourceInputs["ipsecSoftDecAsync"] = args ? args.ipsecSoftDecAsync : undefined;
             resourceInputs["ipv6AcceptDad"] = args ? args.ipv6AcceptDad : undefined;
             resourceInputs["ipv6AllowAnycastProbe"] = args ? args.ipv6AllowAnycastProbe : undefined;
+            resourceInputs["ipv6AllowLocalInSilentDrop"] = args ? args.ipv6AllowLocalInSilentDrop : undefined;
             resourceInputs["ipv6AllowLocalInSlientDrop"] = args ? args.ipv6AllowLocalInSlientDrop : undefined;
             resourceInputs["ipv6AllowMulticastProbe"] = args ? args.ipv6AllowMulticastProbe : undefined;
             resourceInputs["ipv6AllowTrafficRedirect"] = args ? args.ipv6AllowTrafficRedirect : undefined;
@@ -1688,6 +1711,7 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["multiFactorAuthentication"] = args ? args.multiFactorAuthentication : undefined;
             resourceInputs["multicastForward"] = args ? args.multicastForward : undefined;
             resourceInputs["ndpMaxEntry"] = args ? args.ndpMaxEntry : undefined;
+            resourceInputs["npuNeighborUpdate"] = args ? args.npuNeighborUpdate : undefined;
             resourceInputs["perUserBal"] = args ? args.perUserBal : undefined;
             resourceInputs["perUserBwl"] = args ? args.perUserBwl : undefined;
             resourceInputs["pmtuDiscovery"] = args ? args.pmtuDiscovery : undefined;
@@ -1818,11 +1842,11 @@ export class Global extends pulumi.CustomResource {
  */
 export interface GlobalState {
     /**
-     * Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+     * Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
      */
     adminConcurrent?: pulumi.Input<string>;
     /**
-     * Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+     * Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
      */
     adminConsoleTimeout?: pulumi.Input<number>;
     /**
@@ -1922,7 +1946,7 @@ export interface GlobalState {
      */
     adminTelnetPort?: pulumi.Input<number>;
     /**
-     * Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+     * Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
      */
     admintimeout?: pulumi.Input<number>;
     /**
@@ -1950,11 +1974,11 @@ export interface GlobalState {
      */
     authCert?: pulumi.Input<string>;
     /**
-     * User authentication HTTP port. (1 - 65535, default = 80).
+     * User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
      */
     authHttpPort?: pulumi.Input<number>;
     /**
-     * User authentication HTTPS port. (1 - 65535, default = 443).
+     * User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
      */
     authHttpsPort?: pulumi.Input<number>;
     /**
@@ -2010,7 +2034,7 @@ export interface GlobalState {
      */
     certChainMax?: pulumi.Input<number>;
     /**
-     * Time-out for reverting to the last saved configuration.
+     * Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
      */
     cfgRevertTimeout?: pulumi.Input<number>;
     /**
@@ -2077,6 +2101,10 @@ export interface GlobalState {
      * Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
      */
     dhParams?: pulumi.Input<string>;
+    /**
+     * DHCP leases backup interval in seconds (10 - 3600, default = 60).
+     */
+    dhcpLeaseBackupInterval?: pulumi.Input<number>;
     /**
      * DNS proxy worker count.
      */
@@ -2186,7 +2214,7 @@ export interface GlobalState {
      */
     fortitokenCloudSyncInterval?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -2358,6 +2386,10 @@ export interface GlobalState {
      */
     ipsecHmacOffload?: pulumi.Input<string>;
     /**
+     * Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+     */
+    ipsecQatOffload?: pulumi.Input<string>;
+    /**
      * Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
      */
     ipsecRoundRobin?: pulumi.Input<string>;
@@ -2373,6 +2405,10 @@ export interface GlobalState {
      * Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
      */
     ipv6AllowAnycastProbe?: pulumi.Input<string>;
+    /**
+     * Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+     */
+    ipv6AllowLocalInSilentDrop?: pulumi.Input<string>;
     /**
      * Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
      */
@@ -2470,11 +2506,11 @@ export interface GlobalState {
      */
     memoryUseThresholdRed?: pulumi.Input<number>;
     /**
-     * Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+     * Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
      */
     miglogAffinity?: pulumi.Input<string>;
     /**
-     * Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+     * Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
      */
     miglogdChildren?: pulumi.Input<number>;
     /**
@@ -2489,6 +2525,10 @@ export interface GlobalState {
      * Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
      */
     ndpMaxEntry?: pulumi.Input<number>;
+    /**
+     * Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+     */
+    npuNeighborUpdate?: pulumi.Input<string>;
     /**
      * Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
      */
@@ -2602,11 +2642,11 @@ export interface GlobalState {
      */
     rebootUponConfigRestore?: pulumi.Input<string>;
     /**
-     * Statistics refresh interval in GUI.
+     * Statistics refresh interval second(s) in GUI.
      */
     refresh?: pulumi.Input<number>;
     /**
-     * Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+     * Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
      */
     remoteauthtimeout?: pulumi.Input<number>;
     /**
@@ -2770,7 +2810,7 @@ export interface GlobalState {
      */
     strictDirtySessionCheck?: pulumi.Input<string>;
     /**
-     * Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+     * Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
      */
     strongCrypto?: pulumi.Input<string>;
     /**
@@ -2806,7 +2846,7 @@ export interface GlobalState {
      */
     tcpRstTimer?: pulumi.Input<number>;
     /**
-     * Length of the TCP TIME-WAIT state in seconds.
+     * Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
      */
     tcpTimewaitTimer?: pulumi.Input<number>;
     /**
@@ -2972,11 +3012,11 @@ export interface GlobalState {
  */
 export interface GlobalArgs {
     /**
-     * Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+     * Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
      */
     adminConcurrent?: pulumi.Input<string>;
     /**
-     * Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+     * Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
      */
     adminConsoleTimeout?: pulumi.Input<number>;
     /**
@@ -3076,7 +3116,7 @@ export interface GlobalArgs {
      */
     adminTelnetPort?: pulumi.Input<number>;
     /**
-     * Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+     * Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
      */
     admintimeout?: pulumi.Input<number>;
     /**
@@ -3104,11 +3144,11 @@ export interface GlobalArgs {
      */
     authCert?: pulumi.Input<string>;
     /**
-     * User authentication HTTP port. (1 - 65535, default = 80).
+     * User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
      */
     authHttpPort?: pulumi.Input<number>;
     /**
-     * User authentication HTTPS port. (1 - 65535, default = 443).
+     * User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
      */
     authHttpsPort?: pulumi.Input<number>;
     /**
@@ -3164,7 +3204,7 @@ export interface GlobalArgs {
      */
     certChainMax?: pulumi.Input<number>;
     /**
-     * Time-out for reverting to the last saved configuration.
+     * Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
      */
     cfgRevertTimeout?: pulumi.Input<number>;
     /**
@@ -3231,6 +3271,10 @@ export interface GlobalArgs {
      * Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
      */
     dhParams?: pulumi.Input<string>;
+    /**
+     * DHCP leases backup interval in seconds (10 - 3600, default = 60).
+     */
+    dhcpLeaseBackupInterval?: pulumi.Input<number>;
     /**
      * DNS proxy worker count.
      */
@@ -3340,7 +3384,7 @@ export interface GlobalArgs {
      */
     fortitokenCloudSyncInterval?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -3512,6 +3556,10 @@ export interface GlobalArgs {
      */
     ipsecHmacOffload?: pulumi.Input<string>;
     /**
+     * Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+     */
+    ipsecQatOffload?: pulumi.Input<string>;
+    /**
      * Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
      */
     ipsecRoundRobin?: pulumi.Input<string>;
@@ -3527,6 +3575,10 @@ export interface GlobalArgs {
      * Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
      */
     ipv6AllowAnycastProbe?: pulumi.Input<string>;
+    /**
+     * Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+     */
+    ipv6AllowLocalInSilentDrop?: pulumi.Input<string>;
     /**
      * Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
      */
@@ -3624,11 +3676,11 @@ export interface GlobalArgs {
      */
     memoryUseThresholdRed?: pulumi.Input<number>;
     /**
-     * Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+     * Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
      */
     miglogAffinity?: pulumi.Input<string>;
     /**
-     * Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+     * Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
      */
     miglogdChildren?: pulumi.Input<number>;
     /**
@@ -3643,6 +3695,10 @@ export interface GlobalArgs {
      * Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
      */
     ndpMaxEntry?: pulumi.Input<number>;
+    /**
+     * Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+     */
+    npuNeighborUpdate?: pulumi.Input<string>;
     /**
      * Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
      */
@@ -3756,11 +3812,11 @@ export interface GlobalArgs {
      */
     rebootUponConfigRestore?: pulumi.Input<string>;
     /**
-     * Statistics refresh interval in GUI.
+     * Statistics refresh interval second(s) in GUI.
      */
     refresh?: pulumi.Input<number>;
     /**
-     * Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+     * Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
      */
     remoteauthtimeout?: pulumi.Input<number>;
     /**
@@ -3924,7 +3980,7 @@ export interface GlobalArgs {
      */
     strictDirtySessionCheck?: pulumi.Input<string>;
     /**
-     * Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+     * Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
      */
     strongCrypto?: pulumi.Input<string>;
     /**
@@ -3960,7 +4016,7 @@ export interface GlobalArgs {
      */
     tcpRstTimer?: pulumi.Input<number>;
     /**
-     * Length of the TCP TIME-WAIT state in seconds.
+     * Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
      */
     tcpTimewaitTimer?: pulumi.Input<number>;
     /**

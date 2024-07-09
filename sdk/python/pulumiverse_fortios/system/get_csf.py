@@ -22,7 +22,7 @@ class GetCsfResult:
     """
     A collection of values returned by getCsf.
     """
-    def __init__(__self__, accept_auth_by_cert=None, authorization_request_type=None, certificate=None, configuration_sync=None, downstream_access=None, downstream_accprofile=None, fabric_connectors=None, fabric_devices=None, fabric_object_unification=None, fabric_workers=None, file_mgmt=None, file_quota=None, file_quota_warning=None, fixed_key=None, forticloud_account_enforcement=None, group_name=None, group_password=None, id=None, log_unification=None, management_ip=None, management_port=None, saml_configuration_sync=None, status=None, trusted_lists=None, uid=None, upstream=None, upstream_ip=None, upstream_port=None, vdomparam=None):
+    def __init__(__self__, accept_auth_by_cert=None, authorization_request_type=None, certificate=None, configuration_sync=None, downstream_access=None, downstream_accprofile=None, fabric_connectors=None, fabric_devices=None, fabric_object_unification=None, fabric_workers=None, file_mgmt=None, file_quota=None, file_quota_warning=None, fixed_key=None, forticloud_account_enforcement=None, group_name=None, group_password=None, id=None, log_unification=None, management_ip=None, management_port=None, saml_configuration_sync=None, source_ip=None, status=None, trusted_lists=None, uid=None, upstream=None, upstream_interface=None, upstream_interface_select_method=None, upstream_ip=None, upstream_port=None, vdomparam=None):
         if accept_auth_by_cert and not isinstance(accept_auth_by_cert, str):
             raise TypeError("Expected argument 'accept_auth_by_cert' to be a str")
         pulumi.set(__self__, "accept_auth_by_cert", accept_auth_by_cert)
@@ -89,6 +89,9 @@ class GetCsfResult:
         if saml_configuration_sync and not isinstance(saml_configuration_sync, str):
             raise TypeError("Expected argument 'saml_configuration_sync' to be a str")
         pulumi.set(__self__, "saml_configuration_sync", saml_configuration_sync)
+        if source_ip and not isinstance(source_ip, str):
+            raise TypeError("Expected argument 'source_ip' to be a str")
+        pulumi.set(__self__, "source_ip", source_ip)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -101,6 +104,12 @@ class GetCsfResult:
         if upstream and not isinstance(upstream, str):
             raise TypeError("Expected argument 'upstream' to be a str")
         pulumi.set(__self__, "upstream", upstream)
+        if upstream_interface and not isinstance(upstream_interface, str):
+            raise TypeError("Expected argument 'upstream_interface' to be a str")
+        pulumi.set(__self__, "upstream_interface", upstream_interface)
+        if upstream_interface_select_method and not isinstance(upstream_interface_select_method, str):
+            raise TypeError("Expected argument 'upstream_interface_select_method' to be a str")
+        pulumi.set(__self__, "upstream_interface_select_method", upstream_interface_select_method)
         if upstream_ip and not isinstance(upstream_ip, str):
             raise TypeError("Expected argument 'upstream_ip' to be a str")
         pulumi.set(__self__, "upstream_ip", upstream_ip)
@@ -288,6 +297,14 @@ class GetCsfResult:
         return pulumi.get(self, "saml_configuration_sync")
 
     @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> str:
+        """
+        Source IP address for communication with the upstream FortiGate.
+        """
+        return pulumi.get(self, "source_ip")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
@@ -318,6 +335,22 @@ class GetCsfResult:
         IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
         """
         return pulumi.get(self, "upstream")
+
+    @property
+    @pulumi.getter(name="upstreamInterface")
+    def upstream_interface(self) -> str:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "upstream_interface")
+
+    @property
+    @pulumi.getter(name="upstreamInterfaceSelectMethod")
+    def upstream_interface_select_method(self) -> str:
+        """
+        Specify how to select outgoing interface to reach server.
+        """
+        return pulumi.get(self, "upstream_interface_select_method")
 
     @property
     @pulumi.getter(name="upstreamIp")
@@ -369,10 +402,13 @@ class AwaitableGetCsfResult(GetCsfResult):
             management_ip=self.management_ip,
             management_port=self.management_port,
             saml_configuration_sync=self.saml_configuration_sync,
+            source_ip=self.source_ip,
             status=self.status,
             trusted_lists=self.trusted_lists,
             uid=self.uid,
             upstream=self.upstream,
+            upstream_interface=self.upstream_interface,
+            upstream_interface_select_method=self.upstream_interface_select_method,
             upstream_ip=self.upstream_ip,
             upstream_port=self.upstream_port,
             vdomparam=self.vdomparam)
@@ -414,10 +450,13 @@ def get_csf(vdomparam: Optional[str] = None,
         management_ip=pulumi.get(__ret__, 'management_ip'),
         management_port=pulumi.get(__ret__, 'management_port'),
         saml_configuration_sync=pulumi.get(__ret__, 'saml_configuration_sync'),
+        source_ip=pulumi.get(__ret__, 'source_ip'),
         status=pulumi.get(__ret__, 'status'),
         trusted_lists=pulumi.get(__ret__, 'trusted_lists'),
         uid=pulumi.get(__ret__, 'uid'),
         upstream=pulumi.get(__ret__, 'upstream'),
+        upstream_interface=pulumi.get(__ret__, 'upstream_interface'),
+        upstream_interface_select_method=pulumi.get(__ret__, 'upstream_interface_select_method'),
         upstream_ip=pulumi.get(__ret__, 'upstream_ip'),
         upstream_port=pulumi.get(__ret__, 'upstream_port'),
         vdomparam=pulumi.get(__ret__, 'vdomparam'))

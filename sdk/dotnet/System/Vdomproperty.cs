@@ -65,7 +65,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> FirewallAddrgrp { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        /// Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         /// </summary>
         [Output("firewallPolicy")]
         public Output<string> FirewallPolicy { get; private set; } = null!;
@@ -95,7 +95,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> IpsecPhase2Interface { get; private set; } = null!;
 
         /// <summary>
-        /// Log disk quota in MB (range depends on how much disk space is available).
+        /// Log disk quota in megabytes (MB). Range depends on how much disk space is available.
         /// </summary>
         [Output("logDiskQuota")]
         public Output<string> LogDiskQuota { get; private set; } = null!;
@@ -137,7 +137,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Session { get; private set; } = null!;
 
         /// <summary>
-        /// Permanent SNMP Index of the virtual domain (0 - 4294967295).
+        /// Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions &gt;= 6.4.0: 1 - 2147483647.
         /// </summary>
         [Output("snmpIndex")]
         public Output<int> SnmpIndex { get; private set; } = null!;
@@ -164,7 +164,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -244,7 +244,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? FirewallAddrgrp { get; set; }
 
         /// <summary>
-        /// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        /// Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         /// </summary>
         [Input("firewallPolicy")]
         public Input<string>? FirewallPolicy { get; set; }
@@ -274,7 +274,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? IpsecPhase2Interface { get; set; }
 
         /// <summary>
-        /// Log disk quota in MB (range depends on how much disk space is available).
+        /// Log disk quota in megabytes (MB). Range depends on how much disk space is available.
         /// </summary>
         [Input("logDiskQuota")]
         public Input<string>? LogDiskQuota { get; set; }
@@ -316,7 +316,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Session { get; set; }
 
         /// <summary>
-        /// Permanent SNMP Index of the virtual domain (0 - 4294967295).
+        /// Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions &gt;= 6.4.0: 1 - 2147483647.
         /// </summary>
         [Input("snmpIndex")]
         public Input<int>? SnmpIndex { get; set; }
@@ -384,7 +384,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? FirewallAddrgrp { get; set; }
 
         /// <summary>
-        /// Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+        /// Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
         /// </summary>
         [Input("firewallPolicy")]
         public Input<string>? FirewallPolicy { get; set; }
@@ -414,7 +414,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? IpsecPhase2Interface { get; set; }
 
         /// <summary>
-        /// Log disk quota in MB (range depends on how much disk space is available).
+        /// Log disk quota in megabytes (MB). Range depends on how much disk space is available.
         /// </summary>
         [Input("logDiskQuota")]
         public Input<string>? LogDiskQuota { get; set; }
@@ -456,7 +456,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Session { get; set; }
 
         /// <summary>
-        /// Permanent SNMP Index of the virtual domain (0 - 4294967295).
+        /// Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions &gt;= 6.4.0: 1 - 2147483647.
         /// </summary>
         [Input("snmpIndex")]
         public Input<int>? SnmpIndex { get; set; }

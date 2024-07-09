@@ -26,7 +26,8 @@ class LogArgs:
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wids_log: Optional[pulumi.Input[str]] = None,
-                 wtp_event_log: Optional[pulumi.Input[str]] = None):
+                 wtp_event_log: Optional[pulumi.Input[str]] = None,
+                 wtp_fips_event_log: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Log resource.
         :param pulumi.Input[str] addrgrp_log: Lowest severity level to log address group message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
@@ -42,6 +43,7 @@ class LogArgs:
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wids_log: Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         :param pulumi.Input[str] wtp_event_log: Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+        :param pulumi.Input[str] wtp_fips_event_log: Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         """
         if addrgrp_log is not None:
             pulumi.set(__self__, "addrgrp_log", addrgrp_log)
@@ -69,6 +71,8 @@ class LogArgs:
             pulumi.set(__self__, "wids_log", wids_log)
         if wtp_event_log is not None:
             pulumi.set(__self__, "wtp_event_log", wtp_event_log)
+        if wtp_fips_event_log is not None:
+            pulumi.set(__self__, "wtp_fips_event_log", wtp_fips_event_log)
 
     @property
     @pulumi.getter(name="addrgrpLog")
@@ -225,6 +229,18 @@ class LogArgs:
     @wtp_event_log.setter
     def wtp_event_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "wtp_event_log", value)
+
+    @property
+    @pulumi.getter(name="wtpFipsEventLog")
+    def wtp_fips_event_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+        """
+        return pulumi.get(self, "wtp_fips_event_log")
+
+    @wtp_fips_event_log.setter
+    def wtp_fips_event_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wtp_fips_event_log", value)
 
 
 @pulumi.input_type
@@ -242,7 +258,8 @@ class _LogState:
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wids_log: Optional[pulumi.Input[str]] = None,
-                 wtp_event_log: Optional[pulumi.Input[str]] = None):
+                 wtp_event_log: Optional[pulumi.Input[str]] = None,
+                 wtp_fips_event_log: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Log resources.
         :param pulumi.Input[str] addrgrp_log: Lowest severity level to log address group message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
@@ -258,6 +275,7 @@ class _LogState:
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wids_log: Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         :param pulumi.Input[str] wtp_event_log: Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+        :param pulumi.Input[str] wtp_fips_event_log: Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         """
         if addrgrp_log is not None:
             pulumi.set(__self__, "addrgrp_log", addrgrp_log)
@@ -285,6 +303,8 @@ class _LogState:
             pulumi.set(__self__, "wids_log", wids_log)
         if wtp_event_log is not None:
             pulumi.set(__self__, "wtp_event_log", wtp_event_log)
+        if wtp_fips_event_log is not None:
+            pulumi.set(__self__, "wtp_fips_event_log", wtp_fips_event_log)
 
     @property
     @pulumi.getter(name="addrgrpLog")
@@ -441,6 +461,18 @@ class _LogState:
     @wtp_event_log.setter
     def wtp_event_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "wtp_event_log", value)
+
+    @property
+    @pulumi.getter(name="wtpFipsEventLog")
+    def wtp_fips_event_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+        """
+        return pulumi.get(self, "wtp_fips_event_log")
+
+    @wtp_fips_event_log.setter
+    def wtp_fips_event_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wtp_fips_event_log", value)
 
 
 class Log(pulumi.CustomResource):
@@ -461,6 +493,7 @@ class Log(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wids_log: Optional[pulumi.Input[str]] = None,
                  wtp_event_log: Optional[pulumi.Input[str]] = None,
+                 wtp_fips_event_log: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Configure wireless controller event log filters. Applies to FortiOS Version `>= 6.2.4`.
@@ -498,6 +531,7 @@ class Log(pulumi.CustomResource):
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wids_log: Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         :param pulumi.Input[str] wtp_event_log: Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+        :param pulumi.Input[str] wtp_fips_event_log: Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         """
         ...
     @overload
@@ -554,6 +588,7 @@ class Log(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wids_log: Optional[pulumi.Input[str]] = None,
                  wtp_event_log: Optional[pulumi.Input[str]] = None,
+                 wtp_fips_event_log: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -576,6 +611,7 @@ class Log(pulumi.CustomResource):
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["wids_log"] = wids_log
             __props__.__dict__["wtp_event_log"] = wtp_event_log
+            __props__.__dict__["wtp_fips_event_log"] = wtp_fips_event_log
         super(Log, __self__).__init__(
             'fortios:wirelesscontroller/log:Log',
             resource_name,
@@ -598,7 +634,8 @@ class Log(pulumi.CustomResource):
             status: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             wids_log: Optional[pulumi.Input[str]] = None,
-            wtp_event_log: Optional[pulumi.Input[str]] = None) -> 'Log':
+            wtp_event_log: Optional[pulumi.Input[str]] = None,
+            wtp_fips_event_log: Optional[pulumi.Input[str]] = None) -> 'Log':
         """
         Get an existing Log resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -619,6 +656,7 @@ class Log(pulumi.CustomResource):
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wids_log: Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         :param pulumi.Input[str] wtp_event_log: Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+        :param pulumi.Input[str] wtp_fips_event_log: Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -637,6 +675,7 @@ class Log(pulumi.CustomResource):
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["wids_log"] = wids_log
         __props__.__dict__["wtp_event_log"] = wtp_event_log
+        __props__.__dict__["wtp_fips_event_log"] = wtp_fips_event_log
         return Log(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -721,7 +760,7 @@ class Log(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -742,4 +781,12 @@ class Log(pulumi.CustomResource):
         Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
         """
         return pulumi.get(self, "wtp_event_log")
+
+    @property
+    @pulumi.getter(name="wtpFipsEventLog")
+    def wtp_fips_event_log(self) -> pulumi.Output[str]:
+        """
+        Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+        """
+        return pulumi.get(self, "wtp_fips_event_log")
 

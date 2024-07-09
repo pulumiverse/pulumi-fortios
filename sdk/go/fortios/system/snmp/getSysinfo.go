@@ -30,6 +30,8 @@ type LookupSysinfoArgs struct {
 
 // A collection of values returned by getSysinfo.
 type LookupSysinfoResult struct {
+	// Enable/disable allowance of appending VDOM or interface index in some RFC tables.
+	AppendIndex string `pulumi:"appendIndex"`
 	// Contact information.
 	ContactInfo string `pulumi:"contactInfo"`
 	// System description.
@@ -93,6 +95,11 @@ func (o LookupSysinfoResultOutput) ToLookupSysinfoResultOutput() LookupSysinfoRe
 
 func (o LookupSysinfoResultOutput) ToLookupSysinfoResultOutputWithContext(ctx context.Context) LookupSysinfoResultOutput {
 	return o
+}
+
+// Enable/disable allowance of appending VDOM or interface index in some RFC tables.
+func (o LookupSysinfoResultOutput) AppendIndex() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSysinfoResult) string { return v.AppendIndex }).(pulumi.StringOutput)
 }
 
 // Contact information.

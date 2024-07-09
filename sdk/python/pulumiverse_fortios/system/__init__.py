@@ -171,6 +171,7 @@ from .ipsurlfilterdns6 import *
 from .ipv6neighborcache import *
 from .ipv6tunnel import *
 from .license_forticare import *
+from .license_fortiflex import *
 from .license_vdom import *
 from .license_vm import *
 from .linkmonitor import *
@@ -213,6 +214,7 @@ from .smsserver import *
 from .speedtestschedule import *
 from .speedtestserver import *
 from .speedtestsetting import *
+from .sshconfig import *
 from .ssoadmin import *
 from .ssoforticloudadmin import *
 from .ssofortigatecloudadmin import *

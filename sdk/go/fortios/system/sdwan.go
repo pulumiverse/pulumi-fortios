@@ -45,7 +45,7 @@ type Sdwan struct {
 	FailAlertInterfaces SdwanFailAlertInterfaceArrayOutput `pulumi:"failAlertInterfaces"`
 	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
 	FailDetect pulumi.StringOutput `pulumi:"failDetect"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
 	HealthChecks SdwanHealthCheckArrayOutput `pulumi:"healthChecks"`
@@ -68,7 +68,7 @@ type Sdwan struct {
 	// Enable/disable SD-WAN. Valid values: `disable`, `enable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Configure SD-WAN zones. The structure of `zone` block is documented below.
 	Zones SdwanZoneArrayOutput `pulumi:"zones"`
 }
@@ -115,7 +115,7 @@ type sdwanState struct {
 	FailAlertInterfaces []SdwanFailAlertInterface `pulumi:"failAlertInterfaces"`
 	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
 	FailDetect *string `pulumi:"failDetect"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
 	HealthChecks []SdwanHealthCheck `pulumi:"healthChecks"`
@@ -156,7 +156,7 @@ type SdwanState struct {
 	FailAlertInterfaces SdwanFailAlertInterfaceArrayInput
 	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
 	FailDetect pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
 	HealthChecks SdwanHealthCheckArrayInput
@@ -201,7 +201,7 @@ type sdwanArgs struct {
 	FailAlertInterfaces []SdwanFailAlertInterface `pulumi:"failAlertInterfaces"`
 	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
 	FailDetect *string `pulumi:"failDetect"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
 	HealthChecks []SdwanHealthCheck `pulumi:"healthChecks"`
@@ -243,7 +243,7 @@ type SdwanArgs struct {
 	FailAlertInterfaces SdwanFailAlertInterfaceArrayInput
 	// Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `enable`, `disable`.
 	FailDetect pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. The structure of `healthCheck` block is documented below.
 	HealthChecks SdwanHealthCheckArrayInput
@@ -388,7 +388,7 @@ func (o SdwanOutput) FailDetect() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sdwan) pulumi.StringOutput { return v.FailDetect }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SdwanOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Sdwan) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -444,8 +444,8 @@ func (o SdwanOutput) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SdwanOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Sdwan) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SdwanOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sdwan) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Configure SD-WAN zones. The structure of `zone` block is documented below.

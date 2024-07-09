@@ -37,7 +37,7 @@ type Fortilinksettings struct {
 	AccessVlanMode pulumi.StringOutput `pulumi:"accessVlanMode"`
 	// FortiLink interface to which this fortilink-setting belongs.
 	Fortilink pulumi.StringOutput `pulumi:"fortilink"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer pulumi.IntOutput `pulumi:"inactiveTimer"`
@@ -48,7 +48,7 @@ type Fortilinksettings struct {
 	// FortiLink settings name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewFortilinksettings registers a new resource with the given unique name, arguments, and options.
@@ -85,7 +85,7 @@ type fortilinksettingsState struct {
 	AccessVlanMode *string `pulumi:"accessVlanMode"`
 	// FortiLink interface to which this fortilink-setting belongs.
 	Fortilink *string `pulumi:"fortilink"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer *int `pulumi:"inactiveTimer"`
@@ -104,7 +104,7 @@ type FortilinksettingsState struct {
 	AccessVlanMode pulumi.StringPtrInput
 	// FortiLink interface to which this fortilink-setting belongs.
 	Fortilink pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer pulumi.IntPtrInput
@@ -127,7 +127,7 @@ type fortilinksettingsArgs struct {
 	AccessVlanMode *string `pulumi:"accessVlanMode"`
 	// FortiLink interface to which this fortilink-setting belongs.
 	Fortilink *string `pulumi:"fortilink"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer *int `pulumi:"inactiveTimer"`
@@ -147,7 +147,7 @@ type FortilinksettingsArgs struct {
 	AccessVlanMode pulumi.StringPtrInput
 	// FortiLink interface to which this fortilink-setting belongs.
 	Fortilink pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer pulumi.IntPtrInput
@@ -258,7 +258,7 @@ func (o FortilinksettingsOutput) Fortilink() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortilinksettings) pulumi.StringOutput { return v.Fortilink }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o FortilinksettingsOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Fortilinksettings) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -284,8 +284,8 @@ func (o FortilinksettingsOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o FortilinksettingsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Fortilinksettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o FortilinksettingsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fortilinksettings) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type FortilinksettingsArrayOutput struct{ *pulumi.OutputState }

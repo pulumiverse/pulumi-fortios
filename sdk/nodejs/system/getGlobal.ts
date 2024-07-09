@@ -303,6 +303,10 @@ export interface GetGlobalResult {
      */
     readonly dhParams: string;
     /**
+     * DHCP leases backup interval in seconds (10 - 3600, default = 60).
+     */
+    readonly dhcpLeaseBackupInterval: number;
+    /**
      * DNS proxy worker count.
      */
     readonly dnsproxyWorkerCount: number;
@@ -579,6 +583,10 @@ export interface GetGlobalResult {
      */
     readonly ipsecHmacOffload: string;
     /**
+     * Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption.
+     */
+    readonly ipsecQatOffload: string;
+    /**
      * Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic.
      */
     readonly ipsecRoundRobin: string;
@@ -594,6 +602,10 @@ export interface GetGlobalResult {
      * Enable/disable IPv6 address probe through Anycast.
      */
     readonly ipv6AllowAnycastProbe: string;
+    /**
+     * Enable/disable silent drop of IPv6 local-in traffic.
+     */
+    readonly ipv6AllowLocalInSilentDrop: string;
     /**
      * Enable/disable silent drop of IPv6 local-in traffic.
      */
@@ -710,6 +722,10 @@ export interface GetGlobalResult {
      * Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
      */
     readonly ndpMaxEntry: number;
+    /**
+     * Enable/disable sending of probing packets to update neighbors for offloaded sessions.
+     */
+    readonly npuNeighborUpdate: string;
     /**
      * Enable/disable per-user block/allow list filter.
      */

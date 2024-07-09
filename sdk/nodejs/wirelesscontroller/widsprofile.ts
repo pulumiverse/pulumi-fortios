@@ -76,27 +76,27 @@ export class Widsprofile extends pulumi.CustomResource {
      */
     public readonly apBgscanDisableStart!: pulumi.Output<string>;
     /**
-     * Listening time on a scanning channel (10 - 1000 msec, default = 20).
+     * Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
      */
     public readonly apBgscanDuration!: pulumi.Output<number>;
     /**
-     * Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+     * Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
      */
     public readonly apBgscanIdle!: pulumi.Output<number>;
     /**
-     * Period of time between scanning two channels (1 - 600 sec, default = 1).
+     * Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
      */
     public readonly apBgscanIntv!: pulumi.Output<number>;
     /**
-     * Period of time between background scans (60 - 3600 sec, default = 600).
+     * Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
      */
     public readonly apBgscanPeriod!: pulumi.Output<number>;
     /**
-     * Period of time between background scan reports (15 - 600 sec, default = 30).
+     * Period between background scan reports (15 - 600 sec, default = 30).
      */
     public readonly apBgscanReportIntv!: pulumi.Output<number>;
     /**
-     * Period of time between foreground scan reports (15 - 600 sec, default = 15).
+     * Period between foreground scan reports (15 - 600 sec, default = 15).
      */
     public readonly apFgscanReportIntv!: pulumi.Output<number>;
     /**
@@ -236,7 +236,7 @@ export class Widsprofile extends pulumi.CustomResource {
      */
     public readonly eapolSuccThresh!: pulumi.Output<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -260,7 +260,7 @@ export class Widsprofile extends pulumi.CustomResource {
      */
     public readonly nullSsidProbeResp!: pulumi.Output<string>;
     /**
-     * Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+     * Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
      */
     public readonly sensorMode!: pulumi.Output<string>;
     /**
@@ -272,7 +272,7 @@ export class Widsprofile extends pulumi.CustomResource {
      *
      * The `apScanChannelList2g5g` block supports:
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). Valid values: `enable`, `disable`.
      */
@@ -440,27 +440,27 @@ export interface WidsprofileState {
      */
     apBgscanDisableStart?: pulumi.Input<string>;
     /**
-     * Listening time on a scanning channel (10 - 1000 msec, default = 20).
+     * Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
      */
     apBgscanDuration?: pulumi.Input<number>;
     /**
-     * Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+     * Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
      */
     apBgscanIdle?: pulumi.Input<number>;
     /**
-     * Period of time between scanning two channels (1 - 600 sec, default = 1).
+     * Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
      */
     apBgscanIntv?: pulumi.Input<number>;
     /**
-     * Period of time between background scans (60 - 3600 sec, default = 600).
+     * Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
      */
     apBgscanPeriod?: pulumi.Input<number>;
     /**
-     * Period of time between background scan reports (15 - 600 sec, default = 30).
+     * Period between background scan reports (15 - 600 sec, default = 30).
      */
     apBgscanReportIntv?: pulumi.Input<number>;
     /**
-     * Period of time between foreground scan reports (15 - 600 sec, default = 15).
+     * Period between foreground scan reports (15 - 600 sec, default = 15).
      */
     apFgscanReportIntv?: pulumi.Input<number>;
     /**
@@ -600,7 +600,7 @@ export interface WidsprofileState {
      */
     eapolSuccThresh?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -624,7 +624,7 @@ export interface WidsprofileState {
      */
     nullSsidProbeResp?: pulumi.Input<string>;
     /**
-     * Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+     * Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
      */
     sensorMode?: pulumi.Input<string>;
     /**
@@ -672,27 +672,27 @@ export interface WidsprofileArgs {
      */
     apBgscanDisableStart?: pulumi.Input<string>;
     /**
-     * Listening time on a scanning channel (10 - 1000 msec, default = 20).
+     * Listen time on scanning a channel (10 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 20. On FortiOS versions >= 7.0.2: default = 30.
      */
     apBgscanDuration?: pulumi.Input<number>;
     /**
-     * Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
+     * Wait time for channel inactivity before scanning this channel (0 - 1000 msec). On FortiOS versions 6.2.0-7.0.1: default = 0. On FortiOS versions >= 7.0.2: default = 20.
      */
     apBgscanIdle?: pulumi.Input<number>;
     /**
-     * Period of time between scanning two channels (1 - 600 sec, default = 1).
+     * Period between successive channel scans (1 - 600 sec). On FortiOS versions 6.2.0-7.0.1: default = 1. On FortiOS versions >= 7.0.2: default = 3.
      */
     apBgscanIntv?: pulumi.Input<number>;
     /**
-     * Period of time between background scans (60 - 3600 sec, default = 600).
+     * Period between background scans (default = 600). On FortiOS versions 6.2.0-6.2.6: 60 - 3600 sec. On FortiOS versions 6.4.0-7.0.1: 10 - 3600 sec.
      */
     apBgscanPeriod?: pulumi.Input<number>;
     /**
-     * Period of time between background scan reports (15 - 600 sec, default = 30).
+     * Period between background scan reports (15 - 600 sec, default = 30).
      */
     apBgscanReportIntv?: pulumi.Input<number>;
     /**
-     * Period of time between foreground scan reports (15 - 600 sec, default = 15).
+     * Period between foreground scan reports (15 - 600 sec, default = 15).
      */
     apFgscanReportIntv?: pulumi.Input<number>;
     /**
@@ -832,7 +832,7 @@ export interface WidsprofileArgs {
      */
     eapolSuccThresh?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -856,7 +856,7 @@ export interface WidsprofileArgs {
      */
     nullSsidProbeResp?: pulumi.Input<string>;
     /**
-     * Scan WiFi nearby stations (default = disable). Valid values: `disable`, `foreign`, `both`.
+     * Scan nearby WiFi stations (default = disable). Valid values: `disable`, `foreign`, `both`.
      */
     sensorMode?: pulumi.Input<string>;
     /**

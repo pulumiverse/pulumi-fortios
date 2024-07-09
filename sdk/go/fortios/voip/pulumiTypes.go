@@ -614,7 +614,7 @@ type ProfileSip struct {
 	PrackRateTrack *string `pulumi:"prackRateTrack"`
 	// Override i line to preserve original IPS (default: append). Valid values: `disable`, `enable`.
 	PreserveOverride *string `pulumi:"preserveOverride"`
-	// Expiry time for provisional INVITE (10 - 3600 sec).
+	// Expiry time (10-3600, in seconds) for provisional INVITE.
 	ProvisionalInviteExpiryTime *int `pulumi:"provisionalInviteExpiryTime"`
 	// PUBLISH request rate limit (per second, per policy).
 	PublishRate *int `pulumi:"publishRate"`
@@ -858,7 +858,7 @@ type ProfileSipArgs struct {
 	PrackRateTrack pulumi.StringPtrInput `pulumi:"prackRateTrack"`
 	// Override i line to preserve original IPS (default: append). Valid values: `disable`, `enable`.
 	PreserveOverride pulumi.StringPtrInput `pulumi:"preserveOverride"`
-	// Expiry time for provisional INVITE (10 - 3600 sec).
+	// Expiry time (10-3600, in seconds) for provisional INVITE.
 	ProvisionalInviteExpiryTime pulumi.IntPtrInput `pulumi:"provisionalInviteExpiryTime"`
 	// PUBLISH request rate limit (per second, per policy).
 	PublishRate pulumi.IntPtrInput `pulumi:"publishRate"`
@@ -1428,7 +1428,7 @@ func (o ProfileSipOutput) PreserveOverride() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileSip) *string { return v.PreserveOverride }).(pulumi.StringPtrOutput)
 }
 
-// Expiry time for provisional INVITE (10 - 3600 sec).
+// Expiry time (10-3600, in seconds) for provisional INVITE.
 func (o ProfileSipOutput) ProvisionalInviteExpiryTime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileSip) *int { return v.ProvisionalInviteExpiryTime }).(pulumi.IntPtrOutput)
 }
@@ -2462,7 +2462,7 @@ func (o ProfileSipPtrOutput) PreserveOverride() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Expiry time for provisional INVITE (10 - 3600 sec).
+// Expiry time (10-3600, in seconds) for provisional INVITE.
 func (o ProfileSipPtrOutput) ProvisionalInviteExpiryTime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileSip) *int {
 		if v == nil {

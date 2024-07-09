@@ -112,7 +112,7 @@ class AutomationactionArgs:
         :param pulumi.Input[str] gcp_function_domain: Google Cloud function domain.
         :param pulumi.Input[str] gcp_function_region: Google Cloud function region.
         :param pulumi.Input[str] gcp_project: Google Cloud Platform project name.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationactionHeaderArgs']]] headers: Request headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] http_body: Request body (if necessary). Should be serialized json string.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationactionHttpHeaderArgs']]] http_headers: Request headers. The structure of `http_headers` block is documented below.
@@ -680,7 +680,7 @@ class AutomationactionArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1064,7 +1064,7 @@ class _AutomationactionState:
         :param pulumi.Input[str] gcp_function_domain: Google Cloud function domain.
         :param pulumi.Input[str] gcp_function_region: Google Cloud function region.
         :param pulumi.Input[str] gcp_project: Google Cloud Platform project name.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationactionHeaderArgs']]] headers: Request headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] http_body: Request body (if necessary). Should be serialized json string.
         :param pulumi.Input[Sequence[pulumi.Input['AutomationactionHttpHeaderArgs']]] http_headers: Request headers. The structure of `http_headers` block is documented below.
@@ -1632,7 +1632,7 @@ class _AutomationactionState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2057,7 +2057,7 @@ class Automationaction(pulumi.CustomResource):
         :param pulumi.Input[str] gcp_function_domain: Google Cloud function domain.
         :param pulumi.Input[str] gcp_function_region: Google Cloud function region.
         :param pulumi.Input[str] gcp_project: Google Cloud Platform project name.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHeaderArgs']]]] headers: Request headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] http_body: Request body (if necessary). Should be serialized json string.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHttpHeaderArgs']]]] http_headers: Request headers. The structure of `http_headers` block is documented below.
@@ -2381,7 +2381,7 @@ class Automationaction(pulumi.CustomResource):
         :param pulumi.Input[str] gcp_function_domain: Google Cloud function domain.
         :param pulumi.Input[str] gcp_function_region: Google Cloud function region.
         :param pulumi.Input[str] gcp_project: Google Cloud Platform project name.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHeaderArgs']]]] headers: Request headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] http_body: Request body (if necessary). Should be serialized json string.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AutomationactionHttpHeaderArgs']]]] http_headers: Request headers. The structure of `http_headers` block is documented below.
@@ -2755,7 +2755,7 @@ class Automationaction(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2929,7 +2929,7 @@ class Automationaction(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

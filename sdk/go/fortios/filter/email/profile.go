@@ -41,7 +41,7 @@ type Profile struct {
 	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter ProfileFileFilterOutput `pulumi:"fileFilter"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail ProfileGmailOutput `pulumi:"gmail"`
@@ -84,7 +84,7 @@ type Profile struct {
 	// Anti-spam DNSBL table ID.
 	SpamRblTable pulumi.IntOutput `pulumi:"spamRblTable"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Yahoo! Mail. The structure of `yahooMail` block is documented below.
 	YahooMail ProfileYahooMailOutput `pulumi:"yahooMail"`
 }
@@ -127,7 +127,7 @@ type profileState struct {
 	FeatureSet *string `pulumi:"featureSet"`
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter *ProfileFileFilter `pulumi:"fileFilter"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail *ProfileGmail `pulumi:"gmail"`
@@ -184,7 +184,7 @@ type ProfileState struct {
 	FeatureSet pulumi.StringPtrInput
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter ProfileFileFilterPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail ProfileGmailPtrInput
@@ -245,7 +245,7 @@ type profileArgs struct {
 	FeatureSet *string `pulumi:"featureSet"`
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter *ProfileFileFilter `pulumi:"fileFilter"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail *ProfileGmail `pulumi:"gmail"`
@@ -303,7 +303,7 @@ type ProfileArgs struct {
 	FeatureSet pulumi.StringPtrInput
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter ProfileFileFilterPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Gmail. The structure of `gmail` block is documented below.
 	Gmail ProfileGmailPtrInput
@@ -458,7 +458,7 @@ func (o ProfileOutput) FileFilter() ProfileFileFilterOutput {
 	return o.ApplyT(func(v *Profile) ProfileFileFilterOutput { return v.FileFilter }).(ProfileFileFilterOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -564,8 +564,8 @@ func (o ProfileOutput) SpamRblTable() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ProfileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ProfileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Yahoo! Mail. The structure of `yahooMail` block is documented below.

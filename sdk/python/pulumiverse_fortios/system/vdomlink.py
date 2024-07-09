@@ -20,7 +20,7 @@ class VdomlinkArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Vdomlink resource.
-        :param pulumi.Input[str] name: VDOM link name (maximum = 8 characters).
+        :param pulumi.Input[str] name: VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
         :param pulumi.Input[str] type: VDOM link type: PPP or Ethernet.
         :param pulumi.Input[str] vcluster: Virtual cluster. Valid values: `vcluster1`, `vcluster2`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -38,7 +38,7 @@ class VdomlinkArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        VDOM link name (maximum = 8 characters).
+        VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
         """
         return pulumi.get(self, "name")
 
@@ -92,7 +92,7 @@ class _VdomlinkState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Vdomlink resources.
-        :param pulumi.Input[str] name: VDOM link name (maximum = 8 characters).
+        :param pulumi.Input[str] name: VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
         :param pulumi.Input[str] type: VDOM link type: PPP or Ethernet.
         :param pulumi.Input[str] vcluster: Virtual cluster. Valid values: `vcluster1`, `vcluster2`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -110,7 +110,7 @@ class _VdomlinkState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        VDOM link name (maximum = 8 characters).
+        VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
         """
         return pulumi.get(self, "name")
 
@@ -188,7 +188,7 @@ class Vdomlink(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: VDOM link name (maximum = 8 characters).
+        :param pulumi.Input[str] name: VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
         :param pulumi.Input[str] type: VDOM link type: PPP or Ethernet.
         :param pulumi.Input[str] vcluster: Virtual cluster. Valid values: `vcluster1`, `vcluster2`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -273,7 +273,7 @@ class Vdomlink(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: VDOM link name (maximum = 8 characters).
+        :param pulumi.Input[str] name: VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
         :param pulumi.Input[str] type: VDOM link type: PPP or Ethernet.
         :param pulumi.Input[str] vcluster: Virtual cluster. Valid values: `vcluster1`, `vcluster2`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -292,7 +292,7 @@ class Vdomlink(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        VDOM link name (maximum = 8 characters).
+        VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
         """
         return pulumi.get(self, "name")
 
@@ -314,7 +314,7 @@ class Vdomlink(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

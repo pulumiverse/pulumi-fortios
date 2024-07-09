@@ -88,7 +88,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> AntispamCache { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+        /// Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
         /// </summary>
         [Output("antispamCacheMpercent")]
         public Output<int> AntispamCacheMpercent { get; private set; } = null!;
@@ -148,7 +148,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> AutoFirmwareUpgrade { get; private set; } = null!;
 
         /// <summary>
-        /// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        /// Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         /// </summary>
         [Output("autoFirmwareUpgradeDay")]
         public Output<string> AutoFirmwareUpgradeDay { get; private set; } = null!;
@@ -421,7 +421,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Expiration date of the FortiGuard video filter contract.
@@ -466,7 +466,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> WebfilterLicense { get; private set; } = null!;
 
         /// <summary>
-        /// Web filter query time out (1 - 30 sec, default = 7).
+        /// Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions &gt;= 7.4.1: default = 15.
         /// </summary>
         [Output("webfilterTimeout")]
         public Output<int> WebfilterTimeout { get; private set; } = null!;
@@ -529,7 +529,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? AntispamCache { get; set; }
 
         /// <summary>
-        /// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+        /// Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
         /// </summary>
         [Input("antispamCacheMpercent")]
         public Input<int>? AntispamCacheMpercent { get; set; }
@@ -589,7 +589,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? AutoFirmwareUpgrade { get; set; }
 
         /// <summary>
-        /// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        /// Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         /// </summary>
         [Input("autoFirmwareUpgradeDay")]
         public Input<string>? AutoFirmwareUpgradeDay { get; set; }
@@ -917,7 +917,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? WebfilterLicense { get; set; }
 
         /// <summary>
-        /// Web filter query time out (1 - 30 sec, default = 7).
+        /// Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions &gt;= 7.4.1: default = 15.
         /// </summary>
         [Input("webfilterTimeout", required: true)]
         public Input<int> WebfilterTimeout { get; set; } = null!;
@@ -937,7 +937,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? AntispamCache { get; set; }
 
         /// <summary>
-        /// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+        /// Maximum percentage of FortiGate memory the antispam cache is allowed to use (1 - 15).
         /// </summary>
         [Input("antispamCacheMpercent")]
         public Input<int>? AntispamCacheMpercent { get; set; }
@@ -997,7 +997,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? AutoFirmwareUpgrade { get; set; }
 
         /// <summary>
-        /// Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+        /// Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         /// </summary>
         [Input("autoFirmwareUpgradeDay")]
         public Input<string>? AutoFirmwareUpgradeDay { get; set; }
@@ -1325,7 +1325,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? WebfilterLicense { get; set; }
 
         /// <summary>
-        /// Web filter query time out (1 - 30 sec, default = 7).
+        /// Web filter query time out, 1 - 30 sec. On FortiOS versions 6.2.0-7.4.0: default = 7. On FortiOS versions &gt;= 7.4.1: default = 15.
         /// </summary>
         [Input("webfilterTimeout")]
         public Input<int>? WebfilterTimeout { get; set; }

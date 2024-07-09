@@ -107,11 +107,11 @@ export class Pppoeinterface extends pulumi.CustomResource {
      */
     public readonly ipv6!: pulumi.Output<string>;
     /**
-     * PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
+     * Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
      */
     public readonly lcpEchoInterval!: pulumi.Output<number>;
     /**
-     * Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+     * Maximum missed LCP echo messages before disconnect.
      */
     public readonly lcpMaxEchoFails!: pulumi.Output<number>;
     /**
@@ -141,7 +141,7 @@ export class Pppoeinterface extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Pppoeinterface resource with the given unique name, arguments, and options.
@@ -240,11 +240,11 @@ export interface PppoeinterfaceState {
      */
     ipv6?: pulumi.Input<string>;
     /**
-     * PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
+     * Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
      */
     lcpEchoInterval?: pulumi.Input<number>;
     /**
-     * Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+     * Maximum missed LCP echo messages before disconnect.
      */
     lcpMaxEchoFails?: pulumi.Input<number>;
     /**
@@ -314,11 +314,11 @@ export interface PppoeinterfaceArgs {
      */
     ipv6?: pulumi.Input<string>;
     /**
-     * PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
+     * Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
      */
     lcpEchoInterval?: pulumi.Input<number>;
     /**
-     * Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+     * Maximum missed LCP echo messages before disconnect.
      */
     lcpMaxEchoFails?: pulumi.Input<number>;
     /**

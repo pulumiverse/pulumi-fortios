@@ -36,7 +36,7 @@ type Macsyncsettings struct {
 	// Time interval between MAC synchronizations (30 - 1800 sec, default = 60, 0 = disable MAC synchronization).
 	MacSyncInterval pulumi.IntOutput `pulumi:"macSyncInterval"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewMacsyncsettings registers a new resource with the given unique name, arguments, and options.
@@ -194,8 +194,8 @@ func (o MacsyncsettingsOutput) MacSyncInterval() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o MacsyncsettingsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Macsyncsettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o MacsyncsettingsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Macsyncsettings) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type MacsyncsettingsArrayOutput struct{ *pulumi.OutputState }

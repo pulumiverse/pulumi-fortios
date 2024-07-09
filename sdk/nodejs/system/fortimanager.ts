@@ -64,7 +64,7 @@ export class Fortimanager extends pulumi.CustomResource {
     public readonly ip!: pulumi.Output<string>;
     public readonly ipsec!: pulumi.Output<string>;
     public readonly vdom!: pulumi.Output<string>;
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Fortimanager resource with the given unique name, arguments, and options.

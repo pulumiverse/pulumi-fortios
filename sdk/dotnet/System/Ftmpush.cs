@@ -67,7 +67,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Server { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+        /// Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
         /// </summary>
         [Output("serverCert")]
         public Output<string> ServerCert { get; private set; } = null!;
@@ -94,7 +94,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Server { get; set; }
 
         /// <summary>
-        /// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+        /// Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
         /// </summary>
         [Input("serverCert")]
         public Input<string>? ServerCert { get; set; }
@@ -206,7 +206,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Server { get; set; }
 
         /// <summary>
-        /// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+        /// Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
         /// </summary>
         [Input("serverCert")]
         public Input<string>? ServerCert { get; set; }

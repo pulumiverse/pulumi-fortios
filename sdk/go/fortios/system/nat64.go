@@ -71,7 +71,7 @@ type Nat64 struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
 	GenerateIpv6FragmentHeader pulumi.StringOutput `pulumi:"generateIpv6FragmentHeader"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
 	Nat46ForceIpv4PacketForwarding pulumi.StringOutput `pulumi:"nat46ForceIpv4PacketForwarding"`
@@ -84,7 +84,7 @@ type Nat64 struct {
 	// Enable/disable NAT64 (default = disable). Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewNat64 registers a new resource with the given unique name, arguments, and options.
@@ -126,7 +126,7 @@ type nat64State struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
 	GenerateIpv6FragmentHeader *string `pulumi:"generateIpv6FragmentHeader"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
 	Nat46ForceIpv4PacketForwarding *string `pulumi:"nat46ForceIpv4PacketForwarding"`
@@ -149,7 +149,7 @@ type Nat64State struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
 	GenerateIpv6FragmentHeader pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
 	Nat46ForceIpv4PacketForwarding pulumi.StringPtrInput
@@ -176,7 +176,7 @@ type nat64Args struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
 	GenerateIpv6FragmentHeader *string `pulumi:"generateIpv6FragmentHeader"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
 	Nat46ForceIpv4PacketForwarding *string `pulumi:"nat46ForceIpv4PacketForwarding"`
@@ -200,7 +200,7 @@ type Nat64Args struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable IPv6 fragment header generation. Valid values: `enable`, `disable`.
 	GenerateIpv6FragmentHeader pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `enable`, `disable`.
 	Nat46ForceIpv4PacketForwarding pulumi.StringPtrInput
@@ -318,7 +318,7 @@ func (o Nat64Output) GenerateIpv6FragmentHeader() pulumi.StringOutput {
 	return o.ApplyT(func(v *Nat64) pulumi.StringOutput { return v.GenerateIpv6FragmentHeader }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o Nat64Output) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Nat64) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -349,8 +349,8 @@ func (o Nat64Output) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Nat64Output) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Nat64) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Nat64Output) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Nat64) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type Nat64ArrayOutput struct{ *pulumi.OutputState }

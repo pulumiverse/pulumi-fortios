@@ -68,7 +68,7 @@ type Tosbasedpriority struct {
 	// Value of the ToS byte in the IP datagram header (0-15, 8: minimize delay, 4: maximize throughput, 2: maximize reliability, 1: minimize monetary cost, and 0: default service).
 	Tos pulumi.IntOutput `pulumi:"tos"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewTosbasedpriority registers a new resource with the given unique name, arguments, and options.
@@ -252,8 +252,8 @@ func (o TosbasedpriorityOutput) Tos() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o TosbasedpriorityOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Tosbasedpriority) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o TosbasedpriorityOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Tosbasedpriority) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type TosbasedpriorityArrayOutput struct{ *pulumi.OutputState }

@@ -174,7 +174,7 @@ type Neighbor struct {
 	FilterListOutVpnv4 pulumi.StringOutput `pulumi:"filterListOutVpnv4"`
 	// BGP filter for VPNv6 outbound routes.
 	FilterListOutVpnv6 pulumi.StringOutput `pulumi:"filterListOutVpnv6"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Interval (sec) before peer considered dead.
 	HoldtimeTimer pulumi.IntOutput `pulumi:"holdtimeTimer"`
@@ -353,7 +353,7 @@ type Neighbor struct {
 	// Interface to use as source IP/IPv6 address of TCP connections.
 	UpdateSource pulumi.StringOutput `pulumi:"updateSource"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Neighbor weight.
 	Weight pulumi.IntOutput `pulumi:"weight"`
 }
@@ -536,7 +536,7 @@ type neighborState struct {
 	FilterListOutVpnv4 *string `pulumi:"filterListOutVpnv4"`
 	// BGP filter for VPNv6 outbound routes.
 	FilterListOutVpnv6 *string `pulumi:"filterListOutVpnv6"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Interval (sec) before peer considered dead.
 	HoldtimeTimer *int `pulumi:"holdtimeTimer"`
@@ -859,7 +859,7 @@ type NeighborState struct {
 	FilterListOutVpnv4 pulumi.StringPtrInput
 	// BGP filter for VPNv6 outbound routes.
 	FilterListOutVpnv6 pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Interval (sec) before peer considered dead.
 	HoldtimeTimer pulumi.IntPtrInput
@@ -1186,7 +1186,7 @@ type neighborArgs struct {
 	FilterListOutVpnv4 *string `pulumi:"filterListOutVpnv4"`
 	// BGP filter for VPNv6 outbound routes.
 	FilterListOutVpnv6 *string `pulumi:"filterListOutVpnv6"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Interval (sec) before peer considered dead.
 	HoldtimeTimer *int `pulumi:"holdtimeTimer"`
@@ -1510,7 +1510,7 @@ type NeighborArgs struct {
 	FilterListOutVpnv4 pulumi.StringPtrInput
 	// BGP filter for VPNv6 outbound routes.
 	FilterListOutVpnv6 pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Interval (sec) before peer considered dead.
 	HoldtimeTimer pulumi.IntPtrInput
@@ -2126,7 +2126,7 @@ func (o NeighborOutput) FilterListOutVpnv6() pulumi.StringOutput {
 	return o.ApplyT(func(v *Neighbor) pulumi.StringOutput { return v.FilterListOutVpnv6 }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o NeighborOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Neighbor) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -2572,8 +2572,8 @@ func (o NeighborOutput) UpdateSource() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o NeighborOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Neighbor) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o NeighborOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Neighbor) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Neighbor weight.

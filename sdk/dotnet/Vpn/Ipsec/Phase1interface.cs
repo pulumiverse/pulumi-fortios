@@ -292,6 +292,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<string> CertIdValidation { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable domain stripping on certificate identity. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("certPeerUsernameStrip")]
+        public Output<string> CertPeerUsernameStrip { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable cross validation of peer username and the identity in the peer's certificate. Valid values: `none`, `othername`, `rfc822name`, `cn`.
+        /// </summary>
+        [Output("certPeerUsernameValidation")]
+        public Output<string> CertPeerUsernameValidation { get; private set; } = null!;
+
+        /// <summary>
         /// CA certificate trust store. Valid values: `local`, `ems`.
         /// </summary>
         [Output("certTrustStore")]
@@ -320,6 +332,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Output("clientKeepAlive")]
         public Output<string> ClientKeepAlive { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("clientResume")]
+        public Output<string> ClientResume { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 1800).
+        /// </summary>
+        [Output("clientResumeInterval")]
+        public Output<int> ClientResumeInterval { get; private set; } = null!;
 
         /// <summary>
         /// Comment.
@@ -526,19 +550,19 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<int> FallbackTcpThreshold { get; private set; } = null!;
 
         /// <summary>
-        /// Number of base Forward Error Correction packets (1 - 100).
+        /// Number of base Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 100. On FortiOS versions &gt;= 7.0.2: 1 - 20.
         /// </summary>
         [Output("fecBase")]
         public Output<int> FecBase { get; private set; } = null!;
 
         /// <summary>
-        /// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+        /// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor). *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec_string`.*
         /// </summary>
         [Output("fecCodec")]
         public Output<int> FecCodec { get; private set; } = null!;
 
         /// <summary>
-        /// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+        /// Forward Error Correction encoding/decoding algorithm. *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec`.* Valid values: `rs`, `xor`.
         /// </summary>
         [Output("fecCodecString")]
         public Output<string> FecCodecString { get; private set; } = null!;
@@ -568,13 +592,13 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<string> FecMappingProfile { get; private set; } = null!;
 
         /// <summary>
-        /// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
+        /// Timeout in milliseconds before dropping Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 10000. On FortiOS versions &gt;= 7.0.2: 1 - 1000.
         /// </summary>
         [Output("fecReceiveTimeout")]
         public Output<int> FecReceiveTimeout { get; private set; } = null!;
 
         /// <summary>
-        /// Number of redundant Forward Error Correction packets (1 - 100).
+        /// Number of redundant Forward Error Correction packets. On FortiOS versions 6.2.4-6.2.6: 0 - 100,  when fec-codec is reed-solomon  or 1 when fec-codec is xor. On FortiOS versions &gt;= 7.0.2: 1 - 5 for reed-solomon, 1 for xor.
         /// </summary>
         [Output("fecRedundant")]
         public Output<int> FecRedundant { get; private set; } = null!;
@@ -616,7 +640,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<int> FragmentationMtu { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -628,7 +652,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<string> GroupAuthentication { get; private set; } = null!;
 
         /// <summary>
-        /// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
+        /// Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x.
         /// </summary>
         [Output("groupAuthenticationSecret")]
         public Output<string?> GroupAuthenticationSecret { get; private set; } = null!;
@@ -1042,7 +1066,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<string?> PpkSecret { get; private set; } = null!;
 
         /// <summary>
-        /// Priority for routes added by IKE (0 - 4294967295).
+        /// Priority for routes added by IKE. On FortiOS versions 6.2.0-7.0.3: 0 - 4294967295. On FortiOS versions &gt;= 7.0.4: 1 - 65535.
         /// </summary>
         [Output("priority")]
         public Output<int> Priority { get; private set; } = null!;
@@ -1102,7 +1126,67 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<string> RemoteGw6 { get; private set; } = null!;
 
         /// <summary>
-        /// Domain name of remote gateway (eg. name.DDNS.com).
+        /// IPv6 addresses associated to a specific country.
+        /// </summary>
+        [Output("remoteGw6Country")]
+        public Output<string> RemoteGw6Country { get; private set; } = null!;
+
+        /// <summary>
+        /// Last IPv6 address in the range.
+        /// </summary>
+        [Output("remoteGw6EndIp")]
+        public Output<string> RemoteGw6EndIp { get; private set; } = null!;
+
+        /// <summary>
+        /// Set type of IPv6 remote gateway address matching. Valid values: `any`, `ipprefix`, `iprange`, `geography`.
+        /// </summary>
+        [Output("remoteGw6Match")]
+        public Output<string> RemoteGw6Match { get; private set; } = null!;
+
+        /// <summary>
+        /// First IPv6 address in the range.
+        /// </summary>
+        [Output("remoteGw6StartIp")]
+        public Output<string> RemoteGw6StartIp { get; private set; } = null!;
+
+        /// <summary>
+        /// IPv6 address and prefix.
+        /// </summary>
+        [Output("remoteGw6Subnet")]
+        public Output<string> RemoteGw6Subnet { get; private set; } = null!;
+
+        /// <summary>
+        /// IPv4 addresses associated to a specific country.
+        /// </summary>
+        [Output("remoteGwCountry")]
+        public Output<string> RemoteGwCountry { get; private set; } = null!;
+
+        /// <summary>
+        /// Last IPv4 address in the range.
+        /// </summary>
+        [Output("remoteGwEndIp")]
+        public Output<string> RemoteGwEndIp { get; private set; } = null!;
+
+        /// <summary>
+        /// Set type of IPv4 remote gateway address matching. Valid values: `any`, `ipmask`, `iprange`, `geography`.
+        /// </summary>
+        [Output("remoteGwMatch")]
+        public Output<string> RemoteGwMatch { get; private set; } = null!;
+
+        /// <summary>
+        /// First IPv4 address in the range.
+        /// </summary>
+        [Output("remoteGwStartIp")]
+        public Output<string> RemoteGwStartIp { get; private set; } = null!;
+
+        /// <summary>
+        /// IPv4 address and subnet mask.
+        /// </summary>
+        [Output("remoteGwSubnet")]
+        public Output<string> RemoteGwSubnet { get; private set; } = null!;
+
+        /// <summary>
+        /// Domain name of remote gateway. For example, name.ddns.com.
         /// </summary>
         [Output("remotegwDdns")]
         public Output<string> RemotegwDdns { get; private set; } = null!;
@@ -1183,7 +1267,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// VNI of VXLAN tunnel.
@@ -1419,6 +1503,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? CertIdValidation { get; set; }
 
         /// <summary>
+        /// Enable/disable domain stripping on certificate identity. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("certPeerUsernameStrip")]
+        public Input<string>? CertPeerUsernameStrip { get; set; }
+
+        /// <summary>
+        /// Enable/disable cross validation of peer username and the identity in the peer's certificate. Valid values: `none`, `othername`, `rfc822name`, `cn`.
+        /// </summary>
+        [Input("certPeerUsernameValidation")]
+        public Input<string>? CertPeerUsernameValidation { get; set; }
+
+        /// <summary>
         /// CA certificate trust store. Valid values: `local`, `ems`.
         /// </summary>
         [Input("certTrustStore")]
@@ -1453,6 +1549,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("clientKeepAlive")]
         public Input<string>? ClientKeepAlive { get; set; }
+
+        /// <summary>
+        /// Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("clientResume")]
+        public Input<string>? ClientResume { get; set; }
+
+        /// <summary>
+        /// Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 1800).
+        /// </summary>
+        [Input("clientResumeInterval")]
+        public Input<int>? ClientResumeInterval { get; set; }
 
         /// <summary>
         /// Comment.
@@ -1659,19 +1767,19 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<int>? FallbackTcpThreshold { get; set; }
 
         /// <summary>
-        /// Number of base Forward Error Correction packets (1 - 100).
+        /// Number of base Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 100. On FortiOS versions &gt;= 7.0.2: 1 - 20.
         /// </summary>
         [Input("fecBase")]
         public Input<int>? FecBase { get; set; }
 
         /// <summary>
-        /// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+        /// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor). *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec_string`.*
         /// </summary>
         [Input("fecCodec")]
         public Input<int>? FecCodec { get; set; }
 
         /// <summary>
-        /// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+        /// Forward Error Correction encoding/decoding algorithm. *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec`.* Valid values: `rs`, `xor`.
         /// </summary>
         [Input("fecCodecString")]
         public Input<string>? FecCodecString { get; set; }
@@ -1701,13 +1809,13 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? FecMappingProfile { get; set; }
 
         /// <summary>
-        /// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
+        /// Timeout in milliseconds before dropping Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 10000. On FortiOS versions &gt;= 7.0.2: 1 - 1000.
         /// </summary>
         [Input("fecReceiveTimeout")]
         public Input<int>? FecReceiveTimeout { get; set; }
 
         /// <summary>
-        /// Number of redundant Forward Error Correction packets (1 - 100).
+        /// Number of redundant Forward Error Correction packets. On FortiOS versions 6.2.4-6.2.6: 0 - 100,  when fec-codec is reed-solomon  or 1 when fec-codec is xor. On FortiOS versions &gt;= 7.0.2: 1 - 5 for reed-solomon, 1 for xor.
         /// </summary>
         [Input("fecRedundant")]
         public Input<int>? FecRedundant { get; set; }
@@ -1749,7 +1857,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<int>? FragmentationMtu { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -1764,7 +1872,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         private Input<string>? _groupAuthenticationSecret;
 
         /// <summary>
-        /// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
+        /// Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x.
         /// </summary>
         public Input<string>? GroupAuthenticationSecret
         {
@@ -2213,7 +2321,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         }
 
         /// <summary>
-        /// Priority for routes added by IKE (0 - 4294967295).
+        /// Priority for routes added by IKE. On FortiOS versions 6.2.0-7.0.3: 0 - 4294967295. On FortiOS versions &gt;= 7.0.4: 1 - 65535.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -2293,7 +2401,67 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? RemoteGw6 { get; set; }
 
         /// <summary>
-        /// Domain name of remote gateway (eg. name.DDNS.com).
+        /// IPv6 addresses associated to a specific country.
+        /// </summary>
+        [Input("remoteGw6Country")]
+        public Input<string>? RemoteGw6Country { get; set; }
+
+        /// <summary>
+        /// Last IPv6 address in the range.
+        /// </summary>
+        [Input("remoteGw6EndIp")]
+        public Input<string>? RemoteGw6EndIp { get; set; }
+
+        /// <summary>
+        /// Set type of IPv6 remote gateway address matching. Valid values: `any`, `ipprefix`, `iprange`, `geography`.
+        /// </summary>
+        [Input("remoteGw6Match")]
+        public Input<string>? RemoteGw6Match { get; set; }
+
+        /// <summary>
+        /// First IPv6 address in the range.
+        /// </summary>
+        [Input("remoteGw6StartIp")]
+        public Input<string>? RemoteGw6StartIp { get; set; }
+
+        /// <summary>
+        /// IPv6 address and prefix.
+        /// </summary>
+        [Input("remoteGw6Subnet")]
+        public Input<string>? RemoteGw6Subnet { get; set; }
+
+        /// <summary>
+        /// IPv4 addresses associated to a specific country.
+        /// </summary>
+        [Input("remoteGwCountry")]
+        public Input<string>? RemoteGwCountry { get; set; }
+
+        /// <summary>
+        /// Last IPv4 address in the range.
+        /// </summary>
+        [Input("remoteGwEndIp")]
+        public Input<string>? RemoteGwEndIp { get; set; }
+
+        /// <summary>
+        /// Set type of IPv4 remote gateway address matching. Valid values: `any`, `ipmask`, `iprange`, `geography`.
+        /// </summary>
+        [Input("remoteGwMatch")]
+        public Input<string>? RemoteGwMatch { get; set; }
+
+        /// <summary>
+        /// First IPv4 address in the range.
+        /// </summary>
+        [Input("remoteGwStartIp")]
+        public Input<string>? RemoteGwStartIp { get; set; }
+
+        /// <summary>
+        /// IPv4 address and subnet mask.
+        /// </summary>
+        [Input("remoteGwSubnet")]
+        public Input<string>? RemoteGwSubnet { get; set; }
+
+        /// <summary>
+        /// Domain name of remote gateway. For example, name.ddns.com.
         /// </summary>
         [Input("remotegwDdns")]
         public Input<string>? RemotegwDdns { get; set; }
@@ -2563,6 +2731,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? CertIdValidation { get; set; }
 
         /// <summary>
+        /// Enable/disable domain stripping on certificate identity. Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("certPeerUsernameStrip")]
+        public Input<string>? CertPeerUsernameStrip { get; set; }
+
+        /// <summary>
+        /// Enable/disable cross validation of peer username and the identity in the peer's certificate. Valid values: `none`, `othername`, `rfc822name`, `cn`.
+        /// </summary>
+        [Input("certPeerUsernameValidation")]
+        public Input<string>? CertPeerUsernameValidation { get; set; }
+
+        /// <summary>
         /// CA certificate trust store. Valid values: `local`, `ems`.
         /// </summary>
         [Input("certTrustStore")]
@@ -2597,6 +2777,18 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// </summary>
         [Input("clientKeepAlive")]
         public Input<string>? ClientKeepAlive { get; set; }
+
+        /// <summary>
+        /// Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("clientResume")]
+        public Input<string>? ClientResume { get; set; }
+
+        /// <summary>
+        /// Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 1800).
+        /// </summary>
+        [Input("clientResumeInterval")]
+        public Input<int>? ClientResumeInterval { get; set; }
 
         /// <summary>
         /// Comment.
@@ -2803,19 +2995,19 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<int>? FallbackTcpThreshold { get; set; }
 
         /// <summary>
-        /// Number of base Forward Error Correction packets (1 - 100).
+        /// Number of base Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 100. On FortiOS versions &gt;= 7.0.2: 1 - 20.
         /// </summary>
         [Input("fecBase")]
         public Input<int>? FecBase { get; set; }
 
         /// <summary>
-        /// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+        /// ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor). *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec_string`.*
         /// </summary>
         [Input("fecCodec")]
         public Input<int>? FecCodec { get; set; }
 
         /// <summary>
-        /// Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+        /// Forward Error Correction encoding/decoding algorithm. *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec`.* Valid values: `rs`, `xor`.
         /// </summary>
         [Input("fecCodecString")]
         public Input<string>? FecCodecString { get; set; }
@@ -2845,13 +3037,13 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? FecMappingProfile { get; set; }
 
         /// <summary>
-        /// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
+        /// Timeout in milliseconds before dropping Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 10000. On FortiOS versions &gt;= 7.0.2: 1 - 1000.
         /// </summary>
         [Input("fecReceiveTimeout")]
         public Input<int>? FecReceiveTimeout { get; set; }
 
         /// <summary>
-        /// Number of redundant Forward Error Correction packets (1 - 100).
+        /// Number of redundant Forward Error Correction packets. On FortiOS versions 6.2.4-6.2.6: 0 - 100,  when fec-codec is reed-solomon  or 1 when fec-codec is xor. On FortiOS versions &gt;= 7.0.2: 1 - 5 for reed-solomon, 1 for xor.
         /// </summary>
         [Input("fecRedundant")]
         public Input<int>? FecRedundant { get; set; }
@@ -2893,7 +3085,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<int>? FragmentationMtu { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -2908,7 +3100,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         private Input<string>? _groupAuthenticationSecret;
 
         /// <summary>
-        /// Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
+        /// Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x.
         /// </summary>
         public Input<string>? GroupAuthenticationSecret
         {
@@ -3357,7 +3549,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         }
 
         /// <summary>
-        /// Priority for routes added by IKE (0 - 4294967295).
+        /// Priority for routes added by IKE. On FortiOS versions 6.2.0-7.0.3: 0 - 4294967295. On FortiOS versions &gt;= 7.0.4: 1 - 65535.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -3437,7 +3629,67 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? RemoteGw6 { get; set; }
 
         /// <summary>
-        /// Domain name of remote gateway (eg. name.DDNS.com).
+        /// IPv6 addresses associated to a specific country.
+        /// </summary>
+        [Input("remoteGw6Country")]
+        public Input<string>? RemoteGw6Country { get; set; }
+
+        /// <summary>
+        /// Last IPv6 address in the range.
+        /// </summary>
+        [Input("remoteGw6EndIp")]
+        public Input<string>? RemoteGw6EndIp { get; set; }
+
+        /// <summary>
+        /// Set type of IPv6 remote gateway address matching. Valid values: `any`, `ipprefix`, `iprange`, `geography`.
+        /// </summary>
+        [Input("remoteGw6Match")]
+        public Input<string>? RemoteGw6Match { get; set; }
+
+        /// <summary>
+        /// First IPv6 address in the range.
+        /// </summary>
+        [Input("remoteGw6StartIp")]
+        public Input<string>? RemoteGw6StartIp { get; set; }
+
+        /// <summary>
+        /// IPv6 address and prefix.
+        /// </summary>
+        [Input("remoteGw6Subnet")]
+        public Input<string>? RemoteGw6Subnet { get; set; }
+
+        /// <summary>
+        /// IPv4 addresses associated to a specific country.
+        /// </summary>
+        [Input("remoteGwCountry")]
+        public Input<string>? RemoteGwCountry { get; set; }
+
+        /// <summary>
+        /// Last IPv4 address in the range.
+        /// </summary>
+        [Input("remoteGwEndIp")]
+        public Input<string>? RemoteGwEndIp { get; set; }
+
+        /// <summary>
+        /// Set type of IPv4 remote gateway address matching. Valid values: `any`, `ipmask`, `iprange`, `geography`.
+        /// </summary>
+        [Input("remoteGwMatch")]
+        public Input<string>? RemoteGwMatch { get; set; }
+
+        /// <summary>
+        /// First IPv4 address in the range.
+        /// </summary>
+        [Input("remoteGwStartIp")]
+        public Input<string>? RemoteGwStartIp { get; set; }
+
+        /// <summary>
+        /// IPv4 address and subnet mask.
+        /// </summary>
+        [Input("remoteGwSubnet")]
+        public Input<string>? RemoteGwSubnet { get; set; }
+
+        /// <summary>
+        /// Domain name of remote gateway. For example, name.ddns.com.
         /// </summary>
         [Input("remotegwDdns")]
         public Input<string>? RemotegwDdns { get; set; }

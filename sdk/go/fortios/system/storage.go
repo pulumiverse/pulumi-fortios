@@ -50,7 +50,7 @@ type Storage struct {
 	// Use hard disk for logging or WAN Optimization (default = log).
 	Usage pulumi.StringOutput `pulumi:"usage"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.
 	WanoptMode pulumi.StringOutput `pulumi:"wanoptMode"`
 }
@@ -309,8 +309,8 @@ func (o StorageOutput) Usage() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o StorageOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Storage) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o StorageOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Storage) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.

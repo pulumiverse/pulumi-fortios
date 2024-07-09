@@ -41,7 +41,7 @@ type Qkd struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Quantum Key Distribution ID assigned by the KME.
 	Fosid pulumi.StringOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Quantum Key Distribution configuration name.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -52,7 +52,7 @@ type Qkd struct {
 	// IPv4, IPv6 or DNS address of the KME.
 	Server pulumi.StringOutput `pulumi:"server"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewQkd registers a new resource with the given unique name, arguments, and options.
@@ -93,7 +93,7 @@ type qkdState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Quantum Key Distribution ID assigned by the KME.
 	Fosid *string `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Quantum Key Distribution configuration name.
 	Name *string `pulumi:"name"`
@@ -116,7 +116,7 @@ type QkdState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Quantum Key Distribution ID assigned by the KME.
 	Fosid pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Quantum Key Distribution configuration name.
 	Name pulumi.StringPtrInput
@@ -143,7 +143,7 @@ type qkdArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Quantum Key Distribution ID assigned by the KME.
 	Fosid *string `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Quantum Key Distribution configuration name.
 	Name *string `pulumi:"name"`
@@ -167,7 +167,7 @@ type QkdArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Quantum Key Distribution ID assigned by the KME.
 	Fosid pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Quantum Key Distribution configuration name.
 	Name pulumi.StringPtrInput
@@ -288,7 +288,7 @@ func (o QkdOutput) Fosid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Qkd) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o QkdOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Qkd) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -314,8 +314,8 @@ func (o QkdOutput) Server() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o QkdOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Qkd) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o QkdOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Qkd) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type QkdArrayOutput struct{ *pulumi.OutputState }

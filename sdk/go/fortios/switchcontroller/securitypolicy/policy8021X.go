@@ -83,10 +83,16 @@ type Policy8021X struct {
 	AuthFailVlanid pulumi.IntOutput `pulumi:"authFailVlanid"`
 	// Authentication server timeout period (3 - 15 sec, default = 3).
 	AuthserverTimeoutPeriod pulumi.IntOutput `pulumi:"authserverTimeoutPeriod"`
+	// Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+	AuthserverTimeoutTagged pulumi.StringOutput `pulumi:"authserverTimeoutTagged"`
+	// Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+	AuthserverTimeoutTaggedVlanid pulumi.StringOutput `pulumi:"authserverTimeoutTaggedVlanid"`
 	// Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
 	AuthserverTimeoutVlan pulumi.StringOutput `pulumi:"authserverTimeoutVlan"`
 	// Authentication server timeout VLAN name.
 	AuthserverTimeoutVlanid pulumi.StringOutput `pulumi:"authserverTimeoutVlanid"`
+	// Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+	Dacl pulumi.StringOutput `pulumi:"dacl"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable automatic inclusion of untagged VLANs. Valid values: `disable`, `enable`.
@@ -95,7 +101,7 @@ type Policy8021X struct {
 	EapPassthru pulumi.StringOutput `pulumi:"eapPassthru"`
 	// Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
 	FramevidApply pulumi.StringOutput `pulumi:"framevidApply"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Guest authentication delay (1 - 900  sec, default = 30).
 	GuestAuthDelay pulumi.IntOutput `pulumi:"guestAuthDelay"`
@@ -120,7 +126,7 @@ type Policy8021X struct {
 	// Name of user-group to assign to this MAC Authentication Bypass (MAB) policy. The structure of `userGroup` block is documented below.
 	UserGroups Policy8021XUserGroupArrayOutput `pulumi:"userGroups"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewPolicy8021X registers a new resource with the given unique name, arguments, and options.
@@ -161,10 +167,16 @@ type policy8021XState struct {
 	AuthFailVlanid *int `pulumi:"authFailVlanid"`
 	// Authentication server timeout period (3 - 15 sec, default = 3).
 	AuthserverTimeoutPeriod *int `pulumi:"authserverTimeoutPeriod"`
+	// Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+	AuthserverTimeoutTagged *string `pulumi:"authserverTimeoutTagged"`
+	// Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+	AuthserverTimeoutTaggedVlanid *string `pulumi:"authserverTimeoutTaggedVlanid"`
 	// Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
 	AuthserverTimeoutVlan *string `pulumi:"authserverTimeoutVlan"`
 	// Authentication server timeout VLAN name.
 	AuthserverTimeoutVlanid *string `pulumi:"authserverTimeoutVlanid"`
+	// Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+	Dacl *string `pulumi:"dacl"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable automatic inclusion of untagged VLANs. Valid values: `disable`, `enable`.
@@ -173,7 +185,7 @@ type policy8021XState struct {
 	EapPassthru *string `pulumi:"eapPassthru"`
 	// Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
 	FramevidApply *string `pulumi:"framevidApply"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Guest authentication delay (1 - 900  sec, default = 30).
 	GuestAuthDelay *int `pulumi:"guestAuthDelay"`
@@ -210,10 +222,16 @@ type Policy8021XState struct {
 	AuthFailVlanid pulumi.IntPtrInput
 	// Authentication server timeout period (3 - 15 sec, default = 3).
 	AuthserverTimeoutPeriod pulumi.IntPtrInput
+	// Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+	AuthserverTimeoutTagged pulumi.StringPtrInput
+	// Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+	AuthserverTimeoutTaggedVlanid pulumi.StringPtrInput
 	// Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
 	AuthserverTimeoutVlan pulumi.StringPtrInput
 	// Authentication server timeout VLAN name.
 	AuthserverTimeoutVlanid pulumi.StringPtrInput
+	// Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+	Dacl pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable automatic inclusion of untagged VLANs. Valid values: `disable`, `enable`.
@@ -222,7 +240,7 @@ type Policy8021XState struct {
 	EapPassthru pulumi.StringPtrInput
 	// Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
 	FramevidApply pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Guest authentication delay (1 - 900  sec, default = 30).
 	GuestAuthDelay pulumi.IntPtrInput
@@ -263,10 +281,16 @@ type policy8021XArgs struct {
 	AuthFailVlanid *int `pulumi:"authFailVlanid"`
 	// Authentication server timeout period (3 - 15 sec, default = 3).
 	AuthserverTimeoutPeriod *int `pulumi:"authserverTimeoutPeriod"`
+	// Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+	AuthserverTimeoutTagged *string `pulumi:"authserverTimeoutTagged"`
+	// Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+	AuthserverTimeoutTaggedVlanid *string `pulumi:"authserverTimeoutTaggedVlanid"`
 	// Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
 	AuthserverTimeoutVlan *string `pulumi:"authserverTimeoutVlan"`
 	// Authentication server timeout VLAN name.
 	AuthserverTimeoutVlanid *string `pulumi:"authserverTimeoutVlanid"`
+	// Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+	Dacl *string `pulumi:"dacl"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable automatic inclusion of untagged VLANs. Valid values: `disable`, `enable`.
@@ -275,7 +299,7 @@ type policy8021XArgs struct {
 	EapPassthru *string `pulumi:"eapPassthru"`
 	// Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
 	FramevidApply *string `pulumi:"framevidApply"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Guest authentication delay (1 - 900  sec, default = 30).
 	GuestAuthDelay *int `pulumi:"guestAuthDelay"`
@@ -313,10 +337,16 @@ type Policy8021XArgs struct {
 	AuthFailVlanid pulumi.IntPtrInput
 	// Authentication server timeout period (3 - 15 sec, default = 3).
 	AuthserverTimeoutPeriod pulumi.IntPtrInput
+	// Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+	AuthserverTimeoutTagged pulumi.StringPtrInput
+	// Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+	AuthserverTimeoutTaggedVlanid pulumi.StringPtrInput
 	// Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
 	AuthserverTimeoutVlan pulumi.StringPtrInput
 	// Authentication server timeout VLAN name.
 	AuthserverTimeoutVlanid pulumi.StringPtrInput
+	// Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+	Dacl pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable automatic inclusion of untagged VLANs. Valid values: `disable`, `enable`.
@@ -325,7 +355,7 @@ type Policy8021XArgs struct {
 	EapPassthru pulumi.StringPtrInput
 	// Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
 	FramevidApply pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Guest authentication delay (1 - 900  sec, default = 30).
 	GuestAuthDelay pulumi.IntPtrInput
@@ -460,6 +490,16 @@ func (o Policy8021XOutput) AuthserverTimeoutPeriod() pulumi.IntOutput {
 	return o.ApplyT(func(v *Policy8021X) pulumi.IntOutput { return v.AuthserverTimeoutPeriod }).(pulumi.IntOutput)
 }
 
+// Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+func (o Policy8021XOutput) AuthserverTimeoutTagged() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy8021X) pulumi.StringOutput { return v.AuthserverTimeoutTagged }).(pulumi.StringOutput)
+}
+
+// Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+func (o Policy8021XOutput) AuthserverTimeoutTaggedVlanid() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy8021X) pulumi.StringOutput { return v.AuthserverTimeoutTaggedVlanid }).(pulumi.StringOutput)
+}
+
 // Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
 func (o Policy8021XOutput) AuthserverTimeoutVlan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy8021X) pulumi.StringOutput { return v.AuthserverTimeoutVlan }).(pulumi.StringOutput)
@@ -468,6 +508,11 @@ func (o Policy8021XOutput) AuthserverTimeoutVlan() pulumi.StringOutput {
 // Authentication server timeout VLAN name.
 func (o Policy8021XOutput) AuthserverTimeoutVlanid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy8021X) pulumi.StringOutput { return v.AuthserverTimeoutVlanid }).(pulumi.StringOutput)
+}
+
+// Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+func (o Policy8021XOutput) Dacl() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy8021X) pulumi.StringOutput { return v.Dacl }).(pulumi.StringOutput)
 }
 
 // Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -490,7 +535,7 @@ func (o Policy8021XOutput) FramevidApply() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy8021X) pulumi.StringOutput { return v.FramevidApply }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o Policy8021XOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy8021X) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -551,8 +596,8 @@ func (o Policy8021XOutput) UserGroups() Policy8021XUserGroupArrayOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Policy8021XOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Policy8021X) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Policy8021XOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy8021X) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type Policy8021XArrayOutput struct{ *pulumi.OutputState }

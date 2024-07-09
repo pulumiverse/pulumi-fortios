@@ -2610,6 +2610,75 @@ export namespace extensioncontroller {
         weight?: pulumi.Input<number>;
     }
 
+    export interface ExtenderprofileWifi {
+        /**
+         * Country in which this FEX will operate (default = NA). Valid values: `--`, `AF`, `AL`, `DZ`, `AS`, `AO`, `AR`, `AM`, `AU`, `AT`, `AZ`, `BS`, `BH`, `BD`, `BB`, `BY`, `BE`, `BZ`, `BJ`, `BM`, `BT`, `BO`, `BA`, `BW`, `BR`, `BN`, `BG`, `BF`, `KH`, `CM`, `KY`, `CF`, `TD`, `CL`, `CN`, `CX`, `CO`, `CG`, `CD`, `CR`, `HR`, `CY`, `CZ`, `DK`, `DJ`, `DM`, `DO`, `EC`, `EG`, `SV`, `ET`, `EE`, `GF`, `PF`, `FO`, `FJ`, `FI`, `FR`, `GA`, `GE`, `GM`, `DE`, `GH`, `GI`, `GR`, `GL`, `GD`, `GP`, `GU`, `GT`, `GY`, `HT`, `HN`, `HK`, `HU`, `IS`, `IN`, `ID`, `IQ`, `IE`, `IM`, `IL`, `IT`, `CI`, `JM`, `JO`, `KZ`, `KE`, `KR`, `KW`, `LA`, `LV`, `LB`, `LS`, `LR`, `LY`, `LI`, `LT`, `LU`, `MO`, `MK`, `MG`, `MW`, `MY`, `MV`, `ML`, `MT`, `MH`, `MQ`, `MR`, `MU`, `YT`, `MX`, `FM`, `MD`, `MC`, `MN`, `MA`, `MZ`, `MM`, `NA`, `NP`, `NL`, `AN`, `AW`, `NZ`, `NI`, `NE`, `NG`, `NO`, `MP`, `OM`, `PK`, `PW`, `PA`, `PG`, `PY`, `PE`, `PH`, `PL`, `PT`, `PR`, `QA`, `RE`, `RO`, `RU`, `RW`, `BL`, `KN`, `LC`, `MF`, `PM`, `VC`, `SA`, `SN`, `RS`, `ME`, `SL`, `SG`, `SK`, `SI`, `SO`, `ZA`, `ES`, `LK`, `SR`, `SZ`, `SE`, `CH`, `TW`, `TZ`, `TH`, `TG`, `TT`, `TN`, `TR`, `TM`, `AE`, `TC`, `UG`, `UA`, `GB`, `US`, `PS`, `UY`, `UZ`, `VU`, `VE`, `VN`, `VI`, `WF`, `YE`, `ZM`, `ZW`, `JP`, `CA`.
+         */
+        country?: pulumi.Input<string>;
+        /**
+         * Radio-1 config for Wi-Fi 2.4GHz The structure of `radio1` block is documented below.
+         */
+        radio1?: pulumi.Input<inputs.extensioncontroller.ExtenderprofileWifiRadio1>;
+        /**
+         * Radio-2 config for Wi-Fi 5GHz The structure of `radio2` block is documented below.
+         *
+         * The `radio1` block supports:
+         */
+        radio2?: pulumi.Input<inputs.extensioncontroller.ExtenderprofileWifiRadio2>;
+    }
+
+    export interface ExtenderprofileWifiRadio1 {
+        band?: pulumi.Input<string>;
+        bandwidth?: pulumi.Input<string>;
+        beaconInterval?: pulumi.Input<number>;
+        bssColor?: pulumi.Input<number>;
+        bssColorMode?: pulumi.Input<string>;
+        channel?: pulumi.Input<string>;
+        extensionChannel?: pulumi.Input<string>;
+        guardInterval?: pulumi.Input<string>;
+        lanExtVap?: pulumi.Input<string>;
+        localVaps?: pulumi.Input<pulumi.Input<inputs.extensioncontroller.ExtenderprofileWifiRadio1LocalVap>[]>;
+        maxClients?: pulumi.Input<number>;
+        mode?: pulumi.Input<string>;
+        n80211d?: pulumi.Input<string>;
+        operatingStandard?: pulumi.Input<string>;
+        powerLevel?: pulumi.Input<number>;
+        status?: pulumi.Input<string>;
+    }
+
+    export interface ExtenderprofileWifiRadio1LocalVap {
+        /**
+         * Wi-Fi local VAP name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface ExtenderprofileWifiRadio2 {
+        band?: pulumi.Input<string>;
+        bandwidth?: pulumi.Input<string>;
+        beaconInterval?: pulumi.Input<number>;
+        bssColor?: pulumi.Input<number>;
+        bssColorMode?: pulumi.Input<string>;
+        channel?: pulumi.Input<string>;
+        extensionChannel?: pulumi.Input<string>;
+        guardInterval?: pulumi.Input<string>;
+        lanExtVap?: pulumi.Input<string>;
+        localVaps?: pulumi.Input<pulumi.Input<inputs.extensioncontroller.ExtenderprofileWifiRadio2LocalVap>[]>;
+        maxClients?: pulumi.Input<number>;
+        mode?: pulumi.Input<string>;
+        n80211d?: pulumi.Input<string>;
+        operatingStandard?: pulumi.Input<string>;
+        powerLevel?: pulumi.Input<number>;
+        status?: pulumi.Input<string>;
+    }
+
+    export interface ExtenderprofileWifiRadio2LocalVap {
+        /**
+         * Wi-Fi local VAP name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
     export interface FortigateprofileLanExtension {
         /**
          * IPsec phase1 interface.
@@ -5261,11 +5330,11 @@ export namespace firewall {
          */
         status?: pulumi.Input<string>;
         /**
-         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
          */
         threshold?: pulumi.Input<number>;
         /**
-         * Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+         * Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
          */
         thresholddefault?: pulumi.Input<number>;
     }
@@ -5321,11 +5390,11 @@ export namespace firewall {
          */
         status?: pulumi.Input<string>;
         /**
-         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
          */
         threshold?: pulumi.Input<number>;
         /**
-         * Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+         * Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
          */
         thresholddefault?: pulumi.Input<number>;
     }
@@ -5703,6 +5772,29 @@ export namespace firewall {
 
     export interface Localinpolicy6Dstaddr {
         /**
+         * Custom Internet Service6 group name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface Localinpolicy6InternetService6SrcCustom {
+        name?: pulumi.Input<string>;
+    }
+
+    export interface Localinpolicy6InternetService6SrcCustomGroup {
+        name?: pulumi.Input<string>;
+    }
+
+    export interface Localinpolicy6InternetService6SrcGroup {
+        name?: pulumi.Input<string>;
+    }
+
+    export interface Localinpolicy6InternetService6SrcName {
+        name?: pulumi.Input<string>;
+    }
+
+    export interface Localinpolicy6IntfBlock {
+        /**
          * Address name.
          */
         name?: pulumi.Input<string>;
@@ -5723,6 +5815,41 @@ export namespace firewall {
     }
 
     export interface LocalinpolicyDstaddr {
+        /**
+         * Address name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface LocalinpolicyInternetServiceSrcCustom {
+        /**
+         * Custom Internet Service name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface LocalinpolicyInternetServiceSrcCustomGroup {
+        /**
+         * Custom Internet Service group name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface LocalinpolicyInternetServiceSrcGroup {
+        /**
+         * Internet Service group name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface LocalinpolicyInternetServiceSrcName {
+        /**
+         * Internet Service name.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface LocalinpolicyIntfBlock {
         /**
          * Address name.
          */
@@ -5813,6 +5940,27 @@ export namespace firewall {
          * Source address objects.
          */
         name?: pulumi.Input<string>;
+    }
+
+    export interface OndemandsnifferHost {
+        /**
+         * IPv4 or IPv6 host.
+         */
+        host?: pulumi.Input<string>;
+    }
+
+    export interface OndemandsnifferPort {
+        /**
+         * Port to filter in this traffic sniffer.
+         */
+        port?: pulumi.Input<number>;
+    }
+
+    export interface OndemandsnifferProtocol {
+        /**
+         * Integer value for the protocol type as defined by IANA (0 - 255).
+         */
+        protocol?: pulumi.Input<number>;
     }
 
     export interface Policy46Dstaddr {
@@ -7585,7 +7733,7 @@ export namespace firewall {
          */
         status?: pulumi.Input<string>;
         /**
-         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
          */
         threshold?: pulumi.Input<number>;
         /**
@@ -7654,6 +7802,17 @@ export namespace firewall {
          * Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
          */
         untrustedServerCert?: pulumi.Input<string>;
+    }
+
+    export interface SslsshprofileEchOuterSni {
+        /**
+         * ClientHelloOuter SNI name.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * ClientHelloOuter SNI to be blocked.
+         */
+        sni?: pulumi.Input<string>;
     }
 
     export interface SslsshprofileFtps {
@@ -7744,6 +7903,10 @@ export namespace firewall {
          * Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
          */
         clientCertificate?: pulumi.Input<string>;
+        /**
+         * Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+         */
+        encryptedClientHello?: pulumi.Input<string>;
         /**
          * Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
          */
@@ -8011,6 +8174,10 @@ export namespace firewall {
          * Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
          */
         clientCertificate?: pulumi.Input<string>;
+        /**
+         * Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+         */
+        encryptedClientHello?: pulumi.Input<string>;
         /**
          * Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
          */
@@ -11780,6 +11947,10 @@ export namespace router {
          */
         remoteAs?: pulumi.Input<number>;
         /**
+         * BGP filter for remote AS.
+         */
+        remoteAsFilter?: pulumi.Input<string>;
+        /**
          * Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
          */
         removePrivateAs?: pulumi.Input<string>;
@@ -14278,6 +14449,14 @@ export namespace switchcontroller {
          */
         mac?: pulumi.Input<string>;
         /**
+         * Number of days the matched devices will be retained (0 - 120, 0 = always retain).
+         */
+        matchPeriod?: pulumi.Input<number>;
+        /**
+         * Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+         */
+        matchType?: pulumi.Input<string>;
+        /**
          * 802.1x security policy to be applied when using this policy.
          */
         n8021x?: pulumi.Input<string>;
@@ -14539,7 +14718,7 @@ export namespace switchcontroller {
          */
         placeType?: pulumi.Input<string>;
         /**
-         * Post office box (P.O. box).
+         * Post office box.
          */
         postOfficeBox?: pulumi.Input<string>;
         /**
@@ -14606,7 +14785,7 @@ export namespace switchcontroller {
          */
         altitude?: pulumi.Input<string>;
         /**
-         * m ( meters), f ( floors). Valid values: `m`, `f`.
+         * Configure the unit for which the altitude is to (m = meters, f = floors of a building). Valid values: `m`, `f`.
          */
         altitudeUnit?: pulumi.Input<string>;
         /**
@@ -14614,11 +14793,11 @@ export namespace switchcontroller {
          */
         datum?: pulumi.Input<string>;
         /**
-         * Floating point start with ( +/- )  or end with ( N or S ) eg. +/-16.67 or 16.67N.
+         * Floating point starting with +/- or ending with (N or S). For example, +/-16.67 or 16.67N.
          */
         latitude?: pulumi.Input<string>;
         /**
-         * Floating point start with ( +/- )  or end with ( E or W ) eg. +/-26.789 or 26.789E.
+         * Floating point starting with +/- or ending with (N or S). For example, +/-26.789 or 26.789E.
          */
         longitude?: pulumi.Input<string>;
         /**
@@ -14815,6 +14994,10 @@ export namespace switchcontroller {
          */
         aggregatorMode?: pulumi.Input<string>;
         /**
+         * Enable/Disable allow ARP monitor. Valid values: `disable`, `enable`.
+         */
+        allowArpMonitor?: pulumi.Input<string>;
+        /**
          * Configure switch port tagged vlans The structure of `allowedVlans` block is documented below.
          */
         allowedVlans?: pulumi.Input<pulumi.Input<inputs.switchcontroller.ManagedswitchPortAllowedVlan>[]>;
@@ -14878,6 +15061,10 @@ export namespace switchcontroller {
          * Switch controller export port to pool-list.
          */
         exportToPoolFlag?: pulumi.Input<number>;
+        /**
+         * LACP fallback port.
+         */
+        fallbackPort?: pulumi.Input<string>;
         /**
          * FEC capable.
          */
@@ -15155,7 +15342,7 @@ export namespace switchcontroller {
          */
         sampleDirection?: pulumi.Input<string>;
         /**
-         * sFlow sampler counter polling interval (1 - 255 sec).
+         * sFlow sampling counter polling interval in seconds (0 - 255).
          */
         sflowCounterInterval?: pulumi.Input<number>;
         /**
@@ -15511,7 +15698,7 @@ export namespace switchcontroller {
          */
         localOverride?: pulumi.Input<string>;
         /**
-         * Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+         * Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
          */
         rate?: pulumi.Input<number>;
         /**
@@ -15628,7 +15815,7 @@ export namespace switchcontroller {
 
     export interface QuarantineTargetTag {
         /**
-         * Tag string(eg. string1 string2 string3).
+         * Tag string. For example, string1 string2 string3.
          */
         tags?: pulumi.Input<string>;
     }
@@ -15984,6 +16171,10 @@ export namespace system {
          * DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
          */
         dataLossPrevention?: pulumi.Input<string>;
+        /**
+         * DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+         */
+        dlp?: pulumi.Input<string>;
         /**
          * DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
          */
@@ -16678,7 +16869,7 @@ export namespace system {
          */
         ipv6?: pulumi.Input<string>;
         /**
-         * DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+         * DNS entry preference (0 - 65535, highest preference = 0, default = 10).
          */
         preference?: pulumi.Input<number>;
         /**
@@ -16812,11 +17003,11 @@ export namespace system {
          */
         serial?: pulumi.Input<string>;
         /**
-         * When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
+         * Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
          */
         setupTime?: pulumi.Input<string>;
         /**
-         * Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+         * Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
          */
         time?: pulumi.Input<string>;
         /**
@@ -16889,7 +17080,7 @@ export namespace system {
          */
         monitor?: pulumi.Input<string>;
         /**
-         * Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+         * Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
          */
         override?: pulumi.Input<string>;
         /**
@@ -17560,6 +17751,10 @@ export namespace system {
          */
         description?: pulumi.Input<string>;
         /**
+         * Configure pool exclude subnets. The structure of `exclude` block is documented below.
+         */
+        excludes?: pulumi.Input<pulumi.Input<inputs.system.IpamPoolExclude>[]>;
+        /**
          * IPAM pool name.
          */
         name?: pulumi.Input<string>;
@@ -17567,6 +17762,17 @@ export namespace system {
          * Configure IPAM pool subnet, Class A - Class B subnet.
          */
         subnet?: pulumi.Input<string>;
+    }
+
+    export interface IpamPoolExclude {
+        /**
+         * Configure subnet to exclude from the IPAM pool.
+         */
+        excludeSubnet?: pulumi.Input<string>;
+        /**
+         * Exclude ID.
+         */
+        id?: pulumi.Input<number>;
     }
 
     export interface IpamRule {
@@ -17769,13 +17975,17 @@ export namespace system {
          */
         ipType?: pulumi.Input<string>;
         /**
-         * Key for MD5/SHA1 authentication.
+         * Key for authentication. On FortiOS versions 6.2.0: MD5(NTPv3)/SHA1(NTPv4). On FortiOS versions >= 7.4.4: MD5(NTPv3)/SHA1(NTPv4)/SHA256(NTPv4).
          */
         key?: pulumi.Input<string>;
         /**
          * Key ID for authentication.
          */
         keyId?: pulumi.Input<number>;
+        /**
+         * Select NTP authentication type. Valid values: `MD5`, `SHA1`, `SHA256`.
+         */
+        keyType?: pulumi.Input<string>;
         /**
          * Enable to use NTPv3 instead of NTPv4. Valid values: `enable`, `disable`.
          */
@@ -18639,7 +18849,7 @@ export namespace system {
          */
         httpMatch?: pulumi.Input<string>;
         /**
-         * Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600*1000 msec, default = 500).
+         * Status check interval in milliseconds, or the time between attempting to connect to the server (default = 500). On FortiOS versions 6.4.1-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
          */
         interval?: pulumi.Input<number>;
         /**
@@ -18655,7 +18865,7 @@ export namespace system {
          */
         name?: pulumi.Input<string>;
         /**
-         * Packet size of a twamp test session,
+         * Packet size of a TWAMP test session. (124/158 - 1024)
          */
         packetSize?: pulumi.Input<number>;
         /**
@@ -18663,7 +18873,7 @@ export namespace system {
          */
         password?: pulumi.Input<string>;
         /**
-         * Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).
+         * Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
          */
         port?: pulumi.Input<number>;
         /**
@@ -18675,7 +18885,7 @@ export namespace system {
          */
         probePackets?: pulumi.Input<string>;
         /**
-         * Time to wait before a probe packet is considered lost (500 - 3600*1000 msec, default = 500).
+         * Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.4.2-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 6.4.1: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
          */
         probeTimeout?: pulumi.Input<number>;
         /**
@@ -18840,7 +19050,7 @@ export namespace system {
          */
         preferredSource?: pulumi.Input<string>;
         /**
-         * Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+         * Priority of the interface for IPv4 . Used for SD-WAN rules or priority rules. On FortiOS versions 6.4.1: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535, default = 1.
          */
         priority?: pulumi.Input<number>;
         /**
@@ -18895,11 +19105,11 @@ export namespace system {
          */
         ip?: pulumi.Input<string>;
         /**
-         * Member sequence number.
+         * Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `memberBlock`.*
          */
         member?: pulumi.Input<number>;
         /**
-         * Member sequence number list. The structure of `memberBlock` block is documented below.
+         * Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `memberBlock` block is documented below.
          */
         memberBlocks?: pulumi.Input<pulumi.Input<inputs.system.SdwanNeighborMemberBlock>[]>;
         /**
@@ -19709,7 +19919,7 @@ export namespace system {
          */
         httpMatch?: pulumi.Input<string>;
         /**
-         * Status check interval, or the time between attempting to connect to the server (1 - 3600 sec, default = 5).
+         * Status check interval, or the time between attempting to connect to the server. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-6.4.0: 500 - 3600*1000 msec, default = 500.
          */
         interval?: pulumi.Input<number>;
         /**
@@ -19890,11 +20100,11 @@ export namespace system {
          */
         status?: pulumi.Input<string>;
         /**
-         * Measured volume ratio (this value / sum of all values = percentage of link volume, 0 - 255).
+         * Measured volume ratio (this value / sum of all values = percentage of link volume). On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
          */
         volumeRatio?: pulumi.Input<number>;
         /**
-         * Weight of this interface for weighted load balancing. (0 - 255) More traffic is directed to interfaces with higher weights.
+         * Weight of this interface for weighted load balancing. More traffic is directed to interfaces with higher weights. On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
          */
         weight?: pulumi.Input<number>;
     }
@@ -21571,7 +21781,7 @@ export namespace voip {
          */
         preserveOverride?: pulumi.Input<string>;
         /**
-         * Expiry time for provisional INVITE (10 - 3600 sec).
+         * Expiry time (10-3600, in seconds) for provisional INVITE.
          */
         provisionalInviteExpiryTime?: pulumi.Input<number>;
         /**
@@ -22154,7 +22364,7 @@ export namespace vpn {
                  */
                 formDatas?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.web.PortalBookmarkGroupBookmarkFormData>[]>;
                 /**
-                 * Screen height (range from 480 - 65535, default = 768).
+                 * Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
                  */
                 height?: pulumi.Input<number>;
                 /**
@@ -22194,7 +22404,7 @@ export namespace vpn {
                  */
                 preconnectionBlob?: pulumi.Input<string>;
                 /**
-                 * The numeric ID of the RDP source (0-2147483648).
+                 * The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
                  */
                 preconnectionId?: pulumi.Input<number>;
                 /**
@@ -22206,7 +22416,7 @@ export namespace vpn {
                  */
                 restrictedAdmin?: pulumi.Input<string>;
                 /**
-                 * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+                 * Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
                  */
                 security?: pulumi.Input<string>;
                 /**
@@ -22250,7 +22460,7 @@ export namespace vpn {
                  */
                 vncKeyboardLayout?: pulumi.Input<string>;
                 /**
-                 * Screen width (range from 640 - 65535, default = 1024).
+                 * Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
                  */
                 width?: pulumi.Input<number>;
             }
@@ -22387,7 +22597,7 @@ export namespace vpn {
                  */
                 dnsServer2?: pulumi.Input<string>;
                 /**
-                 * Split DNS domains used for SSL-VPN clients separated by comma(,).
+                 * Split DNS domains used for SSL-VPN clients separated by comma.
                  */
                 domains?: pulumi.Input<string>;
                 /**
@@ -22441,7 +22651,7 @@ export namespace vpn {
                  */
                 formDatas?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.web.UserbookmarkBookmarkFormData>[]>;
                 /**
-                 * Screen height (range from 480 - 65535, default = 768).
+                 * Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
                  */
                 height?: pulumi.Input<number>;
                 /**
@@ -22481,7 +22691,7 @@ export namespace vpn {
                  */
                 preconnectionBlob?: pulumi.Input<string>;
                 /**
-                 * The numeric ID of the RDP source (0-2147483648).
+                 * The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
                  */
                 preconnectionId?: pulumi.Input<number>;
                 /**
@@ -22493,7 +22703,7 @@ export namespace vpn {
                  */
                 restrictedAdmin?: pulumi.Input<string>;
                 /**
-                 * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+                 * Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
                  */
                 security?: pulumi.Input<string>;
                 /**
@@ -22537,7 +22747,7 @@ export namespace vpn {
                  */
                 vncKeyboardLayout?: pulumi.Input<string>;
                 /**
-                 * Screen width (range from 640 - 65535, default = 1024).
+                 * Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
                  */
                 width?: pulumi.Input<number>;
             }
@@ -22583,7 +22793,7 @@ export namespace vpn {
                  */
                 formDatas?: pulumi.Input<pulumi.Input<inputs.vpn.ssl.web.UsergroupbookmarkBookmarkFormData>[]>;
                 /**
-                 * Screen height (range from 480 - 65535, default = 768).
+                 * Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
                  */
                 height?: pulumi.Input<number>;
                 /**
@@ -22623,7 +22833,7 @@ export namespace vpn {
                  */
                 preconnectionBlob?: pulumi.Input<string>;
                 /**
-                 * The numeric ID of the RDP source (0-2147483648).
+                 * The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
                  */
                 preconnectionId?: pulumi.Input<number>;
                 /**
@@ -22635,7 +22845,7 @@ export namespace vpn {
                  */
                 restrictedAdmin?: pulumi.Input<string>;
                 /**
-                 * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+                 * Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
                  */
                 security?: pulumi.Input<string>;
                 /**
@@ -22679,7 +22889,7 @@ export namespace vpn {
                  */
                 vncKeyboardLayout?: pulumi.Input<string>;
                 /**
-                 * Screen width (range from 640 - 65535, default = 1024).
+                 * Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
                  */
                 width?: pulumi.Input<number>;
             }
@@ -23605,7 +23815,7 @@ export namespace wanopt {
          */
         secureTunnel?: pulumi.Input<string>;
         /**
-         * Enable/disable SSL/TLS offloading (hardware acceleration) for HTTPS traffic in this tunnel. Valid values: `enable`, `disable`.
+         * Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
          */
         ssl?: pulumi.Input<string>;
         /**
@@ -23679,7 +23889,7 @@ export namespace wanopt {
          */
         secureTunnel?: pulumi.Input<string>;
         /**
-         * Enable/disable SSL/TLS offloading. Valid values: `enable`, `disable`.
+         * Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
          */
         ssl?: pulumi.Input<string>;
         /**
@@ -24017,6 +24227,10 @@ export namespace wirelesscontroller {
          */
         concurrentClients?: pulumi.Input<number>;
         /**
+         * Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
+         */
+        keyType?: pulumi.Input<string>;
+        /**
          * MAC address.
          */
         mac?: pulumi.Input<string>;
@@ -24032,6 +24246,18 @@ export namespace wirelesscontroller {
          * WPA Pre-shared key.
          */
         passphrase?: pulumi.Input<string>;
+        /**
+         * WPA3 SAE password.
+         */
+        saePassword?: pulumi.Input<string>;
+        /**
+         * Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+         */
+        saePk?: pulumi.Input<string>;
+        /**
+         * Private key used for WPA3 SAE-PK authentication.
+         */
+        saePrivateKey?: pulumi.Input<string>;
     }
 
     export interface MpskprofileMpskGroupMpskKeyMpskSchedule {
@@ -24714,19 +24940,19 @@ export namespace wirelesscontroller {
          */
         aeroscout?: pulumi.Input<string>;
         /**
-         * Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+         * Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
          */
         aeroscoutApMac?: pulumi.Input<string>;
         /**
-         * Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+         * Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
          */
         aeroscoutMmuReport?: pulumi.Input<string>;
         /**
-         * Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+         * Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
          */
         aeroscoutMu?: pulumi.Input<string>;
         /**
-         * AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+         * eroScout MU mode dilution factor (default = 20).
          */
         aeroscoutMuFactor?: pulumi.Input<number>;
         /**
@@ -24742,7 +24968,7 @@ export namespace wirelesscontroller {
          */
         aeroscoutServerPort?: pulumi.Input<number>;
         /**
-         * Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+         * Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
          */
         ekahauBlinkMode?: pulumi.Input<string>;
         /**
@@ -24750,11 +24976,11 @@ export namespace wirelesscontroller {
          */
         ekahauTag?: pulumi.Input<string>;
         /**
-         * IP address of Ekahua RTLS Controller (ERC).
+         * IP address of Ekahau RTLS Controller (ERC).
          */
         ercServerIp?: pulumi.Input<string>;
         /**
-         * Ekahua RTLS Controller (ERC) UDP listening port.
+         * Ekahau RTLS Controller (ERC) UDP listening port.
          */
         ercServerPort?: pulumi.Input<number>;
         /**
@@ -24770,7 +24996,7 @@ export namespace wirelesscontroller {
          */
         fortipresenceFrequency?: pulumi.Input<number>;
         /**
-         * FortiPresence server UDP listening port (default = 3000).
+         * UDP listening port of FortiPresence server (default = 3000).
          */
         fortipresencePort?: pulumi.Input<number>;
         /**
@@ -24911,6 +25137,7 @@ export namespace wirelesscontroller {
         callAdmissionControl?: pulumi.Input<string>;
         callCapacity?: pulumi.Input<number>;
         channelBonding?: pulumi.Input<string>;
+        channelBondingExt?: pulumi.Input<string>;
         channelUtilization?: pulumi.Input<string>;
         channels?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.WtpprofileRadio1Channel>[]>;
         coexistence?: pulumi.Input<string>;
@@ -25017,6 +25244,7 @@ export namespace wirelesscontroller {
         callAdmissionControl?: pulumi.Input<string>;
         callCapacity?: pulumi.Input<number>;
         channelBonding?: pulumi.Input<string>;
+        channelBondingExt?: pulumi.Input<string>;
         channelUtilization?: pulumi.Input<string>;
         channels?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.WtpprofileRadio2Channel>[]>;
         coexistence?: pulumi.Input<string>;
@@ -25123,6 +25351,7 @@ export namespace wirelesscontroller {
         callAdmissionControl?: pulumi.Input<string>;
         callCapacity?: pulumi.Input<number>;
         channelBonding?: pulumi.Input<string>;
+        channelBondingExt?: pulumi.Input<string>;
         channelUtilization?: pulumi.Input<string>;
         channels?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.WtpprofileRadio3Channel>[]>;
         coexistence?: pulumi.Input<string>;
@@ -25228,6 +25457,7 @@ export namespace wirelesscontroller {
         callAdmissionControl?: pulumi.Input<string>;
         callCapacity?: pulumi.Input<number>;
         channelBonding?: pulumi.Input<string>;
+        channelBondingExt?: pulumi.Input<string>;
         channelUtilization?: pulumi.Input<string>;
         channels?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.WtpprofileRadio4Channel>[]>;
         coexistence?: pulumi.Input<string>;

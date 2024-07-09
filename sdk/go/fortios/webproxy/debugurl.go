@@ -71,7 +71,7 @@ type Debugurl struct {
 	// URL exemption pattern.
 	UrlPattern pulumi.StringOutput `pulumi:"urlPattern"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewDebugurl registers a new resource with the given unique name, arguments, and options.
@@ -271,8 +271,8 @@ func (o DebugurlOutput) UrlPattern() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o DebugurlOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Debugurl) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o DebugurlOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Debugurl) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type DebugurlArrayOutput struct{ *pulumi.OutputState }

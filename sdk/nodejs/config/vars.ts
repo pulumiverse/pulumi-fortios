@@ -179,6 +179,10 @@ Object.defineProperty(exports, "username", {
     enumerable: true,
 });
 
+/**
+ * Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+ * vdom value on that resource.
+ */
 export declare const vdom: string | undefined;
 Object.defineProperty(exports, "vdom", {
     get() {

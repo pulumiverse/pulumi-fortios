@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
-// Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0`.
+// Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,6.4.15,7.0.0`.
 //
 // ## Import
 //
@@ -37,7 +37,7 @@ type Nacsettings struct {
 	AutoAuth pulumi.StringOutput `pulumi:"autoAuth"`
 	// Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
 	BounceNacPort pulumi.StringOutput `pulumi:"bounceNacPort"`
-	// Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+	// Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer pulumi.IntOutput `pulumi:"inactiveTimer"`
 	// Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
 	LinkDownFlush pulumi.StringOutput `pulumi:"linkDownFlush"`
@@ -48,7 +48,7 @@ type Nacsettings struct {
 	// Default NAC Onboarding VLAN when NAC devices are discovered.
 	OnboardingVlan pulumi.StringOutput `pulumi:"onboardingVlan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewNacsettings registers a new resource with the given unique name, arguments, and options.
@@ -85,7 +85,7 @@ type nacsettingsState struct {
 	AutoAuth *string `pulumi:"autoAuth"`
 	// Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
 	BounceNacPort *string `pulumi:"bounceNacPort"`
-	// Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+	// Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer *int `pulumi:"inactiveTimer"`
 	// Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
 	LinkDownFlush *string `pulumi:"linkDownFlush"`
@@ -104,7 +104,7 @@ type NacsettingsState struct {
 	AutoAuth pulumi.StringPtrInput
 	// Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
 	BounceNacPort pulumi.StringPtrInput
-	// Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+	// Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer pulumi.IntPtrInput
 	// Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
 	LinkDownFlush pulumi.StringPtrInput
@@ -127,7 +127,7 @@ type nacsettingsArgs struct {
 	AutoAuth *string `pulumi:"autoAuth"`
 	// Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
 	BounceNacPort *string `pulumi:"bounceNacPort"`
-	// Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+	// Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer *int `pulumi:"inactiveTimer"`
 	// Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
 	LinkDownFlush *string `pulumi:"linkDownFlush"`
@@ -147,7 +147,7 @@ type NacsettingsArgs struct {
 	AutoAuth pulumi.StringPtrInput
 	// Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
 	BounceNacPort pulumi.StringPtrInput
-	// Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+	// Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 	InactiveTimer pulumi.IntPtrInput
 	// Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
 	LinkDownFlush pulumi.StringPtrInput
@@ -258,7 +258,7 @@ func (o NacsettingsOutput) BounceNacPort() pulumi.StringOutput {
 	return o.ApplyT(func(v *Nacsettings) pulumi.StringOutput { return v.BounceNacPort }).(pulumi.StringOutput)
 }
 
-// Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+// Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
 func (o NacsettingsOutput) InactiveTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v *Nacsettings) pulumi.IntOutput { return v.InactiveTimer }).(pulumi.IntOutput)
 }
@@ -284,8 +284,8 @@ func (o NacsettingsOutput) OnboardingVlan() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o NacsettingsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Nacsettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o NacsettingsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Nacsettings) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type NacsettingsArrayOutput struct{ *pulumi.OutputState }

@@ -112,7 +112,7 @@ namespace Pulumiverse.Fortios.Router
         public Output<ImmutableArray<Outputs.AccesslistRule>> Rules { get; private set; } = null!;
 
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
