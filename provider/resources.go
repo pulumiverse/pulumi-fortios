@@ -1110,33 +1110,18 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_logtacacsaccounting2_filter": {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting2_filter"),
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"filter": {
-						CSharpName: "Definition",
-					},
-				},
 			},
 			"fortios_logtacacsaccounting2_setting": {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting2_setting"),
 			},
 			"fortios_logtacacsaccounting3_filter": {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting3_filter"),
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"filter": {
-						CSharpName: "Definition",
-					},
-				},
 			},
 			"fortios_logtacacsaccounting3_setting": {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting3_setting"),
 			},
 			"fortios_logtacacsaccounting_filter": {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting_filter"),
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"filter": {
-						CSharpName: "Definition",
-					},
-				},
 			},
 			"fortios_logtacacsaccounting_setting": {
 				Tok: makeResource(mainMod, "fortios_logtacacsaccounting_setting"),
